@@ -149,20 +149,26 @@ using Microsoft.Kiota.Abstractions.Authentication;
 
 namespace BlazorSample;
 
-public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
-        IServiceProvider serviceProvider,
-        ILogger<CustomAccountFactory> logger,
-        IConfiguration config)
-    : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
+public class CustomAccountFactory() 
+    : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    private readonly ILogger<CustomAccountFactory> logger = logger;
-    private readonly IServiceProvider serviceProvider = serviceProvider;
+    private readonly ILogger<CustomAccountFactory> logger;
+    private readonly IServiceProvider serviceProvider;
     private readonly string? baseUrl =
         string.Join("/",
             config.GetSection("MicrosoftGraph")["BaseUrl"] ??
                 "https://graph.microsoft.com",
             config.GetSection("MicrosoftGraph")["Version"] ??
                 "v1.0");
+
+    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+        IServiceProvider serviceProvider,
+        ILogger<CustomAccountFactory> logger)
+        : base(accessor)
+    {
+        this.serviceProvider = serviceProvider;
+        this.logger = logger;
+    }
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
@@ -244,13 +250,20 @@ using Microsoft.Graph;
 
 namespace BlazorSample;
 
-public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
-        IServiceProvider serviceProvider,
-        ILogger<CustomAccountFactory> logger)
+public class CustomAccountFactory() 
     : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
 {
-    private readonly ILogger<CustomAccountFactory> logger = logger;
-    private readonly IServiceProvider serviceProvider = serviceProvider;
+    private readonly ILogger<CustomAccountFactory> logger;
+    private readonly IServiceProvider serviceProvider;
+
+    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+        IServiceProvider serviceProvider,
+        ILogger<CustomAccountFactory> logger)
+        : base(accessor)
+    {
+        this.serviceProvider = serviceProvider;
+        this.logger = logger;
+    }
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
@@ -529,7 +542,7 @@ When working with the default directory, follow the guidance in [Add app roles t
     ],
     "description": "Administrators manage developers.",
     "displayName": "Admin",
-    "id": "584e483a-7101-404b-9bb1-83bf9463e335",
+    "id": "{ADMIN GUID}",
     "isEnabled": true,
     "lang": null,
     "origin": "Application",
@@ -541,7 +554,7 @@ When working with the default directory, follow the guidance in [Add app roles t
     ],
     "description": "Developers write code.",
     "displayName": "Developer",
-    "id": "82770d35-2a93-4182-b3f5-3d7bfe9dfe46",
+    "id": "{DEVELOPER GUID}",
     "isEnabled": true,
     "lang": null,
     "origin": "Application",
@@ -550,8 +563,7 @@ When working with the default directory, follow the guidance in [Add app roles t
 ],
 ```
 
-> [!NOTE]
-> You can generate GUIDs with an [online GUID generator program (Google search result for "guid generator")](https://www.google.com/search?q=guid+generator). 
+For the `{ADMIN GUID}` and `{DEVELOPER GUID}` placeholders in the preceding example, you can generate GUIDs with an [online GUID generator (Google search result for "guid generator")](https://www.google.com/search?q=guid+generator).
 
 To assign a role to a user (or group if you have a Premium tier Azure account):
 

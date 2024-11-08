@@ -126,7 +126,7 @@ With the .NET WebAssembly build tools installed, runtime relinking is performed 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor uses [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) to improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction.
+Blazor uses [WebAssembly Single Instruction, Multiple Data (SIMD)](https://wikipedia.org/wiki/Single_instruction,_multiple_data) to improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction.
 
 To disable SIMD, for example when targeting old browsers or browsers on mobile devices that don't support SIMD, set the `<WasmEnableSIMD>` property to `false` in the app's project file (`.csproj`):
 
@@ -142,7 +142,7 @@ For more information, see [Configuring and hosting .NET WebAssembly applications
 
 :::moniker range="< aspnetcore-8.0"
 
-Blazor uses [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) to improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction.
+Blazor uses [WebAssembly Single Instruction, Multiple Data (SIMD)](https://wikipedia.org/wiki/Single_instruction,_multiple_data) to improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction.
 
 To enable SIMD, add the `<WasmEnableSIMD>` property set to `true` in the app's project file (`.csproj`):
 

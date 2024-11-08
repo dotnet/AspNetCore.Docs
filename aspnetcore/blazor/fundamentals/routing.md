@@ -62,7 +62,13 @@ Components support multiple route templates using multiple [`@page` directives](
 
 `BlazorRoute.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/BlazorRoute.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/BlazorRoute.razor":::
 
@@ -70,25 +76,25 @@ Components support multiple route templates using multiple [`@page` directives](
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor" highlight="1-2":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor" highlight="1-2":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor" highlight="1-2":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor" highlight="1-2":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor":::
 
 :::moniker-end
 
@@ -229,7 +235,13 @@ The router uses route parameters to populate the corresponding [component parame
 
 `RouteParameter1.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter1.razor":::
 
@@ -237,25 +249,25 @@ The router uses route parameters to populate the corresponding [component parame
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor":::
 
 :::moniker-end
 
@@ -273,7 +285,13 @@ Optional parameters aren't supported. In the following example, two [`@page` dir
 
 `RouteParameter2.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter2.razor":::
 
@@ -281,25 +299,25 @@ Optional parameters aren't supported. In the following example, two [`@page` dir
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor":::
 
 :::moniker-end
 
@@ -354,7 +372,7 @@ Constraint | Example | Example Matches | Invariant<br>culture<br>matching
 `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Yes
 `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Yes
 `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Yes
-`guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | No
+`guid` | `{id:guid}` | `00001111-aaaa-2222-bbbb-3333cccc4444`, `{00001111-aaaa-2222-bbbb-3333cccc4444}` | No
 `int` | `{id:int}` | `123456789`, `-123456789` | Yes
 `long` | `{ticks:long}` | `123456789`, `-123456789` | Yes
 `nonfile` | `{parameter:nonfile}` | Not `BlazorSample.styles.css`, not `favicon.ico` | Yes
@@ -429,25 +447,25 @@ Consider the following `Example` component that can receive a route parameter fr
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/routing/Example.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/routing/Example.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/routing/Example.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/routing/Example.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/routing/Example.razor" highlight="1":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/routing/Example.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/routing/Example.razor" highlight="2":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/routing/Example.razor":::
 
 :::moniker-end
 
@@ -507,7 +525,13 @@ Catch-all route parameters are:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Catchall.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Catchall.razor":::
 
@@ -618,7 +642,13 @@ The following component:
 
 `Navigate.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Navigate.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Navigate.razor":::
 
@@ -1675,9 +1705,8 @@ In the Razor markup of the `NavMenu` component (`NavMenu.razor`) under the defau
 The `GetRoutableComponents` method in the `@code` block:
 
 ```csharp
-public IEnumerable<string> GetRoutableComponents()
-{
-    return Assembly.GetExecutingAssembly()
+public IEnumerable<string> GetRoutableComponents() => 
+    Assembly.GetExecutingAssembly()
         .ExportedTypes
         .Where(t => t.IsSubclassOf(typeof(ComponentBase)))
         .Where(c => c.GetCustomAttributes(inherit: true)
@@ -1686,7 +1715,6 @@ public IEnumerable<string> GetRoutableComponents()
         .Where(c => c.Name != "Home" && c.Name != "Error")
         .OrderBy(o => o.Name)
         .Select(c => c.Name);
-}
 ```
 
 The preceding example doesn't include the following pages in the rendered list of components:

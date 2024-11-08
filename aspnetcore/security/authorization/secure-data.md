@@ -5,6 +5,7 @@ description: Learn how to create an ASP.NET Core web app with user data protecte
 ms.author: riande
 ms.date: 12/5/2021
 ms.custom: mvc
+ms.sfi.ropc: t
 uid: security/authorization/secure-data
 ---
 
@@ -289,11 +290,16 @@ In the preceding code:
 ## Test the completed app
 
 > [!WARNING]
-> This article uses the [Secret Manager tool](xref:security/app-secrets) to store the password for the seeded user accounts. The Secret Manager tool is used to store sensitive data during local development. For more information on authentication for deployed test and production apps, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
+> This article uses the [Secret Manager tool](xref:security/app-secrets) to store the password for the seeded user accounts. The Secret Manager tool is used to store sensitive data during local development. For information on authentication procedures that can be used when an app is deployed to a test or production environment, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
 
 If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](xref:security/app-secrets#secret-manager) to set a password:
 
-* Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol.
+* Choose a [strong password](https://support.microsoft.com/windows/create-and-use-strong-passwords-c5cebb49-8c53-4f5e-2bc4-fe357ca048eb):
+  * At least 12 characters long but 14 or more is better.
+  * A combination of uppercase letters, lowercase letters, numbers, and symbols.
+  * Not a word that can be found in a dictionary or the name of a person, character, product, or organization.
+  * Significantly different from your previous passwords.
+  * Easy for you to remember but difficult for others to guess. Consider using a memorable phrase like "6MonkeysRLooking^".
 * Execute the following command from the project's folder, where `<PW>` is the password:
 
   ```dotnetcli

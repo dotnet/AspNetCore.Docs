@@ -34,7 +34,7 @@ To enable debug or trace logging for Blazor WebAssembly authentication, see the 
   
   *The preceding forums are not owned or controlled by Microsoft.*
   
-  For non-security, non-sensitive, and non-confidential reproducible framework bug reports, [open an issue with the ASP.NET Core product unit](https://github.com/dotnet/aspnetcore/issues). Don't open an issue with the product unit until you've thoroughly investigated the cause of a problem and can't resolve it on your own and with the help of the community on a public support forum. The product unit isn't able to troubleshoot individual apps that are broken due to simple misconfiguration or use cases involving third-party services. If a report is sensitive or confidential in nature or describes a potential security flaw in the product that attackers may exploit, see [Reporting security issues and bugs (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md#reporting-security-issues-and-bugs).
+  For non-security, non-sensitive, and non-confidential reproducible framework bug reports, [open an issue with the ASP.NET Core product unit](https://github.com/dotnet/aspnetcore/issues). Don't open an issue with the product unit until you've thoroughly investigated the cause of a problem and can't resolve it on your own and with the help of the community on a public support forum. The product unit isn't able to troubleshoot individual apps that are broken due to simple misconfiguration or use cases involving third-party services. If a report is sensitive or confidential in nature or describes a potential security flaw in the product that cyberattackers may exploit, see [Reporting security issues and bugs (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md#reporting-security-issues-and-bugs).
 
 * Unauthorized client for ME-ID
 
@@ -210,10 +210,10 @@ Example JWT decoded by the tool for an app that authenticates against Azure AAD 
   "exp": 1610059429,
   "nbf": 1610055829,
   "ver": "1.0",
-  "iss": "https://mysiteb2c.b2clogin.com/5cc15ea8-a296-4aa3-97e4-226dcc9ad298/v2.0/",
-  "sub": "5ee963fb-24d6-4d72-a1b6-889c6e2c7438",
-  "aud": "70bde375-fce3-4b82-984a-b247d823a03f",
-  "nonce": "b2641f54-8dc4-42ca-97ea-7f12ff4af871",
+  "iss": "https://mysiteb2c.b2clogin.com/11112222-bbbb-3333-cccc-4444dddd5555/v2.0/",
+  "sub": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
+  "aud": "00001111-aaaa-2222-bbbb-3333cccc4444",
+  "nonce": "bbbb0000-cccc-1111-dddd-2222eeee3333",
   "iat": 1610055829,
   "auth_time": 1610055822,
   "idp": "idp.com",

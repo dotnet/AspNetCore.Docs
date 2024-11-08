@@ -87,7 +87,17 @@ For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render
 
 `PromotionGrid.razor`:
 
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/PromotionGrid.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PromotionGrid.razor":::
+
+:::moniker-end
 
 Access the component in a browser at the relative path `/promotion-grid`.
 
@@ -303,7 +313,7 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
 ```razor
 @page "/food-recalls"
 @inject HttpClient Http
-@inject NavigationManager NavManager
+@inject NavigationManager Navigation
 
 <PageTitle>Food Recalls</PageTitle>
 
@@ -322,14 +332,14 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
 <p>Total: <strong>@numResults results found</strong></p>
 
 @code {
-    GridItemsProvider<FoodRecall>? foodRecallProvider;
-    int numResults;
+    private GridItemsProvider<FoodRecall>? foodRecallProvider;
+    private int numResults;
 
     protected override async Task OnInitializedAsync()
     {
         foodRecallProvider = async req =>
         {
-            var url = NavManager.GetUriWithQueryParameters(
+            var url = Navigation.GetUriWithQueryParameters(
                 "https://api.fda.gov/food/enforcement.json", 
                 new Dictionary<string, object?>
             {

@@ -391,16 +391,7 @@ In the following example, the render mode is set interactive SSR by adding `@ren
 }
 ```
 
-If using the preceding component in a Blazor Web App, place the component in the server project's `Components/Pages` folder&dagger;. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
-
-> [!IMPORTANT]
-> &dagger;If the app adopts global WebAssembly or global Auto rendering via the `Routes` component, individual components that specify interactive SSR (`@rendermode InteractiveServer`) in their component definition file (`.razor`) are *placed in the `.Client` project's `Pages` folder*.
->
-> Placing interactive SSR components in the `.Client` project is counter-intuitive because such components are only rendered on the server.
->
-> If you place an interactive SSR component in the server project's `Components/Pages` folder of a global WebAssembly or Auto app, the component is prerendered normally and briefly displayed in the user's browser. However, the client-side router isn't able to find the component, ultimately resulting in a *404 - Not Found* in the browser.
->
-> Therefore, place interactive SSR components in the `.Client` project's `Pages` folder if the app adopts global WebAssembly or global Auto rendering via the `Routes` component.
+If using the preceding component in a Blazor Web App, place the component in the server project's `Components/Pages` folder. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
 
 ## Client-side rendering (CSR)
 
@@ -688,7 +679,7 @@ The `Shared` folder maintains the `AccountLayout` layout component. The componen
 ```razor
 @inherits LayoutComponentBase
 @layout BlazorSample.Components.Layout.MainLayout
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 @if (HttpContext is null)
 {
@@ -707,7 +698,7 @@ else
     {
         if (HttpContext is null)
         {
-            NavigationManager.Refresh(forceReload: true);
+            Navigation.Refresh(forceReload: true);
         }
     }
 }
@@ -756,7 +747,7 @@ The app has a custom layout that can be applied to components around the app. Us
 ```razor
 @inherits LayoutComponentBase
 @layout MainLayout
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 @if (HttpContext is null)
 {
@@ -775,7 +766,7 @@ else
     {
         if (HttpContext is null)
         {
-            NavigationManager.Refresh(forceReload: true);
+            Navigation.Refresh(forceReload: true);
         }
     }
 }

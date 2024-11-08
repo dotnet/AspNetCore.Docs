@@ -24,7 +24,13 @@ The following example sets the page's title and description using Razor.
 
 `ControlHeadContent.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/ControlHeadContent.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ControlHeadContent.razor":::
 
@@ -32,13 +38,13 @@ The following example sets the page's title and description using Razor.
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/control-head-content/ControlHeadContent.razor" highlight="13,15-17":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/control-head-content/ControlHeadContent.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/control-head-content/ControlHeadContent.razor" highlight="13,15-17":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/control-head-content/ControlHeadContent.razor":::
 
 :::moniker-end
 

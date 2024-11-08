@@ -1,10 +1,11 @@
 :::moniker range=">= aspnetcore-6.0 <= aspnetcore-8.0"
+<!-- ms.sfi.ropc: t -->
 
 By [Damien Bowden](https://github.com/damienbod)
 
 [View or download sample code (damienbod/AspNetCoreHybridFlowWithApi GitHub repository)](https://github.com/damienbod/AspNetCoreHybridFlowWithApi)
 
-Multi-factor authentication (MFA) is a process in which a user is requested during a sign-in event for additional forms of identification. This prompt could be to enter a code from a cellphone, use a FIDO2 key, or to provide a fingerprint scan. When you require a second form of authentication, security is enhanced. The additional factor isn't easily obtained or duplicated by an attacker.
+Multi-factor authentication (MFA) is a process in which a user is requested during a sign-in event for additional forms of identification. This prompt could be to enter a code from a cellphone, use a FIDO2 key, or to provide a fingerprint scan. When you require a second form of authentication, security is enhanced. The additional factor isn't easily obtained or duplicated by a cyberattacker.
 
 This article covers the following areas:
 
@@ -58,6 +59,8 @@ MFA could be forced on users to access sensitive pages within an ASP.NET Core Id
 ### Extend the login with an MFA claim
 
 The demo code is setup using ASP.NET Core with Identity and Razor Pages. The `AddIdentity` method is used instead of `AddDefaultIdentity` one, so an `IUserClaimsPrincipalFactory` implementation can be used to add claims to the identity after a successful login.
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ```csharp
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -508,7 +511,7 @@ By [Damien Bowden](https://github.com/damienbod)
 
 [View or download sample code (damienbod/AspNetCoreHybridFlowWithApi GitHub repository)](https://github.com/damienbod/AspNetCoreHybridFlowWithApi)
 
-Multi-factor authentication (MFA) is a process in which a user is requested during a sign-in event for additional forms of identification. This prompt could be to enter a code from a cellphone, use a FIDO2 key, or to provide a fingerprint scan. When you require a second form of authentication, security is enhanced. The additional factor isn't easily obtained or duplicated by an attacker.
+Multi-factor authentication (MFA) is a process in which a user is requested during a sign-in event for additional forms of identification. This prompt could be to enter a code from a cellphone, use a FIDO2 key, or to provide a fingerprint scan. When you require a second form of authentication, security is enhanced. The additional factor isn't easily obtained or duplicated by a cyberattacker.
 
 This article covers the following areas:
 
@@ -560,6 +563,8 @@ MFA could be forced on users to access sensitive pages within an ASP.NET Core Id
 ### Extend the login with an MFA claim
 
 The demo code is setup using ASP.NET Core with Identity and Razor Pages. The `AddIdentity` method is used instead of `AddDefaultIdentity` one, so an `IUserClaimsPrincipalFactory` implementation can be used to add claims to the identity after a successful login.
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

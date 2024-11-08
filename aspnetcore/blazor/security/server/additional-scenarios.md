@@ -555,10 +555,7 @@ public class UserService
 {
     private ClaimsPrincipal currentUser = new(new ClaimsIdentity());
 
-    public ClaimsPrincipal GetUser()
-    {
-        return currentUser;
-    }
+    public ClaimsPrincipal GetUser() => currentUser;
 
     internal void SetUser(ClaimsPrincipal user)
     {
@@ -569,19 +566,11 @@ public class UserService
     }
 }
 
-internal sealed class UserCircuitHandler : CircuitHandler, IDisposable
-{
-    private readonly AuthenticationStateProvider authenticationStateProvider;
-    private readonly UserService userService;
-
-    public UserCircuitHandler(
+internal sealed class UserCircuitHandler(
         AuthenticationStateProvider authenticationStateProvider,
-        UserService userService)
-    {
-        this.authenticationStateProvider = authenticationStateProvider;
-        this.userService = userService;
-    }
-
+        UserService userService) 
+        : CircuitHandler, IDisposable
+{
     public override Task OnCircuitOpenedAsync(Circuit circuit, 
         CancellationToken cancellationToken)
     {
@@ -815,16 +804,10 @@ Use the `CircuitServicesAccessor` to access the <xref:Microsoft.AspNetCore.Compo
 `AuthenticationStateHandler.cs`:
 
 ```csharp
-public class AuthenticationStateHandler : DelegatingHandler
+public class AuthenticationStateHandler(
+    CircuitServicesAccessor circuitServicesAccessor) 
+    : DelegatingHandler
 {
-    readonly CircuitServicesAccessor circuitServicesAccessor;
-
-    public AuthenticationStateHandler(
-        CircuitServicesAccessor circuitServicesAccessor)
-    {
-        this.circuitServicesAccessor = circuitServicesAccessor;
-    }
-
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken cancellationToken)
     {

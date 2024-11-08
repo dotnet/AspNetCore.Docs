@@ -276,6 +276,8 @@ The `Routes` component (`Routes.razor`) sets up routing for the app.
 
 The `appsettings.json` file contains configuration data, such as connection strings.
 
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
 ### `Program.cs` file
 
 The `Program.cs` file contains code to create the app and configure the request processing pipeline of the app.
@@ -329,7 +331,7 @@ app.UseAntiforgery();
 
 :::moniker range=">= aspnetcore-9.0"
 
-Map Static Assets Middleware (`MapStaticAssets`) maps static files, such as images, scripts, and stylesheets, produced during the build as endpoints:
+Map Static Assets routing endpoint conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) maps static files, such as images, scripts, and stylesheets, produced during the build as endpoints:
 
 ```csharp
 app.MapStaticAssets();

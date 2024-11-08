@@ -37,7 +37,13 @@ The following `DoctorWhoLayout` component shows the Razor template of a layout c
 
 `DoctorWhoLayout.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Layout/DoctorWhoLayout.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Layout/DoctorWhoLayout.razor":::
 
@@ -45,25 +51,25 @@ The following `DoctorWhoLayout` component shows the Razor template of a layout c
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor" highlight="1,13":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor" highlight="1,13":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor" highlight="1,13":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor" highlight="1,13":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor":::
 
 :::moniker-end
 
@@ -75,7 +81,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 [Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
 
-* [Blazor Web App `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/Components-CSharp/Shared/MainLayout.razor.css)
+* [Blazor Web App `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/MainLayout.razor.css)
 * [Blazor WebAssembly `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Layout/MainLayout.razor.css)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
@@ -84,12 +90,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
-[Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
-
-* [Blazor Server `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorServerWeb-CSharp/Shared/MainLayout.razor.css)
-* [Blazor WebAssembly `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/Shared/MainLayout.razor.css)
-
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+[Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`.
 
 :::moniker-end
 
@@ -126,7 +127,13 @@ The content of the following `Episodes` component is inserted into the `DoctorWh
 
 `Episodes.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Episodes.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Episodes.razor":::
 
@@ -134,19 +141,19 @@ The content of the following `Episodes` component is inserted into the `DoctorWh
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor" highlight="2":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor" highlight="2":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor" highlight="2":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor":::
 
 :::moniker-end
 
@@ -258,7 +265,13 @@ The following `DoctorWhoLayout` component is a modified version of the example s
 
 `DoctorWhoLayout.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Layout/DoctorWhoLayout2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Layout/DoctorWhoLayout2.razor":::
 
@@ -266,25 +279,25 @@ The following `DoctorWhoLayout` component is a modified version of the example s
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor" highlight="2,12":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor" highlight="2,12":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor" highlight="2,12":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor" highlight="2,12":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor":::
 
 :::moniker-end
 
@@ -292,7 +305,13 @@ The `ProductionsLayout` component contains the top-level layout elements, where 
 
 `ProductionsLayout.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Layout/ProductionsLayout.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Layout/ProductionsLayout.razor":::
 
@@ -300,25 +319,25 @@ The `ProductionsLayout` component contains the top-level layout elements, where 
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor" highlight="13":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor" highlight="13":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor" highlight="13":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor" highlight="13":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor":::
 
 :::moniker-end
 

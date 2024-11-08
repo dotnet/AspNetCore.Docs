@@ -1,0 +1,57 @@
+name: Issue processing
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  process-blazor-issue:
+    if: (contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor') 
+      && !contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/hybrid'))
+      || contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/client-side/dotnet-interop/index.md')
+      || contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/client-side/dotnet-interop/wasm-browser-app.md')
+      || contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/views/tag-helpers/built-in/component-tag-helper.md')
+      || contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/views/tag-helpers/built-in/persist-component-state.md')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `### 🍂🎃🏮 *Autumn Skies and Pumpkin Pies!* 🥧☕🍂
+            Stand by! A green dinosaur 🦖 will arrive shortly to assist.`
+            })
+            await github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["aspnet-core/svc"]
+            })
+            await github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["blazor/subsvc"]
+            })
+            await github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["Blazor"]
+            })
+            await github.rest.issues.addAssignees({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              assignees: ["guardrex"]
+            })
+            await github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: [":watch: Not Triaged"]
+            })

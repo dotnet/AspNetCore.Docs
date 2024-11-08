@@ -44,7 +44,13 @@ After the following `ShowMoreExpander` component demonstrates an overwritten par
 
 `ShowMoreExpander.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/BadShowMoreExpander.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/BadShowMoreExpander.razor":::
 
@@ -81,7 +87,13 @@ The `ShowMoreExpander` component is added to the following `Expanders` parent co
 
 `Expanders.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Expanders.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Expanders.razor":::
 
@@ -136,7 +148,13 @@ The following revised `ShowMoreExpander` component:
 
 `ShowMoreExpander.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ShowMoreExpander.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ShowMoreExpander.razor":::
 
@@ -167,7 +185,7 @@ The following revised `ShowMoreExpander` component:
 :::moniker-end
 
 > [!NOTE]
-> The revised `ShowMoreExpander` doesn't reflect changes to the `InitiallyExpanded` parameter after initialization (`OnInitialized`). In certain scenarios, an already initialized component might receive new parameter values. This can happen, for example, in a master-detail view where the same component is used to render different detail views or when the `/item/{id}` route parameter changes to display a different item.
+> The revised `ShowMoreExpander` doesn't reflect changes to the `InitiallyExpanded` parameter after initialization (`OnInitialized`). In certain scenarios, an already initialized component might receive new parameter values. This can happen, for example, in a primary-subordinate view where the same component is used to render different detail views or when the `/item/{id}` route parameter changes to display a different item.
 
 Consider following `ToggleExpander` component that:
 
@@ -176,7 +194,13 @@ Consider following `ToggleExpander` component that:
 
 `ToggleExpander.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ToggleExpander.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ToggleExpander.razor":::
 
@@ -210,7 +234,13 @@ The `ToggleExpander` component should be used with the `@bind-Expanded="{field}"
 
 `ExpandersToggle.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/ExpandersToggle.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ExpandersToggle.razor":::
 

@@ -20,7 +20,7 @@ ASP.NET Core supports uploading one or more files using buffered model binding f
 
 ## Security considerations
 
-Use caution when providing users with the ability to upload files to a server. Attackers may attempt to:
+Use caution when providing users with the ability to upload files to a server. Cyberattackers may attempt to:
 
 * Execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks.
 * Upload viruses or malware.
@@ -47,7 +47,7 @@ Security steps that reduce the likelihood of a successful attack are:
 > * Compromise user or system data.
 > * Apply graffiti to a public UI.
 >
-> For information on reducing the attack surface area when accepting files from users, see the following resources:
+> For information on reducing vulnerabilities when accepting files from users, see the following resources:
 >
 > * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
@@ -225,7 +225,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 <a name="filename"></a>
 
 > [!WARNING]
-> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename, including full paths or relative paths. Applications should:
+> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. A cyberattacker can provide a malicious filename, including full paths or relative paths. Applications should:
 >
 > * Remove the path from the user-supplied filename.
 > * Save the HTML-encoded, path-removed filename for UI or logging.
@@ -761,7 +761,7 @@ ASP.NET Core supports uploading one or more files using buffered model binding f
 
 ## Security considerations
 
-Use caution when providing users with the ability to upload files to a server. Attackers may attempt to:
+Use caution when providing users with the ability to upload files to a server. Cyberattackers may attempt to:
 
 * Execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks.
 * Upload viruses or malware.
@@ -788,7 +788,7 @@ Security steps that reduce the likelihood of a successful attack are:
 > * Compromise user or system data.
 > * Apply graffiti to a public UI.
 >
-> For information on reducing the attack surface area when accepting files from users, see the following resources:
+> For information on reducing vulnerabilities when accepting files from users, see the following resources:
 >
 > * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
@@ -949,7 +949,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 <a name="filename"></a>
 
 > [!WARNING]
-> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename, including full paths or relative paths. Applications should:
+> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. A cyberattacker can provide a malicious filename, including full paths or relative paths. Applications should:
 >
 > * Remove the path from the user-supplied filename.
 > * Save the HTML-encoded, path-removed filename for UI or logging.
@@ -1496,7 +1496,7 @@ ASP.NET Core supports uploading one or more files using buffered model binding f
 
 ## Security considerations
 
-Use caution when providing users with the ability to upload files to a server. Attackers may attempt to:
+Use caution when providing users with the ability to upload files to a server. Cyberattackers may attempt to:
 
 * Execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks.
 * Upload viruses or malware.
@@ -1523,7 +1523,7 @@ Security steps that reduce the likelihood of a successful attack are:
 > * Compromise user or system data.
 > * Apply graffiti to a public UI.
 >
-> For information on reducing the attack surface area when accepting files from users, see the following resources:
+> For information on reducing vulnerabilities when accepting files from users, see the following resources:
 >
 > * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
@@ -1684,7 +1684,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 <a name="filename2"></a>
 
 > [!WARNING]
-> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename, including full paths or relative paths. Applications should:
+> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. A cyberattacker can provide a malicious filename, including full paths or relative paths. Applications should:
 >
 > * Remove the path from the user-supplied filename.
 > * Save the HTML-encoded, path-removed filename for UI or logging.

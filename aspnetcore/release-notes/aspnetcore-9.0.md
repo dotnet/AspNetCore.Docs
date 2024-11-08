@@ -4,16 +4,20 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 9.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/10/2024
+ms.date: 10/07/2024
 uid: aspnetcore-9
 ---
 # What's new in ASP.NET Core 9.0
 
 This article highlights the most significant changes in ASP.NET Core 9.0 with links to relevant documentation.
 
-This article has been updated for .NET 9 Preview 7.
+## Static asset delivery optimization
 
-<!-- New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file. -->
+[MapStaticAssets routing endpoint conventions](xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A) is a new feature that optimizes the delivery of static assets in ASP.NET Core apps.
+
+For information on static asset delivery for Blazor apps, see <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>.
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/web_asset_delivery.md)]
 
 ## Blazor
 
@@ -45,13 +49,7 @@ This section describes new features for OpenAPI
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/openApi.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-9/includes/openAPI_completion.md)]
-
-[!INCLUDE[](~/release-notes/aspnetcore-9/includes/transformer-registration.md)]
-
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/openapi-aot.md)]
-
-[!INCLUDE[](~/release-notes/aspnetcore-9/includes/prob_validation.md)]
 
 ## Authentication and authorization
 
@@ -75,8 +73,6 @@ The following sections describe miscellaneous new features.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/fix-for-503s.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-9/includes/web_asset_delivery.md)]
-
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/asp0026.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/improved-kestrel-connection-metrics.md)]
@@ -92,3 +88,5 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/keyedDI.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/trust_dev_cert_linux.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/updated-versions.md)]

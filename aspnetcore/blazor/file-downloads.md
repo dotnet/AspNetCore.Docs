@@ -16,22 +16,6 @@ This article explains how to download files in Blazor apps.
 
 ## File downloads
 
-Files can be downloaded from the app's own static assets or from any other location:
-
-:::moniker range=">= aspnetcore-9.0"
-
-* ASP.NET Core apps use Map Static Assets Middleware or Static File Middleware to serve files to clients of server-side apps. For more information, see <xref:blazor/fundamentals/static-files>.
-* The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-* ASP.NET Core apps use [Static File Middleware](xref:blazor/fundamentals/static-files) to serve files to clients of server-side apps.
-* The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
-
-:::moniker-end
-
 This article covers approaches for the following scenarios, where a file shouldn't be opened by a browser but downloaded and saved on the client:
 
 * [Stream file content to a raw binary data buffer on the client](#download-from-a-stream): Typically, this approach is used for relatively small files (\< 250 MB).
@@ -41,7 +25,7 @@ When downloading files from a different origin than the app, Cross-Origin Resour
 
 ## Security considerations
 
-Use caution when providing users with the ability to download files from a server. Attackers may execute [Denial of Service (DoS)](/windows-hardware/drivers/ifs/denial-of-service) attacks, [API exploitation attacks](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy), or attempt to compromise networks and servers in other ways.
+Use caution when providing users with the ability to download files from a server. Cyberattackers may execute [Denial of Service (DoS)](/windows-hardware/drivers/ifs/denial-of-service) attacks, [API exploitation attacks](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy), or attempt to compromise networks and servers in other ways.
 
 Security steps that reduce the likelihood of a successful attack are:
 
@@ -110,7 +94,13 @@ The following component:
 
 `FileDownload1.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload1.razor":::
 
@@ -131,10 +121,7 @@ The following component:
 For a component in a server-side app that must return a <xref:System.IO.Stream> for a physical file, the component can call <xref:System.IO.File.OpenRead%2A?displayProperty=nameWithType>, as the following example demonstrates:
 
 ```csharp
-private Stream GetFileStream()
-{
-    return File.OpenRead(@"{PATH}");
-}
+private Stream GetFileStream() => File.OpenRead(@"{PATH}");
 ```
 
 In the preceding example, the `{PATH}` placeholder is the path to the file. The `@` prefix indicates that the string is a [*verbatim string literal*](/dotnet/csharp/programming-guide/strings/#verbatim-string-literals), which permits the use of backslashes (`\`) in a Windows OS path and embedded double-quotes (`""`) for a single quote in the path. Alternatively, avoid the string literal (`@`) and use either of the following approaches:
@@ -162,7 +149,13 @@ The example in this section uses a download file named `quote.txt`, which is pla
 
 `wwwroot/files/quote.txt`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="text" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/wwwroot/files/quote.txt":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="text" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/wwwroot/files/quote.txt":::
 
@@ -204,19 +197,25 @@ The following `triggerFileDownload` JS function:
 
 The following example component downloads the file from the same origin that the app uses. If the file download is attempted from a different origin, configure Cross-Origin Resource Sharing (CORS). For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
-Change the port in the following example to match the localhost development port of your environment.
-
 `FileDownload2.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
-For interactive components, the button in the following example calls the `DownloadFileFromURL` handler to invoke the JavaScript (JS) function `triggerFileDownload`:
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload2.razor":::
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload2.razor":::
+For interactive components, the button in the preceding example calls the `DownloadFileFromURL` handler to invoke the JavaScript (JS) function `triggerFileDownload`.
 
 If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in <xref:blazor/js-interop/ssr>.
 
-`FileDownload2.razor.js`:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload2.razor":::
+
+For interactive components, the button in the preceding example calls the `DownloadFileFromURL` handler to invoke the JavaScript (JS) function `triggerFileDownload`.
+
+If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in <xref:blazor/js-interop/ssr>.
 
 :::moniker-end
 
@@ -224,11 +223,15 @@ If the component adopts static server-side rendering (static SSR), add an event 
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload2.razor":::
 
+Change the port in the preceding example to match the localhost development port of your environment.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload2.razor":::
+
+Change the port in the preceding example to match the localhost development port of your environment.
 
 :::moniker-end
 
@@ -246,6 +249,7 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 
 ## Additional resources
 
+* <xref:blazor/fundamentals/static-files>
 * <xref:blazor/js-interop/index>
 * <xref:blazor/js-interop/javascript-location>
 * <xref:blazor/js-interop/ssr>

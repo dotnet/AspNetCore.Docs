@@ -11,7 +11,7 @@
         <h2>Form 1</h2>
         <form asp-action="SamplePost" method="post">
             <div>
-                Message: <input type="text" name="message" />
+                <label>Message: <input type="text" name="message" /></label>
                 <input type="submit" value="Send" />
             </div>
         </form>
@@ -21,7 +21,7 @@
         @using (Html.BeginForm("SamplePost", "Home"))
         {
             <div>
-                Message: <input type="text" name="message" />
+                <label>Message: <input type="text" name="message" /></label>
                 <input type="submit" value="Send" />
             </div>
         }
@@ -31,7 +31,7 @@
         <form action="/home/samplepost" method="post">
             @Html.AntiForgeryToken()
             <div>
-                Message: <input type="text" name="message" />
+                <label>Message: <input type="text" name="message" /></label>
                 <input type="submit" value="Send" />
             </div>
         </form>

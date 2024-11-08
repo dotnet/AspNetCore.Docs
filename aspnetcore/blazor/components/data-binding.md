@@ -27,7 +27,13 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 `Bind.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Bind.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Bind.razor":::
 
@@ -35,25 +41,25 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor" highlight="4,8":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor" highlight="4,8":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor" highlight="4,8":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor" highlight="4,8":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor":::
 
 :::moniker-end
 
@@ -63,7 +69,13 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 `BindTheory.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/BindTheory.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/BindTheory.razor":::
 
@@ -71,25 +83,25 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor" highlight="12-14":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor" highlight="12-14":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor" highlight="12-14":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor" highlight="12-14":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor":::
 
 :::moniker-end
 
@@ -99,7 +111,13 @@ Bind a property or field on other DOM events by including an `@bind:event="{EVEN
 
 `Page/BindEvent.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/BindEvent.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/BindEvent.razor":::
 
@@ -107,25 +125,25 @@ Bind a property or field on other DOM events by including an `@bind:event="{EVEN
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor":::
 
 :::moniker-end
 
@@ -162,10 +180,8 @@ In the following example:
     private string? searchText;
     private string[]? searchResult;
 
-    private async Task PerformSearch()
-    {
+    private async Task PerformSearch() => 
         searchResult = await SearchService.FetchAsync(searchText);
-    }
 }
 ```
 
@@ -323,7 +339,13 @@ Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `i
 
 `DecimalBinding.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/DecimalBinding.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/DecimalBinding.razor":::
 
@@ -331,25 +353,25 @@ Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `i
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor" highlight="7,21-31":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor" highlight="7,21-31":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor" highlight="7,21-31":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor" highlight="7,21-31":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor":::
 
 :::moniker-end
 
@@ -454,7 +476,13 @@ Consider the following component, where an `<input>` element is bound to an `int
 
 `UnparsableValues.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/UnparsableValues.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/UnparsableValues.razor":::
 
@@ -462,25 +490,25 @@ Consider the following component, where an `<input>` element is bound to an `int
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor" highlight="4,12":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor" highlight="4,12":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor" highlight="4,12":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor" highlight="4,12":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor":::
 
 :::moniker-end
 
@@ -500,7 +528,13 @@ Data binding works with a single <xref:System.DateTime> format string using `@bi
 
 `DateBinding.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/DateBinding.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/DateBinding.razor":::
 
@@ -508,25 +542,25 @@ Data binding works with a single <xref:System.DateTime> format string using `@bi
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor" highlight="6":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor" highlight="6":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor" highlight="6":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor" highlight="6":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor":::
 
 :::moniker-end
 
@@ -561,7 +595,13 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 `ChildBind.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ChildBind.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ChildBind.razor":::
 
@@ -569,25 +609,25 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor" highlight="14-15,17-18,22":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor" highlight="14-15,17-18,22":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor" highlight="14-15,17-18,22":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor" highlight="14-15,17-18,22":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor":::
 
 :::moniker-end
 
@@ -597,7 +637,13 @@ In the following `Parent1` component, the `year` field is bound to the `Year` pa
 
 `Parent1.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Parent1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Parent1.razor":::
 
@@ -605,25 +651,25 @@ In the following `Parent1` component, the `year` field is bound to the `Year` pa
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor":::
 
 :::moniker-end
 
@@ -658,9 +704,17 @@ In a more sophisticated and real-world example, the following `PasswordEntry` co
 * Exposes changes of a `Password` property to a parent component with an [`EventCallback`](xref:blazor/components/event-handling#eventcallback) that passes in the current value of the child's `password` field as its argument.
 * Uses the `onclick` event to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/components/event-handling>.
 
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
 `PasswordEntry.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/PasswordEntry.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/PasswordEntry.razor":::
 
@@ -668,25 +722,25 @@ In a more sophisticated and real-world example, the following `PasswordEntry` co
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor" highlight="7-10,13,23-24,26-27,36-39":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor" highlight="7-10,13,23-24,26-27,36-39":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor" highlight="7-10,13,23-24,26-27,36-39":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor" highlight="7-10,13,23-24,26-27,36-39":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor":::
 
 :::moniker-end
 
@@ -694,7 +748,13 @@ The `PasswordEntry` component is used in another component, such as the followin
 
 `PasswordBinding.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/PasswordBinding.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PasswordBinding.razor":::
 
@@ -702,25 +762,25 @@ The `PasswordEntry` component is used in another component, such as the followin
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor" highlight="5":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor" highlight="5":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor" highlight="5":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor" highlight="5":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor":::
 
 :::moniker-end
 
@@ -733,7 +793,13 @@ Perform checks or trap errors in the handler. The following revised `PasswordEnt
 
 `PasswordEntry.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/PasswordEntry2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/PasswordEntry2.razor":::
 
@@ -741,7 +807,7 @@ Perform checks or trap errors in the handler. The following revised `PasswordEnt
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor" highlight="35-46":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor":::
 
 In the following example, the `PasswordUpdated` method executes asynchronously after binding the `Password` component parameter:
 
@@ -753,19 +819,19 @@ In the following example, the `PasswordUpdated` method executes asynchronously a
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor" highlight="35-46":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor" highlight="35-46":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor" highlight="35-46":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor":::
 
 :::moniker-end
 
@@ -780,7 +846,13 @@ A common and recommended approach is to only store the underlying data in the pa
 
 `Parent2.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Parent2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Parent2.razor":::
 
@@ -821,7 +893,13 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 
 `NestedChild.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/NestedChild.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/NestedChild.razor":::
 
@@ -860,7 +938,13 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 
 `NestedGrandchild.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/NestedGrandchild.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/NestedGrandchild.razor":::
 
@@ -900,7 +984,13 @@ The following `ChildParameterExpression` component identifies the `Year` express
 
 `ChildParameterExpression.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ChildParameterExpression.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ChildParameterExpression.razor":::
 
@@ -932,7 +1022,13 @@ The following `ChildParameterExpression` component identifies the `Year` express
 
 `Parent3.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Parent3.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Parent3.razor":::
 

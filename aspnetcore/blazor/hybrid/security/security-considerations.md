@@ -47,7 +47,7 @@ For these reasons, it's best to apply the same protections against XSS that are 
 
 If the code inside the Web View is compromised, the code gains access to all of the content inside the Web View and might interact with the host via the interop channel. For that reason, any content coming from the Web View (events, JS interop) must be treated as **untrusted** and validated in the same way as for other sensitive contexts, such as in a compromised Blazor Server app that can lead to malicious attacks on the host system.
 
-Don't store sensitive information, such as credentials, security tokens, or sensitive user data, in the context of the Web View, as it makes the information available to an attacker if the Web View is compromised. There are safer alternatives, such as handling the sensitive information directly within the native portion of the app.
+Don't store sensitive information, such as credentials, security tokens, or sensitive user data, in the context of the Web View, as it makes the information available to a cyberattacker if the Web View is compromised. There are safer alternatives, such as handling the sensitive information directly within the native portion of the app.
 
 ## External content rendered in an `iframe`
 

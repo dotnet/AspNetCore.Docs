@@ -44,9 +44,9 @@ All input arriving from the client must be considered untrusted unless its infor
 
 Input is normally available to the app through a binding process, for example via the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute) or [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute). Before processing this input, the app must make sure that the data is valid. For example, the app must confirm that there were no binding errors when mapping the form data to a component property. Otherwise, the app might process invalid data.
 
-If the input is used to perform a redirect, the app must make sure that the input is valid and that it isn't pointing to a domain considered invalid or to an invalid subpath within the app base path. Otherwise, the app may be exposed to open redirection attacks, where an attacker can craft a link that redirects the user to a malicious site.
+If the input is used to perform a redirect, the app must make sure that the input is valid and that it isn't pointing to a domain considered invalid or to an invalid subpath within the app base path. Otherwise, the app may be exposed to open redirection attacks, where a cyberattacker can craft a link that redirects the user to a malicious site.
 
-If the input is used to perform a database query, app must confirm that the input is valid and that it isn't exposing the app to SQL injection attacks. Otherwise, an attacker might be able to craft a malicious query that can be used to extract information from the database or to modify the database.
+If the input is used to perform a database query, app must confirm that the input is valid and that it isn't exposing the app to SQL injection attacks. Otherwise, a cyberattacker might be able to craft a malicious query that can be used to extract information from the database or to modify the database.
 
 Data that might have come from user input also must be sanitized before included in a response. For example, the input might contain HTML or JavaScript that can be used to perform cross-site scripting attacks, which can be used to extract information from the user or to perform actions on behalf of the user.
 
@@ -97,7 +97,7 @@ In addition, there are limits defined for the form, such as the maximum form key
 
 In general, the app must evaluate when there's a chance that a request triggers an asymmetric amount of work by the server. Examples of this include when the user sends a request parameterized by N and the server performs an operation in response that is N times as expensive, where N is a parameter that a user controls and can grow indefinitely. Normally, the app must either impose a limit on the maximum N that it's willing to process or ensure that any operation is either less, equal, or more expensive than the request by a constant factor.
 
-This aspect has more to do with the difference in growth between the work the client performs and the work the server performs than with a specific 1→N comparison. For example, a client might submit a work item (inserting elements into a list) that takes N units of time to perform, but the server needs N^2^ to process (because it might be doing something very naive). It's the difference between N and N^2^ that matters.
+This aspect has more to do with the difference in growth between the work the client performs and the work the server performs than with a specific 1→N comparison. For example, a client might submit a work item (inserting elements into a list) that takes N units of time to perform, but the server needs N<sup>2</sup> to process (because it might be doing something very naive). It's the difference between N and N<sup>2</sup> that matters.
 
 As such, there's a limit on how much work the server must be willing to do, which is specific to the app. This aspect applies to server-side workloads, since the resources are on the server, but doesn't necessarily apply to WebAssembly workloads on the client in most cases.
 

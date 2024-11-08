@@ -61,7 +61,13 @@ Managed identities are a secure way to authenticate to services without needing 
 * [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
 * [Secure authentication flows](/entra/identity-platform/authentication-flows-app-scenarios#web-app-that-signs-in-a-user)
 
-When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index). An environment variable should ***NEVER*** be used to store a production connection string.
+When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index). Environment variables are generally stored in plain, unencrypted text. If the machine or process is compromised, environment variables can be accessed by untrusted parties. We recommend against using environment variables to store a production connection string as it's not the most secure approach.
+
+Configuration data guidelines:
+
+* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret Manager](xref:security/app-secrets) tool can be used to store secrets in development.
+* Don't use production secrets in development or test environments.
+* Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
 
 For more information, see:
 
@@ -69,6 +75,11 @@ For more information, see:
 * [Connecting from your application to resources without handling credentials in your code](/entra/identity/managed-identities-azure-resources/overview-for-developers?tabs=portal%2Cdotnet)
 * [Azure services that can use managed identities to access other services](/entra/identity/managed-identities-azure-resources/managed-identities-status)
 * [IETF OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#section-2.4)
+
+For information on other cloud providers, see:
+
+* [AWS (Amazon Web Services): AWS Key Management Service (KMS)](https://aws.amazon.com/kms/)
+* [Google Cloud Key Management Service overview](https://cloud.google.com/kms/docs/key-management-service)
 
 ## Additional resources
 

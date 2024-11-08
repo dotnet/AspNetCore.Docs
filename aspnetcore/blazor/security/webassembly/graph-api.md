@@ -21,7 +21,7 @@ Two approaches are covered:
 
 * **Named HttpClient with Graph API**: A [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) can issue [Microsoft Graph API](/graph/use-the-api) requests directly to Microsoft Graph. Select the **Named HttpClient with Graph API** button at the top of this article to adopt this approach.
 
-The guidance in this article isn't meant to replace the [Microsoft Graph documentation](/graph/) and Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow Microsoft's best practices to limit the attack surface area of your apps.
+The guidance in this article isn't meant to replace the [Microsoft Graph documentation](/graph/) and Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow Microsoft's best practices to limit the vulnerabilities of your apps.
 
 Additional approaches for working with Microsoft Graph and Blazor WebAssembly are provided by the following Microsoft Graph and Azure samples:
 
@@ -282,8 +282,6 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
 using Microsoft.Kiota.Abstractions.Authentication;
 
-namespace BlazorSample;
-
 public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IServiceProvider serviceProvider, ILogger<CustomAccountFactory> logger,
         IConfiguration config) 
@@ -434,7 +432,7 @@ When testing with the Graph SDK locally, we recommend using a new InPrivate/inco
 
 :::zone pivot="graph-sdk-4"
 
-*The following guidance applies to Microsoft Graph v4. If you're upgrading an app from SDK v4 to v5, see the [Microsoft Graph .NET SDK v5 changelog and upgrade guide](https://github.com/microsoftgraph/msgraph-sdk-dotnet/blob/dev/docs/upgrade-to-v5.md).*
+*The following guidance applies to Microsoft Graph v4. If you're upgrading an app from SDK v4 to v5, see the [Microsoft Graph .NET SDK v5 changelog and upgrade guide](https://github.com/microsoftgraph/msgraph-sdk-dotnet/blob/main/docs/upgrade-to-v5.md).*
 
 The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 
@@ -689,8 +687,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
-
-namespace BlazorSample;
 
 public class CustomAccountFactory(IAccessTokenProviderAccessor accessor, 
         IServiceProvider serviceProvider, ILogger<CustomAccountFactory> logger)
@@ -1092,8 +1088,6 @@ using System.Net.Http.Json;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
-
-namespace BlazorSample;
 
 public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IHttpClientFactory clientFactory,

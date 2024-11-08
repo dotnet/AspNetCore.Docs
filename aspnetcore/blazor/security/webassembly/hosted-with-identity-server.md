@@ -133,6 +133,8 @@ The following services are registered.
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
+    [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
   * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of Identity Server:
 
     ```csharp
@@ -349,22 +351,15 @@ In the **:::no-loc text="Client":::** app, create a custom user factory. Identit
 
 `CustomUserFactory.cs`:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 using System.Security.Claims;
 using System.Text.Json;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
-public class CustomUserFactory
-    : AccountClaimsPrincipalFactory<RemoteUserAccount>
+public class CustomUserFactory(IAccessTokenProviderAccessor accessor)
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>(accessor)
 {
-    public CustomUserFactory(IAccessTokenProviderAccessor accessor)
-        : base(accessor)
-    {
-    }
-
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
@@ -420,70 +415,6 @@ public class CustomUserFactory
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-using System.Linq;
-using System.Security.Claims;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
-
-public class CustomUserFactory
-    : AccountClaimsPrincipalFactory<RemoteUserAccount>
-{
-    public CustomUserFactory(IAccessTokenProviderAccessor accessor)
-        : base(accessor)
-    {
-    }
-
-    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
-        RemoteUserAccount account,
-        RemoteAuthenticationUserOptions options)
-    {
-        var user = await base.CreateUserAsync(account, options);
-
-        if (user.Identity.IsAuthenticated)
-        {
-            var identity = (ClaimsIdentity)user.Identity;
-            var roleClaims = identity.FindAll(identity.RoleClaimType).ToArray();
-
-            if (roleClaims.Any())
-            {
-                foreach (var existingClaim in roleClaims)
-                {
-                    identity.RemoveClaim(existingClaim);
-                }
-
-                var rolesElem = account.AdditionalProperties[identity.RoleClaimType];
-
-                if (rolesElem is JsonElement roles)
-                {
-                    if (roles.ValueKind == JsonValueKind.Array)
-                    {
-                        foreach (var role in roles.EnumerateArray())
-                        {
-                            identity.AddClaim(new Claim(options.RoleClaim, role.GetString()));
-                        }
-                    }
-                    else
-                    {
-                        identity.AddClaim(new Claim(options.RoleClaim, roles.GetString()));
-                    }
-                }
-            }
-        }
-
-        return user;
-    }
-}
-```
-
-:::moniker-end
 
 In the **:::no-loc text="Client":::** app, register the factory in the `Program` file:
 
@@ -593,8 +524,6 @@ In the **:::no-loc text="Server":::** app, create a `ProfileService` implementat
 
 `ProfileService.cs`:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 using IdentityModel;
 using Duende.IdentityServer.Models;
@@ -623,42 +552,6 @@ public class ProfileService : IProfileService
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-using IdentityModel;
-using Duende.IdentityServer.Models;
-using Duende.IdentityServer.Services;
-using System.Threading.Tasks;
-
-public class ProfileService : IProfileService
-{
-    public ProfileService()
-    {
-    }
-
-    public async Task GetProfileDataAsync(ProfileDataRequestContext context)
-    {
-        var nameClaim = context.Subject.FindAll(JwtClaimTypes.Name);
-        context.IssuedClaims.AddRange(nameClaim);
-
-        var roleClaims = context.Subject.FindAll(JwtClaimTypes.Role);
-        context.IssuedClaims.AddRange(roleClaims);
-
-        await Task.CompletedTask;
-    }
-
-    public async Task IsActiveAsync(IsActiveContext context)
-    {
-        await Task.CompletedTask;
-    }
-}
-```
-
-:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -720,7 +613,7 @@ The following guidance explains:
 * How to deploy a hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/) with a custom domain.
 * How to create and use a TLS certificate for HTTPS protocol communication with browsers. Although the guidance focuses on using the certificate with a custom domain, the guidance is equally applicable to using a default Azure Apps domain, for example `contoso.azurewebsites.net`.
 
-For this hosting scenario, do **not** use the same certificate for [Identity Server's token signing key](https://docs.duendesoftware.com/identityserver/v5/fundamentals/keys/) and the site's HTTPS secure communication with browsers:
+For this hosting scenario, do **not** use the same certificate for [Duende Identity Server's](https://docs.duendesoftware.com) token signing key and the site's HTTPS secure communication with browsers:
 
 * Using different certificates for these two requirements is a good security practice because it isolates private keys for each purpose.
 * TLS certificates for communication with browsers is managed independently without affecting Identity Server's token signing.

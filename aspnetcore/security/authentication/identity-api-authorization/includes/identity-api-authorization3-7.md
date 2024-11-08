@@ -1,4 +1,5 @@
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+<!-- ms.sfi.ropc: t -->
 
 The ASP.NET Core templates offer authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [Duende Identity Server](https://docs.duendesoftware.com) for implementing OpenID Connect.
 
@@ -75,6 +76,8 @@ The preceding code configures:
     ```csharp
     app.UseIdentityServer();
     ```
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ### Azure App Service on Linux
 
@@ -155,10 +158,10 @@ The authentication and API authorization support in the Angular template resides
   * `login-menu.component.ts`: A widget that displays one of the following sets of links:
     * User profile management and log out links when the user is authenticated.
     * Registration and log in links when the user isn't authenticated.
-* A route guard `AuthorizeGuard` that can be added to routes and requires a user to be authenticated before visiting the route.
+* A route safeguard `AuthorizeGuard` that can be added to routes and requires a user to be authenticated before visiting the route.
 * An HTTP interceptor `AuthorizeInterceptor` that attaches the access token to outgoing HTTP requests targeting the API when the user is authenticated.
 * A service `AuthorizeService` that handles the lower-level details of the authentication process and exposes information about the authenticated user to the rest of the app for consumption.
-* An Angular module that defines routes associated with the authentication parts of the app. It exposes the login menu component, the interceptor, the guard, and the service for consumption from the rest of the app.
+* An Angular module that defines routes associated with the authentication parts of the app. It exposes the login menu component, the interceptor, the safeguard, and the service for consumption from the rest of the app.
 
 ## General description of the React app
 
@@ -221,7 +224,7 @@ In the preceding code, the `OnTokenValidated` event handler is replaced with a c
 
 ## Protect a client-side route (Angular)
 
-Protecting a client-side route is done by adding the authorize guard to the list of guards to run when configuring a route. As an example, you can see how the `fetch-data` route is configured within the main app Angular module:
+Protecting a client-side route is done by adding the authorize safeguard to the list of safeguards to run when configuring a route. As an example, you can see how the `fetch-data` route is configured within the main app Angular module:
 
 ```typescript
 RouterModule.forRoot([
@@ -484,6 +487,8 @@ The `Startup` class has the following additions:
     app.UseIdentityServer();
     ```
 
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
+
 ### Azure App Service on Linux
 
 For Azure App Service deployments on Linux, specify the issuer explicitly in `Startup.ConfigureServices`:
@@ -563,10 +568,10 @@ The authentication and API authorization support in the Angular template resides
   * `login-menu.component.ts`: A widget that displays one of the following sets of links:
     * User profile management and log out links when the user is authenticated.
     * Registration and log in links when the user isn't authenticated.
-* A route guard `AuthorizeGuard` that can be added to routes and requires a user to be authenticated before visiting the route.
+* A route safeguard `AuthorizeGuard` that can be added to routes and requires a user to be authenticated before visiting the route.
 * An HTTP interceptor `AuthorizeInterceptor` that attaches the access token to outgoing HTTP requests targeting the API when the user is authenticated.
 * A service `AuthorizeService` that handles the lower-level details of the authentication process and exposes information about the authenticated user to the rest of the app for consumption.
-* An Angular module that defines routes associated with the authentication parts of the app. It exposes the login menu component, the interceptor, the guard, and the service for consumption from the rest of the app.
+* An Angular module that defines routes associated with the authentication parts of the app. It exposes the login menu component, the interceptor, the safeguard, and the service for consumption from the rest of the app.
 
 ## General description of the React app
 
@@ -629,7 +634,7 @@ In the preceding code, the `OnTokenValidated` event handler is replaced with a c
 
 ## Protect a client-side route (Angular)
 
-Protecting a client-side route is done by adding the authorize guard to the list of guards to run when configuring a route. As an example, you can see how the `fetch-data` route is configured within the main app Angular module:
+Protecting a client-side route is done by adding the authorize safeguard to the list of safeguards to run when configuring a route. As an example, you can see how the `fetch-data` route is configured within the main app Angular module:
 
 ```typescript
 RouterModule.forRoot([

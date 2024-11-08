@@ -1,4 +1,5 @@
 :::moniker range="< aspnetcore-6.0"
+<!-- ms.sfi.ropc: t -->
 
 A distributed cache is a cache shared by multiple app servers, typically maintained as an external service to the app servers that access it. A distributed cache can improve the performance and scalability of an ASP.NET Core app, especially when the app is hosted by a cloud service or a server farm.
 
@@ -92,7 +93,7 @@ An app configures the cache implementation using a <xref:Microsoft.Extensions.Ca
   1. Create an Azure Cache for Redis.
   1. Copy the Primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
      * Local development: Save the connection string with [Secret Manager](xref:security/app-secrets#secret-manager).
-     * Azure: Save the connection string in the App Service Configuration or another secure store.
+     * Azure: Save the connection string in a secure store such as [Azure Key Vault](/azure/key-vault/general/overview)
 
 The following code enables the Azure Cache for Redis:
 

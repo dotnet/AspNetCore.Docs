@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 4/10/2024
 uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
@@ -56,7 +56,15 @@ The following component:
 * Invokes the `convertArray` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> when selecting a button (**`Convert Array`**).
 * After the JS function is called, the passed array is converted into a string. The string is returned to the component for display (`text`).
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs1.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs1.razor`:
 
@@ -68,7 +76,7 @@ The following component:
 
 `CallJsExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor":::
 
 :::moniker-end
 
@@ -76,7 +84,7 @@ The following component:
 
 `CallJsExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor":::
 
 :::moniker-end
 
@@ -84,7 +92,7 @@ The following component:
 
 `CallJsExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor":::
 
 :::moniker-end
 
@@ -92,7 +100,7 @@ The following component:
 
 `CallJsExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34-35":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor":::
 
 :::moniker-end
 
@@ -126,7 +134,15 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following component.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs2.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs2.razor`:
 
@@ -138,7 +154,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `CallJsExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor":::
 
 :::moniker-end
 
@@ -146,7 +162,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `CallJsExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor":::
 
 :::moniker-end
 
@@ -154,7 +170,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `CallJsExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor":::
 
 :::moniker-end
 
@@ -162,7 +178,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `CallJsExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor":::
 
 :::moniker-end
 
@@ -170,7 +186,13 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `JsInteropClasses1.cs`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/JsInteropClasses1.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/JsInteropClasses1.cs":::
 
@@ -202,7 +224,15 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following component.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs3.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs3.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs3.razor`:
 
@@ -268,7 +298,15 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following component.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs4.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs4.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs4.razor`:
 
@@ -280,7 +318,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor":::
 
 :::moniker-end
 
@@ -288,7 +326,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor":::
 
 :::moniker-end
 
@@ -296,7 +334,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor":::
 
 :::moniker-end
 
@@ -304,7 +342,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor":::
 
 :::moniker-end
 
@@ -312,7 +350,13 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `JsInteropClasses2.cs`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/JsInteropClasses2.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/JsInteropClasses2.cs":::
 
@@ -344,7 +388,15 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following component.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs5.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs5.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs5.razor`:
 
@@ -356,7 +408,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,40-42,46":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor":::
 
 :::moniker-end
 
@@ -364,7 +416,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,40-42,46":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor":::
 
 :::moniker-end
 
@@ -372,7 +424,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,38-40,43":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor":::
 
 :::moniker-end
 
@@ -380,7 +432,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,38-40,43":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor":::
 
 :::moniker-end
 
@@ -481,7 +533,15 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs6.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs6.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs6.razor`:
 
@@ -658,11 +718,9 @@ The `clickElement` method is called directly on the object. The following exampl
 When working with generic types and returning a value, use <xref:System.Threading.Tasks.ValueTask%601>:
 
 ```csharp
-public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef, 
-    IJSRuntime js)
-{
-    return js.InvokeAsync<T>("{JAVASCRIPT FUNCTION}", elementRef);
-}
+public static ValueTask<T> GenericMethod<T>(
+        this ElementReference elementRef, IJSRuntime js) => 
+    js.InvokeAsync<T>("{JAVASCRIPT FUNCTION}", elementRef);
 ```
 
 The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.
@@ -780,7 +838,15 @@ For a parent component to make an element reference available to other component
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs7.razor` (parent component):
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs7.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs7.razor` (parent component):
 
@@ -792,7 +858,7 @@ For a parent component to make an element reference available to other component
 
 `CallJsExample7.razor` (parent component):
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor":::
 
 :::moniker-end
 
@@ -800,7 +866,7 @@ For a parent component to make an element reference available to other component
 
 `CallJsExample7.razor` (parent component):
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor":::
 
 :::moniker-end
 
@@ -808,7 +874,7 @@ For a parent component to make an element reference available to other component
 
 `CallJsExample7.razor` (parent component):
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor":::
 
 :::moniker-end
 
@@ -816,11 +882,19 @@ For a parent component to make an element reference available to other component
 
 `CallJsExample7.razor` (parent component):
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/CallJsExample7.razor":::
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs7.razor.cs`:
+
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorSample_WebAssembly/Pages/CallJs7.razor.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs7.razor.cs`:
 
@@ -864,7 +938,13 @@ In the preceding example, the namespace of the app is `BlazorSample`. If testing
 
 `SurveyPrompt.razor` (child component):
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/SurveyPrompt.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/SurveyPrompt.razor":::
 
@@ -896,7 +976,13 @@ In the preceding example, the namespace of the app is `BlazorSample`. If testing
 
 `SurveyPrompt.razor.cs`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/SurveyPrompt.razor.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/SurveyPrompt.razor.cs":::
 
@@ -1061,7 +1147,15 @@ Add the following `<link>` element to the `<head>` element markup ([location of 
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs8.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs8.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs8.razor`:
 
@@ -1273,7 +1367,15 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 > `Could not find 'nonFunction' ('nonFunction' was undefined).`
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`CallJs11.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs11.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `CallJs11.razor`:
 
@@ -1285,7 +1387,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `CallJsExample11.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor":::
 
 :::moniker-end
 
@@ -1293,7 +1395,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `CallJsExample11.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor":::
 
 :::moniker-end
 
@@ -1301,7 +1403,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `CallJsExample11.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor":::
 
 :::moniker-end
 
@@ -1309,7 +1411,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `CallJsExample11.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor":::
 
 :::moniker-end
 
@@ -1594,7 +1696,7 @@ For more information, see <xref:blazor/js-interop/index#javascript-interop-calls
 ## Additional resources
 
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
-* [`InteropComponent.razor` example (`dotnet/AspNetCore` GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
+* [`InteropComponent.razor` example (`dotnet/AspNetCore` GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/{VERSION}`, where the `{VERSION}` placeholder is the release version), use the **Switch branches or tags** dropdown list to select the branch. For a branch that no longer exists, use the **Tags** tab to find the API (for example, `v7.0.0`).
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 * <xref:blazor/fundamentals/handle-errors#javascript-interop> (*JavaScript interop* section)
 * [Threat mitigation: JavaScript functions invoked from .NET](xref:blazor/security/server/interactive-server-side-rendering#javascript-functions-invoked-from-net)

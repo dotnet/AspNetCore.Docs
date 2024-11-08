@@ -16,15 +16,17 @@ Blazor WebAssembly apps are secured in the same manner as single-page applicatio
 
 The Blazor WebAssembly security documentation primarily focuses on how to accomplish user authentication and authorization tasks. For OAuth 2.0/OIDC general concept coverage, see the resources in the [main overview article's *Additional resources* section](xref:blazor/security/index#additional-resources).
 
-## Client-side/SPA security
+## Client-side/SPA security of sensitive data and credentials
 
-A Blazor WebAssembly app's .NET/C# codebase is served to clients, and the app's code can't be protected from inspection and tampering by users. Never place anything of a secret nature into a Blazor WebAssembly app, such as private .NET/C# code, security keys, passwords, or any other type of sensitive information.
+A Blazor WebAssembly app's .NET/C# codebase is served to clients, and the app's code can't be protected from inspection and tampering by users. Never place credentials or secrets into a Blazor WebAssembly app, such as app secrets, connection strings, passwords, private .NET/C# code, or other sensitive data.
 
 To protect .NET/C# code and use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features to secure data, use a server-side ASP.NET Core web API. Have the client-side Blazor WebAssembly app call the server-side web API for secure app features and data processing. For more information, see <xref:blazor/call-web-api?pivots=webassembly> and the articles in this node.
 
+For local development testing, the [Secret Manager tool](xref:security/app-secrets) is recommended for securing sensitive data.
+
 ## Authentication library
 
-Blazor WebAssembly supports authenticating and authorizing apps using OIDC via the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library using the [Microsoft Identity Platform](/entra/identity-platform/). The library provides a set of primitives for seamlessly authenticating against ASP.NET Core backends. The library can authenticate against any third-party Identity Provider (IP) that supports OIDC, which are called OpenID Providers (OP).
+Blazor WebAssembly supports authenticating and authorizing apps using OIDC via the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library using the [Microsoft identity platform](/entra/identity-platform/). The library provides a set of primitives for seamlessly authenticating against ASP.NET Core backends. The library can authenticate against any third-party Identity Provider (IP) that supports OIDC, which are called OpenID Providers (OP).
 
 The authentication support in the Blazor WebAssembly Library (`Authentication.js`) is built on top of the [Microsoft Authentication Library (MSAL, `msal.js`)](/entra/identity-platform/msal-overview), which is used to handle the underlying authentication protocol details. The Blazor WebAssembly Library only supports the Proof Key for Code Exchange (PKCE) authorization code flow. Implicit grant isn't supported.
 
@@ -32,7 +34,7 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Using a token-based protocol offers a smaller attack surface area, as the tokens aren't sent in all requests.
+* Using a token-based protocol offers fewer vulnerabilities, as the tokens aren't sent in all requests.
 * The tokens are explicitly sent to the server, so server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery). This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
 * Tokens have narrower permissions than cookies. For example, tokens can't be used to manage the user account or change a user's password unless such functionality is explicitly implemented.
 * Tokens have a short lifetime, one hour, which limits the attack window. Tokens can also be revoked at any time.
@@ -44,7 +46,7 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 
 :::moniker range="< aspnetcore-8.0"
 
-* Using a token-based protocol offers a smaller attack surface area, as the tokens aren't sent in all requests.
+* Using a token-based protocol offers fewer vulnerabilities, as the tokens aren't sent in all requests.
 * The tokens are explicitly sent to the server, so server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery). This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
 * Tokens have narrower permissions than cookies. For example, tokens can't be used to manage the user account or change a user's password unless such functionality is explicitly implemented.
 * Tokens have a short lifetime, one hour, which limits the attack window. Tokens can also be revoked at any time.
@@ -104,7 +106,7 @@ The state stored by the History API provides the following benefits for remote a
 
 * The state passed to the secured app endpoint is tied to the navigation performed to authenticate the user at the `authentication/login` endpoint.
 * Extra work encoding and decoding data is avoided.
-* The attack surface area is reduced. Unlike using the query string to store navigation state, a top-level navigation or influence from a different origin can't set the state stored by the History API.
+* Vulnerabilities are reduced. Unlike using the query string to store navigation state, a top-level navigation or influence from a different origin can't set the state stored by the History API.
 * The history entry is replaced upon successful authentication, so the state attached to the history entry is removed and doesn't require clean up.
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions> represents the request to the identity provider for logging in or provisioning an access token.

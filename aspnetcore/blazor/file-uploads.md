@@ -451,18 +451,10 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("[controller]")]
-public class FilesaveController : ControllerBase
+public class FilesaveController(
+    IHostEnvironment env, ILogger<FilesaveController> logger) 
+    : ControllerBase
 {
-    private readonly IHostEnvironment env;
-    private readonly ILogger<FilesaveController> logger;
-
-    public FilesaveController(IHostEnvironment env, 
-        ILogger<FilesaveController> logger)
-    {
-        this.env = env;
-        this.logger = logger;
-    }
-
     [HttpPost]
     public async Task<ActionResult<IList<UploadResult>>> PostFile(
         [FromForm] IEnumerable<IFormFile> files)
@@ -471,7 +463,7 @@ public class FilesaveController : ControllerBase
         long maxFileSize = 1024 * 15;
         var filesProcessed = 0;
         var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
-        List<UploadResult> uploadResults = new();
+        List<UploadResult> uploadResults = [];
 
         foreach (var file in files)
         {
@@ -540,7 +532,7 @@ public class FilesaveController : ControllerBase
 }
 ```
 
-In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as an attacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
+In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
 The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
 
@@ -845,18 +837,10 @@ using Microsoft.Extensions.Logging;
 
 [ApiController]
 [Route("[controller]")]
-public class FilesaveController : ControllerBase
+public class FilesaveController(
+    IHostEnvironment env, ILogger<FilesaveController> logger) 
+    : ControllerBase
 {
-    private readonly IHostEnvironment env;
-    private readonly ILogger<FilesaveController> logger;
-
-    public FilesaveController(IHostEnvironment env,
-        ILogger<FilesaveController> logger)
-    {
-        this.env = env;
-        this.logger = logger;
-    }
-
     [HttpPost]
     public async Task<ActionResult<IList<UploadResult>>> PostFile(
         [FromForm] IEnumerable<IFormFile> files)
@@ -865,7 +849,7 @@ public class FilesaveController : ControllerBase
         long maxFileSize = 1024 * 15;
         var filesProcessed = 0;
         var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
-        List<UploadResult> uploadResults = new();
+        List<UploadResult> uploadResults = [];
 
         foreach (var file in files)
         {
@@ -934,7 +918,7 @@ public class FilesaveController : ControllerBase
 }
 ```
 
-In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as an attacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
+In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
 The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>. We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) for authenticated users. If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>, antiforgery isn't enabled automatically. For more information, see <xref:mvc/controllers/routing>.
 

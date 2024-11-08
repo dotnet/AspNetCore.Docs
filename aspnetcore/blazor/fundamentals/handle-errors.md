@@ -801,7 +801,13 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/ProductDetails.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ProductDetails.razor":::
 
@@ -809,25 +815,25 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor":::
 
 :::moniker-end
 
@@ -973,7 +979,7 @@ If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is wr
 * Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
 * Attributes are only added in the correct places.
 
-Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, app or server hangs, and security vulnerabilities.
+Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, the app or server to stop responding, and security vulnerabilities.
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 

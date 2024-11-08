@@ -43,6 +43,17 @@ ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInMan
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from examples in this article.
 
+## Securely maintain sensitive data and credentials
+
+Don't store app secrets, connection strings, credentials, passwords, personal identification numbers (PINs), private .NET/C# code, or private keys/tokens in client-side code, which is ***always insecure***. Client-side Blazor code should access secure services and databases through a secure web API that you control.
+
+In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code or configuration files. Outside of local development testing, we recommend avoiding the use of environment variables to store sensitive data, as environment variables aren't the most secure approach. For local development testing, the [Secret Manager tool](xref:security/app-secrets) is recommended for securing sensitive data. For more information, see the following resources:
+
+* [Secure authentication flows (ASP.NET Core documentation)](xref:security/index#secure-authentication-flows)
+* [Managed identities for Microsoft Azure services (this article)](#managed-identities-for-microsoft-azure-services)
+
+For client-side and server-side local development and testing, use the [Secret Manager tool](xref:security/app-secrets) to secure sensitive credentials.
+
 ## Managed identities for Microsoft Azure services
 
 For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
@@ -59,7 +70,7 @@ For Microsoft Azure services, we recommend using *managed identities*. Managed i
 The Blazor template:
 
 * Adds antiforgery services automatically when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the `Program` file.
-* Adds Antiforgery Middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in its request processing pipeline in the `Program` file and requires endpoint [antiforgery protection](xref:security/anti-request-forgery) to mitigate the threats of Cross-Site Request Forgery (CSRF/XSRF). <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> is called after the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. If there are calls to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>, the call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must go between them. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
+* Adds Antiforgery Middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in its request processing pipeline in the `Program` file and requires endpoint [antiforgery protection](xref:security/anti-request-forgery) to mitigate the threats of Cross-Site Request Forgery (CSRF/XSRF). <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> is called after <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls, if present, to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
 
 The <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component renders an antiforgery token as a hidden field, and this component is automatically added to form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>) instances. For more information, see <xref:blazor/forms/index#antiforgery-support>.
 
@@ -428,7 +439,7 @@ You can also supply different content for display if the user isn't authorized w
 <AuthorizeView>
     <Authorized>
         <p>Hello, @context.User.Identity?.Name!</p>
-        <p><button @onclick="SecureMethod">Authorized Only Button</button></p>
+        <p><button @onclick="HandleClick">Authorized Only Button</button></p>
     </Authorized>
     <NotAuthorized>
         <p>You're not authorized.</p>
@@ -436,11 +447,11 @@ You can also supply different content for display if the user isn't authorized w
 </AuthorizeView>
 
 @code {
-    private void SecureMethod() { ... }
+    private void HandleClick() { ... }
 }
 ```
 
-A default event handler for an authorized element, such as the `SecureMethod` method for the `<button>` element in the preceding example, can only be invoked by an authorized user.
+Although the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component controls the visibility of elements based on the user’s authorization status, it doesn't enforce security on the event handler itself. In the preceding example, the `HandleClick` method is only associated with a button visible to authorized users, but nothing prevents invoking this method from other places. To ensure method-level security, implement additional authorization logic within the handler itself or in the relevant API.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -491,7 +502,7 @@ The preceding code establishes a `Context` for the inner <xref:Microsoft.AspNetC
 
 For more information, including configuration guidance, see <xref:security/authorization/roles>.
 
-For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter with a single policy:
+For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter with a single policy name:
 
 ```razor
 <AuthorizeView Policy="Over21">
@@ -699,10 +710,6 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunct
 
 > [!IMPORTANT]
 > Blazor router features that display `<NotAuthorized>` and `<NotFound>` content aren't operational during static server-side rendering (static SSR) because request processing is entirely handled by ASP.NET Core middleware pipeline request processing and Razor components aren't rendered at all for unauthorized or bad requests. Use server-side techniques to handle unauthorized and bad requests during static SSR. For more information, see <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
 
 ```razor
 <Router ...>

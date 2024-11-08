@@ -1,7 +1,7 @@
 
 :::moniker range="> aspnetcore-5.0 < aspnetcore-8.0"
 
-[Hisham Bin Ateya](https://twitter.com/hishambinateya), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+[Hisham Bin Ateya](https://twitter.com/hishambinateya), [Damien Bowden](https://github.com/damienbod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 One task for localizing an app is to implement a strategy for selecting the appropriate culture for each response the app returns.
 

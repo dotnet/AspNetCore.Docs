@@ -132,6 +132,8 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 ---
 
+[!INCLUDE [managed-identities-test-non-production](~/includes/managed-identities-test-non-production.md)]
+
 ### Files created and updated
 
 The scaffold process creates the following files:
@@ -152,6 +154,7 @@ The scaffold process adds the following highlighted code to the `Program.cs` fil
 ---
 
 The `Program.cs` changes are explained later in this tutorial.
+
 
 <a name="pmc7"></a>
 

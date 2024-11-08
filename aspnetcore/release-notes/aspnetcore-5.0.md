@@ -43,10 +43,10 @@ The `Person/Index.cshtml` file:
 ```cshtml
 @model Person
 
-Name: <input asp-for="Model.Name" />
+<label>Name: <input asp-for="Model.Name" /></label>
 <span asp-validation-for="Model.Name" />
 
-Age: <input asp-for="Model.Age" />
+<label>Age: <input asp-for="Model.Age" /></label>
 <span asp-validation-for="Model.Age" />
 ```
 

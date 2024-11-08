@@ -79,7 +79,13 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 `ConfigExample.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_WebAssembly/Pages/ConfigExample.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Pages/ConfigExample.razor":::
 
@@ -180,7 +186,13 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 `MemoryConfig.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_WebAssembly/Pages/MemoryConfig.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Pages/MemoryConfig.razor":::
 

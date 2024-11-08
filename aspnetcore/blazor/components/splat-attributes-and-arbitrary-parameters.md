@@ -12,7 +12,7 @@ uid: blazor/components/attribute-splatting
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [`@attributes`](xref:mvc/views/razor#attributes) Razor directive attribute. This scenario is useful for defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
+Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then applied to an element, calling *splatting*, when the component is rendered using the [`@attributes`](xref:mvc/views/razor#attributes) Razor directive attribute. This scenario is useful for defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
 
 ## Attribute splatting
 
@@ -23,7 +23,13 @@ In the following `Splat` component:
 
 `Splat.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Splat.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Splat.razor":::
 
@@ -86,7 +92,13 @@ The position of [`@attributes`](xref:mvc/views/razor#attributes) relative to the
 
 `AttributeOrderChild1.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/AttributeOrderChild1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/AttributeOrderChild1.razor":::
 
@@ -116,7 +128,15 @@ The position of [`@attributes`](xref:mvc/views/razor#attributes) relative to the
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`AttributeOrder1.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/AttributeOrder1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `AttributeOrder1.razor`:
 
@@ -166,7 +186,13 @@ In the following example, the order of `extra` and [`@attributes`](xref:mvc/view
 
 `AttributeOrderChild2.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/AttributeOrderChild2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/AttributeOrderChild2.razor":::
 
@@ -196,7 +222,15 @@ In the following example, the order of `extra` and [`@attributes`](xref:mvc/view
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`AttributeOrder2.razor`:
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/AttributeOrder2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `AttributeOrder2.razor`:
 

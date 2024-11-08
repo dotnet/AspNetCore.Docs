@@ -205,7 +205,7 @@ For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetco
 
 ### Ahead-of-time (AOT) SIMD and exception handling
 
-Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-width SIMD](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) and [WebAssembly Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md) by default to improve runtime performance.
+Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-width SIMD](https://wikipedia.org/wiki/Single_instruction,_multiple_data) and [WebAssembly Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md) by default to improve runtime performance.
 
 For more information, see the following articles:
 
@@ -263,7 +263,7 @@ The Blazor project templates no longer depend on [Open Iconic](https://github.co
 
 ### Support for dialog cancel and close events
 
-Blazor now supports the [`cancel`](https://developer.mozilla.org/docs/Web/API/HTMLElement/cancel_event) and [`close`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event) events on the `dialog` HTML element.
+Blazor now supports the [`cancel`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/cancel_event) and [`close`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event) events on the `dialog` HTML element.
 
 In the following example:
 
@@ -871,7 +871,7 @@ The following sections describe miscellaneous new features in ASP.NET Core 8.
 
 ### Visual Studio project templates for SPA apps with ASP.NET Core backend
 
-Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript frameworks [Angular](https://angular.io/), [React](https://facebook.github.io/react/), and [Vue](https://vuejs.org/). These templates:
+Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript frameworks [Angular](https://angular.dev/), [React](https://react.dev/), and [Vue](https://vuejs.org/). These templates:
 
 * Create a Visual Studio solution with a frontend project and a backend project.
 * Use the Visual Studio project type for JavaScript and TypeScript (*.esproj*) for the frontend.

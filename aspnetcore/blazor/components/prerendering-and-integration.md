@@ -21,7 +21,7 @@ zone_pivot_groups: blazor-hosting-models
 This article explains Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
 
 > [!IMPORTANT]
-> Framework changes across ASP.NET Core releases led to different sets of instructions in this article. Before using this article's guidance, confirm that the document version selector on this page matches the version of ASP.NET Core that you intend to use for your app.
+> Framework changes across ASP.NET Core releases led to different sets of instructions in this article. Before using this article's guidance, confirm that the document version selector at the top of this article matches the version of ASP.NET Core that you intend to use for your app.
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -919,6 +919,8 @@ else
 ```
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
+
+The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection](xref:security/data-protection/introduction) ensures that the data is transferred securely in Blazor Server apps. For prerendering in a hosted Blazor WebAssembly app, the data is exposed to the browser and must not contain sensitive, private information.
 
 :::zone pivot="webassembly"
 
@@ -1864,6 +1866,8 @@ else
 ```
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
+
+The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection](xref:security/data-protection/introduction) ensures that the data is transferred securely in Blazor Server apps. For prerendering in a hosted Blazor WebAssembly app, the data is exposed to the browser and must not contain sensitive, private information.
 
 :::zone pivot="webassembly"
 

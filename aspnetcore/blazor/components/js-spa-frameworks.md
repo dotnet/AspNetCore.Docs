@@ -126,7 +126,7 @@ window.showQuote = async () => {
   });
 }
 
-const btn = document.querySelector("showQuoteBtn");
+const btn = document.querySelector("#showQuoteBtn");
 btn.addEventListener("click", showQuote);
 ```
 
