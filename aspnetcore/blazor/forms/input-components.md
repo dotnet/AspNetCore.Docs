@@ -458,7 +458,7 @@ The validation summary displays the friendly name when the field's value is inva
 
 > The Production Date field must be a date.
 
-<!-- UPDATE 9.0 The feature has been backlogged.
+<!-- UPDATE 10.0 The feature has been backlogged.
      https://github.com/dotnet/aspnetcore/issues/49147
 
 > [!NOTE]

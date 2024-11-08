@@ -217,15 +217,15 @@ Additional information on render mode propagation is provided in the [Render mod
 
 ## Detect rendering location, interactivity, and assigned render mode at runtime
 
-The `ComponentBase.RendererInfo` and `ComponentBase.AssignedRenderMode` properties permit the app to detect details about the location, interactivity, and assigned render mode of a component:
+The <xref:Microsoft.AspNetCore.Components.ComponentBase.RendererInfo?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Components.ComponentBase.AssignedRenderMode?displayProperty=nameWithType> properties permit the app to detect details about the location, interactivity, and assigned render mode of a component:
 
-* `RendererInfo.Name` returns the location where the component is executing:
+* <xref:Microsoft.AspNetCore.Components.RendererInfo.Name?displayProperty=nameWithType> returns the location where the component is executing:
   * `Static`: On the server (SSR) and incapable of interactivity.
   * `Server`: On the server (SSR) and capable of interactivity after prerendering.
   * `WebAssembly`: On the client (CSR) and capable of interactivity after prerendering.
   * `WebView`: On the native device and capable of interactivity after prerendering.
-* `RendererInfo.IsInteractive` indicates if the component supports interactivity at the time of rendering. The value is `true` when rendering interactively or `false` when prerendering or for static SSR (`Platform.Name` of `Static`).
-* `ComponentBase.AssignedRenderMode` exposes the component's assigned render mode:
+* <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType> indicates if the component supports interactivity at the time of rendering. The value is `true` when rendering interactively or `false` when prerendering or for static SSR (<xref:Microsoft.AspNetCore.Components.RendererInfo.Name?displayProperty=nameWithType> of `Static`).
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.AssignedRenderMode?displayProperty=nameWithType> exposes the component's assigned render mode:
   * `InteractiveServer` for Interactive Server.
   * `InteractiveAuto` for Interactive Auto.
   * `InteractiveWebAssembly` for Interactive WebAssembly.
@@ -281,7 +281,7 @@ else
 
 In the preceding example:
 
-* When the value of `AssignedRenderMode` is `null`, the component adopts static SSR. Blazor event handling isn't functional in a browser with static SSR, so the component submits a form (GET request) with a `titleFilter` query string set to the user's `<input>` value. The `Movie` component (`/movie`) can read the query string and process the value of `titleFilter` to render the component with the filtered results.
+* When the value of <xref:Microsoft.AspNetCore.Components.ComponentBase.AssignedRenderMode> is `null`, the component adopts static SSR. Blazor event handling isn't functional in a browser with static SSR, so the component submits a form (GET request) with a `titleFilter` query string set to the user's `<input>` value. The `Movie` component (`/movie`) can read the query string and process the value of `titleFilter` to render the component with the filtered results.
 * Otherwise, the render mode is any of `InteractiveServer`, `InteractiveWebAssembly`, or `InteractiveAuto`. The component is capable of using an event handler delegate (`FilterMovies`) and the value bound to the `<input>` element (`titleFilter`) to filter movies interactively over the background SignalR connection.
 
 :::moniker-end
@@ -606,7 +606,7 @@ This approach is only useful when the app has specific pages that can't work wit
 
 :::moniker range=">= aspnetcore-9.0"
 
-Mark any Razor component page with the `[ExcludeFromInteractiveRouting]` attribute assigned with the `@attribute` Razor directive:
+Mark any Razor component page with the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) assigned with the `@attribute` Razor directive:
 
 ```razor
 @attribute [ExcludeFromInteractiveRouting]
@@ -614,12 +614,12 @@ Mark any Razor component page with the `[ExcludeFromInteractiveRouting]` attribu
 
 Applying the attribute causes navigation to the page to exit from [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing). Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
 
-The `HttpContext.AcceptsInteractiveRouting` extension method allows the component to detect whether `[ExcludeFromInteractiveRouting]` is applied to the current page.
+The <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method allows the component to detect whether the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) is applied to the current page.
 
 In the `App` component, use the pattern in the following example:
 
-* Pages that aren't annotated with `[ExcludeFromInteractiveRouting]` default to the `InteractiveServer` render mode with global interactivity. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
-* Pages annotated with `[ExcludeFromInteractiveRouting]` adopt static SSR (`PageRenderMode` is assigned `null`).
+* Pages that aren't annotated with the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) default to the `InteractiveServer` render mode with global interactivity. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
+* Pages annotated with the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) adopt static SSR (`PageRenderMode` is assigned `null`).
 
 ```razor
 <!DOCTYPE html>
@@ -643,7 +643,7 @@ In the `App` component, use the pattern in the following example:
 }
 ```
 
-An alternative to using the `HttpContext.AcceptsInteractiveRouting` extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
+An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
 :::moniker-end
 

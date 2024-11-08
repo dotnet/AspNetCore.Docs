@@ -581,8 +581,8 @@ The loading progress indicator used in Blazor WebAssembly apps isn't present in 
 * Showing multiple loading indicators on the same rendered page.
 * Inadvertently discarding prerendered content while the .NET WebAssembly runtime is loading.
 
-<!-- UPDATE 9.0 Will be removed for a new feature in this area. 
-                Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
+<!-- UPDATE 10.0 Will be removed for a new feature in this area. 
+                 Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
 
 A future release of .NET might provide a framework-based loading progress indicator. In the meantime, you can add a custom loading progress indicator to a Blazor Web App.
 

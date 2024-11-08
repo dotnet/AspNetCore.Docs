@@ -102,7 +102,7 @@ If we take MudBlazor as an example, IIS will compress the CSS bundle at around 9
 Consider the following table comparing MudBlazor compression with IIS dynamic compression and `MapStaticAssets`:
 <!-- MapStaticAssets uses brotli max so it's the same as IIS brotli max is the same as -->
 
-IIS gzip | MapStaticAssets | MapStaticAssets Reduction
+IIS gzip | `MapStaticAssets` | `MapStaticAssets` reduction
 -- | -- | --
  &#8773; 90 | 37.5 | 59%
 

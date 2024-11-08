@@ -21,7 +21,7 @@ This article describes how to secure a Blazor Web App with [Microsoft identity p
 The following specification is covered:
 
 * The Blazor Web App uses the [Auto render mode with global interactivity (`InteractiveAuto`)](xref:blazor/components/render-modes).
-* The server project calls `AddAuthenticationStateSerialization` to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls `AddAuthenticationStateDeserialization` to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
+* The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A> to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
 * The app uses [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), based on [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages.
 * Automatic non-interactive token refresh is managed by the framework.
 * The app uses server-side and client-side service abstractions to display generated weather data:
@@ -109,15 +109,7 @@ Example:
 
 The callback path (`CallbackPath`) must match the redirect URI (login callback path) configured when registering the application in the Entra or Azure portal. Paths are configured in the **Authentication** blade of the app's registration. The default value of `CallbackPath` is `/signin-oidc` for a registered redirect URI of `https://localhost/signin-oidc` (a port isn't required).
 
-<!-- UPDATE 9.0 Replace the following with the INCLUDE link after 
-                https://github.com/dotnet/AspNetCore.Docs/pull/33749
-                merges. 
-                
-                [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
-                -->
-
-> [!WARNING]
-> Don't store app secrets, connection strings, credentials, passwords, personal identification numbers (PINs), private C#/.NET code, or private keys/tokens in client-side code, which is ***always insecure***. In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code or configuration files. Outside of local development testing, we recommend avoiding the use of environment variables to store sensitive data, as environment variables aren't the most secure approach. For local development testing, the [Secret Manager tool](xref:security/app-secrets) is recommended for securing sensitive data.
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
 ## Redirect to the home page on sign out
 
