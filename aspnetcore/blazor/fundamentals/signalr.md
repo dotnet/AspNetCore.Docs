@@ -34,23 +34,23 @@ Blazor works best when using WebSockets as the SignalR transport due to lower la
 
 ## WebSocket compression for Interactive Server components
 
-<!-- UPDATE 9.0 Add API doc cross-links -->
-
 By default, Interactive Server components:
 
-* Enable compression for [WebSocket connections](xref:fundamentals/websockets). `ConfigureWebsocketOptions` controls WebSocket compression.
+* Enable compression for [WebSocket connections](xref:fundamentals/websockets). <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> (default: `false`) controls WebSocket compression.
 
 * Adopt a `frame-ancestors` [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) directive set to `'self'`, which only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided. `ContentSecurityFrameAncestorPolicy` controls the `frame-ancestors` CSP.
 
-The `frame-ancestors` CSP can be removed manually by setting the value of `ConfigureWebSocketOptions` to `null`, as you may want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy). When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it might make the app vulnerable to attack.
+The `frame-ancestors` CSP can be removed manually by setting the value of <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null`, as you may want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy). When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it might make the app vulnerable to attack.
+
+Use <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureWebSocketAcceptContext> to configure the <xref:Microsoft.AspNetCore.Http.WebSocketAcceptContext> for the websocket connections used by the server components. By default, a policy that enables compression and sets a CSP for the frame ancestors defined in <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> is applied.
 
 Usage examples:
 
-Disable compression by setting `ConfigureWebSocketOptions` to `null`, which reduces the [vulnerability of the app to attack](xref:blazor/security/server/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
+Disable compression by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> to `true`, which reduces the [vulnerability of the app to attack](xref:blazor/security/server/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
 
 ```csharp
 builder.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode(o => o.ConfigureWebSocketOptions = null)
+    .AddInteractiveServerRenderMode(o => o.DisableWebSocketCompression = true)
 ```
 
 When compression is enabled, configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quotes required), which allows WebSocket compression but prevents browsers from embedding the app into any `<iframe>`:
@@ -60,7 +60,7 @@ builder.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
 ```
 
-When compression is enabled, remove the `frame-ancestors` CSP by setting `ContentSecurityFrameAncestorsPolicy` to `null`. This scenario is only recommended for apps that [set the CSP in a centralized way](xref:blazor/security/content-security-policy):
+When compression is enabled, remove the `frame-ancestors` CSP by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null`. This scenario is only recommended for apps that [set the CSP in a centralized way](xref:blazor/security/content-security-policy):
 
 ```csharp
 builder.MapRazorComponents<App>()
@@ -70,7 +70,7 @@ builder.MapRazorComponents<App>()
 > [!IMPORTANT]
 > Browsers apply CSP directives from multiple CSP headers using the strictest policy directive value. Therefore, a developer can't add a weaker `frame-ancestors` policy than `'self'` on purpose or by mistake.
 >
-> Single quotes are required on the string value passed to `ContentSecurityFrameAncestorsPolicy`:
+> Single quotes are required on the string value passed to <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy>:
 >
 > <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported values:</span> `none`, `self`
 >
@@ -294,11 +294,6 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 
 :::moniker-end
 
-<!-- UPDATE 9.0 Check on a fix for the added 
-                MaximumParallelInvocationsPerClient warning
-                per https://github.com/dotnet/aspnetcore/issues/53951 
-                and version if fixed. -->
-
 > [!WARNING]
 > The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of Service (DoS) attacks](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks).
 >
@@ -323,7 +318,7 @@ app.MapBlazorHub(options =>
 });
 ```
 
-<!-- UPDATE 9.0 The following is scheduled for a fix in .NET 9 -->
+<!-- UPDATE 10.0 The following is scheduled for a fix in .NET 10 -->
 
 Configuring the hub used by <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> fails with an `AmbiguousMatchException`:
 
