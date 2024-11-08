@@ -267,7 +267,7 @@ var response = await Http.SendAsync(request);
 Streaming requests:
 
 * Require HTTPS protocol and don't work on HTTP/1.x.
-* Include a body but not a `Content-Length` header. [CORS](xref:security/cors) is required, and CORS preflight request is always issued.
+* Include a body but not a `Content-Length` header. [CORS](xref:security/cors) is required, and a CORS preflight request is always issued.
 
 For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads#file-size-read-and-upload-limits> and the example at [Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr).
 
