@@ -16,9 +16,9 @@ This article explains how to configure and read the [environment](xref:fundament
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
-<!-- UPDATE 9.0 The underlying problem with app settings filename 
-                case sensitivity is tracked for 9.0 by ...
-                https://github.com/dotnet/aspnetcore/issues/25152 -->
+<!-- UPDATE 10.0 The underlying problem with app settings filename 
+                 case sensitivity is tracked for 10.0 by ...
+                 https://github.com/dotnet/aspnetcore/issues/25152 -->
                 
 We recommend the following conventions:
 
@@ -153,9 +153,9 @@ In the following example for IIS, the custom header (`blazor-environment`) is ad
 
 ## Set the environment for Azure App Service
 
-<!-- UPDATE 9.0 The underlying problem with app settings filename 
-                case sensitivity is tracked for 9.0 by ...
-                https://github.com/dotnet/aspnetcore/issues/25152 -->
+<!-- UPDATE 10.0 The underlying problem with app settings filename 
+                 case sensitivity is tracked for 10.0 by ...
+                 https://github.com/dotnet/aspnetcore/issues/25152 -->
 
 For a standalone Blazor WebAssembly app, you can set the environment manually via [start configuration](#set-the-client-side-environment-via-blazor-startup-configuration) or the [`blazor-environment` header](#set-the-client-side-environment-via-header).
 
