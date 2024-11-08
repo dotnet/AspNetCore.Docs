@@ -9,7 +9,7 @@ uid: fundamentals/dotnet-scaffold-telemetry
 ---
 # dotnet-scaffold telemetry
 
-The [dotnet-scaffold](xref:tools/dotnet-scaffold) command includes a telemetry feature that collects usage data. This feature helps the dotnet-scaffold team understand how the tool is used so it can be improved.
+The dotnet-scaffold command includes a telemetry feature that collects usage data. This feature helps the dotnet-scaffold team understand how the tool is used so it can be improved.
 
 ## How to opt out
 
