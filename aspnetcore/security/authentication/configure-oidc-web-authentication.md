@@ -139,6 +139,8 @@ builder.Services.AddAuthorizationBuilder()
 
 ### Add a new Logout.cshtml and SignedOut.cshtml Razor page to the project
 
+A logout is required to sign out both the cookie session and the OpenID Connect session. The whole application needs to redirect to the OpenID Connect server to sign out. After a successful sign-out, the application will open the RedirectUri route.
+
 Implement a default sign out page and change the Logout razor page code with this:
 
 ```csharp
