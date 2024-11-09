@@ -114,8 +114,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-// Authorization is required for middleware 
-// after the UseAuthorization method
+// Authorization is applied for middleware after the UseAuthorization method
 app.UseAuthorization();
 app.MapRazorPages();
 ```
