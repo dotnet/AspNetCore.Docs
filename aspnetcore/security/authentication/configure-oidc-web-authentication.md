@@ -206,9 +206,10 @@ services.AddAuthentication(options =>
 .AddCookie()
 .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
 {
-	options.Authority = authConfiguration["IdentityProviderUrl"];
-	options.ClientSecret = authConfiguration["ClientSecret"];
-	options.ClientId = authConfiguration["Audience"];
+	var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
+	options.Authority = oidcConfig["IdentityProviderUrl"];
+	options.ClientSecret = oidcConfig["ClientSecret"];
+	options.ClientId = oidcConfig["Audience"];
 	options.ResponseType = OpenIdConnectResponseType.Code;
 
 	options.Scope.Clear();
@@ -223,7 +224,7 @@ services.AddAuthentication(options =>
 	options.GetClaimsFromUserInfoEndpoint = true;
 	options.SaveTokens = true;
 
-    // .NET 9 feature
+	// .NET 9 feature
 	options.PushedAuthorizationBehavior = PushedAuthorizationBehavior.Require;
 
 	options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;

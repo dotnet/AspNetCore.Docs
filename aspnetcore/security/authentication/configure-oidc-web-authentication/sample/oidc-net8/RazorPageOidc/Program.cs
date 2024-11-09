@@ -33,15 +33,15 @@ builder.Services.AddAuthentication(options =>
     // Both the signin and signout paths must be registered as Redirect URIs.
     // The default values are "/signin-oidc" and "/signout-callback-oidc".
 
-    //oidcOptions.CallbackPath = new PathString("/signin-oidc");
-    //oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
+    //options.CallbackPath = new PathString("/signin-oidc");
+    //options.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
     // ........................................................................
 
     // ........................................................................
     // The RemoteSignOutPath is the "Front-channel logout URL" for remote single 
     // sign-out. The default value is "/signout-oidc".
 
-    //oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
+    //options.RemoteSignOutPath = new PathString("/signout-oidc");
     // ........................................................................
 
     var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
