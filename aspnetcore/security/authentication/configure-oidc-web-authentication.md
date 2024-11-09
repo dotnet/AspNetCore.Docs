@@ -59,7 +59,7 @@ builder.Services.AddAuthentication(options =>
 .AddCookie()
 .AddOpenIdConnect(options =>
 {
-    var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
+	var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
 
 	options.Authority = oidcConfig["Authority"];
 	options.ClientId = oidcConfig["ClientId"];
