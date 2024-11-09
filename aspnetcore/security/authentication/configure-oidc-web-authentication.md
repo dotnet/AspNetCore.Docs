@@ -226,11 +226,8 @@ services.AddAuthentication(options =>
     // .NET 9 feature
 	options.PushedAuthorizationBehavior = PushedAuthorizationBehavior.Require;
 
-	options.TokenValidationParameters = new TokenValidationParameters
-	{
-		NameClaimType = JwtClaimTypes.Name,
-		RoleClaimType = JwtClaimTypes.Role,
-	};
+	options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+	options.TokenValidationParameters.RoleClaimType = "roles";
 });
 ```
 
