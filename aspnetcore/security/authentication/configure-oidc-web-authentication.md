@@ -97,11 +97,11 @@ Add the OpenID Connect client settings to the application configuration properti
 
 ```json
 "OpenIDConnectSettings": {
-    // OpenID Connect URL
-	"Authority": "https://localhost:44318",
-	// client ID from the OpenID Connect server
-	"ClientId": "oidc-pkce-confidential",
-	//"ClientSecret": "--stored-in-user-secrets-or-key-vault--"
+  // OpenID Connect URL
+  "Authority": "https://localhost:44318",
+  // client ID from the OpenID Connect server
+  "ClientId": "oidc-pkce-confidential",
+  //"ClientSecret": "--stored-in-user-secrets-or-key-vault--"
 },
 ```
 
