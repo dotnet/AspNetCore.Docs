@@ -59,11 +59,11 @@ builder.Services.AddAuthentication(options =>
 .AddCookie()
 .AddOpenIdConnect(options =>
 {
-	configuration.GetSection("OpenIDConnectSettings").Bind(options);
-	
-	options.Authority = configuration["OpenIDConnectSettings:Authority"];
-	options.ClientId = configuration["OpenIDConnectSettings:ClientId"];
-	options.ClientSecret = configuration["OpenIDConnectSettings:ClientSecret"];
+    var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
+
+	options.Authority = oidcConfig["Authority"];
+	options.ClientId = oidcConfig["ClientId"];
+	options.ClientSecret = oidcConfig["ClientSecret"];
 
 	options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 	options.ResponseType = OpenIdConnectResponseType.Code;
