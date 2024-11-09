@@ -53,8 +53,8 @@ Add the authentication to the web application using the builder.Services in the 
 ```csharp
 builder.Services.AddAuthentication(options =>
 {
-	options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-	options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
 })
 .AddCookie()
 .AddOpenIdConnect(options =>
@@ -200,35 +200,35 @@ The **Scope** option can be used to request different claims or a refresh token 
 ```csharp
 services.AddAuthentication(options =>
 {
-	options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-	options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
 })
 .AddCookie()
 .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
 {
-	var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
-	options.Authority = oidcConfig["IdentityProviderUrl"];
-	options.ClientSecret = oidcConfig["ClientSecret"];
-	options.ClientId = oidcConfig["Audience"];
-	options.ResponseType = OpenIdConnectResponseType.Code;
+    var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
+    options.Authority = oidcConfig["IdentityProviderUrl"];
+    options.ClientSecret = oidcConfig["ClientSecret"];
+    options.ClientId = oidcConfig["Audience"];
+    options.ResponseType = OpenIdConnectResponseType.Code;
 
-	options.Scope.Clear();
-	options.Scope.Add("openid");
-	options.Scope.Add("profile");
-	options.Scope.Add("email");
-	options.Scope.Add("offline_access");
+    options.Scope.Clear();
+    options.Scope.Add("openid");
+    options.Scope.Add("profile");
+    options.Scope.Add("email");
+    options.Scope.Add("offline_access");
 
-	options.ClaimActions.Remove("amr");
-	options.ClaimActions.MapJsonKey("website", "website");
+    options.ClaimActions.Remove("amr");
+    options.ClaimActions.MapJsonKey("website", "website");
 
-	options.GetClaimsFromUserInfoEndpoint = true;
-	options.SaveTokens = true;
+    options.GetClaimsFromUserInfoEndpoint = true;
+    options.SaveTokens = true;
 
-	// .NET 9 feature
-	options.PushedAuthorizationBehavior = PushedAuthorizationBehavior.Require;
+    // .NET 9 feature
+    options.PushedAuthorizationBehavior = PushedAuthorizationBehavior.Require;
 
-	options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
-	options.TokenValidationParameters.RoleClaimType = "roles";
+    options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+    options.TokenValidationParameters.RoleClaimType = "roles";
 });
 ```
 
