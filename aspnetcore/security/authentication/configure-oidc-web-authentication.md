@@ -70,10 +70,10 @@ builder.Services.AddAuthentication(options =>
 
 	options.SaveTokens = true;
 	options.GetClaimsFromUserInfoEndpoint = true;
-	options.TokenValidationParameters = new TokenValidationParameters
-	{
-		NameClaimType = "name"
-	};
+
+	options.MapInboundClaims = false;
+	options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+	options.TokenValidationParameters.RoleClaimType = "roles";
 });
 ```
 
@@ -114,6 +114,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+// Authorization is required for middleware 
+// after the UseAuthorization method
 app.UseAuthorization();
 app.MapRazorPages();
 ```
@@ -129,13 +131,10 @@ Add the Authorize attribute to the protected razor pages, for example the Index.
 A better way would be to force the whole application to be authorized and opt out for unsecure pages
 
 ```csharp
-builder.services.AddRazorPages().AddMvcOptions(options =>
-{
-    var policy = new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build();
-    options.Filters.Add(new AuthorizeFilter(policy));
-});
+builder.Services.AddAuthorizationBuilder()
+    .SetFallbackPolicy(new AuthorizationPolicyBuilder()
+    .RequireAuthenticatedUser()
+    .Build());
 ```
 
 ### Add a new Logout.cshtml and SignedOut.cshtml Razor page to the project
