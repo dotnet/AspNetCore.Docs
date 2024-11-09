@@ -59,21 +59,21 @@ builder.Services.AddAuthentication(options =>
 .AddCookie()
 .AddOpenIdConnect(options =>
 {
-	var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
+    var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
 
-	options.Authority = oidcConfig["Authority"];
-	options.ClientId = oidcConfig["ClientId"];
-	options.ClientSecret = oidcConfig["ClientSecret"];
+    options.Authority = oidcConfig["Authority"];
+    options.ClientId = oidcConfig["ClientId"];
+    options.ClientSecret = oidcConfig["ClientSecret"];
 
-	options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-	options.ResponseType = OpenIdConnectResponseType.Code;
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.ResponseType = OpenIdConnectResponseType.Code;
 
-	options.SaveTokens = true;
-	options.GetClaimsFromUserInfoEndpoint = true;
+    options.SaveTokens = true;
+    options.GetClaimsFromUserInfoEndpoint = true;
 
-	options.MapInboundClaims = false;
-	options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
-	options.TokenValidationParameters.RoleClaimType = "roles";
+    options.MapInboundClaims = false;
+    options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+    options.TokenValidationParameters.RoleClaimType = "roles";
 });
 ```
 
