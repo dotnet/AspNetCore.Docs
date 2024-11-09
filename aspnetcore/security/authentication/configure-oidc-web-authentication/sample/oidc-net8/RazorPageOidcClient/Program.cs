@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
@@ -15,10 +16,10 @@ builder.Services.AddAuthentication(options =>
 .AddCookie()
 .AddOpenIdConnect(options =>
 {
-    builder.Configuration.GetSection("OpenIDConnectSettings").Bind(options);
-    options.Authority = builder.Configuration["OpenIDConnectSettings:Authority"];
-    options.ClientId = builder.Configuration["OpenIDConnectSettings:ClientId"];
-    options.ClientSecret = builder.Configuration["OpenIDConnectSettings:ClientSecret"];
+    var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
+    options.Authority = oidcConfig["Authority"];
+    options.ClientId = oidcConfig["ClientId"];
+    options.ClientSecret = oidcConfig["ClientSecret"];
 
     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.ResponseType = OpenIdConnectResponseType.Code;
