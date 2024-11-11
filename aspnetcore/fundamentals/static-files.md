@@ -58,9 +58,10 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 
 The default web app templates call the <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> method in `Program.cs`, which enables static files to be served:
 
+<!-- test via https://localhost:64889/test on the 2nd image -->
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=15)]
 
-The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references `wwwroot/images/MyImage.jpg`:
+The `MapStaticAssets` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references `wwwroot/images/MyImage.jpg`:
 
 ```html
 <img src="~/images/MyImage.jpg" class="img" alt="My image" />
@@ -68,7 +69,7 @@ The parameterless `UseStaticFiles` method overload marks the files in [web root]
 
 In the preceding markup, the tilde character `~` points to the [web root](xref:fundamentals/index#web-root).
 
-### Serve files outside of web root
+### Serve files outside of web root <!--move to static files-->
 
 Consider a directory hierarchy in which the static files to be served reside outside of the [web root](xref:fundamentals/index#web-root):
 
@@ -87,12 +88,12 @@ A request can access the `red-rose.jpg` file by configuring the Static File Midd
 In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the `red-rose.jpg` file.
 
 The following markup references `MyStaticFiles/images/red-rose.jpg`:
-<!-- zz test via /Home2/MyStaticFilesRR -->
+<!-- test via /Home2/MyStaticFilesRR -->
 [!code-html[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
 
 To serve files from multiple locations, see [Serve files from multiple locations](#serve-files-from-multiple-locations).
 
-### Set HTTP response headers
+### Set HTTP response headers <!--move to static files-->
 
 A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the [Cache-Control](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) header:
 
@@ -100,7 +101,7 @@ A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to se
 
 The preceding code makes static files publicly available in the local cache for one week.
 
-## Static file authorization
+## Static file authorization <!--move to static files-->
 
 The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
 
@@ -127,7 +128,6 @@ An alternative approach to serve files based on authorization is to:
 * Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
 * Serve them via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object:
 
-
   [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Pages/BannerImage.cshtml.cs?name=snippet)]
 
 The preceding approach requires a page or endpoint per file. The following code returns files or uploads files for authenticated users:
@@ -138,7 +138,7 @@ IFormFile in the preceding sample uses memory buffer for uploading. For handling
 
 See the [StaticFileAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/9.x/StaticFileAuth) GitHub folder for the complete sample.
 
-## Directory browsing
+## Directory browsing <!--move to static files-->
 
 Directory browsing allows directory listing within specified directories.
 
@@ -155,7 +155,7 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 `AddDirectoryBrowser` [adds services](https://github.com/dotnet/aspnetcore/blob/fc4e391aa58a9fa67fdc3a96da6cfcadd0648b17/src/Middleware/StaticFiles/src/DirectoryBrowserServiceExtensions.cs#L25) required by the directory browsing middleware, including <xref:System.Text.Encodings.Web.HtmlEncoder>. These services may be added by other calls, such as <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, but we recommend calling `AddDirectoryBrowser` to ensure the services are added in all apps.
 
-## Serve default documents
+## Serve default documents <!--move to static files-->
 
 <!-- Comment out  @*@page*@  default RP file -->
 
@@ -178,7 +178,7 @@ The following code changes the default file name to `mydefault.html`:
 
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)]
 
-### UseFileServer for default documents
+### UseFileServer for default documents <!--move to static files-->
 
 <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and optionally `UseDirectoryBrowser`.
 
@@ -229,12 +229,12 @@ If no default-named file exists in the *MyStaticFiles* directory, `https://<host
 
 <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> perform a client-side redirect from the target URI without a trailing `/`  to the target URI with a trailing `/`. For example, from `https://<hostname>/StaticFiles` to `https://<hostname>/StaticFiles/`. Relative URLs within the *StaticFiles* directory are invalid without a trailing slash (`/`) unless the <xref:Microsoft.AspNetCore.StaticFiles.Infrastructure.SharedOptions.RedirectToAppendTrailingSlash> option of <xref:Microsoft.AspNetCore.Builder.DefaultFilesOptions> is used.
 
-## FileExtensionContentTypeProvider
+## FileExtensionContentTypeProvider <!--move to static files-->
 
 The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> class contains a [Mappings](/dotnet/api/microsoft.aspnetcore.staticfiles.fileextensioncontenttypeprovider.mappings) property that serves as a mapping of file extensions to MIME content types. In the following sample, several file extensions are mapped to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed:
 
 <!-- test via /mapTest/image1.image and mapTest/test.htm3 /mapTest/TextFile.rtf -->
-[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_fec&highlight=19-33)] 
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_fec&highlight=19-33)]
 
 See [MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml).
 
