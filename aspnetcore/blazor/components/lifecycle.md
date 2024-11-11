@@ -38,9 +38,6 @@ Component lifecycle events:
 
 A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
-<!-- UPDATE 9.0 Update the diagram to drop "Property injection"?
-                https://github.com/dotnet/AspNetCore.Docs/issues/32091 -->
-
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 DOM event processing:
