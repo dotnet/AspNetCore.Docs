@@ -322,6 +322,8 @@ items:
         uid: fundamentals/http-requests
       - name: Static files
         uid: fundamentals/static-files
+      - name: dotnet-scaffold telemetry
+        uid: fundamentals/dotnet-scaffold-telemetry
   - name: Web apps
     items:
       - name: Choose an ASP.NET Core UI
