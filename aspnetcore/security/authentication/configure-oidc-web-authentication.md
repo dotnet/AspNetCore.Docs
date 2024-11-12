@@ -263,7 +263,7 @@ It is no longer recommended to implement OpenID Connect public clients for any w
 
 See the [draft OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/) for further details.
 
-If implementing **web** applications which have no backend, it is recommended to use the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) security architecture.  This pattern can be implemented in different ways, but the authentication is always implemented in the backend and no sensitive data is sent to the web client for further authorization or authentication flows.
+If implementing **web** applications which have no independent backend, it is recommended to use the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) security architecture. This pattern can be implemented in different ways, but the authentication is always implemented in the backend and no sensitive data is sent to the web client for further authorization or authentication flows.
 
 ## Advanced features, standards, extending the OIDC client
 
