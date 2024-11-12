@@ -50,6 +50,10 @@ Add the [Microsoft.AspNetCore.Authentication.OpenIdConnect](https://www.nuget.or
 
 Add the authentication to the web application using the builder.Services in the **Program.cs** file. The configuration is dependent on the OpenID Connect server. Each OpenID Connect server requires small differences in the setup.
 
+The OpenID Connect handler is used for challenges and signout. The cookie is used to handle the session in the web application. The default schemes for the authentication can be specified as required. 
+
+See the ASP.NET Core [authentication-handler]( https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-8.0#authentication-handler) for details.
+
 ```csharp
 builder.Services.AddAuthentication(options =>
 {
