@@ -52,7 +52,7 @@ Add the authentication to the web application using the builder.Services in the 
 
 The OpenID Connect handler is used for challenges and signout. The cookie is used to handle the session in the web application. The default schemes for the authentication can be specified as required. 
 
-See the ASP.NET Core [authentication-handler]( https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-8.0#authentication-handler) for details.
+See the ASP.NET Core [authentication-handler]( https://learn.microsoft.com/aspnet/core/security/authentication/?view=aspnetcore-8.0#authentication-handler) for details.
 
 ```csharp
 builder.Services.AddAuthentication(options =>
@@ -236,8 +236,8 @@ services.AddAuthentication(options =>
     // .NET 9 feature
     options.PushedAuthorizationBehavior = PushedAuthorizationBehavior.Require;
 
-    options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
-    options.TokenValidationParameters.RoleClaimType = "roles";
+    options.TokenValidationParameters.NameClaimType = "name";
+    options.TokenValidationParameters.RoleClaimType = "role";
 });
 ```
 
