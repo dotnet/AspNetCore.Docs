@@ -77,8 +77,8 @@ builder.Services.AddAuthentication(options =>
     // identity provider uses different claim types.
 
     options.MapInboundClaims = false;
-    options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
-    options.TokenValidationParameters.RoleClaimType = "roles";
+    options.TokenValidationParameters.NameClaimType = "name";
+    options.TokenValidationParameters.RoleClaimType = "role";
     // ........................................................................
 
     options.SaveTokens = true;
