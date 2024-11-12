@@ -115,10 +115,10 @@ The proceeding example:
 
 Opting out of recording metrics is beneficial for endpoints frequently called by automated systems, such as health checks. Recording metrics for these requests is generally unnecessary. Unwanted telemetry uses resources to collect and store, and can distort results displayed in a telemetry dashboard.
 
-HTTP requests to an endpoint can be excluded from metrics by adding metadata, with either the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute or the [DisableHttpMetrics()](xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics<TBuilder>(TBuilder)) method:
+HTTP requests to an endpoint can be excluded from metrics by adding metadata, with either the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute or the <xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics``1(``0)> method:
 
 * Add the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute to the Web API controller, SignalR hub or gRPC service.
-* Call [DisableHttpMetrics()](xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics<TBuilder>(TBuilder)) when mapping endpoints in app startup:
+* Call <xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics``1(``0)> when mapping endpoints in app startup:
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/DisableMetrics/Program.cs" id="snippet_1" highlight="5":::
 
