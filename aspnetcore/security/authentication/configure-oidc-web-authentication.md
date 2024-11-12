@@ -159,7 +159,9 @@ public class LogoutModel : PageModel
         {
             RedirectUri = "/SignedOut"
         },
+		 // Clear auth cookie
         CookieAuthenticationDefaults.AuthenticationScheme,
+        // Redirect to OIDC provider signout endpoint
         OpenIdConnectDefaults.AuthenticationScheme);
     }
 }
