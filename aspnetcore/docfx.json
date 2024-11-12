@@ -6,6 +6,16 @@
         "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
         "group": "group1", 
         "src": "."
+      },
+      {
+        "files": [
+            "Compiler Breaking Changes - DotNet 8.md",
+            "Compiler Breaking Changes - DotNet 9.md"
+        ],
+        "exclude": [],
+        "group": "group1", 
+        "src": "../_razor/docs",
+        "dest": "_razor/docs"
       }
     ],
     "resource": [
