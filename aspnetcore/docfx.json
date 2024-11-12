@@ -51,12 +51,10 @@
     },
     "fileMetadata": {
       "author": {
-        "whats-new/**/**.md": "rick-anderson",
-        "_razor/docs/*.md": "rick-anderson"
+        "whats-new/**/**.md": "rick-anderson"
       },
       "ms.author": {
-        "whats-new/**/**.md": "riande",
-        "../_razor/docs/*.md": "riande"
+        "whats-new/**/**.md": "riande"
       },
       "ms.subservice": {
         "introduction-to-aspnet-core.md": "index-page",
@@ -94,14 +92,6 @@
       },
       "recommendations": {
         "**/tutorials/**/**.md": "false"
-      },
-      "title": {
-        "../_razor/docs/Compiler Breaking Changes - DotNet 8.md": "Razor compiler breaking changes since .NET 8",
-        "_razor/docs/Compiler Breaking Changes - DotNet 9.md": "Razor compiler breaking changes since .NET 9"            
-      },
-      "description": {
-        "../_razor/docs/Compiler Breaking Changes - DotNet 8.md": "Learn about any breaking changes since the initial release of .NET 8",
-        "_razor/docs/Compiler Breaking Changes - DotNet 9.md": "Learn about any breaking changes since the initial release of .NET 9"
       }
     },
     "template": [],
