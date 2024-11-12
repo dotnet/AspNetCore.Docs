@@ -295,7 +295,7 @@ IdentityModelEventSource.ShowPII = true;
 app.Run();
 ```
 
-See https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0#configure-logging for further information on logging.
+See https://learn.microsoft.com/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0#configure-logging for further information on logging.
 
 > [!NOTE]
 > You may want to lower the configured log level to see everything the required logs.
