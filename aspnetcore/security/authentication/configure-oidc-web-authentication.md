@@ -298,7 +298,7 @@ app.Run();
 See [Logging](xref:fundamentals/logging/index?view=aspnetcore-8.0#configure-logging)  for further information on logging.
 
 > [!NOTE]
-> You may want to lower the configured log level to see everything the required logs.
+> You may want to lower the configured log level to see all the required logs.
 
 ### OIDC and OAuth Parameter Customization
 
