@@ -179,6 +179,56 @@ public class SignedOutModel : PageModel
 }
 ```
 
+### Implement Login Page 
+
+A Login Razor Page can also be implemented to call the **ChallengeAsync** directly with the required AuthProperties. This is not required if the whole web application requires authentication and the default Challenge is used.
+
+The `login.cshtml` requires the AllowAnonymous attribute.
+
+```
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace RazorPageOidc.Pages;
+
+[AllowAnonymous]
+public class LoginModel : PageModel
+{
+    [BindProperty(SupportsGet = true)]
+    public string? ReturnUrl { get; set; }
+
+    public async Task OnGetAsync()
+    {
+        var properties = GetAuthProperties(ReturnUrl);
+        await HttpContext.ChallengeAsync(properties);
+    }
+
+    private static AuthenticationProperties GetAuthProperties(string? returnUrl)
+    {
+        const string pathBase = "/";
+
+        // Prevent open redirects.
+        if (string.IsNullOrEmpty(returnUrl))
+        {
+            returnUrl = pathBase;
+        }
+        else if (!Uri.IsWellFormedUriString(returnUrl, UriKind.Relative))
+        {
+            returnUrl = new Uri(returnUrl, UriKind.Absolute).PathAndQuery;
+        }
+        else if (returnUrl[0] != '/')
+        {
+            returnUrl = $"{pathBase}{returnUrl}";
+        }
+
+        return new AuthenticationProperties { RedirectUri = returnUrl };
+    }
+}
+
+```
+
 ### Add a login, logout button for the user.
 
 ```
