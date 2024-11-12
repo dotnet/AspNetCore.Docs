@@ -85,10 +85,12 @@ builder.Services.AddAuthentication(options =>
     options.GetClaimsFromUserInfoEndpoint = true;
 });
 
-builder.Services.AddAuthorizationBuilder()
-    .SetFallbackPolicy(new AuthorizationPolicyBuilder()
+var requireAuthPolicy = new AuthorizationPolicyBuilder()
     .RequireAuthenticatedUser()
-    .Build());
+    .Build();
+
+builder.Services.AddAuthorizationBuilder()
+    .SetFallbackPolicy(requireAuthPolicy);
 
 builder.Services.AddRazorPages();
 

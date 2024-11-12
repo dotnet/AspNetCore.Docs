@@ -93,14 +93,14 @@ using Microsoft.IdentityModel.Tokens;
 
 ### Setup the configuration properties
 
-Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets are persisted in the application settings, the secrets are stored in a Key Vault in production environments or in user secrets in a development environment.
+Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidently checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. See [App Secrets](xref:security/app-secret).
 
 ```json
 "OpenIDConnectSettings": {
-  // OpenID Connect URL
-  "Authority": "https://localhost:44318",
+  // OpenID Connect URL. (The base URL for the /.well-known/openid-configuration)
+  "Authority": "<Authority>",
   // client ID from the OpenID Connect server
-  "ClientId": "oidc-pkce-confidential",
+  "ClientId": "<Client ID>",
   //"ClientSecret": "--stored-in-user-secrets-or-key-vault--"
 },
 ```
@@ -114,6 +114,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 // Authorization is applied for middleware after the UseAuthorization method
 app.UseAuthorization();
 app.MapRazorPages();
@@ -130,10 +131,12 @@ Add the Authorize attribute to the protected razor pages, for example the Index.
 A better way would be to force the whole application to be authorized and opt out for unsecure pages
 
 ```csharp
-builder.Services.AddAuthorizationBuilder()
-    .SetFallbackPolicy(new AuthorizationPolicyBuilder()
+var requireAuthPolicy = new AuthorizationPolicyBuilder()
     .RequireAuthenticatedUser()
-    .Build());
+    .Build();
+
+builder.Services.AddAuthorizationBuilder()
+    .SetFallbackPolicy(requireAuthPolicy);
 ```
 
 ### Add a new Logout.cshtml and SignedOut.cshtml Razor page to the project
@@ -219,7 +222,7 @@ services.AddAuthentication(options =>
     options.Scope.Add("offline_access");
 
     options.ClaimActions.Remove("amr");
-    options.ClaimActions.MapJsonKey("website", "website");
+    options.ClaimActions.MapUniqueJsonKey("website", "website");
 
     options.GetClaimsFromUserInfoEndpoint = true;
     options.SaveTokens = true;
@@ -231,10 +234,6 @@ services.AddAuthentication(options =>
     options.TokenValidationParameters.RoleClaimType = "roles";
 });
 ```
-
-See the following code example: 
-
-https://github.com/damienbod/keycloak-backchannel/tree/main/RazorPagePar
 
 ### Implementing Microsoft identity providers
 
@@ -289,6 +288,11 @@ IdentityModelEventSource.ShowPII = true;
 
 app.Run();
 ```
+
+See https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0#configure-logging for further information on logging.
+
+> [!NOTE]
+> You may want to lower the configured log level to see everything the required logs.
 
 ### OIDC and OAuth Parameter Customization
 
