@@ -63,6 +63,13 @@
       "url": "https://github.com/dotnet/AspNetCore.Docs.Samples",
       "branch": "main",
       "branch_mapping": {}
+    },
+    {
+      "path_to_root": "_razor",
+      "url": "https://github.com/dotnet/razor",
+      "branch": "main",
+      "include_in_build": true,
+      "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {

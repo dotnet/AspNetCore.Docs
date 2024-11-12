@@ -799,6 +799,10 @@ items:
             uid: mvc/controllers/filters
           - name: Razor SDK
             uid: razor-pages/sdk
+          - name: Razor breaking changes since .NET 8
+            href: ../_razor/docs/Compiler%20Breaking%20Changes%20-%20DotNet%208.md
+          - name: Razor breaking changes since .NET 9
+            href: ../_razor/docs/Compiler%20Breaking%20Changes%20-%20DotNet%209.md
           - name: View components
             uid: mvc/views/view-components
           - name: View compilation
