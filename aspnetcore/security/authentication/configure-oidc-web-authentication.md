@@ -97,7 +97,7 @@ using Microsoft.IdentityModel.Tokens;
 
 ### Setup the configuration properties
 
-Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidently checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. See [App Secrets](xref:security/app-secret).
+Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidently checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. See [App Secrets](xref:security/app-secrets).
 
 ```json
 "OpenIDConnectSettings": {
