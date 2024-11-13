@@ -15,9 +15,20 @@
 :::moniker-end
 
 <!--
-Include this file at the top of articles. When a new version is released,
-it might be necessary to temporarily comment out the  current version
-moniker range section until the new moniker is created.
+Include either this file or 'not-latest-version-without-not-supported-content.md' at the top 
+of articles.
+
+'not-latest-version.md' (this file): Includes not-supported content.
+'not-latest-version-without-not-supported-content.md': Doesn't include not-supported content.
+
+Use this file in articles that target >=7.0. For articles that target >=8.0 prior to 9.0
+reaching EOL, 'not-latest-version-without-not-supported-content.md' must be used to avoid
+a zone/file moniker range mismatch error.
+
+When a new version is released, it might be necessary to temporarily comment out the current 
+version moniker range section until the new moniker is created.
+
 Markdown to include this file:
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->
