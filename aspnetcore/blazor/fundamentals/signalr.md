@@ -509,13 +509,13 @@ If reconnection fails, the user is instructed to reload the page:
 
 :::moniker range=">= aspnetcore-9.0"
 
-![The default reconnection UI.](signalr/_static/reload-ui-90-or-later.png)
+![The default retry UI.](signalr/_static/retry-ui-90-or-later.png)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-![The default reconnection UI.](signalr/_static/reload-ui-80-or-earlier.png)
+![The default retry UI.](signalr/_static/retry-ui-80-or-earlier.png)
 
 :::moniker-end
 
