@@ -491,7 +491,7 @@ In the `Program` file, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpoint
 
 ## Reflect the server-side connection state in the UI
 
-When the client detects that the server connection is lost, a default UI is displayed to the user while the client attempts to reconnect:
+If the client detects a lost connection to the server, a default UI is displayed to the user while the client attempts to reconnect:
 
 :::moniker range=">= aspnetcore-9.0"
 
