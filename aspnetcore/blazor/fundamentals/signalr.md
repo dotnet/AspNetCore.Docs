@@ -505,7 +505,7 @@ If the client detects a lost connection to the server, a default UI is displayed
 
 :::moniker-end
 
-If reconnection fails, the user is instructed to reload the page:
+If reconnection fails, the user is instructed to retry or reload the page:
 
 :::moniker range=">= aspnetcore-9.0"
 
