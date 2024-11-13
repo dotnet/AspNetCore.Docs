@@ -491,11 +491,39 @@ In the `Program` file, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpoint
 
 ## Reflect the server-side connection state in the UI
 
-When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
+If the client detects a lost connection to the server, a default UI is displayed to the user while the client attempts to reconnect:
+
+:::moniker range=">= aspnetcore-9.0"
+
+![The default reconnection UI.](signalr/_static/reconnection-ui-90-or-later.png)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+![The default reconnection UI.](signalr/_static/reconnection-ui-80-or-earlier.png)
+
+:::moniker-end
+
+If reconnection fails, the user is instructed to retry or reload the page:
+
+:::moniker range=">= aspnetcore-9.0"
+
+![The default retry UI.](signalr/_static/retry-ui-90-or-later.png)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+![The default retry UI.](signalr/_static/retry-ui-80-or-earlier.png)
+
+:::moniker-end
+
+If reconnection succeeds, user state is often lost. Custom code can be added to any component to save and reload user state across connection failures. For more information, see <xref:blazor/state-management>.
 
 :::moniker range=">= aspnetcore-8.0"
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the `App` component.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the `App` component.
 
 `App.razor`:
 
@@ -503,7 +531,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -511,7 +539,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the layout page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the layout page.
 
 `Pages/_Layout.cshtml`:
 
@@ -519,7 +547,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 :::moniker range="< aspnetcore-6.0"
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -527,7 +555,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 ```cshtml
 <div id="components-reconnect-modal">
-    There was a problem with the connection!
+    Connection lost.<br>Attempting to reconnect...
 </div>
 ```
 
@@ -557,6 +585,15 @@ Add the following CSS styles to the site's stylesheet.
 #components-reconnect-modal.components-reconnect-failed, 
 #components-reconnect-modal.components-reconnect-rejected {
     display: block;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.3);
+    margin: 50px 50px;
+    position: fixed;
+    top: 0;
+    z-index: 10001;
 }
 ```
 
@@ -581,7 +618,7 @@ Customize the delay before the reconnection UI appears by setting the `transitio
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 `wwwroot/css/site.css`:
 
@@ -606,11 +643,9 @@ To display the current reconnect attempt, define an element with an `id` of `com
 </div>
 ```
 
-When the custom reconnect modal appears, it renders content similar to the following based on the preceding code:
+When the custom reconnect modal appears, it renders the following content with a reconnection attempt counter:
 
-```html
-There was a problem with the connection! (Current reconnect attempt: 3 / 8)
-```
+> :::no-loc text="There was a problem with the connection! (Current reconnect attempt: 1 / 8)":::
 
 :::moniker-end
 
