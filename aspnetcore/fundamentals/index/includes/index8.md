@@ -1,18 +1,4 @@
----
-title: ASP.NET Core fundamentals overview
-author: tdykstra
-description: Learn the fundamental concepts for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
-ms.custom: mvc
-ms.date: 08/01/2024
-uid: fundamentals/index
----
-# ASP.NET Core fundamentals overview
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 This article provides an overview of the fundamentals for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.
 
@@ -230,6 +216,3 @@ For more information, see <xref:fundamentals/static-files>.
 * [WebApplicationBuilder source code](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/DefaultBuilder/src/WebApplicationBuilder.cs)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/index/includes/index3-7.md)]
-[!INCLUDE[](~/fundamentals/index/includes/index8.md)]
