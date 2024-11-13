@@ -11,11 +11,7 @@ zone_pivot_groups: blazor-web-app-oidc-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 8 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 

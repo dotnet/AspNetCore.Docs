@@ -9,6 +9,8 @@ uid: blazor/security/server/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor
 
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+
 This article explains how to configure an ASP.NET Core Blazor Web App with email confirmation and password recovery.
 
 ## Namespace

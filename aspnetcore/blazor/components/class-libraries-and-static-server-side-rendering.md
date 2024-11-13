@@ -10,11 +10,7 @@ uid: blazor/components/class-libraries-with-static-ssr
 ---
 # ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article provides guidance for component library authors considering support for static server-side rendering (static SSR).
 

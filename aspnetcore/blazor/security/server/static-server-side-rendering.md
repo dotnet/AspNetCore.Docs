@@ -10,11 +10,7 @@ uid: blazor/security/server/static-server-side-rendering
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor static server-side rendering
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article explains the security considerations that developers should take into account when developing Blazor Web Apps with static server-side rendering.
 
