@@ -10,7 +10,7 @@ uid: blazor/components/prerender
 ---
 # Prerender ASP.NET Core Razor components
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 <!--
     NOTE: The console output block quotes in this topic use a double-space 

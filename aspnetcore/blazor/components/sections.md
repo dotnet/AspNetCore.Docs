@@ -10,7 +10,7 @@ uid: blazor/components/sections
 ---
 # ASP.NET Core Blazor sections
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article explains how to control the content in a Razor component from a child Razor component.
 

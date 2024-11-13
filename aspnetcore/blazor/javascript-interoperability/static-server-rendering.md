@@ -10,7 +10,7 @@ uid: blazor/js-interop/ssr
 ---
 # ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article explains how to load JavaScript (JS) in a Blazor Web App with static server-side rendering (static SSR) and [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
 
