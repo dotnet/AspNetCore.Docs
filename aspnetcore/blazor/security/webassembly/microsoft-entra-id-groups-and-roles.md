@@ -10,11 +10,7 @@ uid: blazor/security/webassembly/meid-groups-roles
 ---
 # Microsoft Entra (ME-ID) groups, Administrator Roles, and App Roles
 
-<!-- UPDATE 9.0 Activate at 9.0 GA.
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article explains how to configure Blazor WebAssembly to use Microsoft Entra ID (ME-ID) groups and roles.
 
