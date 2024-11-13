@@ -491,7 +491,7 @@ In the `Program` file, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpoint
 
 ## Reflect the server-side connection state in the UI
 
-When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect:
+When the client detects that the server connection is lost, a default UI is displayed to the user while the client attempts to reconnect:
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -547,7 +547,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 :::moniker range="< aspnetcore-6.0"
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the host page. Because the element is unstyled, it appears at the bottom of the page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -643,7 +643,7 @@ To display the current reconnect attempt, define an element with an `id` of `com
 </div>
 ```
 
-When the custom reconnect modal appears, it renders the following content with an updating reconnect attempt counter:
+When the custom reconnect modal appears, it renders the following content with a reconnection attempt counter:
 
 > :::no-loc text="There was a problem with the connection! (Current reconnect attempt: 1 / 8)":::
 
