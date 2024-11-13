@@ -1,3 +1,5 @@
+:::moniker range="= aspnetcore-8.0"
+
 ---
 title: ASP.NET Core fundamentals overview
 author: tdykstra
@@ -12,7 +14,7 @@ uid: fundamentals/index
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-8.0"
 
 This article provides an overview of the fundamentals for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.
 
@@ -231,5 +233,3 @@ For more information, see <xref:fundamentals/static-files>.
 
 :::moniker-end
 
-[!INCLUDE[](~/fundamentals/index/includes/index3-7.md)]
-[!INCLUDE[](~/fundamentals/index/includes/index8.md)]
