@@ -29,7 +29,7 @@ Install the `Microsoft.AspNetCore.OpenApi` package:
 Run the following command from the **Package Manager Console**:
 
  ```powershell
- Install-Package Microsoft.AspNetCore.OpenApi -IncludePrerelease
+ Install-Package Microsoft.AspNetCore.OpenApi
 ```
 
 ### [.NET CLI](#tab/net-cli)
@@ -37,7 +37,7 @@ Run the following command from the **Package Manager Console**:
 Run the following command:
 
 ```dotnetcli
-dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
+dotnet add package Microsoft.AspNetCore.OpenApi
 ```
 ---
 
@@ -133,7 +133,7 @@ To add support for generating OpenAPI documents at build time, install the `Micr
 Run the following command from the **Package Manager Console**:
 
  ```powershell
- Install-Package Microsoft.Extensions.ApiDescription.Server -IncludePrerelease
+ Install-Package Microsoft.Extensions.ApiDescription.Server
 ```
 
 ### [.NET CLI](#tab/net-cli)
@@ -141,7 +141,7 @@ Run the following command from the **Package Manager Console**:
 Run the following command in the directory that contains the project file:
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
+dotnet add package Microsoft.Extensions.ApiDescription.Server
 ```
 ---
 
