@@ -244,7 +244,7 @@ else
 Disable a button until a component is interactive:
 
 ```razor
-<button @onclick="Send" disabled="@(chatState is null || !RendererInfo.IsInteractive)">
+<button @onclick="Send" disabled="@(!RendererInfo.IsInteractive)">
     Send
 </button>
 ```
