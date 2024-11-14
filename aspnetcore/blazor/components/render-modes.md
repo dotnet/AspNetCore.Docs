@@ -237,14 +237,23 @@ Display content and disable a button until a component is interactive:
 }
 else
 {
-    // Code to display chatbot messages
+    <ul id="messagesList">
+        @foreach (var message in messages)
+        {
+            <li>@message</li>
+        }
+    </ul>
+
+    <div class="form-group">
+        <label>
+            Message: <input @bind="messageInput" size="250" />
+        </label>
+    </div>
+
+    <button @onclick="Send" disabled="@(chatState is null || !RendererInfo.IsInteractive)">
+       Send
+    </button>
 }
-
-...
-
-<button ... disabled="@(chatState is null || !RendererInfo.IsInteractive)">
-    Send
-</button>
 ```
 
 A form can be disabled during prerendering and enabled when the component becomes interactive:
