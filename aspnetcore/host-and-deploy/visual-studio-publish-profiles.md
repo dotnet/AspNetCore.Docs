@@ -14,7 +14,9 @@ uid: host-and-deploy/visual-studio-publish-profiles
 
 By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This document focuses on using Visual Studio 2019 or later to create and use [publish profiles](/visualstudio/deployment/publish-overview). The publish profiles created with Visual Studio can be used with MSBuild and Visual Studio. For instructions on publishing to Azure, see <xref:tutorials/publish-to-azure-webapp-using-vs>.
+This document focuses on using Visual Studio 2022 or later to create and use [publish profiles](/visualstudio/deployment/publish-overview). The publish profiles created with Visual Studio can be used with MSBuild and Visual Studio. For instructions on publishing to Azure, see <xref:tutorials/publish-to-azure-webapp-using-vs>.
+
+See [Overview of Visual Studio Publish](/visualstudio/deployment/publish-overview), which contains the most current information on publishing with Visual Studio.
 
 The `dotnet new mvc` command produces a project file containing the following root-level [\<Project> element](/visualstudio/msbuild/project-element-msbuild):
 
@@ -64,6 +66,10 @@ When selecting the **Publish** button in Visual Studio or when publishing from t
 
 When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project file, an `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
 
+<!--When selecting the **Publish** button in Visual Studio, a publish profile to the project's *Properties/PublishProfiles* folder with markup similar to the following:
+
+[!code-xml[](visual-studio-publish-profiles/samples/Web1.pubxml)]
+-->
 ## Basic command-line publishing
 
 Command-line publishing works on all .NET Core-supported platforms and doesn't require Visual Studio. In the following examples, the .NET CLI's [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the `.csproj` file). If the project folder isn't the current working directory, explicitly pass in the project file path. For example:
@@ -92,7 +98,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\publish\
 ```
 
-The default publish folder format is *bin\Debug\\{TARGET FRAMEWORK MONIKER}\publish\\*. For example, *bin\Debug\netcoreapp2.2\publish\\*.
+The default publish folder format is `bin\Debug\{TARGET FRAMEWORK MONIKER}`. For example, `bin\Release\net9.0\`
 
 The following command specifies a `Release` build and the publishing directory:
 
@@ -119,7 +125,7 @@ See the [Microsoft.NET.Sdk.Publish](https://github.com/dotnet/sdk/tree/main/src/
 
 ## Publish profiles
 
-This section uses Visual Studio 2019 or later to create a publishing profile. Once the profile is created, publishing from Visual Studio or the command line is available. Publish profiles can simplify the publishing process, and any number of profiles can exist.
+This section uses Visual Studio 2022 or later to create a publishing profile. Once the profile is created, publishing from Visual Studio or the command line is available. Publish profiles can simplify the publishing process, and any number of profiles can exist.
 
 Create a publish profile in Visual Studio by choosing one of the following paths:
 
@@ -141,72 +147,30 @@ When the **Folder** publish target is selected, specify a folder path to store t
 
 Once a publish profile is created, the **Publish** tab's content changes. The newly created profile appears in a drop-down list. Below the drop-down list, select **Create new profile** to create another new profile.
 
-Visual Studio's publish tool produces a *Properties/PublishProfiles/{PROFILE NAME}.pubxml* MSBuild file describing the publish profile. The *.pubxml* file:
+Visual Studio's publish tool produces a `Properties/PublishProfiles/{PROFILE NAME}.pubxml` MSBuild file describing the publish profile. The *.pubxml* file:
 
 * Contains publish configuration settings and is consumed by the publishing process.
 * Can be modified to customize the build and publish process.
 
-When publishing to an Azure target, the *.pubxml* file contains your Azure subscription identifier. With that target type, adding this file to source control is discouraged. When publishing to a non-Azure target, it's safe to check in the *.pubxml* file.
+When publishing to an Azure target, the *.pubxml* file contains the Azure subscription identifier. With that target type, adding this file to source control is discouraged. When publishing to a non-Azure target, it's safe to check in the *.pubxml* file.
 
-Sensitive information (like the publish password) is encrypted on a per user/machine level. It's stored in the *Properties/PublishProfiles/{PROFILE NAME}.pubxml.user* file. Because this file can store sensitive information, it shouldn't be checked into source control.
+Sensitive information, for example, the publish password, is encrypted on a per user/machine level. The `Properties/PublishProfiles/{PROFILE NAME}.pubxml.user` file contains the information needed by MSBuild to retrieve the password.
 
 For an overview of how to publish an ASP.NET Core web app, see <xref:host-and-deploy/index>. The MSBuild tasks and targets necessary to publish an ASP.NET Core web app are open-source in the [dotnet/websdk repository](https://github.com/dotnet/sdk/tree/main/src/WebSdk).
 
-The following commands can use folder, MSDeploy, and [Kudu](https://github.com/projectkudu/kudu/wiki) publish profiles. Because MSDeploy lacks cross-platform support, the following MSDeploy options are supported only on Windows.
+<!-- Move to https://github.com/dotnet/sdk/tree/main/src/WebSdk -->
+`dotnet publish` and `dotnet build`:
 
-**Folder (works cross-platform):**
+* Can use folder, MSDeploy, and [Kudu](https://github.com/projectkudu/kudu/wiki) publish profiles. Because MSDeploy lacks cross-platform support, MSDeploy options are supported only on Windows.
+* Support Kudu APIs to publish to Azure from any platform. Visual Studio publish supports the Kudu APIs, but it's supported by WebSDK for cross-platform publish to Azure.
 
-```dotnetcli
-dotnet publish WebApplication.csproj /p:PublishProfile=<FolderProfileName>
-```
-
-```dotnetcli
-dotnet build WebApplication.csproj /p:DeployOnBuild=true /p:PublishProfile=<FolderProfileName>
-```
-
-**MSDeploy:**
-
-```dotnetcli
-dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployProfileName> /p:Password=<DeploymentPassword>
-```
-
-```dotnetcli
-dotnet build WebApplication.csproj /p:DeployOnBuild=true /p:PublishProfile=<MsDeployProfileName> /p:Password=<DeploymentPassword>
-```
-
-**MSDeploy package:**
-
-```dotnetcli
-dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployPackageProfileName>
-```
-
-```dotnetcli
-dotnet build WebApplication.csproj /p:DeployOnBuild=true /p:PublishProfile=<MsDeployPackageProfileName>
-```
-
-In the preceding examples:
-
-* `dotnet publish` and `dotnet build` support Kudu APIs to publish to Azure from any platform. Visual Studio publish supports the Kudu APIs, but it's supported by WebSDK for cross-platform publish to Azure.
-* Don't pass `DeployOnBuild` to the `dotnet publish` command.
+Don't pass `DeployOnBuild` to the `dotnet publish` command.
 
 For more information, see [Microsoft.NET.Sdk.Publish](https://github.com/dotnet/sdk/tree/main/src/WebSdk#microsoftnetsdkpublish).
 
-Add a publish profile to the project's *Properties/PublishProfiles* folder with the following content:
-
-```xml
-<Project>
-  <PropertyGroup>
-    <PublishProtocol>Kudu</PublishProtocol>
-    <PublishSiteName>nodewebapp</PublishSiteName>
-    <UserName>username</UserName>
-    <Password>password</Password>
-  </PropertyGroup>
-</Project>
-```
-
 ## Folder publish example
 
-When publishing with a profile named *FolderProfile*, use any of the following commands:
+When publishing with a profile named `FolderProfile`, use any of the following commands:
 
 ```dotnetcli
 dotnet publish /p:Configuration=Release /p:PublishProfile=FolderProfile
@@ -227,33 +191,11 @@ The .NET CLI's [dotnet build](/dotnet/core/tools/dotnet-build) command calls `ms
 
 The following folder publish profile was created with Visual Studio and publishes to a network share:
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-This file is used by the publish/package process of your Web project.
-You can customize the behavior of this process by editing this 
-MSBuild file.
--->
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <WebPublishMethod>FileSystem</WebPublishMethod>
-    <PublishProvider>FileSystem</PublishProvider>
-    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
-    <LastUsedPlatform>Any CPU</LastUsedPlatform>
-    <SiteUrlToLaunchAfterPublish />
-    <LaunchSiteAfterPublish>True</LaunchSiteAfterPublish>
-    <ExcludeApp_Data>False</ExcludeApp_Data>
-    <PublishFramework>netcoreapp1.1</PublishFramework>
-    <ProjectGuid>c30c453c-312e-40c4-aec9-394a145dee0b</ProjectGuid>
-    <publishUrl>\\r8\Release\AdminWeb</publishUrl>
-    <DeleteExistingFiles>False</DeleteExistingFiles>
-  </PropertyGroup>
-</Project>
-```
+[!code-xml[](visual-studio-publish-profiles/samples/FolderProfile.pubxml)]
 
 In the preceding example:
 
-* The `<ExcludeApp_Data>` property is present merely to satisfy an XML schema requirement. The `<ExcludeApp_Data>` property has no effect on the publish process, even if there's an *App_Data* folder in the project root. The *App_Data* folder doesn't receive special treatment as it does in ASP.NET 4.x projects.
+* The `<ExcludeApp_Data>` property is present to satisfy an XML schema requirement. The `<ExcludeApp_Data>` property has no effect on the publish process, even if there's an *App_Data* folder in the project root. The *App_Data* folder doesn't receive special treatment as it does in ASP.NET 4.x projects.
 * The `<LastUsedBuildConfiguration>` property is set to `Release`. When publishing from Visual Studio, the value of `<LastUsedBuildConfiguration>` is set using the value when the publish process is started. `<LastUsedBuildConfiguration>` is special and shouldn't be overridden in an imported MSBuild file. This property can, however, be overridden from the command line using one of the following approaches.
   * Using the .NET CLI:
 
@@ -275,7 +217,7 @@ In the preceding example:
 
 The following example uses an ASP.NET Core web app created by Visual Studio named *AzureWebApp*. An Azure Apps publish profile is added with Visual Studio. For more information on how to create a profile, see the [Publish profiles](#publish-profiles) section.
 
-To deploy the app using a publish profile, execute the `msbuild` command from a Visual Studio **Developer Command Prompt**. The command prompt is available in the *Visual Studio* folder of the **Start** menu on the Windows taskbar. For easier access, you can add the command prompt to the **Tools** menu in Visual Studio. For more information, see [Developer Command Prompt for Visual Studio](/dotnet/framework/tools/developer-command-prompt-for-vs#run-the-command-prompt-from-inside-visual-studio).
+To deploy the app using a publish profile, execute the `msbuild` command from a Visual Studio **Developer Command Prompt**. The command prompt is available in the *Visual Studio* folder of the **Start** menu on the Windows taskbar. For easier access, add the command prompt to the **Tools** menu in Visual Studio. For more information, see [Developer Command Prompt for Visual Studio](/dotnet/framework/tools/developer-command-prompt-for-vs#run-the-command-prompt-from-inside-visual-studio).
 
 MSBuild uses the following command syntax:
 
@@ -464,14 +406,7 @@ For more deployment samples, see the [Web SDK README file](https://github.com/do
 
 The built-in `BeforePublish` and `AfterPublish` targets execute a target before or after the publish target. Add the following elements to the publish profile to log console messages both before and after publishing:
 
-```xml
-<Target Name="CustomActionsBeforePublish" BeforeTargets="BeforePublish">
-    <Message Text="Inside BeforePublish" Importance="high" />
-  </Target>
-  <Target Name="CustomActionsAfterPublish" AfterTargets="AfterPublish">
-    <Message Text="Inside AfterPublish" Importance="high" />
-</Target>
-```
+[!code-xml[](visual-studio-publish-profiles/samples/TP_before.pubxml?highlight=30-35)]
 
 ## Publish to a server using an untrusted certificate
 
