@@ -67,7 +67,7 @@ In Visual Studio:
        Convert this block back over to 9.0 Standard Term Support. -->
   
   > [!CAUTION]
-  > A regression prevents the .NET 9.0 framework from working for this tutorial series at this time. You can use the 9.0 SDK and the latest version of Visual Studio or Visual Studio Code, but select the **.NET 8.0 (Long Term Support)** framework when creating the app in the following settings.
+  > A regression prevents the .NET 9.0 framework from working for this tutorial series at this time. You can use the 9.0 SDK and the latest version of Visual Studio, but select the **.NET 8.0 (Long Term Support)** framework when creating the app in the following settings.
 
   * **Framework**: Select **.NET 8.0 (Long Term Support)**.
   * **Authentication type**: **None**
@@ -123,7 +123,7 @@ Create a new project:
                 Remove this moniker range block to revert. -->
 
 > [!CAUTION]
-> A regression prevents the .NET 9.0 framework from working for this tutorial series at this time. You can use the 9.0 SDK, but specify the **.NET 8.0 (Long Term Support)** framework in the next step.
+> A regression prevents the .NET 9.0 framework from working for this tutorial series at this time. You can use the 9.0 SDK and the latest version of Visual Studio Code, but specify the **.NET 8.0 (Long Term Support)** framework in the next step when you create the app.
 
 * Select **Show all template options**. Select **Framework** followed by **.NET 8.0**.
 
