@@ -228,7 +228,7 @@ The <xref:Microsoft.AspNetCore.Components.ComponentBase.RendererInfo?displayProp
 
 Components use these properties to render content depending on their location or interactivity status. The following examples demonstrate typical use cases.
 
-Display content and disable a button until a component is interactive:
+Display content until a component is interactive:
 
 ```razor
 @if (!RendererInfo.IsInteractive)
@@ -237,23 +237,16 @@ Display content and disable a button until a component is interactive:
 }
 else
 {
-    <ul id="messagesList">
-        @foreach (var message in messages)
-        {
-            <li>@message</li>
-        }
-    </ul>
-
-    <div class="form-group">
-        <label>
-            Message: <input @bind="messageInput" size="250" />
-        </label>
-    </div>
-
-    <button @onclick="Send" disabled="@(chatState is null || !RendererInfo.IsInteractive)">
-       Send
-    </button>
+    ...
 }
+```
+
+Disable a button until a component is interactive:
+
+```razor
+<button @onclick="Send" disabled="@(chatState is null || !RendererInfo.IsInteractive)">
+    Send
+</button>
 ```
 
 A form can be disabled during prerendering and enabled when the component becomes interactive:
