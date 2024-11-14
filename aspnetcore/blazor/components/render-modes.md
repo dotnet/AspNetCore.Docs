@@ -226,7 +226,28 @@ The <xref:Microsoft.AspNetCore.Components.ComponentBase.RendererInfo?displayProp
   * `InteractiveAuto` for Interactive Auto.
   * `InteractiveWebAssembly` for Interactive WebAssembly.
 
-Components use these properties to render content depending on their location or interactivity status. For example, a form can be disabled during prerendering and enabled when the component becomes interactive:
+Components use these properties to render content depending on their location or interactivity status. The following examples demonstrate typical use cases.
+
+Display content and disable a button until a component is interactive:
+
+```razor
+@if (!RendererInfo.IsInteractive)
+{
+    <p>Connecting to the assistant...</p>
+}
+else
+{
+    // Code to display chatbot messages
+}
+
+...
+
+<button ... disabled="@(chatState is null || !RendererInfo.IsInteractive)">
+    Send
+</button>
+```
+
+A form can be disabled during prerendering and enabled when the component becomes interactive:
 
 ```razor
 <EditForm Model="Movie" ...>
@@ -256,7 +277,7 @@ Components use these properties to render content depending on their location or
 }
 ```
 
-The next example shows how to render markup to support performing a regular HTML action if the component is statically rendered:
+Render markup to support performing a regular HTML action if the component is statically rendered:
 
 ```razor
 @if (AssignedRenderMode is null)
