@@ -249,7 +249,7 @@ Disable a button until a component is interactive:
 </button>
 ```
 
-A form can be disabled during prerendering and enabled when the component becomes interactive:
+Disable a form during prerendering and enable the form when the component becomes interactive:
 
 ```razor
 <EditForm Model="Movie" ...>
