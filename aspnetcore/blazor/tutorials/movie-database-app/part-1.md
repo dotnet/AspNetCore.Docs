@@ -63,7 +63,13 @@ In Visual Studio:
 
 * In the **Additional information** dialog, use the following settings:
 
-  * **Framework**: Select **.NET 9.0 (Standard Term Support)**.
+  <!-- UPDATE 9.0 Update after regression is resolved.
+       Convert this block back over to 9.0 Standard Term Support. -->
+  
+  > [!CAUTION]
+  > A regression prevents the .NET 9.0 framework from working for this tutorial series at this time. You can use the 9.0 SDK and the latest version of Visual Studio, but select the **.NET 8.0 (Long Term Support)** framework when creating the app in the following settings.
+
+  * **Framework**: Select **.NET 8.0 (Long Term Support)**.
   * **Authentication type**: **None**
   * **Configure for HTTPS**: Selected
   * **Interactive render mode**: **Server**
@@ -111,7 +117,19 @@ Create a new project:
 
 * In the **Command Palette**, name the project `BlazorWebAppMovies`, including matching the capitalization. Using this exact project name is important to ensure that the namespaces match for code that you copy from the tutorial into the app that you're building.
 
-* Select **Create project** from the **Command Palette**.
+:::moniker range=">= aspnetcore-9.0"
+
+<!-- UPDATE 9.0 Update after regression is resolved.
+                Remove this moniker range block to revert. -->
+
+> [!CAUTION]
+> A regression prevents the .NET 9.0 framework from working for this tutorial series at this time. You can use the 9.0 SDK and the latest version of Visual Studio Code, but specify the **.NET 8.0 (Long Term Support)** framework in the next step when you create the app.
+
+* Select **Show all template options**. Select **Framework** followed by **.NET 8.0**.
+
+:::moniker-end
+
+* Select **Create project** to create the app.
 
 :::zone-end
 
@@ -121,12 +139,34 @@ Confirm that you have the latest [.NET SDK](https://dotnet.microsoft.com/downloa
 
 In a command shell:
 
+:::moniker range=">= aspnetcore-9.0"
+
+* Use the `cd` command to change to the directory to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
+* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder at the current shell directory location. Name the project `BlazorWebAppMovies`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app.
+
+  <!-- UPDATE 9.0 Update after regression is resolved.
+       Remove the 9.0 moniker block, leaving the <9.0
+       content in place. -->
+  
+  > [!CAUTION]
+  > A regression prevents the .NET 9.0 framework from working for this tutorial series at this time. You can use the 9.0 SDK, but specify the **.NET 8.0 (Long Term Support)** framework by passing `net8.0` to the framework option (`-f|--framework`) of the `dotnet new` command when creating the app.
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorWebAppMovies -f net8.0
+  ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 * Use the `cd` command to change to the directory to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
 * Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder at the current shell directory location. Name the project `BlazorWebAppMovies`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app.
 
   ```dotnetcli
   dotnet new blazor -o BlazorWebAppMovies
   ```
+
+:::moniker-end
 
 :::zone-end
 
