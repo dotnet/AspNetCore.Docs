@@ -547,8 +547,6 @@ items:
               - name: QuickGrid component
                 uid: blazor/components/quickgrid
               - name: Prerender and integrate components
-                uid: blazor/components/prerendering-and-integration
-              - name: Integrate components
                 uid: blazor/components/integration
               - name: Class libraries
                 uid: blazor/components/class-libraries

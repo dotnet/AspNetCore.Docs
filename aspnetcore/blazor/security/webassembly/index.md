@@ -220,7 +220,7 @@ For examples, see the following resources:
 
 :::moniker range="< aspnetcore-8.0"
 
-[Prerendering](xref:blazor/components/prerendering-and-integration) isn't supported for authentication endpoints (`/authentication/` path segment).
+[Prerendering](xref:blazor/components/integration) isn't supported for authentication endpoints (`/authentication/` path segment).
 
 :::moniker-end
 

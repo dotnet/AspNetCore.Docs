@@ -24,14 +24,14 @@ Follow the guidance in the *Use non-routable components in pages or views* secti
 
 Follow the guidance in the *Configuration* section for either:
 
-* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server): Integrate routable and non-routable Razor components into Razor Pages and MVC apps.
-* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly): Integrate Razor components from a hosted Blazor WebAssembly solution into Razor Pages and MVC apps.
+* [Blazor Server](xref:blazor/components/integration?pivots=server): Integrate routable and non-routable Razor components into Razor Pages and MVC apps.
+* [Blazor WebAssembly](xref:blazor/components/integration?pivots=webassembly): Integrate Razor components from a hosted Blazor WebAssembly solution into Razor Pages and MVC apps.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-Follow the guidance in the *Configuration* section of the <xref:blazor/components/prerendering-and-integration?pivots=server> article.
+Follow the guidance in the *Configuration* section of the <xref:blazor/components/integration?pivots=server> article.
 
 :::moniker-end
 
@@ -343,7 +343,7 @@ The preceding example assumes that the `ParameterComponent` component is in the 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 * <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>
-* <xref:blazor/components/prerendering-and-integration>
+* <xref:blazor/components/integration>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:blazor/components/index>
@@ -352,7 +352,7 @@ The preceding example assumes that the `ParameterComponent` component is in the 
 
 :::moniker range="< aspnetcore-6.0"
 
-* <xref:blazor/components/prerendering-and-integration>
+* <xref:blazor/components/integration>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:blazor/components/index>

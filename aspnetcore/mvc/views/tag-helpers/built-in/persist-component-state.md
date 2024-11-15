@@ -24,8 +24,8 @@ Follow the guidance in the *Use non-routable components in pages or views* secti
 
 Follow the guidance in the *Configuration* section for either:
 
-* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly)
-* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server)
+* [Blazor WebAssembly](xref:blazor/components/integration?pivots=webassembly)
+* [Blazor Server](xref:blazor/components/integration?pivots=server)
 
 :::moniker-end
 
@@ -71,7 +71,7 @@ In `Pages/_Host.cshtml` of Blazor apps that are either WebAssembly prerendered (
 
 Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
 
-For more information and examples, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+For more information and examples, see <xref:blazor/components/integration#persist-prerendered-state>.
 
 :::moniker-end
 
@@ -90,7 +90,7 @@ For more information and examples, see <xref:blazor/components/prerendering-and-
 :::moniker range="< aspnetcore-8.0"
 
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
-* <xref:blazor/components/prerendering-and-integration>
+* <xref:blazor/components/integration>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:blazor/components/index>

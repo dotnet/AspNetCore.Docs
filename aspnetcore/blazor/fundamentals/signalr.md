@@ -156,7 +156,7 @@ If prerendering is configured, prerendering occurs before the client connection 
 If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
-* <xref:blazor/components/prerendering-and-integration>
+* <xref:blazor/components/integration>
 
 :::moniker-end
 
