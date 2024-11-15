@@ -417,9 +417,9 @@ When you select the **:::no-loc text="Create":::** button, the movie data is pos
 
 :::zone pivot="vs"
 
-A temporary Visual Studio debugger regression breaks with a <xref:Microsoft.AspNetCore.Components.NavigationException> on the line that navigates back to the `Index` page:
+A Visual Studio debugger regression breaks with a <xref:Microsoft.AspNetCore.Components.NavigationException> on the line that navigates back to the `Index` page:
 
-![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2/_static/movie-added.png)
+![Debugger regression: A navigation exception is thrown on the NavigateTo call.](~/blazor/tutorials/movie-database-app/part-2/_static/debugger_regression.png)
 
 To resolve this problem until the debugger is updated by a future Visual Studio release:
 
