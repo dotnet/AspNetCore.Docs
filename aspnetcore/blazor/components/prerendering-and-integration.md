@@ -2,7 +2,7 @@
 title: Prerender and integrate ASP.NET Core Razor components
 author: guardrex
 description: Learn about Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/09/2024
@@ -11,12 +11,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Prerender and integrate ASP.NET Core Razor components
 
-:::moniker range="< aspnetcore-7.0"
-
-> [!NOTE]
-> This isn't the latest version of this article. For the latest version of this article, see the [.NET 7 version](?view=aspnetcore-7.0&preserve-view=true).
-
-:::moniker-end
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
 

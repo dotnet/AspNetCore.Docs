@@ -1317,6 +1317,11 @@
             "source_path": "aspnetcore/blazor/images.md",
             "redirect_url": "/aspnet/core/blazor/images-and-documents",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/components/integration.md",
+            "redirect_url": "/aspnet/core/blazor/components/prerendering-and-integration",
+            "redirect_document_id": false
         }
     ]
 }
