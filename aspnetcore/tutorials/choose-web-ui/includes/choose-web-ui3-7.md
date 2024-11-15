@@ -80,15 +80,13 @@ Benefits for MVC or Razor Pages plus Blazor, in addition to MVC or Razor Pages b
 
 To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/integration>.
 
-To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/prerendering-and-integration>.
-
 ## Next steps
 
 For more information, see:
 
 * <xref:blazor/index>
 * <xref:blazor/hosting-models>
-* <xref:blazor/components/prerendering-and-integration>
+* <xref:blazor/components/integration>
 * <xref:grpc/comparison>
 
 :::moniker-end
