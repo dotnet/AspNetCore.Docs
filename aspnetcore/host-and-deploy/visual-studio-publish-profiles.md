@@ -16,7 +16,12 @@ By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson]
 
 This document focuses on using Visual Studio 2022 or later to create and use [publish profiles](/visualstudio/deployment/publish-overview). The publish profiles created with Visual Studio can be used with MSBuild and Visual Studio. For instructions on publishing to Azure, see <xref:tutorials/publish-to-azure-webapp-using-vs>.
 
-See [Overview of Visual Studio Publish](/visualstudio/deployment/publish-overview), which contains the most current information on publishing with Visual Studio.
+For the most current and detailed information on:
+
+* Publishing with Visual studio, see [Overview of Visual Studio Publish](/visualstudio/deployment/publish-overview)
+* MSBuild, see [MSBuild](/visualstudio/msbuild/msbuild-introduction)
+* Publishing with MSBuild, see [Microsoft.NET.Sdk.Publish](https://github.com/dotnet/sdk/tree/main/src/WebSdk#microsoftnetsdkpublish)
+* MSBuild, see [MSBuild](/visualstudio/msbuild/msbuild-introduction)
 
 The `dotnet new mvc` command produces a project file containing the following root-level [\<Project> element](/visualstudio/msbuild/project-element-msbuild):
 
@@ -104,7 +109,7 @@ dotnet publish -c Release -o C:\MyWebs\test
 
 The `dotnet publish` command calls MSBuild, which invokes the `Publish` target. Any parameters passed to `dotnet publish` are passed to MSBuild. The `-c` and `-o` parameters map to MSBuild's `Configuration` and `OutputPath` properties, respectively.
 
-MSBuild properties can be passed using either of the following formats:
+[Project properties](/visualstudio/msbuild/msbuild-command-line-reference) can be passed using either of the following formats:
 
 * `-p:<NAME>=<VALUE>`
 * `/p:<NAME>=<VALUE>`
@@ -128,11 +133,10 @@ Create a publish profile in Visual Studio by choosing one of the following paths
 * Right-click the project in **Solution Explorer** and select **Publish**.
 * Select **Publish {PROJECT NAME}** from the **Build** menu.
 
-The **Publish** tab of the app capabilities page is displayed. If the project lacks a publish profile, the **Pick a publish target** page is displayed. You're asked to select one of the following publish targets:
+The **Publish** tab of the app capabilities page is displayed. Several publish targets are available, including:
 
-* Azure App Service
-* Azure App Service on Linux
-* Azure Virtual Machines
+* Azure
+* Docker Container Registry
 * Folder
 * IIS, FTP, Web Deploy (for any web server)
 * Import Profile
@@ -148,7 +152,10 @@ Visual Studio's publish tool produces a `Properties/PublishProfiles/{PROFILE NAM
 * Contains publish configuration settings and is consumed by the publishing process.
 * Can be modified to customize the build and publish process.
 
-When publishing to an Azure target, the *.pubxml* file contains the Azure subscription identifier. With that target type, adding this file to source control is discouraged. When publishing to a non-Azure target, it's safe to check in the *.pubxml* file.
+When publishing to an Azure target, the *.pubxml* file:
+
+* Contains the Azure subscription identifier.
+* Should not be checked into source control because the subscription identifier is sensitive information.
 
 Sensitive information, for example, the publish password, is encrypted on a per user/machine level. The `Properties/PublishProfiles/{PROFILE NAME}.pubxml.user` file contains the information needed by MSBuild to retrieve the user name and password.
 
