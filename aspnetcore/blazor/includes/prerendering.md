@@ -9,7 +9,7 @@
 
 :::moniker range="< aspnetcore-8.0"
 
-*This section applies to server-side apps and hosted Blazor WebAssembly apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerendering-and-integration>.*
+*This section applies to server-side apps and hosted Blazor WebAssembly apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/integration>.*
 
 :::moniker-end
 

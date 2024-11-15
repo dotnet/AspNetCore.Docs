@@ -71,12 +71,12 @@ Append a query string to the URL in the address bar: `?titleFilter=road+warrior`
 Next, give users a way to provide the `titleFilter` filter string via the component's UI. Add the following HTML under the H1 heading (`<h1>Index</h1>`). The following HTML reloads the page with the contents of the textbox as a query string value:
 
 ```html
-<p>
+<div>
     <form action="/movies" data-enhance>
         <input type="search" name="titleFilter" />
         <input type="submit" value="Search" />
     </form>
-</p>
+</div>
 ```
 
 The `data-enhance` attribute applies *enhanced navigation* to the component, where Blazor intercepts the GET request and performs a fetch request instead. Blazor then patches the response content into the page, which avoids a full-page reload and preserves more of the page state. The page loads faster, usually without losing the user's scroll position.
