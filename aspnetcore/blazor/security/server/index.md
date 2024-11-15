@@ -308,7 +308,7 @@ public class ExampleService
 }
 ```
   
-In the `Program` file, the `ExampleService` is registered as a scoped service. In a server-side Blazor app, scoped services have a lifetime equal to the duration of the client connection [circuit](xref:blazor/hosting-models#blazor-server).
+In the `Program` file, the `ExampleService` is registered as a scoped service. When services aren't scoped to a component with <xref:Microsoft.AspNetCore.Components.OwningComponentBase>, scoped services have a lifetime equal to the duration of the client connection [circuit](xref:blazor/hosting-models#blazor-server).
 
 ```csharp
 .AddScoped<ExampleService>();
