@@ -127,7 +127,7 @@ The final `NavMenu` component after making the preceding changes:
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
+    <nav class="nav flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
@@ -203,6 +203,7 @@ The `MainLayout` component adopts the following additional specifications:
 * The `<main>` element's content includes:
   * An **:::no-loc text="About":::** link that sends the user to the ASP.NET Core documentation landing page.
   * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) parameter, where components that use the layout are rendered.
+  * The error UI (`<div id="blazor-error-ui" ...>`), where a notice about an unhandled error is displayed.
 
 The default layout (`MainLayout` component) is specified in the `Routes` component (`Components/Pages/Routes.razor`):
 
@@ -439,7 +440,7 @@ CSS classes aren't present in the following example to simplify the display:
 ```razor
 <EditForm method="post" Model="Movie" OnValidSubmit="AddMovie" FormName="create" Enhance>
     <DataAnnotationsValidator />
-    <ValidationSummary />
+    <ValidationSummary role="alert" />
     <div>
         <label for="title">Title:</label> 
         <InputText id="title" @bind-Value="Movie.Title" /> 
