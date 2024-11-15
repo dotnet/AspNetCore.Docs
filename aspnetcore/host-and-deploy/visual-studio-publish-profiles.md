@@ -150,11 +150,10 @@ Visual Studio's publish tool produces a `Properties/PublishProfiles/{PROFILE NAM
 
 When publishing to an Azure target, the *.pubxml* file contains the Azure subscription identifier. With that target type, adding this file to source control is discouraged. When publishing to a non-Azure target, it's safe to check in the *.pubxml* file.
 
-Sensitive information, for example, the publish password, is encrypted on a per user/machine level. The `Properties/PublishProfiles/{PROFILE NAME}.pubxml.user` file contains the information needed by MSBuild to retrieve the password.
+Sensitive information, for example, the publish password, is encrypted on a per user/machine level. The `Properties/PublishProfiles/{PROFILE NAME}.pubxml.user` file contains the information needed by MSBuild to retrieve the user name and password.
 
 For an overview of how to publish an ASP.NET Core web app, see <xref:host-and-deploy/index>. The MSBuild tasks and targets necessary to publish an ASP.NET Core web app are open-source in the [dotnet/websdk repository](https://github.com/dotnet/sdk/tree/main/src/WebSdk).
 
-<!-- Move to https://github.com/dotnet/sdk/tree/main/src/WebSdk -->
 `dotnet publish` and `dotnet build`:
 
 * Can use folder, MSDeploy, and [Kudu](https://github.com/projectkudu/kudu/wiki) publish profiles. Because MSDeploy lacks cross-platform support, MSDeploy options are supported only on Windows.
@@ -370,8 +369,7 @@ For more deployment samples, see the [Web SDK README file](https://github.com/do
 ## Run a target before or after publishing
 
 The built-in `BeforePublish` and `AfterPublish` targets execute a target before or after the publish target. Add the following elements to the publish profile to log console messages both before and after publishing:
-zz
-[!code-xml[](visual-studio-publish-profiles/samples/Web1.pubxml?highlight=18-23)]
+
 [!code-xml[](visual-studio-publish-profiles/samples/TP_before.pubxml?highlight=30-35)]
 
 ## Publish to a server using an untrusted certificate
