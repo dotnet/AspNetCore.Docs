@@ -66,10 +66,6 @@ When selecting the **Publish** button in Visual Studio or when publishing from t
 
 When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project file, an `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
 
-<!--When selecting the **Publish** button in Visual Studio, a publish profile to the project's *Properties/PublishProfiles* folder with markup similar to the following:
-
-[!code-xml[](visual-studio-publish-profiles/samples/Web1.pubxml)]
--->
 ## Basic command-line publishing
 
 Command-line publishing works on all .NET Core-supported platforms and doesn't require Visual Studio. In the following examples, the .NET CLI's [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the `.csproj` file). If the project folder isn't the current working directory, explicitly pass in the project file path. For example:
