@@ -229,7 +229,7 @@ The `@page` directive's route template indicates the URL for the page is `/movie
 * `BlazorWebAppMovies.Models`
 * `BlazorWebAppMovies.Data`
 
-The database context factory (`IDbContextFactory<BlazorWebAppMoviesContext>`) is injected into the component with the `@inject` directive. The factory approach requires that a database context be disposed, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive.
+The database context factory (`IDbContextFactory<T>`, where the type (`T`) is a `BlazorWebAppMoviesContext`) is injected into the component with the `@inject` directive. The factory approach requires that a database context be disposed, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive.
 
 The page title is set via the Blazor framework's <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component, and an H1 section heading is the first rendered element:
 
@@ -316,8 +316,9 @@ For the movie example from the last part of the tutorial series, *The Matrix*&co
 
 The column names are taken from the `Movie` model properties, so the release date doesn't have a space between the words. Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title> to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> with a value that includes a space between the words:
 
-```razor
-<PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
+```diff
+- <PropertyColumn Property="movie => movie.ReleaseDate" />
++ <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
 ```
 
 Run the app to see that the column displays two words for the release date.
