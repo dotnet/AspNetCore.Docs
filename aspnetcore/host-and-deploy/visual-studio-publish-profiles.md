@@ -190,8 +190,7 @@ The .NET CLI's [dotnet build](/dotnet/core/tools/dotnet-build) command calls `ms
 * Results in a failure (even when running on Windows). To publish with a non-folder profile, call `msbuild` directly.
 
 The following folder publish profile was created with Visual Studio and publishes to a network share:
-zz
-<!-->        visual-studio-publish-profiles/samples/FolderProfile.pubxml -->
+
 [!code-xml[](visual-studio-publish-profiles/samples/FolderProfile.pubxml)]
 
 In the preceding example:
@@ -407,7 +406,8 @@ For more deployment samples, see the [Web SDK README file](https://github.com/do
 
 The built-in `BeforePublish` and `AfterPublish` targets execute a target before or after the publish target. Add the following elements to the publish profile to log console messages both before and after publishing:
 
-[!code-xml[](visual-studio-publish-profiles/samples/TP_before.pubxml?highlight=30-35)] zz
+[!code-xml[](visual-studio-publish-profiles/samples/Web1.pubxml?highlight=18-23)]
+[!code-xml[](visual-studio-publish-profiles/samples/TP_before.pubxml?highlight=30-35)]
 
 ## Publish to a server using an untrusted certificate
 
