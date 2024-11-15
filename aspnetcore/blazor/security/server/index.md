@@ -282,9 +282,9 @@ Specify the issuer explicitly when deploying to Azure App Service on Linux with 
 
 ## Inject `AuthenticationStateProvider` for services scoped to a component
 
-Don't attempt to resolve <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a custom scope because it results in the creation of a new instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that isn't correctly initialized.
+Don't attempt to resolve <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a service that's scoped to a component by [`OwningComponentBase`](xref:fundamentals/dependency-injection#owningcomponentbase) because it results in the creation of a new instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that isn't correctly initialized.
 
-To access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a service scoped to a component, inject the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> with the [`@inject` directive](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) and pass it to the service as a parameter. This approach ensures that the correct, initialized instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is used for each user app instance.
+To access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a service scoped to a component, inject the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> directly into the component and pass the service instance to the scoped service as a parameter. This approach ensures that the correct, initialized instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is used for each user app instance.
   
 `ExampleService.cs`:
 
@@ -308,27 +308,11 @@ public class ExampleService
 }
 ```
   
-Register the service as scoped. In a server-side Blazor app, scoped services have a lifetime equal to the duration of the client connection [circuit](xref:blazor/hosting-models#blazor-server).
-
-:::moniker range=">= aspnetcore-6.0"
-
-In the `Program` file:
+In the `Program` file, the `ExampleService` is registered as a scoped service. In this example, the service is scoped to a component with <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For general guidance on the lifetime of scoped services, see <xref:fundamentals/dependency-injection>.
 
 ```csharp
-builder.Services.AddScoped<ExampleService>();
+.AddScoped<ExampleService>();
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-In `Startup.ConfigureServices` of `Startup.cs`:
-
-```csharp
-services.AddScoped<ExampleService>();
-```
-
-:::moniker-end
 
 In the following `InjectAuthStateProvider` component:
 
@@ -338,8 +322,6 @@ In the following `InjectAuthStateProvider` component:
 
 `InjectAuthStateProvider.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
-
 ```razor
 @page "/inject-auth-state-provider"
 @inherits OwningComponentBase
@@ -361,34 +343,6 @@ In the following `InjectAuthStateProvider` component:
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```razor
-@page "/inject-auth-state-provider"
-@inject AuthenticationStateProvider AuthenticationStateProvider
-@inherits OwningComponentBase
-
-<h1>Inject <code>AuthenticationStateProvider</code> Example</h1>
-
-<p>@message</p>
-
-@code {
-    private string? message;
-    private ExampleService? ExampleService { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        ExampleService = ScopedServices.GetRequiredService<ExampleService>();
-
-        message = await ExampleService.ExampleMethod(AuthenticationStateProvider);
-    }
-}
-```
-
-:::moniker-end
 
 For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.OwningComponentBase> in <xref:blazor/fundamentals/dependency-injection#owningcomponentbase>.
 
