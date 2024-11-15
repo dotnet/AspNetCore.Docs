@@ -409,7 +409,30 @@ Add a movie to the database. In the following example, the classic sci-fi movie 
 
 ![Adding The Matrix movie to the database with the 'Create' component](~/blazor/tutorials/movie-database-app/part-2/_static/create-new.png)
 
-When you select the **:::no-loc text="Create":::** button, the movie data is posted to the server and saved in the database. When the app returns to the `Index` page, the added entity appears:
+When you select the **:::no-loc text="Create":::** button, the movie data is posted to the server and saved in the database. 
+
+:::moniker range=">= aspnetcore-9.0"
+
+<!-- UPDATE 9.0 Revert when debugger is updated -->
+
+:::zone pivot="vs"
+
+A temporary Visual Studio debugger regression breaks with a <xref:Microsoft.AspNetCore.Components.NavigationException> on the line that navigates back to the `Index` page:
+
+![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2/_static/movie-added.png)
+
+To resolve this problem until the debugger is updated by a future Visual Studio release:
+
+1. Deselect the checkbox for **Break when this exception type is user-handled**.
+2. Select the **Continue** button in the menu bar to continue execution.
+
+The exception won't be thrown when the <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> method is executed throughout the rest of the tutorial series.
+
+:::zone-end
+
+:::moniker-end
+
+When the app returns to the `Index` page, the added entity appears:
 
 ![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2/_static/movie-added.png)
 
