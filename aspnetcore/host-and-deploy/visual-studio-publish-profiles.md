@@ -215,49 +215,18 @@ In the preceding example:
 
 ## Publish to an MSDeploy endpoint from the command line
 
-The following example uses an ASP.NET Core web app created by Visual Studio named *AzureWebApp*. An Azure Apps publish profile is added with Visual Studio. For more information on how to create a profile, see the [Publish profiles](#publish-profiles) section.
+See [Microsoft.NET.Sdk.Publish](https://github.com/dotnet/sdk/tree/main/src/WebSdk#microsoftnetsdkpublish).
 
-To deploy the app using a publish profile, execute the `msbuild` command from a Visual Studio **Developer Command Prompt**. The command prompt is available in the *Visual Studio* folder of the **Start** menu on the Windows taskbar. For easier access, add the command prompt to the **Tools** menu in Visual Studio. For more information, see [Developer Command Prompt for Visual Studio](/dotnet/framework/tools/developer-command-prompt-for-vs#run-the-command-prompt-from-inside-visual-studio).
+<!-- As of Nov 2024 
+On the Azure Portal, settings/configuration, enable SCM and FTB basic auth publishing.
+Download the publish profile and get the username and password.
 
-MSBuild uses the following command syntax:
+Using the default publish profile, the following command publishes to an MSDeploy endpoint:
 
-```bash
-msbuild {PATH} 
-    /p:DeployOnBuild=true 
-    /p:PublishProfile={PROFILE} 
-    /p:Username={USERNAME} 
-    /p:Password={PASSWORD}
-```
+msbuild /p:Configuration=Release /p:DeployOnBuild=true /p:UserName="<UN> /p:Password="pw"
 
-* `{PATH}`: Path to the app's project file.
-* `{PROFILE}`: Name of the publish profile.
-* `{USERNAME}`: MSDeploy username. The `{USERNAME}` can be found in the publish profile.
-* `{PASSWORD}`: MSDeploy password. Obtain the `{PASSWORD}` from the *{PROFILE}.PublishSettings* file. Download the *.PublishSettings* file from either:
-  * **Solution Explorer**: Select **View** > **Cloud Explorer**. Connect with your Azure subscription. Open **App Services**. Right-click the app. Select **Download Publish Profile**.
-  * Azure portal: Select **Get publish profile** in the web app's **Overview** panel.
-
-The following example uses a publish profile named *AzureWebApp - Web Deploy*:
-
-```bash
-msbuild "AzureWebApp.csproj" 
-    /p:DeployOnBuild=true 
-    /p:PublishProfile="AzureWebApp - Web Deploy" 
-    /p:Username="$AzureWebApp" 
-    /p:Password=".........."
-```
-
-A publish profile can also be used with the .NET CLI's [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild) command from a Windows command shell:
-
-```dotnetcli
-dotnet msbuild "AzureWebApp.csproj"
-    /p:DeployOnBuild=true 
-    /p:PublishProfile="AzureWebApp - Web Deploy" 
-    /p:Username="$AzureWebApp" 
-    /p:Password=".........."
-```
-
-> [!IMPORTANT]
-> The `dotnet msbuild` command is a cross-platform command and can compile ASP.NET Core apps on macOS and Linux. However, MSBuild on macOS and Linux isn't capable of deploying an app to Azure or other MSDeploy endpoints.
+Delete the RG or restore the basic auth settings to disabled.
+-->
 
 ## Set the environment
 
@@ -405,7 +374,7 @@ For more deployment samples, see the [Web SDK README file](https://github.com/do
 ## Run a target before or after publishing
 
 The built-in `BeforePublish` and `AfterPublish` targets execute a target before or after the publish target. Add the following elements to the publish profile to log console messages both before and after publishing:
-
+zz
 [!code-xml[](visual-studio-publish-profiles/samples/Web1.pubxml?highlight=18-23)]
 [!code-xml[](visual-studio-publish-profiles/samples/TP_before.pubxml?highlight=30-35)]
 
@@ -432,6 +401,7 @@ Select the [Debug Console](https://github.com/projectkudu/kudu/wiki/Kudu-console
 
 ## Additional resources
 
-* [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifies deployment of web apps and websites to IIS servers.
+* [Web SDK README file](https://github.com/dotnet/sdk/tree/main/src/WebSdk)
 * [Web SDK GitHub repository](https://github.com/dotnet/websdk/issues): File issues and request features for deployment.
+* [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifies deployment of web apps and websites to IIS servers.
 * <xref:host-and-deploy/iis/transform-webconfig>
