@@ -128,6 +128,7 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
 > [!IMPORTANT]
@@ -138,11 +139,12 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 
 The preceding commands add:
 
-* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
-* Design time tools for EF Core
-* The SQLite and SQL Server providers with the EF Core package as a dependency
-* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Design time tools for EF Core.
+* The SQLite and SQL Server providers with the EF Core package as a dependency.
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions.
 
 In the **Command Palette** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>), use the `.NET: Build` command to build the app.
 
@@ -169,6 +171,7 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
 > [!IMPORTANT]
@@ -176,11 +179,12 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 
 The preceding commands add:
 
-* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
-* Design time tools for EF Core
-* The SQLite and SQL Server providers with the EF Core package as a dependency
-* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Design time tools for EF Core.
+* The SQLite and SQL Server providers with the EF Core package as a dependency.
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
 
 In a command shell opened to the project's root folder, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
 
