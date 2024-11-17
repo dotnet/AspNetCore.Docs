@@ -97,7 +97,7 @@ The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtual
 
 A <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
-The following example loads employees from an `EmployeeService` (not shown):
+The following example loads employees from an `EmployeeService` (not shown). The `totalEmployees` field would typically be assigned by calling a method on the same service (for example, `EmployeesService.GetEmployeesCountAsync`) elsewhere, such as during component initialization.
 
 ```csharp
 private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
