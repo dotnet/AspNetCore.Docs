@@ -1,14 +1,14 @@
 ---
-title: Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly
+title: Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly solutions
 author: guardrex
-description: Learn about Razor component integration scenarios for hosted Blazor WebAssembly apps, including prerendering of Razor components on the server.
+description: Learn about Razor component integration scenarios for hosted Blazor WebAssembly apps with MVC or Razor Pages, including prerendering of Razor components on the server.
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/18/2024
 uid: blazor/components/integration-hosted-webassembly
 ---
-# Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly
+# Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly solutions
 
 > [!NOTE]
 > Hosted Blazor WebAssembly solutions remain supported, but the project template was removed and is no longer supported in .NET 8 or later. This article appears in the table of contents up to .NET 7 for reference, but note that .NET 7 is a [Standard Support Term](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) release that's no longer supported.
@@ -302,7 +302,7 @@ After adopting the preceding configuration, embed Razor components into pages or
 
 ## Render components in a page or view with the Component Tag Helper
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
 
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
@@ -351,7 +351,7 @@ The preceding approach usually isn't required because the app usually prerenders
 
 ## Render components in a page or view with a CSS selector
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), add root components to the **:::no-loc text="Client":::** project of a hosted Blazor WebAssembly solution in the `Program.cs` file. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), add root components to the **:::no-loc text="Client":::** project of a hosted Blazor WebAssembly solution in the `Program.cs` file. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
 
 In `Program.cs` file of the **:::no-loc text="Client":::** project, add the namespace for the project's Razor components to the top of the file:
 
@@ -864,7 +864,7 @@ After adopting the preceding configuration, embed Razor components into pages or
 
 ## Render components in a page or view with the Component Tag Helper
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
 
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
@@ -913,7 +913,7 @@ The preceding approach usually isn't required because the app usually prerenders
 
 ## Render components in a page or view with a CSS selector
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), add root components to the **:::no-loc text="Client":::** project of a hosted Blazor WebAssembly solution in the `Program.cs` file. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), add root components to the **:::no-loc text="Client":::** project of a hosted Blazor WebAssembly solution in the `Program.cs` file. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
 
 In `Program.cs` file of the **:::no-loc text="Client":::** project, add the namespace for the project's Razor components to the top of the file:
 
@@ -1248,7 +1248,7 @@ If the donor project is created from an ASP.NET Core project template and the fi
 
 ## Render components in a page or view with the Component Tag Helper
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
 
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
@@ -1281,7 +1281,7 @@ Additional work might be required depending on the static resources that compone
 
 ## Render components in a page or view with a CSS selector
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), add root components to the **:::no-loc text="Client":::** project of a hosted Blazor WebAssembly solution in `Program.cs`. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), add root components to the **:::no-loc text="Client":::** project of a hosted Blazor WebAssembly solution in `Program.cs`. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
 
 In `Program.cs` of the **:::no-loc text="Client":::** project, add the namespace for the project's Razor components to the top of the file:
 
