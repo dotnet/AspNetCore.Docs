@@ -5,7 +5,7 @@ description: Learn how to secure server-side Blazor apps as ASP.NET Core applica
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2024
+ms.date: 11/12/2024
 uid: blazor/security/server/index
 ---
 # Secure ASP.NET Core server-side Blazor apps

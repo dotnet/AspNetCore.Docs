@@ -5,7 +5,7 @@ description: Learn about security considerations when developing apps in Blazor 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/hybrid/security/security-considerations
 ---
 # ASP.NET Core Blazor Hybrid security considerations

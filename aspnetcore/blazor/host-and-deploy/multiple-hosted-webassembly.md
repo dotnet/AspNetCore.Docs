@@ -5,7 +5,7 @@ description: Learn how to configure a hosted Blazor WebAssembly app to host mult
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/host-and-deploy/multiple-hosted-webassembly
 zone_pivot_groups: blazor-multiple-hosted-wasm-apps
 ---
@@ -66,7 +66,7 @@ The preceding configurations are beyond the scope of this article. For more info
 
 * [Host and deploy articles](xref:host-and-deploy/index)
 * <xref:security/enforcing-ssl>
-* <xref:blazor/components/integration?pivots=webassembly>
+* <xref:blazor/components/integration-hosted-webassembly>
 
 Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](xref:blazor/tooling) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core Hosted** checkbox in Visual Studio when the project is created in the IDE.
 
@@ -453,7 +453,7 @@ public class HomeController : Controller
 > [!NOTE]
 > The preceding `Index` view is a minimal example purely for demonstration purposes. If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see <xref:tutorials/first-mvc-app/start-mvc>.
 
-For more information on using the Razor components from either of the client apps in pages or views of the server app, see <xref:blazor/components/integration?pivots=webassembly>.
+For more information on using the Razor components from either of the client apps in pages or views of the server app, see <xref:blazor/components/integration-hosted-webassembly>.
 
 ## Run the app
 

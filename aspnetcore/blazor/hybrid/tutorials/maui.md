@@ -5,7 +5,7 @@ description: Build a .NET MAUI Blazor Hybrid app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/hybrid/tutorials/maui
 ---
 # Build a .NET MAUI Blazor Hybrid app

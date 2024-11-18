@@ -5,7 +5,7 @@ description: Learn how to configure and manage static files for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/08/2024
+ms.date: 11/12/2024
 uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
