@@ -1570,6 +1570,8 @@ items:
                     href: /azure/active-directory-b2c/enable-authentication-web-api
           - name: Configure cookie authentication
             uid: security/authentication/cookie
+          - name: Configure OIDC web authentication
+            uid: security/authentication/configure-oidc-web-authentication
           - name: Configure certificate authentication
             uid: security/authentication/certauth
           - name: Configure Windows authentication
