@@ -546,8 +546,10 @@ items:
                 uid: blazor/components/dynamiccomponent
               - name: QuickGrid component
                 uid: blazor/components/quickgrid
-              - name: Prerender and integrate components
+              - name: Integrate with MVC/Razor Pages
                 uid: blazor/components/integration
+              - name: Integrate with MVC/Razor Pages (hosted WebAssembly)
+                uid: blazor/components/integration-hosted-webassembly
               - name: Class libraries
                 uid: blazor/components/class-libraries
               - name: Class libraries with static SSR
