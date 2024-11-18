@@ -546,10 +546,10 @@ items:
                 uid: blazor/components/dynamiccomponent
               - name: QuickGrid component
                 uid: blazor/components/quickgrid
-              - name: Integrate with MVC/Razor Pages
+              - name: Prerender and integrate components
+                uid: blazor/components/prerendering-and-integration
+              - name: Integrate components
                 uid: blazor/components/integration
-              - name: Integrate with MVC/Razor Pages (hosted WebAssembly)
-                uid: blazor/components/integration-hosted-webassembly
               - name: Class libraries
                 uid: blazor/components/class-libraries
               - name: Class libraries with static SSR
@@ -1301,8 +1301,6 @@ items:
         uid: diagnostics/asp0025
       - name: ASP0026
         uid: diagnostics/asp0026
-      - name: ASP0028
-        uid: diagnostics/asp0028
       - name: BL0001
         uid: diagnostics/bl0001
       - name: BL0002
@@ -1498,6 +1496,8 @@ items:
             uid: security/authentication/index
           - name: Choose an identity solution
             uid: security/how-to-choose-identity
+          - name: Configure OpenID
+            uid: security/authentication/configure-oidc-web-authentication
           - name: ASP.NET Core Identity
             items:
               - name: Overview
@@ -1570,8 +1570,6 @@ items:
                     href: /azure/active-directory-b2c/enable-authentication-web-api
           - name: Configure cookie authentication
             uid: security/authentication/cookie
-          - name: Configure OIDC web authentication
-            uid: security/authentication/configure-oidc-web-authentication
           - name: Configure certificate authentication
             uid: security/authentication/certauth
           - name: Configure Windows authentication
