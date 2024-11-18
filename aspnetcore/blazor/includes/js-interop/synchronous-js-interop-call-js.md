@@ -47,7 +47,13 @@ When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 
     {
         if (module is not null)
         {
-            await module.DisposeAsync();
+            try
+            {
+                await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException)
+            {
+            }
         }
     }
 }
