@@ -5,7 +5,7 @@ description: Learn about Razor component integration scenarios for hosted Blazor
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/18/2024
+ms.date: 11/12/2024
 uid: blazor/components/integration-hosted-webassembly
 ---
 # Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly solutions

@@ -5,7 +5,7 @@ description: Render Razor components outside of the context of an HTTP request.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/components/render-outside-of-aspnetcore
 ---
 # Render Razor components outside of ASP.NET Core
