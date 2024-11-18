@@ -5,7 +5,7 @@ description: Learn about Blazor render modes and how to apply them in Blazor Web
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2024
+ms.date: 11/12/2024
 uid: blazor/components/render-modes
 ---
 # ASP.NET Core Blazor render modes

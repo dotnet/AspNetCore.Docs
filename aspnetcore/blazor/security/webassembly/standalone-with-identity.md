@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssembly apps with ASP.NET Core Ident
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/security/webassembly/standalone-with-identity
 ---
 # Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity

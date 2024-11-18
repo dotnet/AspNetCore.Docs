@@ -5,7 +5,7 @@ description: Learn how to test Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/test
 ---
 # Test Razor components in ASP.NET Core Blazor

@@ -5,7 +5,7 @@ description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/09/2024
+ms.date: 11/12/2024
 uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---

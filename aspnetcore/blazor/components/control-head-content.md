@@ -5,7 +5,7 @@ description: Learn how to control head content in Blazor apps, including how to 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/components/control-head-content
 ---
 # Control `<head>` content in ASP.NET Core Blazor apps

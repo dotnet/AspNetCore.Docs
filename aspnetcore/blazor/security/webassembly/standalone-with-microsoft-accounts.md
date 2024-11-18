@@ -5,7 +5,7 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/07/2024
+ms.date: 11/12/2024
 uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Accounts

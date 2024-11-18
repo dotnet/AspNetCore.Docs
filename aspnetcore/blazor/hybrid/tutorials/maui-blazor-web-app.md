@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/17/2024
+ms.date: 11/12/2024
 uid: blazor/hybrid/tutorials/maui-blazor-web-app
 ---
 # Build a .NET MAUI Blazor Hybrid app with a Blazor Web App

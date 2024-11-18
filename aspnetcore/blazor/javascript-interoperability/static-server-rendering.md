@@ -5,7 +5,7 @@ description: Learn how to use JavaScript in a Blazor Web App with static server-
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/js-interop/ssr
 ---
 # ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)

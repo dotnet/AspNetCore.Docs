@@ -5,7 +5,7 @@ description: Learn how to Blazor WebAssembly caches the WebAssembly .NET runtime
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/28/2024
+ms.date: 11/12/2024
 uid: blazor/host-and-deploy/webassembly-caching/index
 ---
 # ASP.NET Core Blazor WebAssembly .NET runtime and app bundle caching

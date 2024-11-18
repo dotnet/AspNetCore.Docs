@@ -5,7 +5,7 @@ description: Learn how to use the @key directive attribute to retain element, co
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/components/key
 ---
 # Retain element, component, and model relationships in ASP.NET Core Blazor

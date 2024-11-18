@@ -5,7 +5,7 @@ description: Learn how to create a custom authentication state provider and rece
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2024
+ms.date: 11/12/2024
 uid: blazor/security/authentication-state
 zone_pivot_groups: blazor-app-models
 ---

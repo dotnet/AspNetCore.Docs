@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains the da
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2024
+ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-4
 zone_pivot_groups: tooling
 ---

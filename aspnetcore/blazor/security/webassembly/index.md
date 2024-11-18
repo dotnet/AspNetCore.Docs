@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssembly apps as single-page applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/security/webassembly/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly
