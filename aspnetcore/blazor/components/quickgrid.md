@@ -5,7 +5,7 @@ description: The QuickGrid component is a Razor component for quickly and effici
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/19/2024
+ms.date: 11/12/2024
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
