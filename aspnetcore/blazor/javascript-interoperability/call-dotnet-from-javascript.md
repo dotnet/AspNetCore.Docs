@@ -563,7 +563,13 @@ In the following component, the `Trigger JS function` buttons call JS functions 
     {
         if (module is not null)
         {
-            await module.DisposeAsync();
+            try
+            {
+                await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException)
+            {
+            }
         }
 
         dotNetHelper?.Dispose();

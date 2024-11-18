@@ -155,7 +155,13 @@ export function addHandlers() {
     {
         if (module is not null)
         {
-            await module.DisposeAsync();
+            try
+            {
+                await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException)
+            {
+            }
         }
     }
 }
@@ -259,7 +265,13 @@ In the following example, the `DOMCleanup` component:
     {
         if (module is not null)
         {
-            await module.DisposeAsync();
+            try
+            {
+                await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException)
+            {
+            }
         }
     }
 }
@@ -303,7 +315,7 @@ window.DOMCleanup = DOMCleanup;
 
 *This section only applies to server-side apps.*
 
-JavaScript (JS) interop calls can't be issued after a SignalR circuit is disconnected. Without a circuit during component disposal or at any other time that a circuit doesn't exist, the following method calls fail and log a message that the circuit is disconnected as a <xref:Microsoft.JSInterop.JSDisconnectedException>:
+JavaScript (JS) interop calls can't be issued after Blazor's SignalR circuit is disconnected. Without a circuit during component disposal or at any other time that a circuit doesn't exist, the following method calls fail and log a message that the circuit is disconnected as a <xref:Microsoft.JSInterop.JSDisconnectedException>:
 
 * JS interop method calls
   * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
@@ -315,8 +327,8 @@ In order to avoid logging <xref:Microsoft.JSInterop.JSDisconnectedException> or 
 
 For the following component disposal example:
 
-* The component implements <xref:System.IAsyncDisposable>.
-* `objInstance` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
+* The server-side component implements <xref:System.IAsyncDisposable>.
+* `module` is an <xref:Microsoft.JSInterop.IJSObjectReference> for a JS module.
 * <xref:Microsoft.JSInterop.JSDisconnectedException> is caught and not logged.
 * Optionally, you can log custom information in the `catch` statement at whatever log level you prefer. The following example doesn't log custom information because it assumes the developer doesn't care about when or where circuits are disconnected during component disposal.
 
@@ -325,9 +337,9 @@ async ValueTask IAsyncDisposable.DisposeAsync()
 {
     try
     {
-        if (objInstance is not null)
+        if (module is not null)
         {
-            await objInstance.DisposeAsync();
+            await module.DisposeAsync();
         }
     }
     catch (JSDisconnectedException)
@@ -336,7 +348,7 @@ async ValueTask IAsyncDisposable.DisposeAsync()
 }
 ```
 
-If you must clean up your own JS objects or execute other JS code on the client after a circuit is lost, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
+If you must clean up your own JS objects or execute other JS code on the client after a circuit is lost in a server-side Blazor app, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
 
 For more information, see the following articles:
 

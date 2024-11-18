@@ -29,7 +29,7 @@ All existing components can still be used with static SSR. However, the cost of 
 
 &dagger;There's a special exception for the `@onsubmit` event handler for forms, which is always functional, regardless of render mode.
 
-This is equivalent to how components behave during [prerendering](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), before a Blazor circuit or the .NET WebAssembly runtime is started.
+This is equivalent to how components behave during [prerendering](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), before Blazor's SignalR circuit or the .NET WebAssembly runtime is started.
 
 For components whose only role is to produce read-only DOM content, these behaviors for static SSR are completely sufficient. However, library authors must consider what approach to take when including interactive components in their libraries.
 

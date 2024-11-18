@@ -536,7 +536,7 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 ## Prerendered state size and SignalR message size limit
 
-A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+A large prerendered state size may exceed Blazor's SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
 * The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
@@ -1055,7 +1055,7 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 ## Prerendered state size and SignalR message size limit
 
-A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+A large prerendered state size may exceed Blazor's SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
 * The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
@@ -1487,7 +1487,7 @@ For more information, see <xref:blazor/components/index#class-name-and-namespace
 
 ## Prerendered state size and SignalR message size limit
 
-A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+A large prerendered state size may exceed Blazor's SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
 * The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
@@ -1917,7 +1917,7 @@ For more information, see <xref:blazor/components/index#class-name-and-namespace
 
 ## Prerendered state size and SignalR message size limit
 
-A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+A large prerendered state size may exceed Blazor's SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
 * The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.

@@ -130,7 +130,13 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
     {
         if (module is not null)
         {
-            await module.DisposeAsync();
+            try
+            {
+                await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException)
+            {
+            }
         }
     }
 }

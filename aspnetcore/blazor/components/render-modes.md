@@ -535,7 +535,7 @@ In the following example, the `SharedMessage` component is interactive over a Si
 
 In the following example, both `SharedMessage` components are prerendered and appear when the page is displayed in the browser.
 
-* The first `SharedMessage` component with interactive server-side rendering (interactive SSR) is interactive after the SignalR circuit is established.
+* The first `SharedMessage` component with interactive server-side rendering (interactive SSR) is interactive after Blazor's SignalR circuit is established.
 * The second `SharedMessage` component with client-side rendering (CSR) is interactive *after* the Blazor app bundle is downloaded and the .NET runtime is active on the client.
 
 `RenderMode7.razor`:
