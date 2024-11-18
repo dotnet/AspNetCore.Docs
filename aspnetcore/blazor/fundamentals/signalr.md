@@ -162,7 +162,7 @@ If prerendering is configured, prerendering occurs before the client connection 
 
 ## Prerendered state size and SignalR message size limit
 
-A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+A large prerendered state size may exceed Blazor's SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
 * The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
@@ -768,25 +768,25 @@ Circuit activity handlers also provide an approach for accessing scoped Blazor s
 
 :::moniker range=">= aspnetcore-8.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `App.razor` file of a Blazor Web App:
+Configure the manual start of Blazor's SignalR circuit in the `App.razor` file of a Blazor Web App:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
+Configure the manual start of Blazor's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server):
+Configure the manual start of Blazor's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server):
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
+Configure the manual start of Blazor's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
 
 :::moniker-end
 
@@ -1394,9 +1394,9 @@ protected override async Task OnInitializedAsync()
 
 :::moniker range=">= aspnetcore-5.0"
 
-## Disconnect the Blazor circuit from the client
+## Disconnect Blazor's SignalR circuit from the client
 
-A Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
+Blazor's SignalR circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
 
 ```javascript
 window.addEventListener('pagehide', () => {
