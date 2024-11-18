@@ -943,6 +943,15 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
 
 For more information, see [Cleaning up unmanaged resources](/dotnet/standard/garbage-collection/unmanaged) and the topics that follow it on implementing the `Dispose` and `DisposeAsync` methods.
 
+### Disposal during JS interop
+
+Trap <xref:Microsoft.JSInterop.JSDisconnectedException> in potential cases where loss of Blazor's SignalR circuit prevents JS interop calls and results an unhandled exception.
+
+For more information, see the following resources:
+
+* [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules)
+* [JavaScript interop calls without a circuit](xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit)
+
 ## Cancelable background work
 
 Components often perform long-running background work, such as making network calls (<xref:System.Net.Http.HttpClient>) and interacting with databases. It's desirable to stop the background work to conserve system resources in several situations. For example, background asynchronous operations don't automatically stop when a user navigates away from a component.
