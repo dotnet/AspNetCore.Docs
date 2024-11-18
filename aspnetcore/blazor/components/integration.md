@@ -12,7 +12,7 @@ uid: blazor/components/integration
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into Razor Pages or MVC apps. When the page or view is rendered, components can be prerendered at the same time.
 
 > [!IMPORTANT]
 > Framework changes across ASP.NET Core releases led to different sets of instructions in this article. Before using this article's guidance, confirm that the document version selector at the top of this article matches the version of ASP.NET Core that you intend to use for your app.
@@ -26,11 +26,11 @@ After [configuring the project](#configuration), use the guidance in the followi
 * For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
   * [Use routable components in a Razor Pages app](#use-routable-components-in-a-razor-pages-app)
   * [Use routable components in an MVC app](#use-routable-components-in-an-mvc-app)
-* For components that aren't directly routable from user requests, see the [Render components from a page or view](#render-components-from-a-page-or-view) section. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* For components that aren't directly routable from user requests, see the [Render components from a page or view](#render-components-from-a-page-or-view) section. Follow this guidance when the app embeds components into existing pages or views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ## Configuration
 
-Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app.
+Use the following guidance to integrate Razor components into pages or views of an existing Razor Pages or MVC app.
 
 1. Add an imports file to the root folder of the project with the following content. Change the `{APP NAMESPACE}` placeholder to the namespace of the project.
 
@@ -571,11 +571,11 @@ After [configuring the project](#configuration), use the guidance in the followi
 * Routable components: For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
   * [Use routable components in a Razor Pages app](#use-routable-components-in-a-razor-pages-app)
   * [Use routable components in an MVC app](#use-routable-components-in-an-mvc-app)
-* [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages or views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ## Configuration
 
-Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app.
+Use the following guidance to integrate Razor components into pages or views of an existing Razor Pages or MVC app.
 
 > [!IMPORTANT]
 > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
@@ -1089,11 +1089,11 @@ After [configuring the project](#configuration), use the guidance in the followi
 * Routable components: For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
   * [Use routable components in a Razor Pages app](#use-routable-components-in-a-razor-pages-app)
   * [Use routable components in an MVC app](#use-routable-components-in-an-mvc-app)
-* [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages or views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ## Configuration
 
-An existing Razor Pages or MVC app can integrate Razor components into pages and views:
+An existing Razor Pages or MVC app can integrate Razor components into pages or views:
 
 1. In the project's layout file:
 
@@ -1514,7 +1514,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 :::moniker range="< aspnetcore-5.0"
 
-Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into Razor Pages or MVC apps. When the page or view is rendered, components can be prerendered at the same time.
 
 Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
@@ -1523,11 +1523,11 @@ After [configuring the project](#configuration), use the guidance in the followi
 * Routable components: For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
   * [Use routable components in a Razor Pages app](#use-routable-components-in-a-razor-pages-app)
   * [Use routable components in an MVC app](#use-routable-components-in-an-mvc-app)
-* [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages or views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ## Configuration
 
-An existing Razor Pages or MVC app can integrate Razor components into pages and views:
+An existing Razor Pages or MVC app can integrate Razor components into pages or views:
 
 1. In the project's layout file:
 

@@ -145,9 +145,9 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. Run the **:::no-loc text="Server":::** project. The hosted Blazor WebAssembly app is prerendered by the **:::no-loc text="Server":::** project for clients.
 
-### Configuration for embedding Razor components into pages and views
+### Configuration for embedding Razor components into pages or views
 
-The following sections and examples for embedding Razor components from the **:::no-loc text="Client":::** Blazor WebAssembly app into pages and views of the server app require additional configuration.
+The following sections and examples for embedding Razor components from the **:::no-loc text="Client":::** Blazor WebAssembly app into pages or views of the server app require additional configuration.
 
 The **:::no-loc text="Server":::** project must have the following files and folders.
 
@@ -704,9 +704,9 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. Run the **:::no-loc text="Server":::** project. The hosted Blazor WebAssembly app is prerendered by the **:::no-loc text="Server":::** project for clients.
 
-### Configuration for embedding Razor components into pages and views
+### Configuration for embedding Razor components into pages or views
 
-The following sections and examples for embedding Razor components from the **:::no-loc text="Client":::** Blazor WebAssembly app into pages and views of the server app require additional configuration.
+The following sections and examples for embedding Razor components from the **:::no-loc text="Client":::** Blazor WebAssembly app into pages or views of the server app require additional configuration.
 
 The **:::no-loc text="Server":::** project must have the following files and folders.
 
@@ -1145,9 +1145,9 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. Run the **:::no-loc text="Server":::** project. The hosted Blazor WebAssembly app is prerendered by the **:::no-loc text="Server":::** project for clients.
 
-### Configuration for embedding Razor components into pages and views
+### Configuration for embedding Razor components into pages or views
 
-The following sections and examples in this article for embedding Razor components of the client Blazor WebAssembly app into pages and views of the server app require additional configuration.
+The following sections and examples in this article for embedding Razor components of the client Blazor WebAssembly app into pages or views of the server app require additional configuration.
 
 Use a default Razor Pages or MVC layout file in the **:::no-loc text="Server":::** project. The **:::no-loc text="Server":::** project must have the following files and folders.
 
@@ -1338,6 +1338,6 @@ Additional work might be required depending on the static resources that compone
 
 :::moniker range="< aspnetcore-5.0"
 
-Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
+Integrating Razor components into Razor Pages or MVC apps in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
 
 :::moniker-end
