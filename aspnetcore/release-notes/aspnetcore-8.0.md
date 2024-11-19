@@ -141,7 +141,7 @@ public HttpContext? HttpContext { get; set; }
 
 Accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> from a static server component might be useful for inspecting and modifying headers or other properties.
 
-For an example that passes <xref:Microsoft.AspNetCore.Http.HttpContext> state, access and refresh tokens, to components, see <xref:blazor/security/server/additional-scenarios?view=aspnetcore-8.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app>.
+For an example that passes <xref:Microsoft.AspNetCore.Http.HttpContext> state, access and refresh tokens, to components, see <xref:blazor/security/additional-scenarios?view=aspnetcore-8.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app>.
 
 ### Render Razor components outside of ASP.NET Core
 
@@ -302,7 +302,7 @@ Blazor supports generating a full Blazor-based Identity UI when you choose the a
 
 For more information, see the following resources:
 
-* <xref:blazor/security/server/index?view=aspnetcore-8.0&preserve-view=true#blazor-identity-ui-individual-accounts>
+* <xref:blazor/security/index?view=aspnetcore-8.0&preserve-view=true#blazor-identity-ui-individual-accounts>
 * [What's new with identity in .NET 8 (blog post)](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui)
 
 ### Secure Blazor WebAssembly with ASP.NET Core Identity
@@ -311,7 +311,7 @@ The Blazor documentation hosts a new article and sample app to cover securing a 
 
 For more information, see the following resources:
 
-* <xref:blazor/security/webassembly/standalone-with-identity?view=aspnetcore-8.0&preserve-view=true>
+* <xref:blazor/security/webassembly/standalone-with-identity/index?view=aspnetcore-8.0&preserve-view=true>
 * [What's new with identity in .NET 8 (blog post)](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui)
 
 ### Blazor Server with Yarp routing

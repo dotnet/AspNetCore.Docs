@@ -1322,6 +1322,41 @@
             "source_path": "aspnetcore/blazor/components/prerendering-and-integration.md",
             "redirect_url": "/aspnet/core/blazor/components/integration",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/webassembly/standalone-with-identity.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/standalone-with-identity/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/server/account-confirmation-and-password-recovery.md",
+            "redirect_url": "/aspnet/core/blazor/security/account-confirmation-and-password-recovery",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/server/interactive-server-side-rendering.md",
+            "redirect_url": "/aspnet/core/blazor/security/interactive-server-side-rendering",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/server/qrcodes-for-authenticator-apps.md",
+            "redirect_url": "/aspnet/core/blazor/security/qrcodes-for-authenticator-apps",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/server/static-server-side-rendering.md",
+            "redirect_url": "/aspnet/core/blazor/security/static-server-side-rendering",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/server/additional-scenarios.md",
+            "redirect_url": "/aspnet/core/blazor/security/additional-scenarios",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/server/index.md",
+            "redirect_url": "/aspnet/core/blazor/security/",
+            "redirect_document_id": false
         }
     ]
 }

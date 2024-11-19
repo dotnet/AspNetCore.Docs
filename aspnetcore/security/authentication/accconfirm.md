@@ -19,7 +19,10 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 
 :::moniker range=">= aspnetcore-8.0"
 
-For Blazor guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/security/server/account-confirmation-and-password-recovery>.
+For Blazor guidance, which adds to or supersedes the guidance in this article, see the following resources:
+
+* <xref:blazor/security/account-confirmation-and-password-recovery>
+* <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery>
 
 :::moniker-end
 

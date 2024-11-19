@@ -49,7 +49,7 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
 - <xref:blazor/components/event-handling>
   - [Blazor] Event handling - ParentChild2.razor without Task.Yield()
   - [Blazor] Event handling - first InvokeAsync example with args
-- <xref:blazor/security/server/index> - Dependency on DBContext for Blazor Identity UI
+- <xref:blazor/security/index> - Dependency on DBContext for Blazor Identity UI
 - <xref:blazor/components/render-modes>
   - Updates to 'click'-based remarks
   - Server-side behaviors during static SSR
@@ -62,7 +62,7 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
   - WebSocket compression/CSP and security guidance
 - <xref:blazor/components/layouts> - Server-side behaviors during static SSR
 - <xref:blazor/fundamentals/routing> - Server-side behaviors during static SSR
-- <xref:blazor/security/server/additional-scenarios> - Temporarily surface PU issue for access tokens
+- <xref:blazor/security/additional-scenarios> - Temporarily surface PU issue for access tokens
 - <xref:blazor/call-web-api>
   - Blazor WASM cookie security for web APIs
   - PATCH section and other updates
@@ -80,9 +80,9 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
 - <xref:blazor/fundamentals/dependency-injection> - Blazor-specific 'how to download' guidance
 - <xref:blazor/fundamentals/index> - Blazor-specific 'how to download' guidance
 - <xref:blazor/components/data-binding> - Blazor - data-binding - event fix
-- <xref:blazor/security/server/interactive-server-side-rendering> - WebSocket compression/CSP and security guidance
+- <xref:blazor/security/interactive-server-side-rendering> - WebSocket compression/CSP and security guidance
 - <xref:blazor/globalization-localization> - Add BWA global Auto approach
-- <xref:blazor/security/webassembly/standalone-with-identity> - WASM+Identity same-site & antiforgery updates
+- <xref:blazor/security/webassembly/standalone-with-identity/index> - WASM+Identity same-site & antiforgery updates
 
 ## Fundamentals
 

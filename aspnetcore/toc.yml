@@ -602,26 +602,16 @@ items:
                 uid: blazor/security/index
               - name: Authentication state
                 uid: blazor/security/authentication-state
-              - name: Server
-                items:
-                  - name: Overview
-                    uid: blazor/security/server/index
-                  - name: Static server-side rendering threats
-                    uid: blazor/security/server/static-server-side-rendering
-                  - name: Interactive server-side rendering threats
-                    uid: blazor/security/server/interactive-server-side-rendering
-                  - name: Account confirmation and password recovery
-                    uid: blazor/security/server/account-confirmation-and-password-recovery
-                  - name: QR code generation
-                    uid: blazor/security/server/qrcodes-for-authenticator-apps
-                  - name: Additional scenarios
-                    uid: blazor/security/server/additional-scenarios
               - name: Blazor WebAssembly
                 items:
                   - name: Overview
                     uid: blazor/security/webassembly/index
                   - name: Standalone with Identity
-                    uid: blazor/security/webassembly/standalone-with-identity
+                    items:
+                      - name: Overview
+                        uid: blazor/security/webassembly/standalone-with-identity/index
+                      - name: Account confirmation and password recovery
+                        uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
                   - name: Standalone with Authentication library
                     uid: blazor/security/webassembly/standalone-with-authentication-library
                   - name: Standalone with Microsoft Accounts
@@ -648,8 +638,18 @@ items:
                 uid: blazor/security/blazor-web-app-entra
               - name: Blazor Web App with OIDC
                 uid: blazor/security/blazor-web-app-oidc
+              - name: Static server-side rendering threats
+                uid: blazor/security/static-server-side-rendering
+              - name: Interactive server-side rendering threats
+                uid: blazor/security/interactive-server-side-rendering
+              - name: Account confirmation and password recovery
+                uid: blazor/security/account-confirmation-and-password-recovery
+              - name: QR code generation
+                uid: blazor/security/qrcodes-for-authenticator-apps
               - name: Content Security Policy
                 uid: blazor/security/content-security-policy
+              - name: Server-side and Blazor Web App additional scenarios
+                uid: blazor/security/additional-scenarios
           - name: State management
             uid: blazor/state-management
           - name: Debug

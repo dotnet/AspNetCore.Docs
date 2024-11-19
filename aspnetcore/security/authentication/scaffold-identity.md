@@ -24,7 +24,7 @@ Although the scaffolder generates the necessary C# code to scaffold Identity int
 
 Inspect the changes after running the Identity scaffolder. We recommend using GitHub or another source control system that shows file changes with a revert changes feature.
 
-Services are required when using [two-factor authentication (2FA)](xref:blazor/security/server/qrcodes-for-authenticator-apps), [account confirmation and password recovery](xref:blazor/security/server/account-confirmation-and-password-recovery), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually.
+Services are required when using [two-factor authentication (2FA)](xref:blazor/security/qrcodes-for-authenticator-apps), [account confirmation and password recovery](xref:blazor/security/account-confirmation-and-password-recovery), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually.
 
 ## Razor Pages and MVC Identity scaffolding
 

@@ -17,7 +17,7 @@ ASP.NET Core ships with support for authenticator applications for individual au
 
 :::moniker range=">= aspnetcore-8.0"
 
-The ASP.NET Core web app templates support authenticators but don't provide support for QR code generation. QR code generators ease the setup of 2FA. This document provides guidance for Razor Pages and MVC apps on how to add [QR code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page. For guidance that applies to Blazor Web Apps, see <xref:blazor/security/server/qrcodes-for-authenticator-apps>.
+The ASP.NET Core web app templates support authenticators but don't provide support for QR code generation. QR code generators ease the setup of 2FA. This document provides guidance for Razor Pages and MVC apps on how to add [QR code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page. For guidance that applies to Blazor Web Apps, see <xref:blazor/security/qrcodes-for-authenticator-apps>.
 
 :::moniker-end
 

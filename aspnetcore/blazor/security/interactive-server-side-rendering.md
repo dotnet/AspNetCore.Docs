@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/security/server/interactive-server-side-rendering
+uid: blazor/security/interactive-server-side-rendering
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering
 

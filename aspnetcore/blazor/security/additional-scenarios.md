@@ -1,14 +1,14 @@
 ---
-title: Server-side ASP.NET Core Blazor additional security scenarios
+title: ASP.NET Core server-side and Blazor Web App additional security scenarios
 author: guardrex
-description: Learn how to configure server-side Blazor for additional security scenarios.
+description: Learn how to configure server-side Blazor and Blazor Web Apps for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/security/server/additional-scenarios
+uid: blazor/security/additional-scenarios
 ---
-# Server-side ASP.NET Core Blazor additional security scenarios
+# ASP.NET Core server-side and Blazor Web App additional security scenarios
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -23,7 +23,7 @@ This article explains how to configure server-side Blazor for additional securit
 
 Updating this section for Blazor Web Apps is pending [Update section on passing tokens in Blazor Web Apps (`dotnet/AspNetCore.Docs` #31691)](https://github.com/dotnet/AspNetCore.Docs/issues/31691). For more information, see [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390).
 
-For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/server/additional-scenarios?view=aspnetcore-7.0#pass-tokens-to-a-server-side-blazor-app).
+For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0#pass-tokens-to-a-server-side-blazor-app).
 
 <!--
 Tokens available outside of the Razor components in a Blazor Web App can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens, but the approach is valid for other HTTP context state provided by <xref:Microsoft.AspNetCore.Http.HttpContext>.

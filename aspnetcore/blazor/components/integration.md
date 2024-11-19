@@ -557,7 +557,7 @@ To resolve the problem, use ***either*** of the following approaches:
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
 * [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
-* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/interactive-server-side-rendering#cross-site-scripting-xss)
+* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
 * <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
 
 :::moniker-end
@@ -1076,7 +1076,7 @@ To resolve the problem, use ***either*** of the following approaches:
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
 * [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
-* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/interactive-server-side-rendering#cross-site-scripting-xss)
+* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
 
 :::moniker-end
 
@@ -1508,7 +1508,7 @@ To resolve the problem, use ***either*** of the following approaches:
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
 * [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
-* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/interactive-server-side-rendering#cross-site-scripting-xss)
+* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
 
 :::moniker-end
 
@@ -1938,6 +1938,6 @@ To resolve the problem, use ***either*** of the following approaches:
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
 * [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
-* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/interactive-server-side-rendering#cross-site-scripting-xss)
+* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
 
 :::moniker-end

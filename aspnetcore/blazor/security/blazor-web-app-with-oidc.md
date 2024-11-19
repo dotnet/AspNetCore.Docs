@@ -45,7 +45,7 @@ The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 > [!NOTE]
-> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/server/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
+> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
 
 ### Configuration
 
@@ -307,7 +307,7 @@ The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 > [!NOTE]
-> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/server/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
+> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
 
 ### Configuration
 
@@ -836,5 +836,5 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 
 * [`AzureAD/microsoft-identity-web` GitHub repository](https://github.com/AzureAD/microsoft-identity-web/wiki): Helpful guidance on implementing Microsoft Identity Web for Microsoft Entra ID and Azure Active Directory B2C for ASP.NET Core apps, including links to sample apps and related Azure documentation. Currently, Blazor Web Apps aren't explicitly addressed by the Azure documentation, but the setup and configuration of a Blazor Web App for ME-ID and Azure hosting is the same as it is for any ASP.NET Core web app.
 * [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
-* [Manage authentication state in Blazor Web Apps](xref:blazor/security/server/index#manage-authentication-state-in-blazor-web-apps)
+* [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
 * [Refresh token during http request in Blazor Interactive Server with OIDC (`dotnet/aspnetcore` #55213)](https://github.com/dotnet/aspnetcore/issues/55213)

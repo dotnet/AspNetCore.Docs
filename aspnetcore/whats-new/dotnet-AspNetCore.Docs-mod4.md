@@ -15,7 +15,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 
 - <xref:blazor/host-and-deploy/webassembly-caching/index>
 - <xref:blazor/tooling/webassembly>
-- <xref:blazor/security/server/qrcodes-for-authenticator-apps>
+- <xref:blazor/security/qrcodes-for-authenticator-apps>
 - <xref:blazor/js-interop/javascript-location>
 
 ### Updated articles
@@ -60,7 +60,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 - <xref:blazor/security/blazor-web-app-oidc>
   - OIDC Blazor authentication text improvements
   - Clarify use of IHttpContextAccessor/HttpContext
-- <xref:blazor/security/server/index> - Shorten class name
+- <xref:blazor/security/index> - Shorten class name
 
 ## Fundamentals
 
