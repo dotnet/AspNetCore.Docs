@@ -5,7 +5,7 @@ description: Learn about the WebAssembly build tools and how to compile a Blazor
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/12/2024
+ms.date: 11/12/2024
 uid: blazor/tooling/webassembly
 ---
 # ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation

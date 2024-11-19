@@ -5,7 +5,7 @@ description: Learn about built-in Blazor input components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2024
+ms.date: 11/12/2024
 uid: blazor/forms/input-components
 ---
 # ASP.NET Core Blazor input components
@@ -458,7 +458,7 @@ The validation summary displays the friendly name when the field's value is inva
 
 > The Production Date field must be a date.
 
-<!-- UPDATE 9.0 The feature has been backlogged.
+<!-- UPDATE 10.0 The feature has been backlogged.
      https://github.com/dotnet/aspnetcore/issues/49147
 
 > [!NOTE]

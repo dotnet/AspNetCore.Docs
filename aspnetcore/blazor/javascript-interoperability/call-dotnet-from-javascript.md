@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
 # Call .NET methods from JavaScript functions in ASP.NET Core Blazor
@@ -563,7 +563,13 @@ In the following component, the `Trigger JS function` buttons call JS functions 
     {
         if (module is not null)
         {
-            await module.DisposeAsync();
+            try
+            {
+                await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException)
+            {
+            }
         }
 
         dotNetHelper?.Dispose();
@@ -576,6 +582,7 @@ In the preceding example:
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 * The component must explicitly dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference> to permit garbage collection and prevent a memory leak.
+* <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.
 
 `CallDotNetExampleOneHelper.razor.js`:
 

@@ -5,17 +5,13 @@ description: This part of the Blazor movie database app tutorial explains how to
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2024
+ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-2
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 2 - Add and scaffold a model)
 
-<!-- UPDATE 9.0 Activate after release
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article is the second part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
@@ -132,6 +128,7 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
 > [!IMPORTANT]
@@ -142,11 +139,12 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 
 The preceding commands add:
 
-* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
-* Design time tools for EF Core
-* The SQLite and SQL Server providers with the EF Core package as a dependency
-* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Design time tools for EF Core.
+* The SQLite and SQL Server providers with the EF Core package as a dependency.
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions.
 
 In the **Command Palette** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>), use the `.NET: Build` command to build the app.
 
@@ -173,6 +171,7 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
 > [!IMPORTANT]
@@ -180,11 +179,12 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 
 The preceding commands add:
 
-* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
-* Design time tools for EF Core
-* The SQLite and SQL Server providers with the EF Core package as a dependency
-* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Design time tools for EF Core.
+* The SQLite and SQL Server providers with the EF Core package as a dependency.
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
 
 In a command shell opened to the project's root folder, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
 
@@ -307,23 +307,6 @@ builder.Services.AddQuickGridEntityFrameworkAdapter();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 ```
 
-Static server-side rendering (static SSR) is enabled by calling:
-
-* The service collection extension method <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> to register services for server-side rendering (SSR) of Razor components.
-* The request pipeline extension method <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>, which maps the page components defined in the `App` component to the given assembly and renders the `App` component when a request matches a route to a component:
-
-```csharp
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
-
-...
-
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
-```
-
-The extension methods <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> make the app capable of adopting interactive SSR, which isn't relevant until the last part of the tutorial series on interactivity. Over the next several articles, the app's components only adopt static SSR.
-
 ## Create the initial database schema using EF Core's migration feature
 
 The migrations feature in EF Core:
@@ -430,7 +413,30 @@ Add a movie to the database. In the following example, the classic sci-fi movie 
 
 ![Adding The Matrix movie to the database with the 'Create' component](~/blazor/tutorials/movie-database-app/part-2/_static/create-new.png)
 
-When you select the **:::no-loc text="Create":::** button, the movie data is posted to the server and saved in the database. When the app returns to the `Index` page, the added entity appears:
+When you select the **:::no-loc text="Create":::** button, the movie data is posted to the server and saved in the database. 
+
+:::moniker range=">= aspnetcore-9.0"
+
+<!-- UPDATE 9.0 Revert when debugger is updated -->
+
+:::zone pivot="vs"
+
+A Visual Studio debugger regression breaks with a <xref:Microsoft.AspNetCore.Components.NavigationException> on the line that navigates back to the `Index` page:
+
+![Debugger regression: A navigation exception is thrown on the NavigateTo call.](~/blazor/tutorials/movie-database-app/part-2/_static/debugger_regression.png)
+
+To resolve this problem until the debugger is updated by a future Visual Studio release:
+
+1. Deselect the checkbox for **Break when this exception type is user-handled**.
+2. Select the **Continue** button in the menu bar to continue execution.
+
+The exception won't be thrown when the <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> method is executed throughout the rest of the tutorial series.
+
+:::zone-end
+
+:::moniker-end
+
+When the app returns to the `Index` page, the added entity appears:
 
 ![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2/_static/movie-added.png)
 

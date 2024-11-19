@@ -3,18 +3,14 @@ title: Build a Blazor movie database app (Overview)
 author: guardrex
 description: This tutorial explains the basics of building a Blazor Web App with a database, Entity Framework (EF) Core, and user interactivity.
 ms.author: riande
-ms.date: 08/26/2024
+ms.date: 11/12/2024
 monikerRange: '>= aspnetcore-8.0'
 ms.custom: mvc
 uid: blazor/tutorials/movie-database-app/index
 ---
 # Build a Blazor movie database app (Overview)
 
-<!-- UPDATE 9.0 Activate after release
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This tutorial explains the basics of building a Blazor Web App with a database, Entity Framework (EF) Core, and user interactivity.
 
@@ -33,14 +29,12 @@ At the end of the tutorial, you'll have a Blazor Web App that can display and ma
 
 ## Secure authentication flow required for production apps
 
-<!-- UPDATE 9.0 If we get a BWA + MS Identity Web app+article,
-                add it to the list. -->
-
 This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/server/index> and the following articles in the *Server* security node
 * <xref:blazor/security/blazor-web-app-oidc>
+* <xref:blazor/security/blazor-web-app-entra>
 
 For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
 

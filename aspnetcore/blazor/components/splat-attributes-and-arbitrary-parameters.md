@@ -5,14 +5,14 @@ description: Learn how components can capture and render additional attributes i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/components/attribute-splatting
 ---
 # ASP.NET Core Blazor attribute splatting and arbitrary parameters
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then applied to an element, calling *splatting*, when the component is rendered using the [`@attributes`](xref:mvc/views/razor#attributes) Razor directive attribute. This scenario is useful for defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
+Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then applied to an element, called *splatting*, when the component is rendered using the [`@attributes`](xref:mvc/views/razor#attributes) Razor directive attribute. This scenario is useful for defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
 
 ## Attribute splatting
 

@@ -5,7 +5,7 @@ description: Learn about the ASP.NET Core Razor component lifecycle and how to u
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/22/2024
+ms.date: 11/12/2024
 uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Razor component lifecycle
@@ -37,9 +37,6 @@ Component lifecycle events:
 > Asynchronous actions performed in lifecycle events might not complete before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
 A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
-
-<!-- UPDATE 9.0 Update the diagram to drop "Property injection"?
-                https://github.com/dotnet/AspNetCore.Docs/issues/32091 -->
 
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
@@ -209,7 +206,7 @@ To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase
 
 :::moniker range="< aspnetcore-8.0"
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/integration#persist-prerendered-state>.
 
 :::moniker-end
 
@@ -615,7 +612,7 @@ The content in this section focuses on Blazor Web Apps and stateful SignalR *rec
 
 :::moniker range="< aspnetcore-8.0"
 
-Although the content in this section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+Although the content in this section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/integration#persist-prerendered-state>.
 
 :::moniker-end
 
@@ -945,6 +942,15 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
   The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms/validation#validator-components> article.
 
 For more information, see [Cleaning up unmanaged resources](/dotnet/standard/garbage-collection/unmanaged) and the topics that follow it on implementing the `Dispose` and `DisposeAsync` methods.
+
+### Disposal during JS interop
+
+Trap <xref:Microsoft.JSInterop.JSDisconnectedException> in potential cases where loss of Blazor's SignalR circuit prevents JS interop calls and results an unhandled exception.
+
+For more information, see the following resources:
+
+* [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules)
+* [JavaScript interop calls without a circuit](xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit)
 
 ## Cancelable background work
 

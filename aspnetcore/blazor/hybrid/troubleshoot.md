@@ -5,16 +5,12 @@ description: Learn how to troubleshoot issues in ASP.NET Core Blazor Hybrid with
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/hybrid/troubleshoot
 ---
 # Troubleshoot ASP.NET Core Blazor Hybrid
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> has built-in logging that can help you diagnose problems in your Blazor Hybrid app.
 

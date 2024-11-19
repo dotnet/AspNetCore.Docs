@@ -5,7 +5,7 @@ description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/fundamentals/startup
 ---
 # ASP.NET Core Blazor startup
@@ -581,8 +581,8 @@ The loading progress indicator used in Blazor WebAssembly apps isn't present in 
 * Showing multiple loading indicators on the same rendered page.
 * Inadvertently discarding prerendered content while the .NET WebAssembly runtime is loading.
 
-<!-- UPDATE 9.0 Will be removed for a new feature in this area. 
-                Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
+<!-- UPDATE 10.0 Will be removed for a new feature in this area. 
+                 Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
 
 A future release of .NET might provide a framework-based loading progress indicator. In the meantime, you can add a custom loading progress indicator to a Blazor Web App.
 

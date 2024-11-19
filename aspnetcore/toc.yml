@@ -322,6 +322,8 @@ items:
         uid: fundamentals/http-requests
       - name: Static files
         uid: fundamentals/static-files
+      - name: dotnet-scaffold telemetry
+        uid: fundamentals/dotnet-scaffold-telemetry
   - name: Web apps
     items:
       - name: Choose an ASP.NET Core UI
@@ -544,10 +546,10 @@ items:
                 uid: blazor/components/dynamiccomponent
               - name: QuickGrid component
                 uid: blazor/components/quickgrid
-              - name: Prerender and integrate components
-                uid: blazor/components/prerendering-and-integration
-              - name: Integrate components
+              - name: Integrate with MVC/Razor Pages
                 uid: blazor/components/integration
+              - name: Integrate with MVC/Razor Pages (hosted WebAssembly)
+                uid: blazor/components/integration-hosted-webassembly
               - name: Class libraries
                 uid: blazor/components/class-libraries
               - name: Class libraries with static SSR
@@ -797,6 +799,10 @@ items:
             uid: mvc/controllers/filters
           - name: Razor SDK
             uid: razor-pages/sdk
+          - name: Razor breaking changes since .NET 8
+            href: ../_razor/docs/Compiler%20Breaking%20Changes%20-%20DotNet%208.md
+          - name: Razor breaking changes since .NET 9
+            href: ../_razor/docs/Compiler%20Breaking%20Changes%20-%20DotNet%209.md
           - name: View components
             uid: mvc/views/view-components
           - name: View compilation
@@ -1295,6 +1301,8 @@ items:
         uid: diagnostics/asp0025
       - name: ASP0026
         uid: diagnostics/asp0026
+      - name: ASP0028
+        uid: diagnostics/asp0028
       - name: BL0001
         uid: diagnostics/bl0001
       - name: BL0002
@@ -1490,6 +1498,8 @@ items:
             uid: security/authentication/index
           - name: Choose an identity solution
             uid: security/how-to-choose-identity
+          - name: Configure OpenID Connect
+            uid: security/authentication/configure-oidc-web-authentication
           - name: ASP.NET Core Identity
             items:
               - name: Overview
@@ -1562,6 +1572,8 @@ items:
                     href: /azure/active-directory-b2c/enable-authentication-web-api
           - name: Configure cookie authentication
             uid: security/authentication/cookie
+          - name: Configure OIDC web authentication
+            uid: security/authentication/configure-oidc-web-authentication
           - name: Configure certificate authentication
             uid: security/authentication/certauth
           - name: Configure Windows authentication

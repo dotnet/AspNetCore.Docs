@@ -5,7 +5,7 @@ description: Learn where to place and how to load JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/03/2024
+ms.date: 11/12/2024
 uid: blazor/js-interop/javascript-location
 ---
 # JavaScript location in ASP.NET Core Blazor apps
@@ -193,14 +193,9 @@ JS isolation provides the following benefits:
 * Imported JS no longer pollutes the global namespace.
 * Consumers of a library and components aren't required to import the related JS.
 
-For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+In server-side scenarios, always trap <xref:Microsoft.JSInterop.JSDisconnectedException> in case loss of Blazor's SignalR circuit prevents a JS interop call from disposing a module, which results in an unhandled exception. Blazor WebAssembly apps don't use a SignalR connection during JS interop, so there's no need to trap <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor WebAssembly apps for module disposal.
 
-[Dynamic import with the `import()` operator](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is supported with ASP.NET Core and Blazor:
+For more information, see the following resources:
 
-```javascript
-if ({CONDITION}) import("/additionalModule.js");
-```
-
-In the preceding example, the `{CONDITION}` placeholder represents a conditional check to determine if the module should be loaded.
-
-For browser compatibility, see [Can I use: JavaScript modules: dynamic import](https://caniuse.com/es6-module-dynamic-import).
+* [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules)
+* [JavaScript interop calls without a circuit](xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit)

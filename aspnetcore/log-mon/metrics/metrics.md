@@ -90,6 +90,7 @@ For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-coun
 ## Enrich the ASP.NET Core request metric
 
 ASP.NET Core has many built-in metrics. The `http.server.request.duration` metric:
+
 * Records the duration of HTTP requests on the server.
 * Captures request information in tags, such as the matched route and response status code.
 
@@ -106,7 +107,29 @@ The proceeding example:
   * The tag allows requests to be categorized by marketing medium type, which could be useful when analyzing web app traffic.
 
 > [!NOTE]
-> Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range cause a large combination of tags. Collection tools have a limit on how many combinations they support for a counter and may start filtering results out to avoid excessive memory usage.
+> Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Tags that are too numerous or have an unbound range create many tag combinations, resulting in high dimensions. Collection tools have limits on supported dimensions for a counter and may filter results to prevent excessive memory use.
+
+:::moniker range=">= aspnetcore-9.0"
+
+## Opt-out of HTTP metrics on certain endpoints and requests
+
+Opting out of recording metrics is beneficial for endpoints frequently called by automated systems, such as health checks. Recording metrics for these requests is generally unnecessary. Unwanted telemetry uses resources to collect and store, and can distort results displayed in a telemetry dashboard.
+
+HTTP requests to an endpoint can be excluded from metrics by adding metadata, with either the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute or the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics``1(``0)) method:
+
+* Add the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute to the Web API controller, SignalR hub or gRPC service.
+* Call [DisableHttpMetrics](xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics``1(``0)) when mapping endpoints in app startup:
+
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/DisableMetrics/Program.cs" id="snippet_1" highlight="5":::
+
+Alternatively, the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature.MetricsDisabled?displayProperty=nameWithType> property has been added for:
+
+* Advanced scenarios where a request doesn't map to an endpoint.
+* Dynamically disabling metrics collection for specific HTTP requests.
+
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/DisableMetrics/Program.cs" id="snippet_2":::
+
+:::moniker-end
 
 ## Create custom metrics
 

@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/19/2024
+ms.date: 11/12/2024
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -1843,8 +1843,6 @@ In the preceding code, the CSS selector, `#app`, indicates that the `App` compon
 
 MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register statically-rendered Blazor WebAssembly root components:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```cshtml
 <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
 ```
@@ -1853,21 +1851,8 @@ Statically-rendered components can only be added to the app. They can't be remov
 
 For more information, see the following resources:
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
 * <xref:blazor/components/integration>
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
-
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
-* <xref:blazor/components/prerendering-and-integration>
-
-:::moniker-end
 
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>
