@@ -19,32 +19,11 @@ The following example uses the [.NET Aspire dashboard](/dotnet/aspire/fundamenta
 
 Add the following startup code to the `Program.cs` file:
 
-```csharp
-// Set OTEL_EXPORTER_OTLP_ENDPOINT environment variable depending on where your OTEL endpoint is
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddRazorPages();
-builder.Services.AddSignalR();
-
-builder.Services.AddOpenTelemetry()
-    .WithTracing(tracing =>
-    {
-        if (builder.Environment.IsDevelopment())
-        {
-            // We want to view all traces in development
-            tracing.SetSampler(new AlwaysOnSampler());
-        }
-
-        tracing.AddAspNetCoreInstrumentation();
-        tracing.AddSource("Microsoft.AspNetCore.SignalR.Server");
-    });
-
-builder.Services.ConfigureOpenTelemetryTracerProvider(tracing => tracing.AddOtlpExporter());
-```
+[!code-csharp[](~/release-notes/aspnetcore-9/samples/SignalRChatTraceExample/Program.cs?name=snippet_trace_signalr_server&highlight=1,13-26)]
 
 The following is example output from the Aspire Dashboard:
 
-:::image type="content" source="~/release-notes/aspnetcore-9/_static/signalr-activites-events.png" alt-text="Activity list for SignalR Hub method call events":::
+:::image type="content" source="~/release-notes/aspnetcore-9/_static/signalr-activities-events.png" alt-text="Activity list for SignalR Hub method call events":::
 
 #### .NET SignalR client ActivitySource
 
