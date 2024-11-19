@@ -11,6 +11,8 @@ items:
         href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
   - name: Get started
     uid: getting-started
+  - name: Configure OpenID Connect z
+    uid: security/authentication/configure-oidc-web-authentication
   - name: What's new
     items:
       - name: What's new in 9
