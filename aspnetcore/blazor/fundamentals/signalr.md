@@ -46,7 +46,7 @@ Use <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions
 
 Usage examples:
 
-Disable compression by setting `ConfigureWebSocketOptions` to `null`, which reduces the [vulnerability of the app to attack](xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
+Disable compression by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> to `true`, which reduces the [vulnerability of the app to attack](xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
 
 ```csharp
 builder.MapRazorComponents<App>()
