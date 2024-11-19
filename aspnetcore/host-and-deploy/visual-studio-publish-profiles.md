@@ -226,7 +226,7 @@ Using the default publish profile, the following command publishes to an MSDeplo
 
 msbuild /p:Configuration=Release /p:DeployOnBuild=true /p:UserName="<UN> /p:Password="pw"
 
-Delete the RG or restore the basic auth settings to disabled.
+If testing, delete the app or restore the basic auth settings to disabled.
 -->
 
 ## Set the environment
