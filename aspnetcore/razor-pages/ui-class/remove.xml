@@ -3,6 +3,7 @@
 
     <PropertyGroup>
       // Markup removed for brevity.
+      <TypescriptOutDir>wwwroot</TypescriptOutDir>
       <PrepareForBuildDependsOn>
         CompileTypeScriptWithTSConfig;
         GetTypeScriptOutputForPublishing;$(PrepareForBuildDependsOn)
