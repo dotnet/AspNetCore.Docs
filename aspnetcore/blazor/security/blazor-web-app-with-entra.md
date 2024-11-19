@@ -133,7 +133,10 @@ If using Visual Studio, you can confirm that the secret is set by right-clicking
 To create a key vault and set a client secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret. When you set the access policy for the secret in the **Access policies** panel:
 
 * Only the **Get** secret permission is required.
-* Select the application as the **Principal** for the secret. 
+* Select the application as the **Principal** for the secret.
+
+> [!IMPORTANT]
+> A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.
 
 The following `GetKeyVaultSecret` method retrieves a secret from a key vault. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
 
