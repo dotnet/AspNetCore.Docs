@@ -1450,9 +1450,9 @@ items:
         items:
           - name: Overview
             uid: security/authentication/index
-          - name: Configure OpenID Connect 
+          - name: Configure OpenID Connect z
             uid: security/authentication/configure-oidc-web-authentication
-          - name: Choose an identity solution
+          - name: Choose an identity solution y
             uid: security/how-to-choose-identity
           - name: ASP.NET Core Identity
             items:
