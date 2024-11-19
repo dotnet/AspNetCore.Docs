@@ -16,7 +16,7 @@ builder.Services.AddOpenTelemetry()
     {
         if (builder.Environment.IsDevelopment())
         {
-            // We want to view all traces in development
+            // View all traces only in development environment.
             tracing.SetSampler(new AlwaysOnSampler());
         }
 
@@ -27,6 +27,8 @@ builder.Services.AddOpenTelemetry()
 builder.Services.ConfigureOpenTelemetryTracerProvider(tracing => tracing.AddOtlpExporter());
 
 var app = builder.Build();
+
+// </snippet_trace_signalr_server>
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
