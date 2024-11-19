@@ -108,7 +108,7 @@ dotnet publish -c Release -o C:\MyWebs\test
 
 The `dotnet publish` command calls MSBuild, which invokes the `Publish` target. Any parameters passed to `dotnet publish` are passed to MSBuild. The `-c` and `-o` parameters map to MSBuild's `Configuration` and `OutputPath` properties, respectively.
 
-[Project properties](/visualstudio/msbuild/msbuild-command-line-reference) can be passed using either of the following formats:
+[MSBuild properties](/visualstudio/msbuild/msbuild-command-line-reference) can be passed using either of the following formats:
 
 * `-p:<NAME>=<VALUE>`
 * `/p:<NAME>=<VALUE>`
