@@ -12,6 +12,6 @@
 
     <ItemGroup>
       <Content Remove="wwwroot\{path-to-typescript-outputs}" />
-    </ItemGroup>H>
+    </ItemGroup>
 
   </Project>
