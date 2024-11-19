@@ -5,16 +5,12 @@ description: The QuickGrid component is a Razor component for quickly and effici
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/19/2024
+ms.date: 11/12/2024
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
 
-<!-- UPDATE 9.0 Enable the following
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
@@ -43,7 +39,7 @@ To implement a `QuickGrid` component:
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> if the amount of data rendered is small or if you're using pagination.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
-* `OverscanCount`: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is 3. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. 
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OverscanCount%2A>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is 3. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. 
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance.
 * In the `QuickGrid` child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
@@ -131,8 +127,8 @@ Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.
 <QuickGrid Items="..." Pagination="pagination">
 ```
 
-<!-- UPDATE 9.0 Check on RC2 per https://github.com/dotnet/aspnetcore/issues/57289
-                to see if it's resolved for multiple paginator components. -->
+<!-- UPDATE 10.0 Tracked by https://github.com/dotnet/aspnetcore/issues/57289
+                 for multiple paginator components problem. -->
 
 To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above or below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
 
@@ -236,14 +232,10 @@ The following example filters movies by a movie title entered in a search box. T
 }
 ```
 
-<!-- UPDATE 9.0 - Enable this cross-link after merging 
-                  https://github.com/dotnet/AspNetCore.Docs/pull/32747.
-
 For a working example, see the following resources:
 
 * [Build a Blazor movie database app tutorial](xref:blazor/tutorials/movie-database-app/index)
 * [Blazor movie database sample app](https://github.com/dotnet/blazor-samples): Select the latest version folder in the repository. The sample folder for the tutorial's project is named `BlazorWebAppMovies`.
--->
 
 ## Display name support
 
@@ -313,7 +305,7 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
 ```razor
 @page "/food-recalls"
 @inject HttpClient Http
-@inject NavigationManager NavManager
+@inject NavigationManager Navigation
 
 <PageTitle>Food Recalls</PageTitle>
 
@@ -332,14 +324,14 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
 <p>Total: <strong>@numResults results found</strong></p>
 
 @code {
-    GridItemsProvider<FoodRecall>? foodRecallProvider;
-    int numResults;
+    private GridItemsProvider<FoodRecall>? foodRecallProvider;
+    private int numResults;
 
     protected override async Task OnInitializedAsync()
     {
         foodRecallProvider = async req =>
         {
-            var url = NavManager.GetUriWithQueryParameters(
+            var url = Navigation.GetUriWithQueryParameters(
                 "https://api.fda.gov/food/enforcement.json", 
                 new Dictionary<string, object?>
             {
@@ -492,9 +484,4 @@ dotnet aspnet-codegenerator blazor -h
 
 ---
 
-<!-- UPDATE 9.0 Uncomment link after
-                https://github.com/dotnet/AspNetCore.Docs/pull/32747
-                merges.
-
 For an example use of the `QuickGrid` scaffolder, see <xref:blazor/tutorials/movie-database-app/index>.
--->

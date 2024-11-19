@@ -5,17 +5,13 @@ description: This part of the Blazor movie database app tutorial explains how to
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2024
+ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-8
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 8 - Add interactivity)
 
-<!-- UPDATE 9.0 Activate after release
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article is the eighth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 

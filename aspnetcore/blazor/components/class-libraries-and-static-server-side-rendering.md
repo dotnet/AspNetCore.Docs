@@ -5,16 +5,12 @@ description: Learn how component authors can support static server-side renderin
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/components/class-libraries-with-static-ssr
 ---
 # ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article provides guidance for component library authors considering support for static server-side rendering (static SSR).
 
@@ -33,7 +29,7 @@ All existing components can still be used with static SSR. However, the cost of 
 
 &dagger;There's a special exception for the `@onsubmit` event handler for forms, which is always functional, regardless of render mode.
 
-This is equivalent to how components behave during [prerendering](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), before a Blazor circuit or the .NET WebAssembly runtime is started.
+This is equivalent to how components behave during [prerendering](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), before Blazor's SignalR circuit or the .NET WebAssembly runtime is started.
 
 For components whose only role is to produce read-only DOM content, these behaviors for static SSR are completely sufficient. However, library authors must consider what approach to take when including interactive components in their libraries.
 

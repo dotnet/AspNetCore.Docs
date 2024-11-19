@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in JavaScript apps and
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/components/js-spa-frameworks
 ---
 # Use Razor components in JavaScript apps and SPA frameworks
@@ -23,10 +23,10 @@ This article covers how to render Razor components from JavaScript, use Blazor c
 
 ## Angular sample apps
 
-<!-- UPDATE 9.0 Add migration instructions cross-link to .NET 9 -->
+<!-- UPDATE 10.0 Add migration instructions -->
 
-* [CustomElementsBlazorSample (Blazor Server) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-server`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-server): Blazor Server is supported in .NET 8. To migrate this .NET 7 sample to .NET 8, see <xref:migration/70-to-80#update-a-blazor-server-app>.
-* [CustomElementsBlazorSample (Blazor WebAssembly) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-wasm`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-wasm): To migrate this .NET 7 sample to .NET 8, see <xref:migration/70-to-80#update-a-blazor-webassembly-app>.
+* [CustomElementsBlazorSample (Blazor Server) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-server`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-server): Blazor Server is supported in .NET 8/9. To migrate this .NET 7 sample, see <xref:migration/70-to-80#update-a-blazor-server-app> and <xref:migration/80-to-90>.
+* [CustomElementsBlazorSample (Blazor WebAssembly) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-wasm`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-wasm): To migrate this .NET 7 sample, see <xref:migration/70-to-80#update-a-blazor-webassembly-app> and <xref:migration/80-to-90>.
 
 ## Render Razor components from JavaScript
 
@@ -126,7 +126,7 @@ window.showQuote = async () => {
   });
 }
 
-const btn = document.querySelector("showQuoteBtn");
+const btn = document.querySelector("#showQuoteBtn");
 btn.addEventListener("click", showQuote);
 ```
 

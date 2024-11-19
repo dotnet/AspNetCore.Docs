@@ -5,16 +5,12 @@ description: Learn about Razor component prerendering in ASP.NET Core Blazor app
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/22/2024
+ms.date: 11/12/2024
 uid: blazor/components/prerender
 ---
 # Prerender ASP.NET Core Razor components
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 <!--
     NOTE: The console output block quotes in this topic use a double-space 

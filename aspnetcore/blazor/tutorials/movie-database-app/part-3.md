@@ -5,17 +5,13 @@ description: This part of the Blazor movie database app tutorial explains the Ra
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2024
+ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-3
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 3 - Learn about Razor components)
 
-<!-- UPDATE 9.0 Activate after release
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article is the third part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
@@ -131,7 +127,7 @@ The final `NavMenu` component after making the preceding changes:
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
+    <nav class="nav flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
@@ -207,6 +203,7 @@ The `MainLayout` component adopts the following additional specifications:
 * The `<main>` element's content includes:
   * An **:::no-loc text="About":::** link that sends the user to the ASP.NET Core documentation landing page.
   * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) parameter, where components that use the layout are rendered.
+  * The error UI (`<div id="blazor-error-ui" ...>`), where a notice about an unhandled error is displayed.
 
 The default layout (`MainLayout` component) is specified in the `Routes` component (`Components/Pages/Routes.razor`):
 
@@ -233,7 +230,7 @@ The `@page` directive's route template indicates the URL for the page is `/movie
 * `BlazorWebAppMovies.Models`
 * `BlazorWebAppMovies.Data`
 
-The database context factory (`IDbContextFactory<BlazorWebAppMoviesContext>`) is injected into the component with the `@inject` directive. The factory approach requires that a database context be disposed, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive.
+The database context factory (`IDbContextFactory<T>`, where the type (`T`) is a `BlazorWebAppMoviesContext`) is injected into the component with the `@inject` directive. The factory approach requires that a database context be disposed, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive.
 
 The page title is set via the Blazor framework's <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component, and an H1 section heading is the first rendered element:
 
@@ -320,8 +317,9 @@ For the movie example from the last part of the tutorial series, *The Matrix*&co
 
 The column names are taken from the `Movie` model properties, so the release date doesn't have a space between the words. Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title> to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> with a value that includes a space between the words:
 
-```razor
-<PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
+```diff
+- <PropertyColumn Property="movie => movie.ReleaseDate" />
++ <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
 ```
 
 Run the app to see that the column displays two words for the release date.
@@ -442,7 +440,7 @@ CSS classes aren't present in the following example to simplify the display:
 ```razor
 <EditForm method="post" Model="Movie" OnValidSubmit="AddMovie" FormName="create" Enhance>
     <DataAnnotationsValidator />
-    <ValidationSummary />
+    <ValidationSummary role="alert" />
     <div>
         <label for="title">Title:</label> 
         <InputText id="title" @bind-Value="Movie.Title" /> 

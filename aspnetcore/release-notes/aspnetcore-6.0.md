@@ -160,7 +160,7 @@ Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compi
 
 ### Persist prerendered state
 
-Blazor supports persisting state in a prerendered page so that the state doesn't need to be recreated when the app is fully loaded. For more information, see <xref:blazor/components/prerendering-and-integration?view=aspnetcore-6.0&pivots=server#persist-prerendered-state>.
+Blazor supports persisting state in a prerendered page so that the state doesn't need to be recreated when the app is fully loaded. For more information, see <xref:blazor/components/integration?view=aspnetcore-6.0&pivots=server#persist-prerendered-state>.
 
 ### Error boundaries
 

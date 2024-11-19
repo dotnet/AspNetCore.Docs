@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps, including debugging Blazor WebAssem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/debug
 ---
 # Debug ASP.NET Core apps

@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
@@ -1283,7 +1283,7 @@ To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](x
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> Prerendering is enabled by default in hosted Blazor WebAssembly apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see <xref:blazor/components/prerendering-and-integration?pivots=webassembly#persist-prerendered-state>.
+> Prerendering is enabled by default in hosted Blazor WebAssembly apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see <xref:blazor/components/integration-hosted-webassembly#persist-prerendered-state>.
 
 :::moniker-end
 

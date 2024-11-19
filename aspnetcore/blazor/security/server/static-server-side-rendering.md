@@ -5,16 +5,12 @@ description: Learn how to mitigate security threats in static server-side Blazor
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/security/server/static-server-side-rendering
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor static server-side rendering
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article explains the security considerations that developers should take into account when developing Blazor Web Apps with static server-side rendering.
 
@@ -97,7 +93,7 @@ In addition, there are limits defined for the form, such as the maximum form key
 
 In general, the app must evaluate when there's a chance that a request triggers an asymmetric amount of work by the server. Examples of this include when the user sends a request parameterized by N and the server performs an operation in response that is N times as expensive, where N is a parameter that a user controls and can grow indefinitely. Normally, the app must either impose a limit on the maximum N that it's willing to process or ensure that any operation is either less, equal, or more expensive than the request by a constant factor.
 
-This aspect has more to do with the difference in growth between the work the client performs and the work the server performs than with a specific 1→N comparison. For example, a client might submit a work item (inserting elements into a list) that takes N units of time to perform, but the server needs N^2^ to process (because it might be doing something very naive). It's the difference between N and N^2^ that matters.
+This aspect has more to do with the difference in growth between the work the client performs and the work the server performs than with a specific 1→N comparison. For example, a client might submit a work item (inserting elements into a list) that takes N units of time to perform, but the server needs N<sup>2</sup> to process (because it might be doing something very naive). It's the difference between N and N<sup>2</sup> that matters.
 
 As such, there's a limit on how much work the server must be willing to do, which is specific to the app. This aspect applies to server-side workloads, since the resources are on the server, but doesn't necessarily apply to WebAssembly workloads on the client in most cases.
 

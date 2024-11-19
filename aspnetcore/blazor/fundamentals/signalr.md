@@ -5,7 +5,7 @@ description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
@@ -34,23 +34,23 @@ Blazor works best when using WebSockets as the SignalR transport due to lower la
 
 ## WebSocket compression for Interactive Server components
 
-<!-- UPDATE 9.0 Add API doc cross-links -->
-
 By default, Interactive Server components:
 
-* Enable compression for [WebSocket connections](xref:fundamentals/websockets). `ConfigureWebsocketOptions` controls WebSocket compression.
+* Enable compression for [WebSocket connections](xref:fundamentals/websockets). <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> (default: `false`) controls WebSocket compression.
 
 * Adopt a `frame-ancestors` [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) directive set to `'self'`, which only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided. `ContentSecurityFrameAncestorPolicy` controls the `frame-ancestors` CSP.
 
-The `frame-ancestors` CSP can be removed manually by setting the value of `ConfigureWebSocketOptions` to `null`, as you may want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy). When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it might make the app vulnerable to attack.
+The `frame-ancestors` CSP can be removed manually by setting the value of <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null`, as you may want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy). When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it might make the app vulnerable to attack.
+
+Use <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureWebSocketAcceptContext> to configure the <xref:Microsoft.AspNetCore.Http.WebSocketAcceptContext> for the websocket connections used by the server components. By default, a policy that enables compression and sets a CSP for the frame ancestors defined in <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> is applied.
 
 Usage examples:
 
-Disable compression by setting `ConfigureWebSocketOptions` to `null`, which reduces the [vulnerability of the app to attack](xref:blazor/security/server/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
+Disable compression by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> to `true`, which reduces the [vulnerability of the app to attack](xref:blazor/security/server/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
 
 ```csharp
 builder.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode(o => o.ConfigureWebSocketOptions = null)
+    .AddInteractiveServerRenderMode(o => o.DisableWebSocketCompression = true)
 ```
 
 When compression is enabled, configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quotes required), which allows WebSocket compression but prevents browsers from embedding the app into any `<iframe>`:
@@ -60,7 +60,7 @@ builder.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
 ```
 
-When compression is enabled, remove the `frame-ancestors` CSP by setting `ContentSecurityFrameAncestorsPolicy` to `null`. This scenario is only recommended for apps that [set the CSP in a centralized way](xref:blazor/security/content-security-policy):
+When compression is enabled, remove the `frame-ancestors` CSP by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null`. This scenario is only recommended for apps that [set the CSP in a centralized way](xref:blazor/security/content-security-policy):
 
 ```csharp
 builder.MapRazorComponents<App>()
@@ -70,7 +70,7 @@ builder.MapRazorComponents<App>()
 > [!IMPORTANT]
 > Browsers apply CSP directives from multiple CSP headers using the strictest policy directive value. Therefore, a developer can't add a weaker `frame-ancestors` policy than `'self'` on purpose or by mistake.
 >
-> Single quotes are required on the string value passed to `ContentSecurityFrameAncestorsPolicy`:
+> Single quotes are required on the string value passed to <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy>:
 >
 > <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported values:</span> `none`, `self`
 >
@@ -156,13 +156,13 @@ If prerendering is configured, prerendering occurs before the client connection 
 If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
-* <xref:blazor/components/prerendering-and-integration>
+* <xref:blazor/components/integration>
 
 :::moniker-end
 
 ## Prerendered state size and SignalR message size limit
 
-A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+A large prerendered state size may exceed Blazor's SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
 * The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
@@ -294,11 +294,6 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 
 :::moniker-end
 
-<!-- UPDATE 9.0 Check on a fix for the added 
-                MaximumParallelInvocationsPerClient warning
-                per https://github.com/dotnet/aspnetcore/issues/53951 
-                and version if fixed. -->
-
 > [!WARNING]
 > The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of Service (DoS) attacks](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks).
 >
@@ -323,7 +318,7 @@ app.MapBlazorHub(options =>
 });
 ```
 
-<!-- UPDATE 9.0 The following is scheduled for a fix in .NET 9 -->
+<!-- UPDATE 10.0 The following is scheduled for a fix in .NET 10 -->
 
 Configuring the hub used by <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> fails with an `AmbiguousMatchException`:
 
@@ -496,11 +491,39 @@ In the `Program` file, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpoint
 
 ## Reflect the server-side connection state in the UI
 
-When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
+If the client detects a lost connection to the server, a default UI is displayed to the user while the client attempts to reconnect:
+
+:::moniker range=">= aspnetcore-9.0"
+
+![The default reconnection UI.](signalr/_static/reconnection-ui-90-or-later.png)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+![The default reconnection UI.](signalr/_static/reconnection-ui-80-or-earlier.png)
+
+:::moniker-end
+
+If reconnection fails, the user is instructed to retry or reload the page:
+
+:::moniker range=">= aspnetcore-9.0"
+
+![The default retry UI.](signalr/_static/retry-ui-90-or-later.png)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+![The default retry UI.](signalr/_static/retry-ui-80-or-earlier.png)
+
+:::moniker-end
+
+If reconnection succeeds, user state is often lost. Custom code can be added to any component to save and reload user state across connection failures. For more information, see <xref:blazor/state-management>.
 
 :::moniker range=">= aspnetcore-8.0"
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the `App` component.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the `App` component.
 
 `App.razor`:
 
@@ -508,7 +531,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -516,7 +539,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the layout page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the layout page.
 
 `Pages/_Layout.cshtml`:
 
@@ -524,7 +547,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 :::moniker range="< aspnetcore-6.0"
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -532,7 +555,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 ```cshtml
 <div id="components-reconnect-modal">
-    There was a problem with the connection!
+    Connection lost.<br>Attempting to reconnect...
 </div>
 ```
 
@@ -562,6 +585,15 @@ Add the following CSS styles to the site's stylesheet.
 #components-reconnect-modal.components-reconnect-failed, 
 #components-reconnect-modal.components-reconnect-rejected {
     display: block;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.3);
+    margin: 50px 50px;
+    position: fixed;
+    top: 0;
+    z-index: 10001;
 }
 ```
 
@@ -586,7 +618,7 @@ Customize the delay before the reconnection UI appears by setting the `transitio
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 `wwwroot/css/site.css`:
 
@@ -611,11 +643,9 @@ To display the current reconnect attempt, define an element with an `id` of `com
 </div>
 ```
 
-When the custom reconnect modal appears, it renders content similar to the following based on the preceding code:
+When the custom reconnect modal appears, it renders the following content with a reconnection attempt counter:
 
-```html
-There was a problem with the connection! (Current reconnect attempt: 3 / 8)
-```
+> :::no-loc text="There was a problem with the connection! (Current reconnect attempt: 1 / 8)":::
 
 :::moniker-end
 
@@ -738,25 +768,25 @@ Circuit activity handlers also provide an approach for accessing scoped Blazor s
 
 :::moniker range=">= aspnetcore-8.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `App.razor` file of a Blazor Web App:
+Configure the manual start of Blazor's SignalR circuit in the `App.razor` file of a Blazor Web App:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
+Configure the manual start of Blazor's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server):
+Configure the manual start of Blazor's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server):
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
+Configure the manual start of Blazor's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
 
 :::moniker-end
 
@@ -1364,9 +1394,9 @@ protected override async Task OnInitializedAsync()
 
 :::moniker range=">= aspnetcore-5.0"
 
-## Disconnect the Blazor circuit from the client
+## Disconnect Blazor's SignalR circuit from the client
 
-A Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
+Blazor's SignalR circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
 
 ```javascript
 window.addEventListener('pagehide', () => {

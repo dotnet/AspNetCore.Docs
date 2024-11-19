@@ -9,7 +9,8 @@ uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-ga-yet.md)] 
+> [!IMPORTANT]
+> `HybridCache` is currently still in preview but will be fully released *after* .NET 9.0 in a future minor release of .NET Extensions.
 
 <!--
 [!INCLUDE[](~/includes/not-latest-version.md)] 

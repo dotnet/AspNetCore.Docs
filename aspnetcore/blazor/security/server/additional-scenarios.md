@@ -5,7 +5,7 @@ description: Learn how to configure server-side Blazor for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 11/12/2024
 uid: blazor/security/server/additional-scenarios
 ---
 # Server-side ASP.NET Core Blazor additional security scenarios

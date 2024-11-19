@@ -263,7 +263,7 @@ The Blazor project templates no longer depend on [Open Iconic](https://github.co
 
 ### Support for dialog cancel and close events
 
-Blazor now supports the [`cancel`](https://developer.mozilla.org/docs/Web/API/HTMLElement/cancel_event) and [`close`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event) events on the `dialog` HTML element.
+Blazor now supports the [`cancel`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/cancel_event) and [`close`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event) events on the `dialog` HTML element.
 
 In the following example:
 

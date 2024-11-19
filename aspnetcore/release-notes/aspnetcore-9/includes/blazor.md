@@ -1,6 +1,6 @@
 ### .NET MAUI Blazor Hybrid and Web App solution template
 
-A new solution template makes it easier to create .NET MAUI native and Blazor web client apps that share the same UI. This template shows how to create client apps that maximize code reuse and target Android, iOS, Mac, Windows, and Web. 
+A new solution template makes it easier to create .NET MAUI native and Blazor web client apps that share the same UI. This template shows how to create client apps that maximize code reuse and target Android, iOS, Mac, Windows, and Web.
 
 Key features of this template include:
 
@@ -28,20 +28,11 @@ The template is also available in Visual Studio.
 
 For more information, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app?view=aspnetcore-9.0>.
 
-### Static asset delivery optimization
-
-`MapStaticAssets` is a new middleware that helps optimize the delivery of static assets in any ASP.NET Core app, including Blazor apps.
-
-For more information, see either of the following resources:
-
-* The [Optimizing static web asset delivery](#optimizing-static-web-asset-delivery) section of this article.
-* <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0#static-asset-middleware>.
-
 ### Detect rendering location, interactivity, and assigned render mode at runtime
 
 We've introduced a new API designed to simplify the process of querying component states at runtime. This API provides the following capabilities:
 
-* **Determine the current execution location of the component**: This can be particularly useful for debugging and optimizing component performance.
+* **Determine the current execution location of the component**: This can be useful for debugging and optimizing component performance.
 * **Check if the component is running in an interactive environment**: This can be helpful for components that have different behaviors based on the interactivity of their environment.
 * **Retrieve the assigned render mode for the component**: Understanding the render mode can help in optimizing the rendering process and improving the overall performance of a component.
 
@@ -82,10 +73,10 @@ The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationSta
 
 This works well if you've started from the Blazor Web App project template and selected the **Individual Accounts** option, but it's a lot of code to implement yourself or copy if you're trying to add authentication to an existing project. There are now APIs, which are now part of the Blazor Web App project template, that can be called in the server and client projects to add this functionality:
 
-* `AddAuthenticationStateSerialization`: Adds the necessary services to serialize the authentication state on the server.
-* `AddAuthenticationStateDeserialization`: Adds the necessary services to deserialize the authentication state in the browser.
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A>: Adds the necessary services to serialize the authentication state on the server.
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A>: Adds the necessary services to deserialize the authentication state in the browser.
 
-By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to `AddAuthenticationStateSerialization` to include all claims.
+By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> to include all claims.
 
 For more information, see the following sections of <xref:blazor/security/server/index?view=aspnetcore-9.0>:
 
@@ -98,7 +89,7 @@ With the release of .NET 9, it's now simpler to add static SSR pages to apps tha
 
 This approach is only useful when the app has specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that depend on reading/writing HTTP cookies and can only work in a request/response cycle instead of interactive rendering. For pages that work with interactive rendering, you shouldn't force them to use static SSR rendering, as it's less efficient and less responsive for the end user.
 
-Mark any Razor component page with the new `[ExcludeFromInteractiveRouting]` attribute assigned with the `@attribute` Razor directive:
+Mark any Razor component page with the new [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) assigned with the `@attribute` Razor directive:
 
 ```razor
 @attribute [ExcludeFromInteractiveRouting]
@@ -106,12 +97,12 @@ Mark any Razor component page with the new `[ExcludeFromInteractiveRouting]` att
 
 Applying the attribute causes navigation to the page to exit from interactive routing. Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
 
-The `HttpContext.AcceptsInteractiveRouting` extension method allows the component to detect whether `[ExcludeFromInteractiveRouting]` is applied to the current page.
+The <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method allows the component to detect whether the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) is applied to the current page.
 
 In the `App` component, use the pattern in the following example:
 
-* Pages that aren't annotated with `[ExcludeFromInteractiveRouting]` default to the `InteractiveServer` render mode with global interactivity. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
-* Pages annotated with `[ExcludeFromInteractiveRouting]` adopt static SSR (`PageRenderMode` is assigned `null`).
+* Pages that aren't annotated with the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) default to the `InteractiveServer` render mode with global interactivity. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
+* Pages annotated with the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) adopt static SSR (`PageRenderMode` is assigned `null`).
 
 ```razor
 <!DOCTYPE html>
@@ -135,7 +126,7 @@ In the `App` component, use the pattern in the following example:
 }
 ```
 
-An alternative to using the `HttpContext.AcceptsInteractiveRouting` extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
+An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
 This feature is covered by the reference documentation in <xref:blazor/components/render-modes?view=aspnetcore-9.0#static-ssr-pages-in-a-globally-interactive-app>.
 
@@ -227,11 +218,3 @@ The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component now s
     }
 }
 ```
-
-### Multiple Blazor Web Apps per server project
-
-<!-- UPDATE 10.0 Confirm or update -->
-
-Support for multiple Blazor Web Apps per server project will be considered for .NET 10 (November, 2025).
-
-For more information, see [Support for multiple Blazor Web apps per server project (`dotnet/aspnetcore` #52216)](https://github.com/dotnet/aspnetcore/issues/52216).

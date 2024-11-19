@@ -48,7 +48,7 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
   - Update Apache coverage (drop CentOS mentions)
   - Fix spacing in Apache configuration example
 - <xref:blazor/js-interop/import-export-interop> - Import-Export interop: collocated JS with RCL
-- <xref:blazor/components/prerendering-and-integration> - Use 'reconnection UI' for all references
+- <xref:blazor/components/integration> - Use 'reconnection UI' for all references
 - <xref:blazor/security/blazor-web-app-oidc> - Interactive SSR RCs in global WASM/Auto projects
 - <xref:blazor/security/server/index> - Simplified auth state serialization for BWAs
 - <xref:blazor/tooling> - Change Tooling article content layout

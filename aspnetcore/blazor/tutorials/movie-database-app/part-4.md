@@ -5,17 +5,13 @@ description: This part of the Blazor movie database app tutorial explains the da
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2024
+ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-4
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 4 - Work with a database)
 
-<!-- UPDATE 9.0 Activate after release
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article is the fourth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
@@ -23,14 +19,12 @@ This part of the tutorial series focuses on the database context and directly wo
 
 ## Secure authentication flow required for production apps
 
-<!-- UPDATE 9.0 If we get a BWA + MS Identity Web app+article,
-                add it to the list. -->
-
 This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/server/index> and the following articles in the *Server* security node
 * <xref:blazor/security/blazor-web-app-oidc>
+* <xref:blazor/security/blazor-web-app-entra>
 
 For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
 
@@ -355,9 +349,6 @@ If the app is running, shut the app down by closing the browser's window and pre
 
 ## Additional resources
 
-<!-- UPDATE 9.0 If we get a BWA + MS Identity Web app+article,
-                add it to the list. -->
-
 * Configuration articles:
   * <xref:fundamentals/configuration/index> (ASP.NET Core Configuration system)
   * <xref:blazor/fundamentals/configuration> (Blazor documentation)
@@ -372,6 +363,7 @@ If the app is running, shut the app down by closing the browser's window and pre
   * <xref:blazor/security/index>
   * <xref:blazor/security/server/index> and the following articles in the *Server* security node
   * <xref:blazor/security/blazor-web-app-oidc>
+  * <xref:blazor/security/blazor-web-app-entra>
 
 ## Legal
 
