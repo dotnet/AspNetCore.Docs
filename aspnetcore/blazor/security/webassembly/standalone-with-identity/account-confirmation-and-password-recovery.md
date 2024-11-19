@@ -506,7 +506,7 @@ In the `Login` component (`Components/Identity/Login.razor`) of the client proje
 
 ## Email and activity timeout
 
-The default inactivity timeout is 14 days. The following code sets the inactivity timeout to five days with sliding expiration:
+The default inactivity timeout is 14 days. In the server project, the following code sets the inactivity timeout to five days with sliding expiration:
 
 ```csharp
 builder.Services.ConfigureApplicationCookie(options => {
@@ -517,7 +517,7 @@ builder.Services.ConfigureApplicationCookie(options => {
 
 ## Change all ASP.NET Core Data Protection token lifespans
 
-The following code changes Data Protection tokens' timeout period to three hours:
+In the server project, the following code changes Data Protection tokens' timeout period to three hours:
 
 ```csharp
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
@@ -534,7 +534,7 @@ The default token lifespan of the [Identity user tokens](https://github.com/dotn
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>.
+To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> to the server project.
 
 `CustomTokenProvider.cs`:
 
@@ -590,7 +590,7 @@ public class PasswordResetTokenProviderOptions :
 }
 ```
 
-Configure the services to use the custom token provider in the `Program` file:
+Configure the services to use the custom token provider in the server project's `Program` file:
 
 ```csharp
 builder.Services.AddIdentityCore<AppUser>(options =>
