@@ -47,14 +47,10 @@ When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 
     {
         if (module is not null)
         {
-            try
-            {
-                await module.DisposeAsync();
-            }
-            catch (JSDisconnectedException)
-            {
-            }
+            await module.DisposeAsync();
         }
     }
 }
 ```
+
+In the preceding example, a <xref:Microsoft.JSInterop.JSDisconnectedException> isn't trapped during module disposal because there's no Blazor-SignalR circuit in a Blazor WebAssembly app to lose. For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.

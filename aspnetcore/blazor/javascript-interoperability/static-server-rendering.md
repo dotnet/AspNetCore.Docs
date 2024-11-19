@@ -91,4 +91,4 @@ To monitor changes in specific DOM elements, use the [`MutationObserver`](https:
 
 ## Example implementation without using an RCL
 
-The approach described in this article can be implemented directly in a Blazor Web App without using a Razor class library (RCL). For an example, see <xref:blazor/security/server/qrcodes-for-authenticator-apps>.
+The approach described in this article can be implemented directly in a Blazor Web App without using a Razor class library (RCL). For an example, see <xref:blazor/security/qrcodes-for-authenticator-apps>.

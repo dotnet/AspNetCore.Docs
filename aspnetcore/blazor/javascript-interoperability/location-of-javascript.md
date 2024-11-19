@@ -193,7 +193,7 @@ JS isolation provides the following benefits:
 * Imported JS no longer pollutes the global namespace.
 * Consumers of a library and components aren't required to import the related JS.
 
-Trap <xref:Microsoft.JSInterop.JSDisconnectedException> in potential cases where loss of Blazor's SignalR circuit prevents a JS interop call from disposing a module, which results an unhandled exception.
+In server-side scenarios, always trap <xref:Microsoft.JSInterop.JSDisconnectedException> in case loss of Blazor's SignalR circuit prevents a JS interop call from disposing a module, which results in an unhandled exception. Blazor WebAssembly apps don't use a SignalR connection during JS interop, so there's no need to trap <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor WebAssembly apps for module disposal.
 
 For more information, see the following resources:
 

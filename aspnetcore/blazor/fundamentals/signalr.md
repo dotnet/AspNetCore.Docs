@@ -46,7 +46,7 @@ Use <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions
 
 Usage examples:
 
-Disable compression by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> to `true`, which reduces the [vulnerability of the app to attack](xref:blazor/security/server/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
+Disable compression by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> to `true`, which reduces the [vulnerability of the app to attack](xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
 
 ```csharp
 builder.MapRazorComponents<App>()
@@ -78,7 +78,7 @@ builder.MapRazorComponents<App>()
 >
 > Additional options include specifying one or more host sources and scheme sources.
 
-For security implications, see <xref:blazor/security/server/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>. For more information on the `frame-ancestors` directive, see [CSP: `frame-ancestors` (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors).
+For security implications, see <xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>. For more information on the `frame-ancestors` directive, see [CSP: `frame-ancestors` (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors).
 
 :::moniker-end
 
@@ -295,7 +295,7 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 :::moniker-end
 
 > [!WARNING]
-> The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of Service (DoS) attacks](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks).
+> The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks).
 >
 > Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient%2A> set to 1, which is the default value. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
 
@@ -408,7 +408,7 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents()
     .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
-Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
+Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
 
 A better option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JavaScript (JS) interop JSON payloads or if JS interop data is available as raw bytes. For an example that demonstrates sending large binary payloads in server-side apps that uses techniques similar to the [`InputFile` component](xref:blazor/file-uploads), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit) and the [Blazor `InputLargeTextArea` Component Sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/InputLargeTextArea).
 
@@ -427,7 +427,7 @@ builder.Services.AddServerSideBlazor()
     .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
-Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
+Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
 
 A better option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JavaScript (JS) interop JSON payloads or if JS interop data is available as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the [`InputFile` component](xref:blazor/file-uploads), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit) and the [Blazor `InputLargeTextArea` Component Sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/InputLargeTextArea).
 
@@ -446,7 +446,7 @@ services.AddServerSideBlazor()
     .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
-Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
+Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
 
 :::moniker-end
 
@@ -760,7 +760,7 @@ builder.Services.AddIdleCircuitHandler(options =>
 Circuit activity handlers also provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes. For more information and examples, see:
 
 * <xref:blazor/fundamentals/dependency-injection#access-server-side-blazor-services-from-a-different-di-scope>
-* <xref:blazor/security/server/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>
+* <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>
 
 :::moniker-end
 
@@ -1444,7 +1444,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Server-side circuit handler to capture users for custom services
 
-Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set that user in a service. For more information and example code, see <xref:blazor/security/server/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
+Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set that user in a service. For more information and example code, see <xref:blazor/security/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1465,9 +1465,9 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 * <xref:signalr/configuration>
 * Server-side security documentation
   * <xref:blazor/security/index>
-  * <xref:blazor/security/server/index>
-  * <xref:blazor/security/server/interactive-server-side-rendering>
-  * <xref:blazor/security/server/additional-scenarios>
+  * <xref:blazor/security/index>
+  * <xref:blazor/security/interactive-server-side-rendering>
+  * <xref:blazor/security/additional-scenarios>
 * [Server-side reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)

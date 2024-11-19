@@ -142,6 +142,8 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
 }
 ```
 
+In the preceding example, <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.
+
 `{PATH}/JsCollocation2.razor.js`:
 
 ```javascript

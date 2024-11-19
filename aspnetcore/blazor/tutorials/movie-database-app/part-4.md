@@ -22,7 +22,7 @@ This part of the tutorial series focuses on the database context and directly wo
 This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
 
 * <xref:blazor/security/index>
-* <xref:blazor/security/server/index> and the following articles in the *Server* security node
+* <xref:blazor/security/index> and the following articles in the *Server* security node
 * <xref:blazor/security/blazor-web-app-oidc>
 * <xref:blazor/security/blazor-web-app-entra>
 
@@ -361,7 +361,7 @@ If the app is running, shut the app down by closing the browser's window and pre
   * [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
 * Blazor Web App security
   * <xref:blazor/security/index>
-  * <xref:blazor/security/server/index> and the following articles in the *Server* security node
+  * <xref:blazor/security/index> and the following articles in the *Server* security node
   * <xref:blazor/security/blazor-web-app-oidc>
   * <xref:blazor/security/blazor-web-app-entra>
 

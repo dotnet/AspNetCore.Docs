@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/security/webassembly/standalone-with-identity
+uid: blazor/security/webassembly/standalone-with-identity/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 
@@ -82,12 +82,15 @@ At this point, you must provide custom code to parse the <xref:Microsoft.AspNetC
 
 ## Additional Identity scenarios
 
-For additional Identity scenarios provided by the API, see <xref:security/authentication/identity/spa>:
+Scenarios covered by the Blazor documentation set:
+
+* [Account confirmation, password management, and recovery codes](xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery)
+* Two-factor authentication (2FA): *Implementation guidance coming soon!* This work is tracked by [Add 2FA/TOTP coverage to the Standalone+Identity article+sample (`dotnet/AspNetCore.Docs` #33772)](https://github.com/dotnet/AspNetCore.Docs/issues/33772). In the meantime, general information to aid you with a custom implementation is available in <xref:security/authentication/identity/spa#use-the-post-manage2fa-endpoint>.
+
+For information on additional Identity scenarios provided by the API, see <xref:security/authentication/identity/spa>:
 
 * Secure selected endpoints
-* Token authentication
-* Two-factor authentication (2FA)
-* Recovery codes
+* Two-factor authentication (2FA) and recovery codes
 * User info management
 
 ## Use secure authentication flows to maintain sensitive data and credentials
