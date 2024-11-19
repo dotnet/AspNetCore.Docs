@@ -44,7 +44,7 @@ Welcome to what's new in the ASP.NET Core docs for May 2024. This article lists 
 - <xref:blazor/security/blazor-web-app-oidc>
   - BlazorWebAppOidcBff Aspire article updates
   - Add product unit issue cross-link
-- <xref:blazor/security/server/index> - Update ref source links to Blazor security API
+- <xref:blazor/security/index> - Update ref source links to Blazor security API
 - <xref:blazor/hybrid/class-libraries> - Add OverscanCount to ref article
 - <xref:blazor/tooling> - More hints on interactivity for doc components
 - <xref:blazor/tutorials/signalr-blazor> - Update "CLI" tab controls

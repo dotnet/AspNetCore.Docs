@@ -5,13 +5,16 @@ description: Learn how to configure an ASP.NET Core Blazor Web App with email co
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/12/2024
-uid: blazor/security/server/account-confirmation-and-password-recovery
+uid: blazor/security/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article explains how to configure an ASP.NET Core Blazor Web App with email confirmation and password recovery.
+
+> [!NOTE]
+> This article only applies to Blazor Web Apps. To implement email confirmation and password recovery for standalone Blazor WebAssembly apps with ASP.NET Core Identity, see <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery>.
 
 ## Namespace
 
@@ -21,9 +24,9 @@ The app's namespace used by the example in this article is `BlazorSample`. Updat
 
 In this article, [Mailchimp's Transactional API](https://mailchimp.com/developer/transactional/api/) is used via [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) to send email. We recommend using an email service to send email rather than SMTP. SMTP is difficult to configure and secure properly. Whichever email service you use, access their guidance for .NET apps, create an account, configure an API key for their service, and install any NuGet packages required.
 
-Create a class to fetch the secure email API key. The example in this article uses a class named `AuthMessageSenderOptions` with a `EmailAuthKey` property to hold the key.
+Create a class to hold the secret email provider API key. The example in this article uses a class named `AuthMessageSenderOptions` with an `EmailAuthKey` property to hold the key.
 
-`AuthMessageSenderOptions`:
+`AuthMessageSenderOptions.cs`:
 
 ```csharp
 namespace BlazorSample;
@@ -42,11 +45,19 @@ builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 ## Configure a user secret for the provider's security key
 
-Set the key with the [Secret Manager tool](xref:security/app-secrets). In the following example, the key name is `EmailAuthKey`, and the key is represented by the `{KEY}` placeholder. In a command shell, navigate to the app's root folder and execute the following command with the API key:
+If the project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have an app secrets identifier (`<AppSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the app secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
+
+```dotnetcli
+dotnet user-secrets init
+```
+
+Set the API key with the Secret Manager tool. In the following example, the key name is `EmailAuthKey` to match `AuthMessageSenderOptions.EmailAuthKey`, and the key is represented by the `{KEY}` placeholder. Execute the following command with the API key:
 
 ```dotnetcli
 dotnet user-secrets set "EmailAuthKey" "{KEY}"
 ```
+
+If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
 
 For more information, see <xref:security/app-secrets>.
 
@@ -54,7 +65,11 @@ For more information, see <xref:security/app-secrets>.
 
 ## Implement `IEmailSender`
 
-Implement `IEmailSender` for the provider. The following example is based on Mailchimp's Transactional API using [Mandrill.net](https://www.nuget.org/packages/Mandrill.net). For a different provider, refer to their documentation on how to implement sending a message in the `Execute` method.
+The following example is based on Mailchimp's Transactional API using [Mandrill.net](https://www.nuget.org/packages/Mandrill.net). For a different provider, refer to their documentation on how to implement sending an email message.
+
+Add the [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) NuGet package to the project.
+
+Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. In the following example, `ApplicationUser` is an <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
 
 `Components/Account/EmailSender.cs`:
 
@@ -74,18 +89,20 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 
     public AuthMessageSenderOptions Options { get; } = optionsAccessor.Value;
 
-    public Task SendConfirmationLinkAsync(ApplicationUser user, string email, 
-        string confirmationLink) => SendEmailAsync(email, "Confirm your email", 
-        "Please confirm your account by " +
-        $"<a href='{confirmationLink}'>clicking here</a>.");
+    public Task SendConfirmationLinkAsync(AppUser user, string email,
+        string confirmationLink) => SendEmailAsync(email, "Confirm your email",
+        "<html lang=\"en\"><head></head><body>Please confirm your account by " +
+        $"<a href='{confirmationLink}'>clicking here</a>.</body></html>");
 
-    public Task SendPasswordResetLinkAsync(ApplicationUser user, string email, 
-        string resetLink) => SendEmailAsync(email, "Reset your password", 
-        $"Please reset your password by <a href='{resetLink}'>clicking here</a>.");
+    public Task SendPasswordResetLinkAsync(AppUser user, string email,
+        string resetLink) => SendEmailAsync(email, "Reset your password",
+        "<html lang=\"en\"><head></head><body>Please reset your password by " +
+        $"<a href='{resetLink}'>clicking here</a>.</body></html>");
 
-    public Task SendPasswordResetCodeAsync(ApplicationUser user, string email, 
-        string resetCode) => SendEmailAsync(email, "Reset your password", 
-        $"Please reset your password using the following code: {resetCode}");
+    public Task SendPasswordResetCodeAsync(AppUser user, string email,
+        string resetCode) => SendEmailAsync(email, "Reset your password",
+        "<html lang=\"en\"><head></head><body>Please reset your password " +
+        $"using the following code:<br>{resetCode}</body></html>");
 
     public async Task SendEmailAsync(string toEmail, string subject, string message)
     {
@@ -111,7 +128,7 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 ```
 
 > [!NOTE]
-> Body content for messages might require special encoding for the email service provider. If links in the message body can't be followed, consult the service provider's documentation. 
+> Body content for messages might require special encoding for the email service provider. If links in the message body can't be followed in the email message, consult the service provider's documentation to troubleshoot the problem.
 
 ## Configure app to support email
 
@@ -152,6 +169,13 @@ Also in the `RegisterConfirmation` component, remove the Razor markup and code f
 }
 ```
 
+## Enable account confirmation after a site has users
+
+Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. To work around existing user lockout, use one of the following approaches:
+
+* Update the database to mark all existing users as confirmed.
+* Confirm existing users. For example, batch-send emails with confirmation links.
+
 ## Email and activity timeout
 
 The default inactivity timeout is 14 days. The following code sets the inactivity timeout to five days with sliding expiration:
@@ -172,7 +196,7 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
     options.TokenLifespan = TimeSpan.FromHours(3));
 ```
 
-The built in Identity user tokens ([AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Extensions.Core/src/TokenOptions.cs)) have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/main/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+The built-in Identity user tokens ([AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Extensions.Core/src/TokenOptions.cs)) have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/main/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -182,7 +206,7 @@ The default token lifespan of the [Identity user tokens](https://github.com/dotn
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>.
 
 `CustomTokenProvider.cs`:
 
@@ -268,16 +292,6 @@ If you can't get email working:
 * Check your spam folder for messages.
 * Try another email alias on a different email provider, such as Microsoft, Yahoo, or Gmail.
 * Try sending to different email accounts.
-
-> [!WARNING]
-> Do **not** use production secrets in test and development. If you publish the app to Azure, set secrets as application settings in the Azure Web App portal. The configuration system is set up to read keys from environment variables.
-
-## Enable account confirmation after a site has users
-
-Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. To work around existing user lockout, use one of the following approaches:
-
-* Update the database to mark all existing users as confirmed.
-* Confirm existing users. For example, batch-send emails with confirmation links.
 
 ## Additional resources
 

@@ -59,7 +59,7 @@ Welcome to what's new in the ASP.NET Core docs for February 2024. This article l
   - Add WebAssembly (runtime) startup callbacks
   - Blazor Startup - sample environment variable name
   - Startup - manually start Standalone Blazor WebAssembly
-- <xref:blazor/security/webassembly/standalone-with-identity> - Add roles and test user guidance
+- <xref:blazor/security/webassembly/standalone-with-identity/index> - Add roles and test user guidance
 - <xref:blazor/fundamentals/signalr> - [Blazor] SignalR - remove "using System" reminder
 - <xref:blazor/hybrid/class-libraries> - Update 'Blazor Server' references
 - <xref:blazor/host-and-deploy/webassembly>
