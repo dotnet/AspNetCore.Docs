@@ -167,6 +167,8 @@ export function addHandlers() {
 }
 ```
 
+In the preceding example, <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.
+
 For more information, see the following resources:
 
 * <xref:blazor/js-interop/javascript-location>
@@ -276,6 +278,8 @@ In the following example, the `DOMCleanup` component:
     }
 }
 ```
+
+In the preceding example, <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.
 
 In the following example, the `MutationObserver` callback is executed each time a DOM change occurs. Execute your cleanup code when the `if` statement confirms that the target element (`cleanupDiv`) was removed (`if (targetRemoved) { ... }`). It's important to disconnect and delete the `MutationObserver` to avoid a memory leak after your cleanup code executes.
 
