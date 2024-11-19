@@ -142,7 +142,7 @@ builder.Services.AddTransient<IEmailSender<AppUser>, EmailSender>();
 
 ## Configure the server project to require email confirmation
 
-In the server's `Program` file, require a confirmed email address to sign in to the app.
+In the server project's `Program` file, require a confirmed email address to sign in to the app.
 
 Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A> and set the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> property to `true`:
 
@@ -169,17 +169,12 @@ In the client project's `Register` component (`Components/Identity/Register.razo
 
 ## Update seed data code to confirm seeded accounts
 
-In the server project's seed data class (`SeedData.cs`), change the code in the `InitializeAsync` method to confirm the seeded accounts so that they don't require confirmation for each test run of the solution:
+In the server project's seed data class (`SeedData.cs`), change the code in the `InitializeAsync` method to confirm the seeded accounts, which avoids requiring email address confirmation for each test run of the solution with one of the accounts:
 
 ```diff
-- if (user.Email is not null)
+- if (appUser is not null && user.RoleList is not null)
 - {
--     var appUser = await userManager.FindByEmailAsync(user.Email);
-- 
--     if (appUser is not null && user.RoleList is not null)
--     {
--         await userManager.AddToRolesAsync(appUser, user.RoleList);
--     }
+-     await userManager.AddToRolesAsync(appUser, user.RoleList);
 - }
 + if (appUser is not null)
 + {
@@ -195,10 +190,10 @@ In the server project's seed data class (`SeedData.cs`), change the code in the 
 
 ## Enable account confirmation after a site has users
 
-Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. To work around existing user lockout, use one of the following approaches:
+Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. Use one of the following approaches, which are beyond the scope of this article:
 
 * Update the database to mark all existing users as confirmed.
-* Confirm existing users. For example, batch-send emails with confirmation links.
+* Batch-send emails with confirmation links to all existing users, which requires each user to confirm their own account.
 
 ## Password recovery
 
