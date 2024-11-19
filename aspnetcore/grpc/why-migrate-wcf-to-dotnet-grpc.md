@@ -1,6 +1,6 @@
 ---
 title: Why migrate WCF to ASP.NET Core gRPC
-author: markrendle
+author: jamesnk
 description: This article provides a summary of why ASP.NET Core gRPC is a good fit for Windows Communication Foundation (WCF) developers who want to migrate to modern architectures and platforms.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
