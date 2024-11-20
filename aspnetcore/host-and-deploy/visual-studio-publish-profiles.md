@@ -19,7 +19,7 @@ This document focuses on using Visual Studio 2022 or later to create and use [pu
 For the most current and detailed information on:
 
 * Publishing with Visual studio, see [Overview of Visual Studio Publish](/visualstudio/deployment/publish-overview)
-* MSBuild, see [MSBuild](/visualstudio/msbuild/msbuild-introduction)
+* MSBuild, see [MSBuild](/visualstudio/msbuild/msbuild)
 * Publishing with MSBuild, see [Microsoft.NET.Sdk.Publish](https://github.com/dotnet/sdk/tree/main/src/WebSdk#microsoftnetsdkpublish)
 
 The `dotnet new mvc` command produces a project file containing the following root-level [\<Project> element](/visualstudio/msbuild/project-element-msbuild):
