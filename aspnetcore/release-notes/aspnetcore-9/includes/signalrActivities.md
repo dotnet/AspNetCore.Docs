@@ -19,7 +19,7 @@ The following example uses the [.NET Aspire dashboard](/dotnet/aspire/fundamenta
 
 Add the following startup code to the `Program.cs` file:
 
-[!code-csharp[](~/release-notes/aspnetcore-9/samples/SignalRChatTraceExample/Program.cs?name=snippet_trace_signalr_server&highlight=1,13-26)]
+[!code-csharp[](~/release-notes/aspnetcore-9/samples/SignalRChatTraceExample/Program.cs?name=snippet_trace_signalr_server&highlight=1,10-23)]
 
 The following is example output from the Aspire Dashboard:
 
