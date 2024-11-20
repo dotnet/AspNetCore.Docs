@@ -8,9 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
 
-builder.Services.AddRazorPages();
-builder.Services.AddSignalR();
-
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracing =>
     {
