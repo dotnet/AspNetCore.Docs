@@ -9,6 +9,8 @@ uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-a
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+
 This article explains how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 
 > [!NOTE]
