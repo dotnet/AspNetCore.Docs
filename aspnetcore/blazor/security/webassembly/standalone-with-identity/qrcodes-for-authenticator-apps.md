@@ -111,7 +111,7 @@ public Task<FormResult> LoginTwoFactorCodeAsync(
 
 public Task<TwoFactorResult> TwoFactorRequest(
     bool enable = false, 
-    string twoFactorCode = string.Empty, 
+    string twoFactorCode = "", 
     bool resetSharedKey = false, 
     bool resetRecoveryCodes = false, 
     bool forgetMachine = false);
