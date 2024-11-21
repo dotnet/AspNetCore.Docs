@@ -158,15 +158,11 @@ Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.Identi
 In the client project's `Register` component (`Components/Identity/Register.razor`), change the message to users on a successful account registration to instruct them to confirm their account. The following example includes a link to trigger Identity on the server to resend the confirmation email.
 
 ```diff
-- <div class="alert alert-success">
--     You successfully registered. Now you can <a href="login">login</a>.
-- </div>
-+ <div class="alert alert-success">
-+     You successfully registered. You must now confirm your account by clicking 
-+     the link in the email that was sent to you. After confirming your account, 
-+     you can <a href="login">login</a> to the app. 
-+     <a href="resendConfirmationEmail">Resend confirmation email</a>
-+ </div>
+- You successfully registered. Now you can <a href="login">login</a>.
++ You successfully registered. You must now confirm your account by clicking 
++ the link in the email that was sent to you. After confirming your account, 
++ you can <a href="login">login</a> to the app. 
++ <a href="resendConfirmationEmail">Resend confirmation email</a>
 ```
 
 ## Update seed data code to confirm seeded accounts
@@ -345,15 +341,21 @@ In the client project, add the following `ForgotPassword` component.
     <div class="col-md-4">
         @if (!passwordResetCodeSent)
         {
-            <EditForm Model="Input" FormName="forgot-password" 
-                OnValidSubmit="OnValidSubmitStep1Async" method="post">
+            <EditForm Model="Input" 
+                      FormName="forgot-password" 
+                      OnValidSubmit="OnValidSubmitStep1Async" 
+                      method="post">
                 <DataAnnotationsValidator />
                 <ValidationSummary class="text-danger" role="alert" />
 
                 <div class="form-floating mb-3">
-                    <InputText @bind-Value="Input.Email" id="Input.Email" 
-                        class="form-control" autocomplete="username" 
-                        aria-required="true" placeholder="name@example.com" />
+                    <InputText 
+                        @bind-Value="Input.Email" 
+                        id="Input.Email" 
+                        class="form-control" 
+                        autocomplete="username" 
+                        aria-required="true" 
+                        placeholder="name@example.com" />
                     <label for="Input.Email" class="form-label">
                         Email
                     </label>
@@ -390,15 +392,20 @@ In the client project, add the following `ForgotPassword` component.
                     A password reset code has been sent to your email address. 
                     Obtain the code from the email for this form.
                 </div>
-                <EditForm Model="Reset" FormName="reset-password" 
-                    OnValidSubmit="OnValidSubmitStep2Async" method="post">
+                <EditForm Model="Reset" 
+                          FormName="reset-password" 
+                          OnValidSubmit="OnValidSubmitStep2Async" 
+                          method="post">
                     <DataAnnotationsValidator />
                     <ValidationSummary class="text-danger" role="alert" />
 
                     <div class="form-floating mb-3">
-                        <InputText @bind-Value="Reset.ResetCode" 
-                            id="Reset.ResetCode" class="form-control" 
-                            autocomplete="username" aria-required="true" />
+                        <InputText 
+                            @bind-Value="Reset.ResetCode" 
+                            id="Reset.ResetCode" 
+                            class="form-control" 
+                            autocomplete="username" 
+                            aria-required="true" />
                         <label for="Reset.ResetCode" class="form-label">
                             Reset code
                         </label>
@@ -406,9 +413,13 @@ In the client project, add the following `ForgotPassword` component.
                             class="text-danger" />
                     </div>
                     <div class="form-floating mb-3">
-                        <InputText type="password" @bind-Value="Reset.NewPassword" 
-                            id="Reset.NewPassword" class="form-control" 
-                            autocomplete="new-password" aria-required="true" 
+                        <InputText 
+                            type="password" 
+                            @bind-Value="Reset.NewPassword" 
+                            id="Reset.NewPassword" 
+                            class="form-control" 
+                            autocomplete="new-password" 
+                            aria-required="true" 
                             placeholder="password" />
                         <label for="Reset.NewPassword" class="form-label">
                             New Password
@@ -417,9 +428,13 @@ In the client project, add the following `ForgotPassword` component.
                             class="text-danger" />
                     </div>
                     <div class="form-floating mb-3">
-                        <InputText type="password" @bind-Value="Reset.ConfirmPassword" 
-                            id="Reset.ConfirmPassword" class="form-control" 
-                            autocomplete="new-password" aria-required="true" 
+                        <InputText 
+                            type="password" 
+                            @bind-Value="Reset.ConfirmPassword" 
+                            id="Reset.ConfirmPassword" 
+                            class="form-control" 
+                            autocomplete="new-password" 
+                            aria-required="true" 
                             placeholder="password" />
                         <label for="Reset.ConfirmPassword" class="form-label">
                             Confirm Password
@@ -437,8 +452,7 @@ In the client project, add the following `ForgotPassword` component.
 </div>
 
 @code {
-    private bool passwordResetCodeSent;
-    private bool passwordResetSuccess, errors;
+    private bool passwordResetCodeSent, passwordResetSuccess, errors;
     private string[] errorList = [];
 
     [SupplyParameterFromForm(FormName = "forgot-password")]
@@ -492,7 +506,7 @@ In the client project, add the following `ForgotPassword` component.
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation " +
-            "password do not match.")]
+            "password don't match.")]
         public string ConfirmPassword { get; set; } = string.Empty;
     }
 }

@@ -740,11 +740,10 @@ Add the following `Manage2fa` component.
                                 </p>
                                 <div class="row">
                                     <div class="col-xl-6">
-                                        <EditForm 
-                                                Model="Input" 
-                                                FormName="send-code" 
-                                                OnValidSubmit="OnValidSubmitAsync" 
-                                                method="post">
+                                        <EditForm Model="Input" 
+                                                  FormName="send-code" 
+                                                  OnValidSubmit="OnValidSubmitAsync" 
+                                                  method="post">
                                             <DataAnnotationsValidator />
                                             <div class="form-floating mb-3">
                                                 <InputText 

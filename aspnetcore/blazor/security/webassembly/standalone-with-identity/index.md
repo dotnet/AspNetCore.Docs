@@ -85,12 +85,11 @@ At this point, you must provide custom code to parse the <xref:Microsoft.AspNetC
 Scenarios covered by the Blazor documentation set:
 
 * [Account confirmation, password management, and recovery codes](xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery)
-* Two-factor authentication (2FA): *Implementation guidance coming soon!* This work is tracked by [Add 2FA/TOTP coverage to the Standalone+Identity article+sample (`dotnet/AspNetCore.Docs` #33772)](https://github.com/dotnet/AspNetCore.Docs/issues/33772). In the meantime, general information to aid you with a custom implementation is available in <xref:security/authentication/identity/spa#use-the-post-manage2fa-endpoint>.
+* [Two-factor authentication (2FA) with a TOTP authenticator app](xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps)
 
 For information on additional Identity scenarios provided by the API, see <xref:security/authentication/identity/spa>:
 
 * Secure selected endpoints
-* Two-factor authentication (2FA) and recovery codes
 * User info management
 
 ## Use secure authentication flows to maintain sensitive data and credentials
