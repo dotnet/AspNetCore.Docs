@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -56,7 +56,7 @@ namespace ContosoUniversity.Pages.Students
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(Student.ID))
+                if (!await StudentExistsAsync(Student.ID))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace ContosoUniversity.Pages.Students
             return RedirectToPage("./Index");
         }
 
-        private bool StudentExists(int id)
+        private Task<bool> StudentExistsAsync(int id)
         {
-            return _context.Students.Any(e => e.ID == id);
+            return _context.Students.AnyAsync(e => e.ID == id);
         }
     }
 }
