@@ -57,7 +57,7 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
   * The **Location** for the project can be set to anywhere.
 * Select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 9.0 (Preview)**.
+  * Select **.NET 9.0**.
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 

@@ -60,7 +60,7 @@ This tutorial creates the following API:
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 9.0 (Preview)**
+  * Select **.NET 9.0**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
