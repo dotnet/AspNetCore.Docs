@@ -498,6 +498,7 @@ Replace the `Login` component. The following version of the `Login` component:
                     formResult = await Acct.LoginTwoFactorRecoveryCodeAsync(
                         Input.Email, Input.Password, Input.TwoFactorCode);
 
+                    var twoFactorResult = await Acct.TwoFactorRequest();
                     recoveryCodesRemainingMessage =
                         $"You have {twoFactorResult.RecoveryCodesLeft} recovery " +
                         "codes remaining.";
