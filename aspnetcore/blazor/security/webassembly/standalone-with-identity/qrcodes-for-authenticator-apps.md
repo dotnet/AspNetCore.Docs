@@ -370,7 +370,7 @@ public async Task<TwoFactorResult> TwoFactorRequest(
 Replace the `Login` component. The following version of the `Login` component:
 
 * Accepts a user's email address (user ID) and password for an initial login attempt.
-* If login is successful (2FA is diabled), the component notifies the user that they're authenticated.
+* If login is successful (2FA is disabled), the component notifies the user that they're authenticated.
 * If the login attempt results in a response indicating that 2FA is required, a 2FA input element appears to receive either a 2FA TOTP code from an authenticator app or a recovery code. Depending on which code the user enters, login is attempted again by calling either `LoginTwoFactorCodeAsync` for a TOTP code or `LoginTwoFactorRecoveryCodeAsync` for a recovery code.
 
 `Components/Identity/Login.razor`:
@@ -393,6 +393,12 @@ Replace the `Login` component. The following version of the `Login` component:
         <div class="alert alert-success">
             You're logged in as @context.User.Identity?.Name.
         </div>
+        @if (!string.IsNullOrEmpty(recoveryCodesRemainingMessage))
+        {
+            <div class="alert alert-warning">
+                @recoveryCodesRemainingMessage
+            </div>
+        }
     </Authorized>
     <NotAuthorized>
         @foreach (var error in formResult.ErrorList)
@@ -468,6 +474,7 @@ Replace the `Login` component. The following version of the `Login` component:
 @code {
     private FormResult formResult = new();
     private bool requiresTwoFactor;
+    private string? recoveryCodesRemainingMessage;
 
     [SupplyParameterFromForm]
     private InputModel Input { get; set; } = new();
@@ -490,6 +497,12 @@ Replace the `Login` component. The following version of the `Login` component:
                 {
                     formResult = await Acct.LoginTwoFactorRecoveryCodeAsync(
                         Input.Email, Input.Password, Input.TwoFactorCode);
+
+                    recoveryCodesRemainingMessage =
+                        $"You have {twoFactorResult.RecoveryCodesLeft} recovery " +
+                        "codes remaining.";
+
+                    StateHasChanged();
                 }
             }
         }
@@ -573,34 +586,6 @@ If 2FA isn't enabled, the component loads a form with a QR code to enable 2FA wi
 
 If 2FA is enabled, a button appears to disable 2FA.
 
-<!-- NOTE TO REVIEWERS!
-
-     I'm not discussing recovery code generation in this text yet
-     because I'm not clear on how that's supposed to work because
-     submitting such a request doesn't just re-gen the recovery 
-     codes ... it also disables 2FA. That might be a bug in the
-     API, but it's more likely that I don't understand the logic
-     of recovery code re-gen. I've sent an email to discuss
-     this point.
-
-     What we might be doing for this is simply removing the
-     recovery code re-gen (including from the cookie auth state
-     provider code method for `/manage/2fa` management). 
-     Leave it so that the codes are shown once when 2FA is 
-     enabled, and then don't permit re-gen from the app. If the 
-     user hasn't resolved their 2FA/TOTP app login situation 
-     (new phone, new TOTP app, etc.) and they've used all of 
-     their recovery codes, then they're simply locked out until 
-     customer service/IT reactivates their account.
-
-     BTW ... The 'forget machine' piece also doesn't seem
-     particularly relevant. Machines are always remembered by
-     the current API AFAICT. Perhaps, the only way to require
-     TOTP every login attempt is to call for forgetting the 
-     machine after every successful login ... not sure ... this
-     subject will be my follow-up question on the email convo.
--->
-
 `Components/Identity/Manage2fa.razor`:
 
 ```razor
@@ -631,7 +616,6 @@ If 2FA is enabled, a button appears to disable 2FA.
             {
                 <div class="alert alert-danger">@error</div>
             }
-
             @if (twoFactorResult.IsTwoFactorEnabled)
             {
                 <div class="alert alert-success" role="alert">
@@ -644,7 +628,7 @@ If 2FA is enabled, a button appears to disable 2FA.
                     </button>
                 </div>
 
-                @if (recoveryCodes is null)
+                @if (twoFactorResult.RecoveryCodes is null)
                 {
                     <div class="m-1">
                         <button @onclick="GenerateNewCodes" 
@@ -656,7 +640,7 @@ If 2FA is enabled, a button appears to disable 2FA.
                 else
                 {
                     <ShowRecoveryCodes 
-                        RecoveryCodes="twoFactorResult.RecoveryCodes.ToArray()" />
+                        RecoveryCodes="twoFactorResult.RecoveryCodes" />
                 }
             }
             else
@@ -710,10 +694,10 @@ If 2FA is enabled, a button appears to disable 2FA.
                             <div class="row">
                                 <div class="col-xl-6">
                                     <EditForm 
-                                    Model="Input" 
-                                    FormName="send-code" 
-                                    OnValidSubmit="OnValidSubmitAsync" 
-                                    method="post">
+                                            Model="Input" 
+                                            FormName="send-code" 
+                                            OnValidSubmit="OnValidSubmitAsync" 
+                                            method="post">
                                         <DataAnnotationsValidator />
                                         <div class="form-floating mb-3">
                                             <InputText 
@@ -722,8 +706,7 @@ If 2FA is enabled, a button appears to disable 2FA.
                                                 class="form-control" 
                                                 autocomplete="off" 
                                                 placeholder="Enter the code" />
-                                            <label for="Input.Code" 
-                                                class="control-label form-label">
+                                            <label for="Input.Code" class="control-label form-label">
                                                 Verification Code
                                             </label>
                                             <ValidationMessage 
@@ -781,7 +764,7 @@ If 2FA is enabled, a button appears to disable 2FA.
                 "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6",
                 UrlEncoder.Default.Encode(Config["TotpOrganizationName"]!),
                 email,
-                twoFactorResult?.SharedKey);
+                twoFactorResult.SharedKey);
 
             await module.InvokeVoidAsync("setQrCode", qrCodeElement, uri);
         }
@@ -790,20 +773,20 @@ If 2FA is enabled, a button appears to disable 2FA.
     private async Task Disable2FA()
     {
         twoFactorResult = 
-            await Acct.TwoFactorRequest(enable: false, resetSharedKey: true);
+            await Acct.TwoFactorRequest(resetSharedKey: true);
     }
 
     private async Task GenerateNewCodes()
     {
         twoFactorResult = 
-            await Acct.TwoFactorRequest(enable: false, resetRecoveryCodes: true);
+            await Acct.TwoFactorRequest(resetRecoveryCodes: true);
     }
 
     private async Task OnValidSubmitAsync()
     {
         twoFactorResult = await Acct.TwoFactorRequest(enable: true, 
             twoFactorCode: Input.Code);
-        recoveryCodes = twoFactorResult.RecoveryCodes;
+        Input.Code = string.Empty;
     }
 
     private sealed class InputModel
@@ -832,7 +815,7 @@ Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript
 
 ```javascript
 export function setQrCode(qrCodeElement, uri) {
-  if (qrCodeElement !== null) {
+  if (qrCodeElement !== null && !qrCodeElement.innerHTML.trim()) {
     QrCreator.render({
       text: uri,
       radius: 0,
