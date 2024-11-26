@@ -22,11 +22,9 @@ Blazor works best when using WebSockets as the SignalR transport due to lower la
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 9.0 Remove when support is present -->
-
 ## Azure SignalR Service with stateful reconnect
 
-Azure SignalR Service with SDK version later than [v1.26.1](https://github.com/Azure/azure-signalr/releases/tag/v1.26.1) fully supports [Stateful reconnect](xref:signalr/configuration#configure-stateful-reconnect) (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithStatefulReconnect%2A>).
+The Azure SignalR Service with SDK [v1.26.1](https://github.com/Azure/azure-signalr/releases/tag/v1.26.1) or later supports [SignalR stateful reconnect](xref:signalr/configuration#configure-stateful-reconnect) (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithStatefulReconnect%2A>).
 
 :::moniker-end
 
