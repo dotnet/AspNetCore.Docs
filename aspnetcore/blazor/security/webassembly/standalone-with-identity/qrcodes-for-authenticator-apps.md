@@ -76,24 +76,56 @@ The file after the TOTP organization name configuration is added:
 }
 ```
 
-## Add a model class for two-factor results
+## Add model classes
+
+Add the following `LoginResponse` class to the `Models` folder. This class is populated for requests to the `/login` endpoint of <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in the server app.
+
+`Identity/Models/LoginResponse.cs`:
+
+```csharp
+namespace BlazorWasmAuth.Identity.Models;
+
+public class LoginResponse
+{
+    public string? Type { get; set; }
+    public string? Title { get; set; }
+    public int Status { get; set; }
+    public string? Detail { get; set; }
+}
+```
+
+Add the following `TwoFactorRequest` class to the `Models` folder. This class is populated for requests to the `/manage/2fa` endpoint of <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in the server app.
+
+`Identity/Models/TwoFactorRequest.cs`:
+
+```csharp
+namespace BlazorWasmAuth.Identity.Models;
+
+public class TwoFactorRequest
+{
+    public bool? Enable { get; set; }
+    public string? TwoFactorCode { get; set; }
+    public bool? ResetSharedKey { get; set; }
+    public bool? ResetRecoveryCodes { get; set; }
+    public bool? ForgetMachine {  get; set; }
+}
+```
 
 Add the following `TwoFactorResult` class to the `Models` folder. This class is populated by the response to a 2FA request made to the `/manage/2fa` endpoint of <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in the server app.
 
 `Identity/Models/TwoFactorResult.cs`:
 
 ```csharp
-namespace BlazorWasmAuth.Identity.Models
+namespace BlazorWasmAuth.Identity.Models;
+
+public class TwoFactorResult
 {
-    public class TwoFactorResult
-    {
-        public string SharedKey { get; set; } = string.Empty;
-        public int RecoveryCodesLeft { get; set; } = 0;
-        public string[] RecoveryCodes { get; set; } = [];
-        public bool IsTwoFactorEnabled { get; set; }
-        public bool IsMachineRemembered { get; set; }
-        public string[] ErrorList { get; set; } = [];
-    }
+    public string SharedKey { get; set; } = string.Empty;
+    public int RecoveryCodesLeft { get; set; } = 0;
+    public string[] RecoveryCodes { get; set; } = [];
+    public bool IsTwoFactorEnabled { get; set; }
+    public bool IsMachineRemembered { get; set; }
+    public string[] ErrorList { get; set; } = [];
 }
 ```
 
@@ -119,11 +151,7 @@ public Task<FormResult> LoginTwoFactorRecoveryCodeAsync(
     string twoFactorRecoveryCode);
 
 public Task<TwoFactorResult> TwoFactorRequest(
-    bool enable = false, 
-    string twoFactorCode = "", 
-    bool resetSharedKey = false, 
-    bool resetRecoveryCodes = false, 
-    bool forgetMachine = false);
+    TwoFactorRequest twoFactorRequest);
 ```
 
 ## Update the cookie authentication state provider
@@ -133,18 +161,21 @@ Update the `CookieAuthenticationStateProvider` with features to add the followin
 * Authenticate users with either a TOTP authenticator app code or a recovery code.
 * Manage 2FA in the app.
 
-Add a class to hold deserialized response content for logging users into the app.
-
-Add the following `HttpResponseContent` class to `Identity/CookieAuthenticationStateProvider.cs`:
+At the top of the `CookieAuthenticationStateProvider.cs` file, add a `using` statement for <xref:System.Text.Json.Serialization?displayProperty=fullName>:
 
 ```csharp
-private class HttpResponseContent
-{
-    public string? Type { get; set; }
-    public string? Title { get; set; }
-    public int Status {  get; set; }
-    public string? Detail {  get; set; }
-}
+using System.Text.Json.Serialization;
+```
+
+In the <xref:System.Text.Json.JsonSerializerOptions>, add the <xref:System.Text.Json.JsonSerializerOptions.DefaultIgnoreCondition> option set to <xref:System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull?displayProperty=nameWithType>, which avoids serializing null properties:
+
+```diff
+private readonly JsonSerializerOptions jsonSerializerOptions =
+    new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
++       DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+    };
 ```
 
 The `LoginAsync` method is updated with the following logic:
@@ -176,7 +207,7 @@ public async Task<FormResult> LoginAsync(string email, string password)
         else if (result.StatusCode == HttpStatusCode.Unauthorized)
         {
             var responseJson = await result.Content.ReadAsStringAsync();
-            var response = JsonSerializer.Deserialize<HttpResponseContent>(
+            var response = JsonSerializer.Deserialize<LoginResponse>(
                 responseJson, jsonSerializerOptions);
 
             if (response?.Detail == "RequiresTwoFactor")
@@ -229,7 +260,7 @@ public async Task<FormResult> LoginTwoFactorCodeAsync(
     return new FormResult
     {
         Succeeded = false,
-        ErrorList = [ "Invalid email, password, or two-factor code."]
+        ErrorList = [ "Invalid two-factor code." ]
     };
 }
 ```
@@ -264,103 +295,66 @@ public async Task<FormResult> LoginTwoFactorRecoveryCodeAsync(string email,
     return new FormResult
     {
         Succeeded = false,
-        ErrorList = [ "Invalid email, password, or two-factor code." ]
+        ErrorList = [ "Invalid recovery code." ]
     };
 }
 ```
 
 A `TwoFactorRequest` method is added, which is used to manage 2FA for the user:
 
-* Reset the shared 2FA key.
-* Reset the user's recovery codes.
-* Forget the machine, which means that a new 2FA TOTP code is required on the next login attempt.
-* Enable 2FA using a 2FA code from a TOTP authenticator app.
-* Obtain 2FA status with an empty request.
+* Reset the shared 2FA key when `TwoFactorRequest.ResetSharedKey` is `true`. Resetting the shared key implicitly disables two-factor authentication. This forces the user to prove that they can provide a valid TOTP code from their authenticator app to enable 2FA after receiving a new shared key.
+* Reset the user's recovery codes when `TwoFactorRequest.ResetRecoveryCodes` is `true`.
+* Forget the machine when `TwoFactorRequest.ForgetMachine` is `true`, which means that a new 2FA TOTP code is required on the next login attempt.
+* Enable 2FA using a 2FA code from a TOTP authenticator app when `TwoFactorRequest.Enable` is `true` and `TwoFactorRequest.TwoFactorCode` has a valid TOTP value.
+* Obtain 2FA status with an empty request when all of `TwoFactorRequest`'s properties are `null`.
 
-Add the following method and class to `Identity/CookieAuthenticationStateProvider.cs` (paste the following code at the bottom of the class file):
+Add the following `TwoFactorRequest` method to `Identity/CookieAuthenticationStateProvider.cs` (paste the following code at the bottom of the class file):
 
 ```csharp
-public async Task<TwoFactorResult> TwoFactorRequest(
-    bool enable,
-    string twoFactorCode,
-    bool resetSharedKey,
-    bool resetRecoveryCodes,
-    bool forgetMachine)
+public async Task<TwoFactorResult> TwoFactorRequest(TwoFactorRequest twoFactorRequest)
 {
     string[] defaultDetail = 
         [ "An unknown error prevented two-factor authentication." ];
 
-    try
+    var response = await httpClient.PostAsJsonAsync("manage/2fa", twoFactorRequest, 
+        jsonSerializerOptions);
+
+    // successful?
+    if (response.IsSuccessStatusCode)
     {
-        HttpResponseMessage response;
-
-        if (resetSharedKey)
-        {
-            response = await httpClient.PostAsJsonAsync("manage/2fa", 
-                new { resetSharedKey });
-        }
-        else if (resetRecoveryCodes)
-        {
-            response = await httpClient.PostAsJsonAsync("manage/2fa",
-                new { resetRecoveryCodes });
-        }
-        else if (forgetMachine)
-        {
-            response = await httpClient.PostAsJsonAsync("manage/2fa", 
-                new { forgetMachine });
-        }
-        else if (!string.IsNullOrEmpty(twoFactorCode))
-        {
-            response = await httpClient.PostAsJsonAsync("manage/2fa", 
-                new { enable, twoFactorCode });
-        }
-        else
-        {
-            response = await httpClient.PostAsJsonAsync("manage/2fa", 
-                new { });
-        }
-
-        if (response.IsSuccessStatusCode)
-        {
-            return await response.Content
-                .ReadFromJsonAsync<TwoFactorResult>() ??
-                new()
-                { 
-                    ErrorList = 
-                        [ "There was an error processing the request." ]
-                };
-        }
-
-        var details = await response.Content.ReadAsStringAsync();
-        var problemDetails = JsonDocument.Parse(details);
-        var errors = new List<string>();
-        var errorList = problemDetails.RootElement.GetProperty("errors");
-
-        foreach (var errorEntry in errorList.EnumerateObject())
-        {
-            if (errorEntry.Value.ValueKind == JsonValueKind.String)
-            {
-                errors.Add(errorEntry.Value.GetString()!);
-            }
-            else if (errorEntry.Value.ValueKind == JsonValueKind.Array)
-            {
-                errors.AddRange(
-                    errorEntry.Value.EnumerateArray().Select(
-                        e => e.GetString() ?? string.Empty)
-                    .Where(e => !string.IsNullOrEmpty(e)));
-            }
-        }
-
-        return new TwoFactorResult
-        {
-            ErrorList = problemDetails == null ? defaultDetail : [.. errors]
-        };
+        return await response.Content
+            .ReadFromJsonAsync<TwoFactorResult>() ??
+            new()
+            { 
+                ErrorList = [ "There was an error processing the request." ]
+            };
     }
-    catch { }
 
+    // body should contain details about why it failed
+    var details = await response.Content.ReadAsStringAsync();
+    var problemDetails = JsonDocument.Parse(details);
+    var errors = new List<string>();
+    var errorList = problemDetails.RootElement.GetProperty("errors");
+
+    foreach (var errorEntry in errorList.EnumerateObject())
+    {
+        if (errorEntry.Value.ValueKind == JsonValueKind.String)
+        {
+            errors.Add(errorEntry.Value.GetString()!);
+        }
+        else if (errorEntry.Value.ValueKind == JsonValueKind.Array)
+        {
+            errors.AddRange(
+                errorEntry.Value.EnumerateArray().Select(
+                    e => e.GetString() ?? string.Empty)
+                .Where(e => !string.IsNullOrEmpty(e)));
+        }
+    }
+
+    // return the error list
     return new TwoFactorResult
     {
-        ErrorList = [ "There was an error processing the request." ]
+        ErrorList = problemDetails == null ? defaultDetail : [.. errors]
     };
 }
 ```
@@ -416,8 +410,10 @@ Replace the `Login` component. The following version of the `Login` component:
                         <div style="display:@(requiresTwoFactor ? "none" : "block")">
                             <div class="form-floating mb-3">
                                 <InputText @bind-Value="Input.Email" 
-                                    id="Input.Email" class="form-control" 
-                                    autocomplete="username" aria-required="true" 
+                                    id="Input.Email" 
+                                    class="form-control" 
+                                    autocomplete="username" 
+                                    aria-required="true" 
                                     placeholder="name@example.com" />
                                 <label for="Input.Email" class="form-label">
                                     Email
@@ -427,9 +423,12 @@ Replace the `Login` component. The following version of the `Login` component:
                             </div>
                             <div class="form-floating mb-3">
                                 <InputText type="password" 
-                                    @bind-Value="Input.Password" id="Input.Password" 
-                                    class="form-control" autocomplete="current-password" 
-                                    aria-required="true" placeholder="password" />
+                                    @bind-Value="Input.Password" 
+                                    id="Input.Password" 
+                                    class="form-control" 
+                                    autocomplete="current-password" 
+                                    aria-required="true" 
+                                    placeholder="password" />
                                 <label for="Input.Password" class="form-label">
                                     Password
                                 </label>
@@ -440,12 +439,12 @@ Replace the `Login` component. The following version of the `Login` component:
                         <div style="display:@(requiresTwoFactor ? "block" : "none")">
                             <div class="form-floating mb-3">
                                 <InputText @bind-Value="Input.TwoFactorCode" 
-                                    id="Input.TwoFactorCode" class="form-control" 
+                                    id="Input.TwoFactorCode" 
+                                    class="form-control" 
                                     autocomplete="off" 
                                     placeholder="###### or #####-#####" />
                                 <label for="Input.TwoFactorCode" class="form-label">
-                                    2FA Authenticator Code (######) or Recovery 
-                                    Code (#####-#####, dash required)
+                                    2FA Authenticator Code or Recovery Code
                                 </label>
                                 <ValidationMessage For="() => Input.TwoFactorCode" 
                                     class="text-danger" />
@@ -456,7 +455,7 @@ Replace the `Login` component. The following version of the `Login` component:
                                 Log in
                             </button>
                         </div>
-                        <div>
+                        <div class="mt-3">
                             <p>
                                 <a href="forgot-password">Forgot password</a>
                             </p>
@@ -498,12 +497,13 @@ Replace the `Login` component. The following version of the `Login` component:
                     formResult = await Acct.LoginTwoFactorRecoveryCodeAsync(
                         Input.Email, Input.Password, Input.TwoFactorCode);
 
-                    var twoFactorResult = await Acct.TwoFactorRequest();
-                    recoveryCodesRemainingMessage =
-                        $"You have {twoFactorResult.RecoveryCodesLeft} recovery " +
-                        "codes remaining.";
-
-                    StateHasChanged();
+                    if (formResult.Succeeded)
+                    {
+                        var twoFactorResult = await Acct.TwoFactorRequest(new());
+                        recoveryCodesRemainingMessage =
+                            $"You have {twoFactorResult.RecoveryCodesLeft} recovery " +
+                            "codes remaining.";
+                    }
                 }
             }
         }
@@ -694,8 +694,7 @@ If 2FA is enabled, a button appears to disable 2FA.
                             </p>
                             <div class="row">
                                 <div class="col-xl-6">
-                                    <EditForm 
-                                            Model="Input" 
+                                    <EditForm Model="Input" 
                                             FormName="send-code" 
                                             OnValidSubmit="OnValidSubmitAsync" 
                                             method="post">
@@ -707,7 +706,8 @@ If 2FA is enabled, a button appears to disable 2FA.
                                                 class="form-control" 
                                                 autocomplete="off" 
                                                 placeholder="Enter the code" />
-                                            <label for="Input.Code" class="control-label form-label">
+                                            <label for="Input.Code" 
+                                                    class="control-label form-label">
                                                 Verification Code
                                             </label>
                                             <ValidationMessage 
@@ -729,7 +729,6 @@ If 2FA is enabled, a button appears to disable 2FA.
 </div>
 
 @code {
-    private IEnumerable<string>? recoveryCodes;
     private IJSObjectReference? module;
     private TwoFactorResult twoFactorResult = new();
     private ElementReference qrCodeElement;
@@ -742,7 +741,7 @@ If 2FA is enabled, a button appears to disable 2FA.
 
     protected override async Task OnInitializedAsync()
     {
-        twoFactorResult = await Acct.TwoFactorRequest();
+        twoFactorResult = await Acct.TwoFactorRequest(new());
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -774,19 +773,23 @@ If 2FA is enabled, a button appears to disable 2FA.
     private async Task Disable2FA()
     {
         twoFactorResult = 
-            await Acct.TwoFactorRequest(resetSharedKey: true);
+            await Acct.TwoFactorRequest(new() { ResetSharedKey = true });
     }
 
     private async Task GenerateNewCodes()
     {
         twoFactorResult = 
-            await Acct.TwoFactorRequest(resetRecoveryCodes: true);
+            await Acct.TwoFactorRequest(new() { ResetRecoveryCodes = true });
     }
 
     private async Task OnValidSubmitAsync()
     {
-        twoFactorResult = await Acct.TwoFactorRequest(enable: true, 
-            twoFactorCode: Input.Code);
+        twoFactorResult = await Acct.TwoFactorRequest(
+            new() 
+            { 
+                Enable = true, 
+                TwoFactorCode = Input.Code 
+            });
         Input.Code = string.Empty;
     }
 
