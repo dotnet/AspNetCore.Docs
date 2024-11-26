@@ -146,20 +146,12 @@ QuickGrid renders additional empty rows to fill in the final page of data when u
 }
 ```
 
-:::moniker range=">= aspnetcore-9.0"
-
-<!-- UPDATE 10.0 Check on https://github.com/dotnet/aspnetcore/issues/59078 to see
-                 if an empty row template feature is added that will result in an 
-                 update the following content for >=10.0. -->
-
-If you prefer to hide the empty rows rendered by the `QuickGrid`, you may do so using CSS styling to hide the empty data cell in rows that that don't contain any data.
-
-In the following isolated CSS styles:
+To hide the empty row data cells rendered by the QuickGrid, use CSS styling. In the following isolated CSS styles:
 
 * Row cells populated with data are displayed.
-* Empty row data cells aren't displayed, which avoids empty row cell borders rendering per the Bootstrap style.
+* Empty row data cells aren't displayed, which avoids empty row cell borders from rendering per Bootstrap styling.
 
-`Index.razor.css`:
+`{COMPONENT}.razor.css`:
 
 ```css
 ::deep tr:has(> td:not(:empty)) > td {
@@ -170,8 +162,6 @@ In the following isolated CSS styles:
     display: none;
 }
 ```
-
-:::moniker-end
 
 For more information on using `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) with CSS isolation, see <xref:blazor/components/css-isolation#child-component-support>.
 
