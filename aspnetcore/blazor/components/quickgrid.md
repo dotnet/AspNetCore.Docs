@@ -138,6 +138,63 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 
 In the running app, page through the items using a rendered `Paginator` component.
 
+QuickGrid renders additional empty rows to fill in the final page of data when used with a `Paginator` component. In .NET 9 or later, empty data cells (`<td></td>`) are added to the empty rows. The empty rows are intended to facilitate rendering the QuickGrid with stable row height and styling across all pages. You can apply styles to the rows using [CSS isolation](xref:blazor/components/css-isolation) by wrapping the `QuickGrid` component in a wrapper element, such as a `<div>`, and applying a row style with `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements):
+
+```css
+::deep tr {
+    height: 2em;
+}
+```
+
+:::moniker range=">= aspnetcore-9.0"
+
+<!-- UPDATE 10.0 Check on https://github.com/dotnet/aspnetcore/issues/59078 to see
+                 if an empty row template feature is added that will result in an 
+                 update the following content for >=10.0. -->
+
+In .NET 9 or later, Bootstrap styling adds a bottom border to empty row data cells, which results in a UI artifact. To remove the border styling of the empty cells on these rows, use [CSS isolation](xref:blazor/components/css-isolation).
+
+Consider the following QuickGrid placed in the app's `Index` component. The `QuickGrid` component has a wrapper `<div>` element, which permits you to apply `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) to the QuickGrid.
+
+`Index.razor`:
+
+```razor
+<div>
+    <QuickGrid ... Pagination="pagination">
+        ...
+    </QuickGrid>
+</div>
+
+<Paginator State="pagination" />
+
+@code {
+    private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+
+    ...
+}
+```
+
+In the following isolated CSS styles:
+
+* Row cells populated with data are displayed.
+* Empty row data cells aren't displayed, which avoids empty row cell borders rendering per the Bootstrap style.
+
+`Index.razor.css`:
+
+```css
+::deep tr:has(> td:not(:empty)) > td {
+    display: table-cell;
+}
+
+::deep td:empty {
+    display: none;
+}
+```
+
+:::moniker-end
+
+For more information on using `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) with CSS isolation, see <xref:blazor/components/css-isolation#child-component-support>.
+
 ## Custom attributes and styles
 
 QuickGrid also supports passing custom attributes and style classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:
