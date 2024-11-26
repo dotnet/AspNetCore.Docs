@@ -135,7 +135,7 @@ Add the following class signatures to the `IAccountManagement` interface. The cl
 
 * Log in with a 2FA TOTP code (`/login` endpoint): `LoginTwoFactorCodeAsync`
 * Log in with a 2FA recovery code (`/login` endpoint): `LoginTwoFactorRecoveryCodeAsync`
-* Make a 2FA management request (`/manage/2fa` endpoint): `TwoFactorRequest`
+* Make a 2FA management request (`/manage/2fa` endpoint): `TwoFactorRequestAsync`
 
 `Identity/IAccountManagement.cs` (paste the following code at the bottom of the interface):
 
@@ -150,7 +150,7 @@ public Task<FormResult> LoginTwoFactorRecoveryCodeAsync(
     string password, 
     string twoFactorRecoveryCode);
 
-public Task<TwoFactorResult> TwoFactorRequest(
+public Task<TwoFactorResult> TwoFactorRequestAsync(
     TwoFactorRequest twoFactorRequest);
 ```
 
@@ -300,7 +300,7 @@ public async Task<FormResult> LoginTwoFactorRecoveryCodeAsync(string email,
 }
 ```
 
-A `TwoFactorRequest` method is added, which is used to manage 2FA for the user:
+A `TwoFactorRequestAsync` method is added, which is used to manage 2FA for the user:
 
 * Reset the shared 2FA key when `TwoFactorRequest.ResetSharedKey` is `true`. Resetting the shared key implicitly disables two-factor authentication. This forces the user to prove that they can provide a valid TOTP code from their authenticator app to enable 2FA after receiving a new shared key.
 * Reset the user's recovery codes when `TwoFactorRequest.ResetRecoveryCodes` is `true`.
@@ -308,10 +308,10 @@ A `TwoFactorRequest` method is added, which is used to manage 2FA for the user:
 * Enable 2FA using a 2FA code from a TOTP authenticator app when `TwoFactorRequest.Enable` is `true` and `TwoFactorRequest.TwoFactorCode` has a valid TOTP value.
 * Obtain 2FA status with an empty request when all of `TwoFactorRequest`'s properties are `null`.
 
-Add the following `TwoFactorRequest` method to `Identity/CookieAuthenticationStateProvider.cs` (paste the following code at the bottom of the class file):
+Add the following `TwoFactorRequestAsync` method to `Identity/CookieAuthenticationStateProvider.cs` (paste the following code at the bottom of the class file):
 
 ```csharp
-public async Task<TwoFactorResult> TwoFactorRequest(TwoFactorRequest twoFactorRequest)
+public async Task<TwoFactorResult> TwoFactorRequestAsync(TwoFactorRequest twoFactorRequest)
 {
     string[] defaultDetail = 
         [ "An unknown error prevented two-factor authentication." ];
@@ -499,7 +499,7 @@ Replace the `Login` component. The following version of the `Login` component:
 
                     if (formResult.Succeeded)
                     {
-                        var twoFactorResult = await Acct.TwoFactorRequest(new());
+                        var twoFactorResult = await Acct.TwoFactorRequestAsync(new());
                         recoveryCodesRemainingMessage =
                             $"You have {twoFactorResult.RecoveryCodesLeft} recovery " +
                             "codes remaining.";
@@ -741,7 +741,7 @@ If 2FA is enabled, a button appears to disable 2FA.
 
     protected override async Task OnInitializedAsync()
     {
-        twoFactorResult = await Acct.TwoFactorRequest(new());
+        twoFactorResult = await Acct.TwoFactorRequestAsync(new());
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -773,18 +773,18 @@ If 2FA is enabled, a button appears to disable 2FA.
     private async Task Disable2FA()
     {
         twoFactorResult = 
-            await Acct.TwoFactorRequest(new() { ResetSharedKey = true });
+            await Acct.TwoFactorRequestAsync(new() { ResetSharedKey = true });
     }
 
     private async Task GenerateNewCodes()
     {
         twoFactorResult = 
-            await Acct.TwoFactorRequest(new() { ResetRecoveryCodes = true });
+            await Acct.TwoFactorRequestAsync(new() { ResetRecoveryCodes = true });
     }
 
     private async Task OnValidSubmitAsync()
     {
-        twoFactorResult = await Acct.TwoFactorRequest(
+        twoFactorResult = await Acct.TwoFactorRequestAsync(
             new() 
             { 
                 Enable = true, 
