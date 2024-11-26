@@ -50,7 +50,7 @@ To use the client library without the npm prerequisite, reference a CDN-hosted c
 
 [!code-html[](javascript-client/samples/6.x/SignalRChat/Pages/Index.cshtml?name=snippet_CDN)]
 
-The client library is available on the following CDNs:
+In the preceding markup, version 6.0.1 is specified. Choose from one of the following CDNs to get the latest client library version:
 
 * [cdnjs](https://cdnjs.com/libraries/microsoft-signalr)
 * [jsDelivr](https://www.jsdelivr.com/package/npm/@microsoft/signalr)
