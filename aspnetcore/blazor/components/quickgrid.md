@@ -152,27 +152,7 @@ QuickGrid renders additional empty rows to fill in the final page of data when u
                  if an empty row template feature is added that will result in an 
                  update the following content for >=10.0. -->
 
-In .NET 9 or later, Bootstrap styling adds a bottom border to empty row data cells, which results in a UI artifact. To remove the border styling of the empty cells on these rows, use [CSS isolation](xref:blazor/components/css-isolation).
-
-Consider the following QuickGrid placed in the app's `Index` component. The `QuickGrid` component has a wrapper `<div>` element, which permits you to apply `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) to the QuickGrid.
-
-`Index.razor`:
-
-```razor
-<div>
-    <QuickGrid ... Pagination="pagination">
-        ...
-    </QuickGrid>
-</div>
-
-<Paginator State="pagination" />
-
-@code {
-    private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
-
-    ...
-}
-```
+If you prefer to hide the empty rows rendered by the `QuickGrid`, you may do so using CSS styling to hide the empty data cell in rows that that don't contain any data.
 
 In the following isolated CSS styles:
 
