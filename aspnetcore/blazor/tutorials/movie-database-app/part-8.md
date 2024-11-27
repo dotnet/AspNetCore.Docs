@@ -199,25 +199,15 @@ Filtering database records is performed on the server, and the server interactiv
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
 
-## Style `QuickGrid` rows and cells
+## Style the `QuickGrid` component
 
-You can apply table row and cell styles to the rendered `QuickGrid` component with a stylesheet isolated to the `Index` component using *CSS isolation*.
+You can apply styles to the rendered `QuickGrid` component with a stylesheet isolated to the `Index` component using *CSS isolation*.
 
-CSS isolation only applies to the component you associate with the format `{COMPONENT NAME}.razor.css`, where the `{COMPONENT NAME}` placeholder is the component name. The filename is `Index.razor.css` to apply the isolated styles to the `Index` component.
+CSS isolation is applied by adding a stylesheet file using the file name format `{COMPONENT NAME}.razor.css`, where the `{COMPONENT NAME}` placeholder is the component name. The isolated stylesheet file name for the `Index` component is `Index.razor.css`.
 
-To apply changes to a child component, such as the `QuickGrid` component of the `Index` component, use the `::deep` pseudo-element for element styles in the stylesheet. The `::deep` pseudo-element only works with descendant elements, so the `QuickGrid` component must be wrapped with a `<div>` in order to apply the styles to it.
+To apply changes to a child component, such as the `QuickGrid` component of the `Index` component, use the `::deep` pseudo-element. 
 
-In `Components/Pages/MoviePages/Index.razor`, place `<div>` tags around the `QuickGrid` component:
-
-```diff
-+ <div>
-    <QuickGrid ...>
-        ...
-    </QuickGrid>
-+ </div>
-```
-
-In the `MoviePages` folder, add a new isolated stylesheet for the `Index` component. Use `::deep` pseudo-elements to make the row height `3em` and vertically-center the table cell content.
+In the `MoviePages` folder, add a stylesheet for the `Index` component. Use `::deep` pseudo-elements to make the row height `3em` and vertically center the table cell content.
 
 `Components/Pages/MoviePages/Index.razor.css`:
 
@@ -229,6 +219,18 @@ In the `MoviePages` folder, add a new isolated stylesheet for the `Index` compon
     ::deep tr > td {
         vertical-align: middle;
     }
+```
+
+The `::deep` pseudo-element only works with descendant elements, so the `QuickGrid` component must be wrapped with a `<div>` or some other block-level element in order to apply the styles to it.
+
+In `Components/Pages/MoviePages/Index.razor`, place `<div>` tags around the `QuickGrid` component:
+
+```diff
++ <div>
+    <QuickGrid ...>
+        ...
+    </QuickGrid>
++ </div>
 ```
 
 Blazor rewrites CSS selectors to match the markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset for you, so you don't need to take further action to apply the styles to the `QuickGrid` component when it's rendered.
