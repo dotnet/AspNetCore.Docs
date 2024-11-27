@@ -203,11 +203,11 @@ Instead of an HTML form, submitting a GET request in this scenario could've also
 
 You can apply styles to the rendered `QuickGrid` component with a stylesheet isolated to the `Index` component using *CSS isolation*.
 
-CSS isolation is applied by adding a stylesheet file using the file name format `{COMPONENT NAME}.razor.css`, where the `{COMPONENT NAME}` placeholder is the component name. The isolated stylesheet file name for the `Index` component is `Index.razor.css`.
+CSS isolation is applied by adding a stylesheet file using the file name format `{COMPONENT NAME}.razor.css`, where the `{COMPONENT NAME}` placeholder is the component name.
 
-To apply changes to a child component, such as the `QuickGrid` component of the `Index` component, use the `::deep` pseudo-element. 
+To apply styles to a child component, such as the `QuickGrid` component of the `Index` component, use the `::deep` pseudo-element. 
 
-In the `MoviePages` folder, add a stylesheet for the `Index` component. Use `::deep` pseudo-elements to make the row height `3em` and vertically center the table cell content.
+In the `MoviePages` folder, add the following stylesheet for the `Index` component. Use `::deep` pseudo-elements to make the row height `3em` and vertically center the table cell content.
 
 `Components/Pages/MoviePages/Index.razor.css`:
 
@@ -233,7 +233,7 @@ In `Components/Pages/MoviePages/Index.razor`, place `<div>` tags around the `Qui
 + </div>
 ```
 
-Blazor rewrites CSS selectors to match the markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset, so you don't need to take further action to apply the styles to the `QuickGrid` component when it's rendered.
+Blazor rewrites CSS selectors to match the markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset, so you don't need to take further action to apply the styles to the rendered `QuickGrid` component.
 
 ![Movie list showing row heights at 3em with vertically-centered content](~/blazor/tutorials/movie-database-app/part-8/_static/styled-quickgrid.png)
 
