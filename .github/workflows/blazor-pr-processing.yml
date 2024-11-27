@@ -1,4 +1,4 @@
-name: Issue processing
+name: PR processing
 on:
   pull_request:
     types:
