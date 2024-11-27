@@ -233,7 +233,7 @@ In `Components/Pages/MoviePages/Index.razor`, place `<div>` tags around the `Qui
 + </div>
 ```
 
-Blazor rewrites CSS selectors to match the markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset for you, so you don't need to take further action to apply the styles to the `QuickGrid` component when it's rendered.
+Blazor rewrites CSS selectors to match the markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset, so you don't need to take further action to apply the styles to the `QuickGrid` component when it's rendered.
 
 ![Movie list showing row heights at 3em with vertically-centered content](~/blazor/tutorials/movie-database-app/part-8/_static/styled-quickgrid.png)
 
