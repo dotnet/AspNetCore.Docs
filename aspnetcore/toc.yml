@@ -908,6 +908,8 @@ items:
         displayName: signalr
       - name: Tutorials
         items:
+          - name: AI-powered group chat
+            uid: tutorials/ai-powered-group-chat
           - name: SignalR with JavaScript
             uid: tutorials/signalr
           - name: SignalR with TypeScript
