@@ -386,7 +386,7 @@ The additional options in the following table only apply to **hosted Blazor WebA
 *The guidance in this section applies debugging Blazor WebAssembly apps in:*
 
 * ***Google Chrome*** *running on Windows or macOS.*
-* ***Microsoft Edge** *running on Windows.*
+* ***Microsoft Edge*** *running on Windows.*
 
 1. Run the app in a command shell with `dotnet watch` (or `dotnet run`).
 1. Launch a browser and navigate to the app's URL.
