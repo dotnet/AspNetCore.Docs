@@ -73,6 +73,9 @@ When an entry is removed, it is removed from both the primary and secondary cach
 
 ## Remove cache entries by tag
 
+> [!IMPORTANT]
+> This feature is still under development. If you try to remove entries by tag, you will notice that it doesn't have any effect.
+
 Tags can be used to group cache entries and invalidate them together.
 
 Set tags when calling `GetOrCreateAsync`, as shown in the following example:
@@ -144,6 +147,9 @@ For more information, see the [HybridCache serialization sample app](https://git
 ## Cache storage
 
 By default `HybridCache` uses <xref:System.Runtime.Caching.MemoryCache> for its primary cache storage. Cache entries are stored in-process, so each server has a separate cache that is lost whenever the server process is restarted. For secondary out-of-process storage, such as Redis or SQL Server, `HybridCache` uses [the configured `IDistributedCache` implementation](xref:performance/caching/distributed), if any. But even without an `IDistributedCache`implementation, the `HybridCache` service still provides in-process caching and [stampede protection](https://en.wikipedia.org/wiki/Cache_stampede).
+
+> [!NOTE]
+> When invalidating cache entries by key or by tags, they are invalidated in the current server and in the secondary out-of-process storage. However, the in-memory cache in other servers isn't affected.
 
 ## Optimize performance
 
