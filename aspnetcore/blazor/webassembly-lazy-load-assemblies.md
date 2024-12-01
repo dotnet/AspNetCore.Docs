@@ -71,7 +71,7 @@ Blazor's <xref:Microsoft.AspNetCore.Components.Routing.Router> component designa
 Logic is implemented inside <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> to determine the assemblies to load with <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader>. Options for how to structure the logic include:
 
 * Conditional checks inside the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> method.
-* A lookup table that maps routes to assembly names, either injected into the component or implemented within the [`@code`](xref:mvc/views/razor#code) block.
+* A lookup table that maps routes to assembly names, either injected into the component or implemented within the component's code.
 
 In the following example:
 
