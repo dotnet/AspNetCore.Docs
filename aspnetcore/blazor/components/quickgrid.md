@@ -138,7 +138,21 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 
 In the running app, page through the items using a rendered `Paginator` component.
 
-QuickGrid renders additional empty rows to fill in the final page of data when used with a `Paginator` component. In .NET 9 or later, empty data cells (`<td></td>`) are added to the empty rows. The empty rows are intended to facilitate rendering the QuickGrid with stable row height and styling across all pages. You can apply styles to the rows using [CSS isolation](xref:blazor/components/css-isolation) by wrapping the `QuickGrid` component in a wrapper element, such as a `<div>`, and applying a row style with `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements):
+QuickGrid renders additional empty rows to fill in the final page of data when used with a `Paginator` component. In .NET 9 or later, empty data cells (`<td></td>`) are added to the empty rows. The empty rows are intended to facilitate rendering the QuickGrid with stable row height and styling across all pages. Apply styles to the rows using [CSS isolation](xref:blazor/components/css-isolation).
+
+Wrap the `QuickGrid` component in a wrapper block element, for example a `<div>`:
+
+```diff
++ <div>
+    <QuickGrid ...>
+        ...
+    </QuickGrid>
++ </div>
+```
+
+Apply a row style with the `::deep` [pseudo-element](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements). In the following example, row height is set to `2em`.
+
+`{COMPONENT}.razor.css`:
 
 ```css
 ::deep tr {
@@ -146,10 +160,10 @@ QuickGrid renders additional empty rows to fill in the final page of data when u
 }
 ```
 
-To hide the empty row data cells rendered by the QuickGrid, use CSS styling. In the following isolated CSS styles:
+Alternatively, use the following CSS styling approach to hide the empty row data cells:
 
-* Row cells populated with data are displayed.
-* Empty row data cells aren't displayed, which avoids empty row cell borders from rendering per Bootstrap styling.
+* Display row cells populated with data.
+* Don't display empty row data cells, which avoids empty row cell borders from rendering per Bootstrap styling.
 
 `{COMPONENT}.razor.css`:
 
