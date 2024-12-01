@@ -142,7 +142,7 @@ QuickGrid renders additional empty rows to fill in the final page of data when u
 
 ## Apply row styles
 
-Apply styles to rows using [CSS isolation](xref:blazor/components/css-isolation), which can include styling empty rows for `QuickGrid` components that [page data with a `Paginator` component](#page-items-with-a-paginator-components).
+Apply styles to rows using [CSS isolation](xref:blazor/components/css-isolation), which can include styling empty rows for `QuickGrid` components that [page data with a `Paginator` component](#page-items-with-a-paginator-component).
 
 Wrap the `QuickGrid` component in a wrapper block element, for example a `<div>`:
 
