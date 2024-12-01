@@ -22,10 +22,8 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 🍂🎃🏮 *OOF: Back on Monday, 12/2* 🥧☕🍂
-            Stand by! We're out of the office for the Thanksgiving holiday 🦃.
-            
-            A green dinosaur 🦖 will be back on Monday (12/2) to assist.`
+              body: `### 🏂🎁 ***Happy Holidays!*** ❄️⛄
+            *Stand-by!* ... A green dinosaur 🦖 will be along shortly to assist.`
             })
             await github.rest.issues.addLabels({
               issue_number: context.issue.number,
