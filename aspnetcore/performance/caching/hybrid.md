@@ -148,7 +148,8 @@ For more information, see the [HybridCache serialization sample app](https://git
 
 By default `HybridCache` uses <xref:System.Runtime.Caching.MemoryCache> for its primary cache storage. Cache entries are stored in-process, so each server has a separate cache that is lost whenever the server process is restarted. For secondary out-of-process storage, such as Redis or SQL Server, `HybridCache` uses [the configured `IDistributedCache` implementation](xref:performance/caching/distributed), if any. But even without an `IDistributedCache`implementation, the `HybridCache` service still provides in-process caching and [stampede protection](https://en.wikipedia.org/wiki/Cache_stampede).
 
-**Note:** When invalidating the cache by key or by tags, it will be invalidated in the current node and in the secondary out-of-process storage. However, the in-memory cache on other nodes will not be affected.
+> [!NOTE]
+> When invalidating cache entries by key or by tags, they are invalidated in the current server and in the secondary out-of-process storage. However, the in-memory cache in other servers isn't affected.
 
 ## Optimize performance
 
