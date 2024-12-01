@@ -74,7 +74,7 @@ When an entry is removed, it is removed from both the primary and secondary cach
 ## Remove cache entries by tag
 
 > [!IMPORTANT]
-> This feature is still under development. If you try to remove entries by tag, you will notice that it won't cause any effect yet.
+> This feature is still under development. If you try to remove entries by tag, you will notice that it doesn't have any effect.
 
 Tags can be used to group cache entries and invalidate them together.
 
