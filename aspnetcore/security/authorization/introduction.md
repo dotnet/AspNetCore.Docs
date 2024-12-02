@@ -12,7 +12,7 @@ uid: security/authorization/introduction
 
 Authorization refers to the process that determines what a user is able to do. For example, an administrative user is allowed to create a document library, add documents, edit documents, and delete them. A non-administrative user working with the library is only authorized to read the documents.
 
-Authorization is orthogonal and independent from authentication. However, authorization requires an authentication mechanism. Authentication is the process of ascertaining who a user is. Authentication may create one or more identities for the current user.
+Authorization is separate and distinct from authentication. However, authorization relies on an authentication mechanism. Authentication is the process of verifying a user's identity, which may result in the creation of one or more identity objects for the user.
 
 For more information about authentication in ASP.NET Core, see <xref:security/authentication/index>.
 

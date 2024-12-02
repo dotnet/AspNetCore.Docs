@@ -24,7 +24,7 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 > [!NOTE]
 > * The Native AOT feature is currently in preview.
 > * In .NET 8, not all ASP.NET Core features are compatible with Native AOT.
-> * Tabs are provided for the [.NET CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/vs/preview/) instructions:
+> * Tabs are provided for the [.NET CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/downloads/) instructions:
 >   * Visual Studio is a prerequisite even if the CLI tab is selected.
 >   * The CLI must be used to publish even if the Visual Studio tab is selected.
 
@@ -34,18 +34,18 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 
 * [!INCLUDE[](~/includes/8.0-SDK.md)]
 * On Linux, see [Prerequisites for Native AOT deployment](/dotnet/core/deploying/native-aot/?tabs=net8plus#prerequisites-for-native-aot-deployment).
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **Desktop development with C++** workload installed.
+* [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the **Desktop development with C++** workload installed.
 
   ![Visual Studio workload selection dialog showing "Desktop development with C++" selected.](~/fundamentals/aot/_static/cpponly.png)
 
 > [!NOTE]
-> Visual Studio 2022 Preview is required because Native AOT requires [link.exe](/cpp/build/reference/linker-options) and the Visual C++ static runtime libraries. There are no plans to support Native AOT ***without*** Visual Studio.
+> Visual Studio 2022 is required because Native AOT requires [link.exe](/cpp/build/reference/linker-options) and the Visual C++ static runtime libraries. There are no plans to support Native AOT ***without*** Visual Studio.
 
 # [Visual Studio](#tab/visual-studio)
 
 * [!INCLUDE[](~/includes/8.0-SDK.md)]
 
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the following workloads installed:
+* [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the following workloads installed:
   * **ASP.NET and web development**
   * **Desktop development with C++**
 
