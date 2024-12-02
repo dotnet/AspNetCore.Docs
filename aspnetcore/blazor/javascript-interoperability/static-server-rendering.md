@@ -36,7 +36,7 @@ In the following event listener examples, the `{CALLBACK}` placeholder is the ca
   blazor.addEventListener("enhancednavigationend", {CALLBACK});
   ```
 
-* Enhanced navigation page load (`enhancedload`) triggers a callback when an enhanced page loads:
+* Enhanced navigation page load (`enhancedload`) triggers a callback each time the page updates due to an enhanced navigation, including [streaming updates](xref:blazor/components/rendering#streaming-rendering):
 
   ```javascript
   blazor.addEventListener("enhancedload", {CALLBACK});
