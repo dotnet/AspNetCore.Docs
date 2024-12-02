@@ -16,7 +16,47 @@ This article explains how to load JavaScript (JS) in a Blazor Web App with stati
 
 Some apps depend on JS to perform initialization tasks that are specific to each page. When using Blazor's enhanced navigation feature, which allows the user to avoid reloading the entire page, page-specific JS may not be executed again as expected each time an enhanced page navigation occurs.
 
-To avoid this problem, we don't recommended relying on page-specific `<script>` elements placed outside of the layout file applied to the component. Instead, scripts should register an [`afterWebStarted` JS initializer](xref:blazor/fundamentals/startup#javascript-initializers) to perform initialization logic and use an event listener (`blazor.addEventListener("enhancedload", callback)`) to listen for page updates caused by enhanced navigation.
+:::moniker range=">= aspnetcore-9.0"
+
+To avoid this problem, we don't recommended relying on page-specific `<script>` elements placed outside of the layout file applied to the component. Instead, scripts should register an [`afterWebStarted` JS initializer](xref:blazor/fundamentals/startup#javascript-initializers) to perform initialization logic and use an event listener to listen for page updates caused by enhanced navigation.
+
+## Events
+
+In the following event listener examples, the `{CALLBACK}` placeholder is the callback function.
+
+* Enhanced navigation start (`enhancednavigationstart`) triggers a callback before an enhanced navigation occurs:
+
+  ```javascript
+  blazor.addEventListener("enhancednavigationstart", {CALLBACK});
+  ```
+
+* Enhanced navigation end (`enhancednavigationend`) triggers a callback after an enhanced navigation occurs:
+
+  ```javascript
+  blazor.addEventListener("enhancednavigationend", {CALLBACK});
+  ```
+
+* Enhanced navigation page load (`enhancedload`) triggers a callback when an enhanced page loads:
+
+  ```javascript
+  blazor.addEventListener("enhancedload", {CALLBACK});
+  ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+To avoid this problem, we don't recommended relying on page-specific `<script>` elements placed outside of the layout file applied to the component. Instead, scripts should register an [`afterWebStarted` JS initializer](xref:blazor/fundamentals/startup#javascript-initializers) to perform initialization logic and use an event listener to listen for page updates caused by enhanced navigation:
+
+```javascript
+blazor.addEventListener("enhancedload", {CALLBACK});
+```
+
+In the preceding example, the `{CALLBACK}` placeholder is the callback function.
+
+:::moniker-end
+
+## Enhanced page load script example
 
 The following example demonstrates one way to configure JS code to run when a statically-rendered page with enhanced navigation is initially loaded or updated.
 

@@ -218,3 +218,12 @@ The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component now s
     }
 }
 ```
+
+### New enhanced navigation events
+
+Trigger JavaScript callbacks either before or after enhanced navigation with new event listeners:
+
+* `blazor.addEventListener("enhancednavigationstart", {CALLBACK})`
+* `blazor.addEventListener("enhancednavigationend", {CALLBACK})`
+
+For more information, see <xref:blazor/js-interop/ssr?view=aspnetcore-9.0>.
