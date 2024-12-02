@@ -47,7 +47,7 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 * In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
 * Select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 9.0 (Preview)**.
+  * Select **.NET 9.0**.
   * Verify: **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
