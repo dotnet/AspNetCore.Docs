@@ -1,11 +1,11 @@
 ---
 title: Overview of ASP.NET Core SignalR
-author: bradygaster
+author: wpickett
 description: Learn how the ASP.NET Core SignalR library simplifies adding real-time functionality to apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/07/2022
+ms.date: 12/02/2024
 uid: signalr/introduction
 ---
 # Overview of ASP.NET Core SignalR
