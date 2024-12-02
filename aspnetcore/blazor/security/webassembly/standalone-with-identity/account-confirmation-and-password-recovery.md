@@ -27,8 +27,6 @@ These namespaces correspond to the projects in the `BlazorWebAssemblyStandaloneW
 
 If you aren't using the `BlazorWebAssemblyStandaloneWithIdentity` sample solution, change the namespaces in the code examples to use the namespaces of your projects.
 
-In this article's code examples, the code lines are artificially broken across two or more lines to eliminate or reduce horizontal scrolling of the article's code blocks. The code executes regardless of these artificial line breaks. You're welcome to condense the code in your own apps by removing the artificial line breaks after you paste the code into a project.
-
 ## Select and configure an email provider for the server project
 
 In this article, [Mailchimp's Transactional API](https://mailchimp.com/developer/transactional/api/) is used via [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) to send email. We recommend using an email service to send email rather than SMTP. SMTP is difficult to configure and secure properly. Whichever email service you use, access their guidance for .NET apps, create an account, configure an API key for their service, and install any NuGet packages required.
@@ -160,7 +158,7 @@ Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.Identi
 In the client project's `Register` component (`Components/Identity/Register.razor`), change the message to users on a successful account registration to instruct them to confirm their account. The following example includes a link to trigger Identity on the server to resend the confirmation email.
 
 ```diff
-- You successfully registered. Now you can <a href="login">login</a>.
+- You successfully registered and can <a href="login">login</a> to the app.
 + You successfully registered. You must now confirm your account by clicking 
 + the link in the email that was sent to you. After confirming your account, 
 + you can <a href="login">login</a> to the app. 

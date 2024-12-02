@@ -120,7 +120,7 @@ Make the following changes:
 + <div id="qrCodeData" data-url="@authenticatorUri"></div>
 ```
 
-Change the site name in the `GenerateQrCodeUri` method of the `EnableAuthenticator` component. The default value is `Microsoft.AspNetCore.Identity.UI`. Change the value to a meaningful site name that users can identify easily in their authenticator app. Developers usually set a site name that matches the company's name. Examples: Yahoo, Amazon, Etsy, Microsoft, Zoho. We recommend limiting the site name length to 30 characters or less to allow the site name to display on narrow mobile device screens.
+Change the site name in the `GenerateQrCodeUri` method of the `EnableAuthenticator` component. The default value is `Microsoft.AspNetCore.Identity.UI`. Change the value to a meaningful site name that users can identify easily in their authenticator app. Developers usually set a site name that matches the company's name. We recommend limiting the site name length to 30 characters or less to allow the site name to display on narrow mobile device screens.
 
 In the following example, the default value `Microsoft.AspNetCore.Identity.UI` is changed to the company name `Weyland-Yutani Corporation` (&copy;1986 20th Century Studios [*Aliens*](https://www.20thcenturystudios.com/movies/aliens)).
 
