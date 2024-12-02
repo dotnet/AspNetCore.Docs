@@ -464,6 +464,15 @@ To use the preceding component in the [starship example form (`Starship3.razor`/
 + <EngineeringApprovalInputDerived @bind-Value="Model!.IsValidatedDesign" />
 ```
 
+If the component that inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> is ever statically rendered, assign the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.NameAttributeValue?displayProperty=nameWithType> property to the `name` attribute of `<input>` elements:
+
+```razor
+<input @bind="CurrentValue" @bind:after="AfterChange" class="@CssClass"
+    type="checkbox" name="@NameAttributeValue" />
+```
+
+The preceding assignment isn't necessary if the component is guaranteed to always render interactively.
+
 ### Input component with full developer control
 
 The following example component:
