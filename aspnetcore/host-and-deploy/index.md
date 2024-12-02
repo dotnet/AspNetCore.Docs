@@ -111,7 +111,7 @@ Use Health Check Middleware to perform health checks on an app and its dependenc
 
 ## Additional resources
 
-*[.NET application publishing overview](/dotnet/core/deploying)
+* [.NET application publishing overview](/dotnet/core/deploying)
 * <xref:test/troubleshoot>
 * [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
@@ -185,7 +185,7 @@ For more information, see <xref:host-and-deploy/docker/index>.
 
 ## Additional resources
 
-*[.NET application publishing overview](/dotnet/core/deploying)
+* [.NET application publishing overview](/dotnet/core/deploying)
 * <xref:test/troubleshoot>
 * [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
