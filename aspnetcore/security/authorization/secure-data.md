@@ -67,6 +67,16 @@ This tutorial is advanced. You should be familiar with:
 
 [Download](xref:index#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
 
+> [!TIP]
+> Use [`git sparse-checkout`](https://git-scm.com/docs/git-sparse-checkout) to only download the sample subfolder
+For example:
+```
+git clone --depth 1 --filter=blob:none https://github.com/dotnet/AspNetCore.Docs.git --sparse
+cd AspNetCore.Docs
+git sparse-checkout init --cone
+git sparse-checkout set aspnetcore/security/authorization/secure-data/samples
+```
+
 ### The starter app
 
 [Download](xref:index#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/) app.
