@@ -75,12 +75,8 @@ For an example, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app#using-inte
 
 :::moniker-end
 
-<!-- UPDATE 9.0 Ask Beth on a replacement for this
-
 ## Additional resources
 
-* .NET MAUI Blazor podcast sample app
-  * [Source code (`microsoft/dotnet-podcasts` GitHub repository)](https://github.com/microsoft/dotnet-podcasts)
-  * [Live app](https://dotnetpodcasts.azurewebsites.net/)
-
--->
+* eShop Reference Application (AdventureWorks): The .NET MAUI Blazor Hybrid app is in the `src/HybridApp` folder.
+  * For Azure hosting: [`Azure-Samples/eShopOnAzure` GitHub repository](https://github.com/Azure-Samples/eShopOnAzure)
+  * For general non-Azure hosting: [`dotnet/eShop` GitHub repository](https://github.com/dotnet/eShop). 

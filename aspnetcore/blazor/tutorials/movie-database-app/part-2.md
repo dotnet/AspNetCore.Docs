@@ -417,7 +417,7 @@ When you select the **:::no-loc text="Create":::** button, the movie data is pos
 
 :::moniker range=">= aspnetcore-9.0"
 
-<!-- UPDATE 9.0 Revert when debugger is updated -->
+<!-- UPDATE 10.0 Revert when https://github.com/dotnet/aspnetcore/issues/53996 is addressed -->
 
 :::zone pivot="vs"
 

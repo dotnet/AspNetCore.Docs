@@ -48,25 +48,20 @@ For more information, see the following articles:
 
 :::moniker-end
 
-<!-- UPDATE 9.0 Ask Beth on a replacement for this
-
 ## Sample app
 
-For an example of the scenarios described in this article, see the .NET Podcasts sample app:
+For an example of the scenarios described in this article, see the [eShop Reference Application (AdventureWorks) (`dotnet/eShop` GitHub repository)](https://github.com/dotnet/eShop). The .NET MAUI Blazor Hybrid app is in the `src/HybridApp` folder.
 
-* [GitHub repository (`microsoft/dotnet-podcasts`)](https://github.com/microsoft/dotnet-podcasts)
-* [Running sample app (Azure Container Apps Service)](https://dotnetpodcasts.azurewebsites.net/)
+For a version of the sample app tailored for Azure hosting, see the [`Azure-Samples/eShopOnAzure` GitHub repository](https://github.com/Azure-Samples/eShopOnAzure).
 
-The .NET Podcasts app showcases the following technologies:
+The sample app showcases the following technologies:
 
 * [.NET](https://dotnet.microsoft.com/download/dotnet)
 * [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet)
 * [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor)
 * [.NET MAUI](https://dotnet.microsoft.com/apps/maui)
-* [Azure Container Apps](https://azure.microsoft.com/services/container-apps/)
-* [Orleans](/dotnet/orleans/overview)
-
--->
+* [.NET Aspire](/dotnet/aspire/get-started/aspire-overview)
+* [Docker](https://docs.docker.com/get-started/docker-overview/)
 
 ## Share web UI Razor components, code, and static assets
 
