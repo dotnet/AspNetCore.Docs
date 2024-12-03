@@ -33,9 +33,9 @@ At runtime, components exist in a hierarchy. A root component (the first compone
 
 The last two steps of the preceding sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. Events targeting high-level components can cause expensive rerendering because every component below the high-level component must rerender.
 
-:::moniker range=">= aspnetcore-9.0"
-
 To prevent rendering recursion into a particular subtree, use either of the following approaches:
+
+:::moniker range=">= aspnetcore-9.0"
 
 * Ensure that the set parameters of child components are of primitive immutable types, such as `string`, `int`, `bool`, `DateTime`, and other similar types. The built-in logic for detecting changes automatically skips rerendering if the primitive immutable parameter values haven't changed. Only the parameters that are explicitly set on the component are considered for change detection. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
 * Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>:
@@ -45,8 +45,6 @@ To prevent rendering recursion into a particular subtree, use either of the foll
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
-
-To prevent rendering recursion into a particular subtree, use either of the following approaches:
 
 * Ensure that the set parameters of child components are of primitive immutable types, such as `string`, `int`, `bool`, `DateTime`, and other similar types. The built-in logic for detecting changes automatically skips rerendering if the primitive immutable parameter values haven't changed. Only the parameters that are explicitly set on the component are considered for change detection. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
 * Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>:
