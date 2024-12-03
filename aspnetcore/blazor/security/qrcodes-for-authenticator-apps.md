@@ -5,7 +5,7 @@ description: Discover how to enable QR code generation for TOTP authenticator ap
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/12/2024
-uid: blazor/security/server/qrcodes-for-authenticator-apps
+uid: blazor/security/qrcodes-for-authenticator-apps
 ---
 # Enable QR code generation for TOTP authenticator apps in an ASP.NET Core Blazor Web App
 

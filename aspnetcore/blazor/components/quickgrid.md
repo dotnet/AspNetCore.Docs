@@ -138,6 +138,33 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 
 In the running app, page through the items using a rendered `Paginator` component.
 
+QuickGrid renders additional empty rows to fill in the final page of data when used with a `Paginator` component. In .NET 9 or later, empty data cells (`<td></td>`) are added to the empty rows. The empty rows are intended to facilitate rendering the QuickGrid with stable row height and styling across all pages. You can apply styles to the rows using [CSS isolation](xref:blazor/components/css-isolation) by wrapping the `QuickGrid` component in a wrapper element, such as a `<div>`, and applying a row style with `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements):
+
+```css
+::deep tr {
+    height: 2em;
+}
+```
+
+To hide the empty row data cells rendered by the QuickGrid, use CSS styling. In the following isolated CSS styles:
+
+* Row cells populated with data are displayed.
+* Empty row data cells aren't displayed, which avoids empty row cell borders from rendering per Bootstrap styling.
+
+`{COMPONENT}.razor.css`:
+
+```css
+::deep tr:has(> td:not(:empty)) > td {
+    display: table-cell;
+}
+
+::deep td:empty {
+    display: none;
+}
+```
+
+For more information on using `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) with CSS isolation, see <xref:blazor/components/css-isolation#child-component-support>.
+
 ## Custom attributes and styles
 
 QuickGrid also supports passing custom attributes and style classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:

@@ -240,7 +240,7 @@ For examples of JS initializers, see the following resources:
 * <xref:blazor/js-interop/ssr>
 * <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
 * <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
-* <xref:blazor/security/server/qrcodes-for-authenticator-apps>
+* <xref:blazor/security/qrcodes-for-authenticator-apps>
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
 
 :::moniker-end
