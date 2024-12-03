@@ -15,21 +15,10 @@ This article explains how to configure an ASP.NET Core Blazor Web App for two-fa
 
 For an introduction to 2FA with TOTP authenticator apps, see <xref:security/authentication/identity-enable-qrcodes>.
 
+The guidance in this article relies upon either creating the app with **Individual Accounts** for the new app's **Authentication type** or [scaffolding Identity into an existing app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project). For guidance on using the .NET CLI instead of Visual Studio for scaffolding Identity into an existing app, see <xref:fundamentals/tools/dotnet-aspnet-codegenerator>.
+
 > [!WARNING]
 > TOTP codes should be kept secret because they can be used to authenticate multiple times before they expire.
-
-## Scaffold the Enable Authenticator component into the app
-
-Follow the guidance in <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project> to scaffold `Pages\Manage\EnableAuthenticator` into the app.
-
-<!-- UPDATE 9.0 Update NOTE per followup on the issue -->
-
-> [!NOTE]
-> Although only the `EnableAuthenticator` component is selected for scaffolding in this example, scaffolding currently adds all of the Identity components to the app. Additionally, exceptions may be thrown during the process of scaffolding into the app. If exceptions occur when database migrations occur, stop the app and restart the app on each exception. For more information, see [Scaffolding exceptions for Blazor Web App (`dotnet/Scaffolding` #2694)](https://github.com/dotnet/Scaffolding/issues/2694).
-
-Be patient while migrations are executed. Depending on the speed of the system, it can take up to a minute or two for database migrations to finish.
-
-For more information, see <xref:security/authentication/scaffold-identity>. For guidance on using the .NET CLI instead of Visual Studio, see <xref:fundamentals/tools/dotnet-aspnet-codegenerator>.
 
 ## Adding QR codes to the 2FA configuration page
 
