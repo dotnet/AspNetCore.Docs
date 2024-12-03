@@ -118,11 +118,11 @@ Run the app and navigate to the movies `Index` page. You can page through the mo
 
 The component is *interactive*. The page doesn't reload for paging to occur. The paging is performed live over the SignalR connection between the browser and the server, where the paging operation is performed on the server with the rendered result sent back to the client for the browser to display.
 
-Change <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to a more reasonable value, such as 10 items per page:
+Change <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to a more reasonable value, such as five items per page:
 
 ```diff
 - private PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
-+ private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
++ private PaginationState pagination = new PaginationState { ItemsPerPage = 5 };
 ```
 
 ## Sortable `QuickGrid`
@@ -198,6 +198,44 @@ Run the app, type "`road warrior`" into the search field and notice how the `Qui
 Filtering database records is performed on the server, and the server interactively sends back the HTML to display over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
+
+## Style the `QuickGrid` component
+
+You can apply styles to the rendered `QuickGrid` component with a stylesheet isolated to the `Index` component using *CSS isolation*.
+
+CSS isolation is applied by adding a stylesheet file using the file name format `{COMPONENT NAME}.razor.css`, where the `{COMPONENT NAME}` placeholder is the component name.
+
+To apply styles to a child component, such as the `QuickGrid` component of the `Index` component, use the `::deep` pseudo-element. 
+
+In the `MoviePages` folder, add the following stylesheet for the `Index` component. Use `::deep` pseudo-elements to make the row height `3em` and vertically center the table cell content.
+
+`Components/Pages/MoviePages/Index.razor.css`:
+
+```css
+::deep tr {
+    height: 3em;
+}
+
+    ::deep tr > td {
+        vertical-align: middle;
+    }
+```
+
+The `::deep` pseudo-element only works with descendant elements, so the `QuickGrid` component must be wrapped with a `<div>` or some other block-level element in order to apply the styles to it.
+
+In `Components/Pages/MoviePages/Index.razor`, place `<div>` tags around the `QuickGrid` component:
+
+```diff
++ <div>
+    <QuickGrid ...>
+        ...
+    </QuickGrid>
++ </div>
+```
+
+Blazor rewrites CSS selectors to match the markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset, so you don't need to take further action to apply the styles to the rendered `QuickGrid` component.
+
+![Movie list showing row heights at 3em with vertically-centered content](~/blazor/tutorials/movie-database-app/part-8/_static/styled-quickgrid.png)
 
 ## Clean up
 
