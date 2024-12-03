@@ -283,10 +283,6 @@ For a description on how global interactive render modes are applied to non-Iden
 
 For more information on persisting prerendered state, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
-<!-- UPDATE 9.0 Remove blog post cross-link -->
-
-For more information on the Blazor Identity UI and guidance on integrating external logins through social websites, see [What's new with identity in .NET 8](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui).
-
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### Manage authentication state in Blazor Web Apps

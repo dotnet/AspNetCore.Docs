@@ -20,12 +20,7 @@ For an introduction to two-factor authentication (2FA) with authenticator apps u
 
 ## Scaffold the Enable Authenticator component into the app
 
-Follow the guidance in <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project> to scaffold `Pages\Manage\EnableAuthenticator` into the app.
-
-<!-- UPDATE 9.0 Update NOTE per followup on the issue -->
-
-> [!NOTE]
-> Although only the `EnableAuthenticator` component is selected for scaffolding in this example, scaffolding currently adds all of the Identity components to the app. Additionally, exceptions may be thrown during the process of scaffolding into the app. If exceptions occur when database migrations occur, stop the app and restart the app on each exception. For more information, see [Scaffolding exceptions for Blazor Web App (`dotnet/Scaffolding` #2694)](https://github.com/dotnet/Scaffolding/issues/2694).
+Follow the guidance in <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project> to scaffold Identity components into the app, including the `EnableAuthenticator` component (`Pages\Manage` folder).
 
 Be patient while migrations are executed. Depending on the speed of the system, it can take up to a minute or two for database migrations to finish.
 
