@@ -159,7 +159,7 @@ Calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExten
 
 ## Multiple browser tabs and the Synchronizer Token Pattern
 
-With the Synchronizer Token Pattern, only the most recently loaded page is guaranteed to contain a valid antiforgery token. Apps that wish to support multiple tabs should test supported browser and log failures. ***Using multiple tabs can be problematic***. For example, if a user opens multiple tabs:
+With the Synchronizer Token Pattern, only the most recently loaded page is guaranteed to contain a valid antiforgery token. Apps that wish to support multiple tabs should test supported browsers and log failures. ***Using multiple tabs can be problematic***. For example, if a user opens multiple tabs:
 
  * Only the most recently loaded tab contains a valid antiforgery token.
  * Requests made from previously loaded tabs fail with an error: `Antiforgery token validation failed. The antiforgery cookie token and request token do not match`
