@@ -362,7 +362,7 @@ In the client project, add the following `ForgotPassword` component.
                     Obtain the code from the email for this form.
                 </div>
                 <EditForm Model="Reset" FormName="reset-password" 
-                          OnValidSubmit="OnValidSubmitStep2Async" method="post">
+                    OnValidSubmit="OnValidSubmitStep2Async" method="post">
                     <DataAnnotationsValidator />
                     <ValidationSummary class="text-danger" role="alert" />
 

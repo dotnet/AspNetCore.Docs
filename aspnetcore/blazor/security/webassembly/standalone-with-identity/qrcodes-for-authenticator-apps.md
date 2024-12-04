@@ -480,6 +480,8 @@ Replace the `Login` component. The following version of the `Login` component:
         {
             if (!string.IsNullOrEmpty(Input.TwoFactorCode))
             {
+                // The [RegularExpression] data annotation ensures that the input will be either a six-digit
+                // authenticator code (######) or eleven-character alphanumeric recovery code (#####-#####)
                 if (Input.TwoFactorCode.Length == 6)
                 {
                     formResult = await Acct.LoginTwoFactorCodeAsync(
@@ -505,7 +507,10 @@ Replace the `Login` component. The following version of the `Login` component:
             formResult = await Acct.LoginAsync(Input.Email, Input.Password);
             requiresTwoFactor = formResult.ErrorList.Contains("RequiresTwoFactor");
             Input.TwoFactorCode = string.Empty;
-            formResult.ErrorList = [];
+            if (requiresTwoFactor)
+            {
+                formResult.ErrorList = [];
+            }
         }
 
         if (formResult.Succeeded && !string.IsNullOrEmpty(ReturnUrl))
@@ -526,13 +531,12 @@ Replace the `Login` component. The following version of the `Login` component:
         [Display(Name = "Password")]
         public string Password { get; set; } = string.Empty;
 
-        [Required]
         [RegularExpression(@"^([0-9]{6})|([A-Z0-9]{5}[-]{1}[A-Z0-9]{5})$", 
             ErrorMessage = "Must be a six-digit authenticator code (######) or " +
             "eleven-character alphanumeric recovery code (#####-#####, dash " +
             "required)")]
-        [Display(Name = "Two-factor code")]
-        public string TwoFactorCode { get; set; } = "123456";
+        [Display(Name = "Two-factor Code or Recovery Code")]
+        public string TwoFactorOrRecoveryCode { get; set; } = string.Empty;
     }
 }
 ```
