@@ -31,7 +31,7 @@ If you aren't using the `BlazorWebAssemblyStandaloneWithIdentity` sample, change
 
 All of the changes to the solution covered by this article take place in the `BlazorWasmAuth` project of the `BlazorWebAssemblyStandaloneWithIdentity` solution.
 
-In this article's code examples, the code lines are artificially broken across two or more lines to eliminate or reduce horizontal scrolling of the article's code blocks. The code executes regardless of these artificial line breaks, but you're welcome to condense the code by removing the artificial line breaks after you paste the code into the project.
+In article examples, code lines are split to reduce horizontal scrolling. These breaks don't affect execution but can be removed when pasting into your project.
 
 ## Optional account confirmation and password recovery
 
