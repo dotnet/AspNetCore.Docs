@@ -431,15 +431,15 @@ Replace the `Login` component. The following version of the `Login` component:
                         </div>
                         <div style="display:@(requiresTwoFactor ? "block" : "none")">
                             <div class="form-floating mb-3">
-                                <InputText @bind-Value="Input.TwoFactorCode" 
-                                    id="Input.TwoFactorCode" 
+                                <InputText @bind-Value="Input.TwoFactorCodeOrRecoveryCode" 
+                                    id="Input.TwoFactorCodeOrRecoveryCode" 
                                     class="form-control" 
                                     autocomplete="off" 
                                     placeholder="###### or #####-#####" />
-                                <label for="Input.TwoFactorCode" class="form-label">
+                                <label for="Input.TwoFactorCodeOrRecoveryCode" class="form-label">
                                     Two-factor Code or Recovery Code
                                 </label>
-                                <ValidationMessage For="() => Input.TwoFactorCode" 
+                                <ValidationMessage For="() => Input.TwoFactorCodeOrRecoveryCode" 
                                     class="text-danger" />
                             </div>
                         </div>
@@ -478,19 +478,22 @@ Replace the `Login` component. The following version of the `Login` component:
     {
         if (requiresTwoFactor)
         {
-            if (!string.IsNullOrEmpty(Input.TwoFactorCode))
+            if (!string.IsNullOrEmpty(Input.TwoFactorCodeOrRecoveryCode))
             {
-                // The [RegularExpression] data annotation ensures that the input will be either a six-digit
-                // authenticator code (######) or eleven-character alphanumeric recovery code (#####-#####)
-                if (Input.TwoFactorCode.Length == 6)
+                // The [RegularExpression] data annotation ensures that the input 
+                // is either a six-digit authenticator code (######) or an 
+                // eleven-character alphanumeric recovery code (#####-#####)
+                if (Input.TwoFactorCodeOrRecoveryCode.Length == 6)
                 {
                     formResult = await Acct.LoginTwoFactorCodeAsync(
-                        Input.Email, Input.Password, Input.TwoFactorCode);
+                        Input.Email, Input.Password, 
+                        Input.TwoFactorCodeOrRecoveryCode);
                 }
                 else
                 {
                     formResult = await Acct.LoginTwoFactorRecoveryCodeAsync(
-                        Input.Email, Input.Password, Input.TwoFactorCode);
+                        Input.Email, Input.Password, 
+                        Input.TwoFactorCodeOrRecoveryCode);
 
                     if (formResult.Succeeded)
                     {
@@ -501,12 +504,22 @@ Replace the `Login` component. The following version of the `Login` component:
                     }
                 }
             }
+            else
+            {
+                formResult = 
+                    new FormResult
+                    {
+                        Succeeded = false,
+                        ErrorList = [ "Invalid two-factor code." ]
+                    };
+            }
         }
         else
         {
             formResult = await Acct.LoginAsync(Input.Email, Input.Password);
             requiresTwoFactor = formResult.ErrorList.Contains("RequiresTwoFactor");
-            Input.TwoFactorCode = string.Empty;
+            Input.TwoFactorCodeOrRecoveryCode = string.Empty;
+
             if (requiresTwoFactor)
             {
                 formResult.ErrorList = [];
@@ -536,7 +549,7 @@ Replace the `Login` component. The following version of the `Login` component:
             "eleven-character alphanumeric recovery code (#####-#####, dash " +
             "required)")]
         [Display(Name = "Two-factor Code or Recovery Code")]
-        public string TwoFactorOrRecoveryCode { get; set; } = string.Empty;
+        public string TwoFactorCodeOrRecoveryCode { get; set; } = string.Empty;
     }
 }
 ```
@@ -544,13 +557,15 @@ Replace the `Login` component. The following version of the `Login` component:
 Using the preceding component, the user is remembered after a successful login with a valid TOTP code from an authenticator app. If you want to always require a TOTP code for login and not remember the machine, call the `TwoFactorRequestAsync` method with `TwoFactorRequest.ForgetMachine` set to `true` immediately after a successful two-factor login:
 
 ```diff
-if (Input.TwoFactorCode.Length == 6)
+if (Input.TwoFactorCodeOrRecoveryCode.Length == 6)
 {
-    formResult = await Acct.LoginTwoFactorCodeAsync(Input.Email, Input.Password, Input.TwoFactorCode);
+    formResult = await Acct.LoginTwoFactorCodeAsync(Input.Email, Input.Password, 
+        Input.TwoFactorCodeOrRecoveryCode);
 
 +    if (formResult.Succeeded)
 +    {
-+        var forgetMachine = await Acct.TwoFactorRequestAsync(new() { ForgetMachine = true });
++        var forgetMachine = 
++            await Acct.TwoFactorRequestAsync(new() { ForgetMachine = true });
 +    }
 }
 ```
