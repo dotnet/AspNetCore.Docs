@@ -21,7 +21,7 @@ One task for localizing an app is to implement a strategy for selecting the appr
 
 The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in `Program.cs`. The localization middleware must be configured before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
-[!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/Program.cs?name=snippet_RequestLocalizationOptionsConfiguration)]
+[!code-csharp[](~/fundamentals/localization/sample/8.x/Localization/Program.cs?name=snippet_RequestLocalizationOptionsConfiguration)]
 
 <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> initializes a <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> object. On every request the list of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> in the <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
@@ -166,15 +166,15 @@ The [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNe
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The `Views/Shared/_SelectLanguagePartial.cshtml` file allows you to select the culture from the list of supported cultures:
 
-[!code-cshtml[](~/fundamentals/localization/sample/6.x/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
+[!code-cshtml[](~/fundamentals/localization/sample/8.x/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
 
 The `Views/Shared/_SelectLanguagePartial.cshtml` file is added to the `footer` section of the layout file so it will be available to all views:
 
-[!code-cshtml[](~/fundamentals/localization/sample/6.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
+[!code-cshtml[](~/fundamentals/localization/sample/8.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
 The `SetLanguage` method sets the culture cookie.
 
-[!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/Controllers/HomeController.cs?range=57-67)]
+[!code-csharp[](~/fundamentals/localization/sample/8.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
 You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](~/fundamentals/dependency-injection.md) container.
 
