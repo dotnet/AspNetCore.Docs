@@ -808,6 +808,7 @@ If 2FA is enabled, buttons appear to disable 2FA and regenerate recovery codes.
 
     private async Task Disable2FA()
     {
+        await Acct.TwoFactorRequestAsync(new() { ForgetMachine = true });
         twoFactorResponse = 
             await Acct.TwoFactorRequestAsync(new() { ResetSharedKey = true });
         svgGraphicsPath = await GetQrCode(twoFactorResponse.SharedKey);
