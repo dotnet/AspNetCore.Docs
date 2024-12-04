@@ -606,7 +606,6 @@ If 2FA is enabled, buttons appear to disable 2FA and regenerate recovery codes.
 @using BlazorWasmAuth.Identity
 @using BlazorWasmAuth.Identity.Models
 @attribute [Authorize]
-@implements IAsyncDisposable
 @inject IAccountManagement Acct
 @inject IAuthorizationService AuthorizationService
 @inject IConfiguration Config
@@ -820,14 +819,6 @@ If 2FA is enabled, buttons appear to disable 2FA and regenerate recovery codes.
         [DataType(DataType.Text)]
         [Display(Name = "Verification Code")]
         public string Code { get; set; } = string.Empty;
-    }
-
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (module is not null)
-        {
-            await module.DisposeAsync();
-        }
     }
 }
 ```
