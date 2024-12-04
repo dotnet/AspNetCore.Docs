@@ -1,0 +1,31 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a asp-controller="Manage" asp-action="Index" title="@Localizer["Manage"]">
+                    @* You can parameterize resource strings and the IViewLocalizer will HTML encode the parameters only *@
+                    @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
+                </a>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">@Localizer["Log off"]</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-controller="Account" asp-action="Register">@Localizer["Register"]</a></li>
+        <li><a asp-controller="Account" asp-action="Login">@Localizer["Log in"]</a></li>
+    </ul>
+}
