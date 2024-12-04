@@ -27,7 +27,7 @@ The ASP.NET Core web app templates support authenticators but don't provide supp
 
 :::moniker-end
 
-Two-factor authentication does not happen using an external authentication provider, such as [Google](xref:security/authentication/google-logins) or [Facebook](xref:security/authentication/facebook-logins). External logins are protected by whatever mechanism the external login provider provides. Consider, for example, the [Microsoft](xref:security/authentication/microsoft-logins) authentication provider requires a hardware key or another 2FA approach. If the default templates required the web app and the authentication provider both require 2FA, then users would be required to satisfy two 2FA approaches. Requiring two 2FA isn't common.
+Two-factor authentication does not happen using an external authentication provider, such as [Google](xref:security/authentication/google-logins) or [Facebook](xref:security/authentication/facebook-logins). External logins are protected by whatever mechanism the external login provider provides. Consider, for example, the [Microsoft](xref:security/authentication/microsoft-logins) authentication provider requires a hardware key or another 2FA approach. If the default templates required both 2FA for both the web app and the external authentication provider, then users would be required to satisfy two 2FA approaches. Requiring two 2FAs isn't common.
 
 ## Adding QR codes to the 2FA configuration page
 
