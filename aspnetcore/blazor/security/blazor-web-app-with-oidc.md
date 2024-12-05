@@ -731,11 +731,6 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 
 Use the guidance in this section to implement application roles, ME-ID security groups, and ME-ID built-in administrator roles for apps using [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra).
 
-<!-- UPDATE 9.0 If we end up with a BWA + MS Identity Web article
-                and sample, this section will be removed in favor
-                of coverage of using Graph for groups/roles in the
-                new article. -->
-
 The approach described in this section configures ME-ID to send groups and roles in the authentication cookie header. When users are only a member of a few security groups and roles, the following approach should work for most hosting platforms without running into a problem where headers are too long, for example with IIS hosting that has a default header length limit of 16 KB (`MaxRequestBytes`). If header length is a problem due to high group or role membership, we recommend not following the guidance in this section in favor of implementing [Microsoft Graph](/graph/sdks/sdks-overview) to obtain a user's groups and roles from ME-ID separately, an approach that doesn't inflate the size of the authentication cookie. For more information, see [Bad Request - Request Too Long - IIS Server (`dotnet/aspnetcore` #57545)](https://github.com/dotnet/aspnetcore/issues/57545).
 
 Configure the role claim type (<xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>) in <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> of `Program.cs`. Set the value to `roles`:

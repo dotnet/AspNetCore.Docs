@@ -195,7 +195,7 @@ public static RenderFragment SayHello = @<h1>Hello!</h1>;
 }
 ```
 
-The preceding approach reuses rendering logic without per-component overhead. However, the approach doesn't permit refreshing the subtree of the UI independently, nor does it have the ability to skip rendering the subtree of the UI when its parent renders because there's no component boundary. Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`), and [event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported.
+The preceding approach reuses rendering logic without per-component overhead. However, the approach doesn't permit refreshing the subtree of the UI independently, nor does it have the ability to skip rendering the subtree of the UI when its parent renders because there's no component boundary. Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`).
 
 For a non-static field, method, or property that can't be referenced by a field initializer, such as `TitleTemplate` in the following example, use a property instead of a field for the <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
@@ -248,7 +248,7 @@ The [`CascadingValue` component](xref:blazor/components/cascading-values-and-par
 
 Setting `IsFixed` to `true` improves performance if there are a large number of other components that receive the cascaded value. Wherever possible, set `IsFixed` to `true` on cascaded values. You can set `IsFixed` to `true` when the supplied value doesn't change over time.
 
-Where a component passes `this` as a cascaded value, `IsFixed` can also be set to `true`:
+Where a component passes `this` as a cascaded value, `IsFixed` can also be set to `true`, because `this` never changes during the component's lifecycle:
 
 ```razor
 <CascadingValue Value="this" IsFixed="true">

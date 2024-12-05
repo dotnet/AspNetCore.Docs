@@ -259,15 +259,15 @@ public class UploadResult
 
 A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
-<!-- UPDATE 9.0 HOLD moniker range="< aspnetcore-9.0" -->
+<!-- UPDATE 10.0 HOLD moniker range="< aspnetcore-9.0" Tracking PU bug: https://github.com/dotnet/aspnetcore/issues/47301 -->
 
 The following `LazyBrowserFileStream` class defines a custom stream type that lazily calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> just before the first bytes of the stream are requested. The stream isn't transmitted from the browser to the server until reading the stream begins in .NET.
 
 `LazyBrowserFileStream.cs`:
 
-<!-- UPDATE 9.0 HOLD moniker-end -->
+<!-- UPDATE 10.0 HOLD moniker-end -->
 
-<!-- UPDATE 9.0 HOLD for next line: < aspnetcore-9.0 -->
+<!-- UPDATE 10.0 HOLD for next line: < aspnetcore-9.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -332,7 +332,7 @@ The following `FileUpload2` component:
 
 :::moniker-end
 
-<!-- UPDATE 9.0 HOLD for the next line: < aspnetcore-9.0 -->
+<!-- UPDATE 10.0 HOLD for the next line: < aspnetcore-9.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -909,10 +909,6 @@ For more information on SignalR configuration and how to set <xref:Microsoft.Asp
 
 ## Maximum parallel invocations per client hub setting
 
-<!-- UPDATE 9.0 Check on a fix for this per
-                https://github.com/dotnet/aspnetcore/issues/53951 
-                and version if fixed. -->
-
 Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient%2A> set to 1, which is the default value.
 
 Increasing the value leads to a high probability that `CopyTo` operations throw `System.InvalidOperationException: 'Reading is not allowed after reader was completed.'`. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
@@ -925,13 +921,11 @@ The line that calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Ope
 
 Possible causes:
 
-<!-- UPDATE 9.0 HOLD: in versions of ASP.NET Core earlier than 9.0 -->
-
 * Using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container. To resolve the issue, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters%2A> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
 
 * Not reading the stream to completion. This isn't a framework issue. Trap the exception and investigate it further in your local environment/network.
 
-<!-- UPDATE 9.0 HOLD in versions of ASP.NET Core earlier than 9.0 
+<!-- UPDATE 10.0 HOLD in versions of ASP.NET Core earlier than 9.0 
                 adopt ***either*** of the following approaches: * Upgrade the app to ASP.NET Core 9.0 or later. 
                 with the article version selector set to "ASP.NET Core in .NET 8" or earlier -->
 
