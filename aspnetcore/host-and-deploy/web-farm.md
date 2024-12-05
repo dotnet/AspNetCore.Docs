@@ -5,7 +5,7 @@ description: Learn how to host multiple instances of an ASP.NET Core app with sh
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 13/3/2024
+ms.date: 12/3/2024
 uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm

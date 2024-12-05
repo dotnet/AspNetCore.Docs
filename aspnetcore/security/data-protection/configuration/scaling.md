@@ -5,7 +5,6 @@ description: Learn how to configure Data Protection in ASP.NET Core for multi-in
 ms.author: acasey
 ms.date: 7/18/2024
 content_well_notification: AI-contribution
-ms.prod: aspnet-core
 uid: security/data-protection/configuration/scaling
 ---
 
