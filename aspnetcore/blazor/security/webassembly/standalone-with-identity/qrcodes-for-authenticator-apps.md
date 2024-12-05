@@ -213,7 +213,10 @@ public async Task<FormResult> LoginAsync(string email, string password)
             }
         }
     }
-    catch { }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "App error");
+    }
 
     return new FormResult
     {
@@ -248,7 +251,10 @@ public async Task<FormResult> LoginTwoFactorCodeAsync(
             return new FormResult { Succeeded = true };
         }
     }
-    catch { }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "App error");
+    }
 
     return new FormResult
     {
@@ -283,7 +289,10 @@ public async Task<FormResult> LoginTwoFactorRecoveryCodeAsync(string email,
             return new FormResult { Succeeded = true };
         }
     }
-    catch { }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "App error");
+    }
 
     return new FormResult
     {
@@ -380,12 +389,6 @@ Replace the `Login` component. The following version of the `Login` component:
         <div class="alert alert-success">
             You're logged in as @context.User.Identity?.Name.
         </div>
-        @if (!string.IsNullOrEmpty(recoveryCodesRemainingMessage))
-        {
-            <div class="alert alert-warning">
-                @recoveryCodesRemainingMessage
-            </div>
-        }
     </Authorized>
     <NotAuthorized>
         @foreach (var error in formResult.ErrorList)
@@ -466,7 +469,6 @@ Replace the `Login` component. The following version of the `Login` component:
 @code {
     private FormResult formResult = new();
     private bool requiresTwoFactor;
-    private string? recoveryCodesRemainingMessage;
 
     [SupplyParameterFromForm]
     private InputModel Input { get; set; } = new();
@@ -498,9 +500,6 @@ Replace the `Login` component. The following version of the `Login` component:
                     if (formResult.Succeeded)
                     {
                         var twoFactorResponse = await Acct.TwoFactorRequestAsync(new());
-                        recoveryCodesRemainingMessage =
-                            $"You have {twoFactorResponse.RecoveryCodesLeft} recovery " +
-                            "codes remaining.";
                     }
                 }
             }
@@ -662,6 +661,10 @@ If 2FA is enabled, buttons appear to disable 2FA and regenerate recovery codes.
 
                     @if (twoFactorResponse.RecoveryCodes is null)
                     {
+                        <div class="m-1">
+                            Recovery Codes Remaining: 
+                            @twoFactorResponse.RecoveryCodesLeft
+                        </div>
                         <div class="m-1">
                             <button @onclick="GenerateNewCodes" 
                                     class="btn btn-lg btn-primary">
