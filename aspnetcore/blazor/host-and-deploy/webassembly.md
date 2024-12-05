@@ -116,7 +116,7 @@ In the `wwwroot/index.html` file, set `autostart` to `false` on Blazor's `<scrip
 <script src="_framework/blazor.webassembly.js" autostart="false"></script>
 ```
     
-After Blazor's `<script>` tag and before the closing `</body>` tag, add the following JavaScript code `<script>` block. The following function calls `fetch` updating any cached files ([`cache: 'no-cache'`](https://developer.mozilla.org/docs/Web/API/Request/cache#value)) from the server to avoid a mismatched set framework files on the client.
+After Blazor's `<script>` tag and before the closing `</body>` tag, add the following JavaScript code `<script>` block. The following function calls `fetch` updating any cached files ([`cache: 'no-cache'`](https://developer.mozilla.org/docs/Web/API/Request/cache#value)) from the server to avoid a mismatched files on the client.
 
 :::moniker range=">= aspnetcore-8.0"
 
