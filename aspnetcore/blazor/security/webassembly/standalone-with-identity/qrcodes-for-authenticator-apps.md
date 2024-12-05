@@ -165,7 +165,8 @@ Inject an `ILogger<CookieAuthenticationStateProvider>` to log exceptions in the 
 ```diff
 - public class CookieAuthenticationStateProvider(IHttpClientFactory httpClientFactory) 
 -     : AuthenticationStateProvider, IAccountManagement
-+ public class CookieAuthenticationStateProvider(IHttpClientFactory httpClientFactory, ILogger<CookieAuthenticationStateProvider> logger) 
++ public class CookieAuthenticationStateProvider(IHttpClientFactory httpClientFactory, 
++     ILogger<CookieAuthenticationStateProvider> logger) 
 +     : AuthenticationStateProvider, IAccountManagement
 ```
 
