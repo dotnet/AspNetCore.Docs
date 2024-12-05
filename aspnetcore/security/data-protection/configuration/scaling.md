@@ -44,37 +44,12 @@ For example, with Azure blob storage as the key repository, the key manager coul
 
 :::code language="csharp" source="~/security/data-protection/configuration/scaling/samples/AzBlobKey/Program.cs":::
 
+The `appsettings.json` file contains the URIs for the key repository and key vault:
 
-```csharp
-using Azure.Identity;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.Extensions.Azure;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-var hostBuilder = new HostApplicationBuilder();
-
-hostBuilder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false);
-
-var blobStorageUri = hostBuilder.Configuration["AzureURIs:BlobStorage"]!;
-var keyVaultURI = hostBuilder.Configuration["AzureURIs:KeyVault"]!;
-
-// Use the same persistence and protection mechanisms as your app
-hostBuilder.Services
-    .AddDataProtection()
-    .PersistKeysToAzureBlobStorage(new Uri(blobStorageUri), new DefaultAzureCredential())
-    .ProtectKeysWithAzureKeyVault(new Uri(keyVaultURI), new DefaultAzureCredential());
-
-using var host = hostBuilder.Build();
-
-// Perform a dummy operation to force key creation or rotation, if needed
-var dataProtector = host.Services.GetDataProtector("Default");
-dataProtector.Protect([]);
-```
+:::code language="json" source="~/security/data-protection/configuration/scaling/samples/AzBlobKey/appsettings.json":::
 
 ```json
-{
+{ Remove me
   "AzureURIs": {
     "BlobStorage": "https://<storage-account-name>.blob.core.windows.net/<container-name>/keys.xml",
     "KeyVault": "https://<key-vault-name>.vault.azure.net/keys/<key-name>/"
@@ -82,7 +57,7 @@ dataProtector.Protect([]);
 }
 ```
 
-Note that app instances will throw exceptions if they need to perform any `Protect` or `Unprotect` operations before the key manager has run for the first time, so it is preferable to execute it before creating app instances.
+Note that app instances throw exceptions if they perform any `Protect` or `Unprotect` operations before the key manager has run for the first time. To prevent exceptions, start the key manager so it before creating app instances. In most scenarios, Azure Key Vault starts the key manager before the app instances.
 
 :::moniker-end
 
