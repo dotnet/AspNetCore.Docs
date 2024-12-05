@@ -16,6 +16,6 @@ hostBuilder.Services
 
 using var host = hostBuilder.Build();
 
-// Perform a dummy operation to force key creation or rotation, if needed
+// Perform a dummy operation to force key creation or rotation, if needed.
 var dataProtector = host.Services.GetDataProtector("Default");
 dataProtector.Protect([]);

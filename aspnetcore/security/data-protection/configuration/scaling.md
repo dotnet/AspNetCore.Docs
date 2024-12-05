@@ -40,7 +40,10 @@ Generally, app instances don't know about each other, so coordinating the genera
 
 First, app instances [disable key generation](xref:security/data-protection/configuration/overview#disableautomatickeygeneration).  Next, a new component is introduced that connects to the same key repository and performs a dummy protect operation once a day or so.
 
-For example, with Azure blob storage as the key repository, the key manager could be a simple console app run on a schedule.
+For example, with Azure blob storage as the key repository, the key manager could be a basic console app run on a schedule:
+
+:::code language="csharp" source="~/security/data-protection/configuration/scaling/samples/AzBlobKey/Program.cs":::
+
 
 ```csharp
 using Azure.Identity;
