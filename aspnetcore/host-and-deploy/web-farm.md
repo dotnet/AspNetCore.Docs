@@ -46,7 +46,7 @@ The [ASP.NET Core Data Protection system](xref:security/data-protection/introduc
 
 Apps that are running in distributed environments that don't configure Data Protection automatically need to explicitly configure Data Protection. See <xref:security/data-protection/configuration/scaling> for environments that require explicit Data Protection configuration and those that don't.
 
-Under the default configuration, a unique key ring is stored on each node of the web farm. Consequently, each web farm node can't decrypt data that's encrypted by an app on any other node. The default configuration isn't generally appropriate for hosting apps in a web farm. Sticky sessions using [ARR Affinity](/azure/app-service/manage-automatic-scaling?#how-does-arr-affinity-affect-automatic-scaling) is an alternative to implementing a shared key ring is to always route user requests to the same node. However, ARR can reduce the scalability of a web farm.
+Under the default configuration, a unique key ring is stored on each node of the web farm. Consequently, each web farm node can't decrypt data that's encrypted by an app on any other node. The default configuration isn't generally appropriate for hosting apps in a web farm. Sticky sessions using [ARR Affinity](/azure/app-service/manage-automatic-scaling?#how-does-arr-affinity-affect-automatic-scaling) is an alternative to implementing a shared key ring. However, ARR can reduce the scalability of a web farm.
 
 For more information on Data Protection system configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>.
 
