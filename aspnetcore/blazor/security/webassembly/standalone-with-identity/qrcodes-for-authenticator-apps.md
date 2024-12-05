@@ -829,6 +829,18 @@ If 2FA is enabled, buttons appear to disable 2FA and regenerate recovery codes.
                 TwoFactorCode = Input.Code 
             });
         Input.Code = string.Empty;
+
+        // When 2FA is first enabled, recovery codes are returned.
+        // However, subsequently disabling and re-enabling 2FA
+        // leaves the existing codes in place and doesn't generate
+        // a new set of recovery codes. The following code ensures
+        // that a new set of recovery codes is generated each
+        // time 2FA is enabled.
+        if (twoFactorResponse.RecoveryCodes is null || 
+            twoFactorResponse.RecoveryCodes.Length == 0)
+        {
+            await GenerateNewCodes();
+        }
     }
 
     private sealed class InputModel
