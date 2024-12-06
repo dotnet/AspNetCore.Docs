@@ -109,3 +109,7 @@ Refer to the following document:
 [OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens](https://datatracker.ietf.org/doc/html/rfc8705)
 
 [OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0-final.html)
+
+[Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
+
+[OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
