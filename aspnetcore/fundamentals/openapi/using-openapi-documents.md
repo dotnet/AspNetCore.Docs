@@ -30,7 +30,7 @@ The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_openapiwithscalar)]
 
-Launch the app and navigate to `https://localhost:<port>scalar/v1` to view the generated Scalar API Reference.
+Launch the app and navigate to `https://localhost:<port>/scalar/v1` to view the generated Scalar API Reference.
 
 ## Lint generated OpenAPI documents with Spectral
 
