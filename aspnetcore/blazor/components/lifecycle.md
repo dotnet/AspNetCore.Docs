@@ -594,11 +594,11 @@ Welcome to your new app.
 > [!NOTE]
 > Although the examples in this section discuss the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> lifecycle method, other lifecycle methods that execute during prerendering may delay final rendering of a component. Only [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync) isn't executed during prerendering and is immune to delays due to quiescence.
 
-During prerendering, the `Home` component doesn't render until the `Slow` component is prerendered, which takes ten seconds. The UI is blank during this ten-second period, and there's no loading message. After prerendering, the `Home` component renders, and the `Slow` component's loading message is displayed. After ten more seconds, the `Slow` component finally displays the loaded message.
+During prerendering, the `Home` component doesn't render until the `Slow` component is rendered, which takes ten seconds. The UI is blank during this ten-second period, and there's no loading message. After prerendering, the `Home` component renders, and the `Slow` component's loading message is displayed. After ten more seconds, the `Slow` component finally displays the loaded message.
 
 :::moniker range=">= aspnetcore-8.0"
 
-As the preceding demonstration illustrates, quiescence during prerendering results in a poor user experience. To address the problem, begin by implementing [streaming rendering](xref:blazor/components/rendering#streaming-rendering) to avoid waiting for the asynchronous task to complete when prerendering.
+As the preceding demonstration illustrates, quiescence during prerendering results in a poor user experience. To improve the user experience, begin by implementing [streaming rendering](xref:blazor/components/rendering#streaming-rendering) to avoid waiting for the asynchronous task to complete while prerendering.
 
 Add the [`[StreamRendering]` attribute](xref:Microsoft.AspNetCore.Components.StreamRenderingAttribute) to the `Slow` component (use `[StreamRendering(true)]` in .NET 8):
 
@@ -606,7 +606,7 @@ Add the [`[StreamRendering]` attribute](xref:Microsoft.AspNetCore.Components.Str
 @attribute [StreamRendering]
 ```
 
-When the `Home` component is prerendering, the `Slow` component is quickly rendered with its loading message. The `Home` component doesn't wait for ten seconds to render placeholder content before prerendering is complete. However, the loaded message displayed at the end of prerendering is replaced by the loading message while the component finally renders, which is another ten-second delay. In the case of a component that's accessing a real service, such as a database, the service call (or query for a database) re-executes a second time as well, which creates undesirable load on the app's service (or database). To address this, persist the prerendered state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for final rendering of the component, as seen in the following updates to the `Slow` component:
+When the `Home` component is prerendering, the `Slow` component is quickly rendered with its loading message. The `Home` component doesn't wait for ten seconds for the `Slow` component to finish rendering. However, the loaded message displayed at the end of prerendering is replaced by the loading message while the component finally renders, which is another ten-second delay. In the case of a component that's accessing a real service, such as a database, the service call (or query for a database) re-executes a second time as well, which creates undesirable load on the app's service (or database). To address this, persist the prerendered state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for final rendering of the component, as seen in the following updates to the `Slow` component:
 
 ```razor
 @page "/slow"
