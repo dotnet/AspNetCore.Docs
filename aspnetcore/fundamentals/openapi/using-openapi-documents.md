@@ -30,6 +30,8 @@ The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_openapiwithscalar)]
 
+Launch the app and navigate to `https://localhost:<port>scalar/v1` to view the generated Scalar API Reference.
+
 ## Lint generated OpenAPI documents with Spectral
 
 [Spectral](https://stoplight.io/open-source/spectral) is an open-source OpenAPI document linter. Spectral can be incorporated into an app build to verify the quality of generated OpenAPI documents. Install Spectral according to the [package installation directions](https://github.com/stoplightio/spectral#-installation).
