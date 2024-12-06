@@ -46,16 +46,7 @@ For example, with Azure blob storage as the key repository, the key manager coul
 
 The `appsettings.json` file contains the URIs for the key repository and key vault:
 
-:::code language="json" source="~/security/data-protection/configuration/scaling/samples/AzBlobKey/appsettings.json":::
-
-```json
-{ Remove me
-  "AzureURIs": {
-    "BlobStorage": "https://<storage-account-name>.blob.core.windows.net/<container-name>/keys.xml",
-    "KeyVault": "https://<key-vault-name>.vault.azure.net/keys/<key-name>/"
-  }
-}
-```
+:::code language="json" source="~/security/data-protection/configuration/scaling/samples/AzBlobKey/appsettings.json" highlight="2-5":::
 
 Note that app instances throw exceptions if they perform any `Protect` or `Unprotect` operations before the key manager has run for the first time. To prevent exceptions, start the key manager so it before creating app instances. In most scenarios, Azure Key Vault starts the key manager before the app instances.
 
