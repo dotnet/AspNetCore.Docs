@@ -228,7 +228,9 @@ To reduce parameter load, bundle multiple parameters in a custom class. For exam
 }
 ```
 
-However, consider that it might be an improvement not to have a table cell component, as shown in the preceding example, and instead [inline its logic into the parent component](#inline-child-components-into-their-parents).
+However, keep in mind that bundling primitive parameters into a class isn't always an advantage. While it can reduce parameter count, it can also impact how change detection and rendering behave. Setting non-primitive parameters causes the component to rerender every time, even if the values themselves haven't changed. This behavior can offset the potential benefits.
+
+Also, consider that it might be an improvement not to have a table cell component, as shown in the preceding example, and instead [inline its logic into the parent component](#inline-child-components-into-their-parents).
 
 > [!NOTE]
 > When multiple approaches are available for improving performance, benchmarking the approaches is usually required to determine which approach yields the best results.
