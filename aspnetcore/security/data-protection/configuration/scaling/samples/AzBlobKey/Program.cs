@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.DataProtection;
 
 var hostBuilder = new HostApplicationBuilder();
 
-hostBuilder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false);
+// hostBuilder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false);
 
 var blobStorageUri = hostBuilder.Configuration["AzureURIs:BlobStorage"]!;
 var keyVaultURI = hostBuilder.Configuration["AzureURIs:KeyVault"]!;
 
-// Use the same persistence and protection mechanisms as your app
+// Use the same persistence and protection mechanisms as your app.
 hostBuilder.Services
     .AddDataProtection()
     .PersistKeysToAzureBlobStorage(new Uri(blobStorageUri), new DefaultAzureCredential())
