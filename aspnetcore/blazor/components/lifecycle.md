@@ -521,7 +521,7 @@ For more information on component rendering and when to call <xref:Microsoft.Asp
 
 Asynchronous actions performed in lifecycle events might not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.
 
-In the following `Slow` component, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is overridden to asynchronously execute a long-running task. While `isLoading` is `true`, a loading message is displayed to the user. After the `Task` returned by <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> completes, the component is rerendered with the updated state, showing the "`Loaded!`" message.
+In the following `Slow` component, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is overridden to asynchronously execute a long-running task. While `isLoading` is `true`, a loading message is displayed to the user. After the `Task` returned by <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> completes, the component is rerendered with the updated state, showing the "`Finished!`" message.
 
 `Slow.razor`:
 
@@ -536,7 +536,7 @@ In the following `Slow` component, <xref:Microsoft.AspNetCore.Components.Compone
 }
 else
 {
-    <div>Loaded!</div>
+    <div>Finished!</div>
 }
 
 @code {
@@ -594,7 +594,7 @@ Welcome to your new app.
 > [!NOTE]
 > Although the examples in this section discuss the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> lifecycle method, other lifecycle methods that execute during prerendering may delay final rendering of a component. Only [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync) isn't executed during prerendering and is immune to delays due to quiescence.
 
-During prerendering, the `Home` component doesn't render until the `Slow` component is rendered, which takes ten seconds. The UI is blank during this ten-second period, and there's no loading message. After prerendering, the `Home` component renders, and the `Slow` component's loading message is displayed. After ten more seconds, the `Slow` component finally displays the loaded message.
+During prerendering, the `Home` component doesn't render until the `Slow` component is rendered, which takes ten seconds. The UI is blank during this ten-second period, and there's no loading message. After prerendering, the `Home` component renders, and the `Slow` component's loading message is displayed. After ten more seconds, the `Slow` component finally displays the finished message.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -606,7 +606,7 @@ Add the [`[StreamRendering]` attribute](xref:Microsoft.AspNetCore.Components.Str
 @attribute [StreamRendering]
 ```
 
-When the `Home` component is prerendering, the `Slow` component is quickly rendered with its loading message. The `Home` component doesn't wait for ten seconds for the `Slow` component to finish rendering. However, the loaded message displayed at the end of prerendering is replaced by the loading message while the component finally renders, which is another ten-second delay. In the case of a component that's accessing a real service, such as a database, the service call (or query for a database) re-executes a second time as well, which creates undesirable load on the app's service (or database). To address this, persist the prerendered state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for final rendering of the component, as seen in the following updates to the `Slow` component:
+When the `Home` component is prerendering, the `Slow` component is quickly rendered with its loading message. The `Home` component doesn't wait for ten seconds for the `Slow` component to finish rendering. However, the finished message displayed at the end of prerendering is replaced by the loading message while the component finally renders, which is another ten-second delay. In the case of a component that's accessing a real service, such as a database, the service call (or query for a database) re-executes a second time as well, which creates undesirable load on the app's service (or database). To address this, persist the prerendered state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for final rendering of the component, as seen in the following updates to the `Slow` component:
 
 ```razor
 @page "/slow"
@@ -654,7 +654,7 @@ else
     private async Task<string> LoadDataAsync()
     {
         await Task.Delay(10000);
-        return "Loaded!";
+        return "Finished!";
     }
 
     void IDisposable.Dispose()
