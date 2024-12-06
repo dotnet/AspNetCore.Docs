@@ -34,7 +34,7 @@ Component lifecycle events:
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
 > [!NOTE]
-> Asynchronous actions performed in lifecycle events might not complete before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
+> Asynchronous actions performed in lifecycle events might delay component rendering or displaying data. For more information, see the [Handle incomplete asynchronous actions at render](#handle-incomplete-asynchronous-actions-at-render) section later in this article.
 
 A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
@@ -60,6 +60,10 @@ The `Render` lifecycle:
 ![Render lifecycle](~/blazor/components/lifecycle/_static/lifecycle3.png)
 
 Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a rerender. For more information, see <xref:blazor/components/rendering#statehaschanged>.
+
+## Quiescence during prerendering
+
+In server-side Blazor apps, prerendering waits for *quiescence*, which means that a component doesn't render until all of the components in the render tree have finished rendering. Quiescence can lead to noticeable delays in rendering when a component performs long-running tasks during initialization and other lifecycle methods, leading to a poor user experience. For more information, see the [Handle incomplete asynchronous actions at render](#handle-incomplete-asynchronous-actions-at-render) section later in this article.
 
 ## When parameters are set (`SetParametersAsync`)
 
@@ -216,7 +220,10 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 ::: moniker range=">= aspnetcore-8.0"
 
-Use *streaming rendering* with static server-side rendering (static SSR) or prerendering to improve the user experience for components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see <xref:blazor/components/rendering#streaming-rendering>.
+Use *streaming rendering* with static server-side rendering (static SSR) or prerendering to improve the user experience for components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see the following resources:
+
+* [Handle incomplete asynchronous actions at render](#handle-incomplete-asynchronous-actions-at-render) (this article)
+* <xref:blazor/components/rendering#streaming-rendering>
 
 :::moniker-end
 
@@ -510,27 +517,54 @@ In the following example, `base.OnInitialized();` is called to ensure that the b
 
 For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, including when to invoke it with <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>, see <xref:blazor/components/rendering>.
 
-## Handle incomplete async actions at render
+## Handle incomplete asynchronous actions at render
 
 Asynchronous actions performed in lifecycle events might not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.
 
-In the following component, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is overridden to asynchronously provide movie rating data (`movies`). When `movies` is `null`, a loading message is displayed to the user. After the `Task` returned by <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> completes, the component is rerendered with the updated state.
+In the following `Slow` component, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is overridden to asynchronously execute a long-running task. While `isLoading` is `true`, a loading message is displayed to the user. After the `Task` returned by <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> completes, the component is rerendered with the updated state, showing the "`Finished!`" message.
+
+`Slow.razor`:
 
 ```razor
-<h1>Sci-Fi Movie Ratings</h1>
+@page "/slow"
 
+<h2>Slow Component</h2>
+
+@if (isLoading)
+{
+    <div><em>Loading...</em></div>
+}
+else
+{
+    <div>Finished!</div>
+}
+
+@code {
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+        isLoading = false;
+    }
+
+    private Task LoadDataAsync()
+    {
+        return Task.Delay(10000);
+    }
+}
+```
+
+The preceding component uses an `isLoading` variable to display the loading message. A similar approach is used for a component that loads data into a collection and checks if the collection is `null` to present the loading message. The following example checks the `movies` collection for `null` to either display the loading message or display the collection of movies:
+
+```razor
 @if (movies == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <ul>
-        @foreach (var movie in movies)
-        {
-            <li>@movie.Title &mdash; @movie.Rating</li>
-        }
-    </ul>
+    @* display movies *@
 }
 
 @code {
@@ -538,10 +572,117 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        movies = await GetMovieRatings(DateTime.Now);
+        movies = await GetMovies();
     }
 }
 ```
+
+Prerendering waits for *quiescence*, which means that a component doesn't render until all of the components in the render tree have finished rendering. This means that a loading message doesn't display while a child component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> method is executing a long-running task during prerendering. To demonstrate this behavior, place the preceding `Slow` component into a test app's `Home` component:
+
+```razor
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SlowComponent />
+```
+
+> [!NOTE]
+> Although the examples in this section discuss the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> lifecycle method, other lifecycle methods that execute during prerendering may delay final rendering of a component. Only [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync) isn't executed during prerendering and is immune to delays due to quiescence.
+
+During prerendering, the `Home` component doesn't render until the `Slow` component is rendered, which takes ten seconds. The UI is blank during this ten-second period, and there's no loading message. After prerendering, the `Home` component renders, and the `Slow` component's loading message is displayed. After ten more seconds, the `Slow` component finally displays the finished message.
+
+:::moniker range=">= aspnetcore-8.0"
+
+As the preceding demonstration illustrates, quiescence during prerendering results in a poor user experience. To improve the user experience, begin by implementing [streaming rendering](xref:blazor/components/rendering#streaming-rendering) to avoid waiting for the asynchronous task to complete while prerendering.
+
+Add the [`[StreamRendering]` attribute](xref:Microsoft.AspNetCore.Components.StreamRenderingAttribute) to the `Slow` component (use `[StreamRendering(true)]` in .NET 8):
+
+```razor
+@attribute [StreamRendering]
+```
+
+When the `Home` component is prerendering, the `Slow` component is quickly rendered with its loading message. The `Home` component doesn't wait for ten seconds for the `Slow` component to finish rendering. However, the finished message displayed at the end of prerendering is replaced by the loading message while the component finally renders, which is another ten-second delay. This occurs because the `Slow` component is rendering twice, along with `LoadDataAsync` executing twice. When a component is accessing resources, such as services and databases, double execution of service calls and database queries creates undesirable load on the app's resources.
+
+To address the double rendering of the loading message and the re-execution of service and database calls, persist prerendered state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for final rendering of the component, as seen in the following updates to the `Slow` component:
+
+```razor
+@page "/slow"
+@attribute [StreamRendering]
+@implements IDisposable
+@inject PersistentComponentState ApplicationState
+
+<h2>Slow Component</h2>
+
+@if (data is null)
+{
+    <div><em>Loading...</em></div>
+}
+else
+{
+    <div>@data</div>
+}
+
+@code {
+    private string? data;
+    private PersistingComponentStateSubscription persistingSubscription;
+
+    protected override async Task OnInitializedAsync()
+    {
+        persistingSubscription =
+            ApplicationState.RegisterOnPersisting(PersistData);
+
+        if (!ApplicationState.TryTakeFromJson<string>("data", out var restored))
+        {
+            data = await LoadDataAsync();
+        }
+        else
+        {
+            data = restored!;
+        }
+    }
+
+    private Task PersistData()
+    {
+        ApplicationState.PersistAsJson("data", data);
+
+        return Task.CompletedTask;
+    }
+
+    private async Task<string> LoadDataAsync()
+    {
+        await Task.Delay(10000);
+        return "Finished!";
+    }
+
+    void IDisposable.Dispose()
+    {
+        persistingSubscription.Dispose();
+    }
+}
+```
+
+By combining streaming rendering with persistent component state:
+
+* Services and databases only require a single call for component initialization.
+* Components render their UIs quickly with loading messages during long-running tasks for the best user experience.
+
+For more information, see the following resources:
+
+* <xref:blazor/components/rendering#streaming-rendering>
+* <xref:blazor/components/prerender#persist-prerendered-state>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+Quiescence during prerendering results in a poor user experience. The delay can be addressed in apps that target .NET 8 or later with a feature called *streaming rendering*, usually combined with [persisting component state during prerendering](xref:blazor/components/integration#persist-prerendered-state) to avoid waiting for the asynchronous task to complete. In versions of .NET earlier than 8.0, executing a [long-running background task](#cancelable-background-work) that loads the data after final rendering can address a long rendering delay due to quiescence.
+
+:::moniker-end
 
 ## Handle errors
 
@@ -972,7 +1113,7 @@ To implement a cancelable background work pattern in a component:
 
 In the following example:
 
-* `await Task.Delay(5000, cts.Token);` represents long-running asynchronous background work.
+* `await Task.Delay(10000, cts.Token);` represents long-running asynchronous background work.
 * `BackgroundResourceMethod` represents a long-running background method that shouldn't start if the `Resource` is disposed before the method is called.
 
 `BackgroundWork.razor`:
