@@ -51,7 +51,7 @@ For example, consider a component that makes a long-running database query or we
 
 Streaming rendering requires the server to avoid buffering the output. The response data must flow to the client as the data is generated. For hosts that enforce buffering, streaming rendering degrades gracefully, and the page loads without streaming rendering.
 
-To stream content updates when using static server-side rendering (static SSR) or prerendering, apply the `[StreamRendering(true)]` attribute to the component. Streaming rendering must be explicitly enabled because streamed updates may cause content on the page to shift. Components without the attribute automatically adopt streaming rendering if the parent component uses the feature. Pass `false` to the attribute in a child component to disable the feature at that point and further down the component subtree. The attribute is functional when applied to components supplied by a [Razor class library](xref:blazor/components/class-libraries).
+To stream content updates when using static server-side rendering (static SSR) or prerendering, apply the [`[StreamRendering]` attribute](xref:Microsoft.AspNetCore.Components.StreamRenderingAttribute) in .NET 9 or later (use `[StreamRendering(true)]` in .NET 8) to the component. Streaming rendering must be explicitly enabled because streamed updates may cause content on the page to shift. Components without the attribute automatically adopt streaming rendering if the parent component uses the feature. Pass `false` to the attribute in a child component to disable the feature at that point and further down the component subtree. The attribute is functional when applied to components supplied by a [Razor class library](xref:blazor/components/class-libraries).
 
 The following example is based on the `Weather` component in an app created from the [Blazor Web App project template](xref:blazor/project-structure#blazor-web-app). The call to <xref:System.Threading.Tasks.Task.Delay%2A?displayProperty=nameWithType> simulates retrieving weather data asynchronously. The component initially renders placeholder content ("`Loading...`") without waiting for the asynchronous delay to complete. When the asynchronous delay completes and the weather data content is generated, the content is streamed to the response and patched into the weather forecast table.
 
@@ -59,7 +59,7 @@ The following example is based on the `Weather` component in an app created from
 
 ```razor
 @page "/weather"
-@attribute [StreamRendering(true)]
+@attribute [StreamRendering]
 
 ...
 

@@ -35,3 +35,17 @@ In the client project (`.Client`):
   ```
 
 For more information, see <xref:aspnetcore-9#simplified-authentication-state-serialization-for-blazor-web-apps>.
+
+### Streaming rendering attribute no longer requires the `true` parameter
+
+In .NET 8, [streaming rendering](xref:blazor/components/rendering?view=aspnetcore-8.0&preserve-view=true#streaming-rendering) required you to pass `true` for the `enabled` parameter:
+
+```razor
+@attribute [StreamRendering(true)]
+```
+
+In .NET 9 or later, `true` can optionally be removed, as `true` is now the default for the `enabled` parameter:
+
+```razor
+@attribute [StreamRendering]
+```
