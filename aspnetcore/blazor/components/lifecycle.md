@@ -606,9 +606,9 @@ Add the [`[StreamRendering]` attribute](xref:Microsoft.AspNetCore.Components.Str
 @attribute [StreamRendering]
 ```
 
-When the `Home` component is prerendering, the `Slow` component is quickly rendered with its loading message. The `Home` component doesn't wait for ten seconds for the `Slow` component to finish rendering. However, the finished message displayed at the end of prerendering is replaced by the loading message while the component finally renders, which is another ten-second delay. This occurs because `LoadDataAsync` is executing twice. When a component is accessing a real service, such as a database, the service call (or query for a database) re-executes a second time as well, which creates undesirable load on the app's service (or database).
+When the `Home` component is prerendering, the `Slow` component is quickly rendered with its loading message. The `Home` component doesn't wait for ten seconds for the `Slow` component to finish rendering. However, the finished message displayed at the end of prerendering is replaced by the loading message while the component finally renders, which is another ten-second delay. This occurs because the `Slow` component is rendering twice, along with `LoadDataAsync` executing twice. When a component is accessing resources, such as services and databases, double execution of service calls and database queries creates undesirable load on the app's resources.
 
-To address the double rendering of the loading message and the re-execution of service and database calls, persist the prerendered state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for final rendering of the component, as seen in the following updates to the `Slow` component:
+To address the double rendering of the loading message and the re-execution of service and database calls, persist prerendered state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for final rendering of the component, as seen in the following updates to the `Slow` component:
 
 ```razor
 @page "/slow"
