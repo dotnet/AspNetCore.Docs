@@ -159,7 +159,7 @@ Calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExten
 
 ## Multiple browser tabs and the Synchronizer Token Pattern
 
-Multiple tabs with different uses is not supported, including a user and anonymous.
+Multiple tabs with different users is not supported, including a user and anonymous.
 
 ## Configure antiforgery with `AntiforgeryOptions`
 
