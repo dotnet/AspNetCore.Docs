@@ -12,6 +12,8 @@ uid: security/authentication/configure-jwt-bearer-authentication
 
 By [Damien Bowden](https://github.com/damienbod)
 
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/configure-jwt-bearer-authentication/sample/JwtBearer)
+
 This article covers the following areas:
 
 * Token types
