@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 
 namespace JwtBearer;
@@ -15,15 +16,16 @@ public class Program
         builder.Services.AddOpenApi();
 
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, jwtOptions =>
+            .AddJwtBearer(jwtOptions =>
             {
-                jwtOptions.Authority = "--your-authority--";
-                jwtOptions.Audience = "--your-audience--";
+                jwtOptions.Authority = "https://--your-authority--";
+                jwtOptions.Audience = "https://--your-audience--";
             });
 
         //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         //    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, jwtOptions =>
         //    {
+        //        jwtOptions.IncludeErrorDetails = true;
         //        jwtOptions.MetadataAddress = builder.Configuration["Api:MetadataAddress"]!;
         //        jwtOptions.Authority = builder.Configuration["Api:Authority"];
         //        jwtOptions.Audience = builder.Configuration["Api:Audience"];
@@ -36,6 +38,13 @@ public class Program
         //            ValidIssuers = builder.Configuration.GetSection("ApiValidIssuers").Get<string[]>()
         //        };
         //    });
+
+        var requireAuthPolicy = new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+
+        builder.Services.AddAuthorizationBuilder()
+            .SetFallbackPolicy(requireAuthPolicy);
 
         var app = builder.Build();
 
