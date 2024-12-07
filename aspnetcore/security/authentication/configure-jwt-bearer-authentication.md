@@ -17,7 +17,7 @@ This article covers the following areas:
 * Token types
 * Using JWT tokens to secure an APIs
 * How OIDC/OAuth fits into this?
-* Examples with code snippets
+* Implementing JWT bearer token authentication
 * Recommended approaches to create a JWT
 * Downstream APIs
 * Advanced features, standards
@@ -80,7 +80,125 @@ A 403 forbidden response is normally returned when a business permission is miss
 
 When using access tokens, only the access token is validated on the API. The process of acquiring the access token is unspecified.  OpenID Connect and OAuth specify standards on how to acquire access tokens in a safe way. This process is different for every type of application. It is complicated to implement this in a safe way. This is why it is recommended to use one of the standards to create access tokens. OpenID Connect is used to create access tokens for an application and a user. These access tokens are user delegated access tokens. In a web application, a confidential OpenID Connect code flow using PKCE is the recommended way to implement this. If the application has no user, OAuth client credentials can be used to acquire an application access token. 
 
-## Examples with code snippets
+## Implementing JWT bearer token authentication
+
+The **Microsoft.AspNetCore.Authentication.JwtBearer** Nuget package can be used to validate the JWT bearer tokens.
+
+JWT bearer tokens should be validated in an API
+
+*	The signature should be validated for trust and integrity. The token was created by the defined secure token service and the token was not tampered with.
+*	The Issuer should be validated and should have the expected value.
+*	The Audience should be validated and should have the expected value.
+*	Token expiration claim should be validated.
+*	Token type should be validated.
+
+If any of these claims or values are incorrect, the API should return a 401 repsonse.
+
+### JWT bearer token basic validation
+
+```csharp
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(jwtOptions =>
+{
+	jwtOptions.Authority = "https://{--your-authority--}";
+	jwtOptions.Audience = "https://{--your-audience--}";
+});
+```
+
+### JWT bearer token explicit validation
+
+```csharp
+builder.Services.AddAuthentication()
+.AddJwtBearer("some-scheme", jwtOptions =>
+{
+	jwtOptions.MetadataAddress = builder.Configuration["Api:MetadataAddress"]!;
+	jwtOptions.Authority = builder.Configuration["Api:Authority"];
+	jwtOptions.Audience = builder.Configuration["Api:Audience"];
+	jwtOptions.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateIssuerSigningKey = true,
+		ValidAudiences = builder.Configuration.GetSection("Api:ValidAudiences").Get<string[]>(),
+		ValidIssuers = builder.Configuration.GetSection("Api:ValidIssuers").Get<string[]>()
+	};
+
+	jwtOptions.MapInboundClaims = false;
+	jwtOptions.TokenValidationParameters.ValidTypes = ["at+jwt"];
+});
+```
+
+### JWT with multiple schemes
+
+```csharp
+services.AddAuthentication(options =>
+{
+	options.DefaultScheme = "UNKNOWN";
+	options.DefaultChallengeScheme = "UNKNOWN";
+
+})
+.AddJwtBearer(Consts.MY_AUTH0_SCHEME, options =>
+{
+	options.Authority = "https://dev-damienbod.eu.auth0.com/";
+	options.Audience = "https://auth0-api1";
+	options.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateIssuerSigningKey = true,
+		ValidAudiences = Configuration.GetSection("ValidAudiences").Get<string[]>(),
+		ValidIssuers = Configuration.GetSection("ValidIssuers").Get<string[]>()
+	};
+})
+.AddJwtBearer(Consts.MY_AAD_SCHEME, jwtOptions =>
+{
+	jwtOptions.MetadataAddress = Configuration["AzureAd:MetadataAddress"]; 
+	jwtOptions.Authority = Configuration["AzureAd:Authority"];
+	jwtOptions.Audience = Configuration["AzureAd:Audience"]; 
+	jwtOptions.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateIssuerSigningKey = true,
+		ValidAudiences = Configuration.GetSection("ValidAudiences").Get<string[]>(),
+		ValidIssuers = Configuration.GetSection("ValidIssuers").Get<string[]>()
+	};
+})
+.AddPolicyScheme("UNKNOWN", "UNKNOWN", options =>
+{
+	options.ForwardDefaultSelector = context =>
+	{
+		string authorization = context.Request.Headers[HeaderNames.Authorization];
+		if (!string.IsNullOrEmpty(authorization) && authorization.StartsWith("Bearer "))
+		{
+			var token = authorization.Substring("Bearer ".Length).Trim();
+			var jwtHandler = new JwtSecurityTokenHandler();
+
+			if(jwtHandler.CanReadToken(token)) // it's a self contained access token and not encrypted
+			{
+				var issuer = jwtHandler.ReadJwtToken(token).Issuer; //.Equals("B2C-Authority"))
+				if(issuer == Consts.MY_OPENIDDICT_ISS) // OpenIddict
+				{
+					return OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
+				}
+
+				if (issuer == Consts.MY_AUTH0_ISS) // Auth0
+				{
+					return Consts.MY_AUTH0_SCHEME;
+				}
+
+				if (issuer == Consts.MY_AAD_ISS) // AAD
+				{
+					return Consts.MY_AAD_SCHEME;
+				}
+			}
+		}
+
+		// We don't know with it is
+		return Consts.MY_AAD_SCHEME;
+	};
+});
+```
 
 ## Recommended approaches to create a JWT
 

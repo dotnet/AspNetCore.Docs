@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace JwtBearer;
@@ -17,14 +18,13 @@ public class Program
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(jwtOptions =>
             {
-                jwtOptions.Authority = "https://--your-authority--";
-                jwtOptions.Audience = "https://--your-audience--";
+                jwtOptions.Authority = "https://{--your-authority--}";
+                jwtOptions.Audience = "https://{--your-audience--}";
             });
 
         builder.Services.AddAuthentication()
             .AddJwtBearer("some-scheme", jwtOptions =>
             {
-                jwtOptions.IncludeErrorDetails = true;
                 jwtOptions.MetadataAddress = builder.Configuration["Api:MetadataAddress"]!;
                 jwtOptions.Authority = builder.Configuration["Api:Authority"];
                 jwtOptions.Audience = builder.Configuration["Api:Audience"];
@@ -33,9 +33,12 @@ public class Program
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateIssuerSigningKey = true,
-                    ValidAudiences = builder.Configuration.GetSection("ApiValidAudiences").Get<string[]>(),
-                    ValidIssuers = builder.Configuration.GetSection("ApiValidIssuers").Get<string[]>()
+                    ValidAudiences = builder.Configuration.GetSection("Api:ValidAudiences").Get<string[]>(),
+                    ValidIssuers = builder.Configuration.GetSection("Api:ValidIssuers").Get<string[]>()
                 };
+
+                jwtOptions.MapInboundClaims = false;
+                jwtOptions.TokenValidationParameters.ValidTypes = ["at+jwt"];
             });
 
         var requireAuthPolicy = new AuthorizationPolicyBuilder()
