@@ -41,7 +41,7 @@ An access token can be encrypted. Access tokens should never be read or interpre
 
 Access tokens are intended solely for making requests to an API. This is normally sent to the API is the **Authorization** request header as a bearer token.
 
-[OAUTH spec](datatracker.ietf.org/doc/html/rfc6749#section-1.4)
+See [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749#section-1.4)
 
 #### Application access tokens and delegeted Access tokens
 
