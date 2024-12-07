@@ -27,7 +27,7 @@ This article covers the following areas:
 
 Is this really authentication?
 
-Using Bearer tokens as the authentication method is not really authentication but more authorization. The authentication is implemented when requesting access tokens for the first time in a UI application. This can also be described as delegated authorization. Using bearer tokens, you do not know who or what sent the access token and you do not know how the access token was acquired. The application can only say if the token is valid to use the requested API.
+Using bearer tokens as the authentication method is not really authentication but more authorization. The authentication is implemented when requesting access tokens for the first time in a UI application. This can also be described as delegated authorization. Using bearer tokens, you do not know who or what sent the access token and you do not know how the access token was acquired. The application can only say if the token is valid to use the requested API.
 
 ## Token types
 
@@ -226,9 +226,9 @@ Asymmetric keys should always be used when creating access tokens. The public ke
 
 You should NOT create an access token from a username/password request. This is not authentication and is open to impersonation attacks and phishing attacks. Access tokens should only be created using an OpenID Connect flow or an OAuth standard flow. Not using standards can result in security problems.
 
-### Access tokens in Web application
+### Access tokens in Web applications
 
-Secure web applications require a backend and store access tokens someone on the trusted server. Only a secure HTTP only cookie is shared on the client browser.
+Secure web applications require a backend and store access tokens somewhere on the trusted server. Only a secure HTTP only cookie is shared on the client browser.
 
 ## Downstream APIs
 
