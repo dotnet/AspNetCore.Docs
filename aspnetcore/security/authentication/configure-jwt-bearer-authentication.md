@@ -136,6 +136,8 @@ builder.Services.AddAuthentication()
 
 ### JWT with multiple schemes
 
+Some APIs need to support access tokens from multiple issuers. This can be implemented in many ways. Separate APIs and schemes for each issuer can be used. The **AddPolicyScheme** can also be used to choose the correct scheme depending on the token type.
+
 ```csharp
 services.AddAuthentication(options =>
 {
@@ -244,11 +246,11 @@ Secure web applications require a backend and store access tokens someone on the
 
 ## Testing APIs
 
+Testing secure APIs can be implemented in different ways. Integration tests and containers with access tokens can be used to test the APIs. You can also create the access tokens using the dotnet jwt tool.
+
 [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt)
 
-### Testing application access tokens
-
-### Testing delegated access tokens
+It is important not to create security problems in the API so that you can test the API. When delegated access tokens are used, it is more difficult to test as the tokens can only be created using a UI and an OpenID Connect flow. If using a test tool to create the delegated access tokens, security features must be disabled for the tests. It is important that the features are only disabled in the test environment.
 
 ### Use Swagger, Postman and other API UI tools
 
