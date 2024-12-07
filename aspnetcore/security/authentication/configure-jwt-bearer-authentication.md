@@ -246,7 +246,7 @@ Secure web applications require a backend and store access tokens someone on the
 
 ## Testing APIs
 
-Testing secure APIs can be implemented in different ways. Integration tests and containers with access tokens can be used to test the APIs. You can also create the access tokens using the dotnet jwt tool.
+Testing secure APIs can be implemented in different ways. Integration tests and containers with access tokens can be used to test the APIs. You can also create the access tokens using the dotnet user-jwts tool.
 
 [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt)
 
