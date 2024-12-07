@@ -98,6 +98,8 @@ If any of these claims or values are incorrect, the API should return a 401 resp
 
 ### JWT bearer token basic validation
 
+A basic implementation of the AddJwtBearer can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it has not been tampered with.
+
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(jwtOptions =>
@@ -108,6 +110,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 ```
 
 ### JWT bearer token explicit validation
+
+The AddJwtBearer method provides multiple configuration possibilities. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences. The ValidTypes types can be used to validate the "at+jwt" header if the value is supported.
 
 ```csharp
 builder.Services.AddAuthentication()
@@ -214,9 +218,13 @@ Standards like OpenID Connect or OAuth should always be used when creating acces
 
 Asymmetric keys should always be used when creating access tokens. The public key is available in the well known endpoints and the API clients can validate the signature of the access token using the public key.
 
-### Why creating your own access tokens is normally a bad idea
-
 ### Should I create an access token from a username/password request?
+
+You should NOT create an access token from a username/password request. This is not authentication and is open to impersonation attacks and phishing attacks. Access tokens should only be created using an OpenID Connect flow or an OAuth standard flow. Not using standards can result in security problems.
+
+### Access tokens in Web application
+
+Secure web applications require a backend and store access tokens someone on the trusted server. Only a secure HTTP only cookie is shared on the client browser.
 
 ## Downstream APIs
 
