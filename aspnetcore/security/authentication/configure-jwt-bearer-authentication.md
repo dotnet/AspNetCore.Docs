@@ -78,9 +78,7 @@ A 403 forbidden response is normally returned when a business permission is miss
 
 ## How OIDC/OAuth fits into this?
 
-### OIDC and user access tokens
-
-### OAuth application tokens
+When using access tokens, only the access token is validated on the API. The process of acquiring the access token is unspecified.  OpenID Connect and OAuth specify standards on how to acquire access tokens in a safe way. This process is different for every type of application. It is complicated to implement this in a safe way. This is why it is recommended to use one of the standards to create access tokens. OpenID Connect is used to create access tokens for an application and a user. These access tokens are user delegated access tokens. In a web application, a confidential OpenID Connect code flow using PKCE is the recommended way to implement this. If the application has no user, OAuth client credentials can be used to acquire an application access token. 
 
 ## Examples with code snippets
 
