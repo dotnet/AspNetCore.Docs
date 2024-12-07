@@ -27,9 +27,7 @@ Is this really authentication?
 
 ## Token types
 
-### ID tokens
-
-### Refresh tokens
+There are many different types of tokens and many formats. You should not be creating access tokens or ID tokens yourself unless in testing scenarios. Creating self-made tokens and not following standards usually ends up with security problems and can only be used in closed systems. It is recommended to use OpenID Connect and/or OAuth to create access tokens for API access. 
 
 ### Access tokens
 
@@ -52,7 +50,15 @@ There are two types of access tokens: **bearer tokens** and **sender-constrained
 - Demonstrating Proof-of-Possession (DPoP)
 - MTLS
 
-### OAuth tokens, JAR and id_token_hint other tokens
+### ID tokens
+
+ID tokens are security tokens that confirm a user’s successful authentication. They allow the client to verify the user’s identity. The authorization server issues ID tokens containing claims with user information. ID tokens are always in JWT (JSON Web Token) format.
+
+ID tokens should never be used to access APIs.
+
+### Other tokens
+
+There are many different types of tokens as well as access tokens and ID tokens. OpenID Connect and OAuth standards specify many different types. Refresh tokens can be used to refresh a UI application without authenticating the user again, OAuth JAR tokens can be used to send authorization requests is a secure way. Verifiable credentials using JWT types in issuing or verifying credentials. It is important to use the tokens following the specifications. Please refer to the Standards provided in the links for more information.
 
 ## Using JWT tokens to secure an API
 
