@@ -12,7 +12,6 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllers();
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -22,22 +21,22 @@ public class Program
                 jwtOptions.Audience = "https://--your-audience--";
             });
 
-        //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        //    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, jwtOptions =>
-        //    {
-        //        jwtOptions.IncludeErrorDetails = true;
-        //        jwtOptions.MetadataAddress = builder.Configuration["Api:MetadataAddress"]!;
-        //        jwtOptions.Authority = builder.Configuration["Api:Authority"];
-        //        jwtOptions.Audience = builder.Configuration["Api:Audience"];
-        //        jwtOptions.TokenValidationParameters = new TokenValidationParameters
-        //        {
-        //            ValidateIssuer = true,
-        //            ValidateAudience = true,
-        //            ValidateIssuerSigningKey = true,
-        //            ValidAudiences = builder.Configuration.GetSection("ApiValidAudiences").Get<string[]>(),
-        //            ValidIssuers = builder.Configuration.GetSection("ApiValidIssuers").Get<string[]>()
-        //        };
-        //    });
+        builder.Services.AddAuthentication()
+            .AddJwtBearer("some-scheme", jwtOptions =>
+            {
+                jwtOptions.IncludeErrorDetails = true;
+                jwtOptions.MetadataAddress = builder.Configuration["Api:MetadataAddress"]!;
+                jwtOptions.Authority = builder.Configuration["Api:Authority"];
+                jwtOptions.Audience = builder.Configuration["Api:Audience"];
+                jwtOptions.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidAudiences = builder.Configuration.GetSection("ApiValidAudiences").Get<string[]>(),
+                    ValidIssuers = builder.Configuration.GetSection("ApiValidIssuers").Get<string[]>()
+                };
+            });
 
         var requireAuthPolicy = new AuthorizationPolicyBuilder()
             .RequireAuthenticatedUser()
