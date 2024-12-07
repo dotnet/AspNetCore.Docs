@@ -25,6 +25,8 @@ This article covers the following areas:
 
 Is this really authentication?
 
+Using Bearer tokens as the authentication method is not really authentication but more authorization. The authentication is implemented when requesting access tokens for the first time in a UI application. This can also be described as delegated authorization. Using bearer tokens, you do not know who or what sent the access token and you do not know how the access token was acquired. The application can only say if the token is valid to use the requested API.
+
 ## Token types
 
 There are many different types of tokens and many formats. You should not be creating access tokens or ID tokens yourself unless in testing scenarios. Creating self-made tokens and not following standards usually ends up with security problems and can only be used in closed systems. It is recommended to use OpenID Connect and/or OAuth to create access tokens for API access. 
@@ -42,6 +44,8 @@ Access tokens are intended solely for making requests to an API. This is normall
 #### Application access tokens and delegeted Access tokens
 
 When requesting or creating an access token, an application or an application acting on behalf of a user can request and access token. The tokens are **application access tokens** or **delegated access tokens**. The tokens have different claims and are handled and persisted in different ways. An application is normally persisted once in the application until it expires where the delegated access token is persisted per user, either in a cookie or in a cache on a secure server.
+
+It is recommended to user-delegated user access tokens whenever a user is involved. Downstream APIs can request a delegated user access token on behalf of the authenticated user. 
 
 #### Sender constrained access tokens
 
@@ -62,9 +66,15 @@ There are many different types of tokens as well as access tokens and ID tokens.
 
 ## Using JWT tokens to secure an API
 
-### 401
+When using JWT access tokens to authorize an API, the request is valid, or not valid. If the request is not valid, a 401 response or a 403 response is returned. The API should never redirect to the identity provider to acquire more permissions or the correct access token. That is the responsibility of the UI requesting the data from the API.
 
-### 403
+### 401 Unauthorized
+
+A 401 response is returned when the access token has an invalid standard requirement. The OAuth specifications are clear which claims must be valid and how to validate the claims in the access token. This could be the wrong signature, or the token has expired or one of the required claims like the audience or the issuer is incorrect. 
+
+### 403 Forbidden
+
+A 403 forbidden response is normally returned when a business permission is missing. The authorization has nothing to do with the authentication or the standard claims used in the access token. This could be implemented using an ASP.NET requirement with a policy or also a role authorization.
 
 ## How OIDC/OAuth fits into this?
 
