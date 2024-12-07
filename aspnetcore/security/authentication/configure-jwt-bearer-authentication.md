@@ -90,9 +90,11 @@ JWT bearer tokens should be validated in an API
 *	The Issuer should be validated and should have the expected value.
 *	The Audience should be validated and should have the expected value.
 *	Token expiration claim should be validated.
-*	Token type should be validated.
+*	Token type should be validated. (Required in RFC 9068, "at+jwt")
 
-If any of these claims or values are incorrect, the API should return a 401 repsonse.
+Following claims are required for OAuth 2.0 access tokens: iss, exp, aud, sub, client_id, iat, jti
+
+If any of these claims or values are incorrect, the API should return a 401 response.
 
 ### JWT bearer token basic validation
 
@@ -202,9 +204,15 @@ services.AddAuthentication(options =>
 
 ## Recommended approaches to create a JWT
 
+When using access tokens, many security problems arise because the access tokens are created or stored in an unsecure way. The application did not authenticate the user in a strong way or the access token was persisted directly in the browser using local storage, session storage or web workers. The following section describes some best practices for applications using and creating access tokens.
+
 ### Use standards
 
+Standards like OpenID Connect or OAuth should always be used when creating access tokens. Access tokens should not be in your applications without the correct security precautions.  Only in test scenarios, should you be creating access tokens.
+
 ### Use asymmetric keys
+
+Asymmetric keys should always be used when creating access tokens. The public key is available in the well known endpoints and the API clients can validate the signature of the access token using the public key.
 
 ### Why creating your own access tokens is normally a bad idea
 
@@ -259,3 +267,5 @@ Refer to the following document:
 [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
 
 [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
+
+[JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens](https://datatracker.ietf.org/doc/html/rfc9068)
