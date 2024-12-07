@@ -110,6 +110,8 @@ When using access tokens, only the access token is validated on the API. The pro
 
 ## Testing APIs
 
+[Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt)
+
 ### Testing application access tokens
 
 ### Testing delegated access tokens
