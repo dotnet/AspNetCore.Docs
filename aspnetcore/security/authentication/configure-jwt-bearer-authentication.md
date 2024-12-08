@@ -36,7 +36,7 @@ There are many different types of tokens and many formats. You should not be cre
 
 ### Access tokens
 
-An access token is a string used by a client application to make requests to the server implementing an API. Access tokens can vary in format and different APIs may use different formats for their tokens.
+An access token is a string used by a client application to make requests to the server implementing an API. Access tokens can vary in format and different APIs may use different formats for the tokens.
 
 An access token can be encrypted. Access tokens should never be read or interpreted by a web client or UI application holding the access token, only an API is the intended audience.
 
