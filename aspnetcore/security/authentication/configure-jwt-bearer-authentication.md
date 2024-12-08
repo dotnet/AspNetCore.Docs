@@ -22,7 +22,9 @@ This article covers the following areas:
 * Implementing JWT bearer token authentication
 * Recommended approaches to create a JWT
 * Downstream APIs
-* Advanced features, standards
+* Handling access tokens
+* Encypted access tokens
+* YARP
 * Testing APIs
 
 Is this really authentication?
@@ -237,8 +239,12 @@ APIs sometimes require user data from downstream APIs on behalf of the user auth
 ### Use OAuth 2.0 Token Exchange to request a new delegated access token
 This is a great a to implement this requirement but is complicated if you must implement this requirement yourself. 
 
+See [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
+
 ### Use Microsoft on behalf of flow to request a new delegated access token
 This works very well and is super easy to implement when using Microsoft .Identity.Web. It only works with Microsoft Entra ID, Microsoft Entra External ID and Microsoft Azure AD B2C.
+
+See [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
 
 ### Use the same delegated access token sent to the API
 This is easy to implement but the access token has access to both APIs. Yarp reverse proxy can be used to implement this. This is easy to implement.
@@ -249,15 +255,18 @@ This is easy to implement but the client application has full application access
 > Note
 > Any app-to-app security would also work. Certificate authentication can be used or in Azure a managed identity can be used. 
 
-## Advanced features, standards
+## Handling access tokens
 
-### Access token rotation
+When using access tokens in a client application, the access tokens need to be rotated, persisted and stored somewhere on the server. In a web application, cookies are used to secure the session. The cookies should not contain the access tokens as the size of the cookie would become too larger.
 
-### Access tokens and cache
+Duende.AccessTokenManagement.OpenIdConnect  is a great Nuget package for handling and managing access tokens in the client application. 
 
-### Encypted access tokens
+> Note
+> If deploying the production, the cache should work in a mutli-instance deployment and a persistent cache is normally required.
 
-### YARP
+## Encypted access tokens
+
+## YARP
 
 ## Testing APIs
 
@@ -275,7 +284,6 @@ Swagger and Postman are great UI tools for testing APIs. For the tools to work, 
 > Do not deploy insecure security test flows to production.
 
 If implementing a Swagger UI for an API, you should normally not deploy the UI to production as the security must be weakened to allow this to work. 
-
 
 ## Map claims from OpenID Connect
 
