@@ -275,6 +275,8 @@ Some secure token servers encrypt the access tokens. Access tokens do not requir
 
 ## YARP
 
+YARP (Yet Another Reverse Proxy) is a great tool for handling http requests and forwarding the requests to other APIs. YARP can implement security logic for acquiring new access credentials. YARP is used a lot in the backend for frontend (BFF) security architecture.
+
 ## Testing APIs
 
 Testing secure APIs can be implemented in different ways. Integration tests and containers with access tokens can be used to test the APIs. You can also create the access tokens using the dotnet user-jwts tool.
