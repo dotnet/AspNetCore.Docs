@@ -40,7 +40,7 @@ An access token is a string used by a client application to make requests to the
 
 An access token can be encrypted. Access tokens should never be read or interpreted by a web client or UI application holding the access token, only an API is the intended audience.
 
-Access tokens are intended solely for making requests to an API. This is normally sent to the API is the **Authorization** request header as a bearer token.
+Access tokens are intended solely for making requests to an API. This is normally sent to the API in the **Authorization** request header as a bearer token.
 
 See [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749#section-1.4)
 
