@@ -28,7 +28,7 @@ This article covers the following areas:
 
 Is this really authentication?
 
-Using bearer tokens as the authentication method is not really authentication but more authorization. The authentication is implemented when requesting access tokens for the first time in a UI application. This can also be described as delegated authorization. Using bearer tokens, you do not know who or what sent the access token and you do not know how the access token was acquired. The application can only say if the token is valid to use the requested API.
+Using bearer tokens as the authentication method is not really authentication but more authorization. Authentication is implemented when requesting access tokens for the first time in a UI application. Requesting data in an API can be described as delegated authorization. Using bearer tokens, you do not know who or what sent the access token and you do not know how the access token was acquired. The application can only say if the token is valid to use the requested API.
 
 ## Token types
 
