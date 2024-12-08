@@ -87,15 +87,15 @@ When using access tokens, only the access token is validated on the API. The pro
 
 The **Microsoft.AspNetCore.Authentication.JwtBearer** Nuget package can be used to validate the JWT bearer tokens.
 
-JWT bearer tokens should be validated in an API
+JWT bearer tokens should be fully validated in an API.
 
-*	The signature should be validated for trust and integrity. The token was created by the defined secure token service and the token was not tampered with.
-*	The Issuer should be validated and should have the expected value.
-*	The Audience should be validated and should have the expected value.
-*	Token expiration claim should be validated.
-*	Token type should be validated. (Required in RFC 9068, "at+jwt")
+*	The signature should be validated for trust and integrity, i.e. the token was created by the defined secure token service and the token was not tampered with.
+*	The Issuer claim should be validated and should have the expected value.
+*	The Audience claim should be validated and should have the expected value.
+*	The token expiration claim should be validated.
+*	The token type should be validated. (Required in RFC 9068, "at+jwt")
 
-Following claims are required for OAuth 2.0 access tokens: iss, exp, aud, sub, client_id, iat, jti
+The following claims are required for OAuth 2.0 access tokens: iss, exp, aud, sub, client_id, iat, jti.
 
 If any of these claims or values are incorrect, the API should return a 401 response.
 
