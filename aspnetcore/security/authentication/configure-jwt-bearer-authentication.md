@@ -265,7 +265,7 @@ See [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 ### Use Microsoft on behalf of flow to request a new delegated access token
 This works very well and is super easy to implement when using Microsoft .Identity.Web. It only works with Microsoft Entra ID, Microsoft Entra External ID and Microsoft Azure AD B2C.
 
-See [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
+See [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](https://learn.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
 
 ### Use the same delegated access token sent to the API
 This is easy to implement but the access token has access to both APIs. Yarp reverse proxy can be used to implement this. This is easy to implement.
@@ -335,7 +335,7 @@ Refer to the following document:
 
 [OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0-final.html)
 
-[Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
+[Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](https://learn.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
 
 [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 
