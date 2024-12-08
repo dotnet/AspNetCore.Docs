@@ -59,7 +59,7 @@ There are two types of access tokens: **bearer tokens** and **sender-constrained
 
 ### ID tokens
 
-ID tokens are security tokens that confirm a user’s successful authentication. The tokens allow the client to verify the user’s identity. The authorization server issues ID tokens containing claims with user information. ID tokens are always in JWT (JSON Web Token) format.
+ID tokens are security tokens that confirm a user’s successful authentication. The tokens allow the client to verify the user’s identity. The secure token server issues ID tokens containing claims with user information. ID tokens are always in JWT (JSON Web Token) format.
 
 ID tokens should never be used to access APIs.
 
