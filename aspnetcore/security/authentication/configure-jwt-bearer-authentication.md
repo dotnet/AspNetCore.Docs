@@ -223,7 +223,7 @@ builder.Services.AddAuthorizationBuilder()
 	.SetFallbackPolicy(requireAuthPolicy);
 ```
 
-The **Authorize** attribute can alos be used to force the authentication. If multiple schemes are used, the bearer scheme needs to be set.
+The **Authorize** attribute can also be used to force the authentication. If multiple schemes are used, the bearer scheme needs to be set.
 
 ```csharp
 [Authorize]
