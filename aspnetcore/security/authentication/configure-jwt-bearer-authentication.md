@@ -23,7 +23,6 @@ This article covers the following areas:
 * Recommended approaches to create a JWT
 * Downstream APIs
 * Handling access tokens
-* Encypted access tokens
 * YARP
 * Testing APIs
 
