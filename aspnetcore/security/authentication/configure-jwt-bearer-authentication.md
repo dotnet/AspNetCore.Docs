@@ -269,6 +269,14 @@ It is important not to create security problems in the API so that you can test 
 
 ### Use Swagger, Postman and other API UI tools
 
+Swagger and Postman are great UI tools for testing APIs. For the tools to work, the API can produce an Open API document and this can be loaded into the client testing tool. A security flow to acquire and new access token can be added to the API Open API file. 
+
+> Note 
+> Do not deploy insecure security test flows to production.
+
+If implementing a Swagger UI for an API, you should normally not deploy the UI to production as the security must be weakened to allow this to work. 
+
+
 ## Map claims from OpenID Connect
 
 Refer to the following document:
