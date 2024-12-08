@@ -65,7 +65,7 @@ ID tokens should never be used to access APIs.
 
 ### Other tokens
 
-There are many different types of tokens as well as access tokens and ID tokens. OpenID Connect and OAuth standards specify many different types. Refresh tokens can be used to refresh a UI application without authenticating the user again, OAuth JAR tokens can be used to send authorization requests is a secure way. Verifiable credentials flows use JWT types in issuing or verifying credentials. It is important to use the tokens following the specifications. Please refer to the Standards provided in the links for more information.
+There are many different types of tokens as well as access tokens and ID tokens. OpenID Connect and OAuth standards specify many different types. Refresh tokens can be used to refresh a UI application without authenticating the user again, OAuth JAR tokens can be used to send authorization requests is a secure way. Verifiable credentials flows use JWT types in issuing or verifying credentials. It is important to use the tokens following the specifications. Please refer to the standards provided in the links for more information.
 
 ## Using JWT tokens to secure an API
 
