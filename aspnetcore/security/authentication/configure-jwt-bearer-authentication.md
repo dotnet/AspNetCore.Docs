@@ -52,7 +52,7 @@ It is recommended to use delegated user access tokens whenever a user is involve
 
 #### Sender constrained access tokens
 
-There are two types of access tokens: **bearer tokens** and **sender-constrained** tokens. Sender-constrained tokens require the requesting client to prove possession of a private key to use the token, making the token unusable on its own. Sender-constrained tokens can be implemented in two ways:
+There are two types of access tokens: **bearer tokens** and **sender-constrained** tokens. Sender-constrained tokens require the requesting client to prove possession of a private key to use the token, ensuring the token cannot be used independently.. Sender-constrained tokens can be implemented in two ways:
 
 - Demonstrating Proof-of-Possession (DPoP)
 - MTLS
