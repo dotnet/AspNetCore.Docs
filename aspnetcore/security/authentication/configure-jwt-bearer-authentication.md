@@ -69,7 +69,7 @@ There are many different types of tokens as well as access tokens and ID tokens.
 
 ## Using JWT tokens to secure an API
 
-When using JWT access tokens to authorize an API, the request is valid, or not valid. If the request is not valid, a 401 response or a 403 response is returned. The API should never redirect to the identity provider to acquire more permissions or the correct access token. That is the responsibility of the UI requesting the data from the API.
+When using JWT access tokens to authorize an API, the request is allowed, or not allowed. If the request is not authorized, a 401 response or a 403 response is returned. The API should never redirect to the identity provider to acquire more permissions or the correct access token. That is the responsibility of the UI requesting the data from the API.
 
 ### 401 Unauthorized
 
