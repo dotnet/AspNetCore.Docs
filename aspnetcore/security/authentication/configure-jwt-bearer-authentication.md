@@ -264,7 +264,14 @@ Duende.AccessTokenManagement.OpenIdConnect  is a great Nuget package for handlin
 > Note
 > If deploying the production, the cache should work in a mutli-instance deployment and a persistent cache is normally required.
 
-## Encypted access tokens
+Some secure token servers encrypt the access tokens. Access tokens do not require any format. When using OAuth introspection, a reference token is used instead of an access token. A client (UI) application should never open an access token as the access token is not intended for this. Only an API for which the access token was created for should open the access token. 
+
+* Do not open access tokens in a UI application
+* Do not send the ID token to the APIs
+* Access tokens can have any format
+* Access tokens can be encrypted
+* Access tokens expire and need to be rotated
+* Access tokens are persisted on a secure backend server
 
 ## YARP
 
