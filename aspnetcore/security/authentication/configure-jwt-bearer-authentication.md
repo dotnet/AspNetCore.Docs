@@ -232,11 +232,22 @@ Secure web applications require a backend and store access tokens somewhere on t
 
 ## Downstream APIs
 
-### OAuth downstream application tokens
+APIs sometimes require user data from downstream APIs on behalf of the user authenticated in the calling application. The API could just implement an OAuth client credentials flow, but this would mean a full trust between the two API applications. A better way to implement this would be to use a zero-trust strategy and use a delegated user access token. For this to work, the API requires access for the new identity, the user calling the application and the API itself. There are fours ways to implement this:
 
-### Microsoft OBO downstream access tokens
+### Use OAuth 2.0 Token Exchange to request a new delegated access token
+This is a great a to implement this requirement but is complicated if you must implement this requirement yourself. 
 
-### How Yarp can help
+### Use Microsoft on behalf of flow to request a new delegated access token
+This works very well and is super easy to implement when using Microsoft .Identity.Web. It only works with Microsoft Entra ID, Microsoft Entra External ID and Microsoft Azure AD B2C.
+
+### Use the same delegated access token sent to the API
+This is easy to implement but the access token has access to both APIs. Yarp reverse proxy can be used to implement this. This is easy to implement.
+
+### Use OAuth client credentials flow and use an application access token
+This is easy to implement but the client application has full application access and not a delegated access token. The token should be cached in the client API application.
+
+> Note
+> Any app-to-app security would also work. Certificate authentication can be used or in Azure a managed identity can be used. 
 
 ## Advanced features, standards
 
@@ -245,6 +256,8 @@ Secure web applications require a backend and store access tokens somewhere on t
 ### Access tokens and cache
 
 ### Encypted access tokens
+
+### YARP
 
 ## Testing APIs
 
