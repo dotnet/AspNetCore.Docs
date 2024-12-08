@@ -239,7 +239,7 @@ When using access tokens, many security problems arise because the access tokens
 
 ### Use standards
 
-Standards like OpenID Connect or OAuth should always be used when creating access tokens. Access tokens should not be in your applications without the correct security precautions.  Only in test scenarios, should you be creating access tokens.
+Standards like OpenID Connect or OAuth should always be used when creating access tokens. Access tokens should not be created in your applications without the correct security precautions.  Only in test scenarios, should you be creating access tokens.
 
 ### Use asymmetric keys
 
