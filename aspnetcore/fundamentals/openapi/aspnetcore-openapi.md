@@ -5,7 +5,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 09/05/2024
+ms.date: 12/11/2024
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
