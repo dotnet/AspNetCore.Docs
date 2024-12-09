@@ -1674,7 +1674,7 @@ To create localization shared resources, adopt the following approach.
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
-* Confirm that the <xref:Microsoft.Extensions.Localization?displayProperty=nameWithType> namespace is available to the project via an entry in the project's `_Imports` file:
+* Confirm that the <xref:Microsoft.Extensions.Localization?displayProperty=fullName> namespace is available to the project via an entry in the project's `_Imports` file:
 
   ```razor
   @using Microsoft.Extensions.Localization
