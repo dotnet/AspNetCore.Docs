@@ -144,8 +144,8 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Run the following commands:
 
   ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
-  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --prerelease
+  dotnet add package Microsoft.EntityFrameworkCore.InMemory
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
   ```
 
 ---
