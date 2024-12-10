@@ -7,7 +7,7 @@ builder.Services.AddOpenApi();
 if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
 {
    // 'IServiceCollection' does not contain a definition for 'AddDefaults' 
-    builder.Services.AddDefaults();
+    builder.AddServiceDefaults();
 }
 var app = builder.Build();
 
