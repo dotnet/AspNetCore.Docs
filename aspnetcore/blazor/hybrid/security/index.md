@@ -36,7 +36,7 @@ After authentication is added to a .NET MAUI, WPF, or Windows Forms app and user
 
 :::zone pivot="maui"
 
-.NET MAUI apps use [Xamarin.Essentials: Web Authenticator](/xamarin/essentials/web-authenticator): The `WebAuthenticator` class allows the app to initiate browser-based authentication flows that listen for a callback to a specific URL registered with the app.
+.NET MAUI apps use the `WebAuthenticator` class to initiate browser-based authentication flows that listen for a callback to a specific URL registered with the app.
 
 For additional guidance, see the following resources:
 
@@ -574,7 +574,7 @@ After authentication is added to a .NET MAUI, WPF, or Windows Forms app and user
 
 :::zone pivot="maui"
 
-.NET MAUI apps use [Xamarin.Essentials: Web Authenticator](/xamarin/essentials/web-authenticator): The `WebAuthenticator` class allows the app to initiate browser-based authentication flows that listen for a callback to a specific URL registered with the app.
+.NET MAUI apps use the `WebAuthenticator` class to initiate browser-based authentication flows that listen for a callback to a specific URL registered with the app.
 
 For additional guidance, see the following resources:
 
