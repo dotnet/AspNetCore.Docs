@@ -49,17 +49,17 @@ The following code adds Blazor components and a custom <xref:Microsoft.EntityFra
 
 In Blazor Web Apps, services are often resolved from DI at run time by using the `@inject` directive in a Razor component, as shown in the following example:
 
-:::code language="razor" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Components/Pages/Index.razor" highlight ="8,42,46":::
+:::code language="razor" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Components/Pages/MoviePages/Index.razor" highlight ="8,42,46":::
 
 In the preceding code:
 
-* The `@inject` directive is near the top of the file.
+* The `@inject` directive is used.
 * The service is resolved in the `OnInitialized` method and assigned to the `context` variable.
 * The `context` service creates the `FilteredMovie` list.
 
 Another way to resolve a service from DI is by using constructor injection. The following Razor Pages code uses constructor injection to resolve the database context from DI:
 
- :::code language="csharp" source="~/aspnetcore/fundamentals/index/samples/6.0/RazorPagesMovie/Pages/Movies/Index.cshtml" id="snippet" highlight="3-10, 16-17":::
+ :::code language="csharp" source="~/fundamentals/index/samples/6.0/RazorPagesMovie/Pages/Movies/Index.cshtml.cs" id="snippet" highlight="3-10, 16-17":::
 
 In the preceding code, the `IndexModel` constructor takes a parameter of type `RazorPagesMovieContext`, which is resolved at run time into the `_context` variable. The context object is used to create a list of movies in the `OnGetAsync` method.
 
