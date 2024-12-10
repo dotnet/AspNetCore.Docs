@@ -93,9 +93,9 @@ There are three different hosts capable of running an ASP.NET Core app:
 
 The ASP.NET Core <xref:Microsoft.AspNetCore.Builder.WebApplication> and <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> types are recommended and are used in all the ASP.NET Core templates. `WebApplication` behaves similarly to the .NET Generic Host and exposes many of the same interfaces but requires fewer callbacks to configure. The ASP.NET Core <xref:Microsoft.AspNetCore.WebHost> is available only for backward compatibility.
 
-The following example instantiates a `WebApplication` and names it `app`:
+The following example instantiates a `WebApplication` and assigns it to a variable named `app`:
 
-:::code language="csharp" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Program.cs" id="snippet_services" highlight="14":::
+:::code language="csharp" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Program.cs" id="snippet_services" highlight="1,14":::
 
 The [WebApplicationBuilder.Build](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) method configures a host with a set of default options, such as:
 
@@ -163,7 +163,7 @@ ASP.NET Core supports a logging API that works with a variety of built-in and th
 * Azure App Service
 * Azure Application Insights
 
-To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger%601> service from dependency injection (DI) and call logging methods such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A>. The following example shows how to get the logger in a `.razor` file for a page in a Blazor Web app. A logger object and a console provider for it are stored in the DI container automatically when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A> method is called in `Program.cs`.
+To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger%601> service from dependency injection (DI) and call logging methods such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A>. The following example shows how to get and use a logger in a `.razor` file for a page in a Blazor Web App. A logger object and a console provider for it are stored in the DI container automatically when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A> method is called in `Program.cs`.
 
 :::code language="csharp" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Components/Pages/Weather.razor" highlight="3,49-51":::
 

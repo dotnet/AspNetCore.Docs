@@ -28,8 +28,8 @@ using (var scope = app.Services.CreateScope())
     SeedData.Initialize(services);
 }
 
-// <snippet_environments>
 // Configure the HTTP request pipeline.
+// <snippet_environments>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
