@@ -115,7 +115,7 @@ An anchor tag's destination ([`href`](https://developer.mozilla.org/docs/Web/HTM
   
 The presence of a trailing slash (`/`) in a configured app base path is significant to compute the base path for URLs of the app. For example, `https://example.com/a` has a base path of `https://example.com/`, while `https://example.com/a/` with a trailing slash has a base path of `https://example.com/a`.
 
-There are three sources of links that pertain to Blazor in ASP.NET Core apps:
+For the sources of links that pertain to Blazor in ASP.NET Core apps:
 
 :::moniker range=">= aspnetcore-8.0"
 
