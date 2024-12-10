@@ -654,6 +654,22 @@ The important changes to the `LogInOrOut` component are demonstrated in the foll
 </div>
 ```
 
+:::moniker range="< aspnetcore-10.0"
+
+## Token refresh
+
+<!-- UPDATE 10.0 - Check the PU issue for 10.0 work to resolve both issues.
+                   The docs issue is https://github.com/dotnet/AspNetCore.Docs/issues/34235. -->
+
+The custom cookie refresher (`CookieOidcRefresher.cs`) implementation updates the user's claims automatically when they expire. The current implementation expects to receive an ID token from the token endpoint in exchange for the refresh token. The claims in this ID token are then used to overwrite the user's claims.
+
+The sample implementation doesn't include code for requesting claims from the [UserInfo endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) on token refresh. For more information, see [`BlazorWebAppOidc AddOpenIdConnect with GetClaimsFromUserInfoEndpoint = true doesn't propogate role claims to client` (`dotnet/aspnetcore` #58826)](https://github.com/dotnet/aspnetcore/issues/58826#issuecomment-2492738142).
+
+> [!NOTE]
+> Some identity providers [only return an access token when using a refresh token](https://openid.net/specs/openid-connect-core-1_0.html#RefreshTokenResponse). The `CookieOidcRefresher` can be updated with additional logic to continue to use the prior set of claims stored in the authentication cookie or use the access token to request claims from the UserInfo endpoint.
+
+:::moniker-end
+
 ## Cryptographic nonce
 
 A *nonce* is a string value that associates a client's session with an ID token to mitigate [replay attacks](https://developer.mozilla.org/docs/Glossary/Replay_attack).
