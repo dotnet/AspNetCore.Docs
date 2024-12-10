@@ -13,7 +13,7 @@ dotnet new webapiaot
 Add the Microsoft.AspNetCore.OpenAPI package.
 
 ```console
-dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
+dotnet add package Microsoft.AspNetCore.OpenApi
 ```
 
 For this preview, you also need to add the latest Microsoft.OpenAPI package to avoid trimming warnings.

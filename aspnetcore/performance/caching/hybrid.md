@@ -177,11 +177,11 @@ In such cases, inform `HybridCache` that it's safe to reuse instances by:
 Here are the .NET CLI commands to install the packages:
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.Caching.StackExchangeRedis --prerelease
+dotnet add package Microsoft.Extensions.Caching.StackExchangeRedis
 ```
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.Caching.SqlServer --prerelease
+dotnet add package Microsoft.Extensions.Caching.SqlServer
 ```
 
 ## Custom HybridCache implementations
