@@ -48,7 +48,7 @@ Publish locations:
 :::moniker range=">= aspnetcore-8.0"
 
 * Blazor Web App: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
-* Blazor WebAssembly: The app is published into the `bin\Release\net8.0\browser-wasm\publish\` folder. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
+* Standalone Blazor WebAssembly: The app is published into the `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish\` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
 
 :::moniker-end
 
