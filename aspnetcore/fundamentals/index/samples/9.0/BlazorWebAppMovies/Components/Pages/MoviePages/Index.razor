@@ -1,0 +1,52 @@
+@page "/movies"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using BlazorWebAppMovies.Models
+@using BlazorWebAppMovies.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<div>
+    <input type="search" @bind="titleFilter" @bind:event="oninput" />
+</div>
+
+<p>
+    <a href="movies/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="FilteredMovies" Pagination="pagination">
+    <PropertyColumn Property="movie => movie.Title" Sortable="true" />
+    <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
+    <PropertyColumn Property="movie => movie.Genre" />
+    <PropertyColumn Property="movie => movie.Price" />
+    <PropertyColumn Property="movie => movie.Rating" />
+
+    <TemplateColumn Context="movie">
+        <a href="@($"movies/edit?id={movie.Id}")">Edit</a> |
+        <a href="@($"movies/details?id={movie.Id}")">Details</a> |
+        <a href="@($"movies/delete?id={movie.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+<Paginator State="pagination" />
+
+@code {
+    private BlazorWebAppMoviesContext context = default!;
+    private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    private string titleFilter = string.Empty;
+
+    private IQueryable<Movie> FilteredMovies =>
+        context.Movie.Where(m => m.Title!.Contains(titleFilter));
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
