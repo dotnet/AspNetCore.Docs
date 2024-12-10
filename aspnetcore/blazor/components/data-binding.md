@@ -380,7 +380,7 @@ Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `i
 > [!NOTE]
 > Across multiple components, two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in the property's setter. For two-way data binding, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the [`@bind:get`/`@bind:set` guidance](#binding-features) earlier in this article.
 >
-> To see an example of how the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> is discarded in .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of the *Bind across more than two components* section in the .NET 6 version of this article](?view=aspnetcore-6.0#bind-across-more-than-two-components).
+> To see an example of how the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> is discarded in .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of the *Bind across more than two components* section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
 
 :::moniker-end
 
@@ -891,7 +891,7 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 * Assigns the value of `ChildMessage` to `GrandchildMessage` with `@bind:get` syntax.
 * Updates `GrandchildMessage` when `ChildMessageChanged` executes with `@bind:set` syntax.
 
-Prior to the release of .NET 7, two-way binding across components uses `get`/`set` accessors with a third property that discards the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in its setter. To see an example of this approach for .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of this section in the .NET 6 version of this article](?view=aspnetcore-6.0#bind-across-more-than-two-components).
+Prior to the release of .NET 7, two-way binding across components uses `get`/`set` accessors with a third property that discards the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in its setter. To see an example of this approach for .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of this section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
 
 :::moniker-end
 
