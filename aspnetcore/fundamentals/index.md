@@ -39,17 +39,17 @@ The following app startup code supports several app types:
 
 ASP.NET Core features built-in [dependency injection (DI)](xref:fundamentals/dependency-injection) that makes configured services available throughout an app. Services are added to the DI container with [WebApplicationBuilder.Services](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services), `builder.Services` in the preceding code. When the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is instantiated, many [framework-provided services](xref:fundamentals/dependency-injection#framework-provided-services) are added automatically. `builder` is a `WebApplicationBuilder` in the following code:
 
-:::code language="csharp" source="~/fundamentals/startup/6.0_samples/WebAll/Program.cs" id="snippet2" highlight ="1":::
+:::code language="csharp" source="~/fundamentals/startup/6.0_samples/WebAll/Program.cs" id="snippet2":::
 
-In the preceding highlighted code, `builder` has configuration, logging, and [many other services](xref:fundamentals/dependency-injection#framework-provided-services) added to the DI container. The DI framework provides an instance of a requested service at run time.
+In the preceding code, `CreateBuilder` adds configuration, logging, and [many other services](xref:fundamentals/dependency-injection#framework-provided-services) to the DI container. The DI framework provides an instance of a requested service at run time.
 
-The following code adds Blazor components and a custom <xref:Microsoft.EntityFrameworkCore.DbContext> to the DI container:
+The following code adds a custom <xref:Microsoft.EntityFrameworkCore.DbContext> and Blazor components to the DI container:
 
 :::code language="csharp" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Program.cs" id="snippet_services" highlight="2-4,11-12":::
 
 In Blazor Web Apps, services are often resolved from DI at run time by using the `@inject` directive in a Razor component, as shown in the following example:
 
-:::code language="razor" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Components/Pages/MoviePages/Index.razor" highlight ="8,42,46":::
+:::code language="razor" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Components/Pages/MoviePages/Index.razor" highlight ="8,44,48":::
 
 In the preceding code:
 
@@ -57,9 +57,9 @@ In the preceding code:
 * The service is resolved in the `OnInitialized` method and assigned to the `context` variable.
 * The `context` service creates the `FilteredMovie` list.
 
-Another way to resolve a service from DI is by using constructor injection. The following Razor Pages code uses constructor injection to resolve the database context from DI:
+Another way to resolve a service from DI is by using constructor injection. The following Razor Pages code uses constructor injection to resolve the database context and a logger from DI:
 
- :::code language="csharp" source="~/fundamentals/index/samples/6.0/RazorPagesMovie/Pages/Movies/Index.cshtml.cs" id="snippet" highlight="3-10, 16-17":::
+ :::code language="csharp" source="~/fundamentals/index/samples/6.0/RazorPagesMovie/Pages/Movies/Index.cshtml.cs" id="snippet":::
 
 In the preceding code, the `IndexModel` constructor takes a parameter of type `RazorPagesMovieContext`, which is resolved at run time into the `_context` variable. The context object is used to create a list of movies in the `OnGetAsync` method.
 
@@ -71,7 +71,7 @@ The request handling pipeline is composed as a series of middleware components. 
 
 By convention, a middleware component is added to the pipeline by invoking a `Use{Feature}` extension method. The use of methods named `Use{Feature}` to add middleware to an app is illustrated in the following code:
 
-:::code language="csharp" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Program.cs" id="snippet_middleware" highlight="12-14,17,20":::
+:::code language="csharp" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Program.cs" id="snippet_middleware" highlight="24-26,29,32":::
 
 For more information, see <xref:fundamentals/middleware/index>.
 
