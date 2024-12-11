@@ -47,21 +47,19 @@ Publish locations:
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Blazor Web App: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
-* Standalone Blazor WebAssembly: The app is published into the `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish\` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
+* Blazor Web App: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework. Deploy the contents of the `publish` folder to the host.
+* Standalone Blazor WebAssembly: The app is published into the `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish\` folder. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-* Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
+* Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.. Deploy the contents of the `publish` folder to the host.
 * Blazor WebAssembly
   * Standalone: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
   * Hosted: The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the client app. Deploy the contents of the `publish` folder to the host.
 
 :::moniker-end
-
-The `{TARGET FRAMEWORK}` in the preceding paths is the target framework (for example, `net8.0`).
 
 ## IIS
 
