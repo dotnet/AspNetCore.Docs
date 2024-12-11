@@ -21,9 +21,12 @@ This article explains how to configure server-side Blazor for additional securit
 
 :::moniker range=">= aspnetcore-8.0"
 
-Updating this section for Blazor Web Apps is pending [Update section on passing tokens in Blazor Web Apps (`dotnet/AspNetCore.Docs` #31691)](https://github.com/dotnet/AspNetCore.Docs/issues/31691). For more information, see [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390).
+Providing guidance for Blazor Web Apps is pending [Update section on passing tokens in Blazor Web Apps (`dotnet/AspNetCore.Docs` #31691)](https://github.com/dotnet/AspNetCore.Docs/issues/31691), which should be addressed in the documentation in 2025 for the release of .NET 10, which is planned for November, 2025. For more information, see the following issues:
 
-For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0#pass-tokens-to-a-server-side-blazor-app).
+* [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379): This is the current issue to address passing tokens in Blazor Web Apps, currently scheduled for .NET 10.
+* [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390): This issue was closed as a duplicate of the preceding issue, but it contains helpful discussion and potential (unsupported) workaround strategies.
+
+For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).
 
 <!--
 Tokens available outside of the Razor components in a Blazor Web App can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens, but the approach is valid for other HTTP context state provided by <xref:Microsoft.AspNetCore.Http.HttpContext>.
