@@ -38,7 +38,7 @@ When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 
         {
             var jsInProcess = (IJSInProcessRuntime)JS;
             module = await jsInProcess.Invoke<IJSInProcessObjectReference>("import", 
-            "./scripts.js");
+                "./scripts.js");
             var value = module.Invoke<string>("javascriptFunctionIdentifier");
         }
     }
