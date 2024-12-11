@@ -612,6 +612,8 @@ items:
                         uid: blazor/security/webassembly/standalone-with-identity/index
                       - name: Account confirmation and password recovery
                         uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
+                      - name: QR codes with TOTP
+                        uid: blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps
                   - name: Standalone with Authentication library
                     uid: blazor/security/webassembly/standalone-with-authentication-library
                   - name: Standalone with Microsoft Accounts
@@ -644,7 +646,7 @@ items:
                 uid: blazor/security/interactive-server-side-rendering
               - name: Account confirmation and password recovery
                 uid: blazor/security/account-confirmation-and-password-recovery
-              - name: QR code generation
+              - name: QR codes with TOTP
                 uid: blazor/security/qrcodes-for-authenticator-apps
               - name: Content Security Policy
                 uid: blazor/security/content-security-policy

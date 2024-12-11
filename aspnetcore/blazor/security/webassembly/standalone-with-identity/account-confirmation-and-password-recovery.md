@@ -4,17 +4,19 @@ author: guardrex
 description: Learn how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 10/31/2024
+ms.date: 11/21/2024
 uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
+
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article explains how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 
 > [!NOTE]
 > This article only applies standalone Blazor WebAssembly apps with ASP.NET Core Identity. To implement email confirmation and password recovery for Blazor Web Apps, see <xref:blazor/security/account-confirmation-and-password-recovery>.
 
-## Namespace
+## Namespaces and article code examples
 
 The namespaces used by the examples in this article are:
 
@@ -156,15 +158,11 @@ Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.Identi
 In the client project's `Register` component (`Components/Identity/Register.razor`), change the message to users on a successful account registration to instruct them to confirm their account. The following example includes a link to trigger Identity on the server to resend the confirmation email.
 
 ```diff
-- <div class="alert alert-success">
--     You successfully registered. Now you can <a href="login">login</a>.
-- </div>
-+ <div class="alert alert-success">
-+     You successfully registered. You must now confirm your account by clicking 
-+     the link in the email that was sent to you. After confirming your account, 
-+     you can <a href="login">login</a> to the app. 
-+     <a href="resendConfirmationEmail">Resend confirmation email</a>
-+ </div>
+- You successfully registered and can <a href="login">login</a> to the app.
++ You successfully registered. You must now confirm your account by clicking 
++ the link in the email that was sent to you. After confirming your account, 
++ you can <a href="login">login</a> to the app. 
++ <a href="resendConfirmationEmail">Resend confirmation email</a>
 ```
 
 ## Update seed data code to confirm seeded accounts
@@ -222,24 +220,16 @@ public Task<FormResult> ResetPasswordAsync(string email, string resetCode,
 In the client project, add implementations for the preceding methods in the `CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`):
 
 ```csharp
-/// <summary>
-/// Begin the password recovery process by issuing a POST request to the 
-/// '/forgotPassword' endpoint.
-/// </summary>
-/// <param name="email">The user's email address.</param>
-/// <returns>A <see cref="bool"/> indicating success or failure.</returns>
 public async Task<bool> ForgotPasswordAsync(string email)
 {
     try
     {
-        // make the request
         var result = await httpClient.PostAsJsonAsync(
             "forgotPassword", new
             {
                 email
             });
 
-        // successful?
         if (result.IsSuccessStatusCode)
         {
             return true;
@@ -247,19 +237,9 @@ public async Task<bool> ForgotPasswordAsync(string email)
     }
     catch { }
 
-    // unknown error
     return false;
 }
 
-/// <summary>
-/// Reset the user's password by issuing a POST request to the 
-/// '/resetPassword' endpoint.
-/// </summary>
-/// <param name="email">The user's email address.</param>
-/// <param name="resetCode">The user's reset code.</param>
-/// <param name="newPassword">The user's new password.</param>
-/// <returns>The result serialized to a <see cref="FormResult"/>.
-/// </returns>
 public async Task<FormResult> ResetPasswordAsync(string email, string resetCode, 
     string newPassword)
 {
@@ -267,7 +247,6 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
 
     try
     {
-        // make the request
         var result = await httpClient.PostAsJsonAsync(
             "resetPassword", new
             {
@@ -276,13 +255,11 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
                 newPassword
             });
 
-        // successful?
         if (result.IsSuccessStatusCode)
         {
             return new FormResult { Succeeded = true };
         }
 
-        // body should contain details about why it failed
         var details = await result.Content.ReadAsStringAsync();
         var problemDetails = JsonDocument.Parse(details);
         var errors = new List<string>();
@@ -303,7 +280,6 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
             }
         }
 
-        // return the error list
         return new FormResult
         {
             Succeeded = false,
@@ -312,7 +288,6 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
     }
     catch { }
 
-    // unknown error
     return new FormResult
     {
         Succeeded = false,
@@ -322,9 +297,6 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
 ```
 
 In the client project, add the following `ForgotPassword` component.
-
-> [!NOTE]
-> Code lines in the following example are broken across two or more lines to eliminate or reduce horizontal scrolling in this article, but you can place the following code as shown into a test app. The code executes regardless of the artificial line breaks.
 
 `Components/Identity/ForgotPassword.razor`:
 
@@ -344,14 +316,15 @@ In the client project, add the following `ForgotPassword` component.
         @if (!passwordResetCodeSent)
         {
             <EditForm Model="Input" FormName="forgot-password" 
-                OnValidSubmit="OnValidSubmitStep1Async" method="post">
+                      OnValidSubmit="OnValidSubmitStep1Async" method="post">
                 <DataAnnotationsValidator />
                 <ValidationSummary class="text-danger" role="alert" />
 
                 <div class="form-floating mb-3">
-                    <InputText @bind-Value="Input.Email" id="Input.Email" 
-                        class="form-control" autocomplete="username" 
-                        aria-required="true" placeholder="name@example.com" />
+                    <InputText @bind-Value="Input.Email" 
+                        id="Input.Email" class="form-control" 
+                        autocomplete="username" aria-required="true" 
+                        placeholder="name@example.com" />
                     <label for="Input.Email" class="form-label">
                         Email
                     </label>
@@ -415,7 +388,8 @@ In the client project, add the following `ForgotPassword` component.
                             class="text-danger" />
                     </div>
                     <div class="form-floating mb-3">
-                        <InputText type="password" @bind-Value="Reset.ConfirmPassword" 
+                        <InputText type="password" 
+                            @bind-Value="Reset.ConfirmPassword" 
                             id="Reset.ConfirmPassword" class="form-control" 
                             autocomplete="new-password" aria-required="true" 
                             placeholder="password" />
@@ -435,8 +409,7 @@ In the client project, add the following `ForgotPassword` component.
 </div>
 
 @code {
-    private bool passwordResetCodeSent;
-    private bool passwordResetSuccess, errors;
+    private bool passwordResetCodeSent, passwordResetSuccess, errors;
     private string[] errorList = [];
 
     [SupplyParameterFromForm(FormName = "forgot-password")]
@@ -490,7 +463,7 @@ In the client project, add the following `ForgotPassword` component.
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation " +
-            "password do not match.")]
+            "password don't match.")]
         public string ConfirmPassword { get; set; } = string.Empty;
     }
 }
