@@ -201,4 +201,36 @@ In order to restrict these code paths from being invoked by the build-time gener
 
 :::moniker-end
 
+## Trimming and Native AOT
+
+Trimming and Native AOT is available for OpenAPI in ASP.NET Core. The following steps create and publish an OpenAPI app with trimming and Native AOT::
+
+Create a new ASP.NET Core Web API (Native AOT) project.
+
+```console
+dotnet new webapiaot
+```
+
+Add the Microsoft.AspNetCore.OpenAPI package.
+
+```console
+dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
+```
+
+Update `Program.cs` to enable generating OpenAPI documents.
+
+```diff
++ builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
++ app.MapOpenApi();
+```
+
+Publish the app.
+
+```console
+dotnet publish
+```
+
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
