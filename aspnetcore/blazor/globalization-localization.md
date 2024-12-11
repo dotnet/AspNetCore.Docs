@@ -1202,7 +1202,7 @@ In the `.Client` project, place the following `CultureServer` component to study
 }
 ```
 
-Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works for a component that inherits the global Auto render mode.
+Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works for a component that inherits the global Auto render mode. Add the `CultureExample1` component to the `.Client` project's `Pages` folder.
 
 Add the `CultureClient`, `CultureServer`, and `CultureExample1` components to the sidebar navigation in `Layout/NavMenu.razor`:
 
