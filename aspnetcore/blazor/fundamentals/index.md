@@ -69,6 +69,7 @@ Blazor documentation adopts several conventions for showing and discussing compo
 * [Component parameter](xref:blazor/components/index#component-parameters) values lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required. Literals (for example, boolean values), keywords (for example, `this`), and `null` as component parameter values aren't prefixed with `@`, but this is also merely a documentation convention. Your own code can prefix literals with `@` if you wish.
 * C# classes use the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) and avoid prefixing fields with an underscore (`_`) that are assigned to in constructors, which differs from the [ASP.NET Core framework engineering guidelines](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines).
 * In examples that use [primary constructors (C# 12 or later)](/dotnet/csharp/whats-new/tutorials/primary-constructors), primary constructor parameters are typically used directly by class members.
+In article examples, code lines are split to reduce horizontal scrolling. These breaks don't affect execution but can be removed when pasting into your project.
 
 Additional information on Razor component syntax is provided in the *Razor syntax* section of <xref:blazor/components/index#razor-syntax>.
 
