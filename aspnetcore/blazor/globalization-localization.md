@@ -1075,8 +1075,22 @@ The component adopts the following approaches to work for either SSR or CSR comp
 }
 ```
 
+In the `.Client` project's `_Imports` file (`_Imports.razor`), add the namespace for the components in the `Pages` folder, updating the namespace to match your `.Client` project's namespace:
+
+```razor
+@using BlazorSample.Client.Pages
+```
+
 > [!NOTE]
 > For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#invoke-javascript-functions-without-reading-a-returned-value-invokevoidasync>.
+
+In the `.Client` project, add the `CultureSelector` component to the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Layout/MainLayout.razor` file:
+
+```razor
+<article class="bottom-row px-4">
+    <CultureSelector @rendermode="InteractiveAuto" />
+</article>
+```
 
 In the `.Client` project, place the following `CultureClient` component to study how globalization works for CSR components.
 
@@ -1131,6 +1145,83 @@ In the `.Client` project, place the following `CultureClient` component to study
     private DateTime dt = DateTime.Now;
     private double number = 1999.69;
 }
+```
+
+In the `.Client` project, place the following `CultureServer` component to study how globalization works for SSR components.
+
+`Pages/CultureServer.razor`:
+
+```razor
+@page "/culture-server"
+@rendermode InteractiveServer
+@using System.Globalization
+
+<PageTitle>Culture Server</PageTitle>
+
+<h1>Culture Server</h1>
+
+<ul>
+    <li><b>CurrentCulture</b>: @CultureInfo.CurrentCulture</li>
+    <li><b>CurrentUICulture</b>: @CultureInfo.CurrentUICulture</li>
+</ul>
+
+<h2>Rendered values</h2>
+
+<ul>
+    <li><b>Date</b>: @dt</li>
+    <li><b>Number</b>: @number.ToString("N2")</li>
+</ul>
+
+<h2><code>&lt;input&gt;</code> elements that don't set a <code>type</code></h2>
+
+<p>
+    The following <code>&lt;input&gt;</code> elements use
+    <code>CultureInfo.CurrentCulture</code>.
+</p>
+
+<ul>
+    <li><label><b>Date:</b> <input @bind="dt" /></label></li>
+    <li><label><b>Number:</b> <input @bind="number" /></label></li>
+</ul>
+
+<h2><code>&lt;input&gt;</code> elements that set a <code>type</code></h2>
+
+<p>
+    The following <code>&lt;input&gt;</code> elements use
+    <code>CultureInfo.InvariantCulture</code>.
+</p>
+
+<ul>
+    <li><label><b>Date:</b> <input type="date" @bind="dt" /></label></li>
+    <li><label><b>Number:</b> <input type="number" @bind="number" /></label></li>
+</ul>
+
+@code {
+    private DateTime dt = DateTime.Now;
+    private double number = 1999.69;
+}
+```
+
+Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works for a component that inherits the global Auto render mode. Add the `CultureExample1` component to the `.Client` project's `Pages` folder.
+
+Add the `CultureClient`, `CultureServer`, and `CultureExample1` components to the sidebar navigation in `Layout/NavMenu.razor`:
+
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="culture-server">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Culture (Server)
+    </NavLink>
+</div>
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="culture-client">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Culture (Client)
+    </NavLink>
+</div>
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="culture-example-1">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Culture (Auto)
+    </NavLink>
+</div>
 ```
 
 ### Server project updates
@@ -1253,89 +1344,9 @@ public class CultureController : Controller
 > [!WARNING]
 > Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> action result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
 
-Add the `CultureSelector` component to the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Components/Layout/MainLayout.razor` file:
-
-```razor
-<article class="bottom-row px-4">
-    <CultureSelector @rendermode="InteractiveAuto" />
-</article>
-```
-
-Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how the preceding example works.
-
-In the server project, place the following `CultureServer` component to study how globalization works for SSR components.
-
-`Components/Pages/CultureServer.razor`:
-
-```razor
-@page "/culture-server"
-@rendermode InteractiveServer
-@using System.Globalization
-
-<PageTitle>Culture Server</PageTitle>
-
-<h1>Culture Server</h1>
-
-<ul>
-    <li><b>CurrentCulture</b>: @CultureInfo.CurrentCulture</li>
-    <li><b>CurrentUICulture</b>: @CultureInfo.CurrentUICulture</li>
-</ul>
-
-<h2>Rendered values</h2>
-
-<ul>
-    <li><b>Date</b>: @dt</li>
-    <li><b>Number</b>: @number.ToString("N2")</li>
-</ul>
-
-<h2><code>&lt;input&gt;</code> elements that don't set a <code>type</code></h2>
-
-<p>
-    The following <code>&lt;input&gt;</code> elements use
-    <code>CultureInfo.CurrentCulture</code>.
-</p>
-
-<ul>
-    <li><label><b>Date:</b> <input @bind="dt" /></label></li>
-    <li><label><b>Number:</b> <input @bind="number" /></label></li>
-</ul>
-
-<h2><code>&lt;input&gt;</code> elements that set a <code>type</code></h2>
-
-<p>
-    The following <code>&lt;input&gt;</code> elements use
-    <code>CultureInfo.InvariantCulture</code>.
-</p>
-
-<ul>
-    <li><label><b>Date:</b> <input type="date" @bind="dt" /></label></li>
-    <li><label><b>Number:</b> <input type="number" @bind="number" /></label></li>
-</ul>
-
-@code {
-    private DateTime dt = DateTime.Now;
-    private double number = 1999.69;
-}
-```
-
-Add both the `CultureClient` and `CultureServer` components to the sidebar navigation in `Components/Layout/NavMenu.razor`:
-
-```razor
-<div class="nav-item px-3">
-    <NavLink class="nav-link" href="culture-server">
-        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Culture (Server)
-    </NavLink>
-</div>
-<div class="nav-item px-3">
-    <NavLink class="nav-link" href="culture-client">
-        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Culture (Client)
-    </NavLink>
-</div>
-```
-
 ### Interactive Auto components
 
-The guidance in this section also works for components that adopt the Interactive Auto render mode:
+The guidance in this section also works for components in apps that adopt per-page/component rendering and specify the Interactive Auto render mode:
 
 ```razor
 @rendermode InteractiveAuto
