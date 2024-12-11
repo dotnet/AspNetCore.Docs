@@ -405,7 +405,7 @@ If many components rely on browser-based storage, implementing state provider co
 
 In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`, and it handles the loading phase by not rendering its child content until state loading is complete.
 
-The `CounterStateProvider` component works in both server-side (Blazor Web Apps and Blazor Server) and Blazor WebAssembly apps. In server-side apps, the component deals with prerendering by not loading state until after component rendering in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), which doesn't execute during prerendering.
+The `CounterStateProvider` component deals with prerendering by not loading state until after component rendering in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), which doesn't execute during prerendering.
 
 The approach in this section isn't capable of triggering rerendering of multiple subscribed components on the same page. If one subscribed component changes the state, it rerenders and can display the updated state, but a different component on the same page displaying that state displays stale data until its own next rerender. Therefore, the approach described in this section is best suited to using state in a single component on the page.
 
