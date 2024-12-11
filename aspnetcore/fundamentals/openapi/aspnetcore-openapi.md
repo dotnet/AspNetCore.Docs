@@ -197,6 +197,8 @@ In order to restrict these code paths from being invoked by the build-time gener
 
 :::code language="csharp" source=""/fundamentals/openapi/samples/9.x/AddServiceDefaults/Program.cs"" highlight="4-8":::
 
+[AddServiceDefaults](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references) Adds common .NET Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
+
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
