@@ -469,7 +469,7 @@ else
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 
-@if (isLoaded)
+@if (isConnected)
 {
     <CascadingValue Value="this">
         @ChildContent
@@ -481,7 +481,7 @@ else
 }
 
 @code {
-    private bool isLoaded;
+    private bool isConnected;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -492,7 +492,7 @@ else
     {
         if (firstRender)
         {
-            isLoaded = true;
+            isConnected = true;
             await LoadStateAsync();
             StateHasChanged();
         }
