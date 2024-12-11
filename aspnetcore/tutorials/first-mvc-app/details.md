@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app/details
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and Bryan Kaplan 2023 JHF trail
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-9.0"
 
