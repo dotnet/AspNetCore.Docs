@@ -2,8 +2,6 @@
 
 The new built-in OpenAPI support in ASP.NET Core supports trimming and Native AOT.
 
-### Get started
-
 Create a new ASP.NET Core Web API (Native AOT) project.
 
 ```console
