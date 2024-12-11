@@ -195,7 +195,7 @@ Build-time OpenAPI document generation functions by launching the apps entrypoin
 
 In order to restrict these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/GetDocument.Insider/Program.cs" highlight="4-8":::
+:::code language="csharp" source=""/fundamentals/openapi/samples/9.x/AddServiceDefaults/Program.cs"" highlight="4-8":::
 
 :::moniker-end
 
