@@ -1,6 +1,6 @@
 ### Microsoft.AspNetCore.OpenApi supports trimming and Native AOT
 
-Trimming and Native AOT are now available for OpenAPI in ASP.NET Core. The following steps create and publish an OpenAPI app with trimming and Native AOT:
+OpenAPI in ASP.NET Core supports trimming and native AOT. The following steps create and publish an OpenAPI app with trimming and native AOT:
 
 Create a new ASP.NET Core Web API (Native AOT) project.
 
