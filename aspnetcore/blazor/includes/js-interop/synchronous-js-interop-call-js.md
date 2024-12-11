@@ -24,7 +24,7 @@ When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 
 
 ```razor
 @inject IJSRuntime JS
-@implements IAsyncDisposable
+@implements IDisposable
 
 ...
 
@@ -36,18 +36,20 @@ When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 
     {
         if (firstRender)
         {
-            module = await JS.InvokeAsync<IJSInProcessObjectReference>("import", 
-            "./scripts.js");
+            var jsInProcess = (IJSInProcessRuntime)JS;
+            module = await jsInProcess.Invoke<IJSInProcessObjectReference>("import", 
+                "./scripts.js");
+            var value = module.Invoke<string>("javascriptFunctionIdentifier");
         }
     }
 
     ...
 
-    async ValueTask IAsyncDisposable.DisposeAsync()
+    void IDisposable.Dispose()
     {
         if (module is not null)
         {
-            await module.DisposeAsync();
+            await module.Dispose();
         }
     }
 }
