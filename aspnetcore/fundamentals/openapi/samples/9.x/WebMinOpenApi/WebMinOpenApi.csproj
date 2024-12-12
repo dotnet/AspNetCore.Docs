@@ -14,14 +14,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-rc.1.24452.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0-rc.1.24452.1" />
-    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="9.0.0-rc.1.24452.1">
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="9.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Scalar.AspNetCore" Version="1.0.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="6.7.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="1.2.50" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="7.1.0" />
   </ItemGroup>
 
 </Project>
