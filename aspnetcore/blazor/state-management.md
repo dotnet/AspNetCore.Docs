@@ -399,11 +399,17 @@ else
 
 :::moniker-end
 
-### Factor out the state preservation to a common location
+### Factor out state preservation to a common provider
 
 If many components rely on browser-based storage, implementing state provider code many times creates code duplication. One option for avoiding code duplication is to create a *state provider parent component* that encapsulates the state provider logic. Child components can work with persisted data without regard to the state persistence mechanism.
 
-In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`:
+In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`, and it handles the loading phase by not rendering its child content until state loading is complete.
+
+The `CounterStateProvider` component deals with prerendering by not loading state until after component rendering in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), which doesn't execute during prerendering.
+
+The approach in this section isn't capable of triggering rerendering of multiple subscribed components on the same page. If one subscribed component changes the state, it rerenders and can display the updated state, but a different component on the same page displaying that state displays stale data until its own next rerender. Therefore, the approach described in this section is best suited to using state in a single component on the page.
+
+`CounterStateProvider.razor`:
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -430,15 +436,26 @@ else
 
     public int CurrentCount { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isLoaded = true;
+            await LoadStateAsync();
+            StateHasChanged();
+        }
+    }
+
+    private async Task LoadStateAsync()
     {
         var result = await ProtectedSessionStore.GetAsync<int>("count");
         CurrentCount = result.Success ? result.Value : 0;
-        isLoaded = true;
+        isConnected = true;
     }
 
-    public async Task SaveChangesAsync()
+    public async Task IncrementCount()
     {
+        CurrentCount++;
         await ProtectedSessionStore.SetAsync("count", CurrentCount);
     }
 }
@@ -452,7 +469,7 @@ else
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 
-@if (isLoaded)
+@if (isConnected)
 {
     <CascadingValue Value="this">
         @ChildContent
@@ -464,21 +481,32 @@ else
 }
 
 @code {
-    private bool isLoaded;
+    private bool isConnected;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
     public int CurrentCount { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
-        isLoaded = true;
+        if (firstRender)
+        {
+            isConnected = true;
+            await LoadStateAsync();
+            StateHasChanged();
+        }
     }
 
-    public async Task SaveChangesAsync()
+    private async Task LoadStateAsync()
     {
+        CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
+        isConnected = true;
+    }
+
+    public async Task IncrementCount()
+    {
+        CurrentCount++;
         await ProtectedSessionStore.SetAsync("count", CurrentCount);
     }
 }
@@ -488,8 +516,6 @@ else
 
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
-
-The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -541,16 +567,13 @@ Wrapped components receive and can modify the persisted counter state. The follo
     {
         if (CounterStateProvider is not null)
         {
-            CounterStateProvider.CurrentCount++;
-            await CounterStateProvider.SaveChangesAsync();
+            await CounterStateProvider.IncrementCount();
         }
     }
 }
 ```
 
 The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with a "loading" phase.
-
-To deal with prerendering as described earlier, `CounterStateProvider` can be amended so that all of the components that consume the counter data automatically work with prerendering. For more information, see the [Handle prerendering](#handle-prerendering) section.
 
 In general, the *state provider parent component* pattern is recommended:
 
