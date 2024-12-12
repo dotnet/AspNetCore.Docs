@@ -319,7 +319,7 @@ EF Core adopts the *code-first* approach for database design and maintenance:
 * Entity classes are created and updated first in the app.
 * The database is created and updated from the app's entity classes.
 
-This is the reverse procedure of *database-first* approaches, where the database is designed, built, and updated first. Adopting EF Core's code-first approach speeds up the process of app development because most of the difficult and time-consuming database creation and management procedures are handled transparently by the EF Core tooling, so you can focus on app development.
+This is the reverse procedure of *database-first* approaches, where the database is designed, built, and updated first. Adopting EF Core's code-first approach aims to speed up the process of app development because most of the difficult and time-consuming database creation and management procedures are handled transparently by the EF Core tooling, so you can focus on app development.
 
 :::zone pivot="vs"
 
