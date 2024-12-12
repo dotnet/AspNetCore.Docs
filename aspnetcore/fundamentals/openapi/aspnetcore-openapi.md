@@ -203,7 +203,7 @@ In order to restrict these code paths from being invoked by the build-time gener
 
 ## Trimming and Native AOT
 
-Trimming and Native AOT is available for OpenAPI in ASP.NET Core. The following steps create and publish an OpenAPI app with trimming and Native AOT::
+OpenAPI in ASP.NET Core supports trimming and native AOT. The following steps create and publish an OpenAPI app with trimming and native AOT:
 
 Create a new ASP.NET Core Web API (Native AOT) project.
 
