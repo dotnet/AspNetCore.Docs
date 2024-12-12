@@ -450,7 +450,7 @@ else
     {
         var result = await ProtectedSessionStore.GetAsync<int>("count");
         CurrentCount = result.Success ? result.Value : 0;
-        isConnected = true;
+        isLoaded = true;
     }
 
     public async Task IncrementCount()
@@ -469,7 +469,7 @@ else
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 
-@if (isConnected)
+@if (isLoaded)
 {
     <CascadingValue Value="this">
         @ChildContent
@@ -481,7 +481,7 @@ else
 }
 
 @code {
-    private bool isConnected;
+    private bool isLoaded;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -492,7 +492,7 @@ else
     {
         if (firstRender)
         {
-            isConnected = true;
+            isLoaded = true;
             await LoadStateAsync();
             StateHasChanged();
         }
@@ -501,7 +501,7 @@ else
     private async Task LoadStateAsync()
     {
         CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
-        isConnected = true;
+        isLoaded = true;
     }
 
     public async Task IncrementCount()
