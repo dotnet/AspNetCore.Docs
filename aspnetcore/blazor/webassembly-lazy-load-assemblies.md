@@ -592,16 +592,18 @@ The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router
 
 @code {
     private List<Assembly> lazyLoadedAssemblies = new();
+    private bool grantImaharaRobotControlsAssemblyLoaded;
 
     private async Task OnNavigateAsync(NavigationContext args)
     {
         try
         {
-            if (args.Path == "robot")
+            if ((args.Path == "robot") && !grantImaharaRobotControlsAssemblyLoaded)
             {
                 var assemblies = await AssemblyLoader.LoadAssembliesAsync(
                     new[] { "GrantImaharaRobotControls.{FILE EXTENSION}" });
                 lazyLoadedAssemblies.AddRange(assemblies);
+                grantImaharaRobotControlsAssemblyLoaded = true;
             }
         }
         catch (Exception ex)
@@ -644,16 +646,18 @@ The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router
 
 @code {
     private List<Assembly> lazyLoadedAssemblies = new List<Assembly>();
+    private bool grantImaharaRobotControlsAssemblyLoaded;
 
     private async Task OnNavigateAsync(NavigationContext args)
     {
         try
         {
-            if (args.Path == "robot")
+            if ((args.Path == "robot") && !grantImaharaRobotControlsAssemblyLoaded)
             {
                 var assemblies = await AssemblyLoader.LoadAssembliesAsync(
                     new[] { "GrantImaharaRobotControls.{FILE EXTENSION}" });
                 lazyLoadedAssemblies.AddRange(assemblies);
+                grantImaharaRobotControlsAssemblyLoaded = true;
             }
         }
         catch (Exception ex)
