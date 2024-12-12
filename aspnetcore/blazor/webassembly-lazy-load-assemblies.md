@@ -658,10 +658,10 @@ The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router
         {
             if ((args.Path == "robot") && !grantImaharaRobotControlsAssemblyLoaded)
             {
-                grantImaharaRobotControlsAssemblyLoaded = true;
                 var assemblies = await AssemblyLoader.LoadAssembliesAsync(
                     new[] { "GrantImaharaRobotControls.{FILE EXTENSION}" });
                 lazyLoadedAssemblies.AddRange(assemblies);
+                grantImaharaRobotControlsAssemblyLoaded = true;
             }
         }
         catch (Exception ex)
