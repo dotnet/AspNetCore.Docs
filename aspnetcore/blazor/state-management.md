@@ -791,7 +791,7 @@ When implementing custom state storage, a useful approach is to adopt [cascading
 
 ## Troubleshoot
 
-In a custom state management service, a callback invoked outside of Blazor's synchronization context must wrap the logic of the callback in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context.
+When using a custom state management service where you want to support state modifications from outside Blazor's synchronization context (for example from a timer or a background service), all consuming components must wrap the <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> call in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>. This ensures the change notification is handled on the renderer's synchronization context.
 
 When the state management service doesn't call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on Blazor's synchronization context, the following error is thrown:
 
