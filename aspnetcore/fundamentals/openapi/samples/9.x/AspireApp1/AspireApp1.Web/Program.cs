@@ -2,7 +2,7 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-if (Assembly.GetEntryAssembly()?.GetName().Name != "AspireApp1.Web")
+if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
 {
     builder.AddServiceDefaults();
 }
