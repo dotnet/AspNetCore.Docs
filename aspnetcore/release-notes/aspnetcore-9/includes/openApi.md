@@ -12,7 +12,7 @@ The following highlighted code calls:
 Install the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package in the project using the following command:
 
 ```dotnetcli
-dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
+dotnet add package Microsoft.AspNetCore.OpenApi
 ```
 
 Run the app and navigate to `openapi/v1.json` to view the generated OpenAPI document:
@@ -22,7 +22,7 @@ Run the app and navigate to `openapi/v1.json` to view the generated OpenAPI docu
 OpenAPI documents can also be generated at build-time by adding the [`Microsoft.Extensions.ApiDescription.Server`](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server) package:
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
+dotnet add package Microsoft.Extensions.ApiDescription.Server
 ```
 
 To modify the location of the emitted OpenAPI documents, set the target path in the OpenApiDocumentsDirectory property in the app's project file:

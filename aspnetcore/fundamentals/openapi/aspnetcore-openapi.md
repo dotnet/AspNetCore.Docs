@@ -5,7 +5,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 09/05/2024
+ms.date: 12/11/2024
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -188,26 +188,49 @@ Some applications may be configured to emit multiple OpenAPI documents, for vari
 
 ### Customizing run-time behavior during build-time document generation
 
-Under the hood, build-time OpenAPI document generation functions by launching the application's entrypoint with an inert server implementation. This is a requirement to produce accurate OpenAPI documents since all information in the OpenAPI document cannot be statically analyzed. Because the application's entrypoint is invoked, any logic in the applications' startup will be invoked. This includes code that injects services into the DI container or reads from configuration. In some scenarios, it's necessary to restrict the codepaths that will run when the application's entry point is being invoked from build-time document generation. These scenarios include:
+Build-time OpenAPI document generation functions by launching the apps entrypoint with a mock server implementation. A mock server is required to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the apps entrypoint is invoked, any logic in the apps startup is invoked. This includes code that injects services into the [DI container](xref:fundamentals/dependency-injection) or reads from configuration. In some scenarios, it's necessary to restrict the code paths that will run when the apps entry point is being invoked from build-time document generation. These scenarios include:
 
-- Not reading from certain configuration strings.
-- Not registering database-related services.
+* Not reading from certain configuration strings.
+* Not registering database-related services.
 
-In order to restrict these codepaths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly like so:
+In order to restrict these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
 
-```csharp
-using System.Reflection;
+:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/AspireApp1/AspireApp1.Web/Program.cs" highlight="5-8":::
 
-var builder = WebApplication.CreateBuilder();
+[AddServiceDefaults](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references) Adds common .NET Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
 
-if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
-{
-  builder.Services.AddDefaults();
-}
+:::moniker-end
+
+## Trimming and Native AOT
+
+OpenAPI in ASP.NET Core supports trimming and native AOT. The following steps create and publish an OpenAPI app with trimming and native AOT:
+
+Create a new ASP.NET Core Web API (Native AOT) project.
+
+```console
+dotnet new webapiaot
 ```
 
-::: moniker-end
+Add the Microsoft.AspNetCore.OpenAPI package.
+
+```console
+dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
+```
+
+Update `Program.cs` to enable generating OpenAPI documents.
+
+```diff
++ builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
++ app.MapOpenApi();
+```
+
+Publish the app.
+
+```console
+dotnet publish
+```
 
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
-
-
