@@ -228,7 +228,7 @@ To reduce parameter load, bundle multiple parameters in a custom class. For exam
 }
 ```
 
-However, keep in mind that bundling primitive parameters into a class isn't always an advantage. While it can reduce parameter count, it can also impact how change detection and rendering behave. Setting non-primitive parameters causes the component to rerender every time, even if the values themselves haven't changed. This behavior can offset the potential benefits.
+However, keep in mind that bundling primitive parameters into a class isn't always an advantage. While it can reduce parameter count, it will also impact how change detection and rendering behave. Passing non-primitive parameters always triggers a re-render, because Blazor can't know whether arbitrary objects have internally mutable state, whereas passing primitive parameters only triggers a re-render if their values have actually changed.
 
 Also, consider that it might be an improvement not to have a table cell component, as shown in the preceding example, and instead [inline its logic into the parent component](#inline-child-components-into-their-parents).
 
