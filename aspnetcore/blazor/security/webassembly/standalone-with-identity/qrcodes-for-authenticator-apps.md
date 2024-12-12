@@ -160,16 +160,6 @@ At the top of the `CookieAuthenticationStateProvider.cs` file, add a `using` sta
 using System.Text.Json.Serialization;
 ```
 
-Inject an `ILogger<CookieAuthenticationStateProvider>` to log exceptions in the class:
-
-```diff
-- public class CookieAuthenticationStateProvider(IHttpClientFactory httpClientFactory) 
--     : AuthenticationStateProvider, IAccountManagement
-+ public class CookieAuthenticationStateProvider(IHttpClientFactory httpClientFactory, 
-+     ILogger<CookieAuthenticationStateProvider> logger) 
-+     : AuthenticationStateProvider, IAccountManagement
-```
-
 In the <xref:System.Text.Json.JsonSerializerOptions>, add the <xref:System.Text.Json.JsonSerializerOptions.DefaultIgnoreCondition> option set to <xref:System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull?displayProperty=nameWithType>, which avoids serializing null properties:
 
 ```diff
