@@ -620,19 +620,15 @@ The <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExt
 
 :::zone-end
 
-## Redirect to the home page on signout
+## Redirect to the home page on logout
 
-When a user navigates around the app, the `LogInOrOut` component (`Layout/LogInOrOut.razor`) sets a hidden field for the return URL (`ReturnUrl`) to the value of the current URL (`currentURL`). When the user signs out of the app, the identity provider returns them to the page from which they signed out.
+The `LogInOrOut` component (`Layout/LogInOrOut.razor`) sets a hidden field for the return URL (`ReturnUrl`) to the current URL (`currentURL`). When the user signs out of the app, the identity provider returns the user to the page from which they logged out. If the user logs out from a secure page, they're returned to the same secure page and sent back through the authentication process. This authentication flow is reasonable when users need to change accounts regularly.
 
-If the user signs out from a secure page, they're returned back to the same secure page after signing out only to be sent back through the authentication process. This behavior is fine when users need to switch accounts frequently. However, a alternative app specification may call for the user to be returned to the app's home page or some other page after signout. The following example shows how to set the app's home page as the return URL for signout operations.
-
-The important changes to the `LogInOrOut` component are demonstrated in the following example. There's no need to provide a hidden field for the `ReturnUrl` set to the home page at `/` because that's the default path. <xref:System.IDisposable> is no longer implemented. The <xref:Microsoft.AspNetCore.Components.NavigationManager> is no longer injected. The entire `@code` block is removed.
+Alternatively, use the following `LogInOrOut` component, which doesn't supply a return URL when logging out.
 
 `Layout/LogInOrOut.razor`:
 
 ```razor
-@using Microsoft.AspNetCore.Authorization
-
 <div class="nav-item px-3">
     <AuthorizeView>
         <Authorized>
