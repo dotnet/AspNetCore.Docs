@@ -23,9 +23,9 @@ At a basic level, XSS works by tricking your application into inserting a `<scri
 
 1. Never put untrusted data into your HTML input, unless you follow the rest of the steps below. Untrusted data is any data that may be controlled by a cyberattacker, such as HTML form inputs, query strings, HTTP headers, or even data sourced from a database, as a cyberattacker may be able to breach your database even if they can't breach your application.
 
-2. Before putting untrusted data inside an HTML element, ensure it's HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;
+2. Before putting untrusted data inside an HTML element, ensure it's HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;.
 
-3. Before putting untrusted data into an HTML attribute, ensure it's HTML encoded. HTML attribute encoding is a superset of HTML encoding and encodes additional characters such as " and ".
+3. Before putting untrusted data into an HTML attribute, ensure it's HTML encoded. HTML attribute encoding is a subset of HTML encoding and encodes double quote ("), single quote ('), ampersand (&), and less-than (&lt;) characters.
 
 4. Before putting untrusted data into JavaScript, place the data in an HTML element whose contents you retrieve at runtime. If this isn't possible, then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example, &lt; would be encoded as `\u003C`.
 
