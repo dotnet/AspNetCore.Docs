@@ -22,14 +22,10 @@ To prevent XSS attacks, web APIs should implement input validation and output en
 At a basic level, XSS works by tricking your application into inserting a `<script>` tag into your rendered page, or by inserting an `On*` event into an element. Developers should use the following prevention steps to avoid introducing XSS into their applications:
 
 1. Never put untrusted data into your HTML input, unless you follow the rest of the steps below. Untrusted data is any data that may be controlled by a cyberattacker, such as HTML form inputs, query strings, HTTP headers, or even data sourced from a database, as a cyberattacker may be able to breach your database even if they can't breach your application.
-
-2. Before putting untrusted data inside an HTML element, ensure it's HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;
-
-3. Before putting untrusted data into an HTML attribute, ensure it's HTML encoded. HTML attribute encoding is a superset of HTML encoding and encodes additional characters such as " and ".
-
-4. Before putting untrusted data into JavaScript, place the data in an HTML element whose contents you retrieve at runtime. If this isn't possible, then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example, &lt; would be encoded as `\u003C`.
-
-5. Before putting untrusted data into a URL query string ensure it's URL encoded.
+1. Before putting untrusted data inside an HTML element, ensure it's HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;.
+1. Before putting untrusted data into an HTML attribute, ensure it's HTML encoded. HTML attribute encoding is a subset of HTML encoding and encodes double quote ("), single quote ('), ampersand (&), and less-than (&lt;) characters.
+1. Before putting untrusted data into JavaScript, place the data in an HTML element whose contents you retrieve at runtime. If this isn't possible, then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example, &lt; would be encoded as `\u003C`.
+1. Before putting untrusted data into a URL query string ensure it's URL encoded.
 
 ## HTML Encoding using Razor
 
