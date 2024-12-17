@@ -757,7 +757,7 @@ public class GenericType<TValue>
     }
 
     [JSInvokable]
-    public async void UpdateAsync(TValue newValue)
+    public async Task UpdateAsync(TValue newValue)
     {
         await Task.Yield();
         Value = newValue;
