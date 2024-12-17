@@ -106,12 +106,10 @@ Configure the signed-out callback path in the app's Entra registration. In the E
 
 If you don't add the signed-out callback path URI to the app's registration in Entra, Entra refuses to redirect the user back to the app and merely asks them to close their browser window.
 
-<!-- UPDATE 10.0 Keep an eye on this NOTE for removal or updates. This NOTE also 
-                 appears in the main doc set's OIDC article at 
-                 security\authentication\configure-oidc-web-authentication.md.
+<!-- UPDATE 10.0 Keep an eye on this NOTE for removal or updates.
                  The remark on this subject is in the Program files of the
-                 OIDC sample app (main doc set), OIDC sample app (Blazor
-                 samples repo), and OIDC-BFF sample app (Blazor samples repo). -->
+                 OIDC sample app (Blazor samples repo), and OIDC-BFF sample 
+                 app (Blazor samples repo). -->
 
 > [!NOTE]
 > Entra currently only redirects back to the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> if the `microsoftonline.com` Authority (`https://login.microsoftonline.com/{TENANT ID}/v2.0/`) is used. This limitation doesn't exist if you can use the "common" Authority with Microsoft Identity Web. For more information, see [postLogoutRedirectUri not working when authority url contains a tenant ID (`AzureAD/microsoft-authentication-library-for-js` #5783)](https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/5783).
