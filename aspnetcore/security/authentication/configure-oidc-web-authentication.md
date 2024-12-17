@@ -97,7 +97,7 @@ using Microsoft.IdentityModel.Tokens;
 
 ### Setup the configuration properties
 
-Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidently checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. See [App Secrets](xref:security/app-secrets).
+Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidentally checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. See [App Secrets](xref:security/app-secrets).
 
 ```json
 "OpenIDConnectSettings": {
@@ -108,6 +108,22 @@ Add the OpenID Connect client settings to the application configuration properti
   //"ClientSecret": "--stored-in-user-secrets-or-key-vault--"
 },
 ```
+
+### Signed-out callback path configuration
+
+The <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> (configuration key: "`SignedOutCallbackPath`") is the request path within the app's base path where the user agent is returned after sign out from the OIDC identity provider. Typically, the app's configuration relies on the default value of "`/signout-callback-oidc`".
+
+Configure the signed-out callback path in the app's OIDC provider registration. When using Microsoft Entra ID, set the path in the **Web** platform configuration's **Redirect URI** entries in the Entra or Azure portal:
+
+> :::no-loc text="https://localhost/signout-callback-oidc":::
+
+> [!NOTE]
+> A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require the correct port.
+
+If you don't add the signed-out callback path URI to the app's registration in Entra, Entra refuses to redirect the user back to the app and merely asks them to close their browser window.
+
+> [!NOTE]
+> If using Microsoft Identity Web, the provider currently only redirects back to the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> if the `microsoftonline.com` Authority (`https://login.microsoftonline.com/{TENANT ID}/v2.0/`) is used. This limitation doesn't exist if you can use the "common" Authority with Microsoft Identity Web. For more information, see [postLogoutRedirectUri not working when authority url contains a tenant ID (`AzureAD/microsoft-authentication-library-for-js` #5783)](https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/5783).
 
 ### Update the ASP.NET Core pipeline method in the program class.
 
