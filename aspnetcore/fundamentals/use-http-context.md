@@ -4,7 +4,7 @@ author: jamesnk
 description: How to use HttpContext in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 10/07/2024
+ms.date: 12/13/2024
 uid: fundamentals/use-httpcontext
 ---
 <!-- ms.sfi.ropc: t -->
@@ -13,9 +13,7 @@ uid: fundamentals/use-httpcontext
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-<xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, SignalR, gRPC, and more.
-
-For more information about accessing the `HttpContext`, see <xref:fundamentals/httpcontext>.
+<xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Blazor Web Apps, Web API controllers, Razor Pages, SignalR, gRPC, and more.
 
 ## `HttpRequest`
 
@@ -97,7 +95,7 @@ Commonly used members on `HttpResponse` include:
 <xref:Microsoft.AspNetCore.Http.HttpResponse.Headers?displayProperty=nameWithType> provides access to the response headers sent with the HTTP response. There are two ways to access headers using this collection:
 
 * Provide the header name to the indexer on the header collection. The header name isn't case-sensitive. The indexer can access any header value.
-* The header collection also has properties for getting and setting commonly used HTTP headers. The properties provide a fast, IntelliSense driven way to access headers.
+* Use the header collection properties for getting and setting commonly used HTTP headers. The properties provide a fast, IntelliSense driven way to access headers.
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseHeaders&highlight=6-7)]
 
@@ -182,13 +180,13 @@ For more information about using request features and `HttpContext`, see <xref:f
 
 ## HttpContext isn't thread safe
 
-This article primarily discusses using `HttpContext` in request and response flow from Razor Pages, controllers, middleware, etc. Consider the following when using `HttpContext` outside the request and response flow:
+This article primarily discusses using `HttpContext` in request and response flow from Blazor Web App components, Razor Pages, controllers, middleware, and so forth. Consider the following when using `HttpContext` outside the request and response flow:
 
-* The `HttpContext` is **NOT** thread safe, accessing it from multiple threads can result in exceptions, data corruption and generally unpredictable results.
-* The <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface should be used with caution. As always, the `HttpContext` must ***not*** be captured outside of the request flow.  `IHttpContextAccessor`:
-  * Relies on  <xref:System.Threading.AsyncLocal%601> which can have a negative performance impact on asynchronous calls.
+* The `HttpContext` is **NOT** thread safe. Accessing it from multiple threads can result in unpredictable results, such as exceptions and data corruption.
+* The <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface should be used with caution. As always, the `HttpContext` must ***not*** be captured outside of the request flow. `IHttpContextAccessor`:
+  * Relies on  <xref:System.Threading.AsyncLocal%601>, which can have a negative performance impact on asynchronous calls.
   * Creates a dependency on "ambient state" which can make testing more difficult.
-* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType> may be `null` if accessed outside of the request flow.
+* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType> might be `null` if accessed outside of the request flow.
 * To access information from `HttpContext` outside the request flow, copy the information inside the request flow. Be careful to copy the actual data and not just references. For example, rather than copying a reference to an `IHeaderDictionary`, copy the relevant header values or copy the entire dictionary key by key before leaving the request flow.
 * Don't capture `IHttpContextAccessor.HttpContext` in a constructor.
 
@@ -219,3 +217,7 @@ The application also includes `PeriodicBranchesLoggerService`, which logs the op
 `PeriodicBranchesLoggerService` is a [hosted service](xref:fundamentals/host/hosted-services), which runs outside the request and response flow. Logging from the `PeriodicBranchesLoggerService` has a null `HttpContext`. The `PeriodicBranchesLoggerService` was written to not depend on the `HttpContext`.
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=8&range=1-11)]
+
+## Additional resources
+
+For more information about accessing `HttpContext`, see <xref:fundamentals/httpcontext>.
