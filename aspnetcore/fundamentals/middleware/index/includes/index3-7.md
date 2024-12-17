@@ -13,6 +13,12 @@ Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExt
 
 <xref:migration/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
 
+## The role of middleware by app type
+
+Razor Pages, MVC, Blazor Server, and the server-side project of a hosted Blazor WebAssembly solution process browser requests on the server with middleware. The guidance in this article applies to these types of apps.
+
+Standalone Blazor WebAssembly apps run entirely on the client and don't process requests with a middleware pipeline. The guidance in this article doesn't apply to standalone Blazor WebAssembly apps.
+
 ## Middleware code analysis
 
 ASP.NET Core includes many compiler platform analyzers that inspect application code for quality. For more information, see <xref:diagnostics/code-analysis>
