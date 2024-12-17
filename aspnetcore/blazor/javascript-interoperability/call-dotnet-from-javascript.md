@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 12/17/2024
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
 # Call .NET methods from JavaScript functions in ASP.NET Core Blazor
@@ -757,7 +757,7 @@ public class GenericType<TValue>
     }
 
     [JSInvokable]
-    public async void UpdateAsync(TValue newValue)
+    public async Task UpdateAsync(TValue newValue)
     {
         await Task.Yield();
         Value = newValue;
