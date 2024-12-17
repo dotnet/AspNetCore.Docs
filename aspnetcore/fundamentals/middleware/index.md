@@ -29,17 +29,7 @@ Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExt
 
 ## The role of middleware by app type
 
-:::moniker range=">= aspnetcore-8.0"
-
 Blazor Web Apps, Razor Pages, and MVC process browser requests on the server with middleware. The guidance in this article applies to these types of apps.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-Razor Pages, MVC, Blazor Server, and the server-side project of a hosted Blazor WebAssembly solution process browser requests on the server with middleware. The guidance in this article applies to these types of apps.
-
-:::moniker-end
 
 Standalone Blazor WebAssembly apps run entirely on the client and don't process requests with a middleware pipeline. The guidance in this article doesn't apply to standalone Blazor WebAssembly apps.
 
