@@ -25,6 +25,8 @@ This article covers the following areas:
 
 For an alternative experience using [Microsoft Authentication Library for .NET](/entra/msal/dotnet/), [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/), and [Microsoft Entra ID](https://www.microsoft.com/security/business/identity-access/microsoft-entra-id), see [Quickstart: Sign in users and call the Microsoft Graph API from an ASP.NET Core web app (Azure documentation)](/entra/identity-platform/quickstart-web-app-dotnet-core-sign-in).
 
+For an example using Microsoft Entra External ID OIDC server, see [Sign in users for a sample ASP.NET Core web app in an external tenant](/entra/external-id/customers/sample-web-app-dotnet-sign-in) and [An ASP.NET Core web app authenticating users against Microsoft Entra External ID using Microsoft Identity Web](/samples/azure-samples/ms-identity-ciam-dotnet-tutorial/ms-identity-ciam-dotnet-tutorial-1-sign-in-aspnet-core-mvc/).
+
 ## What is an OpenID Connect confidential interactive client
 
 [OpenID Connect](https://openid.net/developers/how-connect-works/) can be used to implement authentication in ASP.NET Core applications. The recommended way is to use an OpenID Connect confidential client using the code flow. Using the [Proof Key for Code Exchange by OAuth Public Clients (PKCE)](https://datatracker.ietf.org/doc/html/rfc7636) is recommended for this implementation. Both the application client and the user of the application are authenticated in the confidential flow. The application client uses a client secret or a client assertion to authenticate. 
