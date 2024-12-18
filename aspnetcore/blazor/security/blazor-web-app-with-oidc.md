@@ -27,6 +27,8 @@ The following specification is covered:
 * Automatic non-interactive token refresh.
 * Securely calls a (web) API in the server project for data.
 
+For an alternative experience using [Microsoft Authentication Library for .NET](/entra/msal/dotnet/), [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/), and [Microsoft Entra ID](https://www.microsoft.com/security/business/identity-access/microsoft-entra-id), see <xref:blazor/security/blazor-web-app-entra>.
+
 ## Sample app
 
 The sample app consists of two projects:
