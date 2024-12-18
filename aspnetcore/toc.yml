@@ -1305,10 +1305,9 @@ items:
         uid: diagnostics/mvc1005
       - name: MVC1006
         uid: diagnostics/mvc1006
-  - name: RDG diagnostics
-    displayName: aot, RDG diagnostics
-    uid: fundamentals/aot/request-delegate-generator/rdg-ids
-    items:
+      - name: RDG diagnostics
+          displayName: aot, RDG diagnostics
+          uid: fundamentals/aot/request-delegate-generator/rdg-ids
       - name: RDG002
         uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg002
       - name: RDG004
