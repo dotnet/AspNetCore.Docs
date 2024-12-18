@@ -162,19 +162,12 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> (configuration key: "`SignedOutCallbackPath`"): The request path within the app's base path where the user agent is returned after sign out from the OIDC identity provider. Typically, the app's configuration relies on the default value of "`/signout-callback-oidc`".
 
-    Configure the signed-out callback path in the app's OIDC provider registration. When using Microsoft Entra ID, set the path in the **Web** platform configuration's **Redirect URI** entries in the Entra or Azure portal:
+    Configure the signed-out callback path in the app's OIDC provider registration. In the following example, the `{PORT}` placeholder is the app's port:
 
-    > :::no-loc text="https://localhost/signout-callback-oidc":::
+    > :::no-loc text="https://localhost:{PORT}/signout-callback-oidc":::
 
     > [!NOTE]
-    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require the correct port.
-
-    If you don't add the signed-out callback path URI to the app's registration in Entra, Entra refuses to redirect the user back to the app and merely asks them to close their browser window.
-
-    <!-- UPDATE 10.0 Keep an eye on this NOTE for removal or updates. -->
-  
-    > [!NOTE]
-    > Entra currently only redirects back to the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> if the `microsoftonline.com` Authority (`https://login.microsoftonline.com/{TENANT ID}/v2.0/`) is used. This limitation doesn't exist if you can use the "common" Authority with Microsoft Identity Web. For more information, see [postLogoutRedirectUri not working when authority url contains a tenant ID (`AzureAD/microsoft-authentication-library-for-js` #5783)](https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/5783).
+    > When using Microsoft Entra ID, set the path in the **Web** platform configuration's **Redirect URI** entries in the Entra or Azure portal. A port isn't required for `localhost` addresses when using Entra. Most other OIDC providers require the correct port. If you don't add the signed-out callback path URI to the app's registration in Entra, Entra refuses to redirect the user back to the app and merely asks them to close their browser window.
   
   * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.RemoteSignOutPath%2A>: Requests received on this path cause the handler to invoke sign-out using the sign-out scheme.
 
