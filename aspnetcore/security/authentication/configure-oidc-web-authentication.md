@@ -56,7 +56,7 @@ Add the authentication to the web application using the builder.Services in the 
 
 The OpenID Connect handler is used for challenges and signout. The cookie is used to handle the session in the web application. The default schemes for the authentication can be specified as required. 
 
-See the ASP.NET Core [`authentication-handler`](xref: security/authentication/index?view=aspnetcore-8.0#authentication-handler) for details.
+For more information, see the [ASP.NET Core `authentication-handler` guidance](xref:security/authentication/index#authentication-handler).
 
 ```csharp
 builder.Services.AddAuthentication(options =>
@@ -360,7 +360,7 @@ IdentityModelEventSource.ShowPII = true;
 app.Run();
 ```
 
-For more information, see [Logging](xref:fundamentals/logging/index?view=aspnetcore-8.0#configure-logging).
+For more information, see [Logging](xref:fundamentals/logging/index#configure-logging).
 
 > [!NOTE]
 > You may want to lower the configured log level to see all the required logs.
