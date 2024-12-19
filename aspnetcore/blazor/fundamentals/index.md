@@ -207,18 +207,13 @@ The sample repo contains two types of samples:
 
 :::moniker-end
 
-For more information and a list of the samples in the repository, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
+For more information, a list of the samples in the repository, and download instructions, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
 
 The ASP.NET Core repository's Basic Test App is also a helpful set of samples for various Blazor scenarios:
 
 [`BasicTestApp` in ASP.NET Core reference source (`dotnet/aspnetcore`)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-To download the sample apps:
-
-* Download the [Blazor samples repository](https://github.com/dotnet/blazor-samples) ZIP file.
-* Unzip the file.
 
 ## Byte multiples
 
