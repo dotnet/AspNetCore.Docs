@@ -60,7 +60,7 @@ In general, we recommend that you avoid rendering components that contain sensit
 
 [!INCLUDE[](~/blazor/security/includes/shared-state.md)]
 
-## `IHttpContextAccessor`/`HttpContext` in Razor components
+## `IHttpContextAccessor`/`HttpContext`
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
