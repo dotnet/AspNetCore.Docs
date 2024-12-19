@@ -5,7 +5,7 @@ description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: devx-track-csharp, signalr, linux-related-content
-ms.date: 06/12/2020
+ms.date: 11/20/2024
 uid: signalr/diagnostics
 ---
 # Logging and diagnostics in ASP.NET Core SignalR
@@ -42,6 +42,46 @@ If you aren't using JSON-based configuration, set the following configuration va
 Check the documentation for your configuration system to determine how to specify nested configuration values. For example, when using environment variables, two `_` characters are used instead of the `:` (for example, `Logging__LogLevel__Microsoft.AspNetCore.SignalR`).
 
 We recommend using the `Debug` level when gathering more detailed diagnostics for your app. The `Trace` level produces very low-level diagnostics and is rarely needed to diagnose issues in your app.
+
+## SignalR ActivitySource
+
+SignalR has an ActivitySource for both the hub server and client, avaialble starting wtih .NET 9.
+
+An ActivitySource is a component used in distributed tracing to create and manage activities (or spans) that represent operations in your application. These activities can be used to track the flow of requests and operations across different components and services, providing valuable insights into the performance and behavior of your application.
+
+### .NET SignalR server ActivitySource
+
+The SignalR ActivitySource named `Microsoft.AspNetCore.SignalR.Server` emits events for hub method calls:
+
+* Every method is its own activity, so anything that emits an activity during the hub method call is under the hub method activity.
+* Hub method activities don't have a parent. This means they are not bundled under the long-running SignalR connection.
+
+The following example uses the [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#using-the-dashboard-with-net-aspire-projects) and the [OpenTelemetry](https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting) packages:
+
+```xml
+<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
+<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.9.0" />
+<PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
+```
+
+Add the following startup code to the `Program.cs` file:
+
+[!code-csharp[](~/signalr/diagnostics/samples/9.x/SignalRChatTraceExample/Program.cs?name=snippet_trace_signalr_server&highlight=1,10-23)]
+
+The following is example output from the Aspire Dashboard:
+
+:::image type="content" source="~/signalr/diagnostics/_static/9.x/signalr-activities-events.png" alt-text="Activity list for SignalR Hub method call events":::
+
+### .NET SignalR client ActivitySource
+
+The SignalR ActivitySource named `Microsoft.AspNetCore.SignalR.Client` emits events for a SignalR client:
+
+* The .NET SignalR client has an `ActivitySource` named `Microsoft.AspNetCore.SignalR.Client`. Hub invocations now create a client span. Note that other SignalR clients, such as the JavaScript client, don't support tracing. This feature will be added to more clients in future releases.
+* Hub invocations on the client and server support [context propagation](https://opentelemetry.io/docs/concepts/context-propagation/). Propagating the trace context enables true distributed tracing. It's now possible to see invocations flow from the client to the server and back.
+
+Here's how these new activities look in the [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#standalone-mode):
+
+![SignalR distributed tracing in Aspire dashboard](~/signalr/diagnostics/_static/9.x/signalr-distributed-tracing-aspire-dashboard.png) 
 
 ## Access server-side logs
 
