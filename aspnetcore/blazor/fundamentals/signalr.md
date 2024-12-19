@@ -1452,6 +1452,33 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Start the SignalR circuit at a different URL
+
+In the `App` component (`App.razor`), change the Blazor Web App script to prevent automatically starting the app and establish the circuit URL manually. The following example uses the path `/signalr`:
+
+
+```diff
+- <script src="_framework/blazor.web.js"></script>
++ <script src="_framework/blazor.web.js" autostart="false"></script>
++ <script>
++   Blazor.start({
++     circuit: {
++       configureSignalR: builder => builder.withUrl("/signalr")
++     },
++   });
++ </script>
+```
+
+Add the following to the `Program` file:
+
+```csharp
+app.MapBlazorHub("/signalr");
+```
+
+:::moniker-end
+
 ## `IHttpContextAccessor`/`HttpContext` in Razor components
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
