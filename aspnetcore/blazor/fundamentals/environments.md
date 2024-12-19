@@ -126,11 +126,11 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 ## Set the client-side environment via header
 
-Blazor WebAssembly apps can set the environment with the `Blazor-Environment` header. Specifically, the response header must be set on the `_framework/blazor.boot.json` file, but there's no harm setting the header on responses for general Blazor file requests from the file server.
+Blazor WebAssembly apps can set the environment with the `Blazor-Environment` header. Specifically, the response header must be set on the `_framework/blazor.boot.json` file, but there's no harm setting the header on file server responses for other Blazor file requests or the entire Blazor deployment.
 
 Although the Blazor framework issues the header name in kebab case with mixed letter case (`Blazor-Environment`), you're welcome to use all-lower or all-upper kebab case (`blazor-environment`, `BLAZOR-ENVIRONMENT`).
 
-For local development runs with Blazor's built-in development server, you can control the value of the `Blazor-Environment` header by setting the value of the `ASPNETCORE_ENVIRONMENT` environment variable in the project's `Properties/launchSettings.json` file. When running locally with the development server, the order of precedence for determining the app's environment is [`Blazor.start` configuration (`environment` key)](#set-the-client-side-environment-via-blazor-startup-configuration) > `Blazor-Environment` response header (`blazor.boot.json` file) > `ASPNETCORE_ENVIRONMENT` environment variable (`launchSettings.json`).
+For local development runs with Blazor's built-in development server, you can control the value of the `Blazor-Environment` header by setting the value of the `ASPNETCORE_ENVIRONMENT` environment variable in the project's `Properties/launchSettings.json` file. When running locally with the development server, the order of precedence for determining the app's environment is [`Blazor.start` configuration (`environment` key)](#set-the-client-side-environment-via-blazor-startup-configuration) > `Blazor-Environment` response header (`blazor.boot.json` file) > `ASPNETCORE_ENVIRONMENT` environment variable (`launchSettings.json`). You can't use the `ASPNETCORE_ENVIRONMENT` environment variable (`launchSettings.json`) approach for a deployed Blazor WebAssembly app. The technique only works with the local development server during local debug runs of the app.
 
 ### IIS
 
@@ -155,7 +155,7 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 
 ### Nginx
 
-For Nginx servers, use the `add_header` directive from the `ngx_http_headers_module` module:
+For Nginx servers, use the `add_header` directive from the `ngx_http_headers_module`:
 
 ```
 http {
@@ -171,7 +171,7 @@ http {
 
 For more information, see the following resources:
 
-* [Nginx documentation (`add_header` directive)](http://nginx.org/docs/http/ngx_http_headers_module.html)
+* [Nginx documentation](http://nginx.org/docs/http/ngx_http_headers_module.html)
 * [Blazor WebAssembly Nginx hosting guidance](xref:blazor/host-and-deploy/webassembly#nginx)
 
 ### Apache
