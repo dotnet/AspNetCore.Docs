@@ -163,7 +163,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > [!NOTE]
     > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require the correct port.
 
-  * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> (configuration key: "`SignedOutCallbackPath`"): The request path within the app's base path where the user agent is returned after sign out from the OIDC identity provider. Typically, the app's configuration relies on the default value of "`/signout-callback-oidc`".
+  * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> (configuration key: "`SignedOutCallbackPath`"): The request path within the app's base path intercepted by the OIDC handler where the user agent is first returned after signing out from Entra. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OIDC handler finally redirects to the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutRedirectUri%2A> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri%2A> if specified.
 
     Configure the signed-out callback path in the app's OIDC provider registration. In the following example, the `{PORT}` placeholder is the app's port:
 
@@ -547,7 +547,7 @@ The `MinimalApiJwt` project is a backend web API for multiple frontend projects.
 
 Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> call in the project's `Program` file:
 
-* <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience%2A>: Sets the Audience for any received OpenID Connect token. 
+* <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience%2A>: Sets the Audience for any received OIDC token. 
 
   ```csharp
   jwtOptions.Audience = "{APP ID URI}";
@@ -577,7 +577,7 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
   jwtOptions.Audience = "api://00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
-* <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority%2A>: Sets the Authority for making OpenID Connect calls. Match the value to the Authority configured for the OIDC handler in `BlazorWebAppOidc/Program.cs`:
+* <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority%2A>: Sets the Authority for making OIDC calls. Match the value to the Authority configured for the OIDC handler in `BlazorWebAppOidc/Program.cs`:
 
   ```csharp
   jwtOptions.Authority = "{AUTHORITY}";
