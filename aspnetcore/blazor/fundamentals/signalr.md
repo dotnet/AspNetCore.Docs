@@ -1470,7 +1470,7 @@ Prevent automatically starting the app by adding `autostart="false"` to the Blaz
 + </script>
 ```
 
-Add the following to the `Program` file:
+Add the following <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> call with the `/signalr` path to the middleware processing pipeline in the server app's `Program` file:
 
 ```csharp
 app.MapBlazorHub("/signalr");
