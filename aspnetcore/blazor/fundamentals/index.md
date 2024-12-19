@@ -194,7 +194,7 @@ Samples apps in the repository:
 * Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
 * Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity/index>)
 * .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) (<xref:blazor/hybrid/tutorials/maui-blazor-web-app>)
-* Additional samples (see the samples repository README file)
+* Additional samples (see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples))
 
 :::moniker-end
 
@@ -212,7 +212,7 @@ Samples apps in the repository:
 * Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
 * Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity/index>)
 * .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) (<xref:blazor/hybrid/tutorials/maui-blazor-web-app>)
-* Additional samples (see the samples repository README file)
+* Additional samples (see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples))
 
 :::moniker-end
 
@@ -228,7 +228,7 @@ The sample repo contains two types of samples:
 
 :::moniker-end
 
-For more information, a list of the samples in the repository, and download instructions, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
+For more information, a list of the samples in the repository, and download instructions, see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples).
 
 The ASP.NET Core repository's Basic Test App is also a helpful set of samples for various Blazor scenarios:
 
