@@ -1456,8 +1456,12 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 
 ## Start the SignalR circuit at a different URL
 
-In the `App` component (`App.razor`), change the Blazor Web App script to prevent automatically starting the app and establish the circuit URL manually. The following example uses the path `/signalr`:
+In the `App` component (`App.razor`):
 
+* Prevent automatically starting the app by adding `autostart="false"` to the Blazor script tag.
+* Establish the circuit URL manually using `Blazor.start`.
+
+The following example uses the path `/signalr`:
 
 ```diff
 - <script src="_framework/blazor.web.js"></script>
