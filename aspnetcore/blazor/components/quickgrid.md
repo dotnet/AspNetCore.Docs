@@ -420,9 +420,18 @@ With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > *
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
+<!-- UPDATE 10.0 Keep an eye on https://github.com/dotnet/Scaffolding/issues/3131
+                 for a scaffolding update that makes the scaffolder a little 
+                 smarter about suggesting an existing dB context that has a
+                 factory provider. If the scaffolder can do that, this instruction
+                 can be lightened up to just select ANY one from the list of 
+                 existing providers or create a new one. -->
+
 * The **Template** dropdown list includes other templates for specifically creating create, edit, delete, details, and list components. This dropdown list comes in handy when you only need to create a specific type of component scaffolded to a model class. Leave the **Template** dropdown list set to **CRUD** to scaffold a full set of components.
 * In the **Model class** dropdown list, select the model class. A folder is created for the generated components from the model name (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
-* For **DbContext class**, select an existing database context or select the **+** (plus sign) button and **Add Data Context** modal dialog to add a new database context.
+* For **DbContext class**, take either of the following approaches:
+  * Select an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class that you know has a factory provider registration (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>).
+  * Select the **+** (plus sign) button and use the **Add Data Context** modal dialog to supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class name, which registers the class with a factory provider instead of using the context type directly as a service registration.
 * After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. You can select the appropriate provider for the database that you're using. The options include SQL Server, SQLite, PostgreSQL, and Azure Cosmos DB.
 * Select **Add**.
 
@@ -468,7 +477,7 @@ The following table explains the ASP.NET Core code generator options in the prec
 Option        | Placeholder          | Description
 ------------- | -------------------- | ---
 `-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace. To make sure that a <xref:Microsoft.EntityFrameworkCore.DbContext> class is registered in the app's services with a factory provider (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>), either use an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class that you know has a factory provider registration or supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class.
 `-m`          | `{MODEL}`            | The name of the model class.
 `-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
 
@@ -517,7 +526,7 @@ The following table explains the ASP.NET Core code generator options in the prec
 Option        | Placeholder          | Description
 ------------- | -------------------- | ---
 `-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace. To make sure that a <xref:Microsoft.EntityFrameworkCore.DbContext> class is registered in the app's services with a factory provider (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>), either use an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class that you know has a factory provider registration or supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class.
 `-m`          | `{MODEL}`            | The name of the model class.
 `-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
 
