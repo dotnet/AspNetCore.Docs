@@ -156,7 +156,11 @@ Arbitrary items are supported as content of the <xref:Microsoft.AspNetCore.Compo
 :::moniker range=">= aspnetcore-8.0"
 
 > [!IMPORTANT]
-> Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter (`<NotFound>...</NotFound>` markup), but the parameter is supported for backward compatibility to avoid a breaking change in the framework. The server-side ASP.NET Core middleware pipeline processes requests on the server. Use server-side techniques to handle bad requests. For more information, see <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>.
+> Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter (`<NotFound>...</NotFound>` markup), but the parameter is supported&dagger; for backward compatibility to avoid a breaking change in the framework. The server-side ASP.NET Core middleware pipeline processes requests on the server. Use server-side techniques to handle bad requests.
+>
+> &dagger;*Supported* in this context means that placing `<NotFound>...</NotFound>` markup doesn't result in an exception, but using the markup isn't effective either.
+>
+> For more information, including a recommended approach for handling bad requests, see <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>.
 
 :::moniker-end
 

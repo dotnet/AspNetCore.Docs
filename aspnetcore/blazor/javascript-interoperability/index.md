@@ -315,6 +315,13 @@ export class DOMCleanup {
 window.DOMCleanup = DOMCleanup;
 ```
 
+The preceding approaches attach the `MutationObserver` to `target.parentNode`, which works until `parentNode` itself is removed from the DOM. This is a common scenario, for example, when navigating to a new page, which causes the entire page component to be removed from the DOM. In such cases, any child components observing changes within the page aren't cleaned up properly.
+
+Don't assume that observing `document.body`, instead of `target.parentNode`, is a better target. Observing `document.body` has performance implications because callback logic is executed for *all* DOM updates, whether or not they have anything to do with your element. Use either of the following approaches:
+
+* In cases where you can identify a suitable ancestor node to observe, use `MutationObserver` with it. Ideally, this ancestor is scoped to the changes that you want to observe, rather than `document.body`.
+* Instead of using `MutationObserver`, consider using a [custom element and `disconnectedCallback`](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements). The event always fires when your custom element is disconnected, no matter where it resides in the DOM relative to the DOM change.
+
 ## JavaScript interop calls without a circuit
 
 *This section only applies to server-side apps.*
