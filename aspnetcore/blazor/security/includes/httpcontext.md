@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-8.0"
 
-<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> must be avoided with interactive rendering because there isn't a valid `HttpContext` available.
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> generally should be avoided with interactive rendering because a valid <xref:Microsoft.AspNetCore.Http.HttpContext> isn't always available.
 
 <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. **However, we recommend avoiding it if possible.**
 
