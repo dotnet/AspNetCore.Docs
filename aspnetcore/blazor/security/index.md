@@ -108,7 +108,7 @@ The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.Authe
 
 For more information on server-side authentication, see <xref:blazor/security/index>.
 
-### `IHttpContextAccessor`/`HttpContext` in Razor components
+### `IHttpContextAccessor`/`HttpContext`
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 

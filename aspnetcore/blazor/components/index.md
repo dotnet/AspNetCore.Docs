@@ -1854,6 +1854,10 @@ For more information, see the following resources:
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
 * <xref:blazor/components/integration>
 
+## `IHttpContextAccessor`/`HttpContext`
+
+[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
+
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>
 [2]: <xref:mvc/views/razor#using>

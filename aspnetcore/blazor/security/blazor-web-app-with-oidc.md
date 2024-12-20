@@ -44,9 +44,6 @@ The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 
 The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
-> [!NOTE]
-> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
-
 ### Configuration
 
 This section explains how to configure the sample app.
@@ -306,9 +303,6 @@ The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 
 The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
-> [!NOTE]
-> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
-
 ### Configuration
 
 This section explains how to configure the sample app.
@@ -503,7 +497,7 @@ Inspect the sample app for the following features:
 * Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
 * The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A> to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
 * Requests to the Blazor Web App are proxied to the backend web API project (`MinimalApiJwt`). `MapForwarder` in the `Program` file adds direct forwarding of HTTP requests that match the specified pattern to a specific destination using default configuration for the outgoing request, customized transforms, and default HTTP client:
-  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` to proxy the request for weather data with the user's access token.
+  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` class to proxy the request for weather data with the user's access token. <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext?displayProperty=nameWithType> determines if an <xref:Microsoft.AspNetCore.Http.HttpContext> is available for use by the `GetWeatherForecastAsync` method. For more information, see <xref:blazor/components/index#ihttpcontextaccessorhttpcontext>.
   * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project. A Minimal API endpoint (`/weather-forecast`) defined in the server project's `Program` file transforms the request with the user's access token to obtain the weather data.
 
 :::moniker-end
@@ -513,7 +507,7 @@ Inspect the sample app for the following features:
 * Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
 * The `PersistingAuthenticationStateProvider` class (`PersistingAuthenticationStateProvider.cs`) is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client, which is then fixed for the lifetime of the WebAssembly application.
 * Requests to the Blazor Web App are proxied to the backend web API project (`MinimalApiJwt`). `MapForwarder` in the `Program` file adds direct forwarding of HTTP requests that match the specified pattern to a specific destination using default configuration for the outgoing request, customized transforms, and default HTTP client:
-  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` to proxy the request for weather data with the user's access token.
+  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` class to proxy the request for weather data with the user's access token. <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext?displayProperty=nameWithType> determines if an <xref:Microsoft.AspNetCore.Http.HttpContext> is available for use by the `GetWeatherForecastAsync` method. For more information, see <xref:blazor/components/index#ihttpcontextaccessorhttpcontext>.
   * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project. A Minimal API endpoint (`/weather-forecast`) defined in the server project's `Program` file transforms the request with the user's access token to obtain the weather data.
 
 :::moniker-end
