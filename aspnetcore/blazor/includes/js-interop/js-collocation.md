@@ -50,7 +50,7 @@ Add the following script after the Blazor script ([location of the Blazor start 
 @code {
     private string? result;
 
-    public async void ShowPrompt()
+    public async Task ShowPrompt()
     {
         result = await JS.InvokeAsync<string>(
             "showPrompt1", "What's your name?");

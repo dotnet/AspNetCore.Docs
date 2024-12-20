@@ -26,7 +26,7 @@ The following table provides an overview of the metadata collected and the strat
 | tags | [`[Tags]`](xref:Microsoft.AspNetCore.Http.TagsAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A> | |
 | operationId | [`[EndpointName]`](xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute) | <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A> | |
 | parameters | [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute), [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute), [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute), [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) | |
-| parameter description | [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) | | |
+| parameter description | [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) | | |
 | requestBody | [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> | |
 | responses | [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A>, <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> | <xref:Microsoft.AspNetCore.Http.TypedResults> |
 | Excluding endpoints | [`[ExcludeFromDescription]`](xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute), [`[ApiExplorerSettings]`](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A> | |
@@ -148,7 +148,7 @@ OpenAPI supports annotating path, query string, header, and cookie parameters th
 
 The framework infers the types for request parameters automatically based on the signature of the route handler.
 
-The [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) attribute can be used to provide a description for a parameter.
+The [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute can be used to provide a description for a parameter.
 
 #### [Minimal APIs](#tab/minimal-apis)
 
