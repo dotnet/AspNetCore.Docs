@@ -1456,7 +1456,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 
 Prevent automatically starting the app by adding `autostart="false"` to the Blazor `<script>` tag ([location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script)). Manually establish the circuit URL using `Blazor.start`. The following examples use the path `/signalr`.
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-8.0"
 
 Blazor Web Apps:
 
@@ -1488,7 +1488,7 @@ Blazor Server:
 
 Add the following <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> call with the hub path to the middleware processing pipeline in the server app's `Program` file.
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-8.0"
 
 Blazor Web Apps:
 
