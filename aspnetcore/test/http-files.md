@@ -188,7 +188,7 @@ A variable defined in an environment file can be the same as one defined in the 
 }
 ```
 
-In the preceding example, The `$shared` environment defines the `HostAddress` variable with the value `localhost:7293`. This variable with this value functions as a default for any environment that doesn't define a `HostAddress` variable. When you use the `dev1` or `dev2` environment, the value for `HostAddress` comes from the `$shared` environment because `dev1` and `dev2` don't define a `HostAddress` variable. When you use the `staging` environment, the value for `HostAddress` is set to `https://staging.contoso.com`, overriding the `$shared` default.
+In the preceding example, the `$shared` environment defines the `HostAddress` variable with the value `localhost:7293`. This variable with this value functions as a default for any environment that doesn't define a `HostAddress` variable. When you use the `dev1` or `dev2` environment, the value for `HostAddress` comes from the `$shared` environment because `dev1` and `dev2` don't define a `HostAddress` variable. When you use the `staging` environment, the value for `HostAddress` is set to `https://staging.contoso.com`, overriding the `$shared` default.
 
 ## User-specific environment files
 
