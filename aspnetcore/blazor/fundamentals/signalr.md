@@ -1456,7 +1456,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 
 ## Start the SignalR circuit at a different URL
 
-Prevent automatically starting the app by adding `autostart="false"` to the Blazor `<script>` tag ([location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script)). Establish the circuit URL manually using `Blazor.start`. The following example uses the path `/signalr`:
+Prevent automatically starting the app by adding `autostart="false"` to the Blazor `<script>` tag ([location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script)). Manually establish the circuit URL using `Blazor.start`. The following example uses the path `/signalr`:
 
 ```diff
 - <script src="_framework/blazor.web.js"></script>
@@ -1470,7 +1470,7 @@ Prevent automatically starting the app by adding `autostart="false"` to the Blaz
 + </script>
 ```
 
-Add the following <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> call with the `/signalr` path to the middleware processing pipeline in the server app's `Program` file:
+Add the following <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> call with the hub path to the middleware processing pipeline in the server app's `Program` file:
 
 ```csharp
 app.MapBlazorHub("/signalr");
@@ -1478,7 +1478,7 @@ app.MapBlazorHub("/signalr");
 
 :::moniker-end
 
-## `IHttpContextAccessor`/`HttpContext` in Razor components
+## `IHttpContextAccessor`/`HttpContext`
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
