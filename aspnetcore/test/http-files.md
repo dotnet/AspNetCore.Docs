@@ -21,7 +21,7 @@ This article contains documentation for:
 * [The `.http` file syntax](#http-file-syntax).
 * [How to create an `.http` file](#create-an-http-file).
 * [How to send a request from an `.http` file](#send-an-http-request).
-* [Where to find `.http` file options that can be configured.](#http-file-options).
+* [Where to find `.http` file options that can be configured](#http-file-options).
 * [How to create requests in `.http` files by using the Visual Studio 2022 **Endpoints Explorer**](#use-endpoints-explorer).
 
 The `.http` file format and editor was inspired by the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). The Visual Studio 2022 `.http` editor recognizes `.rest` as an alternative file extension for the same file format.
@@ -165,6 +165,30 @@ Visual Studio displays warnings in the following situations:
 * The environment file contains a variable that isn't referenced in the `.http` file.
 
 A variable defined in an environment file can be the same as one defined in the `.http` file, or it can be different. If a variable is defined in both the `.http` file and the environment file, the value in the `.http` file overrides the value in the environment file.
+
+## Shared variables
+
+`$shared` is a special environment name for values that are the same for multiple environments. For example, consider the following environment file (`http-client.env.json`):
+
+```json
+{
+    "$shared": {
+        "HostAddress": "https://localhost:7293"
+    },
+    "dev1": {
+        "username": "dev1user"
+    },
+    "dev2": {
+        "username": "dev2user"
+    },
+    "staging": {
+        "username": "staginguser",
+        "HostAddress": "https://staging.contoso.com"
+    }
+}
+```
+
+In the preceding example, The `$shared` environment defines the `HostAddress` variable with the value `localhost:7293`. This variable with this value functions as a default for any environment that doesn't define a `HostAddress` variable. When you use the `dev1` or `dev2` environment, the value for `HostAddress` comes from the `$shared` environment because `dev1` and `dev2` don't define a `HostAddress` variable. When you use the `staging` environment, the value for `HostAddress` is set to `https://staging.contoso.com`, overriding the `$shared` default.
 
 ## User-specific environment files
 
