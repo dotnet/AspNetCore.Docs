@@ -1452,7 +1452,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 
 :::moniker-end
 
-## `IHttpContextAccessor`/`HttpContext` in Razor components
+## `IHttpContextAccessor`/`HttpContext`
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
