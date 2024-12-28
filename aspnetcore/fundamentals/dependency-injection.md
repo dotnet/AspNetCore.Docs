@@ -17,15 +17,15 @@ By [Kirk Larkin](https://twitter.com/serpent5), [Steve Smith](https://ardalis.co
 
 ASP.NET Core supports the dependency injection (DI) software design pattern, which is a technique for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies.
 
-For more information specific to dependency injection within MVC controllers, see <xref:mvc/controllers/dependency-injection>.
+For Blazor DI guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/dependency-injection>.
+
+For information specific to dependency injection within MVC controllers, see <xref:mvc/controllers/dependency-injection>.
 
 For information on using dependency injection in applications other than web apps, see [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection).
 
-For more information on dependency injection of options, see <xref:fundamentals/configuration/options>.
+For information on dependency injection of options, see <xref:fundamentals/configuration/options>.
 
-This topic provides information on dependency injection in ASP.NET Core. The primary documentation on using dependency injection is contained in [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection).
-
-For Blazor DI guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/dependency-injection>.
+This article provides information on dependency injection in ASP.NET Core. The primary documentation on using dependency injection is contained in [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -59,7 +59,7 @@ This interface is implemented by a concrete type, `MyDependency`:
 
 [!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
 
-The sample app registers the `IMyDependency` service with the concrete type `MyDependency`. The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method registers the service with a scoped lifetime, the lifetime of a single request. [Service lifetimes](#service-lifetimes) are described later in this topic.
+The sample app registers the `IMyDependency` service with the concrete type `MyDependency`. The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method registers the service with a scoped lifetime, the lifetime of a single request. [Service lifetimes](#service-lifetimes) are described later in this article.
 
 [!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet1)]
 
@@ -89,13 +89,13 @@ The container resolves `ILogger<TCategoryName>` by taking advantage of [(generic
 In dependency injection terminology, a service:
 
 * Is typically an object that provides a service to other objects, such as the `IMyDependency` service.
-* Is not related to a web service, although the service may use a web service.
+* Is not related to a web service, although the service might use a web service.
 
 The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations shown in the preceding examples were written to demonstrate basic DI, not to implement logging. Most apps shouldn't need to write loggers. The following code demonstrates using the default logging, which doesn't require any services to be registered:
 
 [!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
 
-Using the preceding code, there is no need to update `Program.cs`, because [logging](xref:fundamentals/logging/index) is provided by the framework.
+The preceding code works correctly without changing anything in `Program.cs`, because [logging](xref:fundamentals/logging/index) is provided by the framework.
 
 ## Register groups of services with extension methods
 
@@ -124,9 +124,9 @@ See [Service registration methods](/dotnet/core/extensions/dependency-injection#
 
  It's common to use multiple implementations when [mocking types for testing](xref:test/integration-tests#inject-mock-services).
 
-Registering a service with only an implementation type is equivalent to registering that service with the same implementation and service type. This is why multiple implementations of a service cannot be registered using the methods that don't take an explicit service type. These methods can register multiple *instances* of a service, but they will all have the same *implementation* type.
+Registering a service with only an implementation type is equivalent to registering that service with the same implementation and service type. This is why multiple implementations of a service can't be registered using the methods that don't take an explicit service type. These methods can register multiple *instances* of a service, but they all have the same *implementation* type.
 
-Any of the above service registration methods can be used to register multiple service instances of the same service type. In the following example, `AddSingleton` is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`. Services appear in the order they were registered when resolved via `IEnumerable<{SERVICE}>`.
+Any of these service registration methods can be used to register multiple service instances of the same service type. In the following example, `AddSingleton` is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`. Services appear in the order they were registered when resolved via `IEnumerable<{SERVICE}>`.
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
@@ -148,7 +148,7 @@ public class MyService
 
 ### Keyed services
 
-*Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
+The term *keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs" highlight="6,7,12-14,39,47" id="snippet_1":::
 
@@ -204,7 +204,7 @@ To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the `app
 
 [!code-json[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
 
-## Resolve a service at app start up
+## Resolve a service at app startup
 
 The following code shows how to resolve a scoped service for a limited duration when the app starts:
 
@@ -233,7 +233,7 @@ When designing services for dependency injection:
 * Avoid direct instantiation of dependent classes within services. Direct instantiation couples the code to a particular implementation.
 * Make services small, well-factored, and easily tested.
 
-If a class has a lot of injected dependencies, it might be a sign that the class has too many responsibilities and violates the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into new classes. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns.
+If a class has many injected dependencies, it might be a sign that the class has too many responsibilities and violates the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into new classes. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns.
 
 ### Disposal of services
 
@@ -309,32 +309,11 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
 * Another service locator variation to avoid is injecting a factory that resolves dependencies at runtime. Both of these practices mix [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 
-<!--
-<a name="ASP0000"></a>
-* Avoid calls to <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A> in `ConfigureServices`.  For example, consider the case where the `LoginPath` is loaded from configuration. Avoid the following approach:
-
-  ![bad code calling BuildServiceProvider](~/fundamentals/dependency-injection/_static/badcodeX.png)
-
-  In the preceding image, selecting the green wavy line under `services.BuildServiceProvider` shows the following ASP0000 warning:
-
-  > ASP0000 Calling 'BuildServiceProvider' from application code results in an additional copy of singleton services being created. Consider alternatives such as dependency injecting services as parameters to 'Configure'.
-
-  Calling `BuildServiceProvider` creates a second container, which can create torn singletons and cause references to object graphs across multiple containers.
-
-  A correct way to get `LoginPath` is to use the options pattern's built-in support for DI:
-
-  [!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/AntiPattern3/Program.cs?name=snippet)]
-
-* Disposable transient services are captured by the container for disposal. This can turn into a memory leak if resolved from the top level container.
-* Enable scope validation to make sure the app doesn't have singletons that capture scoped services. For more information, see [Scope validation](#scope-validation).
-
-Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
--->
-DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
+DI is an *alternative* to static/global object access patterns. You might not be able to realize the benefits of DI if you mix it with static object access.
 
 ## Recommended patterns for multi-tenancy in DI
 
-[Orchard Core](https://github.com/OrchardCMS/OrchardCore) is an application framework for building modular, multi-tenant applications on ASP.NET Core. For more information, see the [Orchard Core Documentation](https://docs.orchardcore.net).
+[Orchard Core](https://github.com/OrchardCMS/OrchardCore) is an application framework for building modular, multitenant applications on ASP.NET Core. For more information, see the [Orchard Core Documentation](https://docs.orchardcore.net).
 
 See the [Orchard Core samples](https://github.com/OrchardCMS/OrchardCore.Samples) for examples of how to build modular and multi-tenant apps using just the Orchard Core Framework without any of its CMS-specific features.
 
@@ -363,10 +342,10 @@ The following table lists a small sample of these framework-registered services:
 
 ## Additional resources
 
+* <xref:blazor/fundamentals/dependency-injection>
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>
-* <xref:blazor/fundamentals/dependency-injection>
 * [NDC Conference Patterns for DI app development](https://www.youtube.com/watch?v=x-C-CNBVTaY)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
