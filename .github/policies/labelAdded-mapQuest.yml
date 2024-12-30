@@ -17,9 +17,9 @@ configuration:
             - payloadType: Pull_Request
 
           - labelAdded:
-              label: ':world_map: mapQUEST'
+              label: 'mapQUEST'
         then:
-          - removeLabel: ':world_map: mapQUEST'
+          - removeLabel: 'mapQUEST'
         triggerOnOwnActions: true
 onFailure:
 onSuccess:
