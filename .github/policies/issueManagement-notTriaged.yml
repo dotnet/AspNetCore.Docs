@@ -45,7 +45,7 @@ configuration:
                   issueAuthor: true
             
             - labelAdded: 
-                label: ':world_map: reQUEST'
+                label: 'reQUEST'
         then:
           - removeLabel: ':watch: Not Triaged'
         triggerOnOwnActions: false
