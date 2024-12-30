@@ -1,0 +1,25 @@
+id: issueManagement.emptyIssue
+name: GitOps.EmptyIssue
+description: Checks for an issue created via learn that has an empty description from the template.
+owner:
+resource: repository
+disabled: false
+where:
+configuration:
+  resourceManagementConfiguration:
+    eventResponderTasks:
+      - description: Close an issue created with the learn template that has an empty body.
+        if:
+          - payloadType: Issues
+          - bodyContains:
+              pattern: '### Description[\n\r]+\[Enter feedback here\][\n\r]+###'
+              isRegex: true
+        then:
+          - addLabel: 'needs-more-info'
+          - removeLabel: ':watch: Not Triaged'
+          - closeIssue
+          
+        triggerOnOwnActions: false
+
+onFailure:
+onSuccess:
