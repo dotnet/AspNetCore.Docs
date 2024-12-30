@@ -16,7 +16,7 @@ configuration:
           - labelAdded:
               label: 'grpc/subsv'
         then:
-          - addLabel: 'aspnetcore-signalr/subsvc'
+          - addLabel: 'gRPC'
 
       - description: >-
           When the label "aspnetcore-signalr/subsvc" is added to an issue
@@ -24,7 +24,7 @@ configuration:
         if:
           - payloadType: Issues
           - labelAdded:
-              label: 'grpc/subsv'
+              label: 'aspnetcore-signalr/subsvc'
         then:
           - addLabel: 'SignalR'
 
