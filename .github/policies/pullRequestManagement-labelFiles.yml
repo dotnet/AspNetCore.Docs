@@ -1,0 +1,694 @@
+id: pullRequestManagement.labelFiles
+name: GitOps.PullRequestLabelFiles
+description: Checks the files touched by a pull request and assigns a reviewer
+owner:
+resource: repository
+disabled: false
+where:
+configuration:
+  resourceManagementConfiguration:
+    eventResponderTasks:
+      - description: Modify PRs that touch certain files
+        triggerOnOwnActions: false
+        if:
+          - payloadType: Pull_Request
+          - or:
+            - isAction:
+                action: Opened
+            - isAction:
+                action: Synchronize
+          - not:
+              targetsBranch:
+                branch: live
+        then:
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*/blazor/hybrid/.*
+            then:
+            - requestReviewer:
+                reviewer: guardrex
+            - addLabel:
+                label: blazor-hybrid/subsvc
+          - if:
+            - or:
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: pattern: (?i).*/blazor/.*
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: pattern: (?i).*/client-side/dotnet-interop/index.md
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: pattern: (?i).*/client-side/dotnet-interop/wasm-browser-app.md
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: pattern: (?i).*/mvc/views/tag-helpers/built-in/component-tag-helper.md
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: pattern: (?i).*/mvc/views/tag-helpers/built-in/persist-component-state.md
+            then:
+            - requestReviewer:
+                reviewer: guardrex
+            - addLabel:
+                label: blazor/subsvc
+
+
+
+
+                
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*_vblang/spec.*
+            then:
+            - addLabel:
+                label: dotnet-visualbasic/svc
+            - addLabel:
+                label: vb-spec/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/architecture.*
+            then:
+            - addLabel:
+                label: dotnet-architecture/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/architecture/blazor-for-web-forms-developers.*
+            then:
+            - addLabel:
+                label: dotnet-architecture/svc
+            - addLabel:
+                label: blazor/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/architecture/cloud-native.*
+            then:
+            - addLabel:
+                label: dotnet-architecture/svc
+            - addLabel:
+                label: cloud-native/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/architecture/containerized-lifecycle.*
+            then:
+            - addLabel:
+                label: dotnet-architecture/svc
+            - addLabel:
+                label: containerized-lifecycle/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/architecture/grpc-for-wcf-developers.*
+            then:
+            - addLabel:
+                label: dotnet-architecture/svc
+            - addLabel:
+                label: grpc/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/architecture/microservices.*
+            then:
+            - addLabel:
+                label: dotnet-architecture/svc
+            - addLabel:
+                label: microservices/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/architecture/modernize-with-azure-containers.*
+            then:
+            - addLabel:
+                label: dotnet-architecture/svc
+            - addLabel:
+                label: modernize-with-azure-containers/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/architecture/modern-web-apps-azure.*
+            then:
+            - addLabel:
+                label: dotnet-architecture/svc
+            - addLabel:
+                label: modern-web-apps-azure/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/architecture/serverless.*
+            then:
+            - addLabel:
+                label: dotnet-architecture/svc
+            - addLabel:
+                label: serverless/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/azure.*
+            then:
+            - addLabel:
+                label: dotnet-azure/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/core.*
+            then:
+            - addLabel:
+                label: dotnet-fundamentals/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/core/tools.*
+            then:
+            - addLabel:
+                label: dotnet-fundamentals/svc
+            - addLabel:
+                label: dotnet-cli/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/core/docker.*
+            then:
+            - addLabel:
+                label: dotnet-fundamentals/svc
+            - addLabel:
+                label: dotnet-docker/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/core/install.*
+            then:
+            - addLabel:
+                label: dotnet-fundamentals/svc
+            - addLabel:
+                label: install/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/fundamentals.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/misc.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: csharp-errors-warnings/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/whats-new.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: whats-new/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/how-to.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/linq.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: csharp-linq/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/indexers.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/generics.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/strings.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/types.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/statements-expressions-operators.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/interop.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: advanced-concepts/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/language-reference/unsafe-code.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: advanced-concepts/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/namespaces.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/arrays.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/concepts/covariance-contravariance.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: advanced-concepts/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/concepts/serialization.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/concepts/expression-trees.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: advanced-concepts/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/asynchronous-programming/.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: async-task-programming/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/concepts/linq.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: csharp-linq/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/concepts/attributes.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/xmldoc.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/classes-and-structs.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/delegates.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/file-system.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/events.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/programming-guide/interfaces.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/tutorials.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: fundamentals/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/tutorials/exploration.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: get-started/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/language-reference.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: lang-reference/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/language-reference/compiler-messages.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: csharp-diagnostics/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/roslyn-sdk.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: roslyn-sdk/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/csharp/tour-of-csharp.*
+            then:
+            - addLabel:
+                label: dotnet-csharp/svc
+            - addLabel:
+                label: get-started/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/configure-apps/file-schema/network.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: networking/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/configure-apps/file-schema/wcf.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: wcf/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/data/adonet.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: data-access/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/data/wcf.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: wcf/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/docker.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: dotnet-docker/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/install.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: install/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/migration-guide.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: app-compat/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/network-programming.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: dotnet-networking/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/fundamentals/networking.*
+            then:
+            - addLabel:
+                label: dotnet-fundamentals/svc
+            - addLabel:
+                label: dotnet-networking/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/core/extensions/http.*
+            then:
+            - addLabel:
+                label: dotnet-fundamentals/svc
+            - addLabel:
+                label: dotnet-networking/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/wcf.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: dotnet-wcf/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/framework/windows-workflow-foundation.*
+            then:
+            - addLabel:
+                label: dotnet-framework/svc
+            - addLabel:
+                label: wf/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/fsharp.*
+            then:
+            - addLabel:
+                label: dotnet-fsharp/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/fundamentals.*
+            then:
+            - addLabel:
+                label: dotnet-fundamentals/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/standard.*
+            then:
+            - addLabel:
+                label: dotnet-fundamentals/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/standard/analyzers.*
+            then:
+            - addLabel:
+                label: dotnet-fundamentals/svc
+            - addLabel:
+                label: code-analyzers/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/machine-learning.*
+            then:
+            - addLabel:
+                label: dotnet-ml/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/spark.*
+            then:
+            - addLabel:
+                label: dotnet-spark/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/standard/data.*
+            then:
+            - addLabel:
+                label: dotnet-data/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/standard/design-guidelines.*
+            then:
+            - addLabel:
+                label: dotnet/svc
+            - addLabel:
+                label: standard-library/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/standard/security.*
+            then:
+            - addLabel:
+                label: dotnet/svc
+            - addLabel:
+                label: security-practices/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/visual-basic.*
+            then:
+            - addLabel:
+                label: dotnet-visualbasic/svc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/visual-basic/language-reference/error-messages.*
+            then:
+            - addLabel:
+                label: dotnet-visualbasic/svc
+            - addLabel:
+                label: errors-warnings/subsvc
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: (?i).*docs/visual-basic/misc.*
+            then:
+            - addLabel:
+                label: dotnet-visualbasic/svc
+            - addLabel:
+                label: errors-warnings/subsvc
+onFailure:
+onSuccess:
