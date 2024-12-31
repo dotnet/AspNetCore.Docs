@@ -26,7 +26,6 @@ configuration:
                 matchAny: true
                 pattern: '(?i).*/blazor/hybrid/.*'
             then:
-            - requestReviewer: guardrex
             - addLabel:
                 label: 'blazor-hybrid/subsvc'
           - if:
@@ -47,7 +46,8 @@ configuration:
                   matchAny: true
                   pattern: '(?i).*/mvc/views/tag-helpers/built-in/persist-component-state.md'
             then:
-            - requestReviewer: guardrex
+            - requestReviewer:
+                user: guardrex
             - addLabel:
                 label: 'blazor/subsvc'
 onFailure:
