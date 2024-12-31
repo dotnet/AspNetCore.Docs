@@ -24,33 +24,33 @@ configuration:
           - if:
             - filesMatchPattern:
                 matchAny: true
-                pattern: (?i).*/blazor/hybrid/.*
+                pattern: '(?i).*/blazor/hybrid/.*'
             then:
             - requestReviewer:
-                reviewer: guardrex
+                reviewer: 'guardrex'
             - addLabel:
-                label: blazor-hybrid/subsvc
+                label: 'blazor-hybrid/subsvc'
           - if:
             - or:
               - filesMatchPattern:
                   matchAny: true
-                  pattern: (?i).*/blazor/.*
+                  pattern: '(?i).*/blazor/.*'
               - filesMatchPattern:
                   matchAny: true
-                  pattern: (?i).*/client-side/dotnet-interop/index.md
+                  pattern: '(?i).*/client-side/dotnet-interop/index.md'
               - filesMatchPattern:
                   matchAny: true
-                  pattern: (?i).*/client-side/dotnet-interop/wasm-browser-app.md
+                  pattern: '(?i).*/client-side/dotnet-interop/wasm-browser-app.md'
               - filesMatchPattern:
                   matchAny: true
-                  pattern: (?i).*/mvc/views/tag-helpers/built-in/component-tag-helper.md
+                  pattern: '(?i).*/mvc/views/tag-helpers/built-in/component-tag-helper.md'
               - filesMatchPattern:
                   matchAny: true
-                  pattern: (?i).*/mvc/views/tag-helpers/built-in/persist-component-state.md
+                  pattern: '(?i).*/mvc/views/tag-helpers/built-in/persist-component-state.md'
             then:
             - requestReviewer:
-                reviewer: guardrex
+                reviewer: 'guardrex'
             - addLabel:
-                label: blazor/subsvc
+                label: 'blazor/subsvc'
 onFailure:
 onSuccess:
