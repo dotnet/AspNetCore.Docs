@@ -1,0 +1,32 @@
+id: labelAdded.areaLabels
+name: GitOps.AreaLabelHandler
+description: Handles when specific area labels are added
+owner:
+resource: repository
+disabled: false
+where:
+configuration:
+  resourceManagementConfiguration:
+    eventResponderTasks:
+      - description: >-
+          When the label "grpc/subsvc" is added to an issue
+          * Add label "gRPC"
+        if:
+          - payloadType: Issues
+          - labelAdded:
+              label: 'grpc/subsv'
+        then:
+          - addLabel: 'gRPC'
+
+      - description: >-
+          When the label "aspnetcore-signalr/subsvc" is added to an issue
+          * Add label "SignalR"
+        if:
+          - payloadType: Issues
+          - labelAdded:
+              label: 'aspnetcore-signalr/subsvc'
+        then:
+          - addLabel: 'SignalR'
+
+onFailure:
+onSuccess:

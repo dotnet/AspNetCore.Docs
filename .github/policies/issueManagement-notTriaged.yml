@@ -1,0 +1,54 @@
+id: issueManagement.notTriaged
+name: GitOps.NotTriagedHandler
+description: Ensures the Not Triaged label is added or removed when appropriate
+owner:
+resource: repository
+disabled: false
+where:
+configuration:
+  resourceManagementConfiguration:
+    eventResponderTasks:
+      - description: >-
+          Add "not triaged" label when:
+          * Issue is opened
+          * Issue is reopened
+          * 'needs-more-info' label removed
+        if:
+          - payloadType: Issues
+          - or:
+          
+            - or:
+              - isAction: 
+                  action: Opened
+              - isAction: 
+                  action: Reopened
+                  
+            - labelRemoved:
+                label: 'needs-more-info'
+        then:
+          - addLabel: ':watch: Not Triaged'
+        triggerOnOwnActions: false
+
+      - description: >-
+          Remove "not triaged" label when:
+          * Issue author closes the issue
+          * reQUEST label is added
+        if:
+          - payloadType: Issues
+          - hasLabel:
+              label: ':watch: Not Triaged'
+          - or:
+            - and:
+              - isAction: 
+                  action: Closed
+              - isActivitySender:
+                  issueAuthor: true
+            
+            - labelAdded: 
+                label: 'reQUEST'
+        then:
+          - removeLabel: ':watch: Not Triaged'
+        triggerOnOwnActions: false
+
+onFailure:
+onSuccess:

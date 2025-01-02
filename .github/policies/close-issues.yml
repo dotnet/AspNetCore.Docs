@@ -1,0 +1,44 @@
+name: Close issues
+description: Close issues based on label
+resource: repository
+where:
+configuration:
+    resourceManagementConfiguration:
+        scheduledSearches:
+          - frequencies:
+            - daily:
+                time: 12:00
+            filters:
+              - isIssue
+              - isOpen
+              - hasLabel:
+                  label: needs-more-info
+              - noActivitySince:
+                  days: 14
+            actions:
+              - addReply:
+                  reply: This issue has been automatically closed due to no response from the original author. Feel free to reopen it if you have more information that can help us investigate the issue further.
+              - closeIssue
+
+        eventResponderTasks:
+          - description: Remove needs-more-info label when author comments on issue
+            if:
+              - payloadType: Issue_Comment
+              - isAction:
+                  action: Created
+              - isActivitySender:
+                  issueAuthor: True
+              - hasLabel:
+                  label: needs-more-info
+              - isOpen
+            then:
+              - removeLabel:
+                  label: needs-more-info
+              
+          - description: Close issues labeled 'code-of-conduct'
+            if:
+              - payloadType: Issues
+              - hasLabel:
+                  label: code-of-conduct
+            then:
+              - closeIssue
