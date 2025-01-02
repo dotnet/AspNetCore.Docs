@@ -199,6 +199,8 @@ Add additional `script-src` and `style-src` hashes as required by the app. Durin
 
 The particular script associated with the error is displayed in the console next to the error.
 
+For guidance on applying a CSP to an app in C# code at startup, see <xref:blazor/fundamentals/startup#control-headers-in-c-code>.
+
 ### Client-side Blazor apps
 
 In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the *Policy directives* section:
