@@ -31,19 +31,19 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
 
 :::moniker range=">= aspnetcore-8.0"
 
-* [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
+* [`base-uri`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [`default-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [`img-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
   * Specify `data:` to permit loading images from `data:` URLs.
   * Specify `https:` to permit loading images from HTTPS endpoints.
-* [object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
-* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
+* [`object-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
+* [`script-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a client-side Blazor app:
     * Specify [`wasm-unsafe-eval`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_webassembly_execution) to permit the client-side Blazor Mono runtime to function.
     * Specify any additional hashes to permit your required *non-framework scripts* to load.
   * In a server-side Blazor app, specify hashes to permit required scripts to load.
-* [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
+* [`style-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * If the app uses inline styles, specify `unsafe-inline` to allow the use of your inline styles.
 * [upgrade-insecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
@@ -52,68 +52,68 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-* [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
+* [`base-uri`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [`default-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [`img-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
   * Specify `data:` to permit loading images from `data:` URLs.
   * Specify `https:` to permit loading images from HTTPS endpoints.
-* [object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
-* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
+* [`object-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
+* [`script-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a client-side Blazor app:
     * Specify `unsafe-eval` to permit the client-side Blazor Mono runtime to function.
     * Specify any additional hashes to permit your required *non-framework scripts* to load.
   * In a server-side Blazor app, specify hashes to permit required scripts to load.
-* [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
+* [`style-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * If the app uses inline styles, specify `unsafe-inline` to allow the use of your inline styles.
-* [upgrade-insecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
+* [`upgrade-insecure-requests`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-* [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
+* [`base-uri`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [`default-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [`img-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
   * Specify `data:` to permit loading images from `data:` URLs.
   * Specify `https:` to permit loading images from HTTPS endpoints.
-* [object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
-* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
+* [`object-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
+* [`script-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a client-side Blazor app:
     * Specify `unsafe-eval` to permit the client-side Blazor Mono runtime to function.
     * Specify any additional hashes to permit your required *non-framework scripts* to load.
   * In a server-side Blazor app, specify hashes to permit required scripts to load.
-* [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
+* [`style-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * Specify `unsafe-inline` to allow the use of inline styles.
-* [upgrade-insecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
+* [`upgrade-insecure-requests`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-* [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
+* [`base-uri`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [`default-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [`img-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
   * Specify `data:` to permit loading images from `data:` URLs.
   * Specify `https:` to permit loading images from HTTPS endpoints.
-* [object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
-* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
+* [`object-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
+* [`script-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a client-side Blazor app:
     * Specify hashes to permit required scripts to load.
     * Specify `unsafe-eval` to use `eval()` and methods for creating code from strings.
   * In a server-side Blazor app, specify hashes to permit required scripts to load.
-* [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
+* [`style-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * Specify `unsafe-inline` to allow the use of inline styles. The inline declaration is required for the UI for reconnecting the client and server after the initial request. In a future release, inline styling might be removed so that `unsafe-inline` is no longer required.
-* [upgrade-insecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
+* [`upgrade-insecure-requests`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
 
 :::moniker-end
 
@@ -302,6 +302,30 @@ Add additional `script-src` and `style-src` hashes as required by the app. Durin
 > Refused to execute inline script because it violates the following Content Security Policy directive: " ... ". Either the 'unsafe-inline' keyword, a hash ('sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='), or a nonce ('nonce-...') is required to enable inline execution.
 
 The particular script associated with the error is displayed in the console next to the error.
+
+## Use of inline JavaScript with a CSP
+
+Inline JS requires a hash for each script in the [`script-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) directive.
+
+For example, consider a component with the following inline JS:
+
+```html
+<script>alert("Hello! I am an alert box!!");</script>
+```
+
+The CSP includes the SHA256 hash for the inline script:
+
+```html
+<meta http-equiv="Content-Security-Policy"
+      ...
+      script-src 'self'
+                 'sha256-hwiBiBsi+DSUejzif8I++bJQ8c03Q8bhT1qVAuoM/H0=';
+      ...>
+```
+
+The preceding hash can be computed using an online tool or obtained from the browser's developer tools console exception on a test run of the app.
+
+Using the [nonce-source](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_inline_script) approach isn't possible because Blazor can't dynamically update `<script>` tags. Attempting to use the [hash-source](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_inline_script) approach only works if the (most restrictive) CSP includes the script's hash, but the location of the CSP and your code to dynamically create the hash usually isn't in the component where the inline script resides. Therefore, these approaches are unsatisfactory for general use. We recommend avoiding the use of many inline scripts, favoring [JS collocation](xref:blazor/js-interop/location-of-javascript#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) instead. 
 
 :::moniker range=">= aspnetcore-8.0"
 
