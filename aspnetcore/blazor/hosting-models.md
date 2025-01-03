@@ -98,7 +98,7 @@ A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/prog
 The Blazor script handles:
 
 * Downloading the .NET runtime, Razor components, and dependencies.
-* Initialization of the runtime.
+* Runtime initialization.
 
 The size of the published app, its *payload size*, is a critical performance factor for an app's usability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
 
