@@ -538,7 +538,7 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 The Blazor script, which is served from an embedded resource in the ASP.NET Core shared framework, handles:
 
-* Downloading the .NET runtime, Razor components, and the component's dependencies.
+* Downloading the .NET runtime, Razor components, and dependencies.
 * Initialization of the runtime.
 
 :::moniker range=">= aspnetcore-8.0"
