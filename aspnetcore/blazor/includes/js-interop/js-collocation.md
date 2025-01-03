@@ -153,7 +153,7 @@ export function showPrompt2(message) {
 ```
 
 > [!IMPORTANT]
-> Don't place a `<script>` tag for `JsCollocation2.razor.js` after the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script). The module is loaded automatically and cached. Adding a `<script>` tag results in the module not loading correctly.
+> Don't place a `<script>` tag for `JsCollocation2.razor.js` after the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) because the module is loaded and cached automatically. Adding a `<script>` tag prevents the module from loading.
 
 Use of scripts and modules for collocated JS in a Razor class library (RCL) is only supported for Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. If you're implementing [JavaScript `[JSImport]`/`[JSExport]` interop](xref:blazor/js-interop/import-export-interop), see <xref:blazor/js-interop/import-export-interop#razor-class-library-rcl-collocated-js-is-unsupported>.
 
