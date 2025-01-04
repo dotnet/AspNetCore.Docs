@@ -14,10 +14,6 @@ uid: fundamentals/openapi/customize-openapi
 
 ## OpenAPI document transformers
 
-This section demonstrates how to customize OpenAPI documents with transformers.
-
-### Customize OpenAPI documents with transformers
-
 Transformers provide an API for modifying the OpenAPI document with user-defined customizations. Transformers are useful for scenarios like:
 
 * Adding parameters to all operations in a document.
@@ -50,7 +46,7 @@ Transformers execute in first-in first-out order based on registration. In the f
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_transInOut&highlight=3-9)]
 
-### Use document transformers
+## Use document transformers
 
 Document transformers have access to a context object that includes:
 
@@ -73,7 +69,7 @@ Document transformers are unique to the document instance they're associated wit
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_multidoc_operationtransformer1)]
 
-### Use operation transformers
+## Use operation transformers
 
 Operations are unique combinations of HTTP paths and methods in an OpenAPI document. Operation transformers are helpful when a modification:
 
@@ -90,7 +86,7 @@ For example, the following operation transformer adds `500` as a response status
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
 
-### Use schema transformers
+## Use schema transformers
 
 Schemas are the data models that are used in request and response bodies in an OpenAPI document. Schema transformers are useful when a modification:
 
