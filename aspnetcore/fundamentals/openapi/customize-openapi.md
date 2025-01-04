@@ -103,6 +103,43 @@ For example, the following schema transformer sets the `format` of decimal types
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_schematransformer1)]
 
+## Customize schema reuse
+
+After all transformers have been applied, the framework makes a pass over the document to transfer certain schemas
+to the `components.schemas` section, replacing them with `$ref` references to the transferred schema.
+This reduces the size of the document and makes it easier to read.
+
+The details of this processing are a bit complicated, and might change in future versions of .NET, but in general:
+
+* Schemas for class/record/struct types are replaced with a `$ref` to a schema in `components.schemas`
+  if they appear more than once in the document.
+* Schemas for primitive types and standard collections are left inline.
+* Schemas for enum types are always replaced with a `$ref` to a schema in to components.schemas.
+
+Typically the name of the schema in `components.schemas` is the name of the class/record/struct type,
+but in some circumstances a different name must be used.
+
+ASP.NET Core lets you customize which schemas are replaced with a `$ref` to a schema in `components.schemas`
+using the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> property of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions>.
+This property is a delegate that takes a <xref:System.Text.Json.Serialization.Metadata.JsonTypeInfo> object and returns the name of the schema
+in `components.schemas` that should be used for that type.
+The framework provides a default implementation of this delegate, <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateDefaultSchemaReferenceId%2A>
+that uses the name of the type, but you can replace it with your own implementation.
+
+As a simple example of this customization, you might choose to always inline enum schemas.
+This is done by setting <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> to a delegate
+that returns null for enum types, and otherwise returns value from the default implementation.
+The following code shows how to do this:
+
+```csharp
+builder.Services.AddOpenApi(options =>
+{
+    // Always inline enum schemas
+    options.CreateSchemaReferenceId = (type) =>
+        type.Type.IsEnum ? null : OpenApiOptions.CreateDefaultSchemaReferenceId(type);
+});
+```
+
 ## Additional resources
 
 * <xref:fundamentals/openapi/using-openapi-documents>
