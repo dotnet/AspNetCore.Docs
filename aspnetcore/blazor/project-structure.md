@@ -536,7 +536,17 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 ## Location of the Blazor script
 
+:::moniker range=">= aspnetcore-10.0"
+
+The Blazor script is served as a static web asset with automatic compression and fingerprinting. For more information, see <xref:blazor/fundamentals/static-files>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
 The Blazor script is served from an embedded resource in the ASP.NET Core shared framework.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
