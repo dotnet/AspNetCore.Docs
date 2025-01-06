@@ -50,7 +50,17 @@ In a traditional server-rendered app, opening the same app in multiple browser s
 
 ![The browser interacts with Blazor (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/blazor/hosting-models/_static/blazor-server.png)
 
+:::moniker range=">= aspnetcore-10.0"
+
+On the client, the Blazor script establishes the SignalR connection with the server. The script is served as a static web asset with automatic compression and [fingerprinting](https://developer.mozilla.org/docs/Glossary/Fingerprinting).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
 On the client, the Blazor script establishes the SignalR connection with the server. The script is served from an embedded resource in the ASP.NET Core shared framework.
+
+:::moniker-end
 
 The Blazor Server hosting model offers several benefits:
 
