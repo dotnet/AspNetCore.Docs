@@ -623,6 +623,7 @@ In the preceding example:
   * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
   * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 * Disposes the <xref:Microsoft.JSInterop.IJSObjectReference> for [garbage collection](xref:blazor/components/lifecycle#asynchronous-iasyncdisposable) in <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
+* Don't place a `<script>` tag for the script after the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
 
