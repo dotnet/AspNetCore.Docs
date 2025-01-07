@@ -305,30 +305,6 @@ Add additional `script-src` and `style-src` hashes as required by the app. Durin
 
 The particular script associated with the error is displayed in the console next to the error.
 
-## Use of inline JavaScript with a CSP
-
-Inline JS requires a hash for each script in the [`script-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) directive.
-
-For example, consider a component with the following inline JS:
-
-```html
-<script>alert("Hello! I am an alert box!!");</script>
-```
-
-The CSP includes the SHA256 hash for the inline script:
-
-```html
-<meta http-equiv="Content-Security-Policy"
-      ...
-      script-src 'self'
-                 'sha256-hwiBiBsi+DSUejzif8I++bJQ8c03Q8bhT1qVAuoM/H0=';
-      ...>
-```
-
-The preceding hash can be computed using an online tool or obtained from the browser's developer tools console exception on a test run of the app.
-
-Using the [nonce-source](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_inline_script) approach isn't possible because Blazor can't dynamically update `<script>` tags. Attempting to use the [hash-source](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_inline_script) approach only works if the (most restrictive) CSP includes the script's hash, but the location of the CSP and your code to dynamically create the hash usually isn't in the component where the inline script resides. Therefore, these approaches are unsatisfactory for general use. We recommend avoiding the use of many inline scripts, favoring [JS collocation](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) instead. 
-
 :::moniker range=">= aspnetcore-8.0"
 
 ## Apply a CSP in non-`Development` environments
