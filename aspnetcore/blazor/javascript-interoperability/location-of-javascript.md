@@ -33,6 +33,8 @@ Load JavaScript (JS) code using any of the following approaches:
 
 :::moniker-end
 
+Inline JavaScript isn't recommended for Blazor apps. We recommend using [JS collocation](#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) combined with [JS modules](#javascript-isolation-in-javascript-modules).
+
 ## Location of `<script>` tags
 
 :::moniker range=">= aspnetcore-8.0"
