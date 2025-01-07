@@ -34,7 +34,7 @@ Consider the following `PrerenderedCounter1` counter component. The component se
 Run the app and inspect logging from the component. The following is example output.
 
 > [!NOTE]
-> If the app adopts interactive (enhanced) routing and the page is reached via an internal navigation, prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter1` component to see the following output.
+> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter1` component to see the following output. More information on this subject is covered in the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section, later in this article.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter1[0]":::  
 > :::no-loc text="      currentCount set to 41":::  
@@ -101,7 +101,7 @@ The following counter component example persists counter state during prerenderi
 When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
 
 > [!NOTE]
-> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal navigation, prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter2` component to see the following output.
+> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter2` component to see the following output. More information on this subject is covered in the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section, later in this article.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      currentCount set to 96":::  
@@ -128,9 +128,27 @@ For components embedded into a page or view of a Razor Pages or MVC app, you mus
 
 ## Interactive routing and prerendering
 
-Internal navigation for [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests.
+When the `Routes` component doesn't define a render mode, the app is using per-page/component interactivity and navigation. With per-page/component navigation, navigation is handled by [enhanced routing](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), which triggers a request to the server. The component is rendered twice:
 
-The <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service only works on the initial page load and not across [enhanced page navigation events](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). If the app performs a full (non-enhanced) navigation to a page utilizing persistent component state, the persisted state is made available for the app to use when it becomes interactive. But if an interactive circuit has already been established and an enhanced navigation is performed to a page that renders persisted component state, that state isn't made available in the existing circuit. The <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware of enhanced navigation, and there's no mechanism to deliver state updates to components that are already running.
+* The first time the component is rendered, the page rendering on the server as a result of enhanced navigation.
+* On the second render, is the page rendering interactively.
+
+In an enhanced navigation request, the state in <xref:Microsoft.AspNetCore.Components.PersistentComponentState> isn't used during the second render, compared to a regular navigation when the state is loaded by <xref:Microsoft.AspNetCore.Components.PersistentComponentState>. The reason for this is that Blazor only ever supported passing state from the server to the client at the time the runtime initializes, not after the runtime has started.
+
+After interactivity is established, internal&dagger; enhanced navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. &dagger;*Internal* in this context means that the URL destination of the navigation event is a Blazor endpoint inside the app.
+
+In summary, the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service only works on the initial page load and not across internal [enhanced page navigation events](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). If the app performs a full (non-enhanced) navigation to a page utilizing persistent component state, the persisted state is made available for the app to use when it becomes interactive. But if an interactive circuit has already been established and an enhanced navigation is performed to a page that renders persisted component state, that state *isn't made available in the existing circuit*. The <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware of enhanced navigation, and there's no mechanism to deliver state updates to components that are already running.
+
+Additional work on the Blazor framework to address this scenario is under consideration for .NET 10 (November, 2025). For more information and community discussion of *unsupported workarounds*&Dagger;, see [Support persistent component state across enhanced page navigations (`dotnet/aspnetcore` #51584)](https://github.com/dotnet/aspnetcore/issues/51584). &Dagger;Unsupported workarounds aren't sanctioned by Microsoft for use in Blazor apps. Use third-party packages, approaches, and code at your own risk.
+
+> [!NOTE]
+> Disabling internal enhanced navigation, which probably harms the user experience but also avoids the problem of loading state with , is covered in <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+
+<!-- UPDATE 10.0 The PU is probably going to address this
+                 via the issue mentioned above. If so, 
+                 the PU issue link above and the NOTEs for
+                 the article examples will be versioned out 
+                 for 10.0. -->
 
 ## Prerendering guidance
 
