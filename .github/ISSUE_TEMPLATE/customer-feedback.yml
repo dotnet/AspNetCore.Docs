@@ -51,4 +51,4 @@ body:
     attributes:
       label: Metadata
       description: >-
-        Documentation metadata will be applied here for the PRMerger tool
+        Documentation metadata will be applied here
