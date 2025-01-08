@@ -1,4 +1,4 @@
-revision: 5
+revision: 6
 schema-version: 5
 owner-ms-alias: adegeo
 
@@ -10,29 +10,11 @@ config:
     ParserRegex: "^\\* (.*): (.*)$"
 
     ContentUrlRegex:
-     - "### Page URL\n\n(.*)"
+      - "### Page URL\n\n(.*)"
 
 issues:
 
   opened:
-    # New issue opened, add Not Triaged  
-    - labels-add: [":watch: Not Triaged"]
-
-    # Try to detect an empty issue
-    - check:
-        - type: comment-body
-          value: "### Description[\\n\\r]+\\[Enter feedback here\\][\\n\\r]+###"
-      pass:
-        - labels-add: ["needs-more-info"]
-        - labels-remove: [":watch: Not Triaged"]
-        - close
-
-    # default for doc comment
-    - check:
-        - type: metadata-exists
-      pass:
-        - labels-add: ["Source - Docs.ms"]
-        - svc_subsvc_labels: true
 
     # Add links to related issues if it's a doc issue
     - check:
@@ -42,14 +24,12 @@ issues:
       pass:
         - link-related-issues
 
-  labeled:
-
-    # Temporary label to mark issues as updated for Quest. The label is instantly removed
+    # If it's an issue from docs feedback, add svc/subsvc and source labels.
     - check:
-        - type: query
-          value: "length(Issue.Labels[?Name == 'mapQuest']) != `0`"
+        - type: metadata-exists
       pass:
-        - labels-remove: ["mapQuest"]
+        - labels-add: ["Source - Docs.ms"]
+        - svc_subsvc_labels: true
 
 projects_v2_item:
 
