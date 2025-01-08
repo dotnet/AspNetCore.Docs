@@ -51,7 +51,7 @@ Access tokens:
 
 See [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749#section-1.4)
 
-#### Application access tokens and delegeted Access tokens
+#### Application access tokens and delegated access tokens
 
 When requesting or creating an access token, an application or an application acting on behalf of a user can request an access token. The tokens are **application access tokens** or **delegated access tokens**. The tokens have different claims and are handled and persisted in different ways. An application is normally persisted once in the application until it expires where the delegated access token is persisted per user, either in a cookie or in a cache on a secure server.
 
