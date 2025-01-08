@@ -122,26 +122,17 @@ In the following example, the `lib.css` stylesheet in the `wwwroot` folder isn't
 
 To include TypeScript files in an RCL:
 
-1. Reference the [`Microsoft.TypeScript.MSBuild`](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild) NuGet package in the project.
+* Reference the [`Microsoft.TypeScript.MSBuild`](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild) NuGet package in the project.
 
    [!INCLUDE[](~/includes/package-reference.md)]
 
-1. Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
+* Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
+* Add the following markup to the project file:
+  * Configure the TypeScript build output for the `wwwroot` folder with the `TypescriptOutDir` property.
+  * Include the TypeScript target as a dependency of the `PrepareForBuildDependsOn` target.
+  * Remove the output in the `wwwroot folder`.
 
-1. Configure the TypeScript build output for the `wwwroot` folder. Set the `TypescriptOutDir` property inside of a `PropertyGroup` in the project file:
-
-   ```xml
-   <TypescriptOutDir>wwwroot</TypescriptOutDir>
-   ```
-
-1. Include the TypeScript target as a dependency of the `PrepareForBuildDependsOn` target by adding the following target inside of a `PropertyGroup` in the project file:
-   
-   ```xml
-   <PrepareForBuildDependsOn>
-     CompileTypeScript;
-     GetTypeScriptOutputForPublishing;$(PrepareForBuildDependsOn)
-   </PrepareForBuildDependsOn>
-   ```
+[!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=6-10,14)]
 
 ### Consume content from a referenced RCL
 
