@@ -26,9 +26,9 @@ This article covers the following areas:
 * YARP
 * Testing APIs
 
-Is this really authentication?
+## Authentication v Authorization
 
-Using bearer tokens as the authentication method is not really authentication but more authorization. Authentication is implemented when requesting access tokens for the first time in a UI application. Requesting data in an API can be described as delegated authorization. Using bearer tokens, you do not know who or what sent the access token and you do not know how the access token was acquired. The application can only say if the token is valid to use the requested API.
+Bearer tokens are often treated as an authentication mechanism, but in practice, they used primarily for authorization. Authentication occurs when a user first requests an access token in the UI layer. When the token is presented to an API, the process is more accurately described as *delegated authorization*. Because the token itself does not reveal who or what obtained it or how it was issued, the API can only confirm whether the token is valid for calling the requested resource.
 
 ## Token types
 
