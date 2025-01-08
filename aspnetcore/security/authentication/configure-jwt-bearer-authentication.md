@@ -41,11 +41,13 @@ We recommend using [OpenID Connect 1.0](https://openid.net/specs/openid-connect-
 
 ### Access tokens
 
-An access token is a string used by a client application to make requests to the server implementing an API. Access tokens can vary in format and different APIs may use different formats for the tokens.
-
-An access token can be encrypted. Access tokens should never be read or interpreted by a web client or UI application holding the access token, only an API is the intended audience.
-
-Access tokens are intended solely for making requests to an API. This is normally sent to the API in the **Authorization** request header as a bearer token.
+Access tokens:
+* Are strings used by a client app to make requests to the server implementing an API.
+* Can vary in format. Different APIs may use different formats for the tokens.
+* Can be encrypted.
+* Should never be read or interpreted by a web client or UI app holding the access token.
+* Are intended solely for making requests to an API.
+* Are typically sent to the API in the **Authorization** request header as a bearer token.
 
 See [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749#section-1.4)
 
