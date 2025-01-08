@@ -1,0 +1,25 @@
+id: labelAdded.mapQuest
+name: GitOps.MapQuestHandler
+description: Handles when "mapQUEST" label is added
+owner:
+resource: repository
+disabled: false
+where:
+configuration:
+  resourceManagementConfiguration:
+    eventResponderTasks:
+      - description: >-
+          When the label "mapQUEST" is added to an issue
+          * Remove label "mapQUEST"
+        if:
+          - or:
+            - payloadType: Issues
+            - payloadType: Pull_Request
+
+          - labelAdded:
+              label: 'mapQUEST'
+        then:
+          - removeLabel: 'mapQUEST'
+        triggerOnOwnActions: true
+onFailure:
+onSuccess:
