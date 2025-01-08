@@ -32,7 +32,12 @@ Bearer tokens are often treated as an authentication mechanism, but in practice,
 
 ## Token types
 
-There are many different types of tokens and many formats. You should not be creating access tokens or ID tokens yourself unless in testing scenarios. Creating self-made tokens and not following standards usually ends up with security problems and can only be used in closed systems. It is recommended to use OpenID Connect and/or OAuth to create access tokens for API access. 
+There are numerous types of tokens and formats. Generating your own access tokens or ID tokens is discouraged, except for testing purposes. Self-created tokens that do not adhere to established standards:
+
+* Can lead to security vulnerabilities.
+* Are only suitable for closed systems.
+
+We recommend using [OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0-final.html) or an OAuth standard for creating access tokens intended for API access. 
 
 ### Access tokens
 
