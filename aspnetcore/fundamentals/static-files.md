@@ -49,7 +49,9 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 * Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
 * Minimize the size of assets served to the browser. This optimization doesn't include minification.
 
-<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> are routing endpoint conventions that optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC.
+<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>:
+* Integrates the information gathered about static web assets during the build or publish process with a runtime library that processes this information to optimize file serving to the browser.
+* Are routing endpoint conventions that optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC.
 
 [`UseStaticFiles`](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles) also serves static files, but it doesn't provide the same level of optimization as `MapStaticAssets`. For a comparison of  `UseStaticFiles` and `MapStaticAssets`, see [Optimizing static web asset delivery
 ](xref:aspnetcore-9#optimizing-static-web-asset-delivery).
