@@ -80,7 +80,13 @@ When using JWT access tokens for API authorization, the API grants or denies acc
 
 ### 401 Unauthorized
 
-A 401 response is returned when the access token has an invalid standard requirement. The OAuth specifications are clear which claims must be valid and how to validate the claims in the access token. This could be the wrong signature, or the token has expired or one of the required claims like the audience or the issuer is incorrect. 
+A 401 Unauthorized response indicates that the provided access token doesn't meet the required standards. This could be due to several reasons, including:
+
+* **Invalid signature**: The token's signature doesn't match, suggesting potential tampering.
+* **Expiration**: The token has expired and is no longer valid.
+* **Incorrect claims**: Critical claims within the token, such as the audience (`aud`) or issuer (`iss`), are missing or invalid.
+
+The [OAuth specifications](https://auth0.com/docs/authenticate/protocols/oauth) provide detailed guidelines on the required claims and their validation. 
 
 ### 403 Forbidden
 
