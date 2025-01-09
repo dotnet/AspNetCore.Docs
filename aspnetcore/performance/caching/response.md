@@ -21,7 +21,13 @@ The [ResponseCache attribute](#responsecache-attribute) sets response caching he
 
 For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
 
-[!INCLUDE[](~/includes/response-caching-mid.md)]
+The Response caching middleware:
+
+* Enables caching server responses based on [HTTP cache headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control). Implements the standard HTTP caching semantics. Caches based on HTTP cache headers like proxies do.
+* Is typically not beneficial for UI apps such as Razor Pages because browsers generally set request headers that prevent caching. [Output caching](xref:performance/caching/output), which is available in ASP.NET Core 7.0 and later, benefits UI apps. With output caching, configuration decides what should be cached independently of HTTP headers.
+* May be beneficial for public GET or HEAD API requests from clients where the [Conditions for caching](xref:performance/caching/middleware#cfc) are met.
+
+To test response caching, use [Fiddler](https://www.telerik.com/fiddler), or another tool that can explicitly set request headers. Setting headers explicitly is preferred for testing caching. For more information, see [Troubleshooting](xref:performance/caching/middleware#troubleshooting).
 
 ## HTTP-based response caching
 
