@@ -90,7 +90,12 @@ The [OAuth specifications](https://learn.microsoft.com/entra/identity-platform/a
 
 ### 403 Forbidden
 
-A 403 forbidden response is normally returned when a business permission is missing. The authorization has nothing to do with the authentication or the standard claims used in the access token. This could be implemented using an ASP.NET requirement with a policy or also a role authorization.
+A [403 Forbidden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) response typically indicates that the authenticated user lacks the necessary permissions to access the requested resource. This is distinct from authentication issues, e.g. an invalid token, and is unrelated to the standard claims within the access token.
+
+In ASP.NET Core, you can enforce authorization using:
+
+[Requirements and policies](/aspnet/core/security/authorization/policies?view=aspnetcore-9.0): Define custom requirements, e.g., "Must be an administrator" and associate them with policies.
+[Role-based authorization](/aspnet/core/security/authorization/roles*): Assign users to roles e.g., "Admin," "Editor", and restrict access based on those roles.
 
 ## What role has OIDC and/or OAuth when using bearer tokens?
 
