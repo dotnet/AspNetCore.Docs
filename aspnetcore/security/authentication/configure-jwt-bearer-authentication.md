@@ -86,7 +86,7 @@ A 401 Unauthorized response indicates that the provided access token doesn't mee
 * **Expiration**: The token has expired and is no longer valid.
 * **Incorrect claims**: Critical claims within the token, such as the audience (`aud`) or issuer (`iss`), are missing or invalid.
 
-The [OAuth specifications](https://learn.microsoft.com/en-us/entra/identity-platform/access-token-claims-reference) provide detailed guidelines on the required claims and their validation. 
+The [OAuth specifications](https://learn.microsoft.com/entra/identity-platform/access-token-claims-reference) provide detailed guidelines on the required claims and their validation. 
 
 ### 403 Forbidden
 
