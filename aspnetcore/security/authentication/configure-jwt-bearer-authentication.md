@@ -92,9 +92,14 @@ The [OAuth specifications](https://learn.microsoft.com/entra/identity-platform/a
 
 A 403 forbidden response is normally returned when a business permission is missing. The authorization has nothing to do with the authentication or the standard claims used in the access token. This could be implemented using an ASP.NET requirement with a policy or also a role authorization.
 
-## How OIDC/OAuth fits into this?
+## What role has OIDC and/or OAuth when using bearer tokens?
 
-When using access tokens, only the access token is validated on the API. The process of acquiring the access token is unspecified.  OpenID Connect and OAuth specify standards on how to acquire access tokens in a safe way. This process is different for every type of application. It is complicated to implement this in a safe way. This is why it is recommended to use one of the standards to create access tokens. OpenID Connect is used to create access tokens for an application and a user. These access tokens are user delegated access tokens. In a web application, a confidential OpenID Connect code flow using PKCE is the recommended way to implement this. If the application has no user, OAuth client credentials can be used to acquire an application access token. 
+When an API uses JWT access tokens for authorization, the API only validates the access token, not on how the token was obtained.
+
+OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for token acquisition. Token acquisition varies depending on the type of app. Due to the complexity of secure token acquisition, it's highly recommended to rely on these standards:
+
+* For apps acting on behalf of a user and an application: OIDC is the preferred choice, enabling delegated user access. In web apps, the confidential code flow with [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (PKCE) is recommended for enhanced security.
+* If the app has no user: The OAuth 2.0 client credentials flow is suitable for obtaining application access tokens.
 
 ## Implementing JWT bearer token authentication
 
