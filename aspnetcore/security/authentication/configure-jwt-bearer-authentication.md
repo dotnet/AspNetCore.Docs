@@ -28,7 +28,7 @@ This article covers the following areas:
 
 ## Authentication v Authorization
 
-Bearer tokens are often treated as an authentication mechanism, but in practice, they used primarily for authorization. Authentication occurs when a user first requests an access token in the UI layer. When the token is presented to an API, the process is more accurately described as *delegated authorization*. Because the token itself does not reveal who or what obtained it or how it was issued, the API can only confirm whether the token is valid for calling the requested resource.
+Bearer tokens are often treated as an authentication mechanism, but in practice, the tokens are used primarily for authorization. Authentication occurs when a user first requests an access token in the UI layer. When the token is presented to an API, the process is more accurately described as *delegated authorization*. Because the token itself doesn't reveal who or what obtained it or how it was issued, the API can only confirm whether the token is valid for calling the requested resource.
 
 ## Token types
 
