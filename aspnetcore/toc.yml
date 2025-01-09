@@ -1751,21 +1751,21 @@ items:
           - name: In-memory cache
             displayName: caching
             uid: performance/caching/memory
-          - name: Distributed caching
-            displayName: cache
+          - name: Distributed cache
+            displayName: caching
             uid: performance/caching/distributed
           - name: Hybrid cache
             displayName: caching
             uid: performance/caching/hybrid
-          - name: Output caching
-            displayName: cache
-            uid: performance/caching/output
           - name: Response caching
             displayName: cache
             uid: performance/caching/response
           - name: Response caching middleware
             displayName: cache
             uid: performance/caching/middleware
+          - name: Output caching
+            displayName: cache
+            uid: performance/caching/output
       - name: Rate limiting middleware
         uid: performance/rate-limit
       - name: Timeouts middleware

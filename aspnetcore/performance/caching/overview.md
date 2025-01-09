@@ -15,11 +15,27 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://tw
 
 :::moniker range=">= aspnetcore-9.0"
 
-## In-memory caching
+Caching can improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently **and** is expensive to generate. Caching makes a copy of data that can be returned much faster than from the source.
 
-In-memory caching uses server memory to store cached data. This type of caching is suitable for a single server or multiple servers using session affinity. Session affinity is also known as *sticky sessions*. Session affinity means that the requests from a client are always routed to the same server for processing.
+ASP.NET Core supports several different caching APIs:
 
-For more information, see <xref:performance/caching/memory> and [Troubleshoot Azure Application Gateway session affinity issues](/azure/application-gateway/how-to-troubleshoot-application-gateway-session-affinity-issues).
+* In-memory cache
+* Distributed cache
+* Hybrid cache
+* Response caching
+* Output caching
+
+## In-memory cache
+
+In-memory caching uses server memory to store cached data. The <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> interface provides the API for storing and retrieving data in memory. 
+
+This type of caching is suitable for a single server or multiple servers using session affinity, also known as *sticky sessions*. A web farm configured for sticky sessions routes all requests for a given session to the same server for processing.
+
+Non-sticky sessions in a web farm require a [#distributed-cache](xref:performance/caching/distributed) to avoid cache consistency problems. Using a distributed cache offloads the cache memory from each server to an external process. For some apps, a distributed cache can support higher scale-out than an in-memory cache.
+
+The in-memory cache API can store any object. The distributed cache interface is limited to byte arrays (`byte[]`). The in-memory and distributed cache store cache items as key-value pairs.
+
+For more information, see <xref:performance/caching/memory>.
 
 ## Distributed Cache
 
