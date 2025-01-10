@@ -258,7 +258,7 @@ public class WeatherForecastController : ControllerBase
 
 ## Recommended approaches to create a JWT
 
-When using access tokens, many security problems arise because the access tokens are created or stored in an unsecure way. The application did not authenticate the user in a strong way or the access token was persisted directly in the browser using local storage, session storage or web workers. The following section describes some best practices for applications using and creating access tokens.
+Insecure handling of access tokens, such as weak authentication or storing tokens in vulnerable client-side storage, can lead to significant security vulnerabilities. For example, storing access tokens directly in the browser using local storage, session storage, or web workers. The following section contains best practices for apps using and creating access tokens.
 
 ### Use standards
 
