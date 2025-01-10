@@ -347,20 +347,20 @@ using Microsoft.Extensions.Options;
 ...
 
 [Inject]
-public IOptions<OptionsExample> OptionsExample { get; set; }
+public IOptions<OptionsExample>? OptionsExample { get; set; }
 ```
 
 To retrieve the settings in a Razor component with the [`@inject`](xref:mvc/views/razor#inject) directive:
 
 ```razor
 @using Microsoft.Extensions.Options
-@inject IOptions<OptionsExample> OptionsExample
+@inject IOptions<OptionsExample>? OptionsExample
 
 ...
 
 <ul>
-    <li>@OptionsExample.Value.Option1</li>
-    <li>@OptionsExample.Value.Option2</li>
+    <li>@OptionsExample?.Value.Option1</li>
+    <li>@OptionsExample?.Value.Option2</li>
 </ul>
 ```
 
