@@ -108,17 +108,17 @@ OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for 
 
 ## Implementing JWT bearer token authentication
 
-The **Microsoft.AspNetCore.Authentication.JwtBearer** Nuget package can be used to validate the JWT bearer tokens.
+The [Microsoft.AspNetCore.Authentication.JwtBearer](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) Nuget package can be used to validate the JWT bearer tokens.
 
-JWT bearer tokens should be fully validated in an API.
+JWT bearer tokens should be fully validated in an API. The following should be validated:
 
-*	The signature should be validated for trust and integrity, i.e. the token was created by the defined secure token service and the token was not tampered with.
-*	The Issuer claim should be validated and should have the expected value.
-*	The Audience claim should be validated and should have the expected value.
-*	The token expiration claim should be validated.
-*	The token type should be validated. (Required in RFC 9068, "at+jwt")
+*  Signature, for trust and integrity. This ensures the token was created by the designated secure token service and has not been tampered with.
+*  Issuer claim with the expected value.
+*  Audience claim with the expected value.
+*  Token expiration.
+*  Token type. Required in [RFC 9068](https://datatracker.ietf.org/doc/rfc9068/) (`"application/at+jwt"`)
 
-The following claims are required for OAuth 2.0 access tokens: iss, exp, aud, sub, client_id, iat, jti.
+The following claims are required for OAuth 2.0 access tokens: `iss`, `exp`, `aud`, `sub`, `client_id`, `iat, and`jti`.
 
 If any of these claims or values are incorrect, the API should return a 401 response.
 
