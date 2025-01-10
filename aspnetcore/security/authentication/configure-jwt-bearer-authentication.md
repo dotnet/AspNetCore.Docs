@@ -137,7 +137,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 ### JWT bearer token explicit validation
 
-The AddJwtBearer method provides multiple configuration possibilities. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences. The ValidTypes types can be used to validate the "at+jwt" header if the value is supported.
+The [AddJwtBearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer) method provides multiple configurations. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences. The [ValidTypes](/dotnet/api/microsoft.identitymodel.tokens.tokenvalidationparameters.validtypes) types can be used to validate the "at+jwt" header if the value is supported.
 
 ```csharp
 builder.Services.AddAuthentication()
