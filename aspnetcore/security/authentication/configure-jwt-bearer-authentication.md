@@ -235,7 +235,7 @@ services.AddAuthentication(options =>
 ```
 ### Forcing the bearer authentication
 
-The **SetFallbackPolicy** can be used to require authentication if no policy is defined. 
+[SetFallbackPolicy](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.fallbackpolicy) can be used to require authentication if no policy is defined. 
 
 ```csharp
 var requireAuthPolicy = new AuthorizationPolicyBuilder()
