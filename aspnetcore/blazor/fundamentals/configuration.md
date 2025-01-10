@@ -315,9 +315,63 @@ For more information on how background updates are handled by PWAs, see <xref:bl
 
 Example:
 
+`OptionsExample.cs`:
+
 ```csharp
-builder.Services.Configure<MyOptions>(
-    builder.Configuration.GetSection("MyOptions"));
+public class OptionsExample
+{
+    public string? Option1 { get; set; }
+    public string? Option2 { get; set; }
+}
+```
+
+In `appsettings.json`:
+
+```json
+"OptionsExample": {
+  "Option1": "Option1 Value",
+  "Option2": "Option2 Value"
+}
+```
+
+```csharp
+builder.Services.Configure<OptionsExample>(
+    builder.Configuration.GetSection("OptionsExample"));
+```
+
+The following Razor component retrieves the settings with the [`@inject`](xref:mvc/views/razor#inject) directive or [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute).
+
+`Options.razor`:
+
+```razor
+@page "/options"
+@using Microsoft.Extensions.Options
+@inject IOptions<OptionsExample>? OptionsExample1
+
+<h1>Options</h1>
+
+<h2>
+    &commat;inject approach
+</h2>
+
+<ul>
+    <li>@OptionsExample1?.Value.Option1</li>
+    <li>@OptionsExample1?.Value.Option2</li>
+</ul>
+
+<h2>
+    [Inject] approach
+</h2>
+
+<ul>
+    <li>@OptionsExample2?.Value.Option1</li>
+    <li>@OptionsExample2?.Value.Option2</li>
+</ul>
+
+@code {
+    [Inject]
+    public IOptions<OptionsExample>? OptionsExample2 { get; set; }
+}
 ```
 
 Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> configuration is supported, but recomputing option values for these interfaces isn't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
