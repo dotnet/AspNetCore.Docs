@@ -329,9 +329,9 @@ Testing secure APIs can be implemented in different ways. Integration tests and 
 
 It is important not to create security problems in the API so that you can test the API. When delegated access tokens are used, it is more difficult to test as the tokens can only be created using a UI and an OpenID Connect flow. If using a test tool to create the delegated access tokens, security features must be disabled for the tests. It is important that the features are only disabled in the test environment.
 
-### Use Swagger, Postman and other API UI tools
+### Use Swagger, Curl and other API UI tools
 
-Swagger and Postman are great UI tools for testing APIs. For the tools to work, the API can produce an Open API document and this can be loaded into the client testing tool. A security flow to acquire a new access token can be added to the API Open API file. 
+Swagger and Curl are great UI tools for testing APIs. For the tools to work, the API can produce an Open API document and this can be loaded into the client testing tool. A security flow to acquire a new access token can be added to the API Open API file. 
 
 > Warning
 > Do not deploy insecure security test flows to production.
