@@ -335,13 +335,13 @@ A *standalone deployment* serves the Blazor WebAssembly app as a set of static f
 
 Standalone deployment assets are published into either the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish\` folder (depending on the version of the .NET SDK in use), where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
-### Azure App Service
+## Azure App Service
 
 Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on [IIS](#iis).
 
 Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](#azure-static-web-apps), which supports this scenario.
 
-### Azure Static Web Apps
+## Azure Static Web Apps
 
 Use one of the following approaches to deploy a Blazor WebAssembly app to Azure Static Web Apps:
 
@@ -349,7 +349,7 @@ Use one of the following approaches to deploy a Blazor WebAssembly app to Azure 
 * [Deploy from Visual Studio Code](#deploy-from-visual-studio-code)
 * [Deploy from GitHub](#deploy-from-github)
 
-#### Deploy from Visual Studio
+### Deploy from Visual Studio
 
 To deploy from Visual Studio, create a publish profile for Azure Static Web Apps:
 
@@ -365,21 +365,21 @@ To deploy from Visual Studio, create a publish profile for Azure Static Web Apps
 
 After the publish profile is created, deploy the app to the Azure Static Web Apps instance using the publish profile by selecting the **Publish** button.
 
-#### Deploy from Visual Studio Code
+### Deploy from Visual Studio Code
 
 To deploy from Visual Studio Code, see [Quickstart: Build your first static site with Azure Static Web Apps](/azure/static-web-apps/getting-started?tabs=blazor).
 
-#### Deploy from GitHub
+### Deploy from GitHub
 
 To deploy from a GitHub repository, see [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor).
 
-### IIS
+## IIS
 
 IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
 Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework. Host the contents of the `publish` folder on the web server or hosting service.
 
-#### web.config
+### web.config
 
 When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
@@ -391,7 +391,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
   * Serve the sub-directory where the app's static assets reside (`wwwroot/{PATH REQUESTED}`).
   * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (`wwwroot/index.html`).
   
-#### Use a custom `web.config`
+### Use a custom `web.config`
 
 To use a custom `web.config` file:
 
@@ -435,21 +435,21 @@ If the SDK's `web.config` generation or transformation during publish either doe
   </Target>
   ```
 
-#### Install the URL Rewrite Module
+### Install the URL Rewrite Module
 
 The [URL Rewrite Module](https://www.iis.net/downloads/microsoft/url-rewrite) is required to rewrite URLs. The module isn't installed by default, and it isn't available for install as a Web Server (IIS) role service feature. The module must be downloaded from the IIS website. Use the Web Platform Installer to install the module:
 
 1. Locally, navigate to the [URL Rewrite Module downloads page](https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads). For the English version, select **WebPI** to download the WebPI installer. For other languages, select the appropriate architecture for the server (x86/x64) to download the installer.
 1. Copy the installer to the server. Run the installer. Select the **Install** button and accept the license terms. A server restart isn't required after the install completes.
 
-#### Configure the website
+### Configure the website
 
 Set the website's **Physical path** to the app's folder. The folder contains:
 
 * The `web.config` file that IIS uses to configure the website, including the required redirect rules and file content types.
 * The app's static asset folder.
 
-#### Host as an IIS sub-app
+### Host as an IIS sub-app
 
 If a standalone app is hosted as an IIS sub-app, perform either of the following:
 
@@ -486,7 +486,7 @@ Removing the handler or disabling inheritance is performed in addition to [confi
 
 Configure the app's base path by following the guidance in the <xref:blazor/host-and-deploy/index#app-base-path> article.
 
-#### Brotli and Gzip compression
+### Brotli and Gzip compression
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -511,13 +511,13 @@ Additional configuration of the example `web.config` file might be required in t
 
 For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
 
-#### Troubleshooting
+### Troubleshooting
 
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the `web.config` file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
 
 For more information on troubleshooting deployments to IIS, see <xref:test/troubleshoot-azure-iis>.
 
-### Azure Storage
+## Azure Storage
 
 [Azure Storage](/azure/storage/) static file hosting allows serverless Blazor app hosting. Custom domain names, the Azure Content Delivery Network (CDN), and HTTPS are supported.
 
@@ -538,7 +538,7 @@ If files aren't loaded at runtime due to inappropriate MIME types in the files' 
 
 For more information, see [Static website hosting in Azure Storage](/azure/storage/blobs/storage-blob-static-website).
 
-### Nginx
+## Nginx
 
 The following `nginx.conf` file is simplified to show how to configure Nginx to send the `index.html` file whenever it can't find a corresponding file on disk.
 
@@ -577,7 +577,7 @@ Increase the value if browser developer tools or a network traffic tool indicate
 For more information on production Nginx web server configuration, see [Creating NGINX Plus and NGINX Configuration Files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/).
 
 
-### Apache
+## Apache
 
 To deploy a Blazor WebAssembly app to Apache:
 
@@ -668,7 +668,11 @@ To deploy a Blazor WebAssembly app to Apache:
 
 For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [`mod_deflate`](https://httpd.apache.org/docs/current/mod/mod_deflate.html).
 
-### GitHub Pages
+## GitHub Pages
+
+`BlazorWebAssemblyXrefGenerator` sample app
+
+
 
 The default GitHub Action, which deploys pages, skips deployment of folders starting with underscore, for example, the `_framework` folder. To deploy folders starting with underscore, add an empty `.nojekyll` file to the Git branch.
 
@@ -684,7 +688,7 @@ When using a project site instead of an organization site, update the `<base>` t
 > [!NOTE]
 > The [`SteveSandersonMS/BlazorOnGitHubPages` GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
 
-### Standalone with Docker
+## Standalone with Docker
 
 A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
 
