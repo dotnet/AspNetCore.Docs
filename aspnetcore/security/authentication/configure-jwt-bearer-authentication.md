@@ -327,7 +327,9 @@ Testing secure APIs can be implemented in different ways. Integration tests and 
 
 [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt)
 
-It is important not to create security problems in the API so that you can test the API. When delegated access tokens are used, it is more difficult to test as the tokens can only be created using a UI and an OpenID Connect flow. If using a test tool to create the delegated access tokens, security features must be disabled for the tests. It is important that the features are only disabled in the test environment.
+Ensure that security problems are **not** introduced into the API for testing purposes. Testing becomes more challenging when delegated access tokens are used, as these tokens can only be created through a UI and an OpenID Connect flow. If a test tool is used to create delegated access tokens, security features must be disabled for testing. It's essential that these features are only disabled in the test environment.
+
+Create dedicated and isolated test environments where security features can safely be disable or modified. Ensure these changes are strictly limited to the test environment.
 
 ### Use Swagger, Curl and other API UI tools
 
