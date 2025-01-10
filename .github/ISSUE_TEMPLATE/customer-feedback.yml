@@ -44,4 +44,11 @@ body:
       required: true
     attributes:
       label: Article author
-      
+  - type: textarea
+    id: metadata
+    validations:
+      required: false
+    attributes:
+      label: Metadata
+      description: >-
+        Documentation metadata will be applied here
