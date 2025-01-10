@@ -336,7 +336,7 @@ Swagger and Curl are great UI tools for testing APIs. For the tools to work, the
 > Warning
 > Do not deploy insecure security test flows to production.
 
-If implementing a Swagger UI for an API, you should normally not deploy the UI to production as the security must be weakened to allow this to work. 
+When implementing a Swagger UI for an API, you should normally not deploy the UI to production as the security must be weakened to allow this to work. 
 
 ## Map claims from OpenID Connect
 
