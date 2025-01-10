@@ -124,7 +124,7 @@ If any of these claims or values are incorrect, the API should return a 401 resp
 
 ### JWT bearer token basic validation
 
-A basic implementation of the AddJwtBearer can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it has not been tampered with.
+A basic implementation of the [AddJwtBearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer) can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it hasn't been tampered with.
 
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
