@@ -673,6 +673,16 @@ For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod
 `BlazorWebAssemblyXrefGenerator` sample app
 
 
+The deployment uses the following technology:
+
+* [Single Page Apps for GitHub Pages (`rafgraph/spa-github-pages` GitHub repository)](https://github.com/rafgraph/spa-github-pages): This is a lightweight solution for deploying single page apps with GitHub Pages because GitHub Pages doesn't natively support SPAs.
+
+* [`actions/setup-dotnet` GitHub Action](https://github.com/actions/setup-dotnet) to install the latest .NET SDK on Ubuntu (latest).
+
+[`static.yml` file](https://github.com/dotnet/blazor-samples/blob/main/.github/workflows/static.yml)
+
+[`SteveSandersonMS/ghaction-rewrite-base-href` Action](https://github.com/SteveSandersonMS/ghaction-rewrite-base-href)
+
 
 The default GitHub Action, which deploys pages, skips deployment of folders starting with underscore, for example, the `_framework` folder. To deploy folders starting with underscore, add an empty `.nojekyll` file to the Git branch.
 
