@@ -162,7 +162,10 @@ builder.Services.AddAuthentication()
 
 ### JWT with multiple schemes
 
-Some APIs need to support access tokens from multiple issuers. This can be implemented in many ways. Separate APIs and schemes for each issuer can be used. The **AddPolicyScheme** can also be used to choose the correct scheme depending on the token type.
+APIs often need to accommodate access tokens from various issuers. Supporting multiple token issuers in an API can be accomplished by:
+
+* **Separate APIs**: Create distinct APIs with dedicated authentication schemes for each issuer.
+* [AddPolicyScheme](/dotnet/api/microsoft.aspnetcore.authentication.authenticationbuilder.addpolicyscheme): This method can define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties (e.g., issuer, claims). This approach allows for greater flexibility within a single API.
 
 ```csharp
 services.AddAuthentication(options =>
