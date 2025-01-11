@@ -318,7 +318,7 @@ When using access tokens in a client application, the access tokens need to be r
 The [Duende.AccessTokenManagement.OpenIdConnect](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect) Nuget package is a good choice for handling and managing access tokens in the client app.  For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
 
 > Note
-> If deploying the production, the cache should work in a mutli-instance deployment and a persistent cache is normally required.
+> If deploying to production, the cache should work in a mutli-instance deployment. A persistent cache is normally required.
 
 Some secure token servers encrypt the access tokens. Access tokens do not require any format. When using OAuth introspection, a reference token is used instead of an access token. A client (UI) application should never open an access token as the access token is not intended for this. Only an API for which the access token was created for should open the access token. 
 
