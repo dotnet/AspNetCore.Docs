@@ -41,13 +41,6 @@ public class Program
                 jwtOptions.TokenValidationParameters.ValidTypes = ["at+jwt"];
             });
 
-        var requireAuthPolicy = new AuthorizationPolicyBuilder()
-            .RequireAuthenticatedUser()
-            .Build();
-
-        builder.Services.AddAuthorizationBuilder()
-            .SetFallbackPolicy(requireAuthPolicy);
-
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
