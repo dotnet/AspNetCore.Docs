@@ -273,7 +273,7 @@ Integration tests and containers with access tokens can be used to test secure A
 
 Create dedicated and isolated test environments where security features can safely be disable or modified. Ensure these changes are strictly limited to the test environment.
 
-### Use Swagger, Curl and other API UI tools
+### Use Swagger UI, Curl and other API UI tools
 
 Swagger and Curl are great UI tools for testing APIs. For the tools to work, the API can produce an Open API document and this can be loaded into the client testing tool. A security flow to acquire a new access token can be added to the API Open API file. 
 
