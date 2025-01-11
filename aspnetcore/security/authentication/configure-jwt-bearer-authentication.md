@@ -172,10 +172,10 @@ services.AddAuthentication(options =>
 	options.DefaultChallengeScheme = "UNKNOWN";
 
 })
-.AddJwtBearer(Consts.MY_AUTH0_SCHEME, options =>
+.AddJwtBearer(Consts.MY_FIRST_SCHEME, options =>
 {
-	options.Authority = "https://dev-damienbod.eu.auth0.com/";
-	options.Audience = "https://auth0-api1";
+	options.Authority = "https://your-authority";
+	options.Audience = "https://your-audience";
 	options.TokenValidationParameters = new TokenValidationParameters
 	{
 		ValidateIssuer = true,
