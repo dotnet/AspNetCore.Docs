@@ -136,11 +136,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 The [AddJwtBearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer) method provides multiple configurations. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences. The [ValidTypes](/dotnet/api/microsoft.identitymodel.tokens.tokenvalidationparameters.validtypes) types can be used to validate the "at+jwt" header if the value is supported.
 
+Explicitly defining the parameters is not required. The definitions depends on the access token claim values and the secure token server used to validate the access token. You should use the default values if possible. 
+
 ```csharp
 builder.Services.AddAuthentication()
 .AddJwtBearer("some-scheme", jwtOptions =>
 {
-	jwtOptions.MetadataAddress = builder.Configuration["Api:MetadataAddress"]!;
+	jwtOptions.MetadataAddress = builder.Configuration["Api:MetadataAddress"];
+	// Not always required if the MetadataAddress is specified
 	jwtOptions.Authority = builder.Configuration["Api:Authority"];
 	jwtOptions.Audience = builder.Configuration["Api:Audience"];
 	jwtOptions.TokenValidationParameters = new TokenValidationParameters
