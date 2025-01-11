@@ -49,7 +49,7 @@ See [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/htm
 
 #### Application access tokens and delegated access tokens
 
-When requesting or creating an access token, an app, or an app acting on behalf of a user, can request an access token. These tokens can be either *application access tokens* or *delegated access tokens*. The tokens have different claims and are managed and stored differently. An *application access token* is typically stored once in the app until it expires, while a *delegated access token* is stored per user, either in a cookie or in a secure server cache.
+Access tokens can be either *application access tokens* or *delegated access tokens*. The tokens have different claims and are managed and stored differently. An *application access token* is typically stored once in the app until it expires, while a *delegated access token* is stored per user, either in a cookie or in a secure server cache.
 
 We recommend using delegated user access tokens whenever a user is involved. Downstream APIs can request a delegated user access token on behalf of the authenticated user. 
 
