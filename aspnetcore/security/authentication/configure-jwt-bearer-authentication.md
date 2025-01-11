@@ -155,7 +155,6 @@ builder.Services.AddAuthentication()
 	};
 
 	jwtOptions.MapInboundClaims = false;
-	jwtOptions.TokenValidationParameters.ValidTypes = ["at+jwt"];
 });
 ```
 
