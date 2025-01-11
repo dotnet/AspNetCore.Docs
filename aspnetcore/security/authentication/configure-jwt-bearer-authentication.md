@@ -198,11 +198,11 @@ services.AddAuthentication(options =>
 		if (!string.IsNullOrEmpty(authorization) && authorization.StartsWith("Bearer "))
 		{
 			var token = authorization.Substring("Bearer ".Length).Trim();
-			var jwtHandler = new JwtSecurityTokenHandler();
+			var jwtHandler = new JsonWebTokenHandler();
 
 			if(jwtHandler.CanReadToken(token)) // it's a self contained access token and not encrypted
 			{
-				var issuer = jwtHandler.ReadJwtToken(token).Issuer; //.Equals("B2C-Authority"))
+				var issuer = jwtHandler.ReadJsonWebToken(token).Issuer; //.Equals("B2C-Authority"))
 				if (issuer == Consts.MY_THIRD_PARTY_ISS) // Third party identity provider
 				{
 					return Consts.MY_THIRD_PARTY_SCHEME;
