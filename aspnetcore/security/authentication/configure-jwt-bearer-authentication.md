@@ -168,8 +168,8 @@ APIs often need to accommodate access tokens from various issuers. Supporting mu
 ```csharp
 services.AddAuthentication(options =>
 {
-	options.DefaultScheme = "UNKNOWN";
-	options.DefaultChallengeScheme = "UNKNOWN";
+	options.DefaultScheme = Consts.MY_POLICY_SCHEME;
+	options.DefaultChallengeScheme = Consts.MY_POLICY_SCHEME;
 
 })
 .AddJwtBearer(Consts.MY_FIRST_SCHEME, options =>
