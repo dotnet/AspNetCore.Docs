@@ -281,7 +281,12 @@ For secure web apps, a backend is required to store access tokens on a trusted s
 
 ## Downstream APIs
 
-APIs sometimes require user data from downstream APIs on behalf of the user authenticated in the calling application. The API could just implement an OAuth client credentials flow, but this would mean a full trust between the two API applications. A better way to implement this would be to use a zero-trust strategy and use a delegated user access token. For this to work, the API requires access for the new identity, the user calling the application and the API itself. There are fours ways to implement this:
+APIs occasionally need to access user data from downstream APIs on behalf of the authenticated user in the calling app. While implementing an OAuth client credentials flow is an option, it necessitates full trust between the two API apps. A more secure approach involves using a zero-trust strategy with a delegated user access token. This approach:
+
+* Enhances security by granting the API only the necessary permissions for that specific user.
+* Requires the API to create the new access token for the user calling the app and the API.
+
+There are several ways to implement a zero-trust strategy with a delegated user access token:
 
 ### Use OAuth 2.0 Token Exchange to request a new delegated access token
 This is a great way to implement this requirement but is complicated if you must implement the OAuth flow yourself. 
