@@ -309,7 +309,7 @@ This approach is not difficult to implement but the access token has access to b
 This is easy to implement but the client application has full application access and not a delegated access token. The token should be cached in the client API application.
 
 > Note
-> Any app-to-app security would also work. Certificate authentication can be used or in Azure a managed identity can be used. 
+> Any app-to-app security also works. Certificate authentication, or in Azure, a managed identity can be used. 
 
 ## Handling access tokens
 
