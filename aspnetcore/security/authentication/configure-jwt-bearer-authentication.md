@@ -213,14 +213,9 @@ services.AddAuthentication(options =>
 			if(jwtHandler.CanReadToken(token)) // it's a self contained access token and not encrypted
 			{
 				var issuer = jwtHandler.ReadJwtToken(token).Issuer; //.Equals("B2C-Authority"))
-				if(issuer == Consts.MY_OPENIDDICT_ISS) // OpenIddict
+				if (issuer == Consts.MY_THIRD_PARTY_ISS) // Third party identity provider
 				{
-					return OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
-				}
-
-				if (issuer == Consts.MY_AUTH0_ISS) // Auth0
-				{
-					return Consts.MY_AUTH0_SCHEME;
+					return Consts.MY_THIRD_PARTY_SCHEME;
 				}
 
 				if (issuer == Consts.MY_AAD_ISS) // AAD
