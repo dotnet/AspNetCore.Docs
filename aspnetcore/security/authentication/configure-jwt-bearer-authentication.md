@@ -330,7 +330,6 @@ Some secure token servers encrypt the access tokens. Access tokens do not requir
 
 Integration tests and containers with access tokens can be used to test secure APIs. Access tokens can be created using the [dotnet user-jwts tool](/aspnet/core/security/authentication/jwt-authn).
 
-[Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt)
 
 > [!WARNING]
 > Ensure that security problems are **not** introduced into the API for testing purposes. Testing becomes more challenging when delegated access tokens are used, as these tokens can only be created through a UI and an OpenID Connect flow. If a test tool is used to create delegated access tokens, security features must be disabled for testing. It's essential that these features are only disabled in the test environment.
