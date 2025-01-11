@@ -21,10 +21,6 @@ This article covers the following areas:
 * How OIDC/OAuth fits into this?
 * Implementing JWT bearer token authentication
 * Recommended approaches to create a JWT
-* Downstream APIs
-* Handling access tokens
-* YARP
-* Testing APIs
 
 ## Authentication v Authorization
 
