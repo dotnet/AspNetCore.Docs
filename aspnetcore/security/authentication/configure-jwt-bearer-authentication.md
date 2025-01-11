@@ -275,9 +275,9 @@ Asymmetric keys should **always** be used when creating access tokens. The publi
 
 You should **NOT** create an access token from a username/password request. Username/password requests aren't authenticated and are vunerable to impersonation and phishing attacks. Access tokens should only be created using an OpenID Connect flow or an OAuth standard flow. Deviating from these standards can result in an insecure app.
 
-¨### Access tokens in Web applications
+### Use cookies
 
-Secure web applications require a backend and store access tokens somewhere on the trusted server. Only a secure HTTP only cookie is shared on the client browser.
+For secure web apps, a backend is required to store access tokens on a trusted server.  Only a secure HTTP only cookie is shared on the client browser. See the [OIDC authentication documentation](/aspnet/core/security/authentication/configure-oidc-web-authentication) for how to do this in an ASP.NET Core web app.
 
 ## Downstream APIs
 
