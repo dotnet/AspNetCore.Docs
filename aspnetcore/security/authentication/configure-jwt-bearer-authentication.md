@@ -289,7 +289,8 @@ APIs occasionally need to access user data from downstream APIs on behalf of the
 There are several ways to implement a zero-trust strategy with a delegated user access token:
 
 ### Use OAuth 2.0 Token Exchange to request a new delegated access token
-This is a great way to implement this requirement but is complicated if you must implement the OAuth flow yourself. 
+
+This is a good way to implement this requirement but it's complicated if you must implement the OAuth flow. 
 
 See [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 
