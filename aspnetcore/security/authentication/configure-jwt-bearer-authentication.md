@@ -187,17 +187,8 @@ services.AddAuthentication(options =>
 })
 .AddJwtBearer(Consts.MY_AAD_SCHEME, jwtOptions =>
 {
-	jwtOptions.MetadataAddress = Configuration["AzureAd:MetadataAddress"]; 
 	jwtOptions.Authority = Configuration["AzureAd:Authority"];
 	jwtOptions.Audience = Configuration["AzureAd:Audience"]; 
-	jwtOptions.TokenValidationParameters = new TokenValidationParameters
-	{
-		ValidateIssuer = true,
-		ValidateAudience = true,
-		ValidateIssuerSigningKey = true,
-		ValidAudiences = Configuration.GetSection("ValidAudiences").Get<string[]>(),
-		ValidIssuers = Configuration.GetSection("ValidIssuers").Get<string[]>()
-	};
 })
 .AddPolicyScheme(Consts.MY_POLICY_SCHEME, displayName: null, options =>
 {
