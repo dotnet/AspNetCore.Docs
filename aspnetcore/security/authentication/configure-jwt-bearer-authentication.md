@@ -275,7 +275,7 @@ Create dedicated and isolated test environments where security features can safe
 
 ### Use Swagger UI, Curl and other API UI tools
 
-Swagger and Curl are great UI tools for testing APIs. For the tools to work, the API can produce an Open API document and this can be loaded into the client testing tool. A security flow to acquire a new access token can be added to the API Open API file. 
+Swagger UI and Curl are great UI tools for testing APIs. For the tools to work, the API can produce an OpenAPI document and this can be loaded into the client testing tool. A security flow to acquire a new access token can be added to the API OpenAPI file. 
 
 > [!WARNING]
 > Do not deploy insecure security test flows to production.
