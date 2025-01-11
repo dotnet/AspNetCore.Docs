@@ -238,7 +238,7 @@ services.AddAuthentication(options =>
 ```
 ### Forcing the bearer authentication
 
-[SetFallbackPolicy](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.fallbackpolicy) can be used to require authentication if no policy is defined. 
+[SetFallbackPolicy](/dotnet/api/microsoft.aspnetcore.authorization.authorizationbuilder.setfallbackpolicy) can be used to require authentication for all requests even to endpoints without an `[Authorize]` attribute. [SetDefaultPolicy](dotnet/api/microsoft.aspnetcore.authorization.authorizationbuilder.setdefaultpolicy) configures the policy used for endpoints with the `[Authorize]` attribute and already defaults to requiring authenticated users. See the [require authenticated users documentation](/aspnet/core/security/authorization/secure-data?view=aspnetcore-9.0#require-authenticated-users) for more details.
 
 ```csharp
 var requireAuthPolicy = new AuthorizationPolicyBuilder()
