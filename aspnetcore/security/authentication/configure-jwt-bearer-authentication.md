@@ -315,7 +315,7 @@ This is easy to implement but the client application has full application access
 
 When using access tokens in a client application, the access tokens need to be rotated, persisted and stored somewhere on the server. In a web application, cookies are used to secure the session and can be used to store tokens via [SaveTokens](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.savetokens) option.
 
-Duende.AccessTokenManagement.OpenIdConnect is a great Nuget package for handling and managing access tokens in the client application. 
+The [Duende.AccessTokenManagement.OpenIdConnect](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect) Nuget package is a good choice for handling and managing access tokens in the client app.  For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
 
 > Note
 > If deploying the production, the cache should work in a mutli-instance deployment and a persistent cache is normally required.
