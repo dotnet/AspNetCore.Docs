@@ -313,7 +313,7 @@ This is easy to implement but the client application has full application access
 
 ## Handling access tokens
 
-When using access tokens in a client application, the access tokens need to be rotated, persisted and stored somewhere on the server. In a web application, cookies are used to secure the session. The cookies should not contain the access tokens as the size of the cookie would become too large.
+When using access tokens in a client application, the access tokens need to be rotated, persisted and stored somewhere on the server. In a web application, cookies are used to secure the session and can be used to store tokens via [SaveTokens](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.savetokens) option.
 
 Duende.AccessTokenManagement.OpenIdConnect is a great Nuget package for handling and managing access tokens in the client application. 
 
