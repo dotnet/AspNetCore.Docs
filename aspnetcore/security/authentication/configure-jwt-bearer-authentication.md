@@ -271,11 +271,11 @@ Standards like OpenID Connect or OAuth should **always**** be used when creating
 
 Asymmetric keys should **always** be used when creating access tokens. The public key is available in the well known endpoints and the API clients can validate the signature of the access token using the public key.
 
-### Should I create an access token from a username/password request?
+### Never create an access token from a username/password request
 
-You should NOT create an access token from a username/password request. This is not authentication and is open to impersonation attacks and phishing attacks. Access tokens should only be created using an OpenID Connect flow or an OAuth standard flow. Not using standards can result in security problems.
+You should **NOT** create an access token from a username/password request. Username/password requests aren't authenticated and are vunerable to impersonation and phishing attacks. Access tokens should only be created using an OpenID Connect flow or an OAuth standard flow. Deviating from these standards can result in an insecure app.
 
-### Access tokens in Web applications
+¨### Access tokens in Web applications
 
 Secure web applications require a backend and store access tokens somewhere on the trusted server. Only a secure HTTP only cookie is shared on the client browser.
 
