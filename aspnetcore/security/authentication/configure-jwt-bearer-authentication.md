@@ -199,7 +199,7 @@ services.AddAuthentication(options =>
 		ValidIssuers = Configuration.GetSection("ValidIssuers").Get<string[]>()
 	};
 })
-.AddPolicyScheme("UNKNOWN", "UNKNOWN", options =>
+.AddPolicyScheme(Consts.MY_POLICY_SCHEME, displayName: null, options =>
 {
 	options.ForwardDefaultSelector = context =>
 	{
