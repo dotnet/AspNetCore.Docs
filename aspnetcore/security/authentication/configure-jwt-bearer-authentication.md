@@ -137,6 +137,8 @@ The [AddJwtBearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbeare
 
 Explicitly defining the parameters is not required. The definitions depends on the access token claim values and the secure token server used to validate the access token. You should use the default values if possible. 
 
+See [Mapping claims](xref:security/authentication/claims#claims-namespaces-default-namespaces) MapInboundClaims details.
+
 ```csharp
 builder.Services.AddAuthentication()
 .AddJwtBearer("some-scheme", jwtOptions =>
