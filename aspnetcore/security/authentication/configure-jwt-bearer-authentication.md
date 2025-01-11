@@ -265,7 +265,7 @@ Insecure handling of access tokens, such as weak authentication or storing token
 
 ### Use standards
 
-Standards like OpenID Connect or OAuth should always be used when creating access tokens. Access tokens should not be created in your applications without the correct security precautions.  Only in test scenarios, should you be creating access tokens.
+Standards like OpenID Connect or OAuth should **always**** be used when creating access tokens. Access tokens should **not**** be created in production apps without adhering to the security precautions outlined in this article. Creating access tokens should be limited to test scenarios.
 
 ### Use asymmetric keys
 
