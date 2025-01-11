@@ -302,7 +302,8 @@ For more information, see [[Microsoft identity platform and OAuth 2.0 On-Behalf-
 
 ### Use the same delegated access token sent to the API
 
-This is easy to implement but the access token has access to both APIs. Yarp reverse proxy can be used to implement this. This is easy to implement.
+
+This approach is not difficult to implement but the access token has access to both APIs. Yarp reverse proxy can be used to implement this.
 
 ### Use OAuth client credentials flow and use an application access token
 This is easy to implement but the client application has full application access and not a delegated access token. The token should be cached in the client API application.
