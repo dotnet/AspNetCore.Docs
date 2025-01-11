@@ -332,7 +332,8 @@ Integration tests and containers with access tokens can be used to test secure A
 
 [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt)
 
-Ensure that security problems are **not** introduced into the API for testing purposes. Testing becomes more challenging when delegated access tokens are used, as these tokens can only be created through a UI and an OpenID Connect flow. If a test tool is used to create delegated access tokens, security features must be disabled for testing. It's essential that these features are only disabled in the test environment.
+> [!WARNING]
+> Ensure that security problems are **not** introduced into the API for testing purposes. Testing becomes more challenging when delegated access tokens are used, as these tokens can only be created through a UI and an OpenID Connect flow. If a test tool is used to create delegated access tokens, security features must be disabled for testing. It's essential that these features are only disabled in the test environment.
 
 Create dedicated and isolated test environments where security features can safely be disable or modified. Ensure these changes are strictly limited to the test environment.
 
