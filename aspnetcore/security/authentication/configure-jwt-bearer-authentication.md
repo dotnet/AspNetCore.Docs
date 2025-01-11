@@ -142,7 +142,7 @@ builder.Services.AddAuthentication()
 .AddJwtBearer("some-scheme", jwtOptions =>
 {
 	jwtOptions.MetadataAddress = builder.Configuration["Api:MetadataAddress"];
-	// Not always required if the MetadataAddress is specified
+	// Optional if the MetadataAddress is specified
 	jwtOptions.Authority = builder.Configuration["Api:Authority"];
 	jwtOptions.Audience = builder.Configuration["Api:Audience"];
 	jwtOptions.TokenValidationParameters = new TokenValidationParameters
