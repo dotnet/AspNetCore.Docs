@@ -295,11 +295,11 @@ This is a good way to implement this requirement but it's complicated if you mus
 See [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 
 ### Use Microsoft on behalf of flow to request a new delegated access token
-This works very well and is super easy to implement when using Microsoft .Identity.Web. It only works with Microsoft Entra ID, Microsoft Entra External ID and Microsoft Azure AD B2C.
 
-See [[Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
+Using the [Microsoft Identity Web authentication library](/entra/msal/dotnet/microsoft-identity-web/) is the easiest and a secure approach. It only works with Microsoft Entra ID, Microsoft Entra External ID.
 
 ### Use the same delegated access token sent to the API
+
 This is easy to implement but the access token has access to both APIs. Yarp reverse proxy can be used to implement this. This is easy to implement.
 
 ### Use OAuth client credentials flow and use an application access token
