@@ -192,7 +192,7 @@ In the preceding example, the `$shared` environment defines the `HostAddress` va
 
 ## User-specific environment files
 
-A user-specific value is any value that an individual developer wants to test with but doesn't want to share with the team. Since the `http-client.env.json` file is checked in to source control by default, it wouldn't be appropriate to add user-specific values to this file. Instead, put them in a file named `http-client.env.json.user` located in the same folder as the `http-client.env.json` file. Files that end with `.user` should be excluded from source control by default when using Visual Studio source control features.
+A user-specific value is any value that a developer wants to test with but doesn't want to share with the team. The `http-client.env.json` file is checked in to source control by default, therefore, ***DO NOT*** add user-specific values to this file. Rather, add user-specific values in a file named `http-client.env.json.user`. The `http-client.env.json.user` file is located in the same folder as the `http-client.env.json` file. Files that end with `.user` are excluded from source control by default when using Visual Studio source control features.
 
 When the `http-client.env.json` file is loaded, Visual Studio looks for a sibling `http-client.env.json.user` file. If a variable is defined in an environment in both the `http-client.env.json` file and the `http-client.env.json.user` file, the value in the `http-client.env.json.user` file wins.
 
