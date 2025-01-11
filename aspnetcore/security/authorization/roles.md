@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to restrict ASP.NET Core controller and action access by passing roles to the Authorize attribute.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/14/2016
+ms.date: 10/14/2024
 uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
@@ -57,8 +57,8 @@ Access to an action can be limited by applying additional role authorization att
 
 In the preceding `ControlAllPanelController` controller:
 
-* Members of the `Administrator` role or the `PowerUser` role can access the controller and the `SetTime` action.
-* Only members of the `Administrator` role can access the `ShutDown` action.
+* Members of the `Administrator` role or the `PowerUser` role can access the controller and the `ShutDown` action.
+* Only members of the `Administrator` role can access the `SetTime` action.
 
 A controller can be secured but allow anonymous, unauthenticated access to individual actions:
 
