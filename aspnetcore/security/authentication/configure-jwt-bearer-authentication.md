@@ -113,7 +113,6 @@ JWT bearer tokens should be fully validated in an API. The following should be v
 *  Issuer claim with the expected value.
 *  Audience claim with the expected value.
 *  Token expiration.
-*  Token type. Required in [RFC 9068](https://datatracker.ietf.org/doc/rfc9068/) (`"application/at+jwt"`)
 
 The following claims are required for OAuth 2.0 access tokens: `iss`, `exp`, `aud`, `sub`, `client_id`, `iat, and`jti`.
 
