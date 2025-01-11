@@ -269,7 +269,7 @@ Standards like OpenID Connect or OAuth should **always**** be used when creating
 
 ### Use asymmetric keys
 
-Asymmetric keys should always be used when creating access tokens. The public key is available in the well known endpoints and the API clients can validate the signature of the access token using the public key.
+Asymmetric keys should **always** be used when creating access tokens. The public key is available in the well known endpoints and the API clients can validate the signature of the access token using the public key.
 
 ### Should I create an access token from a username/password request?
 
