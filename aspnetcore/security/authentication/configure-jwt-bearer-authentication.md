@@ -335,7 +335,7 @@ Some secure token servers encrypt the access tokens. Access tokens do not requir
 
 ## Testing APIs
 
-Testing secure APIs can be implemented in different ways. Integration tests and containers with access tokens can be used to test the APIs. You can also create the access tokens using the dotnet user-jwts tool.
+Integration tests and containers with access tokens can be used to test secure APIs. Access tokens can be created using the [dotnet user-jwts tool](/aspnet/core/security/authentication/jwt-authn).
 
 [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt)
 
