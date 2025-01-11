@@ -294,7 +294,7 @@ This is a good way to implement this requirement but it's complicated if you mus
 
 See [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 
-### Use Microsoft on behalf of flow to request a new delegated access token
+### Use Microsoft Identity Web on behalf of flow to request a new delegated access token
 
 Using the [Microsoft Identity Web authentication library](/entra/msal/dotnet/microsoft-identity-web/) is the easiest and a secure approach. It only works with Microsoft Entra ID, Microsoft Entra External ID.
 
