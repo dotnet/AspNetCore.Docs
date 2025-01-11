@@ -90,7 +90,7 @@ A [403 Forbidden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) 
 
 In ASP.NET Core, you can enforce authorization using:
 
-[Requirements and policies](/aspnet/core/security/authorization/policies?view=aspnetcore-9.0): Define custom requirements, e.g., "Must be an administrator" and associate them with policies.
+[Requirements and policies](/aspnet/core/security/authorization/policies): Define custom requirements, e.g., "Must be an administrator" and associate them with policies.
 [Role-based authorization](/aspnet/core/security/authorization/roles*): Assign users to roles e.g., "Admin," "Editor", and restrict access based on those roles.
 
 ## What role has OIDC and/or OAuth when using bearer tokens?
@@ -225,7 +225,7 @@ services.AddAuthentication(options =>
 
 ### Forcing the bearer authentication
 
-[SetFallbackPolicy](/dotnet/api/microsoft.aspnetcore.authorization.authorizationbuilder.setfallbackpolicy) can be used to require authentication for all requests even to endpoints without an `[Authorize]` attribute. [SetDefaultPolicy](dotnet/api/microsoft.aspnetcore.authorization.authorizationbuilder.setdefaultpolicy) configures the policy used for endpoints with the `[Authorize]` attribute and already defaults to requiring authenticated users. See the [require authenticated users documentation](/aspnet/core/security/authorization/secure-data?view=aspnetcore-9.0#require-authenticated-users) for more details.
+[SetFallbackPolicy](/dotnet/api/microsoft.aspnetcore.authorization.authorizationbuilder.setfallbackpolicy) can be used to require authentication for all requests even to endpoints without an `[Authorize]` attribute. [SetDefaultPolicy](dotnet/api/microsoft.aspnetcore.authorization.authorizationbuilder.setdefaultpolicy) configures the policy used for endpoints with the `[Authorize]` attribute and already defaults to requiring authenticated users. See the [require authenticated users documentation](/aspnet/core/security/authorization/secure-data#require-authenticated-users) for more details.
 
 ```csharp
 var requireAuthPolicy = new AuthorizationPolicyBuilder()
