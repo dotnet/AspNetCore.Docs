@@ -82,7 +82,7 @@ A 401 Unauthorized response indicates that the provided access token doesn't mee
 * **Expiration**: The token has expired and is no longer valid.
 * **Incorrect claims**: Critical claims within the token, such as the audience (`aud`) or issuer (`iss`), are missing or invalid.
 
->Note: According to [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2):
+>Note: From the HTTP Semantics [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2):
 >The server generating a 401 response MUST send a WWW-Authenticate header field (Section 11.6.1) containing at least one challenge applicable to the target resource.
 
 The [OAuth specifications](/entra/identity-platform/access-token-claims-reference) provide detailed guidelines on the required claims and their validation. 
@@ -310,3 +310,5 @@ Refer to the following document:
 [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 
 [JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens](https://datatracker.ietf.org/doc/html/rfc9068)
+
+[HTTP Semantics RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2)
