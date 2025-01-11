@@ -91,7 +91,7 @@ A [403 Forbidden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) 
 In ASP.NET Core, you can enforce authorization using:
 
 [Requirements and policies](/aspnet/core/security/authorization/policies): Define custom requirements, e.g., "Must be an administrator" and associate them with policies.
-[Role-based authorization](/aspnet/core/security/authorization/roles*): Assign users to roles e.g., "Admin," "Editor", and restrict access based on those roles.
+[Role-based authorization](/aspnet/core/security/authorization/roles): Assign users to roles e.g., "Admin," "Editor", and restrict access based on those roles.
 
 ## What role has OIDC and/or OAuth when using bearer tokens?
 
