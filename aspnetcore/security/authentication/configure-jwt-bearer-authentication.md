@@ -187,12 +187,20 @@ builder.Services.AddAuthorizationBuilder()
 
 The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute can also be used to force the authentication. If multiple schemes are used, the bearer scheme generally needs to be set as the default authentication scheme or specified via `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
 
+Authorization in controllers:
+
 ```csharp
 [Authorize]
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
+```
+
+Authorization in Minimal APIs:
+
+```csharp
+app.MapGet("/hello", [Authorize] () => "Hi");
 ```
 
 ## Recommended approaches to create a JWT
