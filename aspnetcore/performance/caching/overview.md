@@ -49,8 +49,6 @@ For more information, see <xref:performance/caching/distributed>.
 
 The `Hybrid cache`API bridges some gaps in the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> and <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> APIs. <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> is an abstract class with a default implementation that handles most aspects of saving to cache and retrieving from cache:
 
-### Features
-
 `HybridCache has the following features that the other APIs don't have:
 
 * A unified API for both in-process and out-of-process caching.
@@ -118,15 +116,25 @@ public class SomeService(HybridCache cache)
 }
 ```
 
-The `HybridCache` library supports older .NET runtimes, down to .NET Framework 4.7.2 and .NET Standard 2.0.
+The `HybridCache` library supports older .NET runtimes, including .NET Framework 4.7.2 and .NET Standard 2.0.
 
 For more information, see <xref:performance/caching/hybrid>.
 
 ## Response caching
 
-[!INCLUDE[](~/includes/response-caching-mid.md)]
+Response caching decreases the workload on the server in two ways:
 
-For more information, see <xref:performance/caching/response>.
+* By storing and reusing entire HTTP responses. This behavior differs from memory cache, distributed cache, and hybrid cache, which store any data objects specified by the application code. 
+* By reducing the number of requests clients and intermediate proxies make to the web server. This effect is achieved by setting HTTP headers such as Cache-Control, Expires, and ETag, which instruct clients and proxies on how to cache the responses. None of the other available types of caching have this capability.
+
+Response caching has limited benefits for UI apps such as Blazor web apps because browsers generally set request headers that prevent caching. In contrast, [output caching](xref:performance/caching/output) benefits UI apps by allowing server-side configuration to decide what should be cached independently of HTTP headers.
+
+Response caching on the server relies on middleware to handle the storage and retrieval of cache entries. This middleware must be configured in the application to function correctly. The Response caching middleware:
+
+* Enables caching server responses based on [HTTP cache headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) like proxies do.
+* May be beneficial for public GET or HEAD API requests from clients where the [Conditions for caching](xref:performance/caching/middleware#cfc) are met.
+
+For more information, see <xref:performance/caching/response> and <xref:performance/caching/middleware>
 
 <a name="oc7"></a>
 
