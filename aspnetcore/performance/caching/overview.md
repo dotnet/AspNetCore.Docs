@@ -176,6 +176,10 @@ Cache the content from an MVC view or Razor Page in distributed cloud or web far
 
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.
 
+Additional resources
+
+* <https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching>
+
 :::moniker-end
 
 [!INCLUDE[](~/performance/caching/overview/includes/overview7-8.md)]
