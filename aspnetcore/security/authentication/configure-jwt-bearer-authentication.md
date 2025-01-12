@@ -76,6 +76,7 @@ When using JWT access tokens for API authorization, the API grants or denies acc
 
 > Note
 > HTTP also allows returning 404 for not authorized, so as to not leak information about the existence of resources to unauthorized clients.
+
 ### 401 Unauthorized
 
 A 401 Unauthorized response indicates that the provided access token doesn't meet the required standards. This could be due to several reasons, including:
