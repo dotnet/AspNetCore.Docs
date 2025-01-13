@@ -2,11 +2,11 @@ The [`HybridCache`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/
 
 ### Features
 
-`HybridCache` has the following features that the other APIs don't have:
+`HybridCache has the following features that the other APIs don't have:
 
 * A unified API for both in-process and out-of-process caching.
 
-  `HybridCache` is designed to be a drop-in replacement for existing `IDistributedCache` and `IMemoryCache` usage, and it provides a 
+  `Hybrid cache` is designed to be a drop-in replacement for existing `IDistributedCache` and `IMemoryCache` usage, and it provides a 
 simple API for adding new caching code. If the app has an `IDistributedCache` implementation, the `HybridCache` service uses it for secondary caching. This two-level caching strategy allows `HybridCache` to provide the speed of an in-memory cache and the durability of a distributed or persistent cache.
 
 * Stampede protection.
