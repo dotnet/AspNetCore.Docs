@@ -2,7 +2,7 @@
 
 This repository contains the [ASP.NET Core documentation](https://learn.microsoft.com/aspnet/core/introduction-to-aspnet-core). See the [Contributing Guide](CONTRIBUTING.md) and the [issues list](https://github.com/dotnet/AspNetCore.Docs/issues) if you would like to help.
 
-ASP.NET 4.x documentation changes are made in the [`dotnet/AspNetDocs` GitHub repository](https://github.com/dotnet/AspNetDocs).
+The [`dotnet/AspNetDocs` GitHub repository](https://github.com/dotnet/AspNetDocs)contains the ASP.NET 4.x documentation.
 
 ## How to open an issue
 
