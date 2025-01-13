@@ -92,9 +92,9 @@ The following recommendations are designed to provide a consistent approach to u
   
   Thread safety isn't a concern, so loading logic doesn't require locking database records. The loading logic is used to disable UI controls so that users don't inadvertently select buttons or update fields while data is fetched.
   
-* If there's any chance that multiple threads may access the same code block, [inject a factory](#scope-to-the-component-lifetime) and make a new instance per operation. Otherwise, injecting and using the context is usually sufficient.
+* If there's any chance that multiple threads may access the same code block, [inject a factory](#scope-a-database-context-to-the-lifetime-of-the-component) and make a new instance per operation. Otherwise, injecting and using the context is usually sufficient.
 
-* For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
+* For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-a-database-context-to-the-lifetime-of-the-component).
 
 ## New `DbContext` instances
 
