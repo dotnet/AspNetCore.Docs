@@ -141,7 +141,7 @@ In the preceding factory:
 
 :::moniker-end
 
-The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>) to configure the database factory for DI and provide default options:
+The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging in an app that manages contacts. The code uses an extension method (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>) to configure the database factory for DI and provide default options:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -161,15 +161,17 @@ services.AddDbContextFactory<ContactContext>(opt =>
 
 :::moniker-end
 
-The factory is injected into components and used to create new `DbContext` instances.
+The factory is injected into components to create new <xref:Microsoft.EntityFrameworkCore.DbContext> instances.
 
-`IDbContextFactory<ContactContext>` is injected into the component:
+## Scope a database context to a component method
+
+The factory is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
 ```
 
-To delete a contact in a Razor component, `DbContext` is created using the factory (`DbFactory`):
+Create a <xref:Microsoft.EntityFrameworkCore.DbContext> for a method using the factory (`DbFactory`):
 
 ```csharp
 private async Task DeleteContactAsync()
@@ -189,31 +191,36 @@ private async Task DeleteContactAsync()
 }
 ```
 
-## Scope to the component lifetime
+## Scope a database context to the lifetime of the component
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 
-You can use the factory to create a context and track it for the lifetime of the component. First, implement <xref:System.IDisposable> and inject the factory into the component:
+Implement <xref:System.IDisposable> and inject the factory into the component:
 
 ```razor
 @implements IDisposable
 @inject IDbContextFactory<ContactContext> DbFactory
 ```
 
-The context is disposed when the component is disposed:
+Establish a property for the <xref:Microsoft.EntityFrameworkCore.DbContext>:
 
 ```csharp
-public void Dispose() => Context?.Dispose();
+private ContactContext? Context { get; set; }
 ```
 
-Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden to create a new context and load the contact:
+[`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden to create the <xref:Microsoft.EntityFrameworkCore.DbContext>:
 
 ```csharp
 protected override async Task OnInitializedAsync()
 {
     Context = DbFactory.CreateDbContext();
-    Contact = await Context.Contacts.SingleOrDefaultAsync(...);
 }
+```
+
+The <xref:Microsoft.EntityFrameworkCore.DbContext> is disposed when the component is disposed:
+
+```csharp
+public void Dispose() => Context?.Dispose();
 ```
 
 ## Enable sensitive data logging
