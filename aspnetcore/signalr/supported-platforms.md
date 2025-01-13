@@ -5,7 +5,7 @@ description: Learn about the supported platforms for ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, devx-track-js
-ms.date: 09/15/2021
+ms.date: 01/09/2025
 uid: signalr/supported-platforms
 ---
 # ASP.NET Core SignalR supported platforms
@@ -31,7 +31,7 @@ The JavaScript client doesn't support Internet Explorer and other older browsers
 
 ## .NET client
 
-The [.NET client](xref:signalr/dotnet-client) runs on any platform supported by ASP.NET Core. For example, [Xamarin developers can use SignalR](https://github.com/aspnet/Announcements/issues/305) for building Android apps using Xamarin.Android 8.4.0.1 and later and iOS apps using Xamarin.iOS 11.14.0.4 and later.
+The [.NET client](xref:signalr/dotnet-client) runs on any platform supported by ASP.NET Core. For example, [.NET Multi-platform App UI (.NET MAUI) developers can use SignalR](https://github.com/aspnet/Announcements/issues/305) for building Android and iOS apps.
 
 If the server runs IIS, the WebSockets transport requires IIS 8.0 or later on Windows Server 2012 or later. Other transports are supported on all platforms.
 
