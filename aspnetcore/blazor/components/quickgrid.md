@@ -309,7 +309,7 @@ public class DisplayNameColumn<TGridItem, TProp> : PropertyColumn<TGridItem, TPr
             var memberInfo = memberExpression.Member;
             Title = 
                 memberInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName ??
-                memberInfo.GetCustomAttribute<DisplayAttribute>().Name ??
+                memberInfo.GetCustomAttribute<DisplayAttribute>().GetName() ??
                 memberInfo.Name;
         }
 
