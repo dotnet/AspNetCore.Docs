@@ -17,6 +17,8 @@ When an identity is created it may belong to one or more roles. For example, Tra
 
 While roles are claims, not all claims are roles. Depending on the identity issuer a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the SPA templates are not designed around roles. In addition, for organizations migrating from an on-premises legacy system the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by SPAs. To secure SPAs, see <xref:security/authentication/identity/spa>.
 
+This article outlines role-based authorization for ASP.NET Core MVC and Razor apps. For Blazor apps, see <xref:blazor/security/index> and <xref:blazor/security/webassembly/meid-groups-roles>.
+
 ## Add Role services to Identity
 
 Register role-based authorization services in `Program.cs` by calling <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> with the role type in the app's Identity configuration. The role type in the following example is `IdentityRole`:
