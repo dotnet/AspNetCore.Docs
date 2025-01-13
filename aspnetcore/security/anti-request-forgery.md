@@ -161,7 +161,6 @@ Calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExten
 
 Multiple tabs logged in as different users, or one logged in as anonymous, are not supported.
 
-With the Synchronizer Token Pattern, only the most recently posted page is guaranteed to contain a valid antiforgery token. Apps that wish to support multiple tabs should test supported browsers and log failures.
 
 ## Configure antiforgery with `AntiforgeryOptions`
 
