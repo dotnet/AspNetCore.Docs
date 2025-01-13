@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn about the supported platforms for gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 10/27/2022
+ms.date: 01/08/2025
 uid: grpc/supported-platforms
 ---
 # gRPC on .NET supported platforms
@@ -89,7 +89,7 @@ For information about configuring ASP.NET Core servers to run gRPC, see <xref:gr
 
 The [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/) package supports gRPC calls over HTTP/2 on .NET Core 3 and .NET 5 or later.
 
-Limited support is available for gRPC over HTTP/2 on .NET Framework. Other .NET versions such as UWP, Xamarin and Unity don't have required HTTP/2 support, and must use gRPC-Web instead.
+Limited support is available for gRPC over HTTP/2 on .NET Framework. Other .NET versions such as UWP and Unity don't have required HTTP/2 support, and must use gRPC-Web instead.
 
 The following table lists .NET implementations and their gRPC client support:
 
@@ -101,8 +101,6 @@ The following table lists .NET implementations and their gRPC client support:
 | .NET Framework 4.6.1                         | ⚠️&dagger;        | ✔️         |
 | Blazor WebAssembly                           | ❌                | ✔️         |
 | Mono 5.4                                     | ❌                | ✔️         |
-| Xamarin.iOS 10.14                            | ❌                | ✔️         |
-| Xamarin.Android 8.0                          | ❌                | ✔️         |
 | Universal Windows Platform 10.0.16299        | ❌                | ✔️         |
 | Unity 2018.1                                 | ❌                | ✔️         |
 

@@ -51,8 +51,8 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
-    - text: Xamarin docs updates
-      url: /xamarin/whats-new/
+    - text: .NET Multi-platform App UI (.NET MAUI) docs updates
+      url: /dotnet/maui/whats-new/
     - text: .NET Core release notes
       url: https://github.com/dotnet/core/blob/main/release-notes/README.md
     - text: ASP.NET Core release notes
