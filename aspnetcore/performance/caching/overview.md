@@ -178,7 +178,7 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/distributed-cac
 
 Additional resources
 
-* <https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching>
+* <https://learn.microsoft.com/azure/architecture/best-practices/caching>
 
 :::moniker-end
 
