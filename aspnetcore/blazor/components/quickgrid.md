@@ -297,7 +297,7 @@ However, managing column titles (names) from bound model properties is usually a
 public DateTime ReleaseDate { get; set; }
 ```
 
-To enable the `QuickGrid` component to use the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType>, subclass <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2> either in the component or in a separate class:
+To enable the `QuickGrid` component to use the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType> property, subclass <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>, either in the component or in a separate class. Call the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.GetName%2A> method to return the localized <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType> value:
 
 ```csharp
 public class DisplayNameColumn<TGridItem, TProp> : PropertyColumn<TGridItem, TProp>
