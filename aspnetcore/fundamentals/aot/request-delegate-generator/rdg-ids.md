@@ -22,7 +22,7 @@ The ASP.NET Core Request Delegate Generator (RDG) is a tool that generates reque
 
 [!INCLUDE[](~/fundamentals/aot/includes/aot_preview.md)]
 
-The following list contains the [RDG diagnostics](https://source.dot.net/#Microsoft.AspNetCore.Http.RequestDelegateGenerator/DiagnosticDescriptors.cs,44128aef6daa9b5e) for ASP.NET Core:
+The following list contains the <!--keep--> [RDG diagnostics](https://source.dot.net/#Microsoft.AspNetCore.Http.RequestDelegateGenerator/DiagnosticDescriptors.cs,44128aef6daa9b5e) for ASP.NET Core:
 
 <!--
 * <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg001>

@@ -162,7 +162,7 @@ For more information, see the following resources:
 
 ## Subset of .NET APIs for Blazor WebAssembly apps
 
-A curated list of specific .NET APIs that are supported on the browser for Blazor WebAssembly isn't available. However, you can manually [search for a list of .NET APIs annotated with `[UnsupportedOSPlatform("browser")]`](https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/Runtime/Versioning/PlatformAttributes.cs,34041602e232c616,references) to discover .NET APIs that aren't supported in WebAssembly.
+A curated list of specific .NET APIs that are supported on the browser for Blazor WebAssembly isn't available. However, you can manually <!--keep--> [search for a list of .NET APIs annotated with `[UnsupportedOSPlatform("browser")]`](https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/Runtime/Versioning/PlatformAttributes.cs,34041602e232c616,references) to discover .NET APIs that aren't supported in WebAssembly.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

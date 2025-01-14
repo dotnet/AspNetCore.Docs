@@ -30,7 +30,7 @@ The following app startup code supports several app types:
 
 [!code-csharp[](~/fundamentals/startup/9.0_samples/WebAll/Program.cs?name=snippet)]
 
-Apps that use <xref:System.Diagnostics.Tracing.EventSource> can measure the startup time to understand and optimize startup performance. The [`ServerReady`](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName> represents the point where the server is ready to respond to requests.
+Apps that use <xref:System.Diagnostics.Tracing.EventSource> can measure the startup time to understand and optimize startup performance. The <!--keep-->[`ServerReady`](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName> represents the point where the server is ready to respond to requests.
 
  <a name="IStartupFilter"></a>
 
