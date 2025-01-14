@@ -50,7 +50,5 @@ configuration:
             then:
             - requestReview:
                 reviewer: guardrex
-            - addLabel:
-                label: 'blazor/subsvc'
 onFailure:
 onSuccess:
