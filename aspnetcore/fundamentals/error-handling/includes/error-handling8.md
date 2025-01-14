@@ -78,7 +78,7 @@ The following code uses a lambda for exception handling:
 
 ## IExceptionHandler
 
-[IExceptionHandler](/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) is an interface that gives the developer a callback for handling known exceptions in a central location.
+<xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler> is an interface that gives the developer a callback for handling known exceptions in a central location.
 
 `IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](/dotnet/api/microsoft.extensions.dependencyinjection.exceptionhandlerservicecollectionextensions.addexceptionhandler) [`IServiceCollection.AddExceptionHandler<T>`]. The lifetime of an `IExceptionHandler` instance is singleton. Multiple implementations can be added, and they're called in the order registered.
 
