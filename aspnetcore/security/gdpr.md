@@ -17,6 +17,7 @@ ASP.NET Core provides APIs and templates to help meet some of the [EU General Da
 
 * The project templates include extension points and stubbed markup that you can replace with your privacy and cookie use policy.
 * The `Pages/Privacy.cshtml` page or `Views/Home/Privacy.cshtml` view provides a page to detail your site's privacy policy.
+* For GDPR guidance that applies to Blazor apps, see <xref:blazor/security/gdpr>.
 
 To enable the default cookie consent feature like that found in the ASP.NET Core 2.2 templates in a current ASP.NET Core template generated app, add the following highlighted code to `Program.cs`:
 
@@ -64,7 +65,7 @@ For databases that don't provide built-in encryption at rest, you may be able to
 
 ## Additional resources
 
-* [Microsoft.com/GDPR](https://www.microsoft.com/trustcenter/Privacy/GDPR)
+* [Microsoft.com/GDPR](https://www.microsoft.com/trust-center/privacy/gdpr-overview)
 
 :::moniker-end
 
