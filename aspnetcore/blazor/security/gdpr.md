@@ -2,7 +2,7 @@
 title: EU General Data Protection Regulation (GDPR) support in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to implement EU General Data Protection Regulation (GDPR) support in Blazor apps.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2025
@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-app-models
 ---
 # EU General Data Protection Regulation (GDPR) support in ASP.NET Core Blazor
 
-[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to implement support for [EU General Data Protection Regulation (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection/reform/what-does-general-data-protection-regulation-gdpr-govern_en) requirements.
 
@@ -33,7 +33,17 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 builder.Services.AddHttpContextAccessor();
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
 In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>, add Cookie Policy Middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>, add Cookie Policy Middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
+
+:::moniker-end
 
 ```csharp
 app.UseCookiePolicy();
@@ -41,7 +51,7 @@ app.UseCookiePolicy();
 
 Add the following component to handle cookie policy consent.
 
-`Components/CookieConsent.razor`:
+`CookieConsent.razor`:
 
 ```razor
 @using Microsoft.AspNetCore.Http.Features
