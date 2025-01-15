@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-app-models
 ---
 # EU General Data Protection Regulation (GDPR) support in ASP.NET Core Blazor
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article explains how to implement support for [EU General Data Protection Regulation (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection/reform/what-does-general-data-protection-regulation-gdpr-govern_en) requirements.
 
