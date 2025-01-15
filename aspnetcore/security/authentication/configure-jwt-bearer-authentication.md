@@ -122,7 +122,7 @@ JWT bearer tokens should be fully validated in an API. The following should be v
 *  Audience claim with the expected value.
 *  Token expiration.
 
-The following claims are required for OAuth 2.0 access tokens: `iss`, `exp`, `aud`, `sub`, `client_id`, `iat, and`jti`.
+The following claims are required for OAuth 2.0 access tokens: `iss`, `exp`, `aud`, `sub`, `client_id`, `iat, and `jti`.
 
 If any of these claims or values are incorrect, the API should return a 401 response.
 
@@ -212,7 +212,7 @@ Insecure handling of access tokens, such as weak authentication or storing token
 
 ### Use standards
 
-Standards like OpenID Connect or OAuth should **always**** be used when creating access tokens. Access tokens should **not**** be created in production apps without adhering to the security precautions outlined in this article. Creating access tokens should be limited to test scenarios.
+Standards like OpenID Connect or OAuth should **always** be used when creating access tokens. Access tokens should **not** be created in production apps without adhering to the security precautions outlined in this article. Creating access tokens should be limited to test scenarios.
 
 ### Use asymmetric keys
 
