@@ -65,7 +65,8 @@ For databases that don't provide built-in encryption at rest, you may be able to
 
 ## Additional resources
 
-* [Microsoft.com/GDPR](https://www.microsoft.com/trust-center/privacy/gdpr-overview)
+* [Microsoft Trust Center: Safeguard individual privacy with cloud services from Microsoft: GDPR](https://www.microsoft.com/trust-center/privacy/gdpr-overview)
+* [European Commission: Data protection explained](https://ec.europa.eu/info/law/law-topic/data-protection/reform/what-does-general-data-protection-regulation-gdpr-govern_en)
 
 :::moniker-end
 
