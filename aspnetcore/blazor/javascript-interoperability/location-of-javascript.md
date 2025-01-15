@@ -41,6 +41,8 @@ Inline JavaScript isn't recommended for Blazor apps. We recommend using [JS coll
 
 Only place a `<script>` tag in a component file (`.razor`) if the component is guaranteed to adopt [static server-side rendering (static SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts) because the `<script>` tag can't be updated dynamically. Placing a `<script>` tag in a component file doesn't produce a compile-time warning or error, but script loading behavior might not match your expectations in components that don't adopt static SSR when the component is rendered.
 
+Scripts can be loaded via [control of `<head>` content](xref:blazor/components/control-head-content) with the usual caveat that the approach slows down page load on the client, which we recommend avoiding.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
@@ -145,7 +147,11 @@ You can also serve scripts directly from the `wwwroot` folder if you prefer not 
 <script src="scripts.js"></script>
 ```
 
-Scripts can be loaded via [control of `<head>` content](xref:blazor/components/control-head-content) with the usual caveat that it slows down page load on the client, which we recommend avoiding.
+:::moniker range=">= aspnetcore-6.0"
+
+Scripts can be loaded via [control of `<head>` content](xref:blazor/components/control-head-content) with the usual caveat that the approach slows down page load on the client, which we recommend avoiding.
+
+:::moniker-end
 
 When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 
