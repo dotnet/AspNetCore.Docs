@@ -145,6 +145,8 @@ You can also serve scripts directly from the `wwwroot` folder if you prefer not 
 <script src="scripts.js"></script>
 ```
 
+Scripts can be loaded via [control of `<head>` content](xref:blazor/components/control-head-content) with the usual caveat that it slows down page load on the client, which we recommend avoiding.
+
 When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 
 * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file.
