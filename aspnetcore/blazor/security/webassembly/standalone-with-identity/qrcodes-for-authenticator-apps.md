@@ -882,6 +882,10 @@ In the `<Authorized>` content of the `<AuthorizeView>` in `Components/Layout/Nav
 </AuthorizeView>
 ```
 
+## Failures due to TOTP time skew
+
+TOTP authentication depends on accurate time keeping on the TOTP authenticator app device and the app's host. TOTP tokens are only valid for 30 seconds. If logins are failing due to rejected TOTP codes, confirm accurate time is maintained, preferably synchronized to an accurate NTP service.
+
 ## Additional resources
 
 * [`nimiq/qr-creator`](https://github.com/nimiq/qr-creator)
