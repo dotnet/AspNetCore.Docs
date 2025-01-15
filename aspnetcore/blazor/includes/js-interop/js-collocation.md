@@ -28,7 +28,11 @@ Add the following script after the Blazor script ([location of the Blazor start 
 <script src="{PATH}/JsCollocation1.razor.js"></script>
 ```
 
+:::moniker range=">= aspnetcore-6.0"
+
 Scripts can be loaded via [control of `<head>` content](xref:blazor/components/control-head-content) with the usual caveat that the approach slows down page load on the client, which we recommend avoiding.
+
+:::moniker-end
 
 `JsCollocation1` component (`{PATH}/JsCollocation1.razor`):
 
