@@ -129,7 +129,7 @@ Complete the following steps to publish the ASP.NET Core web API to Azure API Ma
 
 Notice the name of the API is named *WeatherAPI*; however, we would like to call it *Weather Forecasts*. Complete the following steps to update the name:
 
-1. Add the following to `Program.cs` immediately after `servies.AddSwaggerGen();`
+1. Add the following to `Program.cs` immediately after `services.AddSwaggerGen();`
     
     ```csharp
     builder.Services.ConfigureSwaggerGen(setup =>
