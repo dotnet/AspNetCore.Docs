@@ -41,7 +41,7 @@ Inline JavaScript isn't recommended for Blazor apps. We recommend using [JS coll
 
 Only place a `<script>` tag in a component file (`.razor`) if the component is guaranteed to adopt [static server-side rendering (static SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts) because the `<script>` tag can't be updated dynamically. Placing a `<script>` tag in a component file doesn't produce a compile-time warning or error, but script loading behavior might not match your expectations in components that don't adopt static SSR when the component is rendered.
 
-Scripts can be loaded via [control of `<head>` content](xref:blazor/components/control-head-content) with the usual caveat that the approach slows down page load on the client, which we recommend avoiding.
+Scripts can be loaded via [control of `<head>` content](xref:blazor/components/control-head-content) with the usual caveat that the approach slows down page load on the client, which we recommend avoiding. When a script is loaded via `<head>` content with a `HeadContent` component in an interactive render mode, navigating away from the component's page removes the `<script>` tag from the rendered `<head>` content but doesn't unload the script's JavaScript code, including event handlers that the script registers or exposed variables. This means that for interactive SSR scenarios, you're better off just adding `<script>` tags to the physical `<head>` content of the root component, if you prefer them in that location over the recommeded location after the Blazor script inside the closing `<body>` tag. In either static SSR or Blazor WebAssembly scenarios, `<script>` tags are removed from `<head>` content and the JavaScript code is unloaded when the user navigates away from the page that loaded the script via a `HeadContent` component.
 
 :::moniker-end
 
@@ -149,7 +149,7 @@ You can also serve scripts directly from the `wwwroot` folder if you prefer not 
 
 :::moniker range=">= aspnetcore-6.0"
 
-Scripts can be loaded via [control of `<head>` content](xref:blazor/components/control-head-content) with the usual caveat that the approach slows down page load on the client, which we recommend avoiding.
+Scripts can be loaded via [control of `<head>` content](xref:blazor/components/control-head-content) with the usual caveat that the approach slows down page load on the client, which we recommend avoiding. When a script is loaded via `<head>` content with a `HeadContent` component in an interactive render mode, navigating away from the component's page removes the `<script>` tag from the rendered `<head>` content but doesn't unload the script's JavaScript code, including event handlers that the script registers or exposed variables. This means that for interactive SSR scenarios, you're better off just adding `<script>` tags to the physical `<head>` content of the root component, if you prefer them in that location over the recommeded location after the Blazor script inside the closing `<body>` tag. In either static SSR or Blazor WebAssembly scenarios, `<script>` tags are removed from `<head>` content and the JavaScript code is unloaded when the user navigates away from the page that loaded the script via a `HeadContent` component.
 
 :::moniker-end
 
