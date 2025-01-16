@@ -186,7 +186,6 @@ Samples apps in the repository:
 * Blazor Web App
 * Blazor WebAssembly
 * Blazor Web App Movies tutorial sample (<xref:blazor/tutorials/movie-database-app/index>)
-* Blazor Web App with EF Core (<xref:blazor/blazor-ef-core>)
 * Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
 * Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs (<xref:blazor/call-web-api>)
 * Blazor Web App with OIDC (BFF and non-BFF patterns) (<xref:blazor/security/blazor-web-app-oidc>)
@@ -205,7 +204,6 @@ Samples apps in the repository:
 * Blazor Web App
 * Blazor WebAssembly
 * Blazor Web App Movies tutorial sample (<xref:blazor/tutorials/movie-database-app/index>)
-* Blazor Web App with EF Core (<xref:blazor/blazor-ef-core>)
 * Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
 * Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs (<xref:blazor/call-web-api>)
 * Blazor Web App with OIDC (BFF and non-BFF patterns) (<xref:blazor/security/blazor-web-app-oidc>)
@@ -222,7 +220,6 @@ The sample repo contains two types of samples:
 
 * Snippet sample apps provide the code examples that appear in articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
 * Samples apps to accompany Blazor articles compile and run for the following scenarios:
-  * Blazor Server with EF Core
   * Blazor Server and Blazor WebAssembly with SignalR
   * Blazor WebAssembly scopes-enabled logging
 
