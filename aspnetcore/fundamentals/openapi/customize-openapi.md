@@ -14,10 +14,6 @@ uid: fundamentals/openapi/customize-openapi
 
 ## OpenAPI document transformers
 
-This section demonstrates how to customize OpenAPI documents with transformers.
-
-### Customize OpenAPI documents with transformers
-
 Transformers provide an API for modifying the OpenAPI document with user-defined customizations. Transformers are useful for scenarios like:
 
 * Adding parameters to all operations in a document.
@@ -50,7 +46,7 @@ Transformers execute in first-in first-out order based on registration. In the f
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_transInOut&highlight=3-9)]
 
-### Use document transformers
+## Use document transformers
 
 Document transformers have access to a context object that includes:
 
@@ -73,7 +69,7 @@ Document transformers are unique to the document instance they're associated wit
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_multidoc_operationtransformer1)]
 
-### Use operation transformers
+## Use operation transformers
 
 Operations are unique combinations of HTTP paths and methods in an OpenAPI document. Operation transformers are helpful when a modification:
 
@@ -90,7 +86,7 @@ For example, the following operation transformer adds `500` as a response status
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
 
-### Use schema transformers
+## Use schema transformers
 
 Schemas are the data models that are used in request and response bodies in an OpenAPI document. Schema transformers are useful when a modification:
 
@@ -106,6 +102,43 @@ Schema transformers have access to a context object which contains:
 For example, the following schema transformer sets the `format` of decimal types to `decimal` instead of `double`:
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_schematransformer1)]
+
+## Customize schema reuse
+
+After all transformers have been applied, the framework makes a pass over the document to transfer certain schemas
+to the `components.schemas` section, replacing them with `$ref` references to the transferred schema.
+This reduces the size of the document and makes it easier to read.
+
+The details of this processing are complicated and might change in future versions of .NET, but in general:
+
+* Schemas for class/record/struct types are replaced with a `$ref` to a schema in `components.schemas`
+  if they appear more than once in the document.
+* Schemas for primitive types and standard collections are left inline.
+* Schemas for enum types are always replaced with a `$ref` to a schema in components.schemas.
+
+Typically the name of the schema in `components.schemas` is the name of the class/record/struct type,
+but in some circumstances a different name must be used.
+
+ASP.NET Core lets you customize which schemas are replaced with a `$ref` to a schema in `components.schemas`
+using the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> property of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions>.
+This property is a delegate that takes a <xref:System.Text.Json.Serialization.Metadata.JsonTypeInfo> object and returns the name of the schema
+in `components.schemas` that should be used for that type.
+The framework provides a default implementation of this delegate, <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateDefaultSchemaReferenceId%2A>
+that uses the name of the type, but you can replace it with your own implementation.
+
+As a simple example of this customization, you might choose to always inline enum schemas.
+This is done by setting <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> to a delegate
+that returns null for enum types, and otherwise returns the value from the default implementation.
+The following code shows how to do this:
+
+```csharp
+builder.Services.AddOpenApi(options =>
+{
+    // Always inline enum schemas
+    options.CreateSchemaReferenceId = (type) =>
+        type.Type.IsEnum ? null : OpenApiOptions.CreateDefaultSchemaReferenceId(type);
+});
+```
 
 ## Additional resources
 
