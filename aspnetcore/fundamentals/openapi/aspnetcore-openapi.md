@@ -190,7 +190,7 @@ By default, the generated OpenAPI document will be emitted to the application's 
 
 ```xml
 <PropertyGroup>
-  <OpenApiDocumentsDirectory>./</OpenApiDocumentsDirectory>
+  <OpenApiDocumentsDirectory>.</OpenApiDocumentsDirectory>
 </PropertyGroup>
 ```
 
