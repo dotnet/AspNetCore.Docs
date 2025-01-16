@@ -49,7 +49,9 @@ In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.Comp
 app.UseCookiePolicy();
 ```
 
-Add the following component to handle cookie policy consent.
+Add the following `CookieConsent` component to handle cookie policy consent.
+
+The component uses a [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component), named `CookieConsent.razor.js`, to load a module. Adjust the path in the `OnAfterRenderAsync` method to match the location of the collocated JavaScript file. The following component assumes that the component and its companion JavaScript file are in the `Components` folder of the app.
 
 `CookieConsent.razor`:
 
@@ -120,7 +122,7 @@ Add the following component to handle cookie policy consent.
 }
 ```
 
-Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to hold the `acceptPolicy` function.
+Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `acceptPolicy` function in a JavaScript module.
 
 `Components/CookieConsent.razor.js`:
 
@@ -130,7 +132,7 @@ export function acceptPolicy(cookieString) {
 }
 ```
 
-Within `<main>` Razor markup of the `MainLayout` component (`Components/Layout/MainLayout.razor`), add the `CookieConsent` component:
+Within `<main>` Razor markup of the `MainLayout` component (`MainLayout.razor`), add the `CookieConsent` component:
 
 ```razor
 <CookieConsent />
@@ -158,7 +160,7 @@ Add the namespace for shared components to the `_Imports.razor` file. In the fol
 @using BlazorSample.Shared
 ```
 
-Add the following component to handle cookie policy consent.
+Add the following `CookieConsent` component to handle cookie policy consent.
 
 `Shared/CookieConsent.razor`:
 
@@ -218,7 +220,7 @@ Add the following component to handle cookie policy consent.
 }
 ```
 
-Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to hold the `setCookiePolicyAccepted` and `getCookiePolicyAccepted` functions.
+Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `setCookiePolicyAccepted` and `getCookiePolicyAccepted` functions in a JavaScript module.
 
 `Shared/CookieConsent.razor.js`:
 
