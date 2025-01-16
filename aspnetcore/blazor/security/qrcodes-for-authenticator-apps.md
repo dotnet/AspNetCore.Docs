@@ -104,6 +104,10 @@ The `EnableAuthenticator` component can be inspected in reference source:
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
+## Failures due to TOTP time skew
+
+TOTP authentication depends on accurate time keeping on the TOTP authenticator app device and the app's host. TOTP tokens are only valid for 30 seconds. If logins are failing due to rejected TOTP codes, confirm accurate time is maintained, preferably synchronized to an accurate NTP service.
+
 ## Additional resources
 
 * [Using a different QR code library](xref:security/authentication/identity-enable-qrcodes#using-a-different-qr-code-library)

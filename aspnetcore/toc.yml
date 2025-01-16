@@ -624,6 +624,8 @@ items:
                 uid: blazor/security/qrcodes-for-authenticator-apps
               - name: Content Security Policy
                 uid: blazor/security/content-security-policy
+              - name: EU General Data Protection Regulation (GDPR) support
+                uid: blazor/security/gdpr
               - name: Server-side and Blazor Web App additional scenarios
                 uid: blazor/security/additional-scenarios
           - name: State management

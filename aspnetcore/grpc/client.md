@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to call gRPC services with the .NET gRPC client.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 6/5/2024
+ms.date: 01/08/2025
 uid: grpc/client
 ---
 # Call gRPC services with the .NET client
@@ -61,9 +61,6 @@ Channel and client performance and usage:
 * Clients created from the channel can make multiple simultaneous calls.
 
 `GrpcChannel.ForAddress` isn't the only option for creating a gRPC client. If calling gRPC services from an ASP.NET Core app, consider [gRPC client factory integration](xref:grpc/clientfactory). gRPC integration with `HttpClientFactory` offers a centralized alternative to creating gRPC clients.
-
-> [!NOTE]
-> Calling gRPC over HTTP/2 with `Grpc.Net.Client` is currently not supported on Xamarin. We are working to improve HTTP/2 support in a future Xamarin release. [Grpc.Core](https://www.nuget.org/packages/Grpc.Core) and [gRPC-Web](xref:grpc/browser) are viable alternatives that work today.
 
 ## Make gRPC calls
 
