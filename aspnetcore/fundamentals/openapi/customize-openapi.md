@@ -109,12 +109,12 @@ After all transformers have been applied, the framework makes a pass over the do
 to the `components.schemas` section, replacing them with `$ref` references to the transferred schema.
 This reduces the size of the document and makes it easier to read.
 
-The details of this processing are a bit complicated, and might change in future versions of .NET, but in general:
+The details of this processing are complicated and might change in future versions of .NET, but in general:
 
 * Schemas for class/record/struct types are replaced with a `$ref` to a schema in `components.schemas`
   if they appear more than once in the document.
 * Schemas for primitive types and standard collections are left inline.
-* Schemas for enum types are always replaced with a `$ref` to a schema in to components.schemas.
+* Schemas for enum types are always replaced with a `$ref` to a schema in components.schemas.
 
 Typically the name of the schema in `components.schemas` is the name of the class/record/struct type,
 but in some circumstances a different name must be used.
@@ -128,7 +128,7 @@ that uses the name of the type, but you can replace it with your own implementat
 
 As a simple example of this customization, you might choose to always inline enum schemas.
 This is done by setting <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> to a delegate
-that returns null for enum types, and otherwise returns value from the default implementation.
+that returns null for enum types, and otherwise returns the value from the default implementation.
 The following code shows how to do this:
 
 ```csharp

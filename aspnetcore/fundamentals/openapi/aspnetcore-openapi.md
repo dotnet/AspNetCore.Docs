@@ -131,11 +131,11 @@ builder.Services.AddOpenApi("v1");
 builder.Services.AddOpenApi("v2");
 ```
 
-Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> can specify its own set of options, so that you can choose to use the same or different transformers / customizations for each OpenApi document.
+Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> can specify its own set of options, so that you can choose to use the same or different customizations for each OpenAPI document.
 
 The framework uses the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> to determine which endpoints to include in each document.
 
-For each document, the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method is called for each endpoint in the application, passing the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object for the endpoint. The method should return a boolean value indicating whether the endpoint should be included in the document. The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object contains information about the endpoint, such as the HTTP method, route, and response types, as well as metadata attached to the endpoint via attributes or extension methods.
+For each document, the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method is called for each endpoint in the application, passing the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object for the endpoint. The method returns a boolean value indicating whether the endpoint should be included in the document. The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object contains information about the endpoint, such as the HTTP method, route, and response types, as well as metadata attached to the endpoint via attributes or extension methods.
 
 The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>, which is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName%2A> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute, to determine which endpoints to include in the document.
 
