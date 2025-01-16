@@ -335,13 +335,13 @@ A *standalone deployment* serves the Blazor WebAssembly app as a set of static f
 
 Standalone deployment assets are published into either the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish\` folder (depending on the version of the .NET SDK in use), where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
-### Azure App Service
+## Azure App Service
 
 Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on [IIS](#iis).
 
 Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](#azure-static-web-apps), which supports this scenario.
 
-### Azure Static Web Apps
+## Azure Static Web Apps
 
 Use one of the following approaches to deploy a Blazor WebAssembly app to Azure Static Web Apps:
 
@@ -349,7 +349,7 @@ Use one of the following approaches to deploy a Blazor WebAssembly app to Azure 
 * [Deploy from Visual Studio Code](#deploy-from-visual-studio-code)
 * [Deploy from GitHub](#deploy-from-github)
 
-#### Deploy from Visual Studio
+### Deploy from Visual Studio
 
 To deploy from Visual Studio, create a publish profile for Azure Static Web Apps:
 
@@ -365,21 +365,21 @@ To deploy from Visual Studio, create a publish profile for Azure Static Web Apps
 
 After the publish profile is created, deploy the app to the Azure Static Web Apps instance using the publish profile by selecting the **Publish** button.
 
-#### Deploy from Visual Studio Code
+### Deploy from Visual Studio Code
 
 To deploy from Visual Studio Code, see [Quickstart: Build your first static site with Azure Static Web Apps](/azure/static-web-apps/getting-started?tabs=blazor).
 
-#### Deploy from GitHub
+### Deploy from GitHub
 
 To deploy from a GitHub repository, see [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor).
 
-### IIS
+## IIS
 
 IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
 Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework. Host the contents of the `publish` folder on the web server or hosting service.
 
-#### web.config
+### web.config
 
 When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
@@ -391,7 +391,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
   * Serve the sub-directory where the app's static assets reside (`wwwroot/{PATH REQUESTED}`).
   * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (`wwwroot/index.html`).
   
-#### Use a custom `web.config`
+### Use a custom `web.config`
 
 To use a custom `web.config` file:
 
@@ -435,21 +435,21 @@ If the SDK's `web.config` generation or transformation during publish either doe
   </Target>
   ```
 
-#### Install the URL Rewrite Module
+### Install the URL Rewrite Module
 
 The [URL Rewrite Module](https://www.iis.net/downloads/microsoft/url-rewrite) is required to rewrite URLs. The module isn't installed by default, and it isn't available for install as a Web Server (IIS) role service feature. The module must be downloaded from the IIS website. Use the Web Platform Installer to install the module:
 
 1. Locally, navigate to the [URL Rewrite Module downloads page](https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads). For the English version, select **WebPI** to download the WebPI installer. For other languages, select the appropriate architecture for the server (x86/x64) to download the installer.
 1. Copy the installer to the server. Run the installer. Select the **Install** button and accept the license terms. A server restart isn't required after the install completes.
 
-#### Configure the website
+### Configure the website
 
 Set the website's **Physical path** to the app's folder. The folder contains:
 
 * The `web.config` file that IIS uses to configure the website, including the required redirect rules and file content types.
 * The app's static asset folder.
 
-#### Host as an IIS sub-app
+### Host as an IIS sub-app
 
 If a standalone app is hosted as an IIS sub-app, perform either of the following:
 
@@ -486,7 +486,7 @@ Removing the handler or disabling inheritance is performed in addition to [confi
 
 Configure the app's base path by following the guidance in the <xref:blazor/host-and-deploy/index#app-base-path> article.
 
-#### Brotli and Gzip compression
+### Brotli and Gzip compression
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -511,13 +511,13 @@ Additional configuration of the example `web.config` file might be required in t
 
 For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
 
-#### Troubleshooting
+### Troubleshooting
 
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the `web.config` file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
 
 For more information on troubleshooting deployments to IIS, see <xref:test/troubleshoot-azure-iis>.
 
-### Azure Storage
+## Azure Storage
 
 [Azure Storage](/azure/storage/) static file hosting allows serverless Blazor app hosting. Custom domain names, the Azure Content Delivery Network (CDN), and HTTPS are supported.
 
@@ -538,7 +538,7 @@ If files aren't loaded at runtime due to inappropriate MIME types in the files' 
 
 For more information, see [Static website hosting in Azure Storage](/azure/storage/blobs/storage-blob-static-website).
 
-### Nginx
+## Nginx
 
 The following `nginx.conf` file is simplified to show how to configure Nginx to send the `index.html` file whenever it can't find a corresponding file on disk.
 
@@ -577,7 +577,7 @@ Increase the value if browser developer tools or a network traffic tool indicate
 For more information on production Nginx web server configuration, see [Creating NGINX Plus and NGINX Configuration Files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/).
 
 
-### Apache
+## Apache
 
 To deploy a Blazor WebAssembly app to Apache:
 
@@ -668,23 +668,67 @@ To deploy a Blazor WebAssembly app to Apache:
 
 For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [`mod_deflate`](https://httpd.apache.org/docs/current/mod/mod_deflate.html).
 
-### GitHub Pages
+## GitHub Pages
 
-The default GitHub Action, which deploys pages, skips deployment of folders starting with underscore, for example, the `_framework` folder. To deploy folders starting with underscore, add an empty `.nojekyll` file to the Git branch.
+The following guidance for GitHub Pages deployments of Blazor WebAssembly apps demonstrates concepts with a live tool deployed to GitHub Pages. The tool is used by the ASP.NET Core documentation authors to create cross-reference (XREF) links to API documentation for article markdown:
 
-Git treats JavaScript (JS) files, such as `blazor.webassembly.js`, as text and converts line endings from CRLF (carriage return-line feed) to LF (line feed) in the deployment pipeline. These changes to JS files produce different file hashes than Blazor sends to the client in the `blazor.boot.json` file. The mismatches result in integrity check failures on the client. One approach to solving this problem is to add a `.gitattributes` file with `*.js binary` line before adding the app's assets to the Git branch. The `*.js binary` line configures Git to treat JS files as binary files, which avoids processing the files in the deployment pipeline. The file hashes of the unprocessed files match the entries in the `blazor.boot.json` file, and client-side integrity checks pass. For more information, see <xref:blazor/host-and-deploy/webassembly-caching/index>.
+* [`BlazorWebAssemblyXrefGenerator` sample app (`blazor-samples/BlazorWebAssemblyXrefGenerator`)](https://github.com/dotnet/blazor-samples/tree/main/BlazorWebAssemblyXrefGenerator)
+* [Live Xref Generator website](https://dotnet.github.io/blazor-samples/)
 
-To handle URL rewrites, add a `wwwroot/404.html` file with a script that handles redirecting the request to the `index.html` page. For an example, see the [`SteveSandersonMS/BlazorOnGitHubPages` GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages):
+### GitHub Pages settings
 
-* [`wwwroot/404.html`](https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/wwwroot/404.html)
-* [Live site](https://stevesandersonms.github.io/BlazorOnGitHubPages/)
+* **Actions** > **General**
+  * **Actions permissions**
+    * **Allow enterprise actions, and select non-enterprise, actions and reusable workflows** > Enabled (selected)
+    * **Allow actions created by GitHub** > Enabled (selected)
+    * **Allow actions and reusable workflows** > `stevesandersonms/ghaction-rewrite-base-href@v1,`
+  * **Workflow permissions** > **Read repository contents and packages permissions**
+* **Pages** > **Build and deployment**
+  * **Source** > **GitHub Actions**
+  * Selected workflow: **Static HTML** and base your static deployment Action script on the [Xref Generator `static.yml` file](https://github.com/dotnet/blazor-samples/blob/main/.github/workflows/static.yml) for the Xref Generator tool. The configuration in the file is described in the next section.
+  * **Custom domain**: Set if you intend to use a custom domain, which isn't covered by this guidance. For more information, see [Configuring a custom domain for your GitHub Pages site](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site).
+  * **Enforce HTTPS** > Enabled (selected)
 
-When using a project site instead of an organization site, update the `<base>` tag in `wwwroot/index.html`. Set the `href` attribute value to the GitHub repository name with a trailing slash (for example, `/my-repository/`). In the [`SteveSandersonMS/BlazorOnGitHubPages` GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages), the base `href` is updated at publish by the [`.github/workflows/main.yml` configuration file](https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/.github/workflows/main.yml).
+### Static deployment script configuration
 
-> [!NOTE]
-> The [`SteveSandersonMS/BlazorOnGitHubPages` GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
+[Xref Generator `static.yml` file](https://github.com/dotnet/blazor-samples/blob/main/.github/workflows/static.yml)
 
-### Standalone with Docker
+Configure the following entries in the script for your deployment:
+
+* Publish directory (`PUBLISH_DIR`): Use the path to the repository's folder where the Blazor WebAssembly app is published. The app is compiled for a specific .NET version, and the path segment for the version must match. Example: `BlazorWebAssemblyXrefGenerator/bin/Release/net9.0/publish/wwwroot` is the path for an app that adopts the `net9.0` [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) for the .NET 9.0 SDK
+* Push path (`on:push:paths`): Set the push path to match the app's repo folder with a `**` wildcard. Example: `BlazorWebAssemblyXrefGenerator/**`
+* .NET SDK version (`dotnet-version` via the [`actions/setup-dotnet` Action](https://github.com/actions/setup-dotnet)): Currently, there's no way to set the version to "latest" (see [Allow specifying 'latest' as dotnet-version (`actions/setup-dotnet` #497)](https://github.com/actions/setup-dotnet/issues/497) to up-vote the feature request). Set the SDK version at least as high as the app's framework version.
+* Publish path (`dotnet publish` command): Set the publish folder path to the app's repo folder. Example: `dotnet publish BlazorWebAssemblyXrefGenerator -c Release`
+* Base HREF (`base_href` for the [`SteveSandersonMS/ghaction-rewrite-base-href` Action](https://github.com/SteveSandersonMS/ghaction-rewrite-base-href)): Set the base href for the app to the repository's name. Example: The Blazor sample's repository owner is `dotnet`. The Blazor sample's repository's name is `blazor-samples`. When the Xref Generator tool is deployed to GitHub Pages, its web address is based on the repository's name (`https://dotnet.github.io/blazor-samples/`). The base href of the app is `/blazor-samples/`, which is set into `base_href` for the `ghaction-rewrite-base-href` Action to write into the app's `wwwroot/index.html` `<base>` tag when the app is deployed. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
+
+The GitHub-hosted Ubuntu (latest) server has a version of the .NET SDK pre-installed. You can remove the [`actions/setup-dotnet` Action](https://github.com/actions/setup-dotnet) step from the `static.yml` script if the pre-installed .NET SDK is sufficient to compile the app. To determine the .NET SDK installed for `ubuntu-latest`:
+
+1. Go to the [**Available Images** section of the `actions/runner-images` GitHub repository](https://github.com/actions/runner-images?tab=readme-ov-file#available-images).
+1. Locate the `ubuntu-latest` image, which is the first table row.
+1. Select the link in the `Included Software` column.
+1. Scroll down to the *.NET Tools* section to see the .NET Core SDK installed with the image.
+
+### Deployment notes
+
+The default GitHub Action, which deploys pages, skips deployment of folders starting with underscore, the `_framework` folder for example. To deploy folders starting with underscore, add an empty `.nojekyll` file to the root of the app's repository. Example: [Xref Generator `.nojekyll` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/.nojekyll)
+
+***Perform this step before the first app deployment:*** Git treats JavaScript (JS) files, such as `blazor.webassembly.js`, as text and converts line endings from CRLF (carriage return-line feed) to LF (line feed) in the deployment pipeline. These changes to JS files produce different file hashes than Blazor sends to the client in the `blazor.boot.json` file. The mismatches result in integrity check failures on the client. One approach to solving this problem is to add a `.gitattributes` file with `*.js binary` line before adding the app's assets to the Git branch. The `*.js binary` line configures Git to treat JS files as binary files, which avoids processing the files in the deployment pipeline. The file hashes of the unprocessed files match the entries in the `blazor.boot.json` file, and client-side integrity checks pass. For more information, see <xref:blazor/host-and-deploy/webassembly-caching/index>. Example: [Xref Generator `.gitattributes` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/.gitattributes)
+
+To handle URL rewrites based on [Single Page Apps for GitHub Pages (`rafrex/spa-github-pages` GitHub repository)](https://github.com/rafrex/spa-github-pages):
+
+* Add a `wwwroot/404.html` file with a script that handles redirecting the request to the `index.html` page. Example: [Xref Generator `404.html` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/wwwroot/404.html)
+* In `wwwroot/index.html`, add the script to `<head>` content. Example: [Xref Generator `index.html` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/wwwroot/index.html)
+
+GitHub Pages doesn't natively support using Brotli-compressed resources. To use Brotli:
+
+* Add the `wwwroot/decode.js` script to the app's `wwwroot` folder. Example: [Xref Generator `decode.js` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/wwwroot/decode.js)
+* Add the `<script>` tag to load the `decode.js` script in the `wwwroot/index.html` file immediately above the `<script>` tag that loads the Blazor script. Example: [Xref Generator `index.html` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/wwwroot/index.html)
+  * Set `autostart="false"` for the Blazor WebAssembly script.
+  * Add the `loadBootResource` script after the `<script>` tag that loads the Blazor WebAssembly script. Example: [Xref Generator `index.html` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/wwwroot/index.html)
+
+* Add `robots.txt` and `sitemap.txt` files to improve SEO. Examples: [Xref Generator `robots.txt` file](https://github.com/dotnet/blazor-samples/tree/main/BlazorWebAssemblyXrefGenerator/wwwroot/robots.txt), [Xref Generator `sitemap.txt` file](https://github.com/dotnet/blazor-samples/tree/main/BlazorWebAssemblyXrefGenerator/wwwroot/sitemap.txt)
+
+## Standalone with Docker
 
 A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
 
