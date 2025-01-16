@@ -5,7 +5,7 @@ description: Learn how to implement EU General Data Protection Regulation (GDPR)
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/15/2025
+ms.date: 01/16/2025
 uid: blazor/security/gdpr
 zone_pivot_groups: blazor-app-models
 ---
@@ -19,8 +19,8 @@ This article explains how to implement support for [EU General Data Protection R
 
 In the `Program` file:
 
+* Add <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> configuration to require user consent for non-essential cookies and set the same-site policy to none. For more information, see <xref:security/samesite>.
 * Add the default implementation for the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> service by calling <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor%2A>.
-* Add <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> configuration that require user consent for non-essential cookies and set the same-site policy to none. For more information, see <xref:security/samesite>.
 
 ```csharp
 builder.Services.Configure<CookiePolicyOptions>(options =>
@@ -51,7 +51,7 @@ app.UseCookiePolicy();
 
 Add the following `CookieConsent` component to handle cookie policy consent.
 
-The component uses a [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component), named `CookieConsent.razor.js`, to load a module. Adjust the path in the `OnAfterRenderAsync` method to match the location of the collocated JavaScript file. The following component assumes that the component and its companion JavaScript file are in the `Components` folder of the app.
+The component uses a [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component), named `CookieConsent.razor.js`, to load a module. Confirm or adjust the path to the collocated file in the `OnAfterRenderAsync` method. The following component assumes that the component and its companion JavaScript file are in the `Components` folder of the app.
 
 `CookieConsent.razor`:
 
@@ -124,7 +124,7 @@ The component uses a [collocated JavaScript file](xref:blazor/js-interop/javascr
 
 Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `acceptPolicy` function in a JavaScript module.
 
-`Components/CookieConsent.razor.js`:
+`CookieConsent.razor.js`:
 
 ```javascript
 export function acceptPolicy(cookieString) {
