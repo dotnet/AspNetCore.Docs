@@ -5,7 +5,7 @@ description: Learn how to use Entity Framework Core (EF Core) in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/13/2025
+ms.date: 01/16/2025
 uid: blazor/blazor-ef-core
 ---
 # ASP.NET Core Blazor with Entity Framework Core (EF Core)
@@ -46,7 +46,7 @@ For Microsoft Azure services, we recommend using *managed identities*. Managed i
 
 ## Build a Blazor movie database app tutorial
 
-For a tutorial experience building an app that uses EF Core to work with a database, see <xref:blazor/tutorials/movie-database-app/index>. The tutorial shows you how to create a Blazor Web App that can display and manage movies in a movie database.
+For a tutorial experience building an app that uses EF Core for database operations, see <xref:blazor/tutorials/movie-database-app/index>. The tutorial shows you how to create a Blazor Web App that can display and manage movies in a movie database.
 
 :::moniker-end
 
@@ -63,9 +63,9 @@ The following recommendations are designed to provide a consistent approach to u
 * Consider using one context per operation. The context is designed for fast, low overhead instantiation:
 
   ```csharp
-  using var context = new MyContext();
+  using var context = new ProductsDatabaseContext();
 
-  return await context.MyEntities.ToListAsync();
+  return await context.Products.ToListAsync();
   ```
 
 * Use a flag to prevent multiple concurrent operations:
@@ -88,7 +88,7 @@ The following recommendations are designed to provide a consistent approach to u
   }
   ```
 
-  Place operations after the `Loading = true;` line in the `try` block.
+  Place database operations after the `Loading = true;` line in the `try` block.
   
   Thread safety isn't a concern, so loading logic doesn't require locking database records. The loading logic is used to disable UI controls so that users don't inadvertently select buttons or update fields while data is fetched.
   
@@ -108,6 +108,8 @@ The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> i
 The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. EF Core 5.0 or later provides a built-in factory for creating new contexts.
 
 :::moniker range="< aspnetcore-5.0"
+
+In versions of .NET prior to 5.0, use the following `DbContextFactory`:
 
 ```csharp
 using System;
