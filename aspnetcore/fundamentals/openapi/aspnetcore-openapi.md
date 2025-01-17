@@ -45,8 +45,8 @@ dotnet add package Microsoft.AspNetCore.OpenApi
 
 The following code:
 
-* Adds OpenAPI services.
-* Enables the endpoint for viewing the OpenAPI document in JSON format.
+* Adds OpenAPI services using the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> extension method on the app builder's service collection.
+* Maps an endpoint for viewing the OpenAPI document in JSON format with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A> extension method on the app.
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_first&highlight=3,7)]
 
@@ -64,7 +64,7 @@ Each OpenAPI document in an app has a unique name. The default document name tha
 builder.Services.AddOpenApi(); // Document name is v1
 ```
 
-The document name can be modified by passing the name as a parameter to the `AddOpenApi` call.
+The document name can be modified by passing the name as a parameter to the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> call.
 
 ```csharp
 builder.Services.AddOpenApi("internal"); // Document name is internal
@@ -115,6 +115,36 @@ The OpenAPI endpoint  doesn't enable any authorization checks by default. Howeve
 The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration enables transformers to incorporate dynamic application state into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithcaching)]
+
+## Generate multiple OpenAPI documents
+
+In some scenarios, it's helpful to generate multiple OpenAPI documents with different content from a single ASP.NET Core API app. These scenarios include:
+
+* Generating OpenAPI documentation for different audiences, such as public and internal APIs.
+* Generating OpenAPI documentation for different versions of an API.
+* Generating OpenAPI documentation for different parts of an application, such as a frontend and backend API.
+
+To generate multiple OpenAPI documents, call the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> extension method once for each document, specifying a different document name in the first parameter each time.
+
+```csharp
+builder.Services.AddOpenApi("v1");
+builder.Services.AddOpenApi("v2");
+```
+
+Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> can specify its own set of options, so that you can choose to use the same or different customizations for each OpenAPI document.
+
+The framework uses the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> to determine which endpoints to include in each document.
+
+For each document, the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method is called for each endpoint in the application, passing the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object for the endpoint. The method returns a boolean value indicating whether the endpoint should be included in the document. The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object contains information about the endpoint, such as the HTTP method, route, and response types, as well as metadata attached to the endpoint via attributes or extension methods.
+
+The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>, which is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName%2A> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute, to determine which endpoints to include in the document. Any endpoint that has not been assigned a group name is included all OpenAPI documents.
+
+```csharp
+    // Include endpoints without a group name or with a group name that matches the document name
+    ShouldInclude = (description) => description.GroupName == null || description.GroupName == DocumentName;    
+```
+
+You can customize the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method to include or exclude endpoints based on any criteria you choose.
 
 ## Generate OpenAPI documents at build-time
 

@@ -71,7 +71,7 @@ The request handling pipeline is composed as a series of middleware components. 
 
 By convention, a middleware component is added to the pipeline by invoking a `Use{Feature}` extension method. The use of methods named `Use{Feature}` to add middleware to an app is illustrated in the following code:
 
-:::code language="csharp" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Program.cs" id="snippet_middleware" highlight="24-26,29,32":::
+:::code language="csharp" source="~/fundamentals/index/samples/9.0/BlazorWebAppMovies/Program.cs" id="snippet_middleware" highlight="26-28,30,32":::
 
 For more information, see <xref:fundamentals/middleware/index>.
 
