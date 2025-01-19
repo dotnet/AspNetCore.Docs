@@ -79,7 +79,7 @@ There are many types of tokens, including access and ID tokens, as specified by 
 
 When using JWT access tokens for API authorization, the API grants or denies access based on the provided token. If the request is not authorized, a 401 or 403 response is returned. The API shouldn't redirect the user to the identity provider to obtain a new token or request additional permissions. The app consuming the API is responsible for acquiring an appropriate token. This ensures a clear separation of concerns between the API (authorization) and the consuming client app (authentication).
 
-> Note
+> [!NOTE]
 > HTTP also allows returning 404 for not authorized, so as to not leak information about the existence of resources to unauthorized clients.
 
 ### 401 Unauthorized
@@ -90,8 +90,8 @@ A 401 Unauthorized response indicates that the provided access token doesn't mee
 * **Expiration**: The token has expired and is no longer valid.
 * **Incorrect claims**: Critical claims within the token, such as the audience (`aud`) or issuer (`iss`), are missing or invalid.
 
-> Note: From the HTTP Semantics [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2):
-> The server generating a 401 response MUST send a WWW-Authenticate header field (Section 11.6.1) containing at least one challenge applicable to the target resource.
+> [!NOTE]
+> From the HTTP Semantics [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2): The server generating a 401 response MUST send a WWW-Authenticate header field (Section 11.6.1) containing at least one challenge applicable to the target resource.
 
 The [OAuth specifications](/entra/identity-platform/access-token-claims-reference) provide detailed guidelines on the required claims and their validation. 
 
@@ -258,7 +258,7 @@ This approach is not difficult to implement but the access token has access to b
 
 This is easy to implement but the client application has full application access and not a delegated access token. The token should be cached in the client API application.
 
-> Note
+> [!NOTE]
 > Any app-to-app security also works. Certificate authentication, or in Azure, a managed identity can be used. 
 
 ## Handling access tokens
