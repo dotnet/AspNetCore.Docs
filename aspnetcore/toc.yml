@@ -1575,6 +1575,8 @@ items:
             uid: security/authentication/cookie
           - name: Configure OIDC web authentication
             uid: security/authentication/configure-oidc-web-authentication
+          - name: Configure JWT bearer authentication
+            uid: security/authentication/configure-jwt-bearer-authentication
           - name: Configure certificate authentication
             uid: security/authentication/certauth
           - name: Configure Windows authentication
