@@ -566,7 +566,7 @@ If the additional properties of a schema should only have values of a specific t
 
 #### Polymorphic types
 
-Use the [`[JsonPolymorphic]`](xref:System.Text.Json.Serialization.JsonPolymorphicAttribute) and [`[JsonDerivedType]`](xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute) attributes on a parent class to to specify the discriminator field and subtypes for a polymorphic type.
+Use the [`[JsonPolymorphic]`](xref:System.Text.Json.Serialization.JsonPolymorphicAttribute) and [`[JsonDerivedType]`](xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute) attributes on a parent class to specify the discriminator field and subtypes for a polymorphic type.
 
 The [`[JsonDerivedType]`](xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute) adds the discriminator field to the schema for each subclass, with an enum specifying the specific discriminator value for the subclass. This attribute also modifies the constructor of each derived class to set the discriminator value.
 
