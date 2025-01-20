@@ -131,7 +131,7 @@ Some types don't have a default type mapping. For example, a `long` can be marsh
 
 The following type mapping scenarios are supported:
 
-* Passing <xref:System.Action> or <xref:System.Func%601> as parameters, which are are marshalled as callable JS methods. This allows .NET code to invoke listeners in response to JS callbacks or events.
+* Passing <xref:System.Action> or <xref:System.Func%601> as parameters, which are marshalled as callable JS methods. This allows .NET code to invoke listeners in response to JS callbacks or events.
 * Passing JS references and .NET managed object references in either direction, which as marshaled as proxy objects and kept alive across the interop boundary until the proxy is garbage collected.
 * Marshalling asynchronous JS methods or a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) with a <xref:System.Threading.Tasks.Task> result, and vice versa. 
 
