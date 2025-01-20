@@ -59,7 +59,7 @@ var builder = WebApplication.CreateBuilder(args);
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#jcp).
 1. A fallback to the host configuration described in the [next section](#host).
 
-Note: `WebApplication.CreateBuilder(args)` should only be called once.
+Note: `WebApplication.CreateBuilder(args)` should only be called once in apps relying on IIS in-process hosting.
 
 <a name="host"></a>
 
