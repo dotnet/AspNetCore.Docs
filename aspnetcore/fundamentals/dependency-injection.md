@@ -240,7 +240,7 @@ If a class has many injected dependencies, it might be a sign that the class has
 The container calls <xref:System.IDisposable.Dispose%2A> for the <xref:System.IDisposable> types it creates. Services resolved from the container should never be disposed by the developer. If a type or factory is registered as a singleton, the container disposes the singleton automatically.
 
 In the following example, the services are created by the service container and disposed automatically:
-                dependency-injection\samples\6.x\DIsample2\DIsample2\Services\Service1.cs
+
 [!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DIsample2/DIsample2/Services/Service1.cs?name=snippet)]
 
 [!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet)]
