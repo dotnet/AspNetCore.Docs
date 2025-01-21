@@ -35,15 +35,11 @@ In this tutorial, you learn how to:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-9.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-9.0.md)]
 
 ---
 
@@ -151,7 +147,11 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Go to **File** > **New** > **Project**.
 1. Select the **ASP.NET Core Web API** project type, and select **Next**.
 1. Name the project *BookStoreApi*, and select **Next**.
-1. Select the **.NET 8.0 (Long Term support)** framework and select **Create**.
+1. In the **Additional information** dialog:
+  * Confirm the **Framework** is **.NET 9.0 (Standard Term Support)**.
+  * Confirm the checkbox for **Use controllers** is checked.
+  * Confirm the checkbox for **Enable OpenAPI support** is checked.
+  * Select **Create**.
 1. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
    ```powershell
@@ -163,7 +163,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Run the following commands in a command shell:
 
    ```dotnetcli
-   dotnet new webapi -o BookStoreApi
+   dotnet new webapi -o BookStoreApi --use-controllers
    code BookStoreApi
    ```
 
@@ -175,17 +175,6 @@ Use the previously installed MongoDB Shell in the following steps to create a da
    ```dotnetcli
    dotnet add package MongoDB.Driver
    ```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. Select **File** > **New Project...**.
-1. Select **Web and Console** > **App** from the sidebar.
-1. Select the **ASP.NET Core** > **API** C# project template, and select **Next**.
-1. Select **.NET 8.0** from the **Target Framework** drop-down list, and select **Next**.
-1. Enter *BookStoreApi* for the **Project Name**, and select **Create**.
-1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Manage NuGet Packages**.
-1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and select **Add Package**.
-1. Select the **Accept** button in the **License Acceptance** dialog.
 
 ---
 
