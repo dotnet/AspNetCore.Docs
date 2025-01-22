@@ -82,7 +82,42 @@ In the following example:
 
 `App.razor`:
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.Extensions.Logging
+@inject LazyAssemblyLoader AssemblyLoader
+@inject ILogger<App> Logger
+
+<Router AppAssembly="typeof(App).Assembly" 
+    OnNavigateAsync="OnNavigateAsync">
+    ...
+</Router>
+
+@code {
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+           {
+               if (args.Path == "{PATH}")
+               {
+                   var assemblies = await AssemblyLoader.LoadAssembliesAsync(
+                       [ {LIST OF ASSEMBLIES} ]);
+               }
+           }
+           catch (Exception ex)
+           {
+               Logger.LogError("Error: {Message}", ex.Message);
+           }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
 @using Microsoft.AspNetCore.Components.Routing
@@ -173,7 +208,47 @@ In the following example:
 
 `App.razor`:
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@using System.Reflection
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.Extensions.Logging
+@inject ILogger<App> Logger
+@inject LazyAssemblyLoader AssemblyLoader
+
+<Router AppAssembly="typeof(App).Assembly" 
+    AdditionalAssemblies="lazyLoadedAssemblies" 
+    OnNavigateAsync="OnNavigateAsync">
+    ...
+</Router>
+
+@code {
+    private List<Assembly> lazyLoadedAssemblies = [];
+
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+        {
+            if (args.Path == "{PATH}")
+            {
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(
+                    [ {LIST OF ASSEMBLIES} ]);
+                lazyLoadedAssemblies.AddRange(assemblies);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Error: {Message}", ex.Message);
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
 @using System.Reflection
@@ -195,18 +270,18 @@ In the following example:
     private async Task OnNavigateAsync(NavigationContext args)
     {
         try
-           {
-               if (args.Path == "{PATH}")
-               {
-                   var assemblies = await AssemblyLoader.LoadAssembliesAsync(
-                       new[] { {LIST OF ASSEMBLIES} });
-                   lazyLoadedAssemblies.AddRange(assemblies);
-               }
-           }
-           catch (Exception ex)
-           {
-               Logger.LogError("Error: {Message}", ex.Message);
-           }
+        {
+            if (args.Path == "{PATH}")
+            {
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(
+                    new[] { {LIST OF ASSEMBLIES} });
+                lazyLoadedAssemblies.AddRange(assemblies);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Error: {Message}", ex.Message);
+        }
     }
 }
 ```
@@ -562,7 +637,61 @@ The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router
 
 `App.razor`:
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@using System.Reflection
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.Extensions.Logging
+@inject ILogger<App> Logger
+@inject LazyAssemblyLoader AssemblyLoader
+
+<Router AppAssembly="typeof(App).Assembly"
+        AdditionalAssemblies="lazyLoadedAssemblies" 
+        OnNavigateAsync="OnNavigateAsync">
+    <Navigating>
+        <div style="padding:20px;background-color:blue;color:white">
+            <p>Loading the requested page&hellip;</p>
+        </div>
+    </Navigating>
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="typeof(MainLayout)">
+            <p>Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@code {
+    private List<Assembly> lazyLoadedAssemblies = [];
+    private bool grantImaharaRobotControlsAssemblyLoaded;
+
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+        {
+            if ((args.Path == "robot") && !grantImaharaRobotControlsAssemblyLoaded)
+            {
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(
+                    [ "GrantImaharaRobotControls.{FILE EXTENSION}" ]);
+                lazyLoadedAssemblies.AddRange(assemblies);
+                grantImaharaRobotControlsAssemblyLoaded = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Error: {Message}", ex.Message);
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
 @using System.Reflection

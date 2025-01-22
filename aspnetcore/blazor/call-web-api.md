@@ -662,7 +662,7 @@ public class CookieHandler : DelegatingHandler
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
         request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
-        request.Headers.Add("X-Requested-With", ["XMLHttpRequest"]);
+        request.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
 
         return base.SendAsync(request, cancellationToken);
     }
@@ -694,7 +694,7 @@ When composing an <xref:System.Net.Http.HttpRequestMessage>, set the browser req
 var requestMessage = new HttpRequestMessage() { ... };
 
 requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
-requestMessage.Headers.Add("X-Requested-With", ["XMLHttpRequest"]);
+requestMessage.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
 ```
 
 ## `HttpClient` and `HttpRequestMessage` with Fetch API request options

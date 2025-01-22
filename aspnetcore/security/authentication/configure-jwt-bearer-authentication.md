@@ -79,7 +79,7 @@ There are many types of tokens, including access and ID tokens, as specified by 
 
 When using JWT access tokens for API authorization, the API grants or denies access based on the provided token. If the request is not authorized, a 401 or 403 response is returned. The API shouldn't redirect the user to the identity provider to obtain a new token or request additional permissions. The app consuming the API is responsible for acquiring an appropriate token. This ensures a clear separation of concerns between the API (authorization) and the consuming client app (authentication).
 
-> Note
+> [!NOTE]
 > HTTP also allows returning 404 for not authorized, so as to not leak information about the existence of resources to unauthorized clients.
 
 ### 401 Unauthorized
@@ -90,8 +90,8 @@ A 401 Unauthorized response indicates that the provided access token doesn't mee
 * **Expiration**: The token has expired and is no longer valid.
 * **Incorrect claims**: Critical claims within the token, such as the audience (`aud`) or issuer (`iss`), are missing or invalid.
 
-> Note: From the HTTP Semantics [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2):
-> The server generating a 401 response MUST send a WWW-Authenticate header field (Section 11.6.1) containing at least one challenge applicable to the target resource.
+> [!NOTE]
+> From the HTTP Semantics [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2): The server generating a 401 response MUST send a WWW-Authenticate header field (Section 11.6.1) containing at least one challenge applicable to the target resource.
 
 The [OAuth specifications](/entra/identity-platform/access-token-claims-reference) provide detailed guidelines on the required claims and their validation. 
 
@@ -252,13 +252,13 @@ For more information, see [[Microsoft identity platform and OAuth 2.0 On-Behalf-
 
 ### Use the same delegated access token sent to the API
 
-This approach is not difficult to implement but the access token has access to both APIs. Yarp reverse proxy can be used to implement this.
+This approach is not difficult to implement but the access token has access to all downstream APIs. Yarp reverse proxy can be used to implement this.
 
 ### Use OAuth client credentials flow and use an application access token
 
 This is easy to implement but the client application has full application access and not a delegated access token. The token should be cached in the client API application.
 
-> Note
+> [!NOTE]
 > Any app-to-app security also works. Certificate authentication, or in Azure, a managed identity can be used. 
 
 ## Handling access tokens
@@ -267,7 +267,7 @@ When using access tokens in a client application, the access tokens need to be r
 
 `SaveTokens` will not currently refresh access tokens automatically, but this functionality is planned for .NET 10. Follow https://github.com/dotnet/aspnetcore/issues/8175 for updates. In the meantime, you can manually refresh the access token as [demonstrated in the Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-bff-pattern#token-refresh) or use a third-party NuGet package like [Duende.AccessTokenManagement.OpenIdConnect](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect) for handling and managing access tokens in the client app.  For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
 
-> Note
+> [!NOTE]
 > If deploying to production, the cache should work in a mutli-instance deployment. A persistent cache is normally required.
 
 Some secure token servers encrypt the access tokens. Access tokens do not require any format. When using OAuth introspection, a reference token is used instead of an access token. A client (UI) application should never open an access token as the access token is not intended for this. Only an API for which the access token was created for should open the access token. 
