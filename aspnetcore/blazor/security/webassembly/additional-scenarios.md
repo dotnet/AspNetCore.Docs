@@ -193,6 +193,8 @@ In the following example that attempts to obtain an access token for the user, a
 * `prompt` is set to `login`: Forces the user to enter their credentials on that request, negating single sign on.
 * `loginHint` is set to `peter@contoso.com`: Pre-fills the username/email address field of the sign-in page for the user to `peter@contoso.com`. Apps often use this parameter during re-authentication, having already extracted the username from a previous sign in using the `preferred_username` claim.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ```csharp
@@ -215,7 +217,7 @@ if (!tokenResult.TryGetToken(out var token))
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```csharp
 var tokenResult = await TokenProvider.RequestAccessToken(
@@ -236,6 +238,8 @@ if (!tokenResult.TryGetToken(out var token))
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 The preceding example assumes:
 
