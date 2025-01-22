@@ -1042,11 +1042,11 @@ The component adopts the following approaches to work for either SSR or CSR comp
             { "es-CR", "Spanish (Costa Rica)" }
         };
 
-    private CultureInfo[] supportedCultures = new[]
-    {
-        new CultureInfo("en-US"),
-        new CultureInfo("es-CR"),
-    };
+    private CultureInfo[] supportedCultures = 
+        [ 
+            new CultureInfo("en-US"), 
+            new CultureInfo("es-CR"),
+        ];
 
     private CultureInfo? selectedCulture;
 

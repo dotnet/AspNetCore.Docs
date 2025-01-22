@@ -80,7 +80,7 @@ dotnet user-secrets init
 
 The preceding command adds a `UserSecretsId` element within a `PropertyGroup` of the project file. By default, the inner text of `UserSecretsId` is a GUID. The inner text is arbitrary, but is unique to the project.
 
-![UserSecretsId](~/security/app-secrets/_static/UserSecretsId.png)
+![The UserSecretsId MS Build property configuration in the app's project file.](~/security/app-secrets/_static/UserSecretsId.png)
 
 ### Use Visual Studio
 
