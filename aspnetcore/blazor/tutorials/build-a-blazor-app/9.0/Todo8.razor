@@ -19,7 +19,7 @@
 <button @onclick="AddTodo">Add todo</button>
 
 @code {
-    private List<TodoItem> todos = new();
+    private List<TodoItem> todos = [];
     private string? newTodo;
 
     private void AddTodo()

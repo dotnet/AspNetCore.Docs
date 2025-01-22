@@ -193,6 +193,32 @@ In the following example that attempts to obtain an access token for the user, a
 * `prompt` is set to `login`: Forces the user to enter their credentials on that request, negating single sign on.
 * `loginHint` is set to `peter@contoso.com`: Pre-fills the username/email address field of the sign-in page for the user to `peter@contoso.com`. Apps often use this parameter during re-authentication, having already extracted the username from a previous sign in using the `preferred_username` claim.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+var tokenResult = await TokenProvider.RequestAccessToken(
+    new AccessTokenRequestOptions
+    {
+        Scopes = [ ... ]
+    });
+
+if (!tokenResult.TryGetToken(out var token))
+{
+    tokenResult.InteractionOptions.TryAddAdditionalParameter("prompt", "login");
+    tokenResult.InteractionOptions.TryAddAdditionalParameter("loginHint", 
+        "peter@contoso.com");
+
+    Navigation.NavigateToLogin(accessTokenResult.InteractiveRequestUrl, 
+        accessTokenResult.InteractionOptions);
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 ```csharp
 var tokenResult = await TokenProvider.RequestAccessToken(
     new AccessTokenRequestOptions
@@ -210,6 +236,10 @@ if (!tokenResult.TryGetToken(out var token))
         accessTokenResult.InteractionOptions);
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 The preceding example assumes:
 
@@ -439,14 +469,31 @@ In the following example, <xref:Microsoft.Extensions.DependencyInjection.HttpCli
 
 In the `Program` file:
 
+:::moniker range=">= aspnetcore-8.0"
+
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(
         client => client.BaseAddress = new Uri("https://api.contoso.com/v1.0"))
     .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
     .ConfigureHandler(
-        authorizedUrls: new [] { "https://api.contoso.com/v1.0" },
+        authorizedUrls: [ "https://api.contoso.com/v1.0" ],
+        scopes: [ "example.read", "example.write" ]));
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+```csharp
+builder.Services.AddHttpClient<WeatherForecastClient>(
+        client => client.BaseAddress = new Uri("https://api.contoso.com/v1.0"))
+    .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
+    .ConfigureHandler(
+        authorizedUrls: new[] { "https://api.contoso.com/v1.0" },
         scopes: new[] { "example.read", "example.write" }));
 ```
+
+:::moniker-end
 
 In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
 
@@ -534,6 +581,30 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessToke
 
 In a Razor component:
 
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject IAccessTokenProvider TokenProvider
+
+...
+
+var tokenResult = await TokenProvider.RequestAccessToken(
+    new AccessTokenRequestOptions
+    {
+        Scopes = [ "{CUSTOM SCOPE 1}", "{CUSTOM SCOPE 2}" ]
+    });
+
+if (tokenResult.TryGetToken(out var token))
+{
+    ...
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject IAccessTokenProvider TokenProvider
@@ -551,6 +622,8 @@ if (tokenResult.TryGetToken(out var token))
     ...
 }
 ```
+
+:::moniker-end
 
 The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding example are custom scopes.
 

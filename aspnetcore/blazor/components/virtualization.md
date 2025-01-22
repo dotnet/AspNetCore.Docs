@@ -214,7 +214,7 @@ Change the `OnInitialized` method lambda to see the component display strings:
 
 ```csharp
 protected override void OnInitialized() =>
-    stringList ??= new() { "Here's a string!", "Here's another string!" };
+    stringList ??= [ "Here's a string!", "Here's another string!" ];
 ```
 
 :::moniker-end

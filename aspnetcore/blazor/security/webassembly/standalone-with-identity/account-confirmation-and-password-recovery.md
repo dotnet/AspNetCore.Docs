@@ -243,7 +243,7 @@ public async Task<bool> ForgotPasswordAsync(string email)
 public async Task<FormResult> ResetPasswordAsync(string email, string resetCode, 
     string newPassword)
 {
-    string[] defaultDetail = ["An unknown error prevented resetting the password."];
+    string[] defaultDetail = [ "An unknown error prevented password reset." ];
 
     try
     {

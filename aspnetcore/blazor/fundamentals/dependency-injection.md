@@ -579,7 +579,7 @@ public class CircuitServicesAccessor
     public IServiceProvider? Services
     {
         get => blazorServices.Value;
-        set => blazorServices.Value = value;
+        set => blazorServices.Value = value!;
     }
 }
 

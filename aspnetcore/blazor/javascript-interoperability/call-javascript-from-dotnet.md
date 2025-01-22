@@ -1102,9 +1102,21 @@ The `{TIMEOUT}` placeholder is a <xref:System.TimeSpan> (for example, `TimeSpan.
 
 Set a per-invocation timeout in component code. The specified timeout overrides the global timeout set by <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout>:
 
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+var result = await JS.InvokeAsync<string>("{ID}", {TIMEOUT}, [ "Arg1" ]);
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```csharp
 var result = await JS.InvokeAsync<string>("{ID}", {TIMEOUT}, new[] { "Arg1" });
 ```
+
+:::moniker-end
 
 In the preceding example:
 

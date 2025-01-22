@@ -353,6 +353,61 @@ The validation for the `Defense` ship classification only occurs on the server i
 
 `Controllers/StarshipValidation.cs`:
 
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using BlazorSample.Shared;
+
+namespace BlazorSample.Server.Controllers;
+
+[Authorize]
+[ApiController]
+[Route("[controller]")]
+public class StarshipValidationController(
+    ILogger<StarshipValidationController> logger) 
+    : ControllerBase
+{
+    static readonly string[] scopeRequiredByApi = [ "API.Access" ];
+
+    [HttpPost]
+    public async Task<IActionResult> Post(Starship model)
+    {
+        HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
+
+        try
+        {
+            if (model.Classification == "Defense" && 
+                string.IsNullOrEmpty(model.Description))
+            {
+                ModelState.AddModelError(nameof(model.Description),
+                    "For a 'Defense' ship " +
+                    "classification, 'Description' is required.");
+            }
+            else
+            {
+                logger.LogInformation("Processing the form asynchronously");
+
+                // async ...
+
+                return Ok(ModelState);
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError("Validation Error: {Message}", ex.Message);
+        }
+
+        return BadRequest(ModelState);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -402,6 +457,8 @@ public class StarshipValidationController(
 }
 ```
 
+:::moniker-end
+
 Confirm or update the namespace of the preceding controller (`BlazorSample.Server.Controllers`) to match the app's controllers' namespace.
 
 When a model binding validation error occurs on the server, an [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normally returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields of the `Starfleet Starship Database` form aren't submitted and the form fails validation:
@@ -411,10 +468,10 @@ When a model binding validation error occurs on the server, an [`ApiController`]
   "title": "One or more validation errors occurred.",
   "status": 400,
   "errors": {
-    "Id": ["The Id field is required."],
-    "Classification": ["The Classification field is required."],
-    "IsValidatedDesign": ["This form disallows unapproved ships."],
-    "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
+    "Id": [ "The Id field is required." ],
+    "Classification": [ "The Classification field is required." ],
+    "IsValidatedDesign": [ "This form disallows unapproved ships." ],
+    "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
   }
 }
 ```
@@ -426,10 +483,10 @@ If the server API returns the preceding default JSON response, it's possible for
 
 ```json
 {
-  "Id": ["The Id field is required."],
-  "Classification": ["The Classification field is required."],
-  "IsValidatedDesign": ["This form disallows unapproved ships."],
-  "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
+  "Id": [ "The Id field is required." ],
+  "Classification": [ "The Classification field is required." ],
+  "IsValidatedDesign": [ "This form disallows unapproved ships." ],
+  "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
 }
 ```
 
@@ -951,6 +1008,50 @@ To ensure that a validation result is correctly associated with a field when usi
 
 `CustomValidator.cs`:
 
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class CustomValidator : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object? value, 
+        ValidationContext validationContext)
+    {
+        ...
+
+        return new ValidationResult("Validation message to user.",
+            [ validationContext.MemberName! ]);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class CustomValidator : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object? value, 
+        ValidationContext validationContext)
+    {
+        ...
+
+        return new ValidationResult("Validation message to user.",
+            new[] { validationContext.MemberName! });
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 ```csharp
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -967,6 +1068,8 @@ public class CustomValidator : ValidationAttribute
     }
 }
 ```
+
+:::moniker-end
 
 Inject services into custom validation attributes through the <xref:System.ComponentModel.DataAnnotations.ValidationContext>. The following example demonstrates a salad chef form that validates user input with dependency injection (DI).
 

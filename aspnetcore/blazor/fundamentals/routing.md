@@ -199,7 +199,7 @@ In the following example, the `Routes` component is in the server project, and t
 ```razor
 <Router
     AppAssembly="..."
-    AdditionalAssemblies="new[] { typeof(BlazorSample.Client._Imports).Assembly }">
+    AdditionalAssemblies="[ typeof(BlazorSample.Client._Imports).Assembly ]">
     ...
 </Router>
 ```
