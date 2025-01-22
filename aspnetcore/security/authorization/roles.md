@@ -59,8 +59,8 @@ Access to an action can be limited by applying additional role authorization att
 
 In the preceding `ControlAllPanelController` controller:
 
-* Members of the `Administrator` role or the `PowerUser` role can access the controller and the `ShutDown` action.
-* Only members of the `Administrator` role can access the `SetTime` action.
+* Members of the `Administrator` role or the `PowerUser` role can access the controller and the `SetTime` action.
+* Only members of the `Administrator` role can access the `ShutDown` action.
 
 A controller can be secured but allow anonymous, unauthenticated access to individual actions:
 
