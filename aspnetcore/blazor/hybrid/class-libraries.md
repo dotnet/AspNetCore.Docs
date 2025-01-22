@@ -186,10 +186,10 @@ namespace {APP NAMESPACE}.Services;
 
 public class WeatherForecastService : IWeatherForecastService
 {
-    private static readonly string[] Summaries = new[]
-    {
+    private static readonly string[] Summaries = 
+    [
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot"
-    };
+    ];
 
     public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
         await Task.FromResult(Enumerable.Range(1, 5)
