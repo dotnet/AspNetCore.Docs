@@ -60,7 +60,7 @@ Add a `NativeFileReference` MS Build item for `Test.c` in the app's project file
 </ItemGroup>
 ```
 
-In a Razor component, add a <xref:System.Runtime.InteropServices.DllImportAttribute> for the `fact` function in the generated `Test` library and call the `fact` method from .NET code in the component.
+In a Razor component, add a [`[DllImport]` attribute](xref:System.Runtime.InteropServices.DllImportAttribute) for the `fact` function in the generated `Test` library and call the `fact` method from .NET code in the component.
 
 `Pages/NativeCTest.razor`:
 
