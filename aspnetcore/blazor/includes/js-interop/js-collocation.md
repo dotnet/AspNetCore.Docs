@@ -116,7 +116,7 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
         }
     }
 
-    public async void ShowPrompt()
+    public async Task ShowPrompt()
     {
         if (module is not null)
         {
