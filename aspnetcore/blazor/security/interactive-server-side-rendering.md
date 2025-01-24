@@ -129,9 +129,9 @@ There's no limit on the number of connections per user for an app. If the app re
     * Require authentication to connect to the app and keep track of the active sessions per user.
     * Reject new sessions upon reaching a limit.
     * Proxy WebSocket connections to an app through the use of a proxy, such as the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) that multiplexes connections from clients to an app. This provides an app with greater connection capacity than a single client can establish, preventing a client from exhausting the connections to the server.
-  * Server level
-    * Use a proxy/gateway in front of the app. For example, [Azure Application Gateway](/azure/application-gateway/overview) is a web traffic (OSI layer 7) load balancer that enables you to manage traffic to your web applications. For more information, see [Overview of WebSocket support in Application Gateway](/azure/application-gateway/application-gateway-websocket).
-    * Although Long Polling is supported for Blazor apps, which would permit the adoption of [Azure Front Door](/azure/frontdoor/front-door-overview), [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). As of September, 2024, [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets, but support for WebSockets is under consideration. For more information, see [Support WebSocket connections on Azure Front Door](https://feedback.azure.com/d365community/idea/c8b1d257-8a26-ec11-b6e6-000d3a4f0789).
+  * Server level: Use a proxy/gateway in front of the app.
+    * [Azure Application Gateway](/azure/application-gateway/overview) is a web traffic (OSI layer 7) load balancer that enables you to manage traffic to your web applications. For more information, see [Overview of WebSocket support in Application Gateway](/azure/application-gateway/application-gateway-websocket).
+    * [Azure Front Door](/azure/frontdoor/front-door-overview) is a load-balancing service for distributing your workloads across multiple computing resources.
 
 :::moniker-end
 
