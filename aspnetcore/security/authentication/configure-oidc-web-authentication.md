@@ -158,6 +158,8 @@ builder.Services.AddAuthorizationBuilder()
     .SetFallbackPolicy(requireAuthPolicy);
 ```
 
+Opt out of authorization at public endpoints by applying the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to the public endpoints. For examples, see the [Add a new `Logout.cshtml` and `SignedOut.cshtml` Razor pages to the project](#add-a-new-logoutcshtml-and-signedoutcshtml-razor-pages-to-the-project) and [Implement `Login` page](#implement-login-page) sections.
+
 ### Add a new `Logout.cshtml` and `SignedOut.cshtml` Razor pages to the project
 
 A logout is required to sign out both the cookie session and the OpenID Connect session. The whole app needs to redirect to the OpenID Connect server to sign out. After a successful sign out, the app opens the `RedirectUri` route.
@@ -194,7 +196,7 @@ public class SignedOutModel : PageModel
 }
 ```
 
-### Implement `Login` page 
+### Implement `Login` page
 
 A `Login` Razor page can also be implemented to call the `ChallengeAsync` directly with the required `AuthProperties`. This isn't required if the web app requires authentication and the default challenge is used.
 
