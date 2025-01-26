@@ -40,7 +40,7 @@ In addition to the scenario where the user selects the button to submit the form
 
 These alternative scenarios don't require any action or input from the user other than initially visiting the malicious site.
 
-Using HTTPS doesn't prevent a CSRF attack. The malicious site can send an `https://www.good-banking-site.com/` request as easily as it can send an insecure request.
+Using HTTPS doesn't prevent a CSRF attack. The malicious site can send `https://www.good-banking-site.example.com/` a request just as easily as it can send an insecure request.
 
 Some attacks target endpoints that respond to GET requests, in which case an image tag can be used to perform the action. This form of attack is common on forum sites that permit images but block JavaScript. Apps that change state on GET requests, where variables or resources are altered, are vulnerable to malicious attacks. **GET requests that change state are insecure. A best practice is to never change state on a GET request.**
 
@@ -359,7 +359,7 @@ In addition to the scenario where the user selects the button to submit the form
 
 These alternative scenarios don't require any action or input from the user other than initially visiting the malicious site.
 
-Using HTTPS doesn't prevent a CSRF attack. The malicious site can send an `https://www.good-banking-site.com/` request just as easily as it can send an insecure request.
+Using HTTPS doesn't prevent a CSRF attack. The malicious site can send `https://www.good-banking-site.example.com/` a request just as easily as it can send an insecure request.
 
 Some attacks target endpoints that respond to GET requests, in which case an image tag can be used to perform the action. This form of attack is common on forum sites that permit images but block JavaScript. Apps that change state on GET requests, where variables or resources are altered, are vulnerable to malicious attacks. **GET requests that change state are insecure. A best practice is to never change state on a GET request.**
 
@@ -635,7 +635,7 @@ In addition to the scenario where the user selects the button to submit the form
 
 These alternative scenarios don't require any action or input from the user other than initially visiting the malicious site.
 
-Using HTTPS doesn't prevent a CSRF attack. The malicious site can send an `https://www.good-banking-site.com/` request just as easily as it can send an insecure request.
+Using HTTPS doesn't prevent a CSRF attack. The malicious site can send `https://www.good-banking-site.example.com/` a request just as easily as it can send an insecure request.
 
 Some attacks target endpoints that respond to GET requests, in which case an image tag can be used to perform the action. This form of attack is common on forum sites that permit images but block JavaScript. Apps that change state on GET requests, where variables or resources are altered, are vulnerable to malicious attacks. **GET requests that change state are insecure. A best practice is to never change state on a GET request.**
 
@@ -887,7 +887,7 @@ In addition to the scenario where the user selects the button to submit the form
 
 These alternative scenarios don't require any action or input from the user other than initially visiting the malicious site.
 
-Using HTTPS doesn't prevent a CSRF attack. The malicious site can send an `https://www.good-banking-site.com/` request just as easily as it can send an insecure request.
+Using HTTPS doesn't prevent a CSRF attack. The malicious site can send `https://www.good-banking-site.example.com/` a request just as easily as it can send an insecure request.
 
 Some attacks target endpoints that respond to GET requests, in which case an image tag can be used to perform the action. This form of attack is common on forum sites that permit images but block JavaScript. Apps that change state on GET requests, where variables or resources are altered, are vulnerable to malicious attacks. **GET requests that change state are insecure. A best practice is to never change state on a GET request.**
 
