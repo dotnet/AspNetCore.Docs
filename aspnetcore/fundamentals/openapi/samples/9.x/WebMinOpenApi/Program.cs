@@ -3,7 +3,6 @@
 //#define DOCUMENTtransformer1
 //#define DOCUMENTtransformer2
 #define DOCUMENTtransformerUse999
-//#define DEFAULT
 //#define FIRST
 //#define OPENAPIWITHSCALAR
 //#define MAPOPENAPIWITHCACHING
@@ -80,7 +79,10 @@ builder.Services.AddOpenApi(options =>
 
 var app = builder.Build();
 
-app.MapOpenApi();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.MapGet("/", () => "Hello world!");
 
@@ -107,7 +109,10 @@ builder.Services.AddOpenApi(options =>
 
 var app = builder.Build();
 
-app.MapOpenApi();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.MapGet("/", () => "Hello world!");
 
@@ -161,7 +166,10 @@ builder.Services.AddOpenApi(options =>
 
 var app = builder.Build();
 
-app.MapOpenApi();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.MapGet("/", () => "Hello world!");
 
@@ -189,7 +197,10 @@ builder.Services.AddOpenApi("public");
 
 var app = builder.Build();
 
-app.MapOpenApi();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.MapGet("/world", () => "Hello world!")
     .WithGroupName("internal");
@@ -253,7 +264,10 @@ builder.Services.AddOpenApi(options => {
 
 var app = builder.Build();
 
-app.MapOpenApi();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.MapGet("/", () => new Body { Amount = 1.1m });
 
@@ -279,9 +293,10 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-app.MapOpenApi();
 if (app.Environment.IsDevelopment())
 {
+    app.MapOpenApi();
+    
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/openapi/v1.json", "v1");
@@ -342,8 +357,11 @@ var app = builder.Build();
 
 app.UseOutputCache();
 
-app.MapOpenApi()
-    .CacheOutput();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi()
+        .CacheOutput();
+}
 
 app.MapGet("/", () => "Hello world!");
 
@@ -365,10 +383,9 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-app.MapOpenApi();
-
 if (app.Environment.IsDevelopment())
 {
+    app.MapOpenApi();
     app.MapScalarApiReference();
 }
 
@@ -386,7 +403,10 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-app.MapOpenApi();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.MapGet("/", () => "Hello world!");
 
@@ -419,7 +439,10 @@ builder.Services.AddOpenApi(options =>
 
 var app = builder.Build();
 
-app.MapOpenApi();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.MapGet("/", () => "Hello world!");
 
@@ -473,7 +496,10 @@ builder.Services.AddOpenApi(options =>
 
 var app = builder.Build();
 
-app.MapOpenApi();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.MapGet("/", () => "Hello world!");
 
