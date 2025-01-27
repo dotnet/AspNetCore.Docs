@@ -51,7 +51,7 @@ Add a package reference to the client project for the [`Net.Codecrete.QrCodeGene
 
 Set the site name in the app settings file of the client project. Use a meaningful site name that users can identify easily in their authenticator app. Developers usually set a site name that matches the company's name. We recommend limiting the site name length to 30 characters or less to allow the site name to display on narrow mobile device screens.
 
-In the following example, the the company name is `Weyland-Yutani Corporation` (&copy;1986 20th Century Studios [*Aliens*](https://www.20thcenturystudios.com/movies/aliens)).
+In the following example, the company name is `Weyland-Yutani Corporation` (&copy;1986 20th Century Studios [*Aliens*](https://www.20thcenturystudios.com/movies/aliens)).
 
 Added to `wwwroot/appsettings.json`:
 
@@ -858,7 +858,7 @@ If 2FA is enabled, buttons appear to disable 2FA and regenerate recovery codes.
 }
 ```
 
-## Link to the the Manage 2FA page
+## Link to the Manage 2FA page
 
 Add a link to the navigation menu for users to reach the `Manage2fa` component page.
 
