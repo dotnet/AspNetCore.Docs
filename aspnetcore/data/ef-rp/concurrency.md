@@ -1107,6 +1107,7 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 * [YouTube version of this tutorial(Handling Concurrency Conflicts)](https://youtu.be/EosxHTFgYps)
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=kcxERLnaGO0)
 * [YouTube version of this tutorial(Part 3)](https://www.youtube.com/watch?v=d4RbpfvELRs)
+* [!INCLUDE[](~/includes/reliableWAP.md)]
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/update-related-data)

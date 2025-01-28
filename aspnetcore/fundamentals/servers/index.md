@@ -274,3 +274,4 @@ An HTTP/2 connection must use [Application-Layer Protocol Negotiation (ALPN)](ht
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/linux-nginx>
 * <xref:fundamentals/servers/httpsys>
+* [!INCLUDE[](~/includes/reliableWAP.md)]

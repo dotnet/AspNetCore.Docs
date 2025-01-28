@@ -87,3 +87,4 @@ For information on other cloud providers, see:
 * <xref:security/authentication/identity-enable-qrcodes>
 * <xref:security/authentication/social/index> 
 * <xref:security/identity-management-solutions>
+* [!INCLUDE[](~/includes/reliableWAP.md)]

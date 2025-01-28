@@ -256,6 +256,8 @@ For information on how to deploy a web app, see <xref:host-and-deploy/index>.
 
 For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see <xref:index>.
 
+[!INCLUDE[](~/includes/reliableWAP.md)]
+
 ## Next steps
 
 In this tutorial, you:
