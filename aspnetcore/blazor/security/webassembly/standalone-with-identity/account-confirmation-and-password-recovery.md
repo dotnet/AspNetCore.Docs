@@ -296,7 +296,7 @@ Enabling account confirmation on a site with users locks out all the existing us
 Password recovery requires the server app to adopt an email provider in order to send password reset codes to users. Therefore, follow the guidance earlier in this article to adopt an email provider:
 
 * [Select and configure an email provider for the server project](#select-and-configure-an-email-provider-for-the-server-project)
-* [Configure a user secret for the provider's security key](#configure-a-user-secret-for-the-providers-security-key)
+* [Configure a secret for the email provider's security key](#configure-a-secret-for-the-email-providers-security-key)
 * [Implement `IEmailSender` in the server project](#implement-iemailsender-in-the-server-project)
 
 Password recovery is a two-step process:
