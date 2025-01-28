@@ -43,7 +43,18 @@ Register the `AuthMessageSenderOptions` configuration instance in the `Program` 
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 ```
 
-## Configure a user secret for the provider's security key
+## Configure a secret for the email provider's security key
+
+Receive the email provider's security key from the provider and use it in the following guidance.
+
+Use either or both of the following approaches to supply the secret to the app:
+
+* [Secret Manager tool](#secret-manager-tool): The Secret Manager tool stores private data on the local machine and is only used during local development.
+* [Azure Key Vault](#azure-key-vault): You can store the secret in a key vault for use in any environment, including for the Development environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
+
+We strongly recommend that you avoid storing secrets in project code or configuration files. Use secure authentication flows, such as either or both of the approaches in this section.
+
+### Secret Manager tool
 
 If the project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have an app secrets identifier (`<AppSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the app secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
 
@@ -62,6 +73,93 @@ If using Visual Studio, you can confirm the secret is set by right-clicking the 
 For more information, see <xref:security/app-secrets>.
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
+### Azure Key Vault
+
+[Azure Key Vault](https://azure.microsoft.com/products/key-vault/) provides a safe approach for providing the app's client secret to the app.
+
+To create a key vault and set a secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret. When you set the access policy for the secret in the **Access policies** panel:
+
+* Only the **Get** secret permission is required.
+* Select the application as the **Principal** for the secret.
+
+> [!IMPORTANT]
+> A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.
+The following `GetKeyVaultSecret` method retrieves a secret from a key vault. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
+
+`Helpers/AzureHelper.cs`:
+
+```csharp
+using Azure;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+
+namespace BlazorSample.Helpers;
+
+public static class AzureHelper
+{
+    public static string GetKeyVaultSecret(string tenantId, string vaultUri, string secretName)
+    {
+        DefaultAzureCredentialOptions options = new()
+        {
+            // Specify the tenant ID to use the dev credentials when running the app locally
+            // in Visual Studio.
+            VisualStudioTenantId = tenantId,
+            SharedTokenCacheTenantId = tenantId
+        };
+
+        var client = new SecretClient(new Uri(vaultUri), new DefaultAzureCredential(options));
+        var secret = client.GetSecretAsync(secretName).Result;
+
+        return secret.Value.Value;
+    }
+}
+```
+
+Where services are registered in the server project's `Program` file, obtain and bind the secret with Options configuration:
+
+```csharp
+var tenantId = builder.Configuration.GetValue<string>("AzureAd:TenantId")!;
+var vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
+
+var emailAuthKey = AzureHelper.GetKeyVaultSecret(
+    tenantId, vaultUri, "EmailAuthKey");
+
+var authMessageSenderOptions = 
+    new AuthMessageSenderOptions() { EmailAuthKey = emailAuthKey };
+builder.Configuration.GetSection(authMessageSenderOptions.EmailAuthKey)
+    .Bind(authMessageSenderOptions);
+```
+
+If you wish to control the environment where the preceding code operates, for example to avoid running the code locally because you've opted to use the [Secret Manager tool](#secret-manager-tool) for local development, you can wrap the preceding code in a conditional statement that checks the environment:
+
+```csharp
+if (!context.HostingEnvironment.IsDevelopment())
+{
+    ...
+}
+```
+
+In the `AzureAd` section of `appsettings.json`, add the following `VaultUri` and `SecretName` configuration keys and values:
+
+```json
+"VaultUri": "{VAULT URI}",
+"SecretName": "{SECRET NAME}"
+```
+
+In the preceding example:
+
+* The `{VAULT URI}` placeholder is the key vault URI. Include the trailing slash on the URI.
+* The `{SECRET NAME}` placeholder is the secret name.
+
+Example:
+
+```json
+"VaultUri": "https://contoso.vault.azure.net/",
+"SecretName": "BlazorWebAppEntra"
+```
+
+Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
 
 ## Implement `IEmailSender`
 
