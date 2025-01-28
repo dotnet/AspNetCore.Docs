@@ -450,6 +450,7 @@ Delete the test department from the second tab. A concurrency error is display w
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
 * [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
+* [!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
 ## Next steps
 
@@ -805,6 +806,7 @@ Delete the test department from the second tab. A concurrency error is display w
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
 * [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
+* [!INCLUDE[](~/includes/reliableWAP.md)]
 
 ## Next steps
 
