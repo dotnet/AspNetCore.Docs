@@ -265,7 +265,7 @@ Navigate to the movies `Index` page to see the seeded movies:
 
 ## Bind a form to a model
 
-Review the the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
+Review the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
 
 When an HTTP GET request is made for the `Edit` component page (for example at the relative URL: `/movies/edit?id=6`):
 
