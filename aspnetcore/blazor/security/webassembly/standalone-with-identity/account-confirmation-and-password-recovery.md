@@ -95,7 +95,7 @@ Confirm in the Azure or Entra portal that the app has been granted access to the
 > [!IMPORTANT]
 > A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.
 
-Add the following packages to the server project:
+If Microsoft Identity packages aren't already part of the app's package registrations, add the following packages to the server project for Azure Identity and Azure Key Vault. These packages are transitively provided by Microsoft Identity Web packages, so you only need to add them if the app isn't referencing [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web):
 
 * [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity)
 * [`Azure.Security.KeyVault.Secrets`](https://www.nuget.org/packages/Azure.Security.KeyVault.Secrets)
