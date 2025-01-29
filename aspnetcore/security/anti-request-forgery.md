@@ -268,7 +268,7 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 <a name="afwma"></a>
 
-### Antiforgery with Minimal APIs
+## Antiforgery with Minimal APIs
 
 Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) and <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery(Microsoft.AspNetCore.Builder.IApplicationBuilder)> to register antiforgery services in DI.  Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
 
