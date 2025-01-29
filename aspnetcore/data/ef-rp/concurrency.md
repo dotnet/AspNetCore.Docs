@@ -445,12 +445,13 @@ The browser shows the Index page with the changed value and updated `Concurrency
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `ConcurrencyToken` has been updated.
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 ## Additional resources
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
 * [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
-* [!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
 ## Next steps
 
@@ -801,12 +802,13 @@ The browser shows the Index page with the changed value and updated rowVersion i
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
 
+[!INCLUDE[](~/includes/reliableWAP.md)]
+
 ## Additional resources
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
 * [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
-* [!INCLUDE[](~/includes/reliableWAP.md)]
 
 ## Next steps
 
@@ -1102,14 +1104,15 @@ Delete the test department from the second tab. A concurrency error is display w
 
 See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
-### Additional resources
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
+## Additional resources
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
 * [YouTube version of this tutorial(Handling Concurrency Conflicts)](https://youtu.be/EosxHTFgYps)
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=kcxERLnaGO0)
 * [YouTube version of this tutorial(Part 3)](https://www.youtube.com/watch?v=d4RbpfvELRs)
-* [!INCLUDE[](~/includes/reliableWAP.md)]
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/update-related-data)
