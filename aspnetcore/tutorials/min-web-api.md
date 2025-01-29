@@ -618,7 +618,7 @@ public async Task GetAllTodos_ReturnsOkOfTodosResult()
 
 ## Prevent over-posting
 
-Currently the sample app exposes the entire `Todo` object. Production apps In production applications, a subset of the model is often used to restrict the data that can be input and returned. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+Currently the sample app exposes the entire `Todo` object. In production applications, a subset of the model is often used to restrict the data that can be input and returned. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
 
 A DTO can be used to:
 
