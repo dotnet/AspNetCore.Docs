@@ -94,14 +94,13 @@ Confirm in the Azure or Entra portal that the app has been granted access to the
 
 > [!IMPORTANT]
 > A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.
-The following `GetKeyVaultSecret` method retrieves a secret from a key vault. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
 
 Add the following packages to the server project:
 
 * [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity)
 * [`Azure.Security.KeyVault.Secrets`](https://www.nuget.org/packages/Azure.Security.KeyVault.Secrets)
 
-Add the following `AzureHelper` class to the project.
+Add the following `AzureHelper` class to the server project. The `GetKeyVaultSecret` method retrieves a secret from a key vault. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
 
 `Helpers/AzureHelper.cs`:
 
@@ -131,7 +130,7 @@ public static class AzureHelper
 }
 ```
 
-Where services are registered in the server project's `Program` file, obtain and bind the secret with Options configuration:
+Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](xref:fundamentals/configuration/options):
 
 ```csharp
 var tenantId = builder.Configuration.GetValue<string>("AzureAd:TenantId")!;
@@ -155,7 +154,7 @@ if (!context.HostingEnvironment.IsDevelopment())
 }
 ```
 
-In the `AzureAd` section, which you may need to add if it isn't already present, of `appsettings.json` in the server project, add the following `TenantId` and `VaultUri` configuration keys and values if they aren't already present:
+In the `AzureAd` section, which you may need to add if it isn't already present, of `appsettings.json` in the server project, add the following `TenantId` and `VaultUri` configuration keys and values, if they aren't already present:
 
 ```json
 "AzureAd": {

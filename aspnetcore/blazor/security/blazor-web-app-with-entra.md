@@ -156,7 +156,7 @@ To create a key vault and set a client secret, see [About Azure Key Vault secret
 > [!IMPORTANT]
 > A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.
 
-The following `GetKeyVaultSecret` method retrieves a secret from a key vault. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
+Add the following `AzureHelper` class to the server project. The `GetKeyVaultSecret` method retrieves a secret from a key vault. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
 
 `Helpers/AzureHelper.cs`:
 
