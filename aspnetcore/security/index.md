@@ -81,6 +81,8 @@ For information on other cloud providers, see:
 * [AWS (Amazon Web Services): AWS Key Management Service (KMS)](https://aws.amazon.com/kms/)
 * [Google Cloud Key Management Service overview](https://cloud.google.com/kms/docs/key-management-service)
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 ## Additional resources
 
 * <xref:security/authentication/identity>
