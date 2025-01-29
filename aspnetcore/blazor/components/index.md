@@ -727,45 +727,54 @@ The `Heading` component example shown in this section doesn't have an [`@page`][
 
 ## Component parameters
 
-*Component parameters* pass data to components and are defined using public [C# properties](/dotnet/csharp/programming-guide/classes-and-structs/properties) on the component class with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute). In the following example, a built-in reference type (<xref:System.String?displayProperty=fullName>) and a user-defined reference type (`PanelBody`) are passed as component parameters.
+*Component parameters* pass data to components and are defined using public [C# properties](/dotnet/csharp/programming-guide/classes-and-structs/properties) on the component class with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute).
 
-`PanelBody.cs`:
+In the following `ParameterChild` component, component parameters include:
 
-:::moniker range=">= aspnetcore-9.0"
+* Built-in reference types.
 
-:::code language="csharp" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/PanelBody.cs":::
+  * <xref:System.String?displayProperty=fullName> to pass a title in `Title`.
+  * <xref:System.Int32?displayProperty=fullName> to pass a count in `Count`.
 
-:::moniker-end
+* A user-defined reference type (`PanelBody`) to pass a Bootstrap card body in `Body`.
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+  `PanelBody.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/PanelBody.cs":::
+  :::moniker range=">= aspnetcore-9.0"
 
-:::moniker-end
+  :::code language="csharp" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/PanelBody.cs":::
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+  :::moniker-end
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/PanelBody.cs":::
+  :::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
-:::moniker-end
+  :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/PanelBody.cs":::
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+  :::moniker-end
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/PanelBody.cs":::
+  :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::moniker-end
+  :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/PanelBody.cs":::
 
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+  :::moniker-end
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/PanelBody.cs":::
+  :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::moniker-end
+  :::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/PanelBody.cs":::
 
-:::moniker range="< aspnetcore-5.0"
+  :::moniker-end
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/PanelBody.cs":::
+  :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::moniker-end
+  :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/PanelBody.cs":::
+
+  :::moniker-end
+
+  :::moniker range="< aspnetcore-5.0"
+
+  :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/PanelBody.cs":::
+
+  :::moniker-end
 
 `ParameterChild.razor`:
 
@@ -808,7 +817,7 @@ The `Heading` component example shown in this section doesn't have an [`@page`][
 > [!WARNING]
 > Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. For more information, see <xref:blazor/components/overwriting-parameters>.
 
-The `Title` and `Body` component parameters of the `ParameterChild` component are set by arguments in the HTML tag that renders the instance of the component. The following `ParameterParent` component renders two `ParameterChild` components:
+The component parameters of the `ParameterChild` component can be set by arguments in the HTML tag that renders an instance of the `ParameterChild` component. The following `ParameterParent` component renders two `ParameterChild` components:
 
 * The first `ParameterChild` component is rendered without supplying parameter arguments.
 * The second `ParameterChild` component receives values for `Title` and `Body` from the `ParameterParent` component, which uses an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) to set the values of the `PanelBody`'s properties.
@@ -864,21 +873,21 @@ The `Title` and `Body` component parameters of the `ParameterChild` component ar
 The following rendered HTML markup from the `ParameterParent` component shows `ParameterChild` component default values when the `ParameterParent` component doesn't supply component parameter values. When the `ParameterParent` component provides component parameter values, they replace the `ParameterChild` component's default values.
 
 > [!NOTE]
-> For clarity, rendered CSS style classes aren't shown in the following rendered HTML markup.
+> For clarity, most of the rendered CSS style classes and some elements aren't shown in the following rendered HTML markup. The main concept demonstrated by the following example is that the parent component assigned values to the child component using its component parameters.
 
 ```html
 <h1>Child component (without attribute values)</h1>
 
-<div>
-    <div>Set By Child</div>
-    <div>Set by child.</div>
+<div>Set By Child</div>
+<div style="font-style:normal">
+    <p>Card content set by child.</p>
 </div>
 
 <h1>Child component (with attribute values)</h1>
 
-<div>
-    <div>Set by Parent</div>
-    <div>Set by parent.</div>
+<div>Set by Parent</div>
+<div style="font-style:italic">
+    <p>Set by parent.</p>
 </div>
 ```
 
@@ -893,12 +902,14 @@ The following `ParameterParent2` component displays four instances of the preced
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
+The fifth `ParameterChild` component instance also sets the `Count` parameter. Note how a `string`-typed parameter requires an `@` prefix to ensure that an expression isn't treated as a string literal. However, `Count` is a nullable integer (<xref:System.Int32?displayProperty=fullName>), so `Count` can receive the value of `count` without an `@` prefix. You can establish an alternative code convention that requires developers in your organization to always prefix with `@`. Either way, we merely recommend that you adopt a consistent approach for how component parameters are passed in Razor markup.
+
 Quotes around parameter attribute values are optional in most cases per the HTML5 specification. For example, `Value=this` is supported, instead of `Value="this"`. However, we recommend using quotes because it's easier to remember and widely adopted across web-based technologies.
 
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Don't use the `@` prefix with nonliterals unless required. Example: `Count="ct"`, where `ct` is a number-typed variable. `Count="@ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
+* Don't use the `@` prefix with nonliterals unless required. Example: `Count="count"`, where `count` is a number-typed variable. `Count="@count"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
 * Always avoid `@` for literals, outside of Razor expressions. Example: `IsFixed="true"`. This includes keywords (for example, `this`) and `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
 :::moniker range=">= aspnetcore-9.0"
@@ -947,21 +958,21 @@ Throughout the documentation, code examples:
 > Correct (`Title` is a string parameter, `Count` is a number-typed parameter):
 >
 > ```razor
-> <ParameterChild Title="@title" Count="ct" />
+> <ParameterChild Title="@title" Count="count" />
 > ```
 >
 > ```razor
-> <ParameterChild Title="@title" Count="@ct" />
+> <ParameterChild Title="@title" Count="@count" />
 > ```
 >
 > Incorrect:
 >
 > ```razor
-> <ParameterChild @Title="@title" @Count="ct" />
+> <ParameterChild @Title="@title" @Count="count" />
 > ```
 >
 > ```razor
-> <ParameterChild @Title="@title" @Count="@ct" />
+> <ParameterChild @Title="@title" @Count="@count" />
 > ```
 
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
