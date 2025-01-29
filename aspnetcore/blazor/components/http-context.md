@@ -1,3 +1,17 @@
+---
+title: `IHttpContextAccessor`/`HttpContext` in ASP.NET Core Blazor apps
+author: guardrex
+description: Learn about IHttpContextAccessor and HttpContext in Blazor.
+monikerRange: '>= aspnetcore-8.0'
+ms.author: riande
+ms.custom: mvc
+ms.date: 01/29/2025
+uid: blazor/components/httpcontext
+---
+# `IHttpContextAccessor`/`HttpContext` in ASP.NET Core Blazor apps
+
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+
 :::moniker range=">= aspnetcore-8.0"
 
 <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> generally should be avoided with interactive rendering because a valid <xref:Microsoft.AspNetCore.Http.HttpContext> isn't always available.

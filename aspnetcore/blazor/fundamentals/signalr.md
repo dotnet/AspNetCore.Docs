@@ -1507,10 +1507,6 @@ app.MapBlazorHub();
 + app.MapBlazorHub("/signalr");
 ```
 
-## `IHttpContextAccessor`/`HttpContext`
-
-[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
-
 ## Additional server-side resources
 
 * [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
@@ -1521,6 +1517,7 @@ app.MapBlazorHub();
   * <xref:blazor/security/index>
   * <xref:blazor/security/interactive-server-side-rendering>
   * <xref:blazor/security/additional-scenarios>
+* <xref:blazor/components/httpcontext>
 * [Server-side reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)

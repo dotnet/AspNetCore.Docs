@@ -108,10 +108,6 @@ The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.Authe
 
 For more information on server-side authentication, see <xref:blazor/security/index>.
 
-### `IHttpContextAccessor`/`HttpContext`
-
-[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
-
 ### Shared state
 
 [!INCLUDE[](~/blazor/security/includes/shared-state.md)]
@@ -1417,6 +1413,7 @@ PII refers any information relating to an identified or identifiable natural per
   * [Microsoft identity platform access tokens](/entra/identity-platform/access-tokens)
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
+* <xref:blazor/components/httpcontext>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 * <xref:blazor/hybrid/security/index>
@@ -1438,6 +1435,7 @@ PII refers any information relating to an identified or identifiable natural per
   * [Microsoft identity platform ID tokens](/entra/identity-platform/id-tokens)
   * [Microsoft identity platform access tokens](/entra/identity-platform/access-tokens)
 * <xref:security/index>
+* <xref:blazor/components/httpcontext>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links

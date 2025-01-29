@@ -484,6 +484,8 @@ items:
                 uid: blazor/components/render-modes
               - name: Prerender components
                 uid: blazor/components/prerender
+              - name: IHttpContextAccessor and HttpContext
+                uid: blazor/components/httpcontext
               - name: Generic type support
                 uid: blazor/components/generic-type-support
               - name: Synchronization context
