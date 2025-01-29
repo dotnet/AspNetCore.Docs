@@ -445,6 +445,8 @@ The browser shows the Index page with the changed value and updated `Concurrency
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `ConcurrencyToken` has been updated.
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 ## Additional resources
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
@@ -800,6 +802,8 @@ The browser shows the Index page with the changed value and updated rowVersion i
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
 
+[!INCLUDE[](~/includes/reliableWAP.md)]
+
 ## Additional resources
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
@@ -1100,7 +1104,9 @@ Delete the test department from the second tab. A concurrency error is display w
 
 See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
-### Additional resources
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
+## Additional resources
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
