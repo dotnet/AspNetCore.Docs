@@ -817,10 +817,10 @@ In the following `ParameterChild` component, component parameters include:
 > [!WARNING]
 > Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. For more information, see <xref:blazor/components/overwriting-parameters>.
 
-The component parameters of the `ParameterChild` component can be set by arguments in the HTML tag that renders an instance of the `ParameterChild` component. The following `ParameterParent` component renders two `ParameterChild` components:
+The component parameters of the `ParameterChild` component can be set by arguments in the HTML tag that renders an instance of the `ParameterChild` component. The following parent component renders two `ParameterChild` components:
 
 * The first `ParameterChild` component is rendered without supplying parameter arguments.
-* The second `ParameterChild` component receives values for `Title` and `Body` from the `ParameterParent` component, which uses an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) to set the values of the `PanelBody`'s properties.
+* The second `ParameterChild` component receives values for `Title` and `Body` from the parent component, which uses an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) to set the values of the `PanelBody`'s properties.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -870,7 +870,7 @@ The component parameters of the `ParameterChild` component can be set by argumen
 
 :::moniker-end
 
-The following rendered HTML markup from the `ParameterParent` component shows `ParameterChild` component default values when the `ParameterParent` component doesn't supply component parameter values. When the `ParameterParent` component provides component parameter values, they replace the `ParameterChild` component's default values.
+The following rendered HTML markup from the parent component shows `ParameterChild` component default values when the parent component doesn't supply component parameter values. When the parent component provides component parameter values, they replace the `ParameterChild` component's default values.
 
 > [!NOTE]
 > For clarity, most of the rendered CSS style classes and some elements aren't shown in the following rendered HTML markup. The main concept demonstrated by the following example is that the parent component assigned values to the child component using its component parameters.
@@ -895,7 +895,7 @@ Assign a C# field, property, or result of a method to a component parameter as a
 
 If the component parameter is of type string, then the attribute value is instead treated as a C# string literal. If you want to specify a C# expression instead, then use the `@` prefix.
 
-The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
+The following parent component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
 * The value of the `title` field.
 * The result of the `GetTitle` C# method.
