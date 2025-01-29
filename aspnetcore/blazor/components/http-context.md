@@ -1,5 +1,5 @@
 ---
-title: `IHttpContextAccessor`/`HttpContext` in ASP.NET Core Blazor apps
+title: IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps
 author: guardrex
 description: Learn about IHttpContextAccessor and HttpContext in Blazor.
 monikerRange: '>= aspnetcore-8.0'
