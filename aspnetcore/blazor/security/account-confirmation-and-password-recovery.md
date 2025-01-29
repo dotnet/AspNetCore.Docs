@@ -83,6 +83,8 @@ To create a key vault and set a secret, see [About Azure Key Vault secrets (Azur
 * Only the **Get** secret permission is required.
 * Select the application as the **Principal** for the secret.
 
+Confirm in the Azure or Entra portal that the app has been granted access to the secret that you created for the email provider key.
+
 > [!IMPORTANT]
 > A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.
 The following `GetKeyVaultSecret` method retrieves a secret from a key vault. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
@@ -140,23 +142,18 @@ if (!context.HostingEnvironment.IsDevelopment())
 }
 ```
 
-In the `AzureAd` section of `appsettings.json`, add the following `VaultUri` and `SecretName` configuration keys and values:
+In the `AzureAd` section of `appsettings.json` in the server project, confirm the presence of the app's Entra ID `TenantId` and add the following `VaultUri` configuration key and value if `VaultUri` configuration isn't already present:
 
 ```json
-"VaultUri": "{VAULT URI}",
-"SecretName": "{SECRET NAME}"
+"VaultUri": "{VAULT URI}"
 ```
 
-In the preceding example:
-
-* The `{VAULT URI}` placeholder is the key vault URI. Include the trailing slash on the URI.
-* The `{SECRET NAME}` placeholder is the secret name.
+In the preceding example, the `{VAULT URI}` placeholder is the key vault URI. Include the trailing slash on the URI.
 
 Example:
 
 ```json
-"VaultUri": "https://contoso.vault.azure.net/",
-"SecretName": "BlazorWebAppEntra"
+"VaultUri": "https://contoso.vault.azure.net/"
 ```
 
 Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
