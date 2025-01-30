@@ -1,0 +1,23 @@
+---
+title: IHttpContextAccessor/HttpContext in ASP.NET Core SignalR
+author: guardrex
+description: Learn about IHttpContextAccessor and HttpContext in ASP.NET Core SignalR.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 01/30/2025
+uid: signalr/httpcontext
+---
+# `IHttpContextAccessor`/`HttpContext` in ASP.NET Core SignalR
+
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext> generally should be avoided with SignalR because a valid <xref:Microsoft.AspNetCore.Http.HttpContext> isn't always available. In most cases, the context doesn't exist (`null`).
+
+Even when an <xref:Microsoft.AspNetCore.Http.HttpContext> instance is available, the context is dependent on the transport:
+
+* WebSockets receives a single context as the result of the initial handshake.
+* Long polling receives a new context per client "poll" request.
+* A SignalR service receives a mocked/faked/shim context.
+
+For guidance on <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext> in ASP.NET Core Blazor apps, see <xref:blazor/components/httpcontext>.

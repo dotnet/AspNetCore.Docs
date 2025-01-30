@@ -1,7 +1,7 @@
 ---
 title: IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps
 author: guardrex
-description: Learn about IHttpContextAccessor and HttpContext in Blazor.
+description: Learn about IHttpContextAccessor and HttpContext in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -51,3 +51,5 @@ The recommended approach for passing request state to the Blazor app is through 
 A critical aspect of server-side Blazor security is that the user attached to a given circuit might become updated at some point after the Blazor circuit is established but the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> ***isn't updated***. For more information on addressing this situation with custom services, see <xref:blazor/security/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
 
 :::moniker-end
+
+For guidance on <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> and <xref:Microsoft.AspNetCore.Http.HttpContext> in ASP.NET Core SignalR, see <xref:signalr/httpcontext>.

@@ -956,6 +956,9 @@ items:
       - name: Configuration
         uid: signalr/configuration
         displayName: signalr
+      - name: IHttpContextAccessor and HttpContext
+        uid: signalr/httpcontext
+        displayName: signalr
       - name: Authentication and authorization
         uid: signalr/authn-and-authz
         displayName: signalr
