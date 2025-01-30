@@ -39,7 +39,7 @@ In this tutorial, you:
 * In the **Create a new project** dialog, search for `gRPC`. Select **ASP.NET Core gRPC Service** and select **Next**.
 * In the **Configure your new project** dialog, enter `GrpcGreeter` for **Project name**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Next**.
-* In the **Additional information** dialog, select **.NET 8.0 (Standard Term Support)** and then select **Create**.
+* In the **Additional information** dialog, select **.NET 9.0 (Standard Term Support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
