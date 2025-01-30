@@ -218,7 +218,7 @@ The Greeter client is created by:
 
 The Greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample9/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-7)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample9/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
 
 ## Test the gRPC client with the gRPC Greeter service
 
