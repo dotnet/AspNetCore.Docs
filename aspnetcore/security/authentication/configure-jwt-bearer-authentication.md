@@ -223,7 +223,7 @@ Asymmetric keys should **always** be used when creating access tokens. The publi
 
 ### Never create an access token from a username/password request
 
-You should **NOT** create an access token from a username/password request. Username/password requests aren't authenticated and are vunerable to impersonation and phishing attacks. Access tokens should only be created using an OpenID Connect flow or an OAuth standard flow. Deviating from these standards can result in an insecure app.
+You should **NOT** create an access token from a username/password request. Username/password requests aren't authenticated and are vulnerable to impersonation and phishing attacks. Access tokens should only be created using an OpenID Connect flow or an OAuth standard flow. Deviating from these standards can result in an insecure app.
 
 ### Use cookies
 
