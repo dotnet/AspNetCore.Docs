@@ -190,11 +190,11 @@ By default, the generated OpenAPI document will be emitted to the application's 
 
 ```xml
 <PropertyGroup>
-  <OpenApiDocumentsDirectory>./</OpenApiDocumentsDirectory>
+  <OpenApiDocumentsDirectory>.</OpenApiDocumentsDirectory>
 </PropertyGroup>
 ```
 
-The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `./` value above will emit the OpenAPI document in the same directory as the project file.
+The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `.` value above will emit the OpenAPI document in the same directory as the project file.
 
 #### Modifying the output file name
 
