@@ -1,15 +1,4 @@
----
-title: Create a .NET Core gRPC client and server in ASP.NET Core
-author: jamesnk
-description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: wpickett
-ms.date: 08/30/2023
-uid: tutorials/grpc/grpc-start
----
-# Tutorial: Create a gRPC client and server in ASP.NET Core
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server. At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
 In this tutorial, you:
@@ -315,13 +304,3 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/migration>
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start8.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start7.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start6.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start5.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start3.md)]
