@@ -5,7 +5,7 @@ description: Learn about IHttpContextAccessor and HttpContext in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2025
+ms.date: 01/30/2025
 uid: blazor/components/httpcontext
 ---
 # `IHttpContextAccessor`/`HttpContext` in ASP.NET Core Blazor apps
@@ -25,7 +25,18 @@ uid: blazor/components/httpcontext
 public HttpContext? HttpContext { get; set; }
 ```
 
-For scenarios where the <xref:Microsoft.AspNetCore.Http.HttpContext> is required in interactive components, we recommend flowing the data via persistent component state from the server. For more information, see <xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
+During interactive rendering, an <xref:Microsoft.AspNetCore.Http.HttpContext> instance might not even exist. For scenarios where the <xref:Microsoft.AspNetCore.Http.HttpContext> is required in interactive components, we recommend flowing the data via [persistent component state](xref:blazor/components/prerender#persist-prerendered-state) from the server.
+
+When an <xref:Microsoft.AspNetCore.Http.HttpContext> instance is available, the context is dependent on the transport:
+
+* WebSockets receives a single context as the result of the initial handshake.
+* Long polling receives a new context per client "poll" request.
+* A SignalR service receives a mocked/faked/shim context.
+
+For additional context in *advanced* edge cases, see the discussion in the following articles:
+
+* [HttpContext is valid in Interactive Server Rendering Blazor page (`dotnet/AspNetCore.Docs` #34301)](https://github.com/dotnet/AspNetCore.Docs/issues/34301)
+* [Security implications of using IHttpContextAccessor in Blazor Server (`dotnet/aspnetcore` #45699)](https://github.com/dotnet/aspnetcore/issues/45699)
 
 :::moniker-end
 
