@@ -89,7 +89,7 @@ groups:
     - id: without-bff-pattern-server
       title: OIDC without BFF pattern (Server)
     - id: with-bff-pattern
-      title: OIDC with BFF pattern
+      title: OIDC with BFF pattern (Auto)
 - id: tooling
   title: Tooling
   prompt: Select your tooling
