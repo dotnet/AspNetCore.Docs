@@ -125,7 +125,7 @@ JWT bearer tokens should be fully validated in an API. The following should be v
 *  Audience claim with the expected value.
 *  Token expiration.
 
-The following claims are required for OAuth 2.0 access tokens: `iss`, `exp`, `aud`, `sub`, `client_id`, `iat, and `jti`.
+The following claims are required for OAuth 2.0 access tokens: `iss`, `exp`, `aud`, `sub`, `client_id`, `iat`, and `jti`.
 
 If any of these claims or values are incorrect, the API should return a 401 response.
 
@@ -188,7 +188,7 @@ var requireAuthPolicy = new AuthorizationPolicyBuilder()
 	.Build();
 
 builder.Services.AddAuthorizationBuilder()
-	.SetFallbackPolicy(requireAuthPolicy);
+	.SetDefaultPolicy(requireAuthPolicy);
 ```
 
 The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute can also be used to force the authentication. If multiple schemes are used, the bearer scheme generally needs to be set as the default authentication scheme or specified via `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
@@ -223,7 +223,7 @@ Asymmetric keys should **always** be used when creating access tokens. The publi
 
 ### Never create an access token from a username/password request
 
-You should **NOT** create an access token from a username/password request. Username/password requests aren't authenticated and are vunerable to impersonation and phishing attacks. Access tokens should only be created using an OpenID Connect flow or an OAuth standard flow. Deviating from these standards can result in an insecure app.
+You should **NOT** create an access token from a username/password request. Username/password requests aren't authenticated and are vulnerable to impersonation and phishing attacks. Access tokens should only be created using an OpenID Connect flow or an OAuth standard flow. Deviating from these standards can result in an insecure app.
 
 ### Use cookies
 

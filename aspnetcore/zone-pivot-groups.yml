@@ -85,9 +85,11 @@ groups:
   prompt: Choose the app specification
   pivots:
     - id: without-bff-pattern
-      title: OIDC without BFF pattern
+      title: OIDC without BFF pattern (Auto)
+    - id: without-bff-pattern-server
+      title: OIDC without BFF pattern (Server)
     - id: with-bff-pattern
-      title: OIDC with BFF pattern
+      title: OIDC with BFF pattern (Auto)
 - id: tooling
   title: Tooling
   prompt: Select your tooling
