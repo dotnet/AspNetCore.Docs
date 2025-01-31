@@ -92,10 +92,10 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
   ```
 
-* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> after a successful authorization. This property is set to `false` to reduce the size of the final authentication cookie.
+* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> after a successful authorization. This property is set to `true` so the refresh token gets stored for non-interactive token refresh.
 
   ```csharp
-  oidcOptions.SaveTokens = false;
+  oidcOptions.SaveTokens = true;
   ```
 
 * Scope for offline access (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope%2A>): The `offline_access` scope is required for the refresh token.
