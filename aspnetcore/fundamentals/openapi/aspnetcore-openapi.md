@@ -229,8 +229,6 @@ In order to restrict these code paths from being invoked by the build-time gener
 
 <!--keep-->[AddServiceDefaults](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references) Adds common .NET Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
 
-:::moniker-end
-
 ## Trimming and Native AOT
 
 OpenAPI in ASP.NET Core supports trimming and native AOT. The following steps create and publish an OpenAPI app with trimming and native AOT:
@@ -262,5 +260,7 @@ Publish the app.
 ```console
 dotnet publish
 ```
+
+:::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
