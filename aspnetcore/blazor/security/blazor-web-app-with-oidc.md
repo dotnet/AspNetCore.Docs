@@ -17,7 +17,7 @@ This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC
 
 :::zone pivot="without-bff-pattern"
 
-This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **OIDC with BFF pattern** if the app's specification calls for adopting the BFF pattern.
+This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with an app that adopts global Interactive Auto rendering (server and `.Client` projects). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **OIDC with BFF pattern** if the app's specification calls for adopting the BFF pattern.
 
 The following specification is covered:
 
@@ -92,10 +92,10 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
   ```
 
-* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> after a successful authorization. This property is set to `false` to reduce the size of the final authentication cookie.
+* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> after a successful authorization. This property is set to `true` so the refresh token gets stored for non-interactive token refresh.
 
   ```csharp
-  oidcOptions.SaveTokens = false;
+  oidcOptions.SaveTokens = true;
   ```
 
 * Scope for offline access (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope%2A>): The `offline_access` scope is required for the refresh token.
@@ -248,6 +248,189 @@ The `PersistentAuthenticationStateProvider` class (`PersistentAuthenticationStat
 If the user needs to log in or out, a full page reload is required.
 
 The sample app only provides a user name and email for display purposes. It doesn't include tokens that authenticate to the server when making subsequent requests, which works separately using a cookie that's included on <xref:System.Net.Http.HttpClient> requests to the server.
+
+:::zone-end
+
+:::zone pivot="without-bff-pattern-server"
+
+This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with an app that adopts global Interactive Server rendering (single project). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **OIDC with BFF pattern** if the app's specification calls for adopting the BFF pattern with global Interactive Auto rendering.
+
+The following specification is covered:
+
+* The Blazor Web App uses [the Server render mode with global interactivity](xref:blazor/components/render-modes).
+* This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can be used with Entra, Microsoft Identity Web, and hosted in Azure.
+* Automatic non-interactive token refresh.
+
+For an alternative experience using [Microsoft Authentication Library for .NET](/entra/msal/dotnet/), [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/), and [Microsoft Entra ID](https://www.microsoft.com/security/business/identity-access/microsoft-entra-id), see <xref:blazor/security/blazor-web-app-entra>.
+
+## Sample app
+
+The sample app consists of a single server-side Blazor Web App project (`BlazorWebAppOidcServer`).
+
+Access the sample app through the latest version folder from the repository's root with the following link. The project is in the `BlazorWebAppOidcServer` folder for .NET 8 or later.
+
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+
+## Configuration
+
+This section explains how to configure the sample app.
+
+> [!NOTE]
+> For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section doesn't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see the linked resources.
+
+### Establish the client secret
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
+For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the app's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
+
+> [!NOTE]
+> If the app uses Microsoft Entra ID or Azure AD B2C, create a client secret in the app's registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Use the **Value** of the new secret in the following guidance.
+
+The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the app's project file):
+
+```dotnetcli
+dotnet user-secrets init
+```
+
+Execute the following command to set the client secret. The `{SECRET}` placeholder is the client secret obtained from the app's registration:
+
+```dotnetcli
+dotnet user-secrets set "Authentication:Schemes:MicrosoftOidc:ClientSecret" "{SECRET}"
+```
+
+If using Visual Studio, you can confirm the secret is set by right-clicking the project in **Solution Explorer** and selecting **Manage User Secrets**.
+
+### Configure the app
+
+The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> configuration is found in the project's `Program` file on the call to <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>:
+
+* <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.SignInScheme%2A>: Sets the authentication scheme corresponding to the middleware responsible of persisting user's identity after a successful authentication. The OIDC handler needs to use a sign-in scheme that's capable of persisting user credentials across requests. The following line is present merely for demonstration purposes. If omitted, <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultSignInScheme%2A> is used as a fallback value.
+
+  ```csharp
+  oidcOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+  ```
+
+* Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope%2A>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see <xref:fundamentals/configuration/index> and <xref:blazor/fundamentals/configuration>.
+
+  ```csharp
+  oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
+  ```
+
+* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> after a successful authorization. This property is set to `true` so the refresh token gets stored for non-interactive token refresh.
+
+  ```csharp
+  oidcOptions.SaveTokens = true;
+
+* Scope for offline access (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope%2A>): The `offline_access` scope is required for the refresh token.
+
+  ```csharp
+  oidcOptions.Scope.Add(OpenIdConnectScope.OfflineAccess);
+  ```
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Authority%2A> and <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientId%2A>: Sets the Authority and Client ID for OIDC calls.
+
+  ```csharp
+  oidcOptions.Authority = "{AUTHORITY}";
+  oidcOptions.ClientId = "{CLIENT ID}";
+  ```
+
+  Example:
+
+  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/` (uses Tenant ID `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
+  * Client Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
+
+  ```csharp
+  oidcOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+  oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
+  ```
+
+  Example for Microsoft Azure "common" authority:
+  
+  The "common" authority should be used for multi-tenant apps. You can also use the "common" authority for single-tenant apps, but a custom <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A> is required, as shown later in this section.
+
+  ```csharp
+  oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0/";
+  ```
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
+
+  ```csharp
+  oidcOptions.ResponseType = OpenIdConnectResponseType.Code;
+  ```
+
+  > [!NOTE]
+  > In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do **not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**.
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings, and the claim names from the JWT are used directly by the app. The following example sets the role claim type to "`roles`," which is appropriate for [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra). Consult your identity provider's documentation for more information.
+
+  > [!NOTE]
+  > <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
+
+  ```csharp
+  oidcOptions.MapInboundClaims = false;
+  oidcOptions.TokenValidationParameters.NameClaimType = "name";
+  oidcOptions.TokenValidationParameters.RoleClaimType = "roles";
+  ```
+
+* Path configuration: Paths must match the redirect URI (login callback path) and post logout redirect (signed-out callback path) paths configured when registering the application with the OIDC provider. In the Azure portal, paths are configured in the **Authentication** blade of the app's registration. Both the sign-in and sign-out paths must be registered as redirect URIs. The default values are `/signin-oidc` and `/signout-callback-oidc`.
+
+  * <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.CallbackPath>: The request path within the app's base path where the user-agent is returned.
+  
+    Configure the signed-out callback path in the app's OIDC provider registration. In the following example, the `{PORT}` placeholder is the app's port:
+
+    > :::no-loc text="https://localhost:{PORT}/signin-oidc":::
+
+    > [!NOTE]
+    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require the correct port.
+
+  * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath%2A> (configuration key: "`SignedOutCallbackPath`"): The request path within the app's base path intercepted by the OIDC handler where the user agent is first returned after signing out from the identity provider. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OIDC handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri%2A> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri%2A>, if specified.
+
+    Configure the signed-out callback path in the app's OIDC provider registration. In the following example, the `{PORT}` placeholder is the app's port:
+
+    > :::no-loc text="https://localhost:{PORT}/signout-callback-oidc":::
+
+    > [!NOTE]
+    > When using Microsoft Entra ID, set the path in the **Web** platform configuration's **Redirect URI** entries in the Entra or Azure portal. A port isn't required for `localhost` addresses when using Entra. Most other OIDC providers require the correct port. If you don't add the signed-out callback path URI to the app's registration in Entra, Entra refuses to redirect the user back to the app and merely asks them to close their browser window.
+  
+  * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.RemoteSignOutPath%2A>: Requests received on this path cause the handler to invoke sign-out using the sign-out scheme.
+
+    In the following example, the `{PORT}` placeholder is the app's port:
+
+    > :::no-loc text="https://localhost/signout-oidc":::
+
+    > [!NOTE]
+    > When using Microsoft Entra ID, set the **Front-channel logout URL** in the Entra or Azure portal. A port isn't required for `localhost` addresses when using Entra. Most other OIDC providers require the correct port.
+
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("{PATH}");
+    oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
+    oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
+    ```
+
+    Examples (default values):
+
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("/signin-oidc");
+    oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
+    oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
+    ```
+
+* (*Microsoft Azure only with the "common" endpoint*) <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A?displayProperty=nameWithType>: Many OIDC providers work with the default issuer validator, but we need to account for the issuer parameterized with the Tenant ID (`{TENANT ID}`) returned by `https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration`. For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
+
+  Only for apps using Microsoft Entra ID or Azure AD B2C with the "common" endpoint:
+
+  ```csharp
+  var microsoftIssuerValidator = AadIssuerValidator.GetAadIssuerValidator(oidcOptions.Authority);
+  oidcOptions.TokenValidationParameters.IssuerValidator = microsoftIssuerValidator.Validate;
+  ```
+
+## Sample app code
+
+Inspect the sample app for the following features:
+
+* Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
+* The `Weather` component uses the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to prevent unauthorized access. For more information on requiring authorization across the app via an [authorization policy](xref:security/authorization/policies) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](xref:security/authentication/configure-oidc-web-authentication#force-authorization).
 
 :::zone-end
 
