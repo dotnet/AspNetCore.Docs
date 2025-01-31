@@ -125,7 +125,7 @@ JWT bearer tokens should be fully validated in an API. The following should be v
 *  Audience claim with the expected value.
 *  Token expiration.
 
-The following claims are required for OAuth 2.0 access tokens: `iss`, `exp`, `aud`, `sub`, `client_id`, `iat, and `jti`.
+The following claims are required for OAuth 2.0 access tokens: `iss`, `exp`, `aud`, `sub`, `client_id`, `iat`, and `jti`.
 
 If any of these claims or values are incorrect, the API should return a 401 response.
 
