@@ -25,13 +25,7 @@ uid: blazor/components/httpcontext
 public HttpContext? HttpContext { get; set; }
 ```
 
-During interactive rendering, an <xref:Microsoft.AspNetCore.Http.HttpContext> instance might not even exist. For scenarios where the <xref:Microsoft.AspNetCore.Http.HttpContext> is required in interactive components, we recommend flowing context data with [persistent component state](xref:blazor/components/prerender#persist-prerendered-state) from the server during static SSR.
-
-When an <xref:Microsoft.AspNetCore.Http.HttpContext> instance is available, the context is dependent on the transport:
-
-* WebSockets receives a single context as the result of the initial handshake.
-* Long polling receives a new context per client "poll" request.
-* A SignalR service receives a mocked/faked/shim context.
+During interactive rendering, an <xref:Microsoft.AspNetCore.Http.HttpContext> instance might not even exist. For scenarios where the <xref:Microsoft.AspNetCore.Http.HttpContext> is required in interactive components, we recommend flowing context data with [persistent component state](xref:blazor/components/prerender#persist-prerendered-state) from the server.
 
 For additional context in *advanced* edge cases&dagger;, see the discussion in the following articles:
 
