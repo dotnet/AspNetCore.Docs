@@ -386,7 +386,7 @@ To generate a random integer, use `$randomInt`. The syntax is `{{$randomInt [min
 
 * `$datetime` generates a `datetime` string in UTC. The syntax is `{{$datetime [format] [offset option]}}` where the format and offset options are optional.
 * `$localDatetime` generates a `datetime` string in the local time zone. The syntax is `{{$localDatetime [format] [offset option]}}` where the format and offset options are optional.
-* `$timeStamp` generates a `timestamp` in UTC. The `timestamp` is the [number of seconds since the Unix Epoch in UTC time](xref:System.DateTimeOffset.ToUnixTimeSeconds?displayProperty=nameWithType). The syntax is `{{$timestamp [offset option]}}` where the offset option is optional.
+* `$timestamp` generates a `timestamp` in UTC. The `timestamp` is the [number of seconds since the Unix Epoch in UTC time](xref:System.DateTimeOffset.ToUnixTimeSeconds?displayProperty=nameWithType). The syntax is `{{$timestamp [offset option]}}` where the offset option is optional.
 
 The `[format]` option is one of `rfc1123`, `iso8601`, or a custom format in quotation marks. For example:
 
