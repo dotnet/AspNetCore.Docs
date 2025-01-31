@@ -188,7 +188,7 @@ var requireAuthPolicy = new AuthorizationPolicyBuilder()
 	.Build();
 
 builder.Services.AddAuthorizationBuilder()
-	.SetFallbackPolicy(requireAuthPolicy);
+	.SetDefaultPolicy(requireAuthPolicy);
 ```
 
 The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute can also be used to force the authentication. If multiple schemes are used, the bearer scheme generally needs to be set as the default authentication scheme or specified via `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
