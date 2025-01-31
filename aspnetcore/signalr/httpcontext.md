@@ -20,4 +20,6 @@ Even when an <xref:Microsoft.AspNetCore.Http.HttpContext> instance is available,
 * Long polling receives a new context per client "poll" request.
 * A SignalR service receives a mocked/faked/shim context.
 
+When in the hub, <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext%2A?displayProperty=nameWithType> returns the <xref:Microsoft.AspNetCore.Http.HttpContext> for the connection or `null` if the connection isn't associated with an HTTP request. Use this method to get HTTP connection information, such as HTTP headers and query strings. For more information, see <xref:signalr/hubs#the-context-object>.
+
 For guidance on <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext> in ASP.NET Core Blazor apps, see <xref:blazor/components/httpcontext>.
