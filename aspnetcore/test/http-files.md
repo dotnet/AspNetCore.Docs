@@ -190,6 +190,118 @@ A variable defined in an environment file can be the same as one defined in the 
 
 In the preceding example, the `$shared` environment defines the `HostAddress` variable with the value `localhost:7293`. The `HostAddress` variable with the value `localhost:7293` functions as a default for environments that don't define a `HostAddress`. When the `dev1` or `dev2` environment is defined, the value for `HostAddress` comes from the `$shared` environment because `dev1` and `dev2` don't define a `HostAddress` variable. When the `staging` environment is defined, the value for `HostAddress` is set to `https://staging.contoso.com`, overriding the `$shared` default.
 
+## Request variables
+
+You can pass values from one HTTP request to another within the same HTTP file.
+
+1. Create a named variable that represents a request by using the syntax `#@name`.
+1. In other requests in the same HTTP file use the variable name to refer to the request.
+
+For example, suppose you have a request that authenticates the caller, so you name it `login`. In subsequent requests, pass in the bearer token in an Authorization header by using the syntax `{{login.response.body.$.token}}`. The following example shows how to do this:
+
+```http 
+#@name login
+
+POST {{TodoApi_HostAddress}}/users/token 
+Content-Type: application/json 
+
+{ 
+  "username": "{{myusername}}", 
+} 
+
+### 
+
+GET {{TodoApi_HostAddress}}/todos 
+Authorization: Bearer {{login.response.body.$.token}}
+
+### 
+```
+
+Once the named request is sent, you can access values from its response in any subsequent request within the same file. Use JSONPath to query  JSONin the , similar to XPath for XML. It allows you to navigate and extract data from JSON documents.
+
+### Explanation
+
+- **`response`**: Refers to the HTTP response object.
+- **`body`**: Refers to the body of the HTTP response.
+- **`$`**: Represents the root element of the JSON document in the response body.
+- **`token`**: Refers to the specific property within the JSON document.
+
+The reference syntax of a request variable is a bit more complex than other kinds of custom variables. The request variable reference syntax follows {{requestName.(response|request).(body|headers).(*|JSONPath|XPath|Header Name)}}. You have two reference part choices of the response or request: body and headers. For body part, you can use * to reference the full response body, and for JSON and XML responses, you can use JSONPath and XPath to extract specific property or attribute. For example, if a JSON response returns body {"id": "mock"}, you can set the JSONPath part to $.id to reference the id. For headers part, you can specify the header name to extract the header value. Additionally, the header name is case-insensitive.
+
+If the JSONPath or XPath of body, or Header Name of headers can't be resolved, the plain text of variable reference will be sent instead. And in this case, diagnostic information will be displayed to help you to inspect this. And you can also hover over the request variables to view the actual resolved value.
+
+Below is a sample of request variable definitions and references in an http file.
+
+
+@baseUrl = https://example.com/api
+
+# @name login
+POST {{baseUrl}}/api/login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+name=foo&password=bar
+
+###
+
+@authToken = {{login.response.headers.X-AuthToken}}
+
+# @name createComment
+POST {{baseUrl}}/comments HTTP/1.1
+Authorization: {{authToken}}
+Content-Type: application/json
+
+{
+    "content": "fake content"
+}
+
+###
+
+@commentId = {{createComment.response.body.$.id}}
+
+# @name getCreatedComment
+GET {{baseUrl}}/comments/{{commentId}} HTTP/1.1
+Authorization: {{authToken}}
+
+###
+
+# @name getReplies
+GET {{baseUrl}}/comments/{{commentId}}/replies HTTP/1.1
+Accept: application/xml
+
+###
+
+# @name getFirstReply
+GET {{baseUrl}}/comments/{{commentId}}/replies/{{getReplies.response.body.//reply[1]/@id}}### Example
+
+Given a JSON response body like this:
+
+```json
+
+
+{
+
+
+  "token": "abc123",
+  "user": {
+    "id": 1,
+    "name": "John Doe"
+  }
+}
+```
+
+The expression `{{login.response.body.$.token}}` would extract the value `"abc123"`.
+
+### Reference Documentation
+
+For more information on JSONPath syntax and what can come after `response.` or `body.`, you can refer to the following resources:
+
+- **JSONPath Syntax**: [JSONPath - XPath for JSON](https://goessner.net/articles/JsonPath/)
+- **HTTP File Syntax in Visual Studio Code**: [REST Client Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+
+These resources provide detailed information on how to use JSONPath to navigate and extract data from JSON documents, as well as how to use the REST Client extension in Visual Studio Code to work with HTTP files.
+
+ This approach reduces error-prone manual steps. Without using request variables you would need to manually extract the token from the login response and include it in the header of subsequent requests. With the HTTP Request Variables feature, this process is automated.
+
 ## User-specific environment files
 
 A user-specific value is any value that a developer wants to test with but doesn't want to share with the team. The `http-client.env.json` file is checked in to source control by default, therefore, ***DO NOT*** add user-specific values to this file. Rather, add user-specific values in a file named `http-client.env.json.user`. The `http-client.env.json.user` file is located in the same folder as the `http-client.env.json` file. Files that end with `.user` are excluded from source control by default when using Visual Studio source control features.
@@ -455,7 +567,6 @@ Some of the preceding examples use the free open-source website <httpbin.org>. T
 The Visual Studio 2022 `.http` file editor doesn't have all the features that the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) has. The following list includes some of the more significant features available only in the Visual Studio Code extension:
 
 * Request line that spans more than one line
-* Named requests
 * Specify file path as body of the request
 * Mixed format for body when using multipart/form-data
 * GraphQL requests
