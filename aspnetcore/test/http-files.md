@@ -210,20 +210,30 @@ You can pass values from one HTTP request to another within the same `.http` fil
 1. Use the following syntax to extract the specific part of the response that you want.
 
    ```http
-   {{<request name>.(response|request).(body|headers).(*|JSONPath|XPath|Header Name)}}.
+   {{<request name>.(response|request).(body|headers).(*|JSONPath|XPath|<header name>)}}.
    ```
 
-   You can extract values from the request itself or from the response to it (`request|response`). For either request or response, you can extract values from the body or the headers (`body|headers`). 
+   This syntax lets you extract values from the request itself or from the response to it (`request|response`). For either request or response, you can extract values from the body or the headers (`body|headers`). 
 
-   For the body (`*|JSONPath|XPath`):
+   When `body` is selected, the `*|JSONPath|XPath` part of the syntax applies:
 
    * `*` extracts the entire response body.
+
+     Example: `{{login.response.body.*}}`
+
    * For JSON responses, use [JSONPath](https://www.rfc-editor.org/rfc/rfc9535.html) to extract a specific property or attribute.
+
+     Example: `{{login.response.body.$.token}}`
+
    * For XML responses, use [XPath](https://www.w3schools.com/xml/xpath_syntax.asp) to extract a specific property or attribute.
 
-   Header name extracts the entire header. Header names are case-insensitive.
+     Example: `{{login.response.body./token}}`
 
-If you want to refer to the response of a named request, you need to manually trigger the named request to retrieve its response first. When you extract from the response, you'll get the latest response if the request has been sent more than once.
+   When `headers` is selected, a header name extracts the entire header. Header names are case-insensitive.
+
+  Example: `{{login.response.headers.Location}}`
+
+If you want to refer to the response of a named request, you need to manually trigger the named request to retrieve its response first. When you extract values from the response, you'll get the latest response if the request has been sent more than once.
 
 ### Example request variable usage
 
