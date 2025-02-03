@@ -237,7 +237,7 @@ If you want to refer to the response of a named request, you need to manually tr
 
 ### Example request variable usage
 
-For example, suppose your HTTP file has a request that authenticates the caller, and you name it `login`. The response body is a JSON document that contains the bearer token in a property named `token`. In subsequent requests, you want to pass in this bearer token in an `Authorization` header. The following syntax does all this:
+For example, suppose your HTTP file has a request that authenticates the caller, and you name it `login`. The response body is a JSON document that contains the bearer token in a property named `token`. In subsequent requests, you want to pass in this bearer token in an `Authorization` header. The following example does this:
 
 ```http 
 #@name login
