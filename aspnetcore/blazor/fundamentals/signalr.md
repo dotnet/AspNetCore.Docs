@@ -1517,14 +1517,14 @@ Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConn
 
 When the app is running in IIS Express as the signed-in user under Windows Authentication, which is likely the user's personal or work account, the default credentials are those of the signed-in user.
 
-When the app is published to IIS, the app runs under the *Application Pool Identity*. The hub connects as the IIS "user" account hosting the app, not the user accessing the page.
+When the app is published to IIS, the app runs under the *Application Pool Identity*. The <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> connects as the IIS "user" account hosting the app, not the user accessing the page.
 
-Implement *impersonation* with the hub to use the identity of the browsing user.
+Implement *impersonation* with the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> to use the identity of the browsing user.
 
 In the following example:
 
 * The user from the authentication state provider is cast to a <xref:System.Security.Principal.WindowsIdentity>.
-* The identity's access token is passed to <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync%2A?displayProperty=nameWithType> with the code that builds and starts the hub.
+* The identity's access token is passed to <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync%2A?displayProperty=nameWithType> with the code that builds and starts the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>.
 
 ```csharp
 protected override async Task OnInitializedAsync()
