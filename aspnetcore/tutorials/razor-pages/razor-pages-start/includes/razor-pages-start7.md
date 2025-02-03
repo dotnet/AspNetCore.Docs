@@ -119,7 +119,7 @@ Close the browser window.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 At the **Select debugger** prompt, select **.NET 5+ and .NET Core**.
 

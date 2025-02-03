@@ -531,7 +531,7 @@ Save the `Todo.razor` file. The app is automatically rebuilt in the command shel
 
 Add items, edit items, and mark todo items done to test the component.
 
-When finished, shut down the app in the command shell. Many command shells accept the keyboard command <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) to stop an app.
+When finished, shut down the app in the command shell. Many command shells accept the keyboard command <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop an app.
 
 ## Publish to Azure
 

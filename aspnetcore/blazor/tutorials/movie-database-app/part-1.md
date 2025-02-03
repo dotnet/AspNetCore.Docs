@@ -215,7 +215,7 @@ Stop the app using the following approach:
 Stop the app using the following approach:
 
 1. Close the browser window.
-2. In the command shell, press <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+2. In the command shell, press <kbd>Ctrl</kbd>+<kbd>C</kbd>.
 
 :::zone-end
 

@@ -130,7 +130,7 @@ Stop the app by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>
 
 :::zone pivot="cli"
 
-Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
+Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> in the command shell.
 
 :::zone-end
 
