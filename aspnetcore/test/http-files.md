@@ -192,27 +192,42 @@ In the preceding example, the `$shared` environment defines the `HostAddress` va
 
 ## Request variables
 
-You can pass values from one HTTP request to another within the same HTTP file.
+You can pass values from one HTTP request to another within the same `.http` file.
 
-1. Create a named variable that represents a request by using the syntax `#@name`.
-1. In subsequent requests in the same HTTP file use the variable name to refer to the request.
+1. Create a single-line comment located just before a request URL to name the following request. For example, the following lines show alternative ways to name the request `login`:
+
+   ```http
+   # @name login
+   https://contosol..com/api/login HTTP/1.1   
+   ```
+
+   ```http
+   // @name login
+   https://contosol..com/api/login HTTP/1.1
+   ```
+
+1. In subsequent requests in the same HTTP file use the request name to refer to the request.
 1. Use the following syntax to extract the specific part of the response that you want.
 
    ```http
-   {{requestVariable.(response|request).(body|headers).(*|JSONPath|XPath|Header Name)}}.
+   {{<request name>.(response|request).(body|headers).(*|JSONPath|XPath|Header Name)}}.
    ```
 
-   You can extract values from the request itself or from the response to it. For either request or response, you can extract values from the body or the headers. For the body:
+   You can extract values from the request itself or from the response to it (`request|response`). For either request or response, you can extract values from the body or the headers (`body|headers`). 
+
+   For the body (`*|JSONPath|XPath`):
 
    * `*` extracts the entire response body.
-   * For JSON responses, use JSONPath to extract a specific property or attribute.
-   * For XML responses, use XPath to extract a specific property or attribute.
+   * For JSON responses, use [JSONPath](https://www.rfc-editor.org/rfc/rfc9535.html) to extract a specific property or attribute.
+   * For XML responses, use [XPath](https://www.w3schools.com/xml/xpath_syntax.asp) to extract a specific property or attribute.
 
-   Header names are case-insensitive.
+   Header name extracts the entire header. Header names are case-insensitive.
 
-### Example
+If you want to refer to the response of a named request, you need to manually trigger the named request to retrieve its response first. When you extract from the response, you'll get the latest response if the request has been sent more than once.
 
-For example, suppose your HTTP file has a request that authenticates the caller, so you name it `login`. The response body is a JSON document that contains the bearer token in a property named `token`. In subsequent requests, you want to pass in this bearer token in an `Authorization` header. The following syntax does this:
+### Example request variable usage
+
+For example, suppose your HTTP file has a request that authenticates the caller, and you name it `login`. The response body is a JSON document that contains the bearer token in a property named `token`. In subsequent requests, you want to pass in this bearer token in an `Authorization` header. The following syntax does all this:
 
 ```http 
 #@name login
@@ -232,43 +247,15 @@ Authorization: Bearer {{login.response.body.$.token}}
 ### 
 ```
 
-The syntax `{{login.response.body.$.token}}` extracts the bearer token:
+The syntax `{{login.response.body.$.token}}` represents the bearer token:
 
-- **`login`**: Is the request variable.
-- **`response`**: Refers to the HTTP response object.
-- **`body`**: Refers to the body of the HTTP response.
-- **`$`**: Represents the root element of the JSON document in the response body.
-- **`token`**: Refers to the specific property within the JSON document.
+**`login`**: Is the request name.
+**`response`**: Refers to the HTTP response object.
+**`body`**: Refers to the body of the HTTP response.
+**`$`**: Represents the root element of the JSON document in the response body.
+**`token`**: Refers to the specific property within the JSON document.
 
-
-Given a JSON response body like this:
-
-```json
-
-
-{
-
-
-  "token": "abc123",
-  "user": {
-    "id": 1,
-    "name": "John Doe"
-  }
-}
-```
-
-The expression `{{login.response.body.$.token}}` would extract the value `"abc123"`.
-
-### Reference Documentation
-
-For more information on JSONPath syntax and what can come after `response.` or `body.`, you can refer to the following resources:
-
-- **JSONPath Syntax**: [JSONPath - XPath for JSON](https://goessner.net/articles/JsonPath/)
-- **HTTP File Syntax in Visual Studio Code**: [REST Client Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
-
-These resources provide detailed information on how to use JSONPath to navigate and extract data from JSON documents, as well as how to use the REST Client extension in Visual Studio Code to work with HTTP files.
-
- This approach reduces error-prone manual steps. Without using request variables you would need to manually extract the token from the login response and include it in the header of subsequent requests. With the HTTP Request Variables feature, this process is automated.
+Without using request variables you would need to manually extract the token from the login response and include it in the header of subsequent requests. Request variables enable you to automate this process.
 
 ## User-specific environment files
 
