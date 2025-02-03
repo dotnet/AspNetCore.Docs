@@ -1513,7 +1513,7 @@ app.MapBlazorHub();
 
 ## Impersonation for Windows Authentication
 
-Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>) are typically created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> to indicate the use of default credentials for HTTP requests:
+Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>) are created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> to indicate the use of default credentials for HTTP requests:
 
 ```csharp
 protected override async Task OnInitializedAsync()
