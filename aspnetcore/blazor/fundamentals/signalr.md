@@ -1513,32 +1513,9 @@ app.MapBlazorHub();
 
 ## Impersonation for Windows Authentication
 
-Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>) are created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> to indicate the use of default credentials for HTTP requests:
+Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>) are created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> to indicate the use of default credentials for HTTP requests. For more information, see <xref:signalr/authn-and-authz#windows-authentication>.
 
-```csharp
-protected override async Task OnInitializedAsync()
-{
-    hubConnection = new HubConnectionBuilder()
-      .WithUrl(NavigationManager.ToAbsoluteUri("/hub"), config =>
-      {
-          config.UseDefaultCredentials = true;
-      })
-      .WithAutomaticReconnect()
-      .Build();
-
-    hubConnection.On<string>("name", userName =>
-    {
-        name = userName;
-        InvokeAsync(StateHasChanged);
-    });
-
-    await hubConnection.StartAsync();
-}
-```
-
-For more information, see <xref:signalr/authn-and-authz#windows-authentication>.
-
-The preceding code is sufficient when the app is running in IIS Express as the signed-in user under Windows Authentication, which is likely the user's personal or work account. 
+When the app is running in IIS Express as the signed-in user under Windows Authentication, which is likely the user's personal or work account, the default credentials are those of the signed-in user.
 
 When the app is published to IIS, the app runs under the *Application Pool Identity*. The hub connects as the IIS "user" account hosting the app, not the user accessing the page.
 
@@ -1552,30 +1529,39 @@ In the following example:
 ```csharp
 protected override async Task OnInitializedAsync()
 {
-    var user = (WindowsIdentity)
-        (await AuthenticationStateProvider.GetAuthenticationStateAsync())
-        .User.Identity;
+    var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
-    await WindowsIdentity.RunImpersonatedAsync(user.AccessToken, async () =>
+    if (authState?.User.Identity is not null)
     {
-        hubConnection = new HubConnectionBuilder()
-            .WithUrl(NavigationManager.ToAbsoluteUri("/hub"), config =>
-            {
-                config.UseDefaultCredentials = true;
-            })
-            .WithAutomaticReconnect()
-            .Build();
+        var user = authState.User.Identity as WindowsIdentity;
 
-        hubConnection.On<string>("name", userName =>
+        if (user is not null)
         {
-            name = userName;
-            InvokeAsync(StateHasChanged);
-        });
+            await WindowsIdentity.RunImpersonatedAsync(user.AccessToken, 
+                async () =>
+                {
+                    hubConnection = new HubConnectionBuilder()
+                        .WithUrl(NavManager.ToAbsoluteUri("/hub"), config =>
+                        {
+                            config.UseDefaultCredentials = true;
+                        })
+                        .WithAutomaticReconnect()
+                        .Build();
 
-        await hubConnection.StartAsync();
-    });
+                        hubConnection.On<string>("name", userName =>
+                        {
+                            name = userName;
+                            InvokeAsync(StateHasChanged);
+                        });
+
+                        await hubConnection.StartAsync();
+                });
+        }
+    }
 }
 ```
+
+In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.NavigationManager>, and `AuthenticationStateProvider` is an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service instance ([`AuthenticationStateProvider` documentation](xref:blazor/security/authentication-state)).
 
 ## Additional server-side resources
 
