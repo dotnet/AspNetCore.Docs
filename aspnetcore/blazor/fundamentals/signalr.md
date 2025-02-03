@@ -1511,6 +1511,72 @@ app.MapBlazorHub();
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
+## Impersonation for Windows Authentication
+
+Authenticated hub connections are typically created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> to indicate the use of default credentials:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+      .WithUrl(NavigationManager.ToAbsoluteUri("/hub"), config =>
+      {
+          config.UseDefaultCredentials = true;
+      })
+      .WithAutomaticReconnect()
+      .Build();
+
+    hubConnection.On<string>("name", userName =>
+    {
+        name = userName;
+        InvokeAsync(StateHasChanged);
+    });
+
+    await hubConnection.StartAsync();
+}
+```
+
+For more information, see <xref:signalr/authn-and-authz>.
+
+The preceding code is sufficient when the app is running in IIS Express as the signed-in user, which is likely a personal/work account under Windows Authentication. 
+
+When the app is published to IIS, the app runs under the *Application Pool Identity*. The <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> doesn't connect as the user that's accessing the page. The hub connects as the "user" IIS account hosting the app.
+
+Implement *impersonation* with the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> to use the identity of the browsing user.
+
+In the following example:
+
+* The user from the authentication state provider is cast to a <xref:System.Security.Principal.WindowsIdentity>.
+* The identity's access token is passed to <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync%2A?displayProperty=nameWithType> with the code that builds the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>.
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    var user = (WindowsIdentity)
+        (await AuthenticationStateProvider.GetAuthenticationStateAsync())
+        .User.Identity;
+
+    await WindowsIdentity.RunImpersonatedAsync(user.AccessToken, async () =>
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/hub"), config =>
+            {
+                config.UseDefaultCredentials = true;
+            })
+            .WithAutomaticReconnect()
+            .Build();
+
+        hubConnection.On<string>("name", userName =>
+        {
+            name = userName;
+            InvokeAsync(StateHasChanged);
+        });
+
+        await hubConnection.StartAsync();
+    });
+}
+```
+
 ## Additional server-side resources
 
 * [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
