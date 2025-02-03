@@ -231,7 +231,7 @@ You can pass values from one HTTP request to another within the same `.http` fil
 
    When `headers` is selected, a header name extracts the entire header. Header names are case-insensitive.
 
-  Example: `{{login.response.headers.Location}}`
+   Example: `{{login.response.headers.Location}}`
 
 If you want to refer to the response of a named request, you need to manually trigger the named request to retrieve its response first. When you extract values from the response, you'll get the latest response if the request has been sent more than once.
 
