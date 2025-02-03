@@ -1538,7 +1538,7 @@ protected override async Task OnInitializedAsync()
 
 For more information, see <xref:signalr/authn-and-authz#windows-authentication>.
 
-The preceding code is sufficient when the app is running in IIS Express as the signed-in user, which is likely a personal/work account under Windows Authentication. 
+The preceding code is sufficient when the app is running in IIS Express as the signed-in user under Windows Authentication, which is likely the user's personal or work account. 
 
 When the app is published to IIS, the app runs under the *Application Pool Identity*. The hub connects as the IIS "user" account hosting the app, not the user accessing the page.
 
