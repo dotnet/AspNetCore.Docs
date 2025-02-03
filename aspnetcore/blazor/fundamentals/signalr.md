@@ -1536,11 +1536,11 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-For more information, see <xref:signalr/authn-and-authz>.
+For more information, see <xref:signalr/authn-and-authz#windows-authentication>.
 
 The preceding code is sufficient when the app is running in IIS Express as the signed-in user, which is likely a personal/work account under Windows Authentication. 
 
-When the app is published to IIS, the app runs under the *Application Pool Identity*. The hub connection doesn't connect as the user accessing the page. The hub connects as the IIS "user" account hosting the app.
+When the app is published to IIS, the app runs under the *Application Pool Identity*. The hub connects as the IIS "user" account hosting the app, not the user accessing the page.
 
 Implement *impersonation* with the hub to use the identity of the browsing user.
 
