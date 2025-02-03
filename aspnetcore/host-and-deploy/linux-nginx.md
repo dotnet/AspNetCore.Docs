@@ -228,7 +228,7 @@ If the app runs on the server but fails to respond over the internet, check the 
 
 ---
 
-When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) at the command prompt.
+When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> in the command shell.
 
 ### Increase keepalive_requests
 

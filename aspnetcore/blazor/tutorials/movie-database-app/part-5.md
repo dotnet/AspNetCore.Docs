@@ -135,7 +135,7 @@ To align the model and the database schema, create and apply an EF Core *databas
 >
 > When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 >
-> When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+> When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd>.
 
 :::zone pivot="vs"
 
