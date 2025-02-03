@@ -78,7 +78,7 @@ The first comment states this is an [HTTP GET](https://developer.mozilla.org/doc
 
 The second comment specifies an [HTTP GET](https://developer.mozilla.org/docs/Web/HTTP/Methods) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial, the scaffolding engine is used to generate `HTTP POST` methods, which update data.
 
-Run the app without the debugger by pressing <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS).
+Run the app without the debugger by pressing <kbd>Ctrl</kbd>+<kbd>F5</kbd>.
 
 Append `/HelloWorld` to the path in the address bar. The `Index` method returns a string.
 
