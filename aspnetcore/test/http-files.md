@@ -259,11 +259,11 @@ Authorization: Bearer {{login.response.body.$.token}}
 
 The syntax `{{login.response.body.$.token}}` represents the bearer token:
 
-**`login`**: Is the request name.
-**`response`**: Refers to the HTTP response object.
-**`body`**: Refers to the body of the HTTP response.
-**`$`**: Represents the root element of the JSON document in the response body.
-**`token`**: Refers to the specific property within the JSON document.
+* **`login`**: Is the request name.
+* **`response`**: Refers to the HTTP response object.
+* **`body`**: Refers to the body of the HTTP response.
+* **`$`**: Represents the root element of the JSON document in the response body.
+* **`token`**: Refers to the specific property within the JSON document.
 
 Without using request variables you would need to manually extract the token from the login response and include it in the header of subsequent requests. Request variables enable you to automate this process.
 
