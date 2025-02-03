@@ -203,7 +203,7 @@ You can pass values from one HTTP request to another within the same `.http` fil
 
    ```http
    // @name login
-   https://contosol..com/api/login HTTP/1.1
+   https://contoso.com/api/login HTTP/1.1
    ```
 
 1. In subsequent requests in the same HTTP file use the request name to refer to the request.
