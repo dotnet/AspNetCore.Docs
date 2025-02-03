@@ -11,7 +11,7 @@ uid: aspnetcore-10
 
 This article highlights the most significant changes in ASP.NET Core 10.0 with links to relevant documentation.
 
-This article will be updated as new preview releases are made available. See the [Asp.Net Core announcement page](https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2) until this page is update.
+This article will be updated as new preview releases are made available. See the [Asp.Net Core announcement page](https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2) until this page is updated.
 
 <!-- New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file. -->
 
@@ -21,7 +21,7 @@ This section describes new features for Blazor.
 
 ## SignalR
 
-This section describes new features for authentication and authorization.
+This section describes new features for SignalR.
 
 ## Minimal APIs
 
@@ -29,10 +29,10 @@ This section describes new features for minimal APIs.
 
 ## Authentication and authorization
 
-ASP.NET Core 9 adds new features to authentication and authorization.
+This section describes new features for authentication and authorization.
 
 ## Miscellaneous
 
-The following sections describe miscellaneous new features in ASP.NET Core 9.
+This section describes miscellaneous new features in ASP.NET Core 9.
 
-## Additional resources
+## Related content
