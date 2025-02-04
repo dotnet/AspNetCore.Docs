@@ -105,18 +105,13 @@ Accept-Language: en-US,en;q=0.5
 ###
 ```
 
-## Request variables in HTTP files
-
-
-
-
-   :::code language="csharp" source="~/test/http-files/samples/loginHttp.http" highlight="1-2":::
-
 ## Comments
 
 Lines that start with either `#` or `//` are comments. These lines are ignored when Visual Studio sends HTTP requests.
 
-## Variables
+## Request variables
+
+HTTP request variables, also known as HTTP request parameters or query parameters, are key-value pairs sent by the client (e.g., web browser) to the server as part of an HTTP request. They can be used to send data and customize requests.
 
 A line that starts with `@` defines a variable by using the syntax `@VariableName=Value`.
 
@@ -137,6 +132,16 @@ Variables can be defined using values of other variables that were defined earli
 GET https://{{host}}/api/search/tool
 ```
 
+When working with HTTP files, a common scenario is calling an endpoint, taking a value from the response, and sending in the value in a subsequent request. For example:
+
+1. Call a sign in endpoint to authenticate a user and save the returned token.
+1. Subsequent calls pass the token that was returned from the sign in endpoint.
+
+Consider the following HTTP file:
+
+:::code language="http" source="~/test/http-files/samples/loginHttp.http" highlight="1-2":::
+
+In the preceding highlighted code, calling the `/users/token` endpoint  authenticates the user
 ## Environment files
 
 To give variables different values in different environments, create a file named `http-client.env.json`. Locate the file in the same directory as the `.http` file or in one of its parent directories. Here's an example of an environment file:
