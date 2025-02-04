@@ -16,9 +16,9 @@ builder.WebHost.UseNamedPipes(options =>
     {
         var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndPoint.PipeName);
 
-        return NamedPipeServerStreamAcl.Create(context.NamedPipeEndPoint.PipeName,PipeDirection.InOut,
+        return NamedPipeServerStreamAcl.Create(context.NamedPipeEndPoint.PipeName, PipeDirection.InOut,
             NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Byte,
-            PipeOptions.None, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
+            context.PipeOptions, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
     };
 });
 
