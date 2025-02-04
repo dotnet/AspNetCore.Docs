@@ -1,0 +1,13 @@
+# @name login
+POST {{TodoApi_HostAddress}}/users/token
+Content-Type: application/json
+
+{
+  "username": "{{myusername}}",
+  "password": "{{mypassword}}"
+}
+
+###
+
+GET {{TodoApi_HostAddress}}/todos
+Authorization: Bearer {{login.response.body.$.token}}

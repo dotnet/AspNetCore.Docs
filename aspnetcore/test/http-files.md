@@ -5,7 +5,7 @@ description: Learn how to use .http files in Visual Studio 2022 to test ASPNET C
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: how-to
 ms.author: tdykstra
-ms.date: 01/19/2024
+ms.date: 2/4/2024
 uid: test/http-files
 ---
 # Use .http files in Visual Studio 2022
@@ -104,6 +104,13 @@ Accept-Language: en-US,en;q=0.5
 
 ###
 ```
+
+## Request variables in HTTP files
+
+
+
+
+   :::code language="csharp" source="~/test/http-files/samples/loginHttp.http" highlight="1-2":::
 
 ## Comments
 
