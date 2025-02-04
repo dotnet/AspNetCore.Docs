@@ -507,7 +507,7 @@ To avoid showing unauthorized content, for example content in an [`AuthorizeView
   <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
   ```
 
-  You can also selectively control the render mode applied to the `Routes` component instance. For example, see <xref:blazor/components/render-modes#static-ssr-pages-in-a-globally-interactive-app>.
+  You can also selectively control the render mode applied to the `Routes` component instance. For example, see <xref:blazor/components/render-modes#static-ssr-pages-in-an-interactive-app>.
 
 :::moniker-end
 

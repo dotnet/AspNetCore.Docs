@@ -177,7 +177,7 @@ For more information, see <xref:blazor/tooling>.
 
 Properties and fields can assign a render mode.
 
-The second approach described in this section, setting the render mode by component instance, is especially useful when your app specification calls for one or more components to adopt static SSR in a globally-interactive app. This scenario is covered in the [Static SSR pages in a globally-interactive app](#static-ssr-pages-in-a-globally-interactive-app) section later in this article.
+The second approach described in this section, setting the render mode by component instance, is especially useful when your app specification calls for one or more components to adopt static SSR in an otherwise interactive app. This scenario is covered in the [Static SSR pages in an interactive app](#static-ssr-pages-in-an-interactive-app) section later in this article.
 
 ### Set the render mode by component definition
 
@@ -207,7 +207,7 @@ The following example applies interactive server-side rendering (interactive SSR
 }
 ```
 
-Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article. The [Static SSR pages in a globally-interactive app](#static-ssr-pages-in-a-globally-interactive-app) section shows how to use the preceding approach to adopt static SSR in a globally-interactive app.
+Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article. The [Static SSR pages in an interactive app](#static-ssr-pages-in-an-interactive-app) section shows how to use the preceding approach to adopt static SSR in an otherwise interactive app.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -221,10 +221,11 @@ The <xref:Microsoft.AspNetCore.Components.ComponentBase.RendererInfo?displayProp
   * `WebAssembly`: On the client (CSR) and capable of interactivity after prerendering.
   * `WebView`: On the native device and capable of interactivity after prerendering.
 * <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType> indicates if the component supports interactivity at the time of rendering. The value is `true` when rendering interactively or `false` when prerendering or for static SSR (<xref:Microsoft.AspNetCore.Components.RendererInfo.Name?displayProperty=nameWithType> of `Static`).
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.AssignedRenderMode?displayProperty=nameWithType> exposes the component's assigned render mode:
-  * `InteractiveServer` for Interactive Server.
-  * `InteractiveAuto` for Interactive Auto.
-  * `InteractiveWebAssembly` for Interactive WebAssembly.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.AssignedRenderMode> exposes the component's assigned render mode:
+  * `InteractiveServerRenderMode` for Interactive Server.
+  * `InteractiveAutoRenderMode` for Interactive Auto.
+  * `InteractiveWebAssemblyRenderMode` for Interactive WebAssembly.
+  * `null` if a render mode isn't assigned.
 
 Components use these properties to render content depending on their location or interactivity status. The following examples demonstrate typical use cases.
 
@@ -617,11 +618,11 @@ The following component results in a runtime error when the component is rendere
 
 > :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.InteractiveWebAssemblyRenderMode' is not supported by Interactive Server rendering.":::
 
-## Static SSR pages in a globally-interactive app
+## Static SSR pages in an interactive app
 
 There are cases where the app's specification calls for components to adopt static server-side rendering (static SSR) and only run on the server, while the rest of the app uses an interactive render mode.
 
-This approach is only useful when the app has specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that depend on reading/writing HTTP cookies and can only work in a request/response cycle instead of interactive rendering. For pages that work with interactive rendering, you shouldn't force them to use static SSR rendering, as it's less efficient and less responsive for the end user.
+This approach is only useful when the app has specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that depend on reading/writing HTTP cookies and can only work in a request/response cycle instead of interactive rendering. For pages that work with interactive rendering, you shouldn't force them to use static SSR, as it's less efficient and less responsive for the end user.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -680,18 +681,22 @@ The following examples use the <xref:Microsoft.AspNetCore.Http.HttpContext> casc
 
 ### Area (folder) of static SSR components
 
-The approach described in this subsection is used by the Blazor Web App project template with individual authentication and global interactivity.
+*For an example of the approach in this section, see the [`BlazorWebAppAreaOfStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppAreaOfStaticSsrComponents). The technique described in this section is most appropriate for 8.0 Blazor Web Apps, but the sample is implemented in 9.0 using Blazor features that simplify demonstrating how the approach works.*
 
-An area (folder) of the app contains the components that must adopt static SSR and only run on the server. The components in the folder share the same route path prefix. For example, the Identity Razor components of the Blazor Web App project template are in the `Components/Account/Pages` folder and share the root path prefix `/Account`.
+The approach described in this subsection is used by the Blazor Web App project template with global interactivity.
 
-The folder also contains an `_Imports.razor` file, which applies a custom account layout to the components in the folder:
+An area (folder) of the app contains the components that must adopt static SSR and only run on the server. The components in the folder share the same route path prefix. For example, the Identity Razor components of the Blazor Web App project template are in the `Components/Account/Pages` folder and share the root path prefix `/account`.
+
+The app also contains an `_Imports.razor` file automatically applied to static SSR components in the `Components` folder, which applies a custom layout.
+
+`Components/Account/_Imports.razor`:
 
 ```razor
 @using BlazorSample.Components.Account.Shared
 @layout AccountLayout
 ```
 
-The `Shared` folder maintains the `AccountLayout` layout component. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component has adopted static SSR. Identity components must render on the server with static SSR because they set Identity cookies. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh%2A?displayProperty=nameWithType> with `forceLoad` set to `true`. This forces a full rerender of the page using static SSR.
+The `Shared` folder maintains the `AccountLayout` layout component. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component has adopted static SSR. For example, Identity components must render on the server with static SSR because they set Identity cookies. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh%2A?displayProperty=nameWithType> with `forceLoad` set to `true`. This forces a full rerender of the page using static SSR.
 
 `Components/Account/Shared/AccountLayout.razor`:
 
@@ -724,7 +729,7 @@ else
 ```
 
 > [!NOTE]
-> In the Blazor Web App project template, there's a second layout file (`ManageLayout.razor` in the `Components/Account/Shared` folder) for Identity components in the `Components/Account/Pages/Manage` folder. The `Manage` folder has its own `_Imports.razor` file to apply to the `ManageLayout` to components in the folder. In your own apps, using nested `_Imports.razor` files is a useful approach for applying custom layouts to groups of pages.
+> In the Blazor Web App project template for authentication scenarios, there's a second layout file (`ManageLayout.razor` in the `Components/Account/Shared` folder) for Identity components in the `Components/Account/Pages/Manage` folder. The `Manage` folder has its own `_Imports.razor` file to apply to the `ManageLayout` to components in the folder. In your own apps, using nested `_Imports.razor` files is a useful approach for applying custom layouts to groups of pages.
 
 In the `App` component, any request for a component in the `Account` folder applies a `null` render mode, which enforces static SSR. Other component requests receive a global application of the interactive SSR render mode (`InteractiveServer`).
 
@@ -745,7 +750,7 @@ In the `App` component, any request for a component in the `Account` folder appl
     private HttpContext HttpContext { get; set; } = default!;
 
     private IComponentRenderMode? RenderModeForPage => 
-        HttpContext.Request.Path.StartsWithSegments("/Account")
+        HttpContext.Request.Path.StartsWithSegments("/account")
             ? null
             : {INTERACTIVE RENDER MODE};
 }
@@ -756,6 +761,8 @@ In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the
 The components that must adopt static SSR in the `Account` folder aren't required to set the layout, which is applied via the `_Imports.razor` file. The components don't set a render mode because they should render with static SSR. Nothing further must be done for the components in the `Account` folder to enforce static SSR.
 
 ### Static SSR components spread out across the app
+
+*For an example of the approach in this section, see the [`BlazorWebAppSpreadOutStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppSpreadOutStaticSsrComponents). The technique described in this section is most appropriate for 8.0 Blazor Web Apps, but the sample is implemented in 9.0 using Blazor features that simplify demonstrating how the approach works.*
 
 In the [preceding subsection](#area-folder-of-static-ssr-components), the app controls the render mode of the components by setting the render mode globally in the `App` component. Alternatively, the `App` component can also adopt ***per-component*** render modes for setting the render mode, which permits components spread around the app to enforce adoption of static SSR. This subsection describes the approach.
 
