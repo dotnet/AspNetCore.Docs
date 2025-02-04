@@ -1,7 +1,4 @@
 using System.IO.Pipes;
-using System.Security.AccessControl;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder();
 
@@ -15,19 +12,10 @@ builder.WebHost.UseNamedPipes(options =>
 {
     options.CreateNamedPipeServerStream = (context) =>
     {
-        var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndPoint.PipeName);
+        var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndpoint.PipeName);
 
         return NamedPipeServerStreamAcl.Create(context.NamedPipeEndPoint.PipeName, PipeDirection.InOut,
             NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Byte,
-            PipeOptions.None, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
+            context.PipeOptions, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
     };
 });
-
-static PipeSecurity CreatePipeSecurity(string pipeName)
-{
-    var pipeSecurity = new PipeSecurity();
-
-    pipeSecurity.AddAccessRule(new PipeAccessRule("Everyone", PipeAccessRights.ReadWrite, AccessControlType.Allow));
-
-    return pipeSecurity;
-}
