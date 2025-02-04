@@ -5,15 +5,13 @@ description: Learn about configuring endpoints with Kestrel, the cross-platform 
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/21/2023
+ms.date: 2/4/2025
 uid: fundamentals/servers/kestrel/endpoints
 ---
 
 # Configure endpoints for the ASP.NET Core Kestrel web server
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
-[!INCLUDE [](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
