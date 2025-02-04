@@ -190,6 +190,83 @@ A variable defined in an environment file can be the same as one defined in the 
 
 In the preceding example, the `$shared` environment defines the `HostAddress` variable with the value `localhost:7293`. The `HostAddress` variable with the value `localhost:7293` functions as a default for environments that don't define a `HostAddress`. When the `dev1` or `dev2` environment is defined, the value for `HostAddress` comes from the `$shared` environment because `dev1` and `dev2` don't define a `HostAddress` variable. When the `staging` environment is defined, the value for `HostAddress` is set to `https://staging.contoso.com`, overriding the `$shared` default.
 
+## Request variables
+
+You can pass values from one HTTP request to another within the same `.http` file.
+
+1. Create a single-line comment located just before a request URL to name the following request. For example, the following lines show alternative ways to name the request `login`:
+
+   ```http
+   # @name login
+   https://contoso.com/api/login HTTP/1.1   
+   ```
+
+   ```http
+   // @name login
+   https://contoso.com/api/login HTTP/1.1
+   ```
+
+1. In subsequent requests in the same HTTP file use the request name to refer to the request.
+1. Use the following syntax to extract the specific part of the response that you want.
+
+   ```http
+   {{<request name>.(response|request).(body|headers).(*|JSONPath|XPath|<header name>)}}.
+   ```
+
+   This syntax lets you extract values from the request itself or from the response to it (`request|response`). For either request or response, you can extract values from the body or the headers (`body|headers`). 
+
+   When `body` is selected, the `*|JSONPath|XPath` part of the syntax applies:
+
+   * `*` extracts the entire response body.
+
+     Example: `{{login.response.body.*}}`
+
+   * For JSON responses, use [JSONPath](https://www.rfc-editor.org/rfc/rfc9535.html) to extract a specific property or attribute.
+
+     Example: `{{login.response.body.$.token}}`
+
+   * For XML responses, use [XPath](https://www.w3schools.com/xml/xpath_syntax.asp) to extract a specific property or attribute.
+
+     Example: `{{login.response.body./token}}`
+
+   When `headers` is selected, a header name extracts the entire header. Header names are case-insensitive.
+
+   Example: `{{login.response.headers.Location}}`
+
+If you want to refer to the response of a named request, you need to manually trigger the named request to retrieve its response first. When you extract values from the response, you'll get the latest response if the request has been sent more than once.
+
+### Example request variable usage
+
+For example, suppose your HTTP file has a request that authenticates the caller, and you name it `login`. The response body is a JSON document that contains the bearer token in a property named `token`. In subsequent requests, you want to pass in this bearer token in an `Authorization` header. The following example does this:
+
+```http 
+#@name login
+
+POST {{TodoApi_HostAddress}}/users/token 
+Content-Type: application/json 
+
+{ 
+  "username": "{{myusername}}", 
+} 
+
+### 
+
+GET {{TodoApi_HostAddress}}/todos 
+Authorization: Bearer {{login.response.body.$.token}}
+
+### 
+```
+
+The syntax `{{login.response.body.$.token}}` represents the bearer token:
+
+* **`login`**: Is the request name.
+* **`response`**: Refers to the HTTP response object.
+* **`body`**: Refers to the body of the HTTP response.
+* **`$`**: Represents the root element of the JSON document in the response body.
+* **`token`**: Refers to the specific property within the JSON document.
+
+Without using request variables you would need to manually extract the token from the login response and include it in the header of subsequent requests. Request variables enable you to automate this process.
+
 ## User-specific environment files
 
 A user-specific value is any value that a developer wants to test with but doesn't want to share with the team. The `http-client.env.json` file is checked in to source control by default, therefore, ***DO NOT*** add user-specific values to this file. Rather, add user-specific values in a file named `http-client.env.json.user`. The `http-client.env.json.user` file is located in the same folder as the `http-client.env.json` file. Files that end with `.user` are excluded from source control by default when using Visual Studio source control features.
@@ -455,7 +532,6 @@ Some of the preceding examples use the free open-source website <httpbin.org>. T
 The Visual Studio 2022 `.http` file editor doesn't have all the features that the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) has. The following list includes some of the more significant features available only in the Visual Studio Code extension:
 
 * Request line that spans more than one line
-* Named requests
 * Specify file path as body of the request
 * Mixed format for body when using multipart/form-data
 * GraphQL requests
