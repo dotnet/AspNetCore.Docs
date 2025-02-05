@@ -15,6 +15,8 @@ builder.WebHost.UseNamedPipes(options =>
 {
     options.CreateNamedPipeServerStream = (context) =>
     {
+        var pipeOptions = PipeOptions.None; // Essential!
+
         var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndPoint.PipeName);
 
         return NamedPipeServerStreamAcl.Create(context.NamedPipeEndPoint.PipeName, PipeDirection.InOut,
@@ -22,6 +24,13 @@ builder.WebHost.UseNamedPipes(options =>
             context.PipeOptions, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
     };
 });
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+
 
 static PipeSecurity CreatePipeSecurity(string pipeName)
 {
@@ -31,6 +40,7 @@ static PipeSecurity CreatePipeSecurity(string pipeName)
     // </snippet_1>
     // This code to test preceding snippet compiles.
 
+    return null;
     // Get the current process identity.
     var currentIdentity = WindowsIdentity.GetCurrent();
     var processUser = new SecurityIdentifier(WellKnownSidType.BuiltinUsersSid, currentIdentity.User.AccountDomainSid);
