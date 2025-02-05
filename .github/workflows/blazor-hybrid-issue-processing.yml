@@ -17,7 +17,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 💃🕺🥳 **_Happy New Year!_** 🎈🎆🍾🥂🎉
+              body: `### 🌱🐇 **_Spring is coming. Hang in there! I'm pull'in for ya!_** 🐣🌻
 
             A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
             })
