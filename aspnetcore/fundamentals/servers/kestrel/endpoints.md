@@ -9,7 +9,7 @@ ms.date: 2/4/2025
 uid: fundamentals/servers/kestrel/endpoints
 ---
 
-# Configure endpoints for the ASP.NET Core Kestrel web server Z
+# Configure endpoints for the ASP.NET Core Kestrel web server
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -580,14 +580,6 @@ Protocols specified in code override values set by configuration.
 The following example configures an endpoint for HTTP/1.1, HTTP/2, and HTTP/3 connections on port 8000. Connections are secured by TLS with a supplied certificate:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelProtocols":::
-
-## test Customize Kestrel named pipe endpoints
-
-Kestrel's named pipe support includes advanced customization options. The [CreateNamedPipeServerStream](/dotnet/api/microsoft.aspnetcore.server.kestrel.transport.namedpipes.namedpipetransportoptions.createnamedpipeserverstream) property on the named pipe options allows pipes to be customized per-endpoint.
-
-An example of where this is useful is a Kestrel app that requires two pipe endpoints with different [access security](/windows/win32/ipc/named-pipe-security-and-access-rights). The `CreateNamedPipeServerStream` option can be used to create pipes with custom security settings, depending on the pipe name.
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs" highlight="7-23":::
 
 :::moniker-end
 
