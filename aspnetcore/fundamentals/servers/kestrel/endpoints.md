@@ -591,8 +591,7 @@ Kestrel's named pipe support includes advanced customization options. The [Creat
 
 An example of where this is useful is a Kestrel app that requires two pipe endpoints with different [access security](/windows/win32/ipc/named-pipe-security-and-access-rights). The `CreateNamedPipeServerStream` option can be used to create pipes with custom security settings, depending on the pipe name.
 
-:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs
-" higlight="7-23":::
+:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs" higlight="7-23":::
 
 :::moniker-end
 
