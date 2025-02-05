@@ -31,14 +31,13 @@ app.MapGet("/", () => "Hello World!");
 
 app.Run();
 
-
 static PipeSecurity CreatePipeSecurity(string pipeName)
 {
     var pipeSecurity = new PipeSecurity();
     // configure PipeSecurity object and return;
 
     // </snippet_1>
-    // This code to test preceding snippet compiles.
+    // This code to test preceding snippet compiles, it's not a working sample.
 
     return null;
     // Get the current process identity.
