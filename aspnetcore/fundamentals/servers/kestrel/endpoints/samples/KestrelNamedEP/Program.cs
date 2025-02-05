@@ -1,3 +1,4 @@
+// <snippet_1>
 using System.IO.Pipes;
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -25,6 +26,10 @@ builder.WebHost.UseNamedPipes(options =>
 static PipeSecurity CreatePipeSecurity(string pipeName)
 {
     var pipeSecurity = new PipeSecurity();
+    // configure PipeSecurity object and return;
+
+    // </snippet_1>
+    // This code to test preceding snippet compiles.
 
     // Get the current process identity.
     var currentIdentity = WindowsIdentity.GetCurrent();
