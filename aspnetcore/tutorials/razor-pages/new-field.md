@@ -19,7 +19,7 @@ In this section [Entity Framework Core (EF Core)](/ef/core/get-started/aspnetcor
 * Add a new field to the model.
 * Migrate the new field schema change to the database.
 
-The EF Core approach allows for a more agile development process. The developer works on the app's data model directly while the database schema is created and then syncronized, all without the developer having to switch contexts to and from a datbase management tool. For an overview of Entity Framework Core and its benefits, see [Entity Framework Core](/ef/core).
+The EF Core approach allows for a more agile development process. The developer works on the app's data model directly while the database schema is created and then syncronized, all without the developer having to switch contexts to and from a database management tool. For an overview of Entity Framework Core and its benefits, see [Entity Framework Core](/ef/core).
 
 Using EF Code to automatically create and track a database:
 
