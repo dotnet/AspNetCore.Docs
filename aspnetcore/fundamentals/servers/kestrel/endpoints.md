@@ -9,7 +9,7 @@ ms.date: 2/4/2025
 uid: fundamentals/servers/kestrel/endpoints
 ---
 
-# Configure endpoints for the ASP.NET Core Kestrel web server
+# Configure endpoints for the ASP.NET Core Kestrel web server Z
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -587,7 +587,7 @@ Kestrel's named pipe support includes advanced customization options. The [Creat
 
 An example of where this is useful is a Kestrel app that requires two pipe endpoints with different [access security](/windows/win32/ipc/named-pipe-security-and-access-rights). The `CreateNamedPipeServerStream` option can be used to create pipes with custom security settings, depending on the pipe name.
 
-:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs" higlight="7-23":::
+:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs" highlight="7-23":::
 
 :::moniker-end
 
@@ -599,7 +599,7 @@ Kestrel's named pipe support includes advanced customization options. The [Creat
 
 An example of where this is useful is a Kestrel app that requires two pipe endpoints with different [access security](/windows/win32/ipc/named-pipe-security-and-access-rights). The `CreateNamedPipeServerStream` option can be used to create pipes with custom security settings, depending on the pipe name.
 
-:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs" higlight="7-23":::
+:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs" highlight="7-23":::
 
 :::moniker-end
 
