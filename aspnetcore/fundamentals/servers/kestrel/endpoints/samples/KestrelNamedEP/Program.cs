@@ -34,9 +34,9 @@ app.Run();
 static PipeSecurity CreatePipeSecurity(string pipeName)
 {
     var pipeSecurity = new PipeSecurity();
-    // configure PipeSecurity object and return;
-
+    // configure PipeSecurity object.
     // </snippet_1>
+
     // This code to test preceding snippet compiles, it's not a working sample.
 
     return null;
