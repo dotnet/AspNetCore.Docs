@@ -42,10 +42,12 @@ static PipeSecurity CreatePipeSecurity(string pipeName)
     return null;
     // Get the current process identity.
     var currentIdentity = WindowsIdentity.GetCurrent();
-    var processUser = new SecurityIdentifier(WellKnownSidType.BuiltinUsersSid, currentIdentity.User.AccountDomainSid);
+    var processUser = new SecurityIdentifier(WellKnownSidType.BuiltinUsersSid,
+        currentIdentity.User.AccountDomainSid);
 
     // Allow only the current process read and write access to the pipe.
-    pipeSecurity.AddAccessRule(new PipeAccessRule(processUser, PipeAccessRights.ReadWrite, AccessControlType.Allow));
+    pipeSecurity.AddAccessRule(new PipeAccessRule(processUser,
+        PipeAccessRights.ReadWrite, AccessControlType.Allow));
 
     return pipeSecurity;
 }
