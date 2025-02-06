@@ -49,7 +49,7 @@ Example:
 }
 ```
 
-[Authorization policies](https://docs.microsoft.com/aspnet/core/security/authorization/policies) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core authentication and authorization components.
+[Authorization policies](/aspnet/core/security/authorization/policies) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core authentication and authorization components.
 
 Authorization policies can be configured in the application as follows:
 ```
@@ -69,7 +69,7 @@ app.UseAuthorization();
 app.MapReverseProxy();
 ```
 
-See the [Authentication](https://docs.microsoft.com/aspnet/core/security/authentication/) docs for setting up your preferred kind of authentication.
+See the [Authentication](/aspnet/core/security/authentication/) docs for setting up your preferred kind of authentication.
 
 ### Special values:
 
@@ -105,7 +105,7 @@ These authentication types are often bound to a specific connection. They are no
 
 ### Client Certificates
 
-Client certificates are a TLS feature and are negotiated as part of a connection. See [these docs](https://docs.microsoft.com/aspnet/core/security/authentication/certauth) for additional information. The certificate can be forwarded to the destination server as an HTTP header using the [ClientCert](transforms.md#clientcert) transform.
+Client certificates are a TLS feature and are negotiated as part of a connection. See [these docs](/aspnet/core/security/authentication/certauth) for additional information. The certificate can be forwarded to the destination server as an HTTP header using the [ClientCert](transforms.md#clientcert) transform.
 
 ### Swapping authentication types
 

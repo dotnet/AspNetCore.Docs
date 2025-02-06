@@ -12,7 +12,7 @@ TLS tunneling using the CONNECT method is a feature used to proxy requests witho
 
 ## Configuring incoming connections
 
-YARP can run on top of all ASP.NET Core servers and configuring HTTPS/TLS for incoming connections is server specific. Check the docs for [Kestrel](https://docs.microsoft.com/aspnet/core/fundamentals/servers/kestrel/endpoints#listenoptionsusehttps), [IIS](https://docs.microsoft.com/iis/manage/configuring-security/how-to-set-up-ssl-on-iis), and [Http.Sys](https://docs.microsoft.com/aspnet/core/fundamentals/servers/httpsys#configure-windows-server-1) for configuration details.
+YARP can run on top of all ASP.NET Core servers and configuring HTTPS/TLS for incoming connections is server specific. Check the docs for [Kestrel](/aspnet/core/fundamentals/servers/kestrel/endpoints#listenoptionsusehttps), [IIS](https://docs.microsoft.com/iis/manage/configuring-security/how-to-set-up-ssl-on-iis), and [Http.Sys](/aspnet/core/fundamentals/servers/httpsys#configure-windows-server-1) for configuration details.
 
 ### Advanced TLS filters with Kestrel
 

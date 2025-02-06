@@ -2,7 +2,7 @@
 
 ## Introduction
 
-ASP.NET Core uses a [middleware pipeline](https://docs.microsoft.com/aspnet/core/fundamentals/middleware/) to divide request processing into discrete steps. The app developer can add and order middleware as needed. ASP.NET Core middleware is also used to implement and customize reverse proxy functionality.
+ASP.NET Core uses a [middleware pipeline](/aspnet/core/fundamentals/middleware/) to divide request processing into discrete steps. The app developer can add and order middleware as needed. ASP.NET Core middleware is also used to implement and customize reverse proxy functionality.
 
 ## Defaults
 The [getting started](getting-started.md) sample shows the following Configure method. This sets up a middleware pipeline with development tools, routing, and proxy configured endpoints (`MapReverseProxy`).

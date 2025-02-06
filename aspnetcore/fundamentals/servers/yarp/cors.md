@@ -1,3 +1,15 @@
+---
+uid: fundamentals/servers/yarp/cors
+title: Cross-Origin Requests (CORS)
+description: Cross-Origin Requests (CORS)
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
 # Cross-Origin Requests (CORS)
 
 ## Introduction
@@ -36,7 +48,7 @@ Example:
 }
 ```
 
-[CORS policies](https://docs.microsoft.com/aspnet/core/security/cors#cors-with-named-policy-and-middleware) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core CORS Middleware.
+[CORS policies](/aspnet/core/security/cors#cors-with-named-policy-and-middleware) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core CORS Middleware.
 
 CORS policies can be configured in the application as follows:
 ```

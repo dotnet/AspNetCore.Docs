@@ -242,7 +242,7 @@ routeConfig = routeConfig.WithTransformPathRouteValues(pattern: new PathString("
 transformBuilderContext.AddPathRouteValues(pattern: new PathString("/my/{plugin}/api/{**remainder}"));
 ```
 
-This will set the request path with the given value and replace any `{}` segments with the associated route value. `{}` segments without a matching route value are removed. The final `{}` segment can be marked as `{**remainder}` to indicate this is a catch-all segment that may contain multiple path segments. See ASP.NET Core's [routing docs](https://docs.microsoft.com/aspnet/core/fundamentals/routing#route-template-reference) for more information about route templates.
+This will set the request path with the given value and replace any `{}` segments with the associated route value. `{}` segments without a matching route value are removed. The final `{}` segment can be marked as `{**remainder}` to indicate this is a catch-all segment that may contain multiple path segments. See ASP.NET Core's [routing docs](/aspnet/core/fundamentals/routing#route-template-reference) for more information about route templates.
 
 Example:
 
@@ -723,9 +723,9 @@ X-Client-Cert: SSdtIGEgY2VydGlmaWNhdGU...
 ```
 As the inbound and outbound connections are independent, there needs to be a way to pass any inbound client certificate to the destination server. This transform causes the client certificate taken from `HttpContext.Connection.ClientCertificate` to be Base64 encoded and set as the value for the given header name. The destination server may need that certificate to authenticate the client. There is no standard that defines this header and implementations vary, check your destination server for support.
 
-Servers do minimal validation on the incoming client certificate by default. The certificate should be validated either in the proxy or the destination, see the [client certificate auth](https://docs.microsoft.com/aspnet/core/security/authentication/certauth) docs for details.
+Servers do minimal validation on the incoming client certificate by default. The certificate should be validated either in the proxy or the destination, see the [client certificate auth](/aspnet/core/security/authentication/certauth) docs for details.
 
-This transform will only apply if the client certificate is already present on the connection. See the [optional certs doc](https://docs.microsoft.com/aspnet/core/security/authentication/certauth#optional-client-certificates) if it needs to be requested from the client on a per-route basis.
+This transform will only apply if the client certificate is already present on the connection. See the [optional certs doc](/aspnet/core/security/authentication/certauth#optional-client-certificates) if it needs to be requested from the client on a per-route basis.
 
 ## Response and Response Trailers
 

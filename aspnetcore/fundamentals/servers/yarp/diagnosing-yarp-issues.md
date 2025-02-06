@@ -3,7 +3,7 @@
 When using a reverse proxy, there is an additional hop from the client to the proxy, and then from the proxy to destination for things to go wrong. This topic should provide some hints and tips for how to debug and diagnose issues when they occur. It assumes that the proxy is already running, and so does not include problems at startup such as configuration errors.
 
 ## Logging
-The first step to being able to tell what is going on with YARP is to turn on [logging](https://docs.microsoft.com/aspnet/core/fundamentals/logging/#configure-logging). This is a configuration flag so can be changed on the fly. YARP is implemented as a middleware component for ASP.NET Core, so you need to enable logging for both YARP and ASP.NET to get the complete picture of what is going on.
+The first step to being able to tell what is going on with YARP is to turn on [logging](/aspnet/core/fundamentals/logging/#configure-logging). This is a configuration flag so can be changed on the fly. YARP is implemented as a middleware component for ASP.NET Core, so you need to enable logging for both YARP and ASP.NET to get the complete picture of what is going on.
 
 By default ASP.NET will log to the console, and the configuration file can be used to control the level of logging.
 
@@ -170,7 +170,7 @@ Forwarder Telemetry [06:41:00.530] => OnForwarderStage :: Stage: ResponseContent
 Forwarder Telemetry [06:41:03.655] => OnForwarderStop :: Status: 200
 ```
 
-The events for Telemetry are fired as they occur, so you can [fish out the HttpContext](https://docs.microsoft.com/aspnet/core/fundamentals/http-context#use-httpcontext-from-custom-components) and the YARP feature from it:
+The events for Telemetry are fired as they occur, so you can [fish out the HttpContext](/aspnet/core/fundamentals/http-context#use-httpcontext-from-custom-components) and the YARP feature from it:
 
 ``` C#
 services.AddTelemetryConsumer<ForwarderTelemetry>();
@@ -220,7 +220,7 @@ public Task MyCustomProxyStep(HttpContext context, Func<Task> next)
 }
 ```
 
-You can also use [ASP.NET middleware](https://docs.microsoft.com/aspnet/core/fundamentals/middleware/write) within Configure that will enable you to inspect the request before the proxy pipeline.
+You can also use [ASP.NET middleware](/aspnet/core/fundamentals/middleware/write) within Configure that will enable you to inspect the request before the proxy pipeline.
 
 > **Note:** The proxy will stream the response from the destination server back to the client, so the response headers and body are not readily accessible via middleware.
 

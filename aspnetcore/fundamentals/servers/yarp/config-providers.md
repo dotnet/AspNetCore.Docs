@@ -1,3 +1,15 @@
+---
+uid: fundamentals/servers/yarp/config-providers
+title: Extensibility: Configuration Providers
+description: Extensibility: Configuration Providers
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
 # Extensibility: Configuration Providers
 
 ## Introduction
@@ -14,7 +26,7 @@ Configuration can be modified during the load sequence using [Configuration Filt
 The routes section is an unordered collection of named routes. A route contains matches and their associated configuration. A route requires at least the following fields:
 - RouteId - a unique name
 - ClusterId - refers to the name of an entry in the clusters section.
-- Match - contains either a Hosts array or a Path pattern string. Path is an ASP.NET Core route template that can be defined as [explained here](https://docs.microsoft.com/aspnet/core/fundamentals/routing#route-templates).
+- Match - contains either a Hosts array or a Path pattern string. Path is an ASP.NET Core route template that can be defined as [explained here](/aspnet/core/fundamentals/routing#route-templates).
 
 [Headers](header-routing.md), [Authorization](authn-authz.md), [CORS](cors.md), and other route based policies can be configured on each route entry. For additional fields see [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig).
 

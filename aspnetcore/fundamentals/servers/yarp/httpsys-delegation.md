@@ -5,7 +5,7 @@ Http.sys delegation is a kernel level feature added into newer versions of Windo
 
 ## Requirements
 Http.sys delegation requires:
-- [ASP.NET Core's Http.sys server](https://docs.microsoft.com/aspnet/core/fundamentals/servers/httpsys)
+- [ASP.NET Core's Http.sys server](/aspnet/core/fundamentals/servers/httpsys)
 - Windows Server 2019 or Windows 10 (build number 1809) or newer.
 
 ## Defaults
