@@ -4,7 +4,7 @@ title: Header Based Routing
 description: Header Based Routing
 author: rick-anderson
 ms.author: riande
-ms.date: 2/06/2025
+ms.date: 02/06/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
