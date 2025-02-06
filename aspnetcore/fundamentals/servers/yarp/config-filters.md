@@ -10,19 +10,6 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
----
-uid: fundamentals/servers/yarp/config-filters
-title: Configuration Filters
-description: Configuration Filters
-author: rick-anderson
-ms.author: riande
-ms.date: 02/06/2025
-ms.topic: article
-content_well_notification: AI-contribution
-ms.prod: aspnet-core
-ai-usage: ai-assisted
----
-
 # Configuration Filters
 
 ## Introduction
