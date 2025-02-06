@@ -18,7 +18,7 @@ Kestrel can be used by itself or with a *reverse proxy server*. A reverse proxy 
 * [Internet Information Services (IIS)](https://www.iis.net/)
 * [Nginx](https://nginx.org)
 * [Apache](https://httpd.apache.org/)
-* [YARP: Yet Another Reverse Proxy](https://microsoft.github.io/reverse-proxy/)
+* [YARP: Yet Another Reverse Proxy](https://dotnet.github.io/yarp/)
 
 Kestrel used as an edge (Internet-facing) web server:
 

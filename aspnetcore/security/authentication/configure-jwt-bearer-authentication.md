@@ -281,7 +281,7 @@ Some secure token servers encrypt the access tokens. Access tokens do not requir
 
 ## YARP (Yet Another Reverse Proxy)
 
-[YARP (Yet Another Reverse Proxy)](https://microsoft.github.io/reverse-proxy/) is a good tool for handling HTTP requests and forwarding the requests to other APIs. YARP can implement security logic for acquiring new access credentials. YARP is frequently used in the [backend for frontend (BFF)](https://auth0.com/blog/the-backend-for-frontend-pattern-bff/) security architecture. [The Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-bff-pattern) demonstrates using YARP to implement the BFF pattern.
+[YARP (Yet Another Reverse Proxy)](https://dotnet.github.io/yarp/) is a good tool for handling HTTP requests and forwarding the requests to other APIs. YARP can implement security logic for acquiring new access credentials. YARP is frequently used in the [backend for frontend (BFF)](https://auth0.com/blog/the-backend-for-frontend-pattern-bff/) security architecture. [The Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-bff-pattern) demonstrates using YARP to implement the BFF pattern.
 
 ## Testing APIs
 
