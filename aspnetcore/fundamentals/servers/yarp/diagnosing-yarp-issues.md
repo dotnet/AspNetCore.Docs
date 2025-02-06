@@ -111,7 +111,7 @@ The [Metrics sample](https://github.com/microsoft/reverse-proxy/tree/main/sample
 * `ForwarderTelemetryConsumer`
 * `HttpClientTelemetryConsumer`
 
-To use either of these you create a class implementing a [telemetry interface](https://microsoft.github.io/reverse-proxy/api/Yarp.Telemetry.Consumption.html#interfaces), such as [`IForwarderTelemetryConsumer`](https://github.com/microsoft/reverse-proxy/blob/release/latest/src/TelemetryConsumption/Forwarder/IForwarderTelemetryConsumer.cs):
+To use either of these you create a class implementing a <!-- fix link -->`[telemetry interface](https://microsoft.github.io/reverse-proxy/api/Yarp.Telemetry.Consumption.html#interfaces)`, such as [`IForwarderTelemetryConsumer`](https://github.com/microsoft/reverse-proxy/blob/release/latest/src/TelemetryConsumption/Forwarder/IForwarderTelemetryConsumer.cs):
 
 ```C#
 public class ForwarderTelemetry : IForwarderTelemetryConsumer
