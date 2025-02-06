@@ -52,7 +52,7 @@ The stateless overload of `GetOrCreateAsync` is recommended for most scenarios. 
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreate" highlight="5-12":::
 
-### Cache key guidance
+## Cache key guidance
 
 The `key` passed to `GetOrCreateAsync` is usually formed using string concatenation, and must uniquely identify
 the data being cached both in terms of the identifiers/values used to load that data, and in terms of other data
