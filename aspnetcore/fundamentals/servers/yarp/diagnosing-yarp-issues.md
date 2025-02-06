@@ -104,7 +104,7 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
 
 ## Using Telemetry Events
 
-We recommend reading https://learn.microsoft.com/dotnet/fundamentals/networking/networking-telemetry as a primer on how to consume networking telemetry in .NET.
+We recommend reading [Networking telemetry in .NET](/dotnet/fundamentals/networking/telemetry/overview) as a primer on how to consume networking telemetry in .NET.
 
 The [Metrics sample](https://github.com/microsoft/reverse-proxy/tree/main/samples/ReverseProxy.Metrics.Sample) shows how to listen to events from the different providers that collect telemetry as part of YARP. The most important from a diagnostics perspective are:
 

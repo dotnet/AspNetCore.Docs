@@ -10,11 +10,6 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
----
-uid: runtimes
-title: YARP Supported Runtimes
----
-
 # YARP Supported Runtimes
 
 YARP 2.0+ supports ASP.NET Core 6.0 and newer. You can download the .NET SDK from https://dotnet.microsoft.com/download/dotnet/. See [Releases](https://github.com/microsoft/reverse-proxy/releases) for specific version support.
