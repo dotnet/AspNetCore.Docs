@@ -90,12 +90,11 @@ This guidance applies equally to any `string`-based cache API, such as `HybridCa
 
 Notice that the inline interpolated string syntax (`$"..."` in the preceding examples of valid keys) is directly inside the `GetOrCreateAsync` call. This syntax is recommended when using `HybridCache`, as it allows for planned future improvements that bypass the need to allocate a `string` for the key in many scenarios.
 
-Additional key restrictions:
+### Additional key considerations
 
-- keys may restricted to valid lengths; for example, the default `HybridCache` implementation (via `AddHybridCache(...)`) restricts keys to 1024 characters by default, (configurable via `HybridCacheOptions.MaximumKeyLength`) with longer keys bypassing the cache mechanisms to prevent saturation.
-- keys must be valid unicode sequences; if invalid unicode sequences are passed, the behaviour is undefined.
-- when using an out-of-process secondary cache (`IDistributedCache`), the specific backend implementation may impose additional restrictions - as a hypothetical example (no such actual
-  backend is known), a particular backend might use case-insensitive key logic; the default `HybridCache` (via `AddHybridCache(...)`) will detect this scenario to prevent confusion attacks, however it may still result in conflicting keys becoming overwritten/evicted sooner than expected.
+* Keys can be restricted to valid maximum lengths. For example, the default `HybridCache` implementation (via `AddHybridCache(...)`) restricts keys to 1024 characters by default. That number is configurable via `HybridCacheOptions.MaximumKeyLength`), with longer keys bypassing the cache mechanisms to prevent saturation.
+* Keys must be valid Unicode sequences. If invalid Unicode sequences are passed, the behavior is undefined.
+- When using an out-of-process secondary cache such as `IDistributedCache`, the specific backend implementation may impose additional restrictions. As a hypothetical example, a particular backend might use case-insensitive key logic. The default `HybridCache` (via `AddHybridCache(...)`) detects this scenario to prevent confusion attacks, however it may still result in conflicting keys becoming overwritten or evicted sooner than expected.
 
 ### The alternative `GetOrCreateAsync` overload
 
