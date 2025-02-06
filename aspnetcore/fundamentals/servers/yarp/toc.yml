@@ -1,64 +1,74 @@
 - name: Getting Started
   href: getting-started.md
-- name: Supported Runtimes
-  href: runtimes.md
-- name: Configuration Files
-  href: config-files.md
-- name: Configuration Providers
-  href: config-providers.md
-- name: Configuration Filters
-  href: config-filters.md
-- name: Direct Forwarding
-  href: direct-forwarding.md
-- name: Destination Resolvers
-  href: destination-resolvers.md
-- name: HTTP client configuration
-  href: http-client-config.md
-- name: HTTPS & TLS
-  href: https-tls.md
-- name: Header Guidelines
-  href: header-guidelines.md
-- name: Header Routing
-  href: header-routing.md
-- name: Query Parameter Routing
-  href: queryparameter-routing.md
-- name: Authentication and Authorization
-  href: authn-authz.md
-- name: Rate Limiting
-  href: rate-limiting.md
-- name: Output Caching
-  href: output-caching.md
-- name: Cross-Origin Requests (CORS)
-  href: cors.md
-- name: Session Affinity
-  href: session-affinity.md
-- name: Load Balancing
-  href: load-balancing.md
-- name: Middleware
-  href: middleware.md
-- name: Transforms
-  href: transforms.md
-- name: Destinations Health Checks
-  href: dests-health-checks.md
-- name: Distributed Tracing
-  href: distributed-tracing.md
-- name: gRPC
-  href: grpc.md
-- name: WebSockets and SPDY
-  href: websockets.md
-- name: Timeouts
-  href: timeouts.md
-- name: Service Fabric Integration
-  href: service-fabric-int.md
-- name: Http.sys Delegation
-  href: httpsys-delegation.md
-- name: Packages references
-  href: packages-refs.md
-- name: Diagnosing proxy issues
-  href: diagnosing-yarp-issues.md
-- name: A/B Testing
-  href: ab-testing.md
-- name: HTTP/3
-  href: http3.md
-- name: Lets Encrypt
-  href: lets-encrypt.md
+- name: Configuration
+  items:
+  - name: Configuration Files
+    href: config-files.md
+  - name: Configuration Providers
+    href: config-providers.md
+  - name: Configuration Filters
+    href: config-filters.md
+  - name: HTTP client configuration
+    href: http-client-config.md
+- name: Proxy Features
+  items:
+    - name: Header Routing
+      href: header-routing.md
+    - name: Query Parameter Routing
+      href: queryparameter-routing.md
+    - name: Transforms
+      href: transforms.md
+    - name: Load Balancing
+      href: load-balancing.md
+    - name: Session Affinity
+      href: session-affinity.md  
+    - name: Destinations Health Checks
+      href: dests-health-checks.md
+    - name: Rate Limiting
+      href: rate-limiting.md
+    - name: Timeouts
+      href: timeouts.md
+    - name: Authentication and Authorization
+      href: authn-authz.md
+    - name: Output Caching
+      href: output-caching.md  
+    - name: Distributed Tracing
+      href: distributed-tracing.md
+    - name: A/B Testing
+      href: ab-testing.md
+- name: Protocols & Guidance
+  items:
+    - name: Header Guidelines
+      href: header-guidelines.md
+    - name: HTTPS & TLS
+      href: https-tls.md
+    - name: Proxying gRPC
+      href: grpc.md
+    - name: HTTP/3
+      href: http3.md
+    - name: Cross-Origin Requests (CORS)
+      href: cors.md
+    - name: Lets Encrypt
+      href: lets-encrypt.md
+    - name: WebSockets and SPDY
+      href: websockets.md
+- name: Extensibility
+  items:
+  - name: Middleware
+    href: middleware.md
+  - name: Direct Forwarding
+    href: direct-forwarding.md
+  - name: Destination Resolvers
+    href: destination-resolvers.md
+  - name: Packages references
+    href: packages-refs.md
+- name: Deployment options
+  items:
+  - name: Http.sys Delegation
+    href: httpsys-delegation.md
+  - name: Service Fabric Integration
+    href: service-fabric-int.md
+- name: Troubleshooting
+  items:
+  - name: Diagnosing proxy issues
+    href: diagnosing-yarp-issues.md

@@ -1,5 +1,5 @@
 ---
-uid: fundamentals/servers/yarp/getting-started.md
+uid: fundamentals/servers/yarp/getting-started
 description: Getting Started with YARP
 author: rick-anderson
 ms.author: riande
