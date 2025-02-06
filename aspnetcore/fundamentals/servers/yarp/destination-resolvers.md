@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/destination-resolvers
-title: Extensibility: Destination Resolvers
-description: Extensibility: Destination Resolvers
+title: Extensibility Destination Resolvers
+description: Extensibility Destination Resolvers
 author: rick-anderson
 ms.author: riande
 ms.date: 02/06/2025
@@ -13,8 +13,8 @@ ai-usage: ai-assisted
 
 ---
 uid: fundamentals/servers/yarp/destination-resolvers
-title: Extensibility: Destination Resolvers
-description: Extensibility: Destination Resolvers
+title: Extensibility Destination Resolvers
+description: Extensibility Destination Resolvers
 author: rick-anderson
 ms.author: riande
 ms.date: 02/06/2025
@@ -23,7 +23,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Extensibility: Destination Resolvers
+# Extensibility Destination Resolvers
 
 ## Introduction
 

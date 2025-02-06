@@ -24,7 +24,7 @@ In addition YARP can create activities for:
 - Forwarding Requests
 - Active health checks for clusters
 
-These will only be created if there is a listener for the [`ActivitySource`](https://learn.microsoft.com/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs#activitysource) named `Yarp.ReverseProxy`.
+These will only be created if there is a listener for the [`ActivitySource`](/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs#activitysource) named `Yarp.ReverseProxy`.
 
 ### Example: Application Insights
 
@@ -119,7 +119,7 @@ app.Run();
 
 Note that the `AddHttpClientInstrumentation()` call is required along with the `AddSource("Yarp.ReverseProxy")` call to make the request spans emit.
 
-See [ASP.NET Documentation on Observability with OpenTelemetry](https://learn.microsoft.com/dotnet/core/diagnostics/observability-with-otel).
+See [ASP.NET Documentation on Observability with OpenTelemetry](/dotnet/core/diagnostics/observability-with-otel).
 
 
 Provided that the traces are being logged to the same store for the proxy and destination servers, then the tracing analysis tools can correlate the requests and provide gant charts etc covering the end-to-end processing of the requests as they transition across the servers.

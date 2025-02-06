@@ -55,7 +55,7 @@ Example:
 }
 ```
 
-[RateLimiter policies](https://learn.microsoft.com/aspnet/core/performance/rate-limit) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core rate limiting middleware.
+[RateLimiter policies](/aspnet/core/performance/rate-limit) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core rate limiting middleware.
 
 RateLimiter policies can be configured in services as follows:
 ```c#
@@ -79,7 +79,7 @@ app.UseRateLimiter();
 app.MapReverseProxy();
 ```
 
-See the [Rate Limiting](https://learn.microsoft.com/aspnet/core/performance/rate-limit) docs for setting up your preferred kind of rate limiting.
+See the [Rate Limiting](/aspnet/core/performance/rate-limit) docs for setting up your preferred kind of rate limiting.
 
 ### Disable Rate Limiting
 

@@ -36,4 +36,4 @@ After the initial handshake WebSockets function the same way over both HTTP vers
 
 ## Timeout
 
-[Http Request Timeouts](https://learn.microsoft.com/aspnet/core/performance/timeouts) (.NET 8+) can apply timeouts to all requests by default or by policy. These timeouts will be disabled after a WebSocket handshake. They will still apply to gRPC requests. For additional configuration see [Timeouts](timeouts.md).
+[Http Request Timeouts](/aspnet/core/performance/timeouts) (.NET 8+) can apply timeouts to all requests by default or by policy. These timeouts will be disabled after a WebSocket handshake. They will still apply to gRPC requests. For additional configuration see [Timeouts](timeouts.md).

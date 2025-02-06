@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/config-providers
-title: Extensibility: Configuration Providers
-description: Extensibility: Configuration Providers
+title: Extensibility Configuration Providers
+description: Extensibility Configuration Providers
 author: rick-anderson
 ms.author: riande
 ms.date: 02/06/2025
@@ -12,8 +12,8 @@ ai-usage: ai-assisted
 
 ---
 uid: fundamentals/servers/yarp/config-providers
-title: Extensibility: Configuration Providers
-description: Extensibility: Configuration Providers
+title: Extensibility Configuration Providers
+description: Extensibility Configuration Providers
 author: rick-anderson
 ms.author: riande
 ms.date: 02/06/2025

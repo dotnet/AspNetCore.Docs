@@ -113,7 +113,7 @@ The `ArrCookie` policy uses the SHA-256 hash to produce an obscured output for t
 
 `HashCookie` and `ArrCookie` do not provide strong privacy protection and sensitive data should not be included in destination ids. These policies also don't conceal the total number of unique destinations behind the proxy and should not be used if that's a concern.
 
-The `Cookie` and `CustomHeader` policies encrypt the key using Data Protection. This provides strong privacy protections for the key, but requires [additional configuration](https://learn.microsoft.com/aspnet/core/security/data-protection/configuration/overview) when more than once proxy instance is in use.
+The `Cookie` and `CustomHeader` policies encrypt the key using Data Protection. This provides strong privacy protections for the key, but requires [additional configuration](/aspnet/core/security/data-protection/configuration/overview) when more than once proxy instance is in use.
 
 ## Affinity failure policy
 If the affinity key cannot be decoded or no healthy destination found it's considered as a failure and an affinity failure policy is called to handle it. The policy has the full access to `HttpContext` and can send response to the client by itself. It returns a boolean value indicating whether the request processing can proceed down the pipeline or must be terminated.

@@ -50,7 +50,7 @@ Example:
 }
 ```
 
-[Output cache policies](https://learn.microsoft.com/aspnet/core/performance/caching/output) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core output caching middleware.
+[Output cache policies](/aspnet/core/performance/caching/output) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core output caching middleware.
 
 Output cache policies can be configured in Program.cs as follows:
 ```c#
@@ -72,4 +72,4 @@ app.UseOutputCache();
 app.MapReverseProxy();
 ```
 
-See the [Output Caching](https://learn.microsoft.com/aspnet/core/performance/caching/output) docs for setting up your preferred kind of output caching.
+See the [Output Caching](/aspnet/core/performance/caching/output) docs for setting up your preferred kind of output caching.
