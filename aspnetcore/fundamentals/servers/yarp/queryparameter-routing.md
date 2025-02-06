@@ -10,11 +10,6 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
----
-uid: queryparameter-routing
-title: Query Parameter Based Routing
----
-
 # Query Parameter Based Routing
 
 Proxy routes specified in [config](config-files.md) or via [code](config-providers.md) must include at least a path or host to match against. In addition to these, a route can also specify one or more query parameters that must be present on the request.
