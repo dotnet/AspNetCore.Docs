@@ -19,11 +19,11 @@ This sample shows you how to enable users to sign in with their work, school, or
 ## Create the app in Microsoft Developer Portal
 
 * Add the [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount/) NuGet package to the project.
-* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](xref:entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application)
+* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application)
 
 ### Create client secret
 
-Generate a client secret in the Azure portal by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](xref:entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
+Generate a client secret in the Azure portal by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
 
 ## Store the Microsoft client ID and secret
 
@@ -86,11 +86,11 @@ This sample shows you how to enable users to sign in with their work, school, or
 ## Create the app in Microsoft Developer Portal
 
 * Add the [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount/) NuGet package to the project.
-* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](xref:entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application)
+* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application)
 
 ### Create client secret
 
-Generate a client secret in the Azure portal by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](xref:entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
+Generate a client secret in the Azure portal by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
 
 ## Store the Microsoft client ID and secret
 
