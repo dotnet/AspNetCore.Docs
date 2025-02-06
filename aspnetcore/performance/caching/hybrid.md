@@ -71,13 +71,16 @@ or
 cache.GetOrCreateAsync($"user_prefs_{userId}", ...);
 ```
 
-**It is the caller's responsibility** to ensure that this key scheme is valid and cannot cause data to become confused, either between separate uses of `HybridCache`, or based on
-different inputs used in the cache key. In particular, it is not recommended to use external user input (in particular, but not limited to, raw `string` values from a UI) as part
-of cache keys, as this could allow malicious access attempts, or could be used in a service-denial attack by saturating your cache with data with meaningless keys generated from
-random strings. In the above (valid) example, the *order* data and *user preference* data are clearly distinct, where `orderid` and `userId` are our internally generated
-identifiers, and `region` might be an enum or string from a *predefined list* of known regions. There is no significance placed on tokens such as `/` or `_`; the composed value is
-treated as an opaque identifying string - the examples above just illustrate some common approaches. This guidance applies equally to any `string`-based cache API, including
-`HybridCache`, `IDistributedCache`, `IMemoryCache`, etc.
+It's the caller's responsibility to ensure that a key scheme is valid and can't cause data to become confused.
+
+ We recommend that you not use external user input in the cache key. For example, don't use raw `string` values from a UI as part of a cache key. Such keys could allow malicious access attempts, or could be used in a denial-of-service attack by saturating your cache with data having meaningless keys generated from random strings. In the preceding valid examples, the *order* data and *user preference* data are clearly distinct:
+
+* `orderid` and `userId` are internally generated identifiers.
+* `region` might be an enum or string from a predefined list of known regions.
+
+There is no significance placed on tokens such as `/` or `_`. The entire key value is treated as an opaque identifying string. You could omit the `/` and `_` with no change to the way the cache functions.
+
+This guidance applies equally to any `string`-based cache API, such as `HybridCache`, `IDistributedCache`, and `IMemoryCache`.
 
 The inline interpolated string syntax (`$"..."` above, directly inside the `GetOrCreateAsync` call) is recommended when using `HybridCache`, as this allows for planned future
 improvements that bypass the need to allocate a `string` for the key in many scenarios.
