@@ -13,6 +13,8 @@ items:
     uid: getting-started
   - name: What's new
     items:
+      - name: What's new in 10
+        uid: aspnetcore-10
       - name: What's new in 9
         uid: aspnetcore-9
       - name: What's new in 8
