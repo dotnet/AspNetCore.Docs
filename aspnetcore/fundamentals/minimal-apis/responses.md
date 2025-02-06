@@ -146,6 +146,10 @@ The following sections demonstrate the usage of the common result helpers.
 
 The preceding example returns a 500 status code.
 
+#### Problem and ValidationProblem
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_12":::
+
 #### Text
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_08":::
