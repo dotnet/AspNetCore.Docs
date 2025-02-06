@@ -54,9 +54,12 @@ The stateless overload of `GetOrCreateAsync` is recommended for most scenarios. 
 
 ## Cache key guidance
 
-The `key` passed to `GetOrCreateAsync` is usually formed using string concatenation, and must uniquely identify
-the data being cached both in terms of the identifiers/values used to load that data, and in terms of other data
-cached in your application. For example:
+The `key` passed to `GetOrCreateAsync` must uniquely identify the data being cached:
+
+* In terms of the identifier values used to retrieve that data from its source.
+* In terms of other data cached in the application.
+
+Both types of uniqueness are usually ensured by using string concatenation to make a single key string composed of different parts concatenated into one string. For example:
 
 ```c#
 cache.GetOrCreateAsync($"/orders/{region}/{orderId}", ...);
