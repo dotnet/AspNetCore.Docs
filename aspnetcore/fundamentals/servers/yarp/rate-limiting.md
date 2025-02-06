@@ -1,3 +1,15 @@
+---
+uid: fundamentals/servers/yarp/rate-limiting
+title: Rate Limiting
+description: Rate Limiting
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
 # Rate Limiting
 
 ## Introduction

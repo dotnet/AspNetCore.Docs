@@ -1,3 +1,15 @@
+---
+uid: fundamentals/servers/yarp/http-client-config
+title: HTTP Client Configuration
+description: HTTP Client Configuration
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
 # HTTP Client Configuration
 
 ## Introduction

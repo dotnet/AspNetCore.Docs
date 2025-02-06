@@ -1,3 +1,15 @@
+---
+uid: fundamentals/servers/yarp/https-tls
+title: HTTPS & TLS
+description: HTTPS & TLS
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
 # HTTPS & TLS
 
 HTTPS (HTTP over TLS encrypted connections) is the standard way to make HTTP requests on the Internet for security, integrity, and privacy reasons. There are several HTTPS/TLS considerations to account for when using a reverse proxy like YARP.

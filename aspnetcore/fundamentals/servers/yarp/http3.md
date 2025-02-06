@@ -1,3 +1,15 @@
+---
+uid: fundamentals/servers/yarp/http3
+title: HTTP/3
+description: HTTP/3
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
 # HTTP/3
 
 ## Introduction

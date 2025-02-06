@@ -1,6 +1,18 @@
 ---
+uid: fundamentals/servers/yarp/queryparameter-routing
+title: Query Parameter Based Routing
+description: Query Parameter Based Routing
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
+---
 uid: queryparameter-routing
-title: Query Parameter Routing
+title: Query Parameter Based Routing
 ---
 
 # Query Parameter Based Routing

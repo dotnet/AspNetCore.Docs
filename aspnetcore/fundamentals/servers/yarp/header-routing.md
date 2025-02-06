@@ -1,6 +1,18 @@
 ---
+uid: fundamentals/servers/yarp/header-routing
+title: Header Based Routing
+description: Header Based Routing
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
+---
 uid: header-routing
-title: Header Routing
+title: Header Based Routing
 ---
 
 # Header Based Routing

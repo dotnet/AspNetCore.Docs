@@ -1,3 +1,15 @@
+---
+uid: fundamentals/servers/yarp/kubernetes-ingress
+title: Kubernetes Ingress Controller
+description: Kubernetes Ingress Controller
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
 # Kubernetes Ingress Controller
 
 Introduced: Future Preview

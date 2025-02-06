@@ -1,3 +1,15 @@
+---
+uid: fundamentals/servers/yarp/session-affinity
+title: Session Affinity
+description: Session Affinity
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
 # Session Affinity
 
 ## Concept

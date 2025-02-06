@@ -1,3 +1,15 @@
+---
+uid: fundamentals/servers/yarp/grpc
+title: Proxing gRPC
+description: Proxing gRPC
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
 # Proxing gRPC
 
 ## Introduction

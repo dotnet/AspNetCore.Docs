@@ -1,3 +1,14 @@
+---
+uid: fundamentals/servers/yarp/distributed-tracing
+title: Distributed tracing
+description: Distributed tracing
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
 
 # Distributed tracing
 

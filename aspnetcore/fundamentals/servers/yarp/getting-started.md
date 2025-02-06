@@ -1,5 +1,17 @@
 ---
 uid: fundamentals/servers/yarp/getting-started
+title: Getting Started with YARP
+description: Getting Started with YARP
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ai-usage: ai-assisted
+---
+
+---
+uid: fundamentals/servers/yarp/getting-started
 description: Getting Started with YARP
 author: rick-anderson
 ms.author: riande
