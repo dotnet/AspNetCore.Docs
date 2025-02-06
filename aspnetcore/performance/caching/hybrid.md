@@ -78,7 +78,13 @@ It's the caller's responsibility to ensure that a key scheme is valid and can't 
 * `orderid` and `userId` are internally generated identifiers.
 * `region` might be an enum or string from a predefined list of known regions.
 
-There is no significance placed on tokens such as `/` or `_`. The entire key value is treated as an opaque identifying string. You could omit the `/` and `_` with no change to the way the cache functions.
+There is no significance placed on tokens such as `/` or `_`. The entire key value is treated as an opaque identifying string. In this case, you could omit the `/` and `_` with no
+change to the way the cache functions, but a delimiter is usually used to avoid ambiguity - for example `$"order{customerId}{orderId}"` could cause confusion betwen:
+
+- `customerId` 42 with `orderId` 123
+- `customerId` 421 with `orderId` 23
+
+(both of which would generate the cache key `order42123`)
 
 This guidance applies equally to any `string`-based cache API, such as `HybridCache`, `IDistributedCache`, and `IMemoryCache`.
 
