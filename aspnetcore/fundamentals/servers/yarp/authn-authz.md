@@ -1,3 +1,16 @@
+---
+uid: fundamentals/servers/yarp/authn-authz
+title: Authentication and Authorization
+description: Authentication and Authorization
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ms.prod: aspnet-core
+ai-usage: ai-assisted
+---
+
 # Authentication and Authorization
 
 ## Introduction

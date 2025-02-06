@@ -1,3 +1,16 @@
+---
+uid: fundamentals/servers/yarp/config-files
+title: Configuration Files
+description: Configuration Files
+author: rick-anderson
+ms.author: riande
+ms.date: 02/06/2025
+ms.topic: article
+content_well_notification: AI-contribution
+ms.prod: aspnet-core
+ai-usage: ai-assisted
+---
+
 # Configuration Files
 
 ## Introduction
