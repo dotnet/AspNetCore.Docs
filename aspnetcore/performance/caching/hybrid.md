@@ -92,9 +92,9 @@ Notice that the inline interpolated string syntax (`$"..."` in the preceding exa
 
 ### Additional key considerations
 
-* Keys can be restricted to valid maximum lengths. For example, the default `HybridCache` implementation (via `AddHybridCache(...)`) restricts keys to 1024 characters by default. That number is configurable via `HybridCacheOptions.MaximumKeyLength`), with longer keys bypassing the cache mechanisms to prevent saturation.
+* Keys can be restricted to valid maximum lengths. For example, the default `HybridCache` implementation (via `AddHybridCache(...)`) restricts keys to 1024 characters by default. That number is configurable via `HybridCacheOptions.MaximumKeyLength`, with longer keys bypassing the cache mechanisms to prevent saturation.
 * Keys must be valid Unicode sequences. If invalid Unicode sequences are passed, the behavior is undefined.
-- When using an out-of-process secondary cache such as `IDistributedCache`, the specific backend implementation may impose additional restrictions. As a hypothetical example, a particular backend might use case-insensitive key logic. The default `HybridCache` (via `AddHybridCache(...)`) detects this scenario to prevent confusion attacks, however it may still result in conflicting keys becoming overwritten or evicted sooner than expected.
+* When using an out-of-process secondary cache such as `IDistributedCache`, the specific backend implementation may impose additional restrictions. As a hypothetical example, a particular backend might use case-insensitive key logic. The default `HybridCache` (via `AddHybridCache(...)`) detects this scenario to prevent confusion attacks, however it may still result in conflicting keys becoming overwritten or evicted sooner than expected.
 
 ### The alternative `GetOrCreateAsync` overload
 
