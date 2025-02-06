@@ -80,7 +80,7 @@ This response header is used with redirects and may contain a scheme, domain, an
 
 ### Server
 
-This response header indicates what server technology was used to generate the response (IIS, Kestrel, etc.). This header is proxied from the destination by default. Applications that want to remove it can use the [ResponseHeaderRemove](transforms.md#responseheaderremove) transform, in which case the proxy's default server header will be used. Suppressing the proxy default server header is server specific, such as for [Kestrel](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.addserverheader#Microsoft_AspNetCore_Server_Kestrel_Core_KestrelServerOptions_AddServerHeader).
+This response header indicates what server technology was used to generate the response (IIS, Kestrel, etc.). This header is proxied from the destination by default. Applications that want to remove it can use the [ResponseHeaderRemove](transforms.md#responseheaderremove) transform, in which case the proxy's default server header will be used. Suppressing the proxy default server header is server specific, such as for [Kestrel](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.addserverheader#Microsoft_AspNetCore_Server_Kestrel_Core_KestrelServerOptions_AddServerHeader).
 
 ### X-Powered-By
 

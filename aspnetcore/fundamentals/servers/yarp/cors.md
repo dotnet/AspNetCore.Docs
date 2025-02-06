@@ -84,7 +84,7 @@ app.MapReverseProxy();
 
 ### DefaultPolicy
 
-Specifying the value `default` in a route's `CorsPolicy` parameter means that route will use the policy defined in [CorsOptions.DefaultPolicy](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corsoptions.defaultpolicyname).
+Specifying the value `default` in a route's `CorsPolicy` parameter means that route will use the policy defined in [CorsOptions.DefaultPolicy](/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corsoptions.defaultpolicyname).
 
 ### Disable CORS
 

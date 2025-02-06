@@ -76,7 +76,7 @@ In addition to custom policy names, there are two special values that can be spe
 
 #### DefaultPolicy
 
-Specifying the value `default` in a route's authorization parameter means that route will use the policy defined in [AuthorizationOptions.DefaultPolicy](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.defaultpolicy?#Microsoft_AspNetCore_Authorization_AuthorizationOptions_DefaultPolicy). That policy is pre-configured to require authenticated users.
+Specifying the value `default` in a route's authorization parameter means that route will use the policy defined in [AuthorizationOptions.DefaultPolicy](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.defaultpolicy?#Microsoft_AspNetCore_Authorization_AuthorizationOptions_DefaultPolicy). That policy is pre-configured to require authenticated users.
 
 #### Anonymous
 
@@ -84,7 +84,7 @@ Specifying the value `anonymous` in a route's authorization parameter means that
 
 #### FallbackPolicy
 
-[AuthorizationOptions.FallbackPolicy](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.fallbackpolicy) is the policy that will be used for any request or route that was not configured with a policy. FallbackPolicy does not have a value by default, any request will be allowed.
+[AuthorizationOptions.FallbackPolicy](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.fallbackpolicy) is the policy that will be used for any request or route that was not configured with a policy. FallbackPolicy does not have a value by default, any request will be allowed.
 
 ## Flowing Credentials
 
