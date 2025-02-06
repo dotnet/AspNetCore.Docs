@@ -88,8 +88,7 @@ change to the way the cache functions, but a delimiter is usually used to avoid 
 
 This guidance applies equally to any `string`-based cache API, such as `HybridCache`, `IDistributedCache`, and `IMemoryCache`.
 
-The inline interpolated string syntax (`$"..."` above, directly inside the `GetOrCreateAsync` call) is recommended when using `HybridCache`, as this allows for planned future
-improvements that bypass the need to allocate a `string` for the key in many scenarios.
+Notice that the inline interpolated string syntax (`$"..."` in the preceding examples of valid keys) is directly inside the `GetOrCreateAsync` call. This syntax is recommended when using `HybridCache`, as it allows for planned future improvements that bypass the need to allocate a `string` for the key in many scenarios.
 
 Additional key restrictions:
 
