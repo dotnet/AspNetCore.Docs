@@ -124,7 +124,7 @@ There are many L7 proxies available. Some options are:
 
 * [Envoy](https://www.envoyproxy.io/) - A popular open source proxy.
 * [Linkerd](https://linkerd.io/) - Service mesh for Kubernetes.
-* [YARP: Yet Another Reverse Proxy](https://microsoft.github.io/reverse-proxy/) - An open source proxy written in .NET.
+* [YARP: Yet Another Reverse Proxy](https://dotnet.github.io/yarp/) - An open source proxy written in .NET.
 
 :::moniker range=">= aspnetcore-5.0"
 
