@@ -24,7 +24,8 @@ The configuration is represented differently if you're using the [IConfiguration
 These types are focused on defining serializable configuration. The code based configuration model is described below in the "Code Configuration" section.
 
 ### HttpClient
-HTTP client configuration is based on [HttpClientConfig](xref:Yarp.ReverseProxy.Configuration.HttpClientConfig) and represented by the following configuration schema. If you need a more granular approach, please use a [custom implementation](https://microsoft.github.io/reverse-proxy/articles/http-client-config.html#custom-iforwarderhttpclientfactory) of `IForwarderHttpClientFactory`.
+HTTP client configuration is based on [HttpClientConfig](xref:Yarp.ReverseProxy.Configuration.HttpClientConfig) and represented by the following configuration schema. If you need a more granular approach, use a <!--fix link--> [custom implementation](https://microsoft.github.io/reverse-proxy/articles/http-client-config.html#custom-iforwarderhttpclientfactory) of `IForwarderHttpClientFactory`.
+
 ```JSON
 "HttpClient": {
   "SslProtocols": [ "<protocol-names>" ],

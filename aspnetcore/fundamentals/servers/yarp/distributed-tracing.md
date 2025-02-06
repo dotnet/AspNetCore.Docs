@@ -142,5 +142,5 @@ services.AddReverseProxy()
 ```
 
 [B3 propagation]: https://github.com/openzipkin/b3-propagation
-[`DistributedContextPropagator`]: https://docs.microsoft.com/dotnet/api/system.diagnostics.distributedcontextpropagator
-[`DistributedContextPropagator.Fields`]: https://docs.microsoft.com/dotnet/api/system.diagnostics.distributedcontextpropagator.fields
+[`DistributedContextPropagator`](/dotnet/api/system.diagnostics.distributedcontextpropagator)
+[`DistributedContextPropagator.Fields`](/dotnet/api/system.diagnostics.distributedcontextpropagator.fields)
