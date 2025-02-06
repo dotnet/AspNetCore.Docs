@@ -14,12 +14,12 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 
 :::moniker range=">= aspnetcore-6.0"
 
-This sample shows you how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core 6.0 project created on the [previous page](xref:security/authentication/social/index).
+This sample shows how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core 6.0 project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create the app in Microsoft Developer Portal
 
 * Add the [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount/) NuGet package to the project.
-* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app?tabs=client-secret#register-an-application)
+* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app?tabs=client-secret)
 
 ### Create client secret
 
@@ -27,7 +27,7 @@ Generate a client secret in the Azure portal by following the steps in [Register
 
 ## Store the Microsoft client ID and secret
 
-Store sensitive settings such as the Microsoft **Application (client) ID** and **Client Secret** you created in the previous step with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+Store sensitive settings such as the Microsoft **Application (client) ID** and **Client Secret** created in the previous step with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
 
 1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret`:
@@ -52,10 +52,10 @@ For more information about configuration options supported by Microsoft Account 
 ## Sign in with Microsoft Account
 
 * Run the app and select **Log in**. An option to sign in with Microsoft appears.
-* Select to sign in with Microsoft. You are redirected to Microsoft for authentication. After signing in with your Microsoft Account, you will be prompted to let the app access your info:
-* Select **Yes**. You are redirected back to the web site where you can set your email.
+* Select to sign in with Microsoft to navigate to Microsoft for authentication. After signing in with your Microsoft Account, you'll be prompted to let the app access your info:
+* Select **Yes** to navigate back to the web site where to set your email.
 
-You are now logged in using your Microsoft credentials.
+You're now logged in using your Microsoft credentials.
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
@@ -63,18 +63,18 @@ You are now logged in using your Microsoft credentials.
 
 ## Troubleshooting
 
-* If the Microsoft Account provider redirects you to a sign in error page, note the error title and description query string parameters directly following the `#` (hashtag) in the Uri.
+* If the Microsoft Account provider redirects to a sign in error page, note the error title and description query string parameters directly following the `#` (hashtag) in the Uri.
 
   Although the error message seems to indicate a problem with Microsoft authentication, the most common cause is your application Uri not matching any of the **Redirect URIs** specified for the **Web** platform.
 
 * If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this sample ensures that this is done.
 
-* If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
+* If the site database hasn't been created by applying the initial migration, *A database operation failed while processing the request* error occurs. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
 
-* This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
-* Once you publish your web site to Azure web app, create a new client secrets in the Microsoft Developer Portal.
+* This article showed how to authenticate with Microsoft. Follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
+* Once the web site is published to Azure web app, create a new client secrets in the Microsoft Developer Portal.
 * Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
 
 :::moniker-end
@@ -118,11 +118,11 @@ For more information about configuration options supported by Microsoft Account 
 
 ## Sign in with Microsoft Account
 
-Run the app and select **Log in**. An option to sign in with Microsoft appears. When you select on Microsoft, you are redirected to Microsoft for authentication. After signing in with your Microsoft Account, you will be prompted to let the app access your info:
+Run the app and select **Log in**. An option to sign in with Microsoft appears. Select **Microsoft** to navigate to Microsoft for authentication. After signing in with your Microsoft Account, you'll be prompted to let the app access your info:
 
-Tap **Yes** and you will be redirected back to the web site where you can set your email.
+Tap **Yes** and you'll be redirected back to the web site where you can set your email.
 
-You are now logged in using your Microsoft credentials.
+You're now logged in using your Microsoft credentials.
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
@@ -134,7 +134,7 @@ You are now logged in using your Microsoft credentials.
 
   Although the error message seems to indicate a problem with Microsoft authentication, the most common cause is your application Uri not matching any of the **Redirect URIs** specified for the **Web** platform.
 * If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this sample ensures that this is done.
-* If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
+* If the site database hasn't been created by applying the initial migration, you'll get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
 
