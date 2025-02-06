@@ -4,7 +4,7 @@ author: rick-anderson
 description: This sample demonstrates the integration of Microsoft account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/08/2021
+ms.date: 01/06/2025
 monikerRange: '>= aspnetcore-3.1'
 uid: security/authentication/microsoft-logins
 ---
@@ -19,31 +19,15 @@ This sample shows you how to enable users to sign in with their work, school, or
 ## Create the app in Microsoft Developer Portal
 
 * Add the [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount/) NuGet package to the project.
-* Navigate to the [Azure portal - App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page and create or sign into a Microsoft account:
-
-If you don't have a Microsoft account, select **Create one**. After signing in, you are redirected to the **App registrations** page:
-
-* Select **New registration**
-* Enter a **Name**.
-* Select an option for **Supported account types**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
-  * The `MicrosoftAccount` package supports App Registrations created using "Accounts in any organizational directory" or "Accounts in any organizational directory and Microsoft accounts" options by default.
-  * To use other options, set `AuthorizationEndpoint` and `TokenEndpoint` members of `MicrosoftAccountOptions` used to initialize the Microsoft Account authentication to the URLs displayed on **Endpoints** page of the App Registration after it is created (available by clicking Endpoints on the **Overview** page).
-* Under **Redirect URI**, enter your development URL with `/signin-microsoft` appended. For example, `https://localhost:5001/signin-microsoft`. The Microsoft authentication scheme configured later in this sample will automatically handle requests at `/signin-microsoft` route to implement the OAuth flow.
-* Select **Register**
+* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](xref:entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application)
 
 ### Create client secret
 
-* In the left pane, select **Certificates & secrets**.
-* Under **Client secrets**, select **New client secret**
-  * Add a description for the client secret.
-  * Select the **Add** button.
-* Under **Client secrets**, copy the value of the client secret.
-
-The URI segment `/signin-microsoft` is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.MicrosoftAccount.MicrosoftAccountOptions> class.
+Generate a client secret in the Azure portal by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](xref:entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
 
 ## Store the Microsoft client ID and secret
 
-Store sensitive settings such as the Microsoft **Application (client) ID** found on the **Overview** page of the App Registration and **Client Secret** you created on the **Certificates & secrets page** with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+Store sensitive settings such as the Microsoft **Application (client) ID** and **Client Secret** you created in the previous step with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
 
 1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret`:
@@ -102,31 +86,15 @@ This sample shows you how to enable users to sign in with their work, school, or
 ## Create the app in Microsoft Developer Portal
 
 * Add the [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount/) NuGet package to the project.
-* Navigate to the [Azure portal - App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page and create or sign into a Microsoft account:
-
-If you don't have a Microsoft account, select **Create one**. After signing in, you are redirected to the **App registrations** page:
-
-* Select **New registration**
-* Enter a **Name**.
-* Select an option for **Supported account types**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
-  * The `MicrosoftAccount` package supports App Registrations created using "Accounts in any organizational directory" or "Accounts in any organizational directory and Microsoft accounts" options by default.
-  * To use other options, set `AuthorizationEndpoint` and `TokenEndpoint` members of `MicrosoftAccountOptions` used to initialize the Microsoft Account authentication to the URLs displayed on **Endpoints** page of the App Registration after it is created (available by clicking Endpoints on the **Overview** page).
-* Under **Redirect URI**, enter your development URL with `/signin-microsoft` appended. For example, `https://localhost:5001/signin-microsoft`. The Microsoft authentication scheme configured later in this sample will automatically handle requests at `/signin-microsoft` route to implement the OAuth flow.
-* Select **Register**
+* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](xref:entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application)
 
 ### Create client secret
 
-* In the left pane, select **Certificates & secrets**.
-* Under **Client secrets**, select **New client secret**
-  * Add a description for the client secret.
-  * Select the **Add** button.
-* Under **Client secrets**, copy the value of the client secret.
-
-The URI segment `/signin-microsoft` is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.MicrosoftAccount.MicrosoftAccountOptions> class.
+Generate a client secret in the Azure portal by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](xref:entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
 
 ## Store the Microsoft client ID and secret
 
-Store sensitive settings such as the Microsoft **Application (client) ID** found on the **Overview** page of the App Registration and **Client Secret** you created on the **Certificates & secrets page** with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+Store sensitive settings such as the Microsoft **Application (client) ID** and **Client Secret** you created in the previous step with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
 
 1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret`:
