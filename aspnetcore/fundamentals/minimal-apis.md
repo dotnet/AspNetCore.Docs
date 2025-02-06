@@ -171,6 +171,22 @@ app.MapGet("/download", () => Results.File("myfile.text"));
 
 [!INCLUDE [results-helpers](~/fundamentals/minimal-apis/includes/results-helpers.md)]
 
+### Modifying Headers
+
+Use the `HttpResponse` object to modify response headers:
+
+```csharp
+app.MapGet("/", (HttpContext context) => {
+    // Set a custom header
+    context.Response.Headers["X-Custom-Header"] = "CustomValue";
+
+    // Set a known header
+    context.Response.Headers.CacheControl = $"public,max-age=3600";
+
+    return "Hello World";
+});
+```
+
 ### Customizing results
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
