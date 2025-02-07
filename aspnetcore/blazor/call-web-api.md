@@ -847,7 +847,7 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 
 ## Cross-Origin Resource Sharing (CORS)
 
-Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/).
+Browser security often restricts a webpage from making requests to a different origin than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/).
 
 For more information on server-side CORS, see <xref:security/cors>. The article's examples don't pertain directly to Razor component scenarios, but the article is useful for learning general CORS concepts.
 

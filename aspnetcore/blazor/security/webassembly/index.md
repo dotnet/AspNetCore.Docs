@@ -31,13 +31,13 @@ For examples of the preceding approaches, see <xref:blazor/security/webassembly/
 
 To protect .NET/C# code and data, use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing. For more information, see <xref:blazor/call-web-api?pivots=webassembly> and the articles and examples in this documentation node.
 
-Blazor WebAssembly apps are often prevented from making direct calls across origins to web APIs due to [Cross-Origin Request Sharing (CORS) security](xref:security/cors). A typical exception looks like the following:
+Blazor WebAssembly apps are often prevented from making direct calls across origins to web APIs due to [Cross-Origin Request Sharing (CORS) security](xref:blazor/call-web-api#cross-origin-resource-sharing-cors). A typical exception looks like the following:
 
-> :::no-loc text="Access to fetch at '{URL}' from origin 'https://localhost:7172' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.":::
+> :::no-loc text="Access to fetch at '{URL}' from origin 'https://localhost:{PORT}' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.":::
 
-Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> with a <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestMode> field of `NoCors` (1) seeking to circumvent the preceding exception, the request usually fails due to CORS restrictions on the web API's origin, such as a restriction that requires CORS or a restriction that prevents JavaScript [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests from a browser. The only way for such calls to succeed is for the web API that you're calling to allow your origin to call its origin with the correct CORS configuration. Most external web APIs don't allow you to configure their CORS policies. To deal with this restriction, adopt either of the following strategies:
+Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> with a <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestMode> field of `NoCors` (1) seeking to circumvent the preceding exception, the request often fails due to CORS restrictions on the web API's origin, such as a restriction that requires CORS or a restriction that prevents JavaScript [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests from a browser. The only way for such calls to succeed is for the web API that you're calling to allow your origin to call its origin with the correct CORS configuration. Most external web APIs don't allow you to configure their CORS policies. To deal with this restriction, adopt either of the following strategies:
 
-* Maintain your own server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls your server-side web API, and your web API makes the request from its server-based C# code to the external web API with the correct CORS headers, returning the result to your client-side Blazor WebAssembly app.
+* Maintain your own server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls your server-side web API, and your web API makes the request from its server-based C# code (not a browser) to the external web API with the correct CORS headers, returning the result to your client-side Blazor WebAssembly app.
 * Use a proxy service to proxy the request from the client-side Blazor WebAssembly app to the external web API. The proxy service uses a server-side app to make the request on the client's behalf and returns the result after the call succeeds. In the following example based on [CloudFlare's CORS PROXY](https://corsproxy.io/), the `{REQUEST URI}` placeholder is the request URI:
 
   ```razor
@@ -50,9 +50,12 @@ Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssem
       ...
 
       var client = ClientFactory.CreateClient();
+
       var urlEncodedRequestUri = WebUtility.UrlEncode("{REQUEST URI}");
+      
       var request = new HttpRequestMessage(HttpMethod.Get, 
           $"https://corsproxy.io/?{urlEncodedRequestUri}");
+
       var response = await client.SendAsync(request);
 
       ...
