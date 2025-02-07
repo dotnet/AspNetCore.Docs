@@ -46,7 +46,14 @@ public class Program
         // <snippet_10>
         app.MapGet("/download", () => Results.File("myfile.text"));
         // </snippet_10>
-
+        // <snippet_12>
+        app.MapGet("/problem", () =>
+        {
+            var extensions = new List<KeyValuePair<string, object?>> { new("test", "value") };
+            return TypedResults.Problem("This is an error with extensions", 
+                                                        extensions: extensions);
+        });
+        // </snippet_12>
         app.Run();
     }
     // <snippet_11>
