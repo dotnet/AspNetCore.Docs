@@ -240,7 +240,7 @@ If you want to refer to the response of a named request, you need to manually tr
 For example, suppose your HTTP file has a request that authenticates the caller, and you name it `login`. The response body is a JSON document that contains the bearer token in a property named `token`. In subsequent requests, you want to pass in this bearer token in an `Authorization` header. The following example does this:
 
 ```http 
-#@name login
+# @name login
 
 POST {{TodoApi_HostAddress}}/users/token 
 Content-Type: application/json 
