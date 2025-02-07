@@ -16,14 +16,14 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 
 This sample shows how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core 6.0 project created on the [previous page](xref:security/authentication/social/index).
 
-## Create the app in Microsoft Developer Portal
+## Create the app in the Microsoft Entra admin center
 
 * Add the [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount/) NuGet package to the project.
-* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app?tabs=client-secret)
+* Register the application in the Microsoft Entra admin center by following the steps in [Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app?tabs=client-secret)
 
-### Create client secret
+### Create a client secret
 
-Generate a client secret in the Azure portal by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](/entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
+Generate a client secret in the Microsoft Entra admin center by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](/entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
 
 ## Store the Microsoft client ID and secret
 
@@ -74,8 +74,8 @@ You're now logged in using your Microsoft credentials.
 ## Next steps
 
 * This article showed how to authenticate with Microsoft. Follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
-* Once the web site is published to Azure web app, create a new client secrets in the Microsoft Developer Portal.
-* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
+* Once the web site is published to Azure web app, create a new client secrets in the Microsoft Entra admin center.
+* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Microsoft Entra admin center. The configuration system is set up to read keys from environment variables.
 
 :::moniker-end
 
@@ -83,14 +83,14 @@ You're now logged in using your Microsoft credentials.
 
 This sample shows you how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index).
 
-## Create the app in Microsoft Developer Portal
+## Create the app in the Microsoft Entra admin center
 
 * Add the [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount/) NuGet package to the project.
-* Register the application in the Azure portal by following the steps in [Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app?tabs=client-secret#register-an-application)
+* Register the application in the Microsoft Entra admin center by following the steps in [Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app?tabs=client-secret#register-an-application)
 
 ### Create client secret
 
-Generate a client secret in the Azure portal by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](/entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
+Generate a client secret in the Microsoft Entra admin center by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](/entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
 
 ## Store the Microsoft client ID and secret
 
@@ -139,7 +139,7 @@ You're now logged in using your Microsoft credentials.
 ## Next steps
 
 * This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
-* Once you publish your web site to Azure web app, create a new client secrets in the Microsoft Developer Portal.
-* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
+* Once you publish your web site to Azure web app, create a new client secrets in the Microsoft Entra admin center.
+* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in Microsoft Entra admin center. The configuration system is set up to read keys from environment variables.
 
 :::moniker-end
