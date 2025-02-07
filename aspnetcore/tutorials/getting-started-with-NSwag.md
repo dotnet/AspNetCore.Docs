@@ -5,7 +5,7 @@ description: Learn how to use NSwag to generate documentation and help pages for
 ms.author: wpickett
 ms.custom: mvc
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
-ms.date: 12/05/2019
+ms.date: 02/07/2025
 uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
