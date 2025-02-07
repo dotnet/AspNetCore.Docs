@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 ## Introduction
 
-YARP enables proxying WebSocket and SPDY connections by default. This support works with both the [direct forwarding](direct-forwarding.md) and [full pipeline](getting-started.md) approaches.
+YARP enables proxying WebSocket and SPDY connections by default. This support works with both the [direct forwarding](xref:fundamentals/servers/yarp/direct-forwarding) and [full pipeline](xref:fundamentals/servers/yarp/getting-started) approaches.
 
 [WebSockets](https://www.rfc-editor.org/rfc/rfc6455.html) is a bidirectional streaming protocol built on HTTP/1.1 and later adapted to [HTTP/2](https://datatracker.ietf.org/doc/html/rfc8441).
 
@@ -36,4 +36,4 @@ After the initial handshake WebSockets function the same way over both HTTP vers
 
 ## Timeout
 
-[Http Request Timeouts](/aspnet/core/performance/timeouts) (.NET 8+) can apply timeouts to all requests by default or by policy. These timeouts will be disabled after a WebSocket handshake. They will still apply to gRPC requests. For additional configuration see [Timeouts](timeouts.md).
+[Http Request Timeouts](/aspnet/core/performance/timeouts) (.NET 8+) can apply timeouts to all requests by default or by policy. These timeouts will be disabled after a WebSocket handshake. They will still apply to gRPC requests. For additional configuration see [Timeouts](xref:fundamentals/servers/yarp/timeouts).

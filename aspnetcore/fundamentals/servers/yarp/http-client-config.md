@@ -162,7 +162,7 @@ The below example shows 2 samples of HTTP client and request configurations for 
 ## Code Configuration
 HTTP client configuration uses the type [HttpClientConfig](xref:Yarp.ReverseProxy.Configuration.HttpClientConfig).
 
-The following is an example of `HttpClientConfig` using [code based](config-providers.md) configuration. An instance of `HttpClientConfig` is assigned to the [ClusterConfig.HttpClient](xref:Yarp.ReverseProxy.Configuration.ClusterConfig) property before passing the cluster array to `LoadFromMemory` method.
+The following is an example of `HttpClientConfig` using [code based](xref:fundamentals/servers/yarp/config-providers) configuration. An instance of `HttpClientConfig` is assigned to the [ClusterConfig.HttpClient](xref:Yarp.ReverseProxy.Configuration.ClusterConfig) property before passing the cluster array to `LoadFromMemory` method.
 
 ```C#
 var routes = new[]

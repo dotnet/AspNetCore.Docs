@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 ASP.NET Core uses a [middleware pipeline](/aspnet/core/fundamentals/middleware/) to divide request processing into discrete steps. The app developer can add and order middleware as needed. ASP.NET Core middleware is also used to implement and customize reverse proxy functionality.
 
 ## Defaults
-The [getting started](getting-started.md) sample shows the following Configure method. This sets up a middleware pipeline with development tools, routing, and proxy configured endpoints (`MapReverseProxy`).
+The [getting started](xref:fundamentals/servers/yarp/getting-started) sample shows the following Configure method. This sets up a middleware pipeline with development tools, routing, and proxy configured endpoints (`MapReverseProxy`).
 
 ```C#
 var builder = WebApplication.CreateBuilder(args);
@@ -28,11 +28,11 @@ app.MapReverseProxy();
 app.Run();
 ```
 
-The parmeterless `MapReverseProxy()` in [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) overload includes all standard proxy middleware for [session affinity](session-affinity.md), [load balancing](load-balancing.md), [passive health checks](dests-health-checks.md#passive-health-checks), and the final proxying of the request. Each of these check the configuration of the matched route, cluster, and destination and perform their task accordingly.
+The parmeterless `MapReverseProxy()` in [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) overload includes all standard proxy middleware for [session affinity](xref:fundamentals/servers/yarp/session-affinity), [load balancing](xref:fundamentals/servers/yarp/load-balancing), [passive health checks](dests-health-checks.md#passive-health-checks), and the final proxying of the request. Each of these check the configuration of the matched route, cluster, and destination and perform their task accordingly.
 
 ## Adding Middleware
 
-Middleware added to your application pipeline will see the request in different states of processing depending on where the middleware is added. Middleware added before `UseRouting` will see all requests and can manipulate them before any routing takes place. Middleware added between `UseRouting` and `UseEndpoints` can call `HttpContext.GetEndpoint()` to check which endpoint routing matched the request to (if any), and use any metadata that was associated with that endpoint. This is how [Authentication, Authorization](authn-authz.md) and [CORS](cors.md) are handled.
+Middleware added to your application pipeline will see the request in different states of processing depending on where the middleware is added. Middleware added before `UseRouting` will see all requests and can manipulate them before any routing takes place. Middleware added between `UseRouting` and `UseEndpoints` can call `HttpContext.GetEndpoint()` to check which endpoint routing matched the request to (if any), and use any metadata that was associated with that endpoint. This is how [Authentication, Authorization](xref:fundamentals/servers/yarp/authn-authz) and [CORS](xref:fundamentals/servers/yarp/cors) are handled.
 
 [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) provides an overload of `MapReverseProxy` that lets you build a middleware pipeline that will run only for requests matched to proxy configured routes.
 
@@ -132,7 +132,7 @@ proxyPipeline.Use(async (context, next) =>
 
 Middleware can wrap the call to `await next()` in a try/catch block to handle exceptions from later components.
 
-The proxy logic at the end of the pipeline ([IHttpForwarder](direct-forwarding.md)) does not throw exceptions for common request proxy errors. These are captured and reported in the [IForwarderErrorFeature](xref:Yarp.ReverseProxy.Forwarder.IForwarderErrorFeature) available from `HttpContext.Features` or the `HttpContext.GetForwarderErrorFeature()` extension method.
+The proxy logic at the end of the pipeline ([IHttpForwarder](xref:fundamentals/servers/yarp/direct-forwarding)) does not throw exceptions for common request proxy errors. These are captured and reported in the [IForwarderErrorFeature](xref:Yarp.ReverseProxy.Forwarder.IForwarderErrorFeature) available from `HttpContext.Features` or the `HttpContext.GetForwarderErrorFeature()` extension method.
 
 ```C#
 proxyPipeline.Use(async (context, next) =>
@@ -151,9 +151,9 @@ If the response has not started (`HttpResponse.HasStarted`) it can be cleared (`
 
 ## What not to do with middleware
 
-Middleware should be cautious about modifying request fields such as headers in order to affect the outgoing proxied request. Such modifications may interfere with features like retries and may be better handled by [transforms](transforms.md).
+Middleware should be cautious about modifying request fields such as headers in order to affect the outgoing proxied request. Such modifications may interfere with features like retries and may be better handled by [transforms](xref:fundamentals/servers/yarp/transforms).
 
-Middleware MUST check `HttpResponse.HasStarted` before modifying response fields after calling `next()`. If the response has already started being sent to the client then the middleware can no longer modify it (except maybe Trailers). [Transforms](transforms.md) can be used to inspect and suppress unwanted responses. Otherwise see the next note.
+Middleware MUST check `HttpResponse.HasStarted` before modifying response fields after calling `next()`. If the response has already started being sent to the client then the middleware can no longer modify it (except maybe Trailers). [Transforms](xref:fundamentals/servers/yarp/transforms) can be used to inspect and suppress unwanted responses. Otherwise see the next note.
 
 Middleware should avoid interacting with the request or response bodies. Bodies are not buffered by default, so interacting with them can prevent them from reaching their destinations. While enabling buffering is possible, it's discouraged as it can add significant memory and latency overhead. Using a wrapped, streaming approach is recommended if the body must be examined or modified. See the [ResponseCompression](https://github.com/dotnet/aspnetcore/blob/24588220006bc164b63293129cc94ac6292250e4/src/Middleware/ResponseCompression/src/ResponseCompressionMiddleware.cs#L55-L73) middleware for an example.
 

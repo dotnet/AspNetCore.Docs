@@ -59,9 +59,9 @@ app.Run();
 
 ## Configuration 
 
-The configuration for YARP is defined in the appsettings.json file. See [Configuration Files](config-files.md) for details.
+The configuration for YARP is defined in the appsettings.json file. See [Configuration Files](xref:fundamentals/servers/yarp/config-files) for details.
 
-The configuration can also be provided programmatically. See [Configuration Providers](config-providers.md) for details.
+The configuration can also be provided programmatically. See [Configuration Providers](xref:fundamentals/servers/yarp/config-providers) for details.
 
 You can find out more about the available configuration options by looking at [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig) and [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.ClusterConfig).
  
