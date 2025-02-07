@@ -52,6 +52,50 @@ The stateless overload of `GetOrCreateAsync` is recommended for most scenarios. 
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreate" highlight="5-12":::
 
+## Cache key guidance
+
+The `key` passed to `GetOrCreateAsync` must uniquely identify the data being cached:
+
+* In terms of the identifier values used to retrieve that data from its source.
+* In terms of other data cached in the application.
+
+Both types of uniqueness are usually ensured by using string concatenation to make a single key string composed of different parts concatenated into one string. For example:
+
+```c#
+cache.GetOrCreateAsync($"/orders/{region}/{orderId}", ...);
+```
+
+or
+
+```c#
+cache.GetOrCreateAsync($"user_prefs_{userId}", ...);
+```
+
+It's the caller's responsibility to ensure that a key scheme is valid and can't cause data to become confused.
+
+ We recommend that you not use external user input in the cache key. For example, don't use raw `string` values from a UI as part of a cache key. Such keys could allow malicious access attempts, or could be used in a denial-of-service attack by saturating your cache with data having meaningless keys generated from random strings. In the preceding valid examples, the *order* data and *user preference* data are clearly distinct:
+
+* `orderid` and `userId` are internally generated identifiers.
+* `region` might be an enum or string from a predefined list of known regions.
+
+There is no significance placed on tokens such as `/` or `_`. The entire key value is treated as an opaque identifying string. In this case, you could omit the `/` and `_` with no
+change to the way the cache functions, but a delimiter is usually used to avoid ambiguity - for example `$"order{customerId}{orderId}"` could cause confusion between:
+
+- `customerId` 42 with `orderId` 123
+- `customerId` 421 with `orderId` 23
+
+(both of which would generate the cache key `order42123`)
+
+This guidance applies equally to any `string`-based cache API, such as `HybridCache`, `IDistributedCache`, and `IMemoryCache`.
+
+Notice that the inline interpolated string syntax (`$"..."` in the preceding examples of valid keys) is directly inside the `GetOrCreateAsync` call. This syntax is recommended when using `HybridCache`, as it allows for planned future improvements that bypass the need to allocate a `string` for the key in many scenarios.
+
+### Additional key considerations
+
+* Keys can be restricted to valid maximum lengths. For example, the default `HybridCache` implementation (via `AddHybridCache(...)`) restricts keys to 1024 characters by default. That number is configurable via `HybridCacheOptions.MaximumKeyLength`, with longer keys bypassing the cache mechanisms to prevent saturation.
+* Keys must be valid Unicode sequences. If invalid Unicode sequences are passed, the behavior is undefined.
+* When using an out-of-process secondary cache such as `IDistributedCache`, the specific backend implementation may impose additional restrictions. As a hypothetical example, a particular backend might use case-insensitive key logic. The default `HybridCache` (via `AddHybridCache(...)`) detects this scenario to prevent confusion attacks, however it may still result in conflicting keys becoming overwritten or evicted sooner than expected.
+
 ### The alternative `GetOrCreateAsync` overload
 
 The alternative overload might reduce some overhead from [captured variables](/dotnet/csharp/language-reference/operators/lambda-expressions#capture-of-outer-variables-and-variable-scope-in-lambda-expressions) and per-instance callbacks, but at the expense of more complex code. For most scenarios the performance increase doesn't outweigh the code complexity. Here's an example that uses the alternative overload:
