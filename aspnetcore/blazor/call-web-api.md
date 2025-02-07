@@ -93,6 +93,123 @@ Calls a todo list web API from a Blazor WebAssembly app:
 
 :::moniker-end
 
+## Client-side scenarios for calling external web APIs
+
+Client-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file:
+
+```csharp
+builder.Services.AddScoped(sp => 
+    new HttpClient
+    { 
+        BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) 
+    });
+```
+
+The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
+
+`CallWebAPI.razor`:
+
+```razor
+@page "/call-web-api"
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject HttpClient Client
+
+<h1>Call web API from a Blazor WebAssembly Razor component</h1>
+
+@if (getBranchesError || branches is null)
+{
+    <p>Unable to get branches from GitHub. Please try again later.</p>
+}
+else
+{
+    <ul>
+        @foreach (var branch in branches)
+        {
+            <li>@branch.Name</li>
+        }
+    </ul>
+}
+
+@code {
+    private IEnumerable<GitHubBranch>? branches = [];
+    private bool getBranchesError;
+    private bool shouldRender;
+
+    protected override bool ShouldRender() => shouldRender;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get,
+            "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
+        request.Headers.Add("Accept", "application/vnd.github.v3+json");
+        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+
+        var response = await Client.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            branches = await JsonSerializer.DeserializeAsync
+                <IEnumerable<GitHubBranch>>(responseStream);
+        }
+        else
+        {
+            getBranchesError = true;
+        }
+
+        shouldRender = true;
+    }
+
+    public class GitHubBranch
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+    }
+}
+```
+
+In the preceding example for C# 12 or later, an empty array (`[]`) is created for the `branches` variable. For earlier versions of C# compiled with an SDK earlier than .NET 8, create an empty array (`Array.Empty<GitHubBranch>()`).
+
+<!-- A version of the following content is also in the 
+     Security > WebAssembly > Overview article under 
+     the heading: "Web API requests" -->
+
+To protect .NET/C# code and data, use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing.
+
+Blazor WebAssembly apps are often prevented from making direct calls across origins to web APIs due to [Cross-Origin Request Sharing (CORS) security](#cross-origin-resource-sharing-cors). A typical exception looks like the following:
+
+> :::no-loc text="Access to fetch at '{URL}' from origin 'https://localhost:{PORT}' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.":::
+
+Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> with a <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestMode> field of `NoCors` (1) seeking to circumvent the preceding exception, the request often fails due to CORS restrictions on the web API's origin, such as a restriction that only allows calls from specific origins or a restriction that prevents JavaScript [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests from a browser. The only way for such calls to succeed is for the web API that you're calling to allow your origin to call its origin with the correct CORS configuration. Most external web APIs don't allow you to configure their CORS policies. To deal with this restriction, adopt either of the following strategies:
+
+* Maintain your own server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls your server-side web API, and your web API makes the request from its server-based C# code (not a browser) to the external web API with the correct CORS headers, returning the result to your client-side Blazor WebAssembly app.
+
+* Use a proxy service to proxy the request from the client-side Blazor WebAssembly app to the external web API. The proxy service uses a server-side app to make the request on the client's behalf and returns the result after the call succeeds. In the following example based on [CloudFlare's CORS PROXY](https://corsproxy.io/), the `{REQUEST URI}` placeholder is the request URI:
+
+  ```razor
+  @using System.Net
+  @inject IHttpClientFactory ClientFactory
+
+  ...
+
+  @code {
+      public async Task CallApi()
+      {
+          var client = ClientFactory.CreateClient();
+
+          var urlEncodedRequestUri = WebUtility.UrlEncode("{REQUEST URI}");
+
+          var request = new HttpRequestMessage(HttpMethod.Get, 
+              $"https://corsproxy.io/?{urlEncodedRequestUri}");
+
+          var response = await client.SendAsync(request);
+
+          ...
+      }
+  }
+  ```
+
 ## Server-side scenarios for calling external web APIs
 
 Server-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to server-side apps, see <xref:fundamentals/http-requests>.
@@ -115,7 +232,7 @@ The following Razor component makes a request to a web API for GitHub branches s
 @using System.Text.Json.Serialization
 @inject IHttpClientFactory ClientFactory
 
-<h1>Call web API from a Blazor Server Razor component</h1>
+<h1>Call web API from a server-side Razor component</h1>
 
 @if (getBranchesError || branches is null)
 {
@@ -171,7 +288,7 @@ else
 }
 ```
 
-In the preceding example for C# 12 or later, an empty array (`[]`) is created for the `branches` variable. For earlier versions of C#, create an empty array (`Array.Empty<GitHubBranch>()`).
+In the preceding example for C# 12 or later, an empty array (`[]`) is created for the `branches` variable. For earlier versions of C# compiled with an SDK earlier than .NET 8, create an empty array (`Array.Empty<GitHubBranch>()`).
 
 For an additional working example, see the server-side file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server-with-server-side-rendering> article.
 
@@ -847,7 +964,7 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 
 ## Cross-Origin Resource Sharing (CORS)
 
-Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/).
+Browser security often restricts a webpage from making requests to a different origin than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/).
 
 For more information on server-side CORS, see <xref:security/cors>. The article's examples don't pertain directly to Razor component scenarios, but the article is useful for learning general CORS concepts.
 
