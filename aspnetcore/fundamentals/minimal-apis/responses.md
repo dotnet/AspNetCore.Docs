@@ -4,7 +4,7 @@ author: brunolins16
 description: Learn how to create responses for minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 06/04/2024
+ms.date: 02/07/2025
 uid: fundamentals/minimal-apis/responses
 ---
 
@@ -146,6 +146,10 @@ The following sections demonstrate the usage of the common result helpers.
 
 The preceding example returns a 500 status code.
 
+#### Problem and ValidationProblem
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_12":::
+
 #### Text
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_08":::
@@ -194,6 +198,22 @@ Here's an example of a filter that uses one of these interfaces:
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/HttpResultInterfaces/Program.cs" id="snippet_filter":::
 
 For more information, see [Filters in Minimal API apps](xref:fundamentals/minimal-apis/min-api-filters) and [IResult implementation types](xref:fundamentals/minimal-apis/test-min-api#iresult-implementation-types).
+
+## Modifying Headers
+
+Use the `HttpResponse` object to modify response headers:
+
+```csharp
+app.MapGet("/", (HttpContext context) => {
+    // Set a custom header
+    context.Response.Headers["X-Custom-Header"] = "CustomValue";
+
+    // Set a known header
+    context.Response.Headers.CacheControl = $"public,max-age=3600";
+
+    return "Hello World";
+});
+```
 
 ## Customizing responses
 

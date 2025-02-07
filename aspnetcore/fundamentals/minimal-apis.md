@@ -5,7 +5,7 @@ description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 10/23/2023
+ms.date: 02/07/2024
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
@@ -170,6 +170,22 @@ app.MapGet("/download", () => Results.File("myfile.text"));
 ### Built-in results
 
 [!INCLUDE [results-helpers](~/fundamentals/minimal-apis/includes/results-helpers.md)]
+
+### Modifying Headers
+
+Use the `HttpResponse` object to modify response headers:
+
+```csharp
+app.MapGet("/", (HttpContext context) => {
+    // Set a custom header
+    context.Response.Headers["X-Custom-Header"] = "CustomValue";
+
+    // Set a known header
+    context.Response.Headers.CacheControl = $"public,max-age=3600";
+
+    return "Hello World";
+});
+```
 
 ### Customizing results
 
