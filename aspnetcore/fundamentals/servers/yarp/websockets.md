@@ -4,7 +4,7 @@ title: Proxing WebSockets and SPDY
 description: Proxing WebSockets and SPDY
 author: rick-anderson
 ms.author: riande
-ms.date: 02/06/2025
+ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
