@@ -4,7 +4,7 @@ title: Configuration Files
 description: Configuration Files
 author: rick-anderson
 ms.author: riande
-ms.date: 02/06/2025
+ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
@@ -37,7 +37,7 @@ app.Run();
 ```
 **Note**: For details about middleware ordering see [here](/aspnet/core/fundamentals/middleware/#middleware-order).
 
-Configuration can be modified during the load sequence using [Configuration Filters](config-filters.md).
+Configuration can be modified during the load sequence using [Configuration Filters](xref:fundamentals/servers/yarp/config-filters).
 
 ## Multiple Configuration Sources
 As of 1.1, YARP supports loading the proxy configuration from multiple sources. LoadFromConfig may be called multiple times referencing different IConfiguration sections or may be combine with a different config source like InMemory. Routes can reference clusters from other sources. Note merging partial config from different sources for a given route or cluster is not supported.
@@ -95,7 +95,7 @@ The routes section is an unordered collection of route matches and their associa
 - Match - contains either a Hosts array or a Path pattern string. Path is an ASP.NET Core route template that can be defined as [explained here](/aspnet/core/fundamentals/routing#route-templates).
 Route matching is based on the most specific routes having highest precedence as described [here](/aspnet/core/fundamentals/routing#url-matching). Explicit ordering can be achieved using the `order` field, with lower values taking higher priority.
 
-[Headers](header-routing.md), [Authorization](authn-authz.md), [CORS](cors.md), and other route based policies can be configured on each route entry. For additional fields see [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig).
+[Headers](xref:fundamentals/servers/yarp/header-routing), [Authorization](xref:fundamentals/servers/yarp/authn-authz), [CORS](xref:fundamentals/servers/yarp/cors), and other route based policies can be configured on each route entry. For additional fields see [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig).
 
 The proxy will apply the given matching criteria and policies, and then pass off the request to the specified cluster.
 
@@ -234,4 +234,4 @@ For additional fields see [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.C
 }
 ```
 
-For more information see [logging configuration](diagnosing-yarp-issues.md#logging) and [HTTP client configuration](http-client-config.md).
+For more information see [logging configuration](diagnosing-yarp-issues.md#logging) and [HTTP client configuration](xref:fundamentals/servers/yarp/http-client-config).

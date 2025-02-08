@@ -4,7 +4,7 @@ title: Query Parameter Based Routing
 description: Query Parameter Based Routing
 author: rick-anderson
 ms.author: riande
-ms.date: 02/06/2025
+ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 # Query Parameter Based Routing
 
-Proxy routes specified in [config](config-files.md) or via [code](config-providers.md) must include at least a path or host to match against. In addition to these, a route can also specify one or more query parameters that must be present on the request.
+Proxy routes specified in [config](xref:fundamentals/servers/yarp/config-files) or via [code](xref:fundamentals/servers/yarp/config-providers) must include at least a path or host to match against. In addition to these, a route can also specify one or more query parameters that must be present on the request.
 
 ### Precedence
 
