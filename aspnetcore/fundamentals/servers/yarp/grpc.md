@@ -59,7 +59,7 @@ This shows configuring the outgoing proxy request to use HTTP/2 over http.
 
 [gRPC-Web](https://grpc.io/docs/platforms/web/basics/) is an alternative wire-format for gRPC that's compatible with HTTP/1.1.
 
-* [`application/grpc`](xref:fundamentals/servers/yarp/https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2) - gRPC over HTTP/2 is how gRPC is typically used.
-* [`application/grpc-web`](xref:fundamentals/servers/yarp/https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB) - gRPC-Web modifies the gRPC protocol to be compatible with HTTP/1.1. gRPC-Web can be used in more places. gRPC-Web can be used by browser apps and in networks without complete support for HTTP/2. Two advanced gRPC features are not supported: client streaming and bidirectional streaming.
+* [`application/grpc`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2) - gRPC over HTTP/2 is how gRPC is typically used.
+* [`application/grpc-web`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB) - gRPC-Web modifies the gRPC protocol to be compatible with HTTP/1.1. gRPC-Web can be used in more places. gRPC-Web can be used by browser apps and in networks without complete support for HTTP/2. Two advanced gRPC features are not supported: client streaming and bidirectional streaming.
 
 gRPC-Web can be proxied by YARP's default configuration without any special considerations.
