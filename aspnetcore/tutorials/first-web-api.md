@@ -55,7 +55,7 @@ The following diagram shows the design of the app.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Confirm the **Framework** is **.NET 8.0 (Long Term Support)**.
+  * Confirm the **Framework** is **.NET 9.0 (Long Term Support)**.
   * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
   * Select **Create**.
@@ -68,6 +68,9 @@ A NuGet package must be added to support the database used in this tutorial.
 * Select the **Browse** tab.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
+* Enter **Swashbuckle.AspNetCore.SwaggerUI** in the search box, and then select `Swashbuckle.AspNetCore.SwaggerUI`.
+
+* Select the **Project** checkbox in the right pane and then select **Install**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -79,13 +82,14 @@ A NuGet package must be added to support the database used in this tutorial.
    dotnet new webapi --use-controllers -o TodoApi
    cd TodoApi
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
+   dotnet add package Swashbuckle.AspNetCore.SwaggerUI
    code -r ../TodoApi
    ```
 
   These commands:
 
   * Create a new web API project and open it in Visual Studio Code.
-  * Add a NuGet package that is needed for the next section.
+  * Add a NuGet packages that are needed for the next section.
   * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
@@ -94,10 +98,47 @@ A NuGet package must be added to support the database used in this tutorial.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-### Test the project
+### Test the Project  
 
-The project template creates a `WeatherForecast` API with support for [Swagger](xref:tutorials/web-api-help-pages-using-swagger).
+The project template creates a `WeatherForecast` API with OpenAPI JSON documentation. By default, you can access the documentation while the project is running by navigating your browser to `https://localhost:<port>/openapi/v1.json`, where `<port>` is a randomly chosen port number set during project creation.  
 
+To use the [Swagger](xref:tutorials/web-api-help-pages-using-swagger) UI for testing the API, you need to modify the `Program.cs` file in your project.  
+
+#### Steps:  
+1. Add `SwaggerUI` to the app.  
+2. Set the `SwaggerEndpoint` to the location of your OpenAPI documentation.  
+
+#### Updated `Program.cs`  
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllers();
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    // Add SwaggerUI
+    app.UseSwaggerUI(options =>
+      // Add SwaggerEndpoint
+	    options.SwaggerEndpoint("/openapi/v1.json", "v1")
+	);
+    app.MapOpenApi();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+```
 # [Visual Studio](#tab/visual-studio)
 
 Press Ctrl+F5 to run without the debugger.
