@@ -57,7 +57,7 @@ The cookie format is `c=%LANGCODE%|uic=%LANGCODE%`, where `c` is `Culture` and `
 c=en-UK|uic=en-US
 ```
 
-If only one of culture info or UI culture is provided, the provided culture is used for both culture info and UI culture.
+If only one of the cultures is provided and the other is empty, the provided culture is used for both culture and UI culture.
 
 ## The Accept-Language HTTP header
 
