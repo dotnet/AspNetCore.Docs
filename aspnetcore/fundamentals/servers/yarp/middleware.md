@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/middleware
 title: Middleware
 description: Middleware
-author: rick-anderson
-ms.author: riande
+author: samsp-msft
+ms.author: samsp
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution

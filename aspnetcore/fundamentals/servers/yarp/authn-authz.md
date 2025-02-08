@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/authn-authz
 title: Authentication and Authorization
 description: Authentication and Authorization
-author: rick-anderson
-ms.author: riande
+author: samsp-msft
+ms.author: samsp
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution
