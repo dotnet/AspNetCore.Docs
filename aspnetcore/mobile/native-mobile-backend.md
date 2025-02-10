@@ -69,7 +69,7 @@ For this sample, the repository implementation just uses a private collection of
 
 Configure the implementation in `Program.cs`:
 
-:::code language="csharp" source="~/../maui-samples/9.0WebServices/TodoREST/TodoAPI/Program.cs" highlight="5":::
+:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Program.cs" highlight="5":::
 
 ## Creating the Controller
 
