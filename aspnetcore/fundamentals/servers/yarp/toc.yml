@@ -60,8 +60,6 @@
     uid: fundamentals/servers/yarp/direct-forwarding
   - name: Destination Resolvers
     uid: fundamentals/servers/yarp/destination-resolvers
-  - name: Packages references
-    uid: fundamentals/servers/yarp/packages-refs
 - name: Deployment options
   items:
   - name: Http.sys Delegation
