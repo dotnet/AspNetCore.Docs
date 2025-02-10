@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/ab-testing
 title: A/B Testing and Rolling Upgrades
 description: A/B Testing and Rolling Upgrades
-author: rick-anderson
-ms.author: riande
+author: samsp-msft
+ms.author: samsp
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution

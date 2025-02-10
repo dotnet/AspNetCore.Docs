@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/destination-resolvers
 title: Extensibility Destination Resolvers
 description: Extensibility Destination Resolvers
-author: rick-anderson
-ms.author: riande
+author: samsp-msft
+ms.author: samsp
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution

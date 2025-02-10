@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/http3
 title: HTTP/3
 description: HTTP/3
-author: rick-anderson
-ms.author: riande
+author: samsp-msft
+ms.author: samsp
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution

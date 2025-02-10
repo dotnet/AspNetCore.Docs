@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/http-client-config
 title: HTTP Client Configuration
 description: HTTP Client Configuration
-author: rick-anderson
-ms.author: riande
+author: samsp-msft
+ms.author: samsp
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution

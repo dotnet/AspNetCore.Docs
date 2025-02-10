@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/distributed-tracing
 title: Distributed tracing
 description: Distributed tracing
-author: rick-anderson
-ms.author: riande
+author: samsp-msft
+ms.author: samsp
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution
@@ -28,7 +28,7 @@ These will only be created if there is a listener for the [`ActivitySource`](/do
 
 ### Example: Application Insights
 
-For example, to monitor the traces with Application Insights, the proxy application needs to use the [Open Telemetry](xref:fundamentals/servers/yarp/https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry/README) and [Azure Monitor](xref:fundamentals/servers/yarp/https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/README) SDKs.
+For example, to monitor the traces with Application Insights, the proxy application needs to use the [Open Telemetry](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry/README) and [Azure Monitor](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/README) SDKs.
 
 `application.csproj`:
 
