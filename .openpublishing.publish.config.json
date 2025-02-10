@@ -47,7 +47,7 @@
       "branch_mapping": {}
     },
     {
-      "path_to_root": "dotnet-maui-samples",
+      "path_to_root": "maui-samples",
       "url": "https://github.com/dotnet/maui-samples",
       "branch": "main",
       "branch_mapping": {}
