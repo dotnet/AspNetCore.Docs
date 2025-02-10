@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/output-caching
-title: Output Caching
-description: Output Caching
+title: YARP Output Caching
+description: YARP Output Caching
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

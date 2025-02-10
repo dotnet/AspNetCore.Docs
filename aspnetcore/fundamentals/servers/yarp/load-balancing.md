@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/load-balancing
-title: Load Balancing
-description: Load Balancing
+title: YARP Load Balancing
+description: YARP Load Balancing
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

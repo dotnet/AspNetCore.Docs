@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/getting-started
-title: Getting Started with YARP
-description: Getting Started with YARP
+title: YARP Getting Started with YARP
+description: YARP Getting Started with YARP
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025
@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# YARP Getting Started with YARP
+# Getting Started with YARP
 
 YARP is designed as a library that provides the core proxy functionality which you can then customize by adding or replacing modules.
 YARP is currently provided as a NuGet package and code snippets.
