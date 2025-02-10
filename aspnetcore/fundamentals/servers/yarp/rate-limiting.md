@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/rate-limiting
-title: Rate Limiting
-description: Rate Limiting
+title: YARP Rate Limiting
+description: YARP Rate Limiting
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

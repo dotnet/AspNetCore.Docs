@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/session-affinity
-title: Session Affinity
-description: Session Affinity
+title: YARP Session Affinity
+description: YARP Session Affinity
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025
