@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Destination health checks
+# YARP Destination health checks
 In most of the real-world systems, it's expected for their nodes to occasionally experience transient issues and go down completely due to a variety of reasons such as an overload, resource leakage, hardware failures, etc. Ideally, it'd be desirable to completely prevent those unfortunate events from occurring in a proactive way, but the cost of designing and building such an ideal system is generally prohibitively high. However, there is another reactive approach which is cheaper and aimed to minimizing a negative impact failures cause on client requests. The proxy can analyze each nodes health and stop sending client traffic to unhealthy ones until they recover. YARP implements this approach in the form of active and passive destination health checks. They are independent from each other and stored on the relative properties for each destination. Health states are initialized with `Unknown` value which can be later changed to either `Healthy` or `Unhealthy` by the corresponding policies as explained below.
 
 ## Active health checks

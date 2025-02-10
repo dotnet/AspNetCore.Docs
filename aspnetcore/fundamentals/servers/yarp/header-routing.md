@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Header Based Routing
+# YARP Header Based Routing
 
 Proxy routes specified in [config](xref:fundamentals/servers/yarp/config-files) or via [code](xref:fundamentals/servers/yarp/config-providers) must include at least a path or host to match against. In addition to these, a route can also specify one or more headers that must be present on the request.
 

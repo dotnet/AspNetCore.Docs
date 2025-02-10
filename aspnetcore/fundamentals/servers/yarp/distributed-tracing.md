@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Distributed tracing
+# YARP Distributed tracing
 
 As an ASP.NET Core component, YARP can easily integrate into different tracing systems the same as any other ASP.NET Core application.
 

@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Kubernetes Ingress Controller
+# YARP Kubernetes Ingress Controller
 
 Introduced: Future Preview
 

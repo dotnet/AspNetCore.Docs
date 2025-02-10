@@ -10,6 +10,6 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Service Fabric Integration
+# YARP Service Fabric Integration
 
 This functionality has been replaced by https://github.com/microsoft/service-fabric-yarp

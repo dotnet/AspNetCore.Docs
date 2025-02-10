@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# HTTP Client Configuration
+# YARP HTTP Client Configuration
 
 ## Introduction
 

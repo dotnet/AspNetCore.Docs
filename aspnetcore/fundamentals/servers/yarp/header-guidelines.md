@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# HTTP Headers
+# YARP HTTP Headers
 
 Headers are a very important part of processing HTTP requests and each have their own semantics and considerations. Most headers are proxied by default, though some used to control how the request is delivered are automatically adjusted or removed by the proxy. The connections between the client and the proxy and the proxy and destination are independent, and so headers that affect the connection and transport need to be filtered. Many headers contain information like domain names, paths, or other details that may be affected when a reverse proxy is included in the application architecture. Below is a collection of guidelines about how specific headers might be impacted and what to do about them.
 

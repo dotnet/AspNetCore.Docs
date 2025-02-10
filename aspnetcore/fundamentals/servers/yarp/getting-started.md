@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Getting Started with YARP
+# YARP Getting Started with YARP
 
 YARP is designed as a library that provides the core proxy functionality which you can then customize by adding or replacing modules.
 YARP is currently provided as a NuGet package and code snippets.

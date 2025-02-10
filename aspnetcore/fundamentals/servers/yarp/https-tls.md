@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# HTTPS & TLS
+# YARP HTTPS & TLS
 
 HTTPS (HTTP over TLS encrypted connections) is the standard way to make HTTP requests on the Internet for security, integrity, and privacy reasons. There are several HTTPS/TLS considerations to account for when using a reverse proxy like YARP.
 

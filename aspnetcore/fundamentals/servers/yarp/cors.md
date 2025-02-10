@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Cross-Origin Requests (CORS)
+# YARP Cross-Origin Requests (CORS)
 
 ## Introduction
 

@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Configuration Filters
+# YARP Configuration Filters
 
 ## Introduction
 YARP configuration for routes, clusters, and destinations can be loaded from [configuration files](xref:fundamentals/servers/yarp/config-files) or from [configuration providers](xref:fundamentals/servers/yarp/config-providers). Configuration filters can be used to modify that raw input before it's validated and applied.

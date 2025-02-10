@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Http.sys Delegation
+# YARP Http.sys Delegation
 
 ## Introduction
 Http.sys delegation is a kernel level feature added into newer versions of Windows which allows a request to be transferred from the receiving process's http.sys queue to a target process's http.sys queue with very little overhead or added latency. For this delegation to work, the receiving process is only allowed to read the request headers. If the body has started to be read or a response has started, trying to delegate the request will fail. The response will not be visible to the proxy after delegation, which limits the functionality of the session affinity and passive health checks components, as well as some of the load balancing algorithms. Internally, YARP leverage's ASP.NET Core's [IHttpSysRequestDelegationFeature](/dotnet/api/microsoft.aspnetcore.server.httpsys.ihttpsysrequestdelegationfeature) 

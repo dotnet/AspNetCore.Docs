@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Output Caching
+# YARP Output Caching
 
 ## Introduction
 The reverse proxy can be used to cache proxied responses and serve requests before they are proxied to the destination servers. This can reduce load on the destination servers, add a layer of protection, and ensure consistent policies are implemented across your applications.

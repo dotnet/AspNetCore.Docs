@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Extensibility Destination Resolvers
+# YARP Extensibility Destination Resolvers
 
 ## Introduction
 

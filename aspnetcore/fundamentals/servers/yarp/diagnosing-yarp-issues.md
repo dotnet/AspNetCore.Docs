@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Diagnosing YARP-based proxies
+# YARP Diagnosing YARP-based proxies
 
 When using a reverse proxy, there is an additional hop from the client to the proxy, and then from the proxy to destination for things to go wrong. This topic should provide some hints and tips for how to debug and diagnose issues when they occur. It assumes that the proxy is already running, and so does not include problems at startup such as configuration errors.
 

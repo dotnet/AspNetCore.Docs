@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# Proxing WebSockets and SPDY
+# YARP Proxing WebSockets and SPDY
 
 ## Introduction
 

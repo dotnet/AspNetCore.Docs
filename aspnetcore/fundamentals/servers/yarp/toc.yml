@@ -1,6 +1,6 @@
-- name: Getting Started
+- name: Get started with YARP
   uid: fundamentals/servers/yarp/getting-started
-- name: Configuration
+- name: YARP configuration
   items:
   - name: Configuration Files
     uid: fundamentals/servers/yarp/config-files
@@ -10,7 +10,7 @@
     uid: fundamentals/servers/yarp/config-filters
   - name: HTTP client configuration
     uid: fundamentals/servers/yarp/http-client-config
-- name: Proxy Features
+- name: YARP proxy Features
   items:
     - name: Header Routing
       uid: fundamentals/servers/yarp/header-routing
@@ -36,7 +36,7 @@
       uid: fundamentals/servers/yarp/distributed-tracing
     - name: A/B Testing
       uid: fundamentals/servers/yarp/ab-testing
-- name: Protocols & Guidance
+- name: YARP protocols and guidance
   items:
     - name: Header Guidelines
       uid: fundamentals/servers/yarp/header-guidelines
@@ -52,7 +52,7 @@
       uid: fundamentals/servers/yarp/lets-encrypt
     - name: WebSockets and SPDY
       uid: fundamentals/servers/yarp/websockets
-- name: Extensibility
+- name: YARP extensibility
   items:
   - name: Middleware
     uid: fundamentals/servers/yarp/middleware
@@ -60,13 +60,13 @@
     uid: fundamentals/servers/yarp/direct-forwarding
   - name: Destination Resolvers
     uid: fundamentals/servers/yarp/destination-resolvers
-- name: Deployment options
+- name: YARP deployment options
   items:
   - name: Http.sys Delegation
     uid: fundamentals/servers/yarp/httpsys-delegation
   - name: Service Fabric Integration
     uid: fundamentals/servers/yarp/service-fabric-int
-- name: Troubleshooting
+- name: YARP Troubleshooting
   items:
   - name: Diagnosing proxy issues
     uid: fundamentals/servers/yarp/diagnosing-yarp-issues
