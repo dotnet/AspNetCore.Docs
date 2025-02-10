@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/transforms
 # YARP Request and Response Transforms
-description: Request and Response Transforms
+# YARP Request and Response Transforms
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

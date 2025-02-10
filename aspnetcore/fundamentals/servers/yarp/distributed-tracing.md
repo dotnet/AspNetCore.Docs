@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/distributed-tracing
 # YARP Distributed tracing
-description: Distributed tracing
+# YARP Distributed tracing
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

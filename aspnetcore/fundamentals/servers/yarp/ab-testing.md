@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/ab-testing
 # YARP A/B Testing and Rolling Upgrades
-description: A/B Testing and Rolling Upgrades
+# YARP A/B Testing and Rolling Upgrades
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

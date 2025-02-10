@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/config-filters
 # YARP Configuration Filters
-description: Configuration Filters
+# YARP Configuration Filters
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

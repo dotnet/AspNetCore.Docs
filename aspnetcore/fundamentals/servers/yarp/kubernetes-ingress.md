@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/kubernetes-ingress
 # YARP Kubernetes Ingress Controller
-description: Kubernetes Ingress Controller
+# YARP Kubernetes Ingress Controller
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/diagnosing-yarp-issues
 # YARP Diagnosing YARP-based proxies
-description: Diagnosing YARP-based proxies
+# YARP Diagnosing YARP-based proxies
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

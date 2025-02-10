@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/authn-authz
 # YARP Authentication and Authorization
-description: Authentication and Authorization
+# YARP Authentication and Authorization
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

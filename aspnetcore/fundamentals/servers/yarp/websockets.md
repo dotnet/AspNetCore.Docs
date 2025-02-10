@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/websockets
 # YARP Proxing WebSockets and SPDY
-description: Proxing WebSockets and SPDY
+# YARP Proxing WebSockets and SPDY
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

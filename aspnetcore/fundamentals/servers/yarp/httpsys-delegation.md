@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/httpsys-delegation
 # YARP Http.sys Delegation
-description: Http.sys Delegation
+# YARP Http.sys Delegation
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

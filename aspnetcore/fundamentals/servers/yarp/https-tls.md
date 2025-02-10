@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/https-tls
 # YARP HTTPS & TLS
-description: HTTPS & TLS
+# YARP HTTPS & TLS
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

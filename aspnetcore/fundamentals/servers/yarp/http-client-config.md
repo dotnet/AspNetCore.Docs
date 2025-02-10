@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/http-client-config
 # YARP HTTP Client Configuration
-description: HTTP Client Configuration
+# YARP HTTP Client Configuration
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

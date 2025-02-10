@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/config-providers
 # YARP Extensibility Configuration Providers
-description: Extensibility Configuration Providers
+# YARP Extensibility Configuration Providers
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/destination-resolvers
 # YARP Extensibility Destination Resolvers
-description: Extensibility Destination Resolvers
+# YARP Extensibility Destination Resolvers
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025

@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/header-guidelines
 # YARP HTTP Headers
-description: HTTP Headers
+# YARP HTTP Headers
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025
