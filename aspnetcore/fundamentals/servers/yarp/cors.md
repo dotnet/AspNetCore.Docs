@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/cors
-title: Cross-Origin Requests (CORS)
+# YARP Cross-Origin Requests (CORS)
 description: Cross-Origin Requests (CORS)
 author: samsp-msft
 ms.author: samsp

@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/queryparameter-routing
-title: Query Parameter Based Routing
+# YARP Query Parameter Based Routing
 description: Query Parameter Based Routing
 author: samsp-msft
 ms.author: samsp

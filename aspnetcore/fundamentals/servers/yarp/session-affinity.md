@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/session-affinity
-title: Session Affinity
+# YARP Session Affinity
 description: Session Affinity
 author: samsp-msft
 ms.author: samsp

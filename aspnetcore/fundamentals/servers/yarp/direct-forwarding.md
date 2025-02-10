@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/direct-forwarding
-title: Direct Forwarding
+# YARP Direct Forwarding
 description: Direct Forwarding
 author: samsp-msft
 ms.author: samsp

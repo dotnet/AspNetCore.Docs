@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/dests-health-checks
-title: Destination health checks
+# YARP Destination health checks
 description: Destination health checks
 author: samsp-msft
 ms.author: samsp
