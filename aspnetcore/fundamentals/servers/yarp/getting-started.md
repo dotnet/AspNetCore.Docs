@@ -5,7 +5,7 @@ description: YARP Getting Started with YARP
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025
-ms.topic: article
+ms.topic: article 
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
