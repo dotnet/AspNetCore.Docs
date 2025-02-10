@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/header-guidelines
-title: HTTP Headers
+title: YARP HTTP Headers
 description: HTTP Headers
 author: samsp-msft
 ms.author: samsp

@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/header-routing
-title: Header Based Routing
+title: YARP Header Based Routing
 description: Header Based Routing
 author: samsp-msft
 ms.author: samsp

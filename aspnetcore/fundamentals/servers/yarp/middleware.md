@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/middleware
-title: Middleware
+title: YARP Middleware
 description: Middleware
 author: samsp-msft
 ms.author: samsp

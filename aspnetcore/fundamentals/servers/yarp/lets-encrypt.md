@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/lets-encrypt
-title: Lets Encrypt
+title: YARP Lets Encrypt
 description: Lets Encrypt
 author: samsp-msft
 ms.author: samsp

@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/http3
-title: HTTP/3
+title: YARP HTTP/3
 description: HTTP/3
 author: samsp-msft
 ms.author: samsp

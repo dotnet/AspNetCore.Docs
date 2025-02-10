@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/config-files
-title: Configuration Files
+title: YARP Configuration Files
 description: Configuration Files
 author: samsp-msft
 ms.author: samsp

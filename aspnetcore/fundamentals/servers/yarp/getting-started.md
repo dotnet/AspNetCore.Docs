@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/getting-started
-title: Getting Started with YARP
+title: YARP Getting Started with YARP
 description: Getting Started with YARP
 author: samsp-msft
 ms.author: samsp

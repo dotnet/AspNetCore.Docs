@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/grpc
-title: Proxing gRPC
+title: YARP Proxing gRPC
 description: Proxing gRPC
 author: samsp-msft
 ms.author: samsp
