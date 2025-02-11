@@ -1191,7 +1191,7 @@ items:
             - name: HTTP client configuration
               displayName: yarp
               uid: fundamentals/servers/yarp/http-client-config
-          - name: proxy Features
+          - name: Proxy Features
             items:
               - name: Header Routing
                 displayName: yarp
@@ -1229,7 +1229,7 @@ items:
               - name: A/B Testing
                 displayName: yarp
                 uid: fundamentals/servers/yarp/ab-testing
-          - name: protocols and guidance
+          - name: Protocols and Guidance
             items:
               - name: Header Guidelines
                 displayName: yarp
@@ -1252,7 +1252,7 @@ items:
               - name: WebSockets and SPDY
                 displayName: yarp
                 uid: fundamentals/servers/yarp/websockets
-          - name: extensibility
+          - name: Extensibility
             items:            
             - name: Extensibility
               displayName: yarp
@@ -1266,9 +1266,9 @@ items:
             - name: Destination Resolvers
               displayName: yarp
               uid: fundamentals/servers/yarp/destination-resolvers
-          - name: deployment options
+          - name: Deployment options
             items:
-            - name: Http.sys Delegation
+            - name: HTTP.sys Delegation
               displayName: yarp
               uid: fundamentals/servers/yarp/httpsys-delegation
             - name: Service Fabric Integration
