@@ -1177,77 +1177,107 @@ items:
         items:
           - name: Get started with YARP
             uid: fundamentals/servers/yarp/getting-started
-          - name: configuration
+          - name: Configuration
             items:
             - name: Configuration Files
+              displayName: yarp
               uid: fundamentals/servers/yarp/config-files
             - name: Configuration Providers
+              displayName: yarp
               uid: fundamentals/servers/yarp/config-providers
             - name: Configuration Filters
+              displayName: yarp
               uid: fundamentals/servers/yarp/config-filters
             - name: HTTP client configuration
+              displayName: yarp
               uid: fundamentals/servers/yarp/http-client-config
-          - name: proxy Features
+          - name: Proxy Features
             items:
               - name: Header Routing
+                displayName: yarp
                 uid: fundamentals/servers/yarp/header-routing
               - name: Query Parameter Routing
+                displayName: yarp
                 uid: fundamentals/servers/yarp/queryparameter-routing
               - name: Transforms
+                displayName: yarp
                 uid: fundamentals/servers/yarp/transforms
               - name: Load Balancing
+                displayName: yarp
                 uid: fundamentals/servers/yarp/load-balancing
               - name: Session Affinity
+                displayName: yarp
                 uid: fundamentals/servers/yarp/session-affinity
               - name: Destinations Health Checks
+                displayName: yarp
                 uid: fundamentals/servers/yarp/dests-health-checks
               - name: Rate Limiting
+                displayName: yarp
                 uid: fundamentals/servers/yarp/rate-limiting
               - name: Timeouts
+                displayName: yarp
                 uid: fundamentals/servers/yarp/timeouts
               - name: Authentication and Authorization
+                displayName: yarp
                 uid: fundamentals/servers/yarp/authn-authz
               - name: Output Caching
+                displayName: yarp
                 uid: fundamentals/servers/yarp/output-caching
               - name: Distributed Tracing
+                displayName: yarp
                 uid: fundamentals/servers/yarp/distributed-tracing
               - name: A/B Testing
+                displayName: yarp
                 uid: fundamentals/servers/yarp/ab-testing
-          - name: protocols and guidance
+          - name: Protocols and Guidance
             items:
               - name: Header Guidelines
+                displayName: yarp
                 uid: fundamentals/servers/yarp/header-guidelines
               - name: HTTPS & TLS
+                displayName: yarp
                 uid: fundamentals/servers/yarp/https-tls
               - name: Proxying gRPC
+                displayName: yarp
                 uid: fundamentals/servers/yarp/grpc
               - name: HTTP/3
+                displayName: yarp
                 uid: fundamentals/servers/yarp/http3
               - name: Cross-Origin Requests (CORS)
+                displayName: yarp
                 uid: fundamentals/servers/yarp/cors
-              - name: Lets Encrypt
+              - name: Let's Encrypt
+                displayName: yarp
                 uid: fundamentals/servers/yarp/lets-encrypt
               - name: WebSockets and SPDY
+                displayName: yarp
                 uid: fundamentals/servers/yarp/websockets
-          - name: extensibility
+          - name: Extensibility
             items:            
             - name: Extensibility
+              displayName: yarp
               uid: fundamentals/servers/yarp/extensibility
             - name: Middleware
+              displayName: yarp
               uid: fundamentals/servers/yarp/middleware
             - name: Direct Forwarding
+              displayName: yarp
               uid: fundamentals/servers/yarp/direct-forwarding
             - name: Destination Resolvers
+              displayName: yarp
               uid: fundamentals/servers/yarp/destination-resolvers
-          - name: deployment options
+          - name: Deployment options
             items:
-            - name: Http.sys Delegation
+            - name: HTTP.sys Delegation
+              displayName: yarp
               uid: fundamentals/servers/yarp/httpsys-delegation
             - name: Service Fabric Integration
+              displayName: yarp
               uid: fundamentals/servers/yarp/service-fabric-int
           - name: Troubleshooting
             items:
             - name: Diagnosing proxy issues
+              displayName: yarp
               uid: fundamentals/servers/yarp/diagnosing-yarp-issues
   - name: Test
     items:
