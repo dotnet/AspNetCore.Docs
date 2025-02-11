@@ -889,8 +889,10 @@ Many ASP.NET Core apps use [Entity Framework Core (EF Core)](/ef/core/) to manag
 
 The following pattern:
 
+<!-- using xref:blazor/forms/validation results in a failed build -->
+
 * Is based on the [Blazor movie database tutorial app](xref:blazor/tutorials/movie-database-app/index).
-* Can be enhanced with additional code for file size and content type [validation feedback](xref:blazor/forms/validation).
+* Can be enhanced with additional code for file size and content type [validation feedback](/aspnet/core/blazor/forms/validation).
 
 For the following example to work in a Blazor Web App (ASP.NET Core 8.0 or later), the component must adopt an [interactive render mode](xref:blazor/fundamentals/index#static-and-interactive-rendering-concepts) (for example, `@rendermode InteractiveServer`) to call `HandleSelectedThumbnail` on an `InputFile` file change. Blazor Server app components are always interactive and don't require a render mode.
 
