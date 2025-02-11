@@ -1177,7 +1177,7 @@ items:
         items:
           - name: Get started with YARP
             uid: fundamentals/servers/yarp/getting-started
-          - name: configuration
+          - name: Configuration
             items:
             - name: Configuration Files
               displayName: yarp
