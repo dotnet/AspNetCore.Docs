@@ -1177,7 +1177,7 @@ items:
         items:
           - name: Get started with YARP
             uid: fundamentals/servers/yarp/getting-started
-          - name: YARP configuration
+          - name: configuration
             items:
             - name: Configuration Files
               uid: fundamentals/servers/yarp/config-files
@@ -1187,7 +1187,7 @@ items:
               uid: fundamentals/servers/yarp/config-filters
             - name: HTTP client configuration
               uid: fundamentals/servers/yarp/http-client-config
-          - name: YARP proxy Features
+          - name: proxy Features
             items:
               - name: Header Routing
                 uid: fundamentals/servers/yarp/header-routing
@@ -1213,7 +1213,7 @@ items:
                 uid: fundamentals/servers/yarp/distributed-tracing
               - name: A/B Testing
                 uid: fundamentals/servers/yarp/ab-testing
-          - name: YARP protocols and guidance
+          - name: protocols and guidance
             items:
               - name: Header Guidelines
                 uid: fundamentals/servers/yarp/header-guidelines
@@ -1229,21 +1229,23 @@ items:
                 uid: fundamentals/servers/yarp/lets-encrypt
               - name: WebSockets and SPDY
                 uid: fundamentals/servers/yarp/websockets
-          - name: YARP extensibility
-            items:
+          - name: extensibility
+            items:            
+            - name: Extensibility
+              uid: fundamentals/servers/yarp/extensibility
             - name: Middleware
               uid: fundamentals/servers/yarp/middleware
             - name: Direct Forwarding
               uid: fundamentals/servers/yarp/direct-forwarding
             - name: Destination Resolvers
               uid: fundamentals/servers/yarp/destination-resolvers
-          - name: YARP deployment options
+          - name: deployment options
             items:
             - name: Http.sys Delegation
               uid: fundamentals/servers/yarp/httpsys-delegation
             - name: Service Fabric Integration
               uid: fundamentals/servers/yarp/service-fabric-int
-          - name: YARP Troubleshooting
+          - name: Troubleshooting
             items:
             - name: Diagnosing proxy issues
               uid: fundamentals/servers/yarp/diagnosing-yarp-issues
