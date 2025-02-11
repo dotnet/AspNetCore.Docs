@@ -1246,7 +1246,7 @@ items:
               - name: Cross-Origin Requests (CORS)
                 displayName: yarp
                 uid: fundamentals/servers/yarp/cors
-              - name: Lets Encrypt
+              - name: Let's Encrypt
                 displayName: yarp
                 uid: fundamentals/servers/yarp/lets-encrypt
               - name: WebSockets and SPDY
