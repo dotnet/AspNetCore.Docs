@@ -23,7 +23,7 @@ YARP uses the concept of [Routes](config-files.md#routes), [Clusters](config-fil
 
 Most of the pre-built pipeline modules can be customized through code. You can also change the pipeline definition to replace modules with your own implementation(s) or add additional modules as needed.
 
-For more information see [Middleware](middleware.md) .
+For more information see [Middleware](xref:fundamentals/servers/yarp/middleware).
 
 ## Http Forwarder
 
