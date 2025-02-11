@@ -62,7 +62,7 @@ In general, we recommend that you avoid rendering components that contain sensit
 
 ## `IHttpContextAccessor`/`HttpContext`
 
-[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
+For more information, see <xref:blazor/components/httpcontext>.
 
 ## Resource exhaustion
 

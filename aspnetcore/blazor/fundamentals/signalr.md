@@ -1507,10 +1507,6 @@ app.MapBlazorHub();
 + app.MapBlazorHub("/signalr");
 ```
 
-## `IHttpContextAccessor`/`HttpContext`
-
-[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
-
 ## Impersonation for Windows Authentication
 
 Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>) are created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> to indicate the use of default credentials for HTTP requests. For more information, see <xref:signalr/authn-and-authz#windows-authentication>.
@@ -1573,6 +1569,7 @@ In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.N
   * <xref:blazor/security/index>
   * <xref:blazor/security/interactive-server-side-rendering>
   * <xref:blazor/security/additional-scenarios>
+* <xref:blazor/components/httpcontext>
 * [Server-side reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
