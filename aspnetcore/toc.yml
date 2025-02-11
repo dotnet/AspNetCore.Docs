@@ -486,6 +486,8 @@ items:
                 uid: blazor/components/render-modes
               - name: Prerender components
                 uid: blazor/components/prerender
+              - name: IHttpContextAccessor and HttpContext
+                uid: blazor/components/httpcontext
               - name: Generic type support
                 uid: blazor/components/generic-type-support
               - name: Synchronization context
@@ -955,6 +957,9 @@ items:
             uid: signalr/background-services
       - name: Configuration
         uid: signalr/configuration
+        displayName: signalr
+      - name: IHttpContextAccessor and HttpContext
+        uid: signalr/httpcontext
         displayName: signalr
       - name: Authentication and authorization
         uid: signalr/authn-and-authz
