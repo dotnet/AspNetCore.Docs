@@ -891,7 +891,7 @@ The following pattern:
 
 * Is based on the [Blazor movie database tutorial app](xref:blazor/tutorials/movie-database-app/index).
 * Can be enhanced with additional code for file size and content type [validation feedback](xref:blazor/forms/validation).
-* Incurs a performance penalty and [DoS](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks) risk. Carefully weigh the risk when reading any file into memory and consider alternative approaches, especially for larger files. Alternative approaches include saving files directly to disk or a third-party service for post-processing and serving to clients.
+* Incurs a performance penalty and [DoS](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks) risk. Carefully weigh the risk when reading any file into memory and consider alternative approaches, especially for larger files. Alternative approaches include saving files directly to disk or a third-party service for antivirus/antimalware checks, further processing, and serving to clients.
 
 For the following example to work in a Blazor Web App (ASP.NET Core 8.0 or later), the component must adopt an [interactive render mode](xref:blazor/fundamentals/index#static-and-interactive-rendering-concepts) (for example, `@rendermode InteractiveServer`) to call `HandleSelectedThumbnail` on an `InputFile` component file change (`OnChange` parameter/event). Blazor Server app components are always interactive and don't require a render mode.
 
