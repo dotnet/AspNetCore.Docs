@@ -19,7 +19,7 @@ This part of the tutorial series covers adding a search feature to the movies `I
 
 ## Implement a filter feature for the `QuickGrid` component
 
-The [QuickGrid](xref:Microsoft.AspNetCore.Components.QuickGrid) component is used by the movie `Index` component (`Components/MoviePages/Index.razor`) to display movies from the database:
+The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is used by the movie `Index` component (`Components/MoviePages/Index.razor`) to display movies from the database:
 
 ```razor
 <QuickGrid Class="table" Items="context.Movie">
