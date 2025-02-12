@@ -248,7 +248,7 @@ A link is rendered to navigate to the `Create` page at `/movies/create`:
 </p>
 ```
 
-The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component displays movie entities. The item provider is a `DbSet<Movie>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory (`DbFactory`). For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
+The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) displays movie entities. The item provider is a `DbSet<Movie>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory (`DbFactory`). For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
 
 ```razor
 <QuickGrid Class="table" Items="context.Movie">
@@ -286,7 +286,7 @@ Notice how the context (`Context`) parameter of the <xref:Microsoft.AspNetCore.C
 
 The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
 
-For the movie example from the last part of the tutorial series, *The Matrix*&copy;, the [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component renders the following HTML markup (some elements and attributes aren't present to simplify display). See how the explicit Razor expressions and interpolated strings produced the `href` values for the links to other pages. The movie's identifier in the database happens to be `3` for this example, so the `id` is `3` in the query strings for the `Edit`, `Details`, and `Delete` pages. You may see a different value when you run the app.
+For the movie example from the last part of the tutorial series, *The Matrix*&copy;, the [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) renders the following HTML markup (some elements and attributes aren't present to simplify display). See how the explicit Razor expressions and interpolated strings produced the `href` values for the links to other pages. The movie's identifier in the database happens to be `3` for this example, so the `id` is `3` in the query strings for the `Edit`, `Details`, and `Delete` pages. You may see a different value when you run the app.
 
 ```html
 <table>
