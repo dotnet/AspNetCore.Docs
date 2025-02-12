@@ -904,10 +904,11 @@ The default thumbnail (`default-thumbnail.jpg`) is at the project root with a **
 The `Movie` model (`Movie.cs`) has a property (`Thumbnail`) to hold the thumbnail image data:
 
 ```csharp
+[Column(TypeName = "varbinary(MAX)")]
 public byte[]? Thumbnail { get; set; }
 ```
 
-Image data is stored in a byte array (`byte[]`) in the database. The app base-64 encodes the bytes for display because base-64 encoded data is roughly a third larger than the raw bytes of the image, thus base-64 image data requires additional database storage and reduces the performance of database read/write operations.
+Image data is stored as bytes in the database as [`varbinary(MAX)`](/sql/t-sql/data-types/binary-and-varbinary-transact-sql). The app base-64 encodes the bytes for display because base-64 encoded data is roughly a third larger than the raw bytes of the image, thus base-64 image data requires additional database storage and reduces the performance of database read/write operations.
 
 Components that display the thumbnail pass image data to the `img` tag's `src` attribute as JPEG, base-64 encoded data:
 
