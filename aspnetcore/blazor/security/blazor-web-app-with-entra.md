@@ -1,7 +1,7 @@
 ---
 title: Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
 author: guardrex
-description: Learn how to secure a Blazor WebAssembly App with Microsoft Entra ID.
+description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
