@@ -89,7 +89,7 @@ To see how making a component interactive enhances the user experience, let's pr
   * Runs on the server.
   * Renders content interactively over the underlying SignalR connection.
 
-## Add pagination to the `QuickGrid`
+## Add pagination to the QuickGrid
 
 The `QuickGrid` component can page data from the database.
 
@@ -125,7 +125,7 @@ Change <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerP
 + private PaginationState pagination = new PaginationState { ItemsPerPage = 5 };
 ```
 
-## Sortable `QuickGrid`
+## Sortable QuickGrid
 
 Open the `Index` component (`Components/Pages/Movies/Index.razor`).
 
@@ -136,7 +136,7 @@ Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBas
 + <PropertyColumn Property="movie => movie.Title" Sortable="true" />
 ```
 
-You can sort the `QuickGrid` by movie title by selecting the **:::no-loc text="Title":::** column. The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection, where the sorting operation is performed on the server with the rendered result sent back to the client:
+You can sort the QuickGrid by movie title by selecting the **:::no-loc text="Title":::** column. The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection, where the sorting operation is performed on the server with the rendered result sent back to the client:
 
 ![Movie list sorted by the Title column](~/blazor/tutorials/movie-database-app/part-8/_static/sorted-movies.png)
 
@@ -189,9 +189,9 @@ In its place, add the following Razor markup:
 <input type="search" @bind="titleFilter" @bind:event="oninput" />
 ```
 
-`@bind:event="oninput"` performs binding for the HTML's `oninput` event, which fires when the `<input>` element's value is changed as a direct result of a user typing in the search box. The `QuickGrid` is bound to `FilteredMovies`. As `titleFilter` changes with the value of the search box, rerendering the `QuickGrid` bound to the `FilteredMovies` method filters movie entities based on the updated value of `titleFilter`.
+`@bind:event="oninput"` performs binding for the HTML's `oninput` event, which fires when the `<input>` element's value is changed as a direct result of a user typing in the search box. The QuickGrid is bound to `FilteredMovies`. As `titleFilter` changes with the value of the search box, rerendering the QuickGrid bound to the `FilteredMovies` method filters movie entities based on the updated value of `titleFilter`.
 
-Run the app, type "`road warrior`" into the search field and notice how the `QuickGrid` is filtered for each character entered until *The Road Warrior* movie is left when the search field reaches "`road `" (&quot;:::no-loc text="road":::&quot; followed by a space).
+Run the app, type "`road warrior`" into the search field and notice how the QuickGrid is filtered for each character entered until *The Road Warrior* movie is left when the search field reaches "`road `" (&quot;:::no-loc text="road":::&quot; followed by a space).
 
 ![Movie list filtered to 'The Road Warrior' movie when the search box reaches 'road ' ('road' followed by a space).](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
 
