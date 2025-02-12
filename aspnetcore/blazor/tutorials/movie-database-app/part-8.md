@@ -285,6 +285,8 @@ If you're new to Blazor, we recommend reading the following Blazor articles that
 * <xref:blazor/host-and-deploy/index>
 * <xref:blazor/blazor-ef-core> covers concurrency with EF Core in Blazor apps.
 
+For guidance on adding a thumbnail file upload feature to this tutorial's sample app, see <xref:blazor/file-uploads#save-small-files-directly-to-a-database-with-ef-core>.
+
 In the documentation website's sidebar navigation, articles are organized by subject matter and laid out in roughly in a general-to-specific or basic-to-complex order. The best approach when starting to learn about Blazor is to read down the table of contents from top to bottom.
 
 ## Troubleshoot with the completed sample
