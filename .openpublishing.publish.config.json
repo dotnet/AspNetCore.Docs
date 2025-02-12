@@ -47,8 +47,8 @@
       "branch_mapping": {}
     },
     {
-      "path_to_root": "xamarin-forms-samples",
-      "url": "https://github.com/xamarin/xamarin-forms-samples",
+      "path_to_root": "maui-samples",
+      "url": "https://github.com/dotnet/maui-samples",
       "branch": "main",
       "branch_mapping": {}
     },
