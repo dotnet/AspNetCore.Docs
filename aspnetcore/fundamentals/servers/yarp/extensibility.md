@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 # Overview of YARP extensibility
 
-There are 2 main styles of extensibility for YARP, depending on the routing behavior desired.
+There are 2 main styles of extensibility for YARP, depending on the routing behavior desired:
 
 * Middleware Pipeline
 * Http Forwarder
