@@ -21,7 +21,7 @@ There are 2 main styles of extensibility for YARP, depending on the routing beha
 
 YARP uses the concept of [Routes](xref:fundamentals/servers/yarp/config-files#routes), [Clusters](xref:fundamentals/servers/yarp/config-files#clusters) and Destinations. These can be supplied through [configuration files](xref:fundamentals/servers/yarp/config-files) or [directly through code](xref:fundamentals/servers/yarp/config-providers). Based on the routing rules, YARP picks a cluster and enumerates the possible destinations. It then uses the middleware pipeline to select the destination based on destination health, session affinity, load balancing etc.
 
-![Image](xref:fundamentals/servers/yarp/https://github.com/user-attachments/assets/ff17a04f-0c3c-46c7-8ec2-a1ed3dbc948c)
+![Image](https://github.com/user-attachments/assets/ff17a04f-0c3c-46c7-8ec2-a1ed3dbc948c)
 
 Most of the pre-built pipeline modules can be customized through code. You can also change the pipeline definition to replace modules with your own implementation(s) or add additional modules as needed.
 
