@@ -89,7 +89,7 @@ A NuGet package must be added to support the database used in this tutorial.
   These commands:
 
   * Create a new web API project and open it in Visual Studio Code.
-  * Add a NuGet packages that are needed for the next section.
+  * Add NuGet packages that are needed for the next section.
   * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
