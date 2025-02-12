@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 10.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 2/5/2025
+ms.date: 2/12/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core 10.0
@@ -18,6 +18,8 @@ This article will be updated as new preview releases are made available. See the
 ## Blazor
 
 This section describes new features for Blazor.
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/blazor.md)]
 
 ## SignalR
 
