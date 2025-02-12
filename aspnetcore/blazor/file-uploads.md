@@ -45,18 +45,18 @@ Rendered HTML:
 > [!NOTE]
 > In the preceding example, the `<input>` element's `_bl_2` attribute is used for Blazor's internal processing.
 
-To read data from a user-selected file from a <xref:System.IO.Stream> that represents the file's bytes, call <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType> on the file and read from the returned stream. For more information, see the [File streams](#file-streams) section.
+To read data from a user-selected file with a <xref:System.IO.Stream> that represents the file's bytes, call <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType> on the file and read from the returned stream. For more information, see the [File streams](#file-streams) section.
 
 <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> enforces a maximum size in bytes of its <xref:System.IO.Stream>. Reading one file or multiple files larger than 500 KB results in an exception. This limit prevents developers from accidentally reading large files into memory. The `maxAllowedSize` parameter of <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> can be used to specify a larger size if required.
 
-For scenarios other than processing a small file, such as saving a thumbnail or avatar to a database, avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in degraded app performance and potential [Denial of Service (DoS)](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks) risk, especially for server-side components. Instead, consider adopting either of the following approaches:
+For scenarios other than processing a small file, such as saving a small image to a database, avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in degraded app performance and potential [Denial of Service (DoS)](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks) risk, especially for server-side components. Instead, consider adopting either of the following approaches:
 
 * Copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps executing code on the server aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
 
 In the following examples, `browserFile` implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> to represent an uploaded file. Working implementations for <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> are shown in the file upload components later in this article.
 
-When calling <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A>, we recommend passing a maximum allowed file size in `maxAllowedSize` at the limit of the file sizes that you expect, which is the maximum number of bytes that can be supplied by the <xref:System.IO.MemoryStream> with a default value of 500 KB. The examples in this article use a local variable or constant assignment (usually not shown) named `maxFileSize`.
+When calling <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A>, we recommend passing a maximum allowed file size in the `maxAllowedSize` parameter at the limit of the file sizes that you expect to receive. The default value is 500 KB. This article's examples use a maximum allowed file size variable or constant named `maxFileSize` but usually don't show setting a specific value.
 
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> The following approach is **recommended** because the file's <xref:System.IO.Stream> is provided directly to the consumer, a <xref:System.IO.FileStream> that creates the file at the provided path:
 
@@ -892,7 +892,7 @@ The following pattern:
 * Is based on the [Blazor movie database tutorial app](xref:blazor/tutorials/movie-database-app/index).
 * Can be enhanced with additional code for file size and content type [validation feedback](xref:blazor/forms/validation).
 
-For the following example to work in a Blazor Web App (ASP.NET Core 8.0 or later), the component must adopt an [interactive render mode](xref:blazor/fundamentals/index#static-and-interactive-rendering-concepts) (for example, `@rendermode InteractiveServer`) to call `HandleSelectedThumbnail` on an `InputFile` file change. Blazor Server app components are always interactive and don't require a render mode.
+For the following example to work in a Blazor Web App (ASP.NET Core 8.0 or later), the component must adopt an [interactive render mode](xref:blazor/fundamentals/index#static-and-interactive-rendering-concepts) (for example, `@rendermode InteractiveServer`) to call `HandleSelectedThumbnail` on an `InputFile` component file change (`OnChange` parameter/event). Blazor Server app components are always interactive and don't require a render mode.
 
 In the following example, a small thumbnail (<= 100 KB) in an <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> is saved to a database with EF Core. If a file isn't selected by the user for the `InputFile` component, a default thumbnail is saved to the database.
 
@@ -900,7 +900,7 @@ The default thumbnail (`default-thumbnail.jpg`) is at the project root with a **
 
 ![Default generic thumbnail image](~/blazor/file-uploads/_static/default-thumbnail.jpg)
 
-The `Movie` model (`Movie.cs`) has a byte array property, named `Thumbnail`, to hold the thumbnail image's bytes:
+The `Movie` model (`Movie.cs`) has a byte array property (`Thumbnail`) to hold the thumbnail image's bytes:
 
 ```csharp
 public byte[]? Thumbnail { get; set; }
@@ -929,7 +929,8 @@ In the following `Create` component, an image upload is processed. You can enhan
 
 <div class="row">
     <div class="col-md-4">
-        <EditForm method="post" Model="Movie" OnValidSubmit="AddMovie" FormName="create" Enhance>
+        <EditForm method="post" Model="Movie" OnValidSubmit="AddMovie" 
+            FormName="create" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert"/>
 
@@ -937,7 +938,8 @@ In the following `Create` component, an image upload is processed. You can enhan
 
             <div class="mb-3">
                 <label for="thumbnail" class="form-label">Thumbnail:</label>
-                <InputFile id="thumbnail" OnChange="HandleSelectedThumbnail" class="form-control" />
+                <InputFile id="thumbnail" OnChange="HandleSelectedThumbnail" 
+                    class="form-control" />
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </EditForm>
