@@ -80,7 +80,7 @@ Add the following `<div>` block between the `<div>` block for `Price` and the sa
 
 Open the `Index` component definition file (`Components/Pages/MoviePages/Index.razor`).
 
-Update the QuickGrid component to include the movie rating. Add the following <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2> immediately after the column for `Price`:
+Update the `QuickGrid` component to include the movie rating. Add the following <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2> immediately after the column for `Price`:
 
 ```razor
 <PropertyColumn Property="movie => movie.Rating" />

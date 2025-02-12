@@ -83,15 +83,15 @@ Open the movie `Index` component file (`Components/Pages/MoviePages/Index.razor`
 
 To see how making a component interactive enhances the user experience, let's provide three enhancements to the app in the following sections:
 
-* Add pagination to the movie QuickGrid component.
-* Make the QuickGrid component *sortable*.
+* Add pagination to the movie `QuickGrid` component.
+* Make the `QuickGrid` component *sortable*.
 * Replace the HTML form for filtering movies by title with C# code that:
   * Runs on the server.
   * Renders content interactively over the underlying SignalR connection.
 
 ## Add pagination to the QuickGrid
 
-The QuickGrid component can page data from the database.
+The `QuickGrid` component can page data from the database.
 
 Open the `Index` component (`Components/Pages/Movies/Index.razor`). Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the `@code` block. Because the tutorial only uses five movie records for demonstration, set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to `2` items in order to demonstrate pagination. Normally, the number of items to display would be set to a higher value or set dynamically via a dropdown list.
 
@@ -99,14 +99,14 @@ Open the `Index` component (`Components/Pages/Movies/Index.razor`). Add a <xref:
 private PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
 ```
 
-Set the QuickGrid component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `pagination`:
+Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `pagination`:
 
 ```diff
 - <QuickGrid Class="table" Items="FilteredMovies">
 + <QuickGrid Class="table" Items="FilteredMovies" Pagination="pagination">
 ```
 
-To provide a UI for pagination below the QuickGrid component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the QuickGrid component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
+To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
 
 ```razor
 <Paginator State="pagination" />
@@ -199,13 +199,13 @@ Filtering database records is performed on the server, and the server interactiv
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
 
-## Style the QuickGrid component
+## Style the `QuickGrid` component
 
-You can apply styles to the rendered QuickGrid component with a stylesheet isolated to the `Index` component using *CSS isolation*.
+You can apply styles to the rendered `QuickGrid` component with a stylesheet isolated to the `Index` component using *CSS isolation*.
 
 CSS isolation is applied by adding a stylesheet file using the file name format `{COMPONENT NAME}.razor.css`, where the `{COMPONENT NAME}` placeholder is the component name.
 
-To apply styles to a child component, such as the QuickGrid component of the `Index` component, use the `::deep` pseudo-element. 
+To apply styles to a child component, such as the `QuickGrid` component of the `Index` component, use the `::deep` pseudo-element. 
 
 In the `MoviePages` folder, add the following stylesheet for the `Index` component. Use `::deep` pseudo-elements to make the row height `3em` and vertically center the table cell content.
 
@@ -221,9 +221,9 @@ In the `MoviePages` folder, add the following stylesheet for the `Index` compone
     }
 ```
 
-The `::deep` pseudo-element only works with descendant elements, so the QuickGrid component must be wrapped with a `<div>` or some other block-level element in order to apply the styles to it.
+The `::deep` pseudo-element only works with descendant elements, so the `QuickGrid` component must be wrapped with a `<div>` or some other block-level element in order to apply the styles to it.
 
-In `Components/Pages/MoviePages/Index.razor`, place `<div>` tags around the QuickGrid component:
+In `Components/Pages/MoviePages/Index.razor`, place `<div>` tags around the `QuickGrid` component:
 
 ```diff
 + <div>
@@ -233,7 +233,7 @@ In `Components/Pages/MoviePages/Index.razor`, place `<div>` tags around the Quic
 + </div>
 ```
 
-Blazor rewrites CSS selectors to match the markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset, so you don't need to take further action to apply the styles to the rendered QuickGrid component.
+Blazor rewrites CSS selectors to match the markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset, so you don't need to take further action to apply the styles to the rendered `QuickGrid` component.
 
 ![Movie list showing row heights at 3em with vertically-centered content](~/blazor/tutorials/movie-database-app/part-8/_static/styled-quickgrid.png)
 

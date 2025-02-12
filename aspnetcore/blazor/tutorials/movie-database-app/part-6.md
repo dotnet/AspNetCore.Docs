@@ -17,7 +17,7 @@ This article is the sixth part of the Blazor movie database app tutorial that te
 
 This part of the tutorial series covers adding a search feature to the movies `Index` component to filter movies by title.
 
-## Implement a filter feature for the QuickGrid component
+## Implement a filter feature for the `QuickGrid` component
 
 The [QuickGrid](xref:Microsoft.AspNetCore.Components.QuickGrid) component is used by the movie `Index` component (`Components/MoviePages/Index.razor`) to display movies from the database:
 
@@ -29,7 +29,7 @@ The [QuickGrid](xref:Microsoft.AspNetCore.Components.QuickGrid) component is use
 
 The <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter receives an `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid (`Movie`). <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> is assigned a collection of movie entities (`DbSet<Movie>`) obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory (`DbFactory`).
 
-To make the QuickGrid component filter on the movie title, the `Index` component should:
+To make the `QuickGrid` component filter on the movie title, the `Index` component should:
 
 * Set a filter string as a *component parameter* from the query string.
 * If the parameter has a value, filter the movies returned from the database.
@@ -49,7 +49,7 @@ private IQueryable<Movie> FilteredMovies =>
 
 The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the QuickGrid's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter. The property filters the list of movies based on the supplied `TitleFilter`. If a `TitleFilter` isn't assigned a value from the query string (`TitleFilter` is `null`), an empty string (`string.Empty`) is used for the <xref:System.String.Contains%2A> clause. Therefore, no movies are filtered for display.
 
-Change the QuickGrid component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter to use the `movies` collection:
+Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter to use the `movies` collection:
 
 ```diff
 - <QuickGrid Class="table" Items="context.Movie">
