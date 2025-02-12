@@ -971,13 +971,13 @@ In the following `Create` component, an image upload is processed. You can enhan
         if (browserFile?.Size > 0 && browserFile?.Size <= maxFileSize)
         {
             using var memoryStream = new MemoryStream();
-            await browserFile!.OpenReadStream(maxFileSize).CopyToAsync(memoryStream);
+            await browserFile.OpenReadStream(maxFileSize).CopyToAsync(memoryStream);
 
-            Movie!.Thumbnail = memoryStream.ToArray();
+            Movie.Thumbnail = memoryStream.ToArray();
         }
         else
         {
-            Movie!.Thumbnail = File.ReadAllBytes(
+            Movie.Thumbnail = File.ReadAllBytes(
                 $"{AppDomain.CurrentDomain.BaseDirectory}default_thumbnail.jpg");
         }
 
