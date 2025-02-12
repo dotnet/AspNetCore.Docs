@@ -901,11 +901,13 @@ The default thumbnail (`default-thumbnail.jpg`) is at the project root with a **
 
 ![Default generic thumbnail image](~/blazor/file-uploads/_static/default-thumbnail.jpg)
 
-The `Movie` model (`Movie.cs`) has a byte array property (`Thumbnail`) to hold the thumbnail image's bytes:
+The `Movie` model (`Movie.cs`) has a property (`Thumbnail`) to hold the thumbnail image data:
 
 ```csharp
 public byte[]? Thumbnail { get; set; }
 ```
+
+Image data is stored in a byte array (`byte[]`) in the database. The app base-64 encodes the bytes for display because base-64 encoded data is roughly a third larger than the raw bytes of the image, thus base-64 image data requires additional database storage and reduces the performance of database read/write operations.
 
 Components that display the thumbnail pass image data to the `img` tag's `src` attribute as JPEG, base-64 encoded data:
 
