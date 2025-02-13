@@ -5,7 +5,7 @@ description: Learn how to secure a Blazor Web App with Windows Authentication.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2025
+ms.date: 02/13/2025
 uid: blazor/security/blazor-web-app-windows-authentication
 ---
 # Secure an ASP.NET Core Blazor Web App with Windows Authentication
@@ -16,11 +16,11 @@ uid: blazor/security/blazor-web-app-windows-authentication
 
 -->
 
-This article describes how to secure a Blazor Web App with [Windows Authentication]() using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 9 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+This article describes how to secure a Blazor Web App with [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 9 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-Specification for the Blazor Web App:
+The app specification for the Blazor Web App:
 
-* [Server render mode with global interactivity](xref:blazor/components/render-modes)
+* Adopts the [Interactive Server render mode with global interactivity](xref:blazor/components/render-modes).
 * Establishes an [authorization policy](xref:security/authorization/policies) for a [Windows security identifier](/windows-server/identity/ad-ds/manage/understand-security-identifiers) to access a secure page.
 
 ## Sample app
@@ -31,22 +31,22 @@ Access the sample app through the latest version folder from the repository's ro
 
 ## Configuration
 
-This app requires no configuration to run locally.
+The sample app doesn't require configuration to run locally.
 
 When deployed to a host, such as IIS, the app must adopt impersonation to run under the user's account. For more information, see <xref:security/authentication/windowsauth>.
 
 ### Sample app code
 
-Inspect the `Program` file in the sample app for the following features.
+Inspect the `Program` file in the sample app for the following API calls.
 
-<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> is called using the <xref:Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme%2A?displayProperty=nameWithType> authentication scheme. <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate%2A> configures the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder> to use Negotiate (also known as Windows, Kerberos, or NTLM) authentication. This authentication handler supports Kerberos on Windows and Linux servers:
+<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> is called using the <xref:Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme%2A?displayProperty=nameWithType> authentication scheme. <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate%2A> configures the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder> to use Negotiate (also known as Windows, Kerberos, or NTLM) authentication, and the authentication handler supports Kerberos on Windows and Linux servers:
 
 ```csharp
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 ```
 
-<xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorization%2A> adds authorization policy services, setting the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType> to the default policy (<xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType>), which defaults to require authenticated users to access the app.
+<xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorization%2A> adds authorization policy services, setting the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType> to the default policy (<xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType>), which defaults to require authenticated users to access the app:
 
 ```csharp
 builder.Services.AddAuthorization(options =>
@@ -55,13 +55,13 @@ builder.Services.AddAuthorization(options =>
 });
 ```
 
-<xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> adds cascading authentication state to the service collection. This is equivalent to having a `CascadingAuthenticationState` component at the root of the app's component hierarchy:
+<xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> adds cascading authentication state to the service collection. This is equivalent to placing a `CascadingAuthenticationState` component at the root of the app's component hierarchy:
 
 ```csharp
 builder.Services.AddCascadingAuthenticationState();
 ```
 
-An [authorization policy](xref:security/authorization/policies) is added for a [Windows security identifier](/windows-server/identity/ad-ds/manage/understand-security-identifiers):
+An [authorization policy](xref:security/authorization/policies) is added for a [Windows security identifier (SID)](/windows-server/identity/ad-ds/manage/understand-security-identifiers). The `S-1-5-113` well-known SID in the following example indicates that the user is a local account, which restricts network sign-in to local accounts instead of "administrator" or equivalent accounts:
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
@@ -71,15 +71,65 @@ builder.Services.AddAuthorizationBuilder()
             "S-1-5-113"));   
 ```
 
-The authorization policy is enforced by the `LocalAccountOnly` component (path: `/local-account-only`):
+The authorization policy is enforced by the `LocalAccountOnly` component.
+
+`Components/Pages/LocalAccountOnly.razor`:
 
 ```razor
 @page "/local-account-only"
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize("LocalAccount")]
+
+<h1>Local Account Only</h1>
+
+<p>
+    You can only reach this page by satisfying the
+    <code>LocalAccount</code> authorization policy.
+</p>
 ```
 
 The `UserClaims` component lists the user's claims, which includes the user's Windows security identifiers (SIDs).
+
+`Components/Pages/UserClaims.razor`:
+
+```razor
+@page "/user-claims"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<PageTitle>User Claims</PageTitle>
+
+<h1>User Claims</h1>
+
+@if (claims.Any())
+{
+    <ul>
+        @foreach (var claim in claims)
+        {
+            <li><b>@claim.Type:</b> @claim.Value</li>
+        }
+    </ul>
+}
+
+@code {
+    private IEnumerable<Claim> claims = [];
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? AuthState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (AuthState == null)
+        {
+            return;
+        }
+
+        var authState = await AuthState;
+        claims = authState.User.Claims;
+    }
+}
+```
 
 ## Additional resources
 
