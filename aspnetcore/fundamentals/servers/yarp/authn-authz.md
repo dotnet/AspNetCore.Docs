@@ -110,4 +110,4 @@ Client certificates are a TLS feature and are negotiated as part of a connection
 
 Authentication types like Windows that don't flow naturally to the destination server will need to be converted in the proxy to an alternate form. For example a JWT bearer token can be created with the user information and set on the proxy request.
 
-These swaps can be performed using [custom request transforms](xref:fundamentals/servers/yarp/transforms#from-code). Detailed examples can be developed for specific scenarios if there is enough community interest. We need more community feedback on how you want to convert and flow identity information.
+These swaps can be performed using [custom request transforms](transforms.md#from-code). Detailed examples can be developed for specific scenarios if there is enough community interest. We need more community feedback on how you want to convert and flow identity information.
