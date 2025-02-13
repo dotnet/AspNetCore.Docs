@@ -16,7 +16,7 @@ uid: blazor/security/blazor-web-app-windows-authentication
 
 -->
 
-This article describes how to secure a Blazor Web App with [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 9 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+This article describes how to secure a Blazor Web App with [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 9 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)). For more information, see <xref:security/authentication/windowsauth>.
 
 The app specification for the Blazor Web App:
 
@@ -29,13 +29,13 @@ Access the sample app through the latest version folder from the repository's ro
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
-### Configuration
+## Configuration
 
 The sample app doesn't require configuration to run locally.
 
-When deployed to a host, such as IIS, the app must adopt impersonation to run under the user's account. For more information, see <xref:security/authentication/windowsauth>.
+When deployed to a host, such as IIS, the app must adopt impersonation to run under the user's account. For more information, see <xref:security/authentication/windowsauth#impersonation>.
 
-### Sample app code
+## Sample app code
 
 Inspect the `Program` file in the sample app for the following API calls.
 
