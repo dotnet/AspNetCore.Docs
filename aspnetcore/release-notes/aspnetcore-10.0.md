@@ -39,6 +39,6 @@ This section describes new features for authentication and authorization.
 
 ## Miscellaneous
 
-This section describes miscellaneous new features in ASP.NET Core 9.
+This section describes miscellaneous new features in ASP.NET Core 10.0.
 
 ## Related content
