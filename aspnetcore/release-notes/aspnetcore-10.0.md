@@ -29,12 +29,16 @@ This section describes new features for SignalR.
 
 This section describes new features for minimal APIs.
 
+## OpenAPI
+
+This section describes new features for OpenAPI.
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
 
 ## Miscellaneous
 
-This section describes miscellaneous new features in ASP.NET Core 9.
+This section describes miscellaneous new features in ASP.NET Core 10.0.
 
 ## Related content
