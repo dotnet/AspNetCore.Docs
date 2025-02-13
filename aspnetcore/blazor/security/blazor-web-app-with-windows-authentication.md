@@ -29,7 +29,7 @@ Access the sample app through the latest version folder from the repository's ro
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
-## Configuration
+### Configuration
 
 The sample app doesn't require configuration to run locally.
 
