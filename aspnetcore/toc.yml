@@ -1096,6 +1096,9 @@ items:
       - name: Overview
         displayName: kestrel, iis, http.sys, httpsys, servers
         uid: fundamentals/servers/index
+      - name: HTTP.sys
+        displayName: deploy, publish, server, httpsys
+        uid: fundamentals/servers/httpsys        
       - name: Kestrel
         items:
           - name: Overview
@@ -1175,9 +1178,6 @@ items:
           - name: HTTP/3
             displayName: deploy, publish, server, iis
             uid: host-and-deploy/iis/http3
-      - name: HTTP.sys
-        displayName: deploy, publish, server, httpsys
-        uid: fundamentals/servers/httpsys        
       - name: YARP
         items:
           - name: Get started with YARP
@@ -1259,7 +1259,7 @@ items:
                 uid: fundamentals/servers/yarp/websockets
           - name: Extensibility
             items:            
-            - name: Extensibility
+            - name: Overview
               displayName: yarp
               uid: fundamentals/servers/yarp/extensibility
             - name: Middleware
