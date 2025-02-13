@@ -4,7 +4,7 @@ title: YARP Extensibility - Request and Response Transforms
 description: YARP Extensibility - Request and Response Transforms
 author: samsp-msft
 ms.author: samsp
-ms.date: 2/6/2025
+ms.date: 2/12/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
