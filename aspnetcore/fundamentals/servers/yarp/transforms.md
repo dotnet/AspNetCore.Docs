@@ -118,7 +118,7 @@ All configuration entries are treated as case-insensitive, though the destinatio
 
 The details for these transforms are covered later in this document.
 
-Developers that want to integrate their custom transforms with the `Transforms` section of configuration can do so using [ITransformFactory](#itransformfactory) described below.
+Developers that want to integrate their custom transforms with the `Transforms` section of configuration can do so using `ITransformFactory`<!--](#itransformfactory)--> described below.
 
 ### From Code
 
