@@ -18,7 +18,7 @@ Notes:
 - The proxy request scheme (http/https), authority, and path base, are taken from the destination server address (`https://localhost:10001/Path/Base` in the example above) and should not be modified by transforms.
 - The Host header can be overridden by transforms independent of the authority, see [RequestHeader](#requestheader) below.
 - The request's original PathBase property is not used when constructing the proxy request, see [X-Forwarded](#x-forwarded).
-- All incoming request headers are copied to the proxy request by default with the exception of the Host header (see [Defaults](#defaults)). [X-Forwarded](#x-forwarded) headers are also added by default. These behaviors can be configured using the following transforms. Additional request headers can be specified, or request headers can be excluded by setting them to an empty value.
+- All incoming request headers are copied to the proxy request by default with the exception of the Host header (see <!--check fix [Defaults](#defaults) --> [Defaults](xref:fundamentals/servers/yarp/timeouts#defaults)). [X-Forwarded](#x-forwarded) headers are also added by default. These behaviors can be configured using the following transforms. Additional request headers can be specified, or request headers can be excluded by setting them to an empty value.
 
 The following are built in transforms identified by their primary config key. These transforms are applied in the order they are specified in the route configuration.
 
@@ -419,7 +419,7 @@ routeConfig = routeConfig.WithTransformRequestHeadersAllowed("Header1", "header2
 transformBuilderContext.AddRequestHeadersAllowed("Header1", "header2");
 ```
 
-YARP copies most request headers to the proxy request by default (see [RequestHeadersCopy](transforms.md#requestheaderscopy)). Some security models only allow specific headers to be proxied. This transform disables RequestHeadersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
+YARP copies most request headers to the proxy request by default (see [RequestHeadersCopy](xref:fundamentals/servers/yarp/transforms#requestheaderscopy)). Some security models only allow specific headers to be proxied. This transform disables RequestHeadersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
 
 Note that there are some headers YARP does not copy by default since they are connection specific or otherwise security sensitive (e.g. `Connection`, `Alt-Svc`). Putting those header names in the allow list will bypass that restriction but is strongly discouraged as it may negatively affect the functionality of the proxy or cause security vulnerabilities.
 

@@ -126,7 +126,7 @@ routeConfig = routeConfig.WithTransformResponseHeadersAllowed("Header1", "header
 transformBuilderContext.AddResponseHeadersAllowed("Header1", "header2");
 ```
 
-YARP copies most response headers from the proxy response by default (see [ResponseHeadersCopy](transforms.md#responseheaderscopy)). Some security models only allow specific headers to be proxied. This transform disables ResponseHeadersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
+YARP copies most response headers from the proxy response by default (see [ResponseHeadersCopy](xref:fundamentals/servers/yarp/transforms#responseheaderscopy)). Some security models only allow specific headers to be proxied. This transform disables ResponseHeadersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
 
 Note that there are some headers YARP does not copy by default since they are connection specific or otherwise security sensitive (e.g. `Connection`, `Alt-Svc`). Putting those header names in the allow list will bypass that restriction but is strongly discouraged as it may negatively affect the functionality of the proxy or cause security vulnerabilities.
 
@@ -193,7 +193,7 @@ HeaderName: value
 
 Response trailers are headers sent at the end of the response body. Support for trailers is uncommon in HTTP/1.1 implementations but is becoming common in HTTP/2 implementations. Check your client and server for support.
 
-ResponseTrailer follows the same structure and guidance as [ResponseHeader](transforms.md#responseheader).
+ResponseTrailer follows the same structure and guidance as [ResponseHeader](xref:fundamentals/servers/yarp/transforms#responseheader).
 
 ## ResponseTrailerRemove
 
@@ -226,7 +226,7 @@ AnotherHeader: another-value
 
 This removes the named trailing header.
 
-ResponseTrailerRemove follows the same structure and guidance as [ResponseHeaderRemove](transforms.md#responseheaderremove).
+ResponseTrailerRemove follows the same structure and guidance as [ResponseHeaderRemove](xref:fundamentals/servers/yarp/transforms#responseheaderremove).
 
 ## ResponseTrailersAllowed
 
@@ -248,7 +248,7 @@ routeConfig = routeConfig.WithTransformResponseTrailersAllowed("Header1", "heade
 transformBuilderContext.AddResponseTrailersAllowed("Header1", "header2");
 ```
 
-YARP copies most response trailers from the proxy response by default (see [ResponseTrailersCopy](transforms.md#responsetrailerscopy)). Some security models only allow specific headers to be proxied. This transform disables ResponseTrailersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
+YARP copies most response trailers from the proxy response by default (see [ResponseTrailersCopy](xref:fundamentals/servers/yarp/transforms#responsetrailerscopy)). Some security models only allow specific headers to be proxied. This transform disables ResponseTrailersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
 
 Note that there are some headers YARP does not copy by default since they are connection specific or otherwise security sensitive (e.g. `Connection`, `Alt-Svc`). Putting those header names in the allow list will bypass that restriction but is strongly discouraged as it may negatively affect the functionality of the proxy or cause security vulnerabilities.
 
