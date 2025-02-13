@@ -104,7 +104,7 @@ These authentication types are often bound to a specific connection. They are no
 
 ### Client Certificates
 
-Client certificates are a TLS feature and are negotiated as part of a connection. See [these docs](/aspnet/core/security/authentication/certauth) for additional information. The certificate can be forwarded to the destination server as an HTTP header using the [ClientCert](xref:fundamentals/servers/yarp/transforms#clientcert) transform.
+Client certificates are a TLS feature and are negotiated as part of a connection. See [these docs](/aspnet/core/security/authentication/certauth) for additional information. The certificate can be forwarded to the destination server as an HTTP header using the [ClientCert](transforms.md#clientcert) transform.
 
 ### Swapping authentication types
 
