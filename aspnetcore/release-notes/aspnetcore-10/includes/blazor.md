@@ -23,3 +23,9 @@ For more information, see the following resources:
   
 * <xref:blazor/project-structure?view=aspnetcore-10.0#location-of-the-blazor-script>
 * <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0>
+
+### Route template highlights
+
+The [`[Route]` attribute](xref:Microsoft.AspNetCore.Components.RouteAttribute) now supports route syntax highlighting to help visualize the structure of the route template:
+
+![Route template pattern for the Order ID is highlighted in a method that maps endpoints](~/release-notes/aspnetcore-10/_static/route-template-highlighting.png)
