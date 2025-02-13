@@ -1205,8 +1205,16 @@ items:
                 displayName: yarp
                 uid: fundamentals/servers/yarp/queryparameter-routing
               - name: Transforms
-                displayName: yarp
-                uid: fundamentals/servers/yarp/transforms
+                items:
+                  - name: Transforms Overview
+                    displayName: yarp
+                    uid: fundamentals/servers/yarp/transforms
+                  - name: Request Transforms
+                    displayName: yarp
+                    uid: fundamentals/servers/yarp/transforms-request
+                  - name: Response Transforms
+                    displayName: yarp
+                    uid: fundamentals/servers/yarp/transforms-response
               - name: Load Balancing
                 displayName: yarp
                 uid: fundamentals/servers/yarp/load-balancing
@@ -1271,6 +1279,9 @@ items:
             - name: Destination Resolvers
               displayName: yarp
               uid: fundamentals/servers/yarp/destination-resolvers
+            - name: Request and Response Transform Extensibility
+              displayName: yarp
+              uid: fundamentals/servers/yarp/transform-extensibility
           - name: Deployment options
             items:
             - name: HTTP.sys Delegation
