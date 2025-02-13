@@ -4,7 +4,7 @@ title: YARP Extensibility - Request and Response Transforms
 description: YARP Extensibility - Request and Response Transforms
 author: samsp-msft
 ms.author: samsp
-ms.date: 2/13/2025
+ms.date: 2/14/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
@@ -19,7 +19,7 @@ YARP includes a set of built-in request and response transforms that can be used
 
 ## RequestTransform
 
-All request transforms must derive from the abstract base class [RequestTransform](xref:Yarp.ReverseProxy.Transforms.RequestTransform). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and easy of use.
+All request transforms must derive from the abstract base class [RequestTransform](xref:fundamentals/servers/yarp/transforms). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and easy of use.
 
 A request transform may conditionally produce an immediate response such as for error conditions. This prevents any remaining transforms from running and the request from being proxied. This is indicated by setting the `HttpResponse.StatusCode` to a value other than 200, or calling `HttpResponse.StartAsync()`, or writing to the `HttpResponse.Body` or `BodyWriter`.
 
