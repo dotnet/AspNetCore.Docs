@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 08/04/2024
+ms.date: 02/13/2025
 uid: tutorials/first-web-api
 ---
 
@@ -38,15 +38,15 @@ The following diagram shows the design of the app.
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-9.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-9.0.md)]
 
 ---
 
-## Create a web project
+## Create a Web API project
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -55,21 +55,24 @@ The following diagram shows the design of the app.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Confirm the **Framework** is **.NET 9.0 (Long Term Support)**.
-  * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+  * Confirm the **Framework** is **.NET 9.0 (Standard Term Support)**.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
+  * Confirm the checkbox for **Use controllers** is checked.
   * Select **Create**.
 
-## Add a NuGet package
+## Add NuGet packages
 
-A NuGet package must be added to support the database used in this tutorial.
+This tutorial uses the following additional NuGet packages:
+    * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database rather than an external one, simplifying this tutorial.
+    * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
+
+Add the following NuGet packages used in this tutorial.
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Enter **Swashbuckle.AspNetCore.SwaggerUI** in the search box, and then select `Swashbuckle.AspNetCore.SwaggerUI`.
-
 * Select the **Project** checkbox in the right pane and then select **Install**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -89,7 +92,9 @@ A NuGet package must be added to support the database used in this tutorial.
   These commands:
 
   * Create a new web API project and open it in Visual Studio Code.
-  * Add a NuGet packages that are needed for the next section.
+  * Adds NuGet packages that are used in this tutorial:
+    * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database so a real database won't be required for this tutorial.
+    * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
   * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
@@ -100,23 +105,25 @@ A NuGet package must be added to support the database used in this tutorial.
 
 ### Test the Project  
 
-The project template creates a `WeatherForecast` API with OpenAPI JSON documentation. By default, you can access the documentation while the project is running by navigating your browser to `https://localhost:<port>/openapi/v1.json`, where `<port>` is a randomly chosen port number set during project creation.  
+The project template:
 
-To use the [Swagger](xref:tutorials/web-api-help-pages-using-swagger) UI for testing the API, you need to modify the `Program.cs` file in your project.  
+* Creates a `WeatherForecast` API using controllers.
+* Adds the `Microsoft.AspNetCore.OpenApi` package for OpenAPI support as a reference in the project file **TodoApi.csproj**.
+* Adds OpenAPI services in **Project.cs** to automatically generate OpenAPI JSON documentation for the `WeatherForecast` API.
 
-#### Steps:  
-1. Add `SwaggerUI` to the app.  
-2. Set the `SwaggerEndpoint` to the location of your OpenAPI documentation.  
+You can access the OpenAPI JSON documentation for the `WeatherForecast` API while the project is running by navigating your browser to `https://localhost:<port>/openapi/v1.json`, where `<port>` is a randomly chosen port number set during project creation.  
 
-#### Updated `Program.cs`  
+#### Configure the Swagger UI endpoint for the OpenAPI documentation
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
+To configure [Swagger](xref:tutorials/web-api-help-pages-using-swagger) UI for testing the API, add the following highlighted code to the `Program.cs` file in the **TodoAPI** project:  
 
-// Add services to the container.
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?name=snippet_First_Add_SwaggerUI&highlight=16-19)]
+
+The previously highlighted code:
+
+* Adds the Swagger UI as a service to the app with `app.UseSwaggerUI()`.
+* Sets the `SwaggerEndpoint()` option to the location of the OpenAPI documentation for this project.  
+* Ensures the Swagger UI is only available in the app development environment to limit information disclosure and security vulnerability.
 
 var app = builder.Build();
 
@@ -145,7 +152,12 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-Visual Studio launches the default browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number set at the project creation.
+ Visual Studio output pane shows messages similar to the following, indicating that the app is running and awaiting requests:
+
+   ```output
+   Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:{port number}
+   Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:5071{port number}
+   ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -164,19 +176,25 @@ Run the app:
    ```output
    ...
    info: Microsoft.Hosting.Lifetime[14]
-         Now listening on: https://localhost:{port}
+         Now listening on: https://localhost:{port number}
    ...
    ```
 
 * <kbd>Ctrl</kbd>+*click* the HTTPS URL in the output to test the web app in a browser.
 
-* The default browser is launched to `https://localhost:<port>/swagger/index.html`, where `<port>` is the randomly chosen port number displayed in the output. There's no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
-
 After testing the web app in the following instruction, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to shut it down.
 
 ---
 
-The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it out** > **Execute**. The page displays:
+#### View the Swagger UI
+
+* Navigate a browser to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number set in **Properties/launchSettings.json** and displayed in the output.
+
+The Swagger page `/swagger/index.html` is displayed. 
+
+* Select **GET** > **Try it out** > **Execute**. 
+
+The page displays:
 
 * The [Curl](https://curl.haxx.se/) command to test the WeatherForecast API.
 * The URL to test the WeatherForecast API.
@@ -184,8 +202,6 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 * A drop-down list box with media types and the example value and schema.
 
 If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
-
-Swagger is used to generate useful documentation and help pages for web APIs. This tutorial uses Swagger to test the app. For more information on Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
 
 Copy and paste the **Request URL** in the browser:  `https://localhost:<port>/weatherforecast`
 
@@ -273,13 +289,13 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?highlight=1-2,7-8)]
+[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?nameFinal_Add_DBContext=&highlight=1-2,9-10)]
 
 The preceding code:
 
 * Adds `using` directives.
 * Adds the database context to the DI container.
-* Specifies that the database context will use an in-memory database.
+* Specifies that the database context uses an in-memory database.
 
 ## Scaffold a controller
 
@@ -353,7 +369,7 @@ When the `[action]` token isn't in the route template, the [action](xref:mvc/con
 
 ## Update the PostTodoItem create method
 
-Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
+In **Controllers/TodoItemsController.cs** update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
 [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
@@ -384,7 +400,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Select **Execute**
 
-  ![Swagger POST](~/tutorials/first-web-api/_static/7/post.png)
+  ![Swagger POST](~/tutorials/first-web-api/_static/9/post.png)
 
 ### Test the location header URI
 
@@ -416,10 +432,11 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
 * Start with the template string in the controller's `Route` attribute:
 
-  [!code-csharp[](~/tutorials/first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Route&highlight=1)]
+  [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Route&highlight=1)]
 
 * Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
-* If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
+
+This sample doesn't use a route template with the [HttpGet] attribute. However in applications where an `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its `id` parameter.
 
@@ -438,7 +455,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 Examine the `PutTodoItem` method:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
+[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_PutTodoItem)]
 
 `PutTodoItem` is similar to `PostTodoItem`, except it uses `HTTP PUT`. The response is [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a `PUT` request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -488,19 +505,19 @@ A DTO may be used to:
 
 To demonstrate the DTO approach, update the `TodoItem` class to include a secret field:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/6.0/TodoApiDTO/Models/TodoItem.cs?highlight=8)]
+[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Models/TodoItem.cs?highlight=8)]
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
 Verify you can post and get the secret field.
 
-Create a DTO model:
+Create a DTO model in a **Models/TodoItemsDTO.cs** file:
 
 [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Models/TodoItemDTO.cs)]
 
 Update the `TodoItemsController` to use `TodoItemDTO`:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
+[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Controllers/TodoItemsController.cs?highlight=25,28,34,43,49,51,62,63,89,93,94,100,124-130)]
 
 Verify you can't post or get the secret field.
 
@@ -532,6 +549,7 @@ For more information, see the following resources:
 
 * <xref:web-api/index>
 * <xref:tutorials/min-web-api>
+( <xref:fundamentals/openapi/using-openapi-documents>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:data/ef-rp/intro>
 * <xref:mvc/controllers/routing>
