@@ -125,28 +125,6 @@ The previously highlighted code:
 * Sets the `SwaggerEndpoint()` option to the location of the OpenAPI documentation for this project.  
 * Ensures the Swagger UI is only available in the app development environment to limit information disclosure and security vulnerability.
 
-```csharp
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    // Add SwaggerUI
-    app.UseSwaggerUI(options =>
-      // Add SwaggerEndpoint
-	    options.SwaggerEndpoint("/openapi/v1.json", "v1")
-	);
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
-```
 # [Visual Studio](#tab/visual-studio)
 
 Press Ctrl+F5 to run without the debugger.
