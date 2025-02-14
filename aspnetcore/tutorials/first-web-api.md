@@ -125,6 +125,7 @@ The previously highlighted code:
 * Sets the `SwaggerEndpoint()` option to the location of the OpenAPI documentation for this project.  
 * Ensures the Swagger UI is only available in the app development environment to limit information disclosure and security vulnerability.
 
+```csharp
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
