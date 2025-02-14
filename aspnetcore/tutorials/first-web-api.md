@@ -268,7 +268,7 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?nameFinal_Add_DBContext=&highlight=1-2,9-10)]
+[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?name=snippet_Final_Add_DBContext=&highlight=1-2,9-10)]
 
 The preceding code:
 
