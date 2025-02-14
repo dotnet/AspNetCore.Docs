@@ -42,12 +42,13 @@ For more information, see [Trimming options (.NET documentation)](/dotnet/core/d
 
 ## Failure to preserve types used by a published app
 
-Trimming may have detrimental effects for a published app. In apps that use [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), the IL Trimmer often can't determine the required types for runtime reflection and trims them away. This can happen for types used for JS interop and JSON serialization/deserialization. For example, complex framework types, such as <xref:System.Collections.Generic.KeyValuePair>, might be trimmed and not available at runtime.
+Trimming may have detrimental effects for a published app leading to runtime errors. In apps that use [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), the IL Trimmer often can't determine the required types for runtime reflection and trims them away. This can happen with complex framework types used for JS interop, JSON serialization/deserialization, and other operations.
 
 Consider the following client-side component in a Blazor Web App (ASP.NET Core 8.0 or later) that deserializes a <xref:System.Collections.Generic.KeyValuePair> collection (`List<KeyValuePair<string, string>>`):
 
 ```razor
 @rendermode @(new InteractiveWebAssemblyRenderMode(false))
+@using System.Diagnostics.CodeAnalysis
 @using System.Text.Json
 
 <dl>
@@ -61,11 +62,12 @@ Consider the following client-side component in a Blazor Web App (ASP.NET Core 8
 @code {
     private List<KeyValuePair<string, string>> items = [];
 
+    [StringSyntax(StringSyntaxAttribute.Json)]
+    private const string data =
+        """[{"key":"key 1","value":"value 1"},{"key":"key 2","value":"value 2"}]""";
+
     protected override void OnInitialized()
     {
-        var data = "[ { \"key\" : \"key 1\", \"value\" : \"value 1\" }, " +
-            "{ \"key\" : \"key 2\", \"value\" : \"value 2\" } ]";
-
         JsonSerializerOptions options = new() { PropertyNameCaseInsensitive = true };
 
         items = JsonSerializer
@@ -101,18 +103,15 @@ public sealed class StringKeyValuePair(string key, string value)
 The component is modified to use the `StringKeyValuePair` type. Because custom types are never trimmed by Blazor when an app is published, the component works as designed:
 
 ```razor
-@using System.Diagnostics.CodeAnalysis
-
-...
-
 @code {
     private List<StringKeyValuePair> items = [];
 
+    [StringSyntax(StringSyntaxAttribute.Json)]
+    private const string data =
+        """[{"key":"key 1","value":"value 1"},{"key":"key 2","value":"value 2"}]""";
+
     protected override void OnInitialized()
     {
-        var data = "[ { \"key\" : \"key 1\", \"value\" : \"value 1\" }, " +
-            "{ \"key\" : \"key 2\", \"value\" : \"value 2\" } ]";
-
         JsonSerializerOptions options = new() { PropertyNameCaseInsensitive = true };
 
         items = JsonSerializer
