@@ -524,11 +524,14 @@ POCOs that do not have parameterless constructors can't be bound.
 The following code results in an exception saying that the type must have a parameterless constructor:
 
 ```csharp
-public class Person(string Name)
-
+public class Person {
+    public Person(string Name) { }
+}
 public record Person([Required] string Name, [Range(0, 100)] int Age)
 {
-    public Person(string Name) : this (Name, 0);
+    public Person(string Name) : this (Name, 0)
+    {
+    }
 }
 ```
 
