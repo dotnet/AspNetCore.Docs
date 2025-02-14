@@ -44,6 +44,8 @@ For more information, see [Trimming options (.NET documentation)](/dotnet/core/d
 
 Trimming may have detrimental effects for a published app leading to runtime errors. In apps that use [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), the IL Trimmer often can't determine the required types for runtime reflection and trims them away or trims away parameter names from methods. This can happen with complex framework types used for JS interop, JSON serialization/deserialization, and other operations.
 
+The IL Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
+
 Consider the following client-side component in a Blazor Web App (ASP.NET Core 8.0 or later) that deserializes a <xref:System.Collections.Generic.KeyValuePair> collection (`List<KeyValuePair<string, string>>`):
 
 ```razor
@@ -87,7 +89,60 @@ When the app is published, <xref:System.Collections.Generic.KeyValuePair> is tri
 
 > :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Collections.Generic.KeyValuePair`2[System.String,System.String]":::
 
-In these cases, we recommend creating a custom type. The following modifications create a `StringKeyValuePair` type for use by the component.
+<!-- To address lost types, we recommend taking any ***one*** of the three following approaches. -->
+
+To address lost types, we recommend taking **either** of the following approaches.
+
+### Preserve the type as a dynamic dependency
+
+If not already present, add an `@using` directive for <xref:System.Diagnostics.CodeAnalysis?displayProperty=fullName>:
+
+```razor
+@using System.Diagnostics.CodeAnalysis
+```
+
+Add a [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to preserve the <xref:System.Collections.Generic.KeyValuePair>:
+
+```diff
++ [DynamicDependency(DynamicallyAccessedMemberTypes.PublicConstructors, typeof(KeyValuePair<string, string>))]
+private List<KeyValuePair<string, string>> items = [];
+```
+
+<!-- REVIEWER NOTE for the next bullet focused on using a Root Descriptor approach ...
+
+I tried many permutations of the linker config, but I can't get the Root Descriptor 
+approach to work. Is it doomed to fail in this scenario for some reason, or do I have 
+it set up incorrectly?
+
+### Use a [Root Descriptor](/dotnet/core/deploying/trimming/trimming-options#root-descriptors)
+
+A [Root Descriptor](/dotnet/core/deploying/trimming/trimming-options#root-descriptors) can preserve the type.
+
+Add a `MyRoots.xml` file to the app with the type:
+
+```xml
+<linker>
+<assembly fullname="System.Runtime">
+    <type fullname="System.Collections.Generic.KeyValuePair">
+    <method name="Create" />
+    </type>
+</assembly>
+</linker>
+```
+
+Add a `TrimmerRootDescriptor` item to the server app's project file referencing the `MyRoots.xml` file:
+
+```xml
+<ItemGroup>
+<TrimmerRootDescriptor Include="MyRoots.xml" />
+</ItemGroup>
+```
+
+-->
+
+### Create a custom type
+
+The following modifications create a `StringKeyValuePair` type for use by the component.
 
 `StringKeyValuePair.cs`:
 
@@ -113,8 +168,6 @@ The component is modified to use the `StringKeyValuePair` type:
 ```
 
 Because custom types are never trimmed by Blazor when an app is published, the component works as designed after the app is published.
-
-The IL Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
 
 ## Additional resources
 
