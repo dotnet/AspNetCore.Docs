@@ -109,7 +109,7 @@ The project template:
 
 * Creates a `WeatherForecast` API using controllers.
 * Adds the `Microsoft.AspNetCore.OpenApi` package for OpenAPI support as a reference in the project file **TodoApi.csproj**.
-* Adds OpenAPI services in **Project.cs** to automatically generate OpenAPI JSON documentation for the `WeatherForecast` API.
+* Adds OpenAPI services in **Program.cs** to automatically generate OpenAPI JSON documentation for the `WeatherForecast` API.
 
 You can access the OpenAPI JSON documentation for the `WeatherForecast` API while the project is running by navigating your browser to `https://localhost:<port>/openapi/v1.json`, where `<port>` is a randomly chosen port number set during project creation.  
 
@@ -119,7 +119,7 @@ To configure [Swagger](xref:tutorials/web-api-help-pages-using-swagger) UI for t
 
 [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?name=snippet_First_Add_SwaggerUI&highlight=16-19)]
 
-The previously highlighted code:
+The preceding highlighted code:
 
 * Adds the Swagger UI as a service to the app with `app.UseSwaggerUI()`.
 * Sets the `SwaggerEndpoint()` option to the location of the OpenAPI documentation for this project.  
@@ -167,7 +167,7 @@ After testing the web app in the following instruction, press <kbd>Ctrl</kbd>+<k
 
 #### View the Swagger UI
 
-* Navigate a browser to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number set in **Properties/launchSettings.json** and displayed in the output.
+* Navigate a browser to `https://localhost:<port>/swagger/index.html`, where `<port>` is the randomly chosen port number set in **Properties/launchSettings.json** as the port for HTTPS and displayed in the "Now listening" messages.
 
 The Swagger page `/swagger/index.html` is displayed. 
 
@@ -182,7 +182,7 @@ The page displays:
 
 If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
 
-Copy and paste the **Request URL** in the browser:  `https://localhost:<port>/weatherforecast`
+Copy and paste the **Request URL** to the browser:  `https://localhost:<port>/weatherforecast`
 
 JSON similar to the following example is returned:
 
