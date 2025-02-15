@@ -1,6 +1,5 @@
 ### OpenAPI 3.1 support
 
-
 ASP.NET Core has added support for generating [OpenAPI version 3.1] documents in .NET 10.
 Despite the minor version bump, OpenAPI 3.1 is a significant update to the OpenAPI specification,
 in particular with full support for [JSON Schema draft 2020-12].
@@ -33,8 +32,7 @@ When generating the OpenAPI document at build time, the OpenAPI version can be s
 
 OpenAPI 3.1 support was primarly added in the following this [PR](https://github.com/dotnet/aspnetcore/pull/59480).
 
-
-### Breaking changes
+### OpenAPI 3.1 breaking changes
 
 Support for OpenAPI 3.1 requires an update to the underlying OpenAPI.NET library to a new major version, 2.0. This new version has some breaking changes from the previous version. The breaking changes may impact apps if they have any document, operation, or schema transformers.
 

@@ -35,7 +35,6 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/openApi.md)]
 
-
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/responseDescProducesResponseType.md)]
 
 ## Authentication and authorization
