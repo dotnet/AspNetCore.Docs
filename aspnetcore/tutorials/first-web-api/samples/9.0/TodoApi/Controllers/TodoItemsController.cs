@@ -1,12 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {
+    // <snippet_Route>
     [Route("api/[controller]")]
     [ApiController]
     public class TodoItemsController : ControllerBase
+    // </snippet_Route>
     {
         private readonly TodoContext _context;
 
@@ -40,7 +47,7 @@ namespace TodoApi.Controllers
 
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        // <snippet_Update>
+        // <snippet_PutTodoItem>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
@@ -69,7 +76,7 @@ namespace TodoApi.Controllers
 
             return NoContent();
         }
-        // </snippet_Update>
+        // </snippet_PutTodoItem>
 
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -86,6 +93,7 @@ namespace TodoApi.Controllers
         // </snippet_Create>
 
         // DELETE: api/TodoItems/5
+        // <snippet_Delete>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodoItem(long id)
         {
@@ -100,6 +108,7 @@ namespace TodoApi.Controllers
 
             return NoContent();
         }
+        // </snippet_Delete>
 
         private bool TodoItemExists(long id)
         {
