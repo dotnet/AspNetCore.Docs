@@ -266,9 +266,9 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
-Update `Program.cs` with the following highlighted code:
+* Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?name=snippet_Final_Add_DBContext&highlight=1-2,9-10)]
+  [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?name=snippet_Final_Add_DBContext&highlight=1-2,9-10)]
 
 The preceding code:
 
@@ -322,9 +322,9 @@ source ~/.bashrc
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
-Build the project.
+* Build the project.
 
-Run the following command:
+* Run the following command:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
@@ -348,9 +348,9 @@ When the `[action]` token isn't in the route template, the [action](xref:mvc/con
 
 ## Update the PostTodoItem create method
 
-In **Controllers/TodoItemsController.cs** update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
+* In **Controllers/TodoItemsController.cs** update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
+  [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
 The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem` from the body of the HTTP request.
 
@@ -401,7 +401,7 @@ Two GET endpoints are implemented:
 
 The previous section showed an example of the `/api/todoitems/{id}` route.
 
-Follow the [POST](#post7) instructions to add another todo item, and then test the `/api/todoitems` route using Swagger.
+* Follow the [POST](#post7) instructions to add another todo item, and then test the `/api/todoitems` route using Swagger.
 
 This app uses an in-memory database. If the app is stopped and started, the preceding GET request doesn't return any data. If no data is returned, [POST](#post7) data to the app.
 
@@ -442,7 +442,7 @@ Examine the `PutTodoItem` method:
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
-Using the Swagger UI, use the PUT button to update the `TodoItem` that has Id = 1 and set its name to `"feed fish"`. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
+* Using the Swagger UI, use the PUT button to update the `TodoItem` that has Id = 1 and set its name to `"feed fish"`. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
 
 ## The DeleteTodoItem method
 
@@ -452,7 +452,7 @@ Examine the `DeleteTodoItem` method:
 
 ### Test the DeleteTodoItem method
 
-Use the Swagger UI to delete the `TodoItem` that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
+* Use the Swagger UI to delete the `TodoItem` that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
 
 ## Test with other tools
 
@@ -482,7 +482,7 @@ A DTO may be used to:
 * Omit some properties in order to reduce payload size.
 * Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
 
-To demonstrate the DTO approach, update the `TodoItem` class to include a secret field:
+* To demonstrate the DTO approach, update the `TodoItem` class to include a secret field:
 
 [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Models/TodoItem.cs?highlight=8)]
 
@@ -494,9 +494,9 @@ Create a DTO model in a **Models/TodoItemsDTO.cs** file:
 
 [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Models/TodoItemDTO.cs)]
 
-Update the `TodoItemsController` to use `TodoItemDTO`:
+* Update the `TodoItemsController` to use `TodoItemDTO`:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Controllers/TodoItemsController.cs?highlight=25,28,34,43,49,51,62,63,89,93,94,100,124-130)]
+  [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Controllers/TodoItemsController.cs?highlight=25,28,34,43,49,51,62,63,89,93,94,100,124-130)]
 
 Verify you can't post or get the secret field.
 
