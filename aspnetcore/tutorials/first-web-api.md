@@ -111,7 +111,7 @@ The project template:
 * Adds the `Microsoft.AspNetCore.OpenApi` package for OpenAPI support as a reference in the project file **TodoApi.csproj**.
 * Adds OpenAPI services in **Program.cs** to automatically generate OpenAPI JSON documentation for the `WeatherForecast` API.
 
-You can access the OpenAPI JSON documentation for the `WeatherForecast` API while the project is running by navigating your browser to `https://localhost:<port>/openapi/v1.json`, where `<port>` is a randomly chosen port number set during project creation.  
+You can access the OpenAPI JSON documentation for the `WeatherForecast` API while the project is running by navigating your browser to `https://localhost:<port>/openapi/v1.json`, where `<port>` is the randomly chosen port number set in **Properties/launchSettings.json** as the port for HTTPS, and displayed in the "Now listening" output messages when the app is run.
 
 #### Configure the Swagger UI endpoint for the OpenAPI documentation
 
@@ -167,7 +167,7 @@ After testing the web app in the following instruction, press <kbd>Ctrl</kbd>+<k
 
 #### View the Swagger UI
 
-* Navigate a browser to `https://localhost:<port>/swagger/index.html`, where `<port>` is the randomly chosen port number set in **Properties/launchSettings.json** as the port for HTTPS and displayed in the "Now listening" messages.
+* Navigate a browser to `https://localhost:<port>/swagger/index.html`, where `<port>` is the randomly chosen port number set in **Properties/launchSettings.json** as the port for HTTPS, and displayed in the "Now listening" output messages when the app is run.
 
 The Swagger page `/swagger/index.html` is displayed. 
 
