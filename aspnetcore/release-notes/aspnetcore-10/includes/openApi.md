@@ -35,7 +35,7 @@ OpenAPI 3.1 support was primarly added in the following [PR](https://github.com/
 
 Support for OpenAPI 3.1 requires an update to the underlying OpenAPI.NET library to a new major version, 2.0. This new version has some breaking changes from the previous version. The breaking changes may impact apps if they have any document, operation, or schema transformers.
 
-One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. For example, a schema transformer to add an example in .NET 9 might look like the following:
+One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. For example, a schema transformer to add an example in .NET 9 might look like the following code:
 
 ```csharp
     options.AddSchemaTransformer((schema, context, cancellationToken) =>
@@ -54,7 +54,7 @@ One of the most significant changes is that the `OpenApiAny` class has been drop
     });
 ```
 
-In .NET 10 the transformer to do the same task will look like the following:
+In .NET 10 the transformer to do the same task will look like the following code:
 
 ```csharp
     options.AddSchemaTransformer((schema, context, cancellationToken) =>
@@ -101,8 +101,6 @@ Note that these changes are necessary even when only congfiguring the OpenAPI ve
 
 ### OpenAPI in Yaml
 
-https://github.com/dotnet/aspnetcore/pull/58616
-
 ASP.NET now supports serving the generated OpenAPI document in YAML format. YAML can be more concise than JSON, eliminating curly braces and quotation marks when these can be inferred. YAML also supports multi-line strings, which can be useful for long descriptions.
 
 To configure an app to serve the generated OpenAPI document in YAML format, specify the endpoint in the MapOpenApi call with a ".yaml" or ".yml" suffix, as shown in the following example:
@@ -113,7 +111,7 @@ app.MapOpenApi("/openapi/{documentName}.yaml");
 
 Support for:
 
-* YAML is currently only available for the the OpenAPI served from the OpenAPI endpoint.
-* Generating OpenAPI documents in YAML format at build time isadded in a future preview.
+- YAML is currently only available for the the OpenAPI served from the OpenAPI endpoint.
+- Generating OpenAPI documents in YAML format at build time isadded in a future preview.
 
 See [this PR](https://github.com/dotnet/aspnetcore/pull/58616) which added support for serving the generated OpenAPI document in YAML format.

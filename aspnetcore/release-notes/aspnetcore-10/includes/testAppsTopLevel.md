@@ -8,5 +8,5 @@ In .NET 10, a source generator is used to generate the `public partial class Pro
 
 The following PRs contribited to this feature:
 
-* [PR 58199](https://github.com/dotnet/aspnetcore/pull/58199)
-* [PR 58482](https://github.com/dotnet/aspnetcore/pull/58482)
+- [PR 58199](https://github.com/dotnet/aspnetcore/pull/58199)
+- [PR 58482](https://github.com/dotnet/aspnetcore/pull/58482)
