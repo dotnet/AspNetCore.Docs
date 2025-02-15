@@ -33,6 +33,10 @@ This section describes new features for minimal APIs.
 
 This section describes new features for OpenAPI.
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/openApi.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/responseDescProducesResponseType.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
@@ -40,5 +44,7 @@ This section describes new features for authentication and authorization.
 ## Miscellaneous
 
 This section describes miscellaneous new features in ASP.NET Core 10.0.
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
 
 ## Related content
