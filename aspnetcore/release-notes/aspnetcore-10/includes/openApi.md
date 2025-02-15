@@ -12,7 +12,7 @@ Some of the changes you will see in the generated OpenAPI document include:
 - Nullable types no longer have the `nullable: true` property in the schema.
 - Instead of a `nullable: true` property, they have a `type` keyword whose value is an array that includes `null` as one of the types.
 
-With this feature, the default OpenAPI version for generated documents is`3.1` . The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi).
+With this feature, the default OpenAPI version for generated documents is`3.1`. The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi).
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -35,7 +35,7 @@ OpenAPI 3.1 support was primarly added in the following [PR](https://github.com/
 
 Support for OpenAPI 3.1 requires an update to the underlying OpenAPI.NET library to a new major version, 2.0. This new version has some breaking changes from the previous version. The breaking changes may impact apps if they have any document, operation, or schema transformers.
 
-One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly.If your transformers use `OpenApiAny`, you will need to update them to use `JsonNode` instead. For example, a schema transformer to add an example in .NET 9 might look like the following:
+One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. For example, a schema transformer to add an example in .NET 9 might look like the following:
 
 ```csharp
     options.AddSchemaTransformer((schema, context, cancellationToken) =>
@@ -71,6 +71,30 @@ In .NET 10 the transformer to do the same task will look like the following:
         }
         return Task.CompletedTask;
     });
+```
+
+The following example shows the changes in diff format.
+
+```diff
+options.AddSchemaTransformer((schema, context, cancellationToken) =>
+{
+    if (context.JsonTypeInfo.Type == typeof(WeatherForecast))
+    {
+-       schema.Example = new OpenApiObject
++       schema.Example = new JsonObject
+        {
+-           ["date"] = new OpenApiString(DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")),
++           ["date"] = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"),
+-           ["temperatureC"] = new OpenApiInteger(0),
++           ["temperatureC"] = 0,
+-           ["temperatureF"] = new OpenApiInteger(32),
++           ["temperatureF"] = 32,
+-           ["summary"] = new OpenApiString("Bracing"),
++           []"summary"] = "Bracing",
+        };
+    }
+    return Task.CompletedTask;
+});
 ```
 
 Note that these changes are necessary even when only congfiguring the OpenAPI version to 3.0.
