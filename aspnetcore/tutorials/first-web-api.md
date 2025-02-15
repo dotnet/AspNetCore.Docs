@@ -135,7 +135,7 @@ Press Ctrl+F5 to run without the debugger.
 
    ```output
    Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:{port number}
-   Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:5071{port number}
+   Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:{port number}
    ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
