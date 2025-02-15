@@ -1,6 +1,6 @@
 ### Response description on ProducesResponseType
 
-The [ProducesAttribute](/dotnet/api/microsoft.aspnetcore.mvc.producesattribute-1?view=aspnetcore-9.0), [ProducesResponseTypeAttribute](/dotnet/api/microsoft.aspnetcore.mvc.producesresponsetypeattribute-1?view=aspnetcore-9.0), and [ProducesDefaultResponseType](/dotnet/api/microsoft.aspnetcore.mvc.producesdefaultresponsetypeattribute?view=aspnetcore-9.0) attributes now accept an optional string parameter, `Description`, that will set the description of the response. Here's an example:
+The [ProducesAttribute](/dotnet/api/microsoft.aspnetcore.mvc.producesattribute-1), [ProducesResponseTypeAttribute](/dotnet/api/microsoft.aspnetcore.mvc.producesresponsetypeattribute-1), and [ProducesDefaultResponseType](/dotnet/api/microsoft.aspnetcore.mvc.producesdefaultresponsetypeattribute) attributes now accept an optional string parameter, `Description`, that will set the description of the response. Here's an example:
 
 ```csharp
 [HttpGet(Name = "GetWeatherForecast")]

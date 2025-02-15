@@ -12,8 +12,7 @@ Some of the changes you will see in the generated OpenAPI document include:
 - Nullable types no longer have the `nullable: true` property in the schema.
 - Instead of a `nullable: true` property, they have a `type` keyword whose value is an array that includes `null` as one of the types.
 
-With this feature, the default OpenAPI version for generated documents will be `3.1` . You can easily change the version
-by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion?view=aspnetcore-9.0) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions?view=aspnetcore-9.0) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi?view=aspnetcore-9.0).
+With this feature, the default OpenAPI version for generated documents is`3.1` . The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi).
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -30,7 +29,7 @@ When generating the OpenAPI document at build time, the OpenAPI version can be s
     <OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_0</OpenApiGenerateDocumentsOptions>
 ```
 
-OpenAPI 3.1 support was primarly added in the following this [PR](https://github.com/dotnet/aspnetcore/pull/59480).
+OpenAPI 3.1 support was primarly added in the following [PR](https://github.com/dotnet/aspnetcore/pull/59480).
 
 ### OpenAPI 3.1 breaking changes
 
@@ -91,6 +90,6 @@ app.MapOpenApi("/openapi/{documentName}.yaml");
 Support for:
 
 * YAML is currently only available for the the OpenAPI served from the OpenAPI endpoint.
-* Generating OpenAPI documents in YAML format at build time will be added in a future preview.
+* Generating OpenAPI documents in YAML format at build time isadded in a future preview.
 
 See [this PR](https://github.com/dotnet/aspnetcore/pull/58616) which added support for serving the generated OpenAPI document in YAML format.
