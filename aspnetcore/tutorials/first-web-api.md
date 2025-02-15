@@ -1,14 +1,14 @@
 ---
-title: "Tutorial: Create a web API with ASP.NET Core"
+title: "Tutorial: Create a controller-based web API with ASP.NET Core"
 author: wadepickett
-description: Learn how to build a web API with ASP.NET Core.
+description: Learn how to build a controller-based web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
 ms.date: 02/13/2025
 uid: tutorials/first-web-api
 ---
 
-# Tutorial: Create a web API with ASP.NET Core
+# Tutorial: Create a controller-based web API with ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -57,23 +57,23 @@ The following diagram shows the design of the app.
 * In the **Additional information** dialog:
   * Confirm the **Framework** is **.NET 9.0 (Standard Term Support)**.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
+  * Confirm the checkbox for **Do not use top-level statements** is **not** checked.
   * Confirm the checkbox for **Use controllers** is checked.
   * Select **Create**.
 
 ## Add NuGet packages
 
 This tutorial uses the following additional NuGet packages:
-    * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database rather than an external one, simplifying this tutorial.
-    * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
+  * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database rather than an external one, simplifying this tutorial.
+  * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
 
-Add the following NuGet packages used in this tutorial.
-
-* From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab.
-* Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
-* Select the **Project** checkbox in the right pane and then select **Install**.
-* Enter **Swashbuckle.AspNetCore.SwaggerUI** in the search box, and then select `Swashbuckle.AspNetCore.SwaggerUI`.
-* Select the **Project** checkbox in the right pane and then select **Install**.
+* Add the following NuGet packages used in this tutorial:
+  * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
+  * Select the **Browse** tab.
+  * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
+  * Select the **Project** checkbox in the right pane and then select **Install**.
+  * Enter **Swashbuckle.AspNetCore.SwaggerUI** in the search box, and then select `Swashbuckle.AspNetCore.SwaggerUI`.
+  * Select the **Project** checkbox in the right pane and then select **Install**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
