@@ -64,6 +64,7 @@ The following diagram shows the design of the app.
 ## Add NuGet packages
 
 This tutorial uses the following additional NuGet packages:
+
   * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database rather than an external one, simplifying this tutorial.
   * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
 
