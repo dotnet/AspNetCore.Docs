@@ -1,8 +1,6 @@
 ### Response description on ProducesResponseType
 
-https://github.com/dotnet/aspnetcore/pull/58193
-
-The ProducesAttribute, ProducesResponseTypeAttribute, and ProducesDefaultResponseType attributes now accept an optional string parameter, `Description`, that will set the description of the response. Here's an example:
+The [ProducesAttribute](/dotnet/api/microsoft.aspnetcore.mvc.producesattribute-1), [ProducesResponseTypeAttribute](/dotnet/api/microsoft.aspnetcore.mvc.producesresponsetypeattribute-1), and [ProducesDefaultResponseType](/dotnet/api/microsoft.aspnetcore.mvc.producesdefaultresponsetypeattribute) attributes now accept an optional string parameter, `Description`, that will set the description of the response. Here's an example:
 
 ```csharp
 [HttpGet(Name = "GetWeatherForecast")]
@@ -11,7 +9,7 @@ public IEnumerable<WeatherForecast> Get()
 {
 ```
 
-And the generated OpenAPI will be
+And the generated OpenAPI:
 
 ```json
         "responses": {
@@ -20,4 +18,4 @@ And the generated OpenAPI will be
             "content": {
 ```
 
-Community contribution! 🙏 
+[Community contribution](https://github.com/dotnet/aspnetcore/pull/58193) by [Sander ten Brinke](https://github.com/sander1095) 🙏
