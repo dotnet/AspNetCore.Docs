@@ -65,6 +65,7 @@ The following diagram shows the design of the app.
 
 This tutorial uses the following additional NuGet packages:
 
+
 * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database rather than an external one, simplifying this tutorial.
 * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
 
@@ -132,11 +133,15 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
- Visual Studio output pane shows messages similar to the following, indicating that the app is running and awaiting requests:
+ Visual Studio launches a new console window with output messages similar to the following, indicating that the app is running and awaiting requests:
 
    ```output
-   Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:{port number}
-   Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:{port number}
+   info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: https://localhost:7152
+   info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5026
+   info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
    ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -151,7 +156,7 @@ Run the app:
   dotnet run --launch-profile https
   ```
 
- The output shows messages similar to the following, indicating that the app is running and awaiting requests:
+ Visual Studio Code launches a new terminal window displaying output messages similar to the following, indicating that the app is running and awaiting requests:
 
    ```output
    ...
