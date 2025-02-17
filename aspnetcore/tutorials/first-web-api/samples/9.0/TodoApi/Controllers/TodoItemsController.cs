@@ -4,9 +4,11 @@ using TodoApi.Models;
 
 namespace TodoApi.Controllers;
 
+// <snippet_Route>
 [Route("api/[controller]")]
 [ApiController]
 public class TodoItemsController : ControllerBase
+// </snippet_Route>
 {
     private readonly TodoContext _context;
 
@@ -86,6 +88,7 @@ public class TodoItemsController : ControllerBase
     // </snippet_Create>
 
     // DELETE: api/TodoItems/5
+    // <snippet_Delete>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTodoItem(long id)
     {
@@ -100,6 +103,7 @@ public class TodoItemsController : ControllerBase
 
         return NoContent();
     }
+    // </snippet_Delete>
 
     private bool TodoItemExists(long id)
     {
