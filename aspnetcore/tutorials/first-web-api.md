@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 17/02/2025
+ms.date: 02/17/2025
 uid: tutorials/first-web-api
 ---
 
@@ -295,14 +295,14 @@ The *database context* is the main class that coordinates Entity Framework funct
 * Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 * Enter the following code:
 
-:::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi/Models/TodoContext.cs":::
+  :::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi/Models/TodoContext.cs":::
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Add a `TodoContext.cs` file to the `Models` folder.
 * Enter the following code:
 
-:::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi_SwaggerVersion/Models/TodoContext.cs":::
+  :::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi_SwaggerVersion/Models/TodoContext.cs":::
 
 ---
 
