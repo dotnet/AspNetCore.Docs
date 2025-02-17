@@ -35,45 +35,7 @@ OpenAPI 3.1 support was primarly added in the following [PR](https://github.com/
 
 Support for OpenAPI 3.1 requires an update to the underlying OpenAPI.NET library to a new major version, 2.0. This new version has some breaking changes from the previous version. The breaking changes may impact apps if they have any document, operation, or schema transformers.
 
-One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. For example, a schema transformer to add an example in .NET 9 might look like the following code:
-
-```csharp
-    options.AddSchemaTransformer((schema, context, cancellationToken) =>
-    {
-        if (context.JsonTypeInfo.Type == typeof(WeatherForecast))
-        {
-            schema.Example = new OpenApiObject
-            {
-                ["date"] = new OpenApiString(DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")),
-                ["temperatureC"] = new OpenApiInteger(0),
-                ["temperatureF"] = new OpenApiInteger(32),
-                ["summary"] = new OpenApiString("Bracing"),
-            };
-        }
-        return Task.CompletedTask;
-    });
-```
-
-In .NET 10 the transformer to do the same task will look like the following code:
-
-```csharp
-    options.AddSchemaTransformer((schema, context, cancellationToken) =>
-    {
-        if (context.JsonTypeInfo.Type == typeof(WeatherForecast))
-        {
-            schema.Example = new JsonObject
-            {
-                ["date"] = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"),
-                ["temperatureC"] = 0,
-                ["temperatureF"] = 32,
-                ["summary"] = "Bracing",
-            };
-        }
-        return Task.CompletedTask;
-    });
-```
-
-The following example shows the changes in diff format.
+One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. The following diff shows the changes in schema transformer from .NET 9 to .NET 10: 
 
 ```diff
 options.AddSchemaTransformer((schema, context, cancellationToken) =>
