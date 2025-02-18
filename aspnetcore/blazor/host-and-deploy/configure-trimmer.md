@@ -114,25 +114,29 @@ private List<KeyValuePair<string, string>> items = [];
 
 A [Root Descriptor](/dotnet/core/deploying/trimming/trimming-options#root-descriptors) can preserve the type.
 
-Add a `ILLink.Descriptors.xml` file to the root of the app with the type:
+Add an `ILLink.Descriptors.xml` file to the root of the app&dagger; with the type:
 
 ```xml
 <linker>
   <assembly fullname="System.Runtime">
-    <type fullname="System.Collections.Generic.KeyValuePair">
-      <method signature="System.Void .ctor(System.String,System.String)" />
+    <type fullname="System.Collections.Generic.KeyValuePair`2">
+      <method signature="System.Void .ctor(TKey,TValue)" />
     </type>
   </assembly>
 </linker>
 ```
 
-Add a `TrimmerRootDescriptor` item to the server app's project file referencing the `ILLink.Descriptors.xml` file:
+&dagger;The root of the app refers to the root of the Blazor WebAssembly app or the root of the `.Client` project of a Blazor Web App (.NET 8 or later).
+
+Add a `TrimmerRootDescriptor` item to the app's project file&Dagger; referencing the `ILLink.Descriptors.xml` file:
 
 ```xml
 <ItemGroup>
   <TrimmerRootDescriptor Include="$(MSBuildThisFileDirectory)ILLink.Descriptors.xml" />
 </ItemGroup>
 ```
+
+&Dagger;The project file is either the project file of the Blazor WebAssembly app or the project file of the `.Client` project of a Blazor Web App (.NET 8 or later).
 
 ### Custom types
 
