@@ -11,8 +11,10 @@ zone_pivot_groups: blazor-groups-and-roles
 ---
 # Microsoft Entra (ME-ID) groups, Administrator Roles, and App Roles (.NET 5 to .NET 7)
 
-> [!NOTE]
+> [!IMPORTANT]
 > This isn't the latest version of this article. For the current ASP.NET Core release, see the latest version of <xref:blazor/security/webassembly/meid-groups-roles>.
+
+[!INCLUDE[](~/blazor/security/includes/hosted-blazor-webassembly-notice.md)]
 
 This article explains how to configure Blazor WebAssembly to use Microsoft Entra ID groups and roles.
 
