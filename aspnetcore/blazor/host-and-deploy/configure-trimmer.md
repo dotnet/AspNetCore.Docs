@@ -110,6 +110,8 @@ Add a [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.Dyn
 private List<KeyValuePair<string, string>> items = [];
 ```
 
+<!-- UPDATE 10.0 - Hold this for https://github.com/dotnet/aspnetcore/issues/52947
+
 ### Use a Root Descriptor
 
 A [Root Descriptor](/dotnet/core/deploying/trimming/trimming-options#root-descriptors) can preserve the type.
@@ -138,9 +140,42 @@ Add a `TrimmerRootDescriptor` item to the app's project file&Dagger; referencing
 
 &Dagger;The project file is either the project file of the Blazor WebAssembly app or the project file of the `.Client` project of a Blazor Web App (.NET 8 or later).
 
+-->
+
 ### Custom types
 
+<!-- UPDATE 10.0 - We'll hold this for when the file descriptor approach comes back.
+
 Custom types aren't trimmed by Blazor when an app is published, but we recommend [preserving types as dynamic dependencies](#preserve-the-type-as-a-dynamic-dependency) instead of creating custom types.
+
+-->
+
+The following modifications create a `StringKeyValuePair` type for use by the component.
+
+`StringKeyValuePair.cs`:
+
+```csharp
+[method: SetsRequiredMembers]
+public sealed class StringKeyValuePair(string key, string value)
+{
+    public required string Key { get; init; } = key;
+    public required string Value { get; init; } = value;
+}
+```
+
+The component is modified to use the `StringKeyValuePair` type:
+
+```diff
+- private List<KeyValuePair<string, string>> items = [];
++ private List<StringKeyValuePair> items = [];
+```
+
+```diff
+- items = JsonSerializer.Deserialize<List<KeyValuePair<string, string>>>(data, options)!;
++ items = JsonSerializer.Deserialize<List<StringKeyValuePair>>(data, options)!;
+```
+
+Because custom types are never trimmed by Blazor when an app is published, the component works as designed after the app is published.
 
 ## Additional resources
 
