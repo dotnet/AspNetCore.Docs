@@ -160,7 +160,7 @@ Run the app:
 
 ---
 
-Copy and paste the **Request URL** to the browser:  `https://localhost:<port>/weatherforecast`, where `<port>` is the randomly chosen port number set in **Properties/launchSettings.json** as the port for HTTPS, and displayed in the "Now listening" output messages when the app is run.
+* Copy and paste the **Request URL** to the browser:  `https://localhost:<port>/weatherforecast`, where `<port>` is the randomly chosen port number set in **Properties/launchSettings.json** as the port for HTTPS, and displayed in the "Now listening" output messages when the app is run.
 
 JSON similar to the following example is returned:
 
