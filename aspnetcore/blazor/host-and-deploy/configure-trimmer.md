@@ -89,9 +89,7 @@ When the app is published, <xref:System.Collections.Generic.KeyValuePair> is tri
 
 > :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Collections.Generic.KeyValuePair`2[System.String,System.String]":::
 
-<!-- To address lost types, we recommend taking any ***one*** of the three following approaches. -->
-
-To address lost types, we recommend taking **either** of the following approaches.
+To address lost types, consider the following approaches.
 
 ### Preserve the type as a dynamic dependency
 
