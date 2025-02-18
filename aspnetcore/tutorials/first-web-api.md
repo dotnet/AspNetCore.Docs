@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a controller-based web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 02/13/2025
+ms.date: 02/14/2025
 uid: tutorials/first-web-api
 ---
 
@@ -65,7 +65,6 @@ The following diagram shows the design of the app.
 
 This tutorial uses the following additional NuGet packages:
 
-
 * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database rather than an external one, simplifying this tutorial.
 * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
 
@@ -79,7 +78,7 @@ This tutorial uses the following additional NuGet packages:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Open the [integrated terminal](https://code.visualstudio.com/docs/terminal/basics).
 * Change directories (`cd`) to the folder that will contain the project folder.
 * Run the following commands:
 
@@ -105,27 +104,13 @@ This tutorial uses the following additional NuGet packages:
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-### Test the Project  
-
 The project template:
 
 * Creates a `WeatherForecast` API using controllers.
 * Adds the `Microsoft.AspNetCore.OpenApi` package for OpenAPI support as a reference in the project file **TodoApi.csproj**.
 * Adds OpenAPI services in **Program.cs** to automatically generate OpenAPI JSON documentation for the `WeatherForecast` API.
 
-You can access the OpenAPI JSON documentation for the `WeatherForecast` API while the project is running by navigating your browser to `https://localhost:<port>/openapi/v1.json`, where `<port>` is the randomly chosen port number set in **Properties/launchSettings.json** as the port for HTTPS, and displayed in the "Now listening" output messages when the app is run.
-
-#### Configure the Swagger UI endpoint for the OpenAPI documentation
-
-To configure [Swagger](xref:tutorials/web-api-help-pages-using-swagger) UI for testing the API, add the following highlighted code to the `Program.cs` file in the **TodoAPI** project:  
-
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?name=snippet_First_Add_SwaggerUI&highlight=16-19)]
-
-The preceding highlighted code:
-
-* Adds the Swagger UI as a service to the app with `app.UseSwaggerUI()`.
-* Sets the `SwaggerEndpoint()` option to the location of the OpenAPI documentation for this project.  
-* Ensures the Swagger UI is only available in the app development environment to limit information disclosure and security vulnerability.
+### Run the Project
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -167,11 +152,76 @@ Run the app:
 
 * <kbd>Ctrl</kbd>+*click* the HTTPS URL in the output to test the web app in a browser.
 
-After testing the web app in the following instruction, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to shut it down.
+---
+
+Copy and paste the **Request URL** to the browser:  `https://localhost:<port>/weatherforecast`, where `<port>` is the randomly chosen port number set in **Properties/launchSettings.json** as the port for HTTPS, and displayed in the "Now listening" output messages when the app is run.
+
+JSON similar to the following example is returned:
+
+```json
+[
+    {
+        "date":"2025-02-19",
+        "temperatureC":10,
+        "temperatureF":49,
+        "summary":"Scorching"
+    },
+    {
+        "date":"2025-02-20",
+        "temperatureC":32,
+        "temperatureF":89,
+        "summary":"Chilly"
+    },
+    {
+        "date":"2025-02-21",
+        "temperatureC":-2,
+        "temperatureF":29,
+        "summary":"Scorching"
+    },
+    {
+        "date":"2025-02-22",
+        "temperatureC":-19,
+        "temperatureF":-2,
+        "summary":"Sweltering"
+    },
+    {
+        "date":"2025-02-23",
+        "temperatureC":40,
+        "temperatureF":103,
+        "summary":"Hot"
+    }
+]
+```
+
+* View the generated OpenAPI specification for the `WeatherForecast` API while the project is running by navigating your browser to `https://localhost:<port>/openapi/v1.json`.
+
+The OpenAPI specification is a document in JSON format that describes the structure and capabilities of your API, including endpoints, request/response formats, parameters, and more. It's essentially a blueprint of your API that can be used by various tools to understand and interact with your API.
+
+# [Visual Studio](#tab/visual-studio)
+
+* Stop the app by selecting the red square "Stop" button in the Visual Studio toolbar, or press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the console window.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Stop the app by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal.
 
 ---
 
-#### View the Swagger UI
+### Configure the Swagger UI endpoint for the OpenAPI documentation
+
+To configure [Swagger](xref:tutorials/web-api-help-pages-using-swagger) UI for testing the API, add the following highlighted code to the `Program.cs` file in the **TodoAPI** project:  
+
+[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?name=snippet_First_Add_SwaggerUI&highlight=16-19)]
+
+The preceding highlighted code:
+
+* Adds the Swagger UI as a service to the app with `app.UseSwaggerUI()`.
+* Sets the `SwaggerEndpoint()` option to the location of the OpenAPI documentation for this project.  
+* Ensures the Swagger UI is only available in the app development environment to limit information disclosure and security vulnerability.
+
+### View the Swagger UI
+
+* Press Ctrl+F5 to run the app.
 
 * Navigate a browser to `https://localhost:<port>/swagger/index.html`, where `<port>` is the randomly chosen port number set in **Properties/launchSettings.json** as the port for HTTPS, and displayed in the "Now listening" output messages when the app is run.
 
@@ -188,44 +238,7 @@ The page displays:
 
 If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
 
-Copy and paste the **Request URL** to the browser:  `https://localhost:<port>/weatherforecast`
-
-JSON similar to the following example is returned:
-
-```json
-[
-    {
-        "date": "2019-07-16T19:04:05.7257911-06:00",
-        "temperatureC": 52,
-        "temperatureF": 125,
-        "summary": "Mild"
-    },
-    {
-        "date": "2019-07-17T19:04:05.7258461-06:00",
-        "temperatureC": 36,
-        "temperatureF": 96,
-        "summary": "Warm"
-    },
-    {
-        "date": "2019-07-18T19:04:05.7258467-06:00",
-        "temperatureC": 39,
-        "temperatureF": 102,
-        "summary": "Cool"
-    },
-    {
-        "date": "2019-07-19T19:04:05.7258471-06:00",
-        "temperatureC": 10,
-        "temperatureF": 49,
-        "summary": "Bracing"
-    },
-    {
-        "date": "2019-07-20T19:04:05.7258474-06:00",
-        "temperatureC": -1,
-        "temperatureF": 31,
-        "summary": "Chilly"
-    }
-]
-```
+* Stop the app.
 
 ## Add a model class
 
