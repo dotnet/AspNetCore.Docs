@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a controller-based web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 02/14/2025
+ms.date: 02/13/2025
 uid: tutorials/first-web-api
 ---
 
@@ -61,6 +61,12 @@ The following diagram shows the design of the app.
   * Confirm the checkbox for **Use controllers** is checked.
   * Select **Create**.
 
+The project template:
+
+* Creates a `WeatherForecast` API using controllers.
+* Adds the `Microsoft.AspNetCore.OpenApi` package for OpenAPI support as a reference in the project file **TodoApi.csproj**.
+* Adds OpenAPI services in **Program.cs** to automatically generate OpenAPI JSON documentation for the `WeatherForecast` API.
+
 ## Add NuGet packages
 
 This tutorial uses the following additional NuGet packages:
@@ -97,18 +103,18 @@ This tutorial uses the following additional NuGet packages:
     * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database so a real database won't be required for this tutorial.
     * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
   * Open the *TodoApi* folder in the current instance of Visual Studio Code.
+ 
+  The project template:
+
+    * Creates a `WeatherForecast` API using controllers.
+    * Adds the `Microsoft.AspNetCore.OpenApi` package for OpenAPI support as a reference in the project file **TodoApi.csproj**.
+    * Adds OpenAPI services in **Program.cs** to automatically generate OpenAPI JSON documentation for the `WeatherForecast` API.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 ---
 
 [!INCLUDE[](~/includes/package-reference.md)]
-
-The project template:
-
-* Creates a `WeatherForecast` API using controllers.
-* Adds the `Microsoft.AspNetCore.OpenApi` package for OpenAPI support as a reference in the project file **TodoApi.csproj**.
-* Adds OpenAPI services in **Program.cs** to automatically generate OpenAPI JSON documentation for the `WeatherForecast` API.
 
 ### Run the Project
 
