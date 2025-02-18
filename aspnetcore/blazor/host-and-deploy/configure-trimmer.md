@@ -95,6 +95,8 @@ To address lost types, we recommend taking **either** of the following approache
 
 ### Preserve the type as a dynamic dependency
 
+We recommend creating a dynamic dependency to preserve the type with the [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute).
+
 If not already present, add an `@using` directive for <xref:System.Diagnostics.CodeAnalysis?displayProperty=fullName>:
 
 ```razor
@@ -108,66 +110,33 @@ Add a [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.Dyn
 private List<KeyValuePair<string, string>> items = [];
 ```
 
-<!-- REVIEWER NOTE for the next bullet focused on using a Root Descriptor approach ...
-
-I tried many permutations of the linker config, but I can't get the Root Descriptor 
-approach to work. Is it doomed to fail in this scenario for some reason, or do I have 
-it set up incorrectly?
-
-### Use a [Root Descriptor](/dotnet/core/deploying/trimming/trimming-options#root-descriptors)
+### Use a Root Descriptor
 
 A [Root Descriptor](/dotnet/core/deploying/trimming/trimming-options#root-descriptors) can preserve the type.
 
-Add a `MyRoots.xml` file to the app with the type:
+Add a `ILLink.Descriptors.xml` file to the root of the app with the type:
 
 ```xml
 <linker>
-<assembly fullname="System.Runtime">
+  <assembly fullname="System.Runtime">
     <type fullname="System.Collections.Generic.KeyValuePair">
-    <method name="Create" />
+      <method signature="System.Void .ctor(System.String,System.String)" />
     </type>
-</assembly>
+  </assembly>
 </linker>
 ```
 
-Add a `TrimmerRootDescriptor` item to the server app's project file referencing the `MyRoots.xml` file:
+Add a `TrimmerRootDescriptor` item to the server app's project file referencing the `ILLink.Descriptors.xml` file:
 
 ```xml
 <ItemGroup>
-<TrimmerRootDescriptor Include="MyRoots.xml" />
+  <TrimmerRootDescriptor Include="$(MSBuildThisFileDirectory)ILLink.Descriptors.xml" />
 </ItemGroup>
 ```
 
--->
+### Custom types
 
-### Create a custom type
-
-The following modifications create a `StringKeyValuePair` type for use by the component.
-
-`StringKeyValuePair.cs`:
-
-```csharp
-[method: SetsRequiredMembers]
-public sealed class StringKeyValuePair(string key, string value)
-{
-    public required string Key { get; init; } = key;
-    public required string Value { get; init; } = value;
-}
-```
-
-The component is modified to use the `StringKeyValuePair` type:
-
-```diff
-- private List<KeyValuePair<string, string>> items = [];
-+ private List<StringKeyValuePair> items = [];
-```
-
-```diff
-- items = JsonSerializer.Deserialize<List<KeyValuePair<string, string>>>(data, options)!;
-+ items = JsonSerializer.Deserialize<List<StringKeyValuePair>>(data, options)!;
-```
-
-Because custom types are never trimmed by Blazor when an app is published, the component works as designed after the app is published.
+Custom types aren't trimmed by Blazor when an app is published, but we recommend [preserving types as dynamic dependencies](#preserve-the-type-as-a-dynamic-dependency) instead of creating custom types.
 
 ## Additional resources
 
