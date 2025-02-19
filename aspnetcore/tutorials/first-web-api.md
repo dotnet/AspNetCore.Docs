@@ -256,9 +256,9 @@ Because our project is using OpenAPI, we only use the NSwag package to generate 
 
 ### Configure Swagger middleware
 
-* In Program.cs add the following highlighted code after `app` is defined in line `var app = builder.Build();`
+* In Program.cs add the following highlighted code after the `app` is defined
 
-:::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi_SwaggerVersion/Program.cs" id="snippet_UseSwagger":::
+:::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi_SwaggerVersion/Program.cs" id="snippet_UseSwagger" highlight="6-9":::
 
 The previous code enables the Swagger middleware for serving the generated JSON document using the Swagger UI. Swagger is only enabled in a development environment. Enabling Swagger in a production environment could expose potentially sensitive details about the API's structure and implementation.
 
