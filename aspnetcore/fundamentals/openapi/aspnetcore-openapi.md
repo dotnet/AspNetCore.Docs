@@ -239,7 +239,9 @@ Create a new ASP.NET Core Web API (Native AOT) project.
 dotnet new webapiaot
 ```
 
-:::moniker range="< aspnetcore-10.0"
+:::moniker-end
+
+:::moniker range="= aspnetcore-9.0"
 
 Add the Microsoft.AspNetCore.OpenAPI package.
 
@@ -257,14 +259,12 @@ var app = builder.Build();
 + app.MapOpenApi();
 ```
 
-:::moniker end
+:::moniker-end
 
 Publish the app.
 
 ```console
 dotnet publish
 ```
-
-:::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
