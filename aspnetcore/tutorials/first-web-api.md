@@ -205,7 +205,7 @@ The OpenAPI specification is a document in JSON format that describes the struct
 
 # [Visual Studio](#tab/visual-studio)
 
-* Stop the app by selecting the red square "Stop" button in the Visual Studio toolbar, or press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the console window.
+* Stop the app by selecting the red square **Stop** button in the Visual Studio toolbar, or press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the console window.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
