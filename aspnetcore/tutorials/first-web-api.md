@@ -96,13 +96,13 @@ This tutorial uses the following additional NuGet packages:
    code -r ../TodoApi
    ```
 
-  These commands:
+These commands:
 
-  * Create a new web API project and open it in Visual Studio Code.
-  * Adds NuGet packages that are used in this tutorial:
-    * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database so a real database won't be required for this tutorial.
-    * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
-  * Open the *TodoApi* folder in the current instance of Visual Studio Code.
+* Create a new web API project and open it in Visual Studio Code.
+* Adds NuGet packages that are used in this tutorial:
+  * `Microsoft.EntityFrameworkCore.InMemory`: Enables Entity Framework Core to work with an in-memory database so a real database won't be required for this tutorial.
+  * `Swashbuckle.AspNetCore.SwaggerUI`: Provides a user interface for exploring and testing API endpoints interactively through Swagger.
+* Open the *TodoApi* folder in the current instance of Visual Studio Code.
  
   The project template:
 
