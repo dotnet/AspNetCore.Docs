@@ -56,8 +56,8 @@ The following diagram shows the design of the app.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
   * Confirm the **Framework** is **.NET 9.0 (Standard Term Support)**.
-  * Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
+  * Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
   * Select **Create**.
 
 ## Add a NuGet package
