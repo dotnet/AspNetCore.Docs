@@ -80,6 +80,8 @@ public class ServerMovieService(MovieContext db) : IMovieService
 }
 ```
 
+For more information on securing movie data access in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
+
 ### `BlazorWebAppCallWebApi_Weather`
 
 A weather data sample app that uses streaming rendering for weather data.
@@ -1007,8 +1009,20 @@ Various network tools are publicly available for testing web API backend apps di
 
 ### General
 
+:::moniker range=">= aspnetcore-8.0"
+
 * [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+* <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
+
+:::moniker-end
 
 ### Mitigation of overposting attacks
 
