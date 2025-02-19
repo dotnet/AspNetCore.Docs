@@ -116,7 +116,7 @@ This tutorial uses the following additional NuGet packages:
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-### Run the Project
+## Run the Project
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -213,7 +213,7 @@ The OpenAPI specification is a document in JSON format that describes the struct
 
 ---
 
-### Configure the Swagger UI endpoint for the OpenAPI documentation
+## Configure the Swagger UI endpoint for the OpenAPI documentation
 
 To configure [Swagger](xref:tutorials/web-api-help-pages-using-swagger) UI for testing the API, add the following highlighted code to the `Program.cs` file in the **TodoAPI** project:  
 
@@ -225,7 +225,7 @@ The preceding highlighted code:
 * Sets the `SwaggerEndpoint()` option to the location of the OpenAPI documentation for this project.  
 * Ensures the Swagger UI is only available in the app development environment to limit information disclosure and security vulnerability.
 
-### View the Swagger UI
+## View the Swagger UI
 
 * Press Ctrl+F5 to run the app.
 
