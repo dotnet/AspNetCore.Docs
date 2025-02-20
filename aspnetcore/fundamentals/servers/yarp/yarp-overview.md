@@ -10,8 +10,6 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-/en-us
-
 # Overview of YARP
 
 ## Introduction to YARP
@@ -29,7 +27,7 @@ A reverse proxy is a server that sits between client devices and backend servers
   - Versions of HTTP, ie, HTTP/1.1, HTTP/2, HTTP/3. The proxy can upgrade or downgrade HTTP versions.
   - Connection lifetimes, which enables features like long-polling on the backend while maintaining short client connections.
   - Control Over URL-Space: Incoming URLs can be transformed before forwarding to the backend. This abstracts the external URLs from how they are mapped to internal services. Internal service endpoints can change without affecting external URLs.
-- Security: Internal service endpoints can be hidden from external exposure, protecting against some types of cyber attacks such as [DDoS attacks](https://www.microsoft.com/en-us/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74) and [SQL injection ](/sql/relational-databases/security/sql-injection?view=sql-server-ver16).
+- Security: Internal service endpoints can be hidden from external exposure, protecting against some types of cyber attacks such as [DDoS attacks](https://www.microsoft.com/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74) and [SQL injection ](/sql/relational-databases/security/sql-injection).
 - Caching: Frequently requested resources can be cached to reduce the load on backend servers and improve response times.
 - Versioning: Different versions of an API can be supported using different URL mappings.
 
@@ -39,7 +37,7 @@ Using a reverse proxy offers several advantages:
 
 - Scalability: By distributing traffic across multiple servers, a reverse proxy helps scale apps to handle more users and higher loads. Backend servers scaled (added or removed) without impacting the client.
 - Improved performance: Caching and load balancing can significantly enhance the performance, latency, and responsiveness of apps.
-- Enhanced security: A reverse proxy can provide an additional layer of security by hiding backend servers and mitigating certain types of attacks such as [DDoS attacks](https://www.microsoft.com/en-us/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74) and [SQL injection ](/sql/relational-databases/security/sql-injection?view=sql-server-ver16). YARP can simplify authentication and authorization.
+- Enhanced security: A reverse proxy can provide an additional layer of security by hiding backend servers and mitigating certain types of attacks such as [DDoS attacks](https://www.microsoft.com/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74) and [SQL injection ](/sql/relational-databases/security/sql-injection). YARP can simplify authentication and authorization.
 - Simplified maintenance: Reverse proxies can handle [SSL/TSL Termination](/azure/application-gateway/ssl-overview) and other tasks, simplifying the configuration and maintenance of backend servers. For example, SSL certificates and security policies can be managed at the reverse proxy level instead of on each individual server.
 
 ## How a reverse proxy handles HTTP
