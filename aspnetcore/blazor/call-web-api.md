@@ -80,7 +80,7 @@ public class ServerMovieService(MovieContext db) : IMovieService
 }
 ```
 
-For more information on securing movie data access in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
+For more information on how to secure movie data in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
 
 ### `BlazorWebAppCallWebApi_Weather`
 
@@ -92,6 +92,40 @@ Calls a todo list web API from a Blazor WebAssembly app:
 
 * `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis).
 * `BlazorTodo`: A Blazor WebAssembly app that calls the web API with a preconfigured <xref:System.Net.Http.HttpClient> for todo list CRUD operations.
+
+### `BlazorWebAssemblyStandaloneWithIdentity`
+
+A standalone Blazor WebAssembly app secured with ASP.NET Core Identity:
+
+* `Backend`: A backend web API app that maintains a user identity store for ASP.NET Core Identity.
+* `BlazorWasmAuth`: A standalone Blazor WebAssembly frontend app with user authentication.
+
+The solution demonstrates calling a secure web API for the following:
+
+* Obtaining an authenticated user's roles.
+* Data processing for all authenticated users.
+* Data processing for authorized users (the user must be in the `Manager` role) via an [authorization policy](xref:security/authorization/policies).
+
+### `BlazorWebAppOidc`
+
+A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The solution includes a demonstration of obtaining weather data securely via a web API for a component that adopts client-side rendering (CSR).
+
+### `BlazorWebAppOidcBff`
+
+A Blazor Web App with global Auto interactivity that uses:
+
+* OIDC authentication with Microsoft Entra without using Entra-specific packages.
+* The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends), which creates separate backend services to be consumed by specific frontend apps or interfaces.
+
+The solution includes a demonstration of obtaining weather data securely via a web API for a component that adopts client-side rendering (CSR).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+### `BlazorWebAppEntra`
+
+A Blazor Web App with global Auto interactivity that uses [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra). The solution includes a demonstration of obtaining weather data securely via a web API for a component that adopts client-side rendering (CSR).
 
 :::moniker-end
 
