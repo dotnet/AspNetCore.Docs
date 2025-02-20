@@ -225,7 +225,7 @@ Run the app:
 
 ### Test the project
 
-# [Visual Studio](#tab/visual-studio) -->
+# [Visual Studio](#tab/visual-studio)
 
 This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
