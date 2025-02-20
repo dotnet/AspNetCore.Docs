@@ -12,7 +12,7 @@ uid: tutorials/first-web-api
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
+By [Tim Deschryver](https://timdeschryver.dev/) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-9.0"
 
