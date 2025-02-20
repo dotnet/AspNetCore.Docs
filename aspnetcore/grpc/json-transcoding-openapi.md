@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to configure gRPC JSON transcoding to generate OpenAPI.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: wpickett
-ms.date: 09/20/2022
+ms.date: 02/19/2025
 uid: grpc/json-transcoding-openapi
 ---
 # gRPC JSON transcoding documentation with Swagger / OpenAPI
