@@ -27,7 +27,7 @@ A reverse proxy is a server that sits between client devices and backend servers
   - Versions of HTTP, ie, HTTP/1.1, HTTP/2, HTTP/3. The proxy can upgrade or downgrade HTTP versions.
   - Connection lifetimes, which enables having long-lived connections on the backend while maintaining short client connections.
   - Control Over URL-Space: Incoming URLs can be transformed before forwarding to the backend. This abstracts the external URLs from how they are mapped to internal services. Internal service endpoints can change without affecting external URLs.
-- Security: Internal service endpoints can be hidden from external exposure, protecting against some types of cyber attacks such as [DDoS attacks](https://www.microsoft.com/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74) and [SQL injection ](/sql/relational-databases/security/sql-injection).
+- Security: Internal service endpoints can be hidden from external exposure, protecting against some types of cyber attacks such as [DDoS attacks](https://www.microsoft.com/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74).
 - Caching: Frequently requested resources can be cached to reduce the load on backend servers and improve response times.
 - Versioning: Different versions of an API can be supported using different URL mappings.
 
