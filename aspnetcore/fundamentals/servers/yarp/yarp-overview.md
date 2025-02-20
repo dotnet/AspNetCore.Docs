@@ -44,13 +44,13 @@ Using a reverse proxy offers several advantages:
 
 A reverse proxy handles HTTP requests and responses in the following manner:
 
-- Receiving  requests: The reverse proxy listens on specified ports and endpoints for incoming HTTP requests from clients. <!-- Added "ports"  -->
+- Receiving  requests: The reverse proxy listens on specified ports and endpoints for incoming HTTP requests from clients.
 - Terminating Connections: The inbound HTTP connections are terminated at the proxy and new connections are used for outbound requests to destinations.
 - Routing  requests: Based on predefined routing rules and configurations, the reverse proxy determines which backend server, or cluster of servers, should handle the request.
-- Forwarding  requests: The reverse proxy forwards the client request to the appropriate backend server
+- Forwarding  requests: The reverse proxy forwards the client request to the appropriate backend server, transforming the path and headers as necessary.
 - Connection pooling: The outbound connections are pooled to reduce connection overhead and make most use of HTTP 1.1 pipelining and parallel requests with HTTP/2 and HTTP/3.
 - Processing responses: The backend server processes the request and sends a response back to the reverse proxy.
-- Returning responses: The reverse proxy receives the response from the backend server and forwards it back to the client.
+- Returning responses: The reverse proxy receives the response from the backend server and forwards it back to the client, performing any necessary response transforms.
 
 This process ensures that the client interacts with the reverse proxy rather than directly with the backend servers, providing the benefits of load balancing, security, versioning, and more.
 
@@ -64,5 +64,3 @@ YARP offers several unique benefits that make it an attractive choice for develo
 - Active development: [YARP is actively maintained](https://github.com/dotnet/yarp) and developed by Microsoft, ensuring it stays up-to-date with the latest technologies and best practices.
 - Comprehensive maintained documentation: YARP comes with extensive documentation and examples, making it easy to get started and implement advanced features.
 - [Open source](https://github.com/dotnet/yarp). YARP and the YARP documetaion are open source. [Contributions](https://github.com/dotnet/yarp/blob/main/README.md), reviews, and feedback are welcome.
-
-<!-- summaries are banned unless there's a good reason to repeat what's in the doc -->
