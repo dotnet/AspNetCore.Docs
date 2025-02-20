@@ -269,7 +269,9 @@ View the generated OpenAPI specification for the `WeatherForecast` API while the
 
 The OpenAPI specification is a document in JSON format that describes the structure and capabilities of your API, including endpoints, request/response formats, parameters, and more. It's essentially a blueprint of your API that can be used by various tools to understand and interact with your API.
 
+<!--
 ---
+-->
 
 ## Add a model class
 
@@ -731,7 +733,6 @@ Examine the `DeleteTodoItem` method:
 ### Test the DeleteTodoItem method
 
 Use the `DELETE` method to delete the `TodoItem` that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
-
 
 # [Visual Studio](#tab/visual-studio)
 
