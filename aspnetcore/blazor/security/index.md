@@ -627,7 +627,7 @@ internal sealed class ClientWeatherForecaster(HttpClient httpClient)
 The client project maintains a `Weather` component that:
 
 * Enforces authorization with an [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute).
-* Uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>)to persist weather forecast data when the component transitions from static to interactive SSR on the server.
+* Uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to persist weather forecast data when the component transitions from static to interactive SSR on the server.
 
 ```razor
 @page "/weather"
@@ -703,7 +703,7 @@ else
 }
 ```
 
-The server project implements `IWeatherForecaster` as `ServerWeatherForecaster`:
+The server project implements `IWeatherForecaster` as `ServerWeatherForecaster`, which generates and returns mock weather data via its `GetWeatherForecastAsync` method:
 
 ```csharp
 public class ServerWeatherForecaster() : IWeatherForecaster
@@ -731,7 +731,7 @@ public class ServerWeatherForecaster() : IWeatherForecaster
 }
 ```
 
-The server project maintains a backend web API endpoint for client weather data calls:
+The server project maintains a secure web API endpoint for client weather data calls:
 
 ```csharp
 app.MapGet("/weather-forecast", (
@@ -743,10 +743,16 @@ app.MapGet("/weather-forecast", (
 
 Using the preceding approach, there are two systems in place to supply secure weather data to the user:
 
-* When the `Weather` component is rendered on the client, the `ClientWeatherForecaster` service is used to make a web API call to the secure `/weather-forecast` endpoint that applies the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method. If the user has the authority to access weather data, the endpoint uses the `ServerWeatherForecaster` service to call `GetWeatherForecastAsync`. The data is returned to the client. In summary, the security of the weather data is enforced by the server app's web API endpoint.
-* When the `Weather` component is rendered on the server, the `ServerWeatherForecaster` service's `GetWeatherForecastAsync` method is used directly to obtain the weather data. The security of the data is enforced by the component's [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute). In summary, the security of the weather data is enforced by the component.
+* When the `Weather` component is rendered *on the client*, the `ClientWeatherForecaster` service is used to make a web API call to the secure `/weather-forecast` endpoint that applies the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method. If the user has the authority to access weather data, the endpoint uses the `ServerWeatherForecaster` service to call `GetWeatherForecastAsync`. The data is returned to the client. In summary, the security of the weather data is enforced by the server app's web API endpoint.
+* When the `Weather` component is rendered *on the server*, the `ServerWeatherForecaster` service's `GetWeatherForecastAsync` method is used directly to obtain the weather data. The security of the data is enforced by the component's [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute). In summary, the security of the weather data is enforced by the component.
 
 The preceding approach works well when the security requirements of the web API match the security requirements of the component. For example, the same authorization policy can be applied to both the web API endpoint and the component.
+
+Examples in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)) that demonstrate the approach:
+
+* `BlazorWebAppOidc`
+* `BlazorWebAppOidcBff`
+* `BlazorWebAppEntra`
 
 Complex scenarios require additional planning and implementation. For example, a server web API that has multiple callers with different access permissions either requires a more sophisticated authorization policy or additional endpoints with different access requirements.
 

@@ -22,7 +22,7 @@ The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json
 
 ## Sample apps
 
-See the sample apps in the [`dotnet/blazor-samples`](https://github.com/dotnet/blazor-samples/) GitHub repository.
+For working examples, see the following sample apps in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
 ### `BlazorWebAppCallWebApi`
 
@@ -108,16 +108,16 @@ The solution demonstrates calling a secure web API for the following:
 
 ### `BlazorWebAppOidc`
 
-A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The solution includes a demonstration of obtaining weather data securely via a web API for a component that adopts client-side rendering (CSR).
+A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
 
 ### `BlazorWebAppOidcBff`
 
 A Blazor Web App with global Auto interactivity that uses:
 
 * OIDC authentication with Microsoft Entra without using Entra-specific packages.
-* The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends), which creates separate backend services to be consumed by specific frontend apps or interfaces.
+* The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends), which is a pattern of app development that creates backend services for frontend apps or interfaces.
 
-The solution includes a demonstration of obtaining weather data securely via a web API for a component that adopts client-side rendering (CSR).
+The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
 
 :::moniker-end
 
@@ -125,7 +125,7 @@ The solution includes a demonstration of obtaining weather data securely via a w
 
 ### `BlazorWebAppEntra`
 
-A Blazor Web App with global Auto interactivity that uses [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra). The solution includes a demonstration of obtaining weather data securely via a web API for a component that adopts client-side rendering (CSR).
+A Blazor Web App with global Auto interactivity that uses [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra). The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
 
 :::moniker-end
 
