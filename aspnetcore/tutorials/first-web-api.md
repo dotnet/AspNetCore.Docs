@@ -225,13 +225,11 @@ Run the app:
 
 ### Test the project
 
-<!--
 # [Visual Studio](#tab/visual-studio) -->
 
 This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
-<!--
-# [Visual Studio Code](#tab/visual-studio-code) -->
+# [Visual Studio Code](#tab/visual-studio-code) 
 
 ## Create API testing UI with Swagger
 
@@ -269,9 +267,7 @@ View the generated OpenAPI specification for the `WeatherForecast` API while the
 
 The OpenAPI specification is a document in JSON format that describes the structure and capabilities of your API, including endpoints, request/response formats, parameters, and more. It's essentially a blueprint of your API that can be used by various tools to understand and interact with your API.
 
-<!--
 ---
--->
 
 ## Add a model class
 
