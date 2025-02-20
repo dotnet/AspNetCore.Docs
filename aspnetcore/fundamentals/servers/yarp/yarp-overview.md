@@ -22,6 +22,8 @@ A reverse proxy is a server that sits between client devices and backend servers
 
 - Routing: Directs requests to different backend servers based on predefined rules, such as URL patterns or request headers. For example, `/images`, `/api`, `/db` requests can be can be routed image, api, and database severs.
 - Load Balancing: Distributes incoming traffic across multiple backend servers to prevent overloading a specific server. Distribution increases performance and reliability.
+- Scalability: By distributing traffic across multiple servers, a reverse proxy helps scale apps to handle more users and higher loads. Backend servers scaled (added or removed) without impacting the client.
+
 - [SSL/TSL Termination](/azure/application-gateway/ssl-overview): Offloads the TSL encryption and decryption processes from backend servers, reducing their workload.
 - Connection abstraction, decoupling and control over URL-space: Inbound requests from external clients and outbound responses from the backend are independent. This independence allows for differnt:
   - Versions of HTTP, ie, HTTP/1.1, HTTP/2, HTTP/3. The proxy can upgrade or downgrade HTTP versions.
@@ -30,14 +32,6 @@ A reverse proxy is a server that sits between client devices and backend servers
 - Security: Internal service endpoints can be hidden from external exposure, protecting against some types of cyber attacks such as [DDoS attacks](https://www.microsoft.com/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74).
 - Caching: Frequently requested resources can be cached to reduce the load on backend servers and improve response times.
 - Versioning: Different versions of an API can be supported using different URL mappings.
-
-## Why use a reverse proxy
-
-Using a reverse proxy offers several advantages:
-
-- Scalability: By distributing traffic across multiple servers, a reverse proxy helps scale apps to handle more users and higher loads. Backend servers scaled (added or removed) without impacting the client.
-- Improved performance: Caching and load balancing can significantly enhance the performance, latency, and responsiveness of apps.
-- Enhanced security: A reverse proxy can provide an additional layer of security by hiding backend servers and mitigating certain types of attacks such as [DDoS attacks](https://www.microsoft.com/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74) and [SQL injection ](/sql/relational-databases/security/sql-injection). YARP can simplify authentication and authorization.
 - Simplified maintenance: Reverse proxies can handle [SSL/TSL Termination](/azure/application-gateway/ssl-overview) and other tasks, simplifying the configuration and maintenance of backend servers. For example, SSL certificates and security policies can be managed at the reverse proxy level instead of on each individual server.
 
 ## How a reverse proxy handles HTTP
@@ -60,7 +54,8 @@ YARP offers several unique benefits that make it an attractive choice for develo
 
 - Customization: YARP is highly customizable, allowing developers to tailor the proxy to their specific needs with minimal effort.
 - Integration with .NET: Built on ASP.NET Core, YARP seamlessly integrates with the .NET ecosystem, making it an ideal choice for .NET developers.
-- Extensibility: YARP provides a rich set of extensibility points, enabling developers to add custom logic and features as needed.
+- Extensibility: YARP provides a rich set of extensibility points, enabling developers to add custom logic and features as needed, using familiar C# code.
+- Scalability: The direct forwarding extensibility option enables YARP to scale to support domain name and backend scaling that are not viable with most reverse proxies.
 - Active development: [YARP is actively maintained](https://github.com/dotnet/yarp) and developed by Microsoft, ensuring it stays up-to-date with the latest technologies and best practices.
 - Comprehensive maintained documentation: YARP comes with extensive documentation and examples, making it easy to get started and implement advanced features.
 - [Open source](https://github.com/dotnet/yarp). YARP and the YARP documetaion are open source. [Contributions](https://github.com/dotnet/yarp/blob/main/README.md), reviews, and feedback are welcome.
