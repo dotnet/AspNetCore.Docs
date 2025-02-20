@@ -350,7 +350,7 @@ These packages are required for scaffolding.
 
 Make sure that all of your changes so far are saved.
 
-* Control-click the **TodoAPI** project and select **Open in Terminal**.  The terminal opens at the `TodoAPI` project folder.
+* Right-click (or Command-click on macOS) the **TodoAPI** project and select **Open in Terminal**.  The terminal opens at the `TodoAPI` project folder.
 Run the following commands:
 
 ```dotnetcli
