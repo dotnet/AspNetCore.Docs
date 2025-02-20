@@ -25,7 +25,7 @@ A reverse proxy is a server that sits between client devices and backend servers
 - [SSL/TSL Termination](/azure/application-gateway/ssl-overview): Offloads the TSL encryption and decryption processes from backend servers, reducing their workload.
 - Connection abstraction, decoupling and control over URL-space: Inbound requests from external clients and outbound responses from the backend are independent. This independence allows for differnt:
   - Versions of HTTP, ie, HTTP/1.1, HTTP/2, HTTP/3. The proxy can upgrade or downgrade HTTP versions.
-  - Connection lifetimes, which enables features like long-polling on the backend while maintaining short client connections.
+  - Connection lifetimes, which enables having long-lived connections on the backend while maintaining short client connections.
   - Control Over URL-Space: Incoming URLs can be transformed before forwarding to the backend. This abstracts the external URLs from how they are mapped to internal services. Internal service endpoints can change without affecting external URLs.
 - Security: Internal service endpoints can be hidden from external exposure, protecting against some types of cyber attacks such as [DDoS attacks](https://www.microsoft.com/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74) and [SQL injection ](/sql/relational-databases/security/sql-injection).
 - Caching: Frequently requested resources can be cached to reduce the load on backend servers and improve response times.
@@ -48,7 +48,7 @@ A reverse proxy handles HTTP requests and responses in the following manner:
 - Terminating Connections: The inbound HTTP connections are terminated at the proxy and new connections are used for outbound requests to destinations.
 - Routing  requests: Based on predefined routing rules and configurations, the reverse proxy determines which backend server, or cluster of servers, should handle the request.
 - Forwarding  requests: The reverse proxy forwards the client request to the appropriate backend server, transforming the path and headers as necessary.
-- Connection pooling: The outbound connections are pooled to reduce connection overhead and make most use of HTTP 1.1 pipelining and parallel requests with HTTP/2 and HTTP/3.
+- Connection pooling: The outbound connections are pooled to reduce connection overhead and make most use of HTTP 1.1 reuse and parallel requests with HTTP/2 and HTTP/3.
 - Processing responses: The backend server processes the request and sends a response back to the reverse proxy.
 - Returning responses: The reverse proxy receives the response from the backend server and forwards it back to the client, performing any necessary response transforms.
 
