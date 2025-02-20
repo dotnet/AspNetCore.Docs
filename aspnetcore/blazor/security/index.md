@@ -587,7 +587,7 @@ For more information on client-side authentication, see <xref:blazor/security/we
 
 ## Secure data in Blazor Web Apps with Interactive Auto rendering
 
-When a Blazor Web App adopts server-side rendering (SSR) and client-side rendering (CSR), typically for components or an entire app that specifies the [Interactive Auto render mode](xref:blazor/components/render-modes#automatic-auto-rendering), authorization to access components and data is applied in *two places*. The component restricts access to itself (and any data that it obtains) when rendered on the server by virtue of an authorization attribute in the component's definition file (`@attribute [Authorize]`). When the component is rendered on the client, access to data is restricted via the server web API endpoints that are called from the client. Care must be taken when securing data access in both locations to prevent improper data access.
+When a Blazor Web App adopts server-side rendering (SSR) and client-side rendering (CSR) for components or an entire app that specifies the [Interactive Auto render mode](xref:blazor/components/render-modes#automatic-auto-rendering), authorization to access components and data is applied in *two places*. The component restricts access to itself (and any data that it obtains) when rendered on the server by virtue of an authorization attribute in the component's definition file (`@attribute [Authorize]`). When the component is rendered on the client, access to data is restricted via the server web API endpoints that are called from the client. Care must be taken when securing data access in both locations to prevent improper data access.
 
 Consider the following scenario where secure weather data is displayed by a component. The following example can be examined and demonstrated in a running sample app with either the `BlazorWebAppEntra` sample (.NET 9 or later) or the `BlazorWebAppOidc` sample (.NET 8 or later) in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
@@ -743,20 +743,20 @@ app.MapGet("/weather-forecast", (
 
 Using the preceding approach, there are two systems in place to supply secure weather data to the user:
 
-* When the `Weather` component is rendered *on the client*, the `ClientWeatherForecaster` service is used to make a web API call to the secure `/weather-forecast` endpoint that applies the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method. If the user has the authority to access weather data, the endpoint uses the `ServerWeatherForecaster` service to call `GetWeatherForecastAsync`. The data is returned to the client. In summary, the security of the weather data is enforced by the server app's web API endpoint.
 * When the `Weather` component is rendered *on the server*, the `ServerWeatherForecaster` service's `GetWeatherForecastAsync` method is used directly to obtain the weather data. The security of the data is enforced by the component's [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute). In summary, the security of the weather data is enforced by the component.
+* When the `Weather` component is rendered *on the client*, the `ClientWeatherForecaster` service is used to make a web API call to the secure `/weather-forecast` endpoint that applies the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method. If the user has the authority to access weather data, the endpoint uses the `ServerWeatherForecaster` service to call `GetWeatherForecastAsync`. The data is returned to the client. In summary, the security of the weather data is enforced by the server app's web API endpoint.
 
 The preceding approach works well when the security requirements of the web API match the security requirements of the component. For example, the same authorization policy can be applied to both the web API endpoint and the component.
 
-Examples in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)) that demonstrate the approach:
+Complex scenarios require additional planning and implementation. For example, a server web API that has multiple callers with different access permissions either requires a more sophisticated authorization policy, one or more additional policies, or additional endpoints with different access requirements.
+
+As you build security into apps that adopt Interactive Auto rendering, be mindful that the security implemented for the server's web API endpoints doesn't secure the server's service implementation that's used when a component is rendered on the server and accesses data through the service. Carefully weigh the difference between accessing data on the server during SSR versus accessing the data on a client web API request during CSR. Strategically apply security to avoid improper access to data.
+
+Examples in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)) that demonstrate the approach described in this section:
 
 * `BlazorWebAppOidc`
 * `BlazorWebAppOidcBff`
 * `BlazorWebAppEntra`
-
-Complex scenarios require additional planning and implementation. For example, a server web API that has multiple callers with different access permissions either requires a more sophisticated authorization policy or additional endpoints with different access requirements.
-
-As you build security into apps that adopt Interactive Auto rendering, be mindful that the security implemented for the server's web API endpoints doesn't secure the server's service implementation that's used when a component is rendered on the server and accesses data through the service. Carefully weigh the difference between accessing data on the server during server-side rendering (SSR) versus accessing the data on a client web API request during client-side rendering (CSR). Strategically apply security to avoid improper access to data.
 
 :::moniker-end
 
