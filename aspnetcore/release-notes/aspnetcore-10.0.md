@@ -54,7 +54,7 @@ Use the new [`RedirectHttpResult.IsLocalUrl(url)`](https://source.dot.net/#Micro
 - It doesn't have the [host](https://developer.mozilla.org/docs/Web/API/URL/host) or [authority](https://developer.mozilla.org/docs/Web/URI/Authority) section.
 - It has an [absolute path](https://developer.mozilla.org/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL#absolute_urls_vs._relative_urls).
 
-URLs using [virtual paths](/previous-versions/aspnet/ms178116(v=vs.100)) '~/' are also local.
+URLs using [virtual paths](/previous-versions/aspnet/ms178116(v=vs.100)) `"~/"` are also local.
 
 `IsLocalUrl` is useful for validating URLs before redirecting to them to prevent [open redirection attacks](https://brightsec.com/blog/open-redirect-vulnerabilities/).
 
