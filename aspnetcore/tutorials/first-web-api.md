@@ -794,7 +794,7 @@ The secret field needs to be hidden from this app, but an administrative app cou
 
 Verify you can post and get the secret field.
 
-Create a DTO model:
+Create a DTO model in a **Models/TodoItemsDTO.cs** file:
 
 :::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Models/TodoItemDTO.cs" :::
 
