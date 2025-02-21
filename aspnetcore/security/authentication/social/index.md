@@ -1,13 +1,13 @@
 ---
-title: Facebook and Google authentication in ASP.NET Core
+title: Using external login providers with Identity in ASP.NET Core
 author: rick-anderson
-description: Create an ASP.NET Core app using OAuth 2.0 with external authentication providers such as Facebook, Twitter, Google, and Microsoft.
+description: Create an ASP.NET Core app using Identity with external authentication providers such as Facebook, Twitter, Google, and Microsoft.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/07/2022
 uid: security/authentication/social/index
 ---
-# Facebook, Google, and external provider authentication in ASP.NET Core
+# External provider authentication in ASP.NET Core Identity
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
