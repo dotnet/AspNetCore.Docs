@@ -137,6 +137,18 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 > [!NOTE]
 > The preceding commands are .NET CLI commands, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
 
+Open the app's project file (`BlazorWebAppMovies.csproj`). Drop the `<IncludeAssets>` and `<PrivateAssets>` from the `Microsoft.EntityFrameworkCore.Design` package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
+
+```diff
+- <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
+-   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-   <PrivateAssets>all</PrivateAssets>
+- </PackageReference>
++ <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}" />
+```
+
+Save the project file.
+
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
@@ -176,6 +188,18 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 > [!IMPORTANT]
 > After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+Open the app's project file (`BlazorWebAppMovies.csproj`). Drop the `<IncludeAssets>` and `<PrivateAssets>` from the `Microsoft.EntityFrameworkCore.Design` package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
+
+```diff
+- <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
+-   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-   <PrivateAssets>all</PrivateAssets>
+- </PackageReference>
++ <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}" />
+```
+
+Save the project file.
 
 The preceding commands add:
 
