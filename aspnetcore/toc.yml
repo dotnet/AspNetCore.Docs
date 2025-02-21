@@ -1180,6 +1180,8 @@ items:
             uid: host-and-deploy/iis/http3
       - name: YARP
         items:
+          - name: YARP Overview
+            uid: fundamentals/servers/yarp/overview
           - name: Get started with YARP
             uid: fundamentals/servers/yarp/getting-started
           - name: Configuration
