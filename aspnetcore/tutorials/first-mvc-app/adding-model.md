@@ -61,6 +61,8 @@ Build the project as a check for compiler errors.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs` and `.csproj` files.
+
 [!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-9.md)]
 
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
