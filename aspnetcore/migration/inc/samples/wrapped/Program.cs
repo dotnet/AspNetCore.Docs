@@ -8,7 +8,7 @@ builder.Services.AddSystemWebAdapters()
         options.RegisterKey<int>("test-value");
         options.RegisterKey<SessionDemoModel>("SampleSessionItem");
     })
-    .WrapAspNetCoreSession();
+    .AddWrappedAspNetCoreSession();
 // </snippet_WrapAspNetCoreSession>
 
 var app = builder.Build();
