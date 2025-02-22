@@ -175,11 +175,11 @@ dotnet add package Microsoft.Extensions.ApiDescription.Server
 ```
 ---
 
-Upon installation, this package will automatically generate the Open API document(s) associated with the application during build and populate them into the application's output directory.
+Upon installation, this package will automatically generate the Open API document(s) associated with the application during build and populate them into the application's output directory. The OpenAPI document name is per default `{ProjectName}.json`. If multiple documents are registered, then it is post-fixed with the document name - unless the document name is `v1`. E.g., `{ProjectName}_{DocumentName}.json`.
 
 ```cli
 $ dotnet build
-$ cat bin/Debug/net9.0/{ProjectName}.json
+$ cat {ProjectName}/obj/{ProjectName}.json
 ```
 
 ### Customizing build-time document generation
