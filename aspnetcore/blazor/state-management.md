@@ -61,6 +61,7 @@ Common locations exist for persisting state:
 * [URL](#url-server)
 * [Browser storage](#browser-storage-server)
 * [In-memory state container service](#in-memory-state-container-service)
+* [Cascading values and parameters](#cascading-values-and-parameters)
 
 <h2 id="server-side-storage-server">Server-side storage</h2>
 
@@ -620,7 +621,8 @@ Common locations exist for persisting state:
 * [Server-side storage](#server-side-storage-wasm)
 * [URL](#url-wasm)
 * [Browser storage](#browser-storage-wasm)
-* [In-memory state container service](#in-memory-state-container-service) 
+* [In-memory state container service](#in-memory-state-container-service)
+* [Cascading values and parameters](#cascading-values-and-parameters)
 
 <h2 id="server-side-storage-wasm">Server-side storage</h2>
 
@@ -804,6 +806,16 @@ services.AddScoped<StateContainer>();
 ```
 
 The preceding components implement <xref:System.IDisposable>, and the `OnChange` delegates are unsubscribed in the `Dispose` methods, which are called by the framework when the components are disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+
+## Cascading values and parameters
+
+Use [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters) to manage state by flowing data from an ancestor Razor component to descendent components.
+
+:::moniker range=">= aspnetcore-8.0"
+
+Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values>.
+
+:::moniker-end
 
 ## Additional approaches
 
