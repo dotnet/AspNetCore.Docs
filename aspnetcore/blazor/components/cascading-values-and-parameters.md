@@ -100,7 +100,6 @@ In the following example:
 
 * `NotifyingDalek` implements <xref:System.ComponentModel.INotifyPropertyChanged> to notify clients that a property value has changed. When the `Units` property is set, the <xref:System.ComponentModel.PropertyChangedEventHandler> (`PropertyChanged`) is invoked.
 * The `SetUnitsToOneThousand` method can be triggered by subscribers to set `Units` to 1,000 with a simulated processing delay.
-* Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management) before adopting it in a production app with constrained processing and memory resources.
 
 `NotifyingDalek.cs`:
 
@@ -150,14 +149,39 @@ using System.ComponentModel;
 
 public static class CascadingValueSourceFactory
 {
-    public static CascadingValueSource<T> CreateNotifying<T>(
+    public static NotifyingCascadingValueSource<T> CreateNotifying<T>(
         T value, bool isFixed = false) where T : INotifyPropertyChanged
     {
-        var source = new CascadingValueSource<T>(value, isFixed);
+        return new NotifyingCascadingValueSource<T>(value, isFixed);
+    }
+}
 
-        value.PropertyChanged += (sender, args) => source.NotifyChangedAsync();
+public class NotifyingCascadingValueSource<T> : IDisposable where T : INotifyPropertyChanged
+{
+    private readonly T value;
+    private readonly CascadingValueSource<T> source;
 
-        return source;
+    public NotifyingCascadingValueSource(T value, bool isFixed = false)
+    {
+        this.value = value;
+        source = new CascadingValueSource<T>(value, isFixed);
+        this.value.PropertyChanged += OnValuePropertyChanged;
+    }
+
+    private void OnValuePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        source.NotifyChangedAsync();
+    }
+
+    public CascadingValueSource<T> Source => source;
+
+    public void Dispose()
+    {
+        value.PropertyChanged -= OnValuePropertyChanged;
+
+        // The following prevents derived types that introduce a
+        // finalizer from needing to re-implement IDisposable.
+        GC.SuppressFinalize(this);
     }
 }
 ```
@@ -247,6 +271,8 @@ To demonstrate multiple subscriber notifications, the following `DaleksMain` com
 
 <Daleks />
 ```
+
+Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management) before adopting it in a production app with constrained processing and memory resources.
 
 :::moniker-end
 
