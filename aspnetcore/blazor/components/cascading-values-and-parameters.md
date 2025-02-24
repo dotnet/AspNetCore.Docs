@@ -139,60 +139,64 @@ public class NotifyingDalek : INotifyPropertyChanged
 }
 ```
 
-The following `CascadingValueSourceFactory` has a `CreateNotifying` method to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> from a type that implements <xref:System.ComponentModel.INotifyPropertyChanged>.
+The following `CascadingValueServiceCollectionExtensions` creates a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> from a type that implements <xref:System.ComponentModel.INotifyPropertyChanged>.
 
-`CascadingValueSourceFactory.cs`:
+`CascadingValueServiceCollectionExtensions.cs`:
 
 ```csharp
-using Microsoft.AspNetCore.Components;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Components;
 
-public static class CascadingValueSourceFactory
+namespace Microsoft.Extensions.DependencyInjection;
+
+public static class CascadingApplicationStateServiceCollectionExtensions
 {
-    public static NotifyingCascadingValueSource<T> CreateNotifying<T>(
-        T value, bool isFixed = false) where T : INotifyPropertyChanged
+    public static IServiceCollection AddCascadingApplicationState<T>(
+        this IServiceCollection serviceCollection, T value, bool isFixed = false)
+        where T : INotifyPropertyChanged
     {
-        return new NotifyingCascadingValueSource<T>(value, isFixed);
-    }
-}
-
-public class NotifyingCascadingValueSource<T> : IDisposable where T : INotifyPropertyChanged
-{
-    private readonly T value;
-    private readonly CascadingValueSource<T> source;
-
-    public NotifyingCascadingValueSource(T value, bool isFixed = false)
-    {
-        this.value = value;
-        source = new CascadingValueSource<T>(value, isFixed);
-        this.value.PropertyChanged += OnValuePropertyChanged;
+        return serviceCollection.AddCascadingValue<T>(services =>
+        {
+            return new ApplicationStateCascadingValueSource<T>(value, isFixed);
+        });
     }
 
-    private void OnValuePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    private sealed class ApplicationStateCascadingValueSource<T>
+        : CascadingValueSource<T>, IDisposable where T : INotifyPropertyChanged
     {
-        _ = source.NotifyChangedAsync();
-    }
+        private readonly T value;
+        private readonly CascadingValueSource<T> source;
 
-    public CascadingValueSource<T> Source => source;
+        public ApplicationStateCascadingValueSource(T value, bool isFixed = false)
+            : base(value, isFixed = false)
+        {
+            this.value = value;
+            source = new CascadingValueSource<T>(value, isFixed);
+            this.value.PropertyChanged += HandlePropertyChanged;
+        }
 
-    public void Dispose()
-    {
-        value.PropertyChanged -= OnValuePropertyChanged;
+        private void HandlePropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            _ = NotifyChangedAsync();
+        }
 
-        // The following prevents derived types that introduce a
-        // finalizer from needing to re-implement IDisposable.
-        GC.SuppressFinalize(this);
+        public CascadingValueSource<T> Source => source;
+
+        public void Dispose()
+        {
+            value.PropertyChanged -= HandlePropertyChanged;
+        }
     }
 }
 ```
 
-The type's <xref:System.ComponentModel.PropertyChangedEventHandler> (`PropertyChanged`) calls the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> method to notify subscribers that the cascading value has changed. The <xref:System.Threading.Tasks.Task> is discarded when calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> because the call only represents the duration of the dispatch to the synchronous context. Exceptions are handled internally by dispatching them to the renderer within the context of whichever component threw when receiving the update. This is the same way that exceptions are processed with a <xref:Microsoft.AspNetCore.Components.CascadingValue%601>, which isn't notified about exceptions that happen inside notification recipients.
+The type's <xref:System.ComponentModel.PropertyChangedEventHandler> (`HandlePropertyChanged`) calls the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> method to notify subscribers that the cascading value has changed. The <xref:System.Threading.Tasks.Task> is discarded when calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> because the call only represents the duration of the dispatch to the synchronous context. Exceptions are handled internally by dispatching them to the renderer within the context of whichever component threw when receiving the update. This is the same way that exceptions are processed with a <xref:Microsoft.AspNetCore.Components.CascadingValue%601>, which isn't notified about exceptions that happen inside notification recipients. The event handler is disconnected in the `Dispose` method to prevent a memory leak.
 
-In the `Program` file&dagger;, `NotifyingDalek` is created as a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with an initial `Unit` value of 888 units:
+In the `Program` file&dagger;, `NotifyingDalek` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with an initial `Unit` value of 888 units:
 
 ```csharp
-builder.Services.AddCascadingValue(
-    s => CascadingValueSourceFactory.CreateNotifying(new NotifyingDalek() { Units = 888 }));
+builder.Services.AddCascadingApplicationState<NotifyingDalek>(
+    new NotifyingDalek() { Units = 888 });
 ```
 
 > [!NOTE]
@@ -272,7 +276,7 @@ To demonstrate multiple subscriber notifications, the following `DaleksMain` com
 <Daleks />
 ```
 
-Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management) before adopting it in a production app with constrained processing and memory resources.
+Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management) before adopting it in a production app with constrained processing and memory resources.
 
 :::moniker-end
 
