@@ -180,8 +180,6 @@ public static class CascadingApplicationStateServiceCollectionExtensions
             _ = NotifyChangedAsync();
         }
 
-        public CascadingValueSource<T> Source => source;
-
         public void Dispose()
         {
             value.PropertyChanged -= HandlePropertyChanged;
@@ -202,7 +200,7 @@ builder.Services.AddCascadingApplicationState<NotifyingDalek>(
 > [!NOTE]
 > &dagger;For Blazor Web App solutions consisting of server and client (`.Client`) projects:
 >
-> * The preceding `NotifyingDalek.cs` and `CascadingValueSourceFactory.cs` files are placed in the `.Client` project.
+> * The preceding `NotifyingDalek.cs` and `CascadingValueServiceCollectionExtensions.cs` files are placed in the `.Client` project.
 > * The preceding code is placed into the `Program` file of *both* projects.
 
 The following component is used to demonstrate how changing the value of `NotifyingDalek.Units` notifies subscribers.
