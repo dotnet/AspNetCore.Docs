@@ -170,7 +170,7 @@ public class NotifyingCascadingValueSource<T> : IDisposable where T : INotifyPro
 
     private void OnValuePropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        source.NotifyChangedAsync();
+        _ = source.NotifyChangedAsync();
     }
 
     public CascadingValueSource<T> Source => source;
