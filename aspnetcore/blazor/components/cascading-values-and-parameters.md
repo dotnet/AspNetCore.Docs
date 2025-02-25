@@ -75,7 +75,7 @@ The following `Daleks` component displays the cascaded values.
 
 :::moniker range=">= aspnetcore-8.0"
 
-In the following example, `Dalek` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource%601), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all recipients are subscribed for update notifications. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
+In the following example, `Dalek` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource%601), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If `false`, all recipients are subscribed for update notifications. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
 
 ```csharp
 builder.Services.AddCascadingValue(sp =>
@@ -131,7 +131,7 @@ public class NotifyingDalek : INotifyPropertyChanged
         [CallerMemberName] string? propertyName = default)
             => PropertyChanged?.Invoke(this, new(propertyName));
 
-    public async Task SetUnitsToOneThousand()
+    public async Task SetUnitsToOneThousandAsync()
     {
         // Simulate a three second delay in processing
         await Task.Delay(3000);
@@ -154,10 +154,10 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static class CascadingStateServiceCollectionExtensions
 {
     public static IServiceCollection AddCascadingStateNotifier<T>(
-        this IServiceCollection serviceCollection, T value, bool isFixed = false)
+        this IServiceCollection services, T state, bool isFixed = false)
         where T : INotifyPropertyChanged
     {
-        return serviceCollection.AddCascadingValue<T>(services =>
+        return serviceCollection.AddCascadingValue<T>(sp =>
         {
             return new CascadingStateValueSource<T>(value, isFixed);
         });
@@ -166,15 +166,15 @@ public static class CascadingStateServiceCollectionExtensions
     private sealed class CascadingStateValueSource<T>
         : CascadingValueSource<T>, IDisposable where T : INotifyPropertyChanged
     {
-        private readonly T value;
+        private readonly T state;
         private readonly CascadingValueSource<T> source;
 
-        public CascadingStateValueSource(T value, bool isFixed = false)
-            : base(value, isFixed = false)
+        public CascadingStateValueSource(T state, bool isFixed = false)
+            : base(state, isFixed = false)
         {
-            this.value = value;
-            source = new CascadingValueSource<T>(value, isFixed);
-            this.value.PropertyChanged += HandlePropertyChanged;
+            this.state= state;
+            source = new CascadingValueSource<T>(state, isFixed);
+            this.state.PropertyChanged += HandlePropertyChanged;
         }
 
         private void HandlePropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -184,7 +184,7 @@ public static class CascadingStateServiceCollectionExtensions
 
         public void Dispose()
         {
-            value.PropertyChanged -= HandlePropertyChanged;
+            state.PropertyChanged -= HandlePropertyChanged;
         }
     }
 }
@@ -252,7 +252,7 @@ The following component is used to demonstrate how changing the value of `Notify
     {
         if (Dalek is not null)
         {
-            await Dalek.SetUnitsToOneThousand();
+            await Dalek.SetUnitsToOneThousandAsync();
         }
     }
 }
@@ -278,7 +278,7 @@ To demonstrate multiple subscriber notifications, the following `DaleksMain` com
 
 Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management) before adopting it in a production app with constrained processing and memory resources.
 
-Any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state that they use. **Avoid creating a single large class representing the entire global application state.** Instead, create granular classes and cascade them separately with specific subscriptions to cascading parameters, ensuring that only components subscribed to a specific portion of the application state are affected by changes.
+Any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state they use. **Avoid creating a single large class representing the entire global application state.** Instead, create granular classes and cascade them separately with specific subscriptions to cascading parameters, ensuring that only components subscribed to a specific portion of the application state are affected by changes.
 
 :::moniker-end
 
