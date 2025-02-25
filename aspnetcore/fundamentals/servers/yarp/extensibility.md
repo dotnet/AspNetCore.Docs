@@ -21,7 +21,7 @@ There are 2 main styles of extensibility for YARP, depending on the routing beha
 
 YARP uses the concept of [Routes](xref:fundamentals/servers/yarp/config-files#routes), [Clusters](xref:fundamentals/servers/yarp/config-files#clusters) and Destinations. These can be supplied through [configuration files](xref:fundamentals/servers/yarp/config-files) or [directly through code](xref:fundamentals/servers/yarp/config-providers). Based on the routing rules, YARP picks a cluster and enumerates the possible destinations. It then uses the middleware pipeline to select the destination based on destination health, session affinity, load balancing etc.
 
-![Middleware pipeline diagram](./media/yarp-pipeline.png)
+![Middleware pipeline diagram](~/fundamentals/servers/media/yarp-pipeline.png)
 
 Most of the pre-built pipeline can be customized through code:
 
@@ -39,7 +39,7 @@ You can also change the pipeline definition to replace modules with your own imp
 
 If the YARP pipeline is too rigid for your needs, or the scale of routing rules and destinations is not suitable for loading into memory, then you can implement your own routing logic and use the HTTP Forwarder to direct requests to your chosen destination. The HttpForwarder component takes the HTTP context and forwards the request to the supplied destination.
 
-![HTTP forwarder diagram](./media/yarp-forwarder.png)
+![HTTP forwarder diagram](~/fundamentals/servers/media/yarp-forwarder.png)
 
 The transform component can still be used with the forwarder is needed.
 
