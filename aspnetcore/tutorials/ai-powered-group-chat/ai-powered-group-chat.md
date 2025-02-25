@@ -82,9 +82,15 @@ The `CompleteChatStreamingAsync()` method streams responses from OpenAI incremen
 The code uses a `StringBuilder` to accumulate the AI's response. It checks the length of the buffered content and sends it to the clients when it exceeds a certain threshold (e.g., 20 characters). This approach ensures that users see the AI’s response as it forms, mimicking a human-like typing effect. 
 ```csharp
 totalCompletion.Append(content);
+
 if (totalCompletion.Length - lastSentTokenLength > 20)
 {
-    await Clients.Group(groupName).SendAsync("newMessageWithId", "ChatGPT", id, totalCompletion.ToString());
+    await Clients.Group(groupName).SendAsync(
+        "newMessageWithId",
+        "ChatGPT",
+        id,
+        totalCompletion.ToString());
+
     lastSentTokenLength = totalCompletion.Length;
 }
 ``` 
