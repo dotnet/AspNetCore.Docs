@@ -75,7 +75,7 @@ The following `Daleks` component displays the cascaded values.
 
 :::moniker range=">= aspnetcore-8.0"
 
-In the following example, `Dalek` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource%601), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all recipients are subscribed for update notifications, which are issued by calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A>. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
+In the following example, `Dalek` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource%601), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If `false`, all recipients are subscribed for update notifications. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
 
 ```csharp
 builder.Services.AddCascadingValue(sp =>
@@ -93,6 +93,191 @@ builder.Services.AddCascadingValue(sp =>
 > Treat required services separately from cascading values, registering them separately from the cascaded type.
 >
 > Avoid using <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> to register a component type as a cascading value. Instead, wrap the `<Router>...</Router>` in the `Routes` component (`Components/Routes.razor`) with the component and adopt global interactive server-side rendering (interactive SSR). For an example, see the [`CascadingValue` component](#cascadingvalue-component) section.
+
+Calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> to issue update notifications can be used to signal multiple Razor component subscribers that a cascading value has changed. Notifications aren't possible for subscribers that adopt static server-side rendering (static SSR), so subscribers must adopt an interactive render mode. 
+
+In the following example:
+
+* `NotifyingDalek` implements <xref:System.ComponentModel.INotifyPropertyChanged> to notify clients that a property value has changed. When the `Units` property is set, the <xref:System.ComponentModel.PropertyChangedEventHandler> (`PropertyChanged`) is invoked.
+* The `SetUnitsToOneThousandAsync` method can be triggered by subscribers to set `Units` to 1,000 with a simulated processing delay.
+
+Keep in mind for production code that any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state they use. We recommend creating granular classes, cascading them separately with specific subscriptions to ensure that only components subscribed to a specific portion of the application state are affected by changes.
+
+`NotifyingDalek.cs`:
+
+```csharp
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+public class NotifyingDalek : INotifyPropertyChanged
+{
+    public event PropertyChangedEventHandler? PropertyChanged;
+    private int units;
+
+    public int Units
+    {
+        get => units;
+        set
+        {
+            if (units != value)
+            {
+                units = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    protected virtual void OnPropertyChanged(
+        [CallerMemberName] string? propertyName = default)
+            => PropertyChanged?.Invoke(this, new(propertyName));
+
+    public async Task SetUnitsToOneThousandAsync()
+    {
+        // Simulate a three second delay in processing
+        await Task.Delay(3000);
+
+        Units = 1000;
+    }
+}
+```
+
+The following `CascadingStateServiceCollectionExtensions` creates a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> from a type that implements <xref:System.ComponentModel.INotifyPropertyChanged>.
+
+`CascadingStateServiceCollectionExtensions.cs`:
+
+```csharp
+using System.ComponentModel;
+using Microsoft.AspNetCore.Components;
+
+namespace Microsoft.Extensions.DependencyInjection;
+
+public static class CascadingStateServiceCollectionExtensions
+{
+    public static IServiceCollection AddNotifyingCascadingValue<T>(
+        this IServiceCollection services, T state, bool isFixed = false)
+        where T : INotifyPropertyChanged
+    {
+        return services.AddCascadingValue<T>(sp =>
+        {
+            return new CascadingStateValueSource<T>(state, isFixed);
+        });
+    }
+
+    private sealed class CascadingStateValueSource<T>
+        : CascadingValueSource<T>, IDisposable where T : INotifyPropertyChanged
+    {
+        private readonly T state;
+        private readonly CascadingValueSource<T> source;
+
+        public CascadingStateValueSource(T state, bool isFixed = false)
+            : base(state, isFixed = false)
+        {
+            this.state = state;
+            source = new CascadingValueSource<T>(state, isFixed);
+            this.state.PropertyChanged += HandlePropertyChanged;
+        }
+
+        private void HandlePropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            _ = NotifyChangedAsync();
+        }
+
+        public void Dispose()
+        {
+            state.PropertyChanged -= HandlePropertyChanged;
+        }
+    }
+}
+```
+
+The type's <xref:System.ComponentModel.PropertyChangedEventHandler> (`HandlePropertyChanged`) calls the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> method to notify subscribers that the cascading value has changed. The <xref:System.Threading.Tasks.Task> is discarded when calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> because the call only represents the duration of the dispatch to the synchronous context. Exceptions are handled internally by dispatching them to the renderer within the context of whichever component threw when receiving the update. This is the same way that exceptions are processed with a <xref:Microsoft.AspNetCore.Components.CascadingValue%601>, which isn't notified about exceptions that happen inside notification recipients. The event handler is disconnected in the `Dispose` method to prevent a memory leak.
+
+In the `Program` file&dagger;, `NotifyingDalek` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with an initial `Unit` value of 888 units:
+
+```csharp
+builder.Services.AddNotifyingCascadingValue(new NotifyingDalek() { Units = 888 });
+```
+
+> [!NOTE]
+> &dagger;For Blazor Web App solutions consisting of server and client (`.Client`) projects:
+>
+> * The preceding `NotifyingDalek.cs` and `CascadingStateServiceCollectionExtensions.cs` files are placed in the `.Client` project.
+> * The preceding code is placed into each project's `Program` file.
+
+The following component is used to demonstrate how changing the value of `NotifyingDalek.Units` notifies subscribers.
+
+`Daleks.razor`:
+
+```razor
+<h2>Daleks component</h2>
+
+<div>
+    <b>Dalek Units:</b> @Dalek?.Units
+</div>
+
+<div>
+    <label>
+        <span style="font-weight:bold">New Unit Count:</span>
+        <input @bind="dalekCount" />
+    </label>
+    <button @onclick="Update">Update</button>
+</div>
+
+<div>
+    <button @onclick="SetOneThousandUnits">Set Units to 1,000</button>
+</div>
+
+<p>
+    Dalek© <a href="https://www.imdb.com/name/nm0622334/">Terry Nation</a><br>
+    Doctor Who© <a href="https://www.bbc.co.uk/programmes/b006q2x0">BBC</a>
+</p>
+
+@code {
+    private int dalekCount;
+
+    [CascadingParameter]
+    public NotifyingDalek? Dalek { get; set; }
+
+    private void Update()
+    {
+        if (Dalek is not null)
+        {
+            Dalek.Units = dalekCount;
+            dalekCount = 0;
+        }
+    }
+
+    private async Task SetOneThousandUnits()
+    {
+        if (Dalek is not null)
+        {
+            await Dalek.SetUnitsToOneThousandAsync();
+        }
+    }
+}
+```
+
+To demonstrate multiple subscriber notifications, the following `DaleksMain` component renders three `Daleks` components. When the unit count (`Units`) of one `Dalek` component is updated, the other two `Dalek` component subscribers are updated.
+
+`DaleksMain.razor`:
+
+```razor
+@page "/daleks-main"
+
+<PageTitle>Daleks Main</PageTitle>
+
+<h1>Daleks Main</h1>
+
+<Daleks />
+
+<Daleks />
+
+<Daleks />
+```
+
+Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management) before adopting it in a production app with constrained processing and memory resources.
+
+Any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state they use. **Avoid creating a single large class representing the entire global application state.** Instead, create granular classes and cascade them separately with specific subscriptions to cascading parameters, ensuring that only components subscribed to a specific portion of the application state are affected by changes.
 
 :::moniker-end
 
