@@ -75,7 +75,7 @@ public void UpdateGroupHistoryForAssistant(string groupName, string message)
 _history.GetOrAddGroupHistory(groupName, userName, message);
 ```
 
-### Streaming AI responses
+### Stream AI responses
 
 The `CompleteChatStreamingAsync()` method streams responses from OpenAI incrementally, which allows the app to send partial responses to the client as they are generated. 
 
