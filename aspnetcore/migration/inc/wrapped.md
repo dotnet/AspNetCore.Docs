@@ -4,7 +4,7 @@ description: Wrapped ASP.NET Core session state
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 11/9/2022
+ms.date: 2/24/2024
 ms.topic: article
 uid: migration/inc/wrapped
 ---
@@ -17,4 +17,4 @@ Configuration for ASP.NET Core would look similar to the following:
 
 :::code language="csharp" source="~/migration/inc/samples/wrapped/Program.cs" id="snippet_WrapAspNetCoreSession" :::
 
-The framework app would not need any changes to enable this behavior.
+The framework app doesn't need any changes to enable this behavior.
