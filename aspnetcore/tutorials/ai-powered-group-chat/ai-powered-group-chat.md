@@ -57,7 +57,7 @@ await foreach (var completion in chatClient.CompleteChatStreamingAsync(messagesI
 
 ### Maintaining context with history
 
-Every request to [Open AI's Chat Completions API](https://platform.openai.com/docs/guides/chat-completions) is stateless - Open AI doesn't store past interactions. In a chat application, what a user or an assistant has said is important for generating a response that's contextually relevant. We can achieve this by including chat history in every request to the Completions API. 
+Every request to [Open AI's Chat Completions API](https://platform.openai.com/docs/guides/chat-completions) is stateless—Open AI doesn't store past interactions. In a chat app, what a user or an assistant has said is important for generating a response that's contextually relevant. To achieve this, include chat history in every request to the Completions API. 
 
 The `GroupHistoryStore` class manages chat history for each group. It stores messages posted by both the users and AI assistants, ensuring that the conversation context is preserved across interactions. This context is crucial for generating coherent AI responses.
 
