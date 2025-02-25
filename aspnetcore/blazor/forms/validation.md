@@ -134,7 +134,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 * [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)
 * [`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs)
 
-If you need to enable data annotations validation support for an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> in code, call <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.EnableDataAnnotationsValidation%2A> with an injected <xref:System.IServiceProvider> (`@inject IServiceProvider ServiceProvider`) on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. For an advanced example, see the [`NotifyPropertyChangedValidationComponent` component in the ASP.NET Core Blazor framework's `BasicTestApp` (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/FormsTest/NotifyPropertyChangedValidationComponent.razor) (Note: The `new TestServiceProvider()` argument for the service provider in the example would be replaced with an injected <xref:System.IServiceProvider> in a production component).
+If you need to enable data annotations validation support for an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> in code, call <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.EnableDataAnnotationsValidation%2A> with an injected <xref:System.IServiceProvider> (`@inject IServiceProvider ServiceProvider`) on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. For an advanced example, see the [`NotifyPropertyChangedValidationComponent` component in the ASP.NET Core Blazor framework's `BasicTestApp` (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/FormsTest/NotifyPropertyChangedValidationComponent.razor). In a production version of the example, replace the `new TestServiceProvider()` argument for the service provider with an injected <xref:System.IServiceProvider>.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -148,7 +148,7 @@ In custom validation scenarios:
 * Validation manages a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for a form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
 * The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is used to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes).
 
-There are two general approaches for achieving custom validation:
+There are two general approaches for achieving custom validation, which are described in the next two sections of this article:
 
 * [Manual validation using the `OnValidationRequested` event](#manual-validation-using-the-onvalidationrequested-event): Manually validate a form's fields with data annotations validation and custom code for field checks when validation is requested via an event handler assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event.
 * [Validator components](#validator-components): One or more custom validator components can be used to process validation for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server validation).
@@ -201,8 +201,8 @@ In the `<EditForm>`, add a field for the `Id` property:
 
 After making the preceding changes, the form's behavior matches the following specification:
 
-* The data annotations validation on the `Id` property doesn't trigger a validation failure when the `Id` field merely loses focus. The validation executes when the user selects the submit button.
-* Any manual validation that you want to perform in the `HandleValidationRequested` method assigned to the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event executes when the user selects the form's submit button. In the existing code of the `Starship8` component example, the user must select one or the other checkbox to validate the form.
+* The data annotations validation on the `Id` property doesn't trigger a validation failure when the `Id` field merely loses focus. The validation executes when the user selects the **`Update`** button.
+* Any manual validation that you want to perform in the `HandleValidationRequested` method assigned to the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event executes when the user selects the form's **`Update`** button. In the existing code of the `Starship8` component example, the user must select either or both of the checkboxes to validate the form.
 * The form doesn't process the `Submit` method until both the data annotations and manual validation pass.
 
 ## Validator components
