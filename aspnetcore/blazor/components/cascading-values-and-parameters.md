@@ -139,9 +139,9 @@ public class NotifyingDalek : INotifyPropertyChanged
 }
 ```
 
-The following `CascadingValueServiceCollectionExtensions` creates a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> from a type that implements <xref:System.ComponentModel.INotifyPropertyChanged>.
+The following `CascadingStateServiceCollectionExtensions` creates a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> from a type that implements <xref:System.ComponentModel.INotifyPropertyChanged>.
 
-`CascadingValueServiceCollectionExtensions.cs`:
+`CascadingStateServiceCollectionExtensions.cs`:
 
 ```csharp
 using System.ComponentModel;
@@ -149,25 +149,25 @@ using Microsoft.AspNetCore.Components;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class CascadingApplicationStateServiceCollectionExtensions
+public static class CascadingStateServiceCollectionExtensions
 {
-    public static IServiceCollection AddCascadingApplicationState<T>(
+    public static IServiceCollection AddCascadingStateNotifier<T>(
         this IServiceCollection serviceCollection, T value, bool isFixed = false)
         where T : INotifyPropertyChanged
     {
         return serviceCollection.AddCascadingValue<T>(services =>
         {
-            return new ApplicationStateCascadingValueSource<T>(value, isFixed);
+            return new CascadingStateValueSource<T>(value, isFixed);
         });
     }
 
-    private sealed class ApplicationStateCascadingValueSource<T>
+    private sealed class CascadingStateValueSource<T>
         : CascadingValueSource<T>, IDisposable where T : INotifyPropertyChanged
     {
         private readonly T value;
         private readonly CascadingValueSource<T> source;
 
-        public ApplicationStateCascadingValueSource(T value, bool isFixed = false)
+        public CascadingStateValueSource(T value, bool isFixed = false)
             : base(value, isFixed = false)
         {
             this.value = value;
@@ -193,15 +193,15 @@ The type's <xref:System.ComponentModel.PropertyChangedEventHandler> (`HandleProp
 In the `Program` file&dagger;, `NotifyingDalek` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with an initial `Unit` value of 888 units:
 
 ```csharp
-builder.Services.AddCascadingApplicationState<NotifyingDalek>(
+builder.Services.AddCascadingStateNotifier<NotifyingDalek>(
     new NotifyingDalek() { Units = 888 });
 ```
 
 > [!NOTE]
 > &dagger;For Blazor Web App solutions consisting of server and client (`.Client`) projects:
 >
-> * The preceding `NotifyingDalek.cs` and `CascadingValueServiceCollectionExtensions.cs` files are placed in the `.Client` project.
-> * The preceding code is placed into the `Program` file of *both* projects.
+> * The preceding `NotifyingDalek.cs` and `CascadingStateServiceCollectionExtensions.cs` files are placed in the `.Client` project.
+> * The preceding code is placed into each project's `Program` file.
 
 The following component is used to demonstrate how changing the value of `NotifyingDalek.Units` notifies subscribers.
 
@@ -275,6 +275,8 @@ To demonstrate multiple subscriber notifications, the following `DaleksMain` com
 ```
 
 Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management) before adopting it in a production app with constrained processing and memory resources.
+
+Any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state that they use. **Avoid creating a single large class representing the entire global application state.** Instead, create granular classes and cascade them separately with specific subscriptions to cascading parameters, ensuring that only components subscribed to a specific portion of the application state are affected by changes.
 
 :::moniker-end
 
