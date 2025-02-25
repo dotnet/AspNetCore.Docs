@@ -129,10 +129,11 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
 dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
 
 > [!IMPORTANT]
-> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+> After the first nine commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
 > [!NOTE]
 > The preceding commands are .NET CLI commands, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
@@ -184,10 +185,11 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
 dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
 
 > [!IMPORTANT]
-> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+> After the first nine commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
 Open the app's project file (`BlazorWebAppMovies.csproj`). Drop the `<IncludeAssets>` and `<PrivateAssets>` from the `Microsoft.EntityFrameworkCore.Design` package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
 
