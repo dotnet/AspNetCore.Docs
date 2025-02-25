@@ -98,7 +98,7 @@ Calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyCha
 
 In the following example:
 
-* `NotifyingDalek` implements <xref:System.ComponentModel.INotifyPropertyChanged> to notify clients that a property value has changed. When the `Units` property is set, the <xref:System.ComponentModel.PropertyChangedEventHandler> (`PropertyChanged`) is invoked.
+* `NotifyingDalek` implements <xref:System.ComponentModel.INotifyPropertyChanged> to notify clients that a property value has changed. When the `Units` property is set, the <xref:System.ComponentModel.PropertyChangedEventHandler> (`PropertyChanged`) is invoked. Keep in mind for production code that any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state they use. We recommend creating granular classes, cascading them separately with specific subscriptions to ensure that only components subscribed to a specific portion of the application state are affected by changes.
 * The `SetUnitsToOneThousand` method can be triggered by subscribers to set `Units` to 1,000 with a simulated processing delay.
 
 `NotifyingDalek.cs`:
