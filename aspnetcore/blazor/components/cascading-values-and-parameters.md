@@ -157,7 +157,7 @@ public static class CascadingStateServiceCollectionExtensions
         this IServiceCollection services, T state, bool isFixed = false)
         where T : INotifyPropertyChanged
     {
-        return services.AddCascadingValue(sp =>
+        return services.AddCascadingValue<T>(sp =>
         {
             return new CascadingStateValueSource<T>(state, isFixed);
         });
