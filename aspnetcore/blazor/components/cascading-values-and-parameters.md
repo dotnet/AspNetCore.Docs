@@ -195,8 +195,7 @@ The type's <xref:System.ComponentModel.PropertyChangedEventHandler> (`HandleProp
 In the `Program` file&dagger;, `NotifyingDalek` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with an initial `Unit` value of 888 units:
 
 ```csharp
-builder.Services.AddNotifyingCascadingValue<NotifyingDalek>(
-    new NotifyingDalek() { Units = 888 });
+builder.Services.AddNotifyingCascadingValue(new NotifyingDalek() { Units = 888 });
 ```
 
 > [!NOTE]
