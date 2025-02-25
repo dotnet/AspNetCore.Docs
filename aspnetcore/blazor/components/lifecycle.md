@@ -769,6 +769,8 @@ Components shouldn't need to implement <xref:System.IDisposable> and <xref:Syste
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
 
+Additional information on this subject is available in the introductory remarks of <xref:blazor/components/sync-context>.
+
 ### Disposal of JavaScript interop object references
 
 Examples throughout the [JavaScript (JS) interop articles](xref:blazor/js-interop/index) demonstrate typical object disposal patterns:
@@ -950,6 +952,7 @@ The following component:
 
 For more information, see:
 
+* <xref:blazor/components/sync-context>
 * [Cleaning up unmanaged resources (.NET documentation)](/dotnet/standard/garbage-collection/unmanaged)
 * [Null-conditional operators ?. and ?[]](/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
 
