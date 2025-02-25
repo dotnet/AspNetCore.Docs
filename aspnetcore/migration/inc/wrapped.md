@@ -4,7 +4,7 @@ description: Wrapped ASP.NET Core session state
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 2/24/2024
+ms.date: 2/24/2025
 ms.topic: article
 uid: migration/inc/wrapped
 ---
