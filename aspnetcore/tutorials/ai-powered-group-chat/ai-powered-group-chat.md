@@ -77,7 +77,7 @@ _history.GetOrAddGroupHistory(groupName, userName, message);
 
 ### Streaming AI responses
 
-The `CompleteChatStreamingAsync()` method streams responses from OpenAI incrementally, which allows the application to send partial responses to the client as they are generated. 
+The `CompleteChatStreamingAsync()` method streams responses from OpenAI incrementally, which allows the app to send partial responses to the client as they are generated. 
 
 The code uses a `StringBuilder` to accumulate the AI's response. It checks the length of the buffered content and sends it to the clients when it exceeds a certain threshold (e.g., 20 characters). This approach ensures that users see the AI’s response as it forms, mimicking a human-like typing effect. 
 ```csharp
