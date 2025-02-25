@@ -46,11 +46,17 @@ In this section, we'll walk through the key parts of the code that integrate Sig
 The `GroupChatHub` class manages user connections, message broadcasting, and AI interactions. When a user sends a message starting with `@gpt`, the hub forwards it to OpenAI, which generates a response. The AI's response is streamed back to the group in real-time.
 ```csharp
 var chatClient = _openAI.GetChatClient(_options.Model);
-await foreach (var completion in chatClient.CompleteChatStreamingAsync(messagesInludeHistory))
+
+await foreach (var completion in 
+    chatClient.CompleteChatStreamingAsync(messagesInludeHistory))
 {   
     // ...
     // Buffering and sending the AI's response in chunks
-    await Clients.Group(groupName).SendAsync("newMessageWithId", "ChatGPT", id, totalCompletion.ToString());
+    await Clients.Group(groupName).SendAsync(
+        "newMessageWithId",
+        "ChatGPT",
+        id,
+        totalCompletion.ToString());
     // ...
 }
 ```
