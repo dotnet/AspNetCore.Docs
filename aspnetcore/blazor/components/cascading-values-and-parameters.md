@@ -99,7 +99,7 @@ Calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyCha
 In the following example:
 
 * `NotifyingDalek` implements <xref:System.ComponentModel.INotifyPropertyChanged> to notify clients that a property value has changed. When the `Units` property is set, the <xref:System.ComponentModel.PropertyChangedEventHandler> (`PropertyChanged`) is invoked.
-* The `SetUnitsToOneThousand` method can be triggered by subscribers to set `Units` to 1,000 with a simulated processing delay.
+* The `SetUnitsToOneThousandAsync` method can be triggered by subscribers to set `Units` to 1,000 with a simulated processing delay.
 
 Keep in mind for production code that any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state they use. We recommend creating granular classes, cascading them separately with specific subscriptions to ensure that only components subscribed to a specific portion of the application state are affected by changes.
 
@@ -153,13 +153,13 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static class CascadingStateServiceCollectionExtensions
 {
-    public static IServiceCollection AddCascadingStateNotifier<T>(
+    public static IServiceCollection AddNotifyingCascadingValue<T>(
         this IServiceCollection services, T state, bool isFixed = false)
         where T : INotifyPropertyChanged
     {
-        return serviceCollection.AddCascadingValue<T>(sp =>
+        return services.AddCascadingValue(sp =>
         {
-            return new CascadingStateValueSource<T>(value, isFixed);
+            return new CascadingStateValueSource<T>(state, isFixed);
         });
     }
 
@@ -172,7 +172,7 @@ public static class CascadingStateServiceCollectionExtensions
         public CascadingStateValueSource(T state, bool isFixed = false)
             : base(state, isFixed = false)
         {
-            this.state= state;
+            this.state = state;
             source = new CascadingValueSource<T>(state, isFixed);
             this.state.PropertyChanged += HandlePropertyChanged;
         }
@@ -195,7 +195,7 @@ The type's <xref:System.ComponentModel.PropertyChangedEventHandler> (`HandleProp
 In the `Program` file&dagger;, `NotifyingDalek` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with an initial `Unit` value of 888 units:
 
 ```csharp
-builder.Services.AddCascadingStateNotifier<NotifyingDalek>(
+builder.Services.AddNotifyingCascadingValue<NotifyingDalek>(
     new NotifyingDalek() { Units = 888 });
 ```
 
