@@ -25,12 +25,12 @@ YARP uses the concept of [Routes](xref:fundamentals/servers/yarp/config-files#ro
 
 Most of the pre-built pipeline can be customized through code:
 
-- [Configuration Providers](./config-providers.md)
-- [Destination Enumeration](./destination-resolvers.md)
-- [Session Affinity](./session-affinity.md)
-- [Load Balancing](./load-balancing.md)
-- [Health Checks](./dests-health-checks.md)
-- [Request Transforms](./extensibility-transforms.md)
+- [Configuration Providers](xref:fundamentals/servers/yarp/config-providers)
+- [Destination Enumeration](xref:fundamentals/servers/yarp/destination-resolvers)
+- [Session Affinity](xref:fundamentals/servers/yarp/session-affinity)
+- [Load Balancing](xref:fundamentals/servers/yarp/load-balancing)
+- [Health Checks](xref:fundamentals/servers/yarp/dests-health-checks)
+- [Request Transforms](xref:fundamentals/servers/yarp/extensibility-transforms)
 - [HttpClient configuration](./http-client-config.md#code-configuration)
 
 You can also change the pipeline definition to replace modules with your own implementation(s) or add additional modules as needed. For more information see [Middleware](xref:fundamentals/servers/yarp/middleware).
