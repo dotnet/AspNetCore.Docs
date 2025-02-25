@@ -18,7 +18,7 @@ This tutorial guides you through building a real-time group chat application. Am
 We use OpenAI for generating intelligent, context-aware responses and SignalR for delivering the response to users in a group. You can find the complete code [in this repo](https://github.com/microsoft/SignalR-Samples-AI/tree/main/AIStreaming).
 
 ## Dependencies
-You can use either Azure OpenAI or OpenAI for this project. Make sure to update the `endpoint` and `key` in `appsetting.json`. `OpenAIExtensions` reads the configuration when the app starts and they are required to authenticate and use either service.
+You can use either Azure OpenAI or OpenAI for this project. Make sure to update the `endpoint` and `key` in `appsettings.json`. `OpenAIExtensions` reads the configuration when the app starts, and the configuration values for `endpoint` and `key` are required to authenticate and use either service.
 
 # [OpenAI](#tab/open-ai)
 To build this application, you will need the following:
