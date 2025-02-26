@@ -62,7 +62,7 @@ The default web app templates call the <xref:Microsoft.AspNetCore.Builder.Static
 
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=15)]
 
-The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references `wwwroot/images/MyImage.jpg`:
+The parameterless `MapStaticAssets` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references `wwwroot/images/MyImage.jpg`:
 
 ```html
 <img src="~/images/MyImage.jpg" class="img" alt="My image" />
