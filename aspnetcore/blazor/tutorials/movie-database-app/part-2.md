@@ -145,25 +145,25 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 > 
 > Adopt ***either*** of the following approaches:
 >
-> * Use a .NET SDK for .NET 10 or later. .NET 10 is currently in preview and is secheduled for release in November, 2025.
+> * Use a .NET SDK for [.NET 10](https://dotnet.microsoft.com/download/dotnet/10.0) or later. .NET 10 is currently in preview and is secheduled for release in November, 2025. If you obtain and use the .NET 10 SDK for this tutorial, you can leave the app targeting .NET 9.
 >
 > * Add a package reference to the app for the [`Microsoft.EntityFrameworkCore.Design`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design) NuGet package:
 >
-> ```dotnetcli
-> dotnet add package Microsoft.EntityFrameworkCore.Design
-> ```
+>   ```dotnetcli
+>   dotnet add package Microsoft.EntityFrameworkCore.Design
+>   ```
 > 
-> Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
+>   Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
 >
-> ```diff
-> <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
->   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
->   <PrivateAssets>all</PrivateAssets>
-> + <Publish>true</Publish>
-> </PackageReference>
-> ```
+>   ```diff
+>   <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
+>     <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+>     <PrivateAssets>all</PrivateAssets>
+>   + <Publish>true</Publish>
+>   </PackageReference>
+>   ```
 >
-> The preceding update to the package reference is a workaround for a breaking change in .NET 9 EF Core tooling. The change to the package reference can be reverted in apps that are eventually updated to .NET 10 or later. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
+>   The preceding update to the package reference is a workaround for a breaking change in .NET 9 EF Core tooling. The change to the package reference can be reverted in apps that are eventually updated to .NET 10 or later. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
 
 :::moniker-end
 
