@@ -119,6 +119,27 @@ Paste all of the following commands at the prompt (`>`) of the **Terminal**. Whe
 
 When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
 
+:::moniker range=">= aspnetcore-10.0"
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+```
+
+> [!IMPORTANT]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
+
 ```dotnetcli
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-ef
@@ -135,18 +156,41 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 > [!IMPORTANT]
 > After the first nine commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
-> [!NOTE]
-> The preceding commands are .NET CLI commands, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
-
-Open the app's project file (`BlazorWebAppMovies.csproj`). Drop the `<IncludeAssets>` and `<PrivateAssets>` from the `Microsoft.EntityFrameworkCore.Design` package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
+Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
 
 ```diff
-- <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
--   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
--   <PrivateAssets>all</PrivateAssets>
-- </PackageReference>
-+ <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+  <PrivateAssets>all</PrivateAssets>
++ <Publish>true</Publish>
+</PackageReference>
 ```
+
+The preceding update to the package reference is a workaround for a breaking change in .NET 9 EF Core tooling. The change to the package reference can be reverted in apps that are eventually updated to .NET 10 or later. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+```
+
+> [!IMPORTANT]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+:::moniker-end
+
+> [!NOTE]
+> The preceding commands are .NET CLI commands, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
 
 Save the project file.
 
@@ -175,6 +219,27 @@ Paste all of the following commands  at the prompt (`>`) of the command shell. W
 
 When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
 
+:::moniker range=">= aspnetcore-10.0"
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+```
+
+> [!IMPORTANT]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
+
 ```dotnetcli
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-ef
@@ -191,15 +256,38 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 > [!IMPORTANT]
 > After the first nine commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
-Open the app's project file (`BlazorWebAppMovies.csproj`). Drop the `<IncludeAssets>` and `<PrivateAssets>` from the `Microsoft.EntityFrameworkCore.Design` package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
+Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
 
 ```diff
-- <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
--   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
--   <PrivateAssets>all</PrivateAssets>
-- </PackageReference>
-+ <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+  <PrivateAssets>all</PrivateAssets>
++ <Publish>true</Publish>
+</PackageReference>
 ```
+
+The preceding update to the package reference is a workaround for a breaking change in .NET 9 EF Core tooling. The change to the package reference can be reverted in apps that are eventually updated to .NET 10 or later. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+```
+
+> [!IMPORTANT]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+:::moniker-end
 
 Save the project file.
 
@@ -312,6 +400,12 @@ The scaffolding process creates the following component files and movie database
 * `Data/BlazorWebAppMoviesContext.cs`: Database context file (<xref:Microsoft.EntityFrameworkCore.DbContext>).
 
 The component files in the `MoviePages` folder are described in greater detail in the next part of this tutorial. The database context is described later in this article.
+
+:::zone pivot="vs"
+
+If the `MoviePages` folder and assets aren't present after scaffolding, return to the [Scaffold the model](#scaffold-the-model) section and rescaffold the `Movie` model, making sure that you select the **Razor Components using Entity Framework (CRUD)** scaffolder under **Installed** > **Common** > **Blazor** > **Razor Component** in the **Add New Scaffold Item** dialog.
+
+:::zone-end
 
 ASP.NET Core is built with dependency injection, which is a software design pattern for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies. Services, such as the EF Core database context, are registered with dependency injection during application startup. These services are injected into Razor components for use by the components.
 
