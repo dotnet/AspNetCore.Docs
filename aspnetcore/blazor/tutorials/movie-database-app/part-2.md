@@ -313,6 +313,12 @@ The scaffolding process creates the following component files and movie database
 
 The component files in the `MoviePages` folder are described in greater detail in the next part of this tutorial. The database context is described later in this article.
 
+:::zone pivot="vs"
+
+If the `MoviePages` folder and assets aren't present after scaffolding, return to the [Scaffold the model](#scaffold-the-model) section and rescaffold the `Movie` model, making sure that you select the **Razor Components using Entity Framework (CRUD)** scaffolder under **Installed** > **Common** > **Blazor** > **Razor Component** in the **Add New Scaffold Item** dialog.
+
+:::zone-end
+
 ASP.NET Core is built with dependency injection, which is a software design pattern for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies. Services, such as the EF Core database context, are registered with dependency injection during application startup. These services are injected into Razor components for use by the components.
 
 The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is a Razor component for efficiently displaying data in tabular form. The scaffolder places a `QuickGrid` component in the `Index` component (`Components/Pages/Index.razor`) to display movie entities. Calling <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection adds an EF Core adapter for QuickGrid to recognize EF Core-supplied <xref:System.Linq.IQueryable%601> instances and to resolve database queries asynchronously for efficiency.
