@@ -15,8 +15,6 @@ builder.WebHost.UseNamedPipes(options =>
 {
     options.CreateNamedPipeServerStream = (context) =>
     {
-        var pipeOptions = PipeOptions.None; // Essential!
-
         var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndPoint.PipeName);
 
         return NamedPipeServerStreamAcl.Create(context.NamedPipeEndPoint.PipeName, PipeDirection.InOut,
