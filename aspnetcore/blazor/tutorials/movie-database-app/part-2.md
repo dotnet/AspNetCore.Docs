@@ -138,7 +138,7 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 :::moniker-end
 
-:::moniker range="= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
 
 ```dotnetcli
 dotnet tool install --global dotnet-aspnet-codegenerator
@@ -238,7 +238,7 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 :::moniker-end
 
-:::moniker range="= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
 
 ```dotnetcli
 dotnet tool install --global dotnet-aspnet-codegenerator
