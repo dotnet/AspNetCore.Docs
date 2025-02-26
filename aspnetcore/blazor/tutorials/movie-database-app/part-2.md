@@ -163,7 +163,7 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 >   </PackageReference>
 >   ```
 >
->   The preceding update to the package reference is a workaround for a breaking change in .NET 9 EF Core tooling. The change to the package reference can be reverted in apps that are eventually updated to .NET 10 or later. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
+>   The preceding update to the package reference is a workaround for a breaking change in .NET 9 EF Core tooling. The entire package reference can be removed in apps that are eventually updated to .NET 10 or later. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
 
 :::moniker-end
 
@@ -197,73 +197,36 @@ Paste all of the following commands  at the prompt (`>`) of the command shell. W
 
 When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
 
-:::moniker range=">= aspnetcore-10.0"
-
-```dotnetcli
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-ef
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
-dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-```
-
-> [!IMPORTANT]
-> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
-
-:::moniker-end
-
 :::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
 
-```dotnetcli
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-ef
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
-dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.Design
-```
+<!-- UPDATE 10.0 - Update the first bullet. -->
 
 > [!IMPORTANT]
-> After the first nine commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
-
-Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
-
-```diff
-<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
-  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-  <PrivateAssets>all</PrivateAssets>
-+ <Publish>true</Publish>
-</PackageReference>
-```
-
-The preceding update to the package reference is a workaround for a breaking change in .NET 9 EF Core tooling. The change to the package reference can be reverted in apps that are eventually updated to .NET 10 or later. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-```dotnetcli
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-ef
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
-dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-```
-
-> [!IMPORTANT]
-> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+> If using the .NET 9 SDK, a breaking change in EF Core tooling prevents scaffolding from executing with the following exception:
+>
+> > :::no-loc text="Could not load file or assembly 'Microsoft.EntityFrameworkCore.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.":::
+> 
+> Adopt ***either*** of the following approaches:
+>
+> * Use a .NET SDK for [.NET 10](https://dotnet.microsoft.com/download/dotnet/10.0) or later. .NET 10 is currently in preview and is secheduled for release in November, 2025. If you obtain and use the .NET 10 SDK for this tutorial, you can leave the app targeting .NET 9.
+>
+> * Add a package reference to the app for the [`Microsoft.EntityFrameworkCore.Design`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design) NuGet package:
+>
+>   ```dotnetcli
+>   dotnet add package Microsoft.EntityFrameworkCore.Design
+>   ```
+> 
+>   Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
+>
+>   ```diff
+>   <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
+>     <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+>     <PrivateAssets>all</PrivateAssets>
+>   + <Publish>true</Publish>
+>   </PackageReference>
+>   ```
+>
+>   The preceding update to the package reference is a workaround for a breaking change in .NET 9 EF Core tooling. The entire package reference can be removed in apps that are eventually updated to .NET 10 or later. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
 
 :::moniker-end
 
