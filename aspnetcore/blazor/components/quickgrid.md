@@ -183,9 +183,9 @@ Alternatively, use the following CSS styling approach:
 
 For more information on using `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) with CSS isolation, see <xref:blazor/components/css-isolation#child-component-support>.
 
-## Custom attributes and styles
+## Custom attributes and s
 
-QuickGrid also supports passing custom attributes and style classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:
+QuickGrid also supports passing custom attributes and  classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:
 
 ```razor
 <QuickGrid Items="..." custom-attribute="value" Class="custom-class">
@@ -202,18 +202,18 @@ Apply a stylesheet class to a row of the grid based on the row item using the `R
 In the following example:
 
 * A row item is represented by the `Person` [record](/dotnet/csharp/language-reference/builtin-types/record). The `Person` record includes a `FirstName` property.
-* The `HighlightJulie` method applies the `highlight` class styles to any row where the person's first name is "`Julie`."
+* The `GetRowCssClass` method applies the `highlightRow` class styles to any row where the person's first name is "`Julie`."
 
 ```razor
-<QuickGrid ... RowClass="HighlightJulie">
+<QuickGrid ... RowClass="GetRowCssClass">
     ...
 </QuickGrid>
 
 @code {
     private record Person(int PersonId, string FirstName, string LastName);
 
-    private string HighlightJulie(Person person) =>
-        person.FirstName == "Julie" ? "highlight" : null;
+    private string GetRowCssClass(Person person) =>
+        person.FirstName == "Julie" ? "highlightRow" : null;
 }
 ```
 
