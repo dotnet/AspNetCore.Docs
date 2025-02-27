@@ -1,17 +1,23 @@
 ---
-title: Build an AI-Powered Group Chat with SignalR and OpenAI
+title: Sample AI-Powered Group Chat with SignalR and OpenAI
 author: kevinguo-ed
 description: A tutorial explaining how SignalR and OpenAI are used together to build an AI-powered group chat
 ms.author: kevinguo
-ms.date: 02/26/2025
+ms.date: 02/25/2025
 uid: tutorials/ai-powered-group-chat
 ---
 
+# AI-Powered Group Chat sample with SignalR and OpenAI
+
+The AI-Powered Group Chat sample demonstrates how to integrate OpenAI's capabilities into a real-time group chat application using ASP.NET Core SignalR.
+
+* View or download [the complete sample code](https://github.com/microsoft/SignalR-Samples-AI/tree/main/AIStreaming).
+
 ## Overview
 
-The integration of AI into applications is rapidly becoming a must-have for developers looking to help their users be more creative, productive and achieve their health goals. AI-powered features, such as intelligent chatbots, personalized recommendations, and contextual responses, add significant value to modern apps. The AI-powered apps that came out since ChatGPT captured our imagination are primarily between one user and one AI assistant. As developers get more comfortable with the capabilities of AI, they are exploring AI-powered apps in a team's context. They ask "what value can AI add to a team of collaborators"? 
+Integrating AI into applications is becoming essential for developers aiming to enhance user creativity, productivity, and overall experience. AI-powered features, such as intelligent chatbots, personalized recommendations, and contextual responses, add significant value to modern apps. While many AI-powered applications, like those inspired by ChatGPT, focus on interactions between a single user and an AI assistant, there is growing interest in exploring AI's potential within team environments. Developers are now asking, "What value can AI add to a team of collaborators?"
 
-This tutorial guides you through building a real-time group chat application. Among a group of human collaborators in a chat, there's an AI assistant which has access to the chat history and can be invited to help out by any collaborator when they start the message with `@gpt`. The finished app looks like this. 
+This sample guide highlights the process of building a real-time group chat application. In this chat, a group of human collaborators can interact with an AI assistant that has access to the chat history. Any collaborator can invite the AI to assist by starting their message with `@gpt`. The finished app looks like this:
 
 :::image type="content" source="./ai-powered-group-chat.jpg" alt-text="user interface for the AI-powered group chat":::
 
