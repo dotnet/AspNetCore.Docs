@@ -48,7 +48,6 @@ Enabling users to sign in with their existing credentials:
   * The `dotnet new` command creates a new Razor Pages project in the *WebApp1* folder.
   * `-au Individual` creates the code for Individual authentication.
   * `-uld` uses LocalDB, a lightweight version of SQL Server Express for Windows. Omit `-uld` to use SQLite.
-  * The `code` command opens the *WebApp1* folder in a new instance of Visual Studio Code.
 
 ---
 
