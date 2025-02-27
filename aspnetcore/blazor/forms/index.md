@@ -78,7 +78,7 @@ In the preceding `StarshipPlainForm` component:
 
 Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
-[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for plain HTML forms.
+[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for plain HTML forms. Note that when `POST`ing a form, only DOM updates inside the form's handlers, e.g. `@onsubmit`, are streamed. Updates inside `OnInitializedAsync` are only streamed for `GET` requests. See [#50994](https://github.com/dotnet/aspnetcore/issues/50994) for more information.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -124,7 +124,7 @@ In the preceding `Starship1` component:
 
 Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
-[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Note that when `POST`ing a form, only DOM updates inside the form's handlers, e.g. `OnValidSubmit`, are streamed. Updates inside `OnInitializedAsync` are only streamed for `GET` requests. See [#50994](https://github.com/dotnet/aspnetcore/issues/50994) for more information.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
