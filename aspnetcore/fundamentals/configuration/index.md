@@ -138,7 +138,7 @@ Using the [default](#default) configuration, the `appsettings.json` and `appsett
 
 Comments in `appsettings.json` and `appsettings.{Environment}.json` files are supported using JavaScript or [C# style comments](/dotnet/csharp/language-reference/tokens/comments).
 
-Some integrated development environments (IDE) display an error when editing a JSON file that contains comments. Often, the error can be disabled with a setting in the IDE. In Visual Studio Code, for example, add the following to the `settings.json` file to disable the error:
+Some integrated development environments (IDE) display errors when editing a JSON file that contains comments. Often, the errors can be disabled with a setting in the IDE. In Visual Studio Code, for example, add the following to the `settings.json` file to disable the errors:
 
 ```json
 "files.associations": {
@@ -146,7 +146,7 @@ Some integrated development environments (IDE) display an error when editing a J
 }
 ```
 
-For other IDEs, check the tool's documentation and other product support channels to determine how to silence the error.
+For other IDEs, check the tool's documentation and other product support channels to determine how to silence the errors.
 
 <a name="optpat"></a>
 
