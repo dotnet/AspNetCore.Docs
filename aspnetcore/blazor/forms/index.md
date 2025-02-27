@@ -78,7 +78,9 @@ In the preceding `StarshipPlainForm` component:
 
 Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
-[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for plain HTML forms.
+<!-- UPDATE 11.0 - Check the PU issue (backlogged as of 2/27/25 -->
+
+[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for plain HTML forms. Note that when `POST`ing a form, only DOM updates inside the form's handlers are streamed (for example, `@onsubmit`). Updates inside `OnInitializedAsync` are only streamed for `GET` requests. For more information, see [Allow streaming the loading phase of POST responses (`dotnet/aspnetcore` #50994)](https://github.com/dotnet/aspnetcore/issues/50994).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -124,7 +126,9 @@ In the preceding `Starship1` component:
 
 Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
-[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+<!-- UPDATE 11.0 - Check the PU issue (backlogged as of 2/27/25 -->
+
+[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Note that when `POST`ing a form, only DOM updates inside the form's handlers are streamed (for example, `OnValidSubmit`). Updates inside `OnInitializedAsync` are only streamed for `GET` requests. For more information, see [Allow streaming the loading phase of POST responses (`dotnet/aspnetcore` #50994)](https://github.com/dotnet/aspnetcore/issues/50994).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
