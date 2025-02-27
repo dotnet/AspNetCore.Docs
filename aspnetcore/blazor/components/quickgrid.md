@@ -183,7 +183,7 @@ Alternatively, use the following CSS styling approach:
 
 For more information on using `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) with CSS isolation, see <xref:blazor/components/css-isolation#child-component-support>.
 
-## Custom attributes and s
+## Custom attributes and styles
 
 QuickGrid also supports passing custom attributes and  classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:
 
