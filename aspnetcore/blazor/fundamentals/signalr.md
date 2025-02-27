@@ -519,7 +519,63 @@ If reconnection fails, the user is instructed to retry or reload the page:
 
 If reconnection succeeds, user state is often lost. Custom code can be added to any component to save and reload user state across connection failures. For more information, see <xref:blazor/state-management>.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
+
+Customize the UI and reconnection behavior in the `ReconnectModal` component (`Components/Layout/ReconnectModal.razor`), its collocated stylesheet file (`ReconnectModal.razor.css`), and its collocated JavaScript file (`ReconnectModal.razor.js`). These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template with Interactive WebAssembly or Interactive Auto rendering enabled:
+
+* [`ReconnectModal` component](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor)
+* [Stylesheet file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.css)
+* [JavaScript file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.js)
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+The `components-reconnect-state-changed` event indicates a reconnection status change:
+
+* `show`: The reconnection modal is shown.
+* `hide`: The reconnection model is closed.
+* `retrying`: Reconnect attempts are in progress.
+* `failed`: A reconnection attempt has failed.
+* `rejected`: A reconnection attempt was received but rejected.
+
+The following table describes the CSS classes applied to the `components-reconnect-modal` element. The **Event** column represents the value of the matching `components-reconnect-state-changed` JavaScript event.
+
+| CSS class | Event | Indicates&hellip; |
+| --- | --- | --- |
+| `components-reconnect-show` | `show` | A lost connection. The client is attempting to reconnect. Show the modal. |
+| `components-reconnect-hide` | `hide` | An active connection is re-established to the server. Hide the modal. |
+| `components-reconnect-retrying` | `retrying` | The client is attempting to reconnect. |
+| `components-reconnect-failed` | `failed` | Reconnection failed, probably due to a network failure. To attempt reconnection, call `Blazor.reconnect()` in JavaScript. |
+| `components-reconnect-rejected` | `rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()` in JavaScript. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the user's components are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
+
+Additional CSS classes to further control the style of rendered elements is described in the following table. The **Event** column represents the value of the matching `components-reconnect-state-changed` JavaScript event.
+
+| CSS class | Event | Indicates&hellip; |
+| --- | --- | --- |
+| `components-reconnect-first-attempt-visible` | `retrying` | Displayed on the first retry attempt. |
+| `components-reconnect-repeated-attempt-visible` | `retrying` | Displayed on the subsequent retry attempts. |
+| `components-reconnect-failed-visible` | `failed`/`rejected` | Displayed when reconnection attempts have failed or a reconnection attempt has been rejected. |
+
+To display the maximum number of reconnect retries, define an element with an `id` of `components-reconnect-max-retries`:
+
+```html
+<span id="components-reconnect-max-retries"></span>
+```
+
+To display the current reconnect attempt, define an element with an `id` of `components-reconnect-current-attempt`:
+
+```html
+<span id="components-reconnect-current-attempt"></span>
+```
+
+To display the number of seconds to the next reconnection attempt, define an element with an `id` of `components-seconds-to-next-attempt`:
+
+```html
+<span id="components-seconds-to-next-attempt"></span>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 To customize the UI, define a single element with an `id` of `components-reconnect-modal` in the `<body>` element content. The following example places the element in the `App` component.
 
@@ -551,6 +607,8 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-10.0"
+
 ```cshtml
 <div id="components-reconnect-modal">
     Connection lost.<br>Attempting to reconnect...
@@ -562,7 +620,9 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 Add the following CSS styles to the site's stylesheet.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 `wwwroot/app.css`:
 
@@ -573,6 +633,8 @@ Add the following CSS styles to the site's stylesheet.
 `wwwroot/css/site.css`:
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
 
 ```css
 #components-reconnect-modal {
@@ -604,13 +666,13 @@ The following table describes the CSS classes applied to the `components-reconne
 | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()` in JavaScript. |
 | `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()` in JavaScript. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the user's components are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-10.0"
 
 Customize the delay before the reconnection UI appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 `wwwroot/app.css`:
 
@@ -622,7 +684,7 @@ Customize the delay before the reconnection UI appears by setting the `transitio
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-10.0"
 
 ```css
 #components-reconnect-modal {
