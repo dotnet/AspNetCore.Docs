@@ -769,7 +769,7 @@ Components shouldn't need to implement <xref:System.IDisposable> and <xref:Syste
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
 
-Additional information on this subject is available in the introductory remarks of <xref:blazor/components/sync-context>.
+For more information, see the introductory remarks of <xref:blazor/components/sync-context>.
 
 ### Disposal of JavaScript interop object references
 
