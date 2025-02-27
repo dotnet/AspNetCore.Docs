@@ -114,7 +114,7 @@ The OpenAPI endpoint  doesn't enable any authorization checks by default. Howeve
 
 The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration enables transformers to incorporate dynamic app state into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
 
-[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithcaching)]
+[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpen{Api/Program.cs?name=snippet_mapopenapiwithcaching)]
 
 ## Generate multiple OpenAPI documents
 
