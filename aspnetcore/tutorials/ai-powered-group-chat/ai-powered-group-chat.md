@@ -15,33 +15,35 @@ The AI-Powered Group Chat sample demonstrates how to integrate OpenAI's capabili
 
 ## Overview
 
-Integrating AI into applications is becoming essential for developers aiming to enhance user creativity, productivity, and overall experience. AI-powered features, such as intelligent chatbots, personalized recommendations, and contextual responses, add significant value to modern apps. While many AI-powered applications, like those inspired by ChatGPT, focus on interactions between a single user and an AI assistant, there is growing interest in exploring AI's potential within team environments. Developers are now asking, "What value can AI add to a team of collaborators?"
+Integrating AI into applications is becoming essential for developers aiming to enhance user creativity, productivity, and overall experience. AI-powered features, such as intelligent chatbots, personalized recommendations, and contextual responses, add significant value to modern apps. While many AI-powered applications, like those inspired by ChatGPT, focus on interactions between a single user and an AI assistant, there's growing interest in exploring AI's potential within team environments. Developers are now asking, "What value can AI add to a team of collaborators?"
 
 This sample guide highlights the process of building a real-time group chat application. In this chat, a group of human collaborators can interact with an AI assistant that has access to the chat history. Any collaborator can invite the AI to assist by starting their message with `@gpt`. The finished app looks like this:
 
 :::image type="content" source="./ai-powered-group-chat.jpg" alt-text="user interface for the AI-powered group chat":::
 
-We use OpenAI for generating intelligent, context-aware responses and SignalR for delivering the response to users in a group. You can find the complete code [in this repo](https://github.com/microsoft/SignalR-Samples-AI/tree/main/AIStreaming).
+This sample uses OpenAI for generating intelligent, context-aware responses and SignalR for delivering the response to users in a group. You can find the complete code [in this repo](https://github.com/microsoft/SignalR-Samples-AI/tree/main/AIStreaming).
 
 ## Dependencies
-You can use either Azure OpenAI or OpenAI for this project. Make sure to update the `endpoint` and `key` in `appsettings.json`. `OpenAIExtensions` reads the configuration when the app starts, and the configuration values for `endpoint` and `key` are required to authenticate and use either service.
+Either Azure OpenAI or OpenAI can be used for this project. Make sure to update the `endpoint` and `key` in `appsettings.json`. `OpenAIExtensions` reads the configuration when the app starts, and the configuration values for `endpoint` and `key` are required to authenticate and use either service.
 
 # [OpenAI](#tab/open-ai)
-To build this application, you will need the following:
+To build this application, the following are required:
+
 * ASP.NET Core: To create the web application and host the SignalR hub.
-* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients and the server.
+* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients, and the server.
 * [OpenAI Client](https://www.nuget.org/packages/OpenAI/2.0.0-beta.10): To interact with OpenAI's API for generating AI responses.
 
 # [Azure OpenAI](#tab/azure-open-ai)
-To build this application, you will need the following:
+To build this application, the following are required:
+
 * ASP.NET Core: To create the web application and host the SignalR hub.
-* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients and the server.
+* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients, and the server.
 * [Azure OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI/2.0.0-beta.3): Azure.AI.OpenAI
 ---
 
 ## Implementation
 
-In this section, we'll walk through the key parts of the code that integrate SignalR with OpenAI to create an AI-enhanced group chat experience.
+This section highlights the key parts of the code that integrate SignalR with OpenAI to create an AI-enhanced group chat experience.
 
 ### Data flow 
 
@@ -49,7 +51,13 @@ In this section, we'll walk through the key parts of the code that integrate Sig
 
 ### SignalR Hub integration
 
-The `GroupChatHub` class manages user connections, message broadcasting, and AI interactions. When a user sends a message starting with `@gpt`, the hub forwards it to OpenAI, which generates a response. The AI's response is streamed back to the group in real-time.
+The `GroupChatHub` class manages user connections, message broadcasting, and AI interactions. 
+
+When a user sends a message starting with `@gpt`:
+
+* The hub forwards it to OpenAI, which generates a response. 
+* The AI's response is streamed back to the group in real-time.
+
 ```csharp
 var chatClient = _openAI.GetChatClient(_options.Model);
 
@@ -69,7 +77,7 @@ await foreach (var completion in
 
 ### Maintain context with history
 
-Every request to [Open AI's Chat Completions API](https://platform.openai.com/docs/guides/chat-completions) is stateless—Open AI doesn't store past interactions. In a chat app, what a user or an assistant has said is important for generating a response that's contextually relevant. To achieve this, include chat history in every request to the Completions API. 
+Every request to [OpenAI's Chat Completions API](https://platform.openai.com/docs/guides/chat-completions) is stateless. OpenAI doesn't store past interactions. In a chat app, what a user or an assistant has said is important for generating a response that's contextually relevant. To achieve this, include chat history in every request to the Completions API. 
 
 The `GroupHistoryStore` class manages chat history for each group. It stores messages posted by both the users and AI assistants, ensuring that the conversation context is preserved across interactions. This context is crucial for generating coherent AI responses.
 
@@ -89,9 +97,10 @@ _history.GetOrAddGroupHistory(groupName, userName, message);
 
 ### Stream AI responses
 
-The `CompleteChatStreamingAsync()` method streams responses from OpenAI incrementally, which allows the app to send partial responses to the client as they are generated. 
+The `CompleteChatStreamingAsync()` method streams responses from OpenAI incrementally, which allows the app to send partial responses to the client as they're generated. 
 
-The code uses a `StringBuilder` to accumulate the AI's response. It checks the length of the buffered content and sends it to the clients when it exceeds a certain threshold (e.g., 20 characters). This approach ensures that users see the AI’s response as it forms, mimicking a human-like typing effect. 
+The code uses a `StringBuilder` to accumulate the AI's response. It checks the length of the buffered content and sends it to the clients when it exceeds a certain threshold, for example, 20 characters. This approach ensures that users see the AI’s response as it forms, mimicking a human-like typing effect. 
+
 ```csharp
 totalCompletion.Append(content);
 
@@ -111,6 +120,6 @@ if (totalCompletion.Length - lastSentTokenLength > 20)
 
 This project opens up exciting possibilities for further enhancement:
 1. **Advanced AI features**: Leverage other OpenAI capabilities like sentiment analysis, translation, or summarization. 
-1. **Incorporating multiple AI agents**: You can introduce multiple AI agents with distinct roles or expertise areas within the same chat. For example, one agent might focus on text generation, the other provides image or audio generation. This can create a richer and more dynamic user experience where different AI agents interact seamlessly with users and each other.
+1. **Incorporating multiple AI agents**: You can introduce multiple AI agents with distinct roles or expertise areas within the same chat. For example, one agent might focus on text generation while the other provides image or audio generation. This can create a richer and more dynamic user experience where different AI agents interact seamlessly with users and each other.
 1. **Share chat history between server instances**: Implement a database layer to persist chat history across sessions, allowing conversations to resume even after a disconnect. Beyond SQL or NO SQL based solutions, you can also explore using a caching service like Redis. It can significantly improve performance by storing frequently accessed data, such as chat history or AI responses, in memory. This reduces latency and offloads database operations, leading to faster response times, particularly in high-traffic scenarios. 
 1. **Leveraging Azure SignalR Service**: [Azure SignalR Service](/azure/azure-signalr/signalr-overview) provides scalable and reliable real-time messaging for your application. By offloading the SignalR backplane to Azure, you can scale out the chat application easily to support thousands of concurrent users across multiple servers. Azure SignalR also simplifies management and provides built-in features like automatic reconnections.
