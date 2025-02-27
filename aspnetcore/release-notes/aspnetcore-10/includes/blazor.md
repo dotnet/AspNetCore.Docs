@@ -1,15 +1,15 @@
 ### QuickGrid `RowClass` parameter
 
-Apply a stylesheet class to a row of the grid based on the row item using the new `RowClass` parameter. In the following example, the `ApplyRowStyle` method is called on each row to conditionally apply a stylesheet class based on the row item:
+Apply a stylesheet class to a row of the grid based on the row item using the new `RowClass` parameter. In the following example, the `GetRowCssClass` method is called on each row to conditionally apply a stylesheet class based on the row item:
 
 ```razor
-<QuickGrid ... RowClass="ApplyRowStyle">
+<QuickGrid ... RowClass="GetRowCssClass">
     ...
 </QuickGrid>
 
 @code {
-    private string ApplyRowStyle({TYPE} rowItem) =>
-        rowItem.{PROPERTY} == {VALUE} ? "{CSS STYLE CLASS}" : null;
+    private string GetRowCssClass(MyGridItem item) =>
+        item.IsArchived ? "row-archived" : null;
 }
 ```
 
