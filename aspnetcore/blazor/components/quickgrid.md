@@ -202,7 +202,7 @@ Apply a stylesheet class to a row of the grid based on the row item using the `R
 In the following example:
 
 * A row item is represented by the `Person` [record](/dotnet/csharp/language-reference/builtin-types/record). The `Person` record includes a `FirstName` property.
-* The `GetRowCssClass` method applies the `highlightRow` class styles to any row where the person's first name is "`Julie`."
+* The `GetRowCssClass` method applies the `highlight-row` class styles to any row where the person's first name is "`Julie`."
 
 ```razor
 <QuickGrid ... RowClass="GetRowCssClass">
@@ -213,7 +213,7 @@ In the following example:
     private record Person(int PersonId, string FirstName, string LastName);
 
     private string GetRowCssClass(Person person) =>
-        person.FirstName == "Julie" ? "highlightRow" : null;
+        person.FirstName == "Julie" ? "highlight-row" : null;
 }
 ```
 
