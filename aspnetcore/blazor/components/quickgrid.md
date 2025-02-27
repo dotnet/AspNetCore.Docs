@@ -185,7 +185,7 @@ For more information on using `::deep` [pseudo-elements](https://developer.mozil
 
 ## Custom attributes and styles
 
-QuickGrid also supports passing custom attributes and  classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:
+QuickGrid also supports passing custom attributes and style classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:
 
 ```razor
 <QuickGrid Items="..." custom-attribute="value" Class="custom-class">
