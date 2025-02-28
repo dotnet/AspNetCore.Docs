@@ -45,7 +45,9 @@ MFA using TOTP is supported by default when using ASP.NET Core Identity. This ap
 
 For implementation details, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes).
 
-To disable support for MFA TOTP, configure authentication using <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A> instead of <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A>. `AddDefaultIdentity` calls <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders%2A> internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider%2A> for each required provider. For more information about available token providers, see the [AddDefaultTokenProviders source on GitHub](https://github.com/dotnet/aspnetcore/blob/release/6.0/src/Identity/Core/src/IdentityBuilderExtensions.cs#L21-L32).
+To disable support for MFA TOTP, configure authentication using <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A> instead of <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A>. `AddDefaultIdentity` calls <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders%2A> internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider%2A> for each required provider. For more information on available token providers, see the [`AddDefaultTokenProviders` reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IdentityBuilderExtensions.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### MFA passkeys/FIDO2 or passwordless
 
