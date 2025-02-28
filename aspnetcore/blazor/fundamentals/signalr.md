@@ -553,7 +553,7 @@ Additional CSS classes to further control the style of rendered elements is desc
 | --- | --- | --- |
 | `components-reconnect-first-attempt-visible` | `retrying` | The first retry attempt. |
 | `components-reconnect-repeated-attempt-visible` | `retrying` | Subsequent retry attempts. |
-| `components-reconnect-failed-visible` | `failed`/`rejected` | Reconnection attempts that have failed or been rejected. |
+| `components-reconnect-failed-visible` | `failed` | A failed reconnection attempt. |
 
 An element with an `id` of `components-reconnect-max-retries` displays the maximum number of reconnect retries:
 
