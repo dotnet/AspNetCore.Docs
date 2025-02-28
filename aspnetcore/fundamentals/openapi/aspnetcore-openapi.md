@@ -5,7 +5,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 01/23/2025
+ms.date: 2/23/2025
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -14,7 +14,7 @@ uid: fundamentals/openapi/aspnetcore-openapi
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
-* Support for generating OpenAPI documents at run time and accessing them via an endpoint on the application.
+* Support for generating OpenAPI documents at run time and accessing them via an endpoint on the app.
 * Support for "transformer" APIs that allow modifying the generated document.
 * Support for generating multiple OpenAPI documents from a single app.
 * Takes advantage of JSON schema support provided by [`System.Text.Json`](/dotnet/api/system.text.json).
@@ -112,7 +112,7 @@ The OpenAPI endpoint  doesn't enable any authorization checks by default. Howeve
 
 #### Cache generated OpenAPI document
 
-The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration enables transformers to incorporate dynamic application state into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
+The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration enables transformers to incorporate dynamic app state into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithcaching)]
 
@@ -122,7 +122,7 @@ In some scenarios, it's helpful to generate multiple OpenAPI documents with diff
 
 * Generating OpenAPI documentation for different audiences, such as public and internal APIs.
 * Generating OpenAPI documentation for different versions of an API.
-* Generating OpenAPI documentation for different parts of an application, such as a frontend and backend API.
+* Generating OpenAPI documentation for different parts of an app, such as a frontend and backend API.
 
 To generate multiple OpenAPI documents, call the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> extension method once for each document, specifying a different document name in the first parameter each time.
 
@@ -135,9 +135,12 @@ Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiService
 
 The framework uses the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> to determine which endpoints to include in each document.
 
-For each document, the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method is called for each endpoint in the application, passing the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object for the endpoint. The method returns a boolean value indicating whether the endpoint should be included in the document. The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object contains information about the endpoint, such as the HTTP method, route, and response types, as well as metadata attached to the endpoint via attributes or extension methods.
+For each document, the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method is called for each endpoint in the app, passing the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object for the endpoint. The method returns a boolean value indicating whether the endpoint should be included in the document. The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object:
 
-The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>, which is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName%2A> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute, to determine which endpoints to include in the document. Any endpoint that has not been assigned a group name is included all OpenAPI documents.
+* contains information about the endpoint, such as the HTTP method, route, and response types
+* Metadata attached to the endpoint via attributes or extension methods.
+
+The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>. The delegate is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName%2A> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute. `WithGroupName` or the `EndpointGroupName` attribute determines which endpoints to include in the document. Any endpoint that has not been assigned a group name is included all OpenAPI documents.
 
 ```csharp
     // Include endpoints without a group name or with a group name that matches the document name
@@ -148,13 +151,13 @@ You can customize the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldIn
 
 ## Generate OpenAPI documents at build-time
 
-In typical web applications, OpenAPI documents are generated at run-time and served via an HTTP request to the application server.
+In typical web apps, OpenAPI documents are generated at run-time and served via an HTTP request to the app server.
 
-In some scenarios, it's helpful to generate the OpenAPI document during the application's build step. These scenarios include:
+In some scenarios, it's helpful to generate the OpenAPI document during the app's build step. These scenarios include:
 
-- Generating OpenAPI documentation that is committed into source control.
-- Generating OpenAPI documentation that is used for spec-based integration testing.
-- Generating OpenAPI documentation that is served statically from the web server.
+* Generating OpenAPI documentation that is committed into source control.
+* Generating OpenAPI documentation that is used for spec-based integration testing.
+* Generating OpenAPI documentation that is served statically from the web server.
 
 To add support for generating OpenAPI documents at build time, install the `Microsoft.Extensions.ApiDescription.Server` package:
 
@@ -173,20 +176,37 @@ Run the following command in the directory that contains the project file:
 ```dotnetcli
 dotnet add package Microsoft.Extensions.ApiDescription.Server
 ```
+
 ---
 
-Upon installation, this package will automatically generate the Open API document(s) associated with the application during build and populate them into the application's output directory.
+Upon installation, this package:
+
+* Automatically generates the Open API document(s) associated with the app during build.
+* Populates the Open API documents in the app's output directory.
+
+If multiple documents are registered, ***and*** document name is ***not*** `v1`, it's post-fixed with the document name. E.g., `{ProjectName}_{DocumentName}.json`.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+```powershell
+dotnet build
+type obj\{ProjectName}.json
+```
+
+# [.NET Core CLI](#tab/netcore-cli) 
 
 ```cli
-$ dotnet build
-$ cat bin/Debug/net9.0/{ProjectName}.json
+dotnet build
+cat obj/{ProjectName}.json
 ```
+
+---
 
 ### Customizing build-time document generation
 
 #### Modifying the output directory of the generated Open API file
 
-By default, the generated OpenAPI document will be emitted to the application's output directory. To modify the location of the emitted file, set the target path in the `OpenApiDocumentsDirectory` property.
+By default, the generated OpenAPI document will be emitted to the app's output directory. To modify the location of the emitted file, set the target path in the `OpenApiDocumentsDirectory` property.
 
 ```xml
 <PropertyGroup>
@@ -198,7 +218,7 @@ The value of `OpenApiDocumentsDirectory` is resolved relative to the project fil
 
 #### Modifying the output file name
 
-By default, the generated OpenAPI document will have the same name as the application's project file. To modify the name of the emitted file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property.
+By default, the generated OpenAPI document will have the same name as the app's project file. To modify the name of the emitted file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property.
 
 ```xml
 <PropertyGroup>
@@ -208,7 +228,7 @@ By default, the generated OpenAPI document will have the same name as the applic
 
 #### Selecting the OpenAPI document to generate
 
-Some applications may be configured to emit multiple OpenAPI documents, for various versions of an API or to distinguish between public and internal APIs. By default, the build-time document generator will emit files for all documents that are configured in an application. To only emit for a single document name, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property.
+Some apps may be configured to emit multiple OpenAPI documents. Multiple OpenAPI documents may be generated for different versions of an API or to distinguish between public and internal APIs. By default, the build-time document generator emits files for all documents that are configured in an app. To only emit for a single document name, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property.
 
 ```xml
 <PropertyGroup>
