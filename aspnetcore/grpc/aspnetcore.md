@@ -153,14 +153,28 @@ For more information about using the `Microsoft.AspNetCore.App` framework refere
 
 ## Integration with ASP.NET Core APIs
 
-gRPC services have full access to the ASP.NET Core features such as [Dependency Injection](xref:fundamentals/dependency-injection) (DI) and [Logging](xref:fundamentals/logging/index). For example, the service implementation can resolve a logger service from the DI container via the constructor:
+gRPC services have full access to the ASP.NET Core features such as [dependency injection](xref:fundamentals/dependency-injection) (DI) and [logging](xref:fundamentals/logging/index). For example, the service implementation can resolve a logger service from the DI container.
+
+Constructor injection:
 
 ```csharp
 public class GreeterService : Greeter.GreeterBase
 {
+    private readonly ILogger<GreeterService> _logger;
+
     public GreeterService(ILogger<GreeterService> logger)
     {
+        _logger = logger;
     }
+}
+```
+
+Primary constructor injection (.NET 8 or later):
+
+```csharp
+public class GreeterService(ILogger<GreeterService> logger) : Greeter.GreeterBase
+{
+    ...
 }
 ```
 

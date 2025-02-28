@@ -1,5 +1,4 @@
 ---
-
 title: ASP.NET Core Request Delegate Generator (RDG) for Native AOT
 description: Turn Map methods into request delegates with the ASP.NET Core Request Delegate Generator (RDG) for Native AOT.
 author: rick-anderson
@@ -13,11 +12,7 @@ ai-usage: ai-assisted
 ---
 # Turn Map methods into request delegates with the ASP.NET Core Request Delegate Generator
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
 
 The ASP.NET Core Request Delegate Generator (RDG) is a compile-time source generator that compiles route handlers provided to a minimal API to request delegates that can be processed by ASP.NET Core's routing infrastructure. The RDG is implicitly enabled when applications are published with AoT enabled or when [trimming is enabled](/dotnet/core/deploying/trimming/trimming-options#enable-trimming). The RDG generates trim and native AoT-friendly code.
 
@@ -48,7 +43,17 @@ The RDG:
 * Is enabled automatically in projects when publishing with Native AOT is enabled or when trimming is enabled.
 * Can be manually enabled even when not using Native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file:
 
-:::code language="xml" source="~/fundamentals/aot/samples/rdg/RDG.csproj" highlight="7":::
+:::moniker range=">= aspnetcore-10.0"
+
+:::code language="xml" source="~/fundamentals/aot/samples/10.0/rdg/RDG.csproj" highlight="7":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+:::code language="xml" source="~/fundamentals/aot/samples/8.0/rdg/RDG.csproj" highlight="7":::
+
+:::moniker-end
 
 Manually enabling RDG can be useful for:
 
@@ -57,7 +62,17 @@ Manually enabling RDG can be useful for:
 
 Minimal APIs are optimized for using <xref:System.Text.Json>, which requires using the [System.Text.Json source generator](/dotnet/standard/serialization/system-text-json/source-generation). All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that's registered via ASP.NET Core's dependency injection:
 
-:::code language="csharp" source="~/fundamentals/aot/samples/rdg/Program.cs" highlight="5-9,32-99":::
+:::moniker range=">= aspnetcore-10.0"
+
+:::code language="csharp" source="~/fundamentals/aot/samples/10.0/rdg/Program.cs" highlight="5-9,34-36":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+:::code language="csharp" source="~/fundamentals/aot/samples/8.0/rdg/Program.cs" highlight="5-9,32-35":::
+
+:::moniker-end
 
 ## Diagnostics for unsupported RDG scenarios
 
