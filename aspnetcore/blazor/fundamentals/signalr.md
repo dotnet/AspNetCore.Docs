@@ -534,8 +534,8 @@ The `components-reconnect-state-changed` event indicates a reconnection status c
 * `show`: The reconnection modal is shown.
 * `hide`: The reconnection model is closed.
 * `retrying`: Reconnect attempts are in progress.
-* `failed`: A reconnection attempt has failed.
-* `rejected`: A reconnection attempt was received but rejected.
+* `failed`: A reconnection attempt failed.
+* `rejected`: A reconnection attempt was received by the server but rejected.
 
 The following table describes the CSS classes applied to the `components-reconnect-modal` element. The **Event** column represents the value of the matching `components-reconnect-state-changed` JavaScript event.
 
@@ -549,25 +549,25 @@ The following table describes the CSS classes applied to the `components-reconne
 
 Additional CSS classes to further control the style of rendered elements is described in the following table. The **Event** column represents the value of the matching `components-reconnect-state-changed` JavaScript event.
 
-| CSS class | Event | Indicates&hellip; |
+| CSS class | Event | Displayed on&hellip; |
 | --- | --- | --- |
-| `components-reconnect-first-attempt-visible` | `retrying` | Displayed on the first retry attempt. |
-| `components-reconnect-repeated-attempt-visible` | `retrying` | Displayed on the subsequent retry attempts. |
-| `components-reconnect-failed-visible` | `failed`/`rejected` | Displayed when reconnection attempts have failed or a reconnection attempt has been rejected. |
+| `components-reconnect-first-attempt-visible` | `retrying` | The first retry attempt. |
+| `components-reconnect-repeated-attempt-visible` | `retrying` | Subsequent retry attempts. |
+| `components-reconnect-failed-visible` | `failed`/`rejected` | Reconnection attempts that have failed or been rejected. |
 
-To display the maximum number of reconnect retries, define an element with an `id` of `components-reconnect-max-retries`:
+An element with an `id` of `components-reconnect-max-retries` displays the maximum number of reconnect retries:
 
 ```html
 <span id="components-reconnect-max-retries"></span>
 ```
 
-To display the current reconnect attempt, define an element with an `id` of `components-reconnect-current-attempt`:
+An element with an `id` of `components-reconnect-current-attempt` displays the current reconnect attempt:
 
 ```html
 <span id="components-reconnect-current-attempt"></span>
 ```
 
-To display the number of seconds to the next reconnection attempt, define an element with an `id` of `components-seconds-to-next-attempt`:
+An element with an `id` of `components-seconds-to-next-attempt` displays the number of seconds to the next reconnection attempt:
 
 ```html
 <span id="components-seconds-to-next-attempt"></span>
