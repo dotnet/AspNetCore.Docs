@@ -14,6 +14,7 @@ uid: grpc/index
 By [James Newton-King](https://twitter.com/jamesnk)
 
 :::moniker range=">= aspnetcore-6.0"
+
 [gRPC](https://grpc.io) is a language agnostic, high-performance Remote Procedure Call (RPC) framework.
 
 The main benefits of gRPC are:
@@ -73,6 +74,30 @@ gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCo
 
 The **ASP.NET Core gRPC Service** project template provides a starter service:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+```csharp
+public class GreeterService(ILogger<GreeterService> logger) : Greeter.GreeterBase
+{
+    public override Task<HelloReply> SayHello(HelloRequest request,
+        ServerCallContext context)
+    {
+        logger.LogInformation("Saying hello to {Name}", request.Name);
+
+        return Task.FromResult(new HelloReply 
+        {
+            Message = "Hello " + request.Name
+        });
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-10.0"
+
 ```csharp
 public class GreeterService : Greeter.GreeterBase
 {
@@ -87,6 +112,7 @@ public class GreeterService : Greeter.GreeterBase
         ServerCallContext context)
     {
         _logger.LogInformation("Saying hello to {Name}", request.Name);
+
         return Task.FromResult(new HelloReply 
         {
             Message = "Hello " + request.Name
@@ -94,6 +120,10 @@ public class GreeterService : Greeter.GreeterBase
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 `GreeterService` inherits from the `GreeterBase` type, which is generated from the `Greeter` service in the `.proto` file. The service is made accessible to clients in `Program.cs`:
 
@@ -132,6 +162,7 @@ For more information on creating clients, and calling different service methods,
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+
 [gRPC](https://grpc.io) is a language agnostic, high-performance Remote Procedure Call (RPC) framework.
 
 The main benefits of gRPC are:
