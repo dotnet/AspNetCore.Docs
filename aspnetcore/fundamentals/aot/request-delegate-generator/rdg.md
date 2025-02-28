@@ -12,7 +12,11 @@ ai-usage: ai-assisted
 ---
 # Turn Map methods into request delegates with the ASP.NET Core Request Delegate Generator
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 The ASP.NET Core Request Delegate Generator (RDG) is a compile-time source generator that compiles route handlers provided to a minimal API to request delegates that can be processed by ASP.NET Core's routing infrastructure. The RDG is implicitly enabled when applications are published with AoT enabled or when [trimming is enabled](/dotnet/core/deploying/trimming/trimming-options#enable-trimming). The RDG generates trim and native AoT-friendly code.
 
