@@ -30,4 +30,3 @@ Follow the steps in [Get started with incremental ASP.NET to ASP.NET Core migrat
 :::moniker-end
 
 [!INCLUDE[](~/migration/mvc/includes/mvc6.md)]
-25
