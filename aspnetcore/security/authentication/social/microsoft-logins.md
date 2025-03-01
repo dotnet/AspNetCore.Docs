@@ -43,7 +43,7 @@ Store sensitive settings such as the Microsoft **Application (client) ID** and *
 
 Add the Authentication service to the `Program`:
 
-[!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramMS.cs)]
+:::code language="csharp" source="~/security/authentication/social/social-code/6.x/ProgramMS.cs" id="snippet_AddServices":::
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
