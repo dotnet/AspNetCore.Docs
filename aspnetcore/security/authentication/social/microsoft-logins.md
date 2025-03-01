@@ -14,7 +14,7 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 
 :::moniker range=">= aspnetcore-6.0"
 
-This sample shows how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core 6.0 project created on the [previous page](xref:security/authentication/social/index).
+This sample shows how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core  project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create the app in the Microsoft Entra admin center
 
