@@ -138,22 +138,11 @@ The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Fo
 
 ### Avoid `IBrowserFile.Size` for file size limits
 
-Avoid using <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Size?displayProperty=nameWithType> to impose a limit on the file size.
-
-<span aria-hidden="true">❌</span> The following approach is ***insecure*** and must be avoided:
+Avoid using <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Size?displayProperty=nameWithType> to impose a limit on the file size. Instead of using the unsafe client-supplied file size, explicitly specify the maximum file size. The following example uses the maximum file size assigned to `maxFileSize`:
 
 ```diff
 - var fileContent = new StreamContent(file.OpenReadStream(file.Size));
-```
-
-Instead of using the unsafe client-supplied file size, explicitly specify the maximum file size. The following example sets the maximum file size (`maxFileSize`) to 15 K:
-
-```csharp
-long maxFileSize = 1024 * 15;
-
-...
-
-var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
++ var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
 ```
 
 ### File name security
