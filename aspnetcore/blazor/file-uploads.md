@@ -107,7 +107,8 @@ Server-side or client-side, there's no file read or upload size limit for the <x
 
 For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, HTTPS, and [CORS](xref:security/cors), client-side Blazor supports using the [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit uploading large files (over 250 MB or larger than the device's available memory) with [request streaming](xref:blazor/call-web-api#client-side-request-streaming).
 
-For non-Chromium browsers, without HTTP/2 protocol, or without HTTPS, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads, typically 250 MB or larger, may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. 
+For non-Chromium browsers, without HTTP/2 protocol, or without HTTPS, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads, typically 250 MB or larger, may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
+
 For large client-side file uploads that don't meet the preceding criteria for request streaming and fail when attempting to use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, we recommend chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
 :::moniker-end
