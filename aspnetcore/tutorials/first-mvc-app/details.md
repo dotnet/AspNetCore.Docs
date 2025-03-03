@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 10 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/04/2024
+ms.date: 03/02/2025
 uid: tutorials/first-mvc-app/details
 ---
 

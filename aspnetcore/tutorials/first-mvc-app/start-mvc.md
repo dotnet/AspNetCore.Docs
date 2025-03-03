@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to get started with ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 07/24/2024
+ms.date: 03/02/2025
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC
@@ -57,7 +57,7 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
   * The **Location** for the project can be set to anywhere.
 * Select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 9.0**.
+  * Select **.NET 9.0 (Standard Term Support)**.
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
