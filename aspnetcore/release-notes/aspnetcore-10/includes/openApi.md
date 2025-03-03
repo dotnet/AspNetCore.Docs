@@ -52,7 +52,7 @@ options.AddSchemaTransformer((schema, context, cancellationToken) =>
 -           ["temperatureF"] = new OpenApiInteger(32),
 +           ["temperatureF"] = 32,
 -           ["summary"] = new OpenApiString("Bracing"),
-+           []"summary"] = "Bracing",
++           ["summary"] = "Bracing",
         };
     }
     return Task.CompletedTask;
