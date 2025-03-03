@@ -14,7 +14,7 @@ configuration:
         if:
           - payloadType: Issues
           - labelAdded:
-              label: 'grpc/subsv'
+              label: 'grpc/subsvc'
         then:
           - addLabel: 'gRPC'
 
