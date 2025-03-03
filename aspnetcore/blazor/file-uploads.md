@@ -127,10 +127,7 @@ For large client-side file uploads that fail when attempting to use the <xref:Mi
 
 :::moniker range="< aspnetcore-6.0"
 
-The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB. Additionally, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads (> 250 MB) may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. For more information, see the following discussions:
-
-* [The Blazor InputFile Component should handle chunking when the file is uploaded (dotnet/runtime #84685)](https://github.com/dotnet/runtime/issues/84685)
-* [Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634)
+The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB. Additionally, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory.
 
 * Adopting .NET 9 or later for Chromium-based browsers (Google Chrome and Microsoft Edge) with HTTP/2 protocol support, where this problem is internally addressed by Blazor with [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API).
 * For non-Chromium browsers, Chromium browsers without HTTP/2, or .NET 5 or earlier, chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
@@ -539,7 +536,7 @@ The following example demonstrates uploading files to a backend web API controll
 
 :::moniker range=">= aspnetcore-9.0"
 
-The example adopts [request streaming](xref:blazor/call-web-api#client-side-request-streaming) for a Chromium-based browser (for example, Google Chrome or Microsoft Edge) with HTTP/2 protocol, [CORS](xref:security/cors), and HTTPS. If request streaming can't be used, Blazor gracefully degrades to [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) without request streaming. For more information, see the [File size read and upload limits](#file-size-read-and-upload-limits) section.
+The example adopts [request streaming](xref:blazor/call-web-api#client-side-request-streaming) for a Chromium-based browser (for example, Google Chrome or Microsoft Edge) with HTTP/2 protocol and HTTPS. If request streaming can't be used, Blazor gracefully degrades to [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) without request streaming. For more information, see the [File size read and upload limits](#file-size-read-and-upload-limits) section.
 
 :::moniker-end
 
