@@ -18,10 +18,10 @@ configuration:
           - payloadType: Issues
           - and:
             - not:
-              - labelAdded:
+              - hasLabel:
                   label: 'blazor/subsvc'
             - not:
-              - labelAdded:
+              - hasLabel:
                   label: 'blazor-hybrid/subsvc'
           - or:
             - or:
