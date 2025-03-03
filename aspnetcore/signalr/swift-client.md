@@ -32,15 +32,10 @@ import PackageDescription
 let package = Package(
     name: "signalr-client-app",
     dependencies: [
-        .package(url: "https://github.com/Azure/signalr-swift")
+        .package(url: "https://github.com/dotnet/signalr-client-swift", branch: "main")
     ],
     targets: [
-        .target(
-            name: "YourTargetName",
-            dependencies: [
-                .product(name: "SignalRClient", package: "signalr-swift")
-            ]
-        )
+        .executableTarget(name: "YourTargetName", dependencies: [.product(name: "SignalRClient", package: "signalr-client-swift")])
     ]
 )
 ```
@@ -175,6 +170,22 @@ let connection = HubConnectionBuilder()
 
 Without parameters, withAutomaticReconnect() configures the client to wait 0, 2, 10, and 30 seconds respectively before each reconnect attempt. After four failed attempts, the client stops trying to reconnect.
 
+Before starting any reconnect attempts, the `HubConnection` transitions to the `Reconnecting` state and fires its `onReconnecting` callbacks.
+
+After the reconnection succeeds, the `HubConnection` transitions to the `connected` state and fires its `onReconnected` callbacks.
+
+A general way to use `onReconnecting` and `onReconnected` is to mark the connection state changes:
+
+```swift
+connection.onReconnecting { error in
+    // connection is disconnected because of error
+}
+
+connection.onReconnected {
+    // connection is connected back
+}
+```
+
 ### Configure strategy in automatic reconnect
 
 To customize the reconnect behavior, you can pass an array of numbers representing the delay in seconds before each reconnect attempt. For more granular control, pass an object that conforms to the RetryPolicy protocol.
@@ -215,6 +226,22 @@ You can customize the client's timeout and keep-alive settings via the HubConnec
 |---------|---------------|-------------|
 |withKeepAliveInterval| 15 (seconds)|Determines the interval at which the client sends ping messages and is set directly on HubConnectionBuilder. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. Sending any message from the client resets the timer to the start of the interval. If the client hasn't sent a message in the ClientTimeoutInterval set on the server, the server considers the client disconnected.|
 |withServerTimeout| 30 (seconds)|Determines the interval at which the client waits for a response from the server before it considers the server disconnected. This setting is set directly on HubConnectionBuilder.|
+
+## Configure transport
+
+The SignalR Swift client supports three transports: LongPolling, ServerSentEvents, and WebSockets. By default, the client will use WebSockets if the server supports it, and fall back to ServerSentEvents and LongPolling if it doesn't. You can configure the client to use a specific transport by calling `withUrl(url:transport:)` while building the connection.
+
+```swift
+let connection = HubConnectionBuilder()
+    .withUrl(url: "https://your-signalr-server", transport: .webSockets) // use websocket only
+    .build()
+```
+
+```swift
+let connection = HubConnectionBuilder()
+    .withUrl(url: "https://your-signalr-server", transport: [.webSockets, .serverSentEvents]) // use websockets and server sent events
+    .build()
+```
 
 ## Additional resources
 
