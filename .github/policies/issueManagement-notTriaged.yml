@@ -10,19 +10,25 @@ configuration:
     eventResponderTasks:
       - description: >-
           Add "not triaged" label when:
+          * Issue is not for Blazor or Blazor Hybrid
           * Issue is opened
           * Issue is reopened
           * 'needs-more-info' label removed
         if:
           - payloadType: Issues
+          - and:
+            - not:
+              - labelAdded:
+                  label: 'blazor/subsvc'
+            - not:
+              - labelAdded:
+                  label: 'blazor-hybrid/subsvc'
           - or:
-          
             - or:
               - isAction: 
                   action: Opened
               - isAction: 
-                  action: Reopened
-                  
+                  action: Reopened  
             - labelRemoved:
                 label: 'needs-more-info'
         then:
@@ -43,7 +49,6 @@ configuration:
                   action: Closed
               - isActivitySender:
                   issueAuthor: true
-            
             - labelAdded: 
                 label: 'reQUEST'
         then:
