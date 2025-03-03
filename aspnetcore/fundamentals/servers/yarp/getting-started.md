@@ -19,7 +19,7 @@ We plan on providing a project template and pre-built exe in the future.
 YARP is implemented on top of .NET Core infrastructure and is usable on Windows, Linux or MacOS.
 Development can be done with the SDK and your favorite editor, [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/).
 
-YARP 2.1.0 supports ASP.NET Core 6.0 and newer, including ASP.NET Core 8.0.
+YARP 2.3.0 supports ASP.NET Core 8.0 and newer.
 You can download the .NET SDK from https://dotnet.microsoft.com/download/dotnet/.
 
 Visual Studio support for .NET 8 is included in Visual Studio 2022 17.8.
@@ -40,7 +40,7 @@ Or create a new ASP.NET Core web application in Visual Studio 2022, and choose "
 
  ```XML
 <ItemGroup> 
-  <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0" />
+  <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
 </ItemGroup> 
 ```
 
