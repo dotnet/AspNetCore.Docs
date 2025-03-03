@@ -12,43 +12,43 @@ ai-usage: ai-assisted
 
 # Getting Started with YARP
 
-YARP is designed as a library that provides the core proxy functionality which you can then customize by adding or replacing modules.
-YARP is currently provided as a NuGet package and code snippets.
-We plan on providing a project template and pre-built exe in the future.
+YARP is designed as a library that provides the core proxy functionality which you can then customize by adding or replacing modules. YARP is currently provided as a NuGet package and code snippets. We plan on providing a project template and prebuilt executable (`.exe`) in the future.
 
-YARP is implemented on top of .NET Core infrastructure and is usable on Windows, Linux or MacOS.
-Development can be done with the SDK and your favorite editor, [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/).
+YARP is implemented on top of .NET Core infrastructure and is usable on Windows, Linux or MacOS. Development can be done with the SDK and your favorite editor, [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/).
 
-YARP 2.1.0 supports ASP.NET Core 6.0 and newer, including ASP.NET Core 8.0.
+YARP 2.3.0 supports ASP.NET Core 8.0 and newer.
+
 You can download the .NET SDK from https://dotnet.microsoft.com/download/dotnet/.
 
 Visual Studio support for .NET 8 is included in Visual Studio 2022 17.8.
 
-### Create a new project
+## Create a new project
 
 A complete version of the project built using the steps below can be found at [Basic YARP Sample](https://github.com/microsoft/reverse-proxy/tree/release/latest/samples/BasicYarpSample).
 
 Start by creating an "Empty" ASP.NET Core application using the command line:
 
-```Console
+```dotnetcli
 dotnet new web -n MyProxy -f net8.0
 ```
 
-Or create a new ASP.NET Core web application in Visual Studio 2022, and choose "Empty" for the project template. 
+Alternatively, create a new ASP.NET Core web application in Visual Studio 2022, choosing "Empty" for the project template. 
 
-### Add the project reference
+## Add the package reference
 
- ```XML
-<ItemGroup> 
-  <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0" />
-</ItemGroup> 
+Add a package reference for [`Yarp.ReverseProxy`](https://www.nuget.org/packages/Yarp.ReverseProxy), version 2.3.0 or later.
+
+```dotnetcli
+dotnet add package Yarp.ReverseProxy
 ```
 
-### Add the YARP Middleware
+[!INCLUDE[](~/includes/package-reference.md)]
 
-Update Program.cs to use the YARP middleware:
+## Add the YARP Middleware
 
-```C#
+Update the `Program` file to use the YARP Middleware:
+
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
@@ -59,13 +59,13 @@ app.Run();
 
 ## Configuration 
 
-The configuration for YARP is defined in the appsettings.json file. See [Configuration Files](xref:fundamentals/servers/yarp/config-files) for details.
+The configuration for YARP is defined in the `appsettings.json` file. For more information, see <xref:fundamentals/servers/yarp/config-files>.
 
-The configuration can also be provided programmatically. See [Configuration Providers](xref:fundamentals/servers/yarp/config-providers) for details.
+The configuration can also be provided programmatically. For more information, see <xref:fundamentals/servers/yarp/config-providers>.
 
-You can find out more about the available configuration options by looking at [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig) and [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.ClusterConfig).
+Learn more about the available configuration options by looking at <xref:Yarp.ReverseProxy.Configuration.RouteConfig> and <xref:Yarp.ReverseProxy.Configuration.ClusterConfig>.
  
- ```JSON
+ ```json
  {
   "Logging": {
     "LogLevel": {
@@ -97,6 +97,8 @@ You can find out more about the available configuration options by looking at [R
 }
 ```
 
-### Running the project
+## Run the project
 
-Use `dotnet run` called within the sample's directory or `dotnet run --project <path to .csproj file>`
+When using the .NET CLU, use `dotnet run` called within the sample's directory or `dotnet run --project <path to .csproj file>`.
+
+In Visual Studio, start the app with the **Run** button.
