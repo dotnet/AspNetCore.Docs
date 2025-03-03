@@ -60,18 +60,6 @@ let connection = HubConnectionBuilder()
 try await connection.start()
 ```
 
-### Cross-origin connections (CORS)
-
-Typically, browsers load connections from the same domain as the requested page. However, there are occasions when a connection to another domain is required.
-
-When making [cross domain requests](xref:signalr/security#cross-origin-resource-sharing), the client code ***must*** use an absolute URL instead of a relative URL. For cross domain requests, change `.withUrl(url: "/chathub")` to `.withUrl(url: "https://{App domain name}/chathub")`.
-
-To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable [CORS](xref:security/cors):
-
-[!code-csharp[](javascript-client/samples/6.x/SignalRChat/Program.cs?highlight=8-18,35-36,39)]
-
-<xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must be called before calling <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A>.
-
 ## Call client methods from the hub
 
 To receive messages from the server, register a handler using the `on` method. The on method takes the name of the hub method and a closure that will be executed when the server calls that method.
@@ -149,8 +137,8 @@ public class ChatHub : Hub
 To receive a stream of data from the server, use the `stream` method. The method returns a stream that you can iterate over asynchronously:
 
 ```swift
-let stream: any StreamResult<String> = try await connection.stream(method: "StreamMethod")
-for try await item in stream.stream {
+let streamResult: any StreamResult<String> = try await connection.stream(method: "StreamMethod")
+for try await item in streamResult.stream {
     print("Received item: \(item)")
 }
 ```
