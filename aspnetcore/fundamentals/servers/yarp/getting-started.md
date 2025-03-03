@@ -12,14 +12,12 @@ ai-usage: ai-assisted
 
 # Getting Started with YARP
 
-YARP is designed as a library that provides the core proxy functionality which you can then customize by adding or replacing modules.
-YARP is currently provided as a NuGet package and code snippets.
-We plan on providing a project template and pre-built exe in the future.
+YARP is designed as a library that provides the core proxy functionality which you can then customize by adding or replacing modules. YARP is currently provided as a NuGet package and code snippets. We plan on providing a project template and pre-built executable (`.exe`) in the future.
 
-YARP is implemented on top of .NET Core infrastructure and is usable on Windows, Linux or MacOS.
-Development can be done with the SDK and your favorite editor, [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/).
+YARP is implemented on top of .NET Core infrastructure and is usable on Windows, Linux or MacOS. Development can be done with the SDK and your favorite editor, [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/).
 
 YARP 2.3.0 supports ASP.NET Core 8.0 and newer.
+
 You can download the .NET SDK from https://dotnet.microsoft.com/download/dotnet/.
 
 Visual Studio support for .NET 8 is included in Visual Studio 2022 17.8.
@@ -30,11 +28,11 @@ A complete version of the project built using the steps below can be found at [B
 
 Start by creating an "Empty" ASP.NET Core application using the command line:
 
-```Console
+```dotnetcli
 dotnet new web -n MyProxy -f net8.0
 ```
 
-Or create a new ASP.NET Core web application in Visual Studio 2022, and choose "Empty" for the project template. 
+Alternatively, create a new ASP.NET Core web application in Visual Studio 2022, choosing "Empty" for the project template. 
 
 ### Add the project reference
 
@@ -48,7 +46,7 @@ Or create a new ASP.NET Core web application in Visual Studio 2022, and choose "
 
 Update Program.cs to use the YARP middleware:
 
-```C#
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
@@ -59,11 +57,11 @@ app.Run();
 
 ## Configuration 
 
-The configuration for YARP is defined in the appsettings.json file. See [Configuration Files](xref:fundamentals/servers/yarp/config-files) for details.
+The configuration for YARP is defined in the `appsettings.json` file. For more information, see <xref:fundamentals/servers/yarp/config-files>.
 
-The configuration can also be provided programmatically. See [Configuration Providers](xref:fundamentals/servers/yarp/config-providers) for details.
+The configuration can also be provided programmatically. For more information, see <xref:fundamentals/servers/yarp/config-providers>.
 
-You can find out more about the available configuration options by looking at [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig) and [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.ClusterConfig).
+Learn more about the available configuration options by looking at <xref:Yarp.ReverseProxy.Configuration.RouteConfig> and <xref:Yarp.ReverseProxy.Configuration.ClusterConfig>.
  
  ```JSON
  {
