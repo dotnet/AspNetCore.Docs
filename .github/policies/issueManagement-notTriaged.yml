@@ -14,15 +14,13 @@ configuration:
           * Issue is opened
           * Issue is reopened
           * 'needs-more-info' label removed
+        filters:
+          - isNotLabeledWith:
+              label: 'blazor/subsvc'
+          - isNotLabeledWith:
+              label: 'blazor-hybrid/subsvc'
         if:
           - payloadType: Issues
-          - and:
-            - not:
-              - hasLabel:
-                  label: 'blazor/subsvc'
-            - not:
-              - hasLabel:
-                  label: 'blazor-hybrid/subsvc'
           - or:
             - or:
               - isAction: 
