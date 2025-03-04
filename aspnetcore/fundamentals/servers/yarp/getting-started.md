@@ -4,7 +4,7 @@ title: YARP Getting Started with YARP
 description: YARP Getting Started with YARP
 author: samsp-msft
 ms.author: samsp
-ms.date: 2/6/2025
+ms.date: 3/6/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
@@ -20,8 +20,6 @@ YARP 2.3.0 supports ASP.NET Core 8.0 and newer.
 
 You can download the .NET SDK from https://dotnet.microsoft.com/download/dotnet/.
 
-Visual Studio support for .NET 8 is included in Visual Studio 2022 17.8.
-
 ## Create a new project
 
 A complete version of the project built using the steps below can be found at [Basic YARP Sample](https://github.com/microsoft/reverse-proxy/tree/release/latest/samples/BasicYarpSample).
@@ -29,10 +27,10 @@ A complete version of the project built using the steps below can be found at [B
 Start by creating an "Empty" ASP.NET Core application using the command line:
 
 ```dotnetcli
-dotnet new web -n MyProxy -f net8.0
+dotnet new web -n MyProxy
 ```
 
-Alternatively, create a new ASP.NET Core web application in Visual Studio 2022, choosing "Empty" for the project template. 
+Alternatively, create a new ASP.NET Core web application in Visual Studio 2022, choosing "Empty" for the project template.
 
 ## Add the package reference
 
