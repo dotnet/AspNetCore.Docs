@@ -39,6 +39,12 @@ body:
     attributes:
       label: Document ID
   - type: input
+    id: platformId
+    validations:
+      required: true
+    attributes:
+      label: Platform Id
+  - type: input
     id: author
     validations:
       required: true
