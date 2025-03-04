@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ContactDbContext") ?? throw new InvalidOperationException("Connection string 'ContactDbContext' not found.");
+
+builder.Services.AddDbContext<ContactDbContext>(options => options.UseSqlite(connectionString));
 
 // Add services to the container.
 builder.Services.AddRazorPages();

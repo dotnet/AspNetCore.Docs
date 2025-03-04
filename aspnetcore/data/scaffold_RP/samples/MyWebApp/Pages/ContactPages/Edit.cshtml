@@ -1,0 +1,45 @@
+@page
+@model MyWebApp.Pages.ContactPages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Contact</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Contact.Id" />
+            <div class="form-group">
+                <label asp-for="Contact.Firstname" class="control-label"></label>
+                <input asp-for="Contact.Firstname" class="form-control" />
+                <span asp-validation-for="Contact.Firstname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Lastname" class="control-label"></label>
+                <input asp-for="Contact.Lastname" class="form-control" />
+                <span asp-validation-for="Contact.Lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Email" class="control-label"></label>
+                <input asp-for="Contact.Email" class="form-control" />
+                <span asp-validation-for="Contact.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
