@@ -905,7 +905,7 @@ The server app must register controller services and map controller endpoints. F
 
 :::moniker range=">= aspnetcore-9.0"
 
-Cross-Origin Requests (CORS) configuration on the server is required for [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests), and a preflight request is always made by the client. In the service configuration of the server's `Program` file (the server project of a Blazor Web App or the backend server web API of a Blazor WebAssembly app), the following default CORS policy is suitable for testing with the examples in this article. The client makes the local request from port 5003. Change the port number to match the client app port that you're using:
+Cross-Origin Requests (CORS) configuration on the server is required for [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests) when the server is hosted at a different origin, and a preflight request is always made by the client. In the service configuration of the server's `Program` file (the server project of a Blazor Web App or the backend server web API of a Blazor WebAssembly app), the following default CORS policy is suitable for testing with the examples in this article. The client makes the local request from port 5003. Change the port number to match the client app port that you're using:
 
 :::moniker-end
 
