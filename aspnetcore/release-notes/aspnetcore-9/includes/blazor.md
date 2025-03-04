@@ -227,3 +227,12 @@ Trigger JavaScript callbacks either before or after enhanced navigation with new
 * `blazor.addEventListener("enhancednavigationend", {CALLBACK})`
 
 For more information, see <xref:blazor/js-interop/ssr?view=aspnetcore-9.0>.
+
+### Client-side request streaming
+
+Interactive WebAssembly rendering in Blazor now supports client-side request streaming using the `request.SetBrowserReqeustStreamingEnabled(true)` option on `HttpRequestMessage`. 
+
+For more information, see the following resources:
+
+* <xref:blazor/call-web-api?view=aspnetcore-9.0#client-side-request-streaming>
+* <xref:blazor/file-uploads?view=aspnetcore-9.0#file-size-read-and-upload-limits>
