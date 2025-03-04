@@ -121,7 +121,7 @@ Without a Chromium browser, HTTP/2 protocol, or HTTPS, client-side Blazor reads 
 
 :::moniker range="< aspnetcore-9.0"
 
-Without a Chromium browser, HTTP/2 protocol, or HTTPS, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
+Client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. We recommend adopting [request streaming](xref:blazor/call-web-api?view=aspnetcore-8.0&preserve-view=true#client-side-request-streaming) with ASP.NET Core 9.0 or later.
 
 :::moniker-end
 
