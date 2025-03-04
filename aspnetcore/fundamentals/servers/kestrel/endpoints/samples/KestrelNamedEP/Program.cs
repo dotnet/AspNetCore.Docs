@@ -15,17 +15,22 @@ builder.WebHost.UseNamedPipes(options =>
 {
     options.CreateNamedPipeServerStream = (context) =>
     {
-        if (context.NamedPipeEndPoint.PipeName == "defaultPipe")
-        {
-            return NamedPipeTransportOptions.CreateDefaultNamedPipeServerStream(context);
-        }
+        var pipeName = context.NamedPipeEndPoint.PipeName;
         
-        var allowSecurity = new PipeSecurity();
-        allowSecurity.AddAccessRule(new PipeAccessRule("Users", PipeAccessRights.FullControl, AccessControlType.Allow));
+        switch (pipeName)
+        {
+            case "defaultPipe":
+                return NamedPipeTransportOptions.CreateDefaultNamedPipeServerStream(context);
+            case "securedPipe":
+                var allowSecurity = new PipeSecurity();
+                allowSecurity.AddAccessRule(new PipeAccessRule("Users", PipeAccessRights.FullControl, AccessControlType.Allow));
 
-        return NamedPipeServerStreamAcl.Create(context.NamedPipeEndPoint.PipeName, PipeDirection.InOut,
-            NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Byte,
-            context.PipeOptions, inBufferSize: 0, outBufferSize: 0, allowSecurity);
+                return NamedPipeServerStreamAcl.Create(pipeName, PipeDirection.InOut,
+                    NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Byte,
+                    context.PipeOptions, inBufferSize: 0, outBufferSize: 0, allowSecurity);
+            default:
+                throw new InvalidOperationException($"Unexpected pipe name: {pipeName}");
+        }
     };
 });
 
