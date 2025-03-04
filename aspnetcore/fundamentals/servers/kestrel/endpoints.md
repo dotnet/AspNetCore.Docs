@@ -581,6 +581,22 @@ The following example configures an endpoint for HTTP/1.1, HTTP/2, and HTTP/3 co
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelProtocols":::
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+## Customize Kestrel named pipe endpoints
+
+Kestrel's named pipe support includes advanced customization options. The [CreateNamedPipeServerStream](/dotnet/api/microsoft.aspnetcore.server.kestrel.transport.namedpipes.namedpipetransportoptions.createnamedpipeserverstream) property on the named pipe options allows pipes to be customized per-endpoint.
+
+This is useful, for example, in a Kestrel app that requires two pipe endpoints with different [access security](/windows/win32/ipc/named-pipe-security-and-access-rights). The `CreateNamedPipeServerStream` option can be used to create pipes with custom security settings, depending on the pipe name.
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs" highlight="15-33" id="snippet_1":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
 ## See also
 
 * <xref:fundamentals/servers/kestrel>

@@ -111,26 +111,50 @@ If you're using the [Autofac Inversion of Control (IoC) container](https://autof
 
 ## File size read and upload limits
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-9.0"
 
-Server-side or client-side, there's no file read or upload size limit specifically for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. However, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads (> 250 MB) may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. For more information, see the following discussions:
+For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, HTTPS, and [CORS](xref:security/cors), client-side Blazor supports using the [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit uploading large files with [request streaming](xref:blazor/call-web-api#client-side-request-streaming).
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB. Additionally, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads (> 250 MB) may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. For more information, see the following discussions:
+Without a Chromium browser, HTTP/2 protocol, or HTTPS, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
 :::moniker-end
 
-* [The Blazor InputFile Component should handle chunking when the file is uploaded (dotnet/runtime #84685)](https://github.com/dotnet/runtime/issues/84685)
-* [Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634)
+:::moniker range="< aspnetcore-9.0"
 
-For large client-side file uploads that fail when attempting to use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, we recommend chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
+Client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. We recommend adopting [request streaming](xref:blazor/call-web-api?view=aspnetcore-9.0&preserve-view=true#client-side-request-streaming) with ASP.NET Core 9.0 or later.
 
-<!-- UPDATE 9.0 PU PR: https://github.com/dotnet/runtime/pull/91295 -->
+:::moniker-end
 
-Work is currently scheduled for .NET 9 (late 2024) to address the client-side file size upload limitation.
+## Security considerations
+
+### Avoid `IBrowserFile.Size` for file size limits
+
+Avoid using <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Size?displayProperty=nameWithType> to impose a limit on the file size. Instead of using the unsafe client-supplied file size, explicitly specify the maximum file size. The following example uses the maximum file size assigned to `maxFileSize`:
+
+```diff
+- var fileContent = new StreamContent(file.OpenReadStream(file.Size));
++ var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
+```
+
+### File name security
+
+Never use a client-supplied file name for saving a file to physical storage. Create a safe file name for the file using <xref:System.IO.Path.GetRandomFileName?displayProperty=nameWithType> or <xref:System.IO.Path.GetTempFileName?displayProperty=nameWithType> to create a full path (including the file name) for temporary storage.
+
+Razor automatically HTML encodes property values for display. The following code is safe to use:
+
+```cshtml
+@foreach (var file in Model.DatabaseFiles) {
+    <tr>
+        <td>
+            @file.UntrustedName
+        </td>
+    </tr>
+}
+```
+
+Outside of Razor, always use <xref:System.Net.WebUtility.HtmlEncode%2A> to safely encode file names from a user's request.
+
+Many implementations must include a check that the file exists; otherwise, the file is overwritten by a file of the same name. Supply additional logic to meet your app's specifications.
 
 ## Examples
 
@@ -269,7 +293,10 @@ public class UploadResult
 
 A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
-<!-- UPDATE 10.0 HOLD moniker range="< aspnetcore-9.0" Tracking PU bug: https://github.com/dotnet/aspnetcore/issues/47301 -->
+<!-- UPDATE 10.0 HOLD moniker range="< aspnetcore-10.0" 
+                 https://github.com/dotnet/aspnetcore/issues/47301
+                 No doc issue yet, but tracked by ...
+                 https://github.com/dotnet/AspNetCore.Docs/issues/34437 -->
 
 The following `LazyBrowserFileStream` class defines a custom stream type that lazily calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> just before the first bytes of the stream are requested. The stream isn't transmitted from the browser to the server until reading the stream begins in .NET.
 
@@ -277,7 +304,7 @@ The following `LazyBrowserFileStream` class defines a custom stream type that la
 
 <!-- UPDATE 10.0 HOLD moniker-end -->
 
-<!-- UPDATE 10.0 HOLD for next line: < aspnetcore-9.0 -->
+<!-- UPDATE 10.0 HOLD for next line: < aspnetcore-10.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -342,11 +369,11 @@ The following `FileUpload2` component:
 
 :::moniker-end
 
-<!-- UPDATE 10.0 HOLD for the next line: < aspnetcore-9.0 -->
+<!-- UPDATE 10.0 HOLD for the next line: < aspnetcore-10.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
-If the component limits file uploads to a single file at a time or if the component only adopts interactive client-side rendering (CSR, `InteractiveWebAssembly`), the component can avoid the use of the `LazyBrowserFileStream` and use a <xref:System.IO.Stream>. The following demonstrates the changes for the `FileUpload2` component:
+If the component limits file uploads to a single file at a time or if the component only adopts client-side rendering (CSR, `InteractiveWebAssembly`), the component can avoid the use of the `LazyBrowserFileStream` and use a <xref:System.IO.Stream>. The following demonstrates the changes for the `FileUpload2` component:
 
 ```diff
 - var stream = new LazyBrowserFileStream(file, maxFileSize);
@@ -490,6 +517,12 @@ The server app must register controller services and map controller endpoints. F
 
 The following example demonstrates uploading files to a backend web API controller in a separate app, possibly on a separate server, from a component in a Blazor Web App that adopts CSR or a component in a Blazor WebAssembly app.
 
+:::moniker range=">= aspnetcore-9.0"
+
+The example adopts [request streaming](xref:blazor/call-web-api#client-side-request-streaming) for a Chromium-based browser (for example, Google Chrome or Microsoft Edge) with HTTP/2 protocol and HTTPS. If request streaming can't be used, Blazor gracefully degrades to [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) without request streaming. For more information, see the [File size read and upload limits](#file-size-read-and-upload-limits) section.
+
+:::moniker-end
+
 The following `UploadResult` class maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
 
 `UploadResult.cs`:
@@ -528,15 +561,15 @@ A security best practice for production apps is to avoid sending error messages 
 
 :::moniker range=">= aspnetcore-8.0"
 
-In the Blazor Web App main project, add <xref:System.Net.Http.IHttpClientFactory> and related services in the project's `Program` file:
+In the Blazor Web App server project, add <xref:System.Net.Http.IHttpClientFactory> and related services in the project's `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient();
 ```
 
-The `HttpClient` services must be added to the main project because the client-side component is prerendered on the server. If you [disable prerendering for the following component](xref:blazor/components/render-modes#prerendering), you aren't required to provide the `HttpClient` services in the main app and don't need to add the preceding line to the main project.
+The <xref:System.Net.Http.HttpClient> services must be added to the server project because the client-side component is prerendered on the server. If you [disable prerendering for the following component](xref:blazor/components/render-modes#prerendering), you aren't required to provide the <xref:System.Net.Http.HttpClient> services in the server project and don't need to add the preceding line to the server project.
 
-For more information on adding `HttpClient` services to an ASP.NET Core app, see <xref:fundamentals/http-requests>.
+For more information on adding <xref:System.Net.Http.HttpClient> services to an ASP.NET Core app, see <xref:fundamentals/http-requests>.
 
 The client project (`.Client`) of a Blazor Web App must also register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to a backend web API controller. Confirm or add the following to the client project's `Program` file:
 
@@ -547,17 +580,177 @@ builder.Services.AddScoped(sp =>
 
 The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. If you're calling an external web API, set the URI to the web API's base address.
 
-Specify the Interactive WebAssembly render mode attribute at the top of the following component in a Blazor Web App:
+A standalone Blazor WebAssembly app that uploads files to a separate server web API either uses a [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) or sets the default <xref:System.Net.Http.HttpClient> service registration to point to the web API's endpoint. In the following example where the web API is hosted locally at port 5001, the base address is `https://localhost:5001`:
+
+```csharp
+builder.Services.AddScoped(sp => 
+    new HttpClient { BaseAddress = new Uri("https://localhost:5001") });
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+In a Blazor Web App, add the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http?displayProperty=fullName> namespace to the component's directives:
 
 ```razor
-@rendermode InteractiveWebAssembly
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
 ```
 
 :::moniker-end
 
 `FileUpload2.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+```razor
+@page "/file-upload-2"
+@using System.Linq
+@using System.Net.Http.Headers
+@using System.Net
+@inject HttpClient Http
+@inject ILogger<FileUpload2> Logger
+
+<PageTitle>File Upload 2</PageTitle>
+
+<h1>File Upload Example 2</h1>
+
+<p>
+    <label>
+        Upload up to @maxAllowedFiles files:
+        <InputFile OnChange="OnInputFileChange" multiple />
+    </label>
+</p>
+
+@if (files.Count > 0)
+{
+    <div class="card">
+        <div class="card-body">
+            <ul>
+                @foreach (var file in files)
+                {
+                    <li>
+                        File: @file.Name
+                        <br>
+                        @if (FileUpload(uploadResults, file.Name, Logger,
+                       out var result))
+                        {
+                            <span>
+                                Stored File Name: @result.StoredFileName
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                There was an error uploading the file
+                                (Error: @result.ErrorCode).
+                            </span>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+@code {
+    private List<File> files = new();
+    private List<UploadResult> uploadResults = new();
+    private int maxAllowedFiles = 3;
+    private bool shouldRender;
+
+    protected override bool ShouldRender() => shouldRender;
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        shouldRender = false;
+        long maxFileSize = 1024 * 15;
+        var upload = false;
+
+        using var content = new MultipartFormDataContent();
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            if (uploadResults.SingleOrDefault(
+                f => f.FileName == file.Name) is null)
+            {
+                try
+                {
+                    files.Add(new() { Name = file.Name });
+
+                    var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
+
+                    fileContent.Headers.ContentType =
+                        new MediaTypeHeaderValue(file.ContentType);
+
+                    content.Add(
+                        content: fileContent,
+                        name: "\"files\"",
+                        fileName: file.Name);
+
+                    upload = true;
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogInformation(
+                        "{FileName} not uploaded (Err: 6): {Message}",
+                        file.Name, ex.Message);
+
+                    uploadResults.Add(
+                        new()
+                        {
+                            FileName = file.Name,
+                            ErrorCode = 6,
+                            Uploaded = false
+                        });
+                }
+            }
+        }
+
+        if (upload)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
+            request.SetBrowserRequestStreamingEnabled(true);
+            request.Content = content;
+
+            var response = await Http.SendAsync(request);
+
+            var newUploadResults = await response.Content
+                .ReadFromJsonAsync<IList<UploadResult>>();
+
+            if (newUploadResults is not null)
+            {
+                uploadResults = uploadResults.Concat(newUploadResults).ToList();
+            }
+        }
+
+        shouldRender = true;
+    }
+
+    private static bool FileUpload(IList<UploadResult> uploadResults,
+        string? fileName, ILogger<FileUpload2> logger, out UploadResult result)
+    {
+        result = uploadResults.SingleOrDefault(f => f.FileName == fileName) ?? new();
+
+        if (!result.Uploaded)
+        {
+            logger.LogInformation("{FileName} not uploaded (Err: 5)", fileName);
+            result.ErrorCode = 5;
+        }
+
+        return result.Uploaded;
+    }
+
+    private class File
+    {
+        public string? Name { get; set; }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Pages/FileUpload2.razor":::
 
@@ -597,7 +790,13 @@ Because the example uses the app's [environment](xref:blazor/fundamentals/enviro
 > [!WARNING]
 > The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
-In the following example, update the shared project's namespace to match the shared project if a shared project is supplying the `UploadResult` class.
+In the following example for a hosted Blazor WebAssembly app or where a shared project is used to supply the `UploadResult` class, add the shared project's namespace:
+
+```csharp
+using BlazorSample.Shared;
+```
+
+We recommend using a namespace for the following controller (for example: `namespace BlazorSample.Controllers`).
 
 `Controllers/FilesaveController.cs`:
 
@@ -610,7 +809,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using BlazorSample.Shared;
 
 [ApiController]
 [Route("[controller]")]
@@ -697,15 +895,72 @@ public class FilesaveController(
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
-The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
+The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>. We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) for authenticated users. If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>, antiforgery isn't enabled automatically. For more information, see <xref:mvc/controllers/routing>.
 
-<!--
+:::moniker range=">= aspnetcore-9.0"
 
-HOLD: Tracking anti-request forgery work for this article in the UE tracking issue.
+Cross-Origin Requests (CORS) configuration on the server is required for [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests) when the server is hosted at a different origin, and a preflight request is always made by the client. In the service configuration of the server's `Program` file (the server project of a Blazor Web App or the backend server web API of a Blazor WebAssembly app), the following default CORS policy is suitable for testing with the examples in this article. The client makes the local request from port 5003. Change the port number to match the client app port that you're using:
 
-We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>, antiforgery isn't enabled automatically. For more information, see <xref:mvc/controllers/routing>.
+:::moniker-end
 
--->
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+Configure Cross-Origin Requests (CORS) on the server. In the service configuration of the server's `Program` file (the server project of a Blazor Web App or the backend server web API of a Blazor WebAssembly app), the following default CORS policy is suitable for testing with the examples in this article. The client makes the local request from port 5003. Change the port number to match the client app port that you're using:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+Configure Cross-Origin Requests (CORS) on the server. In the service configuration of the backend server web API's `Program` file, the following default CORS policy is suitable for testing with the examples in this article. The client makes the local request from port 5003. Change the port number to match the client app port that you're using:
+
+:::moniker-end
+
+```csharp
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:5003")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
+});
+```
+
+After calling <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> in the `Program` file, call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> to add CORS middleware:
+
+```csharp
+app.UseCors();
+```
+
+For more information, see <xref:security/cors>.
+
+:::moniker range=">= aspnetcore-9.0"
+
+Configure the server's maximum request body size and multipart body length limits if the limits constrain the upload size.
+
+For the Kestrel server, set <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize> (default: 30,000,000 bytes) and <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit?displayProperty=nameWithType> (default: 134,217,728 bytes). Set the `maxFileSize` variable in the component and the controller to the same value.
+
+In the following `Program` file Kestrel configuration (the server project of a Blazor Web App or the backend server web API of a Blazor WebAssembly app), the `{LIMIT}` placeholder is the limit in bytes:
+
+```csharp
+using Microsoft.AspNetCore.Http.Features;
+
+...
+
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.MaxRequestBodySize = {LIMIT};
+});
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = {LIMIT};
+});
+```
+
+:::moniker-end
 
 ## Cancel a file upload
 
@@ -1038,13 +1293,13 @@ The line that calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Ope
 
 Possible causes:
 
-* Using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container. To resolve the issue, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters%2A> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
+* Using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container in versions of ASP.NET Core earlier than 9.0. To resolve the issue, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters%2A> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
 
 * Not reading the stream to completion. This isn't a framework issue. Trap the exception and investigate it further in your local environment/network.
 
-<!-- UPDATE 10.0 HOLD in versions of ASP.NET Core earlier than 9.0 
-                adopt ***either*** of the following approaches: * Upgrade the app to ASP.NET Core 9.0 or later. 
-                with the article version selector set to "ASP.NET Core in .NET 8" or earlier -->
+<!-- UPDATE 10.0 - Version the following out at 10.0 when the
+                   the `LazyBrowserFileStream` class is dropped
+                   because the underlying problem is fixed. -->
 
 * Using server-side rendering and calling <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> on multiple files before reading them to completion. To resolve the issue, use the `LazyBrowserFileStream` class and approach described in the [Upload files to a server with server-side rendering](#upload-files-to-a-server-with-server-side-rendering) section of this article.
 
