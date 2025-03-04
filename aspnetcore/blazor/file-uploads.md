@@ -105,32 +105,13 @@ If you're using the [Autofac Inversion of Control (IoC) container](https://autof
 
 For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, HTTPS, and [CORS](xref:security/cors), client-side Blazor supports using the [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit uploading large files with [request streaming](xref:blazor/call-web-api#client-side-request-streaming).
 
-For non-Chromium browsers, without HTTP/2 protocol, or without HTTPS, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
-
-For large client-side file uploads that don't meet the preceding criteria for request streaming and fail when attempting to use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, we recommend chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
+Without a Chromium browser, HTTP/2 protocol, or HTTPS, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+:::moniker range="< aspnetcore-9.0"
 
-Server-side or client-side, there's no file read or upload size limit specifically for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. However, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. For more information, see the following discussions:
-
-* [The Blazor InputFile Component should handle chunking when the file is uploaded (dotnet/runtime #84685)](https://github.com/dotnet/runtime/issues/84685)
-* [Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634)
-
-For large client-side file uploads that fail when attempting to use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, we recommend:
-
-* Adopting .NET 9 or later for Chromium-based browsers (Google Chrome and Microsoft Edge) with HTTP/2 protocol support, where this problem is internally addressed by Blazor with [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API).
-* For non-Chromium browsers, Chromium browsers without HTTP/2, or .NET 8 or earlier, chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB. Additionally, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory.
-
-* Adopting .NET 9 or later for Chromium-based browsers (Google Chrome and Microsoft Edge) with HTTP/2 protocol support, where this problem is internally addressed by Blazor with [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API).
-* For non-Chromium browsers, Chromium browsers without HTTP/2, or .NET 5 or earlier, chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
+Without a Chromium browser, HTTP/2 protocol, or HTTPS, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
 :::moniker-end
 
@@ -302,15 +283,18 @@ public class UploadResult
 
 A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
-<!-- UPDATE 9.0 HOLD moniker range="< aspnetcore-9.0" -->
+<!-- UPDATE 10.0 HOLD moniker range="< aspnetcore-10.0" 
+                 https://github.com/dotnet/aspnetcore/issues/47301
+                 No doc issue yet, but tracked by ...
+                 https://github.com/dotnet/AspNetCore.Docs/issues/34437 -->
 
 The following `LazyBrowserFileStream` class defines a custom stream type that lazily calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> just before the first bytes of the stream are requested. The stream isn't transmitted from the browser to the server until reading the stream begins in .NET.
 
 `LazyBrowserFileStream.cs`:
 
-<!-- UPDATE 9.0 HOLD moniker-end -->
+<!-- UPDATE 10.0 HOLD moniker-end -->
 
-<!-- UPDATE 9.0 HOLD for next line: < aspnetcore-9.0 -->
+<!-- UPDATE 10.0 HOLD for next line: < aspnetcore-19.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -375,7 +359,7 @@ The following `FileUpload2` component:
 
 :::moniker-end
 
-<!-- UPDATE 9.0 HOLD for the next line: < aspnetcore-9.0 -->
+<!-- UPDATE 10.0 HOLD for the next line: < aspnetcore-10.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1180,10 +1164,6 @@ For more information on SignalR configuration and how to set <xref:Microsoft.Asp
 
 ## Maximum parallel invocations per client hub setting
 
-<!-- UPDATE 9.0 Check on a fix for this per
-                https://github.com/dotnet/aspnetcore/issues/53951 
-                and version if fixed. -->
-
 Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient%2A> set to 1, which is the default value.
 
 Increasing the value leads to a high probability that `CopyTo` operations throw `System.InvalidOperationException: 'Reading is not allowed after reader was completed.'`. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
@@ -1196,15 +1176,13 @@ The line that calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Ope
 
 Possible causes:
 
-<!-- UPDATE 9.0 HOLD: in versions of ASP.NET Core earlier than 9.0 -->
-
-* Using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container. To resolve the issue, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters%2A> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
+* Using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container in versions of ASP.NET Core earlier than 9.0. To resolve the issue, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters%2A> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
 
 * Not reading the stream to completion. This isn't a framework issue. Trap the exception and investigate it further in your local environment/network.
 
-<!-- UPDATE 9.0 HOLD in versions of ASP.NET Core earlier than 9.0 
-                adopt ***either*** of the following approaches: * Upgrade the app to ASP.NET Core 9.0 or later. 
-                with the article version selector set to "ASP.NET Core in .NET 8" or earlier -->
+<!-- UPDATE 10.0 - Version the following out at 10.0 when the
+                   the `LazyBrowserFileStream` class is dropped
+                   because the underlying problem is fixed. -->
 
 * Using server-side rendering and calling <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> on multiple files before reading them to completion. To resolve the issue, use the `LazyBrowserFileStream` class and approach described in the [Upload files to a server with server-side rendering](#upload-files-to-a-server-with-server-side-rendering) section of this article.
 
