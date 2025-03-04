@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to use the .NET gRPC client in apps and libraries that support .NET Standard 2.0.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 3/11/2021
+ms.date: 01/08/2025
 uid: grpc/netstandard
 ---
 # Use gRPC client with .NET Standard 2.0
@@ -22,8 +22,6 @@ The following .NET implementations (or later) support [Grpc.Net.Client](https://
 * .NET Core 2.1
 * .NET Framework 4.6.1
 * Mono 5.4
-* Xamarin.iOS 10.14
-* Xamarin.Android 8.0
 * Universal Windows Platform 10.0.16299
 * Unity 2018.1
 
@@ -35,7 +33,7 @@ An HTTP provider must be configured using `GrpcChannelOptions.HttpHandler`. If a
 
 > `System.PlatformNotSupportedException`: gRPC requires extra configuration to successfully make RPC calls on .NET implementations that don't have support for gRPC over HTTP/2. An HTTP provider must be specified using `GrpcChannelOptions.HttpHandler`. The configured HTTP provider must either support HTTP/2 or be configured to use gRPC-Web.
 
-.NET implementations that don't support HTTP/2, such as UWP, Xamarin, and Unity, can use gRPC-Web as an alternative.
+.NET implementations that don't support HTTP/2, such as UWP and Unity, can use gRPC-Web as an alternative.
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions
@@ -90,9 +88,9 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 
 ## gRPC C# core-library
 
-An alternative option for .NET Framework and Xamarin has been to use [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/) to make gRPC calls. gRPC C# core-library is:
+An alternative option for .NET Framework has been to use [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/) to make gRPC calls. gRPC C# core-library is:
 
-* A third party library that supports making gRPC calls over HTTP/2 on .NET Framework and Xamarin. 
+* A third party library that supports making gRPC calls over HTTP/2 on .NET Framework. 
 * Not supported by Microsoft.
 * In maintenance mode and will be [deprecated in favour of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/).
 * Not recommended for new apps.

@@ -33,17 +33,19 @@ Load JavaScript (JS) code using any of the following approaches:
 
 :::moniker-end
 
+Inline JavaScript isn't recommended for Blazor apps. We recommend using [JS collocation](#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) combined with [JS modules](#javascript-isolation-in-javascript-modules).
+
+## Location of `<script>` tags
+
 :::moniker range=">= aspnetcore-8.0"
 
-> [!WARNING]
-> Only place a `<script>` tag in a component file (`.razor`) if the component is guaranteed to adopt [static server-side rendering (static SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts) because the `<script>` tag can't be updated dynamically.
+Only place a `<script>` tag in a component file (`.razor`) if the component is guaranteed to adopt [static server-side rendering (static SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts) without [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). Placing a `<script>` tag in a component file doesn't produce a compile-time warning or error, but script loading behavior might not match your expectations in components that adopt an interactive render mode or static SSR with enhanced navigation.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-> [!WARNING]
-> Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
+Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically. Placing a `<script>` tag in a component file produces a compile-time error.
 
 :::moniker-end
 
@@ -61,7 +63,7 @@ Load JavaScript (JS) code using any of the following approaches:
 
 :::moniker-end
 
-### Load a script in `<head>` markup
+## Load a script in `<head>` markup
 
 *The approach in this section isn't generally recommended.*
 
@@ -84,7 +86,19 @@ Loading JS from the `<head>` isn't the best approach for the following reasons:
 * JS interop may fail if the script depends on Blazor. We recommend loading scripts using one of the other approaches, not via the `<head>` markup.
 * The page may become interactive slower due to the time it takes to parse the JS in the script.
 
-### Load a script in `<body>` markup
+:::moniker range=">= aspnetcore-8.0"
+
+In component markup, scripts can be loaded via a [`HeadContent` component](xref:blazor/components/control-head-content) with the usual caveat that the approach slows down page load on the client, which we recommend avoiding. When a script is loaded with a `HeadContent` component in a Blazor Server app, Blazor WebAssembly app, or a Blazor Web App using either an interactive render mode (interactive SSR, CSR) or static SSR with enhanced navigation, navigating away from the component's page removes the `<script>` tag from the rendered `<head>` content but doesn't unload the script's JavaScript code, including event handlers that the script registers, exposed variables, and methods that the script provides. Only Blazor Web Apps using static SSR without enhanced navigation unload JavaScript code when the user navigates away from the page. Generally, you're better off adding `<script>` tags to the physical `<head>` content, unless you explicitly desire to keep such script references in the components that use them and don't mind that the code isn't unloaded on navigation events.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+In component markup, scripts can be loaded via a [`HeadContent` component](xref:blazor/components/control-head-content) with the usual caveat that the approach slows down page load on the client, which we recommend avoiding. When a script is loaded with a `HeadContent` component, navigating away from the component's page removes the `<script>` tag from the rendered `<head>` content but doesn't unload the script's JavaScript code, including event handlers that the script registers, exposed variables, and methods that the script provides. Generally, you're better off adding `<script>` tags to the physical `<head>` content, unless you explicitly desire to keep such script references in the components that use them and don't mind that the code isn't unloaded on navigation events.
+
+:::moniker-end
+
+## Load a script in `<body>` markup
 
 Place the JavaScript tags (`<script>...</script>`) inside the [closing `</body>` element](xref:blazor/project-structure#location-of-head-and-body-content) after the Blazor script reference:
 
@@ -105,7 +119,7 @@ Place the JavaScript tags (`<script>...</script>`) inside the [closing `</body>`
 
 :::moniker range=">= aspnetcore-6.0"
 
-### Load a script from an external JavaScript file (`.js`) collocated with a component
+## Load a script from an external JavaScript file (`.js`) collocated with a component
 
 [!INCLUDE[](~/blazor/includes/js-interop/js-collocation.md)]
 
@@ -170,7 +184,7 @@ For more information, see <xref:blazor/components/class-libraries>.
 
 :::moniker range=">= aspnetcore-6.0"
 
-### Inject a script before or after Blazor starts
+## Inject a script before or after Blazor starts
 
 To ensure scripts load before or after Blazor starts, use a JavaScript initializer. For more information and examples, see <xref:blazor/fundamentals/startup#javascript-initializers>.
 
@@ -178,7 +192,7 @@ To ensure scripts load before or after Blazor starts, use a JavaScript initializ
 
 :::moniker range="< aspnetcore-6.0"
 
-### Inject a script after Blazor starts
+## Inject a script after Blazor starts
 
 To inject a script after Blazor starts, chain to the `Promise` that results from a manual start of Blazor. For more information and an example, see <xref:blazor/fundamentals/startup#inject-a-script-after-blazor-starts>.
 

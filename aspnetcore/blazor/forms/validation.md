@@ -132,7 +132,9 @@ In the following component, the `HandleValidationRequested` handler method clear
 The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches data annotations validation to a cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Enabling data annotations validation requires the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. To use a different validation system than data annotations, use a custom implementation instead of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The framework implementations for <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> are available for inspection in the reference source:
 
 * [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)
-* [`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
+* [`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs)
+
+If you need to enable data annotations validation support for an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> in code, call <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.EnableDataAnnotationsValidation%2A> with an injected <xref:System.IServiceProvider> (`@inject IServiceProvider ServiceProvider`) on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. For an advanced example, see the [`NotifyPropertyChangedValidationComponent` component in the ASP.NET Core Blazor framework's `BasicTestApp` (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/FormsTest/NotifyPropertyChangedValidationComponent.razor). In a production version of the example, replace the `new TestServiceProvider()` argument for the service provider with an injected <xref:System.IServiceProvider>.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -140,6 +142,68 @@ Blazor performs two types of validation:
 
 * *Field validation* is performed when the user tabs out of a field. During field validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component associates all reported validation results with the field.
 * *Model validation* is performed when the user submits the form. During model validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attempts to determine the field based on the member name that the validation result reports. Validation results that aren't associated with an individual member are associated with the model rather than a field.
+
+In custom validation scenarios:
+
+* Validation manages a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for a form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
+* The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is used to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes).
+
+There are two general approaches for achieving custom validation, which are described in the next two sections of this article:
+
+* [Manual validation using the `OnValidationRequested` event](#manual-validation-using-the-onvalidationrequested-event): Manually validate a form's fields with data annotations validation and custom code for field checks when validation is requested via an event handler assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event.
+* [Validator components](#validator-components): One or more custom validator components can be used to process validation for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server validation).
+
+## Manual validation using the `OnValidationRequested` event
+
+You can manually validate a form with a custom event handler assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A?displayProperty=nameWithType> event to manage a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>.
+
+The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach additional validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). 
+
+Recalling the earlier `Starship8` component example, the `HandleValidationRequested` method is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A>, where you can perform manual validation in C# code. A few changes demonstrate combining the existing manual validation with data annotations validation via a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> and a validation attribute applied to the `Holodeck` model.
+
+Reference the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace in the component's Razor directives at the top of the component definition file:
+
+```razor
+@using System.ComponentModel.DataAnnotations
+```
+
+Add an `Id` property to the `Holodeck` model with a validation attribute to limit the string's length to six characters:
+
+```csharp
+[StringLength(6)]
+public string? Id { get; set; }
+```
+
+Add a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component (`<DataAnnotationsValidator />`) to the form. Typically, the component is placed immediately under the `<EditForm>` tag, but you can place it anywhere in the form:
+
+```razor
+<DataAnnotationsValidator />
+```
+
+Change the form's submit behavior in the `<EditForm>` tag from <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, which ensures that the form is valid before executing the assigned event handler method:
+
+```diff
+- OnSubmit="Submit"
++ OnValidSubmit="Submit"
+```
+
+In the `<EditForm>`, add a field for the `Id` property:
+
+```razor
+<div>
+    <label>
+        <InputText @bind-Value="Model!.Id" />
+        ID (6 characters max)
+    </label>
+    <ValidationMessage For="() => Model!.Id" />
+</div>
+```
+
+After making the preceding changes, the form's behavior matches the following specification:
+
+* The data annotations validation on the `Id` property doesn't trigger a validation failure when the `Id` field merely loses focus. The validation executes when the user selects the **`Update`** button.
+* Any manual validation that you want to perform in the `HandleValidationRequested` method assigned to the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event executes when the user selects the form's **`Update`** button. In the existing code of the `Starship8` component example, the user must select either or both of the checkboxes to validate the form.
+* The form doesn't process the `Submit` method until both the data annotations and manual validation pass.
 
 ## Validator components
 
@@ -353,6 +417,61 @@ The validation for the `Defense` ship classification only occurs on the server i
 
 `Controllers/StarshipValidation.cs`:
 
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using BlazorSample.Shared;
+
+namespace BlazorSample.Server.Controllers;
+
+[Authorize]
+[ApiController]
+[Route("[controller]")]
+public class StarshipValidationController(
+    ILogger<StarshipValidationController> logger) 
+    : ControllerBase
+{
+    static readonly string[] scopeRequiredByApi = [ "API.Access" ];
+
+    [HttpPost]
+    public async Task<IActionResult> Post(Starship model)
+    {
+        HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
+
+        try
+        {
+            if (model.Classification == "Defense" && 
+                string.IsNullOrEmpty(model.Description))
+            {
+                ModelState.AddModelError(nameof(model.Description),
+                    "For a 'Defense' ship " +
+                    "classification, 'Description' is required.");
+            }
+            else
+            {
+                logger.LogInformation("Processing the form asynchronously");
+
+                // async ...
+
+                return Ok(ModelState);
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError("Validation Error: {Message}", ex.Message);
+        }
+
+        return BadRequest(ModelState);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -402,6 +521,8 @@ public class StarshipValidationController(
 }
 ```
 
+:::moniker-end
+
 Confirm or update the namespace of the preceding controller (`BlazorSample.Server.Controllers`) to match the app's controllers' namespace.
 
 When a model binding validation error occurs on the server, an [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normally returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields of the `Starfleet Starship Database` form aren't submitted and the form fails validation:
@@ -411,10 +532,10 @@ When a model binding validation error occurs on the server, an [`ApiController`]
   "title": "One or more validation errors occurred.",
   "status": 400,
   "errors": {
-    "Id": ["The Id field is required."],
-    "Classification": ["The Classification field is required."],
-    "IsValidatedDesign": ["This form disallows unapproved ships."],
-    "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
+    "Id": [ "The Id field is required." ],
+    "Classification": [ "The Classification field is required." ],
+    "IsValidatedDesign": [ "This form disallows unapproved ships." ],
+    "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
   }
 }
 ```
@@ -426,10 +547,10 @@ If the server API returns the preceding default JSON response, it's possible for
 
 ```json
 {
-  "Id": ["The Id field is required."],
-  "Classification": ["The Classification field is required."],
-  "IsValidatedDesign": ["This form disallows unapproved ships."],
-  "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
+  "Id": [ "The Id field is required." ],
+  "Classification": [ "The Classification field is required." ],
+  "IsValidatedDesign": [ "This form disallows unapproved ships." ],
+  "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
 }
 ```
 
@@ -951,6 +1072,50 @@ To ensure that a validation result is correctly associated with a field when usi
 
 `CustomValidator.cs`:
 
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class CustomValidator : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object? value, 
+        ValidationContext validationContext)
+    {
+        ...
+
+        return new ValidationResult("Validation message to user.",
+            [ validationContext.MemberName! ]);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class CustomValidator : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object? value, 
+        ValidationContext validationContext)
+    {
+        ...
+
+        return new ValidationResult("Validation message to user.",
+            new[] { validationContext.MemberName! });
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 ```csharp
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -967,6 +1132,8 @@ public class CustomValidator : ValidationAttribute
     }
 }
 ```
+
+:::moniker-end
 
 Inject services into custom validation attributes through the <xref:System.ComponentModel.DataAnnotations.ValidationContext>. The following example demonstrates a salad chef form that validates user input with dependency injection (DI).
 

@@ -25,5 +25,4 @@ app.Run();
 [JsonSerializable(typeof(Todo[]))]
 internal partial class AppJsonSerializerContext : JsonSerializerContext
 {
-
 }

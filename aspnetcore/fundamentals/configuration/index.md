@@ -59,6 +59,8 @@ var builder = WebApplication.CreateBuilder(args);
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#jcp).
 1. A fallback to the host configuration described in the [next section](#host).
 
+Note: `WebApplication.CreateBuilder(args)` should only be called once in apps relying on IIS in-process hosting.<!--Delete this note in the .NET 10 version of the article. See <https://github.com/dotnet/aspnetcore/pull/59910>. -->
+
 <a name="host"></a>
 
 ### Default host configuration sources
@@ -135,6 +137,16 @@ Using the [default](#default) configuration, the `appsettings.json` and `appsett
 ### Comments in appsettings.json
 
 Comments in `appsettings.json` and `appsettings.{Environment}.json` files are supported using JavaScript or [C# style comments](/dotnet/csharp/language-reference/tokens/comments).
+
+Some integrated development environments (IDE) display errors when editing a JSON file that contains comments. You can generally ignore comment errors and warnings, but you can also usually disable them with a setting in the IDE. In Visual Studio Code, for example, add the following to the `settings.json` file to disable the errors:
+
+```json
+"files.associations": {
+  "appsettings*.json": "jsonc"
+}
+```
+
+For other IDEs, check the tool's documentation and other product support channels to determine how to silence the errors.
 
 <a name="optpat"></a>
 

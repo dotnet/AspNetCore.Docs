@@ -117,7 +117,7 @@ In the **Create a Default Android Device** window, select the **Create** button:
 Wait for Visual Studio to download, unzip, and create an Android Emulator. When the Android phone emulator is ready, select the **Start** button.
 
 > [!NOTE]
-> [Enable hardware acceleration](/xamarin/android/get-started/installation/android-emulator/hardware-acceleration) to improve the performance of the Android emulator.
+> [Enable hardware acceleration](/dotnet/maui/android/emulator/hardware-acceleration) to improve the performance of the Android emulator.
 
 Close the **Android Device Manager** window. Wait until the emulated phone window appears, the Android OS loads, and the home screen appears.
 
@@ -132,7 +132,7 @@ In the Visual Studio toolbar, select the **:::no-loc text="Pixel 5 - {VERSION}":
 
 Visual Studio builds the project and deploys the app to the emulator.
 
-Starting the emulator, loading the emulated phone and OS, and deploying and running the app can take several minutes depending on the speed of the system and whether or not [hardware acceleration](/xamarin/android/get-started/installation/android-emulator/hardware-acceleration) is enabled. You can monitor the progress of the deployment by inspecting Visual Studio's status bar at the bottom of the UI. The **Ready** indicator receives a checkmark and the emulator's deployment and app loading indicators disappear when the app is running:
+Starting the emulator, loading the emulated phone and OS, and deploying and running the app can take several minutes depending on the speed of the system and whether or not [hardware acceleration](/dotnet/maui/android/emulator/hardware-acceleration) is enabled. You can monitor the progress of the deployment by inspecting Visual Studio's status bar at the bottom of the UI. The **Ready** indicator receives a checkmark and the emulator's deployment and app loading indicators disappear when the app is running:
 
 During deployment:
 

@@ -201,7 +201,7 @@ Blazor uses <xref:System.Text.Json?displayProperty=fullName> for serialization w
 * Global default serialization isn't customizable to avoid breaking existing component libraries, impacts on performance and security, and reductions in reliability.
 * Serializing .NET member names results in lowercase JSON key names.
 * JSON is deserialized as <xref:System.Text.Json.JsonElement> C# instances, which permit mixed casing. Internal casting for assignment to C# model properties works as expected in spite of any case differences between JSON key names and C# property names.
-* Complex framework types, such as <xref:System.Collections.Generic.KeyValuePair>, might be [trimmed away by the IL Trimmer on publish](xref:blazor/host-and-deploy/configure-trimmer) and not present for JS interop. We recommend creating custom types for types that the IL Trimmer trims away.
+* Complex framework types, such as <xref:System.Collections.Generic.KeyValuePair>, might be [trimmed away by the IL Trimmer on publish](xref:blazor/host-and-deploy/configure-trimmer#failure-to-preserve-types-used-by-a-published-app) and not present for JS interop or JSON serialization/deserialization. We recommend creating custom types for types that the IL Trimmer trims away.
 * Blazor always relies on [reflection for JSON serialization](/dotnet/standard/serialization/system-text-json/reflection-vs-source-generation), including when using C# [source generation](/dotnet/csharp/roslyn-sdk/source-generators-overview). Setting `JsonSerializerIsReflectionEnabledByDefault` to `false` in the app's project file results in an error when serialization is attempted.
 
 <xref:System.Text.Json.Serialization.JsonConverter> API is available for custom serialization. Properties can be annotated with a [`[JsonConverter]` attribute](xref:System.Text.Json.Serialization.JsonConverterAttribute) to override default serialization for an existing data type.
@@ -314,6 +314,13 @@ export class DOMCleanup {
 
 window.DOMCleanup = DOMCleanup;
 ```
+
+The preceding approaches attach the `MutationObserver` to `target.parentNode`, which works until `parentNode` itself is removed from the DOM. This is a common scenario, for example, when navigating to a new page, which causes the entire page component to be removed from the DOM. In such cases, any child components observing changes within the page aren't cleaned up properly.
+
+Don't assume that observing `document.body`, instead of `target.parentNode`, is a better target. Observing `document.body` has performance implications because callback logic is executed for *all* DOM updates, whether or not they have anything to do with your element. Use either of the following approaches:
+
+* In cases where you can identify a suitable ancestor node to observe, use `MutationObserver` with it. Ideally, this ancestor is scoped to the changes that you want to observe, rather than `document.body`.
+* Instead of using `MutationObserver`, consider using a [custom element and `disconnectedCallback`](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements). The event always fires when your custom element is disconnected, no matter where it resides in the DOM relative to the DOM change.
 
 ## JavaScript interop calls without a circuit
 

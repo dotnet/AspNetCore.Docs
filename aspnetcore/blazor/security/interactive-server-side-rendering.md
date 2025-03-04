@@ -60,9 +60,9 @@ In general, we recommend that you avoid rendering components that contain sensit
 
 [!INCLUDE[](~/blazor/security/includes/shared-state.md)]
 
-## `IHttpContextAccessor`/`HttpContext` in Razor components
+## `IHttpContextAccessor`/`HttpContext`
 
-[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
+For more information, see <xref:blazor/components/httpcontext>.
 
 ## Resource exhaustion
 
@@ -129,9 +129,9 @@ There's no limit on the number of connections per user for an app. If the app re
     * Require authentication to connect to the app and keep track of the active sessions per user.
     * Reject new sessions upon reaching a limit.
     * Proxy WebSocket connections to an app through the use of a proxy, such as the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) that multiplexes connections from clients to an app. This provides an app with greater connection capacity than a single client can establish, preventing a client from exhausting the connections to the server.
-  * Server level
-    * Use a proxy/gateway in front of the app. For example, [Azure Application Gateway](/azure/application-gateway/overview) is a web traffic (OSI layer 7) load balancer that enables you to manage traffic to your web applications. For more information, see [Overview of WebSocket support in Application Gateway](/azure/application-gateway/application-gateway-websocket).
-    * Although Long Polling is supported for Blazor apps, which would permit the adoption of [Azure Front Door](/azure/frontdoor/front-door-overview), [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). As of September, 2024, [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets, but support for WebSockets is under consideration. For more information, see [Support WebSocket connections on Azure Front Door](https://feedback.azure.com/d365community/idea/c8b1d257-8a26-ec11-b6e6-000d3a4f0789).
+  * Server level: Use a proxy/gateway in front of the app.
+    * [Azure Application Gateway](/azure/application-gateway/overview) is a web traffic (OSI layer 7) load balancer that enables you to manage traffic to your web applications. For more information, see [Overview of WebSocket support in Application Gateway](/azure/application-gateway/application-gateway-websocket).
+    * [Azure Front Door](/azure/frontdoor/front-door-overview) is a load-balancing service for distributing your workloads across multiple computing resources.
 
 :::moniker-end
 
@@ -391,9 +391,20 @@ In addition to the safeguards that the framework implements, the app must be cod
 
 For a XSS vulnerability to exist, the app must incorporate user input in the rendered page. Blazor executes a compile-time step where the markup in a `.razor` file is transformed into procedural C# logic. At runtime, the C# logic builds a *render tree* describing the elements, text, and child components. This is applied to the browser's DOM via a sequence of JavaScript instructions (or is serialized to HTML in the case of prerendering):
 
+:::moniker range=">= aspnetcore-8.0"
+
+* User input rendered via normal Razor syntax (for example, `@someStringValue`) doesn't expose a XSS vulnerability because the Razor syntax is added to the DOM via commands that can only write text. Even if the value includes HTML markup, the value is displayed as static text. When prerendering, the output is HTML-encoded, which also displays the content as static text.
+* Component authors can author components in C# without using Razor. The component author is responsible for using the correct APIs when emitting output. For example, use `builder.AddContent(0, someUserSuppliedString)` and *not* `builder.AddMarkupContent(0, someUserSuppliedString)`, as the latter could create a XSS vulnerability.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * User input rendered via normal Razor syntax (for example, `@someStringValue`) doesn't expose a XSS vulnerability because the Razor syntax is added to the DOM via commands that can only write text. Even if the value includes HTML markup, the value is displayed as static text. When prerendering, the output is HTML-encoded, which also displays the content as static text.
 * Script tags aren't allowed and shouldn't be included in the app's component render tree. If a script tag is included in a component's markup, a compile-time error is generated.
 * Component authors can author components in C# without using Razor. The component author is responsible for using the correct APIs when emitting output. For example, use `builder.AddContent(0, someUserSuppliedString)` and *not* `builder.AddMarkupContent(0, someUserSuppliedString)`, as the latter could create a XSS vulnerability.
+
+:::moniker-end
 
 Consider further mitigating XSS vulnerabilities. For example, implement a restrictive [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP). For more information, see <xref:blazor/security/content-security-policy>.
 

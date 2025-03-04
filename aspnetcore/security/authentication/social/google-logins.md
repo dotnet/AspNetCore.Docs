@@ -9,13 +9,13 @@ uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
 
-By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Valeriy Novytskyy](https://github.com/01binary), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Sharaf Abacery](https://github.com/sharafabacery)
 
 This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create the Google OAuth 2.0 Client ID and secret
 
-* Follow the guidance in [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/sign-in) (Google documentation).
+* Follow the guidance in [Integrating Google Sign-In into your web app](https://developers.google.com/identity/gsi/web/guides/overview) (Google documentation)
 * Go to [Google API & Services](https://console.cloud.google.com/apis).
 * A **Project** must exist first, you may have to create one. Once a project is selected, enter the **Dashboard**.
 
@@ -53,37 +53,21 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 ## Configure Google authentication
 
-Add the [`Microsoft.AspNetCore.Authentication.Google`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet package to the app.
-
-:::moniker range="< aspnetcore-6.0"
-
-Add the Authentication service to the `Startup.ConfigureServices`:
-
-[!code-csharp[](~/security/authentication/social/social-code/3.x/StartupGoogle3x.cs?highlight=11-19)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
-
-Add the Authentication service to the `Program`:
-
-[!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramGoogle.cs)]
-
-:::moniker-end
+* Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) NuGet package to the app.
+* Add the Authentication service to the `program.cs`:
+* Follow [`Add Authtication for asp.net app`](https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth#configure-your-application-to-use-google.apis.auth.aspnetcore3)
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
 ## Sign in with Google
+* Get a link to the libary at [google developer library link ](https://developers.google.com/identity/gsi/web/guides/client-library) to get link of library.
+* Then go to [google developer button genration ](https://developers.google.com/identity/gsi/web/tools/configurator)
+* Setup your Controller to match with ` data-login_uri="{HostName}/{ControllerName}/{actionName}" ` attrbute because after success login it will forward you to that link.
+* Create a controller and action that takes one argument `string credential`, which is returned by Google upon completing the login process.
+* Verify the `credential` using the following line of code:
+`GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);`
+* This will retrieve the available information about the logged-in user, which could then be stored in a database.
 
-* Run the app and select **Log in**. An option to sign in with Google appears.
-* Select the **Google** button, which redirects to Google for authentication.
-* After entering your Google credentials, you are redirected back to the web site.
-
-[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
-
-[!INCLUDE[](includes/chain-auth-providers.md)]
-
-For more information on configuration options supported by Google authentication, see the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference . This can be used to request different information about the user.
 
 ## Change the default callback URI
 

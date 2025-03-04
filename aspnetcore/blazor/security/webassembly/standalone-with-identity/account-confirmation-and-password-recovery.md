@@ -4,17 +4,19 @@ author: guardrex
 description: Learn how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 10/31/2024
+ms.date: 11/21/2024
 uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
+
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article explains how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 
 > [!NOTE]
 > This article only applies standalone Blazor WebAssembly apps with ASP.NET Core Identity. To implement email confirmation and password recovery for Blazor Web Apps, see <xref:blazor/security/account-confirmation-and-password-recovery>.
 
-## Namespace
+## Namespaces and article code examples
 
 The namespaces used by the examples in this article are:
 
@@ -48,7 +50,18 @@ Register the `AuthMessageSenderOptions` configuration instance in the server pro
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 ```
 
-## Configure a user secret for the provider's security key
+## Configure a secret for the email provider's security key
+
+Receive the email provider's security key from the provider and use it in the following guidance.
+
+Use either or both of the following approaches to supply the secret to the app:
+
+* [Secret Manager tool](#secret-manager-tool): The Secret Manager tool stores private data on the local machine and is only used during local development.
+* [Azure Key Vault](#azure-key-vault): You can store the secret in a key vault for use in any environment, including for the Development environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
+
+We strongly recommend that you avoid storing secrets in project code or configuration files. Use secure authentication flows, such as either or both of the approaches in this section.
+
+## Secret Manager Tool
 
 If the server project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have a app secrets identifier (`<AppSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the app secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the server project's directory. In Visual Studio, you can use the Developer PowerShell command prompt (use the `cd` command to change the directory to the server project after you open the command shell).
 
@@ -67,6 +80,102 @@ If using Visual Studio, you can confirm the secret is set by right-clicking the 
 For more information, see <xref:security/app-secrets>.
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
+### Azure Key Vault
+
+[Azure Key Vault](https://azure.microsoft.com/products/key-vault/) provides a safe approach for providing the app's client secret to the app.
+
+To create a key vault and set a secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret. When you set the access policy for the secret in the **Access policies** panel:
+
+* Only the **Get** secret permission is required.
+* Select the application as the **Principal** for the secret.
+
+Confirm in the Azure or Entra portal that the app has been granted access to the secret that you created for the email provider key.
+
+> [!IMPORTANT]
+> A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.
+
+If Microsoft Identity packages aren't already part of the app's package registrations, add the following packages to the server project for Azure Identity and Azure Key Vault. These packages are transitively provided by Microsoft Identity Web packages, so you only need to add them if the app isn't referencing [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web):
+
+* [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity)
+* [`Azure.Security.KeyVault.Secrets`](https://www.nuget.org/packages/Azure.Security.KeyVault.Secrets)
+
+Add the following `AzureHelper` class to the server project. The `GetKeyVaultSecret` method retrieves a secret from a key vault. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
+
+`Helpers/AzureHelper.cs`:
+
+```csharp
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+
+namespace BlazorSample.Helpers;
+
+public static class AzureHelper
+{
+    public static string GetKeyVaultSecret(string tenantId, string vaultUri, string secretName)
+    {
+        DefaultAzureCredentialOptions options = new()
+        {
+            // Specify the tenant ID to use the dev credentials when running the app locally
+            // in Visual Studio.
+            VisualStudioTenantId = tenantId,
+            SharedTokenCacheTenantId = tenantId
+        };
+
+        var client = new SecretClient(new Uri(vaultUri), new DefaultAzureCredential(options));
+        var secret = client.GetSecretAsync(secretName).Result;
+
+        return secret.Value.Value;
+    }
+}
+```
+
+Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](xref:fundamentals/configuration/options):
+
+```csharp
+var tenantId = builder.Configuration.GetValue<string>("AzureAd:TenantId")!;
+var vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
+
+var emailAuthKey = AzureHelper.GetKeyVaultSecret(
+    tenantId, vaultUri, "EmailAuthKey");
+
+var authMessageSenderOptions = 
+    new AuthMessageSenderOptions() { EmailAuthKey = emailAuthKey };
+builder.Configuration.GetSection(authMessageSenderOptions.EmailAuthKey)
+    .Bind(authMessageSenderOptions);
+```
+
+If you wish to control the environment where the preceding code operates, for example to avoid running the code locally because you've opted to use the [Secret Manager tool](#secret-manager-tool) for local development, you can wrap the preceding code in a conditional statement that checks the environment:
+
+```csharp
+if (!context.HostingEnvironment.IsDevelopment())
+{
+    ...
+}
+```
+
+In the `AzureAd` section, which you may need to add if it isn't already present, of `appsettings.json` in the server project, add the following `TenantId` and `VaultUri` configuration keys and values, if they aren't already present:
+
+```json
+"AzureAd": {
+  "TenantId": "{TENANT ID}",
+  "VaultUri": "{VAULT URI}"
+}
+```
+
+In the preceding example:
+
+* The `{TENANT ID}` placeholder is the app's tenant ID in Azure.
+* The `{VAULT URI}` placeholder is the key vault URI. Include the trailing slash on the URI.
+
+Example:
+
+```json
+"TenantId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+"VaultUri": "https://contoso.vault.azure.net/"
+```
+
+Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
 
 ## Implement `IEmailSender` in the server project
 
@@ -156,15 +265,11 @@ Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.Identi
 In the client project's `Register` component (`Components/Identity/Register.razor`), change the message to users on a successful account registration to instruct them to confirm their account. The following example includes a link to trigger Identity on the server to resend the confirmation email.
 
 ```diff
-- <div class="alert alert-success">
--     You successfully registered. Now you can <a href="login">login</a>.
-- </div>
-+ <div class="alert alert-success">
-+     You successfully registered. You must now confirm your account by clicking 
-+     the link in the email that was sent to you. After confirming your account, 
-+     you can <a href="login">login</a> to the app. 
-+     <a href="resendConfirmationEmail">Resend confirmation email</a>
-+ </div>
+- You successfully registered and can <a href="login">login</a> to the app.
++ You successfully registered. You must now confirm your account by clicking 
++ the link in the email that was sent to you. After confirming your account, 
++ you can <a href="login">login</a> to the app. 
++ <a href="resendConfirmationEmail">Resend confirmation email</a>
 ```
 
 ## Update seed data code to confirm seeded accounts
@@ -200,7 +305,7 @@ Enabling account confirmation on a site with users locks out all the existing us
 Password recovery requires the server app to adopt an email provider in order to send password reset codes to users. Therefore, follow the guidance earlier in this article to adopt an email provider:
 
 * [Select and configure an email provider for the server project](#select-and-configure-an-email-provider-for-the-server-project)
-* [Configure a user secret for the provider's security key](#configure-a-user-secret-for-the-providers-security-key)
+* [Configure a secret for the email provider's security key](#configure-a-secret-for-the-email-providers-security-key)
 * [Implement `IEmailSender` in the server project](#implement-iemailsender-in-the-server-project)
 
 Password recovery is a two-step process:
@@ -222,24 +327,16 @@ public Task<FormResult> ResetPasswordAsync(string email, string resetCode,
 In the client project, add implementations for the preceding methods in the `CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`):
 
 ```csharp
-/// <summary>
-/// Begin the password recovery process by issuing a POST request to the 
-/// '/forgotPassword' endpoint.
-/// </summary>
-/// <param name="email">The user's email address.</param>
-/// <returns>A <see cref="bool"/> indicating success or failure.</returns>
 public async Task<bool> ForgotPasswordAsync(string email)
 {
     try
     {
-        // make the request
         var result = await httpClient.PostAsJsonAsync(
             "forgotPassword", new
             {
                 email
             });
 
-        // successful?
         if (result.IsSuccessStatusCode)
         {
             return true;
@@ -247,27 +344,16 @@ public async Task<bool> ForgotPasswordAsync(string email)
     }
     catch { }
 
-    // unknown error
     return false;
 }
 
-/// <summary>
-/// Reset the user's password by issuing a POST request to the 
-/// '/resetPassword' endpoint.
-/// </summary>
-/// <param name="email">The user's email address.</param>
-/// <param name="resetCode">The user's reset code.</param>
-/// <param name="newPassword">The user's new password.</param>
-/// <returns>The result serialized to a <see cref="FormResult"/>.
-/// </returns>
 public async Task<FormResult> ResetPasswordAsync(string email, string resetCode, 
     string newPassword)
 {
-    string[] defaultDetail = ["An unknown error prevented resetting the password."];
+    string[] defaultDetail = [ "An unknown error prevented password reset." ];
 
     try
     {
-        // make the request
         var result = await httpClient.PostAsJsonAsync(
             "resetPassword", new
             {
@@ -276,13 +362,11 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
                 newPassword
             });
 
-        // successful?
         if (result.IsSuccessStatusCode)
         {
             return new FormResult { Succeeded = true };
         }
 
-        // body should contain details about why it failed
         var details = await result.Content.ReadAsStringAsync();
         var problemDetails = JsonDocument.Parse(details);
         var errors = new List<string>();
@@ -303,7 +387,6 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
             }
         }
 
-        // return the error list
         return new FormResult
         {
             Succeeded = false,
@@ -312,7 +395,6 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
     }
     catch { }
 
-    // unknown error
     return new FormResult
     {
         Succeeded = false,
@@ -322,9 +404,6 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
 ```
 
 In the client project, add the following `ForgotPassword` component.
-
-> [!NOTE]
-> Code lines in the following example are broken across two or more lines to eliminate or reduce horizontal scrolling in this article, but you can place the following code as shown into a test app. The code executes regardless of the artificial line breaks.
 
 `Components/Identity/ForgotPassword.razor`:
 
@@ -344,14 +423,15 @@ In the client project, add the following `ForgotPassword` component.
         @if (!passwordResetCodeSent)
         {
             <EditForm Model="Input" FormName="forgot-password" 
-                OnValidSubmit="OnValidSubmitStep1Async" method="post">
+                      OnValidSubmit="OnValidSubmitStep1Async" method="post">
                 <DataAnnotationsValidator />
                 <ValidationSummary class="text-danger" role="alert" />
 
                 <div class="form-floating mb-3">
-                    <InputText @bind-Value="Input.Email" id="Input.Email" 
-                        class="form-control" autocomplete="username" 
-                        aria-required="true" placeholder="name@example.com" />
+                    <InputText @bind-Value="Input.Email" 
+                        id="Input.Email" class="form-control" 
+                        autocomplete="username" aria-required="true" 
+                        placeholder="name@example.com" />
                     <label for="Input.Email" class="form-label">
                         Email
                     </label>
@@ -415,7 +495,8 @@ In the client project, add the following `ForgotPassword` component.
                             class="text-danger" />
                     </div>
                     <div class="form-floating mb-3">
-                        <InputText type="password" @bind-Value="Reset.ConfirmPassword" 
+                        <InputText type="password" 
+                            @bind-Value="Reset.ConfirmPassword" 
                             id="Reset.ConfirmPassword" class="form-control" 
                             autocomplete="new-password" aria-required="true" 
                             placeholder="password" />
@@ -435,8 +516,7 @@ In the client project, add the following `ForgotPassword` component.
 </div>
 
 @code {
-    private bool passwordResetCodeSent;
-    private bool passwordResetSuccess, errors;
+    private bool passwordResetCodeSent, passwordResetSuccess, errors;
     private string[] errorList = [];
 
     [SupplyParameterFromForm(FormName = "forgot-password")]
@@ -490,7 +570,7 @@ In the client project, add the following `ForgotPassword` component.
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation " +
-            "password do not match.")]
+            "password don't match.")]
         public string ConfirmPassword { get; set; } = string.Empty;
     }
 }

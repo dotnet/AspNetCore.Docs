@@ -47,7 +47,7 @@ There are more vulnerabilities that you should be aware of. For more information
 
 ## Secure authentication flows
 
-We recommend using the most secure secure authentication option. For Azure services, the most secure authentication is [managed identities](/entra/identity/managed-identities-azure-resources/overview).
+We recommend using the most secure authentication option. For Azure services, the most secure authentication is [managed identities](/entra/identity/managed-identities-azure-resources/overview).
 
 Avoid Resource Owner Password Credentials Grant because it:
 
@@ -80,6 +80,8 @@ For information on other cloud providers, see:
 
 * [AWS (Amazon Web Services): AWS Key Management Service (KMS)](https://aws.amazon.com/kms/)
 * [Google Cloud Key Management Service overview](https://cloud.google.com/kms/docs/key-management-service)
+
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
 ## Additional resources
 

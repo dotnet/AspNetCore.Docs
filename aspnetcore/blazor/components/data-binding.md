@@ -221,14 +221,14 @@ Additional examples
 
 For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
 
-Components support two-way data binding by defining a pair of parameters:
+Components support two-way data binding by defining a pair of `@bind` attributes with either a `:get` or `:set` modifier . The `{PARAMETER}` placeholder in the following examples is used to bind a component parameter:
 
-* `@bind:get`: Specifies the value to bind.
-* `@bind:set`: Specifies a callback for when the value changes.
+* `@bind:get`/`@bind-{PARAMETER}:get`: Specifies the value to bind.
+* `@bind:set`/`@bind-{PARAMETER}:set`: Specifies a callback for when the value changes.
 
-The `@bind:get` and `@bind:set` modifiers are always used together.
+The `:get` and `:set` modifiers are always used together.
 
-Examples
+With `:get`/`:set` binding, you can react to a value change before it's applied to the DOM, and you can change the applied value, if necessary. Whereas with `@bind:event="{EVENT}"` attribute binding, where the `{EVENT}` placeholder is a DOM event, you receive the notification after the DOM is updated, and there's no capacity to modify the applied value while binding.
 
 `BindGetSet.razor`:
 
@@ -378,14 +378,16 @@ Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `i
 :::moniker range=">= aspnetcore-7.0"
 
 > [!NOTE]
-> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For two-way data binding, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the `@bind:get`/`@bind:set` guidance in the earlier in this article.
+> Across multiple components, two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in the property's setter. For two-way data binding, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the [`@bind:get`/`@bind:set` guidance](#binding-features) earlier in this article.
+>
+> To see an example of how the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> is discarded in .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of the *Bind across more than two components* section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
 > [!NOTE]
-> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For two-way data binding in ASP.NET Core in .NET 7 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in 7.0 or later versions of this article.
+> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For an example, see [the `NestedChild` component of the *Bind across more than two components* section](#bind-across-more-than-two-components). For two-way data binding in .NET 7 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in 7.0 or later versions of this article.
 
 :::moniker-end
 
@@ -396,6 +398,67 @@ Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `i
 Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
 
 `BindMultipleInput.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/bind-multiple-input"
+
+<h1>Bind Multiple <code>input</code>Example</h1>
+
+<p>
+    <label>
+        Select one or more cars: 
+        <select @onchange="SelectedCarsChanged" multiple>
+            <option value="audi">Audi</option>
+            <option value="jeep">Jeep</option>
+            <option value="opel">Opel</option>
+            <option value="saab">Saab</option>
+            <option value="volvo">Volvo</option>
+        </select>
+    </label>
+</p>
+
+<p>
+    Selected Cars: @string.Join(", ", SelectedCars)
+</p>
+
+<p>
+    <label>
+        Select one or more cities: 
+        <select @bind="SelectedCities" multiple>
+            <option value="bal">Baltimore</option>
+            <option value="la">Los Angeles</option>
+            <option value="pdx">Portland</option>
+            <option value="sf">San Francisco</option>
+            <option value="sea">Seattle</option>
+        </select>
+    </label>
+</p>
+
+<span>
+    Selected Cities: @string.Join(", ", SelectedCities)
+</span>
+
+@code {
+    public string[] SelectedCars { get; set; } = [];
+    public string[] SelectedCities { get; set; } = [ "bal", "sea" ];
+
+    private void SelectedCarsChanged(ChangeEventArgs e)
+    {
+        if (e.Value is not null)
+        {
+            SelectedCars = (string[])e.Value;
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
 @page "/bind-multiple-input"
@@ -449,6 +512,10 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 For information on how empty strings and `null` values are handled in data binding, see the [Binding `<select>` element options to C# object `null` values](#binding-select-element-options-to-c-object-null-values) section.
 
@@ -888,6 +955,8 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 
 * Assigns the value of `ChildMessage` to `GrandchildMessage` with `@bind:get` syntax.
 * Updates `GrandchildMessage` when `ChildMessageChanged` executes with `@bind:set` syntax.
+
+Prior to the release of .NET 7, two-way binding across components uses `get`/`set` accessors with a third property that discards the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in its setter. To see an example of this approach for .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of this section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
 
 :::moniker-end
 

@@ -1,0 +1,54 @@
+id: pullRequestManagement.labelFiles
+name: GitOps.PullRequestLabelFiles
+description: Checks the files touched by a pull request and assigns a reviewer
+owner:
+resource: repository
+disabled: false
+where:
+configuration:
+  resourceManagementConfiguration:
+    eventResponderTasks:
+      - description: Modify PRs that touch certain files
+        triggerOnOwnActions: false
+        if:
+          - payloadType: Pull_Request
+          - or:
+            - isAction:
+                action: Opened
+            - isAction:
+                action: Synchronize
+          - not:
+              targetsBranch:
+                branch: live
+        then:
+          - if:
+            - filesMatchPattern:
+                matchAny: true
+                pattern: '(?i).*/blazor/hybrid/.*'
+            then:
+            - requestReview:
+                reviewer: guardrex
+            - addLabel:
+                label: 'blazor-hybrid/subsvc'
+          - if:
+            - or:
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: '(?i).*/blazor/.*'
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: '(?i).*/client-side/dotnet-interop/index.md'
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: '(?i).*/client-side/dotnet-interop/wasm-browser-app.md'
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: '(?i).*/mvc/views/tag-helpers/built-in/component-tag-helper.md'
+              - filesMatchPattern:
+                  matchAny: true
+                  pattern: '(?i).*/mvc/views/tag-helpers/built-in/persist-component-state.md'
+            then:
+            - requestReview:
+                reviewer: guardrex
+onFailure:
+onSuccess:

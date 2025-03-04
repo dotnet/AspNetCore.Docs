@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor QuickGrid component
+title: ASP.NET Core Blazor `QuickGrid` component
 author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
@@ -12,7 +12,7 @@ uid: blazor/components/quickgrid
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
+The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is a Razor component for quickly and efficiently displaying data in tabular form. QuickGrid provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. QuickGrid is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
 ## Package
 
@@ -22,9 +22,9 @@ Add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](ht
 
 ## Sample app
 
-For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** sample app](https://aspnet.github.io/quickgridsamples/). The demo site is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
+For various QuickGrid demonstrations, see the [**QuickGrid for Blazor** sample app](https://aspnet.github.io/quickgridsamples/). The demo site is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
 
-## `QuickGrid` implementation
+## QuickGrid implementation
 
 To implement a `QuickGrid` component:
 
@@ -41,7 +41,7 @@ To implement a `QuickGrid` component:
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OverscanCount%2A>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is 3. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. 
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance.
-* In the `QuickGrid` child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
+* In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A> requires the `TProp` type to implement <xref:System.IFormattable>.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601> is sorted if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601.SortBy%2A> parameter is specified.
@@ -65,7 +65,7 @@ To implement a `QuickGrid` component:
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance.
-* In the `QuickGrid` child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
+* In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A> requires the `TProp` type to implement <xref:System.IFormattable>.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601> is sorted if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601.SortBy%2A> parameter is specified.
@@ -97,7 +97,7 @@ For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render
 
 Access the component in a browser at the relative path `/promotion-grid`.
 
-There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
+There aren't current plans to extend QuickGrid with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
 
 ## Sort by column
 
@@ -109,7 +109,7 @@ Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBas
 <PropertyColumn Property="..." Sortable="true" />
 ```
 
-In the running app, sort the `QuickGrid` column by selecting the rendered column title.
+In the running app, sort the QuickGrid column by selecting the rendered column title.
 
 ## Page items with a `Paginator` component
 
@@ -138,7 +138,25 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 
 In the running app, page through the items using a rendered `Paginator` component.
 
-QuickGrid renders additional empty rows to fill in the final page of data when used with a `Paginator` component. In .NET 9 or later, empty data cells (`<td></td>`) are added to the empty rows. The empty rows are intended to facilitate rendering the QuickGrid with stable row height and styling across all pages. You can apply styles to the rows using [CSS isolation](xref:blazor/components/css-isolation) by wrapping the `QuickGrid` component in a wrapper element, such as a `<div>`, and applying a row style with `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements):
+QuickGrid renders additional empty rows to fill in the final page of data when used with a `Paginator` component. In .NET 9 or later, empty data cells (`<td></td>`) are added to the empty rows. The empty rows are intended to facilitate rendering the QuickGrid with stable row height and styling across all pages.
+
+## Apply row styles
+
+Apply styles to rows using [CSS isolation](xref:blazor/components/css-isolation), which can include styling empty rows for `QuickGrid` components that [page data with a `Paginator` component](#page-items-with-a-paginator-component).
+
+Wrap the `QuickGrid` component in a wrapper block element, for example a `<div>`:
+
+```diff
++ <div>
+    <QuickGrid ...>
+        ...
+    </QuickGrid>
++ </div>
+```
+
+Apply a row style with the `::deep` [pseudo-element](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements). In the following example, row height is set to `2em`, including for empty data rows.
+
+`{COMPONENT}.razor.css`:
 
 ```css
 ::deep tr {
@@ -146,10 +164,10 @@ QuickGrid renders additional empty rows to fill in the final page of data when u
 }
 ```
 
-To hide the empty row data cells rendered by the QuickGrid, use CSS styling. In the following isolated CSS styles:
+Alternatively, use the following CSS styling approach:
 
-* Row cells populated with data are displayed.
-* Empty row data cells aren't displayed, which avoids empty row cell borders from rendering per Bootstrap styling.
+* Display row cells populated with data.
+* Don't display empty row cells, which avoids empty row cell borders from rendering per Bootstrap styling.
 
 `{COMPONENT}.razor.css`:
 
@@ -172,6 +190,34 @@ QuickGrid also supports passing custom attributes and style classes (<xref:Micro
 ```razor
 <QuickGrid Items="..." custom-attribute="value" Class="custom-class">
 ```
+
+:::moniker range=">= aspnetcore-10.0"
+
+## Style a table row based on the row item
+
+<!-- UPDATE 10.0 API cross-link -->
+
+Apply a stylesheet class to a row of the grid based on the row item using the `RowClass` parameter.
+
+In the following example:
+
+* A row item is represented by the `Person` [record](/dotnet/csharp/language-reference/builtin-types/record). The `Person` record includes a `FirstName` property.
+* The `GetRowCssClass` method applies the `highlight-row` class styles to any row where the person's first name is "`Julie`."
+
+```razor
+<QuickGrid ... RowClass="GetRowCssClass">
+    ...
+</QuickGrid>
+
+@code {
+    private record Person(int PersonId, string FirstName, string LastName);
+
+    private string GetRowCssClass(Person person) =>
+        person.FirstName == "Julie" ? "highlight-row" : null;
+}
+```
+
+:::moniker-end
 
 ## Entity Framework Core (EF Core) data source
 
@@ -279,7 +325,7 @@ However, managing column titles (names) from bound model properties is usually a
 public DateTime ReleaseDate { get; set; }
 ```
 
-To enable the `QuickGrid` component to use the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType>, subclass <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2> either in the component or in a separate class:
+To enable the `QuickGrid` component to use the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType> property, subclass <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>, either in the component or in a separate class. Call the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.GetName%2A> method to return the localized <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType> value if an unlocalized <xref:System.ComponentModel.DisplayNameAttribute.DisplayName> ([`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute)) doesn't hold the value:
 
 ```csharp
 public class DisplayNameColumn<TGridItem, TProp> : PropertyColumn<TGridItem, TProp>
@@ -291,7 +337,7 @@ public class DisplayNameColumn<TGridItem, TProp> : PropertyColumn<TGridItem, TPr
             var memberInfo = memberExpression.Member;
             Title = 
                 memberInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName ??
-                memberInfo.GetCustomAttribute<DisplayAttribute>().Name ??
+                memberInfo.GetCustomAttribute<DisplayAttribute>().GetName() ??
                 memberInfo.Name;
         }
 
@@ -382,9 +428,9 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
 
 For more information on calling web APIs, see <xref:blazor/call-web-api>.
 
-## `QuickGrid` scaffolder
+## QuickGrid scaffolder
 
-The `QuickGrid` scaffolder scaffolds Razor components with `QuickGrid` to display data from a database.
+The QuickGrid scaffolder scaffolds Razor components with QuickGrid to display data from a database.
 
 The scaffolder generates basic Create, Read, Update, and Delete (CRUD) pages based on an Entity Framework Core data model. You can scaffold individual pages or all of the CRUD pages. You select the model class and the `DbContext`, optionally creating a new `DbContext` if needed.
 
@@ -402,9 +448,18 @@ With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > *
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
+<!-- UPDATE 10.0 Keep an eye on https://github.com/dotnet/Scaffolding/issues/3131
+                 for a scaffolding update that makes the scaffolder a little 
+                 smarter about suggesting an existing dB context that has a
+                 factory provider. If the scaffolder can do that, this instruction
+                 can be lightened up to just select ANY one from the list of 
+                 existing providers or create a new one. -->
+
 * The **Template** dropdown list includes other templates for specifically creating create, edit, delete, details, and list components. This dropdown list comes in handy when you only need to create a specific type of component scaffolded to a model class. Leave the **Template** dropdown list set to **CRUD** to scaffold a full set of components.
 * In the **Model class** dropdown list, select the model class. A folder is created for the generated components from the model name (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
-* For **DbContext class**, select an existing database context or select the **+** (plus sign) button and **Add Data Context** modal dialog to add a new database context.
+* For **DbContext class**, take either of the following approaches:
+  * Select an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class that you know has a factory provider registration (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>).
+  * Select the **+** (plus sign) button and use the **Add Data Context** modal dialog to supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class name, which registers the class with a factory provider instead of using the context type directly as a service registration.
 * After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. You can select the appropriate provider for the database that you're using. The options include SQL Server, SQLite, PostgreSQL, and Azure Cosmos DB.
 * Select **Add**.
 
@@ -450,7 +505,7 @@ The following table explains the ASP.NET Core code generator options in the prec
 Option        | Placeholder          | Description
 ------------- | -------------------- | ---
 `-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace. To make sure that a <xref:Microsoft.EntityFrameworkCore.DbContext> class is registered in the app's services with a factory provider (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>), either use an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class that you know has a factory provider registration or supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class.
 `-m`          | `{MODEL}`            | The name of the model class.
 `-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
 
@@ -499,7 +554,7 @@ The following table explains the ASP.NET Core code generator options in the prec
 Option        | Placeholder          | Description
 ------------- | -------------------- | ---
 `-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace. To make sure that a <xref:Microsoft.EntityFrameworkCore.DbContext> class is registered in the app's services with a factory provider (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>), either use an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class that you know has a factory provider registration or supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class.
 `-m`          | `{MODEL}`            | The name of the model class.
 `-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
 
@@ -511,4 +566,4 @@ dotnet aspnet-codegenerator blazor -h
 
 ---
 
-For an example use of the `QuickGrid` scaffolder, see <xref:blazor/tutorials/movie-database-app/index>.
+For an example use of the QuickGrid scaffolder, see <xref:blazor/tutorials/movie-database-app/index>.

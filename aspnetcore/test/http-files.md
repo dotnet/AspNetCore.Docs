@@ -21,7 +21,7 @@ This article contains documentation for:
 * [The `.http` file syntax](#http-file-syntax).
 * [How to create an `.http` file](#create-an-http-file).
 * [How to send a request from an `.http` file](#send-an-http-request).
-* [Where to find `.http` file options that can be configured.](#http-file-options).
+* [Where to find `.http` file options that can be configured](#http-file-options).
 * [How to create requests in `.http` files by using the Visual Studio 2022 **Endpoints Explorer**](#use-endpoints-explorer).
 
 The `.http` file format and editor was inspired by the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). The Visual Studio 2022 `.http` editor recognizes `.rest` as an alternative file extension for the same file format.
@@ -166,9 +166,110 @@ Visual Studio displays warnings in the following situations:
 
 A variable defined in an environment file can be the same as one defined in the `.http` file, or it can be different. If a variable is defined in both the `.http` file and the environment file, the value in the `.http` file overrides the value in the environment file.
 
+## Shared variables
+
+`$shared` is a special environment name for values that are the same for multiple environments. For example, consider the following environment file (`http-client.env.json`):
+
+```json
+{
+    "$shared": {
+        "HostAddress": "https://localhost:7293"
+    },
+    "dev1": {
+        "username": "dev1user"
+    },
+    "dev2": {
+        "username": "dev2user"
+    },
+    "staging": {
+        "username": "staginguser",
+        "HostAddress": "https://staging.contoso.com"
+    }
+}
+```
+
+In the preceding example, the `$shared` environment defines the `HostAddress` variable with the value `localhost:7293`. The `HostAddress` variable with the value `localhost:7293` functions as a default for environments that don't define a `HostAddress`. When the `dev1` or `dev2` environment is defined, the value for `HostAddress` comes from the `$shared` environment because `dev1` and `dev2` don't define a `HostAddress` variable. When the `staging` environment is defined, the value for `HostAddress` is set to `https://staging.contoso.com`, overriding the `$shared` default.
+
+## Request variables
+
+You can pass values from one HTTP request to another within the same `.http` file.
+
+1. Create a single-line comment located just before a request URL to name the following request. For example, the following lines show alternative ways to name the request `login`:
+
+   ```http
+   # @name login
+   https://contoso.com/api/login HTTP/1.1   
+   ```
+
+   ```http
+   // @name login
+   https://contoso.com/api/login HTTP/1.1
+   ```
+
+1. In subsequent requests in the same HTTP file use the request name to refer to the request.
+1. Use the following syntax to extract the specific part of the response that you want.
+
+   ```http
+   {{<request name>.(response|request).(body|headers).(*|JSONPath|XPath|<header name>)}}.
+   ```
+
+   This syntax lets you extract values from the request itself or from the response to it (`request|response`). For either request or response, you can extract values from the body or the headers (`body|headers`). 
+
+   When `body` is selected, the `*|JSONPath|XPath` part of the syntax applies:
+
+   * `*` extracts the entire response body.
+
+     Example: `{{login.response.body.*}}`
+
+   * For JSON responses, use [JSONPath](https://www.rfc-editor.org/rfc/rfc9535.html) to extract a specific property or attribute.
+
+     Example: `{{login.response.body.$.token}}`
+
+   * For XML responses, use [XPath](https://www.w3schools.com/xml/xpath_syntax.asp) to extract a specific property or attribute.
+
+     Example: `{{login.response.body./token}}`
+
+   When `headers` is selected, a header name extracts the entire header. Header names are case-insensitive.
+
+   Example: `{{login.response.headers.Location}}`
+
+If you want to refer to the response of a named request, you need to manually trigger the named request to retrieve its response first. When you extract values from the response, you'll get the latest response if the request has been sent more than once.
+
+### Example request variable usage
+
+For example, suppose your HTTP file has a request that authenticates the caller, and you name it `login`. The response body is a JSON document that contains the bearer token in a property named `token`. In subsequent requests, you want to pass in this bearer token in an `Authorization` header. The following example does this:
+
+```http 
+# @name login
+
+POST {{TodoApi_HostAddress}}/users/token 
+Content-Type: application/json 
+
+{ 
+  "username": "{{myusername}}", 
+} 
+
+### 
+
+GET {{TodoApi_HostAddress}}/todos 
+Authorization: Bearer {{login.response.body.$.token}}
+
+### 
+```
+
+The syntax `{{login.response.body.$.token}}` represents the bearer token:
+
+* **`login`**: Is the request name.
+* **`response`**: Refers to the HTTP response object.
+* **`body`**: Refers to the body of the HTTP response.
+* **`$`**: Represents the root element of the JSON document in the response body.
+* **`token`**: Refers to the specific property within the JSON document.
+
+Without using request variables you would need to manually extract the token from the login response and include it in the header of subsequent requests. Request variables enable you to automate this process.
+
 ## User-specific environment files
 
-A user-specific value is any value that an individual developer wants to test with but doesn’t want to share with the team. Since the `http-client.env.json` file is checked in to source control by default, it wouldn’t be appropriate to add user-specific values to this file. Instead, put them in a file named `http-client.env.json.user` located in the same folder as the `http-client.env.json` file. Files that end with `.user` should be excluded from source control by default when using Visual Studio source control features.
+A user-specific value is any value that a developer wants to test with but doesn't want to share with the team. The `http-client.env.json` file is checked in to source control by default, therefore, ***DO NOT*** add user-specific values to this file. Rather, add user-specific values in a file named `http-client.env.json.user`. The `http-client.env.json.user` file is located in the same folder as the `http-client.env.json` file. Files that end with `.user` are excluded from source control by default when using Visual Studio source control features.
 
 When the `http-client.env.json` file is loaded, Visual Studio looks for a sibling `http-client.env.json.user` file. If a variable is defined in an environment in both the `http-client.env.json` file and the `http-client.env.json.user` file, the value in the `http-client.env.json.user` file wins.
 
@@ -330,7 +431,7 @@ GET {{HostAddress}}{{Path}}
 X-UserName: {{$processEnv USERNAME}}
 ```
 
-If you try to use `$processEnv` to access an environment variable that doesn’t exist, the `.http` file editor displays an error message.
+If you try to use `$processEnv` to access an environment variable that doesn't exist, the `.http` file editor displays an error message.
 
 ## `.env` files
 
@@ -362,7 +463,7 @@ To generate a random integer, use `$randomInt`. The syntax is `{{$randomInt [min
 
 * `$datetime` generates a `datetime` string in UTC. The syntax is `{{$datetime [format] [offset option]}}` where the format and offset options are optional.
 * `$localDatetime` generates a `datetime` string in the local time zone. The syntax is `{{$localDatetime [format] [offset option]}}` where the format and offset options are optional.
-* `$timeStamp` generates a `timestamp` in UTC. The `timestamp` is the [number of seconds since the Unix Epoch in UTC time](xref:System.DateTimeOffset.ToUnixTimeSeconds?displayProperty=nameWithType). The syntax is `{{$timestamp [offset option]}}` where the offset option is optional.
+* `$timestamp` generates a `timestamp` in UTC. The `timestamp` is the [number of seconds since the Unix Epoch in UTC time](xref:System.DateTimeOffset.ToUnixTimeSeconds?displayProperty=nameWithType). The syntax is `{{$timestamp [offset option]}}` where the offset option is optional.
 
 The `[format]` option is one of `rfc1123`, `iso8601`, or a custom format in quotation marks. For example:
 
@@ -431,7 +532,6 @@ Some of the preceding examples use the free open-source website <httpbin.org>. T
 The Visual Studio 2022 `.http` file editor doesn't have all the features that the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) has. The following list includes some of the more significant features available only in the Visual Studio Code extension:
 
 * Request line that spans more than one line
-* Named requests
 * Specify file path as body of the request
 * Mixed format for body when using multipart/form-data
 * GraphQL requests

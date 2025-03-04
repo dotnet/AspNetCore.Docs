@@ -89,7 +89,7 @@ To see how making a component interactive enhances the user experience, let's pr
   * Runs on the server.
   * Renders content interactively over the underlying SignalR connection.
 
-## Add pagination to the `QuickGrid`
+## Add pagination to the QuickGrid
 
 The `QuickGrid` component can page data from the database.
 
@@ -118,14 +118,14 @@ Run the app and navigate to the movies `Index` page. You can page through the mo
 
 The component is *interactive*. The page doesn't reload for paging to occur. The paging is performed live over the SignalR connection between the browser and the server, where the paging operation is performed on the server with the rendered result sent back to the client for the browser to display.
 
-Change <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to a more reasonable value, such as 10 items per page:
+Change <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to a more reasonable value, such as five items per page:
 
 ```diff
 - private PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
-+ private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
++ private PaginationState pagination = new PaginationState { ItemsPerPage = 5 };
 ```
 
-## Sortable `QuickGrid`
+## Sortable QuickGrid
 
 Open the `Index` component (`Components/Pages/Movies/Index.razor`).
 
@@ -136,7 +136,7 @@ Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBas
 + <PropertyColumn Property="movie => movie.Title" Sortable="true" />
 ```
 
-You can sort the `QuickGrid` by movie title by selecting the **:::no-loc text="Title":::** column. The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection, where the sorting operation is performed on the server with the rendered result sent back to the client:
+You can sort the QuickGrid by movie title by selecting the **:::no-loc text="Title":::** column. The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection, where the sorting operation is performed on the server with the rendered result sent back to the client:
 
 ![Movie list sorted by the Title column](~/blazor/tutorials/movie-database-app/part-8/_static/sorted-movies.png)
 
@@ -189,15 +189,53 @@ In its place, add the following Razor markup:
 <input type="search" @bind="titleFilter" @bind:event="oninput" />
 ```
 
-`@bind:event="oninput"` performs binding for the HTML's `oninput` event, which fires when the `<input>` element's value is changed as a direct result of a user typing in the search box. The `QuickGrid` is bound to `FilteredMovies`. As `titleFilter` changes with the value of the search box, rerendering the `QuickGrid` bound to the `FilteredMovies` method filters movie entities based on the updated value of `titleFilter`.
+`@bind:event="oninput"` performs binding for the HTML's `oninput` event, which fires when the `<input>` element's value is changed as a direct result of a user typing in the search box. The QuickGrid is bound to `FilteredMovies`. As `titleFilter` changes with the value of the search box, rerendering the QuickGrid bound to the `FilteredMovies` method filters movie entities based on the updated value of `titleFilter`.
 
-Run the app, type "`road warrior`" into the search field and notice how the `QuickGrid` is filtered for each character entered until *The Road Warrior* movie is left when the search field reaches "`road `" (&quot;:::no-loc text="road":::&quot; followed by a space).
+Run the app, type "`road warrior`" into the search field and notice how the QuickGrid is filtered for each character entered until *The Road Warrior* movie is left when the search field reaches "`road `" (&quot;:::no-loc text="road":::&quot; followed by a space).
 
 ![Movie list filtered to 'The Road Warrior' movie when the search box reaches 'road ' ('road' followed by a space).](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
 
 Filtering database records is performed on the server, and the server interactively sends back the HTML to display over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
+
+## Style the `QuickGrid` component
+
+You can apply styles to the rendered `QuickGrid` component with a stylesheet isolated to the `Index` component using *CSS isolation*.
+
+CSS isolation is applied by adding a stylesheet file using the file name format `{COMPONENT NAME}.razor.css`, where the `{COMPONENT NAME}` placeholder is the component name.
+
+To apply styles to a child component, such as the `QuickGrid` component of the `Index` component, use the `::deep` pseudo-element. 
+
+In the `MoviePages` folder, add the following stylesheet for the `Index` component. Use `::deep` pseudo-elements to make the row height `3em` and vertically center the table cell content.
+
+`Components/Pages/MoviePages/Index.razor.css`:
+
+```css
+::deep tr {
+    height: 3em;
+}
+
+    ::deep tr > td {
+        vertical-align: middle;
+    }
+```
+
+The `::deep` pseudo-element only works with descendant elements, so the `QuickGrid` component must be wrapped with a `<div>` or some other block-level element in order to apply the styles to it.
+
+In `Components/Pages/MoviePages/Index.razor`, place `<div>` tags around the `QuickGrid` component:
+
+```diff
++ <div>
+    <QuickGrid ...>
+        ...
+    </QuickGrid>
++ </div>
+```
+
+Blazor rewrites CSS selectors to match the markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset, so you don't need to take further action to apply the styles to the rendered `QuickGrid` component.
+
+![Movie list showing row heights at 3em with vertically-centered content](~/blazor/tutorials/movie-database-app/part-8/_static/styled-quickgrid.png)
 
 ## Clean up
 
@@ -246,6 +284,8 @@ If you're new to Blazor, we recommend reading the following Blazor articles that
 * <xref:blazor/security/index>
 * <xref:blazor/host-and-deploy/index>
 * <xref:blazor/blazor-ef-core> covers concurrency with EF Core in Blazor apps.
+
+For guidance on adding a thumbnail file upload feature to this tutorial's sample app, see <xref:blazor/file-uploads#save-small-files-directly-to-a-database-with-ef-core>.
 
 In the documentation website's sidebar navigation, articles are organized by subject matter and laid out in roughly in a general-to-specific or basic-to-complex order. The best approach when starting to learn about Blazor is to read down the table of contents from top to bottom.
 

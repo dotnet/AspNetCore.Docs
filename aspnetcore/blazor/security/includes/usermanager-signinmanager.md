@@ -30,7 +30,10 @@ services.Configure<IdentityOptions>(options =>
 The following `WeatherForecastController` logs the <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> when the `Get` method is called.
 
 > [!NOTE]
-> The following example uses a [file-scoped namespace](/dotnet/csharp/language-reference/keywords/namespace), which is a C# 10 or later (.NET 6 or later) feature.
+> The following example uses:
+>
+> * A [file-scoped namespace](/dotnet/csharp/language-reference/keywords/namespace), which is a C# 10 or later (.NET 6 or later) feature.
+> * A [primary constructor](/dotnet/csharp/whats-new/tutorials/primary-constructors), which is a C# 12 or later (.NET 8 or later) feature.
 
 ```csharp
 using System;
@@ -49,24 +52,14 @@ namespace BlazorSample.Server.Controllers;
 [Authorize]
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController(ILogger<WeatherForecastController> logger, 
+        UserManager<ApplicationUser> userManager) : ControllerBase
 {
-    private readonly UserManager<ApplicationUser> userManager;
-
     private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", 
         "Balmy", "Hot", "Sweltering", "Scorching"
     };
-
-    private readonly ILogger<WeatherForecastController> logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger, 
-        UserManager<ApplicationUser> userManager)
-    {
-        this.logger = logger;
-        this.userManager = userManager;
-    }
 
     [HttpGet]
     public async Task<IEnumerable<WeatherForecast>> Get()

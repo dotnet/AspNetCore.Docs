@@ -13,6 +13,8 @@ items:
     uid: getting-started
   - name: What's new
     items:
+      - name: What's new in 10
+        uid: aspnetcore-10
       - name: What's new in 9
         uid: aspnetcore-9
       - name: What's new in 8
@@ -231,32 +233,6 @@ items:
           - name: Request Delegate Generator
             displayName: aot, RDG, Request Delegate Generator
             uid: fundamentals/aot/rdg
-          - name: RDG diagnostics
-            displayName: aot, RDG diagnostics
-            uid: fundamentals/aot/request-delegate-generator/rdg-ids
-            items:
-              - name: RDG002
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg002
-              - name: RDG004
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg004
-              - name: RDG005
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg005
-              - name: RDG006
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg006
-              - name: RDG007
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg007
-              - name: RDG008
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg008
-              - name: RDG009
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg009
-              - name: RDG010
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg010
-              - name: RDG011
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg011
-              - name: RDG012
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg012
-              - name: RDG013
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
       - name: Middleware
         items:
           - name: Middleware overview
@@ -510,6 +486,8 @@ items:
                 uid: blazor/components/render-modes
               - name: Prerender components
                 uid: blazor/components/prerender
+              - name: IHttpContextAccessor and HttpContext
+                uid: blazor/components/httpcontext
               - name: Generic type support
                 uid: blazor/components/generic-type-support
               - name: Synchronization context
@@ -612,6 +590,8 @@ items:
                         uid: blazor/security/webassembly/standalone-with-identity/index
                       - name: Account confirmation and password recovery
                         uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
+                      - name: QR codes with TOTP
+                        uid: blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps
                   - name: Standalone with Authentication library
                     uid: blazor/security/webassembly/standalone-with-authentication-library
                   - name: Standalone with Microsoft Accounts
@@ -644,10 +624,12 @@ items:
                 uid: blazor/security/interactive-server-side-rendering
               - name: Account confirmation and password recovery
                 uid: blazor/security/account-confirmation-and-password-recovery
-              - name: QR code generation
+              - name: QR codes with TOTP
                 uid: blazor/security/qrcodes-for-authenticator-apps
               - name: Content Security Policy
                 uid: blazor/security/content-security-policy
+              - name: EU General Data Protection Regulation (GDPR) support
+                uid: blazor/security/gdpr
               - name: Server-side and Blazor Web App additional scenarios
                 uid: blazor/security/additional-scenarios
           - name: State management
@@ -976,6 +958,9 @@ items:
       - name: Configuration
         uid: signalr/configuration
         displayName: signalr
+      - name: IHttpContextAccessor and HttpContext
+        uid: signalr/httpcontext
+        displayName: signalr
       - name: Authentication and authorization
         uid: signalr/authn-and-authz
         displayName: signalr
@@ -1111,6 +1096,9 @@ items:
       - name: Overview
         displayName: kestrel, iis, http.sys, httpsys, servers
         uid: fundamentals/servers/index
+      - name: HTTP.sys
+        displayName: deploy, publish, server, httpsys
+        uid: fundamentals/servers/httpsys        
       - name: Kestrel
         items:
           - name: Overview
@@ -1190,9 +1178,125 @@ items:
           - name: HTTP/3
             displayName: deploy, publish, server, iis
             uid: host-and-deploy/iis/http3
-      - name: HTTP.sys
-        displayName: deploy, publish, server, httpsys
-        uid: fundamentals/servers/httpsys
+      - name: YARP
+        items:
+          - name: YARP Overview
+            uid: fundamentals/servers/yarp/overview
+          - name: Get started with YARP
+            uid: fundamentals/servers/yarp/getting-started
+          - name: Configuration
+            items:
+            - name: Configuration Files
+              displayName: yarp
+              uid: fundamentals/servers/yarp/config-files
+            - name: Configuration Providers
+              displayName: yarp
+              uid: fundamentals/servers/yarp/config-providers
+            - name: Configuration Filters
+              displayName: yarp
+              uid: fundamentals/servers/yarp/config-filters
+            - name: HTTP client configuration
+              displayName: yarp
+              uid: fundamentals/servers/yarp/http-client-config
+          - name: Proxy Features
+            items:
+              - name: Header Routing
+                displayName: yarp
+                uid: fundamentals/servers/yarp/header-routing
+              - name: Query Parameter Routing
+                displayName: yarp
+                uid: fundamentals/servers/yarp/queryparameter-routing
+              - name: Transforms
+                items:
+                  - name: Transforms Overview
+                    displayName: yarp
+                    uid: fundamentals/servers/yarp/transforms
+                  - name: Request Transforms
+                    displayName: yarp
+                    uid: fundamentals/servers/yarp/transforms-request
+                  - name: Response Transforms
+                    displayName: yarp
+                    uid: fundamentals/servers/yarp/transforms-response
+              - name: Load Balancing
+                displayName: yarp
+                uid: fundamentals/servers/yarp/load-balancing
+              - name: Session Affinity
+                displayName: yarp
+                uid: fundamentals/servers/yarp/session-affinity
+              - name: Destinations Health Checks
+                displayName: yarp
+                uid: fundamentals/servers/yarp/dests-health-checks
+              - name: Rate Limiting
+                displayName: yarp
+                uid: fundamentals/servers/yarp/rate-limiting
+              - name: Timeouts
+                displayName: yarp
+                uid: fundamentals/servers/yarp/timeouts
+              - name: Authentication and Authorization
+                displayName: yarp
+                uid: fundamentals/servers/yarp/authn-authz
+              - name: Output Caching
+                displayName: yarp
+                uid: fundamentals/servers/yarp/output-caching
+              - name: Distributed Tracing
+                displayName: yarp
+                uid: fundamentals/servers/yarp/distributed-tracing
+              - name: A/B Testing
+                displayName: yarp
+                uid: fundamentals/servers/yarp/ab-testing
+          - name: Protocols and Guidance
+            items:
+              - name: Header Guidelines
+                displayName: yarp
+                uid: fundamentals/servers/yarp/header-guidelines
+              - name: HTTPS & TLS
+                displayName: yarp
+                uid: fundamentals/servers/yarp/https-tls
+              - name: Proxying gRPC
+                displayName: yarp
+                uid: fundamentals/servers/yarp/grpc
+              - name: HTTP/3
+                displayName: yarp
+                uid: fundamentals/servers/yarp/http3
+              - name: Cross-Origin Requests (CORS)
+                displayName: yarp
+                uid: fundamentals/servers/yarp/cors
+              - name: Let's Encrypt
+                displayName: yarp
+                uid: fundamentals/servers/yarp/lets-encrypt
+              - name: WebSockets and SPDY
+                displayName: yarp
+                uid: fundamentals/servers/yarp/websockets
+          - name: Extensibility
+            items:            
+            - name: Overview
+              displayName: yarp
+              uid: fundamentals/servers/yarp/extensibility
+            - name: Middleware
+              displayName: yarp
+              uid: fundamentals/servers/yarp/middleware
+            - name: Direct Forwarding
+              displayName: yarp
+              uid: fundamentals/servers/yarp/direct-forwarding
+            - name: Destination Resolvers
+              displayName: yarp
+              uid: fundamentals/servers/yarp/destination-resolvers
+            - name: Request and Response Transform Extensibility
+              displayName: yarp
+              uid: fundamentals/servers/yarp/transform-extensibility
+          - name: Deployment options
+            items:
+            - name: HTTP.sys Delegation
+              displayName: yarp
+              uid: fundamentals/servers/yarp/httpsys-delegation
+            - name: Service Fabric Integration
+              displayName: yarp
+              uid: fundamentals/servers/yarp/service-fabric-int
+          - name: Troubleshooting
+            items:
+            - name: Diagnosing proxy issues
+              displayName: yarp
+              uid: fundamentals/servers/yarp/diagnosing-yarp-issues
   - name: Test
     items:
       - name: .NET Hot Reload
@@ -1329,6 +1433,31 @@ items:
         uid: diagnostics/mvc1005
       - name: MVC1006
         uid: diagnostics/mvc1006
+      - name: RDG diagnostics
+        displayName: aot, RDG diagnostics
+        uid: fundamentals/aot/request-delegate-generator/rdg-ids
+      - name: RDG002
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg002
+      - name: RDG004
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg004
+      - name: RDG005
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg005
+      - name: RDG006
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg006
+      - name: RDG007
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg007
+      - name: RDG008
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg008
+      - name: RDG009
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg009
+      - name: RDG010
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg010
+      - name: RDG011
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg011
+      - name: RDG012
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg012
+      - name: RDG013
+        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
   - name: Data access
     items:
       - name: Tutorials
@@ -1572,6 +1701,8 @@ items:
             uid: security/authentication/cookie
           - name: Configure OIDC web authentication
             uid: security/authentication/configure-oidc-web-authentication
+          - name: Configure JWT bearer authentication
+            uid: security/authentication/configure-jwt-bearer-authentication
           - name: Configure certificate authentication
             uid: security/authentication/certauth
           - name: Configure Windows authentication

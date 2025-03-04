@@ -39,9 +39,22 @@ body:
     attributes:
       label: Document ID
   - type: input
+    id: platformId
+    validations:
+      required: true
+    attributes:
+      label: Platform Id
+  - type: input
     id: author
     validations:
       required: true
     attributes:
       label: Article author
-      
+  - type: textarea
+    id: metadata
+    validations:
+      required: false
+    attributes:
+      label: Metadata
+      description: >-
+        Documentation metadata will be applied here

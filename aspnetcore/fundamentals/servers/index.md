@@ -266,6 +266,8 @@ A `launchSettings.json` file provides configuration when launching an app with `
 
 An HTTP/2 connection must use [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) and TLS 1.2 or later. For more information, see the topics that pertain to your server deployment scenarios.
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 ## Additional resources
 
 * <xref:fundamentals/servers/kestrel>

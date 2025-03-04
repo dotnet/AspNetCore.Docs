@@ -80,11 +80,9 @@ When dynamically changing the app culture at runtime, the app must be reloaded t
 
 .NET's resource system supports embedding localized images (as blobs) into an app, but Blazor Hybrid can't display the embedded images in Razor components at this time. Even if a user reads an image's bytes into a <xref:System.IO.Stream> using <xref:System.Resources.ResourceManager>, the framework doesn't currently support rendering the retrieved image in a Razor component.
 
-[A platform-specific approach to include localized images](/xamarin/xamarin-forms/user-interface/images#local-images) is a feature of .NET's resource system, but a Razor component's browser elements in a .NET MAUI Blazor Hybrid app aren't able to interact with such images.
-
 For more information, see the following resources:
 
-* [Xamarin.Forms String and Image Localization](/xamarin/xamarin-forms/app-fundamentals/localization/): The guidance generally applies to Blazor Hybrid apps. Not every scenario is supported at this time.
+* [Localization (.NET MAUI documentation)](/dotnet/maui/fundamentals/localization)
 * [Blazor Image component to display images that are not accessible through HTTP endpoints (dotnet/aspnetcore #25274)](https://github.com/dotnet/aspnetcore/issues/25274)
 
 :::moniker range=">= aspnetcore-8.0"

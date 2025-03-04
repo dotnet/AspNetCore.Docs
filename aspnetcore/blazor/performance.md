@@ -195,7 +195,7 @@ public static RenderFragment SayHello = @<h1>Hello!</h1>;
 }
 ```
 
-The preceding approach reuses rendering logic without per-component overhead. However, the approach doesn't permit refreshing the subtree of the UI independently, nor does it have the ability to skip rendering the subtree of the UI when its parent renders because there's no component boundary. Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`), and [event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported.
+The preceding approach reuses rendering logic without per-component overhead. However, the approach doesn't permit refreshing the subtree of the UI independently, nor does it have the ability to skip rendering the subtree of the UI when its parent renders because there's no component boundary. Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`).
 
 For a non-static field, method, or property that can't be referenced by a field initializer, such as `TitleTemplate` in the following example, use a property instead of a field for the <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
@@ -228,7 +228,9 @@ To reduce parameter load, bundle multiple parameters in a custom class. For exam
 }
 ```
 
-However, consider that it might be an improvement not to have a table cell component, as shown in the preceding example, and instead [inline its logic into the parent component](#inline-child-components-into-their-parents).
+However, keep in mind that bundling primitive parameters into a class isn't always an advantage. While it can reduce parameter count, it also impacts how change detection and rendering behave. Passing non-primitive parameters always triggers a re-render, because Blazor can't know whether arbitrary objects have internally mutable state, whereas passing primitive parameters only triggers a re-render if their values have actually changed.
+
+Also, consider that it might be an improvement not to have a table cell component, as shown in the preceding example, and instead [inline its logic into the parent component](#inline-child-components-into-their-parents).
 
 > [!NOTE]
 > When multiple approaches are available for improving performance, benchmarking the approaches is usually required to determine which approach yields the best results.
@@ -248,7 +250,7 @@ The [`CascadingValue` component](xref:blazor/components/cascading-values-and-par
 
 Setting `IsFixed` to `true` improves performance if there are a large number of other components that receive the cascaded value. Wherever possible, set `IsFixed` to `true` on cascaded values. You can set `IsFixed` to `true` when the supplied value doesn't change over time.
 
-Where a component passes `this` as a cascaded value, `IsFixed` can also be set to `true`:
+Where a component passes `this` as a cascaded value, `IsFixed` can also be set to `true`, because `this` never changes during the component's lifecycle:
 
 ```razor
 <CascadingValue Value="this" IsFixed="true">

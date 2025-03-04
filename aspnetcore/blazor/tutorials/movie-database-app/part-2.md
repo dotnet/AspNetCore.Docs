@@ -134,8 +134,39 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 > [!IMPORTANT]
 > After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
+:::moniker range=">= aspnetcore-9.0"
+
+<!-- UPDATE 10.0 - Remove this when the 9.0.300 SDK lands. -->
+
+> [!IMPORTANT]
+> A breaking change in EF Core tooling for .NET SDK 9.0.200 prevents scaffolding from executing with the following exception:
+>
+> > :::no-loc text="Could not load file or assembly 'Microsoft.EntityFrameworkCore.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.":::
+> 
+> To resolve the error until the .NET SDK 9.0.300 is released, add a package reference to the app for the [`Microsoft.EntityFrameworkCore.Design`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design) NuGet package:
+>
+> ```dotnetcli
+> dotnet add package Microsoft.EntityFrameworkCore.Design
+> ```
+> 
+> Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
+>
+> ```diff
+> <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
+>   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+>   <PrivateAssets>all</PrivateAssets>
+> + <Publish>true</Publish>
+> </PackageReference>
+>  ```
+>
+> The preceding changes are a workaround for a breaking change in .NET 9.0.200 EF Core tooling. This workaround won't be required for .NET SDK 9.0.300 or later, when the entire package reference can be removed from the app. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
+
+:::moniker-end
+
 > [!NOTE]
 > The preceding commands are .NET CLI commands, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
+
+Save the project file.
 
 The preceding commands add:
 
@@ -162,20 +193,36 @@ Paste all of the following commands  at the prompt (`>`) of the command shell. W
 
 When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
 
-```dotnetcli
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-ef
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
-dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-```
+:::moniker range=">= aspnetcore-9.0"
+
+<!-- UPDATE 10.0 - Remove this when the 9.0.300 SDK lands. -->
 
 > [!IMPORTANT]
-> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+> A breaking change in EF Core tooling for .NET SDK 9.0.200 prevents scaffolding from executing with the following exception:
+>
+> > :::no-loc text="Could not load file or assembly 'Microsoft.EntityFrameworkCore.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.":::
+> 
+> To resolve the error until the .NET SDK 9.0.300 is released, add a package reference to the app for the [`Microsoft.EntityFrameworkCore.Design`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design) NuGet package:
+>
+> ```dotnetcli
+> dotnet add package Microsoft.EntityFrameworkCore.Design
+> ```
+> 
+> Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
+>
+> ```diff
+> <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
+>   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+>   <PrivateAssets>all</PrivateAssets>
+> + <Publish>true</Publish>
+> </PackageReference>
+>  ```
+>
+> The preceding changes are a workaround for a breaking change in .NET 9.0.200 EF Core tooling. This workaround won't be required for .NET SDK 9.0.300 or later, when the entire package reference can be removed from the app. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
+
+:::moniker-end
+
+Save the project file.
 
 The preceding commands add:
 
@@ -287,9 +334,15 @@ The scaffolding process creates the following component files and movie database
 
 The component files in the `MoviePages` folder are described in greater detail in the next part of this tutorial. The database context is described later in this article.
 
+:::zone pivot="vs"
+
+If the `MoviePages` folder and assets aren't present after scaffolding, return to the [Scaffold the model](#scaffold-the-model) section and rescaffold the `Movie` model, making sure that you select the **Razor Components using Entity Framework (CRUD)** scaffolder under **Installed** > **Common** > **Blazor** > **Razor Component** in the **Add New Scaffold Item** dialog.
+
+:::zone-end
+
 ASP.NET Core is built with dependency injection, which is a software design pattern for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies. Services, such as the EF Core database context, are registered with dependency injection during application startup. These services are injected into Razor components for use by the components.
 
-The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is a Razor component for efficiently displaying data in tabular form. The scaffolder places a `QuickGrid` component in the `Index` component (`Components/Pages/Index.razor`) to display movie entities. Calling <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection adds an EF Core adapter for `QuickGrid` to recognize EF Core-supplied <xref:System.Linq.IQueryable%601> instances and to resolve database queries asynchronously for efficiency.
+The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is a Razor component for efficiently displaying data in tabular form. The scaffolder places a `QuickGrid` component in the `Index` component (`Components/Pages/Index.razor`) to display movie entities. Calling <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection adds an EF Core adapter for QuickGrid to recognize EF Core-supplied <xref:System.Linq.IQueryable%601> instances and to resolve database queries asynchronously for efficiency.
 
 In combination with <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A>, <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> captures database-related exceptions that can be resolved by using Entity Framework migrations. When these exceptions occur, an HTML response is generated with details about possible actions to resolve the issue.
 
@@ -319,7 +372,7 @@ EF Core adopts the *code-first* approach for database design and maintenance:
 * Entity classes are created and updated first in the app.
 * The database is created and updated from the app's entity classes.
 
-This is the reverse procedure of *database-first* approaches, where the database is designed, built, and updated first. Adopting EF Core's code-first approach speeds up the process of app development because most of the difficult and time-consuming database creation and management procedures are handled transparently by the EF Core tooling, so you can focus on app development.
+This is the reverse procedure of *database-first* approaches, where the database is designed, built, and updated first. Adopting EF Core's code-first approach aims to speed up the process of app development because most of the difficult and time-consuming database creation and management procedures are handled transparently by the EF Core tooling, so you can focus on app development.
 
 :::zone pivot="vs"
 
@@ -417,7 +470,7 @@ When you select the **:::no-loc text="Create":::** button, the movie data is pos
 
 :::moniker range=">= aspnetcore-9.0"
 
-<!-- UPDATE 9.0 Revert when debugger is updated -->
+<!-- UPDATE 10.0 Revert when https://github.com/dotnet/aspnetcore/issues/53996 is addressed -->
 
 :::zone pivot="vs"
 
@@ -476,7 +529,7 @@ Stop the app using the following approach:
 Stop the app using the following approach:
 
 1. Close the browser window.
-2. From the command shell, press <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+2. From the command shell, press <kbd>Ctrl</kbd>+<kbd>C</kbd>.
 
 :::zone-end
 

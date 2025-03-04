@@ -172,7 +172,7 @@ To directly run the app on the server:
 
 If the app runs on the server but fails to respond over the Internet, check the server's firewall and confirm port 80 is open. If using an Azure Ubuntu VM, add a Network Security Group (NSG) rule that enables inbound port 80 traffic. There's no need to enable an outbound port 80 rule, as the outbound traffic is automatically granted when the inbound rule is enabled.
 
-When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) at the command prompt.
+When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> in the command shell.
 
 ## Monitor the app
 
@@ -618,7 +618,7 @@ To directly run the app on the server:
 
 If the app runs on the server but fails to respond over the Internet, check the server's firewall and confirm port 80 is open. If using an Azure Ubuntu VM, add a Network Security Group (NSG) rule that enables inbound port 80 traffic. There's no need to enable an outbound port 80 rule, as the outbound traffic is automatically granted when the inbound rule is enabled.
 
-When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) at the command prompt.
+When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> in the command shell.
 
 ## Monitor the app
 

@@ -27,6 +27,12 @@ Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExt
 
 <xref:migration/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
 
+## The role of middleware by app type
+
+Blazor Web Apps, Razor Pages, and MVC process browser requests on the server with middleware. The guidance in this article applies to these types of apps.
+
+Standalone Blazor WebAssembly apps run entirely on the client and don't process requests with a middleware pipeline. The guidance in this article doesn't apply to standalone Blazor WebAssembly apps.
+
 ## Middleware code analysis
 
 ASP.NET Core includes many compiler platform analyzers that inspect application code for quality. For more information, see <xref:diagnostics/code-analysis>
@@ -256,7 +262,7 @@ The following table shows the requests and responses from `http://localhost:1234
 | `localhost:1234`              | `Hello from non-Map delegate.` |
 | `localhost:1234/?branch=main` | `Branch used = main`           |
 
-<xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
+<xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't contain a terminal middleware:
 
 [!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramUseWhen.cs?highlight=4-5)]
 

@@ -97,11 +97,13 @@ export function onDispose() {
 }
 ```
 
-In a [Razor Class Library (RCL)](xref:blazor/components/class-libraries) (the example RCL is named `BlazorPageScript`), add the following module.
+In a [Razor Class Library (RCL)](xref:blazor/components/class-libraries) (the example RCL is named `BlazorPageScript`), add the following module, which is a [JS initializer](xref:blazor/fundamentals/startup#javascript-initializers).
 
 `wwwroot/BlazorPageScript.lib.module.js`:
 
 [!INCLUDE[](~/blazor/includes/js-interop/blazor-page-script.md)]
+
+Do ***not*** add a `<script>` tag to the app's root component, typically the `App` componennt, for `BlazorPageScript.lib.module.js` because the module in this case is a [JS initializer (`afterWebStarted`)](xref:blazor/fundamentals/startup#javascript-initializers). JS initializers are detected and loaded automatically by the Blazor framework.
 
 In the RCL, add the following `PageScript` component.
 
@@ -129,6 +131,8 @@ To reuse the same module among pages, but have the `onLoad` and `onDispose` call
 
 To monitor changes in specific DOM elements, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
 
-## Example implementation without using an RCL
+## Implementation without using an RCL
 
-The approach described in this article can be implemented directly in a Blazor Web App without using a Razor class library (RCL). For an example, see <xref:blazor/security/qrcodes-for-authenticator-apps>.
+The approach described in this article can be implemented directly in a Blazor Web App without using a Razor class library (RCL) by moving the assets of the RCL into the app. However, the use of an RCL is convenient because the RCL can be packaged into a NuGet package for consumption by Blazor apps across an organization.
+
+If you move the assets into a Blazor Web App, be sure to rename the module (`BlazorPageScript.lib.module.js`) to match the app per the file naming rules for [JS initializers](xref:blazor/fundamentals/startup#javascript-initializers). If the file isn't named correctly, Blazor can't detect and load the module, and the `afterWebStarted` event doesn't execute automatically when the app starts.

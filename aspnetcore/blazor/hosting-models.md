@@ -50,7 +50,17 @@ In a traditional server-rendered app, opening the same app in multiple browser s
 
 ![The browser interacts with Blazor (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/blazor/hosting-models/_static/blazor-server.png)
 
+:::moniker range=">= aspnetcore-10.0"
+
+On the client, the Blazor script establishes the SignalR connection with the server. The script is served as a static web asset with automatic compression and [fingerprinting](https://developer.mozilla.org/docs/Glossary/Fingerprinting).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
 On the client, the Blazor script establishes the SignalR connection with the server. The script is served from an embedded resource in the ASP.NET Core shared framework.
+
+:::moniker-end
 
 The Blazor Server hosting model offers several benefits:
 
@@ -97,8 +107,8 @@ A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/prog
 
 The Blazor script handles:
 
-* Downloading the .NET runtime, Razor components, and the component's dependencies.
-* Initialization of the runtime.
+* Downloading the .NET runtime, Razor components, and dependencies.
+* Runtime initialization.
 
 The size of the published app, its *payload size*, is a critical performance factor for an app's usability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
 

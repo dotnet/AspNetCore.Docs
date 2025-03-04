@@ -253,7 +253,7 @@ If the database contains records from earlier testing, run the app and delete th
 
 :::zone pivot="cli"
 
-If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
+If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) in the command shell.
 
 :::zone-end
 
@@ -265,7 +265,7 @@ Navigate to the movies `Index` page to see the seeded movies:
 
 ## Bind a form to a model
 
-Review the the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
+Review the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
 
 When an HTTP GET request is made for the `Edit` component page (for example at the relative URL: `/movies/edit?id=6`):
 
@@ -339,7 +339,7 @@ If the app is running, shut the app down by closing the browser's window and pre
 
 :::zone pivot="cli"
 
-If the app is running, shut the app down by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
+If the app is running, shut the app down by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> in the command shell.
 
 :::zone-end
 

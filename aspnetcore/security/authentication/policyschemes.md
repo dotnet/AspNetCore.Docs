@@ -21,6 +21,66 @@ All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentic
 
 [!code-csharp[sample](policyschemes/samples/AuthenticationSchemeOptions.cs?name=snippet)]
 
+## JWT with multiple schemes
+
+The AddPolicyScheme method can define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties (e.g., issuer, claims). This approach allows for greater flexibility within a single API.
+
+```csharp
+services.AddAuthentication(options =>
+{
+	options.DefaultScheme = Consts.MY_POLICY_SCHEME;
+	options.DefaultChallengeScheme = Consts.MY_POLICY_SCHEME;
+
+})
+.AddJwtBearer(Consts.MY_FIRST_SCHEME, options =>
+{
+	options.Authority = "https://your-authority";
+	options.Audience = "https://your-audience";
+	options.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateIssuerSigningKey = true,
+		ValidAudiences = Configuration.GetSection("ValidAudiences").Get<string[]>(),
+		ValidIssuers = Configuration.GetSection("ValidIssuers").Get<string[]>()
+	};
+})
+.AddJwtBearer(Consts.MY_AAD_SCHEME, jwtOptions =>
+{
+	jwtOptions.Authority = Configuration["AzureAd:Authority"];
+	jwtOptions.Audience = Configuration["AzureAd:Audience"]; 
+})
+.AddPolicyScheme(Consts.MY_POLICY_SCHEME, displayName: null, options =>
+{
+	options.ForwardDefaultSelector = context =>
+	{
+		string authorization = context.Request.Headers[HeaderNames.Authorization];
+		if (!string.IsNullOrEmpty(authorization) && authorization.StartsWith("Bearer "))
+		{
+			var token = authorization.Substring("Bearer ".Length).Trim();
+			var jwtHandler = new JsonWebTokenHandler();
+
+			if(jwtHandler.CanReadToken(token)) // it's a self contained access token and not encrypted
+			{
+				var issuer = jwtHandler.ReadJsonWebToken(token).Issuer; //.Equals("B2C-Authority"))
+				if (issuer == Consts.MY_THIRD_PARTY_ISS) // Third party identity provider
+				{
+					return Consts.MY_THIRD_PARTY_SCHEME;
+				}
+
+				if (issuer == Consts.MY_AAD_ISS) // AAD
+				{
+					return Consts.MY_AAD_SCHEME;
+				}
+			}
+		}
+
+		// We don't know with it is
+		return Consts.MY_AAD_SCHEME;
+	};
+});
+```
+
 ## Examples
 
 The following example shows a higher level scheme that combines lower level schemes. Google authentication is used for challenges, and cookie authentication is used for everything else:

@@ -108,10 +108,6 @@ The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.Authe
 
 For more information on server-side authentication, see <xref:blazor/security/index>.
 
-### `IHttpContextAccessor`/`HttpContext` in Razor components
-
-[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
-
 ### Shared state
 
 [!INCLUDE[](~/blazor/security/includes/shared-state.md)]
@@ -283,10 +279,6 @@ For a description on how global interactive render modes are applied to non-Iden
 
 For more information on persisting prerendered state, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
-<!-- UPDATE 9.0 Remove blog post cross-link -->
-
-For more information on the Blazor Identity UI and guidance on integrating external logins through social websites, see [What's new with identity in .NET 8](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui).
-
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### Manage authentication state in Blazor Web Apps
@@ -376,7 +368,7 @@ Specify the issuer explicitly when deploying to Azure App Service on Linux with 
 
 Don't attempt to resolve <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a custom scope because it results in the creation of a new instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that isn't correctly initialized.
 
-To access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a service scoped to a component, inject the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> with the [`@inject` directive](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) and pass it to the service as a parameter. This approach ensures that the correct, initialized instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is used for each user app instance.
+To access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a service scoped to a component, inject the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> into the component and pass it to the service as a parameter. This approach ensures that the correct, initialized instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is used for each user app instance.
   
 `ExampleService.cs`:
 
@@ -511,7 +503,7 @@ To avoid showing unauthorized content, for example content in an [`AuthorizeView
   <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
   ```
 
-  You can also selectively control the render mode applied to the `Routes` component instance. For example, see <xref:blazor/components/render-modes#static-ssr-pages-in-a-globally-interactive-app>.
+  You can also selectively control the render mode applied to the `Routes` component instance. For example, see <xref:blazor/components/render-modes#static-ssr-pages-in-an-interactive-app>.
 
 :::moniker-end
 
@@ -1421,6 +1413,7 @@ PII refers any information relating to an identified or identifiable natural per
   * [Microsoft identity platform access tokens](/entra/identity-platform/access-tokens)
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
+* <xref:blazor/components/httpcontext>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 * <xref:blazor/hybrid/security/index>
@@ -1442,6 +1435,7 @@ PII refers any information relating to an identified or identifiable natural per
   * [Microsoft identity platform ID tokens](/entra/identity-platform/id-tokens)
   * [Microsoft identity platform access tokens](/entra/identity-platform/access-tokens)
 * <xref:security/index>
+* <xref:blazor/components/httpcontext>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links

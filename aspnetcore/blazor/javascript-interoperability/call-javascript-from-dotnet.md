@@ -623,6 +623,7 @@ In the preceding example:
   * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
   * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 * Disposes the <xref:Microsoft.JSInterop.IJSObjectReference> for [garbage collection](xref:blazor/components/lifecycle#asynchronous-iasyncdisposable) in <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
+* Don't place a `<script>` tag for the script after the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
 
@@ -1101,9 +1102,21 @@ The `{TIMEOUT}` placeholder is a <xref:System.TimeSpan> (for example, `TimeSpan.
 
 Set a per-invocation timeout in component code. The specified timeout overrides the global timeout set by <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout>:
 
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+var result = await JS.InvokeAsync<string>("{ID}", {TIMEOUT}, [ "Arg1" ]);
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```csharp
 var result = await JS.InvokeAsync<string>("{ID}", {TIMEOUT}, new[] { "Arg1" });
 ```
+
+:::moniker-end
 
 In the preceding example:
 

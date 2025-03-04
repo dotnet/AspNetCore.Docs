@@ -50,7 +50,7 @@ Add the following script after the Blazor script ([location of the Blazor start 
 @code {
     private string? result;
 
-    public async void ShowPrompt()
+    public async Task ShowPrompt()
     {
         result = await JS.InvokeAsync<string>(
             "showPrompt1", "What's your name?");
@@ -116,7 +116,7 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
         }
     }
 
-    public async void ShowPrompt()
+    public async Task ShowPrompt()
     {
         if (module is not null)
         {
@@ -151,6 +151,9 @@ export function showPrompt2(message) {
   return prompt(message, 'Type your name here');
 }
 ```
+
+> [!IMPORTANT]
+> Don't place a `<script>` tag for `JsCollocation2.razor.js` after the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
 
 Use of scripts and modules for collocated JS in a Razor class library (RCL) is only supported for Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. If you're implementing [JavaScript `[JSImport]`/`[JSExport]` interop](xref:blazor/js-interop/import-export-interop), see <xref:blazor/js-interop/import-export-interop#razor-class-library-rcl-collocated-js-is-unsupported>.
 

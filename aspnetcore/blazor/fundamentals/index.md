@@ -69,6 +69,7 @@ Blazor documentation adopts several conventions for showing and discussing compo
 * [Component parameter](xref:blazor/components/index#component-parameters) values lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required. Literals (for example, boolean values), keywords (for example, `this`), and `null` as component parameter values aren't prefixed with `@`, but this is also merely a documentation convention. Your own code can prefix literals with `@` if you wish.
 * C# classes use the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) and avoid prefixing fields with an underscore (`_`) that are assigned to in constructors, which differs from the [ASP.NET Core framework engineering guidelines](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines).
 * In examples that use [primary constructors (C# 12 or later)](/dotnet/csharp/whats-new/tutorials/primary-constructors), primary constructor parameters are typically used directly by class members.
+In article examples, code lines are split to reduce horizontal scrolling. These breaks don't affect execution but can be removed when pasting into your project.
 
 Additional information on Razor component syntax is provided in the *Razor syntax* section of <xref:blazor/components/index#razor-syntax>.
 
@@ -161,7 +162,7 @@ For more information, see the following resources:
 
 ## Subset of .NET APIs for Blazor WebAssembly apps
 
-A curated list of specific .NET APIs that are supported on the browser for Blazor WebAssembly isn't available. However, you can manually [search for a list of .NET APIs annotated with `[UnsupportedOSPlatform("browser")]`](https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/Runtime/Versioning/PlatformAttributes.cs,34041602e232c616,references) to discover .NET APIs that aren't supported in WebAssembly.
+A curated list of specific .NET APIs that are supported on the browser for Blazor WebAssembly isn't available. However, you can manually <!--keep--> [search for a list of .NET APIs annotated with `[UnsupportedOSPlatform("browser")]`](https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/Runtime/Versioning/PlatformAttributes.cs,34041602e232c616,references) to discover .NET APIs that aren't supported in WebAssembly.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -178,19 +179,38 @@ Documentation sample apps are available for inspection and download:
 
 Locate a sample app by first selecting the version folder that matches the version of .NET that you're working with.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 Samples apps in the repository:
 
 * Blazor Web App
 * Blazor WebAssembly
-* Blazor Web App with EF Core (<xref:blazor/blazor-ef-core>)
+* Blazor Web App Movies tutorial sample (<xref:blazor/tutorials/movie-database-app/index>)
+* Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
+* Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs (<xref:blazor/call-web-api>)
+* Blazor Web App with OIDC (BFF and non-BFF patterns) (<xref:blazor/security/blazor-web-app-oidc>)
+* Blazor Web App with Entra (<xref:blazor/security/blazor-web-app-entra>)
+* Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
+* Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity/index>)
+* .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) (<xref:blazor/hybrid/tutorials/maui-blazor-web-app>)
+* Additional samples (see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples))
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+Samples apps in the repository:
+
+* Blazor Web App
+* Blazor WebAssembly
+* Blazor Web App Movies tutorial sample (<xref:blazor/tutorials/movie-database-app/index>)
 * Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
 * Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs (<xref:blazor/call-web-api>)
 * Blazor Web App with OIDC (BFF and non-BFF patterns) (<xref:blazor/security/blazor-web-app-oidc>)
 * Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
 * Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity/index>)
 * .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) (<xref:blazor/hybrid/tutorials/maui-blazor-web-app>)
+* Additional samples (see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples))
 
 :::moniker-end
 
@@ -200,24 +220,18 @@ The sample repo contains two types of samples:
 
 * Snippet sample apps provide the code examples that appear in articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
 * Samples apps to accompany Blazor articles compile and run for the following scenarios:
-  * Blazor Server with EF Core
   * Blazor Server and Blazor WebAssembly with SignalR
   * Blazor WebAssembly scopes-enabled logging
 
 :::moniker-end
 
-For more information and a list of the samples in the repository, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
+For more information, a list of the samples in the repository, and download instructions, see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples).
 
 The ASP.NET Core repository's Basic Test App is also a helpful set of samples for various Blazor scenarios:
 
 [`BasicTestApp` in ASP.NET Core reference source (`dotnet/aspnetcore`)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-To download the sample apps:
-
-* Download the [Blazor samples repository](https://github.com/dotnet/blazor-samples) ZIP file.
-* Unzip the file.
 
 ## Byte multiples
 
