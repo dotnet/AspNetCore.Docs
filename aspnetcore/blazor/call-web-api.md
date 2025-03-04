@@ -353,6 +353,37 @@ You can address this by flowing prerendered state using the Persistent Component
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-9.0"
+
+## Client-side request streaming
+
+For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, and HTTPS, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests).
+
+To enable request streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestStreamingEnabled%2A> to `true` on the <xref:System.Net.Http.HttpRequestMessage>.
+
+In the following file upload example:
+
+* `content` is the file's <xref:System.Net.Http.HttpContent>.
+* `/Filesave` is the web API endpoint.
+* `Http` is the <xref:System.Net.Http.HttpClient>.
+
+```csharp
+var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
+request.SetBrowserRequestStreamingEnabled(true);
+request.Content = content;
+
+var response = await Http.SendAsync(request);
+```
+
+Streaming requests:
+
+* Require HTTPS protocol and don't work on HTTP/1.x.
+* Include a body but not a `Content-Length` header. [CORS](xref:security/cors) with a preflight request is required for cross-origin streaming requests.
+
+For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads#file-size-read-and-upload-limits> and the example at [Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr).
+
+:::moniker-end
+
 ## Add the `HttpClient` service
 
 *The guidance in this section applies to client-side scenarios.*
@@ -368,10 +399,7 @@ In the `Program` file, add an <xref:System.Net.Http.HttpClient> service if it is
 
 ```csharp
 builder.Services.AddScoped(sp => 
-    new HttpClient
-    {
-        BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-    });
+    new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 ```
 
 The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
@@ -385,10 +413,7 @@ If you're calling an external web API (not in the same URL space as the client a
 
 ```csharp
 builder.Services.AddScoped(sp => 
-    new HttpClient
-    {
-        BaseAddress = new Uri("https://localhost:5001")
-    });
+    new HttpClient { BaseAddress = new Uri("https://localhost:5001") });
 ```
 
 ## JSON helpers
