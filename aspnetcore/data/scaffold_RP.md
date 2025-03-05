@@ -38,16 +38,12 @@ To navigate the UI, use the:
 If you have any problems with the following steps, see [Tutorial: Create a Razor Pages web app with ASP.NET Core](/aspnet/core/tutorials/razor-pages/) and select the **Visual Studio Code** tab.
 
 1. Run the following commands to create a Razor Pages project and navigate to the projects folder:
-
   ```dotnetcli
   dotnet new webapp -o MyWebApp
   cd MyWebApp
   ```
-
 1. Add the `Contact` class to the `MyWebApp` project:
-
   :::code language="csharp" source="~/data/scaffold_RP/samples/MyWebApp/Contact.cs":::
-
 1. Run `dotnet scaffold` in the `MyWebApp` folder and select **Razor Pages**, then enter return.
 1. Navigate to *** Razor Pages with Entity Framework (CRUD) (dotnet-scaffold-aspnet)**, then enter return.
 1. Enter return on the selected **MyWebApp (MyWebApp.csproj)**.
