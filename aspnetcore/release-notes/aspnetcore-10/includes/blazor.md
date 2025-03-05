@@ -40,11 +40,10 @@ Previously, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2
 
 In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClient> requests was opt-in. Now, response streaming is enabled by default.
 
-To opt-out of response streaming, set an <xref:System.Net.Http.HttpRequestOptionsKey%601> for "`WebAssemblyEnableStreamingResponse`" to `false` on the <xref:System.Net.Http.HttpRequestMessage>:
+To opt-out of response streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage>:
 
 ```csharp
-requestMessage.Options.Set(
-    new HttpRequestOptionsKey<bool>("WebAssemblyEnableStreamingResponse"), false);
+requestMessage.SetBrowserRequestStreamingEnabled(false);
 ```
 
 For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](xref:blazor/call-web-api?view=aspnetcore-10.0#httpclient-and-httprequestmessage-with-fetch-api-request-options).
