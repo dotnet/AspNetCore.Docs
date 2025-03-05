@@ -921,10 +921,10 @@ requestMessage.SetBrowserResponseStreamingEnabled(false);
 
 :::moniker range="< aspnetcore-10.0"
 
-The HTTP response is typically buffered to enable support for synchronous reads on the response content. To enable support for response streaming, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> extension method on the request:
+The HTTP response is typically buffered to enable support for synchronous reads on the response content. To enable support for response streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A>  to `true` on the <xref:System.Net.Http.HttpRequestMessage>:
 
 ```csharp
-requestMessage.SetBrowserRequestStreamingEnabled(true);
+requestMessage.SetBrowserResponseStreamingEnabled(true);
 ```
 
 By default, [`HttpCompletionOption.ResponseContentRead`](xref:System.Net.Http.HttpCompletionOption) is set, which results in the <xref:System.Net.Http.HttpClient> completing after reading the entire response, including the content. In order to be able to use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> option on large files, set [`HttpCompletionOption.ResponseHeadersRead`](xref:System.Net.Http.HttpCompletionOption) to avoid caching the file's content in memory:
