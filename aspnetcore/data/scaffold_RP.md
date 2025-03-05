@@ -21,23 +21,23 @@ The following command installs the scaffolder globally:
 dotnet tool install --global Microsoft.dotnet-scaffold
 ```
 
-See [How to manage .NET tools](/dotnet/core/tools/global-tools) for imfomation on .NET tools and how to install them locally.
+See [How to manage .NET tools](/dotnet/core/tools/global-tools) for information on .NET tools and how to install them locally.
 
-To launch the interactive tool, run `dotnet scaffold`. The UI will change as more features are added. The interactive UI looks simlar to the following:
+To launch the interactive tool, run `dotnet scaffold`. The UI changes as more features are added. Currently, the interactive UI looks similar to the following image:
 
 ![scaffold tool initial](~/data/scaffold_RP/images/scaffold1.png)
 
-To naviagte the UI, use the:
+To navigate the UI, use the:
 
-- Up and down arrow keys to navigate the meun items.
+- Up and down arrow keys to navigate the menu items.
 - Enter key to select the highlighted menu item.
 - Select and enter **Back** to return to the previous menu.
 
-## Create and caffold a data model in a Razor Pages project
+## Create and scaffold a data model in a Razor Pages project
 
 If you have any problems with the following steps, see [Tutorial: Create a Razor Pages web app with ASP.NET Core](/aspnet/core/tutorials/razor-pages/) and select the **Visual Studio Code** tab.
 
-1. Run the following commands to create a Razor Pages project and naviate to the projects folder:
+1. Run the following commands to create a Razor Pages project and navigate to the projects folder:
 
   ```dotnetcli
   dotnet new webapp -o MyWebApp
@@ -65,7 +65,7 @@ If you have any problems with the following steps, see [Tutorial: Create a Razor
 - `ContactDbContext.cs` is created and added to the project root directory.
 - Razor Pages for CRUD operations are added to the Pages folder.
 
-The content has been generated but the database hasn't been initialized. Run the following commands to initialize the DB.
+The content has been generated but the database isn't initialized. Run the following commands to initialize the DB.
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-ef
@@ -74,7 +74,7 @@ dotnet ef migrations add initialMigration
 dotnet ef database update
 ```
 
-In  The preceeding commands:
+In  The preceding commands:
 - `dotnet tool uninstall --global dotnet-ef` uninstall the `dotnet-ef` too, to ensure the latest tool is successfully installed in the next step. If `dotnet-ef` isn't installed, an error messages **A tool with the package Id 'dotnet-ef' could not be found.** You can ignore this message.
 - `dotnet tool install --global dotnet-ef` installs globally the `dotnet-ef` tool.
 - `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see [Create the initial database schema using EF's migration feature](/aspnet/core/tutorials/razor-pages/model&tabs=visual-studio-code)
@@ -83,7 +83,7 @@ In  The preceeding commands:
 Run the app:
 
 1. Enter `dotnet run` on the command line, which launches the app.
-1. Open a browser and navigate the the URL specified on the output **Now listening on: http://localhost:wxyz**, where `wxyz` is the port listed.
+1. Open a browser and navigate the URL specified on the output **Now listening on: http://localhost:wxyz**, where `wxyz` is the port listed.
 1. Append `/ContactPages` to the end of the URL.
 1. Test the app by selecting:
   1. **Create New** to create a new app.
@@ -91,4 +91,6 @@ Run the app:
 
 ## Additional resources
 
-- 
+- [dotnet scaffold repo on GitHub](https://github.com/dotnet/Scaffolding)
+- [How to manage .NET tools](https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools)
+- [Microsoft.dotnet-scaffold](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) NuGet package.
