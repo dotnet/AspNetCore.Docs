@@ -468,22 +468,25 @@ Add a movie to the database. In the following example, the classic sci-fi movie 
 
 When you select the **:::no-loc text="Create":::** button, the movie data is posted to the server and saved in the database. 
 
-:::moniker range=">= aspnetcore-9.0"
-
-<!-- UPDATE 10.0 Revert when https://github.com/dotnet/aspnetcore/issues/53996 is addressed -->
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
 
 :::zone pivot="vs"
 
-A Visual Studio debugger regression breaks with a <xref:Microsoft.AspNetCore.Components.NavigationException> on the line that navigates back to the `Index` page:
+In .NET 9, the Visual Studio debugger may break with a <xref:Microsoft.AspNetCore.Components.NavigationException> on the line that navigates back to the `Index` page:
 
 ![Debugger regression: A navigation exception is thrown on the NavigateTo call.](~/blazor/tutorials/movie-database-app/part-2/_static/debugger_regression.png)
 
-To resolve this problem until the debugger is updated by a future Visual Studio release:
+To resolve this problem:
 
 1. Deselect the checkbox for **Break when this exception type is user-handled**.
 2. Select the **Continue** button in the menu bar to continue execution.
 
-The exception won't be thrown when the <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> method is executed throughout the rest of the tutorial series.
+The exception isn't thrown when a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> method is executed throughout the rest of the tutorial series.
+
+In .NET 10 or later:
+
+* Updates to the way that <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> manages navigation never result in a <xref:Microsoft.AspNetCore.Components.NavigationException>.
+* The Visual Studio debugger doesn't break when processing <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> calls with a valid endpoint.
 
 :::zone-end
 
