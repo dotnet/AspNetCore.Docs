@@ -28,7 +28,7 @@ For more information, see the following resources:
 
 The [`[Route]` attribute](xref:Microsoft.AspNetCore.Components.RouteAttribute) now supports route syntax highlighting to help visualize the structure of the route template:
 
-![Route template pattern for the Order ID is highlighted in a method that maps endpoints](~/release-notes/aspnetcore-10/_static/route-template-highlighting.png)
+![Route template pattern of a route attribute for the movie entity ID shows syntax highlighting](~/release-notes/aspnetcore-10/_static/route-template-highlighting.png)
 
 <!-- PREVIEW 2
 
