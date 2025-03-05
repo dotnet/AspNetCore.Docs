@@ -909,7 +909,33 @@ requestMessage.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
 
 Blazor's client-side implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch) and configures the underlying [request-specific Fetch API options](https://developer.mozilla.org/docs/Web/API/fetch#Parameters) via <xref:System.Net.Http.HttpRequestMessage> extension methods and <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions>. Set additional options using the generic <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A> extension method. Blazor and the underlying Fetch API don't directly add or modify request headers. For more information on how user agents, such as browsers, interact with headers, consult external user agent documentation sets and other web resources.
 
-The HTTP response is typically buffered to enable support for synchronous reads on the response content. To enable support for response streaming, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> extension method on the request.
+:::moniker range=">= aspnetcore-10.0"
+
+Response streaming is enabled by default. To opt-out of response streaming, set an <xref:System.Net.Http.HttpRequestOptionsKey%601> for "`WebAssemblyEnableStreamingResponse`" to `false`:
+
+```csharp
+requestMessage.Options.Set(
+    new HttpRequestOptionsKey<bool>("WebAssemblyEnableStreamingResponse"), false);
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+The HTTP response is typically buffered to enable support for synchronous reads on the response content. To enable support for response streaming, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> extension method on the request:
+
+```csharp
+requestMessage.SetBrowserRequestStreamingEnabled(true);
+```
+
+By default, [`HttpCompletionOption.ResponseContentRead`](xref:System.Net.Http.HttpCompletionOption) is set, which results in the <xref:System.Net.Http.HttpClient> completing after reading the entire response, including the content. In order to be able to use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> option on large files, set [`HttpCompletionOption.ResponseHeadersRead`](xref:System.Net.Http.HttpCompletionOption) to avoid caching the file's content in memory:
+
+```diff
+- var response = await Http.SendAsync(requestMessage);
++ var response = await Http.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead);
+```
+
+:::moniker-end
 
 To include credentials in a cross-origin request, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> extension method:
 
