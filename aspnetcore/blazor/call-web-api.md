@@ -914,7 +914,7 @@ Blazor's client-side implementation of <xref:System.Net.Http.HttpClient> uses [F
 Response streaming is enabled by default. To opt-out of response streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage>:
 
 ```csharp
-requestMessage.SetBrowserRequestStreamingEnabled(false);
+requestMessage.SetBrowserResponseStreamingEnabled(false);
 ```
 
 :::moniker-end

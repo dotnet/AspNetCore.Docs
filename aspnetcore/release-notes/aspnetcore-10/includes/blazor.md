@@ -43,7 +43,7 @@ In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClien
 To opt-out of response streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage>:
 
 ```csharp
-requestMessage.SetBrowserRequestStreamingEnabled(false);
+requestMessage.SetBrowserResponseStreamingEnabled(false);
 ```
 
 For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](xref:blazor/call-web-api?view=aspnetcore-10.0#httpclient-and-httprequestmessage-with-fetch-api-request-options).
