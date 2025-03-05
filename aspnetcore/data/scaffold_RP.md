@@ -88,6 +88,6 @@ Run the app:
 ## Additional resources
 
 - [dotnet scaffold repo on GitHub](https://github.com/dotnet/Scaffolding)
-- [How to manage .NET tools](https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools)
+- [How to manage .NET tools](/dotnet/core/tools/global-tools)
 - [Microsoft.dotnet-scaffold](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) NuGet package.
 - [Detailed tutorial on EF scaffolding Razor Pages](/aspnet/core/data/scaffold_rp)
