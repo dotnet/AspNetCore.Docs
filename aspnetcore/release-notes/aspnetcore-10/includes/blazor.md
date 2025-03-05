@@ -15,7 +15,7 @@ Apply a stylesheet class to a row of the grid based on the row item using the ne
 
 For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-10.0#style-a-table-row-based-on-the-row-item>.
 
-### Blazor script
+### Blazor script as static web asset
 
 In prior releases of .NET, the Blazor script is served from an embedded resource in the ASP.NET Core shared framework. In .NET 10 or later, the Blazor script is served as a static web asset with automatic compression and fingerprinting.
 
@@ -28,7 +28,7 @@ For more information, see the following resources:
 
 The [`[Route]` attribute](xref:Microsoft.AspNetCore.Components.RouteAttribute) now supports route syntax highlighting to help visualize the structure of the route template:
 
-![Route template pattern for the Order ID is highlighted in a method that maps endpoints](~/release-notes/aspnetcore-10/_static/route-template-highlighting.png)
+![Route template pattern of a route attribute for the movie entity ID shows syntax highlighting](~/release-notes/aspnetcore-10/_static/route-template-highlighting.png)
 
 <!-- PREVIEW 2
 
