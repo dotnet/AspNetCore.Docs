@@ -36,4 +36,17 @@ The [`[Route]` attribute](xref:Microsoft.AspNetCore.Components.RouteAttribute) n
 
 Previously, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> scrolled to the top of the page for same-page navigations. This behavior has been changed in .NET 10 so that the browser no longer scrolls to the top of the page when navigating to the same page. This means the viewport is no longer reset when making updates to the address for the current page, such as changing the query string or fragment.
 
+### Response streaming is opt-in and how to opt-out
+
+In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClient> requests was opt-in. Now, response streaming is enabled by default.
+
+To opt-out of response streaming, set an <xref:System.Net.Http.HttpRequestOptionsKey%601> for "`WebAssemblyEnableStreamingResponse`" to `false` on the <xref:System.Net.Http.HttpRequestMessage>:
+
+```csharp
+requestMessage.Options.Set(
+    new HttpRequestOptionsKey<bool>("WebAssemblyEnableStreamingResponse"), false);
+```
+
+For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](xref:blazor/call-web-api?view=aspnetcore-10.0#httpclient-and-httprequestmessage-with-fetch-api-request-options).
+
 -->
