@@ -45,7 +45,7 @@ If you have any problems with the following steps, see [Tutorial: Create a Razor
 1. Add the `Contact` class to the `MyWebApp` project:
     :::code language="csharp" source="~/data/scaffold_RP/samples/MyWebApp/Contact.cs":::
 1. Run `dotnet scaffold` in the `MyWebApp` folder and select **Razor Pages**, then enter return.
-1. Navigate to *** Razor Pages with Entity Framework (CRUD) (dotnet-scaffold-aspnet)**, then enter return.
+1. Navigate to **Razor Pages with Entity Framework (CRUD) (dotnet-scaffold-aspnet)**, then enter return.
 1. Enter return on the selected **MyWebApp (MyWebApp.csproj)**.
 1. Enter return on **Contact (Contact)**.
 1. Enter `ContactDbContext`, then enter return.
@@ -71,7 +71,7 @@ dotnet ef database update
 ```
 
 In  The preceding commands:
-- `dotnet tool uninstall --global dotnet-ef` uninstall the `dotnet-ef` too, to ensure the latest tool is successfully installed in the next step. If `dotnet-ef` isn't installed, an error messages **A tool with the package Id 'dotnet-ef' could not be found.** You can ignore this message.
+- `dotnet tool uninstall --global dotnet-ef` uninstalls the `dotnet-ef` tool. Uninstalling ensures the latest tool is successfully installed. If `dotnet-ef` isn't installed, an error messages **A tool with the package Id 'dotnet-ef' could not be found.** You can ignore this message.
 - `dotnet tool install --global dotnet-ef` installs globally the `dotnet-ef` tool.
 - `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see [Create the initial database schema using EF's migration feature](/aspnet/core/tutorials/razor-pages/model&tabs=visual-studio-code)
 - `dotnet ef database update` applies the migrations to the database.
@@ -79,14 +79,15 @@ In  The preceding commands:
 Run the app:
 
 1. Enter `dotnet run` on the command line, which launches the app.
-1. Open a browser and navigate the URL specified on the output **Now listening on: http://localhost:wxyz**, where `wxyz` is the port listed.
+1. Open a browser and navigate the URL specified in the output **Now listening on: http://localhost:wxyz**, where `wxyz` is the port listed.
 1. Append `/ContactPages` to the end of the URL.
 1. Test the app by selecting:
-  1. **Create New** to create a new app.
-  1. Try the **Edit**, **Details**, and **Delete** links.
+    1. **Create New** to create a new app.
+    1. Try the **Edit**, **Details**, and **Delete** links.
 
 ## Additional resources
 
 - [dotnet scaffold repo on GitHub](https://github.com/dotnet/Scaffolding)
 - [How to manage .NET tools](https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools)
 - [Microsoft.dotnet-scaffold](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) NuGet package.
+- [Detailed tutorial on EF scaffolding Razor Pages](/aspnet/core/data/scaffold_rp)
