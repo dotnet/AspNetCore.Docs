@@ -11,8 +11,6 @@ ai-usage: ai-assisted
 uid: data/dotnet-scaffold-rp
 ---
 
-?view=aspnetcore-9.0
-
 # Scaffold a data model with dotnet scaffold in a Razor Pages project
 
 The CLI tool, [dotnet scaffold](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) creates data access UI for many .NET project types, such as API, Aspire, Blazor, MVC, and Razor Pages. `dotnet scaffold` can be run interactively or as a command line tool via passing parameter values.
@@ -79,7 +77,7 @@ dotnet ef database update
 In  The preceeding commands:
 - `dotnet tool uninstall --global dotnet-ef` uninstall the `dotnet-ef` too, to ensure the latest tool is successfully installed in the next step. If `dotnet-ef` isn't installed, an error messages **A tool with the package Id 'dotnet-ef' could not be found.** You can ignore this message.
 - `dotnet tool install --global dotnet-ef` installs globally the `dotnet-ef` tool.
-- `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see [Create the initial database schema using EF's migration feature](/aspnet/core/tutorials/razor-pages/model?view=aspnetcore-9.0&tabs=visual-studio-code)
+- `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see [Create the initial database schema using EF's migration feature](/aspnet/core/tutorials/razor-pages/model&tabs=visual-studio-code)
 - `dotnet ef database update` applies the migrations to the database.
 
 Run the app:
@@ -91,3 +89,6 @@ Run the app:
   1. **Create New** to create a new app.
   1. Try the **Edit**, **Details**, and **Delete** links.
 
+## Additional resources
+
+- 
