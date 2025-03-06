@@ -22,10 +22,10 @@ Razor components are either *statically* rendered or *interactively* rendered.
 
 *Static* or *static rendering* is a server-side scenario that means the component is rendered without the capacity for interplay between the user and .NET/C# code. JavaScript and HTML DOM events remain unaffected, but no user events on the client can be processed with .NET running on the server.
 
-*Interactive* or *interactive rendering* means that the component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime.
+*Interactive*/*interactivity* or *interactive rendering* means that the component has the capacity to process .NET events and binding via C# code. The .NET events and binding are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime.
 
 > [!IMPORTANT]
-> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode.
+> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article in a Blazor Web App, make sure that either the app adopts global interactivity or the component adopts an interactive render mode. More information on this subject is provided by <xref:blazor/components/render-modes> in the *Components* section, which appears later in the Blazor documentation set.
 
 More information on these concepts and how to control static and interactive rendering is found in the <xref:blazor/components/render-modes> article later in the Blazor documentation.
 
