@@ -18,7 +18,7 @@ This guidance doesn't apply to standalone Blazor WebAssembly apps. Blazor WebAss
 
 ## Render modes
 
-Every component in a Blazor Web App adopts a *render mode* to determine the hosting model that it uses, where it's rendered, and whether or not it's interactive.
+Every component in a Blazor Web App adopts a *render mode* to determine the hosting model that it uses, where it's rendered, and whether or not it's interactive. *Interactivity* makes it possible for users to interact with rendered components. This includes app responses to [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events and state changes tied to C# members via Blazor's event handlers and binding.
 
 The following table shows the available render modes for rendering Razor components in a Blazor Web App. To apply a render mode to a component use the `@rendermode` directive on the component instance or on the component definition. Later in this article, examples are shown for each render mode scenario.
 
