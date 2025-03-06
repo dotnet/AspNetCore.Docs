@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to call gRPC services with the .NET gRPC client.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 01/08/2025
+ms.date: 03/06/2025
 uid: grpc/client
 ---
 # Call gRPC services with the .NET client
