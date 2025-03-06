@@ -113,7 +113,7 @@ Its generated `GreeterClient` type has two .NET methods for calling `SayHello`:
 * `GreeterClient.SayHelloAsync` - calls `Greeter.SayHello` service asynchronously. Can be awaited.
 * `GreeterClient.SayHello` - calls `Greeter.SayHello` service and blocks until complete.
 
-The blocking `GreeterClient.SayHello` method should never be used in asynchronous code. It can cause performance and reliability issues.
+The blocking `GreeterClient.SayHello` method shouldn't be used in asynchronous code. It can cause performance and reliability issues.
 
 ## Load balancing
 
