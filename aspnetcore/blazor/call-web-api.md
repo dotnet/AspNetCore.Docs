@@ -505,6 +505,24 @@ await Http.PatchAsJsonAsync(
     "[{\"operationType\":2,\"path\":\"/IsComplete\",\"op\":\"replace\",\"value\":true}]");
 ```
 
+As of C# 11 (.NET 7), you can compose a JSON string as a [raw string literal](/dotnet/csharp/language-reference/tokens/raw-string). Specify JSON syntax with the <xref:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute.Json%2A?displayProperty=nameWithType> field to the [`[StringSyntax]` attribute](xref:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute) for code analysis tooling:
+
+```razor
+@using System.Diagnostics.CodeAnalysis
+
+...
+
+@code {
+    [StringSyntax(StringSyntaxAttribute.Json)]
+    private const string patchOperation =
+        """[{"operationType":2,"path":"/IsComplete","op":"replace","value":true}]""";
+
+    ...
+
+    await Http.PatchAsJsonAsync($"todoitems/{id}", patchOperation);
+}
+```
+
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON todo item data as an array. An empty array is created if no item data is returned by the method, so `content` isn't null after the statement executes:
 
 ```csharp
