@@ -19,7 +19,7 @@ This tutorial shows you how to enable users to sign in with their Google account
 * Go to [Google API & Services](https://console.cloud.google.com/apis).
 * A **Project** must exist first, you may have to create one. Once a project is selected, enter the **Dashboard**.
 
-* In the **Oauth consent screen** of the **Dashboard**:
+* In the **OAuth consent screen** of the **Dashboard**:
   * Select **User Type - External** and **CREATE**.
   * In the **App information** dialog, Provide an **app name** for the app, **user support email**, and **developer contact information**.
   * Step through the **Scopes** step.
@@ -55,14 +55,14 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 * Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) NuGet package to the app.
 * Add the Authentication service to the `program.cs`:
-* Follow [`Add Authtication for asp.net app`](https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth#configure-your-application-to-use-google.apis.auth.aspnetcore3)
+* Follow [`Add Authentication for asp.net app`](https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth#configure-your-application-to-use-google.apis.auth.aspnetcore3)
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
 ## Sign in with Google
-* Get a link to the libary at [google developer library link ](https://developers.google.com/identity/gsi/web/guides/client-library) to get link of library.
-* Then go to [google developer button genration ](https://developers.google.com/identity/gsi/web/tools/configurator)
-* Setup your Controller to match with ` data-login_uri="{HostName}/{ControllerName}/{actionName}" ` attrbute because after success login it will forward you to that link.
+* Get a link to the library at [Google Developer Library](https://developers.google.com/identity/gsi/web/guides/client-library).
+* Then go to [Google Developer Button Generation](https://developers.google.com/identity/gsi/web/tools/configurator).
+* Setup your Controller to match the `data-login_uri="{HostName}/{ControllerName}/{actionName}"` attribute, as it will forward you to that link after a successful login.
 * Create a controller and action that takes one argument `string credential`, which is returned by Google upon completing the login process.
 * Verify the `credential` using the following line of code:
 `GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);`
