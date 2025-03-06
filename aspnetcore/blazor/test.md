@@ -164,4 +164,4 @@ The following actions take place at each step of the test:
 ## Additional resources
 
 * [Getting Started with bUnit](https://bunit.dev/docs/getting-started/): bUnit instructions include guidance on creating a test project, referencing testing framework packages, and building and running tests.
-* [Blazor Testing from A to Z - Egil Hansen - Swetugg Stockholm 2024](https://youtu.be/GU_XbWjrP_g?si=1SrjeaP1T9LdFegN) ([Swetugg](https://www.swetugg.se/sthlm-2025))
+* [Blazor Testing from A to Z - Egil Hansen - NDC London 2025](https://www.youtube.com/watch?v=p-H5fEMCB8s) ([NDC London](https://ndclondon.com/))
