@@ -94,6 +94,27 @@ For more information about garbage collection, see [Workstation and server garba
 > [!NOTE]
 > ASP.NET Core apps use server GC by default. Enabling `<ServerGarbageCollection>` is only useful in non-server gRPC client apps, for example in a gRPC client console app.
 
+## Asynchronous calls in client apps
+
+Perfer using [asynchronous programming with async and await](/dotnet/csharp/asynchronous-programming/) when calling gRPC methods. Making gRPC calls with blocking, such as accessing `Task.Result` or calling `Task.Wait()`, prevents other tasks from using a thread. This can lead to thread pool starvation and poor performance. It could cause the app hanging with a deadlock.
+
+All gRPC method types generate asynchronous APIs on gRPC clients. The exception is unary methods, which generate _and_ async and blocking methods to call the unary method.
+
+For example, given the following gRPC service in a *.proto* file:
+
+```proto
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+}
+```
+
+On the generated `GreeterClient` type there are two ways of calling `SayHello`:
+
+* `GreeterClient.SayHelloAsync` - calls `Greeter.SayHello` service asynchronously. Can be awaited.
+* `GreeterClient.SayHello` - calls `Greeter.SayHello` service and blocks until complete.
+
+The blocking `GreeterClient.SayHello` method should never be used in asynchronous code.
+
 ## Load balancing
 
 Some load balancers don't work effectively with gRPC. L4 (transport) load balancers operate at a connection level, by distributing TCP connections across endpoints. This approach works well for loading balancing API calls made with HTTP/1.1. Concurrent calls made with HTTP/1.1 are sent on different connections, allowing calls to be load balanced across endpoints.
