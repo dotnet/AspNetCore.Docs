@@ -17,7 +17,7 @@ This tutorial shows you how to enable users to sign in with their Google account
 
 * Follow the guidance in [Integrating Google Sign-In into your web app](https://developers.google.com/identity/gsi/web/guides/overview) (Google documentation)
 * Go to [Google API & Services](https://console.cloud.google.com/apis).
-* A **Project** must exist first; you may have to create one. Once a project is selected, enter the **Dashboard**.
+* A **Project** must exist first, you may have to create one. Once a project is selected, enter the **Dashboard**.
 
 * In the **OAuth consent screen** of the **Dashboard**:
   * Select **User Type - External** and **CREATE**.
