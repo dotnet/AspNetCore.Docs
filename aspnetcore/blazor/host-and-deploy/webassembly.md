@@ -734,7 +734,7 @@ A standalone Blazor WebAssembly app is published as a set of static files for ho
 
 To host the app in Docker:
 
-* Choose a Docker container with web server support, such as Ngnix or Apache.
+* Choose a Docker container with web server support, such as Nginx or Apache.
 * Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
 * Apply additional configuration as needed to serve the Blazor WebAssembly app.
 
