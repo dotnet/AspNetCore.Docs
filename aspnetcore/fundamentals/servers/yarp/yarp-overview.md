@@ -24,7 +24,7 @@ A reverse proxy is a server that sits between client devices and backend servers
 - Load Balancing: Distributes incoming traffic across multiple backend servers to prevent overloading a specific server. Distribution increases performance and reliability.
 - Scalability: By distributing traffic across multiple servers, a reverse proxy helps scale apps to handle more users and higher loads. Backend servers scaled (added or removed) without impacting the client.
 
-- [SSL/TSL Termination](/azure/application-gateway/ssl-overview): Offloads the TSL encryption and decryption processes from backend servers, reducing their workload.
+- [SSL/TLS Termination](/azure/application-gateway/ssl-overview): Offloads the TLS encryption and decryption processes from backend servers, reducing their workload.
 - Connection abstraction, decoupling and control over URL-space: Inbound requests from external clients and outbound responses from the backend are independent. This independence allows for differnt:
   - Versions of HTTP, ie, HTTP/1.1, HTTP/2, HTTP/3. The proxy can upgrade or downgrade HTTP versions.
   - Connection lifetimes, which enables having long-lived connections on the backend while maintaining short client connections.
@@ -32,7 +32,7 @@ A reverse proxy is a server that sits between client devices and backend servers
 - Security: Internal service endpoints can be hidden from external exposure, protecting against some types of cyber attacks such as [DDoS attacks](https://www.microsoft.com/security/business/security-101/what-is-a-ddos-attack?msockid=3e35ed3aa4666d8003aaf830a5006c74).
 - Caching: Frequently requested resources can be cached to reduce the load on backend servers and improve response times.
 - Versioning: Different versions of an API can be supported using different URL mappings.
-- Simplified maintenance: Reverse proxies can handle [SSL/TSL Termination](/azure/application-gateway/ssl-overview) and other tasks, simplifying the configuration and maintenance of backend servers. For example, SSL certificates and security policies can be managed at the reverse proxy level instead of on each individual server.
+- Simplified maintenance: Reverse proxies can handle [SSL/TLS Termination](/azure/application-gateway/ssl-overview) and other tasks, simplifying the configuration and maintenance of backend servers. For example, SSL certificates and security policies can be managed at the reverse proxy level instead of on each individual server.
 
 ## How a reverse proxy handles HTTP
 
