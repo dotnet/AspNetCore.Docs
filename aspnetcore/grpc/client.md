@@ -62,7 +62,7 @@ Channel and client performance and usage:
 
 `GrpcChannel.ForAddress` isn't the only option for creating a gRPC client. If calling gRPC services from an ASP.NET Core app, consider [gRPC client factory integration](xref:grpc/clientfactory). gRPC integration with `HttpClientFactory` offers a centralized alternative to creating gRPC clients.
 
-When calling gRPC methods always perfer using [asynchronous programming with async and await](/dotnet/csharp/asynchronous-programming/). Making gRPC calls with blocking, such as accessing `Task.Result` or calling `Task.Wait()`, prevents other tasks from using a thread. This can lead to thread pool starvation and poor performance. It could cause the app hanging with a deadlock. For more information, see [Asynchronous calls in client apps](xref:grpc/performance#asynchronous-calls-in-client-apps).
+When calling gRPC methods always perfer using [asynchronous programming with async and await](/dotnet/csharp/asynchronous-programming/). Making gRPC calls with blocking, such as using `Task.Result` or `Task.Wait()`, prevents other tasks from using a thread. This can lead to thread pool starvation and poor performance. It could cause the app to hang with a deadlock. For more information, see [Asynchronous calls in client apps](xref:grpc/performance#asynchronous-calls-in-client-apps).
 
 ## Make gRPC calls
 
@@ -90,7 +90,7 @@ Console.WriteLine("Greeting: " + response.Message);
 Each unary service method in the `.proto` file will result in two .NET methods on the concrete gRPC client type for calling the method: an asynchronous method and a blocking method. For example, on `GreeterClient` there are two ways of calling `SayHello`:
 
 * `GreeterClient.SayHelloAsync` - calls `Greeter.SayHello` service asynchronously. Can be awaited.
-* `GreeterClient.SayHello` - calls `Greeter.SayHello` service and blocks until complete. Don't use in asynchronous code.
+* `GreeterClient.SayHello` - calls `Greeter.SayHello` service and blocks until complete. Don't use in asynchronous code. Can cause performance and reliability issues.
 
 For more information, see [Asynchronous calls in client apps](xref:grpc/performance#asynchronous-calls-in-client-apps).
 

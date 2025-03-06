@@ -96,9 +96,9 @@ For more information about garbage collection, see [Workstation and server garba
 
 ## Asynchronous calls in client apps
 
-Perfer using [asynchronous programming with async and await](/dotnet/csharp/asynchronous-programming/) when calling gRPC methods. Making gRPC calls with blocking, such as accessing `Task.Result` or calling `Task.Wait()`, prevents other tasks from using a thread. This can lead to thread pool starvation and poor performance. It could cause the app hanging with a deadlock.
+Perfer using [asynchronous programming with async and await](/dotnet/csharp/asynchronous-programming/) when calling gRPC methods. Making gRPC calls with blocking, such as using `Task.Result` or `Task.Wait()`, prevents other tasks from using a thread. This can lead to thread pool starvation and poor performance. It could cause the app to hang with a deadlock.
 
-All gRPC method types generate asynchronous APIs on gRPC clients. The exception is unary methods, which generate _and_ async and blocking methods to call the unary method.
+All gRPC method types generate asynchronous APIs on gRPC clients. The exception is unary methods, which generates async _and_ blocking methods.
 
 For example, given the following gRPC service in a *.proto* file:
 
@@ -113,7 +113,7 @@ On the generated `GreeterClient` type there are two ways of calling `SayHello`:
 * `GreeterClient.SayHelloAsync` - calls `Greeter.SayHello` service asynchronously. Can be awaited.
 * `GreeterClient.SayHello` - calls `Greeter.SayHello` service and blocks until complete.
 
-The blocking `GreeterClient.SayHello` method should never be used in asynchronous code.
+The blocking `GreeterClient.SayHello` method should never be used in asynchronous code. It can cause performance and reliability issues.
 
 ## Load balancing
 
