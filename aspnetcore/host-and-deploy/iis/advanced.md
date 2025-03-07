@@ -18,7 +18,7 @@ This article covers advanced configuration options and scenarios for the ASP.NET
 
 *Only applies when using the in-process hosting model.*
 
-Configure the managed stack size using the `stackSize` setting in bytes in the `web.config` file. The default size is 1,048,576 bytes (1 MB). The following example changes the stack size to 2 MB (2,097,152 bytes):
+Configure the managed stack size using the `stackSize` setting in bytes in hexadecimal in the `web.config` file. The default size is 1,048,576 bytes (1 MB) expressed in hexadecimal. The following example changes the stack size to 2 MB (2,097,152 bytes) in hexadecimal 0x200000:
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -27,7 +27,7 @@ Configure the managed stack size using the `stackSize` setting in bytes in the `
     stdoutLogFile="\\?\%home%\LogFiles\stdout"
     hostingModel="inprocess">
   <handlerSettings>
-    <handlerSetting name="stackSize" value="2097152" />
+    <handlerSetting name="stackSize" value="200000" />
   </handlerSettings>
 </aspNetCore>
 ```
