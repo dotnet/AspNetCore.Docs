@@ -806,7 +806,15 @@ Configure the following values for the client:
 
 The following example for the `App.razor` file (Blazor Web App) shows the assignment of default values.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -823,7 +831,15 @@ Blazor Web App:
 
 The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core in .NET 6) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core in .NET 6).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 Blazor Server:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -835,6 +851,10 @@ Blazor Server:
   });
 </script>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 **In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script and the path to use, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
@@ -931,9 +951,13 @@ To modify the connection events, register callbacks for the following connection
 
 **Both `onConnectionDown` and `onConnectionUp` must be specified.**
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -949,9 +973,15 @@ Blazor Web App:
 </script>
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 Blazor Server:
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -964,6 +994,8 @@ Blazor Server:
   });
 </script>
 ```
+
+:::moniker-end
 
 **In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script and the path to use, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
@@ -1001,9 +1033,13 @@ Create the following `wwwroot/boot.js` file.
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```javascript
 (() => {
@@ -1069,11 +1105,15 @@ Blazor Web App:
 })();
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 Blazor Server:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-10.0"
 
 ```javascript
 (() => {
@@ -1145,9 +1185,13 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -1163,9 +1207,15 @@ Blazor Web App:
 </script>
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 Blazor Server:
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -1178,6 +1228,8 @@ Blazor Server:
   });
 </script>
 ```
+
+:::moniker-end
 
 **In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script and the path to use, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
@@ -1290,7 +1342,15 @@ The server timeout can be increased, and the Keep-Alive interval can remain the 
 
 In the following [startup configuration](xref:blazor/fundamentals/startup) example ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`withKeepAliveInterval`) isn't set and uses its default value of 15 seconds.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -1305,7 +1365,15 @@ Blazor Web App:
 </script>
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 Blazor Server:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -1317,6 +1385,10 @@ Blazor Server:
   });
 </script>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 When creating a hub connection in a component, set the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.WithServerTimeout%2A>, default: 30 seconds) on the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. Confirm that the timeouts are at least double the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.WithKeepAliveInterval%2A>/<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>) and that the Keep-Alive value matches between server and client.
 
@@ -1456,13 +1528,17 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 
 Prevent automatically starting the app by adding `autostart="false"` to the Blazor `<script>` tag ([location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script)). Manually establish the circuit URL using `Blazor.start`. The following examples use the path `/signalr`.
 
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
+Blazor Web App:
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor Web Apps:
-
 ```diff
-- <script src="_framework/blazor.web.js"></script>
-+ <script src="_framework/blazor.web.js" autostart="false"></script>
+- <script src="{BLAZOR SCRIPT}"></script>
++ <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 + <script>
 +   Blazor.start({
 +     circuit: {
@@ -1472,19 +1548,29 @@ Blazor Web Apps:
 + </script>
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 Blazor Server:
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-10.0"
+
 ```diff
-- <script src="_framework/blazor.server.js"></script>
-+ <script src="_framework/blazor.server.js" autostart="false"></script>
+- <script src="{BLAZOR SCRIPT}"></script>
++ <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 + <script>
 +   Blazor.start({
 +     configureSignalR: builder => builder.withUrl("/signalr")
 +   });
 + </script>
 ```
+
+:::moniker-end
+
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 Add the following <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> call with the hub path to the middleware processing pipeline in the server app's `Program` file.
 
