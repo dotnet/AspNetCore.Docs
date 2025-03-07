@@ -1,9 +1,9 @@
 ---
 title: Rate limiting middleware in ASP.NET Core
-author: tdykstra
+author: rick-anderson
+ms.author: riande
 monikerRange: '>= aspnetcore-7.0'
 description: Learn how limit requests in ASP.NET Core apps
-ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/05/2025
 uid: performance/rate-limit
