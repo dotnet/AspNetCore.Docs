@@ -263,6 +263,10 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
 </div>
 ```
 
+## Weather data security
+
+For more information on how this app secures its weather data, see [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
+
 ## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
