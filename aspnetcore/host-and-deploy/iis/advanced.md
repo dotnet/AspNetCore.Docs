@@ -37,7 +37,7 @@ Configure the managed stack size using the `stackSize` setting in bytes in hexad
 
 :::moniker range="<= aspnetcore-9.0"
 
-Configure the managed stack size using the `stackSize` setting in bytes in the `web.config` file. The default size is 1,048,576 bytes (1 MB). The following example changes the stack size to 2 MB (2,097,152 bytes):
+Configure the managed stack size using the `stackSize` setting in bytes in the `web.config` file. The default size is 17,825,792 bytes (17 MB). The following example changes the stack size to 1,048,576 bytes (1 MB):
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -46,7 +46,7 @@ Configure the managed stack size using the `stackSize` setting in bytes in the `
     stdoutLogFile="\\?\%home%\LogFiles\stdout"
     hostingModel="inprocess">
   <handlerSettings>
-    <handlerSetting name="stackSize" value="2097152" />
+    <handlerSetting name="stackSize" value="1048576" />
   </handlerSettings>
 </aspNetCore>
 ```
