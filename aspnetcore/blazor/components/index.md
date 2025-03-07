@@ -28,7 +28,7 @@ Although "Razor components" shares some naming with other ASP.NET Core content-r
 :::moniker range=">= aspnetcore-8.0"
 
 > [!IMPORTANT]
-> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode. More information on this subject is provided by <xref:blazor/components/render-modes>, which is the next article in the table of contents after this article.
+> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. *Interactivity* makes it possible for users to interact with rendered components. This includes app responses to [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events and state changes tied to C# members via Blazor's event handlers and binding. When you test an example component provided by an article in a Blazor Web App, make sure that either the app adopts global interactivity or the component adopts an interactive render mode. More information on this subject is provided by <xref:blazor/components/render-modes>, which is the next article in the table of contents after this article.
 
 :::moniker-end
 
@@ -66,6 +66,9 @@ Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are exte
     * Third-party API namespaces (alphabetical order)
     * App namespaces (alphabetical order)
   * Other directives (alphabetical order)
+
+  > [!NOTE]
+  > A *render mode* is only applied in Blazor Web Apps and includes modes that establish user interactivity with the rendered component. For more information, see <xref:blazor/components/render-modes>.
 
   No blank lines appear among the directives. One blank line appears between the directives and the first line of Razor markup.
 
