@@ -10,8 +10,6 @@ uid: fundamentals/map-static-files
 ---
 # Map static files in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 :::moniker range=">= aspnetcore-9.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
