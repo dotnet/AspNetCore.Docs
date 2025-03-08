@@ -11,7 +11,7 @@ uid: performance/rate-limit
 
 # Rate limiting middleware in ASP.NET Core
 
-?view=aspnetcore-9.0
+
 
 By [Arvin Kahbazi](https://github.com/Kahbazi), [Maarten Balliauw](https://github.com/maartenba), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -101,11 +101,11 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
   var app = builder.Build();
   ```
   
-  The global limiter applies to all endpoints automatically when it's configured via [options.  GlobalLimiter](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions.globallimiter?view=aspnetcore-9.0), and no endpoint-specific policy is specified.
+  The global limiter applies to all endpoints automatically when it's configured via [options.  GlobalLimiter](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions.globallimiter), and no endpoint-specific policy is specified.
 
 3. Enable rate limiting middleware
 
-   In the `Program.cs` file, enable the rate limiting middleware by calling [UseRateLimiter](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterapplicationbuilderextensions.useratelimiter?view=aspnetcore-9.0):
+   In the `Program.cs` file, enable the rate limiting middleware by calling [UseRateLimiter](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterapplicationbuilderextensions.useratelimiter):
   
   ``` csharp
   app.UseRouting();
@@ -147,7 +147,7 @@ app.UseEndpoints(endpoints =>
 
 #### Apply rate limiting to Blazor Server Pages
 
-To set rate limiting to all pages,  [`RequireRateLimiting(Policy)`](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterendpointconventionbuilderextensions.requireratelimiting?view=aspnetcore-9.0) can be specified on the MapRazorComponents call, for example:
+To set rate limiting to all pages,  [`RequireRateLimiting(Policy)`](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterendpointconventionbuilderextensions.requireratelimiting) can be specified on the MapRazorComponents call, for example:
 
 ``` csharp
 app.MapRazorComponents<App>()
@@ -165,7 +165,7 @@ To set policy for individual Blazor Pages, the attribute must be applied to the 
 <h1>Counter</h1>
 ```
 
-The [`DisableRateLimiting`](/dotnet/api/microsoft.aspnetcore.ratelimiting.disableratelimitingattribute?view=aspnetcore-9.0) attribute can be used to disable rate limiting on a Razor Page.
+The [`DisableRateLimiting`](/dotnet/api/microsoft.aspnetcore.ratelimiting.disableratelimitingattribute) attribute can be used to disable rate limiting on a Razor Page.
 
 Note: `EnableRateLimiting` is only applied to a Razor Page if `MapBlazorComponents().RequireRateLimiting(Policy)` has ***not*** been called.
 
