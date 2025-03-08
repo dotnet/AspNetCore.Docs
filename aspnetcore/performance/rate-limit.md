@@ -153,7 +153,7 @@ app.MapRazorComponents<App>()
     .RequireRateLimiting("MyPagePolicy");
 ```
 
-To set policy for individual Blazor Pages, the attribute must be applied to the Page and not the page handlers.
+To set a policy for a single Razor component, the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is applied to the component with an optional policy name:
 
 ``` blazor
 @page "/counter"
@@ -165,7 +165,7 @@ To set policy for individual Blazor Pages, the attribute must be applied to the 
 
 The [`DisableRateLimiting`](/dotnet/api/microsoft.aspnetcore.ratelimiting.disableratelimitingattribute) attribute can be used to disable rate limiting on a Razor Page.
 
-Note: `EnableRateLimiting` is only applied to a Razor Page if `MapBlazorComponents().RequireRateLimiting(Policy)` has ***not*** been called.
+The [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is only applied to a component if <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> is ***not*** called on <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
 
 ## Rate limiter algorithms
 
