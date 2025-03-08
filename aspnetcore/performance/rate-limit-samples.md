@@ -11,7 +11,7 @@ uid: performance/rate-limit-sample
 
 # Rate limiter samples
 
-The following samples aren't meant for production code but are examples on how to use the limiters.
+The following samples aren't production quality, they're examples on how to use the limiters.
 
 ### Limiter with `OnRejected`, `RetryAfter`, and `GlobalLimiter`
 
