@@ -19,6 +19,150 @@ The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middle
 
 For an introduction to rate limiting, see [Rate limiting middleware](https://blog.maartenballiauw.be/post/2022/09/26/aspnet-core-rate-limiting-middleware.html).
 
+## Why use rate limiting?
+
+Rate limiting can be used for managing the flow of incoming requests to your application. Here are some key reasons to implement rate limiting:
+
+- **Preventing Abuse**: Rate limiting helps protect your application from abuse by limiting the number of requests a user or client can make in a given time period. This is particularly important for public APIs.
+- **Ensuring Fair Usage**: By setting limits, you can ensure that all users have fair access to your resources, preventing any single user from monopolizing the system.
+- **Protecting Resources**: Rate limiting helps prevent server overload by controlling the number of requests that can be processed, thus protecting your backend resources from being overwhelmed.
+- **Enhancing Security**: It can mitigate the risk of Denial of Service (DoS) attacks by limiting the rate at which requests are processed, making it harder for attackers to flood your system.
+- **Improving Performance**: By controlling the rate of incoming requests, you can maintain optimal performance and responsiveness of your application, ensuring a better user experience.
+- **Cost Management**: For services that incur costs based on usage, rate limiting can help manage and predict expenses by controlling the volume of requests processed.
+
+Implementing rate limiting in your ASP.NET Core application can help maintain stability, security, and performance, ensuring a reliable and efficient service for all users.
+
+## Preventing DDoS Attacks
+
+While rate limiting can help mitigate the risk of Denial of Service (DoS) attacks by limiting the rate at which requests are processed, it is not a comprehensive solution for Distributed Denial of Service (DDoS) attacks. DDoS attacks involve multiple systems overwhelming your application with a flood of requests, making it difficult to handle with rate limiting alone.
+
+For robust DDoS protection, consider using a commercial DDoS protection service. These services offer advanced features such as:
+
+- **Traffic Analysis**: Continuous monitoring and analysis of incoming traffic to detect and mitigate DDoS attacks in real-time.
+- **Scalability**: The ability to handle large-scale attacks by distributing traffic across multiple servers and data centers.
+- **Automated Mitigation**: Automated response mechanisms to quickly block malicious traffic without manual intervention.
+- **Global Network**: A global network of servers to absorb and mitigate attacks closer to the source.
+- **Constant Updates**: Commercial services continuously track and update their protection mechanisms to adapt to new and evolving threats.
+
+If using a cloud hosting service, then DDoS protection is usually available as part of the hosting solution, such as [Azure Web Application Firewall](https://azure.microsoft.com/en-us/products/web-application-firewall/), [AWS Shield](https://aws.amazon.com/shield/) or [Google Cloud Armor](https://cloud.google.com/armor/docs). Dedicated protections is available as Web Application Firewalls (WAF) or as part of a CDN solution such as - [Cloudflare](https://www.cloudflare.com/ddos/) or  [Akamai Kona Site Defender](https://www.akamai.com/us/en/products/security/kona-site-defender.jsp)
+
+Implementing a commercial DDoS protection service in conjunction with rate limiting can provide a comprehensive defense strategy, ensuring the stability, security, and performance of your application.
+
+## Using Rate Limiting Middleware
+
+To use the rate limiting middleware in your ASP.NET Core application, follow these steps:
+
+### 1. Install the necessary package:
+Add the `Microsoft.AspNetCore.RateLimiting` package to your project. You can do this via the NuGet Package Manager or by running the following command in the terminal:
+```sh
+   dotnet add package Microsoft.AspNetCore.RateLimiting
+```
+
+### 2. Configure rate limiting services
+In the Program.cs file, configure the rate limiting services by adding the appropriate rate limiting policies. Policies can either be defined as global, for example the following which permits 10 requests per minute:
+
+``` csharp
+builder.Services.AddRateLimiter(options =>
+{
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(),
+            factory: partition => new FixedWindowRateLimiterOptions
+            {
+                AutoReplenishment = true,
+                PermitLimit = 10,
+                QueueLimit = 0,
+                Window = TimeSpan.FromMinutes(1)
+            }));
+});
+```
+
+Or as named polices, which need to be explicitly applied to the pages or endpoints. For example, to add a fixed window limiter:
+
+``` csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter("fixed", opt =>
+    {
+        opt.PermitLimit = 4;
+        opt.Window = TimeSpan.FromSeconds(12);
+        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        opt.QueueLimit = 2;
+    });
+});
+
+var app = builder.Build();
+```
+
+The global limiter applies to all endpoints automatically when it's configured via options.GlobalLimiter, and no endpoint-specific policy is specified.
+
+### 3. Enable rate limiting middleware
+ In the Program.cs file, enable the rate limiting middleware by calling UseRateLimiter:
+
+``` csharp
+app.UseRouting();
+
+app.UseRateLimiter();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+app.Run();
+```
+
+### Apply rate limiting policies to endpoints or pages
+
+#### Apply rate limiting to WebAPI Endpoints
+
+Apply a named policy to the endpoint or group, for example:
+
+``` csharp
+
+app.MapGet("/api/resource", () => "This endpoint is rate limited")
+   .RequireRateLimiting("fixed"); // Apply specific policy to an endpoint
+
+```
+
+#### Apply rate limiting to MVC Controllers
+
+ Apply the configured rate limiting policies to specific endpoints or globally. For example, to apply the "fixed" policy to all controller endpoints:
+
+``` csharp
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers().RequireRateLimiting("fixed");
+});
+
+```
+
+#### Apply rate limiting to Blazor Server Pages
+
+To set rate limiting to all pages,  `RequireRateLimiting(Policy)` can be specified on the MapRazorComponents call, for example:
+
+``` csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode()
+    .RequireRateLimiting("MyPagePolicy");
+```
+
+To set policy for individual Blazor Pages, the attribute must be applied to the Page and not the page handlers.
+
+``` blazor
+@page "/counter"
+@using Microsoft.AspNetCore.RateLimiting
+@attribute [EnableRateLimiting("blazor")]
+
+<h1>Counter</h1>
+```
+
+The `DisableRateLimiting` attribute can be used to disable rate limiting on a Razor Page.
+
+Note: `EnableRateLimiting` is only applied to a Razor Page if `MapBlazorComponents().RequireRateLimiting(Policy)` has ***not*** been called.
+
 ## Rate limiter algorithms
 
 The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions) class provides the following extension methods for rate limiting:
@@ -27,6 +171,8 @@ The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiti
 * [Sliding window](#slide)
 * [Token bucket](#token)
 * [Concurrency](#concur)
+
+The fixed, sliding, and token limiters all limit the maximum number of requests in a time period. The concurrency limiter limits only the number of concurrent requests and doesn't cap the number of requests in a time period. The cost of an endpoint should be considered when selecting a limiter. The cost of an endpoint includes the resources used, for example, time, data access, CPU, and I/O.
 
 <a name="fixed"></a>
 
@@ -134,6 +280,100 @@ The following code uses the concurrency limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_concur":::
 
+
+## Rate Limiting Partitions
+Rate limiting partitions divide your traffic into separate "buckets" that each get their own rate limit counters. This allows for more granular control than a single global counter. The partition "buckets" are defined by different keys (like user ID, IP address, or API key).
+
+### Benefits of Partitioning
+- **Fairness**: One user can't consume the entire rate limit for everyone
+- **Granularity**: Different limits for different users/resources
+- **Security**: Better protection against targeted abuse
+- **Tiered Service**: Support for service tiers with different limits
+
+Partitioned rate limiting gives you fine-grained control over how you manage API traffic while ensuring fair resource allocation.
+
+### By IP Address
+
+``` csharp
+options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+    RateLimitPartition.GetFixedWindowLimiter(
+        partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+        factory: _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 50,
+            Window = TimeSpan.FromMinutes(1)
+        }));
+```
+
+### By User Identity
+``` csharp
+options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+    RateLimitPartition.GetFixedWindowLimiter(
+        partitionKey: httpContext.User.Identity?.Name ?? "anonymous",
+        factory: _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 100,
+            Window = TimeSpan.FromMinutes(1)
+        }));
+```
+
+### By API Key
+``` csharp
+options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+{
+    string apiKey = httpContext.Request.Headers["X-API-Key"].ToString() ?? "no-key";
+
+    // Different limits based on key tier
+    return apiKey switch
+    {
+        "premium-key" => RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: apiKey,
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 1000,
+                Window = TimeSpan.FromMinutes(1)
+            }),
+        
+        _ => RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: apiKey,
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 100,
+                Window = TimeSpan.FromMinutes(1)
+            }),
+    };
+});
+```
+
+### By Endpoint Path
+
+``` csharp
+options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+{
+    string path = httpContext.Request.Path.ToString();
+
+    // Different limits for different paths
+    if (path.StartsWith("/api/public"))
+    {
+        return RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: $"{httpContext.Connection.RemoteIpAddress}-public",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 30,
+                Window = TimeSpan.FromSeconds(10)
+            });
+    }
+
+    return RateLimitPartition.GetFixedWindowLimiter(
+        partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+        factory: _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 100,
+            Window = TimeSpan.FromMinutes(1)
+        });
+});
+```
+
 ### Create chained limiters
 
 The <xref:System.Threading.RateLimiting.PartitionedRateLimiter.CreateChained%2A> API allows passing in multiple <xref:System.Threading.RateLimiting.PartitionedRateLimiter> which are combined into one `PartitionedRateLimiter`. The combined limiter runs all the input limiters in sequence.
@@ -143,6 +383,61 @@ The following code uses `CreateChained`:
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_3" highlight="19,20,33":::
 
 For more information, see the [CreateChained source code](https://github.com/dotnet/runtime/blob/79874806d246670ee5fe76e73ce566578fe675c0/src/libraries/System.Threading.RateLimiting/src/System/Threading/RateLimiting/PartitionedRateLimiter.cs#L52-L64)
+
+## Chosing what happens when a request is rate limited
+
+For simple cases, you can just set the status code:
+
+``` csharp
+builder.Services.AddRateLimiter(options =>
+{
+    // Set a custom status code for rejections
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+    // Rate limiter configuration...
+});
+```
+
+The most common approach is to register an OnRejected callback when configuring rate limiting:
+
+``` csharp
+builder.Services.AddRateLimiter(options =>
+{
+    // Rate limiter configuration...
+    
+    options.OnRejected = async (context, cancellationToken) =>
+    {
+        // Custom rejection handling logic
+        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+        context.HttpContext.Response.Headers["Retry-After"] = "60";
+
+        await context.HttpContext.Response.WriteAsync("Rate limit exceeded. Please try again later.", cancellationToken);
+
+        // Optional logging
+        logger.LogWarning("Rate limit exceeded for IP: {IpAddress}",
+            context.HttpContext.Connection.RemoteIpAddress);
+    };
+});
+```
+Another option is to queue the request:
+
+### Request Queuing
+
+With queuing enabled, when a request exceeds the rate limit, it's placed in a queue where the request waits until a permit becomes available or until a timeout occurs. Requests are processed according to a configurable queue order.
+
+``` csharp
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter("api", options =>
+    {
+        options.PermitLimit = 10;           // Allow 10 requests
+        options.Window = TimeSpan.FromSeconds(10);  // Per 10-second window
+        options.QueueLimit = 5;             // Queue up to 5 additional requests
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst; // Process oldest requests first
+        options.AutoReplenishment = true; // Default: automatically replenish permits
+    });
+});
+```
 
 ## `EnableRateLimiting` and `DisableRateLimiting` attributes
 
@@ -172,63 +467,17 @@ In the preceding controller:
 * The `"sliding"` policy rate limiter is applied to the `Privacy` action.
 * Rate limiting is disabled on the `NoLimit` action method.
 
-### Applying attributes to Razor Pages
+## Rate limiting metrics
 
-For Razor Pages, the attribute must be applied to the Razor Page and not the page handlers. For example, `[EnableRateLimiting]` can't be applied to `OnGet`, `OnPost`, or any other page handler.
+The rate limiting middleware provides built-in metrics and monitoring capabilities to help you understand how rate limits are affecting your application performance and user experience. The following metrics are provided for rate limiting:
 
-The `DisableRateLimiting` attribute disables rate limiting on a Razor Page. `EnableRateLimiting` is only applied to a Razor Page if `MapRazorPages().RequireRateLimiting(Policy)` has ***not*** been called.
-
-## Limiter algorithm comparison
-
-The fixed, sliding, and token limiters all limit the maximum number of requests in a time period. The concurrency limiter limits only the number of concurrent requests and doesn't cap the number of requests in a time period. The cost of an endpoint should be considered when selecting a limiter. The cost of an endpoint includes the resources used, for example, time, data access, CPU, and I/O.
-
-## Rate limiter samples
-
-The following samples aren't meant for production code but are examples on how to use the limiters.
-
-### Limiter with `OnRejected`, `RetryAfter`, and `GlobalLimiter`
-
-The following sample:
-
-* Creates a [RateLimiterOptions.OnRejected](xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.OnRejected) callback that is called when a request exceeds the specified limit. `retryAfter` can be used with the [TokenBucketRateLimiter](/dotnet/api/system.threading.ratelimiting.tokenbucketratelimiter), [FixedWindowLimiter](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions.addfixedwindowlimiter), and [SlidingWindowLimiter](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions.addslidingwindowlimiter) because these algorithms are able to estimate when more permits will be added. The `ConcurrencyLimiter` has no way of calculating when permits will be available.
-* Adds the following limiters:
-
-  * A `SampleRateLimiterPolicy` which implements the `IRateLimiterPolicy<TPartitionKey>` interface. The `SampleRateLimiterPolicy` class is shown later in this article.
-  * A `SlidingWindowLimiter`:
-    * With a partition for each authenticated user.
-    * One shared partition for all anonymous users.
-  * A <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.GlobalLimiter> that is applied to all requests. The global limiter will be executed first, followed by the endpoint-specific limiter, if one exists. The `GlobalLimiter` creates a partition for each <xref:System.Net.IPAddress>.
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_1":::
-
-> [!WARNING]
->Creating partitions on client IP addresses makes the app vulnerable to Denial of Service Attacks which employ IP Source Address Spoofing. For more information, see [BCP 38 RFC 2827 Network Ingress Filtering: Defeating Denial of Service Attacks which employ IP Source Address Spoofing](https://www.rfc-editor.org/info/bcp38).
-
-See [the samples repository for the complete `Program.cs`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs#L145,L281) file.
-
-The `SampleRateLimiterPolicy` class
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/SampleRateLimiterPolicy.cs" id="snippet_1":::
-
-In the preceding code, <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.OnRejected> uses <xref:Microsoft.AspNetCore.RateLimiting.OnRejectedContext> to set the response status to [429 Too Many Requests](https://developer.mozilla.org/docs/Web/HTTP/Status/429). The default rejected status is [503 Service Unavailable](https://developer.mozilla.org/docs/Web/HTTP/Status/503).
-
-### Limiter with authorization
-
-The following sample uses JSON Web Tokens (JWT) and creates a partition with the JWT [access token](https://github.com/dotnet/aspnetcore/blob/fd1891536f27e959d14a140ff9307b6a21191de9/src/Security/Authentication/JwtBearer/src/JwtBearerHandler.cs#L152-L158). In a production app, the JWT would typically be provided by a server acting as a Security token service (STS). For local development, the dotnet [user-jwts](xref:security/authentication/jwt) command line tool can be used to create and manage app-specific local JWTs.
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_jwt":::
-
-### Limiter with `ConcurrencyLimiter`, `TokenBucketRateLimiter`, and authorization
-
-The following sample:
-
-* Adds a `ConcurrencyLimiter` with a policy name of `"get"` that is used on the Razor Pages.
-* Adds a `TokenBucketRateLimiter` with a partition for each authorized user and a partition for all anonymous users.
-* Sets [RateLimiterOptions.RejectionStatusCode](xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.RejectionStatusCode) to [429 Too Many Requests](https://developer.mozilla.org/docs/Web/HTTP/Status/429).
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_adm2":::
-
-See [the samples repository for the complete `Program.cs`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs#L145,L281) file.
+| Metric  | Description | Type |
+| --- | --- | --- |
+| `Microsoft.AspNetCore.RateLimiting.RequestsPerformed` | Counts successful (allowed) requests | Counter|
+| `Microsoft.AspNetCore.RateLimiting.RequestsRejected` | Counts rejected requests | Counter |
+| `Microsoft.AspNetCore.RateLimiting.CurrentLeases` | Current number of active leases | Gauge |
+| `Microsoft.AspNetCore.RateLimiting.CurrentQueuedRequests` | Current number of queued requests | Gauge |
+| `Microsoft.AspNetCore.RateLimiting.QueueTimeMs` | Time spent in queue | Histogram |
 
 <a name="test7"></a>
 
