@@ -143,7 +143,7 @@ app.UseEndpoints(endpoints =>
 
 ```
 
-#### Apply rate limiting to Blazor Server Pages
+#### Apply rate limiting to server-side Blazor apps
 
 To set rate limiting to all pages,  [`RequireRateLimiting(Policy)`](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterendpointconventionbuilderextensions.requireratelimiting) can be specified on the MapRazorComponents call, for example:
 
@@ -158,7 +158,7 @@ To set a policy for a single Razor component, the [`[EnableRateLimiting]` attrib
 ``` blazor
 @page "/counter"
 @using Microsoft.AspNetCore.RateLimiting
-@attribute [EnableRateLimiting("blazor")]
+@attribute [EnableRateLimiting("Policy")]
 
 <h1>Counter</h1>
 ```
