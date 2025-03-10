@@ -150,7 +150,7 @@ To set rate limiting to all pages,  [`RequireRateLimiting(Policy)`](/dotnet/api/
 ``` csharp
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
-    .RequireRateLimiting("MyPagePolicy");
+    .RequireRateLimiting("Policy");
 ```
 
 To set a policy for a single Razor component, the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is applied to the component with an optional policy name:
