@@ -567,3 +567,94 @@ dotnet aspnet-codegenerator blazor -h
 ---
 
 For an example use of the QuickGrid scaffolder, see <xref:blazor/tutorials/movie-database-app/index>.
+
+<!-- UPDATE 10.0 - PU work tracked by https://github.com/dotnet/aspnetcore/issues/58716.
+                   Versioning out at 10.0 for now. -->
+
+:::moniker range="< aspnetcore-10.0"
+
+## Multiple concurrent EF Core queries trigger `System.InvalidOperationException`
+
+Multiple concurrent EF Core queries can trigger the following <xref:System.InvalidOperationException?displayProperty=fullName>:
+
+> :::no-loc text="System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.":::
+
+This scenario is scheduled for improvement in an upcoming release of ASP.NET Core. For more information, see [[Blazor] Improve the experience with QuickGrid and EF Core (`dotnet/aspnetcore` #58716)](https://github.com/dotnet/aspnetcore/issues/58716).
+
+In the meantime, you can address the problem using an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A> with a cancellation token. The cancellation token prevents concurrent queries by cancelling the previous request when a new request is issued.
+
+Consider the following example, which is based on the movie database `Index` component for the <xref:blazor/tutorials/movie-database-app/index> tutorial. The simpler version scaffolded into the app can be seen in the article's [sample app](xref:blazor/tutorials/movie-database-app/index#sample-app). The `Index` component scaffolded into the app is replaced by the following component.
+
+`Components/Pages/MoviePages/Index.razor`:
+
+```razor
+@page "/movies"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using BlazorWebAppMovies.Models
+@using BlazorWebAppMovies.Data
+@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<div>
+    <input type="search" @bind="titleFilter" @bind:event="oninput" />
+</div>
+
+<p>
+    <a href="movies/create">Create New</a>
+</p>
+
+<div>
+    <QuickGrid Class="table" TGridItem="Movie" ItemsProvider="GetMovies"
+            ItemKey="(x => x.Id)" Pagination="pagination">
+        <PropertyColumn Property="movie => movie.Title" Sortable="true" />
+        <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
+        <PropertyColumn Property="movie => movie.Genre" />
+        <PropertyColumn Property="movie => movie.Price" />
+        <PropertyColumn Property="movie => movie.Rating" />
+
+        <TemplateColumn Context="movie">
+            <a href="@($"movies/edit?id={movie.Id}")">Edit</a> |
+            <a href="@($"movies/details?id={movie.Id}")">Details</a> |
+            <a href="@($"movies/delete?id={movie.Id}")">Delete</a>
+        </TemplateColumn>
+    </QuickGrid>
+</div>
+
+<Paginator State="pagination" />
+
+@code {
+    private BlazorWebAppMoviesContext context = default!;
+    private PaginationState pagination = new PaginationState { ItemsPerPage = 5 };
+    private string titleFilter = string.Empty;
+
+    public async ValueTask<GridItemsProviderResult<Movie>> GetMovies(GridItemsProviderRequest<Movie> request)
+    {
+        using var context = DbFactory.CreateDbContext();
+        var totalCount = await context.Movie.CountAsync(request.CancellationToken);
+        IQueryable<Movie> query = context.Movie.OrderBy(x => x.Id);
+        query = request.ApplySorting(query).Skip(request.StartIndex);
+
+        if (request.Count.HasValue)
+        {
+            query = query.Take(request.Count.Value);
+        }
+
+        var items = await query.ToArrayAsync(request.CancellationToken);
+
+        var result = new GridItemsProviderResult<Movie>
+        {
+            Items = items,
+            TotalItemCount = totalCount
+        };
+
+        return result;
+    }
+}
+```
+
+:::moniker-end
