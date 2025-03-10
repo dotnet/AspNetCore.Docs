@@ -16,8 +16,7 @@ configuration:
         if:
           - payloadType: Issues
           - not:
-            - isAssignedTo:
-                user: guardrex
+            - isAssignedTo: guardrex
           - or:
           
             - or:
