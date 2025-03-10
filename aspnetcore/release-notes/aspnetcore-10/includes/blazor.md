@@ -40,7 +40,17 @@ Previously, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2
 
 In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClient> requests was opt-in. Now, response streaming is enabled by default.
 
-To opt-out of response streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage>:
+To opt-out of response streaming globally, use either of the following approaches:
+
+* Add the `<WasmEnableStreamingResponse>` property to the project file with a value of `false`:
+  
+  ```xml
+  <WasmEnableStreamingResponse>false</WasmEnableStreamingResponse>
+  ```
+
+* Set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
+
+To opt-out of response streaming for an individual request, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage> (`requestMessage` in the following example):
 
 ```csharp
 requestMessage.SetBrowserResponseStreamingEnabled(false);
