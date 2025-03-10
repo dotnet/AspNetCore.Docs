@@ -38,7 +38,7 @@ Previously, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2
 
 ### Reconnection UI component added to the Blazor Web App project template
 
-The Blazor Web App project template now includes a `ReconnectModal` component, including collocated stylesheet and JavaScript files, for improved developer control over the reconnection UI when the client loses the WebSocket connection to the server. The component isn't required to inline styles programatically, so it doesn't violate stricter Content Security Policy (CSP) settings for the `style-src` policy, thus avoiding CSP violations that occurred with the reconnection UI in prior releases.
+The Blazor Web App project template now includes a `ReconnectModal` component, including collocated stylesheet and JavaScript files, for improved developer control over the reconnection UI when the client loses the WebSocket connection to the server. The component doesn't insert styles programmatically, so it doesn't violate stricter Content Security Policy (CSP) settings for the `style-src` policy. In prior releases, the default reconnection UI was created by the framework in a way that could cause CSP violations. Note that the default reconnection UI is still used as fallback when the app doesn't define the reconnection UI, such as by using the project template's `ReconnectModal` component or a similar custom component.
 
 New reconnection UI features:
 

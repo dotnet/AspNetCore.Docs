@@ -521,39 +521,26 @@ If reconnection succeeds, user state is often lost. Custom code can be added to 
 
 :::moniker range=">= aspnetcore-10.0"
 
-Customize the UI and reconnection behavior in the `ReconnectModal` component (`Components/Layout/ReconnectModal.razor`), its collocated stylesheet file (`ReconnectModal.razor.css`), and its collocated JavaScript file (`ReconnectModal.razor.js`). These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template with Interactive WebAssembly or Interactive Auto rendering enabled:
+To create UI elements that track reconnection state, the following table describes:
 
-* [`ReconnectModal` component](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor)
-* [Stylesheet file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.css)
-* [JavaScript file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.js)
-
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-The `components-reconnect-state-changed` event indicates a reconnection status change:
-
-* `show`: The reconnection modal is shown.
-* `hide`: The reconnection model is closed.
-* `retrying`: Reconnect attempts are in progress.
-* `failed`: A reconnection attempt failed.
-* `rejected`: A reconnection attempt was received by the server but rejected.
-
-The following table describes the CSS classes applied to the `components-reconnect-modal` element. The **Event** column represents the value of the matching `components-reconnect-state-changed` JavaScript event.
+* A set of `components-reconnect-*` CSS classes (**Css class** column) that are set or unset by Blazor on an element with an `id` of `components-reconnect-modal`.
+* The `components-reconnect-state-changed` event value (**Event** column) that indicates a reconnection status change.
 
 | CSS class | Event | Indicates&hellip; |
 | --- | --- | --- |
-| `components-reconnect-show` | `show` | A lost connection. The client is attempting to reconnect. Show the modal. |
-| `components-reconnect-hide` | `hide` | An active connection is re-established to the server. Hide the modal. |
+| `components-reconnect-show` | `show` | A lost connection. The client is attempting to reconnect. The reconnection modal is shown. |
+| `components-reconnect-hide` | `hide` | An active connection is re-established to the server. The reconnection model is closed. |
 | `components-reconnect-retrying` | `retrying` | The client is attempting to reconnect. |
-| `components-reconnect-failed` | `failed` | Reconnection failed, probably due to a network failure. To attempt reconnection, call `Blazor.reconnect()` in JavaScript. |
-| `components-reconnect-rejected` | `rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()` in JavaScript. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the user's components are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
+| `components-reconnect-failed` | `failed` | Reconnection failed, probably due to a network failure. |
+| `components-reconnect-rejected` | `rejected` | Reconnection rejected. |
 
-Additional CSS classes to further control the style of rendered elements is described in the following table. The **Event** column represents the value of the matching `components-reconnect-state-changed` JavaScript event.
+When the reconnection state change in `components-reconnect-state-changed` is `failed`, call `Blazor.reconnect()` in JavaScript to attempt reconnection.
 
-| CSS class | Event | Displayed on&hellip; |
-| --- | --- | --- |
-| `components-reconnect-first-attempt-visible` | `retrying` | The first retry attempt. |
-| `components-reconnect-repeated-attempt-visible` | `retrying` | Subsequent retry attempts. |
-| `components-reconnect-failed-visible` | `failed` | A failed reconnection attempt. |
+When the reconnection state change is `rejected`, the server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()` in JavaScript. This connection state may result when:
+
+* A crash in the server-side circuit occurs.
+* The client is disconnected long enough for the server to drop the user's state. Instances of the user's components are disposed.
+* The server is restarted, or the app's worker process is recycled.
 
 An element with an `id` of `components-reconnect-max-retries` displays the maximum number of reconnect retries:
 
@@ -572,6 +559,14 @@ An element with an `id` of `components-seconds-to-next-attempt` displays the num
 ```html
 <span id="components-seconds-to-next-attempt"></span>
 ```
+
+The Blazor Web App project template includes a `ReconnectModal` component (`Components/Layout/ReconnectModal.razor`) with collocated stylesheet and JavaScript files (`ReconnectModal.razor.css`, `ReconnectModal.razor.js`) that can be customized as needed. These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template with Interactive WebAssembly or Interactive Auto rendering enabled:
+
+* [`ReconnectModal` component](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor)
+* [Stylesheet file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.css)
+* [JavaScript file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.js)
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker-end
 
