@@ -19,7 +19,7 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 
 With ASP.NET Core, you can:
 
-* Build web apps and services, [Internet of Things (IoT)](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
+* Build web apps and services, [Azure IoT (Internet of Things)](https://azure.microsoft.com/solutions/iot) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
 * Deploy to the cloud or on-premises.
 * Run on [.NET](/dotnet/core/introduction).
@@ -98,7 +98,7 @@ For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:m
 
 ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps. With ASP.NET Core, you can:
 
-* Build web apps and services, [Internet of Things (IoT)](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
+* Build web apps and services, [Azure IoT (Internet of Things)](https://azure.microsoft.com/solutions/iot) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
 * Deploy to the cloud or on-premises.
 * Run on [.NET Core or .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
