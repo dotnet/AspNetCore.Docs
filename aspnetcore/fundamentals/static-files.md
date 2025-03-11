@@ -1,4 +1,6 @@
----
+<!-- This is really map-static-files.md, I'm using the old name for a more
+productive diff in review. After review, this file will be named
+ map-static-files.md -->
 title: Map static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to serve and secure Map static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
@@ -102,7 +104,7 @@ A request can access the `red-rose.jpg` file by configuring the Static File Midd
 In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the `red-rose.jpg` file.
 
 The following markup references `MyStaticFiles/images/red-rose.jpg`:
-<!--  test via /Home2/MyStaticFilesRR -->
+<!-- zz test via /Home2/MyStaticFilesRR -->
 [!code-html[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
 
 To serve files from multiple locations, see [Serve files from multiple locations](/aspnet/core/fundamentals/static-files#serve-files-from-multiple-locations).
