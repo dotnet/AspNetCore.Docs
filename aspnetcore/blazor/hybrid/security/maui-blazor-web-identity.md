@@ -36,8 +36,8 @@ For prerequisites and preliminary steps, see <xref:blazor/hybrid/tutorials/maui>
 
 The sample app is a starter solution that contains a MAUI Blazor Hybrid (native, cross-platform) app, a Blazor Web App, and a Razor class library (RCL) that contains the shared UI (Razor components) used by the native and web apps.
 
-1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](https://learn.microsoft.com/aspnet/core/introduction-to-aspnet-core#how-to-download-a-sample).
-1. Make sure you have [.NET 9 and the MAUI workload installed](https://learn.microsoft.com/dotnet/maui/get-started/installation).
+1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](xref:index#how-to-download-a-sample).
+1. Make sure you have [.NET 9 and the MAUI workload installed (.NET MAUI documentation)](/dotnet/maui/get-started/installation).
 1. Open the solution in Visual Studio 2022 or VS Code with the .NET MAUI extension installed.
 1. Set the `MauiBlazorWeb` MAUI project as the startup project. In Visual Studio, right-click the project and select **Set as Startup Project**.
 1. Start the `MauiBlazorWeb.Web` project without debugging. In Visual Studio, right-click on the project and select **Debug** > **Start without Debugging**.
@@ -79,7 +79,7 @@ In `MauiBlazorWeb.Web/Components/Routes.razor`:
 </AuthorizeRouteView>   
 ```
 
-The `NavManu` component contains the navigation menu that uses an [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) to show or hide links based on the user's authentication status.
+The `NavMenu` component contains the navigation menu that uses an [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) to show or hide links based on the user's authentication status.
 
 In `MauiBlazorWeb.Web/Components/Layout/NavMenu.razor`:
 
@@ -148,7 +148,7 @@ private async Task LoginUser()
 
 ### MAUI Authentication State Provider (`MauiAuthenticationStateProvider`)
 
-The `MauiAuthenticationStateProvider` class is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see <xref:blazor/hybrid/security/index&pivots=maui>.
+The `MauiAuthenticationStateProvider` class is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see <xref:blazor/hybrid/security/index?pivots=maui>.
 
 In `MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`:
 
