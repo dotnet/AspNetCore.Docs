@@ -1,6 +1,3 @@
-<!-- This is really map-static-files.md, I'm using the old name for a more
-productive diff in review. After review, this file will be named
- map-static-files.md -->
 title: Map static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to serve and secure Map static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
@@ -10,6 +7,9 @@ ms.custom: mvc
 ms.date: 3/11/2025
 uid: fundamentals/map-static-files
 ---
+<!-- This is really map-static-files.md, I'm using the old name for a more
+productive diff in review. After review, this file will be named
+ map-static-files.md -->
 # Map static files in ASP.NET Core
 
 :::moniker range=">= aspnetcore-9.0"
@@ -132,7 +132,7 @@ The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticAssetsE
   * Static files served by the Static File Middleware, such as those under `wwwroot`, are publicly accessible.
   
 To serve static files based on authorization, see [Static file authorization
-](/aspnet/core/fundamentals/static-files?view=aspnetcore-8.0#static-file-authorization).]
+](/aspnet/core/fundamentals/static-files#static-file-authorization).]
 
 ## Serve files from multiple locations
 
