@@ -19,7 +19,7 @@ configuration:
                 action: Synchronize
           - not:
               targetsBranch:
-                branch: main
+                branch: live
         then:
           - if:
             - or:
