@@ -1,14 +1,14 @@
 ---
-title: .NET MAUI Blazor Hybrid with a Blazor Web App and ASP.NET Core Identity
+title: .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
 author: guardrex
-description: Learn about the .NET MAUI Blazor Hybrid with a Blazor Web App that manages authentication with ASP.NET Core Identity sample app.
+description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web App that manages authentication with ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2025
 uid: blazor/hybrid/security/maui-blazor-web-identity
 ---
-# .NET MAUI Blazor Hybrid with a Blazor Web App and ASP.NET Core Identity
+# .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
 
 <!-- UPDATE 10.0 - Uncomment at 10.0
 
@@ -123,7 +123,7 @@ app.MapAdditionalIdentityEndpoints();
 
 ### Log in from the MAUI client
 
-The `Login` component (`/login` endpoint) is where the user logs in. The component injects the `MauiAuthenticationStateProvider` (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) and uses the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to authenticate the user and redirect them to the homepage if successful. When the state changes, the [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) shows the appropriate links based on the user's authentication status.
+The `Login` component (`/identity/login` endpoint) is where the user logs in. The component injects the `MauiAuthenticationStateProvider` (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) and uses the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to authenticate the user and redirect them to the homepage if successful. When the state changes, the [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) shows the appropriate links based on the user's authentication status.
 
 In `MauiBlazorWeb/Components/Pages/Login.razor`:
 
