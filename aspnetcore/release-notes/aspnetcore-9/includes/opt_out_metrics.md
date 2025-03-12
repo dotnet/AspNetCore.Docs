@@ -4,7 +4,7 @@
 
 HTTP requests to an endpoint can be excluded from metrics by adding metadata. Either:
 
-* Add the [`[DisableHttpMetrics]`](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute to the Web API controller, SignalR hub or gRPC service.
+* Add the [`[DisableHttpMetrics]` attribute](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) to the Web API controller, SignalR hub or gRPC service.
 * Call <xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics%2A> when mapping endpoints in app startup:
 
 :::code language="csharp" source="~/release-notes/aspnetcore-9/samples/Metrics/Program.cs" id="snippet_1" highlight="5":::

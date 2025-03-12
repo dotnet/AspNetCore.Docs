@@ -277,7 +277,7 @@ Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antif
 The antiforgery middleware:
 
 * Does ***not*** short-circuit the execution of the rest of the request pipeline.
-* Sets the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> in the [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features) of the current request.
+* Sets the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> in the <xref:Microsoft.AspNetCore.Http.HttpContext.Features%2A?displayProperty=nameWithType> of the current request.
 
 The antiforgery token is only validated if:
 

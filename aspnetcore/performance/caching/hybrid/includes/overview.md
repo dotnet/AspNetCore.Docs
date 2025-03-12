@@ -82,5 +82,5 @@ The `HybridCache` library supports older .NET runtimes, down to .NET Framework 4
 For more information, see the following resources:
 
 * <xref:performance/caching/hybrid>
-* [GitHub issue dotnet/aspnetcore #54647](https://github.com/dotnet/aspnetcore/issues/54647)
+* [Hybrid Cache API proposal (`dotnet/aspnetcore` #54647)](https://github.com/dotnet/aspnetcore/issues/54647)
 * [`HybridCache` source code](https://source.dot.net/#Microsoft.Extensions.Caching.Abstractions/Hybrid/HybridCache.cs,8c0fe94693d1ac8d) <!--keep-->
