@@ -29,7 +29,7 @@ dotnet add package Microsoft.Extensions.Caching.Hybrid --version "9.0.0-preview.
 
 ## Register the service
 
-Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling [`AddHybridCache`](xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache):
+Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache%2A>:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_noconfig" highlight="7":::
 
@@ -37,7 +37,7 @@ The preceding code registers the `HybridCache` service with default options. The
 
 ## Get and store cache entries
 
-The `HybridCache` service provides a [`GetOrCreateAsync`](xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.GetOrCreateAsync) method with two overloads, taking a key and:
+The `HybridCache` service provides a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.GetOrCreateAsync%2A> method with two overloads, taking a key and:
 
 * A factory method.
 * State, and a factory method.
@@ -104,14 +104,14 @@ The alternative overload might reduce some overhead from [captured variables](/d
 
 ### The `SetAsync` method
 
-In many scenarios, `GetOrCreateAsync` is the only API needed. But `HybridCache` also has [`SetAsync`](xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.SetAsync) to store an object in cache without trying to retrieve it first.
+In many scenarios, `GetOrCreateAsync` is the only API needed. But `HybridCache` also has <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.SetAsync%2A> to store an object in cache without trying to retrieve it first.
 <!--
 Add GetAsync when it's implemented.
 -->
 
 ## Remove cache entries by key
 
-When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling [`RemoveAsync`](xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveAsync) with the key to the entry. An overload lets you specify a collection of key values.
+When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveAsync%2A> with the key to the entry. An overload lets you specify a collection of key values.
 
 When an entry is removed, it is removed from both the primary and secondary caches.
 
@@ -126,7 +126,7 @@ Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight="7,17":::
 
-Remove all entries for a specified tag by calling [`RemoveByTagAsync`](xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync) with the tag value. An overload lets you specify a collection of tag values.
+Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync%2A> with the tag value. An overload lets you specify a collection of tag values.
 
 When an entry is removed, it is removed from both the primary and secondary caches.
 
@@ -154,7 +154,7 @@ The following properties of `HybridCacheOptions` let you configure limits that a
  
 ## Serialization
 
-Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the [`AddSerializer`](xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializer) and [`AddSerializerFactory`](xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializerFactory) methods, chained from the `AddHybridCache` call. By default, the library
+Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the <xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializer%2A> and <xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializerFactory%2A> methods, chained from the `AddHybridCache` call. By default, the library
 handles `string` and `byte[]` internally, and uses `System.Text.Json` for everything else. `HybridCache` can also use other serializers, such as protobuf or XML.
 
 The following example configures the service to use a type-specific protobuf serializer:

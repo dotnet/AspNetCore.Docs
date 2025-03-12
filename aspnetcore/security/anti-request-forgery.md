@@ -302,7 +302,7 @@ Consider the following sample:
 In the preceding code, posts to:
 
 * `/todo` require a valid antiforgery token.
-* `/todo2` do ***not*** require a valid antiforgery token because [`DisableAntiforgery`](xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.DisableAntiforgery) is called.
+* `/todo2` do ***not*** require a valid antiforgery token because <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.DisableAntiforgery%2A> is called.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_post":::
 
