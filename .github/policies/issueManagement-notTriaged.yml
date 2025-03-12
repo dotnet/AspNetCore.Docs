@@ -15,6 +15,9 @@ configuration:
           * 'needs-more-info' label removed
         if:
           - payloadType: Issues
+          - not:
+              isAssignedToUser:
+                user: guardrex
           - or:
           
             - or:
