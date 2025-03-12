@@ -29,7 +29,7 @@ When generating the OpenAPI document at build time, the OpenAPI version can be s
     <OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_0</OpenApiGenerateDocumentsOptions>
 ```
 
-OpenAPI 3.1 support was primarly added in the following [PR](https://github.com/dotnet/aspnetcore/pull/59480).
+OpenAPI 3.1 support was primarily added in the following [PR](https://github.com/dotnet/aspnetcore/pull/59480).
 
 ### OpenAPI 3.1 breaking changes
 
@@ -59,7 +59,7 @@ options.AddSchemaTransformer((schema, context, cancellationToken) =>
 });
 ```
 
-Note that these changes are necessary even when only congfiguring the OpenAPI version to 3.0.
+Note that these changes are necessary even when only configuring the OpenAPI version to 3.0.
 
 ### OpenAPI in Yaml
 
