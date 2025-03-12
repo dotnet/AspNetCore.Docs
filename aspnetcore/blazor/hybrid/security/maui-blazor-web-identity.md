@@ -16,7 +16,7 @@ uid: blazor/hybrid/security/maui-blazor-web-identity
 
 -->
 
-The .NET MAUI Blazor Hybrid with a Blazor Web App and ASP.NET Core Identity sample app demonstrates how to share a common UI and with ASP.NET Core Identity local accounts. Although ASP.NET Core Identity is used, you can use this pattern for any authentication provider from a MAUI Blazor Hybrid client.
+This sample app demonstrates how to build a .NET MAUI Blazor Hybrid app with a Blazor Web App that uses ASP.NET Core Identity. It shows how to share common UI and authenticate with ASP.NET Core Identity local accounts. Although ASP.NET Core Identity is used, you can use this pattern for any authentication provider from a MAUI Blazor Hybrid client.
 
 The sample:	
 
