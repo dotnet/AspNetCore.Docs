@@ -957,7 +957,7 @@ Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more
 
 ### IExceptionHandler
 
-[IExceptionHandler](xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler) is a new interface that gives the developer a callback for handling known exceptions in a central location.
+<xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler> is a new interface that gives the developer a callback for handling known exceptions in a central location.
 
 `IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](xref:Microsoft.Extensions.DependencyInjection.ExceptionHandlerServiceCollectionExtensions.AddExceptionHandler%2A). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
 

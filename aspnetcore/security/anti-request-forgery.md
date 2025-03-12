@@ -277,11 +277,11 @@ Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antif
 The antiforgery middleware:
 
 * Does ***not*** short-circuit the execution of the rest of the request pipeline.
-* Sets the [IAntiforgeryValidationFeature](xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature) in the [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features) of the current request.
+* Sets the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> in the [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features) of the current request.
 
 The antiforgery token is only validated if:
 
-* The endpoint contains metadata implementing [IAntiforgeryMetadata](xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryMetadata) where `RequiresValidation=true`.
+* The endpoint contains metadata implementing <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryMetadata> where `RequiresValidation=true`.
 * The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods). The relevant methods are all [HTTP methods](https://developer.mozilla.org/docs/Web/HTTP/Methods) except for TRACE, OPTIONS, HEAD, and GET.
 * The request is associated with a valid endpoint.
 

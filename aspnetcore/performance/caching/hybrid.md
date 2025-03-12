@@ -142,8 +142,8 @@ The `GetOrCreateAsync` method can also take a `HybridCacheEntryOptions` object t
 
 For more information about the options, see the source code:
 
-* [HybridCacheOptions](xref:Microsoft.Extensions.Caching.Hybrid.HybridCacheOptions) class.
-* [HybridCacheEntryOptions](xref:Microsoft.Extensions.Caching.Hybrid.HybridCacheEntryOptions) class.
+* <xref:Microsoft.Extensions.Caching.Hybrid.HybridCacheOptions> class.
+* <xref:Microsoft.Extensions.Caching.Hybrid.HybridCacheEntryOptions> class.
 
 ## Limits
 
@@ -217,7 +217,7 @@ In such cases, inform `HybridCache` that it's safe to reuse instances by:
 
 ### Avoid `byte[]` allocations
 
-`HybridCache` also provides optional APIs for `IDistributedCache` implementations, to avoid `byte[]` allocations. This feature is implemented by the preview versions of the `Microsoft.Extensions.Caching.StackExchangeRedis` and `Microsoft.Extensions.Caching.SqlServer` packages. For more information, see [IBufferDistributedCache](xref:Microsoft.Extensions.Caching.Distributed.IBufferDistributedCache)
+`HybridCache` also provides optional APIs for `IDistributedCache` implementations, to avoid `byte[]` allocations. This feature is implemented by the preview versions of the `Microsoft.Extensions.Caching.StackExchangeRedis` and `Microsoft.Extensions.Caching.SqlServer` packages. For more information, see <xref:Microsoft.Extensions.Caching.Distributed.IBufferDistributedCache>.
 Here are the .NET CLI commands to install the packages:
 
 ```dotnetcli
