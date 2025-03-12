@@ -162,15 +162,19 @@ In `MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`:
         // Call the Login endpoint and pass the email and password
         var httpClient = HttpClientHelper.GetHttpClient();
         var loginData = new { loginModel.Email, loginModel.Password };
-        var response = await httpClient.PostAsJsonAsync(HttpClientHelper.LoginUrl, loginData);
+        var response = await httpClient.PostAsJsonAsync(HttpClientHelper.LoginUrl, 
+            loginData);
 
-        LoginStatus = response.IsSuccessStatusCode ? LoginStatus.Success : LoginStatus.Failed;
+        LoginStatus = 
+            response.IsSuccessStatusCode ? LoginStatus.Success : LoginStatus.Failed;
 
         if (LoginStatus == LoginStatus.Success)
         {
-            // Save token to secure storage so the user doesn't have to login every time
+            // Save token to secure storage so the user doesn't have to login 
+            // every time
             var token = await response.Content.ReadAsStringAsync();
-            _accessToken = await TokenStorage.SaveTokenToSecureStorageAsync(token, loginModel.Email);
+            _accessToken = await TokenStorage.SaveTokenToSecureStorageAsync(token, 
+                loginModel.Email);
 
             authenticatedUser = CreateAuthenticatedUser(loginModel.Email);
             LoginStatus = LoginStatus.Success;
