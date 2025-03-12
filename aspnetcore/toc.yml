@@ -450,6 +450,8 @@ items:
                     uid: blazor/hybrid/security/index
                   - name: Security considerations
                     uid: blazor/hybrid/security/security-considerations
+                  - name: .NET MAUI with Blazor Web App and Identity sample
+                    uid: blazor/hybrid/security/maui-blazor-web-identity
               - name: Publish
                 uid: blazor/hybrid/publish/index
               - name: Troubleshoot
