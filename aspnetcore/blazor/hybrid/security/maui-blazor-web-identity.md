@@ -1,7 +1,7 @@
 ---
 title: .NET MAUI Blazor Hybrid with a Blazor Web App and ASP.NET Core Identity
 author: guardrex
-description: Learn about .NET MAUI Blazor Hybrid with a Blazor Web App that manages authentication with ASP.NET Core Identity.
+description: Learn about the .NET MAUI Blazor Hybrid with a Blazor Web App that manages authentication with ASP.NET Core Identity sample app.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
