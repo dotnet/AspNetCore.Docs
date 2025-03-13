@@ -1,4 +1,4 @@
-The [`HybridCache`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,8c0fe94693d1ac8d) API bridges some gaps in the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> and <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> APIs. `HybridCache` is an abstract class with a default implementation that handles most aspects of saving to cache and retrieving from cache.
+The <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> API bridges some gaps in the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> and <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> APIs. `HybridCache` is an abstract class with a default implementation that handles most aspects of saving to cache and retrieving from cache.
 
 ### Features
 
@@ -82,5 +82,5 @@ The `HybridCache` library supports older .NET runtimes, down to .NET Framework 4
 For more information, see the following resources:
 
 * <xref:performance/caching/hybrid>
-* [GitHub issue dotnet/aspnetcore #54647](https://github.com/dotnet/aspnetcore/issues/54647)
-* [`HybridCache` source code](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,8c0fe94693d1ac8d)
+* [Hybrid Cache API proposal (`dotnet/aspnetcore` #54647)](https://github.com/dotnet/aspnetcore/issues/54647)
+* [`HybridCache` source code](https://source.dot.net/#Microsoft.Extensions.Caching.Abstractions/Hybrid/HybridCache.cs,8c0fe94693d1ac8d) <!--keep-->

@@ -43,7 +43,7 @@ Another way to get the user claims is to use the OpenID Connect User Info API. T
 
 :::code language="csharp" source="~/release-notes/aspnetcore-9/samples/PAR/Program.cs" id="snippet_1" highlight="8-99":::
 
-To ensure that authentication only succeeds if PAR is used, use [PushedAuthorizationBehavior.Require](https://source.dot.net/#Microsoft.AspNetCore.Authentication.OpenIdConnect/PushedAuthorizationBehavior.cs,3af73de8f33b70c5) instead. This change also introduces a new [OnPushAuthorization](https://source.dot.net/#Microsoft.AspNetCore.Authentication.OpenIdConnect/Events/OpenIdConnectEvents.cs,6a21c8f3a90753c1) event to [OpenIdConnectEvents](/dotnet/api/microsoft.aspnetcore.authentication.openidconnect.openidconnectevents) which can be used to customize the pushed authorization request or handle it manually. See the [API proposal](https://github.com/dotnet/aspnetcore/issues/51686) for more details.
+To ensure that authentication only succeeds if PAR is used, use [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior) instead. This change also introduces a new <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnPushAuthorization> event to <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents> which can be used to customize the pushed authorization request or handle it manually. For more information, see the [API proposal](https://github.com/dotnet/aspnetcore/issues/51686).
 
 :::moniker-end
 

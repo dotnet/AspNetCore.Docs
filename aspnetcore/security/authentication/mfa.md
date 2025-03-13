@@ -507,7 +507,7 @@ Alternatively, logging in using OTP with Identity:
 
 ### OIDC and OAuth Parameter Customization
 
-The OAuth and OIDC authentication handlers  [`AdditionalAuthorizationParameters`](https://source.dot.net/#Microsoft.AspNetCore.Authentication.OAuth/OAuthOptions.cs,ddb988460467cfbf) option allows customization of authorization message parameters that are usually included as part of the redirect query string:
+The OAuth and OIDC authentication handlers <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.AdditionalAuthorizationParameters> option allows customization of authorization message parameters that are usually included as part of the redirect query string:
 
 :::code language="csharp" source="~/security/authentication/mfa/samples9/WebAddOpenIdConnect/Program.cs" id="snippet_1" :::
 

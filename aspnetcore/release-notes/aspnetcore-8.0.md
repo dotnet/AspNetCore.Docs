@@ -781,7 +781,7 @@ ASP.NET Core 8 adds new features to authentication and authorization.
 
 ### Identity API endpoints
 
-[`MapIdentityApi<TUser>`](https://source.dot.net/#Microsoft.AspNetCore.Identity/IdentityApiEndpointRouteBuilderExtensions.cs,32) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and nonbrowser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
+[`MapIdentityApi<TUser>`](xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and nonbrowser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
 
 ### IAuthorizationRequirementData
 
@@ -957,9 +957,9 @@ Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more
 
 ### IExceptionHandler
 
-[IExceptionHandler](https://source.dot.net/#Microsoft.AspNetCore.Diagnostics/ExceptionHandler/IExceptionHandler.cs,adae2915ad0c6dc5) is a new interface that gives the developer a callback for handling known exceptions in a central location.
+<xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler> is a new interface that gives the developer a callback for handling known exceptions in a central location.
 
-`IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](https://source.dot.net/#Microsoft.AspNetCore.Diagnostics/ExceptionHandler/ExceptionHandlerServiceCollectionExtensions.cs,e74aac24e3e2cbc9). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
+`IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](xref:Microsoft.Extensions.DependencyInjection.ExceptionHandlerServiceCollectionExtensions.AddExceptionHandler%2A). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
 
 For more information, see [IExceptionHandler](xref:fundamentals/error-handling#iexceptionhandler).
 
