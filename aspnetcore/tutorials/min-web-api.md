@@ -244,10 +244,10 @@ The POST endpoint will be used to add data to the app.
 
   A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
 
-  ```
+  ```http
   @TodoApi_HostAddress = https://localhost:7031
 
-  Post {{TodoApi_HostAddress}}/todoitems
+  POST {{TodoApi_HostAddress}}/todoitems
 
   ###
   ```
@@ -269,10 +269,10 @@ The POST endpoint will be used to add data to the app.
   
   The preceding code adds a Content-Type header and a JSON request body. The TodoApi.http file should now look like the following example, but with your port number:
   
-  ```
+  ```http
   @TodoApi_HostAddress = https://localhost:7057
   
-  Post {{TodoApi_HostAddress}}/todoitems
+  POST {{TodoApi_HostAddress}}/todoitems
   Content-Type: application/json
   
   {
@@ -349,8 +349,8 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
 
   The following content is added to the `TodoApi.http` file:
 
-  ```
-  Get {{TodoApi_HostAddress}}/todoitems
+  ```http
+  GET {{TodoApi_HostAddress}}/todoitems
 
   ###
   ```
@@ -374,7 +374,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
 * In **Endpoints Explorer**, right-click the `/todoitems/{id}` **GET** endpoint and select **Generate request**.
   The following content is added to the `TodoApi.http` file:
 
-  ```
+  ```http
   GET {{TodoApi_HostAddress}}/todoitems/{id}
 
   ###
@@ -465,8 +465,8 @@ Update the to-do item that has `Id = 1` and set its name to `"feed fish"`.
 
   The following content is added to the `TodoApi.http` file:
 
-  ```
-  Put {{TodoApi_HostAddress}}/todoitems/{id}
+  ```http
+  PUT {{TodoApi_HostAddress}}/todoitems/{id}
 
   ###
   ```
@@ -475,10 +475,11 @@ Update the to-do item that has `Id = 1` and set its name to `"feed fish"`.
 
 * Add the following lines immediately after the PUT request line:
 
-  ```
+  ```http
   Content-Type: application/json
 
   {
+    "id": 1,
     "name": "feed fish",
     "isComplete": false
   }
@@ -502,6 +503,7 @@ Use Swagger to send a PUT request:
 
   ```json
   {
+    "id": 1,
     "name": "feed fish",
     "isComplete": false
   }
@@ -525,7 +527,7 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 
 * Replace `{id}` in the DELETE request line with `1`. The DELETE request should look like the following example:
 
-  ```
+  ```http
   DELETE {{TodoApi_HostAddress}}/todoitems/1
 
   ###
