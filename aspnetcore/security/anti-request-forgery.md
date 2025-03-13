@@ -277,11 +277,11 @@ Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antif
 The antiforgery middleware:
 
 * Does ***not*** short-circuit the execution of the rest of the request pipeline.
-* Sets the [IAntiforgeryValidationFeature](https://source.dot.net/#Microsoft.AspNetCore.Http.Features/IAntiforgeryValidationFeature.cs,33a7a0e106f11c6f) in the [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features) of the current request.
+* Sets the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> in the <xref:Microsoft.AspNetCore.Http.HttpContext.Features%2A?displayProperty=nameWithType> of the current request.
 
 The antiforgery token is only validated if:
 
-* The endpoint contains metadata implementing [IAntiforgeryMetadata](https://source.dot.net/#Microsoft.AspNetCore.Http.Abstractions/Metadata/IAntiforgeryMetadata.cs,5f49d4d07fc58320) where `RequiresValidation=true`.
+* The endpoint contains metadata implementing <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryMetadata> where `RequiresValidation=true`.
 * The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods). The relevant methods are all [HTTP methods](https://developer.mozilla.org/docs/Web/HTTP/Methods) except for TRACE, OPTIONS, HEAD, and GET.
 * The request is associated with a valid endpoint.
 
@@ -302,7 +302,7 @@ Consider the following sample:
 In the preceding code, posts to:
 
 * `/todo` require a valid antiforgery token.
-* `/todo2` do ***not*** require a valid antiforgery token because [`DisableAntiforgery`](https://source.dot.net/#Microsoft.AspNetCore.Routing/Builder/RoutingEndpointConventionBuilderExtensions.cs,022b9134f828d984) is called.
+* `/todo2` do ***not*** require a valid antiforgery token because <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.DisableAntiforgery%2A> is called.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_post":::
 
