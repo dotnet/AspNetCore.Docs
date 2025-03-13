@@ -9,14 +9,6 @@ uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
 
-> [!IMPORTANT]
-> `HybridCache` is currently still in preview but will be fully released *after* .NET 9.0 in a future minor release of .NET Extensions.
-
-<!--
-[!INCLUDE[](~/includes/not-latest-version.md)] 
-Uncomment this when 9.0 is the default value in the version selector.
--->
-
 This article explains how to configure and use the `HybridCache` library in an ASP.NET Core app. For an introduction to the library, see [the `HybridCache` section of the Caching overview](xref:performance/caching/overview#hybridcache).
 
 ## Get the library
@@ -24,7 +16,7 @@ This article explains how to configure and use the `HybridCache` library in an A
 Install the `Microsoft.Extensions.Caching.Hybrid` package.
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.Caching.Hybrid --version "9.0.0-preview.7.24406.2"
+dotnet add package Microsoft.Extensions.Caching.Hybrid
 ```
 
 ## Register the service
@@ -116,9 +108,6 @@ When the underlying data for a cache entry changes before it expires, remove the
 When an entry is removed, it is removed from both the primary and secondary caches.
 
 ## Remove cache entries by tag
-
-> [!IMPORTANT]
-> This feature is still under development. If you try to remove entries by tag, you will notice that it doesn't have any effect.
 
 Tags can be used to group cache entries and invalidate them together.
 
@@ -230,7 +219,7 @@ dotnet add package Microsoft.Extensions.Caching.SqlServer
 
 ## Custom HybridCache implementations
 
-A concrete implementation of the `HybridCache` abstract class is included in the shared framework and is provided via dependency injection. But developers are welcome to provide custom implementations of the API.
+A concrete implementation of the `HybridCache` abstract class is included in the shared framework and is provided via dependency injection. But developers are welcome to provide or consume custom implementations of the API, for example [FusionCache](https://github.com/ZiggyCreatures/FusionCache/blob/main/docs/MicrosoftHybridCache.md).
 
 ## Compatibility
 
