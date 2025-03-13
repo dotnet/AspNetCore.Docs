@@ -16,7 +16,7 @@ This article explains how to configure and use the `HybridCache` library in an A
 Install the `Microsoft.Extensions.Caching.Hybrid` package.
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.Caching.Hybrid"
+dotnet add package Microsoft.Extensions.Caching.Hybrid
 ```
 
 ## Register the service
