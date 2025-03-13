@@ -1,3 +1,4 @@
+---
 title: Map static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to serve and secure Map static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
@@ -62,21 +63,19 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 The following features are supported in `UseStaticFiles` but not in `MapStaticAssets`:
 
 * [Serving files from disk or embedded resources, or other locations](/aspnet/core/fundamentals/static-files#serve-files-from-multiple-locations)
-- [Serve files outside of web root](/aspnet/core/fundamentals/static-files#serve-files-outside-of-web-root)
-- [Set HTTP response headers](/aspnet/core/fundamentals/static-files#set-http-response-headers)
-- [Directory browsing](/aspnet/core/fundamentals/static-files#directory-browsing)
-- [Serve default documents](/aspnet/core/fundamentals/static-files#serve-default-documents)
-- [FileExtensionContentTypeProvider](/aspnet/core/fundamentals/static-files#fileextensioncontenttypeprovider)
-- [Serve files from multiple locations](/aspnet/core/fundamentals/static-files#serve-files-from-multiple-locations)
-- 
-- [Serving files from disk or embedded resources, or other locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
-- [Serve files outside of web root](xref:fundamentals/static-files#serve-files-outside-of-web-root)
-- [Set HTTP response headers](xref:fundamentals/static-files#set-http-response-headers)
-- [Directory browsing](/aspnet/core/fundamentals/static-files#directory-browsing)
-- [Serve default documents](xref:fundamentals/static-files#serve-default-documents)
-- [FileExtensionContentTypeProvider](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
-- [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
-
+* [Serve files outside of web root](/aspnet/core/fundamentals/static-files#serve-files-outside-of-web-root)
+* [Set HTTP response headers](/aspnet/core/fundamentals/static-files#set-http-response-headers)
+* [Directory browsing](/aspnet/core/fundamentals/static-files#directory-browsing)
+* [Serve default documents](/aspnet/core/fundamentals/static-files#serve-default-documents)
+* [FileExtensionContentTypeProvider](/aspnet/core/fundamentals/static-files#fileextensioncontenttypeprovider)
+* [Serve files from multiple locations](/aspnet/core/fundamentals/static-files#serve-files-from-multiple-locations)
+* [Serving files from disk or embedded resources, or other locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
+* [Serve files outside of web root](xref:fundamentals/static-files#serve-files-outside-of-web-root)
+* [Set HTTP response headers](xref:fundamentals/static-files#set-http-response-headers)
+* [Directory browsing](/aspnet/core/fundamentals/static-files#directory-browsing)
+* [Serve default documents](xref:fundamentals/static-files#serve-default-documents)
+* [FileExtensionContentTypeProvider](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
+* [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
 
 ### Serve files in web root
 
