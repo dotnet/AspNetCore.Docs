@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 3/11/2025
 uid: fundamentals/map-static-files
 ---
-<!-- This is really map-static-files.md, I'm using the old name for a more
+<!-- This file, map-static-files.md will change after this PR. I'm using the old name for a more
 productive diff in review. After review, this file will be named
  map-static-files.md -->
 # Map static files in ASP.NET Core
