@@ -690,6 +690,7 @@ Use the `PUT` method to update the `TodoItem` that has Id = 1 and set its name t
   Content-Type: application/json
 
   {
+    "id": 1,
     "name": "feed fish",
     "isComplete": false
   }
@@ -711,6 +712,7 @@ Use Swagger to send a PUT request:
 
   ```json
   {
+    "id": 1,
     "name": "feed fish",
     "isComplete": false
   }
