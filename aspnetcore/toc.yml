@@ -1505,8 +1505,10 @@ items:
               - name: Inheritance
                 uid: data/ef-mvc/inheritance
               - name: Advanced topics
-                uid: data/ef-mvc/advanced
-      - name: EF 6 with ASP.NET Core
+                uid: data/ef-mvc/advanced                
+      - name: 
+        uid: data/dotnet-scaffold-rp
+      - name: Scaffold a data model with dotnet scaffold in RP
         uid: data/entity-framework-6
       - name: Azure SQL Database with Azure App Service
         href: /azure/app-service/tutorial-connect-msi-sql-database?tabs=efcore%2Cdotnetcore
