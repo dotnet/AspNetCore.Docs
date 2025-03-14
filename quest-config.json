@@ -2,7 +2,7 @@
     "AzureDevOps": {
         "Org": "msft-skilling",
         "Project": "Content",
-        "AreaPath": "Production\\Digital and App Innovation\\DotNet and more\\ASP.NET"
+        "AreaPath": "Production\\Core AI\\DotNet and more\\ASP.NET"
     },
     "ImportTriggerLabel": "reQUEST",
     "ImportedLabel": "seQUESTered",
