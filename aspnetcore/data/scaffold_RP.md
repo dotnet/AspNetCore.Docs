@@ -15,6 +15,10 @@ uid: data/dotnet-scaffold-rp
 
 The CLI tool, [dotnet scaffold](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) creates data access UI for many .NET project types, such as API, Aspire, Blazor, MVC, and Razor Pages. `dotnet scaffold` can be run interactively or as a command line tool via passing parameter values.
 
+## Install and update the scaffolding tool
+
+Install the [.NET SDK](https://dotnet.microsoft.com/download).
+
 The following command installs the scaffolder globally:
 
 ```dotnetcli
