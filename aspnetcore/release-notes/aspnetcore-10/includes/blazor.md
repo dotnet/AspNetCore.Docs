@@ -47,4 +47,36 @@ New reconnection UI features:
 
 For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-10.0#reflect-the-server-side-connection-state-in-the-ui>.
 
+### Ignore query string and fragment when using `NavLinkMatch.All`
+
+The `NavLink` component now ignores the query string and fragment when using the `NavLinkMatch.All` value for the `Match` parameter. This means that the link retains the `active` class if the URL path matches but the query string or fragment change. To revert to the original behavior, use the `Microsoft.AspNetCore.Components.Routing.NavLink.DisableMatchAllIgnoresLeftUriPart` [AppContext](/dotnet/fundamentals/runtime-libraries/system-appcontext) switch. You can also now override the `ShouldMatch` method on `NavLink` to customize the matching behavior.
+
+### Close `QuickGrid` column options
+
+You can now close the `QuickGrid` column options UI using the new `CloseColumnOptionsAsync` method.
+
+The following example uses the `CloseColumnOptionsAsync` method to close the column options UI as soon as the title filter is applied:
+
+```razor
+<QuickGrid @ref="movieGrid" Items="movies">
+    <PropertyColumn Property="@(m => m.Title)" Title="Title">
+        <ColumnOptions>
+            <input type="search" @bind="titleFilter" 
+                @bind:after="@(() => movieGrid.CloseColumnOptionsAsync())" 
+                placeholder="Filter by title" />
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(m => m.Genre)" Title="Genre" />
+    <PropertyColumn Property="@(m => m.ReleaseYear)" Title="Release Year" />
+</QuickGrid>
+
+@code {
+    private QuickGrid<Movie>? movieGrid;
+    private string titleFilter = string.Empty;
+    private IQueryable<Movie> movies = new List<Movie> { ... }.AsQueryable();
+    private IQueryable<Movie> filteredMovies => 
+        movies.Where(m => m.Title!.Contains(titleFilter));
+}
+```
+
 -->
