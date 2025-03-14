@@ -61,9 +61,8 @@ The following example uses the `CloseColumnOptionsAsync` method to close the col
 <QuickGrid @ref="movieGrid" Items="movies">
     <PropertyColumn Property="@(m => m.Title)" Title="Title">
         <ColumnOptions>
-            <input type="search" @bind="titleFilter" 
-                @bind:after="@(() => movieGrid.CloseColumnOptionsAsync())" 
-                placeholder="Filter by title" />
+            <input type="search" @bind="titleFilter" placeholder="Filter by title" 
+                @bind:after="@(() => movieGrid.CloseColumnOptionsAsync())" />
         </ColumnOptions>
     </PropertyColumn>
     <PropertyColumn Property="@(m => m.Genre)" Title="Genre" />
