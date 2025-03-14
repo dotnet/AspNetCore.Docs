@@ -62,17 +62,17 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 
 The following features are supported in `UseStaticFiles` but not in `MapStaticAssets`:
 
-* [Serving files from disk or embedded resources, or other locations](/aspnet/core/fundamentals/static-files#serve-files-from-multiple-locations)
-* [Serve files outside of web root](/aspnet/core/fundamentals/static-files#serve-files-outside-of-web-root)
-* [Set HTTP response headers](/aspnet/core/fundamentals/static-files#set-http-response-headers)
-* [Directory browsing](/aspnet/core/fundamentals/static-files#directory-browsing)
-* [Serve default documents](/aspnet/core/fundamentals/static-files#serve-default-documents)
-* [FileExtensionContentTypeProvider](/aspnet/core/fundamentals/static-files#fileextensioncontenttypeprovider)
-* [Serve files from multiple locations](/aspnet/core/fundamentals/static-files#serve-files-from-multiple-locations)
+* [Serving files from disk or embedded resources, or other locations](xref:fundamentals/static-files#serve-files-from-multiple-locations) <!-- zz fix -->
+* [Serve files outside of web root](xref:fundamentals/static-files#serve-files-outside-of-web-root)
+* [Set HTTP response headers](xref:fundamentals/static-files#set-http-response-headers)
+* [Directory browsing](xref:fundamentals/static-files#directory-browsing)
+* [Serve default documents](xref:fundamentals/static-files#serve-default-documents)
+* [FileExtensionContentTypeProvider](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
+* [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
 * [Serving files from disk or embedded resources, or other locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
 * [Serve files outside of web root](xref:fundamentals/static-files#serve-files-outside-of-web-root)
 * [Set HTTP response headers](xref:fundamentals/static-files#set-http-response-headers)
-* [Directory browsing](/aspnet/core/fundamentals/static-files#directory-browsing)
+* [Directory browsing](xref:fundamentals/static-files#directory-browsing)
 * [Serve default documents](xref:fundamentals/static-files#serve-default-documents)
 * [FileExtensionContentTypeProvider](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
 * [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
@@ -113,7 +113,7 @@ The following markup references `MyStaticFiles/images/red-rose.jpg`:
 <!-- zz test via /Home2/MyStaticFilesRR -->
 [!code-html[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
 
-To serve files from multiple locations, see [Serve files from multiple locations](/aspnet/core/fundamentals/static-files#serve-files-from-multiple-locations).
+To serve files from multiple locations, see [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations).
 
 ### Set HTTP response headers
 
@@ -131,7 +131,7 @@ The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticAssetsE
   * Static files served by the Static File Middleware, such as those under `wwwroot`, are publicly accessible.
   
 To serve static files based on authorization, see [Static file authorization
-](/aspnet/core/fundamentals/static-files#static-file-authorization).]
+](xref:fundamentals/static-files#static-file-authorization).]
 
 ## Serve files from multiple locations
 
