@@ -18,6 +18,7 @@ The CLI tool, [dotnet scaffold](https://www.nuget.org/packages/Microsoft.dotnet-
 ## Install and update the scaffolding tool
 
 Install the [.NET SDK](https://dotnet.microsoft.com/download).
+
 The following command installs the scaffolder globally:
 
 ```dotnetcli
