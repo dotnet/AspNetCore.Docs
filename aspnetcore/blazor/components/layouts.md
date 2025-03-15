@@ -98,7 +98,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 ### Make the layout namespace available
 
- Layout file locations and namespaces changed over time for the Blazor framework. Depending on the version of Blazor and type of Blazor app that you're building, you may need to indicate the layout's namespace when using it. When referencing a layout implementation and the layout isn't found without indicating the layout's namespace, take any of the following approaches:
+Layout file locations and namespaces changed over time for the Blazor framework. Depending on the version of Blazor and type of Blazor app that you're building, you may need to indicate the layout's namespace when using it. When referencing a layout implementation and the layout isn't found without indicating the layout's namespace, take any of the following approaches:
 
 * Add an `@using` directive to the `_Imports.razor` file for the location of the layouts. In the following example, a folder of layouts with the name `Layout` is inside a `Components` folder, and the app's namespace is `BlazorSample`:
 
@@ -206,6 +206,8 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 
 > [!WARNING]
 > Do **not** add a Razor `@layout` directive to the root `_Imports.razor` file, which results in an infinite loop of layouts. To control the default app layout, specify the layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For more information, see the following [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section.
+> 
+> The same condition results when using an `_Imports.razor` file to apply a layout to a folder of components with the `@layout` directive and the layout component itself is in the same folder as the `_Imports.razor` file. An infinite loop of applying the layout occurs because the `@layout` directive is also applied to the layout component in the folder. To avoid recursion problems, we recommend storing layout components in their own folder (for example, `Layouts`), away from where `_Imports.razor` files are applying them.
 
 > [!NOTE]
 > The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Razor components with an [`@page`](xref:mvc/views/razor#page) directive.
