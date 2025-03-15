@@ -207,7 +207,7 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 > [!WARNING]
 > Do **not** add a Razor `@layout` directive to the root `_Imports.razor` file, which results in an infinite loop of layouts. To control the default app layout, specify the layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For more information, see the following [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section.
 > 
-> The same condition results when using an `_Imports.razor` file to apply a layout to a folder of components with the `@layout` directive and the layout component itself is in the same folder as the `_Imports.razor` file. An infinite loop of applying the layout occurs because the `@layout` directive is also applied to the layout component in the folder. To avoid recursion problems, we recommend storing layout components in their own folder (for example, `Layouts`), away from where `_Imports.razor` files are applying them.
+> The same condition results when using an `_Imports.razor` file to apply a layout to a folder of components with the `@layout` directive and the layout component itself is in the same folder or folder hierarchy of the `_Imports.razor` file. An infinite loop of applying the layout occurs because the `@layout` directive is also applied to the layout component. To avoid recursion problems, we recommend storing layout components in their own folder (for example, `Layouts`), away from where `_Imports.razor` files are applying them.
 
 > [!NOTE]
 > The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Razor components with an [`@page`](xref:mvc/views/razor#page) directive.
