@@ -5,12 +5,10 @@ description: Learn how to serve and secure mapped static files and configure sta
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/11/2025
+ms.date: 3/18/2025
 uid: fundamentals/map-static-files
 ---
-<!-- This file, map-static-files.md will change after this PR. I'm using the old name for a more
-productive diff in review. After review, this file will be named
- map-static-files.md -->
+
 # Map static files in ASP.NET Core
 
 :::moniker range=">= aspnetcore-9.0"
@@ -62,7 +60,7 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 
 The following features are supported in `UseStaticFiles` but not in `MapStaticAssets`:
 
-* [Serving files from disk or embedded resources, or other locations](xref:fundamentals/static-files#serve-files-from-multiple-locations) <!-- zz fix -->
+* [Serving files from disk or embedded resources, or other locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
 * [Serve files outside of web root](xref:fundamentals/static-files#serve-files-outside-of-web-root)
 * [Set HTTP response headers](xref:fundamentals/static-files#set-http-response-headers)
 * [Directory browsing](xref:fundamentals/static-files#directory-browsing)
