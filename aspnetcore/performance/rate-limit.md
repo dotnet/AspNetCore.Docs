@@ -69,7 +69,7 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
   {
       options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
           RateLimitPartition.GetFixedWindowLimiter(
-              partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.  ToString(),
+              partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(),
               factory: partition => new FixedWindowRateLimiterOptions
               {
                   AutoReplenishment = true,
@@ -388,7 +388,7 @@ The following code uses `CreateChained`:
 
 For more information, see the [CreateChained source code](https://github.com/dotnet/runtime/blob/79874806d246670ee5fe76e73ce566578fe675c0/src/libraries/System.Threading.RateLimiting/src/System/Threading/RateLimiting/PartitionedRateLimiter.cs#L52-L64)
 
-## Chosing what happens when a request is rate limited
+## Choosing what happens when a request is rate limited
 
 For simple cases, you can just set the status code:
 
@@ -473,14 +473,8 @@ In the preceding controller:
 
 ## Rate limiting metrics
 
-The rate limiting middleware provides built-in metrics and monitoring capabilities to help understand how rate limits are affecting app performance and user experience. The following metrics are provided for rate limiting
+The rate limiting middleware provides [built-in metrics and monitoring](/aspnet/core/log-mon/metrics/metrics) capabilities to help understand how rate limits are affecting app performance and user experience. See [`Microsoft.AspNetCore.RateLimiting`](/dotnet/core/diagnostics/built-in-metrics-aspnetcore#microsoftaspnetcoreratelimiting) for a list of metrics.
 
-| Metric  | Description | Type |
-| --- | --- | --- |
-| `Microsoft.AspNetCore.RateLimiting.RequestsPerformed` | Counts successful (allowed) requests | Counter|
-| `Microsoft.AspNetCore.RateLimiting.RequestsRejected` | Counts rejected requests | Counter |
-| `Microsoft.AspNetCore.RateLimiting.CurrentLeases` | Current number of active leases | Gauge |
-| `Microsoft.AspNetCore.RateLimiting.CurrentQueuedRequests` | Current number of queued requests | Gauge |
 | `Microsoft.AspNetCore.RateLimiting.QueueTimeMs` | Time spent in queue | Histogram |
 
 <a name="test7"></a>
