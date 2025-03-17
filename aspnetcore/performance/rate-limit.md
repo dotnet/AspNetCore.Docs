@@ -475,8 +475,6 @@ In the preceding controller:
 
 The rate limiting middleware provides [built-in metrics and monitoring](/aspnet/core/log-mon/metrics/metrics) capabilities to help understand how rate limits are affecting app performance and user experience. See [`Microsoft.AspNetCore.RateLimiting`](/dotnet/core/diagnostics/built-in-metrics-aspnetcore#microsoftaspnetcoreratelimiting) for a list of metrics.
 
-| `Microsoft.AspNetCore.RateLimiting.QueueTimeMs` | Time spent in queue | Histogram |
-
 <a name="test7"></a>
 
 ## Testing endpoints with rate limiting
