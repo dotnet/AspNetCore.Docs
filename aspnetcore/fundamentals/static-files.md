@@ -1,7 +1,7 @@
 ---
 title: Map static files in ASP.NET Core
 author: rick-anderson
-description: Learn how to serve and secure Map static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
+description: Learn how to serve and secure mapped static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
@@ -54,11 +54,11 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 * Integrates the information gathered about static web assets during the build or publish process with a runtime library that processes this information to optimize file serving to the browser.
 * Are routing endpoint conventions that optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC.
 
-### MapStaticAssets v UseStaticFiles
+### `MapStaticAssets` versus `UseStaticFiles`
 
-`MapStaticAssets` is available in ASP.NET Core in .NET 9.0 and later. `UseStaticFiles` must be used in versions prior to .NET 9.0.
+<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> is available in ASP.NET Core in .NET 9.0 and later. <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> must be used in versions prior to .NET 9.0.
 
-[`UseStaticFiles`](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles) also serves static files, but it doesn't provide the same level of optimization as `MapStaticAssets`. `MapStaticAssets` is optimized for serving assets that the app has knowledge of at runtime. If the app serves assets from other locations, such as disk or embedded resources, `UseStaticFiles` should be used.
+<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> serves static files, but it doesn't provide the same level of optimization as `MapStaticAssets`. `MapStaticAssets` is optimized for serving assets that the app has knowledge of at runtime. If the app serves assets from other locations, such as disk or embedded resources, `UseStaticFiles` should be used.
 
 The following features are supported in `UseStaticFiles` but not in `MapStaticAssets`:
 
@@ -67,14 +67,14 @@ The following features are supported in `UseStaticFiles` but not in `MapStaticAs
 * [Set HTTP response headers](xref:fundamentals/static-files#set-http-response-headers)
 * [Directory browsing](xref:fundamentals/static-files#directory-browsing)
 * [Serve default documents](xref:fundamentals/static-files#serve-default-documents)
-* [FileExtensionContentTypeProvider](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
+* [`FileExtensionContentTypeProvider`](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
 * [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
 * [Serving files from disk or embedded resources, or other locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
 * [Serve files outside of web root](xref:fundamentals/static-files#serve-files-outside-of-web-root)
 * [Set HTTP response headers](xref:fundamentals/static-files#set-http-response-headers)
 * [Directory browsing](xref:fundamentals/static-files#directory-browsing)
 * [Serve default documents](xref:fundamentals/static-files#serve-default-documents)
-* [FileExtensionContentTypeProvider](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
+* [`FileExtensionContentTypeProvider`](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
 * [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
 
 ### Serve files in web root
@@ -130,8 +130,7 @@ The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticAssetsE
   * No authorization checks are performed on the static files.
   * Static files served by the Static File Middleware, such as those under `wwwroot`, are publicly accessible.
   
-To serve static files based on authorization, see [Static file authorization
-](xref:fundamentals/static-files#static-file-authorization).]
+To serve static files based on authorization, see [Static file authorization](xref:fundamentals/static-files#static-file-authorization).
 
 ## Serve files from multiple locations
 
