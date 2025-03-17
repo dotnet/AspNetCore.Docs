@@ -145,27 +145,27 @@ app.UseEndpoints(endpoints =>
 
 #### Apply rate limiting to server-side Blazor apps
 
-To set rate limiting to all pages,  [`RequireRateLimiting(Policy)`](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterendpointconventionbuilderextensions.requireratelimiting) can be specified on the MapRazorComponents call, for example:
+To set rate limiting for all of the app's routable Razor components, specify <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> with the rate limiting policy name on the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> call in the `Program` file. In the following example, the rate limiting policy named "`policy`" is applied:
 
 ``` csharp
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
-    .RequireRateLimiting("Policy");
+    .RequireRateLimiting("policy");
 ```
 
-To set a policy for a single Razor component, the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is applied to the component with an optional policy name:
+To set a policy for a single routable Razor component or a folder of components via an `_Imports.razor` file, the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is applied with the policy name. In the following example, the rate limiting policy named "`override`" is applied. The policy replaces any policies currently applied to the endpoint. The global limiter still runs on the endpoint with this attribute applied.
 
 ``` blazor
 @page "/counter"
 @using Microsoft.AspNetCore.RateLimiting
-@attribute [EnableRateLimiting("Policy")]
+@attribute [EnableRateLimiting("override")]
 
 <h1>Counter</h1>
 ```
 
-The [`DisableRateLimiting`](/dotnet/api/microsoft.aspnetcore.ratelimiting.disableratelimitingattribute) attribute can be used to disable rate limiting on a Razor Page.
+The [`DisableRateLimiting` attribute](xref:Microsoft.AspNetCore.RateLimiting.DisableRateLimitingAttribute) is used to disable rate limiting for a routable component or a folder of components via an `_Imports.razor` file.
 
-The [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is only applied to a component if <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> is ***not*** called on <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
+The [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is only applied to a routable component or a folder of components via an `_Imports.razor` file if <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> is ***not*** called on <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
 
 ## Rate limiter algorithms
 
