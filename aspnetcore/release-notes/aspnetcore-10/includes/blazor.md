@@ -47,9 +47,9 @@ New reconnection UI features:
 
 For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-10.0#reflect-the-server-side-connection-state-in-the-ui>.
 
-### Ignore query string and fragment when using `NavLinkMatch.All`
+### Ignore the query string and fragment when using `NavLinkMatch.All`
 
-The `NavLink` component now ignores the query string and fragment when using the `NavLinkMatch.All` value for the `Match` parameter. This means that the link retains the `active` class if the URL path matches but the query string or fragment change. To revert to the original behavior, use the `Microsoft.AspNetCore.Components.Routing.NavLink.DisableMatchAllIgnoresLeftUriPart` [AppContext](/dotnet/fundamentals/runtime-libraries/system-appcontext) switch.
+The `NavLink` component now ignores the query string and fragment when using the `NavLinkMatch.All` value for the `Match` parameter. This means that the link retains the `active` class if the URL path matches but the query string or fragment change. To revert to the original behavior, use the `Microsoft.AspNetCore.Components.Routing.NavLink.DisableMatchAllIgnoresLeftUriPart` [`AppContext` switch](/dotnet/fundamentals/runtime-libraries/system-appcontext).
 
 You can also override the `ShouldMatch` method on `NavLink` to customize the matching behavior:
 
@@ -58,7 +58,7 @@ public class CustomNavLink : NavLink
 {
     protected override bool ShouldMatch(string currentUriAbsolute)
     {
-        // Custom matching logic.
+        // Custom matching logic
     }
 }
 ```

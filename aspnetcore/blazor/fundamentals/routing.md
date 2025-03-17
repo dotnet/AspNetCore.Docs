@@ -1624,7 +1624,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component in place 
 
 There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the `Match` attribute of the `<NavLink>` element:
 
-* <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType>: The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches the current URL, ignoring the query string and fragment, if either or both are present. To include matching on the query string/fragment, use the `Microsoft.AspNetCore.Components.Routing.NavLink.DisableMatchAllIgnoresLeftUriPart` [AppContext](/dotnet/fundamentals/runtime-libraries/system-appcontext) switch.
+* <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType>: The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches the current URL, ignoring the query string and fragment. To include matching on the query string/fragment, use the `Microsoft.AspNetCore.Components.Routing.NavLink.DisableMatchAllIgnoresLeftUriPart` [`AppContext` switch](/dotnet/fundamentals/runtime-libraries/system-appcontext).
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix?displayProperty=nameWithType> (*default*): The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches any prefix of the current URL.
 
 :::moniker-end
@@ -1633,7 +1633,7 @@ There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> option
 
 There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the `Match` attribute of the `<NavLink>` element:
 
-* <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType>: The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches the entire current URL, including the query string and fragment, if either or both are present.
+* <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType>: The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches the entire current URL, including the query string and fragment.
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix?displayProperty=nameWithType> (*default*): The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches any prefix of the current URL.
 
 :::moniker-end
@@ -1644,14 +1644,14 @@ In the preceding example, the Home <xref:Microsoft.AspNetCore.Components.Routing
 
 <!-- UPDATE 10.0 - API cross-link -->
 
-To adopt custom matching logic, create a custom <xref:Microsoft.AspNetCore.Components.Routing.NavLink> and override the `NavLink.ShouldMatch` method. Return `true` from the method when you want to apply the `active` CSS class:
+To adopt custom matching logic, subclass <xref:Microsoft.AspNetCore.Components.Routing.NavLink> and override its `ShouldMatch` method. Return `true` from the method when you want to apply the `active` CSS class:
 
 ```csharp
 public class CustomNavLink : NavLink
 {
     protected override bool ShouldMatch(string currentUriAbsolute)
     {
-        // Custom matching logic.
+        // Custom matching logic
     }
 }
 ```
