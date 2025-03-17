@@ -1,4 +1,4 @@
-:::moniker range="= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
