@@ -62,7 +62,7 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
 
 2. Configure rate limiting services.
 
-  In the `Program.cs` file, configure the rate limiting services by adding the appropriate rate limiting  policies. Policies can either be defined as global or named polices. The following example permits 10 requests per minute:
+  In the `Program.cs` file, configure the rate limiting services by adding the appropriate rate limiting  policies. Policies can either be defined as global or named polices. The following example permits 10 requests per minute by user (identity) or globally:
   
   ``` csharp
   builder.Services.AddRateLimiter(options =>
@@ -80,7 +80,7 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
   });
   ```
   
-  Named polices need to be explicitly applied to the pages or endpoints. The following example adds a fixed window limiter:
+  Named polices need to be explicitly applied to the pages or endpoints. The following example adds a fixed window limiter policy named `"fixed"` which we'll add to an endpoint later:
   
   ``` csharp
   var builder = WebApplication.CreateBuilder(args);
@@ -99,7 +99,7 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
   var app = builder.Build();
   ```
   
-  The global limiter applies to all endpoints automatically when it's configured via [options.  GlobalLimiter](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions.globallimiter), and no endpoint-specific policy is specified.
+  The global limiter applies to all endpoints automatically when it's configured via [options.GlobalLimiter](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions.globallimiter).
 
 3. Enable rate limiting middleware
 
@@ -163,9 +163,9 @@ To set a policy for a single routable Razor component or a folder of components 
 <h1>Counter</h1>
 ```
 
-The [`DisableRateLimiting` attribute](xref:Microsoft.AspNetCore.RateLimiting.DisableRateLimitingAttribute) is used to disable rate limiting for a routable component or a folder of components via an `_Imports.razor` file.
-
 The [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is only applied to a routable component or a folder of components via an `_Imports.razor` file if <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> is ***not*** called on <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
+
+The [`[DisableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.DisableRateLimitingAttribute) is used to disable rate limiting for a routable component or a folder of components via an `_Imports.razor` file.
 
 ## Rate limiter algorithms
 
