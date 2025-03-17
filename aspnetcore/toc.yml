@@ -295,7 +295,9 @@ items:
         uid: fundamentals/error-handling
       - name: Make HTTP requests
         displayName: httpclient, httpclientfactory
-        uid: fundamentals/http-requests
+        uid: fundamentals/http-requests        
+      - name: Map Static files
+        uid: fundamentals/map-static-files
       - name: Static files
         uid: fundamentals/static-files
       - name: dotnet-scaffold telemetry
