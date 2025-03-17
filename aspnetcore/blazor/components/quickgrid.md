@@ -219,6 +219,40 @@ In the following example:
 
 :::moniker-end
 
+
+:::moniker range=">= aspnetcore-10.0"
+
+<!-- UPDATE 10.0 - API cross-link -->
+
+:::moniker-end
+
+### Close `QuickGrid` column options
+
+Close the `QuickGrid` column options UI with the `CloseColumnOptionsAsync` method.
+
+The following example closes the column options UI as soon as the title filter is applied:
+
+```razor
+<QuickGrid @ref="movieGrid" Items="movies">
+    <PropertyColumn Property="@(m => m.Title)" Title="Title">
+        <ColumnOptions>
+            <input type="search" @bind="titleFilter" placeholder="Filter by title" 
+                @bind:after="@(() => movieGrid.CloseColumnOptionsAsync())" />
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(m => m.Genre)" Title="Genre" />
+    <PropertyColumn Property="@(m => m.ReleaseYear)" Title="Release Year" />
+</QuickGrid>
+
+@code {
+    private QuickGrid<Movie>? movieGrid;
+    private string titleFilter = string.Empty;
+    private IQueryable<Movie> movies = new List<Movie> { ... }.AsQueryable();
+    private IQueryable<Movie> filteredMovies => 
+        movies.Where(m => m.Title!.Contains(titleFilter));
+}
+```
+
 ## Entity Framework Core (EF Core) data source
 
 Use the factory pattern to resolve an EF Core database context that provides data to a `QuickGrid` component. For more information on why the factory pattern is recommended, see <xref:blazor/blazor-ef-core>.
