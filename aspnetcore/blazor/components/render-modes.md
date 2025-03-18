@@ -971,6 +971,7 @@ To address this scenario, inject the service in a new imports file placed in the
 * <xref:blazor/js-interop/ssr>
 * [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading parameters](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-parameters) section earlier in the article.
 * <xref:blazor/components/class-libraries-with-static-ssr>
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
 :::moniker-end
 
@@ -979,5 +980,6 @@ To address this scenario, inject the service in a new imports file placed in the
 * <xref:blazor/js-interop/ssr>
 * [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading parameters](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-parameters) section earlier in the article.
 * <xref:blazor/components/class-libraries-with-static-ssr>
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
 :::moniker-end

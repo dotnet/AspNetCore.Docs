@@ -22,7 +22,7 @@ The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json
 
 ## Sample apps
 
-See the sample apps in the [`dotnet/blazor-samples`](https://github.com/dotnet/blazor-samples/) GitHub repository.
+For working examples, see the following sample apps in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
 ### `BlazorWebAppCallWebApi`
 
@@ -80,6 +80,8 @@ public class ServerMovieService(MovieContext db) : IMovieService
 }
 ```
 
+For more information on how to secure movie data in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
+
 ### `BlazorWebAppCallWebApi_Weather`
 
 A weather data sample app that uses streaming rendering for weather data.
@@ -90,6 +92,40 @@ Calls a todo list web API from a Blazor WebAssembly app:
 
 * `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis).
 * `BlazorTodo`: A Blazor WebAssembly app that calls the web API with a preconfigured <xref:System.Net.Http.HttpClient> for todo list CRUD operations.
+
+### `BlazorWebAssemblyStandaloneWithIdentity`
+
+A standalone Blazor WebAssembly app secured with ASP.NET Core Identity:
+
+* `Backend`: A backend web API app that maintains a user identity store for ASP.NET Core Identity.
+* `BlazorWasmAuth`: A standalone Blazor WebAssembly frontend app with user authentication.
+
+The solution demonstrates calling a secure web API for the following:
+
+* Obtaining an authenticated user's roles.
+* Data processing for all authenticated users.
+* Data processing for authorized users (the user must be in the `Manager` role) via an [authorization policy](xref:security/authorization/policies).
+
+### `BlazorWebAppOidc`
+
+A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
+
+### `BlazorWebAppOidcBff`
+
+A Blazor Web App with global Auto interactivity that uses:
+
+* OIDC authentication with Microsoft Entra without using Entra-specific packages.
+* The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends), which is a pattern of app development that creates backend services for frontend apps or interfaces.
+
+The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+### `BlazorWebAppEntra`
+
+A Blazor Web App with global Auto interactivity that uses [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra). The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
 
 :::moniker-end
 
@@ -1050,8 +1086,20 @@ Various network tools are publicly available for testing web API backend apps di
 
 ### General
 
+:::moniker range=">= aspnetcore-8.0"
+
 * [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+* <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
+
+:::moniker-end
 
 ### Mitigation of overposting attacks
 
