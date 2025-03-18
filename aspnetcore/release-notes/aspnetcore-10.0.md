@@ -55,7 +55,7 @@ This section describes new features for authentication and authorization.
 
 ### Authentication and authorization metrics
 
-Metricsw have been added for certain authentication and authorization events in ASP.NET Core. With this change, you can now obtain metrics for the following events:
+Metrics have been added for certain authentication and authorization events in ASP.NET Core. With this change, you can now obtain metrics for the following events:
 - Authentication:
   - Authenticated request duration
   - Challenge count
