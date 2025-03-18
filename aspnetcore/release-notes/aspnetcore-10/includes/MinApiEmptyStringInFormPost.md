@@ -1,6 +1,6 @@
 ### Treating empty string in form post as null for nullable value types
 
-When using the `[FromForm]` attribute with a complex object in minimal APIs, empty string values in a form post are now converted to null rather than causing a parse failure. This behavior matches the processing logic for form posts not associated with complex object's in minimal APIs.
+When using the `[FromForm]` attribute with a complex object in minimal APIs, empty string values in a form post are now converted to `null` rather than causing a parse failure. This behavior matches the processing logic for form posts not associated with complex objects in minimal APIs.
 
 ```csharp
 using Microsoft.AspNetCore.Http;
@@ -22,4 +22,4 @@ public class Todo
 }
 ```
 
-Thanks to @nvmkpk for contributing this change!
+Thanks to [@nvmkpk](https://github.com/nvmkpk) for contributing this change!
