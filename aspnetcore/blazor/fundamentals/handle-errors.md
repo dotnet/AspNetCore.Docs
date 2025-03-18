@@ -891,7 +891,7 @@ If the component's `Dispose` method throws an unhandled exception in a Blazor ap
 
 If disposal logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+For more information on component disposal, see <xref:blazor/components/component-disposal>.
 
 ### JavaScript interop
 

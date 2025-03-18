@@ -364,7 +364,7 @@ If you must clean up your own JS objects or execute other JS code on the client 
 For more information, see the following articles:
 
 * <xref:blazor/fundamentals/handle-errors#javascript-interop>: The *JavaScript interop* section discusses error handling in JS interop scenarios.
-* <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>: The *Component disposal with `IDisposable` and `IAsyncDisposable`* section describes how to implement disposal patterns in Razor components.
+* <xref:blazor/components/component-disposal>: The article describes how to implement disposal patterns in Razor components.
 
 ## Cached JavaScript files
 
