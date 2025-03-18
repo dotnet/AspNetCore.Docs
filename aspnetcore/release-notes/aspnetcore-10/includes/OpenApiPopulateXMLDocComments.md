@@ -1,6 +1,6 @@
 ### Populate XML doc comments into OpenAPI document
 
-ASP.NET Core OpenAPI document generation wlll now include metadata from XML doc comments on on method, class, and member definitions in the OpenAPI document. You must enable XML doc comments in your project file to use this feature. You can do this by adding the following property to your project file:
+ASP.NET Core OpenAPI document generation will now include metadata from XML doc comments on method, class, and member definitions in the OpenAPI document. You must enable XML doc comments in your project file to use this feature. You can do this by adding the following property to your project file:
 
 ```xml
   <PropertyGroup>
@@ -10,19 +10,19 @@ ASP.NET Core OpenAPI document generation wlll now include metadata from XML doc 
 
 At build-time, the OpenAPI package will leverage a source generator to discover XML comments in the current application assembly and any project references and emit source code to insert them into the document via an OpenAPI document transformer.
 
-Note that the C# build process does not capture XML doc comments placed on lamda expresions, so to use XML doc comments to add metadata to a minimal API endpoint, you must define the endpoint handler as a method, put the XML doc comments on the method, and then reference that method from the `MapXXX` method. For example, to use XML doc comments to add metadata to a minimal API endpoint originally defined as a lambda expression:
+Note that the C# build process does not capture XML doc comments placed on lambda expresions, so to use XML doc comments to add metadata to a minimal API endpoint, you must define the endpoint handler as a method, put the XML doc comments on the method, and then reference that method from the `MapXXX` method. For example, to use XML doc comments to add metadata to a minimal API endpoint originally defined as a lambda expression:
 
 ```csharp
 app.MapGet("/hello", (string name) =>$"Hello, {name}!");
 ```
 
-change the `MapGet` call to reference a method
+Change the `MapGet` call to reference a method:
 
 ```csharp
 app.MapGet("/hello", Hello);
 ```
 
-Then define the `Hello` method with XML doc comments:
+Define the `Hello` method with XML doc comments:
 
 ```csharp
 static partial class Program
@@ -42,9 +42,9 @@ static partial class Program
 }
 ```
 
-Here the `Hello` method is added to the `Program` class, but you can add it to any class in your project.
+In the previous example the `Hello` method is added to the `Program` class, but you can add it to any class in your project.
 
-The example above illustrates the `<summary>`, `<remarks>`, and `<param>` XML doc comments.
+The previous example illustrates the `<summary>`, `<remarks>`, and `<param>` XML doc comments.
 For more information about XML doc comments, including all the supported tags, see the [C# documentation](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags).
 
 Since the core functionality is provided via a source generator, it can be disabled by adding the following MSBuild to your project file.
@@ -66,7 +66,7 @@ The source generator process XML files included in the `AdditionalFiles` propert
 ```
 <Target Name="AddXmlSources" BeforeTargets="CoreCompile">
   <ItemGroup>
-    <AdditionalFiles Include="$(PkgSome_Package/lib/net10.0/Some.Package.xml" />
+    <AdditionalFiles Include="$(PkgSome_Package)/lib/net10.0/Some.Package.xml" />
   </ItemGroup>
 </Target>
 ```
