@@ -16,7 +16,7 @@ Blazor uses a synchronization context (<xref:System.Threading.SynchronizationCon
 
 Blazor's server-side synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. This emulation is scoped only to an individual circuit, meaning two different circuits can run in parallel. At any given point in time within a circuit, work is performed on exactly one thread, which yields the impression of a single logical thread. No two operations execute concurrently within the same circuit.
 
-A single logical thread of execution doesn't imply a single asynchronous control flow. A component is re-entrant at any point where it awaits an incomplete <xref:System.Threading.Tasks.Task>. [Lifecycle methods](xref:blazor/components/lifecycle) or [component disposal methods](xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable) may be called before the asynchronous control flow resumes after awaiting a <xref:System.Threading.Tasks.Task> to complete. Therefore, a component must ensure that it's in a valid state before awaiting a potentially incomplete <xref:System.Threading.Tasks.Task>. In particular, a component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> return. If either of these methods return an incomplete <xref:System.Threading.Tasks.Task>, they must ensure that the part of the method that completes synchronously leaves the component in a valid state for rendering.
+A single logical thread of execution doesn't imply a single asynchronous control flow. A component is re-entrant at any point where it awaits an incomplete <xref:System.Threading.Tasks.Task>. [Lifecycle methods](xref:blazor/components/lifecycle) or [component disposal methods](xref:blazor/components/component-disposal) may be called before the asynchronous control flow resumes after awaiting a <xref:System.Threading.Tasks.Task> to complete. Therefore, a component must ensure that it's in a valid state before awaiting a potentially incomplete <xref:System.Threading.Tasks.Task>. In particular, a component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> return. If either of these methods return an incomplete <xref:System.Threading.Tasks.Task>, they must ensure that the part of the method that completes synchronously leaves the component in a valid state for rendering.
 
 Another implication of re-entrant components is that a method can't defer a <xref:System.Threading.Tasks.Task> until after the method returns by passing it to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> may only defer the <xref:System.Threading.Tasks.Task> until the next [`await` operator](/dotnet/csharp/language-reference/operators/await) is reached.
 
@@ -194,14 +194,14 @@ In the preceding example:
 
 * The timer is initiated outside of Blazor's synchronization context with `_ = Task.Run(Timer.Start)`.
 * `NotifierService` invokes the component's `OnNotify` method. `InvokeAsync` is used to switch to the correct context and enqueue a rerender. For more information, see <xref:blazor/components/rendering>.
-* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/component-disposal>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
 * `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and enqueue a rerender. For more information, see <xref:blazor/components/rendering>.
-* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/component-disposal>.
 
 :::moniker-end
 
