@@ -53,6 +53,23 @@ This section describes new features for OpenAPI.
 
 This section describes new features for authentication and authorization.
 
+### Authentication and authorization metrics
+
+Metrics have been added for certain authentication and authorization events in ASP.NET Core. With this change, you can now obtain metrics for the following events:
+
+- Authentication:
+  - Authenticated request duration
+  - Challenge count
+  - Forbid count
+  - Sign in count
+  - Sign out count
+- Authorization:
+  - Count of requests requiring authorization
+
+The following image shows an example of the Authenticated request duration metric in the Aspire dashboard:
+
+![Authenticated request duration in the Aspire dashboard](https://github.com/user-attachments/assets/170615e9-ef25-48a1-a482-4933e2e03f03)
+
 ## Miscellaneous
 
 This section describes miscellaneous new features in ASP.NET Core 10.0.
