@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 10.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/11/2025
+ms.date: 3/18/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core 10.0
