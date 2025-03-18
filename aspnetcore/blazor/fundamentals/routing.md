@@ -682,7 +682,7 @@ The following component:
 
 :::moniker-end
 
-For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+For more information on component disposal, see <xref:blazor/components/component-disposal>.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1501,7 +1501,7 @@ A component can register multiple location changing handlers in the [`OnAfterRen
 
 Handlers are only executed for internal navigation within the app. If the user selects a link that navigates to a different site or changes the address bar to a different site manually, location changing handlers aren't executed.
 
-Implement <xref:System.IDisposable> and dispose registered handlers to unregister them. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+Implement <xref:System.IDisposable> and dispose registered handlers to unregister them. For more information, see <xref:blazor/components/component-disposal>.
 
 > [!IMPORTANT]
 > Don't attempt to execute DOM cleanup tasks via JavaScript (JS) interop when handling location changes. Use the [`MutationObserver` pattern](https://developer.mozilla.org/docs/Web/API/MutationObserver) in JS on the client. For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
