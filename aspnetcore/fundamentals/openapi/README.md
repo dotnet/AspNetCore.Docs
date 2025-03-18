@@ -1,8 +1,19 @@
+---
+title: Customize OpenAPI documents
+author: captainsafia
+description: Learn how to customize OpenAPI documents in an ASP.NET Core app
+ms.author: safia
+monikerRange: '>= aspnetcore-10.0'
+ms.custom: mvc
+ms.date: 10/26/2024
+uid: fundamentals/openapi/customize-openapi2
+---
+
 # XML Documentation Comment Support for OpenAPI in ASP.NET Core
 
 This app demonstrates the `Microsoft.AspNetCore.OpenApi` package's ability to integration XML documentation comments on types into OpenAPI documents.
 
-![screenshot of app with XML comments in sclaar UI](./screenshot.png)
+![screenshot of app with XML comments in sclaar UI](~/fundamentals/openapi/_static/screenshot.png)
 
 ## Run Sample App
 
@@ -190,7 +201,7 @@ Yes, for referenced assemblies with API types. Add them as AdditionalFiles in yo
 
 ```xml
 <ItemGroup>
-  <AdditionalFiles Include="Path\To\AssemblyDoc.xml" />
+  <AdditionalFiles Include="Path/To/AssemblyDoc.xml" />
 </ItemGroup>
 ```
 
