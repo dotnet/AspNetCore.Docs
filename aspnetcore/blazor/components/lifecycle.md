@@ -197,6 +197,8 @@ protected override async Task OnInitializedAsync()
 
 It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
 
+A component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> returns from awaiting a potentially incomplete <xref:System.Threading.Tasks.Task>. If the method returns an incomplete <xref:System.Threading.Tasks.Task>, the part of the method that completes synchronously must leave the component in a valid state for rendering. For more information, see the introductory remarks of <xref:blazor/components/sync-context> and [Component disposal with `IDisposable` and `IAsyncDisposable` (this article)](#component-disposal-with-idisposable-and-iasyncdisposable).
+
 Blazor apps that prerender their content on the server call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> *twice*:
 
 * Once when the component is initially rendered statically as part of the page.
@@ -216,7 +218,7 @@ To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase
 
 While a Blazor app is prerendering, certain actions, such as calling into JavaScript (JS interop), aren't possible. Components may need to render differently when prerendered. For more information, see the [Prerendering with JavaScript interop](#prerendering-with-javascript-interop) section.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ::: moniker range=">= aspnetcore-8.0"
 
@@ -316,7 +318,9 @@ protected override async Task OnParametersSetAsync()
 
 It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
+
+If a disposable component doesn't use a <xref:System.Threading.CancellationToken>, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> should check if the component is disposed. If <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> returns an incomplete <xref:System.Threading.Tasks.Task>, the component must ensure that the part of the method that completes synchronously leaves the component in a valid state for rendering. For more information, see the introductory remarks of <xref:blazor/components/sync-context> and [Component disposal with `IDisposable` and `IAsyncDisposable` (this article)](#component-disposal-with-idisposable-and-iasyncdisposable).
 
 For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
 
@@ -422,7 +426,7 @@ Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.Asp
 1. The component executes on the server to produce some static HTML markup in the HTTP response. During this phase, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> aren't called.
 1. When the Blazor script (`blazor.{server|webassembly|web}.js`) starts in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ## Base class lifecycle methods
 
@@ -763,11 +767,13 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 ## Component disposal with `IDisposable` and `IAsyncDisposable`
 
-If a component implements <xref:System.IDisposable> or <xref:System.IAsyncDisposable>, the framework calls for resource disposal when the component is removed from the UI. Don't rely on the exact timing of when these methods are executed. For example, <xref:System.IAsyncDisposable> can be triggered before or after an asynchronous <xref:System.Threading.Tasks.Task> awaited in [`OnInitalizedAsync`](#component-initialization-oninitializedasync) is called or completes. Also, object disposal code shouldn't assume that objects created during initialization or other lifecycle methods exist.
+If a component implements <xref:System.IDisposable> or <xref:System.IAsyncDisposable>, the framework calls for resource disposal when the component is removed from the UI. Don't rely on the exact timing of when these methods are executed. For example, <xref:System.IAsyncDisposable> can be triggered before or after an asynchronous <xref:System.Threading.Tasks.Task> awaited in [`OnInitalizedAsync`](#component-initialization-oninitializedasync) or [`OnParametersSetAsync`](#after-parameters-are-set-onparameterssetasync) is called or completes. Also, object disposal code shouldn't assume that objects created during initialization or other lifecycle methods exist.
 
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
+For more information, see the introductory remarks of <xref:blazor/components/sync-context>.
 
 ### Disposal of JavaScript interop object references
 
@@ -950,6 +956,7 @@ The following component:
 
 For more information, see:
 
+* <xref:blazor/components/sync-context>
 * [Cleaning up unmanaged resources (.NET documentation)](/dotnet/standard/garbage-collection/unmanaged)
 * [Null-conditional operators ?. and ?[]](/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
 
