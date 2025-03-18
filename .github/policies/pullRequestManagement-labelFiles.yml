@@ -22,15 +22,6 @@ configuration:
                 branch: live
         then:
           - if:
-            - filesMatchPattern:
-                matchAny: true
-                pattern: '(?i).*/blazor/hybrid/.*'
-            then:
-            - requestReview:
-                reviewer: guardrex
-            - addLabel:
-                label: 'blazor-hybrid/subsvc'
-          - if:
             - or:
               - filesMatchPattern:
                   matchAny: true
