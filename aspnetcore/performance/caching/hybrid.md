@@ -9,14 +9,6 @@ uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
 
-> [!IMPORTANT]
-> `HybridCache` is currently still in preview but will be fully released *after* .NET 9.0 in a future minor release of .NET Extensions.
-
-<!--
-[!INCLUDE[](~/includes/not-latest-version.md)] 
-Uncomment this when 9.0 is the default value in the version selector.
--->
-
 This article explains how to configure and use the `HybridCache` library in an ASP.NET Core app. For an introduction to the library, see [the `HybridCache` section of the Caching overview](xref:performance/caching/overview#hybridcache).
 
 ## Get the library
@@ -24,12 +16,12 @@ This article explains how to configure and use the `HybridCache` library in an A
 Install the `Microsoft.Extensions.Caching.Hybrid` package.
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.Caching.Hybrid --version "9.0.0-preview.7.24406.2"
+dotnet add package Microsoft.Extensions.Caching.Hybrid
 ```
 
 ## Register the service
 
-Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling [`AddHybridCache`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheServiceExtensions.cs,2c4a0de52ec7387c):
+Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache%2A>:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_noconfig" highlight="7":::
 
@@ -37,7 +29,7 @@ The preceding code registers the `HybridCache` service with default options. The
 
 ## Get and store cache entries
 
-The `HybridCache` service provides a [`GetOrCreateAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,990ceb8b6f2999f7) method with two overloads, taking a key and:
+The `HybridCache` service provides a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.GetOrCreateAsync%2A> method with two overloads, taking a key and:
 
 * A factory method.
 * State, and a factory method.
@@ -104,21 +96,18 @@ The alternative overload might reduce some overhead from [captured variables](/d
 
 ### The `SetAsync` method
 
-In many scenarios, `GetOrCreateAsync` is the only API needed. But `HybridCache` also has [`SetAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Internal/DefaultHybridCache.cs,ed5c0ddff676c5f2) to store an object in cache without trying to retrieve it first.
+In many scenarios, `GetOrCreateAsync` is the only API needed. But `HybridCache` also has <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.SetAsync%2A> to store an object in cache without trying to retrieve it first.
 <!--
 Add GetAsync when it's implemented.
 -->
 
 ## Remove cache entries by key
 
-When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling [`RemoveAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Internal/DefaultHybridCache.cs,a1f8d27e085182cc) with the key to the entry. An [overload](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,bc261d181c479a57) lets you specify a collection of key values.
+When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveAsync%2A> with the key to the entry. An overload lets you specify a collection of key values.
 
 When an entry is removed, it is removed from both the primary and secondary caches.
 
 ## Remove cache entries by tag
-
-> [!IMPORTANT]
-> This feature is still under development. If you try to remove entries by tag, you will notice that it doesn't have any effect.
 
 Tags can be used to group cache entries and invalidate them together.
 
@@ -126,7 +115,7 @@ Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight="7,17":::
 
-Remove all entries for a specified tag by calling [`RemoveByTagAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,c37a54f5e962ab23) with the tag value. An [overload](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,9efbe8770df53e9c) lets you specify a collection of tag values.
+Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync%2A> with the tag value. An overload lets you specify a collection of tag values.
 
 When an entry is removed, it is removed from both the primary and secondary caches.
 
@@ -142,8 +131,8 @@ The `GetOrCreateAsync` method can also take a `HybridCacheEntryOptions` object t
 
 For more information about the options, see the source code:
 
-* [HybridCacheOptions](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheOptions.cs,8736f7c41cee28f4) class.
-* [HybridCacheEntryOptions](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCacheEntryOptions.cs,fe35dea42677e2f8) class.
+* <xref:Microsoft.Extensions.Caching.Hybrid.HybridCacheOptions> class.
+* <xref:Microsoft.Extensions.Caching.Hybrid.HybridCacheEntryOptions> class.
 
 ## Limits
 
@@ -154,7 +143,7 @@ The following properties of `HybridCacheOptions` let you configure limits that a
  
 ## Serialization
 
-Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the [`AddSerializer`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheBuilderExtensions.cs,954f74a7592cc282) and [`AddSerializerFactory`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheBuilderExtensions.cs,ba940d95d06485ca) methods, chained from the `AddHybridCache` call. By default, the library
+Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the <xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializer%2A> and <xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializerFactory%2A> methods, chained from the `AddHybridCache` call. By default, the library
 handles `string` and `byte[]` internally, and uses `System.Text.Json` for everything else. `HybridCache` can also use other serializers, such as protobuf or XML.
 
 The following example configures the service to use a type-specific protobuf serializer:
@@ -217,7 +206,7 @@ In such cases, inform `HybridCache` that it's safe to reuse instances by:
 
 ### Avoid `byte[]` allocations
 
-`HybridCache` also provides optional APIs for `IDistributedCache` implementations, to avoid `byte[]` allocations. This feature is implemented by the preview versions of the `Microsoft.Extensions.Caching.StackExchangeRedis` and `Microsoft.Extensions.Caching.SqlServer` packages. For more information, see [IBufferDistributedCache](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/IBufferDistributedCache.cs,df9fb366340929b1)
+`HybridCache` also provides optional APIs for `IDistributedCache` implementations, to avoid `byte[]` allocations. This feature is implemented by the preview versions of the `Microsoft.Extensions.Caching.StackExchangeRedis` and `Microsoft.Extensions.Caching.SqlServer` packages. For more information, see <xref:Microsoft.Extensions.Caching.Distributed.IBufferDistributedCache>.
 Here are the .NET CLI commands to install the packages:
 
 ```dotnetcli
@@ -230,7 +219,7 @@ dotnet add package Microsoft.Extensions.Caching.SqlServer
 
 ## Custom HybridCache implementations
 
-A concrete implementation of the `HybridCache` abstract class is included in the shared framework and is provided via dependency injection. But developers are welcome to provide custom implementations of the API.
+A concrete implementation of the `HybridCache` abstract class is included in the shared framework and is provided via dependency injection. But developers are welcome to provide or consume custom implementations of the API, for example [FusionCache](https://github.com/ZiggyCreatures/FusionCache/blob/main/docs/MicrosoftHybridCache.md).
 
 ## Compatibility
 
@@ -241,4 +230,4 @@ The `HybridCache` library supports older .NET runtimes, down to .NET Framework 4
 For more information about `HybridCache`, see the following resources:
 
 * GitHub issue [dotnet/aspnetcore #54647](https://github.com/dotnet/aspnetcore/issues/54647).
-* [`HybridCache` source code](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,8c0fe94693d1ac8d)
+* [`HybridCache` source code](https://source.dot.net/#Microsoft.Extensions.Caching.Abstractions/Hybrid/HybridCache.cs,8c0fe94693d1ac8d)  <!--keep--> 

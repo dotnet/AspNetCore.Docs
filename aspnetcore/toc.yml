@@ -295,7 +295,9 @@ items:
         uid: fundamentals/error-handling
       - name: Make HTTP requests
         displayName: httpclient, httpclientfactory
-        uid: fundamentals/http-requests
+        uid: fundamentals/http-requests        
+      - name: Map Static files
+        uid: fundamentals/map-static-files
       - name: Static files
         uid: fundamentals/static-files
       - name: dotnet-scaffold telemetry
@@ -450,6 +452,8 @@ items:
                     uid: blazor/hybrid/security/index
                   - name: Security considerations
                     uid: blazor/hybrid/security/security-considerations
+                  - name: .NET MAUI with Blazor Web App and Identity sample
+                    uid: blazor/hybrid/security/maui-blazor-web-identity
               - name: Publish
                 uid: blazor/hybrid/publish/index
               - name: Troubleshoot
@@ -1503,7 +1507,9 @@ items:
               - name: Inheritance
                 uid: data/ef-mvc/inheritance
               - name: Advanced topics
-                uid: data/ef-mvc/advanced
+                uid: data/ef-mvc/advanced                
+      - name: Scaffold a data model with dotnet scaffold in RP
+        uid: data/dotnet-scaffold-rp
       - name: EF 6 with ASP.NET Core
         uid: data/entity-framework-6
       - name: Azure SQL Database with Azure App Service
