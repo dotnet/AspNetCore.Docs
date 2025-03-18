@@ -45,7 +45,7 @@ static partial class Program
 In the previous example the `Hello` method is added to the `Program` class, but you can add it to any class in your project.
 
 The previous example illustrates the `<summary>`, `<remarks>`, and `<param>` XML doc comments.
-For more information about XML doc comments, including all the supported tags, see the [C# documentation](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags).
+For more information about XML doc comments, including all the supported tags, see the [C# documentation](/dotnet/csharp/language-reference/xmldoc/recommended-tags).
 
 Since the core functionality is provided via a source generator, it can be disabled by adding the following MSBuild to your project file.
 
