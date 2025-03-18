@@ -53,7 +53,7 @@ jobs:
           savedir: './aspnetcore/whats-new'
 
       - name: create-pull-request
-        uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04
+        uses: dotnet/actions-create-pull-request@v4
         with:
           branch: create-whatsnew-pull-request/patch
           title: "What's new article"
