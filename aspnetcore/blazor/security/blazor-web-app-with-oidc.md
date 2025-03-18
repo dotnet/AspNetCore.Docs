@@ -430,7 +430,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 Inspect the sample app for the following features:
 
 * Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
-* The `Weather` component uses the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to prevent unauthorized access. For more information on requiring authorization across the app via an [authorization policy](xref:security/authorization/policies) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](xref:security/authentication/configure-oidc-web-authentication#force-authorization).
+* The `Weather` component uses the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to prevent unauthorized access. For more information on requiring authorization across the app via an [authorization policy](xref:security/authorization/policies) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](xref:security/authentication/configure-oidc-web-authentication#force-authorization). For more information on how this app secures weather data, see [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
 
 :::zone-end
 
@@ -1022,3 +1022,4 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 * [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
 * [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
 * [Refresh token during http request in Blazor Interactive Server with OIDC (`dotnet/aspnetcore` #55213)](https://github.com/dotnet/aspnetcore/issues/55213)
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)

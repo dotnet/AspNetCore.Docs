@@ -516,6 +516,8 @@ items:
                 uid: blazor/components/data-binding
               - name: Lifecycle
                 uid: blazor/components/lifecycle
+              - name: Component disposal
+                uid: blazor/components/component-disposal
               - name: Virtualization
                 uid: blazor/components/virtualization
               - name: Rendering

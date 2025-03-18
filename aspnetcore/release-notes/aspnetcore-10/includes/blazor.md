@@ -30,8 +30,6 @@ The [`[Route]` attribute](xref:Microsoft.AspNetCore.Components.RouteAttribute) n
 
 ![Route template pattern of a route attribute for the counter value shows syntax highlighting](~/release-notes/aspnetcore-10/_static/route-template-highlighting.png)
 
-<!-- PREVIEW 2
-
 ### `NavigateTo` no longer scrolls to the top for same-page navigations
 
 Previously, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> scrolled to the top of the page for same-page navigations. This behavior has been changed in .NET 10 so that the browser no longer scrolls to the top of the page when navigating to the same page. This means the viewport is no longer reset when making updates to the address for the current page, such as changing the query string or fragment.
@@ -91,5 +89,3 @@ The following example uses the `CloseColumnOptionsAsync` method to close the col
         movies.Where(m => m.Title!.Contains(titleFilter));
 }
 ```
-
--->

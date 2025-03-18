@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 10.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/11/2025
+ms.date: 3/18/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core 10.0
@@ -35,6 +35,8 @@ This section describes new features for SignalR.
 
 This section describes new features for minimal APIs.
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/MinApiEmptyStringInFormPost.md)]
+
 ## OpenAPI
 
 This section describes new features for OpenAPI.
@@ -42,6 +44,10 @@ This section describes new features for OpenAPI.
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/openApi.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/responseDescProducesResponseType.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiPopulateXMLDocComments.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiNetV2Prev7.md)]
 
 ## Authentication and authorization
 
