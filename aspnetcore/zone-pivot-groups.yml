@@ -100,3 +100,11 @@ groups:
       title: Visual Studio Code
     - id: cli
       title: .NET CLI
+- id: blazor-web-app-entra-specification
+  title: Specification
+  prompt: Choose the app specification
+  pivots:
+    - id: without-bff-pattern
+      title: Entra without BFF pattern
+    - id: with-bff-pattern
+      title: Entra with BFF pattern

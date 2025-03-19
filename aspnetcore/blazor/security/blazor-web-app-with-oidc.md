@@ -484,8 +484,6 @@ The sample app only configures an insecure HTTP launch profile (`http`) for use 
 
 The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App. The project uses [YARP](https://dotnet.github.io/yarp/) to proxy requests to a weather forecast endpoint in the backend web API project (`MinimalApiJwt`) with the `access_token` stored in the authentication cookie.
 
-The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
-
 ### Configuration
 
 This section explains how to configure the sample app.
@@ -551,7 +549,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   ```
 
   > [!NOTE]
-  > When using Microsoft Entra ID, the `Weather.Get` scope is configured in the Azure or Entra portal under **Expose an API**.
+  > When using Microsoft Entra ID, the `Weather.Get` scope is configured in the Azure or Entra portal in **Expose an API**.
 
   Example:
 
@@ -719,6 +717,8 @@ The sample app only provides a user name and email for display purposes. It does
 ## Backend web API project (`MinimalApiJwt`)
 
 The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppOidc`) are proxied to the `MinimalApiJwt` project.
+
+The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 ### Configuration
 
