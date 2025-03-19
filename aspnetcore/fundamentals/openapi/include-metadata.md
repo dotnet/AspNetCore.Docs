@@ -379,8 +379,7 @@ When not specified by an attribute:
 * the schema for the response body of 3xx and 5xx responses is considered to be not specified,
 * the content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
 
-Note that there are no compile-time checks to ensure that the response metadata specified with a [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute is consistent with the actual behavior of the action method,
-which may return a different status code or response body type than specified by the metadata.
+By default, there are no compile-time checks to ensure that the response metadata specified with a [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute is consistent with the actual behavior of the action method, which may return a different status code or response body type than specified by the metadata. To enable these checks, [enable Web API analyzers](xref:../../web-api/advanced/analyzers).
 
 In controller-based apps, ASP.NET responds with a ProblemDetails response type when model validation fails or when the action method returns a result with a 4xx or 5xx HTTP status code. Validation errors typically use the 400 status code, so you can use the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute to specify the error response for an action, as shown in the following example:
 
