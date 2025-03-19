@@ -303,6 +303,20 @@ app.MapGet("/todos",
     async (TodoDb db) => await db.Todos.ToListAsync());
 ```
 
+:::moniker range=">= aspnetcore-10.0"
+
+[`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute), [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) and [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) also support an optional string property called `Description` that can be used to describe the response. This is useful for explaining why or when clients can expect a specific response:
+
+```csharp
+app.MapGet("/todos/{id}",
+    [ProducesResponseType<Todo>(200, Description = "Returns the requested Todo item.")]
+    [ProducesResponseType(404, Description = "This response is returned when the requested Todo item was not found.")]
+    [ProducesDefault(Description = "This response is returned when the server returns an undocumented status code.")]
+    async (int id, TodoDb db) => /* Code here */);
+```
+
+:::moniker-end
+
 Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
 
 ```csharp
@@ -371,6 +385,20 @@ In controller-based apps, ASP.NET Core can extract the response metadata from th
 Only one [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601> attributes may be applied to an action method, but multiple [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attributes with different status codes may be applied to a single action method.
 
 All of the above attributes can be applied to individual action methods or to the controller class where it applies to all action methods in the controller.
+
+:::moniker range=">= aspnetcore-10.0"
+
+[`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute), [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) and [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) also support an optional string property called `Description` that can be used to describe the response. This is useful for explaining why or when clients can expect a specific response:
+
+```csharp
+[HttpGet("/todos/{id}")]
+[ProducesResponseType<Todo>(StatusCodes.Status200OK, "application/json", Description = "Returns the requested Todo item.")]
+[ProducesResponseType(StatusCodes.Status404NotFound, Description = "This response is returned when the requested Todo item was not found.")]
+[ProducesDefault(Description = "This response is returned when the server returns an undocumented status code.")]
+public async Task<ActionResult<Todo>> GetTodoItem(string id, Todo todo)
+```
+
+:::moniker-end
 
 When not specified by an attribute:
 * the status code for the response defaults to 200,
