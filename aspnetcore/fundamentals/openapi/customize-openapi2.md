@@ -1,5 +1,8 @@
+<!-- This meta-data just for review. After approved, contents go into
+uid: fundamentals/openapi/customize-openapi
+  -->
 ---
-title: Customize OpenAPI documents
+title: Customize OpenAPI documents2
 author: captainsafia
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 ms.author: safia
@@ -9,19 +12,24 @@ ms.date: 10/26/2024
 uid: fundamentals/openapi/customize-openapi2
 ---
 
-# XML Documentation Comment Support for OpenAPI in ASP.NET Core
+# XML Documentation comment support for OpenAPI in ASP.NET Core
 
-This app demonstrates the `Microsoft.AspNetCore.OpenApi` package's ability to integration XML documentation comments on types into OpenAPI documents.
+This app demonstrates the `Microsoft.AspNetCore.OpenApi` package's ability to integrate XML documentation comments on types into OpenAPI documents.
 
-![screenshot of app with XML comments in sclaar UI](~/fundamentals/openapi/_static/screenshot.png)
+![screenshot of app with XML comments in sclaar UI](./screenshot.png)
 
-## Run Sample App
+## Run the API sample
 
-To run the API, navigate to the `api` directory and execute `dotnet run`.
+To run the sample, navigate to the `api` directory and execute `dotnet run`.
 
+```dotnetcli
+cd api
+dotnet run
 ```
-$ cd api
-$ dotnet run
+
+Output similar to the following will be displayed:
+
+```dotnetcli
 Building...
 info: Microsoft.Hosting.Lifetime[14]
       Now listening on: http://localhost:5052
@@ -33,15 +41,18 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: ~/git/aspnet-openapi-xml/api
 ```
 
-Navigate to http://localhost:5052/ to view the Scalar UI for interacting with the application. Note that the Scalar UI includes summaries and descriptions on various elements sourced from XML documentation comments.
+Navigate to [http://localhost:5052/](http://localhost:5052/) to view the Scalar UI for interacting with the app. Note that the Scalar UI includes summaries and descriptions on various elements sourced from XML documentation comments.
 
-## Customizing XML Documentation Behavior
+## Customizing XML documentation behavior
 
-#### Adding XML Documentation Sources
+### Adding XML documentation sources
 
-The `Microsoft.AspNetCore.OpenApi` package will automatically resolve XML documentation comments from the application assembly (the `API` project in this case) and any projects referenced via `ProjectReferences` (like the `Models` project) if these projects have the `GenerateDocumentationFile` property set.
+The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) NuGet package automatically resolves XML documentation comments from:
 
-```
+* The application assembly. In this sample, the `API` project.
+* Any projects referenced via `ProjectReferences` that have the `GenerateDocumentationFile` property set. In this sample, the `Models` project.
+
+```xml
 <PropertyGroup>
   <GenerateDocumentationFile>true</GenerateDocumentationFile>
 </PropertyGroup>
@@ -58,9 +69,9 @@ Since the implementation discovers XML files statically at compile-time, you can
 </ItemGroup>
 ```
 
-#### Disabling XML Documentation Support
+#### Disabling XML documentation support
 
-Since the functionality is implemented as a source generator, to turn off XML documentation integration, you can remove the source generator from the `Analyzers` item group to prevent it from being used in the compilation.
+To turn off XML documentation integration, remove the source generator from the `Analyzers` item group. This prevents it from being used during compilation, as the functionality is implemented as a source generator.
 
 ```xml
 <ItemGroup>
@@ -201,7 +212,7 @@ Yes, for referenced assemblies with API types. Add them as AdditionalFiles in yo
 
 ```xml
 <ItemGroup>
-  <AdditionalFiles Include="Path/To/AssemblyDoc.xml" />
+  <AdditionalFiles Include="Path\To\AssemblyDoc.xml" />
 </ItemGroup>
 ```
 
@@ -275,6 +286,3 @@ Each is intercepted to automatically include the XML documentation transformers.
 var documentName = "v1";
 builder.Services.AddOpenApi(documentName); // No XML support here
 ```
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
