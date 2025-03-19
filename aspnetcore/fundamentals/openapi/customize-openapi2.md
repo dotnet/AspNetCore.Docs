@@ -1,6 +1,3 @@
-<!-- This meta-data just for review. After approved, contents go into
-uid: fundamentals/openapi/customize-openapi
-  -->
 ---
 title: Customize OpenAPI documents2
 author: captainsafia
@@ -12,6 +9,9 @@ ms.date: 10/26/2024
 uid: fundamentals/openapi/customize-openapi2
 ---
 
+<!-- This meta-data just for review. After approved, contents go into
+uid: fundamentals/openapi/customize-openapi
+  -->
 # XML Documentation comment support for OpenAPI in ASP.NET Core
 
 This app demonstrates the `Microsoft.AspNetCore.OpenApi` package's ability to integrate XML documentation comments on types into OpenAPI documents.
