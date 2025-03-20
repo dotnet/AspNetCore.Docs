@@ -113,8 +113,6 @@ The `CompleteChatStreamingAsync()` method streams responses from OpenAI incremen
 
 The code uses a `StringBuilder` to accumulate the AI's response. It checks the length of the buffered content and sends it to the clients when it exceeds a certain threshold, for example, 20 characters. This approach ensures that users see the AI’s response as it forms, mimicking a human-like typing effect. 
 
-:::codeinclude source="https://github.com/microsoft/SignalR-Samples-AI/blob/main/AIStreaming/Hubs/GroupChatHub.cs range="35-73" highlight="56-61":::
-
 ```csharp
 totalCompletion.Append(content);
 
