@@ -47,7 +47,7 @@ This section highlights the key parts of the code that integrate SignalR with Op
 
 ### Data flow 
 
-The following diagram highlights the step-by-step communication and processing involved in using OpenAI services within a system, using an iterative approach to responses and handling data:
+The following diagram highlights the step-by-step communication and processing involved in using OpenAI services, employing an iterative approach to responses and data handling:
 
 :::image type="content" source="./sequence-diagram-ai-powered-group-chat.png" alt-text="sequence diagram for the AI-powered group chat":::
 
