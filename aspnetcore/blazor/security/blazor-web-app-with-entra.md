@@ -19,9 +19,9 @@ zone_pivot_groups: blazor-web-app-entra-specification
 
 This article describes how to secure a Blazor Web App with [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) using a sample app.
 
-:::zone pivot="without-bff-pattern"
+:::zone pivot="non-bff-pattern"
 
-This version of the article covers implementing Entra without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **Entra with BFF pattern** if the app's specification calls for adopting the BFF pattern.
+This version of the article covers implementing Entra without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **BFF pattern** if the app's specification calls for adopting the BFF pattern.
 
 The following specification is covered:
 
@@ -40,7 +40,7 @@ The sample app consists of two projects:
 * `BlazorWebAppEntra`: Server-side project of the Blazor Web App, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
 
-Access sample apps through the latest version folder from the repository's root with the following link. The projects are in the `BlazorWebAppEntra` folder for .NET 9 or later.
+Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppEntra` folder for .NET 9 or later.
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -100,9 +100,9 @@ Example:
 
 :::zone-end
 
-:::zone pivot="with-bff-pattern"
+:::zone pivot="bff-pattern"
 
-This version of the article covers implementing Entra with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **Entra without BFF pattern** if the app's specification doesn't call for adopting the BFF pattern.
+This version of the article covers implementing Entra with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **Non-BFF pattern** if the app's specification doesn't call for adopting the BFF pattern.
 
 The following specification is covered:
 
@@ -110,7 +110,7 @@ The following specification is covered:
 * The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A> to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
 * The app uses [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), based on [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages.
 * Automatic non-interactive token refresh is managed by the framework.
-* The app uses server-side and client-side service abstractions to display generated weather data:
+* The app uses server-side and client-side service abstractions to display generated weather data.
 * The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) is adopted using [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) for service discovery and [YARP](https://dotnet.github.io/yarp/) for proxying requests to a weather forecast endpoint on the backend app.
   * A backend web API uses JWT-bearer authentication to validate JWT tokens saved by the Blazor Web App in the sign-in cookie.
   * Aspire improves the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns for building and running distributed apps.
@@ -135,7 +135,7 @@ The sample app consists of five projects:
 * `BlazorWebAppEntra`: Server-side project of the Blazor Web App.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
 
-Access sample apps through the latest version folder from the repository's root with the following link. The projects are in the `BlazorWebAppEntraBff` folder for .NET 9 or later.
+Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppEntraBff` folder for .NET 9 or later.
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -163,7 +163,7 @@ The `MinimalApiJwt` project is a backend web API for multiple frontend projects.
 
 The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
-Secure weather forecast data endpoint in the project's `Program` file:
+A secure weather forecast data endpoint in the project's `Program` file:
 
 ```csharp
 app.MapGet("/weather-forecast", () =>
@@ -188,7 +188,9 @@ This section explains how to configure the sample app.
 
 <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)) is configured by the `AzureAd` section of the server project's `appsettings.json` file.
 
-In the app's registration in the Entra or Azure portal, use a **Web** platform configuration with a **Redirect URI** of `https://localhost/signin-oidc` (a port isn't required). Confirm that **ID tokens** and access tokens under **Implicit grant and hybrid flows** are **not** selected. The OpenID Connect handler automatically requests the appropriate tokens using the code returned from the authorization endpoint. The `Weather.Get` scope is configured in the Azure or Entra portal in **Expose an API**. In **API Permissions**, grant delegated permission with Admin consent to access to the **BlazorWebAppEntra** > **Weather.Get** API.
+In the app's registration in the Entra or Azure portal, use a **Web** platform configuration with a **Redirect URI** of `https://localhost/signin-oidc` (a port isn't required). Confirm that **ID tokens** and access tokens under **Implicit grant and hybrid flows** are **not** selected. The OpenID Connect handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
+
+The `Weather.Get` scope is configured in the Entra or Azure portal in **Expose an API**. Do ***not*** configure **API Permissions** (grant delegated permission) to access weather data via the web API.
 
 ### Configure the server project
 
@@ -253,7 +255,7 @@ If you don't add the signed-out callback path URI to the app's registration in E
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-:::zone pivot="with-bff-pattern"
+:::zone pivot="bff-pattern"
 
 ### Configure the backend web API project (`MinimalApiJwt`)
 
@@ -267,7 +269,7 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
 jwtOptions.Authority = "{AUTHORITY}";
 ```
 
-The following example use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee`.
+The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee`.
 
 If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
 
@@ -289,7 +291,7 @@ jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-111
 jwtOptions.Audience = "{AUDIENCE}";
 ```
 
-Match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Azure or Entra portal.
+Match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Entra or Azure portal.
 
 The following examples use an Application (Client) Id (`{CLIENT ID}`) of `00001111-aaaa-2222-bbbb-3333cccc4444`. The second example uses a directory name (`{DIRECTORY NAME}`) of `contoso`.
 
@@ -445,13 +447,13 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
                 <AntiforgeryToken />
                 <button type="submit" class="nav-link">
                     <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true">
-                    </span> Logout @context.User.Identity?.Name
+                    </span> Logout
                 </button>
             </form>
         </Authorized>
         <NotAuthorized>
             <a class="nav-link" href="authentication/login">
-                <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> 
+                <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span>
                 Login
             </a>
         </NotAuthorized>
