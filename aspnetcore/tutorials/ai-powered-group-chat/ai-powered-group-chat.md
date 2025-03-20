@@ -47,7 +47,14 @@ This section highlights the key parts of the code that integrate SignalR with Op
 
 ### Data flow 
 
+The following diagram highlights the step-by-step communication and processing involved in using OpenAI services within a system, using an iterative approach to responses and handling data:
+
 :::image type="content" source="./sequence-diagram-ai-powered-group-chat.png" alt-text="sequence diagram for the AI-powered group chat":::
+
+In the previous diagram:
+
+* The Client sends instructions to the Server, which then communicates with OpenAI to process these instructions. 
+* OpenAI responds with partial completion data, which the Server forwards back to the Client. This process repeats multiple times for an iterative exchange of data between these components.
 
 ### SignalR Hub integration
 
@@ -81,7 +88,7 @@ In the previous code:
 
 * `chatClient.CompleteChatStreamingAsync(messagesIncludeHistory)` initiates the streaming of AI responses.
 * The `totalCompletion.Append(content)` line accumulates the AI's response.
-* If the length of the buffered content exceeds 20 characters the buffered content is sent to the clients using `Clients.Group(groupName).SendAsync`.
+* If the length of the buffered content exceeds 20 characters, the buffered content is sent to the clients using `Clients.Group(groupName).SendAsync`.
 
 This ensures that the AI's response is delivered to the users in real-time, providing a seamless and interactive chat experience.
 
