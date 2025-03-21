@@ -197,7 +197,7 @@ protected override async Task OnInitializedAsync()
 
 It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
 
-A component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> returns from awaiting a potentially incomplete <xref:System.Threading.Tasks.Task>. If the method returns an incomplete <xref:System.Threading.Tasks.Task>, the part of the method that completes synchronously must leave the component in a valid state for rendering. For more information, see the introductory remarks of <xref:blazor/components/sync-context> and <xref:blazor/components/component-disposal>.
+A component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> awaits a potentially incomplete <xref:System.Threading.Tasks.Task>. If the method returns an incomplete <xref:System.Threading.Tasks.Task>, the part of the method that completes synchronously must leave the component in a valid state for rendering. For more information, see the introductory remarks of <xref:blazor/components/sync-context> and <xref:blazor/components/component-disposal>.
 
 Blazor apps that prerender their content on the server call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> *twice*:
 
@@ -317,6 +317,8 @@ protected override async Task OnParametersSetAsync()
 ```
 
 It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
+
+A component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> awaits a potentially incomplete <xref:System.Threading.Tasks.Task>. If the method returns an incomplete <xref:System.Threading.Tasks.Task>, the part of the method that completes synchronously must leave the component in a valid state for rendering. For more information, see the introductory remarks of <xref:blazor/components/sync-context> and <xref:blazor/components/component-disposal>.
 
 If event handlers are provided in developer code, unhook them on disposal. For more information, see <xref:blazor/components/component-disposal>.
 

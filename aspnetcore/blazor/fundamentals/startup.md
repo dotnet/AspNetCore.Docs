@@ -497,6 +497,8 @@ Control headers at startup in C# code using the following approaches.
 
 In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string.
 
+For more information on CSPs, see the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
+
 ### Server-side and prerendered client-side scenarios
 
 Use [ASP.NET Core Middleware](xref:fundamentals/middleware/index) to control the headers collection.

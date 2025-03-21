@@ -155,7 +155,7 @@ In this tutorial, EF Core migrations are used. A migration updates the database 
 
 Seeding code can create a set of records for development testing or even be used to create the initial data for a new production database.
 
-Create a new class named `SeedData` in the `Data` folder with the following code.
+In the `Data` folder, create a new class named `SeedData` with the following code.
 
 `Data/SeedData.cs`:
 
