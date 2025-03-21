@@ -589,7 +589,7 @@ For more information on client-side authentication, see <xref:blazor/security/we
 
 When a Blazor Web App adopts server-side rendering (SSR) and client-side rendering (CSR) for components or an entire app that specifies the [Interactive Auto render mode](xref:blazor/components/render-modes#automatic-auto-rendering), authorization to access components and data is applied in *two places*. The component restricts access to itself (and any data that it obtains) when rendered on the server by virtue of an authorization attribute in the component's definition file (`@attribute [Authorize]`). When the component is rendered on the client, access to data is restricted via the server web API endpoints that are called from the client. Care must be taken when securing data access in both locations to prevent improper data access.
 
-Consider the following scenario where secure weather data is displayed by a component. The following example can be examined and demonstrated in a running sample app with either the `BlazorWebAppEntra` sample (.NET 9 or later) or the `BlazorWebAppOidc` sample (.NET 8 or later) in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+Consider the following scenario where secure weather data is displayed by a component. The following example can be examined and demonstrated in a running sample app with either the `BlazorWebAppEntra`/`BlazorWebAppEntraBff` samples (.NET 9 or later) or the `BlazorWebAppOidc` sample (.NET 8 or later) in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
 The client project maintains a `WeatherForecast` class to hold weather data:
 
@@ -757,6 +757,7 @@ Examples in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](htt
 * `BlazorWebAppOidc`
 * `BlazorWebAppOidcBff`
 * `BlazorWebAppEntra`
+* `BlazorWebAppEntraBff`
 
 :::moniker-end
 
