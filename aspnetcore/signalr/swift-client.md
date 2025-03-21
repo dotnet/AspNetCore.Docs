@@ -4,7 +4,7 @@ author: zackliu
 description: Overview of the ASP.NET Core SignalR Swift client library.
 ms.author: chenyl
 ms.custom: mvc, devx-track-swift
-ms.date: 2/12/2025
+ms.date: 03/20/2025
 uid: signalr/swift-client
 ---
 
@@ -20,6 +20,7 @@ The SignalR Swift client library is delivered as a Swift package. You can add it
 
 - Swift **>= 5.10**
 - macOS **>= 11.0**
+- iOS >= 14
 
 ### Install with Swift Package Manager
 
@@ -48,7 +49,7 @@ import SignalRClient
 
 ## Connect to a hub
 
-To establish a connection, create a HubConnectionBuilder and configure it with the URL of your SignalR server using the withUrl() method. Once the connection is built, call start() to connect to the server:
+To establish a connection, create a `HubConnectionBuilder` and configure it with the URL of your SignalR server using the `withUrl()` method. Once the connection is built, call `start()` to connect to the server:
 
 ```swift
 import SignalRClient
@@ -62,7 +63,7 @@ try await connection.start()
 
 ## Call client methods from the hub
 
-To receive messages from the server, register a handler using the `on` method. The on method takes the name of the hub method and a closure that will be executed when the server calls that method.
+To receive messages from the server, register a handler using the `on` method. The `on` method takes the name of the hub method and a closure that will be executed when the server calls that method.
 
 In the following the method name is `ReceiveMessage`. The argument names are `user` and `message`:
 

@@ -48,6 +48,6 @@ The [Swift client](https://github.com/dotnet/signalr-client-swift) supports Swif
 The following clients are available but are experimental or unofficial. The following clients aren't currently supported and may never be supported:
 
 * [C++ client](https://github.com/aspnet/SignalR-Client-Cpp)
-* [Unofficial Swift client](https://github.com/moozzyk/SignalR-Client-Swift)
+* [3rd party Swift client](https://github.com/moozzyk/SignalR-Client-Swift)
 
 [!INCLUDE[](~/includes/SignalR/es6.md)]
