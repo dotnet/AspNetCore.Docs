@@ -1303,7 +1303,10 @@ items:
               uid: fundamentals/servers/yarp/httpsys-delegation
             - name: Service Fabric Integration
               displayName: yarp
-              uid: fundamentals/servers/yarp/service-fabric-int
+              uid: fundamentals/servers/yarp/service-fabric-int              
+            - name: YARP Kubernetes Ingress Controller
+              displayName: yarp
+              uid: fundamentals/servers/yarp/kubernetes-ingress
           - name: Troubleshooting
             items:
             - name: Diagnosing proxy issues
