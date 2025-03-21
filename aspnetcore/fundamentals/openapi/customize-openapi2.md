@@ -16,7 +16,7 @@ uid: fundamentals/openapi/customize-openapi
 
 This app demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents.
 
-![screenshot of app with XML comments in sclaar UI](./screenshot.png)
+![screenshot of app with XML comments in sclaar UI](~/fundamentals/openapi/_static/screenshot.png)
 
 ## Download and run the API sample
 
@@ -55,7 +55,7 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 * The application assembly. In this sample, the `API` project.
 * Any projects referenced via `ProjectReferences` that have the `GenerateDocumentationFile` property set. In this sample, the `Models` project:
 
-:::code language="xnk" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
+:::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
 
 ```xml
 <PropertyGroup>
@@ -63,9 +63,7 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 </PropertyGroup>
 ```
 
-Tthe implementation discovers XML files statically at compile-time, you can indicate additional sources for XML files by setting the `AdditionalFiles` item group. For example, to include XML documentation from a package reference.
-
-:::code language="xnk" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
+The implementation discovers XML files statically at compile-time. The `AdditionalFiles` item group specifies additional sources for XML files:
 
 ```xml
 <ItemGroup>
