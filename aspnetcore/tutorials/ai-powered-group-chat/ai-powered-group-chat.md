@@ -27,19 +27,20 @@ This sample uses OpenAI for generating intelligent, context-aware responses and 
 
 Either Azure OpenAI or OpenAI can be used for this project. Make sure to update the `endpoint` and `key` in `appsettings.json`. `OpenAIExtensions` reads the configuration when the app starts, and the configuration values for `endpoint` and `key` are required to authenticate and use either service.
 
-# [OpenAI](#tab/open-ai)
-To build this application, the following are required:
+### [OpenAI](#tab/open-ai)
 
+To build this application, you will need the following:
 * ASP.NET Core: To create the web application and host the SignalR hub.
-* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients, and the server.
-* [OpenAI Client](https://www.nuget.org/packages/OpenAI/2.0.0-beta.10): To interact with OpenAI's API for generating AI responses.
+* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients and the server.
+* [OpenAI Client](https://www.nuget.org/packages/OpenAI): To interact with OpenAI's API for generating AI responses.
 
-# [Azure OpenAI](#tab/azure-open-ai)
-To build this application, the following are required:
+### [Azure OpenAI](#tab/azure-open-ai)
 
+To build this application, you will need the following:
 * ASP.NET Core: To create the web application and host the SignalR hub.
-* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients, and the server.
-* [Azure OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI/2.0.0-beta.3): Azure.AI.OpenAI
+* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients and the server.
+* [Azure OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI): `Azure.AI.OpenAI`
+
 ---
 
 ## Implementation
