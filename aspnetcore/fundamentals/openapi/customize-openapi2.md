@@ -14,11 +14,14 @@ uid: fundamentals/openapi/customize-openapi
   -->
 # XML Documentation comment support for OpenAPI in ASP.NET Core
 
-This app demonstrates the `Microsoft.AspNetCore.OpenApi` package's ability to integrate XML documentation comments on types into OpenAPI documents.
+This app demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents.
 
 ![screenshot of app with XML comments in sclaar UI](./screenshot.png)
 
-## Run the API sample
+## Download and run the API sample
+
+<!-- TODO, fix sample link -->
+Download the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/openapi/samples) for this article.
 
 To run the sample, navigate to the `api` directory and execute `dotnet run`.
 
@@ -50,7 +53,9 @@ Navigate to [http://localhost:5052/](http://localhost:5052/) to view the Scalar 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) NuGet package automatically resolves XML documentation comments from:
 
 * The application assembly. In this sample, the `API` project.
-* Any projects referenced via `ProjectReferences` that have the `GenerateDocumentationFile` property set. In this sample, the `Models` project.
+* Any projects referenced via `ProjectReferences` that have the `GenerateDocumentationFile` property set. In this sample, the `Models` project:
+
+:::code language="xnk" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
 
 ```xml
 <PropertyGroup>
@@ -58,12 +63,15 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 </PropertyGroup>
 ```
 
-Since the implementation discovers XML files statically at compile-time, you can indicate additional sources for XML files by setting the `AdditionalFiles` item group. For example, to include XML documentation from a package reference.
+Tthe implementation discovers XML files statically at compile-time, you can indicate additional sources for XML files by setting the `AdditionalFiles` item group. For example, to include XML documentation from a package reference.
+
+:::code language="xnk" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
 
 ```xml
 <ItemGroup>
     <PackageReference Include="Some.Package" Version="10.0.0" GeneratePathProperty="true" />
 </ItemGroup>
+
 <ItemGroup>
     <AdditionalFiles Include="$(PkgSome_Package)/lib/net10.0/Some.Package.xml">
 </ItemGroup>
@@ -99,7 +107,6 @@ The `XmlCommentGenerator` extracts XML comments from two sources:
 
 The distinction between these two sources is important. XML documentation files passed as `AdditionalFiles` are static. XML comments from the target assembly come from Roslyn's `XmlDocumentationCommentProvider` which provides enhanced functionality for connecting an XML comment to the compilation symbol's that it is associated with. This has implications for the way `<inheritdoc />` resolution happens in the implementation. We'll get more into this later.
 
-
 XML comments are parsed into structured `XmlComment` objects with:
 * Summary, description, remarks, returns, value sections
 * Parameter documentation with name, description, examples
@@ -116,11 +123,11 @@ This automatic resolution behavior is currently available for XML documentation 
 
 ### Member Identification
 
-The source generator discovers XML comments statically and emits code that will apply them to the document dynamically at runtime. The `MemberKey` class acts as a bridge between compile-time and runtime representations of the same concept. It is a unique identifier for types, methods, and properties that works across:
+The source generator discovers XML comments statically and emits code that will apply them to the document dynamically at runtime. The [`MemberKey`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlComments/MemberKey.cs,d182ed147edb11d2) class acts as a bridge between compile-time and runtime representations of the same concept. It is a unique identifier for types, methods, and properties that works across:
 
-- Different compilation environments
-- Generic types with proper handling of open generics
-- Method overloads with parameter signature matching
+* Different compilation environments
+* Generic types with proper handling of open generics
+* Method overloads with parameter signature matching
 
 The `MemberKey` defintion attempts to encode as much information as possible to map a compile-time symbol to its runtime counterpart.
 
@@ -143,8 +150,8 @@ The generator emits code that contains:
    ```
 
 2. OpenAPI transformer implementations:
-   - `XmlCommentOperationTransformer` - Applies comments to API operations (methods)
-   - `XmlCommentSchemaTransformer` - Applies comments to data models (types)
+   * `XmlCommentOperationTransformer` - Applies comments to API operations (methods)
+   * `XmlCommentSchemaTransformer` - Applies comments to data models (types)
 
 3. Extension methods that intercept `AddOpenApi()` calls to inject the transformers:
    ```csharp
@@ -174,10 +181,10 @@ When the generated code runs:
 1. The XML comment cache is populated on first use with structured comment data
 2. The intercepted `AddOpenApi` methods add the transformers to the OpenAPI options
 3. During API documentation generation, the transformers:
-   - Look up documentation for API methods and apply summaries, descriptions, etc.
-   - Apply parameter documentation to OpenAPI parameters
-   - Set response descriptions based on XML documentation
-   - Include examples when provided in the XML
+   * Look up documentation for API methods and apply summaries, descriptions, etc.
+   * Apply parameter documentation to OpenAPI parameters
+   * Set response descriptions based on XML documentation
+   * Include examples when provided in the XML
 
 This allows developers to write standard XML comments in their code and have them automatically appear in the generated OpenAPI documentation without any additional configuration code.
 
@@ -212,45 +219,48 @@ Yes, for referenced assemblies with API types. Add them as AdditionalFiles in yo
 
 ```xml
 <ItemGroup>
-  <AdditionalFiles Include="Path\To\AssemblyDoc.xml" />
+  <AdditionalFiles Include="Path/To/AssemblyDoc.xml" />
 </ItemGroup>
 ```
 
 XML documentation comments from `ProjectReferences` are automatically resolved and don't require additional configuration.
 
-### What XML documentation tags are supported?
+### Supported XML documentation tags
 
-- `<summary>` - Used for operation and type descriptions
-- `<remarks>` - Used for additional operation details
-- `<param>` - Used for parameter descriptions
-- `<returns>` - Used for return value descriptions
-- `<response>` - Used for HTTP response documentation
-- `<example>` - Used for examples in documentation
-- `<deprecated>` - Marks operations as deprecated
-- `<inheritdoc>` - Inherits documentation from base classes/interfaces
+* `<summary>` - Used for operation and type descriptions
+* `<remarks>` - Used for additional operation details
+* `<param>` - Used for parameter descriptions
+* `<returns>` - Used for return value descriptions
+* `<response>` - Used for HTTP response documentation
+* `<example>` - Used for examples in documentation
+* `<deprecated>` - Marks operations as deprecated
+* `<inheritdoc>` - Inherits documentation from base classes/interfaces
 
-### How do I document HTTP responses?
+### Document HTTP responses
 
-Use the `<response>` tag with a `code` attribute:
+Document HTTP responses with the `<response>` tag with a `code` attribute:
+
 ```csharp
 /// <response code="200">Success response with data</response>
 /// <response code="404">Resource not found</response>
 ```
 
-### How do I add examples to documentation?
+### Add examples to documentation
 
-Use the `<example>` tag for types or the `example` attribute for parameters:
+To add examples to documentation, use the `<example>` tag for types or the `example` attribute for parameters:
+
 ```csharp
 /// <example>{"name":"Sample","value":42}</example>
 /// <param name="id" example="42">The unique identifier</param>
 ```
 
-### Does the generator support `<inheritdoc/>` tags?
+### Document inheritance via `<inheritdoc/>` tags
 
-Yes, it fully supports inheriting documentation from *as long as they exist in the compilation assembly*:
-- Base classes
-- Implemented interfaces
-- Base methods for overrides
+The generator supports `<inheritdoc/>` tags, which inherits documentation from *as long as they exist in the compilation assembly*:
+
+* Base classes
+* Implemented interfaces
+* Base methods for overrides
 
 ### How are generic type parameters handled when inheriting documentation?
 
@@ -259,10 +269,10 @@ The source generator substitutes generic type parameters in inherited documentat
 ### How does the source generator identify and track API members?
 
 It uses the `MemberKey` class to create a unique identifier for each API member that encodes:
-- Declaring and property types
-- Method names
-- Generic types with proper handling of open generics
-- Method overloads with parameter signature matching
+* Declaring and property types
+* Method names
+* Generic types with proper handling of open generics
+* Method overloads with parameter signature matching
 
 ### Will the XML documentation processing impact my application's runtime performance?
 
@@ -275,10 +285,10 @@ It uses the C# compiler's interceptor feature to detect calls to `AddOpenApi()` 
 ### What happens when I use different overloads of `AddOpenApi()`?
 
 The source generator detects all standard overloads:
-- `AddOpenApi()`
-- `AddOpenApi("v1")`
-- `AddOpenApi(options => {})`
-- `AddOpenApi("v1", options => {})`
+* `AddOpenApi()`
+* `AddOpenApi("v1")`
+* `AddOpenApi(options => {})`
+* `AddOpenApi("v1", options => {})`
 
 Each is intercepted to automatically include the XML documentation transformers. The source generator does not handle overloads where the `documentName` parameter is not a literal string expression. For example, the transformer is not registered in the following scenarios:
 
