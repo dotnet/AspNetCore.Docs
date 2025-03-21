@@ -14,6 +14,12 @@ uid: blazor/fundamentals/static-files
 
 This article describes Blazor app configuration for serving static files.
 
+:::moniker range=">= aspnetcore-9.0"
+
+For general information on serving static files with Map Static Assets routing endpoint conventions, see <xref:fundamentals/map-static-files> before reading this article.
+
+:::moniker-end
+
 ## Static asset delivery in server-side Blazor apps
 
 :::moniker range=">= aspnetcore-9.0"
@@ -25,32 +31,9 @@ Feature | API | .NET Version | Description
 Map Static Assets routing endpoint conventions | <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> | .NET 9 or later | Optimizes the delivery of static assets to clients.
 Static Files Middleware | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> | All .NET versions | Serves static assets to clients without the optimizations of Map Static Assets but useful for some tasks that Map Static Assets isn't capable of managing.
 
-Configure Map Static Assets by calling <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> in the app's request processing pipeline, which performs the following:
-
-* Sets the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
-* Sets [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
-* Uses [Caching Middleware](xref:performance/caching/middleware).
-* When possible, serves [compressed](xref:performance/response-compression) static assets.
-* Works with a [Content Delivery Network (CDN)](https://developer.mozilla.org/docs/Glossary/CDN) (for example, [Azure CDN](https://azure.microsoft.com/services/cdn/)) to serve the app's static assets closer to the user.
-* [Fingerprinting assets](https://developer.mozilla.org/docs/Glossary/Fingerprinting) to prevent reusing old versions of files.
-
-Map Static Assets operates by combining build and publish processes to collect information about the static assets in the app. This information is utilized by the runtime library to efficiently serve the static assets to browsers.
-
 Map Static Assets can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, Map Static Assets is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
 
 Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) replaces calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in apps that serve Blazor WebAssembly framework files, and explicitly calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in a Blazor Web App isn't necessary because the API is automatically called when invoking <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>.
-
-Map Static Assets provides the following benefits that aren't available when calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
-
-* Build-time compression for all the assets in the app, including JavaScript (JS) and stylesheets but excluding image and font assets that are already compressed. [Gzip](https://tools.ietf.org/html/rfc1952) (`Content-Encoding: gz`) compression is used during development. Gzip with [Brotli](https://tools.ietf.org/html/rfc7932) (`Content-Encoding: br`) compression is used during publish.
-* [Fingerprinting](https://developer.mozilla.org/docs/Glossary/Fingerprinting) for all assets at build time with a [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded string of the [SHA-256](xref:System.Security.Cryptography.SHA256) hash of each file's content. This prevents reusing an old version of a file, even if the old file is cached. Fingerprinted assets are cached using the [`immutable` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives), which results in the browser never requesting the asset again until it changes. For browsers that don't support the `immutable` directive, a [`max-age` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives) is added.
-  * Even if an asset isn't fingerprinted, content based `ETags` are generated for each static asset using the fingerprint hash of the file as the `ETag` value. This ensures that the browser only downloads a file if its content changes (or the file is being downloaded for the first time).
-  * Internally, Blazor maps physical assets to their fingerprints, which allows the app to:
-    * Find automatically-generated Blazor assets, such as Razor component scoped CSS for Blazor's [CSS isolation feature](xref:blazor/components/css-isolation), and JS assets described by [JS import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap).
-    * Generate link tags in the `<head>` content of the page to preload assets.
-* During [Visual Studio Hot Reload](/visualstudio/debugger/hot-reload) development testing:
-  * Integrity information is removed from the assets to avoid issues when a file is changed while the app is running.
-  * Static assets aren't cached to ensure that the browser always retrieves current content.
 
 When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fundamentals/index#render-modes) are enabled:
 
@@ -58,8 +41,6 @@ When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fund
 * The URL is emitted to the body of the request as persisted component state when a WebAssembly component is rendered into the page.
 * During WebAssembly boot, Blazor retrieves the URL, imports the module, and calls a function to retrieve the asset collection and reconstruct it in memory. The URL is specific to the content and cached forever, so this overhead cost is only paid once per user until the app is updated.
 * The resource collection is also exposed at a human-readable URL (`_framework/resource-collection.js`), so JS has access to the resource collection for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) or to implement features of other frameworks and third-party components.
-
-Map Static Assets doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
 
 Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) can't handle:
 
@@ -91,6 +72,9 @@ The Import Map component (<xref:Microsoft.AspNetCore.Components.ImportMap>) repr
 ```razor
 <ImportMap />
 ```
+
+> [!NOTE]
+> In Blazor Web Apps that adopt [global Interactive WebAssembly rendering](xref:blazor/components/render-modes#render-modes), the `ImportMap` component serves no purpose and can be removed from the `App` component. For more information, see the introductory remarks of this article. 
 
 If a custom <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> isn't assigned to an Import Map component, the import map is generated based on the app's assets.
 
@@ -202,6 +186,22 @@ The preceding code results in the following import map:
   }
 }
 ```
+
+<!-- HOLD
+
+## Import map Content Security Policy (CSP) violations
+
+The `ImportMap` component is rendered as an inline `<script>` tag, which violates a strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) that set the `default-src` or `script-src` directive.
+
+Adopt one of the following approaches to address this scenario:
+
+* Use a [nonce](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP#nonces) on the `ImportMap` component, which flows through to its `<script>` tag when the component is rendered. For more information, see [XXXXXXXXXXXXXXXXXXX](xref:blazor/security/content-security-policy#XXXXXXXXXXXXXXXXXXX).
+* Compute the subresource integrity (SRI) for the rendered `ImportMap` component. For more information, see [XXXXXXXXXXXXXXXXXXX](xref:blazor/security/content-security-policy#XXXXXXXXXXXXXXXXXXX).
+* Avoid using an import map; but ideally, the preceding options are the best choice in most cases.
+
+For more information on CSPs, see <xref:blazor/security/content-security-policy> the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
+
+--> 
 
 :::moniker-end
 

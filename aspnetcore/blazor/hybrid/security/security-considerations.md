@@ -36,7 +36,7 @@ If possible, avoid loading content from a third-party origin. To mitigate risk, 
 If your app must reference content from an external origin, we recommend that you use common web security approaches to provide the app with an opportunity to block the content from loading if the content is compromised:
 
 * Serve content securely with TLS/HTTPS.
-* Institute a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP).
+* Institute a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP). For CSP syntax, see [MDN's CSP reference guidance](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy).
 * Perform [subresource integrity](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity) checks.
 
 Even if all of the resources are packed into the app and don't load from any external origin, remain cautious about problems in the resources' code that run inside the Web View, as the resources might have vulnerabilities that could allow [cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss) attacks.
