@@ -624,6 +624,8 @@ items:
                 uid: blazor/security/blazor-web-app-entra
               - name: Blazor Web App with OIDC
                 uid: blazor/security/blazor-web-app-oidc
+              - name: Blazor Web App with Windows Auth
+                uid: blazor/security/blazor-web-app-windows-authentication
               - name: Static server-side rendering threats
                 uid: blazor/security/static-server-side-rendering
               - name: Interactive server-side rendering threats
