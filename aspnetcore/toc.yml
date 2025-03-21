@@ -903,8 +903,14 @@ items:
           - name: SignalR with Blazor
             uid: blazor/tutorials/signalr-blazor
       - name: Samples
-        href: https://github.com/aspnet/SignalR-samples
         displayName: signalr
+        items:
+          - name: AI-powered group chat
+            uid: tutorials/ai-powered-group-chat
+            displayName: signalr
+          - name: SignalR samples repository
+            href: https://github.com/aspnet/SignalR-samples
+            displayName: signalr
       - name: Server concepts
         displayName: signalr
         items:
