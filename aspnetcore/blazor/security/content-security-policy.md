@@ -137,21 +137,83 @@ Use a `<meta>` tag to apply the policy:
 
 The following sections show example policies. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** dropdown selector on this webpage.
 
+## The `frame-ancestors` directive
+
+The `frame-ancestors` directive specifies valid parents that may embed a page with `<frame>`, `<iframe>`, `<object>`, or `<embed>` tags. A `frame-ancestors` directive can't be applied via a `<meta>` tag-based CSP. The directive must be applied by a response header. A CSP response header can be added by a server host, or code can add or update a CSP or a `frame-ancestors` directive.
+
+Blazor Web Apps (.NET 8 or later) automatically include a response header setting the value to `'self'`:
+
+```
+Content-Security-Policy: frame-ancestors 'self'
+```
+
+To change the default value to the more restrictive `'none'` and prevent all parents from embedding the app, set the <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy%2A> option in the call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> in the `Program` file. The following only takes effect when WebSocket compression is enabled (`<xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureWebSocketAcceptContext%2A>` is set, which is the default for Blazor apps).
+
+```csharp
+.AddInteractiveServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none';")
+```
+
+In Blazor Server apps, a default `frame-ancestors` directive isn't added to the response headers collection. You can add a CSP header manually with [middleware](xref:fundamentals/middleware/index) in the request processing pipeline:
+
+```csharp
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Content-Security-Policy", "frame-ancestors 'none';");
+    await next();
+});
+```
+
+> [!WARNING]
+> Avoid setting the `frame-ancestors` directive value to `'null'` when WebSocket compression is enabled, which is the default for Blazor apps, because it makes the app vulnerable to malicious script injection attacks that can compromise the entire IT infrastructure of your organization.
+
+For more information, see [CSP: frame-ancestors (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors).
+
 ### Server-side Blazor apps
 
 In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the *Policy directives* section:
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+The following example is a starting point for Blazor Web Apps or Blazor Server apps:
 
 ```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src 'self';
-               style-src 'self';
-               upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self' 'wasm-unsafe-eval';
+    style-src 'self';
+    connect-src 'self' http://localhost:* wss://localhost:* ws://localhost:*;
+    upgrade-insecure-requests;">
+```
+
+Blazor Web Apps include an inline `onclick` JavaScript event handler in the `NavMenu` component that requires either of the following changes:
+
+* Add a hash to the `script-src` directive with the `unsafe-hashes` keyword:
+
+  ```html
+  'unsafe-hashes' 'sha256-qnHnQs7NjQNHHNYv/I9cW+I62HzDJjbnyS/OFzqlix0='
+  ```
+
+  For more information, see [CSP: script-src: Unsafe inline script (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src#unsafe_inline_script).
+
+* Move the inline JavaScript event handler to a JavaScript file or module, where it's hashed for the CSP.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+The following example is a starting point for Blazor Server apps:
+
+```html
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self';
+    style-src 'self';
+    connect-src 'self' http://localhost:* wss://localhost:* ws://localhost:*;
+    upgrade-insecure-requests;">
 ```
 
 :::moniker-end
@@ -159,17 +221,14 @@ In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-bod
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src https://stackpath.bootstrapcdn.com/ 
-                          'self';
-               style-src https://stackpath.bootstrapcdn.com/
-                         'self' 
-                         'unsafe-inline';
-               upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self' https://stackpath.bootstrapcdn.com/;
+    style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com/;
+    connect-src 'self' http://localhost:* wss://localhost:* ws://localhost:*;
+    upgrade-insecure-requests;">
 ```
 
 :::moniker-end
@@ -177,19 +236,19 @@ In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-bod
 :::moniker range="< aspnetcore-5.0"
 
 ```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src https://stackpath.bootstrapcdn.com/ 
-                          'self' 
-                          'sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=';
-               style-src https://stackpath.bootstrapcdn.com/
-                         'self' 
-                         'unsafe-inline';
-               upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self' https://stackpath.bootstrapcdn.com/ 
+        'sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=';
+    style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com/;
+    connect-src 'self' http://localhost:* wss://localhost:* ws://localhost:*;
+    upgrade-insecure-requests;">
 ```
+
+> [!NOTE]
+> The preceding SHA256 hash is for demonstration purposes. You may need to calculate a new hash for your CSP.
 
 :::moniker-end
 
@@ -208,15 +267,13 @@ In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-bod
 :::moniker range=">= aspnetcore-8.0"
 
 ```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src 'self'
-                          'wasm-unsafe-eval';
-               style-src 'self';
-               upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self' 'wasm-unsafe-eval';
+    style-src 'self';
+    upgrade-insecure-requests;">
 ```
 
 :::moniker-end
@@ -224,15 +281,13 @@ In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-bod
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src 'self' 
-                          'unsafe-eval';
-               style-src 'self';
-               upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self' 'unsafe-eval';
+    style-src 'self';
+    upgrade-insecure-requests;">
 ```
 
 :::moniker-end
@@ -240,16 +295,14 @@ In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-bod
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 ```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src 'self' 
-                          'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=' 
-                          'unsafe-eval';
-               style-src 'self';
-               upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self' 'unsafe-eval' 
+        'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=';
+    style-src 'self';
+    upgrade-insecure-requests;">
 ```
 
 > [!NOTE]
@@ -260,19 +313,14 @@ In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-bod
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src https://stackpath.bootstrapcdn.com/ 
-                          'self' 
-                          'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=' 
-                          'unsafe-eval';
-               style-src https://stackpath.bootstrapcdn.com/
-                         'self'
-                         'unsafe-inline';
-               upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self' 'unsafe-eval' https://stackpath.bootstrapcdn.com/ 
+        'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=';
+    style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com/;
+    upgrade-insecure-requests;">
 ```
 
 :::moniker-end
@@ -280,21 +328,16 @@ In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-bod
 :::moniker range="< aspnetcore-5.0"
 
 ```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src https://stackpath.bootstrapcdn.com/ 
-                          'self' 
-                          'sha256-v8ZC9OgMhcnEQ/Me77/R9TlJfzOBqrMTW8e1KuqLaqc=' 
-                          'sha256-If//FtbPc03afjLezvWHnC3Nbu4fDM04IIzkPaf3pH0=' 
-                          'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=' 
-                          'unsafe-eval';
-               style-src https://stackpath.bootstrapcdn.com/
-                         'self'
-                         'unsafe-inline';
-               upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self' 'unsafe-eval' https://stackpath.bootstrapcdn.com/ 
+        'sha256-v8ZC9OgMhcnEQ/Me77/R9TlJfzOBqrMTW8e1KuqLaqc=' 
+        'sha256-If//FtbPc03afjLezvWHnC3Nbu4fDM04IIzkPaf3pH0=' 
+        'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=';
+    style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com/;
+    upgrade-insecure-requests;">
 ```
 
 :::moniker-end
@@ -399,6 +442,108 @@ For reporting on violations while a policy is active, see the following articles
 Although `report-uri` is no longer recommended for use, both directives should be used until `report-to` is supported by all of the major browsers. Don't exclusively use `report-uri` because support for `report-uri` is subject to being dropped *at any time* from browsers. Remove support for `report-uri` in your policies when `report-to` is fully supported. To track adoption of `report-to`, see [Can I use: report-to](https://caniuse.com/#feat=mdn-http_headers_csp_content-security-policy_report-to).
 
 Test and update an app's policy every release.
+
+## Resolving CSP violations with subresource integrity (SRI) or a cryptographic nonce
+
+Two approaches for resolving CSP violations, which are described in the next two sections, are:
+
+* [Subresource integrity (SRI)](#adopt-subresource-integrity-sri) *Recommended*
+* [Cryptographic nonce](#adopt-a-cryptographic-nonce)
+
+### Adopt subresource integrity (SRI)
+
+Subresource Integrity (SRI) enables browsers to confirm that fetched resources aren't tampered with in transit. A cryptographic hash provided on the resource must match the hash computed by the browser for the fetched resource and the hash listed in the CSP. In the following example for a Blazor Web App (.NET 8 or later), an integrity is calculated for the `ImportMap` component.
+
+For more information, see [MDN CSP Guide: Hashes](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP#hashes) and [Subresource Integrity (MDN documentation)](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity).
+
+```razor
+@using System.Security.Cryptography
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    ...
+    <ImportMap integrity="@integrity" crossorigin="anonymous" />
+    ...
+    <meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+        default-src 'self';
+        img-src data: https:;
+        object-src 'none';
+        script-src 'self' 'wasm-unsafe-eval' 
+            'unsafe-hashes' 'sha256-qnHnQs7NjQNHHNYv/I9cW+I62HzDJjbnyS/OFzqlix0='
+            '@integrity';
+        style-src 'self';
+        connect-src 'self' http://localhost:* wss://localhost:* ws://localhost:*;
+        upgrade-insecure-requests;">
+</head>
+...
+</html>
+
+@code {
+    private string? integrity;
+
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
+
+    protected override void OnInitialized()
+    {
+        var metadata = 
+            HttpContext?.GetEndpoint()?.Metadata.GetOrderedMetadata<ImportMap>();
+        var utf8 = new System.Text.UTF8Encoding();
+        var metadataBytes = utf8.GetBytes(metadata?.ToString() ?? string.Empty);
+        integrity = 
+            $"sha256-{Convert.ToBase64String(SHA256.HashData(metadataBytes))}";
+    }
+}
+```
+
+> [!NOTE]
+> If additional attributes must be splatted on the `ImportMap` components's rendered `<script>` element, you can pass a dictionary of all of the attributes to the `ImportMap` component in its <xref:Microsoft.AspNetCore.Components.ImportMap.AdditionalAttributes%2A> property. The `integrity` and `crossorigin` attribute name-value pairs are passed in the dictionary with the rest of the additional passed attributes.
+
+### Adopt a cryptographic nonce
+
+A cryptographic nonce (*number used once*) enables browsers to confirm that fetched resources aren't tampered with in transit. A single-use cryptographic nonce provided in the CSP must match the nonce indicated on the resource. In the following example for a Blazor Web App (.NET 8 or later), a nonce is created for the `ImportMap` component.
+
+For more information, see [MDN CSP Guide: Nonces](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP#nonces) and [CSP: script-src: Unsafe inline script (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src#unsafe_inline_script).
+
+```razor
+@using System.Security.Cryptography
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    ...
+    <ImportMap nonce="@nonce" />
+    ...
+    <meta http-equiv="Content-Security-Policy" content="base-uri 'self';
+        default-src 'self';
+        img-src data: https:;
+        object-src 'none';
+        script-src 'self' 'wasm-unsafe-eval' 
+            'unsafe-hashes' 'sha256-qnHnQs7NjQNHHNYv/I9cW+I62HzDJjbnyS/OFzqlix0='
+            'nonce-@nonce';
+        style-src 'self';
+        connect-src 'self' http://localhost:* wss://localhost:* ws://localhost:*;
+        upgrade-insecure-requests;">
+</head>
+...
+</html>
+
+@code {
+    private string? nonce;
+
+    protected override void OnInitialized()
+    {
+        using (var rng = RandomNumberGenerator.Create())
+        {
+            var nonceBytes = new byte[32];
+            rng.GetBytes(nonceBytes);
+            nonce = Convert.ToBase64String(nonceBytes);
+        }
+    }
+}
+```
+
+> [!NOTE]
+> If additional attributes must be splatted on the `ImportMap` components's rendered `<script>` element, you can pass a dictionary of all of the attributes to the `ImportMap` component in its <xref:Microsoft.AspNetCore.Components.ImportMap.AdditionalAttributes%2A> property. The nonce name-value pair is passed in the dictionary with the rest of the additional passed attributes.
 
 ## Troubleshoot
 
