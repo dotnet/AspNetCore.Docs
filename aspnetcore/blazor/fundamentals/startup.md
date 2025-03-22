@@ -499,6 +499,13 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 For more information on CSPs, see the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 
+> [!NOTE]
+> Blazor Server apps don't set a default CSP with a `frame-ancestors` directive, which can be important in mitigating potential XSS attacks.
+>
+> Blazor Web Apps (.NET 8 or later) provide an option to customize the `frame-ancestors` directive value of the default CSP.
+>
+> For more information, see <xref:blazor/security/content-security-policy#the-frame-ancestors-directive>.
+
 ### Server-side and prerendered client-side scenarios
 
 Use [ASP.NET Core Middleware](xref:fundamentals/middleware/index) to control the headers collection.

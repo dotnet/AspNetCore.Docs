@@ -187,21 +187,13 @@ The preceding code results in the following import map:
 }
 ```
 
-<!-- HOLD
-
 ## Import map Content Security Policy (CSP) violations
 
-The `ImportMap` component is rendered as an inline `<script>` tag, which violates a strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) that set the `default-src` or `script-src` directive.
+The `ImportMap` component is rendered as an inline `<script>` tag, which can violate a strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) that sets the `default-src` or `script-src` directive.
 
-Adopt one of the following approaches to address this scenario:
+For examples of how to address this scenario with subresource integrity (SRI) or a cryptographic nonce, see [Resolving CSP violations with subresource integrity (SRI) or a nonce](xref:blazor/security/content-security-policy#resolving-csp-violations-with-subresource-integrity-sri-or-a-cryptographic-nonce).
 
-* Use a [nonce](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP#nonces) on the `ImportMap` component, which flows through to its `<script>` tag when the component is rendered. For more information, see [XXXXXXXXXXXXXXXXXXX](xref:blazor/security/content-security-policy#XXXXXXXXXXXXXXXXXXX).
-* Compute the subresource integrity (SRI) for the rendered `ImportMap` component. For more information, see [XXXXXXXXXXXXXXXXXXX](xref:blazor/security/content-security-policy#XXXXXXXXXXXXXXXXXXX).
-* Avoid using an import map; but ideally, the preceding options are the best choice in most cases.
-
-For more information on CSPs, see <xref:blazor/security/content-security-policy> the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
-
---> 
+For more information on CSPs, see the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 
 :::moniker-end
 
