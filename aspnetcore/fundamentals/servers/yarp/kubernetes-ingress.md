@@ -4,7 +4,7 @@ title: YARP Kubernetes Ingress Controller
 description: YARP Kubernetes Ingress Controller
 author: samsp-msft
 ms.author: samsp
-ms.date: 2/6/2025
+ms.date: 3/6/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
@@ -46,7 +46,7 @@ docker push <REGISTRY_NAME>/yarp-controller:<TAG>
 
 where `REGISTRY_NAME` is the name of your docker registry and `TAG` is a tag for the image (for example 1.0.0).
 
-Then the first step will be to deploy the YARP ingress controller to the Kubernetes cluster. This can be done by navigating to Kubernetes Ingress sample `\samples\KuberenetesIngress.Sample\Ingress`
+Then the first step will be to deploy the YARP ingress controller to the Kubernetes cluster. This can be done by navigating to [Kubernetes Ingress sample](https://github.com/dotnet/yarp/tree/release/latest/samples/KubernetesIngress.Sample) `\samples\KuberenetesIngress.Sample\Ingress`
 and running (after modifying `ingress-controller.yaml` with the same `REGISTRY_NAME` and `TAG`):
 
 ```
