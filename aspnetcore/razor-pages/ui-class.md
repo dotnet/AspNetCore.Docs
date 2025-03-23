@@ -132,7 +132,7 @@ To include TypeScript files in an RCL:
   * Include the TypeScript target as a dependency of the `PrepareForBuildDependsOn` target.
   * Remove the output in the `wwwroot folder`.
 
-[!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=6-10,14)]
+[!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=5-9,13)]
 
 ### Consume content from a referenced RCL
 
