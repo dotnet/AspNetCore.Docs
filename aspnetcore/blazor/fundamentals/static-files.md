@@ -20,7 +20,7 @@ For general information on serving static files with Map Static Assets routing e
 
 :::moniker-end
 
-## Static asset delivery in server-side Blazor apps
+## Static asset delivery in ASP.NET Core hosted Blazor apps
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -33,7 +33,7 @@ Static Files Middleware | <xref:Microsoft.AspNetCore.Builder.StaticFileExtension
 
 Map Static Assets can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, Map Static Assets is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
 
-Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) replaces calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in apps that serve Blazor WebAssembly framework files, and explicitly calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in a Blazor Web App isn't necessary because the API is automatically called when invoking <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>.
+Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) also replaces calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in apps that serve Blazor WebAssembly framework files, and explicitly calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in a Blazor Web App isn't necessary because the API is automatically called when invoking <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>.
 
 When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fundamentals/index#render-modes) are enabled:
 
@@ -51,7 +51,7 @@ For more information, see <xref:fundamentals/static-files>.
 
 ## Deliver assets with Map Static Assets routing endpoint conventions
 
-*This section applies to server-side Blazor apps.*
+*This section applies to ASP.NET Core hosted Blazor apps.*
 
 <!-- UPDATE 10.0 Compiler implementation for tilde/slash-based HREFs. -->
 
@@ -65,13 +65,16 @@ Assets are delivered via the <xref:Microsoft.AspNetCore.Components.ComponentBase
 
 ## Import maps
 
-*This section applies to server-side Blazor apps.*
+*This section applies to ASP.NET Core hosted Blazor apps.*
 
 The Import Map component (<xref:Microsoft.AspNetCore.Components.ImportMap>) represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The Import Map component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
 
 ```razor
 <ImportMap />
 ```
+
+> [!NOTE]
+> In Blazor Web Apps that adopt [global Interactive WebAssembly rendering](xref:blazor/components/render-modes#render-modes), the `ImportMap` component serves no purpose and can be removed from the `App` component. For more information, see the introductory remarks of this article. 
 
 If a custom <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> isn't assigned to an Import Map component, the import map is generated based on the app's assets.
 
@@ -269,7 +272,7 @@ Changing the value (`Default`) of `<StaticWebAssetProjectMode>` or removing the 
 
 ## Static files in non-`Development` environments
 
-*This section applies to server-side static files.*
+*This section applies to ASP.NET Core hosted Blazor apps.*
 
 When running an app locally, static web assets are only enabled in the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment. To enable static files for environments other than <xref:Microsoft.Extensions.Hosting.Environments.Development> during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> in the `Program` file.
 
@@ -387,7 +390,7 @@ In the preceding examples, the `{TFM}` placeholder is the [Target Framework Moni
 
 ## File mappings and static file options
 
-*This section applies to server-side static files.*
+*This section applies to ASP.NET Core hosted Blazor apps.*
 
 :::moniker range=">= aspnetcore-8.0"
 
