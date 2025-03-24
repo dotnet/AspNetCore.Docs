@@ -144,7 +144,7 @@ Use a `<meta>` tag to apply the policy:
 
 * Set the value of the `http-equiv` attribute to `Content-Security-Policy`.
 * Place the directives in the `content` attribute value. Separate directives with a semicolon (`;`), and an ending semicolon isn't required per the [Content Security Policy Level 3 specification](https://www.w3.org/TR/CSP3/).
-* Always place the `meta` tag in the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content).
+* Always place the `meta` tag in the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content) just inside the opening `<head>` tag.
 
 The following sections show example policies. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** dropdown selector on this webpage.
 
@@ -390,7 +390,6 @@ In the following example for a Blazor Server app, an integrity is calculated usi
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    ...
     <meta http-equiv="Content-Security-Policy" content="
         base-uri 'self';
         default-src 'self';
@@ -400,6 +399,7 @@ In the following example for a Blazor Server app, an integrity is calculated usi
         style-src https:;
         connect-src 'self' http: ws: wss:;
         upgrade-insecure-requests;" />
+    ...
 </head>
 <body>
     ...
@@ -422,9 +422,6 @@ For more information, see [MDN CSP Guide: Hashes](https://developer.mozilla.org/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    ...
-    <ImportMap integrity="@integrity" />
-    ...
     <meta http-equiv="Content-Security-Policy" content="
         base-uri 'self';
         default-src 'self';
@@ -435,6 +432,9 @@ For more information, see [MDN CSP Guide: Hashes](https://developer.mozilla.org/
         style-src https:;
         connect-src 'self' http: ws: wss:;
         upgrade-insecure-requests;" />
+    ...
+    <ImportMap integrity="@integrity" />
+    ...
 </head>
 ...
 </html>
