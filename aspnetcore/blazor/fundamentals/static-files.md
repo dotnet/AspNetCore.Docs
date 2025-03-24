@@ -44,6 +44,7 @@ When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fund
 
 Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) can't handle:
 
+* Serving files from disk that weren't part of the build or publish process, e.g. files added to the application folder during or after deployment.
 * Applying a path prefix to Blazor WebAssembly static asset files, which is covered in the [Prefix for Blazor WebAssembly assets](#prefix-for-blazor-webassembly-assets) section.
 * Configuring file mappings of extensions to specific content types and setting static file options, which is covered in the [File mappings and static file options](#file-mappings-and-static-file-options) section.
       
@@ -72,6 +73,9 @@ The Import Map component (<xref:Microsoft.AspNetCore.Components.ImportMap>) repr
 ```razor
 <ImportMap />
 ```
+
+> [!NOTE]
+> In Blazor Web Apps that adopt [global Interactive WebAssembly rendering](xref:blazor/components/render-modes#render-modes), the `ImportMap` component serves no purpose and can be removed from the `App` component. For more information, see the introductory remarks of this article. 
 
 If a custom <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> isn't assigned to an Import Map component, the import map is generated based on the app's assets.
 
