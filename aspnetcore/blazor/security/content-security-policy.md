@@ -451,13 +451,15 @@ For more information, see [MDN CSP Guide: Hashes](https://developer.mozilla.org/
             .GetOrderedMetadata<ImportMapDefinition>();
         var utf8 = new System.Text.UTF8Encoding();
         var metadataBytes = utf8.GetBytes(
-            metadata?.FirstOrDefault<ImportMapDefinition>()?.ToString() ?? 
-            string.Empty);
+            metadata?.FirstOrDefault<ImportMapDefinition>()?.ToString()
+                .ReplaceLineEndings("\n") ?? string.Empty);
         integrity = 
             $"sha256-{Convert.ToBase64String(SHA256.HashData(metadataBytes))}";
     }
 }
 ```
+
+Prior to .NET 6, use `.Replace("\r\n", "\n")` instead of calling <xref:System.String.ReplaceLineEndings%2A> in the preceding code example.
 
 > [!NOTE]
 > If additional attributes must be splatted on the `ImportMap` components's rendered `<script>` element, you can pass a dictionary of all of the attributes to the `ImportMap` component in its <xref:Microsoft.AspNetCore.Components.ImportMap.AdditionalAttributes%2A> property. The `integrity` attribute name-value pair are passed in the dictionary with the rest of the additional passed attributes.
