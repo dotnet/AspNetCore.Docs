@@ -55,26 +55,6 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ## Basic tests with the default WebApplicationFactory
 
-
-Expose the implicitly defined `Program` class to the test project by doing one of the following:
-
-* Expose internal types from the web app to the test project. This can be done in the SUT project's file (`.csproj`):
-  ```xml
-  <ItemGroup>
-       <InternalsVisibleTo Include="MyTestProject" />
-  </ItemGroup>
-  ```
-* Make the [`Program` class public using a partial class](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/10.x/IntegrationTestsSample/src/RazorPagesProject/Program.cs) declaration:
-
-  ```diff
-  var builder = WebApplication.CreateBuilder(args);
-  // ... Configure services, routes, etc.
-  app.Run();
-  + public partial class Program { }
-  ```
-
-  The [sample app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/10.x/IntegrationTestsSample) uses the `Program` partial class approach.
-
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually `Program.cs`.
 
 Test classes implement a *class fixture* interface ([`IClassFixture`](https://xunit.net/docs/shared-context#class-fixture)) to indicate the class contains tests and provide shared object instances across the tests in the class.
