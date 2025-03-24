@@ -73,9 +73,6 @@ The Import Map component (<xref:Microsoft.AspNetCore.Components.ImportMap>) repr
 <ImportMap />
 ```
 
-> [!NOTE]
-> In Blazor Web Apps that adopt [global Interactive WebAssembly rendering](xref:blazor/components/render-modes#render-modes), the `ImportMap` component serves no purpose and can be removed from the `App` component. For more information, see the introductory remarks of this article. 
-
 If a custom <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> isn't assigned to an Import Map component, the import map is generated based on the app's assets.
 
 The following examples demonstrate custom import map definitions and the import maps that they create.
