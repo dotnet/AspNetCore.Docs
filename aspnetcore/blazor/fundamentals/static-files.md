@@ -33,7 +33,7 @@ Static Files Middleware | <xref:Microsoft.AspNetCore.Builder.StaticFileExtension
 
 Map Static Assets can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, Map Static Assets is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
 
-Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) replaces calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in apps that serve Blazor WebAssembly framework files, and explicitly calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in a Blazor Web App isn't necessary because the API is automatically called when invoking <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>.
+Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) also replaces calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in apps that serve Blazor WebAssembly framework files, and explicitly calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in a Blazor Web App isn't necessary because the API is automatically called when invoking <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>.
 
 When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fundamentals/index#render-modes) are enabled:
 
@@ -44,6 +44,7 @@ When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fund
 
 Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) can't handle:
 
+* Serving files from disk that aren't part of the build or publish process, for example, files added to the application folder during or after deployment.
 * Applying a path prefix to Blazor WebAssembly static asset files, which is covered in the [Prefix for Blazor WebAssembly assets](#prefix-for-blazor-webassembly-assets) section.
 * Configuring file mappings of extensions to specific content types and setting static file options, which is covered in the [File mappings and static file options](#file-mappings-and-static-file-options) section.
       
