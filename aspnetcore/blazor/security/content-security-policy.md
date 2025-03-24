@@ -447,10 +447,12 @@ For more information, see [MDN CSP Guide: Hashes](https://developer.mozilla.org/
 
     protected override void OnInitialized()
     {
-        var metadata = 
-            HttpContext?.GetEndpoint()?.Metadata.GetOrderedMetadata<ImportMap>();
+        var metadata = HttpContext?.GetEndpoint()?.Metadata
+            .GetOrderedMetadata<ImportMapDefinition>();
         var utf8 = new System.Text.UTF8Encoding();
-        var metadataBytes = utf8.GetBytes(metadata?.ToString() ?? string.Empty);
+        var metadataBytes = utf8.GetBytes(
+            metadata?.FirstOrDefault<ImportMapDefinition>()?.ToString() ?? 
+            string.Empty);
         integrity = 
             $"sha256-{Convert.ToBase64String(SHA256.HashData(metadataBytes))}";
     }
