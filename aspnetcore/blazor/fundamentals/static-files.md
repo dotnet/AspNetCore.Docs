@@ -189,11 +189,9 @@ The preceding code results in the following import map:
 
 ## Import map Content Security Policy (CSP) violations
 
-The `ImportMap` component is rendered as an inline `<script>` tag, which can violate a strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) that sets the `default-src` or `script-src` directive.
+The `ImportMap` component is rendered as an inline `<script>` tag, which violates a strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) that sets the `default-src` or `script-src` directive.
 
-For examples of how to address this scenario with Subresource Integrity (SRI) or a cryptographic nonce, see [Resolving CSP violations with Subresource Integrity (SRI) or a nonce](xref:blazor/security/content-security-policy#resolving-csp-violations-with-subresource-integrity-sri-or-a-cryptographic-nonce).
-
-For more information on CSPs, see the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
+For examples of how to address the policy violation with Subresource Integrity (SRI) or a cryptographic nonce, see [Resolving CSP violations with Subresource Integrity (SRI) or a nonce](xref:blazor/security/content-security-policy#resolving-csp-violations-with-subresource-integrity-sri-or-a-cryptographic-nonce).
 
 :::moniker-end
 

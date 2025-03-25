@@ -495,16 +495,7 @@ For more information, see <xref:blazor/host-and-deploy/webassembly-caching/index
 
 Control headers at startup in C# code using the following approaches.
 
-In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string.
-
-For more information on CSPs, see the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
-
-> [!NOTE]
-> Blazor Server apps don't set a default CSP with a `frame-ancestors` directive, which can be important in mitigating potential XSS attacks.
->
-> Blazor Web Apps (.NET 8 or later) provide an option to customize the `frame-ancestors` directive value of the default CSP.
->
-> For more information, see <xref:blazor/security/content-security-policy#the-frame-ancestors-directive>.
+In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string. For more information on CSPs, see <xref:blazor/security/content-security-policy>.
 
 ### Server-side and prerendered client-side scenarios
 
@@ -570,8 +561,6 @@ app.MapFallbackToFile("index.html", staticFileOptions);
 ```
 
 :::moniker-end
-
-For more information on CSPs, see <xref:blazor/security/content-security-policy>.
 
 :::moniker range=">= aspnetcore-7.0"
 

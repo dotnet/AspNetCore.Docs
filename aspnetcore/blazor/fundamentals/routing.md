@@ -1567,7 +1567,7 @@ The [`NavigationLock` component](xref:Microsoft.AspNetCore.Components.Routing.Na
 
 <xref:Microsoft.AspNetCore.Components.Routing.NavigationLock> parameters:
 
-* <xref:Microsoft.AspNetCore.Components.Routing.NavigationLock.ConfirmExternalNavigation> sets a browser dialog to prompt the user to either confirm or cancel external navigation. The default value is `false`. Displaying the confirmation dialog requires initial user interaction with the page before triggering external navigation with the URL in the browser's address bar. For more information on the interaction requirement, see [Window: `beforeunload` event (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Window/beforeunload_event).
+* <xref:Microsoft.AspNetCore.Components.Routing.NavigationLock.ConfirmExternalNavigation> sets a browser dialog to prompt the user to either confirm or cancel external navigation. The default value is `false`. Displaying the confirmation dialog requires initial user interaction with the page before triggering external navigation with the URL in the browser's address bar. For more information on the interaction requirement, see [Window: `beforeunload` event](https://developer.mozilla.org/docs/Web/API/Window/beforeunload_event).
 * <xref:Microsoft.AspNetCore.Components.Routing.NavigationLock.OnBeforeInternalNavigation> sets a callback for internal navigation events.
 
 In the following `NavLock` component:

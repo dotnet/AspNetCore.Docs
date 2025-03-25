@@ -5,17 +5,20 @@ description: Learn how to use a Content Security Policy (CSP) with ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2025
+ms.date: 03/25/2025
 uid: blazor/security/content-security-policy
 ---
 # Enforce a Content Security Policy for ASP.NET Core Blazor
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to use a Content Security Policy (CSP) with ASP.NET Core Blazor apps to help protect against [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) attacks. XSS is a security vulnerability where a cyberattacker places one or more malicious client-side scripts into an app's rendered content. A CSP helps protect against XSS attacks by informing the browser of valid:
+This article explains how to use a Content Security Policy (CSP) with ASP.NET Core Blazor apps to help protect against certain types of malicious attacks, such as [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) and [clickjacking](https://developer.mozilla.org/docs/Web/Security/Attacks/Clickjacking) attacks. XSS is a security vulnerability where a cyberattacker places one or more malicious client-side scripts into an app's rendered content. In a clickjacking attack, a user is tricked into interactions with a decoy website that has your app embedded within it.
+
+A CSP helps protect against these types of attacks by informing the browser of valid:
 
 * Sources for loaded content, including scripts, stylesheets, images, and plugins.
 * Actions taken by a page, specifying permitted URL targets of forms.
+* When your app can be embedded into another website via `<frame>`, `<iframe>`, `<object>`, or `<embed>` tags.
 
 We recommend reading the following MDN resources when implementing a CSP:
 
@@ -29,12 +32,12 @@ Policies are evaluated by the browser while a page is loading. The browser inspe
 
 CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
-> [!CAUTION]
-> ⚠️ Implementing a CSP minimizes the risk of certain types of security threats and doesn't guarantee that an app is safe from attacks by malicious users. For example, user agents may allow users to modify or bypass policy enforcement through user preferences, bookmarklets, browser extensions, third-party additions to the user agent, and other such mechanisms. Also, CSPs are only focused on remediating XSS attacks, not other types of attacks, such as SQL injection, Cross-Site Request Forgery (CSRF), security misconfiguration, and denial-of-service (DoS) attacks.
+> [!WARNING]
+> Implementing a CSP minimizes the risk of certain types of security threats and doesn't guarantee that an app is completely safe from XSS and clickjacking attacks. User agents, typically browsers, may allow users to modify or bypass policy enforcement through user preferences, bookmarklets, browser extensions, third-party additions to the user agent, and other such mechanisms. Also, CSPs are only focused on remediating a subset of attacks, not all attacks that can compromise security, such as SQL injection, Cross-Site Request Forgery (CSRF), security misconfiguration, and denial-of-service (DoS) attacks.
 
 ## Policy directives
 
-The following directives and sources are commonly used for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor apps are provided:
+The following directives and sources are commonly used for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [*Apply the policy*](#apply-the-policy) section of this article, where example security policies for Blazor apps are provided:
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -53,7 +56,7 @@ The following directives and sources are commonly used for Blazor apps. Add addi
 * [`style-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * If the app uses inline styles, specify `unsafe-inline` to allow the use of your inline styles.
-* [`connect-src`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/connect-src): Restricts the URLs which can be loaded using script interfaces. The scheme sources `http:`, `ws:` (WebSocket protocol), and `wss:` (WebSocket Secure protocol) are specified.
+* [`connect-src`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/connect-src): Restricts the URLs that can be loaded using script interfaces. The scheme sources `http:`, `ws:` (WebSocket protocol), and `wss:` (WebSocket Secure protocol) are specified.
 * [upgrade-insecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
 
 :::moniker-end
@@ -75,7 +78,7 @@ The following directives and sources are commonly used for Blazor apps. Add addi
 * [`style-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * If the app uses inline styles, specify `unsafe-inline` to allow the use of your inline styles.
-* [`connect-src`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/connect-src): Restricts the URLs which can be loaded using script interfaces. The scheme sources `http:`, `ws:` (WebSocket protocol), and `wss:` (WebSocket Secure protocol) are specified.
+* [`connect-src`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/connect-src): Restricts the URLs that can be loaded using script interfaces. The scheme sources `http:`, `ws:` (WebSocket protocol), and `wss:` (WebSocket Secure protocol) are specified.
 * [`upgrade-insecure-requests`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
 
 :::moniker-end
@@ -99,7 +102,7 @@ The following directives and sources are commonly used for Blazor apps. Add addi
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * Specify `unsafe-inline` to allow the use of inline styles.
-* [`connect-src`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/connect-src): Restricts the URLs which can be loaded using script interfaces. The scheme sources `http:`, `ws:` (WebSocket protocol), and `wss:` (WebSocket Secure protocol) are specified.
+* [`connect-src`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/connect-src): Restricts the URLs that can be loaded using script interfaces. The scheme sources `http:`, `ws:` (WebSocket protocol), and `wss:` (WebSocket Secure protocol) are specified.
 * [`upgrade-insecure-requests`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
 
 :::moniker-end
@@ -123,7 +126,7 @@ The following directives and sources are commonly used for Blazor apps. Add addi
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * Specify `unsafe-inline` to allow the use of inline styles. The inline declaration is required for the UI for reconnecting the client and server after the initial request. In a future release, inline styling might be removed so that `unsafe-inline` is no longer required.
-* [`connect-src`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/connect-src): Restricts the URLs which can be loaded using script interfaces. The scheme sources `http:`, `ws:` (WebSocket protocol), and `wss:` (WebSocket Secure protocol) are specified.
+* [`connect-src`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/connect-src): Restricts the URLs that can be loaded using script interfaces. The scheme sources `http:`, `ws:` (WebSocket protocol), and `wss:` (WebSocket Secure protocol) are specified.
 * [`upgrade-insecure-requests`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
 
 :::moniker-end
@@ -140,17 +143,22 @@ For a Content Security Policy Level 2 browser support matrix, see [Can I use: Co
 
 ## Apply the policy
 
-Use a `<meta>` tag to apply the policy:
+You can apply a CSP via:
+
+* A response header issued by the host (for example, IIS) or issued by the app (see [Control headers in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)).
+* A `<meta>` tag. *This article only demonstrates the `<meta>` tag approach.*
+
+To use a `<meta>` tag to apply the policy:
 
 * Set the value of the `http-equiv` attribute to `Content-Security-Policy`.
-* Place the directives in the `content` attribute value. Separate directives with a semicolon (`;`), and an ending semicolon isn't required per the [Content Security Policy Level 3 specification](https://www.w3.org/TR/CSP3/).
-* Always place the `meta` tag in the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content) just inside the opening `<head>` tag.
+* Place the directives in the `content` attribute value. Separate directives with a semicolon (`;`). An ending semicolon for the last directive of the policy string isn't required per the [Content Security Policy Level 3 specification](https://www.w3.org/TR/CSP3/).
+* Place the `<meta>` tag in the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content) just inside the opening `<head>` tag. The policy is evaluated and enforced when the CSP markup is parsed, so the policy should appear at the top of `<head>` markup to ensure that it's enforced on all `<script>` and `<link>` tags.
 
 The following sections show example policies. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** dropdown selector on this webpage.
 
 ## The `frame-ancestors` directive
 
-The `frame-ancestors` directive specifies valid parents that may embed a page with `<frame>`, `<iframe>`, `<object>`, or `<embed>` tags. A `frame-ancestors` directive can't be applied via a `<meta>` tag-based CSP. The directive must be applied by a response header. A CSP response header can be added by a server host, or code can add or update a CSP or a `frame-ancestors` directive.
+The [`frame-ancestors`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors) directive specifies valid parents that may embed a page with `<frame>`, `<iframe>`, `<object>`, or `<embed>` tags. A `frame-ancestors` directive can't be applied via a `<meta>` tag-based CSP. The directive must be applied by a response header. A CSP response header can be added by a server host, or app C# code can add or update a CSP with a `frame-ancestors` directive.
 
 Blazor Web Apps (.NET 8 or later) automatically include a response header setting the value to `'self'`:
 
@@ -175,17 +183,17 @@ app.Use(async (context, next) =>
 ```
 
 > [!WARNING]
-> Avoid setting the `frame-ancestors` directive value to `'null'` when WebSocket compression is enabled, which is the default for Blazor apps, because it makes the app vulnerable to malicious script injection attacks that can compromise the entire IT infrastructure of your organization.
+> Avoid setting the `frame-ancestors` directive value to `'null'` when WebSocket compression is enabled (compression is the default) because it makes the app vulnerable to malicious script injection and clickjacking attacks.
 
 For more information, see [CSP: frame-ancestors (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors).
 
 ### Server-side Blazor apps
 
-The following example is a starting point for further development. In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the *Policy directives* section, along with any other directives that your app specification requires.
-
-For Blazor Web Apps or Blazor Server apps:
+The following example is a starting point for further development. At the top of [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the [*Policy directives*](#policy-directives) section, along with any other directives that your app specification requires.
 
 :::moniker range=">= aspnetcore-8.0"
+
+For Blazor Web Apps or Blazor Server apps:
 
 ```html
 <meta http-equiv="Content-Security-Policy" content="
@@ -210,11 +218,15 @@ Blazor Web Apps include an inline `onclick` JavaScript event handler in the `Nav
 
   For more information, see [CSP: script-src: Unsafe inline script (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src#unsafe_inline_script).
 
-* Move the inline JavaScript event handler to a JavaScript file or module, where it's hashed for the CSP.
+* Move the inline JavaScript event handler to a JavaScript file or module that's permitted to load by the policy.
+
+Blazor Web Apps also have an `ImportMap` component in `<head>` content that renders an inline import map `<script>` tag. To modify the policy to permit the import map to load, see the [Resolving CSP violations with Subresource Integrity (SRI) or a cryptographic nonce](#resolving-csp-violations-with-subresource-integrity-sri-or-a-cryptographic-nonce) section.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+For Blazor Server apps:
 
 ```html
 <meta http-equiv="Content-Security-Policy" content="
@@ -232,6 +244,8 @@ Blazor Web Apps include an inline `onclick` JavaScript event handler in the `Nav
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+For Blazor Server apps:
+
 ```html
 <meta http-equiv="Content-Security-Policy" content="
     base-uri 'self';
@@ -247,6 +261,8 @@ Blazor Web Apps include an inline `onclick` JavaScript event handler in the `Nav
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+For Blazor Server apps:
 
 ```html
 <meta http-equiv="Content-Security-Policy" content="
@@ -381,10 +397,14 @@ Two approaches for resolving CSP violations, which are described in the next two
 
 Subresource Integrity (SRI) enables browsers to confirm that fetched resources aren't tampered with in transit. A cryptographic hash provided on the resource must match the hash computed by the browser for the fetched resource and the hash listed in the CSP. Browser compatibility can be assessed at [Can I use? Subresource Integrity](https://caniuse.com/subresource-integrity).
 
-In the following example for a Blazor Server app, an integrity is calculated using a third-party tool and specified for the Blazor script (`blazor.server.js`) and CSP. The Blazor script doesn't dynamically change in this scenario and has a stable SHA hash, so you can hardcode the `integrity` attribute's value and the CSP.
+In the following example for a Blazor Server app, an integrity is calculated using a third-party tool and specified for the Blazor script (`blazor.server.js`) and CSP. The Blazor script doesn't dynamically change in this scenario and has a stable SHA hash, so you can hardcode the `integrity` attribute's value.
 
 > [!CAUTION]
-> ⚠️ Set the [`crossorigin` attribute (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) on a subresource that's loaded from a different origin without [Cross-Origin Resource Sharing (CORS)](xref:security/cors). If the app's origin is different from where a subresource loads, an `Access-Control-Allow-Origin` header is required that allows the resource to be shared with the requesting origin *or else* the `crossorigin` attribute must be applied to the subresource's tag in the app. Otherwise, the browser adopts the 'fail-open' policy for the subresource, which means the subresource is loaded without checking its integrity. The `crossorigin` attribute isn't added to the Blazor `<script>` tag in the following example because the Blazor script is loaded from the app's origin. For more information, see [Cross-Origin Resource Sharing and Subresource Integrity (MDN documentation)](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity#cross-origin_resource_sharing_and_subresource_integrity).
+> ⚠️ Set the [`crossorigin` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) on a subresource that's loaded from a different origin without [Cross-Origin Resource Sharing (CORS)](xref:security/cors). If the app's origin is different from where a subresource loads, an `Access-Control-Allow-Origin` header is required that allows the resource to be shared with the requesting origin *or else* the `crossorigin` attribute must be applied to the subresource's tag in the app. Otherwise, the browser adopts the 'fail-open' policy for the subresource, which means the subresource is loaded without checking its integrity.
+>
+> The `crossorigin` attribute isn't added to the Blazor `<script>` tag in the following example because the Blazor script is loaded from the app's origin.
+>
+> For more information, see [Cross-Origin Resource Sharing and Subresource Integrity (MDN documentation)](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity#cross-origin_resource_sharing_and_subresource_integrity).
 
 ```razor
 <!DOCTYPE html>
@@ -409,9 +429,9 @@ In the following example for a Blazor Server app, an integrity is calculated usi
 </html>
 ```
 
-In the following example for a Blazor Web App (.NET 8 or later), an integrity is calculated for the `ImportMap` component. The `ImportMap` integrity value is computed for each app request because the `ImportMap` component renders unique content each time the page is generated for fingerprinted assets (.NET 9 or later).
+In the following example for a Blazor Web App (.NET 8 or later), an integrity is calculated for the `ImportMap` component (.NET 9 or later). The `ImportMap` integrity value is computed for each app request because the `ImportMap` component renders unique content each time the page is generated for fingerprinted assets.
 
-The rendered import map from the `ImportMap` component is generated by the app at its origin, so the [`crossorigin` attribute (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) isn't included in the `ImportMap` tag. For more information, see [MDN CSP Guide: Hashes](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP#hashes) and [Subresource Integrity (MDN documentation)](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity).
+The rendered import map from the `ImportMap` component is generated by the app at its origin, so the [`crossorigin` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) isn't included in the `ImportMap` tag. For more information, see [MDN CSP Guide: Hashes](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP#hashes) and [Subresource Integrity (MDN documentation)](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity).
 
 ```razor
 @using System.Security.Cryptography
@@ -455,7 +475,7 @@ The rendered import map from the `ImportMap` component is generated by the app a
 }
 ```
 
-Prior to .NET 6, use `.Replace("\r\n", "\n")` instead of calling <xref:System.String.ReplaceLineEndings%2A> in the preceding code example.
+Prior to .NET 6, use `.Replace("\r\n", "\n")` instead of calling <xref:System.String.ReplaceLineEndings%2A> in the preceding code.
 
 > [!NOTE]
 > If additional attributes must be splatted on the `ImportMap` components's rendered `<script>` element, you can pass a dictionary of all of the attributes to the `ImportMap` component in its <xref:Microsoft.AspNetCore.Components.ImportMap.AdditionalAttributes%2A> property. The `integrity` attribute name-value pair are passed in the dictionary with the rest of the additional passed attributes.
@@ -464,7 +484,7 @@ Prior to .NET 6, use `.Replace("\r\n", "\n")` instead of calling <xref:System.St
 
 A cryptographic nonce (*number used once*) enables browsers to confirm that fetched resources aren't tampered with in transit. A single-use cryptographic nonce provided in the CSP must match the nonce indicated on the resource. Browser compatibility can be assessed at [Can I use? Nonce](https://caniuse.com/?search=nonce).
 
-In the following example for a Blazor Web App (.NET 8 or later), a nonce is created for the `ImportMap` component with a unique value each time the app is requested.
+In the following example for a Blazor Web App (.NET 8 or later), a nonce is created for the `ImportMap` component (.NET 9 or later) with a unique value each time the app is loaded.
 
 For more information, see [MDN CSP Guide: Nonces](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP#nonces) and [CSP: script-src: Unsafe inline script (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src#unsafe_inline_script).
 
@@ -473,9 +493,6 @@ For more information, see [MDN CSP Guide: Nonces](https://developer.mozilla.org/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    ...
-    <ImportMap nonce="@nonce" />
-    ...
     <meta http-equiv="Content-Security-Policy" content="
         base-uri 'self';
         default-src 'self';
@@ -486,6 +503,9 @@ For more information, see [MDN CSP Guide: Nonces](https://developer.mozilla.org/
         style-src https:;
         connect-src 'self' http: ws: wss:;
         upgrade-insecure-requests;" />
+    ...
+    <ImportMap nonce="@nonce" />
+    ...
 </head>
 ...
 </html>
@@ -581,10 +601,10 @@ Alternatively, use the preceding code but apply CSPs on a per-layout basis in th
 
 A `<meta>` tag policy doesn't support the following directives:
 
-* [frame-ancestors](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors)
-* [report-to](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/report-to)
-* [report-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/report-uri)
-* [sandbox](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox)
+* [`frame-ancestors`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors)
+* [`report-to`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/report-to)
+* [`report-uri`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/report-uri)
+* [`sandbox`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox)
 
 To support the preceding directives, use a header named `Content-Security-Policy`. The directive string is the header's value.
 
