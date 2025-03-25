@@ -5,7 +5,7 @@ description: Learn how to secure a Blazor WebAssembly App with Microsoft Entra I
 monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 03/25/2025
 uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
@@ -124,12 +124,14 @@ For more information on .NET Aspire, see [General Availability of .NET Aspire: S
 
 [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
 
+Also, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+
 ## Sample app
 
 The sample app consists of five projects:
 
 * .NET Aspire:
-  * `Aspire.AppHost`: Used to manage the high level orchestration concerns of the app.
+  * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
   * `Aspire.ServiceDefaults`: Contains default .NET Aspire app configurations that can be extended and customized as needed.
 * `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppEntra`: Server-side project of the Blazor Web App.

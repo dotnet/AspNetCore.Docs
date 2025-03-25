@@ -436,7 +436,7 @@ Inspect the sample app for the following features:
 
 :::zone pivot="bff-pattern"
 
-This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **Non-BFF pattern** if the app's specification doesn't call for adopting the BFF pattern.
+This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **Non-BFF pattern (Interactive Auto)** (Interactive Auto rendering) or **Non-BFF pattern (Interactive Server)** (Interactive Server rendering) if the app's specification doesn't call for adopting the BFF pattern.
 
 The following specification is covered:
 
@@ -457,12 +457,14 @@ For more information on .NET Aspire, see [General Availability of .NET Aspire: S
 
 [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
 
+Also, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+
 ## Sample app
 
 The sample app consists of five projects:
 
 * .NET Aspire:
-  * `Aspire.AppHost`: Used to manage the high level orchestration concerns of the app.
+  * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
   * `Aspire.ServiceDefaults`: Contains default .NET Aspire app configurations that can be extended and customized as needed.
 * `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppOidc`: Server-side project of the Blazor Web App.
