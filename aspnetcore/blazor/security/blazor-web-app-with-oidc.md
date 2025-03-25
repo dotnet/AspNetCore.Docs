@@ -15,9 +15,9 @@ zone_pivot_groups: blazor-web-app-oidc-specification
 
 This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 8 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-:::zone pivot="without-bff-pattern"
+:::zone pivot="non-bff-pattern"
 
-This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with an app that adopts global Interactive Auto rendering (server and `.Client` projects). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **OIDC with BFF pattern** if the app's specification calls for adopting the BFF pattern.
+This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with an app that adopts global Interactive Auto rendering (server and `.Client` projects). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **BFF pattern** if the app's specification calls for adopting the BFF pattern.
 
 The following specification is covered:
 
@@ -36,7 +36,7 @@ The sample app consists of two projects:
 * `BlazorWebAppOidc`: Server-side project of the Blazor Web App, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppOidc.Client`: Client-side project of the Blazor Web App.
 
-Access the sample apps through the latest version folder from the repository's root with the following link. The projects are in the `BlazorWebAppOidc` folder for .NET 8 or later.
+Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppOidc` folder for .NET 8 or later.
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -251,9 +251,9 @@ The sample app only provides a user name and email for display purposes. It does
 
 :::zone-end
 
-:::zone pivot="without-bff-pattern-server"
+:::zone pivot="non-bff-pattern-server"
 
-This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with an app that adopts global Interactive Server rendering (single project). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **OIDC with BFF pattern** if the app's specification calls for adopting the BFF pattern with global Interactive Auto rendering.
+This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with an app that adopts global Interactive Server rendering (single project). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **BFF pattern** if the app's specification calls for adopting the BFF pattern with global Interactive Auto rendering.
 
 The following specification is covered:
 
@@ -267,7 +267,7 @@ For an alternative experience using [Microsoft Authentication Library for .NET](
 
 The sample app consists of a single server-side Blazor Web App project (`BlazorWebAppOidcServer`).
 
-Access the sample app through the latest version folder from the repository's root with the following link. The project is in the `BlazorWebAppOidcServer` folder for .NET 8 or later.
+Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppOidcServer` folder for .NET 8 or later.
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -434,9 +434,9 @@ Inspect the sample app for the following features:
 
 :::zone-end
 
-:::zone pivot="with-bff-pattern"
+:::zone pivot="bff-pattern"
 
-This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **OIDC without BFF pattern** if the app's specification doesn't call for adopting the BFF pattern.
+This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **Non-BFF pattern (Interactive Auto)** (Interactive Auto rendering) or **Non-BFF pattern (Interactive Server)** (Interactive Server rendering) if the app's specification doesn't call for adopting the BFF pattern.
 
 The following specification is covered:
 
@@ -457,18 +457,20 @@ For more information on .NET Aspire, see [General Availability of .NET Aspire: S
 
 [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
 
+Also, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+
 ## Sample app
 
 The sample app consists of five projects:
 
 * .NET Aspire:
-  * `Aspire.AppHost`: Used to manage the high level orchestration concerns of the app.
+  * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
   * `Aspire.ServiceDefaults`: Contains default .NET Aspire app configurations that can be extended and customized as needed.
 * `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppOidc`: Server-side project of the Blazor Web App.
 * `BlazorWebAppOidc.Client`: Client-side project of the Blazor Web App.
 
-Access the sample apps through the latest version folder from the repository's root with the following link. The projects are in the `BlazorWebAppOidcBff` folder for .NET 8 or later.
+Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppOidcBff` folder for .NET 8 or later.
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -483,8 +485,6 @@ The sample app only configures an insecure HTTP launch profile (`http`) for use 
 ## Server-side Blazor Web App project (`BlazorWebAppOidc`)
 
 The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App. The project uses [YARP](https://dotnet.github.io/yarp/) to proxy requests to a weather forecast endpoint in the backend web API project (`MinimalApiJwt`) with the `access_token` stored in the authentication cookie.
-
-The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 ### Configuration
 
@@ -551,7 +551,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   ```
 
   > [!NOTE]
-  > When using Microsoft Entra ID, the `Weather.Get` scope is configured in the Azure or Entra portal under **Expose an API**.
+  > When using Microsoft Entra ID, the `Weather.Get` scope is configured in the Entra or Azure portal in **Expose an API**.
 
   Example:
 
@@ -720,6 +720,8 @@ The sample app only provides a user name and email for display purposes. It does
 
 The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppOidc`) are proxied to the `MinimalApiJwt` project.
 
+The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
+
 ### Configuration
 
 Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> call in the project's `Program` file:
@@ -731,7 +733,7 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
   ```
 
   > [!NOTE]
-  > When using Microsoft Entra ID, match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Azure or Entra portal.
+  > When using Microsoft Entra ID, match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Entra or Azure portal.
 
   Example:
 
@@ -776,7 +778,7 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
 
 ### Minimal API for weather data
 
-Secure weather forecast data endpoint in the project's `Program` file:
+A secure weather forecast data endpoint in the project's `Program` file:
 
 ```csharp
 app.MapGet("/weather-forecast", () =>
@@ -813,7 +815,7 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
                 <AntiforgeryToken />
                 <button type="submit" class="nav-link">
                     <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true">
-                    </span> Logout @context.User.Identity?.Name
+                    </span> Logout
                 </button>
             </form>
         </Authorized>
