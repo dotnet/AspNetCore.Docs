@@ -5,8 +5,9 @@ description: Learn how to secure a Blazor WebAssembly App with Microsoft Entra I
 monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 03/25/2025
 uid: blazor/security/blazor-web-app-entra
+zone_pivot_groups: blazor-web-app-entra-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
 
@@ -17,6 +18,10 @@ uid: blazor/security/blazor-web-app-entra
 -->
 
 This article describes how to secure a Blazor Web App with [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) using a sample app.
+
+:::zone pivot="non-bff-pattern"
+
+This version of the article covers implementing Entra without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **BFF pattern** if the app's specification calls for adopting the BFF pattern.
 
 The following specification is covered:
 
@@ -35,7 +40,7 @@ The sample app consists of two projects:
 * `BlazorWebAppEntra`: Server-side project of the Blazor Web App, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
 
-Access sample apps through the latest version folder from the repository's root with the following link. The projects are in the `BlazorWebAppEntra` folder for .NET 9 or later.
+Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppEntra` folder for .NET 9 or later.
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -93,6 +98,143 @@ Example:
 },
 ```
 
+:::zone-end
+
+:::zone pivot="bff-pattern"
+
+This version of the article covers implementing Entra with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **Non-BFF pattern** if the app's specification doesn't call for adopting the BFF pattern.
+
+The following specification is covered:
+
+* The Blazor Web App uses the [Auto render mode with global interactivity (`InteractiveAuto`)](xref:blazor/components/render-modes).
+* The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A> to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
+* The app uses [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), based on [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages.
+* Automatic non-interactive token refresh is managed by the framework.
+* The app uses server-side and client-side service abstractions to display generated weather data.
+* The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) is adopted using [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) for service discovery and [YARP](https://dotnet.github.io/yarp/) for proxying requests to a weather forecast endpoint on the backend app.
+  * A backend web API uses JWT-bearer authentication to validate JWT tokens saved by the Blazor Web App in the sign-in cookie.
+  * Aspire improves the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns for building and running distributed apps.
+  * YARP (Yet Another Reverse Proxy) is a library used to create a reverse proxy server.
+
+<!-- UPDATE 10.0 Remove at 10.0 -->
+
+For more information on .NET Aspire, see [General Availability of .NET Aspire: Simplifying .NET Cloud-Native Development (May, 2024)](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/).
+
+## Prerequisite
+
+[.NET Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
+
+Also, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+
+## Sample app
+
+The sample app consists of five projects:
+
+* .NET Aspire:
+  * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
+  * `Aspire.ServiceDefaults`: Contains default .NET Aspire app configurations that can be extended and customized as needed.
+* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `BlazorWebAppEntra`: Server-side project of the Blazor Web App.
+* `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
+
+Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppEntraBff` folder for .NET 9 or later.
+
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+
+## .NET Aspire projects
+
+For more information on using .NET Aspire and details on the `.AppHost` and `.ServiceDefaults` projects of the sample app, see the [.NET Aspire documentation](/dotnet/aspire/).
+
+Confirm that you've met the prerequisites for .NET Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+
+The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in .NET Aspire (.NET Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
+
+## Server-side Blazor Web App project (`BlazorWebAppEntra`)
+
+The `BlazorWebAppEntra` project is the server-side project of the Blazor Web App.
+
+## Client-side Blazor Web App project (`BlazorWebAppEntra.Client`)
+
+The `BlazorWebAppEntra.Client` project is the client-side project of the Blazor Web App.
+
+If the user needs to log in or out during client-side rendering, a full page reload is initiated.
+
+## Backend web API project (`MinimalApiJwt`)
+
+The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppOidc`) are proxied to the `MinimalApiJwt` project.
+
+The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
+
+A secure weather forecast data endpoint in the project's `Program` file:
+
+```csharp
+app.MapGet("/weather-forecast", () =>
+{
+    var forecast = Enumerable.Range(1, 5).Select(index =>
+        new WeatherForecast
+        (
+            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            Random.Shared.Next(-20, 55),
+            summaries[Random.Shared.Next(summaries.Length)]
+        ))
+        .ToArray();
+    return forecast;
+}).RequireAuthorization();
+```
+
+The <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method requires authorization for the route definition. For any controllers that you add to the project, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action.
+
+## Configuration
+
+This section explains how to configure the sample app.
+
+<xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)) is configured by the `AzureAd` section of the server project's `appsettings.json` file.
+
+In the app's registration in the Entra or Azure portal, use a **Web** platform configuration with a **Redirect URI** of `https://localhost/signin-oidc` (a port isn't required). Confirm that **ID tokens** and access tokens under **Implicit grant and hybrid flows** are **not** selected. The OpenID Connect handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
+
+The `Weather.Get` scope is configured in the Entra or Azure portal in **Expose an API**. Do ***not*** configure **API Permissions** (grant delegated permission) to access weather data via the web API.
+
+### Configure the server project
+
+In the server project's app settings file (`appsettings.json`), provide the app's `AzureAd` section configuration. Obtain the application (client) ID, tenant (publisher) domain, and directory (tenant) ID from the app's registration in the Entra or Azure portal.
+
+The App ID URI is obtained for the `Weather.Get` scope. Don't include the scope name, and there's no trailing slash.
+
+```json
+"AzureAd": {
+  "CallbackPath": "/signin-oidc",
+  "ClientId": "{CLIENT ID}",
+  "Domain": "{DOMAIN}",
+  "Instance": "https://login.microsoftonline.com/",
+  "ResponseType": "code",
+  "TenantId": "{TENANT ID}",
+  "AppIdUri": "{APP ID URI}"
+},
+```
+
+Placeholders in the preceding example:
+
+* `{CLIENT ID}`: The application (client) ID.
+* `{DOMAIN}`: The tenant (publisher) domain.
+* `{TENANT ID}`: The directory (tenant) ID.
+* `{APP ID URI}`: The Application ID URI.
+
+Example:
+
+```json
+"AzureAd": {
+  "CallbackPath": "/signin-oidc",
+  "ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+  "Domain": "contoso.onmicrosoft.com",
+  "Instance": "https://login.microsoftonline.com/",
+  "ResponseType": "code",
+  "TenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "AppIdUri": "api://00001111-aaaa-2222-bbbb-3333cccc4444"
+},
+```
+
+:::zone-end
+
 The callback path (`CallbackPath`) must match the redirect URI (login callback path) configured when registering the application in the Entra or Azure portal. Paths are configured in the **Authentication** blade of the app's registration. The default value of `CallbackPath` is `/signin-oidc` for a registered redirect URI of `https://localhost/signin-oidc` (a port isn't required).
 
 The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath%2A> (configuration key: "`SignedOutCallbackPath`") is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from Entra. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri%2A> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri%2A>, if specified.
@@ -114,6 +256,64 @@ If you don't add the signed-out callback path URI to the app's registration in E
 > Entra doesn't redirect a primary admin user (root account) or external user back to the Blazor application. Instead, Entra logs the user out of the app and recommends that they close all of their browser windows. For more information, see [postLogoutRedirectUri not working when authority url contains a tenant ID (`AzureAD/microsoft-authentication-library-for-js` #5783)](https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/5783#issuecomment-1465217522).
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
+:::zone pivot="bff-pattern"
+
+### Configure the backend web API project (`MinimalApiJwt`)
+
+Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> call in the project's `Program` file.
+
+#### Authority
+
+<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority%2A> sets the Authority for making OIDC calls.
+
+```csharp
+jwtOptions.Authority = "{AUTHORITY}";
+```
+
+The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee`.
+
+If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
+
+```csharp
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
+```
+
+If the app is registered in an AAD B2C tenant:
+
+```csharp
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+```
+
+#### Audience
+
+<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience%2A> sets the Audience for any received OIDC token. 
+
+```csharp
+jwtOptions.Audience = "{AUDIENCE}";
+```
+
+Match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Entra or Azure portal.
+
+The following examples use an Application (Client) Id (`{CLIENT ID}`) of `00001111-aaaa-2222-bbbb-3333cccc4444`. The second example uses a directory name (`{DIRECTORY NAME}`) of `contoso`.
+
+If the app is registered in an ME-ID tenant:
+
+App ID URI (`{APP ID URI}`): `api://{CLIENT ID}`
+
+```csharp
+jwtOptions.Audience = "api://00001111-aaaa-2222-bbbb-3333cccc4444";
+```
+
+If the app is registered in an AAD B2C tenant:
+
+App ID URI (`{APP ID URI}`): `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
+
+```csharp
+jwtOptions.Audience = "https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444";
+```
+
+:::zone-end
                 
 ### Establish the client secret
 
@@ -249,13 +449,13 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
                 <AntiforgeryToken />
                 <button type="submit" class="nav-link">
                     <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true">
-                    </span> Logout @context.User.Identity?.Name
+                    </span> Logout
                 </button>
             </form>
         </Authorized>
         <NotAuthorized>
             <a class="nav-link" href="authentication/login">
-                <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> 
+                <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span>
                 Login
             </a>
         </NotAuthorized>

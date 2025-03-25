@@ -86,7 +86,7 @@ Blazor enhances page navigation and form handling by intercepting the request in
 
 The preceding example includes antiforgery support by including an <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component in the form. Antiforgery support is explained further in the [Antiforgery support](#antiforgery-support) section of this article.
 
-To submit a form based on another element's DOM events, for example `oninput` or `onblur`, use JavaScript to submit the form ([`submit` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)).
+To submit a form based on another element's DOM events, for example `oninput` or `onblur`, use JavaScript to submit the form ([`submit`](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)).
 
 Instead of using plain forms in Blazor apps, a form is typically defined with Blazor's built-in form support using the framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
 
@@ -445,7 +445,7 @@ jQuery validation isn't supported in Razor components. We recommend any of the f
 * Follow the guidance in <xref:blazor/forms/validation> for either:
   * Server-side validation in a Blazor Web App that adopts an interactive render mode.
   * Client-side validation in a standalone Blazor Web Assembly app.
-* Use native HTML validation attributes (see [Client-side form validation (MDN documentation)](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
+* Use native HTML validation attributes (see [Client-side form validation](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
 * Adopt a third-party validation JavaScript library.
 
 <!-- UPDATE 10.0 - Remove if the feature is realized. -->
