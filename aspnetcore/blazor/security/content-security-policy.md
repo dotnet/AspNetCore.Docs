@@ -166,7 +166,7 @@ Blazor Web Apps (.NET 8 or later) automatically include a response header settin
 Content-Security-Policy: frame-ancestors 'self'
 ```
 
-To change the default value to the more restrictive `'none'` and prevent all parents from embedding the app, set the <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy%2A> option in the call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> in the `Program` file. The following only takes effect when WebSocket compression is enabled (`<xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureWebSocketAcceptContext%2A>` is set, which is the default for Blazor apps).
+To change the default value to the more restrictive `'none'` and prevent all parents from embedding the app, set the <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy%2A> option in the call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> in the `Program` file. The following only takes effect when WebSocket compression is enabled (<xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureWebSocketAcceptContext> is set, which is the default for Blazor apps).
 
 ```csharp
 .AddInteractiveServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
@@ -399,8 +399,8 @@ Subresource Integrity (SRI) enables browsers to confirm that fetched resources a
 
 In the following example for a Blazor Server app, an integrity is calculated using a third-party tool and specified for the Blazor script (`blazor.server.js`) and CSP. The Blazor script doesn't dynamically change in this scenario and has a stable SHA hash, so you can hardcode the `integrity` attribute's value.
 
-> [!CAUTION]
-> ⚠️ Set the [`crossorigin` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) on a subresource that's loaded from a different origin without [Cross-Origin Resource Sharing (CORS)](xref:security/cors). If the app's origin is different from where a subresource loads, an `Access-Control-Allow-Origin` header is required that allows the resource to be shared with the requesting origin *or else* the `crossorigin` attribute must be applied to the subresource's tag in the app. Otherwise, the browser adopts the 'fail-open' policy for the subresource, which means the subresource is loaded without checking its integrity.
+> [!WARNING]
+> Set the [`crossorigin` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) on a subresource that's loaded from a different origin without [Cross-Origin Resource Sharing (CORS)](xref:security/cors). If the app's origin is different from where a subresource loads, an `Access-Control-Allow-Origin` header is required that allows the resource to be shared with the requesting origin *or else* the `crossorigin` attribute must be applied to the subresource's tag in the app. Otherwise, the browser adopts the 'fail-open' policy for the subresource, which means the subresource is loaded without checking its integrity.
 >
 > The `crossorigin` attribute isn't added to the Blazor `<script>` tag in the following example because the Blazor script is loaded from the app's origin.
 >
