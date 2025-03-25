@@ -7,13 +7,13 @@ monikerRange: '>= aspnetcore-8.0'
 ms.date: 6/4/2023
 uid: security/authorization/iard
 ---
-# Custom authorization policies with IAuthorizationRequirementData
+# Custom authorization policies with `IAuthorizationRequirementData`
 
 Consider the following sample that implements a custom `MinimumAgeAuthorizationHandler`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Program.cs" highlight="9":::
 
-The `MinimumAgeAuthorizationHandler` class handles the single IAuthorizationRequirement provided by the MinimumAgeAuthorizeAttribute implementation of IAuthorizationRequirementData, as specified by the generic parameter MinimumAgeAuthorizeAttribute.
+The `MinimumAgeAuthorizationHandler` class handles the single <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> provided by the MinimumAgeAuthorizeAttribute implementation of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData>, as specified by the generic parameter MinimumAgeAuthorizeAttribute.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
 
@@ -25,7 +25,7 @@ The `GreetingsController` displays the user's name when they satisfy the minimum
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Controllers/GreetingsController.cs" highlight="10":::
 
-The complete sample can be found in the [AuthRequirementsData](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) folder of the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
+The complete sample can be found in the [`AuthRequirementsData` folder](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) of the [ASP.NET Core documentation samples GitHub repository](https://github.com/dotnet/AspNetCore.Docs.Samples).
 
 The sample can be tested with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl:
 
