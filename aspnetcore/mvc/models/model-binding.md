@@ -162,7 +162,7 @@ By default, a model state error isn't created if no value is found for a model p
 
 If model state should be invalidated when nothing is found in form fields for a model property, use the [`[BindRequired]`](#bindrequired-attribute) attribute.
 
-Note that this `[BindRequired]` behavior applies to model binding from posted form data, not to JSON or XML data in a request body. Request body data is handled by [input formatters](#input-formatters).
+Note that this `[BindRequired]` behavior applies to model binding from posted form data, not from JSON or XML data in a request body. Request body data is handled by [input formatters](#input-formatters).
 
 ## Type conversion errors
 
