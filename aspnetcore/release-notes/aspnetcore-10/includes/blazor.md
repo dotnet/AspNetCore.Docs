@@ -89,3 +89,37 @@ The following example uses the `CloseColumnOptionsAsync` method to close the col
         movies.Where(m => m.Title!.Contains(titleFilter));
 }
 ```
+
+<!-- PREVIEW 3 ..... NOTE CONTENT CHANGE FOR `<WasmEnableStreamingResponse>` BELOW!!!!!
+
+### Response streaming is opt-in and how to opt-out
+
+In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClient> requests was opt-in. Now, response streaming is enabled by default.
+
+This is a breaking change because calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync%2A?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content%2A?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a `BrowserHttpReadStream` and no longer a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
+
+DON'T USE (comment out) ..............
+
+To opt-out of response streaming globally, use either of the following approaches:
+
+* Add the `<WasmEnableStreamingResponse>` property to the project file with a value of `false`:
+  
+  ```xml
+  <WasmEnableStreamingResponse>false</WasmEnableStreamingResponse>
+  ```
+
+* Set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
+
+..................... UNTIL https://github.com/dotnet/runtime/issues/97449 IS RESOLVED AND RELEASED.
+
+To opt-out of response streaming globally, set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
+
+To opt-out of response streaming for an individual request, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage> (`requestMessage` in the following example):
+
+```csharp
+requestMessage.SetBrowserResponseStreamingEnabled(false);
+```
+
+For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](xref:blazor/call-web-api?view=aspnetcore-10.0#httpclient-and-httprequestmessage-with-fetch-api-request-options).
+
+-->
