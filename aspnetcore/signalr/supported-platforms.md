@@ -39,11 +39,15 @@ If the server runs IIS, the WebSockets transport requires IIS 8.0 or later on Wi
 
 The [Java client](xref:signalr/java-client) supports Java 8 and later versions.
 
+## Swift client
+
+The [Swift client](https://github.com/dotnet/signalr-client-swift) supports Swift >= 5.10
+
 ## Unsupported clients
 
 The following clients are available but are experimental or unofficial. The following clients aren't currently supported and may never be supported:
 
 * [C++ client](https://github.com/aspnet/SignalR-Client-Cpp)
-* [Swift client](https://github.com/moozzyk/SignalR-Client-Swift)
+* [3rd party Swift client](https://github.com/moozzyk/SignalR-Client-Swift)
 
 [!INCLUDE[](~/includes/SignalR/es6.md)]
