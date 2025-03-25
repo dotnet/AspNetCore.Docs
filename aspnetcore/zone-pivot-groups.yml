@@ -84,12 +84,12 @@ groups:
   title: Specification
   prompt: Choose the app specification
   pivots:
-    - id: without-bff-pattern
-      title: OIDC without BFF pattern (Auto)
-    - id: without-bff-pattern-server
-      title: OIDC without BFF pattern (Server)
-    - id: with-bff-pattern
-      title: OIDC with BFF pattern (Auto)
+    - id: non-bff-pattern
+      title: Non-BFF pattern (Interactive Auto)
+    - id: non-bff-pattern-server
+      title: Non-BFF pattern (Interactive Server)
+    - id: bff-pattern
+      title: BFF pattern (Interactive Auto)
 - id: tooling
   title: Tooling
   prompt: Select your tooling
@@ -100,3 +100,11 @@ groups:
       title: Visual Studio Code
     - id: cli
       title: .NET CLI
+- id: blazor-web-app-entra-specification
+  title: Specification
+  prompt: Choose the app specification
+  pivots:
+    - id: non-bff-pattern
+      title: Non-BFF pattern
+    - id: bff-pattern
+      title: BFF pattern
