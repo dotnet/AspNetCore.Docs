@@ -955,6 +955,9 @@ items:
           - name: JavaScript API reference
             href: /javascript/api/@microsoft/signalr/
             displayName: signalr
+          - name: Swift client
+            uid: signalr/swift-client
+            displayName: signalr
       - name: Host and scale
         displayName: signalr
         items:

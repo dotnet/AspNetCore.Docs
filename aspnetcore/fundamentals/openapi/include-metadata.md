@@ -379,10 +379,9 @@ When not specified by an attribute:
 * the schema for the response body of 3xx and 5xx responses is considered to be not specified,
 * the content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
 
-Note that there are no compile-time checks to ensure that the response metadata specified with a [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute is consistent with the actual behavior of the action method,
-which may return a different status code or response body type than specified by the metadata.
+By default, there are no compile-time checks to ensure that the response metadata specified with a [`[ProducesResponseType]` attribute](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) is consistent with the actual behavior of the action method, which may return a different status code or response body type than specified by the metadata. To enable these checks, [enable Web API analyzers](xref:web-api/advanced/analyzers).
 
-In controller-based apps, ASP.NET responds with a ProblemDetails response type when model validation fails or when the action method returns a result with a 4xx or 5xx HTTP status code. Validation errors typically use the 400 status code, so you can use the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute to specify the error response for an action, as shown in the following example:
+In controller-based apps, ASP.NET responds with a ProblemDetails response type when model validation fails or when the action method returns a result with a 4xx or 5xx HTTP status code. Validation errors typically use the 400 status code, so you can use the [`[ProducesResponseType]` attribute](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) to specify the error response for an action, as shown in the following example:
 
 ```csharp
 [HttpPut("/todos/{id}")]
@@ -541,7 +540,7 @@ public enum DayOfTheWeekAsString
 }
 ```
 
-A special case is when an enum type has the [Flags] attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags enum with a [JsonConverterAttribute] will be defined as `type: string` in the generated schema with no `enum` property, since the value could be any combination of the enum values. For example, the following enum:
+A special case is when an enum type has the `[Flags]` attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags enum with a `[JsonConverterAttribute]` is defined as `type: string` in the generated schema with no `enum` property, since the value could be any combination of the enum values. For example, the following enum:
 
 ```csharp
 [Flags, JsonConverter(typeof(JsonStringEnumConverter<PizzaToppings>))]
