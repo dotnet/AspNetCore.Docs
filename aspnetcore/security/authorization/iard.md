@@ -13,7 +13,7 @@ Consider the following sample that implements a custom `MinimumAgeAuthorizationH
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Program.cs" highlight="9":::
 
-The `MinimumAgeAuthorizationHandler` class handles the single <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> provided by the MinimumAgeAuthorizeAttribute implementation of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData>, as specified by the generic parameter MinimumAgeAuthorizeAttribute.
+The `MinimumAgeAuthorizationHandler` class handles the single <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> provided by the `MinimumAgeAuthorizeAttribute` implementation of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData>, as specified by the generic parameter `MinimumAgeAuthorizeAttribute`.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
 
