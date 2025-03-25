@@ -5,7 +5,7 @@ description: Learn how to secure a Blazor Web App with Windows Authentication.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2025
+ms.date: 03/25/2025
 uid: blazor/security/blazor-web-app-windows-authentication
 ---
 # Secure an ASP.NET Core Blazor Web App with Windows Authentication
@@ -16,7 +16,7 @@ uid: blazor/security/blazor-web-app-windows-authentication
 
 -->
 
-This article describes how to secure a Blazor Web App with [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 9 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)). For more information, see <xref:security/authentication/windowsauth>.
+This article describes how to secure a Blazor Web App with [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) using a sample app. For more information, see <xref:security/authentication/windowsauth>.
 
 The app specification for the Blazor Web App:
 
@@ -25,7 +25,7 @@ The app specification for the Blazor Web App:
 
 ## Sample app
 
-Access the sample app through the latest version folder from the repository's root with the following link. The project is in the `BlazorWebAppWinAuthServer` folder for .NET 9 or later.
+Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppWinAuthServer` folder for .NET 9 or later.
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
