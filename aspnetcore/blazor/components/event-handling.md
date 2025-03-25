@@ -244,7 +244,7 @@ function eventArgsCreator(event) {
 }
 ```
 
-The `event` parameter is a [DOM Event (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Event).
+The `event` parameter is a [DOM Event](https://developer.mozilla.org/docs/Web/API/Event).
 
 Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers). Provide the appropriate browser event name to `browserEventName`, which for the example shown in this section is `click` for a button selection in the UI.
 

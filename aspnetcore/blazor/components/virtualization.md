@@ -261,7 +261,7 @@ For example, you can use a `tabindex` attribute on the scroll container:
 </div>
 ```
 
-To learn more about the meaning of `tabindex` value `-1`, `0`, or other values, see [`tabindex` (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/tabindex).
+To learn more about the meaning of `tabindex` value `-1`, `0`, or other values, see [`tabindex`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/tabindex).
 
 ## Advanced styles and scroll detection
 

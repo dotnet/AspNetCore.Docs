@@ -526,7 +526,7 @@ Examine the Razor markup for the submit button of the <xref:Microsoft.AspNetCore
 <button type="submit" disabled="@(movie is null)">Delete</button>
 ```
 
-The **:::no-loc text="Delete":::** button sets its [`disabled` HTML attribute (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Attributes/disabled) based on the presence of the movie (not `null`) using an explicit Razor expression (`@(...)`).
+The **:::no-loc text="Delete":::** button sets its [`disabled` HTML attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/disabled) based on the presence of the movie (not `null`) using an explicit Razor expression (`@(...)`).
 
 In the C# code of the `@code` block, the `DeleteMovie` method removes the movie, saves the changes to the database, and navigates the user to the movies `Index` page. The exclamation point on the movie field (`movie!`) is the [null-forgiving operator (C# Language Reference)](/dotnet/csharp/language-reference/operators/null-forgiving), which suppresses nullable warnings for `movie`.
 

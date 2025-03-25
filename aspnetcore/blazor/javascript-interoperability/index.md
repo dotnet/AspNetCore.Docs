@@ -107,7 +107,7 @@ A JavaScript function can be invoked directly from an inline event handler. In t
 However, the use of inline event handlers is a *poor design choice* for calling JavaScript functions:
 
 * Mixing HTML markup and JavaScript code often leads to unmaintainable code.
-* Inline event handler execution may be blocked by a [Content Security Policy (CSP) (MDN documentation)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+* Inline event handler execution may be blocked by a [Content Security Policy (CSP) (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/CSP).
 
 We recommend avoiding inline event handlers in favor of approaches that assign handlers in JavaScript with [`addEventListener`](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener), as the following example demonstrates:
 

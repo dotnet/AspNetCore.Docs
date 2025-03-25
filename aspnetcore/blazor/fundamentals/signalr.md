@@ -36,11 +36,11 @@ By default, Interactive Server components:
 
 * Enable compression for [WebSocket connections](xref:fundamentals/websockets). <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> (default: `false`) controls WebSocket compression.
 
-* Adopt a `frame-ancestors` [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) directive set to `'self'`, which only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided. `ContentSecurityFrameAncestorPolicy` controls the `frame-ancestors` CSP. For more information on CSPs, see the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
+* Adopt a [`frame-ancestors`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors) Content Security Policy (CSP) directive set to `'self'`, which is the default and only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided.
 
-The `frame-ancestors` CSP can be removed manually by setting the value of <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null`, as you may want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy). When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it might make the app vulnerable to attack.
+The default `frame-ancestors` CSP can be changed by setting the value of <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy%2A> to `null` if you want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy) or `'none'` for an even stricter policy. When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it will make the app vulnerable to attack. For more information, see <xref:blazor/security/content-security-policy#the-frame-ancestors-directive> and the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 
-Use <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureWebSocketAcceptContext> to configure the <xref:Microsoft.AspNetCore.Http.WebSocketAcceptContext> for the websocket connections used by the server components. By default, a policy that enables compression and sets a CSP for the frame ancestors defined in <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> is applied.
+Use <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureWebSocketAcceptContext> to configure the <xref:Microsoft.AspNetCore.Http.WebSocketAcceptContext> for the WebSocket connections used by the server components. By default, a policy that enables compression and sets a CSP for the frame ancestors defined in <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> is applied.
 
 Usage examples:
 
@@ -51,7 +51,7 @@ builder.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode(o => o.DisableWebSocketCompression = true)
 ```
 
-When compression is enabled, configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quotes required), which allows WebSocket compression but prevents browsers from embedding the app into any `<iframe>`:
+When compression is enabled, configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quotes required), which allows WebSocket compression but prevents browsers from embedding the app into an `<iframe>`:
 
 ```csharp
 builder.MapRazorComponents<App>()
@@ -76,7 +76,7 @@ builder.MapRazorComponents<App>()
 >
 > Additional options include specifying one or more host sources and scheme sources.
 
-For security implications, see <xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>. For more information on the `frame-ancestors` directive, see [CSP: `frame-ancestors` (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors).
+For security implications, see <xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>. For more information, see <xref:blazor/security/content-security-policy> and [CSP: `frame-ancestors` (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors).
 
 :::moniker-end
 
