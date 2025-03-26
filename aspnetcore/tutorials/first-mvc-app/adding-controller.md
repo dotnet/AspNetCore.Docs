@@ -145,7 +145,7 @@ In the preceding URL:
 
 In the preceding example:
 
-* The third URL segment matched the route parameter `id` as defined in the routing format in the `Program.cs` file.
+* The third URL segment matched the route parameter `id` as defined in the routing template in the `Program.cs` file.
 * The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method.
 * The trailing `?` (in `id?`) indicates the `id` parameter is optional.
 
