@@ -689,7 +689,7 @@ The following guidance for GitHub Pages deployments of Blazor WebAssembly apps d
   * **Custom domain**: Set if you intend to use a custom domain, which isn't covered by this guidance. For more information, see [Configuring a custom domain for your GitHub Pages site](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site).
   * **Enforce HTTPS** > Enabled (selected)
  
-&dagger;The SHA hash (`{SHA HASH}` placeholder) represents the SHA hash for the latest `stevesandersonms/ghaction-rewrite-base-href` GitHub Action release version. By pinning to a specific version, there's less risk that a compromised latest release using a version moniker, such as `v1`, can compromise the deployment. Periodically, update the SHA for the latest release to receive the latest features and bug fixes.
+&dagger;The SHA hash (`{SHA HASH}` placeholder) represents the SHA hash for the latest `stevesandersonms/ghaction-rewrite-base-href` GitHub Action release version. By pinning to a specific version, there's less risk that a compromised latest release using a version moniker, such as `v1`, can jeopardize the deployment. Periodically, update the SHA for the latest release to receive the latest features and bug fixes.
 
 To obtain the SHA hash:
 
