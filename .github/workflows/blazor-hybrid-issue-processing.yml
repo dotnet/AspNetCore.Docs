@@ -17,7 +17,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 🌱🐇 **_Spring is coming. Hang in there! I'm pull'in for ya!_** 🐣🌻
+              body: `### 🌱🐇 **_Spring is here!!_** 🐣🌻
 
             A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
             })
