@@ -122,4 +122,14 @@ requestMessage.SetBrowserResponseStreamingEnabled(false);
 
 For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](xref:blazor/call-web-api?view=aspnetcore-10.0#httpclient-and-httprequestmessage-with-fetch-api-request-options).
 
+XXXXXXXXXXXXXXXXXXXX CHANGE EARLIER COVERAGE XXXXXXXXXXXXXXXXXXXX
+
+In the "Ignore the query string and fragment when using `NavLinkMatch.All`" section, change 
+`DisableMatchAllIgnoresLeftUriPart` to `EnableMatchAllForQueryStringAndFragmentSwitchKey` 
+set to `true`.
+
+Also make this change in the *Routing* article at Line 1633.
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 -->
