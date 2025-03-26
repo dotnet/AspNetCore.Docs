@@ -45,7 +45,7 @@ Right-click on the *Views* folder, and then **Add > New Folder** and name the fo
 
 Right-click on the *Views/HelloWorld* folder, and then **Add > New Item**.
 
-In the **Add New Item** dialog select **Show All Templates**.
+In the **Add New Item** dialog select **Show All Templates**. Visual Studio should by default show all templates without having to select **Show All Templates**.
 
 In the **Add New Item - MvcMovie** dialog:
 
