@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +20,12 @@ namespace SampleApp
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureKestrel(options =>
+                    {
+                        options.Limits.MaxRequestBodySize = 6L << 30; // 6 GB
+                        options.Limits.Http2.InitialStreamWindowSize = 16 << 20; // 16 MB
+                        options.Limits.Http2.MaxFrameSize = (1 << 24) - 1;
+                    });
                 });
     }
 }
