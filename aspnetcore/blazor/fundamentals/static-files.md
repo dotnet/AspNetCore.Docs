@@ -193,6 +193,44 @@ For examples of how to address the policy violation with Subresource Integrity (
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-10.0"
+
+### Fingerprint static assets in standalone Blazor WebAssembly apps
+
+In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
+
+The following configuration must be present in the `wwwwoot/index.html` file to adopt the fingerprinting feature:
+
+```html
+<head>
+    ...
+    <script type="importmap"></script>
+    ...
+</head>
+
+<body>
+    ...
+    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+    ...
+</body>
+
+</html>
+```
+
+In the project file (`.csproj`), the `<WriteImportMapToHtml>` property is set to `true`:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+  <PropertyGroup>
+    ...
+    <WriteImportMapToHtml>true</WriteImportMapToHtml>
+    ...
+  </PropertyGroup>
+</Project>
+```
+
+:::moniker-end
+
 :::moniker range="< aspnetcore-9.0"
 
 Configure Static File Middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.

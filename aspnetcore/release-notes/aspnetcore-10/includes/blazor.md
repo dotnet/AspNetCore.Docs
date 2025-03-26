@@ -132,4 +132,39 @@ Also make this change in the *Routing* article at Line 1633.
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+### End-to-end fingerprinting of assets in standalone Blazor WebAssembly apps
+
+In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
+
+The following changes must be made in the `wwwwoot/index.html` file to adopt the fingerprinting feature. The standalone Blazor WebAssembly project template will be updated to include these changes in an upcoming preview release:
+
+```diff
+<head>
+    ...
++   <script type="importmap"></script>
+</head>
+
+<body>
+    ...
+-   <script src="_framework/blazor.webassembly.js"></script>
++   <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+</body>
+
+</html>
+```
+
+In the project file (`.csproj`), add the `<WriteImportMapToHtml>` property set to `true`:
+
+```diff
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
++   <WriteImportMapToHtml>true</WriteImportMapToHtml>
+  </PropertyGroup>
+</Project>
+```
+
 -->
