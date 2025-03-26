@@ -681,13 +681,26 @@ The following guidance for GitHub Pages deployments of Blazor WebAssembly apps d
   * **Actions permissions**
     * **Allow enterprise actions, and select non-enterprise, actions and reusable workflows** > Enabled (selected)
     * **Allow actions created by GitHub** > Enabled (selected)
-    * **Allow actions and reusable workflows** > `stevesandersonms/ghaction-rewrite-base-href@v1,`
+    * **Allow actions and reusable workflows** > `stevesandersonms/ghaction-rewrite-base-href@{SHA HASH},`&dagger;
   * **Workflow permissions** > **Read repository contents and packages permissions**
 * **Pages** > **Build and deployment**
   * **Source** > **GitHub Actions**
   * Selected workflow: **Static HTML** and base your static deployment Action script on the [Xref Generator `static.yml` file](https://github.com/dotnet/blazor-samples/blob/main/.github/workflows/static.yml) for the Xref Generator tool. The configuration in the file is described in the next section.
   * **Custom domain**: Set if you intend to use a custom domain, which isn't covered by this guidance. For more information, see [Configuring a custom domain for your GitHub Pages site](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site).
   * **Enforce HTTPS** > Enabled (selected)
+ 
+&dagger;The SHA hash (`{SHA HASH}` placeholder) represents the SHA hash for the latest `stevesandersonms/ghaction-rewrite-base-href` GitHub Action release version. By pinning to a specific version, there's less risk that a compromised latest release using a version moniker, such as `v1`, can jeopardize the deployment. Periodically, update the SHA to the latest release for the latest features and bug fixes.
+
+To obtain the SHA hash:
+
+1. Navigate to the [`SteveSandersonMS/ghaction-rewrite-base-href` Action GitHub repository](https://github.com/SteveSandersonMS/ghaction-rewrite-base-href).
+1. Select the release on the right-side of the page under **Releases**.
+1. Locate and select the short SHA hash (for example, `5b54862`).
+1. Either:
+   * Take the full SHA from the URL in the browser's address bar.
+   * Select the copy button on the right side of page ![Copy button](~/blazor/host-and-deploy/index/copy-button.svg) to put the SHA on your clipboard.
+
+For more information, see [Using pre-written building blocks in your workflow: Using SHAs (GitHub documentation)](https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/using-pre-written-building-blocks-in-your-workflow#using-shas).
 
 ### Static deployment script configuration
 
@@ -699,7 +712,7 @@ Configure the following entries in the script for your deployment:
 * Push path (`on:push:paths`): Set the push path to match the app's repo folder with a `**` wildcard. Example: `BlazorWebAssemblyXrefGenerator/**`
 * .NET SDK version (`dotnet-version` via the [`actions/setup-dotnet` Action](https://github.com/actions/setup-dotnet)): Currently, there's no way to set the version to "latest" (see [Allow specifying 'latest' as dotnet-version (`actions/setup-dotnet` #497)](https://github.com/actions/setup-dotnet/issues/497) to up-vote the feature request). Set the SDK version at least as high as the app's framework version.
 * Publish path (`dotnet publish` command): Set the publish folder path to the app's repo folder. Example: `dotnet publish BlazorWebAssemblyXrefGenerator -c Release`
-* Base HREF (`base_href` for the [`SteveSandersonMS/ghaction-rewrite-base-href` Action](https://github.com/SteveSandersonMS/ghaction-rewrite-base-href)): Set the base href for the app to the repository's name. Example: The Blazor sample's repository owner is `dotnet`. The Blazor sample's repository's name is `blazor-samples`. When the Xref Generator tool is deployed to GitHub Pages, its web address is based on the repository's name (`https://dotnet.github.io/blazor-samples/`). The base href of the app is `/blazor-samples/`, which is set into `base_href` for the `ghaction-rewrite-base-href` Action to write into the app's `wwwroot/index.html` `<base>` tag when the app is deployed. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
+* Base HREF (`base_href` for the [`SteveSandersonMS/ghaction-rewrite-base-href` Action](https://github.com/SteveSandersonMS/ghaction-rewrite-base-href)): Set the SHA hash for the latest version of the Action (see the guidance in the [*GitHub Pages settings*](#github-pages-settings) section for instructions). Set the base href for the app to the repository's name. Example: The Blazor sample's repository owner is `dotnet`. The Blazor sample's repository's name is `blazor-samples`. When the Xref Generator tool is deployed to GitHub Pages, its web address is based on the repository's name (`https://dotnet.github.io/blazor-samples/`). The base href of the app is `/blazor-samples/`, which is set into `base_href` for the `ghaction-rewrite-base-href` Action to write into the app's `wwwroot/index.html` `<base>` tag when the app is deployed. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
 
 The GitHub-hosted Ubuntu (latest) server has a version of the .NET SDK pre-installed. You can remove the [`actions/setup-dotnet` Action](https://github.com/actions/setup-dotnet) step from the `static.yml` script if the pre-installed .NET SDK is sufficient to compile the app. To determine the .NET SDK installed for `ubuntu-latest`:
 
