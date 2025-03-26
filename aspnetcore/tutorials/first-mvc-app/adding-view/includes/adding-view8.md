@@ -29,7 +29,9 @@ Right-click on the *Views* folder, and then **Add > New Folder** and name the fo
 
 Right-click on the *Views/HelloWorld* folder, and then **Add > New Item**.
 
-In the **Add New Item** dialog select **Show All Templates**.
+If the **Add New Item** dialog is displayed in the following compact view, select **Show All Templates**.
+
+![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/8/add-view-vs-compact-22-17.13.5.png)
 
 In the **Add New Item - MvcMovie** dialog:
 

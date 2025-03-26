@@ -3,7 +3,7 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 03/02/2025
+ms.date: 03/26/2025
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view
 ---
@@ -45,7 +45,9 @@ Right-click on the *Views* folder, and then **Add > New Folder** and name the fo
 
 Right-click on the *Views/HelloWorld* folder, and then **Add > New Item**.
 
-In the **Add New Item** dialog select **Show All Templates**. Visual Studio should by default show all templates without having to select **Show All Templates**.
+If the **Add New Item** dialog is displayed in the following compact view, select **Show All Templates**.
+
+![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/9/add-view-vs-compact-22-17.13.5.png)
 
 In the **Add New Item - MvcMovie** dialog:
 
