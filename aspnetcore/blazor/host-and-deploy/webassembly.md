@@ -698,7 +698,7 @@ To obtain the SHA hash:
 1. Locate and select the short SHA hash (for example, `5b54862`).
 1. Either:
    * Take the full SHA from the URL in the browser's address bar.
-   * Select the copy button on the right side of page <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg> to put the SHA on your clipboard.
+   * Select the copy button on the right side of page ![Copy button](~/blazor/host-and-deploy/index/copy-button.svg) to put the SHA on your clipboard.
 
 For more information, see [Using pre-written building blocks in your workflow: Using SHAs (GitHub documentation)](https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/using-pre-written-building-blocks-in-your-workflow#using-shas).
 
