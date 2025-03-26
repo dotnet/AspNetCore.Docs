@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 03/02/2025
+ms.date: 03/26/2025
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-controller
 ---
@@ -145,7 +145,7 @@ In the preceding URL:
 
 In the preceding example:
 
-* The third URL segment matched the route parameter `id`.
+* The third URL segment matched the route parameter `id` as defined in the routing template in the `Program.cs` file.
 * The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method.
 * The trailing `?` (in `id?`) indicates the `id` parameter is optional.
 
