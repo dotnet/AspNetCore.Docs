@@ -24,7 +24,7 @@ This article includes an app that demonstrates the [`Microsoft.AspNetCore.OpenAp
 
 Documentation integration is implemented as a source generator. The source generator runs at compile time and injects code that translates XML comments into OpenAPI metadata. No special configuration is required in app code to enable the feature.
 
-This article includes a [download sample app](#download) that demonstrates the feature in action.
+This article includes a [download sample app](#download10) that demonstrates the feature in action.
 The sample app is a minimal ASP.NET Core Web API project that uses the `Microsoft.AspNetCore.OpenApi` package to generate OpenAPI documents. The XML documentation comments are used to populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
 
 ## Customizing XML documentation behavior
@@ -217,11 +217,11 @@ XML documentation comments from `ProjectReferences` are automatically resolved a
 ### Supported XML documentation tags
 <!-- review: removing defns for links, can revert -->
 * [`<summary>`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags#summary) <!-- - Used for operation and type descriptions -->
-* [`<remarks>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#remarks) <!-- - Used for additional operation details
-* [`<param>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#param) <!-- - Used for parameter descriptions
-* [`<returns>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#returns) <!-- - Used for return value descriptions
-* [`<response>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#response) <!-- - Used for HTTP response documentation
-* [`<example>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#example) <!-- - Used for examples in documentation
+* [`<remarks>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#remarks) <!-- - Used for additional operation details -->
+* [`<param>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#param) <!-- - Used for parameter descriptions           -->
+* [`<returns>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#returns) <!-- - Used for return value descriptions     -->
+* [`<response>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#response) <!-- - Used for HTTP response documentation -->
+* [`<example>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#example) <!-- - Used for examples in documentation      -->
 * [`<deprecated>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#deprecated) <!-- - Marks operations as deprecated -->
 * [`<inheritdoc>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) <!-- - Inherits documentation from base classes/interfaces -->
 

@@ -41,6 +41,7 @@ public static class ProjectBoardApis
         return Results.Ok(Boards);
     }
 
+    // <snippet_1>
     /// <summary>
     /// Retrieves a specific project board by ID.
     /// </summary>
@@ -57,6 +58,7 @@ public static class ProjectBoardApis
         }
         return Results.Ok(board);
     }
+    // </snippet_1>
 
     /// <summary>
     /// Creates a new project board.
