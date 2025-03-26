@@ -689,14 +689,16 @@ The following guidance for GitHub Pages deployments of Blazor WebAssembly apps d
   * **Custom domain**: Set if you intend to use a custom domain, which isn't covered by this guidance. For more information, see [Configuring a custom domain for your GitHub Pages site](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site).
   * **Enforce HTTPS** > Enabled (selected)
  
-&dagger;The SHA hash (`{SHA HASH}` placeholder) represents the SHA hash for the latest `stevesandersonms/ghaction-rewrite-base-href` GitHub Action release version. By pinning to a specific version, there's less risk that a compromised latest release using a version moniker, such as `v1`, can jeopardize the deployment. Periodically, update the SHA for the latest release to receive the latest features and bug fixes.
+&dagger;The SHA hash (`{SHA HASH}` placeholder) represents the SHA hash for the latest `stevesandersonms/ghaction-rewrite-base-href` GitHub Action release version. By pinning to a specific version, there's less risk that a compromised latest release using a version moniker, such as `v1`, can jeopardize the deployment. Periodically, update the SHA to the latest release for the latest features and bug fixes.
 
 To obtain the SHA hash:
 
 1. Navigate to the [`SteveSandersonMS/ghaction-rewrite-base-href` Action GitHub repository](https://github.com/SteveSandersonMS/ghaction-rewrite-base-href).
 1. Select the release on the right-side of the page under **Releases**.
 1. Locate and select the short SHA hash (for example, `5b54862`).
-1. Either take the full SHA from the URL in the address bar or select the copy button on the right side of page with the rollover text, `Copy full SHA for {SHORT SHA}`, where the `{SHORT SHA}` placeholder is the short SHA.
+1. Either:
+   * Take the full SHA from the URL in the browser's address bar.
+   * Select the copy button on the right side of page with the rollover text, `Copy full SHA for {SHORT SHA}`, where the `{SHORT SHA}` placeholder is the short SHA, to put the SHA on your clipboard.
 
 For more information, see [Using pre-written building blocks in your workflow: Using SHAs (GitHub documentation)](https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/using-pre-written-building-blocks-in-your-workflow#using-shas).
 
