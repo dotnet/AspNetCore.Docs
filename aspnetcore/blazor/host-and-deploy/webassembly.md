@@ -556,10 +556,11 @@ http {
 }
 ```
 
-When setting the [NGINX burst rate limit](https://www.nginx.com/blog/rate-limiting-nginx/#bursts) with [`limit_req`](https://nginx.org/docs/http/ngx_http_limit_req_module.html#limit_req), Blazor WebAssembly apps may require a large `burst` parameter value to accommodate the relatively large number of requests made by an app. Initially, set the value to at least 60:
+When setting the [NGINX burst rate limit](https://www.nginx.com/blog/rate-limiting-nginx/#bursts) with [`limit_req`](https://nginx.org/docs/http/ngx_http_limit_req_module.html#limit_req) and [`limit_req_zone`](https://nginx.org/docs/http/ngx_http_limit_req_module.html), Blazor WebAssembly apps may require a large `burst`/`rate` parameter values to accommodate the relatively large number of requests made by an app. Initially, set the value to at least 60:
 
 ```
 http {
+    limit_req_zone $binary_remote_addr zone=one:10m rate=60r/s;
     server {
         ...
 
