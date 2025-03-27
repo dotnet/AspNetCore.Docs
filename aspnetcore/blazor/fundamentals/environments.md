@@ -45,14 +45,27 @@ On the client for a Blazor Web App, the environment is determined from the serve
 
 The environment is set using any of the following approaches:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+* Blazor Server: Use any of the approaches described in <xref:fundamentals/environments> for general ASP.NET Core apps.
+* Blazor Server or Blazor WebAssembly: [Blazor start configuration](#set-the-client-side-environment-via-blazor-startup-configuration).
+* Blazor WebAssembly: `<WasmApplicationEnvironmentName>` property.
+* Blazor Server or Blazor WebAssembly: [Azure App Service](#set-the-environment-for-azure-app-service).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 * Blazor Server: Use any of the approaches described in <xref:fundamentals/environments> for general ASP.NET Core apps.
 * Blazor Server or Blazor WebAssembly: [Blazor start configuration](#set-the-client-side-environment-via-blazor-startup-configuration)
 * Blazor WebAssembly: [`Blazor-Environment` header](#set-the-client-side-environment-via-header)
 * Blazor Server or Blazor WebAssembly: [Azure App Service](#set-the-environment-for-azure-app-service)
 
-On the client for a Blazor Web App or the client of a hosted Blazor WebAssembly app, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
-
 :::moniker-end
+
+On the client for a Blazor Web App or the client of a hosted Blazor WebAssembly app, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
 
 :::moniker range=">= aspnetcore-10.0"
 
