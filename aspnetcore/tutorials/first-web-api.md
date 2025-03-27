@@ -769,9 +769,6 @@ There are many other tools that can be used to test web APIs, for example:
 * [curl](https://terminalcheatsheet.com/guides/curl-rest-api). Swagger uses `curl` and shows the `curl` commands it submits.
 * [Fiddler](https://www.telerik.com/fiddler)
 
-For more information, see:
-
-* [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#ihr6)
 
 <!-- Verify https://go.microsoft.com/fwlink/?linkid=2123754 goes to this H2. Verify the latest released version is on top so this anchor works -->
 <a name="over-post"></a>

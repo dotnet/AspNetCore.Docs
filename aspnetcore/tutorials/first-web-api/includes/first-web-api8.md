@@ -413,7 +413,6 @@ There are many other tools that can be used to test web APIs, for example:
 For more information, see:
 
 * [Minimal API tutorial: test with .http files and Endpoints Explorer](xref:tutorials/min-web-api)
-* [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#ihr6)
 
 <!-- Verify https://go.microsoft.com/fwlink/?linkid=2123754 goes to this H2. Verify the latest released version is on top so this anchor works -->
 <a name="over-post"></a>
