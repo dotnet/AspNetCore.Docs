@@ -82,7 +82,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 :::moniker range=">= aspnetcore-9.0"
 
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.PushedAuthorizationBehavior%2A>: Controls [Pushed Authorization Requests (PAR) support](xref:aspnetcore-9.0#openidconnecthandler-adds-support-for-pushed-authorization-requests-par). By default, the setting is to use PAR if the identity provider's discovery document (usually found at `.well-known/openid-configuration`) advertises support for PAR. If you wish to require PAR support for the app, you can assign a value of [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior). Note that PAR isn't supported by Microsoft Entra, and there are no plans for Entra to ever support it in the future.
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.PushedAuthorizationBehavior%2A>: Controls [Pushed Authorization Requests (PAR) support](xref:aspnetcore-9.0#openidconnecthandler-adds-support-for-pushed-authorization-requests-par). By default, the setting is to use PAR if the identity provider's discovery document (usually found at `.well-known/openid-configuration`) advertises support for PAR. If you wish to require PAR support for the app, you can assign a value of [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior). PAR isn't supported by Microsoft Entra, and there are no plans for Entra to ever support it in the future.
 
   ```csharp
   oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvailable;
@@ -317,7 +317,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 :::moniker range=">= aspnetcore-9.0"
 
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.PushedAuthorizationBehavior%2A>: Controls [Pushed Authorization Requests (PAR) support](xref:aspnetcore-9.0#openidconnecthandler-adds-support-for-pushed-authorization-requests-par). By default, the setting is to use PAR if the identity provider's discovery document (usually found at `.well-known/openid-configuration`) advertises support for PAR. If you wish to require PAR support for the app, you can assign a value of [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior). Note that PAR isn't supported by Microsoft Entra, and there are no plans for Entra to ever support it in the future.
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.PushedAuthorizationBehavior%2A>: Controls [Pushed Authorization Requests (PAR) support](xref:aspnetcore-9.0#openidconnecthandler-adds-support-for-pushed-authorization-requests-par). By default, the setting is to use PAR if the identity provider's discovery document (usually found at `.well-known/openid-configuration`) advertises support for PAR. If you wish to require PAR support for the app, you can assign a value of [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior). PAR isn't supported by Microsoft Entra, and there are no plans for Entra to ever support it in the future.
 
   ```csharp
   oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvailable;
@@ -542,7 +542,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 :::moniker range=">= aspnetcore-9.0"
 
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.PushedAuthorizationBehavior%2A>: Controls [Pushed Authorization Requests (PAR) support](xref:aspnetcore-9.0#openidconnecthandler-adds-support-for-pushed-authorization-requests-par). By default, the setting is to use PAR if the identity provider's discovery document (usually found at `.well-known/openid-configuration`) advertises support for PAR. If you wish to require PAR support for the app, you can assign a value of [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior). Note that PAR isn't supported by Microsoft Entra, and there are no plans for Entra to ever support it in the future.
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.PushedAuthorizationBehavior%2A>: Controls [Pushed Authorization Requests (PAR) support](xref:aspnetcore-9.0#openidconnecthandler-adds-support-for-pushed-authorization-requests-par). By default, the setting is to use PAR if the identity provider's discovery document (usually found at `.well-known/openid-configuration`) advertises support for PAR. If you wish to require PAR support for the app, you can assign a value of [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior). PAR isn't supported by Microsoft Entra, and there are no plans for Entra to ever support it in the future.
 
   ```csharp
   oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvailable;
