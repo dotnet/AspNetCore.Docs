@@ -37,7 +37,6 @@ The environment is set using any of the following approaches:
   * [Blazor start configuration](#set-the-client-side-environment-via-blazor-startup-configuration)
   * [Azure App Service](#set-the-environment-for-azure-app-service)
 * Standalone Blazor WebAssembly: `<WasmApplicationEnvironmentName>` property
-* Any Blazor app: [Azure App Service](#set-the-environment-for-azure-app-service)
 
 On the client for a Blazor Web App, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
 
@@ -68,9 +67,10 @@ For a standalone Blazor WebAssembly app running locally, the development server 
 :::moniker range="< aspnetcore-8.0"
 
 * Blazor Server: Use any of the approaches described in <xref:fundamentals/environments> for general ASP.NET Core apps.
-* Blazor Server or Blazor WebAssembly: [Blazor start configuration](#set-the-client-side-environment-via-blazor-startup-configuration)
+* Blazor Server or Blazor WebAssembly:
+  * [Blazor start configuration](#set-the-client-side-environment-via-blazor-startup-configuration)
+  * [Azure App Service](#set-the-environment-for-azure-app-service)
 * Blazor WebAssembly: [`Blazor-Environment` header](#set-the-client-side-environment-via-header)
-* Blazor Server or Blazor WebAssembly: [Azure App Service](#set-the-environment-for-azure-app-service)
 
 On the client of a hosted Blazor WebAssembly app, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
 
