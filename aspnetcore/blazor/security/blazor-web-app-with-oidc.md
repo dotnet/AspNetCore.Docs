@@ -80,6 +80,16 @@ If using Visual Studio, you can confirm the secret is set by right-clicking the 
 
 The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> configuration is found in the project's `Program` file on the call to <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>:
 
+:::moniker range=">= aspnetcore-9.0"
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.PushedAuthorizationBehavior%2A>: Controls [Pushed Authorization Requests (PAR) support](xref:aspnetcore-9#openidconnecthandler-adds-support-for-pushed-authorization-requests-par). By default, the setting is to use PAR if the identity provider's discovery document (usually found at `.well-known/openid-configuration`) advertises support for PAR. If you wish to require PAR support for the app, you can assign a value of [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior). PAR isn't supported by Microsoft Entra, and there are no plans for Entra to ever support it in the future.
+
+  ```csharp
+  oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvailable;
+  ```
+
+:::moniker-end
+
 * <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.SignInScheme%2A>: Sets the authentication scheme corresponding to the middleware responsible of persisting user's identity after a successful authentication. The OIDC handler needs to use a sign-in scheme that's capable of persisting user credentials across requests. The following line is present merely for demonstration purposes. If omitted, <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultSignInScheme%2A> is used as a fallback value.
 
   ```csharp
@@ -305,6 +315,16 @@ If using Visual Studio, you can confirm the secret is set by right-clicking the 
 
 The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> configuration is found in the project's `Program` file on the call to <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>:
 
+:::moniker range=">= aspnetcore-9.0"
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.PushedAuthorizationBehavior%2A>: Controls [Pushed Authorization Requests (PAR) support](xref:aspnetcore-9#openidconnecthandler-adds-support-for-pushed-authorization-requests-par). By default, the setting is to use PAR if the identity provider's discovery document (usually found at `.well-known/openid-configuration`) advertises support for PAR. If you wish to require PAR support for the app, you can assign a value of [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior). PAR isn't supported by Microsoft Entra, and there are no plans for Entra to ever support it in the future.
+
+  ```csharp
+  oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvailable;
+  ```
+
+:::moniker-end
+
 * <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.SignInScheme%2A>: Sets the authentication scheme corresponding to the middleware responsible of persisting user's identity after a successful authentication. The OIDC handler needs to use a sign-in scheme that's capable of persisting user credentials across requests. The following line is present merely for demonstration purposes. If omitted, <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultSignInScheme%2A> is used as a fallback value.
 
   ```csharp
@@ -519,6 +539,16 @@ If using Visual Studio, you can confirm the secret is set by right-clicking the 
 #### Configure the app
 
 The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> configuration is found in the project's `Program` file on the call to <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>:
+
+:::moniker range=">= aspnetcore-9.0"
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.PushedAuthorizationBehavior%2A>: Controls [Pushed Authorization Requests (PAR) support](xref:aspnetcore-9#openidconnecthandler-adds-support-for-pushed-authorization-requests-par). By default, the setting is to use PAR if the identity provider's discovery document (usually found at `.well-known/openid-configuration`) advertises support for PAR. If you wish to require PAR support for the app, you can assign a value of [`PushedAuthorizationBehavior.Require`](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior). PAR isn't supported by Microsoft Entra, and there are no plans for Entra to ever support it in the future.
+
+  ```csharp
+  oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvailable;
+  ```
+
+:::moniker-end
 
 * <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.SignInScheme%2A>: Sets the authentication scheme corresponding to the middleware responsible of persisting user's identity after a successful authentication. The OIDC handler needs to use a sign-in scheme that's capable of persisting user credentials across requests. The following line is present merely for demonstration purposes. If omitted, <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultSignInScheme%2A> is used as a fallback value.
 
