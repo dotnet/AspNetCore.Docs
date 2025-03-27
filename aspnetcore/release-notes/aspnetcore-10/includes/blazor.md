@@ -167,4 +167,18 @@ In the project file (`.csproj`), add the `<WriteImportMapToHtml>` property set t
 </Project>
 ```
 
+### Set the environment in standalone Blazor WebAssembly apps
+
+The `Properties/launchSettings.json` file is no longer used to control the environment in standalone Blazor WebAssembly apps.
+
+Starting in .NET 10, set the environment with the `<WasmApplicationEnvironmentName>` property in the app's project file (`.csproj`).
+
+The following example sets the app's environment to `Staging`:
+
+```xml
+<WasmApplicationEnvironmentName>Staging</WasmApplicationEnvironmentName>
+```
+
+As usual, the default environment is `Development` when running the app locally and `Production` when the app is published.
+
 -->
