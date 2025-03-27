@@ -9,23 +9,16 @@ ms.date: 10/26/2024
 uid: fundamentals/openapi/customize-openapi2
 ---
 
-?view=aspnetcore-9.0
-https://learn.microsoft.com/en-us/
-
-
 <!-- The preceeding meta-data just for initial review. After approved, contents go into
 uid: fundamentals/openapi/customize-openapi
   -->
 # XML Documentation comment support for OpenAPI in ASP.NET Core
 
-This article includes an app that demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents. See [Download and run the API sample](#download10) in this article to run the sample app.
-
-![screenshot of app with XML comments in sclaar UI](~/fundamentals/openapi/_static/screenshot.png)
-
 Documentation integration is implemented as a source generator. The source generator runs at compile time and injects code that translates XML comments into OpenAPI metadata. No special configuration is required in app code to enable the feature.
 
-This article includes a [download sample app](#download10) that demonstrates the feature in action.
-The sample app is a minimal ASP.NET Core Web API project that uses the `Microsoft.AspNetCore.OpenApi` package to generate OpenAPI documents. The XML documentation comments are used to populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
+This article includes a [sample app](#download10) that demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents. The sample app is a minimal ASP.NET Core Web API project that uses the `Microsoft.AspNetCore.OpenApi` package to generate OpenAPI documents. The XML documentation comments are used to populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
+
+![screenshot of app with XML comments in sclaar UI](~/fundamentals/openapi/_static/screenshot.png)
 
 ## Customizing XML documentation behavior
 
@@ -35,12 +28,13 @@ The following sections describe how to enable and customize XML documentation su
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) NuGet package automatically resolves XML documentation comments from:
 
-* The application assembly. In this sample, the `API` project.
-* Any projects referenced via `ProjectReferences` that have the `GenerateDocumentationFile` property set. In this sample, the `Models` project:
+* The application assembly, when the `GenerateDocumentationFile` property is set. In the [sample app](#download10), the `API` project.
 
-:::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
+  :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
 
-:::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Api.csproj" highlight="7,16":::
+* Any projects referenced via `ProjectReferences` that have the `GenerateDocumentationFile` property set. In the sample app, the `Models` project:
+
+  :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Api.csproj" highlight="7,16":::
 
 The implementation discovers XML files statically at compile-time. The `AdditionalFiles` item group specifies additional sources for XML files:
 
@@ -58,36 +52,22 @@ The implementation discovers XML files statically at compile-time. The `Addition
 
 To turn off XML documentation integration, remove the source generator from the `Analyzers` item group. Removing the source generator prevents it from being used during compilation.
 
-<!-- \aspnet-openapi-xml\api\obj\Debug\net10.0\Api.xml is generated using the following project file  -->
+<!-- review: \aspnet-openapi-xml\api\obj\Debug\net10.0\Api.xml is generated using the following project file , that is, <Analyzer Remove="$(PkgMicro ... -->
 
 :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Api-remove.csproj.xml" highlight="19-23":::
 
-<!-- setting  <GenerateDocumentationFile>false</GenerateDocumentationFile> prevents the XML file from being generated.  Explain the difference between GenerateDocumentationFile = true and <Analyzer Remove -->
-
-<!--
-```xml
-<ItemGroup>
-  <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-preview.2.*" GeneratePathProperty="true" />
-</ItemGroup>
-
-<Target Name="DisableCompileTimeOpenApiXmlGenerator" BeforeTargets="CoreCompile">
-  <ItemGroup>
-    <Analyzer Remove="$(PkgMicrosoft_AspNetCore_OpenApi)/analyzers/dotnet/cs/Microsoft.AspNetCore.OpenApi.SourceGenerators.dll" />
-  </ItemGroup>
-</Target>
-```
--->
+<!-- review setting  <GenerateDocumentationFile>false</GenerateDocumentationFile> prevents the XML file from being generated.  Explain the difference between GenerateDocumentationFile = true and <Analyzer Remove -->
 
 ## Source generator implementation notes
 
-The source generator implementation is open-source and can be found in the [ASP.NET Core repo](https://github.com/dotnet/aspnetcore/tree/main/src/OpenApi/gen).
+The source generator implementation is open-source and can be found in the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore/tree/main/src/OpenApi/gen). zz
 
 The XML documentation feature is implemented as a source generator. The source generator analyzes XML documentation comments at compile time and injects code that translates these comments into OpenAPI metadata. The [`XmlCommentGenerator`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlCommentGenerator.cs,30eb0aa73ef6306a) extracts XML comments from two sources:
 
 * XML documentation files passed as `AdditionalFiles` via a [`ParseXmlFile`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlCommentGenerator.Parser.cs,f7dff3af661aebc2) implementation.
 * XML comments from the target assembly's own code via a `ParseCompilation` implementation.
 
-The distinction between these two sources is important. XML documentation files passed as `AdditionalFiles` are static. XML comments from the target assembly come from Roslyn's `XmlDocumentationCommentProvider` which provides enhanced functionality for connecting an XML comment to the compilation symbol's that it's associated with. This has implications for the way `<inheritdoc />` resolution happens in the implementation. We'll get more into this later.
+The distinction between these two sources is important. XML documentation files passed as `AdditionalFiles` are static. XML comments from the target assembly come from Roslyn's <!-- review `XmlDocumentationCommentProvider`--> [XML documentation comments provider](https://github.com/dotnet/roslyn/blob/main/src/Compilers/Core/Portable/MetadataReference/PortableExecutableReference.cs#L48-L62). The XML documentation comments provider enhances functionality for connecting an XML comment to the compilation symbol's that it's associated with. This has implications for the way `<inheritdoc />` resolution happens in the implementation, discussed in the next section.
 
 XML comments are parsed into structured `XmlComment` objects with:
 
@@ -96,13 +76,23 @@ XML comments are parsed into structured `XmlComment` objects with:
 * Response documentation with status codes and descriptions.
 * Support for examples and deprecated markers.
 
-The `XmlComment` class processes XML documentation tags like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`. For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
+The `XmlComment` class processes [XML documentation tags](/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`. For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
 
 ### Support for `<inheritdoc/>`
 
-`<inheritdoc />` tags present an important opportunity because they indicate that comments must be resolved from a base class or implemented interface. The source generator uses its knowledge of the symbol's present in the compilation to discover base classes and interfaces associated with the symbol a given `<inheritdoc />` is placed on and supports resolving them automatically.
+`<inheritdoc />` tags present an important opportunity because they indicate that comments must be resolved from a base class or implemented interface. 
 
-This automatic resolution behavior is currently available for XML documentation comments that exist in the assembly under compilation, and ***NOT*** XML documentation tags that are in referenced projects or packages. In the later scenario, XML documentation comments are only presented as text and there's no trivial strategy for associating the text content to compilation symbols or developing an understanding of the inheritance hierarchy associated with the types.
+The source generator uses its knowledge of the symbols present in the compilation to discover base classes and interfaces associated with a symbol. When <inheritdoc /> is placed on a symbol, the generator supports resolving these base classes and interfaces automatically.
+
+The source generator uses its knowledge of the symbol's present in the compilation to discover base classes and interfaces associated with the symbol in a given `<inheritdoc />` is placed on and supports resolving them automatically.
+
+When `<inheritdoc />` is placed on a symbol:
+
+* The source generator uses its knowledge of the symbol in the compilation to discover base classes and interfaces associated with the symbol.
+and supports resolving them automatically
+
+
+The automatic resolution behavior is currently available for XML documentation comments that exist in the assembly under compilation, and ***NOT*** XML documentation tags that are in referenced projects or packages. In the later scenario, XML documentation comments are only presented as text and there's no trivial strategy for associating the text content to compilation symbols or developing an understanding of the inheritance hierarchy associated with the types.
 
 ### Member Identification
 
@@ -188,7 +178,7 @@ It uses a C# source generator, `XmlCommentGenerator`, that analyzes XML document
 
 ### Why is this implemented as a source generator?
 
-Source generators allow us to implement [AOT](/aspnet/core/fundamentals/native-aot?view=aspnetcore-9.0) compatible resolution of [`inheritdoc`](/dotnet/csharp/language-reference/xmldoc/recommended-tags) references in XML comments.
+Source generators allow us to implement [AOT](/aspnet/core/fundamentals/native-aot) compatible resolution of [`inheritdoc`](/dotnet/csharp/language-reference/xmldoc/recommended-tags) references in XML comments.
 
 ### How do I enable XML documentation in my ASP.NET Core API project?
 
@@ -216,7 +206,7 @@ XML documentation comments from `ProjectReferences` are automatically resolved a
 
 ### Supported XML documentation tags
 <!-- review: removing defns for links, can revert -->
-* [`<summary>`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags#summary) <!-- - Used for operation and type descriptions -->
+* [`<summary>`](dotnet/csharp/language-reference/xmldoc/recommended-tags#summary) <!-- - Used for operation and type descriptions -->
 * [`<remarks>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#remarks) <!-- - Used for additional operation details -->
 * [`<param>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#param) <!-- - Used for parameter descriptions           -->
 * [`<returns>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#returns) <!-- - Used for return value descriptions     -->
@@ -239,7 +229,7 @@ Document HTTP responses with the `<response>` tag and the `code` attribute:
 
 ### Add examples
 
-To add examples to documentation, use the `<example>` tag for types or the `example` attribute for parameters:
+To add examples to documentation, use the [`<example>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#example) tag for types or the `example` attribute for parameters:
 
 ```csharp
 /// <example>{"name":"Sample","value":42}</example>
@@ -248,7 +238,7 @@ To add examples to documentation, use the `<example>` tag for types or the `exam
 
 ### Document inheritance via `<inheritdoc/>` tags
 
-The generator supports [`<inheritdoc>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) tags, which inherits documentation from *as long as they exist in the compilation assembly*:
+The generator supports [`<inheritdoc>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) tags, which inherit documentation from *as long as they exist in the compilation assembly*:
 
 * Base classes
 * Implemented interfaces
@@ -262,22 +252,23 @@ The source generator substitutes generic type parameters in inherited documentat
 
 It uses the [`MemberKey`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlComments/MemberKey.cs) class to create a unique identifier for each API member that encodes:
 
-* Declaring and property types
-* Method names
-* Generic types with proper handling of open generics
-* Method overloads with parameter signature matching
+* Declaring and property types.
+* Method names.
+* Generic types with proper handling of open generics.
+* Method overloads with parameter signature matching.
 
 ### XML documentation processing and runtime performance
 
-XML documentation processing doesn't impact runtime performance. The source generator processes XML documentation at compile time and caches the results, with minimal runtime overhead when rendering the OpenAPI documentation. Furthermore, the OpenAPI document can be cached at runtime using output-caching to further optimize performance.
+XML documentation processing doesn't impact runtime performance. The source generator processes XML documentation at compile time and caches the results, with minimal runtime overhead when rendering the OpenAPI documentation. Furthermore, the OpenAPI document can be cached at runtime using [output-caching](https://learn.microsoft.com/aspnet/core/performance/caching/overview#output-caching) to further optimize performance.
 
 ### Source generator and interception of `AddOpenApi` calls
 
 The source generator uses the C# compiler's interceptor feature to detect calls to `AddOpenApi` and automatically injects the XML documentation transformers.
 
-### What happens when I use different overloads of `AddOpenApi()`?
+### What happens when I use different overloads of `AddOpenApi`?
 
 The source generator detects all standard overloads:
+
 * `AddOpenApi()`
 * `AddOpenApi("v1")`
 * `AddOpenApi(options => {})`
