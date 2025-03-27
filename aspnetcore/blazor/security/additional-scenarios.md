@@ -21,11 +21,11 @@ This article explains how to configure server-side Blazor for additional securit
 
 :::moniker range=">= aspnetcore-8.0"
 
-For Blazor Web Apps, guidance on how to pass tokens to Razor components should be [addressed in the documentation (`dotnet/AspNetCore.Docs` #31691)](https://github.com/dotnet/AspNetCore.Docs/issues/31691) in 2025 for a preview release of .NET 10.
+For Blazor Web Apps, guidance in this section on how to pass tokens to Razor components should be addressed by [Update section on passing tokens in Blazor Web Apps (`dotnet/AspNetCore.Docs` #31691)](https://github.com/dotnet/AspNetCore.Docs/issues/31691) in 2025.
 
 For more information, see the following issues:
 
-* [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379): This is the current issue to address passing tokens in Blazor Web Apps, currently scheduled for .NET 10 (late 2025).
+* [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379): This is the current issue to address passing tokens in Blazor Web Apps with framework features, which will probably be addressed for .NET 11 (late 2026).
 * [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390): This issue was closed as a duplicate of the preceding issue, but it contains helpful discussion and potential workaround strategies.
 
 For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).
