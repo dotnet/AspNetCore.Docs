@@ -229,7 +229,8 @@ XML documentation comments from `ProjectReferences` are automatically resolved a
 
 Document HTTP responses with the `<response>` tag and the `code` attribute:
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/ProjectBoardApis.cs" id="snippet1" highlight="6-7":::
+:::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/ProjectBoardApis.cs" id="snippet_1" highlight="6-7":::
+
 
 <!--```csharp
 /// <response code="200">Success response with data</response>
@@ -247,7 +248,7 @@ To add examples to documentation, use the `<example>` tag for types or the `exam
 
 ### Document inheritance via `<inheritdoc/>` tags
 
-The generator supports `<inheritdoc/>` tags, which inherits documentation from *as long as they exist in the compilation assembly*:
+The generator supports [`<inheritdoc>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) tags, which inherits documentation from *as long as they exist in the compilation assembly*:
 
 * Base classes
 * Implemented interfaces
@@ -259,7 +260,8 @@ The source generator substitutes generic type parameters in inherited documentat
 
 ### How does the source generator identify and track API members?
 
-It uses the `MemberKey` class to create a unique identifier for each API member that encodes:
+It uses the [`MemberKey`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlComments/MemberKey.cs) class to create a unique identifier for each API member that encodes:
+
 * Declaring and property types
 * Method names
 * Generic types with proper handling of open generics
