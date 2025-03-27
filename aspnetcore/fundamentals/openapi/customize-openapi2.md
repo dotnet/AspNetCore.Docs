@@ -80,19 +80,22 @@ The `XmlComment` class processes [XML documentation tags](/dotnet/csharp/languag
 
 ### Support for `<inheritdoc/>`
 
+<!-- original - review my change 
 `<inheritdoc />` tags present an important opportunity because they indicate that comments must be resolved from a base class or implemented interface. 
+The source generator uses its knowledge of the symbol's present in the compilation to discover base classes and interfaces associated with the symbol a given `<inheritdoc />` is placed on and supports resolving them automatically
+-->
 
-The source generator uses its knowledge of the symbols present in the compilation to discover base classes and interfaces associated with a symbol. When <inheritdoc /> is placed on a symbol, the generator supports resolving these base classes and interfaces automatically.
+`<inheritdoc />` tags indicate that comments must be resolved from a base class or implemented interface. When `<inheritdoc />` is placed on a symbol, The source generator:
 
-The source generator uses its knowledge of the symbol's present in the compilation to discover base classes and interfaces associated with the symbol in a given `<inheritdoc />` is placed on and supports resolving them automatically.
+* Uses its knowledge of the symbol in the compilation to discover base classes and interfaces associated with the symbol.
+* Supports resolving them automatically
 
-When `<inheritdoc />` is placed on a symbol:
+The automatic resolution behavior is currently available for XML documentation comments that exist in the assembly under compilation, and ***NOT*** XML documentation tags that are in referenced projects or packages. In the later scenario, XML documentation comments:
 
-* The source generator uses its knowledge of the symbol in the compilation to discover base classes and interfaces associated with the symbol.
-and supports resolving them automatically
-
-
-The automatic resolution behavior is currently available for XML documentation comments that exist in the assembly under compilation, and ***NOT*** XML documentation tags that are in referenced projects or packages. In the later scenario, XML documentation comments are only presented as text and there's no trivial strategy for associating the text content to compilation symbols or developing an understanding of the inheritance hierarchy associated with the types.
+* Are only presented as text.
+* There's no trivial strategy for:
+  * Associating the text content to compilation symbols.
+  * Developing an understanding of the inheritance hierarchy associated with the types.
 
 ### Member Identification
 
@@ -118,15 +121,14 @@ internal sealed record MemberKey(
 The generator emits code that contains:
 
 1. A cache of XML comments mapped to member identifiers:
+   <!-- REVIEW: In additon to the following, provide a concret example -->
    ```csharp
    _cache.Add(new MemberKey(/*...*/), new XmlComment(/*...*/));
    ```
-
-2. OpenAPI transformer implementations:
-   * [`XmlCommentOperationTransformer`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlCommentGenerator.Emitter.cs#L229) - Applies comments to API operations (methods)
-   * [`XmlCommentSchemaTransformer`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlCommentGenerator.Emitter.cs#L308) - Applies comments to data models (types)
-
-3. Extension methods that intercept <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> calls to inject the transformers:
+1. OpenAPI transformer implementations:
+   * [`XmlCommentOperationTransformer`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlCommentGenerator.Emitter.cs#L229):  Applies comments to API operations (methods).
+   * [`XmlCommentSchemaTransformer`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlCommentGenerator.Emitter.cs#L308): Applies comments to data models (types).
+1. Extension methods that intercept <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> calls to inject the transformers:
 
    ```csharp
    public static IServiceCollection AddOpenApi(this IServiceCollection services)
