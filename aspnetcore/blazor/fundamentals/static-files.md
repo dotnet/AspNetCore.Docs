@@ -198,11 +198,11 @@ For examples of how to address the policy violation with Subresource Integrity (
 
 :::moniker range=">= aspnetcore-10.0"
 
-### Fingerprint static assets in standalone Blazor WebAssembly apps
+### Fingerprint client-side static assets
 
-In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
+In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets for client-side rendering (CSR). A fingerprint is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
 
-The following configuration must be present in the `wwwwoot/index.html` file to adopt the fingerprinting feature:
+The following configuration must be present in the `wwwwoot/index.html` file of a standalone Blazor WebAssembly app to adopt the fingerprinting feature:
 
 ```html
 <head>
@@ -232,7 +232,9 @@ In the project file (`.csproj`), the `<WriteImportMapToHtml>` property is set to
 </Project>
 ```
 
-To fingerprint additional JS modules in standalone Blazor WebAssembly apps, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
+For CSR in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets was introduced in .NET 9 or later with [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files) and the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component).
+
+To fingerprint additional JS modules for CSR, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
 
 In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
 
