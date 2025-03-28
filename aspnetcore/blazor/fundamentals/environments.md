@@ -36,7 +36,7 @@ The environment is set using any of the following approaches:
 * Any Blazor app: [Blazor start configuration](#set-the-client-side-environment-via-blazor-startup-configuration)
 * Standalone Blazor WebAssembly: `<WasmApplicationEnvironmentName>` property
 
-On the client for a Blazor Web App, the environment is determined from the server via an HTML comment:
+On the client for a Blazor Web App, the environment is determined from the server via an HTML comment that developers don't interact with:
 
 ```html
 <!--Blazor-WebAssembly:{"environmentName":"Development", ...}-->

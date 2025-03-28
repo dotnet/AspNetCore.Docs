@@ -232,6 +232,17 @@ In the project file (`.csproj`), the `<WriteImportMapToHtml>` property is set to
 </Project>
 ```
 
+To fingerprint additional JS modules in standalone Blazor WebAssembly apps, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
+
+In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
+
+```xml
+<StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
+    Expression="#[.{fingerprint}]!" />
+```
+
+The files are placed into the import map, automatically for Blazor Web App CSR or when opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions. When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
