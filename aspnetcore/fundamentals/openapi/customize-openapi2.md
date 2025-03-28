@@ -1,18 +1,15 @@
 ---
-title: Customize OpenAPI documents2
+title: OpenAPI XML documentation comment support in ASP.NET Core
 author: captainsafia
-description: Learn how to customize OpenAPI documents in an ASP.NET Core app
+description: Learn how to integrate XML documentation comments on types by OpenAPI document generation in ASP.NET Core.
 ms.author: safia
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
 ms.date: 10/26/2024
-uid: fundamentals/openapi/customize-openapi2
+uid: fundamentals/openapi/openapi-comments
 ---
-
-<!-- The preceeding meta-data just for initial review. After approved, contents go into
-uid: fundamentals/openapi/customize-openapi
-  -->
-# XML Documentation comment support for OpenAPI in ASP.NET Core
+<!-- backup author: rick-anderson -->
+# OpenAPI XML documentation comment support in ASP.NET Core
 
 Documentation integration is implemented as a source generator. The source generator runs at compile time and injects code that translates XML comments into OpenAPI metadata. No special configuration is required in app code to enable the feature.
 
@@ -182,7 +179,7 @@ Source generators allow us to implement [AOT](/aspnet/core/fundamentals/native-a
 
 2. Use the `AddOpenApi` method in your service configuration. No configuration is needed, the source generator handles the rest.
 
-  :::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Program.cs" id="snippet_1" highlight="6":::
+  :::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Program.cs" highlight="6":::
 
 ### Do I need to include XML documentation files from referenced assemblies?
 
