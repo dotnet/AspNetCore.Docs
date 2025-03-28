@@ -41,6 +41,8 @@ Diagnostic ID:
 * [ASP0024](xref:diagnostics/asp0024)
 * [ASP0025](xref:diagnostics/asp0025)
 * [ASP0026](xref:diagnostics/asp0026)
+* [ASP0027](xref:diagnostics/asp0027)
+* [ASP0028](xref:diagnostics/asp0028)
 * [BL0001](xref:diagnostics/bl0001)
 * [BL0002](xref:diagnostics/bl0002)
 * [BL0003](xref:diagnostics/bl0003)
