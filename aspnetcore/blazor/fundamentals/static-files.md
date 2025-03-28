@@ -64,17 +64,20 @@ Assets are delivered via the <xref:Microsoft.AspNetCore.Components.ComponentBase
 <link rel="stylesheet" href="@Assets["BlazorSample.styles.css"]" />
 ```
 
-## Import maps
+## `ImportMap` component
 
 *This section applies to server-side Blazor apps.*
 
-The Import Map component (<xref:Microsoft.AspNetCore.Components.ImportMap>) represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The Import Map component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
+The `ImportMap` component (<xref:Microsoft.AspNetCore.Components.ImportMap>) represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The Import Map component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
 
 ```razor
 <ImportMap />
 ```
 
 If a custom <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> isn't assigned to an Import Map component, the import map is generated based on the app's assets.
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> instances are expensive to create, so it is recommended to cache them if you are creating an additional instance.
 
 The following examples demonstrate custom import map definitions and the import maps that they create.
 

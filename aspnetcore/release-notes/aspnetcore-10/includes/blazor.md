@@ -132,9 +132,15 @@ Also make this change in the *Routing* article at Line 1633.
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-### End-to-end fingerprinting of assets in standalone Blazor WebAssembly apps
+### Client-side fingerprinting
 
-In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
+Last year, the release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files) and the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component) to resolve fingerprinted JavaScript modules. For .NET 10, you can opt-into client-side fingerprinting of JavaScript modules for standalone Blazor WebAssembly apps and client-side rendering (CSR) of Blazor Web Apps (`.Client` project).
+
+In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
+
+WIP .................
+For client-side rendering in a Blazor Web App, In hosted mode all JS modules are soft fingerprinted, meaning that the file on disk don't have fingerprint and only aspnetcore server knows about URLs with fingerprint. We hard fingerprint .NET assets, meaning file on disk has a fingerprint. In standalone mode, there is no aspnetcore server and so only hard fingerprinted assets have fingerprint. And so if users want to fingerprint their JS modules and put them to importmap, they need to opt-in (as described in the linked comment).
+.....................
 
 The following changes must be made in the `wwwwoot/index.html` file to adopt the fingerprinting feature. The standalone Blazor WebAssembly project template will be updated to include these changes in an upcoming preview release:
 
@@ -166,6 +172,19 @@ In the project file (`.csproj`), add the `<WriteImportMapToHtml>` property set t
   </PropertyGroup>
 </Project>
 ```
+
+WIP .................
+To fingerprint additional JS modules in standalone Blazor WebAssembly apps, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
+
+In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
+
+```xml
+<StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
+    Expression="#[.{fingerprint}]!" />
+```
+
+The files are placed into the import map, automatically for Blazor Web App CSR or when opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions. When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
+.....................
 
 ### Set the environment in standalone Blazor WebAssembly apps
 
