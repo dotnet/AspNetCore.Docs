@@ -38,15 +38,7 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 
 The implementation discovers XML files statically at compile-time. The `AdditionalFiles` item group specifies additional sources for XML files:
 
-```xml
-<ItemGroup>
-    <PackageReference Include="Some.Package" Version="10.0.0" GeneratePathProperty="true" />
-</ItemGroup>
-
-<ItemGroup>
-    <AdditionalFiles Include="$(PkgSome_Package)/lib/net10.0/Some.Package.xml">
-</ItemGroup>
-```
+  :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/AdditionalFiles.csproj" highlight="7":::
 
 #### Disabling XML documentation support
 
@@ -54,18 +46,18 @@ To turn off XML documentation integration, remove the source generator from the 
 
 <!-- review: \aspnet-openapi-xml\api\obj\Debug\net10.0\Api.xml is generated using the following project file , that is, <Analyzer Remove="$(PkgMicro ... -->
 
-:::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Api-remove.csproj.xml" highlight="19-23":::
+:::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Api-remove.csproj.xml" highlight="7,19-23":::
 
 <!-- review setting  <GenerateDocumentationFile>false</GenerateDocumentationFile> prevents the XML file from being generated.  Explain the difference between GenerateDocumentationFile = true and <Analyzer Remove -->
 
 ## Source generator implementation notes
 
-The source generator implementation is open-source and can be found in the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore/tree/main/src/OpenApi/gen). zz
+The source generator implementation is open-source and can be found in the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore/tree/main/src/OpenApi/gen).
 
 The XML documentation feature is implemented as a source generator. The source generator analyzes XML documentation comments at compile time and injects code that translates these comments into OpenAPI metadata. The [`XmlCommentGenerator`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlCommentGenerator.cs,30eb0aa73ef6306a) extracts XML comments from two sources:
 
 * XML documentation files passed as `AdditionalFiles` via a [`ParseXmlFile`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlCommentGenerator.Parser.cs,f7dff3af661aebc2) implementation.
-* XML comments from the target assembly's own code via a `ParseCompilation` implementation.
+* XML comments from the target assembly's own code via a [`ParseCompilation`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlCommentGenerator.Parser.cs,45358a4d0fff76ac) implementation.
 
 The distinction between these two sources is important. XML documentation files passed as `AdditionalFiles` are static. XML comments from the target assembly come from Roslyn's <!-- review `XmlDocumentationCommentProvider`--> [XML documentation comments provider](https://github.com/dotnet/roslyn/blob/main/src/Compilers/Core/Portable/MetadataReference/PortableExecutableReference.cs#L48-L62). The XML documentation comments provider enhances functionality for connecting an XML comment to the compilation symbol's that it's associated with. This has implications for the way `<inheritdoc />` resolution happens in the implementation, discussed in the next section.
 
@@ -90,7 +82,7 @@ The source generator uses its knowledge of the symbol's present in the compilati
 * Uses its knowledge of the symbol in the compilation to discover base classes and interfaces associated with the symbol.
 * Supports resolving them automatically
 
-The automatic resolution behavior is currently available for XML documentation comments that exist in the assembly under compilation, and ***NOT*** XML documentation tags that are in referenced projects or packages. In the later scenario, XML documentation comments:
+The automatic resolution behavior is currently available for XML documentation comments that exist in the assembly under compilation, and ***not*** XML documentation tags that are in referenced projects or packages. In the later scenario, XML documentation comments:
 
 * Are only presented as text.
 * There's no trivial strategy for:
@@ -101,9 +93,9 @@ The automatic resolution behavior is currently available for XML documentation c
 
 The source generator discovers XML comments statically and emits code that applies them to the document dynamically at runtime. The [`MemberKey`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlComments/MemberKey.cs,d182ed147edb11d2) class acts as a bridge between compile-time and runtime representations of the same concept. It's a unique identifier for types, methods, and properties that works across:
 
-* Different compilation environments
-* Generic types with proper handling of open generics
-* Method overloads with parameter signature matching
+* Different compilation environments.
+* Generic types with proper handling of open generics.
+* Method overloads with parameter signature matching.
 
 The `MemberKey` definition attempts to encode as much information as possible to map a compile-time symbol to its runtime counterpart.
 
@@ -120,15 +112,15 @@ internal sealed record MemberKey(
 
 The generator emits code that contains:
 
-1. A cache of XML comments mapped to member identifiers:
+* A cache of XML comments mapped to member identifiers:
    <!-- REVIEW: In additon to the following, provide a concret example -->
    ```csharp
    _cache.Add(new MemberKey(/*...*/), new XmlComment(/*...*/));
    ```
-1. OpenAPI transformer implementations:
+* OpenAPI transformer implementations:
    * [`XmlCommentOperationTransformer`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlCommentGenerator.Emitter.cs#L229):  Applies comments to API operations (methods).
    * [`XmlCommentSchemaTransformer`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlCommentGenerator.Emitter.cs#L308): Applies comments to data models (types).
-1. Extension methods that intercept <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> calls to inject the transformers:
+* Extension methods that intercept <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> calls to inject the transformers:
 
    ```csharp
    public static IServiceCollection AddOpenApi(this IServiceCollection services)
@@ -143,7 +135,7 @@ The generator emits code that contains:
 
 ### Interception mechanism
 
-The generator uses the C# compiler's interceptor feature to intercept calls to the `AddOpenApi` method. The generator:
+The generator uses the C# compiler's interceptor feature to intercept calls to the `<xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> method. The generator:
 
 1. Detects different `AddOpenApi` overloads.
 2. Generates appropriate interceptor methods for each overload.
@@ -176,7 +168,7 @@ The feature automatically extracts XML documentation comments from code and uses
 
 ### How does the XML documentation support work?
 
-It uses a C# source generator, `XmlCommentGenerator`, that analyzes XML documentation at compile time and injects code that translates those comments into OpenAPI specification metadata.
+It uses a C# source generator, [`XmlCommentGenerator`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlCommentGenerator.cs,30eb0aa73ef6306a), that analyzes XML documentation at compile time and injects code that translates those comments into OpenAPI specification metadata.
 
 ### Why is this implemented as a source generator?
 
@@ -186,13 +178,11 @@ Source generators allow us to implement [AOT](/aspnet/core/fundamentals/native-a
 
 1. Enable XML documentation in your project file:
 
-   ```xml
-   <PropertyGroup>
-     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-   </PropertyGroup>
-   ```
+  :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
 
 2. Use the `AddOpenApi` method in your service configuration. No configuration is needed, the source generator handles the rest.
+
+  :::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Program.cs" id="snippet_1" highlight="6":::
 
 ### Do I need to include XML documentation files from referenced assemblies?
 
@@ -222,7 +212,6 @@ XML documentation comments from `ProjectReferences` are automatically resolved a
 Document HTTP responses with the `<response>` tag and the `code` attribute:
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/ProjectBoardApis.cs" id="snippet_1" highlight="6-7":::
-
 
 <!--```csharp
 /// <response code="200">Success response with data</response>
@@ -265,7 +254,7 @@ XML documentation processing doesn't impact runtime performance. The source gene
 
 ### Source generator and interception of `AddOpenApi` calls
 
-The source generator uses the C# compiler's interceptor feature to detect calls to `AddOpenApi` and automatically injects the XML documentation transformers.
+The source generator uses the [C# compiler's interceptor ](/dotnet/csharp/whats-new/csharp-12#interceptors)feature to detect calls to `AddOpenApi` and automatically injects the XML documentation transformers.
 
 ### What happens when I use different overloads of `AddOpenApi`?
 
@@ -276,11 +265,11 @@ The source generator detects all standard overloads:
 * `AddOpenApi(options => {})`
 * `AddOpenApi("v1", options => {})`
 
-Each is intercepted to automatically include the XML documentation transformers. The source generator doesn't handle overloads where the `documentName` parameter isn't a literal string expression. For example, the transformer isn't registered in the following scenarios:
+Each overload is intercepted to automatically include the XML documentation transformers. The source generator doesn't handle overloads where the `documentName` parameter isn't a literal string expression. For example, the transformer isn't registered in the following scenarios:
 
 ```csharp
 var documentName = "v1";
-builder.Services.AddOpenApi(documentName); // No XML support here
+builder.Services.AddOpenApi(documentName); // No XML support
 ```
 
 <a name="download10"></a>
