@@ -875,7 +875,7 @@ items:
           - name: Include OpenAPI metadata
             uid: fundamentals/openapi/include-metadata
           - name: XML doc comment support 
-            uid: fundamentals/openapi/openapi-comments
+            uid: fundamentals/openapi/aspnet-openapi-xml
           - name: Customize OpenAPI documents
             uid: fundamentals/openapi/customize-openapi
           - name: Use OpenAPI documents

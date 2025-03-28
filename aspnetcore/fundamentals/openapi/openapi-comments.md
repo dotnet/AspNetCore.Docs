@@ -6,7 +6,7 @@ ms.author: safia
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
 ms.date: 10/26/2024
-uid: fundamentals/openapi/openapi-comments
+uid: fundamentals/openapi/aspnet-openapi-xml
 ---
 <!-- backup author: rick-anderson -->
 # OpenAPI XML documentation comment support in ASP.NET Core
