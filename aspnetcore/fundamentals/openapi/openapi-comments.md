@@ -11,7 +11,7 @@ uid: fundamentals/openapi/openapi-comments
 <!-- backup author: rick-anderson -->
 # OpenAPI XML documentation comment support in ASP.NET Core
 
-Documentation integration is implemented as a source generator. The source generator runs at compile time and injects code that translates XML comments into OpenAPI metadata. No special configuration is required in app code to enable the feature.
+OpenAPI XML documentation integration is implemented as a source generator. The source generator runs at compile time and injects code that translates XML comments into OpenAPI metadata. No configuration is required in app code to enable XML documentation comment support. The source generator automatically detects XML documentation comments in the application assembly and any referenced assemblies that have XML documentation enabled.
 
 This article includes a [sample app](#download10) that demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents. The sample app is a minimal ASP.NET Core Web API project that uses the `Microsoft.AspNetCore.OpenApi` package to generate OpenAPI documents. The XML documentation comments are used to populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
 
