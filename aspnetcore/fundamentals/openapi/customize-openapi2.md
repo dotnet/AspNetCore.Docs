@@ -38,7 +38,7 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 
 The implementation discovers XML files statically at compile-time. The `AdditionalFiles` item group specifies additional sources for XML files:
 
-  :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/AdditionalFiles.csproj" highlight="7":::
+  :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/AdditionalFiles.xml" highlight="7":::
 
 #### Disabling XML documentation support
 
@@ -198,14 +198,14 @@ XML documentation comments from `ProjectReferences` are automatically resolved a
 
 ### Supported XML documentation tags
 <!-- review: removing defns for links, can revert -->
-* [`<summary>`](dotnet/csharp/language-reference/xmldoc/recommended-tags#summary) <!-- - Used for operation and type descriptions -->
-* [`<remarks>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#remarks) <!-- - Used for additional operation details -->
-* [`<param>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#param) <!-- - Used for parameter descriptions           -->
-* [`<returns>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#returns) <!-- - Used for return value descriptions     -->
-* [`<response>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#response) <!-- - Used for HTTP response documentation -->
-* [`<example>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#example) <!-- - Used for examples in documentation      -->
-* [`<deprecated>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#deprecated) <!-- - Marks operations as deprecated -->
-* [`<inheritdoc>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) <!-- - Inherits documentation from base classes/interfaces -->
+* [`<summary>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#summary) <!-- - Used for operation and type descriptions -->
+* [`<remarks>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#remarks) <!-- - Used for additional operation details -->
+* [`<param>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#param) <!-- - Used for parameter descriptions           -->
+* [`<returns>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#returns) <!-- - Used for return value descriptions     -->
+* [`<response>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#response) <!-- - Used for HTTP response documentation -->
+* [`<example>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#example) <!-- - Used for examples in documentation      -->
+* [`<deprecated>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#deprecated) <!-- - Marks operations as deprecated -->
+* [`<inheritdoc>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) <!-- - Inherits documentation from base classes/interfaces -->
 
 ### Document HTTP responses
 
@@ -220,7 +220,7 @@ Document HTTP responses with the `<response>` tag and the `code` attribute:
 
 ### Add examples
 
-To add examples to documentation, use the [`<example>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#example) tag for types or the `example` attribute for parameters:
+To add examples to documentation, use the [`<example>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#example) tag for types or the `example` attribute for parameters:
 
 ```csharp
 /// <example>{"name":"Sample","value":42}</example>
@@ -229,7 +229,7 @@ To add examples to documentation, use the [`<example>`](https://learn.microsoft.
 
 ### Document inheritance via `<inheritdoc/>` tags
 
-The generator supports [`<inheritdoc>`](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) tags, which inherit documentation from *as long as they exist in the compilation assembly*:
+The generator supports [`<inheritdoc>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) tags, which inherit documentation from *as long as they exist in the compilation assembly*:
 
 * Base classes
 * Implemented interfaces
@@ -250,7 +250,7 @@ It uses the [`MemberKey`](https://github.com/dotnet/aspnetcore/blob/main/src/Ope
 
 ### XML documentation processing and runtime performance
 
-XML documentation processing doesn't impact runtime performance. The source generator processes XML documentation at compile time and caches the results, with minimal runtime overhead when rendering the OpenAPI documentation. Furthermore, the OpenAPI document can be cached at runtime using [output-caching](https://learn.microsoft.com/aspnet/core/performance/caching/overview#output-caching) to further optimize performance.
+XML documentation processing doesn't impact runtime performance. The source generator processes XML documentation at compile time and caches the results, with minimal runtime overhead when rendering the OpenAPI documentation. Furthermore, the OpenAPI document can be cached at runtime using [output-caching](/aspnet/core/performance/caching/overview#output-caching) to further optimize performance.
 
 ### Source generator and interception of `AddOpenApi` calls
 
