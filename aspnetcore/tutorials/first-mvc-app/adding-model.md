@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/02/2025
+ms.date: 03/28/2025
 uid: tutorials/first-mvc-app/adding-model
 ---
 
@@ -352,7 +352,7 @@ Examine the generated `Details` method in the `Controllers/MoviesController.cs` 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Controllers/MoviesController.cs?name=snippet_Details)]
 
-The `id` parameter is generally passed as route data. For example, `https://localhost:5001/movies/details/1` sets:
+The `id` parameter is generally passed as route data. For example, `https://localhost:{PORT}/movies/details/1` sets:
 
 * The controller to the `movies` controller, the first URL segment.
 * The action to `details`, the second URL segment.
@@ -360,7 +360,7 @@ The `id` parameter is generally passed as route data. For example, `https://loca
 
 The `id` can be passed in with a query string, as in the following example:
 
-`https://localhost:5001/movies/details?id=1`
+`https://localhost:{PORT}/movies/details?id=1`
 
 The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in cases when the `id` value isn't provided.
 
