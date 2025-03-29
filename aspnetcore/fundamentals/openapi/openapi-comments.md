@@ -65,7 +65,7 @@ XML comments are parsed into structured `XmlComment` objects with:
 * Response documentation with status codes and descriptions.
 * Support for examples and deprecated markers.
 
-The `XmlComment` class processes [XML documentation tags](/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`. For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
+The `XmlComment` class processes [XML documentation tags](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`. For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
 
 ### Support for `<inheritdoc/>`
 
@@ -298,3 +298,10 @@ info: Microsoft.Hosting.Lifetime[0]
 ```
 
 Navigate to [http://localhost:5052/](http://localhost:5052/) to view the Scalar UI for interacting with the app. The Scalar UI includes summaries and descriptions on various elements sourced from XML documentation comments.
+
+## Additional resources
+
+* [Source generator implementation notes](https://github.com/captainsafia/aspnet-openapi-xml#implementation-notes)
+* <xref:fundamentals/openapi/aspnetcore-openapi>
+* <xref:fundamentals/openapi/using-openapi-documents>
+* <xref:fundamentals/openapi/openapi-tools>
