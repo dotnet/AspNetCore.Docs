@@ -230,7 +230,7 @@ For more information, see <xref:blazor/js-interop/ssr?view=aspnetcore-9.0>.
 
 ### Client-side request streaming
 
-Interactive WebAssembly rendering in Blazor now supports client-side request streaming using the `request.SetBrowserReqeustStreamingEnabled(true)` option on `HttpRequestMessage`. 
+Interactive WebAssembly rendering in Blazor now supports client-side request streaming using the `request.SetBrowserRequestStreamingEnabled(true)` option on `HttpRequestMessage`. 
 
 For more information, see the following resources:
 
