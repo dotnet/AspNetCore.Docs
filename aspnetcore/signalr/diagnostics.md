@@ -5,7 +5,7 @@ description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: devx-track-csharp, signalr, linux-related-content
-ms.date: 03/25/2025
+ms.date: 03/30/2025
 uid: signalr/diagnostics
 ---
 # Logging and diagnostics in ASP.NET Core SignalR
@@ -45,7 +45,7 @@ We recommend using the `Debug` level when gathering more detailed diagnostics fo
 
 ## Access server-side logs
 
-How you access server-side logs depends on the environment in which you're running.
+How server-side logs are accessed depends on the environment in which the app is running.
 
 ### As a console app outside IIS
 
@@ -119,7 +119,7 @@ In order to enable Console logging, add the [Microsoft.Extensions.Logging.Consol
 
 ### Debug output window logging
 
-You can also configure logs to go to the **Output** window in Visual Studio. Install the [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) package and use the `AddDebug` method:
+Logs can be configured to go to the **Output** window in Visual Studio. Install the [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) package and use the `AddDebug` method:
 
 [!code-csharp[](diagnostics/net-client-debug-log.cs?highlight=6)]
 
@@ -203,52 +203,52 @@ After collecting the trace, export it by selecting **File** > **Save** > **All S
 
 This method works for all apps.
 
-You can collect raw TCP traces using tcpdump by running the following command from a command shell. You may need to be `root` or prefix the command with `sudo` if you get a permissions error:
+Raw TCP traces can be collected using tcpdump by running the following command from a command shell. You may need to be `root` or prefix the command with `sudo` if you get a permissions error:
 
 ```console
 tcpdump -i [interface] -w trace.pcap
 ```
 
-Replace `[interface]` with the network interface you wish to capture on. Usually, this is something like `/dev/eth0` (for your standard Ethernet interface) or `/dev/lo0` (for localhost traffic). For more information, see the `tcpdump` manual page on your host system.
+Replace `[interface]` with the network interface you wish to capture on. Usually, this is something like `/dev/eth0` (for a standard Ethernet interface) or `/dev/lo0` (for localhost traffic). For more information, see the `tcpdump` manual page on your host system.
 
 ## Collect a network trace in the browser
 
 This method only works for browser-based apps.
 
-Most browser developer tools consoles have a "Network" tab that allows you to capture network activity between the browser and the server. However, these traces don't include WebSocket and Server-Sent Event messages. If you're using those transports, using a tool like Fiddler or TcpDump is a better approach, as described later in this article.
+Most browser developer tools consoles have a "Network" tab that allows network activity to be captured between the browser and the server. However, these traces don't include WebSocket and Server-Sent Event messages. When using those transports, using a tool like Fiddler or TcpDump is a better approach, as described later in this article.
 
 ### Microsoft Edge and Internet Explorer
 
 (The instructions are the same for both Microsoft Edge and Internet Explorer)
 
 1. Open the Dev Tools by pressing F12
-2. Select the Network Tab
-3. Refresh the page (if needed) and reproduce the problem
-4. Select the Save icon in the toolbar to export the trace as a "HAR" file:
+1. Select the Network Tab
+1. Refresh the page (if needed) and reproduce the problem
+1. Select the Save icon in the toolbar to export the trace as a "HAR" file:
 
 ![The Save Icon on the Microsoft Edge Dev Tools Network Tab](diagnostics/ie-edge-har-export.png)
 
 ### Google Chrome
 
 1. Open the Dev Tools by pressing F12
-2. Select the Network Tab
-3. Refresh the page (if needed) and reproduce the problem
-4. Right click anywhere in the list of requests and choose "Save as HAR with content":
+1. Select the Network Tab
+1. Refresh the page (if needed) and reproduce the problem
+1. Right click anywhere in the list of requests and choose "Save as HAR with content":
 
 !["Save as HAR with Content" option in Google Chrome Dev Tools Network Tab](diagnostics/chrome-har-export.png)
 
 ### Mozilla Firefox
 
 1. Open the Dev Tools by pressing F12
-2. Select the Network Tab
-3. Refresh the page (if needed) and reproduce the problem
-4. Right click anywhere in the list of requests and choose "Save All As HAR"
+1. Select the Network Tab
+1. Refresh the page (if needed) and reproduce the problem
+1. Right click anywhere in the list of requests and choose "Save All As HAR"
 
 !["Save All As HAR" option in Mozilla Firefox Dev Tools Network Tab](diagnostics/firefox-har-export.png)
 
 ## Attach diagnostics files to GitHub issues
 
-You can attach Diagnostics files to GitHub issues by renaming them so they have a `.txt` extension and then dragging and dropping them on to the issue.
+Diagnostics files can be attached to GitHub issues by renaming them so they have a `.txt` extension and then dragging and dropping them on to the issue.
 
 > [!NOTE]
 > Please don't paste the content of log files or network traces into a GitHub issue. These logs and traces can be large, and GitHub usually truncates them.
