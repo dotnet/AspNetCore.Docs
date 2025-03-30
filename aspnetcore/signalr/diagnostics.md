@@ -19,18 +19,18 @@ This article provides guidance for gathering diagnostics from your ASP.NET Core 
 > [!WARNING]
 > Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
-Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs very little information, but this can configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
+Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs minimal information, but the logging level can be configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
 
 SignalR uses two logger categories:
 
 * `Microsoft.AspNetCore.SignalR`: For logs related to Hub Protocols, activating Hubs, invoking methods, and other Hub-related activities.
 * `Microsoft.AspNetCore.Http.Connections`: For logs related to transports, such as WebSockets, Long Polling, Server-Sent Events, and low-level SignalR infrastructure.
 
-To enable detailed logs from SignalR, configure both of the preceding prefixes to the `Debug` level in your `appsettings.json` file by adding the following items to the `LogLevel` sub-section in `Logging`:
+To enable detailed logs from SignalR, configure both of the preceding prefixes to the `Debug` level in your `appsettings.json` file by adding the following items to the `LogLevel` subsection in `Logging`:
 
 [!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
-You can also configure this in code in your `CreateWebHostBuilder` method:
+The logging levels for the SignalR logger categories can also be configured in code within the `CreateWebHostBuilder` method:
 
 [!code-csharp[](diagnostics/logging-config-code.cs?highlight=5-6)]
 
@@ -41,7 +41,7 @@ If you aren't using JSON-based configuration, set the following configuration va
 
 Check the documentation for your configuration system to determine how to specify nested configuration values. For example, when using environment variables, two `_` characters are used instead of the `:` (for example, `Logging__LogLevel__Microsoft.AspNetCore.SignalR`).
 
-We recommend using the `Debug` level when gathering more detailed diagnostics for your app. The `Trace` level produces very low-level diagnostics and is rarely needed to diagnose issues in your app.
+We recommend using the `Debug` level when gathering more detailed diagnostics for your app. The `Trace` level produces low-level diagnostics and is rarely needed to diagnose issues in your app.
 
 ## Access server-side logs
 
@@ -49,7 +49,7 @@ How you access server-side logs depends on the environment in which you're runni
 
 ### As a console app outside IIS
 
-If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console) should be enabled by default. SignalR logs will appear in the console.
+If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console) should be enabled by default. SignalR logs appear in the console.
 
 ### Within IIS Express from Visual Studio
 
@@ -61,7 +61,7 @@ Enable the **Application Logging (Filesystem)** option in the **Diagnostics logs
 
 ### Other environments
 
-If the app is deployed to another environment (for example, Docker, Kubernetes, or Windows Service), see <xref:fundamentals/logging/index> for more information on how to configure logging providers suitable for the environment.
+For more information on configuring logging providers suitable for different deployment environments, such as Docker, Kubernetes, or Windows Service, see <xref:fundamentals/logging/index>.
 
 ## JavaScript client logging
 
@@ -72,7 +72,7 @@ When using the JavaScript client, you can configure logging options using the `c
 
 [!code-javascript[](diagnostics/logging-config-js.js?highlight=3)]
 
-To disable framework logging, specify `signalR.LogLevel.None` in the `configureLogging` method. Note that some logging is emitted directly by the browser and can't be disabled via setting the log level.
+Disable framework logging by specifying `signalR.LogLevel.None` in the `configureLogging` method. Note that some logging is emitted directly by the browser and can't be disabled via setting the log level.
 
 The following table shows log levels available to the JavaScript client. Setting the log level to one of these values enables logging at that level and all levels above it in the table.
 
@@ -131,13 +131,13 @@ SignalR supports other logging providers such as Serilog, Seq, NLog, or any othe
 
 ### Control verbosity
 
-If you are logging from other places in your app, changing the default level to `Debug` may be too verbose. You can use a Filter to configure the logging level for SignalR logs. This can be done in code, in much the same way as on the server:
+When logging from other places in the app, changing the default level to `Debug` may be too verbose. A Filter can be used to configure the logging level for SignalR logs. This can be done in code, in much the same way as on the server:
 
 [!code-csharp[Controlling verbosity in .NET client](diagnostics/logging-config-client-code.cs?highlight=9-10)]
 
 ## Tracing in SignalR
 
-SignalR hub server and the SignalR client provide information about SignalR connections and messages using <xref:System.Diagnostics.DiagnosticSource> and <xref:System.Diagnostics.Activity>. SignalR has an ActivitySource for both the hub server and client, avaialble starting wtih .NET 9.
+SignalR hub server and the SignalR client provide information about SignalR connections and messages using <xref:System.Diagnostics.DiagnosticSource> and <xref:System.Diagnostics.Activity>. SignalR has an ActivitySource for both the hub server and client, avaialble starting with .NET 9.
 
 An ActivitySource is a component used in distributed tracing to create and manage activities (or spans) that represent operations in your application. These activities can be used to:
 
@@ -149,7 +149,7 @@ An ActivitySource is a component used in distributed tracing to create and manag
 The SignalR ActivitySource named `Microsoft.AspNetCore.SignalR.Server` emits events for hub method calls:
 
 * Every method is its own activity, so anything that emits an activity during the hub method call is under the hub method activity.
-* Hub method activities don't have a parent. This means they are not bundled under the long-running SignalR connection.
+* Hub method activities don't have a parent. This means they aren't bundled under the long-running SignalR connection.
 
 The following example uses the [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#using-the-dashboard-with-net-aspire-projects) and the [OpenTelemetry](https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting) packages:
 
@@ -163,7 +163,7 @@ Add the following startup code to the `Program.cs` file:
 
 [!code-csharp[](~/signalr/diagnostics/samples/9.x/SignalRChatTraceExample/Program.cs?name=snippet_trace_signalr_server&highlight=1,10-23)]
 
-The following is example output from the Aspire Dashboard:
+The following example output is from the Aspire Dashboard:
 
 :::image type="content" source="~/signalr/diagnostics/_static/9.x/signalr-activities-events.png" alt-text="Activity list for SignalR Hub method call events":::
 
@@ -173,7 +173,7 @@ ASP.NET Core also provides its own metrics on `Microsoft.AspNetCore.Hosting` eve
 
 The SignalR `ActivitySource` named `Microsoft.AspNetCore.SignalR.Client` emits events for a SignalR client:
 
-* Hub invocations create a client span. Note that other SignalR clients, such as the JavaScript client, don't support tracing. This feature will be added to more clients in future releases.
+* Hub invocations create a client span. Other SignalR clients, such as the JavaScript client, don't support tracing. This feature will be added to more clients in future releases.
 * Hub invocations on the client and server support [context propagation](https://opentelemetry.io/docs/concepts/context-propagation/). Propagating the trace context enables true distributed tracing. It's now possible to see invocations flow from the client to the server and back.
 
 Here's how these new activities look in the [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#standalone-mode):
@@ -185,17 +185,17 @@ Here's how these new activities look in the [.NET Aspire dashboard](/dotnet/aspi
 > [!WARNING]
 > A network trace contains the full contents of every message sent by your app. **Never** post raw network traces from production apps to public forums like GitHub.
 
-If you encounter an issue, a network trace can sometimes provide a lot of helpful information. This is particularly useful if you're going to file an issue on our issue tracker.
+If you encounter an issue, a network trace can sometimes provide a valuable information. This is especially helpful when filing an issue on our issue tracker.
 
 ## Collect a network trace with Fiddler (preferred option)
 
 This method works for all apps.
 
-Fiddler is a very powerful tool for collecting HTTP traces. Install it from [telerik.com/fiddler](https://www.telerik.com/fiddler), launch it, and then run your app and reproduce the issue. Fiddler is available for Windows, and there are beta versions for macOS and Linux.
+Fiddler is a powerful tool for collecting HTTP traces. Install it from [telerik.com/fiddler](https://www.telerik.com/fiddler), launch it, and then run your app and reproduce the issue. Fiddler is available for Windows, and there are beta versions for macOS and Linux.
 
-If you connect using HTTPS, there are some extra steps to ensure Fiddler can decrypt the HTTPS traffic. For more details, see the [Fiddler documentation](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS).
+If you connect using HTTPS, there are some extra steps to ensure Fiddler can decrypt the HTTPS traffic. For more information, see the [Fiddler documentation](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS).
 
-Once you've collected the trace, you can export the trace by choosing **File** > **Save** > **All Sessions** from the menu bar.
+After collecting the trace, export it by selecting **File** > **Save** > **All Sessions** from the menu bar
 
 ![Exporting all sessions from Fiddler](diagnostics/fiddler-export.png)
 
@@ -209,29 +209,29 @@ You can collect raw TCP traces using tcpdump by running the following command fr
 tcpdump -i [interface] -w trace.pcap
 ```
 
-Replace `[interface]` with the network interface you wish to capture on. Usually, this is something like `/dev/eth0` (for your standard Ethernet interface) or `/dev/lo0` (for localhost traffic). For more information, see the `tcpdump` man page on your host system.
+Replace `[interface]` with the network interface you wish to capture on. Usually, this is something like `/dev/eth0` (for your standard Ethernet interface) or `/dev/lo0` (for localhost traffic). For more information, see the `tcpdump` manual page on your host system.
 
 ## Collect a network trace in the browser
 
 This method only works for browser-based apps.
 
-Most browser developer tools consoles have a "Network" tab that allows you to capture network activity between the browser and the server. However, these traces don't include WebSocket and Server-Sent Event messages. If you are using those transports, using a tool like Fiddler or TcpDump (described below) is a better approach.
+Most browser developer tools consoles have a "Network" tab that allows you to capture network activity between the browser and the server. However, these traces don't include WebSocket and Server-Sent Event messages. If you're using those transports, using a tool like Fiddler or TcpDump is a better approach, as described later in this article.
 
 ### Microsoft Edge and Internet Explorer
 
-(The instructions are the same for both Edge and Internet Explorer)
+(The instructions are the same for both Microsoft Edge and Internet Explorer)
 
-1. Press F12 to open the Dev Tools
-2. Click the Network Tab
+1. Open the Dev Tools by pressing F12
+2. Select the Network Tab
 3. Refresh the page (if needed) and reproduce the problem
-4. Click the Save icon in the toolbar to export the trace as a "HAR" file:
+4. Select the Save icon in the toolbar to export the trace as a "HAR" file:
 
 ![The Save Icon on the Microsoft Edge Dev Tools Network Tab](diagnostics/ie-edge-har-export.png)
 
 ### Google Chrome
 
-1. Press F12 to open the Dev Tools
-2. Click the Network Tab
+1. Open the Dev Tools by pressing F12
+2. Select the Network Tab
 3. Refresh the page (if needed) and reproduce the problem
 4. Right click anywhere in the list of requests and choose "Save as HAR with content":
 
@@ -239,8 +239,8 @@ Most browser developer tools consoles have a "Network" tab that allows you to ca
 
 ### Mozilla Firefox
 
-1. Press F12 to open the Dev Tools
-2. Click the Network Tab
+1. Open the Dev Tools by pressing F12
+2. Select the Network Tab
 3. Refresh the page (if needed) and reproduce the problem
 4. Right click anywhere in the list of requests and choose "Save All As HAR"
 
@@ -251,13 +251,13 @@ Most browser developer tools consoles have a "Network" tab that allows you to ca
 You can attach Diagnostics files to GitHub issues by renaming them so they have a `.txt` extension and then dragging and dropping them on to the issue.
 
 > [!NOTE]
-> Please don't paste the content of log files or network traces into a GitHub issue. These logs and traces can be quite large, and GitHub usually truncates them.
+> Please don't paste the content of log files or network traces into a GitHub issue. These logs and traces can be large, and GitHub usually truncates them.
 
 ![Dragging log files on to a GitHub issue](diagnostics/attaching-diagnostics-files.png)
 
 ## Metrics
 
-Metrics is a representation of data measures over intervals of time. For example, requests per second. Metrics data allows observation of the state of an app at a high level. .NET gRPC metrics are emitted using <xref:System.Diagnostics.Tracing.EventCounter>.
+Metrics are a representation of data measures over intervals of time. For example, requests per second. Metrics data allows observation of the state of an app at a high level. .NET gRPC metrics are emitted using <xref:System.Diagnostics.Tracing.EventCounter>.
 
 ### SignalR server metrics
 
