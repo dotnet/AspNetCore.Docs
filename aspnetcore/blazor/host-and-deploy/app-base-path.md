@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 03/31/2025
 uid: blazor/host-and-deploy/app-base-path
 ---
-# Host and deploy ASP.NET Core Blazor
+# ASP.NET Core Blazor app base path
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 

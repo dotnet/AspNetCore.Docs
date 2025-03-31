@@ -100,7 +100,7 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
 
 :::moniker-end
 
-* For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](xref:blazor/host-and-deploy/iis#brotli-and-gzip-compression) section. 
+* For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](xref:blazor/host-and-deploy/webassembly/iis#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, consider configuring the app to fetch and decode Brotli compressed files:
 
 Obtain the JavaScript Brotli decoder from the [`google/brotli` GitHub repository](https://github.com/google/brotli). The minified decoder file is named `decode.min.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
@@ -236,7 +236,7 @@ If a request is made using the browser's address bar for `www.contoso.com/About`
 
 Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the `index.html` page. When `index.html` is returned, the app's Blazor router takes over and responds with the correct resource.
 
-When deploying to an IIS server, you can use the URL Rewrite Module with the app's published `web.config` file. For more information, see <xref:blazor/host-and-deploy/iis>.
+When deploying to an IIS server, you can use the URL Rewrite Module with the app's published `web.config` file. For more information, see <xref:blazor/host-and-deploy/webassembly/iis>.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -331,7 +331,7 @@ Standalone deployment assets are published into either the `/bin/Release/{TARGET
 
 Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on IIS.
 
-Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](xref:blazor/host-and-deploy/azure-static-web-apps), which supports this scenario.
+Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](xref:blazor/host-and-deploy/webassembly/azure-static-web-apps), which supports this scenario.
 
 ## Standalone with Docker
 
@@ -345,7 +345,7 @@ To host the app in Docker:
 
 For configuration guidance, see the following resources:
 
-* [Nginx](xref:blazor/host-and-deploy/nginx) or [Apache](xref:blazor/host-and-deploy/apache) articles
+* [Nginx](xref:blazor/host-and-deploy/webassembly/nginx) or [Apache](xref:blazor/host-and-deploy/webassembly/apache) articles
 * [Docker Documentation](https://docs.docker.com/)
 
 ## Host configuration values
@@ -717,7 +717,7 @@ Remove entries for compressed `.dll` files if [compression](#compression) is in 
 - <mimeMap fileExtension=".dll.gz" mimeType="application/octet-stream" />
 ```
 
-For more information on custom `web.config` files, see the [Use a custom `web.config`](xref:blazor/host-and-deploy/iis#use-a-custom-webconfig) section.
+For more information on custom `web.config` files, see the [Use a custom `web.config`](xref:blazor/host-and-deploy/webassembly/iis#use-a-custom-webconfig) section.
 
 :::moniker-end
 
