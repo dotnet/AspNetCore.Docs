@@ -321,14 +321,6 @@ For more information, see the following articles:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
-
-## Hosted deployment with multiple Blazor WebAssembly apps
-
-For more information, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>.
-
-:::moniker-end
-
 ## Standalone deployment
 
 A *standalone deployment* serves the Blazor WebAssembly app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.

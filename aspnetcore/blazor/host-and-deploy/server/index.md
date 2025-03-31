@@ -83,7 +83,6 @@ Enable the following for the app's registration in Azure App Service:
 1. Set **Web sockets** to **On**.
 1. Verify that **Session affinity** is set to **On**.
 
-
 ## Azure SignalR Service
 
 The optional [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) works in conjunction with the app's SignalR hub for scaling up a server-side app to a large number of concurrent connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
