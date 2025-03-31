@@ -52,15 +52,7 @@ Implementing a commercial DDoS protection service in conjunction with rate limit
 
 The following steps show how to use the rate limiting middleware in an ASP.NET Core app:
 
-1. Install the `Microsoft.AspNetCore.RateLimiting` package.:
-
-  Add the `Microsoft.AspNetCore.RateLimiting` package to the project, via the NuGet Package Manager or   the following command:
-  
-  ```sh
-     dotnet add package Microsoft.AspNetCore.RateLimiting
-  ```
-
-2. Configure rate limiting services.
+1. Configure rate limiting services.
 
   In the `Program.cs` file, configure the rate limiting services by adding the appropriate rate limiting  policies. Policies can either be defined as global or named polices. The following example permits 10 requests per minute by user (identity) or globally:
   
@@ -101,7 +93,7 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
   
   The global limiter applies to all endpoints automatically when it's configured via [options.GlobalLimiter](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions.globallimiter).
 
-3. Enable rate limiting middleware
+2. Enable rate limiting middleware
 
    In the `Program.cs` file, enable the rate limiting middleware by calling [UseRateLimiter](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterapplicationbuilderextensions.useratelimiter):
   
