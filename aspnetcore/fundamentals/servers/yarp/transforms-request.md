@@ -26,9 +26,9 @@ The following are built in transforms identified by their primary config key. Th
 
 **Modifies the request path adding a prefix value**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| PathPrefix | A path starting with a '/' | yes |
+| Key        | Value                      | Required |
+| ---------- | -------------------------- | -------- |
+| PathPrefix | A path starting with a '/' | yes      |
 
 Config:
 ```JSON
@@ -50,9 +50,9 @@ This will prefix the request path with the given value.
 
 **Modifies the request path removing a prefix value**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| PathRemovePrefix | A path starting with a '/' | yes |
+| Key              | Value                      | Required |
+| ---------------- | -------------------------- | -------- |
+| PathRemovePrefix | A path starting with a '/' | yes      |
 
 Config:
 ```JSON
@@ -75,9 +75,9 @@ This will remove the matching prefix from the request path. Matches are made on 
 
 **Replaces the request path with the specified value**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| PathSet | A path starting with a '/' | yes |
+| Key     | Value                      | Required |
+| ------- | -------------------------- | -------- |
+| PathSet | A path starting with a '/' | yes      |
 
 Config:
 ```JSON
@@ -99,9 +99,9 @@ This will set the request path with the given value.
 
 **Replaces the request path using a pattern template**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| PathPattern | A path template starting with a '/' | yes |
+| Key         | Value                               | Required |
+| ----------- | ----------------------------------- | -------- |
+| PathPattern | A path template starting with a '/' | yes      |
 
 Config:
 ```JSON
@@ -119,23 +119,23 @@ This will set the request path with the given value and replace any `{}` segment
 
 Example:
 
-| Step | Value |
-|------|-------|
+| Step             | Value                               |
+| ---------------- | ----------------------------------- |
 | Route definition | `/api/{plugin}/stuff/{**remainder}` |
-| Request path | `/api/v1/stuff/more/stuff` |
-| Plugin value | `v1` |
-| Remainder value | `more/stuff` |
-| PathPattern | `/my/{plugin}/api/{**remainder}` |
-| Result | `/my/v1/api/more/stuff` |
+| Request path     | `/api/v1/stuff/more/stuff`          |
+| Plugin value     | `v1`                                |
+| Remainder value  | `more/stuff`                        |
+| PathPattern      | `/my/{plugin}/api/{**remainder}`    |
+| Result           | `/my/v1/api/more/stuff`             |
 
 ## QueryValueParameter
 
 **Adds or replaces parameters in the request query string**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| QueryValueParameter | Name of a query string parameter | yes |
-| Set/Append | Static value | yes |
+| Key                 | Value                            | Required |
+| ------------------- | -------------------------------- | -------- |
+| QueryValueParameter | Name of a query string parameter | yes      |
+| Set/Append          | Static value                     | yes      |
 
 Config:
 ```JSON
@@ -156,21 +156,21 @@ This will add a query string parameter with the name `foo` and sets it to the st
 
 Example:
 
-| Step | Value |
-|------|-------|
-| Query | `?a=b` |
-| QueryValueParameter | `foo` |
-| Append | `remainder` |
-| Result | `?a=b&foo=remainder` |
+| Step                | Value                |
+| ------------------- | -------------------- |
+| Query               | `?a=b`               |
+| QueryValueParameter | `foo`                |
+| Append              | `remainder`          |
+| Result              | `?a=b&foo=remainder` |
 
 ## QueryRouteParameter
 
 **Adds or replaces a query string parameter with a value from the route configuration**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| QueryRouteParameter | Name of a query string parameter | yes |
-| Set/Append | The name of a route value | yes |
+| Key                 | Value                            | Required |
+| ------------------- | -------------------------------- | -------- |
+| QueryRouteParameter | Name of a query string parameter | yes      |
+| Set/Append          | The name of a route value        | yes      |
 
 Config:
 ```JSON
@@ -191,22 +191,22 @@ This will add a query string parameter with the name `foo` and sets it to the va
 
 Example:
 
-| Step | Value |
-|------|-------|
-| Route definition | `/api/{*remainder}` |
-| Request path | `/api/more/stuff` |
-| Remainder value | `more/stuff` |
-| QueryRouteParameter | `foo` |
-| Append | `remainder` |
-| Result | `?foo=more/stuff` |
+| Step                | Value               |
+| ------------------- | ------------------- |
+| Route definition    | `/api/{*remainder}` |
+| Request path        | `/api/more/stuff`   |
+| Remainder value     | `more/stuff`        |
+| QueryRouteParameter | `foo`               |
+| Append              | `remainder`         |
+| Result              | `?foo=more/stuff`   |
 
 ## QueryRemoveParameter
 
 **Removes the specified parameter from the request query string**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| QueryRemoveParameter | Name of a query string parameter | yes |
+| Key                  | Value                            | Required |
+| -------------------- | -------------------------------- | -------- |
+| QueryRemoveParameter | Name of a query string parameter | yes      |
 
 Config:
 ```JSON
@@ -224,20 +224,20 @@ This will remove a query string parameter with the name `foo` if present on the 
 
 Example:
 
-| Step | Value |
-|------|-------|
-| Request path | `?a=b&foo=c` |
-| QueryRemoveParameter | `foo` |
-| Result | `?a=b` |
+| Step                 | Value        |
+| -------------------- | ------------ |
+| Request path         | `?a=b&foo=c` |
+| QueryRemoveParameter | `foo`        |
+| Result               | `?a=b`       |
 
 ## HttpMethodChange
 
 **Changes the http method used in the request**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| HttpMethodChange | The http method to replace | yes |
-| Set | The new http method | yes |
+| Key              | Value                      | Required |
+| ---------------- | -------------------------- | -------- |
+| HttpMethodChange | The http method to replace | yes      |
+| Set              | The new http method        | yes      |
 
 Config:
 ```JSON
@@ -260,9 +260,9 @@ This will change PUT requests to POST.
 
 **Sets whether incoming request headers are copied to the outbound request**
 
-| Key | Value | Default | Required |
-|-----|-------|---------|----------|
-| RequestHeadersCopy | true/false | true | yes |
+| Key                | Value      | Default | Required |
+| ------------------ | ---------- | ------- | -------- |
+| RequestHeadersCopy | true/false | true    | yes      |
 
 Config:
 ```JSON
@@ -282,9 +282,9 @@ This sets if all incoming request headers are copied to the proxy request. This 
 
 **Specifies if the incoming request Host header should be copied to the proxy request**
 
-| Key | Value | Default | Required |
-|-----|-------|---------|----------|
-| RequestHeaderOriginalHost | true/false | false | yes |
+| Key                       | Value      | Default | Required |
+| ------------------------- | ---------- | ------- | -------- |
+| RequestHeaderOriginalHost | true/false | false   | yes      |
 
 Config:
 ```JSON
@@ -303,10 +303,10 @@ This specifies if the incoming request Host header should be copied to the proxy
 
 **Adds or replaces request headers**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| RequestHeader | The header name | yes |
-| Set/Append | The header value | yes |
+| Key           | Value            | Required |
+| ------------- | ---------------- | -------- |
+| RequestHeader | The header name  | yes      |
+| Set/Append    | The header value | yes      |
 
 Config:
 ```JSON
@@ -335,10 +335,10 @@ Note: setting "" as a header value is not recommended and can cause an undefined
 
 **Adds or replaces a header with a value from the route configuration**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| RequestHeader | Name of a query string parameter | yes |
-| Set/Append | The name of a route value | yes |
+| Key           | Value                            | Required |
+| ------------- | -------------------------------- | -------- |
+| RequestHeader | Name of a query string parameter | yes      |
+| Set/Append    | The name of a route value        | yes      |
 
 Config:
 ```JSON
@@ -357,14 +357,14 @@ transformBuilderContext.AddRequestHeaderRouteValue(headerName: "MyHeader", route
 
 Example:
 
-| Step | Value               |
-|------|---------------------|
-| Route definition | `/api/{*remainder}` |
-| Request path | `/api/more/stuff`   |
-| Remainder value | `more/stuff`        |
+| Step                   | Value               |
+| ---------------------- | ------------------- |
+| Route definition       | `/api/{*remainder}` |
+| Request path           | `/api/more/stuff`   |
+| Remainder value        | `more/stuff`        |
 | RequestHeaderFromRoute | `foo`               |
-| Append | `remainder`         |
-| Result | `foo: more/stuff`   |
+| Append                 | `remainder`         |
+| Result                 | `foo: more/stuff`   |
 
 This sets or appends the value for the named header with a value from the route configuration. Set replaces any existing header. Append adds an additional header with the given value.
 Note: setting "" as a header value is not recommended and can cause an undefined behavior.
@@ -373,9 +373,9 @@ Note: setting "" as a header value is not recommended and can cause an undefined
 
 **Removes request headers**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| RequestHeaderRemove | The header name | yes |
+| Key                 | Value           | Required |
+| ------------------- | --------------- | -------- |
+| RequestHeaderRemove | The header name | yes      |
 
 Config:
 ```JSON
@@ -401,9 +401,9 @@ This removes the named header.
 
 ## RequestHeadersAllowed
 
-| Key | Value | Required |
-|-----|-------|----------|
-| RequestHeadersAllowed | A semicolon separated list of allowed header names. | yes |
+| Key                   | Value                                               | Required |
+| --------------------- | --------------------------------------------------- | -------- |
+| RequestHeadersAllowed | A semicolon separated list of allowed header names. | yes      |
 
 Config:
 ```JSON
@@ -436,14 +436,14 @@ Only header1 and header2 are copied to the proxy request.
 
 **Adds headers with information about the original client request**
 
-| Key | Value | Default | Required |
-|-----|-------|---------|----------|
-| X-Forwarded | Default action (Set, Append, Remove, Off) to apply to all X-Forwarded-* listed below | Set | yes |
-| For | Action to apply to this header | * See X-Forwarded | no |
-| Proto | Action to apply to this header | * See X-Forwarded | no |
-| Host | Action to apply to this header | * See X-Forwarded | no |
-| Prefix | Action to apply to this header | * See X-Forwarded | no |
-| HeaderPrefix | The header name prefix | "X-Forwarded-" | no |
+| Key          | Value                                                                                | Default           | Required |
+| ------------ | ------------------------------------------------------------------------------------ | ----------------- | -------- |
+| X-Forwarded  | Default action (Set, Append, Remove, Off) to apply to all X-Forwarded-* listed below | Set               | yes      |
+| For          | Action to apply to this header                                                       | * See X-Forwarded | no       |
+| Proto        | Action to apply to this header                                                       | * See X-Forwarded | no       |
+| Host         | Action to apply to this header                                                       | * See X-Forwarded | no       |
+| Prefix       | Action to apply to this header                                                       | * See X-Forwarded | no       |
+| HeaderPrefix | The header name prefix                                                               | "X-Forwarded-"    | no       |
 
 Action "Off" completely disables the transform.
 
@@ -513,12 +513,12 @@ The {Prefix}Prefix header value is taken from `HttpContext.Request.PathBase`. Th
 
 **Adds a header with information about the original client request**
 
-| Key | Value | Default | Required |
-|-----|-------|---------|----------|
-| Forwarded | A comma separated list containing any of these values: for,by,proto,host | (none) | yes |
-| ForFormat | Random/RandomAndPort/RandomAndRandomPort/Unknown/UnknownAndPort/UnknownAndRandomPort/Ip/IpAndPort/IpAndRandomPort | Random | no |
-| ByFormat | Random/RandomAndPort/RandomAndRandomPort/Unknown/UnknownAndPort/UnknownAndRandomPort/Ip/IpAndPort/IpAndRandomPort | Random | no |
-| Action | Action to apply to this header (Set, Append, Remove, Off) | Set | no |
+| Key       | Value                                                                                                             | Default | Required |
+| --------- | ----------------------------------------------------------------------------------------------------------------- | ------- | -------- |
+| Forwarded | A comma separated list containing any of these values: for,by,proto,host                                          | (none)  | yes      |
+| ForFormat | Random/RandomAndPort/RandomAndRandomPort/Unknown/UnknownAndPort/UnknownAndRandomPort/Ip/IpAndPort/IpAndRandomPort | Random  | no       |
+| ByFormat  | Random/RandomAndPort/RandomAndRandomPort/Unknown/UnknownAndPort/UnknownAndRandomPort/Ip/IpAndPort/IpAndRandomPort | Random  | no       |
+| Action    | Action to apply to this header (Set, Append, Remove, Off)                                                         | Set     | no       |
 
 Config:
 ```JSON
@@ -575,9 +575,9 @@ The RFC allows a [variety of formats](https://tools.ietf.org/html/rfc7239#sectio
 
 **Forwards the client cert used on the inbound connection as a header to destination**
 
-| Key | Value | Required |
-|-----|-------|----------|
-| ClientCert | The header name | yes |
+| Key        | Value           | Required |
+| ---------- | --------------- | -------- |
+| ClientCert | The header name | yes      |
 
 Config:
 ```JSON
