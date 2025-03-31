@@ -13,7 +13,7 @@ uid: performance/rate-limit-sample
 
 The following samples aren't production quality, they're examples on how to use the limiters.
 
-### Limiter with `OnRejected`, `RetryAfter`, and `GlobalLimiter`
+## Limiter with `OnRejected`, `RetryAfter`, and `GlobalLimiter`
 
 The following sample:
 
@@ -41,13 +41,13 @@ The `SampleRateLimiterPolicy` class
 
 In the preceding code, <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.OnRejected> uses <xref:Microsoft.AspNetCore.RateLimiting.OnRejectedContext> to set the response status to [429 Too Many Requests](https://developer.mozilla.org/docs/Web/HTTP/Status/429). The default rejected status is [503 Service Unavailable](https://developer.mozilla.org/docs/Web/HTTP/Status/503).
 
-### Limiter with authorization
+## Limiter with authorization
 
 The following sample uses JSON Web Tokens (JWT) and creates a partition with the JWT [access token](https://github.com/dotnet/aspnetcore/blob/fd1891536f27e959d14a140ff9307b6a21191de9/src/Security/Authentication/JwtBearer/src/JwtBearerHandler.cs#L152-L158). In a production app, the JWT would typically be provided by a server acting as a Security token service (STS). For local development, the dotnet [user-jwts](xref:security/authentication/jwt) command line tool can be used to create and manage app-specific local JWTs.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_jwt":::
 
-### Limiter with `ConcurrencyLimiter`, `TokenBucketRateLimiter`, and authorization
+## Limiter with `ConcurrencyLimiter`, `TokenBucketRateLimiter`, and authorization
 
 The following sample:
 
@@ -58,3 +58,4 @@ The following sample:
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_adm2":::
 
 See [the samples repository for the complete `Program.cs`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs#L145,L281) file.
+
