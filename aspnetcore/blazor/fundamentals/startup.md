@@ -849,4 +849,4 @@ To disable [enhanced navigation and form handling](xref:blazor/fundamentals/rout
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
 * [SignalR (includes sections on SignalR startup configuration)](xref:blazor/fundamentals/signalr)
 * [Globalization and localization: Statically set the culture with `Blazor.start()` (*client-side only*)](xref:blazor/globalization-localization#statically-set-the-client-side-culture)
-* [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly/index#compression)
+* [Blazor WebAssembly compression](xref:blazor/host-and-deploy/webassembly/index#compression)

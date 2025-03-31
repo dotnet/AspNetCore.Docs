@@ -64,7 +64,7 @@ The examples shown in this article require additional configuration for:
 
 The preceding configurations are beyond the scope of this article. For more information, see the following resources:
 
-* [Host and deploy articles](xref:host-and-deploy/index)
+* <xref:host-and-deploy/index>
 * <xref:security/enforcing-ssl>
 * <xref:blazor/components/integration-hosted-webassembly>
 

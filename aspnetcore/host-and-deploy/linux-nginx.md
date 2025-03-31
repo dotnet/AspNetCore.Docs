@@ -497,7 +497,7 @@ Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{
 [!code-nginx[](~/host-and-deploy/linux-nginx/nginx.conf)]
 
 > [!NOTE]
-> Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see <xref:blazor/host-and-deploy/webassembly/index#nginx>.
+> Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see <xref:blazor/host-and-deploy/webassembly/nginx>.
 
 > [!NOTE]
 > The preceding example disables Online Certificate Status Protocol (OCSP) Stapling. If enabled, confirm that the certificate supports the feature. For more information and guidance on enabling OCSP, see the following properties in the [Module ngx_http_ssl_module (Nginx documentation)](http://nginx.org/en/docs/http/ngx_http_ssl_module.html) article:
