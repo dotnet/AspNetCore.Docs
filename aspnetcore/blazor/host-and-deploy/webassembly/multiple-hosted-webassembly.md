@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/host-and-deploy/multiple-hosted-webassembly
+uid: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly
 zone_pivot_groups: blazor-multiple-hosted-wasm-apps
 ---
 # Multiple hosted ASP.NET Core Blazor WebAssembly apps

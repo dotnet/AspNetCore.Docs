@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, linux-related-content
 ms.date: 11/12/2024
-uid: blazor/host-and-deploy/webassembly
+uid: blazor/host-and-deploy/webassembly/index
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
 
@@ -31,7 +31,7 @@ The following deployment strategies are supported:
 
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
-* An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+* An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>.
 
 :::moniker-end
 
@@ -325,7 +325,7 @@ For more information, see the following articles:
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
-For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+For more information, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>.
 
 :::moniker-end
 
@@ -726,7 +726,7 @@ The GitHub-hosted Ubuntu (latest) server has a version of the .NET SDK pre-insta
 
 The default GitHub Action, which deploys pages, skips deployment of folders starting with underscore, the `_framework` folder for example. To deploy folders starting with underscore, add an empty `.nojekyll` file to the root of the app's repository. Example: [Xref Generator `.nojekyll` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/.nojekyll)
 
-***Perform this step before the first app deployment:*** Git treats JavaScript (JS) files, such as `blazor.webassembly.js`, as text and converts line endings from CRLF (carriage return-line feed) to LF (line feed) in the deployment pipeline. These changes to JS files produce different file hashes than Blazor sends to the client in the `blazor.boot.json` file. The mismatches result in integrity check failures on the client. One approach to solving this problem is to add a `.gitattributes` file with `*.js binary` line before adding the app's assets to the Git branch. The `*.js binary` line configures Git to treat JS files as binary files, which avoids processing the files in the deployment pipeline. The file hashes of the unprocessed files match the entries in the `blazor.boot.json` file, and client-side integrity checks pass. For more information, see <xref:blazor/host-and-deploy/webassembly-caching/index>. Example: [Xref Generator `.gitattributes` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/.gitattributes)
+***Perform this step before the first app deployment:*** Git treats JavaScript (JS) files, such as `blazor.webassembly.js`, as text and converts line endings from CRLF (carriage return-line feed) to LF (line feed) in the deployment pipeline. These changes to JS files produce different file hashes than Blazor sends to the client in the `blazor.boot.json` file. The mismatches result in integrity check failures on the client. One approach to solving this problem is to add a `.gitattributes` file with `*.js binary` line before adding the app's assets to the Git branch. The `*.js binary` line configures Git to treat JS files as binary files, which avoids processing the files in the deployment pipeline. The file hashes of the unprocessed files match the entries in the `blazor.boot.json` file, and client-side integrity checks pass. For more information, see <xref:blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching>. Example: [Xref Generator `.gitattributes` file](https://github.com/dotnet/blazor-samples/blob/main/BlazorWebAssemblyXrefGenerator/.gitattributes)
 
 To handle URL rewrites based on [Single Page Apps for GitHub Pages (`rafrex/spa-github-pages` GitHub repository)](https://github.com/rafrex/spa-github-pages):
 
@@ -1005,7 +1005,7 @@ If a firewall, anti-virus program, or network security appliance is blocking the
 > For a more robust approach in environments that block the download and execution of DLL files, take ***either*** of the following approaches:
 >
 > * Use ASP.NET Core in .NET 8 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
-> * In ASP.NET Core in .NET 6 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly-deployment-layout).
+> * In ASP.NET Core in .NET 6 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly/deployment-layout).
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 

@@ -659,23 +659,25 @@ items:
               - name: Overview
                 uid: blazor/host-and-deploy/index
               - name: Server
-                uid: blazor/host-and-deploy/server
-              - name: Blazor WebAssembly
-                uid: blazor/host-and-deploy/webassembly
-              - name: WebAssembly caching
                 items:
                   - name: Overview
-                    uid: blazor/host-and-deploy/webassembly-caching/index
+                    uid: blazor/host-and-deploy/server/index
+              - name: Blazor WebAssembly
+                items:
+                  - name: Overview
+                    uid: blazor/host-and-deploy/webassembly/index
+                  - name: Runtime and app bundle caching
+                    uid: blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching
                   - name: HTTP caching issues
-                    uid: blazor/host-and-deploy/webassembly-caching/http-caching-issues
+                    uid: blazor/host-and-deploy/webassembly/http-caching-issues
+                  - name: Multiple hosted WebAssembly apps
+                    uid: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly
+                  - name: Deployment layout
+                    uid: blazor/host-and-deploy/webassembly/deployment-layout
               - name: Configure the Linker
                 uid: blazor/host-and-deploy/configure-linker
               - name: Configure the Trimmer
                 uid: blazor/host-and-deploy/configure-trimmer
-              - name: WebAssembly deployment layout
-                uid: blazor/host-and-deploy/webassembly-deployment-layout
-              - name: Multiple hosted WebAssembly apps
-                uid: blazor/host-and-deploy/multiple-hosted-webassembly
           - name: Blazor with EF Core
             uid: blazor/blazor-ef-core
           - name: Advanced scenarios

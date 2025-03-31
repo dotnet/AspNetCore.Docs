@@ -109,7 +109,7 @@ Disable the trimming property if it prevents your app from running normally:
 
 ## Heap size for some mobile device browsers
 
-When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see <xref:blazor/host-and-deploy/webassembly#decrease-maximum-heap-size-for-some-mobile-device-browsers>.
+When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see <xref:blazor/host-and-deploy/webassembly/index#decrease-maximum-heap-size-for-some-mobile-device-browsers>.
 
 ## Runtime relinking
 

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/host-and-deploy/webassembly-caching/index
+uid: blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching
 ---
 # ASP.NET Core Blazor WebAssembly .NET runtime and app bundle caching
 

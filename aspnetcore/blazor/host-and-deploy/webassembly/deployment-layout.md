@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/host-and-deploy/webassembly-deployment-layout
+uid: blazor/host-and-deploy/webassembly/deployment-layout
 ---
 # Deployment layout for ASP.NET Core hosted Blazor WebAssembly apps
 

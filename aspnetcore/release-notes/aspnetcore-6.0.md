@@ -245,7 +245,7 @@ Generic type parameters are now supported. For more information, see <xref:blazo
 
 ### WebAssembly deployment layout
 
-Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly-deployment-layout?view=aspnetcore-6.0>.
+Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly/deployment-layout?view=aspnetcore-6.0>.
 
 ### New Blazor articles
 

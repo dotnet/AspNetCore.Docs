@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, linux-related-content
 ms.date: 11/12/2024
-uid: blazor/host-and-deploy/server
+uid: blazor/host-and-deploy/server/index
 ---
 # Host and deploy server-side Blazor apps
 
@@ -356,7 +356,7 @@ Adopt any of the following strategies to reduce an app's memory usage:
 
 ### Heap size for some mobile device browsers
 
-When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see <xref:blazor/host-and-deploy/webassembly#decrease-maximum-heap-size-for-some-mobile-device-browsers>.
+When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see <xref:blazor/host-and-deploy/webassembly/index#decrease-maximum-heap-size-for-some-mobile-device-browsers>.
 
 ###  Additional actions and considerations
 

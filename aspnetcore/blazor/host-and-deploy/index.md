@@ -68,8 +68,8 @@ To host a Blazor app in IIS, see the following resources:
 * IIS hosting
   * <xref:tutorials/publish-to-iis>
   * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server>: Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
-* <xref:blazor/host-and-deploy/webassembly>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
+* <xref:blazor/host-and-deploy/server/index>: Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
+* <xref:blazor/host-and-deploy/webassembly/index>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
 * IIS sub-application hosting
   * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp` and show how to [obtain the base path from app settings or other configuration providers](#obtain-the-app-base-path-from-configuration).
   * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
@@ -182,7 +182,7 @@ If the app is a hosted Blazor WebAssembly app:
 `).
   * Configure the `<base>` tag, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
-For an example of hosting multiple Blazor WebAssembly apps in a hosted Blazor WebAssembly solution, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>, where approaches are explained for domain/port hosting and subpath hosting of multiple Blazor WebAssembly client apps.
+For an example of hosting multiple Blazor WebAssembly apps in a hosted Blazor WebAssembly solution, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>, where approaches are explained for domain/port hosting and subpath hosting of multiple Blazor WebAssembly client apps.
 
 :::moniker-end
 
@@ -430,7 +430,7 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
 ## Host multiple Blazor WebAssembly apps
 
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>.
 
 :::moniker-end
 
@@ -438,5 +438,5 @@ For more information on hosting multiple Blazor WebAssembly apps in a hosted Bla
 
 For deployment guidance, see the following topics:
 
-* <xref:blazor/host-and-deploy/webassembly>
-* <xref:blazor/host-and-deploy/server>
+* <xref:blazor/host-and-deploy/webassembly/index>
+* <xref:blazor/host-and-deploy/server/index>
