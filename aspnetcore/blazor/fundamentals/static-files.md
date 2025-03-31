@@ -77,7 +77,7 @@ The `ImportMap` component (<xref:Microsoft.AspNetCore.Components.ImportMap>) rep
 If a custom <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> isn't assigned to an Import Map component, the import map is generated based on the app's assets.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> instances are expensive to create, so it is recommended to cache them if you are creating an additional instance.
+> <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> instances are expensive to create, so we recommended caching them when creating an additional instance.
 
 The following examples demonstrate custom import map definitions and the import maps that they create.
 
@@ -200,9 +200,9 @@ For examples of how to address the policy violation with Subresource Integrity (
 
 ### Fingerprint client-side static assets
 
-In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets for client-side rendering (CSR). A fingerprint is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
+In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets for client-side rendering (CSR). A [fingerprint](https://en.wikipedia.org/wiki/Fingerprint_(computing)) is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
 
-The following configuration must be present in the `wwwwoot/index.html` file of a standalone Blazor WebAssembly app to adopt the fingerprinting feature:
+The following configuration must be present in the `wwwwoot/index.html` file of a standalone Blazor WebAssembly app to adopt fingerprinting:
 
 ```html
 <head>
@@ -232,18 +232,23 @@ In the project file (`.csproj`), the `<WriteImportMapToHtml>` property is set to
 </Project>
 ```
 
-For CSR in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets was introduced in .NET 9 or later with [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files) and the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component).
+For CSR in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side fingerprinting is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files) and the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component).
 
-To fingerprint additional JS modules for CSR, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
+To fingerprint additional JavaScript modules for CSR, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
 
 In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
 
 ```xml
 <StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
-    Expression="#[.{fingerprint}]!" />
+  Expression="#[.{fingerprint}]!" />
 ```
 
-The files are placed into the import map, automatically for Blazor Web App CSR or when opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions. When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
+The files are automatically placed into the import map:
+
+* Automatically for Blazor Web App CSR.
+* When opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions.
+
+When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
 
 :::moniker-end
 

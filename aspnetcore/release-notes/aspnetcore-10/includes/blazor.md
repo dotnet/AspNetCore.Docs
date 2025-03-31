@@ -175,10 +175,15 @@ In the following example, a fingerprint is added for all developer-supplied `.mj
 
 ```xml
 <StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
-    Expression="#[.{fingerprint}]!" />
+  Expression="#[.{fingerprint}]!" />
 ```
 
-The files are placed into the import map, automatically for Blazor Web App CSR or when opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions. When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
+The files are automatically placed into the import map:
+
+* Automatically for Blazor Web App CSR.
+* When opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions.
+
+When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
 
 ### Set the environment in standalone Blazor WebAssembly apps
 
@@ -192,6 +197,9 @@ The following example sets the app's environment to `Staging`:
 <WasmApplicationEnvironmentName>Staging</WasmApplicationEnvironmentName>
 ```
 
-As usual, the default environment is `Development` when running the app locally and `Production` when the app is published.
+As usual, the default environments are:
+
+* `Development` when running the app locally.
+* `Production` when the app is published.
 
 -->
