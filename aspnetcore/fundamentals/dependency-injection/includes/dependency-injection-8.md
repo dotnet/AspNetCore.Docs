@@ -234,7 +234,7 @@ The debug console shows the following output after each refresh of the Index pag
 ```console
 Service1: IndexModel.OnGet
 Service2: IndexModel.OnGet
-Service3: IndexModel.OnGet, MyKey = MyKey from appsettings.Developement.json
+Service3: IndexModel.OnGet, MyKey = MyKey from appsettings.Development.json
 Service1.Dispose
 ```
 
