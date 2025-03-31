@@ -169,6 +169,3 @@ The Git repository that contains the sample app also includes documentation. For
 > [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images7.md)]
-[!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images5.md)]
