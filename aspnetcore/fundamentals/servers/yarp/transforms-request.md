@@ -27,7 +27,7 @@ The following are built in transforms identified by their primary config key. Th
 **Modifies the request path adding a prefix value**
 
 | Key        | Value                      | Required |
-|------------|----------------------------|----------|
+| ---------- | -------------------------- | -------- |
 | PathPrefix | A path starting with a '/' | yes      |
 
 Config:
@@ -51,7 +51,7 @@ This will prefix the request path with the given value.
 **Modifies the request path removing a prefix value**
 
 | Key              | Value                      | Required |
-|------------------|----------------------------|----------|
+| ---------------- | -------------------------- | -------- |
 | PathRemovePrefix | A path starting with a '/' | yes      |
 
 Config:
@@ -76,7 +76,7 @@ This will remove the matching prefix from the request path. Matches are made on 
 **Replaces the request path with the specified value**
 
 | Key     | Value                      | Required |
-|---------|----------------------------|----------|
+| ------- | -------------------------- | -------- |
 | PathSet | A path starting with a '/' | yes      |
 
 Config:
@@ -100,7 +100,7 @@ This will set the request path with the given value.
 **Replaces the request path using a pattern template**
 
 | Key         | Value                               | Required |
-|-------------|-------------------------------------|----------|
+| ----------- | ----------------------------------- | -------- |
 | PathPattern | A path template starting with a '/' | yes      |
 
 Config:
@@ -120,7 +120,7 @@ This will set the request path with the given value and replace any `{}` segment
 Example:
 
 | Step             | Value                               |
-|------------------|-------------------------------------|
+| ---------------- | ----------------------------------- |
 | Route definition | `/api/{plugin}/stuff/{**remainder}` |
 | Request path     | `/api/v1/stuff/more/stuff`          |
 | Plugin value     | `v1`                                |
@@ -133,7 +133,7 @@ Example:
 **Adds or replaces parameters in the request query string**
 
 | Key                 | Value                            | Required |
-|---------------------|----------------------------------|----------|
+| ------------------- | -------------------------------- | -------- |
 | QueryValueParameter | Name of a query string parameter | yes      |
 | Set/Append          | Static value                     | yes      |
 
@@ -157,7 +157,7 @@ This will add a query string parameter with the name `foo` and sets it to the st
 Example:
 
 | Step                | Value                |
-|---------------------|----------------------|
+| ------------------- | -------------------- |
 | Query               | `?a=b`               |
 | QueryValueParameter | `foo`                |
 | Append              | `remainder`          |
@@ -168,7 +168,7 @@ Example:
 **Adds or replaces a query string parameter with a value from the route configuration**
 
 | Key                 | Value                            | Required |
-|---------------------|----------------------------------|----------|
+| ------------------- | -------------------------------- | -------- |
 | QueryRouteParameter | Name of a query string parameter | yes      |
 | Set/Append          | The name of a route value        | yes      |
 
@@ -192,7 +192,7 @@ This will add a query string parameter with the name `foo` and sets it to the va
 Example:
 
 | Step                | Value               |
-|---------------------|---------------------|
+| ------------------- | ------------------- |
 | Route definition    | `/api/{*remainder}` |
 | Request path        | `/api/more/stuff`   |
 | Remainder value     | `more/stuff`        |
@@ -205,7 +205,7 @@ Example:
 **Removes the specified parameter from the request query string**
 
 | Key                  | Value                            | Required |
-|----------------------|----------------------------------|----------|
+| -------------------- | -------------------------------- | -------- |
 | QueryRemoveParameter | Name of a query string parameter | yes      |
 
 Config:
@@ -225,7 +225,7 @@ This will remove a query string parameter with the name `foo` if present on the 
 Example:
 
 | Step                 | Value        |
-|----------------------|--------------|
+| -------------------- | ------------ |
 | Request path         | `?a=b&foo=c` |
 | QueryRemoveParameter | `foo`        |
 | Result               | `?a=b`       |
@@ -235,7 +235,7 @@ Example:
 **Changes the http method used in the request**
 
 | Key              | Value                      | Required |
-|------------------|----------------------------|----------|
+| ---------------- | -------------------------- | -------- |
 | HttpMethodChange | The http method to replace | yes      |
 | Set              | The new http method        | yes      |
 
@@ -261,7 +261,7 @@ This will change PUT requests to POST.
 **Sets whether incoming request headers are copied to the outbound request**
 
 | Key                | Value      | Default | Required |
-|--------------------|------------|---------|----------|
+| ------------------ | ---------- | ------- | -------- |
 | RequestHeadersCopy | true/false | true    | yes      |
 
 Config:
@@ -283,7 +283,7 @@ This sets if all incoming request headers are copied to the proxy request. This 
 **Specifies if the incoming request Host header should be copied to the proxy request**
 
 | Key                       | Value      | Default | Required |
-|---------------------------|------------|---------|----------|
+| ------------------------- | ---------- | ------- | -------- |
 | RequestHeaderOriginalHost | true/false | false   | yes      |
 
 Config:
@@ -304,7 +304,7 @@ This specifies if the incoming request Host header should be copied to the proxy
 **Adds or replaces request headers**
 
 | Key           | Value            | Required |
-|---------------|------------------|----------|
+| ------------- | ---------------- | -------- |
 | RequestHeader | The header name  | yes      |
 | Set/Append    | The header value | yes      |
 
@@ -336,7 +336,7 @@ Note: setting "" as a header value is not recommended and can cause an undefined
 **Adds or replaces a header with a value from the route configuration**
 
 | Key           | Value                            | Required |
-|---------------|----------------------------------|----------|
+| ------------- | -------------------------------- | -------- |
 | RequestHeader | Name of a query string parameter | yes      |
 | Set/Append    | The name of a route value        | yes      |
 
@@ -358,7 +358,7 @@ transformBuilderContext.AddRequestHeaderRouteValue(headerName: "MyHeader", route
 Example:
 
 | Step                   | Value               |
-|------------------------|---------------------|
+| ---------------------- | ------------------- |
 | Route definition       | `/api/{*remainder}` |
 | Request path           | `/api/more/stuff`   |
 | Remainder value        | `more/stuff`        |
@@ -374,7 +374,7 @@ Note: setting "" as a header value is not recommended and can cause an undefined
 **Removes request headers**
 
 | Key                 | Value           | Required |
-|---------------------|-----------------|----------|
+| ------------------- | --------------- | -------- |
 | RequestHeaderRemove | The header name | yes      |
 
 Config:
@@ -402,7 +402,7 @@ This removes the named header.
 ## RequestHeadersAllowed
 
 | Key                   | Value                                               | Required |
-|-----------------------|-----------------------------------------------------|----------|
+| --------------------- | --------------------------------------------------- | -------- |
 | RequestHeadersAllowed | A semicolon separated list of allowed header names. | yes      |
 
 Config:
@@ -437,7 +437,7 @@ Only header1 and header2 are copied to the proxy request.
 **Adds headers with information about the original client request**
 
 | Key          | Value                                                                                | Default           | Required |
-|--------------|--------------------------------------------------------------------------------------|-------------------|----------|
+| ------------ | ------------------------------------------------------------------------------------ | ----------------- | -------- |
 | X-Forwarded  | Default action (Set, Append, Remove, Off) to apply to all X-Forwarded-* listed below | Set               | yes      |
 | For          | Action to apply to this header                                                       | * See X-Forwarded | no       |
 | Proto        | Action to apply to this header                                                       | * See X-Forwarded | no       |
@@ -514,7 +514,7 @@ The {Prefix}Prefix header value is taken from `HttpContext.Request.PathBase`. Th
 **Adds a header with information about the original client request**
 
 | Key       | Value                                                                                                             | Default | Required |
-|-----------|-------------------------------------------------------------------------------------------------------------------|---------|----------|
+| --------- | ----------------------------------------------------------------------------------------------------------------- | ------- | -------- |
 | Forwarded | A comma separated list containing any of these values: for,by,proto,host                                          | (none)  | yes      |
 | ForFormat | Random/RandomAndPort/RandomAndRandomPort/Unknown/UnknownAndPort/UnknownAndRandomPort/Ip/IpAndPort/IpAndRandomPort | Random  | no       |
 | ByFormat  | Random/RandomAndPort/RandomAndRandomPort/Unknown/UnknownAndPort/UnknownAndRandomPort/Ip/IpAndPort/IpAndRandomPort | Random  | no       |
@@ -576,7 +576,7 @@ The RFC allows a [variety of formats](https://tools.ietf.org/html/rfc7239#sectio
 **Forwards the client cert used on the inbound connection as a header to destination**
 
 | Key        | Value           | Required |
-|------------|-----------------|----------|
+| ---------- | --------------- | -------- |
 | ClientCert | The header name | yes      |
 
 Config:

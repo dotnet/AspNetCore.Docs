@@ -21,7 +21,7 @@ In code these are implemented as derivations of the abstract classes [ResponseTr
 **Sets whether destination response headers are copied to the client**
 
 | Key                 | Value      | Default | Required |
-|---------------------|------------|---------|----------|
+| ------------------- | ---------- | ------- | -------- |
 | ResponseHeadersCopy | true/false | true    | yes      |
 
 Config:
@@ -43,7 +43,7 @@ This sets if all proxy response headers are copied to the client response. This 
 **Adds or replaces response headers**
 
 | Key            | Value                  | Default | Required |
-|----------------|------------------------|---------|----------|
+| -------------- | ---------------------- | ------- | -------- |
 | ResponseHeader | The header name        | (none)  | yes      |
 | Set/Append     | The header value       | (none)  | yes      |
 | When           | Success/Always/Failure | Success | no       |
@@ -78,7 +78,7 @@ Note: setting "" as a header value is not recommended and can cause an undefined
 **Removes response headers**
 
 | Key                  | Value                  | Default | Required |
-|----------------------|------------------------|---------|----------|
+| -------------------- | ---------------------- | ------- | -------- |
 | ResponseHeaderRemove | The header name        | (none)  | yes      |
 | When                 | Success/Always/Failure | Success | no       |
 
@@ -109,7 +109,7 @@ This removes the named response header.
 ## ResponseHeadersAllowed
 
 | Key                    | Value                                               | Required |
-|------------------------|-----------------------------------------------------|----------|
+| ---------------------- | --------------------------------------------------- | -------- |
 | ResponseHeadersAllowed | A semicolon separated list of allowed header names. | yes      |
 
 Config:
@@ -144,7 +144,7 @@ Only header1 and header2 are copied from the proxy response.
 **Sets whether destination trailing response headers are copied to the client**
 
 | Key                  | Value      | Default | Required |
-|----------------------|------------|---------|----------|
+| -------------------- | ---------- | ------- | -------- |
 | ResponseTrailersCopy | true/false | true    | yes      |
 
 Config:
@@ -166,7 +166,7 @@ This sets if all proxy response trailers are copied to the client response. This
 **Adds or replaces trailing response headers**
 
 | Key             | Value                  | Default | Required |
-|-----------------|------------------------|---------|----------|
+| --------------- | ---------------------- | ------- | -------- |
 | ResponseTrailer | The header name        | (none)  | yes      |
 | Set/Append      | The header value       | (none)  | yes      |
 | When            | Success/Always/Failure | Success | no       |
@@ -200,7 +200,7 @@ ResponseTrailer follows the same structure and guidance as [ResponseHeader](xref
 **Removes trailing response headers**
 
 | Key                   | Value                  | Default | Required |
-|-----------------------|------------------------|---------|----------|
+| --------------------- | ---------------------- | ------- | -------- |
 | ResponseTrailerRemove | The header name        | (none)  | yes      |
 | When                  | Success/Always/Failure | Success | no       |
 
@@ -231,7 +231,7 @@ ResponseTrailerRemove follows the same structure and guidance as [ResponseHeader
 ## ResponseTrailersAllowed
 
 | Key                     | Value                                               | Required |
-|-------------------------|-----------------------------------------------------|----------|
+| ----------------------- | --------------------------------------------------- | -------- |
 | ResponseTrailersAllowed | A semicolon separated list of allowed header names. | yes      |
 
 Config:
