@@ -662,6 +662,8 @@ items:
                 items:
                   - name: Overview
                     uid: blazor/host-and-deploy/server/index
+                  - name: Memory management
+                    uid: blazor/host-and-deploy/server/memory-management
               - name: Blazor WebAssembly
                 items:
                   - name: Overview

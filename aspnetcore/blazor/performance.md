@@ -109,7 +109,7 @@ In a test performed by the ASP.NET Core product unit engineers, a rendering over
 
 It's possible to make components more lightweight so that you can have more of them. However, a more powerful technique is often to avoid having so many components to render. The following sections describe two approaches that you can take.
 
-For more information on memory management, see <xref:blazor/host-and-deploy/server/index#memory-management>.
+For more information on memory management, see <xref:blazor/host-and-deploy/server/memory-management>.
 
 ##### Inline child components into their parents
 

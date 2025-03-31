@@ -297,7 +297,7 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 >
 > Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient%2A> set to 1, which is the default value. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
 
-For information on memory management, see <xref:blazor/host-and-deploy/server/index#memory-management>.
+For information on memory management, see <xref:blazor/host-and-deploy/server/memory-management>.
 
 ## Blazor hub options
 
@@ -1640,7 +1640,7 @@ In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.N
 
 ## Additional server-side resources
 
-* [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
+* [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * Server-side security documentation

@@ -190,4 +190,4 @@ For more information, see the following resources:
 ## Additional resources
 
 * <xref:blazor/webassembly-native-dependencies>
-* [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly#webcil-packaging-format-for-net-assemblies)
+* [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly/index#webcil-packaging-format-for-net-assemblies)

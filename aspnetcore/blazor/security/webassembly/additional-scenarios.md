@@ -1536,7 +1536,7 @@ If an app requires a custom version of the [Microsoft Authentication Library for
 1. Set up the `dotnet/aspnetcore` GitHub repository for development following the documentation at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [`dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore).
 1. Open the `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file and set the desired version of `@azure/msal-browser`. For a list of released versions, visit the [`@azure/msal-browser` npm website](https://www.npmjs.com/package/@azure/msal-browser) and select the **Versions** tab.
 1. Build the `Authentication.Msal` project in the `src/Components/WebAssembly/Authentication.Msal/src` folder with the `yarn build` command in a command shell.
-1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
+1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly/index#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
 1. Copy the `AuthenticationService.js` file and compressed versions (`.br`/`.gz`) of the file, if produced, from the `Interop/dist/Release` folder into the app's `publish/wwwroot/_content/Microsoft.Authentication.WebAssembly.Msal` folder in the app's published assets.
 
 ## Pass custom provider options

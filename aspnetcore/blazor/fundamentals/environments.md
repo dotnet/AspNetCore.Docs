@@ -172,7 +172,7 @@ http {
 For more information, see the following resources:
 
 * [Nginx documentation](http://nginx.org/docs/http/ngx_http_headers_module.html)
-* [Blazor WebAssembly Nginx hosting guidance](xref:blazor/host-and-deploy/webassembly#nginx)
+* [Blazor WebAssembly Nginx hosting guidance](xref:blazor/host-and-deploy/webassembly/index#nginx)
 
 ### Apache
 
@@ -189,7 +189,7 @@ For Apache servers, use the `Header` directive from the `mod_headers` module:
 For more information:
 
 * [Apache documentation (search the latest release for "`mod_headers`")](https://httpd.apache.org/docs/)
-* [Blazor WebAssembly Apache hosting guidance](xref:blazor/host-and-deploy/webassembly#apache)
+* [Blazor WebAssembly Apache hosting guidance](xref:blazor/host-and-deploy/webassembly/index#apache)
 
 ## Set the environment for Azure App Service
 
