@@ -658,6 +658,8 @@ items:
             items:
               - name: Overview
                 uid: blazor/host-and-deploy/index
+              - name: App base path
+                uid: blazor/host-and-deploy/app-base-path
               - name: Server
                 items:
                   - name: Overview

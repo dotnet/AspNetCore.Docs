@@ -58,7 +58,7 @@ Use the following guidance to integrate Razor components into pages or views of 
          render-mode="ServerPrerendered" />
      ```
 
-     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
+     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, see <xref:blazor/host-and-deploy/app-base-path>.
 
      The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is used to render head (`<head>`) content for page titles (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component) set by Razor components. For more information, see <xref:blazor/components/control-head-content>.
 
@@ -589,7 +589,7 @@ Use the following guidance to integrate Razor components into pages or views of 
      <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
      ```
 
-     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
+     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, see <xref:blazor/host-and-deploy/app-base-path>.
   
      The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is used to render head (`<head>`) content for page titles (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component) set by Razor components. For more information, see <xref:blazor/components/control-head-content>.
 
@@ -1103,7 +1103,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages or 
      <base href="~/" />
      ```
 
-     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
+     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, see <xref:blazor/host-and-deploy/app-base-path>.
 
    * Add a `<script>` tag for the `blazor.server.js` script immediately before the `Scripts` render section.
 
@@ -1537,7 +1537,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages or 
      + <base href="~/" />
      ```
 
-     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
+     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, see <xref:blazor/host-and-deploy/app-base-path>.
 
    * Add a `<script>` tag for the `blazor.server.js` script immediately before the `Scripts` render section.
 

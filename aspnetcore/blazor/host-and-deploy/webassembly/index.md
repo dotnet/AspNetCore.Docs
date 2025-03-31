@@ -21,7 +21,7 @@ With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-we
 
 :::moniker range=">= aspnetcore-8.0"
 
-This article pertains to the deployment scenario where the Blazor app is placed on a static hosting web server or service, .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
+This article pertains to the deployment scenario where the Blazor app is placed on a static hosting web server or service, .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section and other articles in this node for IIS, Azure services, Apache, Nginx, and GitHub Pages.
 
 :::moniker-end
 
@@ -100,7 +100,7 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
 
 :::moniker-end
 
-* For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
+* For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](xref:blazor/host-and-deploy/iis#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, consider configuring the app to fetch and decode Brotli compressed files:
 
 Obtain the JavaScript Brotli decoder from the [`google/brotli` GitHub repository](https://github.com/google/brotli). The minified decoder file is named `decode.min.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
@@ -236,7 +236,7 @@ If a request is made using the browser's address bar for `www.contoso.com/About`
 
 Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the `index.html` page. When `index.html` is returned, the app's Blazor router takes over and responds with the correct resource.
 
-When deploying to an IIS server, you can use the URL Rewrite Module with the app's published `web.config` file. For more information, see the [IIS](#iis) section.
+When deploying to an IIS server, you can use the URL Rewrite Module with the app's published `web.config` file. For more information, see <xref:blazor/host-and-deploy/iis>.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -329,9 +329,9 @@ Standalone deployment assets are published into either the `/bin/Release/{TARGET
 
 ## Azure App Service
 
-Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on [IIS](#iis).
+Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on IIS.
 
-Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](#azure-static-web-apps), which supports this scenario.
+Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](xref:blazor/host-and-deploy/azure-static-web-apps), which supports this scenario.
 
 ## Standalone with Docker
 
@@ -345,7 +345,7 @@ To host the app in Docker:
 
 For configuration guidance, see the following resources:
 
-* [Nginx](#nginx) section or [Apache](#apache) section of this article
+* [Nginx](xref:blazor/host-and-deploy/nginx) or [Apache](xref:blazor/host-and-deploy/apache) articles
 * [Docker Documentation](https://docs.docker.com/)
 
 ## Host configuration values
@@ -376,7 +376,7 @@ The `--contentroot` argument sets the absolute path to the directory that contai
 
 ### Path base
 
-The `--pathbase` argument sets the app base path for an app run locally with a non-root relative URL path (the `<base>` tag `href` is set to a path other than `/` for staging and production). In the following examples, `/relative-URL-path` is the app's path base. For more information, see [App base path](xref:blazor/host-and-deploy/index#app-base-path).
+The `--pathbase` argument sets the app base path for an app run locally with a non-root relative URL path (the `<base>` tag `href` is set to a path other than `/` for staging and production). In the following examples, `/relative-URL-path` is the app's path base. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
 
 > [!IMPORTANT]
 > Unlike the path provided to `href` of the `<base>` tag, don't include a trailing slash (`/`) when passing the `--pathbase` argument value. If the app base path is provided in the `<base>` tag as `<base href="/CoolApp/">` (includes a trailing slash), pass the command-line argument value as `--pathbase=/CoolApp` (no trailing slash).
@@ -427,7 +427,7 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 
 Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in <xref:host-and-deploy/proxy-load-balancer>.
 
-For more information on setting the app's base path, including sub-app path configuration, see <xref:blazor/host-and-deploy/index#app-base-path>.
+For more information on setting the app's base path, including sub-app path configuration, see <xref:blazor/host-and-deploy/app-base-path>.
 
 Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-with-nginx) with the following changes:
 
@@ -477,7 +477,7 @@ For more information and configuration guidance, consult the following resources
 
 Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in <xref:host-and-deploy/proxy-load-balancer>.
 
-For more information on setting the app's base path, including sub-app path configuration, see <xref:blazor/host-and-deploy/index#app-base-path>.
+For more information on setting the app's base path, including sub-app path configuration, see <xref:blazor/host-and-deploy/app-base-path>.
 
 The following example hosts the app at a root URL (no sub-app path):
 
@@ -717,7 +717,7 @@ Remove entries for compressed `.dll` files if [compression](#compression) is in 
 - <mimeMap fileExtension=".dll.gz" mimeType="application/octet-stream" />
 ```
 
-For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
+For more information on custom `web.config` files, see the [Use a custom `web.config`](xref:blazor/host-and-deploy/iis#use-a-custom-webconfig) section.
 
 :::moniker-end
 
