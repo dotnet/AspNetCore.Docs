@@ -12,7 +12,7 @@ The `Microsoft.AspNetCore.Hosting` metrics report high-level information about H
 - [`http.server.request.duration`](#metric-httpserverrequestduration)
 - [`http.server.active_requests`](#metric-httpserveractive_requests)
 
-##### Metric: `http.server.request.duration`
+#### Metric: `http.server.request.duration`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -41,10 +41,7 @@ The time ends when:
 
 When using OpenTelemetry, the default buckets for this metric are set to [ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ].
 
-<!-- Once we migrate this doc to https://github.com/dotnet/AspNetCore.Docs we can remove the following version info -->
-.
-
-##### Metric: `http.server.active_requests`
+#### Metric: `http.server.active_requests`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
