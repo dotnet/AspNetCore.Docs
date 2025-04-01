@@ -18,8 +18,7 @@ This article covers advanced configuration options and scenarios for the ASP.NET
 
 *Only applies when using the in-process hosting model.*
 
-:::moniker range="> aspnetcore-9.0"
-Configure the managed stack size using the `stackSize` setting in bytes in hexadecimal in the `web.config` file. The default size is 1,048,576 bytes (1 MB) expressed in hexadecimal. The following example changes the stack size to 2 MB (2,097,152 bytes) in hexadecimal 0x200000:
+Configure the managed stack size using the `stackSize` setting in hexadecimal bytes in the `web.config` file. The default size is 0x100000 bytes (1 MB). The following example changes the stack size to 2 MB (2,097,152 bytes) in hexadecimal 0x200000:
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -32,26 +31,6 @@ Configure the managed stack size using the `stackSize` setting in bytes in hexad
   </handlerSettings>
 </aspNetCore>
 ```
-
-:::moniker-end
-
-:::moniker range="<= aspnetcore-9.0"
-
-Configure the managed stack size using the `stackSize` setting in bytes in the `web.config` file. The default size is 17,825,792 bytes (17 MB). The following example changes the stack size to 100,000 hex, (1 MB):
-
-```xml
-<aspNetCore processPath="dotnet"
-    arguments=".\MyApp.dll"
-    stdoutLogEnabled="false"
-    stdoutLogFile="\\?\%home%\LogFiles\stdout"
-    hostingModel="inprocess">
-  <handlerSettings>
-    <handlerSetting name="stackSize" value="100000" />
-  </handlerSettings>
-</aspNetCore>
-```
-
-:::moniker-end
 
 ## Disallow rotation on config
 
