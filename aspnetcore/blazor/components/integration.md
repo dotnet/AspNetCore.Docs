@@ -505,7 +505,8 @@ else
             "fetchdata", out var restored))
         {
             forecasts = 
-                await WeatherForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
+                await WeatherForecastService.GetForecastAsync(
+                    DateOnly.FromDateTime(DateTime.Now));
         }
         else
         {
@@ -513,11 +514,10 @@ else
         }
 
         // Call at the end to avoid a potential race condition at app shutdown
-        persistingSubscription = 
-            ApplicationState.RegisterOnPersisting(PersistForecasts);
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
     }
 
-    private Task PersistForecasts()
+    private Task PersistData()
     {
         ApplicationState.PersistAsJson("fetchdata", forecasts);
 
@@ -1033,11 +1033,10 @@ else
         }
 
         // Call at the end to avoid a potential race condition at app shutdown
-        persistingSubscription = 
-            ApplicationState.RegisterOnPersisting(PersistForecasts);
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
     }
 
-    private Task PersistForecasts()
+    private Task PersistData()
     {
         ApplicationState.PersistAsJson("fetchdata", forecasts);
 
