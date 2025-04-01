@@ -71,9 +71,9 @@ The `Microsoft.AspNetCore.Routing` metrics report information about [routing HTT
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.routing.match_status` | string | Match result | `success`; `failure` | Always |
-| `aspnetcore.routing.is_fallback_route` | boolean | A value that indicates whether the matched route is a fallback route. | `True` | If a route was successfully matched. |
-| `http.route` | string | The matched route | `{controller}/{action}/{id?}` | If a route was successfully matched. |
+| `aspnetcore.routing`<br>`.match_status` | string | Match result | `success`; `failure` | Always |
+| `aspnetcore.routing.`<br>`is_fallback_route` | boolean | A value that indicates whether the matched route is a fallback route. | `True` | If a route was successfully matched. |
+| `http.route` | string | The matched route | `{controller}/{action}/`<br>`{id?}` | If a route was successfully matched. |
 
 .
 
@@ -87,12 +87,12 @@ The `Microsoft.AspNetCore.Diagnostics` metrics report diagnostics information fr
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| [`aspnetcore.diagnostics.exceptions`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorediagnosticsexceptions) | Counter | `{exception}` | Number of exceptions caught by exception handling middleware. |
+| [`aspnetcore.diagnostics.`<br>`exceptions`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorediagnosticsexceptions) | Counter | `{exception}` | Number of exceptions caught by exception handling middleware. |
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.diagnostics.exception.result` | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | Always |
-| `aspnetcore.diagnostics.handler.type` | string | Full type name of the [`IExceptionHandler`](/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | If the exception was handled by this handler. |
+| `aspnetcore.diagnostics.`<br>`exception.result` | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | Always |
+| `aspnetcore.diagnostics`<br>`.handler.type` | string | Full type name of the [`IExceptionHandler`](/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | If the exception was handled by this handler. |
 | `exception.type` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` | Always |
 
 .
@@ -111,7 +111,7 @@ The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| [`aspnetcore.rate_limiting.active_request_leases`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingactive_request_leases) | UpDownCounter | `{request}` | Number of requests that are currently active on the server that hold a rate limiting lease. |
+| [`aspnetcore.rate_limiting.`<br>`active_request_leases`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingactive_request_leases) | UpDownCounter | `{request}` | Number of requests that are currently active on the server that hold a rate limiting lease. |
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
@@ -123,7 +123,7 @@ The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| [`aspnetcore.rate_limiting.request_lease.duration`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingrequest_leaseduration) | Histogram | `s` | The duration of the rate limiting lease held by requests on the server. |
+| [`aspnetcore.rate_limiting.`<br>`request_lease.duration`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingrequest_leaseduration) | Histogram | `s` | The duration of the rate limiting lease held by requests on the server. |
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
@@ -135,7 +135,7 @@ The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| [`aspnetcore.rate_limiting.queued_requests`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingqueued_requests) | UpDownCounter | `{request}` | Number of requests that are currently queued waiting to acquire a rate limiting lease. |
+| [`aspnetcore.rate_limiting.`<br>`queued_requests`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingqueued_requests) | UpDownCounter | `{request}` | Number of requests that are currently queued waiting to acquire a rate limiting lease. |
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
@@ -147,12 +147,12 @@ The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| [`aspnetcore.rate_limiting.request.time_in_queue`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingrequesttime_in_queue) | Histogram | `s` | The time a request spent in a queue waiting to acquire a rate limiting lease. |
+| [`aspnetcore.rate_limiting.`<br>`request.time_in_queue`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingrequesttime_in_queue) | Histogram | `s` | The time a request spent in a queue waiting to acquire a rate limiting lease. |
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | If the matched endpoint for the request had a rate-limiting policy. |
-| `aspnetcore.rate_limiting.result` | string | The rate limiting result shows whether lease was acquired or contains a rejection reason. | `acquired`; `request_canceled` | Always |
+| `aspnetcore.rate_limiting.`<br>`policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | If the matched endpoint for the request had a rate-limiting policy. |
+| `aspnetcore.rate_limiting.`<br>`result` | string | The rate limiting result shows whether lease was acquired or contains a rejection reason. | `acquired`; `request_canceled` | Always |
 
 .
 
@@ -160,12 +160,12 @@ The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| [`aspnetcore.rate_limiting.requests`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingrequests) | Counter | `{request}` | Number of requests that tried to acquire a rate limiting lease. |
+| [`aspnetcore.rate_limiting.`<br>`requests`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/#metric-aspnetcorerate_limitingrequests) | Counter | `{request}` | Number of requests that tried to acquire a rate limiting lease. |
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | If the matched endpoint for the request had a rate-limiting policy. |
-| `aspnetcore.rate_limiting.result` | string | The rate limiting result shows whether lease was acquired or contains a rejection reason. | `acquired`; `request_canceled` | Always |
+| `aspnetcore.rate_limiting.`<br>`policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | If the matched endpoint for the request had a rate-limiting policy. |
+| `aspnetcore.rate_limiting.`<br>`result` | string | The rate limiting result shows whether lease was acquired or contains a rejection reason. | `acquired`; `request_canceled` | Always |
 
 .
 
@@ -180,11 +180,11 @@ The `Microsoft.AspNetCore.HeaderParsing` metrics report information about [ASP.N
 
 | Name | Instrument Type | Unit (UCUM) | Description |
 |--|--|--|--|
-| `aspnetcore.header_parsing.parse_errors` | Counter | `{parse_error}` | Number of errors that occurred when parsing HTTP request headers. |
+| `aspnetcore.header_parsing.`<br>`parse_errors` | Counter | `{parse_error}` | Number of errors that occurred when parsing HTTP request headers. |
 
 | Attribute | Type | Description | Examples | Presence |
 |--|--|--|--|--|
-| `aspnetcore.header_parsing.header.name` | string | The header name. | `Content-Type` | Always |
+| `aspnetcore.header_parsing.`<br>`header.name` | string | The header name. | `Content-Type` | Always |
 | `error.type` | string | The error message. | `Unable to parse media type value.` | Always |
 
 .
@@ -195,12 +195,12 @@ The metric is emitted only for HTTP request header parsers that support caching.
 
 | Name | Instrument Type | Unit (UCUM) | Description |
 | ---- | --------------- | ----------- | ----------- |
-| `aspnetcore.header_parsing.cache_accesses` | Counter | `{cache_access}` | Number of times a cache storing parsed header values was accessed. |
+| `aspnetcore.header_parsing.`<br>`cache_accesses` | Counter | `{cache_access}` | Number of times a cache storing parsed header values was accessed. |
 
 | Attribute | Type | Description | Examples | Presence |
 |---|---|---|---|---|
-| `aspnetcore.header_parsing.header.name` | string | The header name. | `Content-Type` | Always |
-| `aspnetcore.header_parsing.cache_access.type` | string | A value indicating whether the header's value was found in the cache or not. | `Hit`; `Miss` | Always |
+| `aspnetcore.header_parsing.`<br>`header.name` | string | The header name. | `Content-Type` | Always |
+| `aspnetcore.header_parsing.`<br>`cache_access.type` | string | A value indicating whether the header's value was found in the cache or not. | `Hit`; `Miss` | Always |
 
 .
 
