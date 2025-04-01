@@ -43,9 +43,6 @@ The time ends when:
 
 When using OpenTelemetry, the default buckets for this metric are set to [ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ].
 
-<!-- Once we migrate this doc to https://github.com/dotnet/AspNetCore.Docs we can remove the following version info -->
-Available starting in: .NET 8.0.
-
 ##### Metric: `http.server.active_requests`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -56,8 +53,6 @@ Available starting in: .NET 8.0.
 |---|---|---|---|---|
 | `http.request.method` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Always |
 | `url.scheme`| string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Always |
-
-Available starting in: .NET 8.0.
 
 ## `Microsoft.AspNetCore.Routing`
 
@@ -77,8 +72,6 @@ The `Microsoft.AspNetCore.Routing` metrics report information about [routing HTT
 | `aspnetcore.routing.is_fallback_route` | boolean | A value that indicates whether the matched route is a fallback route. | `True` | If a route was successfully matched. |
 | `http.route` | string | The matched route | `{controller}/{action}/{id?}` | If a route was successfully matched. |
 
-Available starting in: .NET 8.0.
-
 ## `Microsoft.AspNetCore.Diagnostics`
 
 The `Microsoft.AspNetCore.Diagnostics` metrics report diagnostics information from [ASP.NET Core error handling middleware](/aspnet/core/fundamentals/error-handling):
@@ -96,8 +89,6 @@ The `Microsoft.AspNetCore.Diagnostics` metrics report diagnostics information fr
 | `aspnetcore.diagnostics.exception.result` | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | Always |
 | `aspnetcore.diagnostics.handler.type` | string | Full type name of the [`IExceptionHandler`](/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | If the exception was handled by this handler. |
 | `exception.type` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` | Always |
-
-Available starting in: .NET 8.0.
 
 ## `Microsoft.AspNetCore.RateLimiting`
 
@@ -119,8 +110,6 @@ The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information
 |---|---|---|---|---|
 | `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | If the matched endpoint for the request had a rate-limiting policy. |
 
-Available starting in: .NET 8.0.
-
 ##### Metric: `aspnetcore.rate_limiting.request_lease.duration`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -131,8 +120,6 @@ Available starting in: .NET 8.0.
 |---|---|---|---|---|
 | `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | If the matched endpoint for the request had a rate-limiting policy. |
 
-Available starting in: .NET 8.0.
-
 ##### Metric: `aspnetcore.rate_limiting.queued_requests`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -142,8 +129,6 @@ Available starting in: .NET 8.0.
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | If the matched endpoint for the request had a rate-limiting policy. |
-
-Available starting in: .NET 8.0.
 
 ##### Metric: `aspnetcore.rate_limiting.request.time_in_queue`
 
@@ -156,8 +141,6 @@ Available starting in: .NET 8.0.
 | `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | If the matched endpoint for the request had a rate-limiting policy. |
 | `aspnetcore.rate_limiting.result` | string | The rate limiting result shows whether lease was acquired or contains a rejection reason. | `acquired`; `request_canceled` | Always |
 
-Available starting in: .NET 8.0.
-
 ##### Metric: `aspnetcore.rate_limiting.requests`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -168,8 +151,6 @@ Available starting in: .NET 8.0.
 |---|---|---|---|---|
 | `aspnetcore.rate_limiting.policy` | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | If the matched endpoint for the request had a rate-limiting policy. |
 | `aspnetcore.rate_limiting.result` | string | The rate limiting result shows whether lease was acquired or contains a rejection reason. | `acquired`; `request_canceled` | Always |
-
-Available starting in: .NET 8.0.
 
 ## `Microsoft.AspNetCore.HeaderParsing`
 
@@ -189,8 +170,6 @@ The `Microsoft.AspNetCore.HeaderParsing` metrics report information about [ASP.N
 | `aspnetcore.header_parsing.header.name` | string | The header name. | `Content-Type` | Always |
 | `error.type` | string | The error message. | `Unable to parse media type value.` | Always |
 
-Available starting in: .NET 8.0.
-
 ##### Metric: `aspnetcore.header_parsing.cache_accesses`
 
 The metric is emitted only for HTTP request header parsers that support caching.
@@ -203,8 +182,6 @@ The metric is emitted only for HTTP request header parsers that support caching.
 |---|---|---|---|---|
 | `aspnetcore.header_parsing.header.name` | string | The header name. | `Content-Type` | Always |
 | `aspnetcore.header_parsing.cache_access.type` | string | A value indicating whether the header's value was found in the cache or not. | `Hit`; `Miss` | Always |
-
-Available starting in: .NET 8.0.
 
 ## `Microsoft.AspNetCore.Server.Kestrel`
 
@@ -232,8 +209,6 @@ The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection informa
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port`| int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 
-Available starting in: .NET 8.0.
-
 ##### Metric: `kestrel.connection.duration`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -255,8 +230,6 @@ As this metric is tracking the connection duration, and ideally http connections
 
 Starting in .NET 9, when a connection ends with a known error, the `error.type` attribute value is set to the known error type. Known connection errors can be found at [Semantic Conventions for Kestrel web server metrics](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/).
 
-Available starting in: .NET 8.
-
 ##### Metric: `kestrel.rejected_connections`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -272,8 +245,6 @@ Available starting in: .NET 8.
 
 Connections are rejected when the currently active count exceeds the value configured with `MaxConcurrentConnections`.
 
-Available starting in: .NET 8.0.
-
 ##### Metric: `kestrel.queued_connections`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -286,8 +257,6 @@ Available starting in: .NET 8.0.
 | `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
-
-Available starting in: .NET 8.0.
 
 ##### Metric: `kestrel.queued_requests`
 
@@ -304,8 +273,6 @@ Available starting in: .NET 8.0.
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 
-Available starting in: .NET 8.0.
-
 ##### Metric: `kestrel.upgraded_connections`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -320,8 +287,6 @@ Available starting in: .NET 8.0.
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 
 The counter only tracks HTTP/1.1 connections.
-
-Available starting in: .NET 8.0.
 
 ##### Metric: `kestrel.tls_handshake.duration`
 
@@ -340,8 +305,6 @@ Available starting in: .NET 8.0.
 
 When using OpenTelemetry, the default buckets for this metic are set to [ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ].
 
-Available starting in: .NET 8.0.
-
 ##### Metric: `kestrel.active_tls_handshakes`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -354,8 +317,6 @@ Available starting in: .NET 8.0.
 | `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
-
-Available starting in: .NET 8.0.
 
 ## `Microsoft.AspNetCore.Http.Connections`
 
@@ -375,8 +336,6 @@ The `Microsoft.AspNetCore.Http.Connections` metrics report connection informatio
 | `signalr.connection.status` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | Always |
 | `signalr.transport` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Always |
 
-Available starting in: .NET 8.0.
-
 | Value  | Description |
 |---|---|
 | `normal_closure` | The connection was closed normally. |
@@ -393,8 +352,6 @@ Available starting in: .NET 8.0.
 
 As this metric is tracking the connection duration, and ideally SignalR connections are durable, the buckets should be longer than those used for request durations. For example, using [0, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300] provides an upper bucket of 5 mins.
 
-Available starting in: .NET 8.0.
-
 ##### Metric: `signalr.server.active_connections`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
@@ -406,5 +363,4 @@ Available starting in: .NET 8.0.
 | `signalr.connection.status` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | Always |
 | `signalr.transport` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Always |
 
-Available starting in: .NET 8.0.
 :::moniker-end
