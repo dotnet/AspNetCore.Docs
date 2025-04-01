@@ -68,10 +68,10 @@ The configuration objects and collections supplied to the proxy should be read-o
 If the `IChangeToken` supports `ActiveChangeCallbacks`, once the proxy has processed the initial set of configurations it will register a callback with this token. If the provider does not support callbacks then `HasChanged` will be polled every 5 minutes.
 
 When the provider wants to provide a new configuration to the proxy it should:
-- load that configuration in the background. 
+- Load that configuration in the background. 
   - Route and cluster objects are immutable, so new instances have to be created for any new data.
   - Objects for unchanged routes and clusters can be re-used, or new instances can be created - changes will be detected by diffing them.
-- optionally validate the configuration using the [IConfigValidator](xref:Yarp.ReverseProxy.Configuration.IConfigValidator), and only then signal the `IChangeToken` from the prior `IProxyConfig` instance that new data is available. The proxy will call `GetConfig()` again to retrieve the new data.
+- Optionally validate the configuration using the [IConfigValidator](xref:Yarp.ReverseProxy.Configuration.IConfigValidator), and only then signal the `IChangeToken` from the prior `IProxyConfig` instance that new data is available. The proxy will call `GetConfig()` again to retrieve the new data.
 
 There are important differences when reloading configuration vs the first configuration load.
 - The new configuration will be diffed against the current one and only modified routes or clusters will be updated. The update will be applied atomically and will only affect new requests, not requests currently in progress.

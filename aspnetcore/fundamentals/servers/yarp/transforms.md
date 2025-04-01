@@ -45,7 +45,7 @@ X-Forwarded-Host: IncomingHost:5000
 
 ## Transform Categories
 
-Transforms fall into a few categories: [Request](./transforms-request.md), [Response](./transforms-response.md), and [Response Trailers](./transforms-response.md#responsetrailer).  Request trailers are not supported because they are not supported by the underlying HttpClient.
+Transforms fall into a few categories: [Request](./transforms-request.md), [Response](./transforms-response.md), and [Response Trailers](./transforms-response.md#responsetrailer). Request trailers are not supported because they are not supported by the underlying HttpClient.
 
 If the built-in set of transforms is insufficient, then custom transforms can be added via [extensibility](./extensibility-transforms.md).
 

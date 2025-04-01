@@ -118,7 +118,7 @@ The `Cookie` and `CustomHeader` policies encrypt the key using Data Protection. 
 ## Affinity failure policy
 If the affinity key cannot be decoded or no healthy destination found it's considered as a failure and an affinity failure policy is called to handle it. The policy has the full access to `HttpContext` and can send response to the client by itself. It returns a boolean value indicating whether the request processing can proceed down the pipeline or must be terminated.
 
-There are two built-in failure policies.  The default is `Redistribute`.
+There are two built-in failure policies. The default is `Redistribute`.
 1. `Redistribute` - tries to establish a new affinity to one of available healthy destinations by skipping the affinity lookup step and passing all healthy destination to the load balancer the same way it is done for a request without any affinity. Request processing continues. This is implemented by `RedistributeAffinityFailurePolicy`.
 
 2. `Return503Error` - sends a `503` response back to the client and request processing is terminated. This is implemented by `Return503ErrorAffinityFailurePolicy`
