@@ -1,4 +1,4 @@
-:::moniker range="< aspnetcore-10.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 This article describes the metrics built-in for ASP.NET Core produced using the
 <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. For a listing of metrics based on the older [EventCounters](/dotnet/core/diagnostics/event-counters) API,
