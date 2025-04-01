@@ -126,7 +126,7 @@ Blazor Web App:
 
 :::moniker range=">= aspnetcore-8.0"
 
-html
+```html
 <script type="module">
   import { BrotliDecode } from './decode.min.js';
   Blazor.start({
@@ -151,7 +151,7 @@ html
     }
   });
 </script>
-
+```
 
 :::moniker-end
 
@@ -163,7 +163,7 @@ Standalone Blazor WebAssembly:
 
 :::moniker range="< aspnetcore-10.0"
 
-html
+```html
 <script type="module">
   import { BrotliDecode } from './decode.min.js';
   Blazor.start({
@@ -186,7 +186,7 @@ html
     }
   });
 </script>
-
+```
 
 :::moniker-end
 
