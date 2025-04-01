@@ -84,12 +84,12 @@ Active health check settings can also be defined in code via the corresponding t
 
 `Cluster/HealthCheck/Active` section and [ActiveHealthCheckConfig](xref:Yarp.ReverseProxy.Configuration.ActiveHealthCheckConfig):
 
-- `Enabled` - Flag indicating whether active health check is enabled for a cluster. Default `false`
-- `Interval` - Period of sending health probing requests. Default `00:00:15`
-- `Timeout` - Probing request timeout. Default `00:00:10`
-- `Policy` - Name of a policy evaluating destinations' active health states. Mandatory parameter
-- `Path` - Health check path on all cluster's destinations. Default `null`.
-- `Query` - Health check query on all cluster's destinations. Default `null`.
+- `Enabled`: Flag indicating whether active health check is enabled for a cluster. Default `false`
+- `Interval`: Period of sending health probing requests. Default `00:00:15`
+- `Timeout`: Probing request timeout. Default `00:00:10`
+- `Policy`: Name of a policy evaluating destinations' active health states. Mandatory parameter
+- `Path`: Health check path on all cluster's destinations. Default `null`.
+- `Query`: Health check query on all cluster's destinations. Default `null`.
 
 `Destination` section and [DestinationConfig](xref:Yarp.ReverseProxy.Configuration.DestinationConfig).
 
