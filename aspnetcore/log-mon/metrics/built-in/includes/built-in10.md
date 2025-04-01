@@ -5,7 +5,7 @@ This article describes the metrics built-in for ASP.NET Core produced using the
 see [Available counters](/dotnet/core/diagnostics/available-counters).
 
 > [!TIP]
-> For more information about how to collect, report, enrich, and test ASP.NET Core metrics, see [Using ASP.NET Core metrics](/aspnet/core/log-mon/metrics/metrics).
+> For more information about how to collect, report, enrich, and test ASP.NET Core metrics, see [Using ASP.NET Core metrics](xref:log-mon/metrics/metrics).
 
 ## `Microsoft.AspNetCore.Hosting`
 
