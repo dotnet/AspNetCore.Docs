@@ -639,9 +639,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        persistingSubscription =
-            ApplicationState.RegisterOnPersisting(PersistData);
-
         if (!ApplicationState.TryTakeFromJson<string>("data", out var restored))
         {
             data = await LoadDataAsync();
@@ -650,6 +647,9 @@ else
         {
             data = restored!;
         }
+
+        // Call at the end to avoid a potential race condition at app shutdown
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
     }
 
     private Task PersistData()
