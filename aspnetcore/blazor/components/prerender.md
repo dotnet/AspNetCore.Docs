@@ -45,7 +45,7 @@ The first logged count occurs during prerendering. The count is set again after 
 
 To retain the initial value of the counter during prerendering, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)).
 
-To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the app resumes.
+To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the app resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 The following example demonstrates the general pattern:
 
@@ -64,9 +64,6 @@ The following example demonstrates the general pattern:
 
     protected override async Task OnInitializedAsync()
     {
-        persistingSubscription = 
-            ApplicationState.RegisterOnPersisting(PersistData);
-
         if (!ApplicationState.TryTakeFromJson<{TYPE}>(
             "{TOKEN}", out var restored))
         {
@@ -76,6 +73,9 @@ The following example demonstrates the general pattern:
         {
             data = restored!;
         }
+
+        // Call at the end to avoid a potential race condition at app shutdown
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
     }
 
     private Task PersistData()
