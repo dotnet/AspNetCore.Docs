@@ -627,7 +627,7 @@ internal sealed class ClientWeatherForecaster(HttpClient httpClient)
 The client project maintains a `Weather` component that:
 
 * Enforces authorization with an [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute).
-* Uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to persist weather forecast data when the component transitions from static to interactive SSR on the server.
+* Uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to persist weather forecast data when the component transitions from static to interactive SSR on the server. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
 ```razor
 @page "/weather"
@@ -679,8 +679,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
-
         if (!ApplicationState.TryTakeFromJson<IEnumerable<WeatherForecast>>(
             nameof(forecasts), out var restoredData))
         {
@@ -690,6 +688,9 @@ else
         {
             forecasts = restoredData!;
         }
+
+        // Call at the end to avoid a potential race condition at app shutdown
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
     }
 
     private Task PersistData()
