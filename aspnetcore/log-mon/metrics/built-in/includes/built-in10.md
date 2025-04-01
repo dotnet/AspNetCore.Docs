@@ -200,7 +200,7 @@ The metric is emitted only for HTTP request header parsers that support caching.
 | Attribute | Type | Description | Examples | Presence |
 |---|---|---|---|---|
 | `aspnetcore.header_parsing.`<br>`header.name` | string | The header name. | `Content-Type` | Always |
-| `aspnetcore.header_parsing.`<br>`cache_access.type` | string | A value indicating whether the header's value was found in the cache or not. | `Hit`; `Miss` | Always |
+| `aspnetcore.header_parsing.cache_access.type` | string | A value indicating whether the header's value was found in the cache or not. | `Hit`; `Miss` | Always |
 
 .
 
