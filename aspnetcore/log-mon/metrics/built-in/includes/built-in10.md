@@ -26,7 +26,7 @@ The `Microsoft.AspNetCore.Hosting` metrics report high-level information about H
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | If one was sent. |
 | `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. | `3.1.1` | Always |
 | `url.scheme` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | Always |
-| `aspnetcore.request.is_unhandled` | Boolean | True when the request wasn't handled by the application pipeline. | `true` | If the request was unhandled. |
+| `aspnetcore.request.`<br>`is_unhandled` | Boolean | True when the request wasn't handled by the application pipeline. | `true` | If the request was unhandled. |
 
 The time used to handle an inbound HTTP request as measured at the hosting layer of ASP.NET Core. The time measurement starts once the underlying web host has:
 
