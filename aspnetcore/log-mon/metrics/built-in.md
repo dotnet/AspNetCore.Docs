@@ -1,6 +1,6 @@
 ---
-title: ASP.NET Core metrics
-description: Metrics for ASP.NET Core apps
+title: ASP.NET Core built-in metrics
+description: Built-in metrics for ASP.NET Core apps
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
@@ -12,8 +12,8 @@ uid: log-mon/metrics/built-in
 # ASP.NET Core built-in metrics
 
 This article describes the metrics built-in for ASP.NET Core produced using the
-<xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. For a listing of metrics based on the older [EventCounters](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/event-counters) API,
-see [here](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/available-counters).
+<xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. For a listing of metrics based on the older [EventCounters](/dotnet/core/diagnostics/event-counters) API,
+see [here](/dotnet/core/diagnostics/available-counters).
 
 > [!TIP]
 > For more information about how to collect, report, enrich, and test ASP.NET Core metrics, see [Using ASP.NET Core metrics](/aspnet/core/log-mon/metrics/metrics).
