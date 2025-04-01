@@ -45,7 +45,7 @@ The [Swift client](xref:signalr/swift-client) supports Swift >= 5.10
 
 ## Unsupported clients
 
-The following client is available but experimental, isn't currently supported and may never be supported:
+The following client is available for experimentation only, isn't currently supported, and may never be supported:
 
 * [C++ client](https://github.com/aspnet/SignalR-Client-Cpp)
 
