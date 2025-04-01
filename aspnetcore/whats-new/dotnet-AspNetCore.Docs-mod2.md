@@ -62,7 +62,7 @@ Welcome to what's new in the ASP.NET Core docs for February 2024. This article l
 - <xref:blazor/security/webassembly/standalone-with-identity/index> - Add roles and test user guidance
 - <xref:blazor/fundamentals/signalr> - [Blazor] SignalR - remove "using System" reminder
 - <xref:blazor/hybrid/class-libraries> - Update 'Blazor Server' references
-- <xref:blazor/host-and-deploy/webassembly>
+- <xref:blazor/host-and-deploy/webassembly/index>
   - Update "ASP.NET Core" references
   - Clarify "subset" of .NET API remark
 - <xref:blazor/fundamentals/index> - Clarify "subset" of .NET API remark

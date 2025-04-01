@@ -24,7 +24,7 @@ Lazy loading shouldn't be used for core runtime assemblies, which might be trimm
 
 :::moniker range=">= aspnetcore-8.0"
 
-Assembly files use the [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly#webcil-packaging-format-for-net-assemblies) with a `.wasm` file extension.
+Assembly files use the [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly/index#webcil-packaging-format-for-net-assemblies) with a `.wasm` file extension.
 
 Throughout the article, the `{FILE EXTENSION}` placeholder represents "`wasm`".
 
@@ -353,7 +353,7 @@ For more information, see <xref:blazor/fundamentals/routing#handle-cancellations
 
 ## `OnNavigateAsync` events and renamed assembly files
 
-The resource loader relies on the assembly names that are defined in the `blazor.boot.json` file. If [assemblies are renamed](xref:blazor/host-and-deploy/webassembly#change-the-file-name-extension-of-dll-files), the assembly names used in an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback and the assembly names in the `blazor.boot.json` file are out of sync.
+The resource loader relies on the assembly names that are defined in the `blazor.boot.json` file. If [assemblies are renamed](xref:blazor/host-and-deploy/webassembly/index#change-the-file-name-extension-of-dll-files), the assembly names used in an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback and the assembly names in the `blazor.boot.json` file are out of sync.
 
 To rectify this:
 

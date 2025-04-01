@@ -43,7 +43,7 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 - <xref:blazor/host-and-deploy/configure-trimmer> - Clarify Blazor trim mode
 - <xref:blazor/debug> - Blazor CLI commands moving to `dotnet watch`
 - <xref:blazor/host-and-deploy/index> - Blazor CLI commands moving to `dotnet watch`
-- <xref:blazor/host-and-deploy/webassembly>
+- <xref:blazor/host-and-deploy/webassembly/index>
   - Blazor CLI commands moving to `dotnet watch`
   - Update Apache coverage (drop CentOS mentions)
   - Fix spacing in Apache configuration example

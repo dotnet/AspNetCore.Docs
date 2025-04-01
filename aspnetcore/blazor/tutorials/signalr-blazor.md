@@ -613,6 +613,6 @@ For detailed guidance on the SignalR and Blazor frameworks, see the following re
 * [Bearer token authentication with Identity Server, WebSockets, and Server-Sent Events](xref:signalr/authn-and-authz#bearer-token-authentication)
 * [Secure a SignalR hub in Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
-* [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
+* [SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
 * <xref:blazor/debug>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))

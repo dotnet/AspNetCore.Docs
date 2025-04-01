@@ -42,7 +42,7 @@ For more information, see <xref:blazor/components/class-libraries-with-static-ss
 
 We've added a new article that discusses some of the common HTTP caching issues that can occur when upgrading Blazor apps across major versions and how to address HTTP caching issues.
 
-For more information, see <xref:blazor/host-and-deploy/webassembly-caching/http-caching-issues>.
+For more information, see <xref:blazor/host-and-deploy/webassembly/http-caching-issues>.
 
 ### New Blazor Web App template
 
@@ -201,7 +201,7 @@ For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-8.0&
 
 The *Jiterpreter* is a new runtime feature in .NET 8 that enables partial Just-in-Time (JIT) compilation support when running on WebAssembly to achieve improved runtime performance.
 
-For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation>.
+For more information, see <xref:blazor/tooling/webassembly?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation>.
 
 ### Ahead-of-time (AOT) SIMD and exception handling
 
@@ -216,10 +216,10 @@ For more information, see the following articles:
 
 Webcil is web-friendly packaging of .NET assemblies that removes content specific to native Windows execution to avoid issues when deploying to environments that block the download or use of `.dll` files. Webcil is enabled by default for Blazor WebAssembly apps.
 
-For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies>.
+For more information, see <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies>.
 
 > [!NOTE]
-> Prior to the release of .NET 8, guidance in <xref:blazor/host-and-deploy/webassembly-deployment-layout?view=aspnetcore-8.0&preserve-view=true> addresses environments that block clients from downloading and executing DLLs with a multipart bundling approach. In .NET 8 or later, Blazor uses the Webcil file format to address this problem. Multipart bundling using the experimental NuGet package described by the *WebAssembly deployment layout* article isn't supported for Blazor apps in .NET 8 or later. For more information, see [Enhance `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package to define a custom bundle format (dotnet/aspnetcore #36978)](https://github.com/dotnet/aspnetcore/issues/36978#issuecomment-1439283893). If you desire to continue using the multipart bundle package in .NET 8 or later apps, you can use the guidance in the article to create your own multipart bundling NuGet package, but it won't be supported by Microsoft.
+> Prior to the release of .NET 8, guidance in <xref:blazor/host-and-deploy/webassembly/deployment-layout?view=aspnetcore-8.0&preserve-view=true> addresses environments that block clients from downloading and executing DLLs with a multipart bundling approach. In .NET 8 or later, Blazor uses the Webcil file format to address this problem. Multipart bundling using the experimental NuGet package described by the *WebAssembly deployment layout* article isn't supported for Blazor apps in .NET 8 or later. For more information, see [Enhance `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package to define a custom bundle format (dotnet/aspnetcore #36978)](https://github.com/dotnet/aspnetcore/issues/36978#issuecomment-1439283893). If you desire to continue using the multipart bundle package in .NET 8 or later apps, you can use the guidance in the article to create your own multipart bundling NuGet package, but it won't be supported by Microsoft.
 
 ### Blazor WebAssembly debugging improvements
 
@@ -254,8 +254,8 @@ Prior workarounds for configuring hub connection timeouts can be replaced with f
 For more information, see the following:
 
 * <xref:blazor/fundamentals/signalr?view=aspnetcore-8.0&preserve-view=true#configure-signalr-timeouts-and-keep-alive-on-the-client>
-* <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures>
-* <xref:blazor/host-and-deploy/server?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures>
+* <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures>
+* <xref:blazor/host-and-deploy/server/index?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures>
 
 ### Project templates shed Open Iconic
 

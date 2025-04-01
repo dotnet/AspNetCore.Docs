@@ -146,7 +146,7 @@ There's no limit on the number of connections per user for an app. If the app re
     * Proxy WebSocket connections to an app through the use of a proxy, such as the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) that multiplexes connections from clients to an app. This provides an app with greater connection capacity than a single client can establish, preventing a client from exhausting the connections to the server.
   * Server level
     * Use a proxy/gateway in front of the app.
-    * Although Long Polling is supported for Blazor apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). We recommend selecting a proxy/gateway that supports WebSockets.
+    * Although Long Polling is supported for Blazor apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server/index#azure-signalr-service). We recommend selecting a proxy/gateway that supports WebSockets.
 
 :::moniker-end
 

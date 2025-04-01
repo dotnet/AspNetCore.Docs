@@ -660,24 +660,44 @@ items:
             items:
               - name: Overview
                 uid: blazor/host-and-deploy/index
+              - name: App base path
+                uid: blazor/host-and-deploy/app-base-path
               - name: Server
-                uid: blazor/host-and-deploy/server
-              - name: Blazor WebAssembly
-                uid: blazor/host-and-deploy/webassembly
-              - name: WebAssembly caching
                 items:
                   - name: Overview
-                    uid: blazor/host-and-deploy/webassembly-caching/index
+                    uid: blazor/host-and-deploy/server/index
+                  - name: Memory management
+                    uid: blazor/host-and-deploy/server/memory-management
+              - name: Blazor WebAssembly
+                items:
+                  - name: Overview
+                    uid: blazor/host-and-deploy/webassembly/index
+                  - name: Deploy to IIS
+                    uid: blazor/host-and-deploy/webassembly/iis
+                  - name: Deploy to Azure Static Web Apps
+                    uid: blazor/host-and-deploy/webassembly/azure-static-web-apps
+                  - name: Deploy to Azure Storage
+                    uid: blazor/host-and-deploy/webassembly/azure-storage
+                  - name: Deploy to Nginx
+                    uid: blazor/host-and-deploy/webassembly/nginx
+                  - name: Deploy to Apache
+                    uid: blazor/host-and-deploy/webassembly/apache
+                  - name: Deploy to GitHub Pages
+                    uid: blazor/host-and-deploy/webassembly/github-pages
+                  - name: Integrity check failures
+                    uid: blazor/host-and-deploy/webassembly/integrity-check-failures
+                  - name: Runtime and app bundle caching
+                    uid: blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching
                   - name: HTTP caching issues
-                    uid: blazor/host-and-deploy/webassembly-caching/http-caching-issues
+                    uid: blazor/host-and-deploy/webassembly/http-caching-issues
+                  - name: Multiple hosted WebAssembly apps
+                    uid: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly
+                  - name: Deployment layout
+                    uid: blazor/host-and-deploy/webassembly/deployment-layout
               - name: Configure the Linker
                 uid: blazor/host-and-deploy/configure-linker
               - name: Configure the Trimmer
                 uid: blazor/host-and-deploy/configure-trimmer
-              - name: WebAssembly deployment layout
-                uid: blazor/host-and-deploy/webassembly-deployment-layout
-              - name: Multiple hosted WebAssembly apps
-                uid: blazor/host-and-deploy/multiple-hosted-webassembly
           - name: Blazor with EF Core
             uid: blazor/blazor-ef-core
           - name: Advanced scenarios

@@ -340,7 +340,7 @@ For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-a
 
 ## Supply components and static assets to multiple hosted Blazor apps
 
-For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+For more information, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>.
 
 :::moniker-end
 

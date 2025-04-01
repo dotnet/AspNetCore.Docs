@@ -185,7 +185,7 @@ The following error is thrown by an app that hasn't enabled session affinity in 
 
 > :::no-loc text="Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.":::
 
-For more information on session affinity with Azure App Service hosting, see <xref:blazor/host-and-deploy/server#azure-app-service>.
+For more information on session affinity with Azure App Service hosting, see <xref:blazor/host-and-deploy/server/index#azure-app-service>.
 
 ## Azure SignalR Service
 
@@ -196,7 +196,7 @@ The service isn't required for Blazor apps hosted in Azure App Service or Azure 
 * To facilitate connection scale out.
 * Handle global distribution.
 
-For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
+For more information, see <xref:blazor/host-and-deploy/server/index#azure-signalr-service>.
 
 ## Server-side circuit handler options
 
@@ -297,7 +297,7 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 >
 > Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient%2A> set to 1, which is the default value. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
 
-For information on memory management, see <xref:blazor/host-and-deploy/server#memory-management>.
+For information on memory management, see <xref:blazor/host-and-deploy/server/memory-management>.
 
 ## Blazor hub options
 
@@ -993,8 +993,8 @@ When changing the values of the server timeout (<xref:Microsoft.AspNetCore.Signa
 
 For more information, see the *Global deployment and connection failures* sections of the following articles:
 
-* <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
-* <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
+* <xref:blazor/host-and-deploy/server/index#global-deployment-and-connection-failures>
+* <xref:blazor/host-and-deploy/webassembly/index#global-deployment-and-connection-failures>
 
 ## Modify the server-side reconnection handler
 
@@ -1640,7 +1640,7 @@ In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.N
 
 ## Additional server-side resources
 
-* [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
+* [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * Server-side security documentation

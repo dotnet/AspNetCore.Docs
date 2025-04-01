@@ -370,7 +370,7 @@ In published output:
 * Path to the client app in the **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly solution: `/BlazorHostedSample/Server/bin/Release/{TFM}/publish/wwwroot/app1/`
 * Path to a standalone Blazor WebAssembly app: `/BlazorStandaloneSample/bin/Release/{TFM}/publish/wwwroot/app1/`
 
-The `<StaticWebAssetBasePath>` property is most commonly used to control the paths to published static assets of multiple Blazor WebAssembly apps in a single hosted deployment. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>. The property is also effective in standalone Blazor WebAssembly apps.
+The `<StaticWebAssetBasePath>` property is most commonly used to control the paths to published static assets of multiple Blazor WebAssembly apps in a single hosted deployment. For more information, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>. The property is also effective in standalone Blazor WebAssembly apps.
 
 In the preceding examples, the `{TFM}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) (for example, `net6.0`).
 
@@ -508,15 +508,15 @@ Run the app.
 
 :::moniker range=">= aspnetcore-8.0"
 
-* [App base path](xref:blazor/host-and-deploy/index#app-base-path)
+* <xref:blazor/host-and-deploy/app-base-path>
 * [Avoid file capture in a route parameter](xref:blazor/fundamentals/routing#avoid-file-capture-in-a-route-parameter)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-* [App base path](xref:blazor/host-and-deploy/index#app-base-path)
+* <xref:blazor/host-and-deploy/app-base-path>
 * [Avoid file capture in a route parameter](xref:blazor/fundamentals/routing#avoid-file-capture-in-a-route-parameter)
-* <xref:blazor/host-and-deploy/multiple-hosted-webassembly>
+* <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>
 
 :::moniker-end

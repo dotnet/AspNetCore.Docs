@@ -559,7 +559,7 @@ The persisted prerendered state is transferred to the client, where it's used to
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index)
   * [Prerendering with authentication in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
-* [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
+* <xref:blazor/host-and-deploy/webassembly/index>
 * [Handle errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
 
@@ -1074,7 +1074,7 @@ The persisted prerendered state is transferred to the client, where it's used to
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
   * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
-* [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
+* <xref:blazor/host-and-deploy/webassembly/index>
 
 :::moniker-end
 
@@ -1332,7 +1332,7 @@ Additional work might be required depending on the static resources that compone
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
   * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
-* [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
+* <xref:blazor/host-and-deploy/webassembly/index>
 
 :::moniker-end
 

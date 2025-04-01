@@ -249,7 +249,7 @@ For examples of JS initializers, see the following resources:
 
 * <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
 * <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
-* <xref:blazor/host-and-deploy/webassembly-deployment-layout>
+* <xref:blazor/host-and-deploy/webassembly/deployment-layout>
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
 
 :::moniker-end
@@ -487,9 +487,9 @@ Standalone Blazor WebAssembly:
 
 When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource.
 
-The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly#compression>.
+The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly/index#compression>.
 
-For more information, see <xref:blazor/host-and-deploy/webassembly-caching/index>.
+For more information, see <xref:blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching>.
 
 ## Control headers in C# code
 
@@ -849,4 +849,4 @@ To disable [enhanced navigation and form handling](xref:blazor/fundamentals/rout
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
 * [SignalR (includes sections on SignalR startup configuration)](xref:blazor/fundamentals/signalr)
 * [Globalization and localization: Statically set the culture with `Blazor.start()` (*client-side only*)](xref:blazor/globalization-localization#statically-set-the-client-side-culture)
-* [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
+* [Blazor WebAssembly compression](xref:blazor/host-and-deploy/webassembly/index#compression)

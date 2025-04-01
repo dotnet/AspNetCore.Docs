@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/host-and-deploy/multiple-hosted-webassembly
+uid: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly
 zone_pivot_groups: blazor-multiple-hosted-wasm-apps
 ---
 # Multiple hosted ASP.NET Core Blazor WebAssembly apps
@@ -64,7 +64,7 @@ The examples shown in this article require additional configuration for:
 
 The preceding configurations are beyond the scope of this article. For more information, see the following resources:
 
-* [Host and deploy articles](xref:host-and-deploy/index)
+* <xref:host-and-deploy/index>
 * <xref:security/enforcing-ssl>
 * <xref:blazor/components/integration-hosted-webassembly>
 

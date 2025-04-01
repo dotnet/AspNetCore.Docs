@@ -6,11 +6,13 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/host-and-deploy/webassembly-caching/http-caching-issues
+uid: blazor/host-and-deploy/webassembly/http-caching-issues
 ---
 # Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+This article explains how to avoid HTTP caching issues when upgrading Blazor apps.
 
 When Blazor apps are incorrectly upgraded or configured, it can result in non-seamless upgrades for existing users. This article discusses some of the common HTTP caching issues that can occur when upgrading Blazor apps across major versions. It also provides some recommended actions to ensure a smooth transition for your users.
 
