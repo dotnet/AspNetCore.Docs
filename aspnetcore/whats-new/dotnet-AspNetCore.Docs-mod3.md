@@ -13,7 +13,7 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
 
 ### Updated articles
 
-- <xref:blazor/host-and-deploy/server> - Update Azure SignalR Service remarks
+- <xref:blazor/host-and-deploy/server/index> - Update Azure SignalR Service remarks
 - <xref:blazor/security/index>
   - Improve authorization opening remarks
   - Add coverage on antiforgery services and middleware

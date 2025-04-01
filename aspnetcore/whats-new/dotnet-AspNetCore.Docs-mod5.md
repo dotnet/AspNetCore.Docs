@@ -34,7 +34,7 @@ Welcome to what's new in the ASP.NET Core docs for May 2024. This article lists 
   - Inform readers on support status of stateful reconnect
 - <xref:blazor/components/index> - More hints on interactivity for doc components
 - <xref:blazor/components/class-libraries> - RCLs for Blazor apps that support pages+views
-- <xref:blazor/host-and-deploy/server>
+- <xref:blazor/host-and-deploy/server/index>
   - Azure Container Apps updates
   - Inform readers on support status of stateful reconnect
 - <xref:blazor/hybrid/reuse-razor-components>

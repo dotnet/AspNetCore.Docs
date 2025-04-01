@@ -1684,7 +1684,7 @@ Use a base-relative path (`/`) to refer to the web root for a static asset. In t
 
 Components do **not** support tilde-slash notation (`~/`).
 
-For information on setting an app's base path, see <xref:blazor/host-and-deploy/index#app-base-path>.
+For information on setting an app's base path, see <xref:blazor/host-and-deploy/app-base-path>.
 
 ## Tag Helpers aren't supported in components
 

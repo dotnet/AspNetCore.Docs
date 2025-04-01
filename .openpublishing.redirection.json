@@ -972,12 +972,12 @@
         },
         {
             "source_path": "aspnetcore/host-and-deploy/blazor/client-side.md",
-            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/blazor/server-side.md",
-            "redirect_url": "/aspnet/core/blazor/host-and-deploy/server",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/server/",
             "redirect_document_id": false
         },
         {
@@ -1077,12 +1077,12 @@
         },
         {
             "source_path": "aspnetcore/host-and-deploy/blazor/server.md",
-            "redirect_url": "/aspnet/core/blazor/host-and-deploy/server",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/server/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/blazor/webassembly.md",
-            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/",
             "redirect_document_id": false
         },
         {
@@ -1310,7 +1310,7 @@
         },
         {
             "source_path": "aspnetcore/blazor/http-caching-issues.md",
-            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly-caching/http-caching-issues",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/http-caching-issues",
             "redirect_document_id": false
         },
         {
@@ -1356,6 +1356,36 @@
         {
             "source_path": "aspnetcore/blazor/security/server/index.md",
             "redirect_url": "/aspnet/core/blazor/security/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/host-and-deploy/webassembly-caching/index.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/host-and-deploy/webassembly-caching/http-caching-issues.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/http-caching-issues",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/host-and-deploy/webassembly.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/host-and-deploy/multiple-hosted-webassembly.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/multiple-hosted-webassembly",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/host-and-deploy/webassembly-deployment-layout.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/deployment-layout",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/host-and-deploy/server.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/server/",
             "redirect_document_id": false
         }
     ]

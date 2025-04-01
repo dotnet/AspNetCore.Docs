@@ -1,16 +1,18 @@
 ---
 title: ASP.NET Core Blazor WebAssembly .NET runtime and app bundle caching
 author: guardrex
-description: Learn how to Blazor WebAssembly caches the WebAssembly .NET runtime and app bundle, how to disable caching, and how to diagnose integrity failures.
+description: Learn how Blazor WebAssembly caches the WebAssembly .NET runtime and app bundle, how to disable caching, and how to diagnose integrity failures.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/host-and-deploy/webassembly-caching/index
+uid: blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching
 ---
 # ASP.NET Core Blazor WebAssembly .NET runtime and app bundle caching
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+This article explains how Blazor WebAssembly caches the WebAssembly .NET runtime and app bundle, how to disable caching, and how to diagnose integrity failures.
 
 When a Blazor WebAssembly app loads in the browser, the app downloads boot resources from the server:
 

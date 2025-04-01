@@ -1746,7 +1746,7 @@ For more information, see [Blazor Localization does not work with InteractiveSer
 
 ## Additional resources
 
-* [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
+* <xref:blazor/host-and-deploy/app-base-path>
 * <xref:fundamentals/localization>
 * [Globalizing and localizing .NET applications](/dotnet/core/extensions/globalization-and-localization)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)

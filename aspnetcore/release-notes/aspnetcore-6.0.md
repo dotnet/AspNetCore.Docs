@@ -156,7 +156,7 @@ Blazor WebAssembly apps can use native dependencies built to run on WebAssembly.
 
 ### WebAssembly Ahead-of-time (AOT) compilation and runtime relinking
 
-Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#ahead-of-time-aot-compilation) and [Runtime relinking](xref:blazor/tooling/webassembly?view=aspnetcore-6.0#runtime-relinking).
+Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-6.0#ahead-of-time-aot-compilation) and [Runtime relinking](xref:blazor/tooling/webassembly?view=aspnetcore-6.0#runtime-relinking).
 
 ### Persist prerendered state
 
@@ -245,7 +245,7 @@ Generic type parameters are now supported. For more information, see <xref:blazo
 
 ### WebAssembly deployment layout
 
-Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly-deployment-layout?view=aspnetcore-6.0>.
+Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly/deployment-layout?view=aspnetcore-6.0>.
 
 ### New Blazor articles
 

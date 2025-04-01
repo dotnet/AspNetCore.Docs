@@ -13,7 +13,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 
 ### New articles
 
-- <xref:blazor/host-and-deploy/webassembly-caching/index>
+- <xref:blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching>
 - <xref:blazor/tooling/webassembly>
 - <xref:blazor/security/qrcodes-for-authenticator-apps>
 - <xref:blazor/js-interop/javascript-location>
@@ -48,10 +48,10 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 - <xref:blazor/js-interop/call-javascript-from-dotnet> - Dedicated article on JS location
 - <xref:blazor/debug> - Add Debugger support section
 - <xref:blazor/components/dynamiccomponent> - [Blazor] DynamicComponents - fixes samples vulnerability + related adjustments
-- <xref:blazor/host-and-deploy/webassembly>
+- <xref:blazor/host-and-deploy/webassembly/index>
   - Blazor WASM build tools + AOT article
   - WASM runtime max heap size
-- <xref:blazor/host-and-deploy/server>
+- <xref:blazor/host-and-deploy/server/index>
   - Improve IIS crosslinking and additional deployment updates
   - Blazor WASM build tools + AOT article
   - Memory management updates

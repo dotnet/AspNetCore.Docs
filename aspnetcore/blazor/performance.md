@@ -109,7 +109,7 @@ In a test performed by the ASP.NET Core product unit engineers, a rendering over
 
 It's possible to make components more lightweight so that you can have more of them. However, a more powerful technique is often to avoid having so many components to render. The following sections describe two approaches that you can take.
 
-For more information on memory management, see <xref:blazor/host-and-deploy/server#memory-management>.
+For more information on memory management, see <xref:blazor/host-and-deploy/server/memory-management>.
 
 ##### Inline child components into their parents
 
@@ -801,7 +801,7 @@ Load assemblies at runtime when the assemblies are required by a route. For more
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
-After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
+After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly/index#compression>.
 
 ### Disable unused features
 
