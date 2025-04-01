@@ -112,7 +112,7 @@ Middleware like session affinity and load balancing examine the `IReverseProxyFe
 
 `AvailableDestinations` lists the destinations currently considered eligible to handle the request. It is initialized to `AllDestinations`, excluding unhealthy ones if health checks are enabled. `AvailableDestinations` should be reduced to a single destination by the end of the pipeline or else one will be selected randomly from the remainder.
 
-`ProxiedDestination` is set by the proxy logic at the end of the pipeline to indicate which destination was ultimately used.  If there are no available destinations remaining then a 503 error response is sent.
+`ProxiedDestination` is set by the proxy logic at the end of the pipeline to indicate which destination was ultimately used. If there are no available destinations remaining then a 503 error response is sent.
 
 ```C#
 proxyPipeline.Use(async (context, next) =>
