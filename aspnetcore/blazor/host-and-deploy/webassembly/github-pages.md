@@ -12,7 +12,7 @@ uid: blazor/host-and-deploy/webassembly/github-pages
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to host and deploy Blazor WebAssembly using GitHub Pages.
+This article explains how to host and deploy Blazor WebAssembly using [GitHub Pages](https://pages.github.com/).
 
 The following guidance for GitHub Pages deployments of Blazor WebAssembly apps demonstrates concepts with a live tool deployed to GitHub Pages. The tool is used by the ASP.NET Core documentation authors to create cross-reference (XREF) links to API documentation for article markdown:
 

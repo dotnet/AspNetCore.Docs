@@ -10,6 +10,8 @@ uid: blazor/host-and-deploy/server/memory-management
 ---
 # Manage memory in deployed ASP.NET Core server-side Blazor apps
 
+This article explains how to manage memory use in deployed ASP.NET Core server-side Blazor apps.
+
 On the server, a new circuit is created for each user session. Each user session corresponds to rendering a single document in the browser. For example, multiple tabs create multiple sessions.
 
 Blazor maintains a constant connection to the browser, called a *circuit*, that initiated the session. Connections can be lost at any time for any of several reasons, such as when the user loses network connectivity or abruptly closes the browser. When a connection is lost, Blazor has a recovery mechanism that places a limited number of circuits in a "disconnected" pool, giving clients a limited amount of time to reconnect and re-establish the session (default: 3 minutes).

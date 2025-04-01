@@ -1,7 +1,7 @@
 ---
 title: Host and deploy ASP.NET Core Blazor WebAssembly with IIS
 author: guardrex
-description: Learn how to host and deploy Blazor WebAssembly using IIS.
+description: Learn how to host and deploy Blazor WebAssembly using Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -12,13 +12,13 @@ uid: blazor/host-and-deploy/webassembly/iis
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to host and deploy Blazor WebAssembly using IIS.
+This article explains how to host and deploy Blazor WebAssembly using [Internet Information Services (IIS)](https://www.iis.net/).
 
 IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
 Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework. Host the contents of the `publish` folder on the web server or hosting service.
 
-## web.config
+## `web.config` file
 
 When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
@@ -30,7 +30,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
   * Serve the sub-directory where the app's static assets reside (`wwwroot/{PATH REQUESTED}`).
   * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (`wwwroot/index.html`).
   
-## Use a custom `web.config`
+## Use of a custom `web.config`
 
 To use a custom `web.config` file:
 
@@ -148,7 +148,7 @@ Additional configuration of the example `web.config` file might be required in t
   * Serving compressed files configured by the example `web.config` file in an uncompressed format.
 * The server's IIS configuration (for example, `applicationHost.config`) provides server-level IIS defaults. Depending on the server-level configuration, the app might require a different IIS configuration than what the example `web.config` file contains.
 
-For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
+For more information on custom `web.config` files, see the [Use of a custom `web.config`](#use-of-a-custom-webconfig) section.
 
 ## Troubleshooting
 

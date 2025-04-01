@@ -151,7 +151,7 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 ```
 
 > [!NOTE]
-> To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see <xref:blazor/host-and-deploy/webassembly/iis#use-a-custom-webconfig>.
+> To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see <xref:blazor/host-and-deploy/webassembly/iis#use-of-a-custom-webconfig>.
 
 ### Nginx
 
@@ -172,7 +172,7 @@ http {
 For more information, see the following resources:
 
 * [Nginx documentation](http://nginx.org/docs/http/ngx_http_headers_module.html)
-* [Blazor WebAssembly Nginx hosting guidance](xref:blazor/host-and-deploy/webassembly/nginx)
+* <xref:blazor/host-and-deploy/webassembly/nginx>
 
 ### Apache
 

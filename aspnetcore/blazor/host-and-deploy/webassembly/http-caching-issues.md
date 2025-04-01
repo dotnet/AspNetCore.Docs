@@ -12,6 +12,8 @@ uid: blazor/host-and-deploy/webassembly/http-caching-issues
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+This article explains how to avoid HTTP caching issues when upgrading Blazor apps.
+
 When Blazor apps are incorrectly upgraded or configured, it can result in non-seamless upgrades for existing users. This article discusses some of the common HTTP caching issues that can occur when upgrading Blazor apps across major versions. It also provides some recommended actions to ensure a smooth transition for your users.
 
 While future Blazor releases might provide better solutions for dealing with HTTP caching issues, it's ultimately up to the app to correctly configure caching. Proper caching configuration ensures that the app's users always have the most up-to-date version of the app, improving their experience and reducing the likelihood of encountering errors.
