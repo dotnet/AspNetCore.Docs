@@ -247,5 +247,5 @@ It can be attractive to use network tracing tools like [Fiddler](https://www.tel
 - Fiddler registers itself as a proxy and relies on applications using the default proxy to be able to monitor traffic. This works for inbound traffic from a browser to YARP, but will not capture the outbound requests as YARP is configured to not use the proxy settings for outbound traffic.
 - On windows Wireshark uses Npcap to capture packet data for network traffic, so it will capture both inbound and outbound traffic, and can be used to monitor HTTP traffic. Wireshark works out of the box for HTTP traffic.
 - HTTPS traffic is encrypted, and so is not automatically decryptable by network monitoring tools. Each tool has workarounds that may enable traffic to be monitored, but they require hacking around with certificates and trust relationships. Because YARP is making outbound requests, techniques for tricking browsers do not apply to the YARP process.
-  
+
 The protocol choice for outbound traffic is made based on the destination URL in the cluster configuration. If traffic monitoring is being used for diagnostics then, if possible, changing the outbound URLs to "http://" may be simplest approach to enable the monitoring tools to work, provided the issues being diagnosed are not transport protocol related.
