@@ -11,7 +11,10 @@ uid: fundamentals/openapi/aspnet-openapi-xml
 <!-- backup author: rick-anderson -->
 # OpenAPI XML documentation comment support in ASP.NET Core
 
-OpenAPI XML documentation integration is implemented as a source generator. The source generator runs at compile time and injects code that translates XML comments into OpenAPI metadata. No configuration is required in app code to enable XML documentation comment support. The source generator automatically detects XML documentation comments in the application assembly and any referenced assemblies that have XML documentation enabled.
+ASP.NET Core will include metadata from XML doc comments in the generated OpenAPI document. No changes are required in app code to enable XML documentation comment support, but the project must be configured to generate the XML documentation file. ASP.NET Core automatically detects XML documentation comments in the application assembly and any referenced assemblies that have XML documentation enabled.
+
+ASP.NET Core processes [XML documentation tags](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`.
+For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
 
 This article includes a [sample app](#download10) that demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents. The sample app is a minimal ASP.NET Core Web API project that uses the `Microsoft.AspNetCore.OpenApi` package to generate OpenAPI documents. The XML documentation comments are used to populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
 
@@ -65,7 +68,6 @@ XML comments are parsed into structured `XmlComment` objects with:
 * Response documentation with status codes and descriptions.
 * Support for examples and deprecated markers.
 
-The `XmlComment` class processes [XML documentation tags](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`. For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
 
 ### Support for `<inheritdoc/>`
 
