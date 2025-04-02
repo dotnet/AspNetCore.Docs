@@ -572,9 +572,9 @@ A loading progress indicator shows the loading progress of the app to users, ind
 
 :::moniker range=">= aspnetcore-8.0"
 
-### Blazor Web App loading progress
+### Blazor Web App loading indicator
 
-The loading progress indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading progress indicator isn't desirable for interactive WebAssembly components because Blazor Web Apps prerender client-side components on the server for fast initial load times. For mixed-render-mode situations, the framework or developer code must also be careful to avoid the following problems:
+The loading indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading indicator isn't desirable for interactive WebAssembly components because Blazor Web Apps prerender client-side components on the server for fast initial load times. For mixed-render-mode situations, the framework or developer code must also be careful to avoid the following problems:
 
 * Showing multiple loading indicators on the same rendered page.
 * Inadvertently discarding prerendered content while the .NET WebAssembly runtime is loading.
@@ -582,67 +582,33 @@ The loading progress indicator used in Blazor WebAssembly apps isn't present in 
 <!-- UPDATE 10.0 Will be removed for a new feature in this area. 
                  Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
 
-A future release of .NET might provide a framework-based loading progress indicator. In the meantime, you can add a custom loading progress indicator to a Blazor Web App.
+A future release of .NET might provide a framework-based loading indicator. In the meantime, you can add a custom loading indicator to a Blazor Web App.
 
-Create a `LoadingProgress` component in the `.Client` app that calls <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>:
+#### Per-component Interactive WebAssembly rendering with prerendering
 
-* When `false`, display a loading progress indicator while the Blazor bundle is downloaded and before the Blazor runtime activates on the client.
+*This scenario applies to per-component Interactive WebAssembly rendering (`@rendermode InteractiveWebAssembly` applied to individual components).*
+
+Create a `ContentLoading` component in the `Layout` folder of the `.Client` app that calls <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>:
+
+* When `false`, display a loading indicator.
 * When `true`, render the requested component's content.
 
-The following demonstration uses the loading progress indicator found in apps created from the Blazor WebAssembly template, including a modification of the styles that the template provides. The styles are loaded into the app's `<head>` content by the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+If you wish to load styles for the indicator, add them to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
 
-`LoadingProgress.razor`:
+`Layout/ContentLoading.razor`:
 
 ```razor
 @if (!OperatingSystem.IsBrowser())
 {
+    <!-- OPTIONAL ...
     <HeadContent>
         <style>
-            .loading-progress {
-                position: relative;
-                display: block;
-                width: 8rem;
-                height: 8rem;
-                margin: 20vh auto 1rem auto;
-            }
-
-                .loading-progress circle {
-                    fill: none;
-                    stroke: #e0e0e0;
-                    stroke-width: 0.6rem;
-                    transform-origin: 50% 50%;
-                    transform: rotate(-90deg);
-                }
-
-                    .loading-progress circle:last-child {
-                        stroke: #1b6ec2;
-                        stroke-dasharray: 
-                            calc(3.142 * var(--blazor-load-percentage, 0%) * 0.8), 
-                            500%;
-                        transition: stroke-dasharray 0.05s ease-in-out;
-                    }
-
-            .loading-progress-text {
-                position: relative;
-                text-align: center;
-                font-weight: bold;
-                top: -90px;
-            }
-
-                .loading-progress-text:after {
-                    content: var(--blazor-load-percentage-text, "Loading");
-                }
-
-            code {
-                color: #c02d76;
-            }
+            ...
         </style>
     </HeadContent>
-    <svg class="loading-progress">
-        <circle r="40%" cx="50%" cy="50%" />
-        <circle r="40%" cx="50%" cy="50%" />
-    </svg>
-    <div class="loading-progress-text"></div>
+    -->
+    <div aria-busy="true" aria-describedby="progress-bar" />
+    <progress id="progress-bar" aria-label="Content loading…"></progress>
 }
 else
 {
@@ -655,7 +621,7 @@ else
 }
 ```
 
-In a component that adopts Interactive WebAssembly rendering, wrap the component's Razor markup with the `LoadingProgress` component. The following example demonstrates the approach with the `Counter` component of an app created from the Blazor Web App project template.
+In a component that adopts Interactive WebAssembly rendering, wrap the component's Razor markup with the `ContentLoading` component. The following example demonstrates the approach with the `Counter` component of an app created from the Blazor Web App project template.
 
 `Pages/Counter.razor`:
 
@@ -665,13 +631,13 @@ In a component that adopts Interactive WebAssembly rendering, wrap the component
 
 <PageTitle>Counter</PageTitle>
 
-<LoadingProgress>
+<ContentLoading>
     <h1>Counter</h1>
 
     <p role="status">Current count: @currentCount</p>
 
     <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-</LoadingProgress>
+</ContentLoading>
 
 @code {
     private int currentCount = 0;
@@ -680,6 +646,140 @@ In a component that adopts Interactive WebAssembly rendering, wrap the component
     {
         currentCount++;
     }
+}
+```
+
+#### Global Interactive WebAssembly rendering with prerendering
+
+*This scenario applies to global Interactive WebAssembly rendering without prerendering (`@rendermode="InteractiveWebAssembly"` on the `HeadOutlet` and `Routes` components in the `App` component).*
+
+Create a `ContentLoading` component in the `Layout` folder of the `.Client` app that calls <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>:
+
+* When `false`, display a loading progress indicator.
+* When `true`, render the requested component's content.
+
+If you wish to load styles for the indicator, add them to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+
+`Layout/ContentLoading.razor`:
+
+```razor
+@if (!RendererInfo.IsInteractive)
+{
+    <!-- OPTIONAL ...
+    <HeadContent>
+        <style>
+            ...
+        </style>
+    </HeadContent>
+    -->
+    <div aria-busy="true" aria-describedby="progress-bar" />
+    <progress id="progress-bar" aria-label="Content loading…"></progress>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
+```
+
+In the `MainLayout` component (`Layout/MainLayout.razor`) of the `.Client` project, wrap the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> property (`@Body`) with the `ContentLoading` component:
+
+In `Layout/MainLayout.razor`:
+
+```diff
++ <ContentLoading>
+    @Body
++ </ContentLoading>
+```
+
+#### Global Interactive WebAssembly rendering without prerendering
+
+*This scenario applies to global Interactive WebAssembly rendering without prerendering (`@rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)"` on the `HeadOutlet` and `Routes` components in the `App` component).*
+
+Create a `ContentLoading` component in the `Layout` folder of the `.Client` app with a `Loading` parameter:
+
+* When `true`, display a loading progress indicator.
+* When `false`, render the requested component's content.
+
+If you wish to load styles for the indicator, add them to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+
+`Layout/ContentLoading.razor`:
+
+```razor
+@if (Loading)
+{
+    <!-- OPTIONAL ...
+    <HeadContent>
+        <style>
+            ...
+        </style>
+    </HeadContent>
+    -->
+    <div aria-busy="true" aria-describedby="progress-bar"></div>
+    <progress id="progress-bar" aria-label="Content loading…"></progress>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public bool Loading { get; set; }
+}
+```
+
+In a component that adopts Interactive WebAssembly rendering without prerendering, wrap the component's Razor markup with the `ContentLoading` component and pass a value in a C# field to the `Loading` parameter when initialization work is performed by the component. The following example demonstrates the approach with the `Home` component of an app created from the Blazor Web App project template.
+
+`Pages/Home.razor`:
+
+```diff
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<ContentLoading Loading="@loading">
+    <h1>Hello, world!</h1>
+    <p>Welcome to your new app.</p>
+</ContentLoading>
+
+@code {
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate long-running work
+        await Task.Delay(5000);
+
+        loading = false;
+    }
+}
+```
+
+This approach also works with the [cancelable background work pattern](xref:blazor/components/lifecycle#cancelable-background-work):
+
+```razor
+<ContentLoading Loading="@loading">
+    ...
+</ContentLoading>
+
+@code {
+    private bool loading = true;
+    ...
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LongRunningWork().ContinueWith(_ => loading = false);
+    }
+
+    ...
 }
 ```
 
