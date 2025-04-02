@@ -228,7 +228,15 @@ The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection informa
 
 As this metric is tracking the connection duration, and ideally http connections are used for multiple requests, the buckets should be longer than those used for request durations. For example, using [ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300] provides an upper bucket of 5 mins.
 
-Starting in .NET 9, when a connection ends with a known error, the `error.type` attribute value is set to the known error type. Known connection errors can be found at [Semantic Conventions for Kestrel web server metrics](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/).
+:::moniker-end
+
+:::moniker range="= aspnetcore-9.0"
+
+When a connection ends with a known error, the `error.type` attribute value is set to the known error type. Known connection errors can be found at [Semantic Conventions for Kestrel web server metrics](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 ##### Metric: `kestrel.rejected_connections`
 
