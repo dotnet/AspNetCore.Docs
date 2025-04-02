@@ -12,7 +12,7 @@ To enable debug or trace logging for Blazor WebAssembly authentication, see the 
 
   > :::no-loc text="Uncaught TypeError TypeError: Failed to execute 'postMessage' on 'Window': The provided value cannot be converted to a sequence.":::
 
-  ![Visual Studio Debugger breaking on JavaScript exception during logout](~/blazor/security/includes/entra-external-id-logout-exception.png)
+  ![Visual Studio Debugger breaking on JavaScript exception during logout](../_static/entra-external-id-logout-exception.png)
 
   The exception is thrown from Entra JavaScript code, so this isn't a problem with ASP.NET Core. The exception doesn't impact app functionality in production, so the exception can be ignored during local development testing.
 
