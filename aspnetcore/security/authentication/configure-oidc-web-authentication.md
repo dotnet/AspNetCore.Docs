@@ -101,7 +101,7 @@ For the different claims mapping possibilities, see <xref:security/authenticatio
 
 ### Setup the configuration properties
 
-Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidentally checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. For more informaiton, see <xref:security/app-secrets>.
+Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidentally checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. For more information, see <xref:security/app-secrets>.
 
 ```json
 "OpenIDConnectSettings": {
