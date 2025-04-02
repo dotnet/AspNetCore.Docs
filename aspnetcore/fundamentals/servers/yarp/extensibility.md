@@ -9,7 +9,6 @@ ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
-
 # Overview of YARP extensibility
 
 There are 2 main styles of extensibility for YARP, depending on the routing behavior desired:
@@ -25,13 +24,13 @@ YARP uses the concept of [Routes](xref:fundamentals/servers/yarp/config-files#ro
 
 Most of the prebuilt pipeline can be customized through code:
 
-- [Configuration Providers](xref:fundamentals/servers/yarp/config-providers)
-- [Destination Enumeration](xref:fundamentals/servers/yarp/destination-resolvers)
-- [Session Affinity](xref:fundamentals/servers/yarp/session-affinity)
-- [Load Balancing](xref:fundamentals/servers/yarp/load-balancing)
-- [Health Checks](xref:fundamentals/servers/yarp/dests-health-checks)
-- [Request Transforms](xref:fundamentals/servers/yarp/transform-extensibility)
-- [HttpClient configuration](./http-client-config.md#code-configuration)
+* [Configuration Providers](xref:fundamentals/servers/yarp/config-providers)
+* [Destination Enumeration](xref:fundamentals/servers/yarp/destination-resolvers)
+* [Session Affinity](xref:fundamentals/servers/yarp/session-affinity)
+* [Load Balancing](xref:fundamentals/servers/yarp/load-balancing)
+* [Health Checks](xref:fundamentals/servers/yarp/dests-health-checks)
+* [Request Transforms](xref:fundamentals/servers/yarp/transform-extensibility)
+* [HttpClient configuration](./http-client-config.md#code-configuration)
 
 You can also change the pipeline definition to replace modules with your own implementation(s) or add additional modules as needed. For more information see [Middleware](xref:fundamentals/servers/yarp/middleware).
 
