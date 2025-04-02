@@ -17,7 +17,7 @@ When proxying a request it's common to modify parts of the request or response t
 
 YARP includes a set of built-in request and response transforms that can be used. See [Transforms](./transforms.md) for more details. If those transforms are not sufficient, then custom transforms can be added.
 
-## RequestTransform
+## `RequestTransform`
 
 All request transforms must derive from the abstract base class [RequestTransform](xref:fundamentals/servers/yarp/transforms). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and ease of use.
 

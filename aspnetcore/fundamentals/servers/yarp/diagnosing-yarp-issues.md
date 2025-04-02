@@ -32,9 +32,9 @@ By default ASP.NET will log to the console, and the configuration file can be us
   },
 ```
 
-You want logging information from the "Microsoft.AspNetCore.\*" and "Yarp.ReverseProxy.\*" providers. The example above will emit "Information" level events from both providers to the Console. Changing the level to "Debug" will show additional entries. ASP.NET implements change detection for configuration files, so you can edit the appsettings.json file (or appsettings.development.json if running from Visual Studio) while the project is running and observe changes to the log output.
+You want logging information from the `Microsoft.AspNetCore.\*` and `Yarp.ReverseProxy.\*` providers. The preceding example emits `Information`-level events from both providers to the console. Changing the level to `Debug` shows additional entries. ASP.NET implements change detection for configuration files, so you can edit the `appsettings.json` file (or `appsettings.development.json` for the `Development` environment) while the project is running and observe changes to the log output.
 
-> Note: Settings in the appsettings.development.json file will override settings in appsettings.json when running in development, so make sure that if you are editing appsettings.json that the values are not overridden.
+> Note: Settings in the `appsettings.development.jso`n file override settings in `appsettings.json` when running in the `Development` environment, so make sure that if you are editing `appsettings.json` that the values aren't overridden.
 
 ### Understanding Log entries
 

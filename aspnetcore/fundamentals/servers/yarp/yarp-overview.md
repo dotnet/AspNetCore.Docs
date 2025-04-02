@@ -20,7 +20,7 @@ YARP (Yet Another Reverse Proxy) is a highly customizable reverse proxy library 
 
 A reverse proxy is a server that sits between client devices and backend servers. It forwards client requests to the appropriate backend server and then returns the server's response to the client. A reverse proxy provides several benefits:
 
-- Routing: Directs requests to different backend servers based on predefined rules, such as URL patterns or request headers. For example, `/images`, `/api`, `/db` requests can be routed image, api, and database servers.
+- Routing: Directs requests to different backend servers based on predefined rules, such as URL patterns or request headers. For example, `/images`, `/api`, and `/db` requests can be routed image, api, and database servers.
 - Load Balancing: Distributes incoming traffic across multiple backend servers to prevent overloading a specific server. Distribution increases performance and reliability.
 - Scalability: By distributing traffic across multiple servers, a reverse proxy helps scale apps to handle more users and higher loads. Backend servers scaled (added or removed) without impacting the client.
 

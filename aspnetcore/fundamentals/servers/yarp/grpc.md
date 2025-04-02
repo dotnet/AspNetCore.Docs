@@ -38,7 +38,7 @@ This shows configuring Kestrel to use HTTP/2 over http (non-TLS):
 
 ## Configure YARP's Outgoing Protocols
 
-YARP automatically negotiates HTTP/1.1 or HTTP/2 for outgoing proxy requests, but only for https (TLS). HTTP/2 over http (non-TLS) requires additional settings. Note that outgoing protocols are independent of incoming ones. E.g. https can be used for the incoming connection and http for the outgoing one, this is called TLS termination. For configuration details, see [here](http-client-config.md#httprequest).
+YARP automatically negotiates HTTP/1.1 or HTTP/2 for outgoing proxy requests, but only for https (TLS). HTTP/2 over http (non-TLS) requires additional settings. Note that outgoing protocols are independent of incoming ones. E.g. https can be used for the incoming connection and http for the outgoing one, this is called TLS termination. For configuration details, see <xref:fundamentals/servers/yarp/http-client-config#httprequest>.
 
 This shows configuring the outgoing proxy request to use HTTP/2 over http.
 ```json

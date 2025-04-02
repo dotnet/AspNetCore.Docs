@@ -35,9 +35,9 @@ Most of the prebuilt pipeline can be customized through code:
 
 You can also change the pipeline definition to replace modules with your own implementation(s) or add additional modules as needed. For more information see [Middleware](xref:fundamentals/servers/yarp/middleware).
 
-## Http Forwarder
+## HTTP Forwarder
 
-If the YARP pipeline is too rigid for your use case, or the scale of routing rules and destinations is not suitable for loading into memory, then you can implement your own routing logic and use the HTTP Forwarder to direct requests to your chosen destination. The HttpForwarder component takes the HTTP context and forwards the request to the supplied destination.
+If the YARP pipeline is too rigid for your use case or the scale of routing rules and destinations isn't suitable for loading into memory, then you can implement your own routing logic and use the HTTP Forwarder to direct requests to your chosen destination. The `HttpForwarder` component takes the HTTP context and forwards the request to the supplied destination.
 
 ![HTTP forwarder diagram](~/fundamentals/servers/yarp/media/yarp-forwarder.png)
 
