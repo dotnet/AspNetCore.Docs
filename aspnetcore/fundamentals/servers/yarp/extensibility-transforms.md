@@ -18,7 +18,7 @@ YARP includes a set of built-in request and response transforms that can be used
 
 ## `RequestTransform`
 
-All request transforms must derive from the abstract base class [RequestTransform](xref:fundamentals/servers/yarp/transforms). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and ease of use.
+All request transforms must derive from the abstract base class [`RequestTransform`](xref:fundamentals/servers/yarp/transforms). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and ease of use.
 
 A request transform may conditionally produce an immediate response such as for error conditions. This prevents any remaining transforms from running and the request from being proxied. This is indicated by setting the `HttpResponse.StatusCode` to a value other than 200, or calling `HttpResponse.StartAsync()`, or writing to the `HttpResponse.Body` or `BodyWriter`.
 
@@ -28,7 +28,7 @@ A request transform may conditionally produce an immediate response such as for 
 
 ## `ResponseTransform`
 
-All response transforms must derive from the abstract base class [ResponseTransform](xref:Yarp.ReverseProxy.Transforms.ResponseTransform). These can freely modify the client `HttpResponse`. Avoid reading or modifying the response body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and easy of use.
+All response transforms must derive from the abstract base class [`ResponseTransform`](xref:Yarp.ReverseProxy.Transforms.ResponseTransform). These can freely modify the client `HttpResponse`. Avoid reading or modifying the response body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and easy of use.
 
 ### `AddResponseTransform`
 
@@ -115,7 +115,7 @@ The below example uses simple, inefficient buffering to transform responses. A m
 
 <xref:Yarp.ReverseProxy.Transforms.Builder.ITransformProvider> provides the functionality of `AddTransforms` described above as well as DI integration and validation support.
 
-`ITransformProvider`'s can be registered in DI by calling [AddTransforms&lt;T&gt;()](xref:Microsoft.Extensions.DependencyInjection.ReverseProxyServiceCollectionExtensions). Multiple `ITransformProvider` implementations can be registered and all will be run.
+`ITransformProvider`'s can be registered in DI by calling <xref:Microsoft.Extensions.DependencyInjection.ReverseProxyServiceCollectionExtensions.AddTransforms%2A>. Multiple `ITransformProvider` implementations can be registered and all will be run.
 
 `ITransformProvider` has two methods, `Validate` and `Apply`. `Validate` gives you the opportunity to inspect the route for any parameters that are needed to configure a transform, such as custom metadata, and to return validation errors on the context if any needed values are missing or invalid. The `Apply` method provides the same functionality as AddTransform as discussed above, adding and configuring transforms per route.
 
@@ -186,7 +186,7 @@ internal class MyTransformProvider : ITransformProvider
 
 ## `ITransformFactory`
 
-Developers that want to integrate their custom transforms with the `Transforms` section of configuration can implement an [ITransformFactory](xref:Yarp.ReverseProxy.Transforms.Builder.ITransformFactory). This should be registered in DI using the `AddTransformFactory<T>()` method. Multiple factories can be registered and all will be used.
+Developers that want to integrate their custom transforms with the `Transforms` section of configuration can implement an <xref:Yarp.ReverseProxy.Transforms.Builder.ITransformFactory>. This should be registered in DI using the `AddTransformFactory<T>()` method. Multiple factories can be registered and all will be used.
 
 `ITransformFactory` provides two methods, `Validate` and `Build`. These process one set of transform values at a time, represented by a `IReadOnlyDictionary<string, string>`.
 
