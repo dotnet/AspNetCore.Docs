@@ -9,43 +9,42 @@ ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
-
 # Request and Response Transform Extensibility
 
 ## Introduction
 When proxying a request it's common to modify parts of the request or response to adapt to the destination server's requirements or to flow additional data such as the client's original IP address. This process is implemented via Transforms. Types of transforms are defined globally for the application and then individual routes supply the parameters to enable and configure those transforms. The original request objects are not modified by these transforms, only the proxy requests.
 
-YARP includes a set of built-in request and response transforms that can be used. See [Transforms](./transforms.md) for more details. If those transforms are not sufficient, then custom transfrorms can be added.
+YARP includes a set of built-in request and response transforms that can be used. See [Transforms](./transforms.md) for more details. If those transforms are not sufficient, then custom transforms can be added.
 
-## RequestTransform
+## `RequestTransform`
 
-All request transforms must derive from the abstract base class [RequestTransform](xref:fundamentals/servers/yarp/transforms). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and easy of use.
+All request transforms must derive from the abstract base class [`RequestTransform`](xref:fundamentals/servers/yarp/transforms). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and ease of use.
 
 A request transform may conditionally produce an immediate response such as for error conditions. This prevents any remaining transforms from running and the request from being proxied. This is indicated by setting the `HttpResponse.StatusCode` to a value other than 200, or calling `HttpResponse.StartAsync()`, or writing to the `HttpResponse.Body` or `BodyWriter`.
 
-### AddRequestTransform
+### `AddRequestTransform`
 
 [AddRequestTransform](xref:Yarp.ReverseProxy.Transforms.TransformBuilderContextFuncExtensions.AddRequestTransform*) is a `TransformBuilderContext` extension method that defines a request transform as a `Func<RequestTransformContext, ValueTask>`. This allows creating a custom request transform without implementing a `RequestTransform` derived class.
 
-## ResponseTransform
+## `ResponseTransform`
 
-All response transforms must derive from the abstract base class [ResponseTransform](xref:Yarp.ReverseProxy.Transforms.ResponseTransform). These can freely modify the client `HttpResponse`. Avoid reading or modifying the response body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and easy of use.
+All response transforms must derive from the abstract base class [`ResponseTransform`](xref:Yarp.ReverseProxy.Transforms.ResponseTransform). These can freely modify the client `HttpResponse`. Avoid reading or modifying the response body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and easy of use.
 
-### AddResponseTransform
+### `AddResponseTransform`
 
 [AddResponseTransform](xref:Yarp.ReverseProxy.Transforms.TransformBuilderContextFuncExtensions.AddResponseTransform*) is a `TransformBuilderContext` extension method that defines a response transform as a `Func<ResponseTransformContext, ValueTask>`. This allows creating a custom response transform without implementing a `ResponseTransform` derived class.
 
-## ResponseTrailersTransform
+## `ResponseTrailersTransform`
 
 All response trailers transforms must derive from the abstract base class [ResponseTrailersTransform](xref:Yarp.ReverseProxy.Transforms.ResponseTrailersTransform). These can freely modify the client HttpResponse trailers. These run after the response body and should not attempt to modify the response headers or body. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and easy of use.
 
-### AddResponseTrailersTransform
+### `AddResponseTrailersTransform`
 
 [AddResponseTrailersTransform](xref:Yarp.ReverseProxy.Transforms.TransformBuilderContextFuncExtensions.AddResponseTrailersTransform*) is a `TransformBuilderContext` extension method that defines a response trailers transform as a `Func<ResponseTrailersTransformContext, ValueTask>`. This allows creating a custom response trailers transform without implementing a `ResponseTrailersTransform` derived class.
 
 ## Request body transforms
 
-YARP does not provide any built in transforms for modifying the request body. However, the body can be modified in custom transforms.
+YARP does not provide any built in transforms for modifying the request body. However, the body can be modified by custom transforms.
 
 Be careful about which kinds of requests are modified, how much data gets buffered, enforcing timeouts, parsing untrusted input, and updating the body-related headers like `Content-Length`.
 
@@ -53,22 +52,25 @@ The below example uses simple, inefficient buffering to transform requests. A mo
 
 This sample requires YARP 1.1, see https://github.com/microsoft/reverse-proxy/pull/1569.
 
-```C#
+```csharp
 .AddTransforms(context =>
 {
     context.AddRequestTransform(async requestContext =>
     {
-        using var reader = new StreamReader(requestContext.HttpContext.Request.Body);
+        using var reader =
+            new StreamReader(requestContext.HttpContext.Request.Body);
         // TODO: size limits, timeouts
         var body = await reader.ReadToEndAsync();
         if (!string.IsNullOrEmpty(body))
         {
             body = body.Replace("Alpha", "Charlie");
             var bytes = Encoding.UTF8.GetBytes(body);
-            // Change Content-Length to match the modified body, or remove it.
+            // Change Content-Length to match the modified body, or remove it
             requestContext.HttpContext.Request.Body = new MemoryStream(bytes);
-            // Request headers are copied before transforms are invoked, update any needed headers on the ProxyRequest
-            requestContext.ProxyRequest.Content.Headers.ContentLength = bytes.Length;
+            // Request headers are copied before transforms are invoked, update any
+            // needed headers on the ProxyRequest
+            requestContext.ProxyRequest.Content.Headers.ContentLength =
+                bytes.Length;
         }
     });
 });
@@ -76,18 +78,19 @@ This sample requires YARP 1.1, see https://github.com/microsoft/reverse-proxy/pu
 
 ## Response body transforms
 
-YARP does not provide any built in transforms for modifying the response body. However, the body can be modified in custom transforms.
+YARP does not provide any built in transforms for modifying the response body. However, the body can be modified by custom transforms.
 
 Be careful about which kinds of responses are modified, how much data gets buffered, enforcing timeouts, parsing untrusted input, and updating the body-related headers like `Content-Length`. You may need to decompress content before modifying it, as indicated by the Content-Encoding header, and afterwards re-compress it or remove the header.
 
 The below example uses simple, inefficient buffering to transform responses. A more efficient implementation would wrap the stream returned by `ReadAsStreamAsync()` with a stream that performed the needed modifications as data was proxied from client to server. That would also require removing the Content-Length header since the final length would not be known in advance.
 
-```C#
+```csharp
 .AddTransforms(context =>
 {
     context.AddResponseTransform(async responseContext =>
     {
-        var stream = await responseContext.ProxyResponse.Content.ReadAsStreamAsync();
+        var stream =
+            await responseContext.ProxyResponse.Content.ReadAsStreamAsync();
         using var reader = new StreamReader(stream);
         // TODO: size limits, timeouts
         var body = await reader.ReadToEndAsync();
@@ -98,51 +101,59 @@ The below example uses simple, inefficient buffering to transform responses. A m
 
             body = body.Replace("Bravo", "Charlie");
             var bytes = Encoding.UTF8.GetBytes(body);
-            // Change Content-Length to match the modified body, or remove it.
+            // Change Content-Length to match the modified body, or remove it
             responseContext.HttpContext.Response.ContentLength = bytes.Length;
-            // Response headers are copied before transforms are invoked, update any needed headers on the HttpContext.Response.
+            // Response headers are copied before transforms are invoked, update
+            // any needed headers on the HttpContext.Response
             await responseContext.HttpContext.Response.Body.WriteAsync(bytes);
         }
     });
 });
 ```
 
-## ITransformProvider
+## `ITransformProvider`
 
-[ITransformProvider](xref:Yarp.ReverseProxy.Transforms.Builder.ITransformProvider) provides the functionality of `AddTransforms` described above as well as DI integration and validation support.
+<xref:Yarp.ReverseProxy.Transforms.Builder.ITransformProvider> provides the functionality of `AddTransforms` described above as well as DI integration and validation support.
 
-`ITransformProvider`'s can be registered in DI by calling [AddTransforms&lt;T&gt;()](xref:Microsoft.Extensions.DependencyInjection.ReverseProxyServiceCollectionExtensions). Multiple `ITransformProvider` implementations can be registered and all will be run.
+`ITransformProvider`'s can be registered in DI by calling <xref:Microsoft.Extensions.DependencyInjection.ReverseProxyServiceCollectionExtensions.AddTransforms%2A>. Multiple `ITransformProvider` implementations can be registered and all will be run.
 
 `ITransformProvider` has two methods, `Validate` and `Apply`. `Validate` gives you the opportunity to inspect the route for any parameters that are needed to configure a transform, such as custom metadata, and to return validation errors on the context if any needed values are missing or invalid. The `Apply` method provides the same functionality as AddTransform as discussed above, adding and configuring transforms per route.
 
-```C#
+```csharp
 services.AddReverseProxy()
     .LoadFromConfig(_configuration.GetSection("ReverseProxy"))
     .AddTransforms<MyTransformProvider>();
 ```
-```C#
+
+```csharp
 internal class MyTransformProvider : ITransformProvider
 {
     public void ValidateRoute(TransformRouteValidationContext context)
     {
-        // Check all routes for a custom property and validate the associated transform data.
-        if (context.Route.Metadata?.TryGetValue("CustomMetadata", out var value) ?? false)
+        // Check all routes for a custom property and validate the associated
+        // transform data
+        if (context.Route.Metadata?.TryGetValue("CustomMetadata", out var value) ??
+            false)
         {
             if (string.IsNullOrEmpty(value))
             {
-                context.Errors.Add(new ArgumentException("A non-empty CustomMetadata value is required"));
+                context.Errors.Add(new ArgumentException(
+                    "A non-empty CustomMetadata value is required"));
             }
         }
     }
 
     public void ValidateCluster(TransformClusterValidationContext context)
     {
-        // Check all clusters for a custom property and validate the associated transform data.
-        if (context.Cluster.Metadata?.TryGetValue("CustomMetadata", out var value) ?? false)
+        // Check all clusters for a custom property and validate the associated
+        // transform data.
+        if (context.Cluster.Metadata?.TryGetValue("CustomMetadata", out var value)
+            ?? false)
         {
             if (string.IsNullOrEmpty(value))
             {
-                context.Errors.Add(new ArgumentException("A non-empty CustomMetadata value is required"));
+                context.Errors.Add(new ArgumentException(
+                    "A non-empty CustomMetadata value is required"));
             }
         }
     }
@@ -150,17 +161,22 @@ internal class MyTransformProvider : ITransformProvider
     public void Apply(TransformBuilderContext transformBuildContext)
     {
         // Check all routes for a custom property and add the associated transform.
-        if ((transformBuildContext.Route.Metadata?.TryGetValue("CustomMetadata", out var value) ?? false)
-            || (transformBuildContext.Cluster?.Metadata?.TryGetValue("CustomMetadata", out value) ?? false))
+        if ((transformBuildContext.Route.Metadata?.TryGetValue("CustomMetadata",
+            out var value) ?? false)
+            || (transformBuildContext.Cluster?.Metadata?.TryGetValue(
+            "CustomMetadata", out value) ?? false))
         {
             if (string.IsNullOrEmpty(value))
             {
-                throw new ArgumentException("A non-empty CustomMetadata value is required");
+                throw new ArgumentException(
+                    "A non-empty CustomMetadata value is required");
             }
 
             transformBuildContext.AddRequestTransform(transformContext =>
             {
-                transformContext.ProxyRequest.Options.Set(new HttpRequestOptionsKey<string>("CustomMetadata"), value);
+                transformContext.ProxyRequest.Options.Set(
+                    new HttpRequestOptionsKey<string>("CustomMetadata"), value);
+
                 return default;
             });
         }
@@ -168,9 +184,9 @@ internal class MyTransformProvider : ITransformProvider
 }
 ```
 
-## ITransformFactory
+## `ITransformFactory`
 
-Developers that want to integrate their custom transforms with the `Transforms` section of configuration can implement an [ITransformFactory](xref:Yarp.ReverseProxy.Transforms.Builder.ITransformFactory). This should be registered in DI using the `AddTransformFactory<T>()` method. Multiple factories can be registered and all will be used.
+Developers that want to integrate their custom transforms with the `Transforms` section of configuration can implement an <xref:Yarp.ReverseProxy.Transforms.Builder.ITransformFactory>. This should be registered in DI using the `AddTransformFactory<T>()` method. Multiple factories can be registered and all will be used.
 
 `ITransformFactory` provides two methods, `Validate` and `Build`. These process one set of transform values at a time, represented by a `IReadOnlyDictionary<string, string>`.
 
@@ -178,40 +194,47 @@ The `Validate` method is called when loading a configuration to verify the conte
 
 The `Build` method takes the given configuration and produces the associated transform instances for the route.
 
-```C#
+```csharp
 services.AddReverseProxy()
     .LoadFromConfig(_configuration.GetSection("ReverseProxy"))
     .AddTransformFactory<MyTransformFactory>();
 ```
-```C#
+
+```csharp
 internal class MyTransformFactory : ITransformFactory
 {
-    public bool Validate(TransformRouteValidationContext context, IReadOnlyDictionary<string, string> transformValues)
+    public bool Validate(TransformRouteValidationContext context,
+        IReadOnlyDictionary<string, string> transformValues)
     {
         if (transformValues.TryGetValue("CustomTransform", out var value))
         {
             if (string.IsNullOrEmpty(value))
             {
-                context.Errors.Add(new ArgumentException("A non-empty CustomTransform value is required"));
+                context.Errors.Add(new ArgumentException(
+                    "A non-empty CustomTransform value is required"));
             }
 
             return true; // Matched
         }
+
         return false;
     }
 
-    public bool Build(TransformBuilderContext context, IReadOnlyDictionary<string, string> transformValues)
+    public bool Build(TransformBuilderContext context,
+        IReadOnlyDictionary<string, string> transformValues)
     {
         if (transformValues.TryGetValue("CustomTransform", out var value))
         {
             if (string.IsNullOrEmpty(value))
             {
-                throw new ArgumentException("A non-empty CustomTransform value is required");
+                throw new ArgumentException(
+                    "A non-empty CustomTransform value is required");
             }
 
             context.AddRequestTransform(transformContext =>
             {
-                transformContext.ProxyRequest.Options.Set(new HttpRequestOptionsKey<string>("CustomTransform"), value);
+                transformContext.ProxyRequest.Options.Set(
+                    new HttpRequestOptionsKey<string>("CustomTransform"), value);
                 return default;
             });
 
@@ -227,10 +250,12 @@ internal class MyTransformFactory : ITransformFactory
 
 Consider also adding parametrized extension methods on `RouteConfig` like `WithTransformQueryValue` to facilitate programmatic route construction.
 
-```C#
-public static RouteConfig WithTransformQueryValue(this RouteConfig routeConfig, string queryKey, string value, bool append = true)
+```csharp
+public static RouteConfig WithTransformQueryValue(this RouteConfig routeConfig,
+    string queryKey, string value, bool append = true)
 {
-    var type = append ? QueryTransformFactory.AppendKey : QueryTransformFactory.SetKey;
+    var type = append ? QueryTransformFactory.AppendKey :
+        QueryTransformFactory.SetKey;
     return routeConfig.WithTransform(transform =>
     {
         transform[QueryTransformFactory.QueryValueParameterKey] = queryKey;
