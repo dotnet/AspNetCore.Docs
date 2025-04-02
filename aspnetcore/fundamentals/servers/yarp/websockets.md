@@ -9,7 +9,6 @@ ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
-
 # YARP Proxying WebSockets and SPDY
 
 ## Introduction
