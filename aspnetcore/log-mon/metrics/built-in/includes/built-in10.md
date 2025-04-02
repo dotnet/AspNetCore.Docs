@@ -20,7 +20,7 @@ The `Microsoft.AspNetCore.Hosting` metrics report high-level information about H
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `http.route` | string | The matched route. | `{controller}/{action}/{id?}`| If it's available. |
+| `http.route` | string | The matched route. | `{controller}/{action}/`<br>`{id?}`| If it's available. |
 | `error.type` | string | Describes a class of error the operation ended with. | `timeout`; `name_resolution_error`; `500` | If request has ended with an error. |
 | `http.request.method` | string | HTTP request method. | `GET`; `POST`; `HEAD` | Always |
 | `http.response.status_code` | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | If one was sent. |
