@@ -23,7 +23,7 @@ YARP uses the concept of [Routes](xref:fundamentals/servers/yarp/config-files#ro
 
 ![Middleware pipeline diagram](~/fundamentals/servers/yarp/media/yarp-pipeline.png)
 
-Most of the pre-built pipeline can be customized through code:
+Most of the prebuilt pipeline can be customized through code:
 
 - [Configuration Providers](xref:fundamentals/servers/yarp/config-providers)
 - [Destination Enumeration](xref:fundamentals/servers/yarp/destination-resolvers)
@@ -37,10 +37,10 @@ You can also change the pipeline definition to replace modules with your own imp
 
 ## Http Forwarder
 
-If the YARP pipeline is too rigid for your needs, or the scale of routing rules and destinations is not suitable for loading into memory, then you can implement your own routing logic and use the HTTP Forwarder to direct requests to your chosen destination. The HttpForwarder component takes the HTTP context and forwards the request to the supplied destination.
+If the YARP pipeline is too rigid for your use case, or the scale of routing rules and destinations is not suitable for loading into memory, then you can implement your own routing logic and use the HTTP Forwarder to direct requests to your chosen destination. The HttpForwarder component takes the HTTP context and forwards the request to the supplied destination.
 
 ![HTTP forwarder diagram](~/fundamentals/servers/yarp/media/yarp-forwarder.png)
 
-The transform component can still be used with the forwarder is needed.
+The transform component can still be used if the forwarder is needed.
 
 For more information see [Direct forwarding](xref:fundamentals/servers/yarp/direct-forwarding).

@@ -20,7 +20,7 @@ YARP (Yet Another Reverse Proxy) is a highly customizable reverse proxy library 
 
 A reverse proxy is a server that sits between client devices and backend servers. It forwards client requests to the appropriate backend server and then returns the server's response to the client. A reverse proxy provides several benefits:
 
-- Routing: Directs requests to different backend servers based on predefined rules, such as URL patterns or request headers. For example, `/images`, `/api`, `/db` requests can be can be routed image, api, and database severs.
+- Routing: Directs requests to different backend servers based on predefined rules, such as URL patterns or request headers. For example, `/images`, `/api`, `/db` requests can be routed image, api, and database servers.
 - Load Balancing: Distributes incoming traffic across multiple backend servers to prevent overloading a specific server. Distribution increases performance and reliability.
 - Scalability: By distributing traffic across multiple servers, a reverse proxy helps scale apps to handle more users and higher loads. Backend servers scaled (added or removed) without impacting the client.
 
@@ -58,4 +58,4 @@ YARP offers several unique benefits that make it an attractive choice for develo
 - Scalability: The direct forwarding extensibility option enables YARP to scale to support domain name and backend scaling that are not viable with most reverse proxies.
 - Active development: [YARP is actively maintained](https://github.com/dotnet/yarp) and developed by Microsoft, ensuring it stays up-to-date with the latest technologies and best practices.
 - Comprehensive maintained documentation: YARP comes with extensive documentation and examples, making it easy to get started and implement advanced features.
-- [Open source](https://github.com/dotnet/yarp). YARP and the YARP documetaion are open source. [Contributions](https://github.com/dotnet/yarp/blob/main/README.md), reviews, and feedback are welcome.
+- [Open source](https://github.com/dotnet/yarp). YARP and the YARP documentation are open source. [Contributions](https://github.com/dotnet/yarp/blob/main/README.md), reviews, and feedback are welcome.

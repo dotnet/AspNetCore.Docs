@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/header-guidelines
-title: YARP HTTP Headers
-description: YARP HTTP Headers
+title: YARP HTTP Header Guidelines
+description: YARP HTTP Header Guidelines
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025
@@ -10,9 +10,9 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# YARP HTTP Headers
+# YARP HTTP Header Guidelines
 
-Headers are a very important part of processing HTTP requests and each have their own semantics and considerations. Most headers are proxied by default, though some used to control how the request is delivered are automatically adjusted or removed by the proxy. The connections between the client and the proxy and the proxy and destination are independent, and so headers that affect the connection and transport need to be filtered. Many headers contain information like domain names, paths, or other details that may be affected when a reverse proxy is included in the application architecture. Below is a collection of guidelines about how specific headers might be impacted and what to do about them.
+Headers are a very important part of processing HTTP requests and each have their own semantics and considerations. Most headers are proxied by default, though some used to control how the request is delivered are automatically adjusted or removed by the proxy. The connections between the client and the proxy, and the proxy and the destination, are independent. Therefore, headers that affect the connection and transport need to be filtered. Many headers contain information like domain names, paths, or other details that may be affected when a reverse proxy is included in the application architecture. Below is a collection of guidelines about how specific headers might be impacted and what to do about them.
 
 ## YARP header filtering
 
@@ -20,7 +20,7 @@ YARP automatically removes request and response headers that could impact its ab
 
 ### Connection, KeepAlive, Close
 
-These headers control how the TCP connection is managed and are removed to avoid impacting the connection on the other side of the proxy.
+These headers control how the TCP connection is managed and are removed to prevent impacting the connection on the other side of the proxy.
 
 ### Transfer-Encoding
 
@@ -45,7 +45,7 @@ This response header is used with HTTP/3 upgrades and only applies to the immedi
 ### Distributed tracing headers
 
 These headers include TraceParent, Request-Id, TraceState, Baggage, Correlation-Context.
-They are automatically removed based on `DistributedContextPropagator.Fields` so that the forwarding HttpClient can replace them with updated values.
+They are automatically removed based on `DistributedContextPropagator.Fields`, allowing the forwarding HttpClient to replace them with updated values.
 You can opt out of modifying these headers by setting `SocketsHttpHandler.ActivityHeadersPropagator` to `null`:
 ```C#
 services.AddReverseProxy()
@@ -60,7 +60,7 @@ This header instructs clients to always use HTTPS, but there may be a conflict b
 
 ### Host
 
-The Host header indicates which site on the server the request is intended for. This header is removed by default since the host name used publicly by the proxy is likely to differ from the one used by the service behind the proxy. This is configurable using the [RequestHeaderOriginalHost](xref:fundamentals/servers/yarp/transforms#requestheaderoriginalhost) transform.
+The Host header indicates which site on the server the request is intended for. This header is removed by default since the host name used publicly by the proxy is likely to differ from the one used by the service behind the proxy. This can be configured using the [RequestHeaderOriginalHost](xref:fundamentals/servers/yarp/transforms#requestheaderoriginalhost) transform.
 
 ### X-Forwarded-*, Forwarded
 
@@ -72,7 +72,7 @@ Some clients and servers limit which HTTP methods they allow (GET, POST, etc.). 
 
 ### Set-Cookie
 
-This response header may contain fields constraining the path, domain, scheme, etc. where the cookie should be used. Using a reverse proxy may change the effective domain, path, or scheme of a site from the public view. While it would be possible to [rewrite](https://github.com/microsoft/reverse-proxy/issues/1109) response cookies using custom transforms, it's recommended instead to use the Forwarded headers described above to flow the correct values to the destination app so it can generate the correct set-cookie headers.
+This response header may contain fields that constrain the path, domain, scheme, etc. where the cookie should be used. Using a reverse proxy may change the effective domain, path, or scheme of a site from the public view. While it would be possible to [rewrite](https://github.com/microsoft/reverse-proxy/issues/1109) response cookies using custom transforms, it's recommended instead to use the Forwarded headers described above to flow the correct values to the destination app so it can generate the correct set-cookie headers.
 
 ### Location
 

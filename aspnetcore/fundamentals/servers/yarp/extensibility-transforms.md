@@ -15,11 +15,11 @@ ai-usage: ai-assisted
 ## Introduction
 When proxying a request it's common to modify parts of the request or response to adapt to the destination server's requirements or to flow additional data such as the client's original IP address. This process is implemented via Transforms. Types of transforms are defined globally for the application and then individual routes supply the parameters to enable and configure those transforms. The original request objects are not modified by these transforms, only the proxy requests.
 
-YARP includes a set of built-in request and response transforms that can be used. See [Transforms](./transforms.md) for more details. If those transforms are not sufficient, then custom transfrorms can be added.
+YARP includes a set of built-in request and response transforms that can be used. See [Transforms](./transforms.md) for more details. If those transforms are not sufficient, then custom transforms can be added.
 
 ## RequestTransform
 
-All request transforms must derive from the abstract base class [RequestTransform](xref:fundamentals/servers/yarp/transforms). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and easy of use.
+All request transforms must derive from the abstract base class [RequestTransform](xref:fundamentals/servers/yarp/transforms). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and ease of use.
 
 A request transform may conditionally produce an immediate response such as for error conditions. This prevents any remaining transforms from running and the request from being proxied. This is indicated by setting the `HttpResponse.StatusCode` to a value other than 200, or calling `HttpResponse.StartAsync()`, or writing to the `HttpResponse.Body` or `BodyWriter`.
 
@@ -45,7 +45,7 @@ All response trailers transforms must derive from the abstract base class [Respo
 
 ## Request body transforms
 
-YARP does not provide any built in transforms for modifying the request body. However, the body can be modified in custom transforms.
+YARP does not provide any built in transforms for modifying the request body. However, the body can be modified by custom transforms.
 
 Be careful about which kinds of requests are modified, how much data gets buffered, enforcing timeouts, parsing untrusted input, and updating the body-related headers like `Content-Length`.
 
@@ -76,7 +76,7 @@ This sample requires YARP 1.1, see https://github.com/microsoft/reverse-proxy/pu
 
 ## Response body transforms
 
-YARP does not provide any built in transforms for modifying the response body. However, the body can be modified in custom transforms.
+YARP does not provide any built in transforms for modifying the response body. However, the body can be modified by custom transforms.
 
 Be careful about which kinds of responses are modified, how much data gets buffered, enforcing timeouts, parsing untrusted input, and updating the body-related headers like `Content-Length`. You may need to decompress content before modifying it, as indicated by the Content-Encoding header, and afterwards re-compress it or remove the header.
 

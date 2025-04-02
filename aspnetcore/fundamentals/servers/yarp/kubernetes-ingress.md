@@ -46,7 +46,7 @@ docker push <REGISTRY_NAME>/yarp-controller:<TAG>
 
 where `REGISTRY_NAME` is the name of your docker registry and `TAG` is a tag for the image (for example 1.0.0).
 
-Then the first step will be to deploy the YARP ingress controller to the Kubernetes cluster. This can be done by navigating to [Kubernetes Ingress sample](https://github.com/dotnet/yarp/tree/release/latest/samples/KubernetesIngress.Sample) `\samples\KuberenetesIngress.Sample\Ingress`
+Then the first step will be to deploy the YARP ingress controller to the Kubernetes cluster. This can be done by navigating to [Kubernetes Ingress sample](https://github.com/dotnet/yarp/tree/release/latest/samples/KubernetesIngress.Sample) `\samples\KubernetesIngress.Sample\Ingress`
 and running (after modifying `ingress-controller.yaml` with the same `REGISTRY_NAME` and `TAG`):
 
 ```

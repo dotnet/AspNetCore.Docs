@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/grpc
-title: YARP Proxing gRPC
-description: YARP Proxing gRPC
+title: YARP Proxying gRPC
+description: YARP Proxying gRPC
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025
@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# YARP Proxing gRPC
+# YARP Proxying gRPC
 
 ## Introduction
 
@@ -38,7 +38,7 @@ This shows configuring Kestrel to use HTTP/2 over http (non-TLS):
 
 ## Configure YARP's Outgoing Protocols
 
-YARP automatically negotiates HTTP/1.1 or HTTP/2 for outgoing proxy requests, but only for https (TLS). HTTP/2 over http (non-TLS) requires additional settings. Note outgoing protocols are independent of incoming ones. E.g. https can be used for the incoming connection and http for the outgoing one, this is called TLS termination. See [here](http-client-config.md#httprequest) for configuration details.
+YARP automatically negotiates HTTP/1.1 or HTTP/2 for outgoing proxy requests, but only for https (TLS). HTTP/2 over http (non-TLS) requires additional settings. Note that outgoing protocols are independent of incoming ones. E.g. https can be used for the incoming connection and http for the outgoing one, this is called TLS termination. For configuration details, see [here](http-client-config.md#httprequest).
 
 This shows configuring the outgoing proxy request to use HTTP/2 over http.
 ```json

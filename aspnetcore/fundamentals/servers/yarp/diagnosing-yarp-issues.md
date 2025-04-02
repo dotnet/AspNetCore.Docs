@@ -32,7 +32,7 @@ By default ASP.NET will log to the console, and the configuration file can be us
   },
 ```
 
-You want logging infomation from the "Microsoft.AspNetCore.\*" and "Yarp.ReverseProxy.\*" providers. The example above will emit "Information" level events from both providers to the Console. Changing the level to "Debug" will show additional entries. ASP.NET implements change detection for configuration files, so you can edit the appsettings.json file (or appsettings.development.json if running from Visual Studio) while the project is running and observe changes to the log output.
+You want logging information from the "Microsoft.AspNetCore.\*" and "Yarp.ReverseProxy.\*" providers. The example above will emit "Information" level events from both providers to the Console. Changing the level to "Debug" will show additional entries. ASP.NET implements change detection for configuration files, so you can edit the appsettings.json file (or appsettings.development.json if running from Visual Studio) while the project is running and observe changes to the log output.
 
 > Note: Settings in the appsettings.development.json file will override settings in appsettings.json when running in development, so make sure that if you are editing appsettings.json that the values are not overridden.
 
@@ -44,10 +44,10 @@ The logging output is directly tied to the way that ASP.NET Core processes reque
 | ----- | ----------- | ----------- |
 | dbug | Microsoft.AspNetCore.Server.Kestrel.Connections[39]<br>Connection id "0HMCD0JK7K51U" accepted.| Connections are independent of requests, so this is a new connection |
 | dbug | Microsoft.AspNetCore.Server.Kestrel.Connections[1]<br>Connection id "0HMCD0JK7K51U" started. | |
-| info | Microsoft.AspNetCore.Hosting.Diagnostics[1]<br>Request starting HTTP/1.1 GET http://localhost:5000/ - - | This is the incomming request to ASP.NET |
-| dbug | Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware[0]<br>Wildcard detected, all requests with hosts will be allowed. | My configuation does not tie endpoints to specific hostnames |
+| info | Microsoft.AspNetCore.Hosting.Diagnostics[1]<br>Request starting HTTP/1.1 GET http://localhost:5000/ - - | This is the incoming request to ASP.NET |
+| dbug | Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware[0]<br>Wildcard detected, all requests with hosts will be allowed. | My configuration does not tie endpoints to specific hostnames |
 | dbug | Microsoft.AspNetCore.Routing.Matching.DfaMatcher[1001]<br>1 candidate(s) found for the request path '/' | This shows what possible matches there are for the route |
-| dbug | Microsoft.AspNetCore.Routing.Matching.DfaMatcher[1005]<br>      Endpoint 'minimumroute' with route pattern '{\*\*catch-all}' is valid for the request path '/' | The mimimum route from YARPs configuration has matched|
+| dbug | Microsoft.AspNetCore.Routing.Matching.DfaMatcher[1005]<br>      Endpoint 'minimumroute' with route pattern '{\*\*catch-all}' is valid for the request path '/' | The minimum route from YARPs configuration has matched|
 | dbug | Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware[1]<br>     Request matched endpoint 'minimumroute' | |
 | info | Microsoft.AspNetCore.Routing.EndpointMiddleware[0]<br>      Executing endpoint 'minimumroute' | |
 | info | Yarp.ReverseProxy.Forwarder.HttpForwarder[9]<br>      Proxying to http://www.example.com/ | YARP is proxying the request to example.com |
@@ -155,7 +155,7 @@ public class ForwarderTelemetry : IForwarderTelemetryConsumer
     /// Called before forwarding a request from `ForwarderMiddleware`, therefore is not called for direct forwarding scenarios.
     public void OnForwarderInvoke(DateTime timestamp, string clusterId, string routeId, string destinationId)
     {
-        Console.WriteLine($"Forwarder Telemetry [{timestamp:HH:mm:ss.fff}] => OnForwarderInvoke:: Cluster id: {clusterId}, Route Id: { routeId}, Destination: {destinationId}");
+        Console.WriteLine($"Forwarder Telemetry [{timestamp:HH:mm:ss.fff}] => OnForwarderInvoke:: Cluster id: {clusterId}, Route Id: {routeId}, Destination: {destinationId}");
     }
 }
 ```

@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 # YARP Http.sys Delegation
 
 ## Introduction
-Http.sys delegation is a kernel level feature added into newer versions of Windows which allows a request to be transferred from the receiving process's http.sys queue to a target process's http.sys queue with very little overhead or added latency. For this delegation to work, the receiving process is only allowed to read the request headers. If the body has started to be read or a response has started, trying to delegate the request will fail. The response will not be visible to the proxy after delegation, which limits the functionality of the session affinity and passive health checks components, as well as some of the load balancing algorithms. Internally, YARP leverage's ASP.NET Core's [IHttpSysRequestDelegationFeature](/dotnet/api/microsoft.aspnetcore.server.httpsys.ihttpsysrequestdelegationfeature) 
+Http.sys delegation is a kernel level feature added into newer versions of Windows which allows a request to be transferred from the receiving process's http.sys queue to a target process's http.sys queue with very little overhead or added latency. For this delegation to work, the receiving process is only allowed to read the request headers. If the body has started to be read or a response has started, trying to delegate the request will fail. The response will not be visible to the proxy after delegation, which limits the functionality of the session affinity and passive health checks components, as well as some of the load balancing algorithms. Internally, YARP leverages ASP.NET Core's [IHttpSysRequestDelegationFeature](/dotnet/api/microsoft.aspnetcore.server.httpsys.ihttpsysrequestdelegationfeature) 
 
 ## Requirements
 Http.sys delegation requires:
@@ -71,7 +71,7 @@ app.MapReverseProxy(proxyPipeline =>
 ```
 
 ## Delegation Queue Lifetime
-When YARP is configured to use delegation for a destination, a handle is created to the specified http.sys queue. This handle is kept alive as long as the destinations referencing it exist. Clean up of these handles is done during GC, so it's possible cleanup of the handle is delayed if it ends up in Gen2. This may cause issues for some receivers during process restart because if they try to create the queue during startup it will fail (because it still exists since YARP has a handle to it). The receivers need to be smart enough to attach instead and propertly re-setup the queue. ASP.NET Core's http.sys server [has this issue](https://github.com/dotnet/aspnetcore/issues/40359).
+When YARP is configured to use delegation for a destination, a handle is created to the specified http.sys queue. This handle is kept alive as long as the destinations referencing it exist. Clean up of these handles is done during GC, so it's possible cleanup of the handle is delayed if it ends up in Gen2. This may cause issues for some receivers during process restart because if they try to create the queue during startup it will fail (because it still exists since YARP has a handle to it). The receivers need to be smart enough to attach instead and properly re-setup the queue. ASP.NET Core's http.sys server [has this issue](https://github.com/dotnet/aspnetcore/issues/40359).
 
 YARP exposes a way to reset its handle to the queue. This allows consumers to write custom logic to determin if/when the handle to the queue should be cleaned up.
 

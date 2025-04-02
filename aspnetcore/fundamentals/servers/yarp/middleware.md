@@ -28,7 +28,7 @@ app.MapReverseProxy();
 app.Run();
 ```
 
-The parmeterless `MapReverseProxy()` in [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) overload includes all standard proxy middleware for [session affinity](xref:fundamentals/servers/yarp/session-affinity), [load balancing](xref:fundamentals/servers/yarp/load-balancing), [passive health checks](dests-health-checks.md#passive-health-checks), and the final proxying of the request. Each of these check the configuration of the matched route, cluster, and destination and perform their task accordingly.
+The parameterless `MapReverseProxy()` in [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) overload includes all standard proxy middleware for [session affinity](xref:fundamentals/servers/yarp/session-affinity), [load balancing](xref:fundamentals/servers/yarp/load-balancing), [passive health checks](dests-health-checks.md#passive-health-checks), and the final proxying of the request. Each of these check the configuration of the matched route, cluster, and destination and perform their task accordingly.
 
 ## Adding Middleware
 

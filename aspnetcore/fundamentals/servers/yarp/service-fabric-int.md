@@ -12,4 +12,4 @@ ai-usage: ai-assisted
 
 # YARP Service Fabric Integration
 
-This functionality has been replaced by https://github.com/microsoft/service-fabric-yarp
+This functionality has been deprecated in favor of https://github.com/microsoft/service-fabric-yarp
