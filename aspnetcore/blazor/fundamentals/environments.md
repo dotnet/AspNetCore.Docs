@@ -48,7 +48,7 @@ For a standalone Blazor WebAssembly app, set the environment with the `<WasmAppl
 <WasmApplicationEnvironmentName>Staging</WasmApplicationEnvironmentName>
 ```
 
-The default environment is `Development` when running the app locally and `Production` when the app is published.
+The default environments are `Development` for build and `Production` for publish.
 
 :::moniker-end
 

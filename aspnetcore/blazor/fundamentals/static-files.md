@@ -196,11 +196,19 @@ For examples of how to address the policy violation with Subresource Integrity (
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-9.0"
+
+Configure Static File Middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
+
+In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-10.0"
 
-### Fingerprint client-side static assets
+## Fingerprint client-side static assets in standalone Blazor WebAssembly apps
 
-In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets for client-side rendering (CSR). A [fingerprint](https://en.wikipedia.org/wiki/Fingerprint_(computing)) is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
+In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets for client-side rendering. A [fingerprint](https://wikipedia.org/wiki/Fingerprint_(computing)) is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
 
 The following configuration must be present in the `wwwwoot/index.html` file of a standalone Blazor WebAssembly app to adopt fingerprinting:
 
@@ -223,42 +231,29 @@ The following configuration must be present in the `wwwwoot/index.html` file of 
 In the project file (`.csproj`), the `<OverrideHtmlAssetPlaceholders>` property is set to `true`:
 
 ```xml
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-  <PropertyGroup>
-    ...
-    <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
-    ...
-  </PropertyGroup>
-</Project>
+<PropertyGroup>
+  <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
+</PropertyGroup>
 ```
 
-For CSR in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side fingerprinting is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files) and the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component).
+When resolving imports for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
 
-To fingerprint additional JavaScript modules for CSR, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
+## Fingerprint client-side static assets in Blazor Web Apps
 
-In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
+For client-side rendering (CSR) in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files), [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`).
+
+To fingerprint additional JavaScript modules for CSR, use the `<StaticWebAssetFingerprintPattern>` item in the app's project file (`.csproj`). In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
 
 ```xml
-<StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
-  Expression="#[.{fingerprint}]!" />
+<ItemGroup>
+  <StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
+    Expression="#[.{fingerprint}]!" />
+</ItemGroup>
 ```
 
-The files are automatically placed into the import map:
-
-* Automatically for Blazor Web App CSR.
-* When opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions.
-
-When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
+When resolving imports for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
 
 :::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-Configure Static File Middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
-
-:::moniker-end
-
-In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
 
 ## Summary of static file `<link>` `href` formats
 
