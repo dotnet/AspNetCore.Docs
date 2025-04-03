@@ -700,88 +700,13 @@ In `Layout/MainLayout.razor`:
 
 *This scenario applies to global Interactive WebAssembly rendering without prerendering (`@rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)"` on the `HeadOutlet` and `Routes` components in the `App` component).*
 
-Create a `ContentLoading` component in the `Layout` folder of the `.Client` app with a `Loading` parameter:
+XXXXXXXXXXXXXXXXXXX
 
-* When `true`, display a loading progress indicator.
-* When `false`, render the requested component's content.
+Awaiting further guidance from Javier to confirm that 
+a JS initiazlier or `Blazor.start()` approach is the 
+correct pattern for this.
 
-If you wish to load styles for the indicator, add them to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
-
-`Layout/ContentLoading.razor`:
-
-```razor
-@if (Loading)
-{
-    <!-- OPTIONAL ...
-    <HeadContent>
-        <style>
-            ...
-        </style>
-    </HeadContent>
-    -->
-    <div aria-busy="true" aria-describedby="progress-bar"></div>
-    <progress id="progress-bar" aria-label="Content loading…"></progress>
-}
-else
-{
-    @ChildContent
-}
-
-@code {
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-
-    [Parameter]
-    public bool Loading { get; set; }
-}
-```
-
-In a component that adopts Interactive WebAssembly rendering without prerendering, wrap the component's Razor markup with the `ContentLoading` component and pass a value in a C# field to the `Loading` parameter when initialization work is performed by the component. The following example demonstrates the approach with the `Home` component of an app created from the Blazor Web App project template.
-
-`Pages/Home.razor`:
-
-```diff
-@page "/"
-
-<PageTitle>Home</PageTitle>
-
-<ContentLoading Loading="@loading">
-    <h1>Hello, world!</h1>
-    <p>Welcome to your new app.</p>
-</ContentLoading>
-
-@code {
-    private bool loading = true;
-
-    protected override async Task OnInitializedAsync()
-    {
-        // Simulate long-running work
-        await Task.Delay(5000);
-
-        loading = false;
-    }
-}
-```
-
-This approach also works with the [cancelable background work pattern](xref:blazor/components/lifecycle#cancelable-background-work):
-
-```razor
-<ContentLoading Loading="@loading">
-    ...
-</ContentLoading>
-
-@code {
-    private bool loading = true;
-    ...
-
-    protected override async Task OnInitializedAsync()
-    {
-        await LongRunningWork().ContinueWith(_ => loading = false);
-    }
-
-    ...
-}
-```
+XXXXXXXXXXXXXXXXXXX
 
 ### Blazor WebAssembly app loading progress
 
