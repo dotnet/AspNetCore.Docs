@@ -1,7 +1,7 @@
 :::moniker range=">= aspnetcore-10.0"
 
 This article describes the metrics built-in for ASP.NET Core produced using the
-<xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. For a listing of metrics based on the older [EventCounters](/dotnet/core/diagnostics/event-counters) API,see [Available counters](/dotnet/core/diagnostics/available-counters).
+<xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. For a listing of metrics based on the older [EventCounters](/dotnet/core/diagnostics/event-counters) API, see [Available counters](/dotnet/core/diagnostics/available-counters).
 
 See [Using ASP.NET Core metrics](xref:log-mon/metrics/metrics) for information about how to collect, report, enrich, and test ASP.NET Core metrics
 
@@ -77,8 +77,6 @@ The `Microsoft.AspNetCore.Routing` metrics report information about [routing HTT
 ## `Microsoft.AspNetCore.Diagnostics`
 
 The `Microsoft.AspNetCore.Diagnostics` metrics report diagnostics information from [ASP.NET Core error handling middleware](/aspnet/core/fundamentals/error-handling):
-
-- [`aspnetcore.diagnostics.exceptions`](#metric-aspnetcorediagnosticsexceptions)
 
 #### Metric: `aspnetcore.diagnostics.exceptions`
 
@@ -427,7 +425,8 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 * [`aspnetcore.authentication.authenticate.duration`](#metric-aspnetcoreauthenticationauthenticateduration)
 * [`aspnetcore.authentication.challenges`](#metric-aspnetcoreauthenticationchallenges)
 * [`aspnetcore.authentication.forbids`](#metric-aspnetcoreauthenticationforbids)
-* [`aspnetcore.authentication.sign_ins`](#metric-aspnetcoreauthenticationsignins)
+* [`aspnetcore.authentication.sign_ins`](#metric-aspnetcoreauthenticationsign_ins)
+* [`aspnetcore.authentication.sign_outs`](#metric-aspnetcoreauthenticationsign_outs)
 
 <!--- section links here -->
 ##### Metric: `aspnetcore.authentication.authenticate.duration`
