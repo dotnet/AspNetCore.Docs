@@ -403,8 +403,7 @@ As this metric is tracking the connection duration, and ideally SignalR connecti
 
 The `Microsoft.AspNetCore.Authorization` metrics report information about [Authorization attempts](xref:security/authorization/introduction) in ASP.NET Core apps:
 
-<!--- section links here -->
-##### Metric: `aspnetcore.authorization.attempts`
+#### Metric: `aspnetcore.authorization.attempts`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -413,6 +412,7 @@ The `Microsoft.AspNetCore.Authorization` metrics report information about [Autho
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `user.is_authenticated` | Boolean | Match result | `success`; `failure` | Always |
+| `aspnetcore.authorization.result` | string | The authentication result. | `success` | Always |
 | `aspnetcore.authorization.policy` | string | The authorization policy. | `Basic` | Always |
 | `error.type` | string | The error message. | `An error occurred in the authorization handler` | Always |
 
@@ -422,14 +422,13 @@ The `Microsoft.AspNetCore.Authorization` metrics report information about [Autho
 
 The `Microsoft.AspNetCore.Authentication` metrics report information about [Authentication](xref:security/authentication/index) in ASP.NET Core apps:
 
-* [`aspnetcore.authentication.authenticate.duration`](#metric-aspnetcoreauthenticationauthenticateduration)
-* [`aspnetcore.authentication.challenges`](#metric-aspnetcoreauthenticationchallenges)
-* [`aspnetcore.authentication.forbids`](#metric-aspnetcoreauthenticationforbids)
-* [`aspnetcore.authentication.sign_ins`](#metric-aspnetcoreauthenticationsign_ins)
-* [`aspnetcore.authentication.sign_outs`](#metric-aspnetcoreauthenticationsign_outs)
+- [`aspnetcore.authentication.authenticate.duration`](#metric-aspnetcoreauthenticationauthenticateduration)
+- [`aspnetcore.authentication.challenges`](#metric-aspnetcoreauthenticationchallenges)
+- [`aspnetcore.authentication.forbids`](#metric-aspnetcoreauthenticationforbids)
+- [`aspnetcore.authentication.sign_ins`](#metric-aspnetcoreauthenticationsign_ins)
+- [`aspnetcore.authentication.sign_outs`](#metric-aspnetcoreauthenticationsign_outs)
 
-<!--- section links here -->
-##### Metric: `aspnetcore.authentication.authenticate.duration`
+#### Metric: `aspnetcore.authentication.authenticate.duration`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -443,7 +442,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 .
 
-##### Metric: `aspnetcore.authentication.challenges`
+#### Metric: `aspnetcore.authentication.challenges`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -456,7 +455,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 .
 
-##### Metric: `aspnetcore.authentication.forbids`
+#### Metric: `aspnetcore.authentication.forbids`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -469,7 +468,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 .
 
-##### Metric: `aspnetcore.authentication.sign_ins`
+#### Metric: `aspnetcore.authentication.sign_ins`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -482,7 +481,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 .
 
-##### Metric: `aspnetcore.authentication.sign_outs`
+#### Metric: `aspnetcore.authentication.sign_outs`
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |

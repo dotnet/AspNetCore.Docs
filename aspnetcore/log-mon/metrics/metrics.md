@@ -26,8 +26,8 @@ See [ASP.NET Core metrics](xref:log-mon/metrics/built-in) for a comprehensive li
 Using metrics involves the following:
 
 * **Instrumentation:** Code in .NET libraries takes measurements and associates these measurements with a metric name. .NET and ASP.NET Core include many built-in metrics.
-* **Collection:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools may perform configuration outside the app using configuration files or a UI tool.
-* **Display:** A tool that can display the metrics in a human-readable format. This is often a web-based dashboard that can be customized to show the most important metrics for a specific app.
+* **Collection and storage:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools may perform configuration outside the app using configuration files or a UI tool.
+* **Visualization:** A tool that can display the metrics in a human-readable format. For example, [Grafana](https://grafana.com/) and [Prometheus](https://prometheus.io/).
 * **Alerting:** A tool that provides notifications when a metric exceeds a threshold. For example, if the average response time for a web service exceeds 400 ms, an alert can be sent to the operations staff.
 * **Analysis:** A tool that can analyze the metrics over time. This is often a web-based dashboard that can be customized to show the most important metrics for a specific app.
 
