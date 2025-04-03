@@ -70,6 +70,8 @@ The following image shows an example of the Authenticated request duration metri
 
 ![Authenticated request duration in the Aspire dashboard](https://github.com/user-attachments/assets/170615e9-ef25-48a1-a482-4933e2e03f03)
 
+For more information, see [ASP.NET Core Authorization and Authentication metrics](xref:log-mon/metrics/built-in#microsoftaspnetcoreauthorization).
+
 ## Miscellaneous
 
 This section describes miscellaneous new features in ASP.NET Core 10.0.
