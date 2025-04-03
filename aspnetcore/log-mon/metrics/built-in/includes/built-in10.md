@@ -412,7 +412,7 @@ The `Microsoft.AspNetCore.Authorization` metrics report information about [Autho
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `user.is_authenticated` | Boolean | Match result | `success`; `failure` | Always |
-| `aspnetcore.authorization.result` | string | The authentication result. | `success` | Always |
+| `aspnetcore.authorization.result` | string | The authentication result. | `success` ; `failure` | Always |
 | `aspnetcore.authorization.policy` | string | The authorization policy. | `Basic` | Always |
 | `error.type` | string | The error message. | `An error occurred in the authorization handler` | Always |
 
@@ -436,7 +436,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.authentication.result` | string | The authentication result. | `success` | Always |
+| `aspnetcore.authentication.result` | string | The authentication result. | `success` ; `failure` | Always |
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
 | `error.type` | string | The error message. | `An error occurred in the authorization handler` | If an authentication error or exception occured. |
 
