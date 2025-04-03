@@ -424,10 +424,10 @@ The `Microsoft.AspNetCore.Authorization` metrics report information about [Autho
 
 The `Microsoft.AspNetCore.Authentication` metrics report information about [Authentication](xref:security/authentication/index) in ASP.NET Core apps:
 
-* [`aspnetcore.authentication.authenticate.duration`](#aspnetcore-authentication-authenticate-duration)
-* [`aspnetcore.authentication.challenges`](#aspnetcore-authentication-challenges)
-* [`aspnetcore.authentication.forbids`](#aspnetcore-authentication-forbids)
-* [`aspnetcore.authentication.sign_ins`](#aspnetcore-authentication-sign-ins)
+* [`aspnetcore.authentication.authenticate.duration`](#metric-aspnetcoreauthenticationauthenticateduration)
+* [`aspnetcore.authentication.challenges`](#metric-aspnetcoreauthenticationchallenges)
+* [`aspnetcore.authentication.forbids`](#metric-aspnetcoreauthenticationforbids)
+* [`aspnetcore.authentication.sign_ins`](#metric-aspnetcoreauthenticationsignins)
 
 <!--- section links here -->
 ##### Metric: `aspnetcore.authentication.authenticate.duration`
