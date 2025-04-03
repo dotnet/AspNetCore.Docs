@@ -40,9 +40,9 @@ In most cases, the warning doesn't indicate a problem with integrity checking. I
 
 ## Diagnosing integrity problems
 
-For more information, see <xref:blazor/host-and-deploy/webassembly/integrity-check-failures>.
+For more information, see <xref:blazor/host-and-deploy/webassembly/integrity-check-failures>. The article includes guidance on disabling resource caching and integrity checks for non-PWA and PWA apps.
 
 ## Additional resources
 
 * [Boot resource loading](xref:blazor/fundamentals/startup#load-client-side-boot-resources)
-* <xref:blazor/host-and-deploy/webassembly/integrity-check-failures> (Includes guidance on disabling resource caching and integrity checks for non-PWA and PWA apps)
+* <xref:blazor/host-and-deploy/webassembly/integrity-check-failures>
