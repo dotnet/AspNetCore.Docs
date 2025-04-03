@@ -400,4 +400,98 @@ As this metric is tracking the connection duration, and ideally SignalR connecti
 | `signalr.transport` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Always |
 
 .
+
+## `Microsoft.AspNetCore.Authorization`
+
+The `Microsoft.AspNetCore.Authorization` metrics report information about [Authorization attempts](xref:security/authorization/introduction) in ASP.NET Core apps:
+
+<!--- section links here -->
+##### Metric: `aspnetcore.authorization.attempts`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authorization.attempts` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of requests for which authorization was attempted. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `user.is_authenticated` | Boolean | Match result | `success`; `failure` | Always |
+| `aspnetcore.authorization.policy` | string | The authorization policy. | `Basic` | Always |
+| `error.type` | string | The error message. | `An error occurred in the authorization handler` | Always |
+
+.
+
+## `Microsoft.AspNetCore.Authentication`
+
+The `Microsoft.AspNetCore.Authentication` metrics report information about [Authentication](xref:security/authentication/index) in ASP.NET Core apps:
+
+* [`aspnetcore.authentication.authenticate.duration`](#aspnetcore-authentication-authenticate-duration)
+* [`aspnetcore.authentication.challenges`](#aspnetcore-authentication-challenges)
+* [`aspnetcore.authentication.forbids`](#aspnetcore-authentication-forbids)
+* [`aspnetcore.authentication.sign_ins`](#aspnetcore-authentication-sign-ins)
+
+<!--- section links here -->
+##### Metric: `aspnetcore.authentication.authenticate.duration`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.authenticate.duration` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Histogram | `s` | The authentication duration for a request. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.result` | string | The authentication result. | `success` | Always |
+| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
+| `error.type` | string | The error message. | `An error occurred in the authorization handler` | If an authentication error or exception occured. |
+
+.
+
+##### Metric: `aspnetcore.authentication.challenges`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.challenges` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a scheme is challenged. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
+| `error.type` | string | The error message. | `An error occurred in the authorization handler` | If an authentication error or exception occured. |
+
+.
+
+##### Metric: `aspnetcore.authentication.forbids`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.forbids` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times an authenticated user attempts to access a resource they are not permitted to access. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
+| `error.type` | string | The error message. | `An error occurred during sign out.` | If an authentication error or exception occured. |
+
+.
+
+##### Metric: `aspnetcore.authentication.sign_ins`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.sign_ins` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a principal is signed in. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
+| `error.type` | string | The error message. | `An error occurred during sign in` | If an authentication error or exception occured. |
+
+.
+
+##### Metric: `aspnetcore.authentication.sign_outs`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.sign_outs` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a scheme is challenged. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
+| `error.type` | string | The error message. | `An error occurred during sign out` | If an authentication error or exception occured. |
+
 :::moniker-end
