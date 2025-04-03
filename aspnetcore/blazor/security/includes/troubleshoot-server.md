@@ -6,6 +6,16 @@ To enable debug or trace logging for Blazor WebAssembly authentication, see the 
 
 ### Common errors
 
+* Debugger breaks on an exception during logout with Microsoft Entra External ID
+
+  The following exception stops the Visual Studio debugger during logout with [Microsoft Entra External ID](/entra/external-id/external-identities-overview):
+
+  > :::no-loc text="Uncaught TypeError TypeError: Failed to execute 'postMessage' on 'Window': The provided value cannot be converted to a sequence.":::
+
+  ![Visual Studio Debugger breaking on JavaScript exception during logout](../_static/entra-external-id-logout-exception.png)
+
+  The exception is thrown from Entra JavaScript code, so this isn't a problem with ASP.NET Core. The exception doesn't impact app functionality in production, so the exception can be ignored during local development testing.
+
 * Misconfiguration of the app or Identity Provider (IP)
 
   The most common errors are caused by incorrect configuration. The following are a few examples:

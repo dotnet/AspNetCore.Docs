@@ -28,7 +28,7 @@ app.MapReverseProxy();
 app.Run();
 ```
 
-The parmeterless `MapReverseProxy()` in [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) overload includes all standard proxy middleware for [session affinity](xref:fundamentals/servers/yarp/session-affinity), [load balancing](xref:fundamentals/servers/yarp/load-balancing), [passive health checks](dests-health-checks.md#passive-health-checks), and the final proxying of the request. Each of these check the configuration of the matched route, cluster, and destination and perform their task accordingly.
+The parameterless `MapReverseProxy()` in [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) overload includes all standard proxy middleware for [session affinity](xref:fundamentals/servers/yarp/session-affinity), [load balancing](xref:fundamentals/servers/yarp/load-balancing), [passive health checks](dests-health-checks.md#passive-health-checks), and the final proxying of the request. Each of these check the configuration of the matched route, cluster, and destination and perform their task accordingly.
 
 ## Adding Middleware
 
@@ -112,7 +112,7 @@ Middleware like session affinity and load balancing examine the `IReverseProxyFe
 
 `AvailableDestinations` lists the destinations currently considered eligible to handle the request. It is initialized to `AllDestinations`, excluding unhealthy ones if health checks are enabled. `AvailableDestinations` should be reduced to a single destination by the end of the pipeline or else one will be selected randomly from the remainder.
 
-`ProxiedDestination` is set by the proxy logic at the end of the pipeline to indicate which destination was ultimately used.  If there are no available destinations remaining then a 503 error response is sent.
+`ProxiedDestination` is set by the proxy logic at the end of the pipeline to indicate which destination was ultimately used. If there are no available destinations remaining then a 503 error response is sent.
 
 ```C#
 proxyPipeline.Use(async (context, next) =>
