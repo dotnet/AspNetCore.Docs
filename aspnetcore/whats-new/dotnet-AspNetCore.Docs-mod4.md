@@ -13,7 +13,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 
 ### New articles
 
-- <xref:blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching>
+- <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures>
 - <xref:blazor/tooling/webassembly>
 - <xref:blazor/security/qrcodes-for-authenticator-apps>
 - <xref:blazor/js-interop/javascript-location>

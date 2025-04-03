@@ -489,7 +489,7 @@ When the `loadBootResource` function returns `null`, Blazor uses the default loa
 
 The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly/index#compression>.
 
-For more information, see <xref:blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching>.
+For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures>.
 
 ## Control headers in C# code
 
