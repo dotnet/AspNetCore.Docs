@@ -684,10 +684,8 @@ items:
                     uid: blazor/host-and-deploy/webassembly/apache
                   - name: Deploy to GitHub Pages
                     uid: blazor/host-and-deploy/webassembly/github-pages
-                  - name: Runtime and app bundle caching
-                    uid: blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching
-                  - name: Integrity check failures
-                    uid: blazor/host-and-deploy/webassembly/integrity-check-failures
+                  - name: Bundle caching and integrity check failures
+                    uid: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures
                   - name: HTTP caching issues
                     uid: blazor/host-and-deploy/webassembly/http-caching-issues
                   - name: Multiple hosted WebAssembly apps
