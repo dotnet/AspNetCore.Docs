@@ -173,7 +173,7 @@ public class ForwarderTelemetry : IForwarderTelemetryConsumer
 }
 ```
 
-Tegister the class as part of services, for example:
+Register the class as part of services, for example:
 
 ```csharp
 services.AddTelemetryConsumer<ForwarderTelemetry>();
