@@ -438,7 +438,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 |---|---|---|---|---|
 | `aspnetcore.authentication.result` | string | The authentication result. | `success` ; `failure` | Always |
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred in the authorization handler` | If an authentication error or exception occured. |
+| `error.type` | string | The error message. | `An error occurred in the authorization handler` | If an authentication error or exception occurred. |
 
 .
 
@@ -451,7 +451,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred in the authorization handler` | If an authentication error or exception occured. |
+| `error.type` | string | The error message. | `An error occurred in the authorization handler` | If an authentication error or exception occurred. |
 
 .
 
@@ -459,12 +459,12 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `aspnetcore.authentication.forbids` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times an authenticated user attempts to access a resource they are not permitted to access. |
+| `aspnetcore.authentication.forbids` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times an authenticated user attempts to access a resource they aren't permitted to access. |
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred during sign out.` | If an authentication error or exception occured. |
+| `error.type` | string | The error message. | `An error occurred during sign out.` | If an authentication error or exception occurred. |
 
 .
 
@@ -477,7 +477,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred during sign in` | If an authentication error or exception occured. |
+| `error.type` | string | The error message. | `An error occurred during sign in` | If an authentication error or exception occurred. |
 
 .
 
@@ -490,6 +490,6 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred during sign out` | If an authentication error or exception occured. |
+| `error.type` | string | The error message. | `An error occurred during sign out` | If an authentication error or exception occurred. |
 
 :::moniker-end
