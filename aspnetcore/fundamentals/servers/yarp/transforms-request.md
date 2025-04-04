@@ -31,14 +31,14 @@ The following are built in transforms identified by their primary config key. Th
 | PathPrefix | A path starting with a '/' | yes      |
 
 Config:
-```JSON
+```json
 { "PathPrefix": "/prefix" }
 ```
 Code:
 ```csharp
 routeConfig = routeConfig.WithTransformPathPrefix(prefix: "/prefix");
 ```
-```C#
+```csharp
 transformBuilderContext.AddPathPrefix(prefix: "/prefix");
 ```
 Example:<br/>
@@ -55,7 +55,7 @@ This will prefix the request path with the given value.
 | PathRemovePrefix | A path starting with a '/' | yes      |
 
 Config:
-```JSON
+```json
 { "PathRemovePrefix": "/prefix" }
 ```
 Code:
@@ -80,14 +80,14 @@ This will remove the matching prefix from the request path. Matches are made on 
 | PathSet | A path starting with a '/' | yes      |
 
 Config:
-```JSON
+```json
 { "PathSet": "/newpath" }
 ```
 Code:
 ```csharp
 routeConfig = routeConfig.WithTransformPathSet(path: "/newpath");
 ```
-```C#
+```csharp
 transformBuilderContext.AddPathSet(path: "/newpath");
 ```
 Example:<br/>
@@ -104,14 +104,14 @@ This will set the request path with the given value.
 | PathPattern | A path template starting with a '/' | yes      |
 
 Config:
-```JSON
+```json
 { "PathPattern": "/my/{plugin}/api/{**remainder}" }
 ```
 Code:
 ```csharp
 routeConfig = routeConfig.WithTransformPathRouteValues(pattern: new PathString("/my/{plugin}/api/{**remainder}"));
 ```
-```C#
+```csharp
 transformBuilderContext.AddPathRouteValues(pattern: new PathString("/my/{plugin}/api/{**remainder}"));
 ```
 
@@ -138,7 +138,7 @@ Example:
 | Set/Append          | Static value                     | yes      |
 
 Config:
-```JSON
+```json
 {
   "QueryValueParameter": "foo",
   "Append": "bar"
@@ -148,7 +148,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformQueryValue(queryKey: "foo", value: "bar", append: true);
 ```
-```C#
+```csharp
 transformBuilderContext.AddQueryValue(queryKey: "foo", value: "bar", append: true);
 ```
 
@@ -173,7 +173,7 @@ Example:
 | Set/Append          | The name of a route value        | yes      |
 
 Config:
-```JSON
+```json
 {
   "QueryRouteParameter": "foo",
   "Append": "remainder"
@@ -183,7 +183,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformQueryRouteValue(queryKey: "foo", routeValueKey: "remainder", append: true);
 ```
-```C#
+```csharp
 transformBuilderContext.AddQueryRouteValue(queryKey: "foo", routeValueKey: "remainder", append: true);
 ```
 
@@ -209,14 +209,14 @@ Example:
 | QueryRemoveParameter | Name of a query string parameter | yes      |
 
 Config:
-```JSON
+```json
 { "QueryRemoveParameter": "foo" }
 ```
 Code:
 ```csharp
 routeConfig = routeConfig.WithTransformQueryRemoveKey(queryKey: "foo");
 ```
-```C#
+```csharp
 transformBuilderContext.AddQueryRemoveKey(queryKey: "foo");
 ```
 
@@ -240,7 +240,7 @@ Example:
 | Set              | The new http method        | yes      |
 
 Config:
-```JSON
+```json
 {
   "HttpMethodChange": "PUT",
   "Set": "POST"
@@ -250,7 +250,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformHttpMethodChange(fromHttpMethod: HttpMethods.Put, toHttpMethod: HttpMethods.Post);
 ```
-```C#
+```csharp
 transformBuilderContext.AddHttpMethodChange(fromHttpMethod: HttpMethods.Put, toHttpMethod: HttpMethods.Post);
 ```
 
@@ -265,14 +265,14 @@ This will change PUT requests to POST.
 | RequestHeadersCopy | true/false | true    | yes      |
 
 Config:
-```JSON
+```json
 { "RequestHeadersCopy": "false" }
 ```
 Code:
 ```csharp
 routeConfig = routeConfig.WithTransformCopyRequestHeaders(copy: false);
 ```
-```C#
+```csharp
 transformBuilderContext.CopyRequestHeaders = false;
 ```
 
@@ -287,13 +287,13 @@ This sets if all incoming request headers are copied to the proxy request. This 
 | RequestHeaderOriginalHost | true/false | false   | yes      |
 
 Config:
-```JSON
+```json
 { "RequestHeaderOriginalHost": "true" }
 ```
 ```csharp
 routeConfig = routeConfig.WithTransformUseOriginalHostHeader(useOriginal: true);
 ```
-```C#
+```csharp
 transformBuilderContext.AddOriginalHost(true);
 ```
 
@@ -309,7 +309,7 @@ This specifies if the incoming request Host header should be copied to the proxy
 | Set/Append    | The header value | yes      |
 
 Config:
-```JSON
+```json
 {
   "RequestHeader": "MyHeader",
   "Set": "MyValue"
@@ -319,7 +319,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformRequestHeader(headerName: "MyHeader", value: "MyValue", append: false);
 ```
-```C#
+```csharp
 transformBuilderContext.AddRequestHeader(headerName: "MyHeader", value: "MyValue", append: false);
 ```
 
@@ -341,7 +341,7 @@ Note: setting "" as a header value is not recommended and can cause an undefined
 | Set/Append    | The name of a route value        | yes      |
 
 Config:
-```JSON
+```json
 {
   "RequestHeaderRouteValue": "MyHeader",
   "Set": "MyRouteKey"
@@ -351,7 +351,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformRequestHeaderRouteValue(headerName: "MyHeader", routeValueKey: "key", append: false);
 ```
-```C#
+```csharp
 transformBuilderContext.AddRequestHeaderRouteValue(headerName: "MyHeader", routeValueKey: "key", append: false);
 ```
 
@@ -378,7 +378,7 @@ Note: setting "" as a header value is not recommended and can cause an undefined
 | RequestHeaderRemove | The header name | yes      |
 
 Config:
-```JSON
+```json
 {
   "RequestHeaderRemove": "MyHeader"
 }
@@ -387,7 +387,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformRequestHeaderRemove(headerName: "MyHeader");
 ```
-```C#
+```csharp
 transformBuilderContext.AddRequestHeaderRemove(headerName: "MyHeader");
 ```
 
@@ -406,7 +406,7 @@ This removes the named header.
 | RequestHeadersAllowed | A semicolon separated list of allowed header names. | yes      |
 
 Config:
-```JSON
+```json
 {
   "RequestHeadersAllowed": "Header1;header2"
 }
@@ -415,7 +415,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformRequestHeadersAllowed("Header1", "header2");
 ```
-```C#
+```csharp
 transformBuilderContext.AddRequestHeadersAllowed("Header1", "header2");
 ```
 
@@ -448,7 +448,7 @@ Only header1 and header2 are copied to the proxy request.
 Action "Off" completely disables the transform.
 
 Config:
-```JSON
+```json
 {
   "X-Forwarded": "Set",
   "For": "Remove",
@@ -467,7 +467,7 @@ routeConfig = routeConfig.WithTransformXForwarded(
   ForwardedTransformActions? xProto = null,
   ForwardedTransformActions? xPrefix = null);
 ```
-```C#
+```csharp
 transformBuilderContext.AddXForwarded(ForwardedTransformActions.Set);
 transformBuilderContext.AddXForwardedFor(headerName: "X-Forwarded-For", ForwardedTransformActions.Append);
 transformBuilderContext.AddXForwardedHost(headerName: "X-Forwarded-Host", ForwardedTransformActions.Append);
@@ -483,10 +483,10 @@ X-Forwarded-Host: IncomingHost:5000
 X-Forwarded-Prefix: /path/base
 ```
 Disable default headers:
-```JSON
+```json
 { "X-Forwarded": "Off" }
 ```
-```C#
+```csharp
 transformBuilderContext.UseDefaultForwarders = false;
 ```
 
@@ -521,7 +521,7 @@ The {Prefix}Prefix header value is taken from `HttpContext.Request.PathBase`. Th
 | Action    | Action to apply to this header (Set, Append, Remove, Off)                                                         | Set     | no       |
 
 Config:
-```JSON
+```json
 {
   "Forwarded": "by,for,host,proto",
   "ByFormat": "Random",
@@ -533,7 +533,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformForwarded(useHost: true, useProto: true, forFormat: NodeFormat.IpAndPort, ByFormat: NodeFormat.Random, action: ForwardedTransformAction.Append);
 ```
-```C#
+```csharp
 transformBuilderContext.AddForwarded(useHost: true, useProto: true, forFormat: NodeFormat.IpAndPort, ByFormat: NodeFormat.Random, action: ForwardedTransformAction.Append);
 ```
 Example:
@@ -580,14 +580,14 @@ The RFC allows a [variety of formats](https://tools.ietf.org/html/rfc7239#sectio
 | ClientCert | The header name | yes      |
 
 Config:
-```JSON
+```json
 { "ClientCert": "X-Client-Cert" }
 ```
 Code:
 ```csharp
 routeConfig = routeConfig.WithTransformClientCertHeader(headerName: "X-Client-Cert");
 ```
-```C#
+```csharp
 transformBuilderContext.AddClientCertHeader(headerName: "X-Client-Cert");
 ```
 Example:

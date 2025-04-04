@@ -56,7 +56,7 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
 
   In the `Program.cs` file, configure the rate limiting services by adding the appropriate rate limiting  policies. Policies can either be defined as global or named polices. The following example permits 10 requests per minute by user (identity) or globally:
   
-  ``` csharp
+  ```csharp
   builder.Services.AddRateLimiter(options =>
   {
       options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
@@ -74,7 +74,7 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
   
   Named polices need to be explicitly applied to the pages or endpoints. The following example adds a fixed window limiter policy named `"fixed"` which we'll add to an endpoint later:
   
-  ``` csharp
+  ```csharp
   var builder = WebApplication.CreateBuilder(args);
   
   builder.Services.AddRateLimiter(options =>
@@ -97,7 +97,7 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
 
    In the `Program.cs` file, enable the rate limiting middleware by calling [UseRateLimiter](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterapplicationbuilderextensions.useratelimiter):
   
-  ``` csharp
+  ```csharp
   app.UseRouting();
   
   app.UseRateLimiter();
@@ -116,7 +116,7 @@ The following steps show how to use the rate limiting middleware in an ASP.NET C
 
 Apply a named policy to the endpoint or group, for example:
 
-``` csharp
+```csharp
 
 app.MapGet("/api/resource", () => "This endpoint is rate limited")
    .RequireRateLimiting("fixed"); // Apply specific policy to an endpoint
@@ -127,7 +127,7 @@ app.MapGet("/api/resource", () => "This endpoint is rate limited")
 
  Apply the configured rate limiting policies to specific endpoints or globally. For example, to apply the "fixed" policy to all controller endpoints:
 
-``` csharp
+```csharp
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers().RequireRateLimiting("fixed");
@@ -139,7 +139,7 @@ app.UseEndpoints(endpoints =>
 
 To set rate limiting for all of the app's routable Razor components, specify <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> with the rate limiting policy name on the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> call in the `Program` file. In the following example, the rate limiting policy named "`policy`" is applied:
 
-``` csharp
+```csharp
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .RequireRateLimiting("policy");
@@ -147,7 +147,7 @@ app.MapRazorComponents<App>()
 
 To set a policy for a single routable Razor component or a folder of components via an `_Imports.razor` file, the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is applied with the policy name. In the following example, the rate limiting policy named "`override`" is applied. The policy replaces any policies currently applied to the endpoint. The global limiter still runs on the endpoint with this attribute applied.
 
-``` blazor
+```razor
 @page "/counter"
 @using Microsoft.AspNetCore.RateLimiting
 @attribute [EnableRateLimiting("override")]
@@ -290,7 +290,7 @@ Partitioned rate limiting gives you fine-grained control over how you manage API
 
 ### By IP Address
 
-``` csharp
+```csharp
 options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
     RateLimitPartition.GetFixedWindowLimiter(
         partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
@@ -302,7 +302,7 @@ options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpC
 ```
 
 ### By User Identity
-``` csharp
+```csharp
 options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
     RateLimitPartition.GetFixedWindowLimiter(
         partitionKey: httpContext.User.Identity?.Name ?? "anonymous",
@@ -314,7 +314,7 @@ options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpC
 ```
 
 ### By API Key
-``` csharp
+```csharp
 options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
 {
     string apiKey = httpContext.Request.Headers["X-API-Key"].ToString() ?? "no-key";
@@ -343,7 +343,7 @@ options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpC
 
 ### By Endpoint Path
 
-``` csharp
+```csharp
 options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
 {
     string path = httpContext.Request.Path.ToString();
@@ -384,7 +384,7 @@ For more information, see the [CreateChained source code](https://github.com/dot
 
 For simple cases, you can just set the status code:
 
-``` csharp
+```csharp
 builder.Services.AddRateLimiter(options =>
 {
     // Set a custom status code for rejections
@@ -396,7 +396,7 @@ builder.Services.AddRateLimiter(options =>
 
 The most common approach is to register an OnRejected callback when configuring rate limiting:
 
-``` csharp
+```csharp
 builder.Services.AddRateLimiter(options =>
 {
     // Rate limiter configuration...
@@ -421,7 +421,7 @@ Another option is to queue the request:
 
 With queuing enabled, when a request exceeds the rate limit, it's placed in a queue where the request waits until a permit becomes available or until a timeout occurs. Requests are processed according to a configurable queue order.
 
-``` csharp
+```csharp
 builder.Services.AddRateLimiter(options =>
 {
     options.AddFixedWindowLimiter("api", options =>
