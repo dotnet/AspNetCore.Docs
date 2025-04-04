@@ -127,6 +127,33 @@ For Blazor Web Apps:
 > </script>
 > ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
+Due to a [framework bug in .NET 8 and 9 (`dotnet/aspnetcore` #54049)](https://github.com/dotnet/aspnetcore/issues/54049), the Blazor script must be manually started when `beforeWebAssemblyStart(options, extensions)` or `afterWebAssemblyStarted(blazor)` are called. If the server app doesn't already start Blazor manually with a WebAssembly (`webAssembly: {...}`) configuration, update the `App` component in the server project with the following.
+
+In `Components/App.razor`, remove the existing Blazor `<script>` tag: 
+
+```diff
+- <script src="_framework/blazor.web.js"></script>
+```
+
+Replace the `<script>` tag with the following markup that starts Blazor manually with a WebAssembly (`webAssembly: {...}`) configuration:
+
+```html
+<script src="_framework/blazor.web.js" autostart="false"></script>
+<script>
+    Blazor.start({
+        webAssembly: {}
+    });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
 For Blazor Server, Blazor WebAssembly, and Blazor Hybrid apps:
 
 :::moniker-end
@@ -237,6 +264,7 @@ For examples of JS initializers, see the following resources:
 
 :::moniker range=">= aspnetcore-8.0"
 
+* [Blazor Web App loading indicator](#global-interactive-webassembly-rendering-without-prerendering) (*Global Interactive WebAssembly rendering without prerendering example*)
 * <xref:blazor/js-interop/ssr>
 * <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
 * <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
@@ -700,13 +728,56 @@ In `Layout/MainLayout.razor`:
 
 *This scenario applies to global Interactive WebAssembly rendering without prerendering (`@rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)"` on the `HeadOutlet` and `Routes` components in the `App` component).*
 
-XXXXXXXXXXXXXXXXXXX
+Add a [JavaScript initializer](#javascript-initializers) to the app. In the following JavaScript module file name example, the `{ASSEMBLY NAME}` placeholder is the assembly name of the server project (for example, `BlazorSample`). The `wwwroot` folder where the module is placed is the `wwwroot` folder in the server-side project, not the `.Client` project.
 
-Awaiting further guidance from Javier to confirm that 
-a JS initiazlier or `Blazor.start()` approach is the 
-correct pattern for this.
+The following example uses a [`progress`](https://developer.mozilla.org/docs/Web/HTML/Element/progress) indicator that doesn't indicate specific progress as [client-side boot resources are delivered to the client](#load-client-side-boot-resources), but it serves as a general approach for further development if you want the progress indicator to show the actual progress.
 
-XXXXXXXXXXXXXXXXXXX
+`wwwroot/{ASSEMBLY NAME}.lib.module.js`:
+
+```javascript
+export function beforeWebStart(options) {
+  var progress = document.createElement("progress");
+  progress.id = 'progressBar';
+  progress.ariaLabel = 'Blazor loading…';
+  progress.style = 'position:absolute;top:50%;left:50%;margin-right:-50%;' +
+    'transform:translate(-50%,-50%);';
+  document.body.appendChild(progress);
+}
+
+export function afterWebAssemblyStarted(blazor) {
+  var progress = document.getElementById('progressBar');
+  progress.remove();
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
+Due to a [framework bug in .NET 8 and 9 (`dotnet/aspnetcore` #54049)](https://github.com/dotnet/aspnetcore/issues/54049), the Blazor script must be manually started. If the server app doesn't already start Blazor manually with a WebAssembly (`webAssembly: {...}`) configuration, update the `App` component in the server project with the following.
+
+In `Components/App.razor`, remove the existing Blazor `<script>` tag: 
+
+```diff
+- <script src="_framework/blazor.web.js"></script>
+```
+
+Replace the `<script>` tag with the following markup that starts Blazor manually with a WebAssembly (`webAssembly: {...}`) configuration:
+
+```html
+<script src="_framework/blazor.web.js" autostart="false"></script>
+<script>
+    Blazor.start({
+        webAssembly: {}
+    });
+</script>
+```
+
+If you notice a short delay between the loading indicator removal and the first page render, you can guarantee removal of the indicator after rendering by calling for indicator removal in the `MainLayout` component's [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). For more information and a code example, see [Document an approach for a loading indicator that works with global Interactive WebAssembly without prerendering (`dotnet/AspNetCore.Docs` #35111)](https://github.com/dotnet/AspNetCore.Docs/issues/35111#issuecomment-2778796998).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ### Blazor WebAssembly app loading progress
 
