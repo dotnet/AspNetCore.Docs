@@ -592,9 +592,9 @@ app.MapFallbackToFile("index.html", staticFileOptions);
 
 :::moniker range=">= aspnetcore-7.0"
 
-## Client-side loading progress indicators
+## Client-side loading indicators
 
-A loading progress indicator shows the loading progress of the app to users, indicating that the app is loading normally and that the user should wait until loading is finished.
+A loading indicator shows that the app is loading normally and that the user should wait until loading is finished.
 
 :::moniker-end
 
@@ -635,7 +635,7 @@ If you wish to load styles for the indicator, add them to `<head>` content with 
         </style>
     </HeadContent>
     -->
-    <progress id="progress-bar" aria-label="Content loading…"></progress>
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
 }
 else
 {
@@ -682,7 +682,7 @@ In a component that adopts Interactive WebAssembly rendering, wrap the component
 
 Create a `ContentLoading` component in the `Layout` folder of the `.Client` app that calls <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>:
 
-* When `false`, display a loading progress indicator.
+* When `false`, display a loading indicator.
 * When `true`, render the requested component's content.
 
 If you wish to load styles for the indicator, add them to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
@@ -699,7 +699,7 @@ If you wish to load styles for the indicator, add them to `<head>` content with 
         </style>
     </HeadContent>
     -->
-    <progress id="progress-bar" aria-label="Content loading…"></progress>
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
 }
 else
 {
@@ -728,14 +728,14 @@ In `Layout/MainLayout.razor`:
 
 Add a [JavaScript initializer](#javascript-initializers) to the app. In the following JavaScript module file name example, the `{ASSEMBLY NAME}` placeholder is the assembly name of the server project (for example, `BlazorSample`). The `wwwroot` folder where the module is placed is the `wwwroot` folder in the server-side project, not the `.Client` project.
 
-The following example uses a [`progress`](https://developer.mozilla.org/docs/Web/HTML/Element/progress) indicator that doesn't indicate specific progress as [client-side boot resources are delivered to the client](#load-client-side-boot-resources), but it serves as a general approach for further development if you want the progress indicator to show the actual progress.
+The following example uses a [`progress`](https://developer.mozilla.org/docs/Web/HTML/Element/progress) indicator that doesn't indicate specific progress as [client-side boot resources are delivered to the client](#load-client-side-boot-resources), but it serves as a general approach for further development if you want the progress indicator to show the actual progress of loading the app's boot resources.
 
 `wwwroot/{ASSEMBLY NAME}.lib.module.js`:
 
 ```javascript
 export function beforeWebStart(options) {
   var progress = document.createElement("progress");
-  progress.id = 'progressBar';
+  progress.id = 'loadingIndicator';
   progress.ariaLabel = 'Blazor loading…';
   progress.style = 'position:absolute;top:50%;left:50%;margin-right:-50%;' +
     'transform:translate(-50%,-50%);';
@@ -743,7 +743,7 @@ export function beforeWebStart(options) {
 }
 
 export function afterWebAssemblyStarted(blazor) {
-  var progress = document.getElementById('progressBar');
+  var progress = document.getElementById('loadingIndicator');
   progress.remove();
 }
 ```
@@ -771,7 +771,7 @@ Replace the `<script>` tag with the following markup that starts Blazor manually
 </script>
 ```
 
-If you notice a short delay between the loading indicator removal and the first page render, you can guarantee removal of the indicator after rendering by calling for indicator removal in the `MainLayout` component's [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). For more information and a code example, see [Document an approach for a loading indicator that works with global Interactive WebAssembly without prerendering (`dotnet/AspNetCore.Docs` #35111)](https://github.com/dotnet/AspNetCore.Docs/issues/35111#issuecomment-2778796998).
+If you notice a short delay between the loading indicator removal and the first page render, you can guarantee removal of the indicator after rendering by calling for indicator removal in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) of either the `MainLayout` or `Routes` components. For more information and a code example, see [Document an approach for a loading indicator that works with global Interactive WebAssembly without prerendering (`dotnet/AspNetCore.Docs` #35111)](https://github.com/dotnet/AspNetCore.Docs/issues/35111#issuecomment-2778796998).
 
 :::moniker-end
 

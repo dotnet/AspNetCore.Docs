@@ -840,7 +840,7 @@ Create a loading indicator component with a `Loading` parameter that can display
 ```razor
 @if (Loading)
 {
-    <progress id="progress-bar" aria-label="Content loading…"></progress>
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
 }
 else
 {
@@ -868,7 +868,7 @@ If you wish to load styles for the indicator, add them to `<head>` content with 
             ...
         </style>
     </HeadContent>
-    <progress id="progress-bar" aria-label="Content loading…"></progress>
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
 }
 else
 {
