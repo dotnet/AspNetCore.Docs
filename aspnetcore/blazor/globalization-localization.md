@@ -320,9 +320,13 @@ Prevent Blazor autostart by adding `autostart="false"` to [Blazor's `<script>` t
 
 Add the following `<script>` block after [Blazor's `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script) and before the closing `</body>` tag:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script>
@@ -334,9 +338,15 @@ Blazor Web App:
 </script>
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 Standalone Blazor WebAssembly:
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
 
 ```html
 <script>
@@ -345,6 +355,8 @@ Standalone Blazor WebAssembly:
   });
 </script>
 ```
+
+:::moniker-end
 
 The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
