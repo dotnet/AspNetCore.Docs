@@ -635,7 +635,6 @@ If you wish to load styles for the indicator, add them to `<head>` content with 
         </style>
     </HeadContent>
     -->
-    <div aria-busy="true" aria-describedby="progress-bar" />
     <progress id="progress-bar" aria-label="Content loading…"></progress>
 }
 else
@@ -700,7 +699,6 @@ If you wish to load styles for the indicator, add them to `<head>` content with 
         </style>
     </HeadContent>
     -->
-    <div aria-busy="true" aria-describedby="progress-bar" />
     <progress id="progress-bar" aria-label="Content loading…"></progress>
 }
 else
