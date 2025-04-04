@@ -45,7 +45,7 @@ In this example the IHttpForwarder is registered in DI, injected into the endpoi
 
 The optional transforms show how to copy all request headers except for the `Host`, it's common that the destination requires its own `Host` from the url.
 
-```C#
+```csharp
 using System;
 using System.Diagnostics;
 using System.Net;
@@ -136,7 +136,7 @@ internal class CustomTransformer : HttpTransformer
 
 There are also [extension methods](xref:Microsoft.AspNetCore.Builder.DirectForwardingIEndpointRouteBuilderExtensions) available that simplify the mapping of IHttpForwarder to endpoints.
 
-```C#
+```csharp
 app.MapForwarder("/{**catch-all}", "https://localhost:10000/", requestConfig, transformer, httpClient);
 ```
 

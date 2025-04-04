@@ -11,7 +11,7 @@ In a Minimal API app, there are two different built-in centralized mechanisms to
 
 This section refers to the following Minimal API app to demonstrate ways to handle exceptions. It throws an exception when the endpoint `/exception` is requested:
 
-``` csharp
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -65,7 +65,7 @@ In non-development environments, use the [Exception Handler Middleware](xref:fun
 For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see [Problem Details](#problem-details) section.
 
 
-``` csharp
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -84,7 +84,7 @@ app.Run();
 
 Consider the following Minimal API app.
 
-``` csharp
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -103,7 +103,7 @@ The [`Status Code Pages middleware`](xref:fundamentals/error-handling#sestatusco
 
 For example, the following example changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client for all client and server responses, including routing errors (for example, `404 NOT FOUND`). For more information, see the [Problem Details](#problem-details) section.
 
-``` csharp
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -127,7 +127,7 @@ Minimal API apps can be configured to generate problem details response for all 
 
 The following code configures the app to generate problem details:
 
-``` csharp
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddProblemDetails();
 

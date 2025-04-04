@@ -17,7 +17,7 @@ The reverse proxy can load configuration for routes and clusters from files usin
 
 ## Loading Configuration
 To load the proxy configuration from IConfiguration add the following code in Program.cs:
-```c#
+```csharp
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -42,13 +42,13 @@ Configuration can be modified during the load sequence using [Configuration Filt
 ## Multiple Configuration Sources
 As of 1.1, YARP supports loading the proxy configuration from multiple sources. LoadFromConfig may be called multiple times referencing different IConfiguration sections or may be combine with a different config source like InMemory. Routes can reference clusters from other sources. Note merging partial config from different sources for a given route or cluster is not supported.
 
-```c#
+```csharp
 services.AddReverseProxy()
     .LoadFromConfig(Configuration.GetSection("ReverseProxy1"))
     .LoadFromConfig(Configuration.GetSection("ReverseProxy2"));
 ```
 or
-```c#
+```csharp
 
 services.AddReverseProxy()
     .LoadFromMemory(routes, clusters)
@@ -62,7 +62,7 @@ File-based configuration is dynamically mapped to the types in [Yarp.ReverseProx
 The configuration consists of a named section that you specified above via `Configuration.GetSection("ReverseProxy")`, and contains subsections for routes and clusters.
 
 Example:
-```JSON
+```json
 {
   "ReverseProxy": {
     "Routes": {
@@ -105,7 +105,7 @@ The clusters section is an unordered collection of named clusters. A cluster pri
 For additional fields see [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.ClusterConfig).
 
 ## All config properties
-```JSON
+```json
 {
   // Base URLs the server listens on, must be configured independently of the routes below
   "Urls": "http://localhost:5000;https://localhost:5001",

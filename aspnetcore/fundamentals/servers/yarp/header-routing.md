@@ -33,7 +33,7 @@ Headers are specified in the `Match` section of a proxy route.
 If multiple headers rules are specified on a route then all must match for a route to be taken. OR logic must be implemented either within a header rule or as separate routes.
 
 Configuration:
-```JSON
+```json
 "Routes": {
   "route1" : {
     "ClusterId": "cluster1",
@@ -140,7 +140,7 @@ Configuration:
 ```
 
 Code:
-```C#
+```csharp
 var routes = new[]
 {
     new RouteConfig()

@@ -55,7 +55,7 @@ That's a lot of work to get right each time, including things like serialization
 
 To simplify and improve this code with `HybridCache`, we first need to add the new library `Microsoft.Extensions.Caching.Hybrid`:
 
-``` xml
+```xml
 <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="9.0.0" />
 ```
 

@@ -661,7 +661,7 @@ If the app is using the default conventional route, the value of the `url` varia
 * The route values from the current request, which are called **ambient values**.
 * The values passed to `Url.Action` and substituting those values into the route template:
 
-``` text
+```text
 ambient values: { controller = "UrlGeneration", action = "Source" }
 values passed to Url.Action: { controller = "UrlGeneration", action = "Destination" }
 route template: {controller}/{action}/{id?}
@@ -1501,7 +1501,7 @@ If the app is using the default conventional route, the value of the `url` varia
 * The route values from the current request, which are called **ambient values**.
 * The values passed to `Url.Action` and substituting those values into the route template:
 
-``` text
+```text
 ambient values: { controller = "UrlGeneration", action = "Source" }
 values passed to Url.Action: { controller = "UrlGeneration", action = "Destination" }
 route template: {controller}/{action}/{id?}
