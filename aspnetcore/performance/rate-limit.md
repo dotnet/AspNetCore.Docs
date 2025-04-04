@@ -147,7 +147,7 @@ app.MapRazorComponents<App>()
 
 To set a policy for a single routable Razor component or a folder of components via an `_Imports.razor` file, the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is applied with the policy name. In the following example, the rate limiting policy named "`override`" is applied. The policy replaces any policies currently applied to the endpoint. The global limiter still runs on the endpoint with this attribute applied.
 
-```blazor
+```razor
 @page "/counter"
 @using Microsoft.AspNetCore.RateLimiting
 @attribute [EnableRateLimiting("override")]
