@@ -858,16 +858,18 @@ else
 
 :::moniker range=">= aspnetcore-6.0"
 
-If you wish to load styles for the indicator, add them to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
 
 ```razor
 @if (Loading)
 {
+    <!-- OPTIONAL ...
     <HeadContent>
         <style>
             ...
         </style>
     </HeadContent>
+    -->
     <progress id="loadingIndicator" aria-label="Content loading…"></progress>
 }
 else

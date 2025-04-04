@@ -621,7 +621,7 @@ Create a `ContentLoading` component in the `Layout` folder of the `.Client` app 
 * When `false`, display a loading indicator.
 * When `true`, render the requested component's content.
 
-If you wish to load styles for the indicator, add them to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
 
 `Layout/ContentLoading.razor`:
 
@@ -685,7 +685,7 @@ Create a `ContentLoading` component in the `Layout` folder of the `.Client` app 
 * When `false`, display a loading indicator.
 * When `true`, render the requested component's content.
 
-If you wish to load styles for the indicator, add them to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
 
 `Layout/ContentLoading.razor`:
 
@@ -728,7 +728,7 @@ In `Layout/MainLayout.razor`:
 
 Add a [JavaScript initializer](#javascript-initializers) to the app. In the following JavaScript module file name example, the `{ASSEMBLY NAME}` placeholder is the assembly name of the server project (for example, `BlazorSample`). The `wwwroot` folder where the module is placed is the `wwwroot` folder in the server-side project, not the `.Client` project.
 
-The following example uses a [`progress`](https://developer.mozilla.org/docs/Web/HTML/Element/progress) indicator that doesn't indicate specific progress as [client-side boot resources are delivered to the client](#load-client-side-boot-resources), but it serves as a general approach for further development if you want the progress indicator to show the actual progress of loading the app's boot resources.
+The following example uses a [`progress`](https://developer.mozilla.org/docs/Web/HTML/Element/progress) indicator that doesn't indicate the actual progress of  [delivering client-side boot resources to the client](#load-client-side-boot-resources), but it serves as a general approach for further development if you want the progress indicator to show the actual progress of loading the app's boot resources.
 
 `wwwroot/{ASSEMBLY NAME}.lib.module.js`:
 
