@@ -58,7 +58,7 @@ Transforms can be added to routes either through configuration or programmatical
 Transforms can be configured on [RouteConfig.Transforms](xref:Yarp.ReverseProxy.Configuration.RouteConfig) and can be bound from the `Routes` sections of the config file. These can be modified and reloaded without restarting the proxy. A transform is configured using one or more key-value string pairs.
 
 Here is an example of common transforms:
-```JSON
+```json
 {
   "ReverseProxy": {
     "Routes": {
@@ -130,7 +130,7 @@ The `AddTransforms` callback provides a [TransformBuilderContext](xref:Yarp.Reve
 
 The `TransformBuilderContext` also includes an `IServiceProvider` for access to any needed services.
 
-```C#
+```csharp
 services.AddReverseProxy()
     .LoadFromConfig(_configuration.GetSection("ReverseProxy"))
     .AddTransforms(builderContext =>

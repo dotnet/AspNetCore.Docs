@@ -33,7 +33,7 @@ If no policy is specified, `PowerOfTwoChoices` will be used.
 
 #### File example
 
-```JSON
+```json
 "ReverseProxy": {
   "Clusters": {
     "cluster1": {
@@ -53,7 +53,7 @@ If no policy is specified, `PowerOfTwoChoices` will be used.
 
 #### Code example
 
-```C#
+```csharp
 var clusters = new[]
 {
     new ClusterConfig()
@@ -100,7 +100,7 @@ Select the destination with the least assigned requests. This requires examining
 
 A custom implementation can be provided in DI.
 
-```c#
+```csharp
 // Implement the ILoadBalancingPolicy
 public sealed class LastLoadBalancingPolicy : ILoadBalancingPolicy
 {

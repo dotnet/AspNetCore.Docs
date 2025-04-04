@@ -19,7 +19,7 @@ YARP can proactively monitor destination health by sending periodic probing requ
 There are several cluster-wide configuration settings controlling active health checks that can be set either in the config file or in code. A dedicated health endpoint can also be specified per destination.
 
 #### File example
-```JSON
+```json
 "Clusters": {
   "cluster1": {
     "HealthCheck": {
@@ -49,7 +49,7 @@ There are several cluster-wide configuration settings controlling active health 
 ```
 
 #### Code example
-```C#
+```csharp
 var clusters = new[]
 {
     new ClusterConfig()
@@ -132,7 +132,7 @@ There are 2 main extensibility points in the active health check subsystem.
 
 The below is a simple example of a custom `IActiveHealthCheckPolicy` marking destination as `Healthy`, if a successful response code was returned for a probe, and as `Unhealthy` otherwise.
 
-```C#
+```csharp
 public class FirstUnsuccessfulResponseHealthPolicy : IActiveHealthCheckPolicy
 {
     private readonly IDestinationHealthUpdater _healthUpdater;
@@ -169,13 +169,13 @@ public class FirstUnsuccessfulResponseHealthPolicy : IActiveHealthCheckPolicy
 
 The default `IProbingRequestFactory` uses the same `HttpRequest` configuration as proxy requests, to customize that implement your own `IProbingRequestFactory` and register it in DI like the below.
 
-```C#
+```csharp
 services.AddSingleton<IProbingRequestFactory, CustomProbingRequestFactory>();
 ```
 
 The below is a simple example of a customer `IProbingRequestFactory` concatenating `DestinationConfig.Address` and a fixed health probe path to create the probing request URI.
 
-```C#
+```csharp
 public class CustomProbingRequestFactory : IProbingRequestFactory
 {
     public HttpRequestMessage CreateRequest(ClusterConfig clusterConfig, DestinationConfig destinationConfig)
@@ -196,7 +196,7 @@ There is one important difference from the active health check logic. Once a des
 There are several cluster-wide configuration settings controlling passive health checks that can be set either in the config file or in code.
 
 #### File example
-```JSON
+```json
 "Clusters": {
   "cluster1": {
     "HealthCheck": {
@@ -222,7 +222,7 @@ There are several cluster-wide configuration settings controlling passive health
 ```
 
 #### Code example
-```C#
+```csharp
 var clusters = new[]
 {
     new ClusterConfig()
@@ -252,7 +252,7 @@ Passive health check settings are specified on the cluster level in `Cluster/Hea
 
 Passive health checks require the `PassiveHealthCheckMiddleware` added into the pipeline for them to work. The default `MapReverseProxy(this IEndpointRouteBuilder endpoints)` method does it automatically, but in case of a manual pipeline construction the [UsePassiveHealthChecks](xref:Microsoft.AspNetCore.Builder.AppBuilderHealthExtensions) method must be called to add that middleware as shown in the example below.
 
-```C#
+```csharp
 endpoints.MapReverseProxy(proxyPipeline =>
 {
     proxyPipeline.UseAffinitizedDestinationLookup();
@@ -279,7 +279,7 @@ Global parameters are set via the options mechanism using `TransportFailureRateH
 - `DefaultFailureRateLimit` - default failure rate limit for a destination to be marked as unhealthy that is applied if it's not set on a cluster's metadata. The value is in range `(0,1)`. Default is `0.3` (30%).
 
 Global policy options can be set in code as follows:
-```C#
+```csharp
 services.Configure<TransportFailureRateHealthPolicyOptions>(o =>
 {
     o.DetectionWindowSize = TimeSpan.FromSeconds(30);
@@ -318,7 +318,7 @@ There is one main extensibility point in the passive health check subsystem, the
 
 The below is a simple example of a custom `IPassiveHealthCheckPolicy` marking destination as `Unhealthy` on the first unsuccessful response to a proxied request.
 
-```C#
+```csharp
 public class FirstUnsuccessfulResponseHealthPolicy : IPassiveHealthCheckPolicy
 {
     private static readonly TimeSpan _defaultReactivationPeriod = TimeSpan.FromSeconds(60);
@@ -355,7 +355,7 @@ Destinations health state is used to determine which of them are eligible for re
 
 ### Configuration
 #### File example
-```JSON
+```json
 "Clusters": {
   "cluster1": {    
     "HealthCheck": {
@@ -377,7 +377,7 @@ Destinations health state is used to determine which of them are eligible for re
 ```
 
 #### Code example
-```C#
+```csharp
 var clusters = new[]
 {
     new ClusterConfig()
