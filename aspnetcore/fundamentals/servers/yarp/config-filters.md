@@ -25,7 +25,7 @@ Filters can be used for a variety of purposes such as:
 ## AddConfigFilter
 Configuration filters are registered in the Dependency Injection system using the [AddConfigFilter](xref:Microsoft.Extensions.DependencyInjection.ReverseProxyServiceCollectionExtensions) API. Any number of unique filters can be added and will be applied in the order added.
 
-```C#
+```csharp
 // Load the configuration and register a config filter
 services.AddReverseProxy()
     .LoadFromConfig(_configuration.GetSection("ReverseProxy"))
@@ -39,7 +39,7 @@ Filters are called for each route and cluster each time configuration is loaded 
 
 This example fills in destination addresses from environment variables and sets the route's Order field to 1.
 
-```C#
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;

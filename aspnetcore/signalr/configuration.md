@@ -290,7 +290,7 @@ In the .NET Client, timeout values are specified as `TimeSpan` values.
 
 The following example shows values that are double the default values:
 
-```C#
+```csharp
 var builder = new HubConnectionBuilder()
     .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
     .WithServerTimeout(TimeSpan.FromSeconds(60))

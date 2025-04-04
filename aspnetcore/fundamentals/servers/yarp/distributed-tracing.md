@@ -32,7 +32,7 @@ For example, to monitor the traces with Application Insights, the proxy applicat
 
 `application.csproj`:
 
-``` xml
+```xml
 <ItemGroup>
   <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.0.0-beta.3" />
 </ItemGroup>
@@ -40,7 +40,7 @@ For example, to monitor the traces with Application Insights, the proxy applicat
 
 `Program.cs`:
 
-``` c#
+```csharp
 using Azure.Monitor.OpenTelemetry.AspNetCore;
 using OpenTelemetry.Trace;
 using System.Diagnostics;
@@ -70,7 +70,7 @@ app.Run();
 
 ### Example: OpenTelemetry hosting
 
-``` xml
+```xml
   <ItemGroup>
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
@@ -81,7 +81,7 @@ app.Run();
   </ItemGroup>
 ```
 
-``` csharp
+```csharp
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -136,7 +136,7 @@ YARP will remove any header in [`DistributedContextPropagator.Fields`] so that t
 
 If you do not wish the proxy to actively participate in the trace, and wish to keep all the tracing headers as-is, you may do so by setting `SocketsHttpHandler.ActivityHeadersPropagator` to `null`.
 
-```c#
+```csharp
 services.AddReverseProxy()
     .ConfigureHttpClient((context, handler) => handler.ActivityHeadersPropagator = null);
 ```

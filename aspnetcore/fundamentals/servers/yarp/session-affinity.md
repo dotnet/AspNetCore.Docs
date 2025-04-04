@@ -20,7 +20,7 @@ Session affinity is a mechanism to bind (affinitize) a causally related request 
 Session affinity services are registered in the DI container automatically by `AddReverseProxy()`. The middleware `UseSessionAffinity()` is included by default in the parameterless MapReverseProxy method. If you are customizing the proxy pipeline, place the first middleware **before** adding `UseLoadBalancing()`.
 
 Example:
-```C#
+```csharp
 app.MapReverseProxy(proxyPipeline =>
 {
     proxyPipeline.UseSessionAffinity();
@@ -32,7 +32,7 @@ app.MapReverseProxy(proxyPipeline =>
 
 ### Cluster configuration
 Session affinity is configured per cluster according to the following configuration scheme.
-```JSON
+```json
 "ReverseProxy": {
   "Clusters": {
     "<cluster-name>": {
@@ -59,7 +59,7 @@ Session affinity is configured per cluster according to the following configurat
 
 ### Cookie configuration
 Attributes for configuring the cookie used with the HashCookie, ArrCookie and Cookie policies can be configured using `SessionAffinityCookieConfig`. The properties can be JSON config as show above or in code as shown below:
-```C#
+```csharp
 new ClusterConfig
 {
     ClusterId = "cluster1",

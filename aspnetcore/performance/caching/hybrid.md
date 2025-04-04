@@ -53,13 +53,13 @@ The `key` passed to `GetOrCreateAsync` must uniquely identify the data being cac
 
 Both types of uniqueness are usually ensured by using string concatenation to make a single key string composed of different parts concatenated into one string. For example:
 
-```c#
+```csharp
 cache.GetOrCreateAsync($"/orders/{region}/{orderId}", ...);
 ```
 
 or
 
-```c#
+```csharp
 cache.GetOrCreateAsync($"user_prefs_{userId}", ...);
 ```
 

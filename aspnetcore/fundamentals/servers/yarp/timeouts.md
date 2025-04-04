@@ -27,7 +27,7 @@ Timeouts are specified in a TimeSpan format (HH:MM:SS). Specifying both a Timeou
 Note that request timeouts do not apply when a debugger is attached to the process.
 
 Example:
-```JSON
+```json
 {
   "ReverseProxy": {
     "Routes": {

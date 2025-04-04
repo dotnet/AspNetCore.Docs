@@ -37,7 +37,7 @@ For an in-process deployment when an HTTP/3 connection is established, [`HttpReq
 
 HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the [`alt-svc`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Alt-Svc) header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. IIS doesn't automatically add the `alt-svc` header, it must be added by the application. The following code is a middleware example that adds the `alt-svc` response header.
 
-```C#
+```csharp
 app.Use((context, next) =>
 {
     context.Response.Headers.AltSvc = "h3=\":443\"";
@@ -72,7 +72,7 @@ For an in-process deployment when an HTTP/3 connection is established, [`HttpReq
 
 HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. IIS doesn't automatically add the `alt-svc` header, it must be added by the application. The following code is a middleware example that adds the `alt-svc` response header.
 
-```C#
+```csharp
 app.Use((context, next) =>
 {
     context.Response.Headers.AltSvc = "h3=\":443\"";

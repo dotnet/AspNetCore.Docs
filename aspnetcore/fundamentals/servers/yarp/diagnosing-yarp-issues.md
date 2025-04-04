@@ -114,7 +114,7 @@ The [Metrics sample](https://github.com/microsoft/reverse-proxy/tree/main/sample
 
 To use either of these, create a class implementing a [`Yarp.Telemetry.Consumption` interface](xref:Yarp.Telemetry.Consumption#interfaces), such as <xref:Yarp.Telemetry.Consumption.IForwarderTelemetryConsumer>:
 
-```C#
+```csharp
 public class ForwarderTelemetry : IForwarderTelemetryConsumer
 {
     /// Called before forwarding a request.

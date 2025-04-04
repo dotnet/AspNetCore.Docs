@@ -25,7 +25,7 @@ Add the LettuceEncrypt package dependency:
 ## Configuration
 There are required options for LettuceEncrypt that should be set, see the example of `appsettings.json`:
 
-```JSON
+```json
 {
   "Urls": "http://*:80;https://*:443",
 
@@ -52,7 +52,7 @@ There are required options for LettuceEncrypt that should be set, see the exampl
 
 ## Update Services
 
-```C#
+```csharp
 services.AddLettuceEncrypt();
 ```
 
@@ -64,7 +64,7 @@ If your project is explicitly using kestrel options to configure IP addresses, p
 
 Example:
 
-```C#
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(kestrel =>
 {

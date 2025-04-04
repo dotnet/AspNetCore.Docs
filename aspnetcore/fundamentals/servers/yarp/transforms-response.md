@@ -25,14 +25,14 @@ In code these are implemented as derivations of the abstract classes [ResponseTr
 | ResponseHeadersCopy | true/false | true    | yes      |
 
 Config:
-```JSON
+```json
 { "ResponseHeadersCopy": "false" }
 ```
 Code:
 ```csharp
 routeConfig = routeConfig.WithTransformCopyResponseHeaders(copy: false);
 ```
-```C#
+```csharp
 transformBuilderContext.CopyResponseHeaders = false;
 ```
 
@@ -49,7 +49,7 @@ This sets if all proxy response headers are copied to the client response. This 
 | When           | Success/Always/Failure | Success | no       |
 
 Config:
-```JSON
+```json
 {
   "ResponseHeader": "HeaderName",
   "Append": "value",
@@ -60,7 +60,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformResponseHeader(headerName: "HeaderName", value: "value", append: true, ResponseCondition.Success);
 ```
-```C#
+```csharp
 transformBuilderContext.AddResponseHeader(headerName: "HeaderName", value: "value", append: true, always: ResponseCondition.Success);
 ```
 Example:
@@ -83,7 +83,7 @@ Note: setting "" as a header value is not recommended and can cause an undefined
 | When                 | Success/Always/Failure | Success | no       |
 
 Config:
-```JSON
+```json
 {
   "ResponseHeaderRemove": "HeaderName",
   "When": "Success"
@@ -93,7 +93,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformResponseHeaderRemove(headerName: "HeaderName", ResponseCondition.Success);
 ```
-```C#
+```csharp
 transformBuilderContext.AddResponseHeaderRemove(headerName: "HeaderName", ResponseCondition.Success);
 ```
 Example:
@@ -113,7 +113,7 @@ This removes the named response header.
 | ResponseHeadersAllowed | A semicolon separated list of allowed header names. | yes      |
 
 Config:
-```JSON
+```json
 {
   "ResponseHeadersAllowed": "Header1;header2"
 }
@@ -122,7 +122,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformResponseHeadersAllowed("Header1", "header2");
 ```
-```C#
+```csharp
 transformBuilderContext.AddResponseHeadersAllowed("Header1", "header2");
 ```
 
@@ -148,14 +148,14 @@ Only header1 and header2 are copied from the proxy response.
 | ResponseTrailersCopy | true/false | true    | yes      |
 
 Config:
-```JSON
+```json
 { "ResponseTrailersCopy": "false" }
 ```
 Code:
 ```csharp
 routeConfig = routeConfig.WithTransformCopyResponseTrailers(copy: false);
 ```
-```C#
+```csharp
 transformBuilderContext.CopyResponseTrailers = false;
 ```
 
@@ -172,7 +172,7 @@ This sets if all proxy response trailers are copied to the client response. This
 | When            | Success/Always/Failure | Success | no       |
 
 Config:
-```JSON
+```json
 {
   "ResponseTrailer": "HeaderName",
   "Append": "value",
@@ -183,7 +183,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformResponseTrailer(headerName: "HeaderName", value: "value", append: true, ResponseCondition.Success);
 ```
-```C#
+```csharp
 transformBuilderContext.AddResponseTrailer(headerName: "HeaderName", value: "value", append: true, ResponseCondition.Success);
 ```
 Example:
@@ -205,7 +205,7 @@ ResponseTrailer follows the same structure and guidance as [ResponseHeader](xref
 | When                  | Success/Always/Failure | Success | no       |
 
 Config:
-```JSON
+```json
 {
   "ResponseTrailerRemove": "HeaderName",
   "When": "Success"
@@ -215,7 +215,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformResponseTrailerRemove(headerName: "HeaderName", ResponseCondition.Success);
 ```
-```C#
+```csharp
 transformBuilderContext.AddResponseTrailerRemove(headerName: "HeaderName", ResponseCondition.Success);
 ```
 Example:
@@ -235,7 +235,7 @@ ResponseTrailerRemove follows the same structure and guidance as [ResponseHeader
 | ResponseTrailersAllowed | A semicolon separated list of allowed header names. | yes      |
 
 Config:
-```JSON
+```json
 {
   "ResponseTrailersAllowed": "Header1;header2"
 }
@@ -244,7 +244,7 @@ Code:
 ```csharp
 routeConfig = routeConfig.WithTransformResponseTrailersAllowed("Header1", "header2");
 ```
-```C#
+```csharp
 transformBuilderContext.AddResponseTrailersAllowed("Header1", "header2");
 ```
 

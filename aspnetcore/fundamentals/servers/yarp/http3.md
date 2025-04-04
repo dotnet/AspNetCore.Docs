@@ -20,7 +20,7 @@ YARP 1.1 supports HTTP/3 for inbound and outbound connections using the HTTP/3 s
 ## Set up HTTP/3 on Kestrel
 
 Protocols are required in the listener options:
-```C#
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(kestrel =>
 {
