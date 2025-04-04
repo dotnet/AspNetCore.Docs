@@ -114,7 +114,7 @@ public void ConfigureServices(IServiceCollection services)
 For more information, see the following topics:
 
 * [StackExchange.Redis ConnectionMultiplexer](https://github.com/StackExchange/StackExchange.Redis/blob/main/docs/Basics.md)
-* [Azure Redis Cache](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache#connect-to-the-cache)
+* [Azure Redis Cache](/azure/redis/dotnet-how-to-use-azure-redis-cache)
 * [ASP.NET Core DataProtection samples](https://github.com/dotnet/AspNetCore/tree/2.2.0/src/DataProtection/samples)
 
 ## Registry

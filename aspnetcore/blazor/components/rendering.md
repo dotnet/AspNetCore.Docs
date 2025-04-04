@@ -326,4 +326,4 @@ The state manager approach is similar to the earlier case with <xref:System.Time
 <!-- UPDATE 10.0 Will be removed for a new feature in this area. 
                  Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
 
-A loading progress indicator isn't present in an app created from the Blazor Web App project template. A new loading progress indicator feature is planned for a future release of .NET. In the meantime, an app can adopt custom code to create a loading progress indicator. For more information, see <xref:blazor/fundamentals/startup#client-side-loading-progress-indicators>.
+A loading progress indicator isn't present in an app created from the Blazor Web App project template. A new loading progress indicator feature is planned for a future release of .NET. In the meantime, an app can adopt custom code to create a loading progress indicator. For more information, see <xref:blazor/fundamentals/startup#client-side-loading-indicators>.

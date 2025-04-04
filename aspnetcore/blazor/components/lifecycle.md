@@ -828,6 +828,80 @@ In the following example:
 
 :::moniker-end
 
+To display a loading indicator while the background work is taking place, use the following approach.
+
+Create a loading indicator component with a `Loading` parameter that can display child content in a <xref:Microsoft.AspNetCore.Components.RenderFragment>. For the `Loading` parameter:
+
+* When `true`, display a loading indicator.
+* When `false`, render the component's content (`ChildContent`). For more information, see [Child content render fragments](xref:blazor/components/index#child-content-render-fragments).
+
+`ContentLoading.razor`:
+
+```razor
+@if (Loading)
+{
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public bool Loading { get; set; }
+}
+```
+
+:::moniker range=">= aspnetcore-6.0"
+
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+
+```razor
+@if (Loading)
+{
+    <!-- OPTIONAL ...
+    <HeadContent>
+        <style>
+            ...
+        </style>
+    </HeadContent>
+    -->
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
+}
+else
+{
+    @ChildContent
+}
+
+...
+```
+
+:::moniker-end
+
+Wrap the component's Razor markup with the `ContentLoading` component and pass a value in a C# field to the `Loading` parameter when initialization work is performed by the component:
+
+```razor
+<ContentLoading Loading="@loading">
+    ...
+</ContentLoading>
+
+@code {
+    private bool loading = true;
+    ...
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LongRunningWork().ContinueWith(_ => loading = false);
+    }
+
+    ...
+}
+```
+
 ## Blazor Server reconnection events
 
 The component lifecycle events covered in this article operate separately from [server-side reconnection event handlers](xref:blazor/fundamentals/signalr#reflect-the-server-side-connection-state-in-the-ui). When the SignalR connection to the client is lost, only UI updates are interrupted. UI updates are resumed when the connection is re-established. For more information on circuit handler events and configuration, see <xref:blazor/fundamentals/signalr>.
