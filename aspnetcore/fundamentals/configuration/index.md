@@ -28,7 +28,7 @@ Application configuration in ASP.NET Core is performed using one or more [config
 * Directory files
 * In-memory .NET objects
 
-This article provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
+This article provides information on configuration in ASP.NET Core. For information on using configuration in non-ASP.NET Core apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
 For Blazor configuration guidance, which adds to or supersedes the guidance in this node, see <xref:blazor/fundamentals/configuration>.
 
