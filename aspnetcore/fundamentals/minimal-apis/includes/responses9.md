@@ -1,18 +1,4 @@
----
-title: Create responses in Minimal API applications
-author: brunolins16
-description: Learn how to create responses for minimal APIs in ASP.NET Core.
-ms.author: brolivei
-monikerRange: '>= aspnetcore-7.0'
-ms.date: 02/07/2025
-uid: fundamentals/minimal-apis/responses
----
-
-# How to create responses in Minimal API apps
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 Minimal endpoints support the following types of return values:
 
@@ -264,7 +250,3 @@ As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpRespon
 * <xref:fundamentals/minimal-apis/security>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/responses9.md)]
-
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/responses7-8.md)]
