@@ -58,13 +58,13 @@ This section describes new features for authentication and authorization.
 Metrics have been added for certain authentication and authorization events in ASP.NET Core. With this change, you can now obtain metrics for the following events:
 
 * Authentication:
-  - Authenticated request duration
-  - Challenge count
-  - Forbid count
-  - Sign in count
-  - Sign out count
+  * Authenticated request duration
+  * Challenge count
+  * Forbid count
+  * Sign in count
+  * Sign out count
 * Authorization:
-  - Count of requests requiring authorization
+  * Count of requests requiring authorization
 
 The following image shows an example of the Authenticated request duration metric in the Aspire dashboard:
 

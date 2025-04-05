@@ -44,6 +44,7 @@ HTTP client configuration is based on [HttpClientConfig](xref:Yarp.ReverseProxy.
 ```
 
 Configuration settings:
+
 * SslProtocols - [SSL protocols](/dotnet/api/system.security.authentication.sslprotocols) enabled on the given HTTP client. Protocol names are specified as array of strings. Default value is [None](/dotnet/api/system.security.authentication.sslprotocols#System_Security_Authentication_SslProtocols_None).
 ```json
 "SslProtocols": [
@@ -105,6 +106,7 @@ HTTP request configuration is based on [ForwarderRequestConfig](xref:Yarp.Revers
 ```
 
 Configuration settings:
+
 * ActivityTimeout - how long a request is allowed to remain idle between any operation completing, after which it will be canceled. The default is 100 seconds. The timeout will reset when response headers are received or after successfully reading or writing any request, response, or streaming data like gRPC or WebSockets. TCP keep-alives and HTTP/2 protocol pings will not reset the timeout, but WebSocket pings will.
 * Version - outgoing request [version](/dotnet/api/system.net.http.httprequestmessage.version). The supported values at the moment are `1.0`, `1.1`, `2` and `3`. Default value is 2.
 * VersionPolicy - defines how the final version is selected for the outgoing requests. See [HttpRequestMessage.VersionPolicy](/dotnet/api/system.net.http.httprequestmessage.versionpolicy). The default value is `RequestVersionOrLower`.

@@ -75,6 +75,7 @@ dotnet ef database update
 ```
 
 In  The preceding commands:
+
 * `dotnet tool uninstall --global dotnet-ef` uninstalls the `dotnet-ef` tool. Uninstalling ensures the latest tool is successfully installed. If `dotnet-ef` isn't installed, an error messages **A tool with the package Id 'dotnet-ef' could not be found.** You can ignore this message.
 * `dotnet tool install --global dotnet-ef` installs globally the `dotnet-ef` tool.
 * `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see [Create the initial database schema using EF's migration feature](/aspnet/core/tutorials/razor-pages/model&tabs=visual-studio-code)

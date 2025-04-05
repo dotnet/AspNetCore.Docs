@@ -19,6 +19,7 @@ Some applications only need the ability to take a specific request and forward i
 [IHttpForwarder](xref:Yarp.ReverseProxy.Forwarder.IHttpForwarder) serves as the core proxy adapter between incoming AspNetCore and outgoing System.Net.Http requests. It handles the mechanics of creating a HttpRequestMessage from a HttpContext, sending it, and relaying the response.
 
 IHttpForwarder supports:
+
 * Dynamic destination selection, you specify the destination for each request
 * Http client customization, you provide the HttpMessageInvoker
 * Request and response customization (except bodies)
@@ -26,6 +27,7 @@ IHttpForwarder supports:
 * Error handling
 
 It does not include:
+
 * Routing
 * Load balancing
 * Affinity

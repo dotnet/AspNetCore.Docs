@@ -93,9 +93,10 @@ Active health check settings can also be defined in code via the corresponding t
 
 `Destination` section and [DestinationConfig](xref:Yarp.ReverseProxy.Configuration.DestinationConfig).
 
-* `Health` - A dedicated health probing endpoint such as `http://destination:12345/`. Defaults `null` and falls back to `Destination/Address`.
+`Health`: A dedicated health probing endpoint such as `http://destination:12345/`. Defaults `null` and falls back to `Destination/Address`.
 
 ### Built-in policies
+
 There is currently one built-in active health check policy - `ConsecutiveFailuresHealthPolicy`. It counts consecutive health probe failures and marks a destination as unhealthy once the given threshold is reached. On the first successful response, a destination is marked as healthy and the counter is reset.
 The policy parameters are set in the cluster's metadata as follows:
 
@@ -347,8 +348,8 @@ public class FirstUnsuccessfulResponseHealthPolicy : IPassiveHealthCheckPolicy
 Destinations health state is used to determine which of them are eligible for receiving proxied requests. Each cluster maintains its own list of available destinations on `AvailableDestinations` property of the [ClusterDestinationState](xref:Yarp.ReverseProxy.Model.ClusterDestinationsState) type. That list gets rebuilt when any destination's health state changes. The [IClusterDestinationsUpdater](xref:Yarp.ReverseProxy.Health.IClusterDestinationsUpdater) controls that process and calls an [IAvailableDestinationsPolicy](xref:Yarp.ReverseProxy.Health.IAvailableDestinationsPolicy) configured on the cluster to actually choose the available destinations from the all cluster's destinations. There are the following built-in policies provided and custom ones can be implemented if necessary.
 
 * `HealthyAndUnknown` - Inspects each `DestinationState` and adds it on the available destination list if all of the following statements are TRUE. If no destinations are available then requests will get a 503 error.
-    - Active health checks are disabled on the cluster OR `DestinationHealthState.Active != DestinationHealth.Unhealthy`
-    - Passive health checks are disabled on the cluster OR `DestinationHealthState.Passive != DestinationHealth.Unhealthy`
+    * Active health checks are disabled on the cluster OR `DestinationHealthState.Active != DestinationHealth.Unhealthy`
+    * Passive health checks are disabled on the cluster OR `DestinationHealthState.Passive != DestinationHealth.Unhealthy`
 * `HealthyOrPanic` - Calls `HealthyAndUnknown` policy at first to get the available destinations. If none of them are returned from this call, it marks all cluster's destinations as available. This is the default policy.
 
 **NOTE**: An available destination policy configured on a cluster will be always called regardless of if any health check is enabled on the given cluster. The health state of a disabled health check is set to `Unknown`.

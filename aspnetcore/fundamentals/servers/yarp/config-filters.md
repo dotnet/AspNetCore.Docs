@@ -16,6 +16,7 @@ ai-usage: ai-assisted
 YARP configuration for routes, clusters, and destinations can be loaded from [configuration files](xref:fundamentals/servers/yarp/config-files) or from [configuration providers](xref:fundamentals/servers/yarp/config-providers). Configuration filters can be used to modify that raw input before it's validated and applied.
 
 Filters can be used for a variety of purposes such as:
+
 * Supplementing config fields with data from other sources like the deployment environment
 * Applying system defaults
 * Applying common settings and enforce policies

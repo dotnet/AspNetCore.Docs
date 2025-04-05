@@ -24,6 +24,7 @@ Configuration can be modified during the load sequence using [Configuration Filt
 
 ### Routes
 The routes section is an unordered collection of named routes. A route contains matches and their associated configuration. A route requires at least the following fields:
+
 * RouteId - a unique name
 * ClusterId - refers to the name of an entry in the clusters section.
 * Match - contains either a Hosts array or a Path pattern string. Path is an ASP.NET Core route template that can be defined as [explained here](/aspnet/core/fundamentals/routing#route-templates).
@@ -55,6 +56,7 @@ httpContext.RequestServices.GetRequiredService<InMemoryConfigProvider>().Update(
 
 ### Startup
 The `IProxyConfigProvider` should be registered in the DI container as a singleton. At startup, the proxy will resolve this instance and call `GetConfig()`. On this first call the provider may choose to:
+
 * Throw an exception if the provider cannot produce a valid proxy configuration for any reason. This will prevent the application from starting.
 * Synchronously block while it loads the configuration. This will block the application from starting until valid route data is available.
 * Or, it may choose to return an empty `IProxyConfig` instance while it loads the configuration in the background. The provider will need to trigger the `IChangeToken` when the configuration is available.
@@ -68,12 +70,14 @@ The configuration objects and collections supplied to the proxy should be read-o
 If the `IChangeToken` supports `ActiveChangeCallbacks`, once the proxy has processed the initial set of configurations it will register a callback with this token. If the provider does not support callbacks then `HasChanged` will be polled every 5 minutes.
 
 When the provider wants to provide a new configuration to the proxy it should:
+
 * Load that configuration in the background. 
-  - Route and cluster objects are immutable, so new instances have to be created for any new data.
-  - Objects for unchanged routes and clusters can be re-used, or new instances can be created - changes will be detected by diffing them.
+  * Route and cluster objects are immutable, so new instances have to be created for any new data.
+  * Objects for unchanged routes and clusters can be re-used, or new instances can be created - changes will be detected by diffing them.
 * Optionally validate the configuration using the [IConfigValidator](xref:Yarp.ReverseProxy.Configuration.IConfigValidator), and only then signal the `IChangeToken` from the prior `IProxyConfig` instance that new data is available. The proxy will call `GetConfig()` again to retrieve the new data.
 
 There are important differences when reloading configuration vs the first configuration load.
+
 * The new configuration will be diffed against the current one and only modified routes or clusters will be updated. The update will be applied atomically and will only affect new requests, not requests currently in progress.
 * Any errors in the reload process will be logged and suppressed. The application will continue using the last known good configuration.
 * If `GetConfig()` throws the proxy will be unable to listen for future changes because `IChangeToken`s are single-use.

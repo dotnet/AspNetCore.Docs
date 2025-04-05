@@ -78,7 +78,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
     * Checks if the user is authenticated.
     * Renders a **Sign out** or **Sign in** link as appropriate.
-        - The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
+        * The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
 
 1. In *Pages/Shared/_Layout.cshtml*, add the highlighted line within the `<header>` element:
 

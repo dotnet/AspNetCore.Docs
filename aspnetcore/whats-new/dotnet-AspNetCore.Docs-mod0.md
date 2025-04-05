@@ -96,8 +96,8 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 ### Updated articles
 
 * <xref:host-and-deploy/azure-apps/index>
-  - Revert "refactor azure troubleshooting/1"
-  - Update index.md
+  * Revert "refactor azure troubleshooting/1"
+  * Update index.md
 * <xref:host-and-deploy/iis/index> - Revert "refactor azure troubleshooting/1"
 
 ## Migration
@@ -124,8 +124,8 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 ### Updated articles
 
 * <xref:aspnetcore-9>
-  - Render mode detection, static web asset delivery, dynamic compression
-  - Add three Blazor What's New sections
+  * Render mode detection, static web asset delivery, dynamic compression
+  * Add three Blazor What's New sections
 
 ## Security
 
@@ -140,7 +140,7 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 ### Updated articles
 
 * <xref:test/troubleshoot-azure-iis>
-  - refactor azure troubleshooting/1
+  * refactor azure troubleshooting/1
 
 ## Tutorials
 
@@ -156,8 +156,8 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 * <xref:tutorials/razor-pages/validation> - .NET 9 update: Prep RP tutorial series
 * <xref:tutorials/first-mvc-app/validation> - First MVC: Validation: Clear old null values
 * <xref:tutorials/min-web-api>
-  - v9 Update: Min Web API Tutorial
-  - Prework-Min Web API .NET 9 update
+  * v9 Update: Min Web API Tutorial
+  * Prework-Min Web API .NET 9 update
 * <xref:tutorials/razor-pages/razor-pages-start> - .NET 9 update: Prep RP tutorial series
 
 ## Web API

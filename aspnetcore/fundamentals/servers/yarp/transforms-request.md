@@ -15,6 +15,7 @@ ai-usage: ai-assisted
 Request transforms include the request path, query, HTTP version, method, and headers. In code these are represented by the [RequestTransformContext](xref:Yarp.ReverseProxy.Transforms.RequestTransformContext) object and processed by implementations of the abstract class [RequestTransform](xref:Yarp.ReverseProxy.Transforms.RequestTransform).
 
 Notes:
+
 * The proxy request scheme (http/https), authority, and path base, are taken from the destination server address (`https://localhost:10001/Path/Base` in the example above) and should not be modified by transforms.
 * The Host header can be overridden by transforms independent of the authority, see [RequestHeader](#requestheader) below.
 * The request's original PathBase property is not used when constructing the proxy request, see [X-Forwarded](#x-forwarded).
