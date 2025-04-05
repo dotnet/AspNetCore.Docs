@@ -4,9 +4,7 @@ using System.Runtime.CompilerServices;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", () => Results.Redirect("/json-item"));
-
-
+// <snippet_string>
 app.MapGet("/string-item", (CancellationToken cancellationToken) =>
 {
     async IAsyncEnumerable<string> GetHeartRate(
@@ -22,7 +20,9 @@ app.MapGet("/string-item", (CancellationToken cancellationToken) =>
 
     return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken), eventType: "heartRate");
 });
+// </snippet_string>
 
+// <snippet_json>
 app.MapGet("/json-item", (CancellationToken cancellationToken) =>
 {
     async IAsyncEnumerable<HearRate> GetHeartRate(
@@ -38,7 +38,9 @@ app.MapGet("/json-item", (CancellationToken cancellationToken) =>
 
     return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken), eventType: "heartRate");
 });
+// </snippet_json>
 
+// <snippet_item>
 app.MapGet("sse-item", (CancellationToken cancellationToken) =>
 {
     async IAsyncEnumerable<SseItem<int>> GetHeartRate(
@@ -57,6 +59,8 @@ app.MapGet("sse-item", (CancellationToken cancellationToken) =>
 
     return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken));
 });
+// </snippet_item>
+
 
 app.Run();
 

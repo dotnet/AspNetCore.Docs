@@ -1,4 +1,4 @@
-:::moniker range="= aspnetcore-8.0"
+:::moniker range="= aspnetcore-9.0"
 
 Minimal endpoints support the following types of return values:
 
@@ -110,7 +110,7 @@ In order to document this endpoint correctly the extension method `Produces` is 
 
 ### Built-in results
 
-[!INCLUDE [results-helpers](includes/results-helpers.md)]
+[!INCLUDE [results-helpers](~/fundamentals/minimal-apis/includes/results-helpers.md)]
 
 The following sections demonstrate the usage of the common result helpers.
 
