@@ -228,11 +228,11 @@ The following configuration must be present in the `wwwwoot/index.html` file of 
 </html>
 ```
 
-In the project file (`.csproj`), the `<OverrideHtmlAssetPlaceholders>` property is set to `true`:
+In the project file (`.csproj`), the `<WriteImportMapToHtml>` property is set to `true`:
 
 ```xml
 <PropertyGroup>
-  <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
+  <WriteImportMapToHtml>true</WriteImportMapToHtml>
 </PropertyGroup>
 ```
 

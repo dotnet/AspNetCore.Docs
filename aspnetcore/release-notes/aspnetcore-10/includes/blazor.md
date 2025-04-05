@@ -155,7 +155,7 @@ The following changes must be made in the `wwwwoot/index.html` file to adopt the
 </html>
 ```
 
-In the project file (`.csproj`), add the `<OverrideHtmlAssetPlaceholders>` property set to `true`:
+In the project file (`.csproj`), add the `<WriteImportMapToHtml>` property set to `true`:
 
 ```diff
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
@@ -164,7 +164,7 @@ In the project file (`.csproj`), add the `<OverrideHtmlAssetPlaceholders>` prope
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-+   <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
++   <WriteImportMapToHtml>true</WriteImportMapToHtml>
   </PropertyGroup>
 </Project>
 ```
