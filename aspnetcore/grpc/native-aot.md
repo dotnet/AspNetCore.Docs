@@ -30,7 +30,7 @@ AOT compilation happens when the app is published. Native AOT is enabled with th
 
     [!code-xml[](~/grpc/native-aot/Server.csproj?highlight=5)]
 
-    Native AOT can also be enabled by specifying the `-aot` option with the ASP.NET Core gRPC template:
+    Native AOT can also be enabled by specifying the `--aot` option with the ASP.NET Core gRPC template:
 
     ```dotnetcli
     dotnet new grpc --aot
