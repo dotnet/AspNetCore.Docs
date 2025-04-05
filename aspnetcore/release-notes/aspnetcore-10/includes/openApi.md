@@ -9,8 +9,8 @@ in particular with full support for [JSON Schema draft 2020-12].
 
 Some of the changes you will see in the generated OpenAPI document include:
 
-- Nullable types no longer have the `nullable: true` property in the schema.
-- Instead of a `nullable: true` property, they have a `type` keyword whose value is an array that includes `null` as one of the types.
+* Nullable types no longer have the `nullable: true` property in the schema.
+* Instead of a `nullable: true` property, they have a `type` keyword whose value is an array that includes `null` as one of the types.
 
 With this feature, the default OpenAPI version for generated documents is`3.1`. The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi).
 
@@ -73,7 +73,7 @@ app.MapOpenApi("/openapi/{documentName}.yaml");
 
 Support for:
 
-- YAML is currently only available for the the OpenAPI served from the OpenAPI endpoint.
-- Generating OpenAPI documents in YAML format at build time is added in a future preview.
+* YAML is currently only available for the the OpenAPI served from the OpenAPI endpoint.
+* Generating OpenAPI documents in YAML format at build time is added in a future preview.
 
 See [this PR](https://github.com/dotnet/aspnetcore/pull/58616) which added support for serving the generated OpenAPI document in YAML format.
