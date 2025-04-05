@@ -14,48 +14,48 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 ### Updated articles
 
 * <xref:blazor/components/quickgrid>
-  - QuickGrid display name support
-  - Scaffolding tool doc overhaul with added generators
+  * QuickGrid display name support
+  * Scaffolding tool doc overhaul with added generators
 * <xref:blazor/components/event-handling>
-  - Document reserved event names
-  - Clarify interactive requirement for event handlers in BWAs
+  * Document reserved event names
+  * Clarify interactive requirement for event handlers in BWAs
 * <xref:blazor/file-downloads> - Downloading files with static SSR
 * <xref:blazor/forms/index>
-  - Mitigate overposting attacks
-  - BWA client-side validation requires a circuit
+  * Mitigate overposting attacks
+  * BWA client-side validation requires a circuit
 * <xref:blazor/forms/validation> - BWA client-side validation requires a circuit
 * <xref:blazor/components/render-modes>
-  - Prerendering behavior updates
-  - Interactive SSR RCs in global WASM/Auto projects
-  - Detect the current render mode at runtime
+  * Prerendering behavior updates
+  * Interactive SSR RCs in global WASM/Auto projects
+  * Detect the current render mode at runtime
 * <xref:blazor/fundamentals/signalr> - Blazor Server reconnection coverage
 * <xref:blazor/fundamentals/static-files> - Map Static Assets Blazor-specific coverage
 * <xref:blazor/security/webassembly/additional-scenarios> - Update RemoteAuthenticatorView param value
 * <xref:blazor/hybrid/tutorials/maui-blazor-web-app>
-  - Place code for sample cross-link in MAUI project
-  - Article updates
-  - .NET MAUI BH BWA tutorial updates
-  - Update .NET MAUI BH BWA tutorial
-  - Clarify per-page/component scenario
-  - Patch the Pre5 .NET MAUI Blazor Hybrid BWA coverage (PR 2)
-  - Patch the Pre5 .NET MAUI Blazor Hybrid BWA coverage (PR 1)
-  - New .NET MAUI Blazor Hybrid template
+  * Place code for sample cross-link in MAUI project
+  * Article updates
+  * .NET MAUI BH BWA tutorial updates
+  * Update .NET MAUI BH BWA tutorial
+  * Clarify per-page/component scenario
+  * Patch the Pre5 .NET MAUI Blazor Hybrid BWA coverage (PR 2)
+  * Patch the Pre5 .NET MAUI Blazor Hybrid BWA coverage (PR 1)
+  * New .NET MAUI Blazor Hybrid template
 * <xref:blazor/host-and-deploy/configure-trimmer> - Clarify Blazor trim mode
 * <xref:blazor/debug> - Blazor CLI commands moving to `dotnet watch`
 * <xref:blazor/host-and-deploy/index> - Blazor CLI commands moving to `dotnet watch`
 * <xref:blazor/host-and-deploy/webassembly/index>
-  - Blazor CLI commands moving to `dotnet watch`
-  - Update Apache coverage (drop CentOS mentions)
-  - Fix spacing in Apache configuration example
+  * Blazor CLI commands moving to `dotnet watch`
+  * Update Apache coverage (drop CentOS mentions)
+  * Fix spacing in Apache configuration example
 * <xref:blazor/js-interop/import-export-interop> - Import-Export interop: collocated JS with RCL
 * <xref:blazor/components/integration> - Use 'reconnection UI' for all references
 * <xref:blazor/security/blazor-web-app-oidc> - Interactive SSR RCs in global WASM/Auto projects
 * <xref:blazor/security/index> - Simplified auth state serialization for BWAs
 * <xref:blazor/tooling> - Change Tooling article content layout
 * <xref:blazor/tutorials/signalr-blazor>
-  - Blazor CLI commands moving to `dotnet watch`
-  - Blazor SignalR tutorial updates
-  - Blazor SignalR tutorial refactor
+  * Blazor CLI commands moving to `dotnet watch`
+  * Blazor SignalR tutorial updates
+  * Blazor SignalR tutorial refactor
 
 ## Client-side development
 
