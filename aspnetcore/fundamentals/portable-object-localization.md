@@ -21,9 +21,10 @@ This article walks through the steps for using Portable Object (PO) files in an 
 ## What is a PO file?
 
 PO files are distributed as text files containing the translated strings for a given language. Some advantages of using PO files instead of *.resx* files include:
-- PO files support pluralization; *.resx* files don't support pluralization.
-- PO files aren't compiled like *.resx* files. As such, specialized tooling and build steps aren't required.
-- PO files work well with collaborative online editing tools.
+
+* PO files support pluralization; *.resx* files don't support pluralization.
+* PO files aren't compiled like *.resx* files. As such, specialized tooling and build steps aren't required.
+* PO files work well with collaborative online editing tools.
 
 ### Example
 
@@ -44,15 +45,15 @@ msgstr[1] "Il y a {0} éléments."
 
 This example uses the following syntax:
 
-- `#:`: A comment indicating the context of the string to be translated. The same string might be translated differently depending on where it's being used.
-- `msgid`: The untranslated string.
-- `msgstr`: The translated string.
+* `#:`: A comment indicating the context of the string to be translated. The same string might be translated differently depending on where it's being used.
+* `msgid`: The untranslated string.
+* `msgstr`: The translated string.
 
 For pluralization support, more entries can be defined.
 
-- `msgid_plural`: The untranslated plural string.
-- `msgstr[0]`: The translated string for the case 0.
-- `msgstr[N]`: The translated string for the case N.
+* `msgid_plural`: The untranslated plural string.
+* `msgstr[0]`: The translated string for the case 0.
+* `msgstr[N]`: The translated string for the case N.
 
 The PO file specification can be found [here](https://www.gnu.org/savannah-checkouts/gnu/gettext/manual/html_node/PO-Files.html).
 
@@ -236,9 +237,10 @@ This article walks through the steps for using Portable Object (PO) files in an 
 ## What is a PO file?
 
 PO files are distributed as text files containing the translated strings for a given language. Some advantages of using PO files instead of *.resx* files include:
-- PO files support pluralization; *.resx* files don't support pluralization.
-- PO files aren't compiled like *.resx* files. As such, specialized tooling and build steps aren't required.
-- PO files work well with collaborative online editing tools.
+
+* PO files support pluralization; *.resx* files don't support pluralization.
+* PO files aren't compiled like *.resx* files. As such, specialized tooling and build steps aren't required.
+* PO files work well with collaborative online editing tools.
 
 ### Example
 
@@ -259,15 +261,15 @@ msgstr[1] "Il y a {0} éléments."
 
 This example uses the following syntax:
 
-- `#:`: A comment indicating the context of the string to be translated. The same string might be translated differently depending on where it's being used.
-- `msgid`: The untranslated string.
-- `msgstr`: The translated string.
+* `#:`: A comment indicating the context of the string to be translated. The same string might be translated differently depending on where it's being used.
+* `msgid`: The untranslated string.
+* `msgstr`: The translated string.
 
 In the case of pluralization support, more entries can be defined.
 
-- `msgid_plural`: The untranslated plural string.
-- `msgstr[0]`: The translated string for the case 0.
-- `msgstr[N]`: The translated string for the case N.
+* `msgid_plural`: The untranslated plural string.
+* `msgstr[0]`: The translated string for the case 0.
+* `msgstr[N]`: The translated string for the case N.
 
 The PO file specification can be found [here](https://www.gnu.org/savannah-checkouts/gnu/gettext/manual/html_node/PO-Files.html).
 
@@ -447,9 +449,10 @@ This article walks through the steps for using Portable Object (PO) files in an 
 ## What is a PO file?
 
 PO files are distributed as text files containing the translated strings for a given language. Some advantages of using PO files instead of *.resx* files include:
-- PO files support pluralization; *.resx* files don't support pluralization.
-- PO files aren't compiled like *.resx* files. As such, specialized tooling and build steps aren't required.
-- PO files work well with collaborative online editing tools.
+
+* PO files support pluralization; *.resx* files don't support pluralization.
+* PO files aren't compiled like *.resx* files. As such, specialized tooling and build steps aren't required.
+* PO files work well with collaborative online editing tools.
 
 ### Example
 
@@ -471,15 +474,15 @@ msgstr[1] "Les adresses email sont \"{0}\""
 
 This example uses the following syntax:
 
-- `#:`: A comment indicating the context of the string to be translated. The same string might be translated differently depending on where it's being used.
-- `msgid`: The untranslated string.
-- `msgstr`: The translated string.
+* `#:`: A comment indicating the context of the string to be translated. The same string might be translated differently depending on where it's being used.
+* `msgid`: The untranslated string.
+* `msgstr`: The translated string.
 
 In the case of pluralization support, more entries can be defined.
 
-- `msgid_plural`: The untranslated plural string.
-- `msgstr[0]`: The translated string for the case 0.
-- `msgstr[N]`: The translated string for the case N.
+* `msgid_plural`: The untranslated plural string.
+* `msgstr[0]`: The translated string for the case 0.
+* `msgstr[N]`: The translated string for the case N.
 
 The PO file specification can be found [here](https://www.gnu.org/savannah-checkouts/gnu/gettext/manual/html_node/PO-Files.html).
 

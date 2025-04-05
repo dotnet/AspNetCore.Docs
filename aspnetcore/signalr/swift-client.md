@@ -18,9 +18,9 @@ The SignalR Swift client library is delivered as a Swift package. You can add it
 
 ### Requirements
 
-- Swift **>= 5.10**
-- macOS **>= 11.0**
-- iOS >= 14
+* Swift **>= 5.10**
+* macOS **>= 11.0**
+* iOS >= 14
 
 ### Install with Swift Package Manager
 

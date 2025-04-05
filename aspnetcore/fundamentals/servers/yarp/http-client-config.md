@@ -44,26 +44,27 @@ HTTP client configuration is based on [HttpClientConfig](xref:Yarp.ReverseProxy.
 ```
 
 Configuration settings:
-- SslProtocols - [SSL protocols](/dotnet/api/system.security.authentication.sslprotocols) enabled on the given HTTP client. Protocol names are specified as array of strings. Default value is [None](/dotnet/api/system.security.authentication.sslprotocols#System_Security_Authentication_SslProtocols_None).
+
+* SslProtocols - [SSL protocols](/dotnet/api/system.security.authentication.sslprotocols) enabled on the given HTTP client. Protocol names are specified as array of strings. Default value is [None](/dotnet/api/system.security.authentication.sslprotocols#System_Security_Authentication_SslProtocols_None).
 ```json
 "SslProtocols": [
   "Tls11",
   "Tls12"
 ]
 ```
-- MaxConnectionsPerServer - maximal number of HTTP 1.1 connections open concurrently to the same server. Default value is [int32.MaxValue](/dotnet/api/system.int32.maxvalue).
+* MaxConnectionsPerServer - maximal number of HTTP 1.1 connections open concurrently to the same server. Default value is [int32.MaxValue](/dotnet/api/system.int32.maxvalue).
 ```json
 "MaxConnectionsPerServer": "10"
 ```
-- DangerousAcceptAnyServerCertificate - indicates whether the server's SSL certificate validity is checked by the client. Setting it to `true` completely disables validation. Default value is `false`.
+* DangerousAcceptAnyServerCertificate - indicates whether the server's SSL certificate validity is checked by the client. Setting it to `true` completely disables validation. Default value is `false`.
 ```json
 "DangerousAcceptAnyServerCertificate": "true"
 ```
-- RequestHeaderEncoding - enables other than ASCII encoding for outgoing request headers. Setting this value will leverage [`SocketsHttpHandler.RequestHeaderEncodingSelector`](/dotnet/api/system.net.http.socketshttphandler.requestheaderencodingselector) and use the selected encoding for all headers. The value is then parsed by [`Encoding.GetEncoding`](/dotnet/api/system.text.encoding.getencoding#System_Text_Encoding_GetEncoding_System_String_), use values like: "utf-8", "iso-8859-1", etc.
+* RequestHeaderEncoding - enables other than ASCII encoding for outgoing request headers. Setting this value will leverage [`SocketsHttpHandler.RequestHeaderEncodingSelector`](/dotnet/api/system.net.http.socketshttphandler.requestheaderencodingselector) and use the selected encoding for all headers. The value is then parsed by [`Encoding.GetEncoding`](/dotnet/api/system.text.encoding.getencoding#System_Text_Encoding_GetEncoding_System_String_), use values like: "utf-8", "iso-8859-1", etc.
 ```json
 "RequestHeaderEncoding": "utf-8"
 ```
-- ResponseHeaderEncoding - enables other than ASCII encoding for incoming response headers (from requests that the proxy would forward out). Setting this value will leverage [`SocketsHttpHandler.ResponseHeaderEncodingSelector`](/dotnet/api/system.net.http.socketshttphandler.responseheaderencodingselector) and use the selected encoding for all headers. The value is then parsed by [`Encoding.GetEncoding`](/dotnet/api/system.text.encoding.getencoding#System_Text_Encoding_GetEncoding_System_String_), use values like: "utf-8", "iso-8859-1", etc.
+* ResponseHeaderEncoding - enables other than ASCII encoding for incoming response headers (from requests that the proxy would forward out). Setting this value will leverage [`SocketsHttpHandler.ResponseHeaderEncodingSelector`](/dotnet/api/system.net.http.socketshttphandler.responseheaderencodingselector) and use the selected encoding for all headers. The value is then parsed by [`Encoding.GetEncoding`](/dotnet/api/system.text.encoding.getencoding#System_Text_Encoding_GetEncoding_System_String_), use values like: "utf-8", "iso-8859-1", etc.
 ```json
 "ResponseHeaderEncoding": "utf-8"
 ```
@@ -77,11 +78,11 @@ builder.WebHost.ConfigureKestrel(kestrel =>
     kestrel.ResponseHeaderEncodingSelector = _ => Encoding.Latin1;
 });
 ```
-- EnableMultipleHttp2Connections - enables opening additional HTTP/2 connections to the same server when the maximum number of concurrent streams is reached on all existing connections. The default is `true`. See [SocketsHttpHandler.EnableMultipleHttp2Connections](/dotnet/api/system.net.http.socketshttphandler.enablemultiplehttp2connections)
+* EnableMultipleHttp2Connections - enables opening additional HTTP/2 connections to the same server when the maximum number of concurrent streams is reached on all existing connections. The default is `true`. See [SocketsHttpHandler.EnableMultipleHttp2Connections](/dotnet/api/system.net.http.socketshttphandler.enablemultiplehttp2connections)
 ```json
 "EnableMultipleHttp2Connections": false
 ```
-- WebProxy - Enables sending requests through an outbound HTTP proxy to reach the destinations. See [`SocketsHttpHandler.Proxy`](/dotnet/api/system.net.http.socketshttphandler.proxy) for details.
+* WebProxy - Enables sending requests through an outbound HTTP proxy to reach the destinations. See [`SocketsHttpHandler.Proxy`](/dotnet/api/system.net.http.socketshttphandler.proxy) for details.
   - Address - The url address of the outbound proxy.
   - BypassOnLocal - A bool indicating if requests to local addresses should bypass the outbound proxy.
   - UseDefaultCredentials - A bool indicating if the current application credentials should be use to authenticate to the outbound proxy. ASP.NET Core does not impersonate authenticated users for outbound requests.
@@ -105,10 +106,11 @@ HTTP request configuration is based on [ForwarderRequestConfig](xref:Yarp.Revers
 ```
 
 Configuration settings:
-- ActivityTimeout - how long a request is allowed to remain idle between any operation completing, after which it will be canceled. The default is 100 seconds. The timeout will reset when response headers are received or after successfully reading or writing any request, response, or streaming data like gRPC or WebSockets. TCP keep-alives and HTTP/2 protocol pings will not reset the timeout, but WebSocket pings will.
-- Version - outgoing request [version](/dotnet/api/system.net.http.httprequestmessage.version). The supported values at the moment are `1.0`, `1.1`, `2` and `3`. Default value is 2.
-- VersionPolicy - defines how the final version is selected for the outgoing requests. See [HttpRequestMessage.VersionPolicy](/dotnet/api/system.net.http.httprequestmessage.versionpolicy). The default value is `RequestVersionOrLower`.
-- AllowResponseBuffering - allows to use write buffering when sending a response back to the client, if the server hosting YARP (e.g. IIS) supports it. **NOTE**: enabling it can break SSE (server side event) scenarios.
+
+* ActivityTimeout - how long a request is allowed to remain idle between any operation completing, after which it will be canceled. The default is 100 seconds. The timeout will reset when response headers are received or after successfully reading or writing any request, response, or streaming data like gRPC or WebSockets. TCP keep-alives and HTTP/2 protocol pings will not reset the timeout, but WebSocket pings will.
+* Version - outgoing request [version](/dotnet/api/system.net.http.httprequestmessage.version). The supported values at the moment are `1.0`, `1.1`, `2` and `3`. Default value is 2.
+* VersionPolicy - defines how the final version is selected for the outgoing requests. See [HttpRequestMessage.VersionPolicy](/dotnet/api/system.net.http.httprequestmessage.versionpolicy). The default value is `RequestVersionOrLower`.
+* AllowResponseBuffering - allows to use write buffering when sending a response back to the client, if the server hosting YARP (e.g. IIS) supports it. **NOTE**: enabling it can break SSE (server side event) scenarios.
 
 
 ## Configuration example

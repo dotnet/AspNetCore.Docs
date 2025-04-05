@@ -33,9 +33,9 @@ To launch the interactive tool, run `dotnet scaffold`. The UI changes as more fe
 
 To navigate the UI, use the:
 
-- Up and down arrow keys to navigate the menu items.
-- Enter key to select the highlighted menu item.
-- Select and enter **Back** to return to the previous menu.
+* Up and down arrow keys to navigate the menu items.
+* Enter key to select the highlighted menu item.
+* Select and enter **Back** to return to the previous menu.
 
 ## Create and scaffold a data model in a Razor Pages project
 
@@ -59,11 +59,11 @@ If you have any problems with the following steps, see [Tutorial: Create a Razor
 
   The `dotnet scaffold` tool makes the following changes to the project files:
 
-- A package reference is added for Entity Framework.
-- `Program.cs` is updated to initialize the database connection.
-- `appsettings.json` is updated with connection information.
-- `ContactDbContext.cs` is created and added to the project root directory.
-- Razor Pages for CRUD operations are added to the Pages folder.
+* A package reference is added for Entity Framework.
+* `Program.cs` is updated to initialize the database connection.
+* `appsettings.json` is updated with connection information.
+* `ContactDbContext.cs` is created and added to the project root directory.
+* Razor Pages for CRUD operations are added to the Pages folder.
 
 The content has been generated but the database isn't initialized. Run the following commands to initialize the DB.
 
@@ -75,10 +75,11 @@ dotnet ef database update
 ```
 
 In  The preceding commands:
-- `dotnet tool uninstall --global dotnet-ef` uninstalls the `dotnet-ef` tool. Uninstalling ensures the latest tool is successfully installed. If `dotnet-ef` isn't installed, an error messages **A tool with the package Id 'dotnet-ef' could not be found.** You can ignore this message.
-- `dotnet tool install --global dotnet-ef` installs globally the `dotnet-ef` tool.
-- `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see [Create the initial database schema using EF's migration feature](/aspnet/core/tutorials/razor-pages/model&tabs=visual-studio-code)
-- `dotnet ef database update` applies the migrations to the database.
+
+* `dotnet tool uninstall --global dotnet-ef` uninstalls the `dotnet-ef` tool. Uninstalling ensures the latest tool is successfully installed. If `dotnet-ef` isn't installed, an error messages **A tool with the package Id 'dotnet-ef' could not be found.** You can ignore this message.
+* `dotnet tool install --global dotnet-ef` installs globally the `dotnet-ef` tool.
+* `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see [Create the initial database schema using EF's migration feature](/aspnet/core/tutorials/razor-pages/model&tabs=visual-studio-code)
+* `dotnet ef database update` applies the migrations to the database.
 
 Run the app:
 
@@ -91,7 +92,7 @@ Run the app:
 
 ## Additional resources
 
-- [dotnet scaffold repo on GitHub](https://github.com/dotnet/Scaffolding)
-- [How to manage .NET tools](/dotnet/core/tools/global-tools)
-- [Microsoft.dotnet-scaffold](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) NuGet package.
-- [Detailed tutorial on EF scaffolding Razor Pages](/aspnet/core/data/scaffold_rp)
+* [dotnet scaffold repo on GitHub](https://github.com/dotnet/Scaffolding)
+* [How to manage .NET tools](/dotnet/core/tools/global-tools)
+* [Microsoft.dotnet-scaffold](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) NuGet package.
+* [Detailed tutorial on EF scaffolding Razor Pages](/aspnet/core/data/scaffold_rp)
