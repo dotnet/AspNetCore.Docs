@@ -23,8 +23,8 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/dotnet).
-- .NET SDK. [Install the latest .NET SDK](https://dotnet.microsoft.com/download/dotnet) for your platform.
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/dotnet).
+* .NET SDK. [Install the latest .NET SDK](https://dotnet.microsoft.com/download/dotnet) for your platform.
 
 ## Preparation
 
@@ -53,8 +53,8 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     
     In the preceding:
 
-    - `Microsoft.Identity.Web` includes the basic set of dependencies for authenticating with the Microsoft identity platform.
-    - `Microsoft.Identity.Web.UI` includes UI functionality encapsulated in an area named `MicrosoftIdentity`.
+    * `Microsoft.Identity.Web` includes the basic set of dependencies for authenticating with the Microsoft identity platform.
+    * `Microsoft.Identity.Web.UI` includes UI functionality encapsulated in an area named `MicrosoftIdentity`.
 
 1. Add an `AzureADB2C` object to `appsettings.json`.
 
@@ -63,12 +63,12 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
     :::code language="json" source="azure-ad-b2c/sample/appsettings-b2c-userflow.json" highlight="2-17":::
 
-    - For **Domain**, use the domain of your Azure AD B2C tenant.
-    - For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
-    - For **Instance**, use the domain of your Azure AD B2C tenant.
-    - For **SignUpSignInPolicyId**, use the user flow policy defined in the Azure B2C tenant
-	- Use either the **ClientSecret** or the **ClientCertificates** configuration. ClientCertificates are recommended.
-    - Leave all other values as they are.
+    * For **Domain**, use the domain of your Azure AD B2C tenant.
+    * For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
+    * For **Instance**, use the domain of your Azure AD B2C tenant.
+    * For **SignUpSignInPolicyId**, use the user flow policy defined in the Azure B2C tenant
+	* Use either the **ClientSecret** or the **ClientCertificates** configuration. ClientCertificates are recommended.
+    * Leave all other values as they are.
 	
 1. In *Pages/Shared*, create a file named `_LoginPartial.cshtml`. Include the following code:
 
@@ -76,9 +76,9 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
     The preceding code:
 
-    - Checks if the user is authenticated.
-    - Renders a **Sign out** or **Sign in** link as appropriate.
-        - The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
+    * Checks if the user is authenticated.
+    * Renders a **Sign out** or **Sign in** link as appropriate.
+        * The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
 
 1. In *Pages/Shared/_Layout.cshtml*, add the highlighted line within the `<header>` element:
 
@@ -100,10 +100,10 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
         In the preceding code:
 
-        - Calls to the `AddAuthentication` and `AddMicrosoftIdentityWebApp` methods configure the app to use Open ID Connect, specifically configured for the Microsoft identity platform.
-        - `AddAuthorization` initializes ASP.NET Core authorization.
-        - The `AddRazorPages` call configures the app so anonymous browsers can view the Index page. All other requests require authentication.
-        - `AddMvcOptions` and `AddMicrosoftIdentityUI` add the required UI components for redirecting to/from Azure AD B2C.
+        * Calls to the `AddAuthentication` and `AddMicrosoftIdentityWebApp` methods configure the app to use Open ID Connect, specifically configured for the Microsoft identity platform.
+        * `AddAuthorization` initializes ASP.NET Core authorization.
+        * The `AddRazorPages` call configures the app so anonymous browsers can view the Index page. All other requests require authentication.
+        * `AddMvcOptions` and `AddMicrosoftIdentityUI` add the required UI components for redirecting to/from Azure AD B2C.
     
     1. Update the highlighted line to the `Configure` method:
         
@@ -122,12 +122,12 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     ```
 
 1. Browse to the app's secure endpoint, for example, `https://localhost:5001/`.
-    - The Index page renders with no authentication challenge.
-    - The header includes a **Sign in** link because you're not authenticated.
+    * The Index page renders with no authentication challenge.
+    * The header includes a **Sign in** link because you're not authenticated.
 
 1. Select the **Privacy** link.
-    - The browser is redirected to your tenant's configured authentication method.
-    - After signing in, the header displays a welcome message and a **Sign out** link.
+    * The browser is redirected to your tenant's configured authentication method.
+    * After signing in, the header displays a welcome message and a **Sign out** link.
 
 ## Next steps
 

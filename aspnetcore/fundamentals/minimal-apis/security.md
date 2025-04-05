@@ -51,8 +51,8 @@ In some cases, such as controlling middleware order, it's necessary to explicitl
 
 Authentication strategies typically support a variety of configurations that are loaded via options. Minimal apps support loading options from configuration for the following authentication strategies:
 
-- [JWT bearer-based](https://jwt.io/introduction)
-- [OpenID Connection-based](https://openid.net/developers/how-connect-works/)
+* [JWT bearer-based](https://jwt.io/introduction)
+* [OpenID Connection-based](https://openid.net/developers/how-connect-works/)
 
 The ASP.NET Core framework expects to find these options under the `Authentication:Schemes:{SchemeName}` section in [configuration](/aspnet/core/fundamentals/configuration). In the following sample, two different schemes, `Bearer` and `LocalAuthIssuer`, are defined with their respective options. The `Authentication:DefaultScheme` option can be used to configure the default authentication strategy that's used.
 
@@ -102,13 +102,13 @@ Configuring authorization requirements on a resource is a two-step process that 
 
 In the following code, <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> is invoked which:
 
-- Adds authorization-related services to the DI container.
-- Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> that can be used to directly register authorization policies.
+* Adds authorization-related services to the DI container.
+* Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> that can be used to directly register authorization policies.
 
 The code creates a new authorization policy, named `admin_greetings`, that encapsulates two authorization requirements:
 
-- A role-based requirement via <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> for users with an `admin` role.
-- A claim-based requirement via <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireClaim%2A> that the user must provide a `greetings_api` scope claim.
+* A role-based requirement via <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> for users with an `admin` role.
+* A claim-based requirement via <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireClaim%2A> that the user must provide a `greetings_api` scope claim.
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint.
 

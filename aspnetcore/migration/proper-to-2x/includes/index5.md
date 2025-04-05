@@ -32,9 +32,9 @@ When the metapackage is used, no packages referenced in the metapackage are depl
 
 The `.csproj` file format has been simplified in ASP.NET Core. Some notable changes include:
 
-- Explicit inclusion of files isn't necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
-- There are no GUID-based references to other projects, which improves file readability.
-- The file can be edited without unloading it in Visual Studio:
+* Explicit inclusion of files isn't necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
+* There are no GUID-based references to other projects, which improves file readability.
+* The file can be edited without unloading it in Visual Studio:
 
     ![Edit CSPROJ context menu option in Visual Studio 2017](~/migration/proper-to-2x/_static/EditProjectVs2017.png)]
 
@@ -56,10 +56,10 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 
 `Startup` must include a `Configure` method. In `Configure`, add the necessary middleware to the pipeline. In the following example (from the default web site template), extension methods configure the pipeline with support for:
 
-- Error pages
-- HTTP Strict Transport Security
-- HTTP redirection to HTTPS
-- ASP.NET Core MVC
+* Error pages
+* HTTP Strict Transport Security
+* HTTP redirection to HTTPS
+* ASP.NET Core MVC
 
 [!code-csharp[](~/migration/proper-to-2x/samples/startup.cs)]
 
@@ -195,5 +195,6 @@ For apps that post JSON information to controllers and use JSON Input Formatters
 
 ## Additional resources
 
-- [Porting Libraries to .NET Core](/dotnet/core/porting/libraries)
+* [Porting Libraries to .NET Core](/dotnet/core/porting/libraries)
+
 :::moniker-end

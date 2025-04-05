@@ -516,9 +516,10 @@ public record Todo(
 In a class, struct, or record, properties with the [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) attribute or [required](/dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier) modifier are always `required` in the corresponding schema.
 
 Other properties may also be required based on the constructors (implicit and explicit) for the class, struct, or record.
-- For a class or record class with a single public constructor, any property with the same type and name (case-insensitive match) as a parameter to the constructor is required in the corresponding schema.
-- For a class or record class with multiple public constructors, no other properties are required.
-- For a struct or record struct, no other properties are required since C# always defines an implicit parameterless constructor for a struct.
+
+* For a class or record class with a single public constructor, any property with the same type and name (case-insensitive match) as a parameter to the constructor is required in the corresponding schema.
+* For a class or record class with multiple public constructors, no other properties are required.
+* For a struct or record struct, no other properties are required since C# always defines an implicit parameterless constructor for a struct.
 
 #### enum
 
