@@ -29,9 +29,9 @@ Azure Application Insights provides multiple ways to give insights on monitored 
 * [Azure Metrics Explorer](/azure/azure-monitor/platform/metrics-getting-started) is a component of the Microsoft Azure portal that allows plotting charts, visually correlating trends, and investigating spikes and dips in metrics' values.
 * [Performance blade in Application Insights portal](/azure/application-insights/app-insights-tutorial-performance):
 
-  - Shows performance details for different operations in the monitored app.
-  - Allows drilling into a single operation to check all parts/dependencies that contribute to a long duration.
-  - Profiler can be invoked from here to collect performance traces on-demand.
+  * Shows performance details for different operations in the monitored app.
+  * Allows drilling into a single operation to check all parts/dependencies that contribute to a long duration.
+  * Profiler can be invoked from here to collect performance traces on-demand.
 
 * [Azure Application Insights Profiler](/azure/azure-monitor/app/profiler) allows regular and on-demand profiling of .NET apps.  Azure portal shows captured performance traces with call stacks and hot paths. The trace files can also be downloaded for deeper analysis using PerfView.
 
