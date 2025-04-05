@@ -23,8 +23,8 @@ The adapters are backed by <xref:Microsoft.AspNetCore.Http.HttpContext> which ca
 
 There are two ways to convert an <xref:Microsoft.AspNetCore.Http.HttpContext> to a <xref:System.Web.HttpContext>:
 
-- Implicit casting
-- Constructor usage
+* Implicit casting
+* Constructor usage
 
 **Recommendation**: For the most cases, implicit casting should be preferred as this will cache the created instance and ensure only a single <xref:System.Web.HttpContext> per request.
 

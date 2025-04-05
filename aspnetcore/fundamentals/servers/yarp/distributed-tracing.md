@@ -21,8 +21,8 @@ As an ASP.NET Core component, YARP can easily integrate into different tracing s
 YARP supports distributed tracing using Open Telemetry (OTEL). When a request comes in, and there is a listener for Activities, then ASP.NET Core will propagate the [Trace Context](https://www.w3.org/TR/trace-context) trace-id, or create one if necessary, and create new spans/activities for the work performed.
 In addition YARP can create activities for:
 
-- Forwarding Requests
-- Active health checks for clusters
+* Forwarding Requests
+* Active health checks for clusters
 
 These will only be created if there is a listener for the [`ActivitySource`](/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs#activitysource) named `Yarp.ReverseProxy`.
 
