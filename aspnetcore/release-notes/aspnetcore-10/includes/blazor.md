@@ -197,7 +197,7 @@ The following example sets the app's environment to `Staging`:
 <WasmApplicationEnvironmentName>Staging</WasmApplicationEnvironmentName>
 ```
 
-As usual, the default environments are:
+The default environments are:
 
 * `Development` for build.
 * `Production` for publish.
