@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:5293
+@baseUrl = http://localhost:58489
 
 ### Connect to SSE stream
 # This request will open an SSE connection that stays open
