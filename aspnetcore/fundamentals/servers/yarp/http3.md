@@ -14,8 +14,9 @@ ai-usage: ai-assisted
 
 ## Introduction
 YARP 1.1 supports HTTP/3 for inbound and outbound connections using the HTTP/3 support in .NET 7. To enable the HTTP/3 protocol in YARP you need to:
-- Configure inbound connections in Kestrel
-- Configure outbound connections in HttpClient 
+
+* Configure inbound connections in Kestrel
+* Configure outbound connections in HttpClient 
 
 ## Set up HTTP/3 on Kestrel
 

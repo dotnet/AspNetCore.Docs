@@ -23,12 +23,12 @@ For an introduction to rate limiting, see [Rate limiting middleware](https://blo
 
 Rate limiting can be used for managing the flow of incoming requests to an app. Key reasons to implement rate limiting:
 
-- **Preventing Abuse**: Rate limiting helps protect an app from abuse by limiting the number of requests a user or client can make in a given time period. This is particularly important for public APIs.
-- **Ensuring Fair Usage**: By setting limits, all users have fair access to resources, preventing  users from monopolizing the system.
-- **Protecting Resources**: Rate limiting helps prevent server overload by controlling the number of requests that can be processed, thus protecting the backend resources from being overwhelmed.
-- **Enhancing Security**: It can mitigate the risk of Denial of Service (DoS) attacks by limiting the rate at which requests are processed, making it harder for attackers to flood a system.
-- **Improving Performance**: By controlling the rate of incoming requests, optimal performance and responsiveness of an app can be maintained, ensuring a better user experience.
-- **Cost Management**: For services that incur costs based on usage, rate limiting can help manage and predict expenses by controlling the volume of requests processed.
+* **Preventing Abuse**: Rate limiting helps protect an app from abuse by limiting the number of requests a user or client can make in a given time period. This is particularly important for public APIs.
+* **Ensuring Fair Usage**: By setting limits, all users have fair access to resources, preventing  users from monopolizing the system.
+* **Protecting Resources**: Rate limiting helps prevent server overload by controlling the number of requests that can be processed, thus protecting the backend resources from being overwhelmed.
+* **Enhancing Security**: It can mitigate the risk of Denial of Service (DoS) attacks by limiting the rate at which requests are processed, making it harder for attackers to flood a system.
+* **Improving Performance**: By controlling the rate of incoming requests, optimal performance and responsiveness of an app can be maintained, ensuring a better user experience.
+* **Cost Management**: For services that incur costs based on usage, rate limiting can help manage and predict expenses by controlling the volume of requests processed.
 
 Implementing rate limiting in an ASP.NET Core app can help maintain stability, security, and performance, ensuring a reliable and efficient service for all users.
 
@@ -38,11 +38,11 @@ While rate limiting can help mitigate the risk of Denial of Service (DoS) attack
 
 For robust DDoS protection, consider using a commercial DDoS protection service. These services offer advanced features such as:
 
-- **Traffic Analysis**: Continuous monitoring and analysis of incoming traffic to detect and mitigate DDoS attacks in real-time.
-- **Scalability**: The ability to handle large-scale attacks by distributing traffic across multiple servers and data centers.
-- **Automated Mitigation**: Automated response mechanisms to quickly block malicious traffic without manual intervention.
-- **Global Network**: A global network of servers to absorb and mitigate attacks closer to the source.
-- **Constant Updates**: Commercial services continuously track and update their protection mechanisms to adapt to new and evolving threats.
+* **Traffic Analysis**: Continuous monitoring and analysis of incoming traffic to detect and mitigate DDoS attacks in real-time.
+* **Scalability**: The ability to handle large-scale attacks by distributing traffic across multiple servers and data centers.
+* **Automated Mitigation**: Automated response mechanisms to quickly block malicious traffic without manual intervention.
+* **Global Network**: A global network of servers to absorb and mitigate attacks closer to the source.
+* **Constant Updates**: Commercial services continuously track and update their protection mechanisms to adapt to new and evolving threats.
 
 When using a cloud hosting service, DDoS protection is usually available as part of the hosting solution, such as [Azure Web Application Firewall](https://azure.microsoft.com/products/web-application-firewall/), [AWS Shield](https://aws.amazon.com/shield/) or [Google Cloud Armor](https://cloud.google.com/armor/docs). Dedicated protections are available as Web Application Firewalls (WAF) or as part of a CDN solution such as [Cloudflare](https://www.cloudflare.com/ddos/) or [Akamai Kona Site Defender](https://www.akamai.com/us/en/products/security/kona-site-defender.jsp)
 
@@ -281,10 +281,11 @@ The following code uses the concurrency limiter:
 Rate limiting partitions divide the traffic into separate "buckets" that each get their own rate limit counters. This allows for more granular control than a single global counter. The partition "buckets" are defined by different keys (like user ID, IP address, or API key).
 
 ### Benefits of Partitioning
-- **Fairness**: One user can't consume the entire rate limit for everyone
-- **Granularity**: Different limits for different users/resources
-- **Security**: Better protection against targeted abuse
-- **Tiered Service**: Support for service tiers with different limits
+
+* **Fairness**: One user can't consume the entire rate limit for everyone
+* **Granularity**: Different limits for different users/resources
+* **Security**: Better protection against targeted abuse
+* **Tiered Service**: Support for service tiers with different limits
 
 Partitioned rate limiting gives you fine-grained control over how you manage API traffic while ensuring fair resource allocation.
 

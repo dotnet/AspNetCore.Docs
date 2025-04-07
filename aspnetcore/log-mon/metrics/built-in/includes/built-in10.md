@@ -9,8 +9,8 @@ See [Using ASP.NET Core metrics](xref:log-mon/metrics/metrics) for information a
 
 The `Microsoft.AspNetCore.Hosting` metrics report high-level information about HTTP requests received by ASP.NET Core:
 
-- [`http.server.request.duration`](#metric-httpserverrequestduration)
-- [`http.server.active_requests`](#metric-httpserveractive_requests)
+* [`http.server.request.duration`](#metric-httpserverrequestduration)
+* [`http.server.active_requests`](#metric-httpserveractive_requests)
 
 #### Metric: `http.server.request.duration`
 
@@ -30,14 +30,14 @@ The `Microsoft.AspNetCore.Hosting` metrics report high-level information about H
 
 The time used to handle an inbound HTTP request as measured at the hosting layer of ASP.NET Core. The time measurement starts once the underlying web host has:
 
-- Sufficiently parsed the HTTP request headers on the inbound network stream to identify the new request.
-- Initialized the context data structures such as the <xref:Microsoft.AspNetCore.Http.HttpContext>.
+* Sufficiently parsed the HTTP request headers on the inbound network stream to identify the new request.
+* Initialized the context data structures such as the <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
 The time ends when:
 
-- The ASP.NET Core handler pipeline is finished executing.
-- All response data has been sent.
-- The context data structures for the request are being disposed.
+* The ASP.NET Core handler pipeline is finished executing.
+* All response data has been sent.
+* The context data structures for the request are being disposed.
 
 When using OpenTelemetry, the default buckets for this metric are set to [ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ].
 
@@ -58,7 +58,7 @@ When using OpenTelemetry, the default buckets for this metric are set to [ 0.005
 
 The `Microsoft.AspNetCore.Routing` metrics report information about [routing HTTP requests](/aspnet/core/fundamentals/routing) to ASP.NET Core endpoints:
 
-- [`aspnetcore.routing.match_attempts`](#metric-aspnetcoreroutingmatch_attempts)
+* [`aspnetcore.routing.match_attempts`](#metric-aspnetcoreroutingmatch_attempts)
 
 #### Metric: `aspnetcore.routing.match_attempts`
 
@@ -78,7 +78,7 @@ The `Microsoft.AspNetCore.Routing` metrics report information about [routing HTT
 
 The `Microsoft.AspNetCore.Diagnostics` metrics report diagnostics information from [ASP.NET Core error handling middleware](/aspnet/core/fundamentals/error-handling):
 
-- [`aspnetcore.diagnostics.exceptions`](#metric-aspnetcorediagnosticsexceptions)
+* [`aspnetcore.diagnostics.exceptions`](#metric-aspnetcorediagnosticsexceptions)
 
 #### Metric: `aspnetcore.diagnostics.exceptions`
 
@@ -98,11 +98,11 @@ The `Microsoft.AspNetCore.Diagnostics` metrics report diagnostics information fr
 
 The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information from [ASP.NET Core rate-limiting middleware](/aspnet/core/performance/rate-limit):
 
-- [`aspnetcore.rate_limiting.active_request_leases`](#metric-aspnetcorerate_limitingactive_request_leases)
-- [`aspnetcore.rate_limiting.request_lease.duration`](#metric-aspnetcorerate_limitingrequest_leaseduration)
-- [`aspnetcore.rate_limiting.queued_requests`](#metric-aspnetcorerate_limitingqueued_requests)
-- [`aspnetcore.rate_limiting.request.time_in_queue`](#metric-aspnetcorerate_limitingrequesttime_in_queue)
-- [`aspnetcore.rate_limiting.requests`](#metric-aspnetcorerate_limitingrequests)
+* [`aspnetcore.rate_limiting.active_request_leases`](#metric-aspnetcorerate_limitingactive_request_leases)
+* [`aspnetcore.rate_limiting.request_lease.duration`](#metric-aspnetcorerate_limitingrequest_leaseduration)
+* [`aspnetcore.rate_limiting.queued_requests`](#metric-aspnetcorerate_limitingqueued_requests)
+* [`aspnetcore.rate_limiting.request.time_in_queue`](#metric-aspnetcorerate_limitingrequesttime_in_queue)
+* [`aspnetcore.rate_limiting.requests`](#metric-aspnetcorerate_limitingrequests)
 
 #### Metric: `aspnetcore.rate_limiting.active_request_leases`
 
@@ -170,8 +170,8 @@ The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information
 
 The `Microsoft.AspNetCore.HeaderParsing` metrics report information about [ASP.NET Core header parsing](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderParsing):
 
-- [`aspnetcore.header_parsing.parse_errors`](#metric-aspnetcoreheader_parsingparse_errors)
-- [`aspnetcore.header_parsing.cache_accesses`](#metric-aspnetcoreheader_parsingcache_accesses)
+* [`aspnetcore.header_parsing.parse_errors`](#metric-aspnetcoreheader_parsingparse_errors)
+* [`aspnetcore.header_parsing.cache_accesses`](#metric-aspnetcoreheader_parsingcache_accesses)
 
 #### Metric: `aspnetcore.header_parsing.parse_errors`
 
@@ -205,14 +205,14 @@ The metric is emitted only for HTTP request header parsers that support caching.
 
 The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection information from [ASP.NET Core Kestrel web server](/aspnet/core/fundamentals/servers/kestrel):
 
-- [`kestrel.active_connections`](#metric-kestrelactive_connections)
-- [`kestrel.connection.duration`](#metric-kestrelconnectionduration)
-- [`kestrel.rejected_connections`](#metric-kestrelrejected_connections)
-- [`kestrel.queued_connections`](#metric-kestrelqueued_connections)
-- [`kestrel.queued_requests`](#metric-kestrelqueued_requests)
-- [`kestrel.upgraded_connections`](#metric-kestrelupgraded_connections)
-- [`kestrel.tls_handshake.duration`](#metric-kestreltls_handshakeduration)
-- [`kestrel.active_tls_handshakes`](#metric-kestrelactive_tls_handshakes)
+* [`kestrel.active_connections`](#metric-kestrelactive_connections)
+* [`kestrel.connection.duration`](#metric-kestrelconnectionduration)
+* [`kestrel.rejected_connections`](#metric-kestrelrejected_connections)
+* [`kestrel.queued_connections`](#metric-kestrelqueued_connections)
+* [`kestrel.queued_requests`](#metric-kestrelqueued_requests)
+* [`kestrel.upgraded_connections`](#metric-kestrelupgraded_connections)
+* [`kestrel.tls_handshake.duration`](#metric-kestreltls_handshakeduration)
+* [`kestrel.active_tls_handshakes`](#metric-kestrelactive_tls_handshakes)
 
 #### Metric: `kestrel.active_connections`
 
@@ -354,8 +354,8 @@ When using OpenTelemetry, the default buckets for this metic are set to [ 0.005,
 
 The `Microsoft.AspNetCore.Http.Connections` metrics report connection information from [ASP.NET Core SignalR](/aspnet/core/signalr/introduction):
 
-- [`signalr.server.connection.duration`](#metric-signalrserverconnectionduration)
-- [`signalr.server.active_connections`](#metric-signalrserveractive_connections)
+* [`signalr.server.connection.duration`](#metric-signalrserverconnectionduration)
+* [`signalr.server.active_connections`](#metric-signalrserveractive_connections)
 
 #### Metric: `signalr.server.connection.duration`
 

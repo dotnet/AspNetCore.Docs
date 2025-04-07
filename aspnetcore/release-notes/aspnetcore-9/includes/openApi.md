@@ -4,8 +4,8 @@ The [OpenAPI specification](https://www.openapis.org/) is a standard for describ
 
 The following highlighted code calls:
 
-- `AddOpenApi` to register the required dependencies into the app's DI container.
-- `MapOpenApi` to register the required OpenAPI endpoints in the app's routes.
+* `AddOpenApi` to register the required dependencies into the app's DI container.
+* `MapOpenApi` to register the required OpenAPI endpoints in the app's routes.
 
 :::code language="csharp" source="~/release-notes/aspnetcore-9/samples/OpenApiExample/Program.cs" highlight="3,7":::
 

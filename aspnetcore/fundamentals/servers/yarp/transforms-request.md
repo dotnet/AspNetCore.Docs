@@ -15,10 +15,11 @@ ai-usage: ai-assisted
 Request transforms include the request path, query, HTTP version, method, and headers. In code these are represented by the [RequestTransformContext](xref:Yarp.ReverseProxy.Transforms.RequestTransformContext) object and processed by implementations of the abstract class [RequestTransform](xref:Yarp.ReverseProxy.Transforms.RequestTransform).
 
 Notes:
-- The proxy request scheme (http/https), authority, and path base, are taken from the destination server address (`https://localhost:10001/Path/Base` in the example above) and should not be modified by transforms.
-- The Host header can be overridden by transforms independent of the authority, see [RequestHeader](#requestheader) below.
-- The request's original PathBase property is not used when constructing the proxy request, see [X-Forwarded](#x-forwarded).
-- All incoming request headers are copied to the proxy request by default with the exception of the Host header (see `Defaults`<!-- fix ](#defaults--> [Defaults](xref:fundamentals/servers/yarp/timeouts#defaults)). [X-Forwarded](#x-forwarded) headers are also added by default. These behaviors can be configured using the following transforms. Additional request headers can be specified, or request headers can be excluded by setting them to an empty value.
+
+* The proxy request scheme (http/https), authority, and path base, are taken from the destination server address (`https://localhost:10001/Path/Base` in the example above) and should not be modified by transforms.
+* The Host header can be overridden by transforms independent of the authority, see [RequestHeader](#requestheader) below.
+* The request's original PathBase property is not used when constructing the proxy request, see [X-Forwarded](#x-forwarded).
+* All incoming request headers are copied to the proxy request by default with the exception of the Host header (see `Defaults`<!-- fix ](#defaults--> [Defaults](xref:fundamentals/servers/yarp/timeouts#defaults)). [X-Forwarded](#x-forwarded) headers are also added by default. These behaviors can be configured using the following transforms. Additional request headers can be specified, or request headers can be excluded by setting them to an empty value.
 
 The following are built in transforms identified by their primary config key. These transforms are applied in the order they are specified in the route configuration.
 
