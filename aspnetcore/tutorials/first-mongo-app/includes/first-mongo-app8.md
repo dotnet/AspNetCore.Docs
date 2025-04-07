@@ -52,15 +52,13 @@ Enable MongoDB and MongoDB Shell access from anywhere on the development machine
 
 Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
 
-1. Open a MongoDB command shell instance by launching `mongosh.exe`.
-1. In the command shell, connect to the default test database by running the following command:
+1. Open a MongoDB command shell instance by launching `mongosh.exe`, or by running the following command in the command shell:
 
    ```console
    mongosh
    ```
 
-1. Run the following command in the command shell:
-
+1. In the command shell connect to the default test database by running:
    ```console
    use BookStore
    ```
@@ -262,7 +260,7 @@ The preceding web API controller:
 
 1. Build and run the app.
 
-2. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method. A JSON response similar to the following is displayed:
+1. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method. A JSON response similar to the following is displayed:
 
    ```json
    [
@@ -283,7 +281,7 @@ The preceding web API controller:
    ]
    ```
 
-3. Navigate to `https://localhost:<port>/api/books/{id here}` to test the controller's overloaded `Get` action method. A JSON response similar to the following is displayed:
+1. Navigate to `https://localhost:<port>/api/books/{id here}` to test the controller's overloaded `Get` action method. A JSON response similar to the following is displayed:
 
    ```json
    {
