@@ -485,7 +485,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `aspnetcore.authentication.sign_outs` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a principal is signed out. |
+| `aspnetcore.authentication.sign_outs` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a principal is signed out with a scheme. |
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
