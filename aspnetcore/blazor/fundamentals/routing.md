@@ -1056,6 +1056,7 @@ Navigation.GetUriWithQueryParameters("{URI}", {PARAMETERS})
 Supported types are identical to supported types for route constraints:
 
 * `bool`
+* `DateOnly`
 * `DateTime`
 * `decimal`
 * `double`
@@ -1064,6 +1065,7 @@ Supported types are identical to supported types for route constraints:
 * `int`
 * `long`
 * `string`
+* `TimeOnly`
 
 Supported types include:
 

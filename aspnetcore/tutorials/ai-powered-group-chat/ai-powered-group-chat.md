@@ -135,7 +135,7 @@ if (totalCompletion.Length - lastSentTokenLength > 20)
 
     lastSentTokenLength = totalCompletion.Length;
 }
-``` 
+```
 
 ## Explore further
 

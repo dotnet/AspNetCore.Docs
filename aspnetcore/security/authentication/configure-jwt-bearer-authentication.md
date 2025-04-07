@@ -62,8 +62,8 @@ We recommend using delegated user access tokens whenever a user is involved. Dow
 
 Access tokens can be used as [bearer tokens](https://cloud.google.com/docs/authentication/token-types#bearer) or [sender-constrained tokens](https://docs.verify.ibm.com/ibm-security-verify-access/docs/tasks-certboundaccesstoken) to access resources. Sender-constrained tokens require the requesting client to prove possession of a private key to use the token. Proving possession of a private key guarantees the token can't be used independently. Sender-constrained tokens can be implemented in two ways:
 
-- [Demonstrating Proof of Possession (DPoP)](https://datatracker.ietf.org/doc/html/rfc9449)
-- [Mutual-TLS (MTLS)](https://datatracker.ietf.org/doc/html/rfc8705)
+* [Demonstrating Proof of Possession (DPoP)](https://datatracker.ietf.org/doc/html/rfc9449)
+* [Mutual-TLS (MTLS)](https://datatracker.ietf.org/doc/html/rfc8705)
 
 ### ID tokens
 

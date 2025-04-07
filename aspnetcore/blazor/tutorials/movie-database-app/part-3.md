@@ -205,7 +205,7 @@ The `MainLayout` component adopts the following additional specifications:
   * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) parameter, where components that use the layout are rendered.
   * The error UI (`<div id="blazor-error-ui" ...>`), where a notice about an unhandled error is displayed.
 
-The default layout (`MainLayout` component) is specified in the `Routes` component (`Components/Pages/Routes.razor`):
+The default layout (`MainLayout` component) is specified in the `Routes` component (`Components/Routes.razor`):
 
 ```razor
 <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
