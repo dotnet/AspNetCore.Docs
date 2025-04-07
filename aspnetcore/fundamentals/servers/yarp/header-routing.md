@@ -33,7 +33,7 @@ Headers are specified in the `Match` section of a proxy route.
 If multiple headers rules are specified on a route then all must match for a route to be taken. OR logic must be implemented either within a header rule or as separate routes.
 
 Configuration:
-```JSON
+```json
 "Routes": {
   "route1" : {
     "ClusterId": "cluster1",
@@ -140,7 +140,7 @@ Configuration:
 ```
 
 Code:
-```C#
+```csharp
 var routes = new[]
 {
     new RouteConfig()
@@ -290,11 +290,12 @@ A list of possible values to search for. The header must match at least one of t
 ### Mode
 
 [HeaderMatchMode](xref:Yarp.ReverseProxy.Configuration.HeaderMatchMode) specifies how to match the value(s) against the request header. The default is `ExactHeader`.
-- ExactHeader - Any of the headers with the given name must match in its entirety, subject to the value of `IsCaseSensitive`. If a header contains multiple values (separated by `,` or `;`), they are split before matching. A single pair of quotes will also be stripped from the value before matching.
-- HeaderPrefix - Any of the headers with the given name must match by prefix, subject to the value of `IsCaseSensitive`. If a header contains multiple values (separated by `,` or `;`), they are split before matching. A single pair of quotes will also be stripped from the value before matching.
-- Exists - The header must exist and contain any non-empty value. If there are multiple headers with the same name, the rule will also match.
-- Contains - Any of the headers with the given name must contain any of the match values, subject to the value of `IsCaseSensitive`.
-- NotContains - None of the headers with the given name may contain any of the match values, subject to the value of `IsCaseSensitive`.
+
+* ExactHeader - Any of the headers with the given name must match in its entirety, subject to the value of `IsCaseSensitive`. If a header contains multiple values (separated by `,` or `;`), they are split before matching. A single pair of quotes will also be stripped from the value before matching.
+* HeaderPrefix - Any of the headers with the given name must match by prefix, subject to the value of `IsCaseSensitive`. If a header contains multiple values (separated by `,` or `;`), they are split before matching. A single pair of quotes will also be stripped from the value before matching.
+* Exists - The header must exist and contain any non-empty value. If there are multiple headers with the same name, the rule will also match.
+* Contains - Any of the headers with the given name must contain any of the match values, subject to the value of `IsCaseSensitive`.
+* NotContains - None of the headers with the given name may contain any of the match values, subject to the value of `IsCaseSensitive`.
 
 ### IsCaseSensitive
 

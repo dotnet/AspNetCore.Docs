@@ -1387,6 +1387,16 @@
             "source_path": "aspnetcore/blazor/host-and-deploy/server.md",
             "redirect_url": "/aspnet/core/blazor/host-and-deploy/server/",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/host-and-deploy/webassembly/integrity-check-failures.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures",
+            "redirect_document_id": false
         }
     ]
 }

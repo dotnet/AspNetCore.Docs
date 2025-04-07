@@ -19,17 +19,19 @@ Some applications only need the ability to take a specific request and forward i
 [IHttpForwarder](xref:Yarp.ReverseProxy.Forwarder.IHttpForwarder) serves as the core proxy adapter between incoming AspNetCore and outgoing System.Net.Http requests. It handles the mechanics of creating a HttpRequestMessage from a HttpContext, sending it, and relaying the response.
 
 IHttpForwarder supports:
-- Dynamic destination selection, you specify the destination for each request
-- Http client customization, you provide the HttpMessageInvoker
-- Request and response customization (except bodies)
-- Streaming protocols like gRPC and WebSockets
-- Error handling
+
+* Dynamic destination selection, you specify the destination for each request
+* Http client customization, you provide the HttpMessageInvoker
+* Request and response customization (except bodies)
+* Streaming protocols like gRPC and WebSockets
+* Error handling
 
 It does not include:
-- Routing
-- Load balancing
-- Affinity
-- Retries
+
+* Routing
+* Load balancing
+* Affinity
+* Retries
 
 ## Example
 
@@ -45,7 +47,7 @@ In this example the IHttpForwarder is registered in DI, injected into the endpoi
 
 The optional transforms show how to copy all request headers except for the `Host`, it's common that the destination requires its own `Host` from the url.
 
-```C#
+```csharp
 using System;
 using System.Diagnostics;
 using System.Net;
@@ -136,7 +138,7 @@ internal class CustomTransformer : HttpTransformer
 
 There are also [extension methods](xref:Microsoft.AspNetCore.Builder.DirectForwardingIEndpointRouteBuilderExtensions) available that simplify the mapping of IHttpForwarder to endpoints.
 
-```C#
+```csharp
 app.MapForwarder("/{**catch-all}", "https://localhost:10000/", requestConfig, transformer, httpClient);
 ```
 

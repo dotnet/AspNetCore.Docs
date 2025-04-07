@@ -57,18 +57,20 @@ This section describes new features for authentication and authorization.
 
 Metrics have been added for certain authentication and authorization events in ASP.NET Core. With this change, you can now obtain metrics for the following events:
 
-- Authentication:
-  - Authenticated request duration
-  - Challenge count
-  - Forbid count
-  - Sign in count
-  - Sign out count
-- Authorization:
-  - Count of requests requiring authorization
+* Authentication:
+  * Authenticated request duration
+  * Challenge count
+  * Forbid count
+  * Sign in count
+  * Sign out count
+* Authorization:
+  * Count of requests requiring authorization
 
 The following image shows an example of the Authenticated request duration metric in the Aspire dashboard:
 
 ![Authenticated request duration in the Aspire dashboard](https://github.com/user-attachments/assets/170615e9-ef25-48a1-a482-4933e2e03f03)
+
+For more information, see [ASP.NET Core Authorization and Authentication metrics](xref:log-mon/metrics/built-in#microsoftaspnetcoreauthorization).
 
 ## Miscellaneous
 
@@ -80,8 +82,8 @@ This section describes miscellaneous new features in ASP.NET Core 10.0.
 
 Use the new [`RedirectHttpResult.IsLocalUrl(url)`](https://source.dot.net/#Microsoft.AspNetCore.Http.Results/RedirectHttpResult.cs,c0ece2e6266cb369) helper method to detect if a URL is local. A URL is considered local if the following are true:
 
-- It doesn't have the [host](https://developer.mozilla.org/docs/Web/API/URL/host) or [authority](https://developer.mozilla.org/docs/Web/URI/Authority) section.
-- It has an [absolute path](https://developer.mozilla.org/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL#absolute_urls_vs._relative_urls).
+* It doesn't have the [host](https://developer.mozilla.org/docs/Web/API/URL/host) or [authority](https://developer.mozilla.org/docs/Web/URI/Authority) section.
+* It has an [absolute path](https://developer.mozilla.org/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL#absolute_urls_vs._relative_urls).
 
 URLs using [virtual paths](/previous-versions/aspnet/ms178116(v=vs.100)) `"~/"` are also local.
 

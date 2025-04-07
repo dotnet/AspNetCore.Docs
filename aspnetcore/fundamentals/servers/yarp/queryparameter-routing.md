@@ -25,7 +25,7 @@ Query Parameters are specified in the `Match` section of a proxy route.
 If multiple query parameter rules are specified on a route then all must match for a route to be taken. OR logic must be implemented either within a query parameter rule or as separate routes.
 
 Configuration:
-```JSON
+```json
 "Routes": {
   "route1" : {
     "ClusterId": "cluster1",
@@ -120,7 +120,7 @@ Configuration:
 ```
 
 Code:
-```C#
+```csharp
 var routes = new[]
 {
     new RouteConfig()
@@ -253,11 +253,12 @@ A list of possible values to search for. The query parameter must match at least
 ### Mode
 
 [QueryParameterMatchMode](xref:Yarp.ReverseProxy.Configuration.QueryParameterMatchMode) specifies how to match the value(s) against the request query parameter. The default is `Exact`.
-- Exact - The query parameter must match in its entirety, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
-- Prefix - The query parameter must match by prefix, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
-- Exists - The query parameter must exist and contain any non-empty value.
-- Contains - The query parameter must contain the value for a match, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
-- NotContains - The query parameter must not contain any of the match values, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
+
+* Exact - The query parameter must match in its entirety, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
+* Prefix - The query parameter must match by prefix, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
+* Exists - The query parameter must exist and contain any non-empty value.
+* Contains - The query parameter must contain the value for a match, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
+* NotContains - The query parameter must not contain any of the match values, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
 
 ### IsCaseSensitive
 
