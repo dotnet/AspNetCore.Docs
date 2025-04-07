@@ -78,7 +78,6 @@ The `Microsoft.AspNetCore.Routing` metrics report information about [routing HTT
 
 The `Microsoft.AspNetCore.Diagnostics` metrics report diagnostics information from [ASP.NET Core error handling middleware](/aspnet/core/fundamentals/error-handling):
 
-
 * [`aspnetcore.diagnostics.exceptions`](#metric-aspnetcorediagnosticsexceptions)
 
 #### Metric: `aspnetcore.diagnostics.exceptions`
