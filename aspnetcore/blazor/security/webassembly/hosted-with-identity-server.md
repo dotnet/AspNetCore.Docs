@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc, linux-related-content
-ms.date: 11/12/2024
+ms.date: 04/07/2025
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
@@ -292,7 +292,13 @@ Configuration for the app is loaded by convention from `_configuration/{client-i
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-[!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
+The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace is made available throughout the app via the `_Imports.razor` file:
+
+```razor
+...
+@using Microsoft.AspNetCore.Components.Authorization
+...
+```
 
 ### `Index` page
 
