@@ -474,7 +474,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
-| `aspnetcore.authentication.sign_ins` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a principal is signed in. |
+| `aspnetcore.authentication.sign_ins` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a principal is signed in with a scheme. |
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
