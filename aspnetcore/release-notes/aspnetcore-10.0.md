@@ -39,7 +39,6 @@ This section describes new features for minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/sse.md)]
 
-
 ## OpenAPI
 
 This section describes new features for OpenAPI.

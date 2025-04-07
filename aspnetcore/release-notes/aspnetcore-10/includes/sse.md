@@ -6,12 +6,12 @@ Server-Sent Events is a server push technology that allows a server to send a st
 
 The [TypedResults](xref:Microsoft.AspNetCore.Http.TypedResults) class has a new static method called [ServerSentEvents](https://source.dot.net/#Microsoft.AspNetCore.Http.Results/TypedResults.cs,ceb980606eb9e295) that can be used to return a `ServerSentEvents` result. The first parameter to this method is an `IAsyncEnumerable<SseItem<T>>` that represents the stream of event messages to be sent to the client.
 
-The following example illustrates how to use the  `TypedResults.ServerSentEvents` API to return a stream of heart rate events as JSON objects to the client:
+The following example illustrates how to use the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as JSON objects to the client:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs" id="snippet_json" :::
 
 For more information, see:
 
-- 
--  [Server-Sent Events](https://developer.mozilla.org/docs/Web/API/Server-sent_events) on MDN.
-- 
+- [Server-Sent Events](https://developer.mozilla.org/docs/Web/API/Server-sent_events) on MDN.
+- [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
+- [Controller API sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/action-return-types/samples/10/ControllerSSE) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.

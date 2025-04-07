@@ -13,7 +13,7 @@ app.MapGet("/string-item", (CancellationToken cancellationToken) =>
         while (!cancellationToken.IsCancellationRequested)
         {
             var heartRate = Random.Shared.Next(60, 100);
-            yield return $"Hear Rate: {heartRate} bpm";
+            yield return $"Heart Rate: {heartRate} bpm";
             await Task.Delay(2000, cancellationToken);
         }
     }
