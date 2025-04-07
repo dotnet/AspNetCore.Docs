@@ -50,10 +50,10 @@ Enable MongoDB and MongoDB Shell access from anywhere on the development machine
 
 1. Download and Install MongoDB Shell:
    * macOS/Linux: Choose a directory to extract the MongoDB Shell to. Add the resulting path for `mongosh` to the `PATH` environment variable.
-   * Windows: MongoDB Shell (mongosh.exe) is installed at *C:\Users\<user>\AppData\Local\Programs\mongosh*. Add the resulting path for `mongosh.exe` to the `PATH` environment variable.
+   * Windows: MongoDB Shell (mongosh.exe) is installed at *C:\\Users\\\<user>\\AppData\\Local\\Programs\\mongosh*. Add the resulting path for `mongosh.exe` to the `PATH` environment variable.
 1. Download and Install MongoDB:
    * macOS/Linux: Verify the directory that MongoDB was installed at, usually in */usr/local/mongodb*. Add the resulting path for `mongodb` to the `PATH` environment variable.
-   * Windows: MongoDB is installed at *C:\\Program Files\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
+   * Windows: MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
 1. Choose a Data Storage Directory: Select a directory on your development machine for storing data. Create the directory if it doesn't exist. The MongoDB Shell doesn't create new directories:
    * macOS/Linux: For example, `/usr/local/var/mongodb`.
    * Windows: For example, `C:\\BooksData`.
