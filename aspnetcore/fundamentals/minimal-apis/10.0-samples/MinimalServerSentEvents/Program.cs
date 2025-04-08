@@ -18,7 +18,8 @@ app.MapGet("/string-item", (CancellationToken cancellationToken) =>
         }
     }
 
-    return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken), eventType: "heartRate");
+    return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken),
+                                                  eventType: "heartRate");
 });
 // </snippet_string>
 
@@ -36,7 +37,8 @@ app.MapGet("/json-item", (CancellationToken cancellationToken) =>
         }
     }
 
-    return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken), eventType: "heartRate");
+    return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken),
+                                                  eventType: "heartRate");
 });
 // </snippet_json>
 
