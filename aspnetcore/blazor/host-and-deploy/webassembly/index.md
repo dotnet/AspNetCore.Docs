@@ -489,6 +489,8 @@ To use a different file extension than `.bin`, replace `.bin` in the following c
 
 On Windows:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-10.0"
 
 ```powershell
@@ -507,6 +509,8 @@ dir {PATH} | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-5.0"
+
 In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net6.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
 
 If service worker assets are also in use:
@@ -518,6 +522,8 @@ If service worker assets are also in use:
 In the preceding command, the `{PATH}` placeholder is the path to the published `service-worker-assets.js` file.
 
 On Linux or macOS:
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -537,6 +543,8 @@ sed -i 's/\.dll"/.bin"/g' {PATH}/blazor.boot.json
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-5.0"
+
 In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net6.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
 
 If service worker assets are also in use:
@@ -546,6 +554,8 @@ sed -i 's/\.dll"/.bin"/g' {PATH}/service-worker-assets.js
 ```
 
 In the preceding command, the `{PATH}` placeholder is the path to the published `service-worker-assets.js` file.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -592,6 +602,8 @@ Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\b
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
 
 If service worker assets are also in use, add the following commands:
 
