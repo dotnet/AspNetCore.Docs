@@ -27,7 +27,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`FocusOnNavigate`](xref:blazor/fundamentals/routing#focus-an-element-on-navigation)
 * [`HeadContent`](xref:blazor/components/control-head-content)
 * [`HeadOutlet`](xref:blazor/components/control-head-content)
-* [`ImportMap`](xref:blazor/fundamentals/static-files#import-maps)
+* [`ImportMap`](xref:blazor/fundamentals/static-files#importmap-component)
 * [`InputCheckbox`](xref:blazor/forms/input-components)
 * [`InputDate`](xref:blazor/forms/input-components)
 * [`InputFile`](xref:blazor/file-uploads)

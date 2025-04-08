@@ -64,17 +64,20 @@ Assets are delivered via the <xref:Microsoft.AspNetCore.Components.ComponentBase
 <link rel="stylesheet" href="@Assets["BlazorSample.styles.css"]" />
 ```
 
-## Import maps
+## `ImportMap` component
 
 *This section applies to server-side Blazor apps.*
 
-The Import Map component (<xref:Microsoft.AspNetCore.Components.ImportMap>) represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The Import Map component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
+The `ImportMap` component (<xref:Microsoft.AspNetCore.Components.ImportMap>) represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The Import Map component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
 
 ```razor
 <ImportMap />
 ```
 
 If a custom <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> isn't assigned to an Import Map component, the import map is generated based on the app's assets.
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> instances are expensive to create, so we recommended caching them when creating an additional instance.
 
 The following examples demonstrate custom import map definitions and the import maps that they create.
 
@@ -197,9 +200,60 @@ For examples of how to address the policy violation with Subresource Integrity (
 
 Configure Static File Middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
 
+In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
+
 :::moniker-end
 
-In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
+:::moniker range=">= aspnetcore-10.0"
+
+## Fingerprint client-side static assets in standalone Blazor WebAssembly apps
+
+In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets for client-side rendering. A [fingerprint](https://wikipedia.org/wiki/Fingerprint_(computing)) is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
+
+The following configuration must be present in the `wwwwoot/index.html` file of a standalone Blazor WebAssembly app to adopt fingerprinting:
+
+```html
+<head>
+    ...
+    <script type="importmap"></script>
+    ...
+</head>
+
+<body>
+    ...
+    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+    ...
+</body>
+
+</html>
+```
+
+In the project file (`.csproj`), the `<WriteImportMapToHtml>` property is set to `true`:
+
+```xml
+<PropertyGroup>
+  <WriteImportMapToHtml>true</WriteImportMapToHtml>
+</PropertyGroup>
+```
+
+When resolving imports for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
+
+## Fingerprint client-side static assets in Blazor Web Apps
+
+For client-side rendering (CSR) in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files), [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`).
+
+To fingerprint additional JavaScript modules for CSR, use the `<StaticWebAssetFingerprintPattern>` item in the app's project file (`.csproj`). In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
+
+```xml
+<ItemGroup>
+  <StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
+    Expression="#[.{fingerprint}]!" />
+</ItemGroup>
+```
+
+When resolving imports for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
+
+:::moniker-end
 
 ## Summary of static file `<link>` `href` formats
 
