@@ -211,7 +211,7 @@ The following list shows the order of precedence for logging configuration:
 
 Http logging with redaction can be enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction>.
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet6&highlight=6)]
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet7&highlight=10)]
 
 For more information about .NET's data redaction library, see [Data redaction in .NET](/dotnet/core/extensions/data-redaction).
 
@@ -219,8 +219,8 @@ For more information about .NET's data redaction library, see [Data redaction in
 
 To configure options for logging with redaction, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction> in `Program.cs`, using the lambda to configure <xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions>.
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions)]
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/MyTaxonomyClassifications.cs)]
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions)]
 
 Given this configuration, this is the expected output:
 

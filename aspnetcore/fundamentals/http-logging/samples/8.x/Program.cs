@@ -107,7 +107,7 @@ app.Run();
 // <snippet3>
 using HttpLoggingSample;
 using Microsoft.AspNetCore.HttpLogging;
-// <snippet6>
+// <snippet7>
 // <snippet4>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -119,7 +119,7 @@ builder.Services.AddHttpLoggingInterceptor<SampleHttpLoggingInterceptor>();
 // </snippet4>
 builder.Services.AddRedaction();
 builder.Services.AddHttpLoggingRedaction(op => { });
-// </snippet6>
+// </snippet7>
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
