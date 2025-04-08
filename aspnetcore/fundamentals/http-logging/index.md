@@ -213,7 +213,7 @@ Http logging with redaction can be enabled by calling <xref:Microsoft.Extensions
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet6&highlight=6)]
 
-For more information about .NET's data redaction library, see [Data redaction in .NET](/dotnet/core/extensions/data-redaction.md).
+For more information about .NET's data redaction library, see [Data redaction in .NET](/dotnet/core/extensions/data-redaction).
 
 ## Logging redaction options
 
