@@ -50,10 +50,10 @@ Enable MongoDB and MongoDB Shell access from anywhere on the development machine
 
 1. Download and Install MongoDB Shell:
    * macOS/Linux: Choose a directory to extract the MongoDB Shell to. Add the resulting path for `mongosh` to the `PATH` environment variable.
-   * Windows: MongoDB Shell (mongosh.exe) is installed at *C:\Users\<user>\AppData\Local\Programs\mongosh*. Add the resulting path for `mongosh.exe` to the `PATH` environment variable.
+   * Windows: MongoDB Shell (mongosh.exe) is installed at *C:\\Users\\\<user>\\AppData\\Local\\Programs\\mongosh*. Add the resulting path for `mongosh.exe` to the `PATH` environment variable.
 1. Download and Install MongoDB:
    * macOS/Linux: Verify the directory that MongoDB was installed at, usually in */usr/local/mongodb*. Add the resulting path for `mongodb` to the `PATH` environment variable.
-   * Windows: MongoDB is installed at *C:\\Program Files\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
+   * Windows: MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
 1. Choose a Data Storage Directory: Select a directory on your development machine for storing data. Create the directory if it doesn't exist. The MongoDB Shell doesn't create new directories:
    * macOS/Linux: For example, `/usr/local/var/mongodb`.
    * Windows: For example, `C:\\BooksData`.
@@ -65,14 +65,13 @@ Enable MongoDB and MongoDB Shell access from anywhere on the development machine
 
 Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
 
-1. Open a MongoDB command shell instance by launching `mongosh.exe`.
-1. In the command shell, connect to the default test database by running the following command:
+1. Open a MongoDB command shell instance by launching `mongosh.exe`, or by running the following command in the command shell:
 
    ```console
    mongosh
    ```
 
-1. Run the following command in the command shell:
+1. In the command shell connect to the default test database by running:
 
    ```console
    use BookStore
@@ -268,7 +267,7 @@ The preceding web API controller:
 
 1. Build and run the app.
 
-1. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method, select **Try it out** > **Execute**. A JSON response similar to the following is displayed:
+1. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method. A JSON response similar to the following is displayed:
 
    ```json
    [
@@ -334,7 +333,7 @@ To satisfy the preceding requirements, make the following changes:
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/8.x/BookStoreApi) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
