@@ -45,14 +45,13 @@ Enable MongoDB and Mongo DB Shell access from anywhere on the development machin
 
 Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
 
-1. Open a MongoDB command shell instance by launching `mongosh.exe`.
-1. In the command shell connect to the default test database by running the following command:
+1. Open a MongoDB command shell instance by launching `mongosh.exe`, or by running the following command in the command shell:
 
    ```console
    mongosh
    ```
 
-1. Run the following command in the command shell:
+1. In the command shell connect to the default test database by running:
 
    ```console
    use BookStore
@@ -320,7 +319,7 @@ To satisfy the preceding requirements, make the following changes:
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/6.x/BookStoreApi) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)

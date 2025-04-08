@@ -45,7 +45,7 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 * Use [Caching Middleware](xref:performance/caching/middleware).
 * Serve [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible. This optimization doesn't include minification.
 * Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
-* [Fingerprinting assets](https://developer.mozilla.org/docs/Glossary/Fingerprinting) to prevent reusing old versions of files.
+* [Fingerprinting assets](https://en.wikipedia.org/wiki/Fingerprint_(computing)) to prevent reusing old versions of files.
 
 `MapStaticAssets`:
 
