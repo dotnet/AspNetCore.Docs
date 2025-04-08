@@ -353,7 +353,17 @@ For more information, see <xref:blazor/fundamentals/routing#handle-cancellations
 
 ## `OnNavigateAsync` events and renamed assembly files
 
+:::moniker range=">= aspnetcore-10.0"
+
+The resource loader relies on the assembly names that are defined in the `dotnet.boot.js` file. If [assemblies are renamed](xref:blazor/host-and-deploy/webassembly/index#change-the-file-name-extension-of-dll-files), the assembly names used in an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback and the assembly names in the `dotnet.boot.js` file are out of sync.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
 The resource loader relies on the assembly names that are defined in the `blazor.boot.json` file. If [assemblies are renamed](xref:blazor/host-and-deploy/webassembly/index#change-the-file-name-extension-of-dll-files), the assembly names used in an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback and the assembly names in the `blazor.boot.json` file are out of sync.
+
+:::moniker-end
 
 To rectify this:
 
