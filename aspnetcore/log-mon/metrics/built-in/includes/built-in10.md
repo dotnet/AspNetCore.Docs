@@ -413,10 +413,10 @@ The `Microsoft.AspNetCore.Authorization` metrics report information about [Autho
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `user.is_authenticated` | Boolean | Match result | `success`; `failure` | Always |
+| `user.is_authenticated` | Boolean | Whether the request came from an authenticated user. | `true`; `false` | Always |
 | `aspnetcore.authorization.result` | string | The authentication result. | `success` ; `failure` | Always |
 | `aspnetcore.authorization.policy` | string | The authorization policy. | `Basic` | Always |
-| `error.type` | string | The error message. | `An error occurred in the authorization handler` | Always |
+| `error.type` | string | The error message. | `An error occurred in the authorization handler` | Conditionally required if the request has ended with an error. |
 
 .
 
@@ -438,9 +438,9 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.authentication.result` | string | The authentication result. | `success` ; `failure` | Always |
-| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred in the authorization handler` | If an authentication error or exception occurred. |
+| `aspnetcore.authentication.result` | string | The authentication result.             | `success`; `failure`; `none`; `_OTHER`                    | `Conditionally Required` if the request did not end with an error |
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
 
 .
 
@@ -466,7 +466,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred during sign out.` | If an authentication error or exception occurred. |
+| `error.type` | string | The error message. | `An error occurred during sign out.` |  Conditionally required if the request has ended with an error.  |
 
 .
 
@@ -479,7 +479,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred during sign in` | If an authentication error or exception occurred. |
+| `error.type` | string | The error message. | `An error occurred during sign in` |  Conditionally required if the request has ended with an error.  |
 
 .
 
@@ -491,6 +491,6 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred during sign out` | If an authentication error or exception occurred. |
+| `error.type` | string | The error message. | `An error occurred during sign out` |  Conditionally required if the request has ended with an error. |
 
 :::moniker-end
