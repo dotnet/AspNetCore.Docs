@@ -413,10 +413,10 @@ The `Microsoft.AspNetCore.Authorization` metrics report information about [Autho
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `user.is_authenticated` | Boolean | Whether the request came from an authenticated user. | `true`; `false` | Always |
-| `aspnetcore.authorization.result` | string | The authentication result. | `success` ; `failure` | Always |
-| `aspnetcore.authorization.policy` | string | The authorization policy. | `Basic` | Always |
-| `error.type` | string | The error message. | `An error occurred in the authorization handler` | Conditionally required if the request has ended with an error. |
+| `user.is_authenticated`           | boolean | Whether the request came from an authenticated user | `true`                                                    | `Required`                                                                  |
+| `aspnetcore.authorization.policy` | string  | The name of the authorization policy.               | `AtLeast21`; `EmployeeOnly`                               | `Conditionally required` if an authorization policy is used                                |
+| `aspnetcore.authorization.result` | string  | Whether the authorization succeeded or failed.      | `success`; `failure`                                      | `Conditionally Required` if an exception is not thrown during authorization |
+| `error.type`                      | string  | The full name of the exception type.                | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error             |
 
 .
 
@@ -440,7 +440,7 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 |---|---|---|---|---|
 | `aspnetcore.authentication.result` | string | The authentication result.             | `success`; `failure`; `none`; `_OTHER`                    | `Conditionally Required` if the request did not end with an error |
 | `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
-| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if authentication failed or the request has ended with an error   |
 
 .
 
@@ -452,8 +452,8 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred in the authorization handler` | If an authentication error or exception occurred. |
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
 
 .
 
@@ -465,8 +465,8 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred during sign out.` |  Conditionally required if the request has ended with an error.  |
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
 
 .
 
@@ -478,8 +478,8 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred during sign in` |  Conditionally required if the request has ended with an error.  |
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
 
 .
 
@@ -488,9 +488,10 @@ The `Microsoft.AspNetCore.Authentication` metrics report information about [Auth
 | Name     | Instrument Type | Unit (UCUM) | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `aspnetcore.authentication.sign_outs` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a principal is signed out with a scheme. |
+
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `aspnetcore.authentication.scheme` | string | The authentication scheme. | `custom` | Always |
-| `error.type` | string | The error message. | `An error occurred during sign out` |  Conditionally required if the request has ended with an error. |
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
 
 :::moniker-end
