@@ -1,6 +1,3 @@
-#define FIRST // FIRST SECOND
-#if NEVER
-#elif FIRST
 using Microsoft.Extensions.Http.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics.Logging;
 using Microsoft.Extensions.Compliance.Classification;
@@ -43,46 +40,4 @@ app.MapGet("/home", () => "Not logged!");
 
 app.Run();
 // </snippet_redactionOptions>
-#elif SECOND
-using HttpLoggingSample;
-using Microsoft.AspNetCore.HttpLogging;
-// <snippet7>
-var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpLogging(logging =>
-{
-    logging.LoggingFields = HttpLoggingFields.Duration;
-});
-builder.Services.AddHttpLoggingInterceptor<SampleHttpLoggingInterceptor>();
-builder.Services.AddRedaction();
-builder.Services.AddHttpLoggingRedaction(op => { });
-// </snippet7>
-var app = builder.Build();
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-}
-
-app.UseStaticFiles();
-
-app.UseHttpLogging();
-
-app.Use(async (context, next) =>
-{
-    context.Response.Headers["MyResponseHeader"] =
-        new string[] { "My Response Header Value" };
-
-    await next();
-});
-
-app.MapGet("/", () => "Hello World!");
-
-app.MapGet("/duration", [HttpLogging(loggingFields: HttpLoggingFields.Duration)]
-    () => "Hello World! (logging duration)");
-
-app.MapGet("/response", () => "Hello World! (logging response)")
-    .WithHttpLogging(HttpLoggingFields.ResponsePropertiesAndHeaders);
-
-app.Run();
-#endif
