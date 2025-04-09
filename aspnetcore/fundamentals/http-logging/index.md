@@ -207,13 +207,13 @@ The following list shows the order of precedence for logging configuration:
 
 [!INCLUDE[](~/fundamentals/http-logging/includes/index-6-7.md)]
 
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range=">= aspnetcore-9.0"
 
 ## Redacting sensitive data
 
 Http logging with redaction can be enabled by calling `AddHttpLoggingRedaction`<!-- Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction> -->:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet7&highlight=9)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet7&highlight=9)]
 
 For more information about .NET's data redaction library, see [Data redaction in .NET](/dotnet/core/extensions/data-redaction).
 
@@ -221,8 +221,8 @@ For more information about .NET's data redaction library, see [Data redaction in
 
 To configure options for logging with redaction, call `AddHttpLoggingRedaction`<!-- Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction>--> in `Program.cs`, using the lambda to configure <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions>--> `LoggingRedactionOptions`:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/MyTaxonomyClassifications.cs)]
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=6)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/MyTaxonomyClassifications.cs)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=6)]
 
 With the previous redaction configuration, the output is similar to the following:
 
@@ -254,53 +254,55 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.IncomingPathLoggingMode.Structured> -->
 * `Structured` logs the request path with parameters included.
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=9)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=9)]
 
 ### RequestPathParameterRedactionMode
 
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathParameterRedactionMode> -->
-`RequestPathParameterRedactionMode` specifies how route parameters in the request path should be redacted, whether `Strict` or `None`.
+`RequestPathParameterRedactionMode` specifies how route parameters in the request path should be redacted, whether `Strict`, `Loose`, or `None`.
 
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.Strict>-->
-* `Strict`: request route parameters are considered as sensitive and are redacted by default.
+* `Strict`: Request route parameters are considered sensitive, require explicit annotation with a data classification, and are redacted by default.
+<!-- Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.Loose>-->
+* `Loose`: All parameters are considered as non-sensitive and included as-is by default.
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.None>-->
-* `None`: request route parameters are considered as non-sensitive and logged as-is by default.
+* `None`: Route parameters aren't redacted regardless of the presence of data classification annotations.
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=8)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=8)]
 
 ### RequestHeadersDataClasses
 
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses>-->
 `RequestHeadersDataClasses` maps request headers to their data classification, which determines how they are redacted:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=10)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=10)]
 
 ### ResponseHeadersDataClasses
 
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ResponseHeadersDataClasses>-->
 `ResponseHeadersDataClasses`, similar to <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses>--> `RequestHeadersDataClasses`, but for response headers:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=11)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=11)]
 
 ### RouteParameterDataClasses
 
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RouteParameterDataClasses>-->
 `RouteParameterDataClasses` maps route parameters to their data classification:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=12,13,14,15)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=12,13,14,15)]
 
 ### ExcludePathStartsWith
 
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ExcludePathStartsWith>-->
 `ExcludePathStartsWith` specifies paths that should be excluded from logging entirely:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=16,17)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=16,17)]
 
 ### IncludeUnmatchedRoutes
 
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes>-->
 `IncludeUnmatchedRoutes` allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](xref:fundamentals/routing) instead of logging `Unknown` value for path attribute:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=18)]
+[!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=18)]
 
 :::moniker-end
