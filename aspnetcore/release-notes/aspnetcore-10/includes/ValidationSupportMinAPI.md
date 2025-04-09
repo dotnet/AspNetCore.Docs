@@ -1,7 +1,7 @@
 ### Validation support in Minimal APIs
 
 Support for validation in Minimal APIs is now available. This feature allows you to request validation of data
-sent to your API endpoints. Enabling validation allows ASP.NET Core runtime to perform any validations
+sent to your API endpoints. Enabling validation allows the ASP.NET Core runtime to perform any validations
 defined on the:
 
 * Query
