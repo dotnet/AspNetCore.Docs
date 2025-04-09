@@ -211,7 +211,7 @@ The following list shows the order of precedence for logging configuration:
 
 ## Redacting sensitive data
 
-Http logging with redaction can be enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction>.
+Http logging with redaction can be enabled by calling `AddHttpLoggingRedaction`<!-- Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction> -->:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet7&highlight=9)]
 
@@ -219,12 +219,12 @@ For more information about .NET's data redaction library, see [Data redaction in
 
 ## Logging redaction options
 
-To configure options for logging with redaction, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction> in `Program.cs`, using the lambda to configure <xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions>.
+To configure options for logging with redaction, call `AddHttpLoggingRedaction`<!-- Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction>--> in `Program.cs`, using the lambda to configure <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions>--> `LoggingRedactionOptions`:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/MyTaxonomyClassifications.cs)]
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions)]
 
-Given this configuration, this is the expected output:
+With the previous redaction configuration, the output is similar to the following:
 
 ```output
 info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[9]
@@ -242,56 +242,53 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished HTTP/2 GET https://localhost:61361/ - 200 - text/plain;+charset=utf-8 105.5334ms
 ```
 
-> [!NOTE]
-> Request path `/home` is not logged because it is included in `ExcludePathStartsWith` property.
-> `http.request.header.accept` and `http.response.header.content-type` were redacted by the <xref:Microsoft.Extensions.Compliance.Redaction.ErasingRedactor>.
+***Note:*** Request path `/home` isn't logged because it is included in `ExcludePathStartsWith` property. `http.request.header.accept` and `http.response.header.content-type` were redacted by  <!-- Microsoft.Extensions.Compliance.Redaction.ErasingRedactor> --> `Redaction.ErasingRedactor`.
 
 ### `RequestPathLoggingMode`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathLoggingMode> determines how the request path is logged, whether `Formatted` or `Structured`.
+<!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathLoggingMode>--> `RequestPathLoggingMode` determines how the request path is logged, whether `Formatted` or `Structured`.
 
-* <xref:Microsoft.AspNetCore.Diagnostics.Logging.IncomingPathLoggingMode.Formatted> logs the request path without parameters.
-* <xref:Microsoft.AspNetCore.Diagnostics.Logging.IncomingPathLoggingMode.Structured> logs the request path with parameters included.
+* <!-- Microsoft.AspNetCore.Diagnostics.Logging.IncomingPathLoggingMode.Formatted> --> `Formatted` logs the request path without parameters.
+* <!-- Microsoft.AspNetCore.Diagnostics.Logging.IncomingPathLoggingMode.Structured> --> `Structured` logs the request path with parameters included.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=9)]
 
 ### `RequestPathParameterRedactionMode`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathParameterRedactionMode> specifies how route parameters in the request path should be redacted, whether `Strict` or `None`.
+<!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathParameterRedactionMode> --> `RequestPathParameterRedactionMode` specifies how route parameters in the request path should be redacted, whether `Strict` or `None`.
 
-* <xref:Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.Strict>: request route parameters are considered as sensitive and are redacted by default.
-* <<xref:Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.None>: request route parameters are considered as non-sensitive and logged as-is by default.
+* <!-- Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.Strict>--> `Strict`: request route parameters are considered as sensitive and are redacted by default.
+* <<!-- Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.None>--> `None`: request route parameters are considered as non-sensitive and logged as-is by default.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=8)]
 
 ### `RequestHeadersDataClasses`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses> maps request headers to their data classification, which determines how they are redacted.
+<!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses>--> `RequestHeadersDataClasses` maps request headers to their data classification, which determines how they are redacted.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=10)]
 
 ### `ResponseHeadersDataClasses`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ResponseHeadersDataClasses> similar to <xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses>, but for response headers.
+<!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ResponseHeadersDataClasses>--> `ResponseHeadersDataClasses` similar to <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses>--> `RequestHeadersDataClasses`, but for response headers:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=11)]
 
 ### `RouteParameterDataClasses`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RouteParameterDataClasses> maps route parameters to their data classification.
+<!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RouteParameterDataClasses>--> `RouteParameterDataClasses` maps route parameters to their data classification:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=12,13,14,15)]
 
 ### `ExcludePathStartsWith`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ExcludePathStartsWith> specifies paths that should be excluded from logging entirely.
+<!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ExcludePathStartsWith>--> `ExcludePathStartsWith` specifies paths that should be excluded from logging entirely.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=16,17)]
 
 ### `IncludeUnmatchedRoutes`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes> allows you to report unmatched routes.
-If set to true, it will log whole path of routes not identified by ASP.NET Routing instead of logging `Unknown` value for path attribute.
+<!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes>--> `IncludeUnmatchedRoutes` allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by ASP.NET Routing instead of logging `Unknown` value for path attribute:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=18)]
 
