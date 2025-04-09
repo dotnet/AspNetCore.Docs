@@ -1,34 +1,32 @@
 ### Validation support in Minimal APIs
 
 Support for validation in Minimal APIs is now available. This feature allows you to request validation of data
-sent to your API endpoints. 
-
-When validation is enabled, the ASP.NET Core runtime will perform any validations
+sent to your API endpoints. Enabling validation allows ASP.NET Core runtime to perform any validations
 defined on the:
 
 * Query
 * Header
 * Request body
 
-Validations can be defined using attributes in the [`DataAnnotations`](xref:System.ComponentModel.DataAnnotations) namespace.
-Developers can customize the behavior of the validation system by:
+Validations are defined using attributes in the [`DataAnnotations`](xref:System.ComponentModel.DataAnnotations) namespace.
+Developers customize the behavior of the validation system by:
 
 * Creating custom [`[Validation]`](xref:System.ComponentModel.DataAnnotations.ValidationAttribute) attribute implementations.
 * Implementing the [`IValidatableObject`](xref:System.ComponentModel.DataAnnotations.IValidatableObject) interface for complex validation logic.
 
-When validation fails, the runtime will return a 400 Bad Request response with
+If validation fails, the runtime returns a 400 Bad Request response with
 details of the validation errors.
 
 #### Enable built-in validation support for minimal APIs
 
-To enable built-in validation support for minimal APIs, call the `AddValidation` extension method to register
+Enable the built-in validation support for minimal APIs by calling the `AddValidation` extension method to register
 the required services in the service container for your application.
 
 ```csharp
 builder.Services.AddValidation();
 ```
 
-The implementation automatically discovers types that are defined in minimal API handlers or as base types of types defined in minimal API handlers. Validation is then performed on these types by an endpoint filter that is added for each endpoint.
+The implementation automatically discovers types that are defined in minimal API handlers or as base types of types defined in minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
 
 Validation can be disabled for specific endpoints by using the `DisableValidation` extension method.
 
