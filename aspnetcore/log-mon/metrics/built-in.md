@@ -3,7 +3,7 @@ title: ASP.NET Core built-in metrics
 description: Built-in metrics for ASP.NET Core apps
 author: rick-anderson
 ms.author: riande
-ms.date: 10/18/2023
+ms.date: 4/8/2025
 ms.topic: reference
 uid: log-mon/metrics/built-in
 ---
