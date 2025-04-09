@@ -259,12 +259,14 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 ### RequestPathParameterRedactionMode
 
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathParameterRedactionMode> -->
-`RequestPathParameterRedactionMode` specifies how route parameters in the request path should be redacted, whether `Strict` or `None`.
+`RequestPathParameterRedactionMode` specifies how route parameters in the request path should be redacted, whether `Strict`, `Loose` or `None`.
 
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.Strict>-->
-* `Strict`: request route parameters are considered as sensitive and are redacted by default.
+* `Strict`: Request route parameters are considered as sensitive and are required to be explicitly annotated with a data classification and are redacted by default.
+<!-- Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.Loose>-->
+* `Loose`: All parameters are considered as non-sensitive and included as-is by default.
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.HttpRouteParameterRedactionMode.None>-->
-* `None`: request route parameters are considered as non-sensitive and logged as-is by default.
+* `None`: Route parameters are not redacted regardless of the presence of data classification annotations.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=8)]
 
