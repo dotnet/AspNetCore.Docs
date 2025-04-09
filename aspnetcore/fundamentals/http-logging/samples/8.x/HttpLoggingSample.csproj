@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Middleware" Version="9.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Compliance.Redaction" Version="9.3.0" />
+  </ItemGroup>
+
 </Project>
