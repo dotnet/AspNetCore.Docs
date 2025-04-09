@@ -39,7 +39,7 @@ HTTP logging ***can reduce the performance of an app***, especially when logging
 
 HTTP logging is enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> and <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, as shown in the following example:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet2&highlight=3,7)]
+[!code-csharp[](~/fundamentals/http-logging/samples/snippet2&highlight=3,7)]
 
 The empty lambda in the preceding example of calling `AddHttpLogging` adds the middleware with the default configuration. By default, HTTP logging logs common properties such as path, status-code, and headers for requests and responses.
 
@@ -221,7 +221,7 @@ For more information about .NET's data redaction library, see [Data redaction in
 
 To configure options for logging with redaction, call `AddHttpLoggingRedaction`<!-- Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction>--> in `Program.cs`, using the lambda to configure <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions>--> `LoggingRedactionOptions`:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/MyTaxonomyClassifications.cs)] zz
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/MyTaxonomyClassifications.cs)]
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=6)]
 
 With the previous redaction configuration, the output is similar to the following:
@@ -301,6 +301,6 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes>-->
 `IncludeUnmatchedRoutes` allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](xref:fundamentals/routing) instead of logging `Unknown` value for path attribute:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=18)]
+[!code-csharp[](~/fundamentals/http-logging/samples/snippet_redactionOptions&highlight=18)]
 
 :::moniker-end
