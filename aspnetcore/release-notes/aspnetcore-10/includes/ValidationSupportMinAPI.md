@@ -10,7 +10,7 @@ defined on the:
 * Header
 * Request body
 
-Validations can be defined using attributes in the `System.ComponentModel.DataAnnotations` [DataAnnotations](xref:System.ComponentModel.DataAnnotations) namespace.
+Validations can be defined using attributes in the [`DataAnnotations`](xref:System.ComponentModel.DataAnnotations) namespace.
 Developers can customize the behavior of the validation system by:
 
 * Creating custom [`[Validation]`](xref:System.ComponentModel.DataAnnotations.ValidationAttribute) attribute implementations.
