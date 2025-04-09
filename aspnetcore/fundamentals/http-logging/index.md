@@ -221,8 +221,8 @@ For more information about .NET's data redaction library, see [Data redaction in
 
 To configure options for logging with redaction, call `AddHttpLoggingRedaction`<!-- Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction>--> in `Program.cs`, using the lambda to configure <!-- Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions>--> `LoggingRedactionOptions`:
 
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/MyTaxonomyClassifications.cs)]
-[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions highlight="6")]
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/MyTaxonomyClassifications.cs)] zz
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=6)]
 
 With the previous redaction configuration, the output is similar to the following:
 
