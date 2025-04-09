@@ -207,6 +207,8 @@ The following list shows the order of precedence for logging configuration:
 
 [!INCLUDE[](~/fundamentals/http-logging/includes/index-6-7.md)]
 
+:::moniker range=">= aspnetcore-10.0"
+
 ## Redacting sensitive data
 
 Http logging with redaction can be enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction>.
@@ -292,3 +294,5 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 If set to true, it will log whole path of routes not identified by ASP.NET Routing instead of logging `Unknown` value for path attribute.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_redactionOptions&highlight=18)]
+
+:::moniker-end
