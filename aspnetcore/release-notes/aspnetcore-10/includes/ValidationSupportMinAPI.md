@@ -13,8 +13,8 @@ defined on the:
 Validations can be defined using attributes in the `System.ComponentModel.DataAnnotations` namespace.
 Developers can customize the behavior of the validation system by:
 
-* Creating custom [ValidationAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.validationattribute?view=net-9.0) implementations.
-* Implementing the [IValidatableObject](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.ivalidatableobject?view=net-9.0) interface for complex validation logic.
+* Creating custom [ValidationAttribute](xref:System.ComponentModel.DataAnnotations.ValidationAttribute) implementations.
+* Implementing the [IValidatableObject](xref:System.ComponentModel.DataAnnotations.IValidatableObject) interface for complex validation logic.
 
 When validation fails, the runtime will return a 400 Bad Request response with
 details of the validation errors.
