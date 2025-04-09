@@ -48,13 +48,13 @@ Note that the attributes are placed on the delegate method and not on the app.Ma
 
 ```csharp
 app.MapGet("/extension-methods", () => "Hello world!")
-  .WithSummary("This is a summary.")
-  .WithDescription("This is a description.");
+    .WithSummary("This is a summary.")
+    .WithDescription("This is a description.");
 
 app.MapGet("/attributes",
-  [EndpointSummary("This is a summary.")]
-  [EndpointDescription("This is a description.")]
-  () => "Hello world!");
+    [EndpointSummary("This is a summary.")]
+    [EndpointDescription("This is a description.")]
+    () => "Hello world!");
 ```
 
 #### [Controllers](#tab/controllers)
@@ -62,14 +62,15 @@ app.MapGet("/attributes",
 The following sample demonstrates how to set summaries and descriptions.
 
 ```csharp
-  [EndpointSummary("This is a summary.")]
-  [EndpointDescription("This is a description.")]
-  [HttpGet("attributes")]
-  public IResult Attributes()
-  {
-      return Results.Ok("Hello world!");
-  }
+[EndpointSummary("This is a summary.")]
+[EndpointDescription("This is a description.")]
+[HttpGet("attributes")]
+public IResult Attributes()
+{
+    return Results.Ok("Hello world!");
+}
 ```
+
 ---
 
 ### tags
@@ -84,11 +85,11 @@ The following sample demonstrates the different strategies for setting tags.
 
 ```csharp
 app.MapGet("/extension-methods", () => "Hello world!")
-  .WithTags("todos", "projects");
+    .WithTags("todos", "projects");
 
 app.MapGet("/attributes",
-  [Tags("todos", "projects")]
-  () => "Hello world!");
+    [Tags("todos", "projects")]
+    () => "Hello world!");
 ```
 
 #### [Controllers](#tab/controllers)
@@ -98,13 +99,14 @@ In controller-based apps, the controller name is automatically added as a tag on
 The following sample demonstrates how to set tags.
 
 ```csharp
-  [Tags(["todos", "projects"])]
-  [HttpGet("attributes")]
-  public IResult Attributes()
-  {
-      return Results.Ok("Hello world!");
-  }
+[Tags(["todos", "projects"])]
+[HttpGet("attributes")]
+public IResult Attributes()
+{
+    return Results.Ok("Hello world!");
+}
 ```
+
 ---
 
 ### operationId
@@ -119,11 +121,11 @@ The following sample demonstrates the different strategies for setting the opera
 
 ```csharp
 app.MapGet("/extension-methods", () => "Hello world!")
-  .WithName("FromExtensionMethods");
+    .WithName("FromExtensionMethods");
 
 app.MapGet("/attributes",
-  [EndpointName("FromAttributes")]
-  () => "Hello world!");
+    [EndpointName("FromAttributes")]
+    () => "Hello world!");
 ```
 
 #### [Controllers](#tab/controllers)
@@ -133,13 +135,14 @@ In controller-based apps, the operationId can be set using the [`[EndpointName]`
 The following sample demonstrates how to set the operationId.
 
 ```csharp
-  [EndpointName("FromAttributes")]
-  [HttpGet("attributes")]
-  public IResult Attributes()
-  {
-      return Results.Ok("Hello world!");
-  }
+[EndpointName("FromAttributes")]
+[HttpGet("attributes")]
+public IResult Attributes()
+{
+    return Results.Ok("Hello world!");
+}
 ```
+
 ---
 
 ### parameters
@@ -152,24 +155,31 @@ The [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute
 
 #### [Minimal APIs](#tab/minimal-apis)
 
+The [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute works in an MVC app but doesn't work in a Minimal API app at this time. For more information, see [`Description` parameter of `ProducesResponseTypeAttribute` does not work in minimal API app (`dotnet/aspnetcore` #60518)](https://github.com/dotnet/aspnetcore/issues/60518).
+
+<!-- For activation when https://github.com/dotnet/aspnetcore/issues/60518 is resolved ...
+
 The follow sample demonstrates how to set a description for a parameter.
 
 ```csharp
 app.MapGet("/attributes",
-  ([Description("This is a description.")] string name) => "Hello world!");
+    ([Description("This is a description.")] string name) => "Hello world!");
 ```
+
+-->
 
 #### [Controllers](#tab/controllers)
 
 The following sample demonstrates how to set a description for a parameter.
 
 ```csharp
-  [HttpGet("attributes")]
-  public IResult Attributes([Description("This is a description.")] string name)
-  {
-      return Results.Ok("Hello world!");
-  }
+[HttpGet("attributes")]
+public IResult Attributes([Description("This is a description.")] string name)
+{
+    return Results.Ok("Hello world!");
+}
 ```
+
 ---
 
 ### Describe the request body
@@ -218,7 +228,7 @@ In the following example, the endpoint accepts a `Todo` object in the request bo
 
 ```csharp
 app.MapPut("/todos/{id}", (int id, Todo todo) => ...)
-  .Accepts<Todo>("application/xml");
+    .Accepts<Todo>("application/xml");
 ```
 
 Since `application/xml` is not a built-in content type, the `Todo` class must implement the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface to provide a custom binding for the request body. For example:
@@ -232,6 +242,7 @@ public class Todo : IBindableFromHttpContext<Todo>
         var serializer = new XmlSerializer(typeof(Todo));
         return (Todo?)serializer.Deserialize(xmlDoc.CreateReader());
     }
+}
 ```
 
 If the endpoint doesn't define any parameters bound to the request body, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method to specify the content type that the endpoint accepts.
@@ -292,7 +303,7 @@ The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produce
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
-  .Produces<IList<Todo>>();
+    .Produces<IList<Todo>>();
 ```
 
 The [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) can be used to add response metadata to an endpoint. Note that the attribute is applied to the route handler method, not the method invocation to create the route, as shown in the following example:
@@ -302,6 +313,21 @@ app.MapGet("/todos",
     [ProducesResponseType<List<Todo>>(200)]
     async (TodoDb db) => await db.Todos.ToListAsync());
 ```
+
+:::moniker range=">= aspnetcore-10.0"
+
+[`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute), [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute), and [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) also support an optional string property called `Description` that can be used to describe the response. This is useful for explaining why or when clients can expect a specific response:
+
+```csharp
+app.MapGet("/todos/{id}",
+    [ProducesResponseType<Todo>(200, 
+        Description = "Returns the requested Todo item.")]
+    [ProducesResponseType(404, Description = "Requested item not found.")]
+    [ProducesDefault(Description = "Undocumented status code.")]
+    async (int id, TodoDb db) => /* Code here */);
+```
+
+:::moniker-end
 
 Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
 
@@ -315,19 +341,19 @@ app.MapGet("/todos", async (TodoDb db) =>
 
 Only return types that implement <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> create a `responses` entry in the OpenAPI document. The following is a partial list  of some of the <xref:Microsoft.AspNetCore.Http.TypedResults> helper methods that produce a `responses` entry:
 
-| TypedResults helper method | status code |
-| -------------------------- | ----------- |
-| Ok()                       | 200         |
-| Created()                  | 201         |
-| CreatedAtRoute()           | 201         |
-| Accepted()                 | 202         |
-| AcceptedAtRoute()          | 202         |
-| NoContent()                | 204         |
-| BadRequest()               | 400         |
-| ValidationProblem()        | 400         |
-| NotFound()                 | 404         |
-| Conflict()                 | 409         |
-| UnprocessableEntity()      | 422         |
+| `TypedResults` helper method | Status code |
+| ---------------------------- | ----------- |
+| Ok()                         | 200         |
+| Created()                    | 201         |
+| CreatedAtRoute()             | 201         |
+| Accepted()                   | 202         |
+| AcceptedAtRoute()            | 202         |
+| NoContent()                  | 204         |
+| BadRequest()                 | 400         |
+| ValidationProblem()          | 400         |
+| NotFound()                   | 404         |
+| Conflict()                   | 409         |
+| UnprocessableEntity()        | 422         |
 
 All of these methods except `NoContent` have a generic overload that specifies the type of the response body.
 
@@ -372,12 +398,29 @@ Only one [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or <xre
 
 All of the above attributes can be applied to individual action methods or to the controller class where it applies to all action methods in the controller.
 
+:::moniker range=">= aspnetcore-10.0"
+
+[`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute), [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute), and [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) also support an optional string property called `Description` that can be used to describe the response. This is useful for explaining why or when clients can expect a specific response:
+
+```csharp
+[HttpGet("/todos/{id}")]
+[ProducesResponseType<Todo>(StatusCodes.Status200OK, 
+    "application/json", Description = "Returns the requested Todo item.")]
+[ProducesResponseType(StatusCodes.Status404NotFound, 
+    Description = "Requested Todo item not found.")]
+[ProducesDefault(Description = "Undocumented status code.")]
+public async Task<ActionResult<Todo>> GetTodoItem(string id, Todo todo)
+```
+
+:::moniker-end
+
 When not specified by an attribute:
-* the status code for the response defaults to 200,
-* the schema for the response body of 2xx responses may be inferred from the return type of the action method, e.g. from `T` in <xref:Microsoft.AspNetCore.Mvc.ActionResult%601>, but otherwise is considered to be not specified,
-* the schema for the response body of 4xx responses is inferred to be a problem details object,
-* the schema for the response body of 3xx and 5xx responses is considered to be not specified,
-* the content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
+
+* The status code for the response defaults to 200.
+* The schema for the response body of 2xx responses may be inferred from the return type of the action method, e.g. from `T` in <xref:Microsoft.AspNetCore.Mvc.ActionResult%601>, but otherwise is considered to be not specified.
+* The schema for the response body of 4xx responses is inferred to be a problem details object.
+* The schema for the response body of 3xx and 5xx responses is considered to be not specified.
+* The content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
 
 By default, there are no compile-time checks to ensure that the response metadata specified with a [`[ProducesResponseType]` attribute](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) is consistent with the actual behavior of the action method, which may return a different status code or response body type than specified by the metadata. To enable these checks, [enable Web API analyzers](xref:web-api/advanced/analyzers).
 
@@ -412,11 +455,11 @@ The following sample demonstrates the different strategies for excluding a given
 
 ```csharp
 app.MapGet("/extension-method", () => "Hello world!")
-  .ExcludeFromDescription();
+    .ExcludeFromDescription();
 
 app.MapGet("/attributes",
-  [ExcludeFromDescription]
-  () => "Hello world!");
+    [ExcludeFromDescription]
+    () => "Hello world!");
 ```
 
 #### [Controllers](#tab/controllers)
@@ -426,12 +469,13 @@ In controller-based apps, the [`[ApiExplorerSettings]`](xref:Microsoft.AspNetCor
 The following example demonstrates how to exclude an endpoint from the generated OpenAPI document:
 
 ```csharp
-  [HttpGet("/private")]
-  [ApiExplorerSettings(IgnoreApi = true)]
-  public IActionResult PrivateEndpoint() {
-      return Ok("This is a private endpoint");
-  }
+[HttpGet("/private")]
+[ApiExplorerSettings(IgnoreApi = true)]
+public IActionResult PrivateEndpoint() {
+    return Ok("This is a private endpoint");
+}
 ```
+
 ---
 
 ## Include OpenAPI metadata for data types
@@ -484,12 +528,12 @@ The following table summarizes attributes from the `System.ComponentModel` names
 
 | Attribute                    | Description |
 | ---------------------------- | ----------- |
-| [`[Description]`](xref:System.ComponentModel.DescriptionAttribute)                       | Sets the `description` of a property in the schema. |
-| [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute)          | Marks a property as `required` in the schema. |
-| [`[DefaultValue]`](xref:System.ComponentModel.DefaultValueAttribute)                      | Sets the `default` value of a property in the schema. |
-| [`[Range]`](xref:System.ComponentModel.DataAnnotations.RangeAttribute)             | Sets the `minimum` and `maximum` value of an integer or number. |
-| [`[MinLength]`](xref:System.ComponentModel.DataAnnotations.MinLengthAttribute)         | Sets the `minLength` of a string or `minItems` of an array. |
-| [`[MaxLength]`](xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute)         | Sets the `maxLength` of a string or `maxItems` of an array. |
+| [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) | Sets the `description` of a property in the schema. |
+| [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) | Marks a property as `required` in the schema. |
+| [`[DefaultValue]`](xref:System.ComponentModel.DefaultValueAttribute) | Sets the `default` value of a property in the schema. |
+| [`[Range]`](xref:System.ComponentModel.DataAnnotations.RangeAttribute) | Sets the `minimum` and `maximum` value of an integer or number. |
+| [`[MinLength]`](xref:System.ComponentModel.DataAnnotations.MinLengthAttribute) | Sets the `minLength` of a string or `minItems` of an array. |
+| [`[MaxLength]`](xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute) | Sets the `maxLength` of a string or `maxItems` of an array. |
 | [`[RegularExpression]`](xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute) | Sets the `pattern` of a string. |
 
 Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed explicitly via an endpoint filter, in the route handler's logic, or via a third-party package.
