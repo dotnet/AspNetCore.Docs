@@ -402,6 +402,83 @@ In `Pages/_Host.cshtml` of Blazor apps that are `ServerPrerendered` in a Blazor 
 </body>
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+<!-- UPDATE 10.0 - API cross-link -->
+
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The `[SupplyParameterFromPersistentComponentState]` attribute applied to a property registers a callback to persist the state during prerendering and loads it when the component renders interactively or the service is instantiated.
+
+In the following example, the `{TYPE}` placeholder represents the type of data to persist (for example, `WeatherForecast[]`).
+
+```razor
+@code {
+    [SupplyParameterFromPersistentComponentState]
+    public {TYPE} Data { get; set; }
+}
+```
+
+In the following example, the `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
+
+`WeatherForecastPreserveState.razor`:
+
+```razor
+@page "/weather-forecast-preserve-state"
+@using BlazorSample.Shared
+@inject IWeatherForecastService WeatherForecastService
+
+<PageTitle>Weather Forecast</PageTitle>
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (Forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in Forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [SupplyParameterFromPersistentComponentState]
+    public WeatherForecast[]? Forecasts { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Forecasts ??= await WeatherForecastService.GetForecastAsync(
+            DateOnly.FromDateTime(DateTime.Now));
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-10.0"
+
 Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 In the following example:
@@ -449,7 +526,7 @@ In the following example:
 }
 ```
 
-The following example is an updated version of the `FetchData` component based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
+In the following example, the `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
 
 `Pages/WeatherForecastPreserveState.razor`:
 
@@ -502,7 +579,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>(
-            "fetchdata", out var restored))
+            nameof(forecasts), out var restored))
         {
             forecasts = 
                 await WeatherForecastService.GetForecastAsync(
@@ -519,7 +596,7 @@ else
 
     private Task PersistData()
     {
-        ApplicationState.PersistAsJson("fetchdata", forecasts);
+        ApplicationState.PersistAsJson(nameof(forecasts), forecasts);
 
         return Task.CompletedTask;
     }
@@ -530,6 +607,10 @@ else
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
@@ -969,7 +1050,7 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 
 Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
-The following example is an updated version of the `FetchData` component based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
+In the following example, the `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
 
 `Pages/WeatherForecastPreserveState.razor`:
 
@@ -1022,7 +1103,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>(
-            "fetchdata", out var restored))
+            nameof(forecasts), out var restored))
         {
             forecasts = 
                 await WeatherForecastService.GetForecastAsync(DateTime.Now);
@@ -1038,7 +1119,7 @@ else
 
     private Task PersistData()
     {
-        ApplicationState.PersistAsJson("fetchdata", forecasts);
+        ApplicationState.PersistAsJson(nameof(forecasts), forecasts);
 
         return Task.CompletedTask;
     }
