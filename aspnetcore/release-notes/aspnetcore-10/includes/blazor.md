@@ -291,6 +291,6 @@ else
 }
 ```
 
-For more information, see <xref:blazor/components/prerender?view=aspnetcore-10.0#persist-prerendered-state>.
+For more information, see <xref:blazor/components/prerender?view=aspnetcore-10.0#persist-prerendered-state>. Additional API implementation notes, which are subject to change at any time, are available in [[Blazor] Support for declaratively persisting component and services state (`dotnet/aspnetcore` #60634)](https://github.com/dotnet/aspnetcore/pull/60634).
 
 -->

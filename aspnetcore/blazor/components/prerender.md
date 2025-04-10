@@ -49,9 +49,9 @@ To retain the initial value of the counter during prerendering, Blazor supports 
 
 <!-- UPDATE 10.0 - API cross-links -->
 
-To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. 
+To preserve prerendered state, use the `[SupplyParameterFromPersistentComponentState]` attribute to persist state in properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering and loaded when the component renders interactively or the service is instantiated.
 
-Use the `[SupplyParameterFromPersistentComponentState]` attribute to persist state in properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering and loaded when the component renders interactively or the service is instantiated.
+By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 The following example demonstrates the general pattern, where the `{TYPE}` placeholder represents the type of data to persist.
 
@@ -152,6 +152,9 @@ In the following example to serialize state for a service:
   * `RenderMode.InteractiveAuto`: The service is available for both the Interactive Server and Interactive Webassembly render modes if a component renders in either of those modes.
 * The service is resolved during the initialization of an interactive render mode, and the properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are deserialized.
 
+> [!NOTE]
+> Only persisting scoped services is supported.
+
 `CounterService.cs`:
 
 ```csharp
@@ -173,7 +176,14 @@ In `Program.cs`:
 builder.Services.AddPersistentService<CounterService>(RenderMode.InteractiveAuto);
 ```
 
-As an alternative to using the declarative model for persisting state with the `[SupplyParameterFromPersistentComponentState]` attribute, you can use the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service directly. Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> to register a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
+Serialized properties are identified from the actual service instance:
+
+* This approach allows marking an abstraction as a persistent service.
+* Enables actual implementations to be internal or different types.
+* Supports shared code in different assemblies.
+* Results in each instance exposing the same properties.
+
+As an alternative to using the declarative model for persisting state with the `[SupplyParameterFromPersistentComponentState]` attribute, you can use the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service directly, which offers greater flexibility for complex state persistence scenarios. Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> to register a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 The following example demonstrates the general pattern:
 
