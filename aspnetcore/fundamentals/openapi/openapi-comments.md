@@ -11,7 +11,7 @@ uid: fundamentals/openapi/aspnet-openapi-xml
 <!-- backup author: rick-anderson -->
 # OpenAPI XML documentation comment support in ASP.NET Core
 
-ASP.NET Core will include metadata from XML doc comments in the generated OpenAPI document. No changes are required in app code to enable XML documentation comment support, but the project must be configured to generate the XML documentation file. ASP.NET Core automatically detects XML documentation comments in the application assembly and any referenced assemblies that have XML documentation enabled.
+OpenAPI XML documentation extracts code comments automatically to populate API documentation, ensuring the code and documentation remain synchronized. Metadata from XML documentation comments is included in the generated OpenAPI document without requiring changes to the app code, as long as the project is configured to generate the XML documentation file. XML documentation comments are automatically detected in the application assembly and referenced assemblies with XML documentation enabled.
 
 ASP.NET Core processes [XML documentation tags](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`.
 For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
@@ -52,7 +52,7 @@ To turn off XML documentation integration, remove the source generator from the 
 
 ## Source generator implementation notes
 
-The source generator implementation is open-source and can be found in the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore/tree/main/src/OpenApi/gen).
+
 
 The XML documentation feature is implemented as a source generator. The source generator analyzes XML documentation comments at compile time and injects code that translates these comments into OpenAPI metadata. The [`XmlCommentGenerator`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlCommentGenerator.cs,30eb0aa73ef6306a) extracts XML comments from two sources:
 
@@ -68,27 +68,28 @@ XML comments are parsed into structured `XmlComment` objects with:
 * Response documentation with status codes and descriptions.
 * Support for examples and deprecated markers.
 
+### `<inheritdoc/>`
 
-### Support for `<inheritdoc/>`
+The generator supports [`<inheritdoc>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) tags, which inherit documentation *as long as they exist in the compilation assembly*. `<inheritdoc />` tags indicate that comments must be resolved from:
 
-<!-- original - review my change 
-`<inheritdoc />` tags present an important opportunity because they indicate that comments must be resolved from a base class or implemented interface. 
-The source generator uses its knowledge of the symbol's present in the compilation to discover base classes and interfaces associated with the symbol a given `<inheritdoc />` is placed on and supports resolving them automatically
--->
+* Base classes
+* Implemented interfaces
+* Base methods for overrides
 
-`<inheritdoc />` tags indicate that comments must be resolved from a base class or implemented interface. When `<inheritdoc />` is placed on a symbol, The source generator:
+When `<inheritdoc />` is placed on a symbol, The source generator:
 
 * Uses its knowledge of the symbol in the compilation to discover base classes and interfaces associated with the symbol.
 * Supports resolving them automatically
+* Substitutes generic type parameters in inherited documentation comments, preserving type references across inheritance boundaries.
 
 The automatic resolution behavior is currently available for XML documentation comments that exist in the assembly under compilation, and ***not*** XML documentation tags that are in referenced projects or packages. In the later scenario, XML documentation comments:
 
 * Are only presented as text.
-* There's no trivial strategy for:
+* Don't provide a trivial strategy for:
   * Associating the text content to compilation symbols.
   * Developing an understanding of the inheritance hierarchy associated with the types.
 
-### Member Identification
+<!-- ### Member identification - `MemberKey` removed in preview 3.
 
 The source generator discovers XML comments statically and emits code that applies them to the document dynamically at runtime. The [`MemberKey`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi.SourceGenerators/XmlComments/MemberKey.cs,d182ed147edb11d2) class acts as a bridge between compile-time and runtime representations of the same concept. It's a unique identifier for types, methods, and properties that works across:
 
@@ -105,17 +106,13 @@ internal sealed record MemberKey(
     string? Name,
     string? ReturnType,
     string[]? Parameters) : IEquatable<MemberKey>
-```
+``` -->
 
 ### Code Generation
 
 The generator emits code that contains:
 
 * A cache of XML comments mapped to member identifiers:
-   <!-- REVIEW: In additon to the following, provide a concret example -->
-   ```csharp
-   _cache.Add(new MemberKey(/*...*/), new XmlComment(/*...*/));
-   ```
 * OpenAPI transformer implementations:
    * [`XmlCommentOperationTransformer`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlCommentGenerator.Emitter.cs#L229):  Applies comments to API operations (methods).
    * [`XmlCommentSchemaTransformer`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlCommentGenerator.Emitter.cs#L308): Applies comments to data models (types).
@@ -159,11 +156,11 @@ When the generated code runs:
 
 The generator processes standard XML code comments and adds them to the generated OpenAPI documentation.
 
-## Frequently Asked Questions
+<!-- ## Frequently Asked Questions
 
-### What is the OpenAPI XML documentation support feature?
+Moved to intro ### What is the OpenAPI XML documentation support feature?
 
-The feature automatically extracts XML documentation comments from code and uses them to populate OpenAPI documentation. API documentation is generated directly from code comments, keeping them in sync.
+The feature automatically extracts XML documentation comments from code and uses them to populate OpenAPI documentation. API documentation is generated directly from code comments, keeping them in sync. -->
 
 ### How does the XML documentation support work?
 
@@ -226,21 +223,11 @@ To add examples to documentation, use the [`<example>`](/dotnet/csharp/language-
 /// <param name="id" example="42">The unique identifier</param>
 ```
 
-### Document inheritance via `<inheritdoc/>` tags
+<!-- move FAQ to topic -->
 
-The generator supports [`<inheritdoc>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc) tags, which inherit documentation from *as long as they exist in the compilation assembly*:
+### How does the source generator identify and track API members? zzz move to impl
 
-* Base classes
-* Implemented interfaces
-* Base methods for overrides
-
-### How are generic type parameters handled when inheriting documentation?
-
-The source generator substitutes generic type parameters in inherited documentation comments, preserving type references across inheritance boundaries.
-
-### How does the source generator identify and track API members?
-
-It uses the [`MemberKey`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlComments/MemberKey.cs) class to create a unique identifier for each API member that encodes:
+The source generator uses an  [`XmlComment Cache`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/gen/XmlCommentGenerator.Emitter.cs#L84-L96) class to identify and track API members. It create a unique identifier for each API member that encodes:
 
 * Declaring and property types.
 * Method names.
@@ -303,7 +290,8 @@ Navigate to [http://localhost:5052/](http://localhost:5052/) to view the Scalar 
 
 ## Additional resources
 
-* [Source generator implementation notes](https://github.com/captainsafia/aspnet-openapi-xml#implementation-notes)
+* The source generator implementation can be found in the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore/tree/main/src/OpenApi/gen).
+[Source generator implementation notes](https://github.com/captainsafia/aspnet-openapi-xml#implementation-notes)
 * <xref:fundamentals/openapi/aspnetcore-openapi>
 * <xref:fundamentals/openapi/using-openapi-documents>
 * <xref:fundamentals/openapi/openapi-tools>
