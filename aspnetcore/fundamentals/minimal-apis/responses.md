@@ -120,7 +120,7 @@ In order to document this endpoint correctly the extension method `Produces` is 
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_04":::
 
-<a name="binr7"></a>
+<a name="binr10"></a>
 
 ### Built-in results
 
@@ -171,6 +171,20 @@ The following example streams an image from [Azure Blob storage](/azure/storage/
 The following example streams a video from an Azure Blob:
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
+
+#### Server-Sent Events (SSE)
+
+The [TypedResults.ServerSentEvents](https://source.dot.net/#Microsoft.AspNetCore.Http.Results/TypedResults.cs,051e6796e1492f84) API supports returning a [ServerSentEvents](xref:System.Net.ServerSentEvents) result.
+
+[Server-Sent Events](https://developer.mozilla.org/docs/Web/API/Server-sent_events) is a server push technology that allows a server to send a stream of event messages to a client over a single HTTP connection. In .NET, the event messages are represented as [`SseItem<T>`](/dotnet/api/system.net.serversentevents.sseitem-1) objects, which may contain an event type, an ID, and a data payload of type `T`.
+
+The [TypedResults](xref:Microsoft.AspNetCore.Http.TypedResults) class has a static method called [ServerSentEvents](https://source.dot.net/#Microsoft.AspNetCore.Http.Results/TypedResults.cs,ceb980606eb9e295) that can be used to return a `ServerSentEvents` result. The first parameter to this method is an `IAsyncEnumerable<SseItem<T>>` that represents the stream of event messages to be sent to the client.
+
+The following example illustrates how to use the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as JSON objects to the client:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs" id="snippet_item" :::
+
+For more information, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
 
 #### Redirect
 
