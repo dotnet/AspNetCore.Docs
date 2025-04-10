@@ -515,7 +515,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>(
-            "fetchdata", out var restored))
+            nameof(forecasts), out var restored))
         {
             forecasts = await WeatherForecastService.GetForecastAsync(
                 DateOnly.FromDateTime(DateTime.Now));
@@ -531,7 +531,7 @@ else
 
     private Task PersistData()
     {
-        ApplicationState.PersistAsJson("fetchdata", forecasts);
+        ApplicationState.PersistAsJson(nameof(forecasts), forecasts);
 
         return Task.CompletedTask;
     }
@@ -1030,7 +1030,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>(
-            "fetchdata", out var restored))
+            nameof(forecasts), out var restored))
         {
             forecasts = 
                 await WeatherForecastService.GetForecastAsync(DateTime.Now);
@@ -1046,7 +1046,7 @@ else
 
     private Task PersistData()
     {
-        ApplicationState.PersistAsJson("fetchdata", forecasts);
+        ApplicationState.PersistAsJson(nameof(forecasts), forecasts);
 
         return Task.CompletedTask;
     }

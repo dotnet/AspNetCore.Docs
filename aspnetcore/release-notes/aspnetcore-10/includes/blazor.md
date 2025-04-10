@@ -202,11 +202,91 @@ The default environments are:
 * `Development` for build.
 * `Production` for publish.
 
-## Boot configuration file name change
+### Boot configuration file name change
 
 The boot configuration file is changing names from `blazor.boot.json` to `dotnet.boot.js`. This name change only affects developers who are interacting directly with the file, such as when developers are:
 
 * Checking file integrity for published assets with the troubleshoot integrity PowerShell script per the guidance in <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-9.0#troubleshoot-integrity-powershell-script>.
 * Changing the file name extension of DLL files when not using the default Webcil file format per the guidance in <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-9.0#customize-how-boot-resources-are-loaded>.
+
+### Declarative model for persisting state from components and services
+
+You can now declaratively specify state to persist from components and services using the `[SupplyParameterFromPersistentComponentState]` attribute. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
+
+In previous Blazor releases, persisting component state during prerendering using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service involved a significant amount of code, as the following example demonstrates:
+
+```razor
+@page "/movies"
+@implements IDisposable
+@inject IMovieService MovieService
+@inject PersistentComponentState ApplicationState
+
+@if (MoviesList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <QuickGrid Items="MoviesList.AsQueryable()">
+        ...
+    </QuickGrid>
+}
+
+@code {
+    public List<Movie>? MoviesList { get; set; }
+    private PersistingComponentStateSubscription? persistingSubscription;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!ApplicationState.TryTakeFromJson<List<Movie>>(nameof(MoviesList), 
+            out var movies))
+        {
+            MoviesList = await MovieService.GetMoviesAsync();
+        }
+        else
+        {
+            MoviesList = movies;
+        }
+
+        persistingSubscription = ApplicationState.RegisterOnPersisting(() =>
+        {
+            ApplicationState.PersistAsJson(nameof(MoviesList), MoviesList);
+            return Task.CompletedTask;
+        });
+    }
+
+    public void Dispose() => persistingSubscription?.Dispose();
+}
+```
+
+This code can now be simplified using the new declarative model:
+
+```razor
+@page "/movies"
+@inject IMovieService MovieService
+
+@if (MoviesList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <QuickGrid Items="MoviesList.AsQueryable()">
+        ...
+    </QuickGrid>
+}
+
+@code {
+    [SupplyParameterFromPersistentComponentState]
+    public List<Movie>? MoviesList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        MoviesList ??= await MovieService.GetMoviesAsync();
+    }
+}
+```
+
+For more information, see <xref:blazor/components/prerender?view=aspnetcore-10.0#persist-prerendered-state>. Additional API implementation notes, which are subject to change at any time, are available in [[Blazor] Support for declaratively persisting component and services state (`dotnet/aspnetcore` #60634)](https://github.com/dotnet/aspnetcore/pull/60634).
 
 -->
