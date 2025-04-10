@@ -202,14 +202,14 @@ The default environments are:
 * `Development` for build.
 * `Production` for publish.
 
-## Boot configuration file name change
+### Boot configuration file name change
 
 The boot configuration file is changing names from `blazor.boot.json` to `dotnet.boot.js`. This name change only affects developers who are interacting directly with the file, such as when developers are:
 
 * Checking file integrity for published assets with the troubleshoot integrity PowerShell script per the guidance in <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-9.0#troubleshoot-integrity-powershell-script>.
 * Changing the file name extension of DLL files when not using the default Webcil file format per the guidance in <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-9.0#customize-how-boot-resources-are-loaded>.
 
-## Declarative model for persisting state from components and services
+### Declarative model for persisting state from components and services
 
 You can now declaratively specify state to persist from components and services using the `[SupplyParameterFromPersistentComponentState]` attribute. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering and loaded when the component renders interactively or the service is instantiated.
 
