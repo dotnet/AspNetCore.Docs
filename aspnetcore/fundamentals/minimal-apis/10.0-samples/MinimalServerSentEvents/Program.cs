@@ -13,30 +13,32 @@ app.MapGet("/string-item", (CancellationToken cancellationToken) =>
         while (!cancellationToken.IsCancellationRequested)
         {
             var heartRate = Random.Shared.Next(60, 100);
-            yield return $"Hear Rate: {heartRate} bpm";
+            yield return $"Heart Rate: {heartRate} bpm";
             await Task.Delay(2000, cancellationToken);
         }
     }
 
-    return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken), eventType: "heartRate");
+    return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken),
+                                                  eventType: "heartRate");
 });
 // </snippet_string>
 
 // <snippet_json>
 app.MapGet("/json-item", (CancellationToken cancellationToken) =>
 {
-    async IAsyncEnumerable<HearRate> GetHeartRate(
+    async IAsyncEnumerable<HeartRateRecord> GetHeartRate(
         [EnumeratorCancellation] CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested)
         {
             var heartRate = Random.Shared.Next(60, 100);
-            yield return HearRate.Create(heartRate);
+            yield return HeartRateRecord.Create(heartRate);
             await Task.Delay(2000, cancellationToken);
         }
     }
 
-    return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken), eventType: "heartRate");
+    return TypedResults.ServerSentEvents(GetHeartRate(cancellationToken),
+                                                  eventType: "heartRate");
 });
 // </snippet_json>
 
@@ -64,7 +66,3 @@ app.MapGet("sse-item", (CancellationToken cancellationToken) =>
 
 app.Run();
 
-public record HearRate(DateTime Timestamp, int HeartRate)
-{
-    public static HearRate Create(int heartRate) => new(DateTime.UtcNow, heartRate);
-}
