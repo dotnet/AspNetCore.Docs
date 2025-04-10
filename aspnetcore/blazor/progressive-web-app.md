@@ -405,5 +405,15 @@ The [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) sample app de
 
 ## Additional resources
 
+:::moniker range=">= aspnetcore-10.0"
+
+[Client-side SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
 * [Troubleshoot integrity PowerShell script](xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures#troubleshoot-integrity-powershell-script)
 * [Client-side SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
+
+:::moniker-end
