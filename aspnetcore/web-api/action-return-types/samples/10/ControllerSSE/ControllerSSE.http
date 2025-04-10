@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:58489
+@baseUrl = http://localhost:5201/HeartRate
 
 ### Connect to SSE stream
 # This request will open an SSE connection that stays open

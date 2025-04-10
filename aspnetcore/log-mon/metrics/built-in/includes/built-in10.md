@@ -1,7 +1,7 @@
 :::moniker range=">= aspnetcore-10.0"
 
 This article describes the metrics built-in for ASP.NET Core produced using the
-<xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. For a listing of metrics based on the older [EventCounters](/dotnet/core/diagnostics/event-counters) API,see [Available counters](/dotnet/core/diagnostics/available-counters).
+<xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. For a listing of metrics based on the older [EventCounters](/dotnet/core/diagnostics/event-counters) API, see [Available counters](/dotnet/core/diagnostics/available-counters).
 
 See [Using ASP.NET Core metrics](xref:log-mon/metrics/metrics) for information about how to collect, report, enrich, and test ASP.NET Core metrics
 
@@ -400,4 +400,98 @@ As this metric is tracking the connection duration, and ideally SignalR connecti
 | `signalr.transport` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Always |
 
 .
+
+## `Microsoft.AspNetCore.Authorization`
+
+The `Microsoft.AspNetCore.Authorization` metrics report information about [Authorization attempts](xref:security/authorization/introduction) in ASP.NET Core apps:
+
+#### Metric: `aspnetcore.authorization.attempts`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authorization.attempts` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of requests for which authorization was attempted. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `user.is_authenticated`           | boolean | Whether the request came from an authenticated user | `true`                                                    | `Required`                                                                  |
+| `aspnetcore.authorization.policy` | string  | The name of the authorization policy.               | `AtLeast21`; `EmployeeOnly`                               | `Conditionally required` if an authorization policy is used                                |
+| `aspnetcore.authorization.result` | string  | Whether the authorization succeeded or failed.      | `success`; `failure`                                      | `Conditionally Required` if an exception is not thrown during authorization |
+| `error.type`                      | string  | The full name of the exception type.                | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error             |
+
+.
+
+## `Microsoft.AspNetCore.Authentication`
+
+The `Microsoft.AspNetCore.Authentication` metrics report information about [Authentication](xref:security/authentication/index) in ASP.NET Core apps:
+
+- [`aspnetcore.authentication.authenticate.duration`](#metric-aspnetcoreauthenticationauthenticateduration)
+- [`aspnetcore.authentication.challenges`](#metric-aspnetcoreauthenticationchallenges)
+- [`aspnetcore.authentication.forbids`](#metric-aspnetcoreauthenticationforbids)
+- [`aspnetcore.authentication.sign_ins`](#metric-aspnetcoreauthenticationsign_ins)
+- [`aspnetcore.authentication.sign_outs`](#metric-aspnetcoreauthenticationsign_outs)
+
+#### Metric: `aspnetcore.authentication.authenticate.duration`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.authenticate.duration` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Histogram | `s` | The authentication duration for a request. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.result` | string | The authentication result.             | `success`; `failure`; `none`; `_OTHER`                    | `Conditionally Required` if the request did not end with an error |
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if authentication failed or the request has ended with an error   |
+
+.
+
+#### Metric: `aspnetcore.authentication.challenges`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.challenges` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a scheme is challenged. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
+
+.
+
+#### Metric: `aspnetcore.authentication.forbids`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.forbids` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times an authenticated user attempts to access a resource they aren't permitted to access. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
+
+.
+
+#### Metric: `aspnetcore.authentication.sign_ins`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.sign_ins` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a principal is signed in with a scheme. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
+
+.
+
+#### Metric: `aspnetcore.authentication.sign_outs`
+
+| Name     | Instrument Type | Unit (UCUM) | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `aspnetcore.authentication.sign_outs` <!--(https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-aspnetcore-metrics/)--> | Counter | `{request}` | The total number of times a principal is signed out with a scheme. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies`                                       | `Conditionally Required` if the request did not end with an error |
+| `error.type`                       | string | The full name of the exception type.   | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error   |
+
 :::moniker-end
