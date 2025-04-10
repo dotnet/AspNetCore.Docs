@@ -411,8 +411,6 @@ Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.Per
 In the following example, the `{TYPE}` placeholder represents the type of data to persist (for example, `WeatherForecast[]`).
 
 ```razor
-...
-
 @code {
     [SupplyParameterFromPersistentComponentState]
     public {TYPE} Data { get; set; }
