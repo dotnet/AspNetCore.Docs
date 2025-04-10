@@ -47,7 +47,7 @@ For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-10.0
 
 ### Ignore the query string and fragment when using `NavLinkMatch.All`
 
-The `NavLink` component now ignores the query string and fragment when using the `NavLinkMatch.All` value for the `Match` parameter. This means that the link retains the `active` class if the URL path matches but the query string or fragment change. To revert to the original behavior, use the `Microsoft.AspNetCore.Components.Routing.NavLink.DisableMatchAllIgnoresLeftUriPart` [`AppContext` switch](/dotnet/fundamentals/runtime-libraries/system-appcontext).
+The `NavLink` component now ignores the query string and fragment when using the `NavLinkMatch.All` value for the `Match` parameter. This means that the link retains the `active` class if the URL path matches but the query string or fragment change. To revert to the original behavior, use the `Microsoft.AspNetCore.Components.Routing.NavLink.EnableMatchAllForQueryStringAndFragment` [`AppContext` switch](/dotnet/fundamentals/runtime-libraries/system-appcontext) set to `true`.
 
 You can also override the `ShouldMatch` method on `NavLink` to customize the matching behavior:
 
@@ -90,15 +90,15 @@ The following example uses the `CloseColumnOptionsAsync` method to close the col
 }
 ```
 
-<!-- PREVIEW 3 ..... NOTE CONTENT CHANGE FOR `<WasmEnableStreamingResponse>` BELOW!!!!!
-
 ### Response streaming is opt-in and how to opt-out
 
 In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClient> requests was opt-in. Now, response streaming is enabled by default.
 
 This is a breaking change because calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync%2A?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content%2A?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a `BrowserHttpReadStream` and no longer a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
 
-DON'T USE (comment out) ..............
+<!-- UNCOMMENT FOR PREVIEW 4? ...
+     Waiting on https://github.com/dotnet/runtime/issues/97449
+     ... and update the Call web API article Line 983
 
 To opt-out of response streaming globally, use either of the following approaches:
 
@@ -110,7 +110,9 @@ To opt-out of response streaming globally, use either of the following approache
 
 * Set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
 
-..................... UNTIL https://github.com/dotnet/runtime/issues/97449 IS RESOLVED AND RELEASED.
+............. AND REMOVE THE NEXT LINE .............
+
+-->
 
 To opt-out of response streaming globally, set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
 
@@ -121,16 +123,6 @@ requestMessage.SetBrowserResponseStreamingEnabled(false);
 ```
 
 For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](xref:blazor/call-web-api?view=aspnetcore-10.0#httpclient-and-httprequestmessage-with-fetch-api-request-options).
-
-XXXXXXXXXXXXXXXXXXXX CHANGE EARLIER COVERAGE XXXXXXXXXXXXXXXXXXXX
-
-In the "Ignore the query string and fragment when using `NavLinkMatch.All`" section, change 
-`DisableMatchAllIgnoresLeftUriPart` to `EnableMatchAllForQueryStringAndFragmentSwitchKey` 
-set to `true`.
-
-Also make this change in the *Routing* article at Line 1633.
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ### Client-side fingerprinting
 
@@ -202,4 +194,89 @@ The default environments are:
 * `Development` for build.
 * `Production` for publish.
 
--->
+### Boot configuration file name change
+
+The boot configuration file is changing names from `blazor.boot.json` to `dotnet.boot.js`. This name change only affects developers who are interacting directly with the file, such as when developers are:
+
+* Checking file integrity for published assets with the troubleshoot integrity PowerShell script per the guidance in <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-9.0#troubleshoot-integrity-powershell-script>.
+* Changing the file name extension of DLL files when not using the default Webcil file format per the guidance in <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-9.0#customize-how-boot-resources-are-loaded>.
+
+### Declarative model for persisting state from components and services
+
+You can now declaratively specify state to persist from components and services using the `[SupplyParameterFromPersistentComponentState]` attribute. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
+
+In previous Blazor releases, persisting component state during prerendering using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service involved a significant amount of code, as the following example demonstrates:
+
+```razor
+@page "/movies"
+@implements IDisposable
+@inject IMovieService MovieService
+@inject PersistentComponentState ApplicationState
+
+@if (MoviesList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <QuickGrid Items="MoviesList.AsQueryable()">
+        ...
+    </QuickGrid>
+}
+
+@code {
+    public List<Movie>? MoviesList { get; set; }
+    private PersistingComponentStateSubscription? persistingSubscription;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!ApplicationState.TryTakeFromJson<List<Movie>>(nameof(MoviesList), 
+            out var movies))
+        {
+            MoviesList = await MovieService.GetMoviesAsync();
+        }
+        else
+        {
+            MoviesList = movies;
+        }
+
+        persistingSubscription = ApplicationState.RegisterOnPersisting(() =>
+        {
+            ApplicationState.PersistAsJson(nameof(MoviesList), MoviesList);
+            return Task.CompletedTask;
+        });
+    }
+
+    public void Dispose() => persistingSubscription?.Dispose();
+}
+```
+
+This code can now be simplified using the new declarative model:
+
+```razor
+@page "/movies"
+@inject IMovieService MovieService
+
+@if (MoviesList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <QuickGrid Items="MoviesList.AsQueryable()">
+        ...
+    </QuickGrid>
+}
+
+@code {
+    [SupplyParameterFromPersistentComponentState]
+    public List<Movie>? MoviesList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        MoviesList ??= await MovieService.GetMoviesAsync();
+    }
+}
+```
+
+For more information, see <xref:blazor/components/prerender?view=aspnetcore-10.0#persist-prerendered-state>. Additional API implementation notes, which are subject to change at any time, are available in [[Blazor] Support for declaratively persisting component and services state (`dotnet/aspnetcore` #60634)](https://github.com/dotnet/aspnetcore/pull/60634).
