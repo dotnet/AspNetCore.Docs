@@ -402,6 +402,8 @@ In `Pages/_Host.cshtml` of Blazor apps that are `ServerPrerendered` in a Blazor 
 </body>
 ```
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-10.0"
 
 <!-- UPDATE 10.0 - API cross-link -->
@@ -475,7 +477,7 @@ else
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-10.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-10.0"
 
 Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
@@ -607,6 +609,8 @@ else
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 

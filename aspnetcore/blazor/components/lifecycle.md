@@ -620,6 +620,7 @@ To address the double rendering of the loading message and the re-execution of s
 
 :::moniker range=">= aspnetcore-10.0"
 
+```razor
 @page "/slow"
 @attribute [StreamRendering]
 

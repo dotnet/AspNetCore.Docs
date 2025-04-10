@@ -629,6 +629,8 @@ The client project maintains a `Weather` component that:
 * Enforces authorization with an [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute).
 * Uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to persist weather forecast data when the component transitions from static to interactive SSR on the server. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-10.0"
 
 ```razor
@@ -686,7 +688,7 @@ else
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-10.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 ```razor
 @page "/weather"
@@ -764,6 +766,8 @@ else
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 The server project implements `IWeatherForecaster` as `ServerWeatherForecaster`, which generates and returns mock weather data via its `GetWeatherForecastAsync` method:
 
