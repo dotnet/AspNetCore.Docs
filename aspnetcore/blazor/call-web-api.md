@@ -992,6 +992,8 @@ To opt-out of response streaming globally, use either of the following approache
 
 * Set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
 
+............. AND REMOVE THE NEXT LINE .............
+
 -->
 
 To opt-out of response streaming globally, set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
