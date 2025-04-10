@@ -511,9 +511,9 @@ dir {PATH} | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
 
 :::moniker range=">= aspnetcore-5.0"
 
-In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net6.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
+In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\{TFM}\browser-wasm\publish\wwwroot\_framework` from the project's root folder, where the `{TFM}` placeholder is the [target framework moniker (TFM)](/dotnet/standard/frameworks)).
 
-If service worker assets are also in use:
+If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app):
 
 ```powershell
 ((Get-Content {PATH}\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\service-worker-assets.js
@@ -545,9 +545,9 @@ sed -i 's/\.dll"/.bin"/g' {PATH}/blazor.boot.json
 
 :::moniker range=">= aspnetcore-5.0"
 
-In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net6.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
+In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\{TFM}\browser-wasm\publish\wwwroot\_framework` from the project's root folder), where the `{TFM}` placeholder is the [target framework moniker (TFM)](/dotnet/standard/frameworks))
 
-If service worker assets are also in use:
+If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app):
 
 ```console
 sed -i 's/\.dll"/.bin"/g' {PATH}/service-worker-assets.js
@@ -566,7 +566,7 @@ To address the compressed `dotnet.boot.js.gz` and `dotnet.boot.js.br` files, ado
 
 The preceding guidance for the compressed `dotnet.boot.js` file also applies when service worker assets are in use. Remove or recompress `service-worker-assets.js.br` and `service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
 
-The following Windows example for .NET 6 uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `dotnet.boot.js` file.
+The following Windows example for .NET 6 or later uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `dotnet.boot.js` file. Pass the app's path and TFM to the script.
 
 `ChangeDLLExtensions.ps1:`:
 
@@ -577,6 +577,8 @@ dir $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework | rename-
 Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\dotnet.boot.js.gz
 Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\dotnet.boot.js.br
 ```
+
+Recompress `dotnet.boot.js` to re-enable compression.
 
 :::moniker-end
 
@@ -589,7 +591,7 @@ To address the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files,
 
 The preceding guidance for the compressed `blazor.boot.json` file also applies when service worker assets are in use. Remove or recompress `service-worker-assets.js.br` and `service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
 
-The following Windows example for .NET 6 uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file.
+The following Windows example for .NET 6 to .NET 9 uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file. Pass the app's path and TFM to the script.
 
 `ChangeDLLExtensions.ps1:`:
 
@@ -601,17 +603,21 @@ Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\b
 Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json.br
 ```
 
+Recompress `blazor.boot.json` to re-enable compression.
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0"
 
-If service worker assets are also in use, add the following commands:
+If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app), add the following commands:
 
 ```powershell
-((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js
-Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js.gz
-Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js.br
+((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js.gz
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js.br
 ```
+
+Recompress `service-worker-assets.js` to re-enable compression.
 
 In the project file, the script is executed after publishing the app for the `Release` configuration:
 

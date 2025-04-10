@@ -52,7 +52,7 @@ For Blazor WebAssembly's boot reference source, see [the `Boot.WebAssembly.ts` f
 
 ## Diagnose integrity problems
 
-When an app is built, the generated boot manifest describes the SHA-256 hashes of boot resources at the time that the build output is produced. The integrity check passes as long as the SHA-256 hashes in the boot configuration match the files delivered to the browser.
+When an app is built, the generated boot manifest describes the SHA-256 hashes of boot resources at the time that the build output is produced. The integrity check passes as long as the SHA-256 hashes in the boot manifest match the files delivered to the browser.
 
 Common reasons why this fails include:
 
