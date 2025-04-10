@@ -1,29 +1,29 @@
 ### Validation support in Minimal APIs
 
-<!-- https://github.com/captainsafia/minapi-validation-support -->
+Support for validation in Minimal APIs is now available. This feature allows you to request validation of data sent to your API endpoints. Enabling validation allows the ASP.NET Core runtime to perform any validations defined on the:
 
-Support for validation in Minimal APIs is now available. This feature allows you to request validation of data
-sent to your API endpoints. When validation is enabled, the ASP.NET Core runtime will perform any validations
-defined on query, header, and route parameters, as well as on the request body.
-Validations can be defined using attributes in the `System.ComponentModel.DataAnnotations` namespace.
-Developers can customize the behavior of the validation system by:
+* Query
+* Header
+* Request body
 
-- creating custom [ValidationAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.validationattribute?view=net-9.0) implementations
-- implement the [IValidatableObject](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.ivalidatableobject?view=net-9.0) interface for complex validation logic
+Validations are defined using attributes in the [`DataAnnotations`](xref:System.ComponentModel.DataAnnotations) namespace. Developers customize the behavior of the validation system by:
 
-When validation fails, the runtime will return a 400 Bad Request response with
-details of the validation errors.
+* Creating custom [`[Validation]`](xref:System.ComponentModel.DataAnnotations.ValidationAttribute) attribute implementations.
+* Implementing the [`IValidatableObject`](xref:System.ComponentModel.DataAnnotations.IValidatableObject) interface for complex validation logic.
 
-To enable built-in validation support for minimal APIs, call the `AddValidation` extension method to register
-the required services into the service container for your application.
+If validation fails, the runtime returns a 400 Bad Request response with details of the validation errors.
+
+#### Enable built-in validation support for minimal APIs
+
+Enable the built-in validation support for minimal APIs by calling the `AddValidation` extension method to register the required services in the service container for your application:
 
 ```csharp
 builder.Services.AddValidation();
 ```
 
-The implementation automatically discovers types that are defined in minimal API handlers or as base types of types defined in minimal API handlers. Validation is then performed on these types by an endpoint filter that is added for each endpoint.
+The implementation automatically discovers types that are defined in minimal API handlers or as base types of types defined in minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
 
-Validation can be disabled for specific endpoints by using the `DisableValidation` extension method.
+Validation can be disabled for specific endpoints by using the `DisableValidation` extension method, as in the following example:
 
 ```csharp
 app.MapPost("/products",
