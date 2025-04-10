@@ -417,7 +417,7 @@ An enrollment record is for one course taken by one student.
 
 ![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
 
-Update `Models/Enrollment.cs` with the following code:
+Review `Models/Enrollment.cs`:
 
 [!code-csharp[](intro/samples/cu30/Models/Enrollment.cs?highlight=1-2,16)]
 
