@@ -1,4 +1,4 @@
-public record HearRate(DateTime Timestamp, int HeartRate)
+public record HeartRate(DateTime Timestamp, int HeartRate)
 {
-    public static HearRate Create(int heartRate) => new(DateTime.UtcNow, heartRate);
+    public static HeartRate Create(int heartRate) => new(DateTime.UtcNow, heartRate);
 }
