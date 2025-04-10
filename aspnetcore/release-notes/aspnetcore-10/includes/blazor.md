@@ -211,17 +211,15 @@ The boot configuration file is changing names from `blazor.boot.json` to `dotnet
 
 ### Declarative model for persisting state from components and services
 
-You can now declaratively specify state to persist from components and services using the `[SupplyParameterFromPersistentComponentState]` attribute. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering and loaded when the component renders interactively or the service is instantiated.
+You can now declaratively specify state to persist from components and services using the `[SupplyParameterFromPersistentComponentState]` attribute. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
 
-Previously, persisting state from a component during prerendering using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service involved a significant amount of code, as the following example demonstrates:
+In previous Blazor releases, persisting component state during prerendering using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service involved a significant amount of code, as the following example demonstrates:
 
 ```razor
 @page "/movies"
+@implements IDisposable
 @inject IMovieService MovieService
 @inject PersistentComponentState ApplicationState
-@implements IDisposable
-
-...
 
 @if (MoviesList == null)
 {
@@ -266,8 +264,6 @@ This code can now be simplified using the new declarative model:
 ```razor
 @page "/movies"
 @inject IMovieService MovieService
-
-...
 
 @if (MoviesList == null)
 {

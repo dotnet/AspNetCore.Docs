@@ -49,7 +49,7 @@ To retain the initial value of the counter during prerendering, Blazor supports 
 
 <!-- UPDATE 10.0 - API cross-links -->
 
-To preserve prerendered state, use the `[SupplyParameterFromPersistentComponentState]` attribute to persist state in properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering and loaded when the component renders interactively or the service is instantiated.
+To preserve prerendered state, use the `[SupplyParameterFromPersistentComponentState]` attribute to persist state in properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
 
 By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
@@ -97,7 +97,7 @@ The following counter component example persists counter state during prerenderi
 }
 ```
 
-In the following example to serialize state for multiple components of the same type:
+In the following example that serializes state for multiple components of the same type:
 
 * Properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are serialized and deserialized during prerendering.
 * The [`@key` directive attribute](xref:blazor/components/key#use-of-the-key-directive-attribute) is used to ensure that the state is correctly associated with the component instance.
@@ -143,10 +143,10 @@ In the following example to serialize state for multiple components of the same 
 }
 ```
 
-In the following example to serialize state for a service:
+In the following example that serializes state for a service:
 
 * Properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are serialized during prerendering and deserialized when the app becomes interactive.
-* The `AddPersistentService` method is used to register the service for persistence. The render mode is required, as it can't be inferred from the service type. Use any of the following values:
+* The `AddPersistentService` method is used to register the service for persistence. The render mode is required because the render mode can't be inferred from the service type. Use any of the following values:
   * `RenderMode.Server`: The service is available for the Interactive Server render mode.
   * `RenderMode.Webassembly`: The service is available for the Interactive Webassembly render mode.
   * `RenderMode.InteractiveAuto`: The service is available for both the Interactive Server and Interactive Webassembly render modes if a component renders in either of those modes.
