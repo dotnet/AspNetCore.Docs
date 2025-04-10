@@ -52,7 +52,7 @@ For Blazor WebAssembly's boot reference source, see [the `Boot.WebAssembly.ts` f
 
 ## Diagnose integrity problems
 
-When an app is built, the generated boot file manifest describes the SHA-256 hashes of boot resources at the time that the build output is produced. The integrity check passes as long as the SHA-256 hashes in the boot configuration match the files delivered to the browser.
+When an app is built, the generated boot manifest describes the SHA-256 hashes of boot resources at the time that the build output is produced. The integrity check passes as long as the SHA-256 hashes in the boot configuration match the files delivered to the browser.
 
 Common reasons why this fails include:
 
@@ -61,7 +61,7 @@ Common reasons why this fails include:
   * If you or build tools manually modify the build output.
   * If some aspect of the deployment process modified the files. For example if you use a Git-based deployment mechanism, bear in mind that Git transparently converts Windows-style line endings to Unix-style line endings if you commit files on Windows and check them out on Linux. Changing file line endings change the SHA-256 hashes. To avoid this problem, consider [using `.gitattributes` to treat build artifacts as `binary` files](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
   * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](xref:client-side/bundling-and-minification#minification) HTML, thereby modifying it. You may need to disable such features.
-* The boot file manifest fails to load properly or is improperly cached on the client. Common causes include either of the following: 
+* The boot manifest fails to load properly or is improperly cached on the client. Common causes include either of the following: 
   * Misconfigured or malfunctioning custom developer code.
   * One or more misconfigured intermediate caching layers.
 
