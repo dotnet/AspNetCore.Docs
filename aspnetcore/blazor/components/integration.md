@@ -416,6 +416,11 @@ In the following example, the `{TYPE}` placeholder represents the type of data t
 @code {
     [SupplyParameterFromPersistentComponentState]
     public {TYPE} Data { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Data ??= await ...;
+    }
 }
 ```
 
