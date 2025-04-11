@@ -443,7 +443,7 @@ Blazor performs Intermediate Language (IL) linking on each Release build to remo
 
 ## Change the file name extension of DLL files
 
-*This section applies to .NET 5 through .NET 7. In .NET 8, .NET assemblies are deployed as WebAssembly files (`.wasm`) using the Webcil file format.*
+*This section applies to .NET 5 through .NET 7. In .NET 8 or later, .NET assemblies are deployed as WebAssembly files (`.wasm`) using the Webcil file format.*
 
 If a firewall, anti-virus program, or network security appliance is blocking the transmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the file name extensions of the app's published DLL files.
 
@@ -527,7 +527,7 @@ For a [Progressive Web App (PWA)](xref:blazor/progressive-web-app)'s compressed 
 * Recompress the updated `service-worker-assets.js` file, producing new `service-worker-assets.js.br` and `service-worker-assets.js.gz` files. (*Recommended*)
 * Remove the compressed `service-worker-assets.js.gz` and `service-worker-assets.js.br` files. (*Compression is disabled with this approach.*)
 
-To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app). Pass the path to the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations) to the script.
+To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app). The path to the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations) is passed to the script when it's executed.
 
 `ChangeDLLExtensions.ps1:`:
 
@@ -551,7 +551,7 @@ In the project file, the script is executed after publishing the app for the `Re
 
 ```xml
 <Target Name="ChangeDLLFileExtensions" AfterTargets="AfterPublish" Condition="'$(Configuration)'=='Release'">
-  <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)' '$(TargetFramework)'}&quot;" />
+  <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)'}&quot;" />
 </Target>
 ```
 
