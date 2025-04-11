@@ -98,7 +98,6 @@ The following counter component example persists counter state during prerenderi
         {
             Logger.LogInformation("CurrentCount restored to {Count}", CurrentCount);
         }
-        
     }
 
     private void IncrementCount() => CurrentCount++;
