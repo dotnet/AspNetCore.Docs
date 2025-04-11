@@ -525,9 +525,9 @@ To address the compressed `blazor.boot.json` file, adopt either of the following
 For a [Progressive Web App (PWA)](xref:blazor/progressive-web-app)'s compressed `service-worker-assets.js` file, adopt either of the following approaches:
 
 * Recompress the updated `service-worker-assets.js` file, producing new `service-worker-assets.js.br` and `service-worker-assets.js.gz` files. (*Recommended*)
-* Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. (*Compression is disabled with this approach.*)
+* Remove the compressed `service-worker-assets.js.gz` and `service-worker-assets.js.br` files. (*Compression is disabled with this approach.*)
 
-To automate the extension change on Windows, the following approach for .NET 6 or later uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app). Pass the path to the [`publish` folder](xref:blazor/host-and-deploy/index#publish-locations) to the script.
+To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app). Pass the path to the [`publish` folder](xref:blazor/host-and-deploy/index#publish-locations) to the script.
 
 `ChangeDLLExtensions.ps1:`:
 
