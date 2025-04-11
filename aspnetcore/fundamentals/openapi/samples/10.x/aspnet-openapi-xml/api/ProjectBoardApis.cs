@@ -69,6 +69,7 @@ public static class ProjectBoardApis
     /// <response code="400">If the project board data is invalid.</response>
     public static IResult CreateProjectBoard(ProjectBoard board)
     {
+        var name = board.Name;
         board.Id = _nextBoardId++;
         board.CreatedAt = DateTime.UtcNow;
         Boards.Add(board);

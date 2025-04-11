@@ -20,6 +20,8 @@ For XML documentation tags that use references to other elements, like `<see cre
 
 This article includes a [sample app](#download10) that demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents. The sample app is a minimal ASP.NET Core Web API project that uses the `Microsoft.AspNetCore.OpenApi` package to generate OpenAPI documents. The XML documentation comments are used to populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
 
+The following image shows the Scalar UI with XML documentation comments integrated into the OpenAPI document of the sample app:
+
 ![screenshot of app with XML comments in sclaar UI](~/fundamentals/openapi/_static/screenshot.png)
 
 ## Customizing XML documentation behavior
@@ -77,8 +79,6 @@ To include XML documentation files from referenced assemblies, add them as `Addi
 #### Disabling XML documentation support
 
 To turn off XML documentation integration, remove the source generator from the `Analyzers` item group. Removing the source generator prevents it from being used during compilation.
-
-<!-- review: \aspnet-openapi-xml\api\obj\Debug\net10.0\Api.xml is generated using the following project file , that is, <Analyzer Remove="$(PkgMicro ... -->
 
 :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Api-remove.csproj.xml" highlight="7,19-23":::
 
