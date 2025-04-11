@@ -30,19 +30,11 @@ The following sections describe how to enable and customize XML documentation su
 
 1. Enable XML documentation in the project file:
 
-  :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
+    :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/models/Models.csproj" highlight="7":::
 
 2. Use the [AddOpenApi](xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*) method in the service configuration. No configuration is needed, the source generator handles the rest.
 
-  :::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Program.cs" highlight="6":::
-
-To include XML documentation files from referenced assemblies, add them as `AdditionalFiles` in the project:
-
-```xml
-<ItemGroup>
-  <AdditionalFiles Include="Path/To/AssemblyDoc.xml" />
-</ItemGroup>
-```
+    :::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/Program.cs" highlight="6":::
 
 The source generator detects all standard overloads:
 
@@ -73,6 +65,14 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 The implementation discovers XML files statically at compile-time. The `AdditionalFiles` item group specifies additional sources for XML files:
 
   :::code language="xml" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/AdditionalFiles.xml" highlight="7":::
+
+To include XML documentation files from referenced assemblies, add them as `AdditionalFiles` in the project:
+
+```xml
+<ItemGroup>
+  <AdditionalFiles Include="Path/To/AssemblyDoc.xml" />
+</ItemGroup>
+```
 
 #### Disabling XML documentation support
 
@@ -121,17 +121,6 @@ The automatic resolution behavior is currently available for XML documentation c
   * Associating the text content to compilation symbols.
   * Developing an understanding of the inheritance hierarchy associated with the types.
 
-
-<!-- ## Frequently Asked Questions
-
-Moved to intro ### What is the OpenAPI XML documentation support feature?
-
-The feature automatically extracts XML documentation comments from code and uses them to populate OpenAPI documentation. API documentation is generated directly from code comments, keeping them in sync. -->
-
-
-
-
-
 XML documentation comments from `ProjectReferences` are automatically resolved and don't require additional configuration.
 
 ### Supported XML documentation tags
@@ -164,10 +153,6 @@ To add examples to documentation, use the [`<example>`](/dotnet/csharp/language-
 /// <example>{"name":"Sample","value":42}</example>
 /// <param name="id" example="42">The unique identifier</param>
 ```
-
-<!-- move FAQ to topic --> zzz
-
-
 
 <a name="download10"></a>
 
