@@ -43,12 +43,12 @@ dotnet publish -c Release
 
 Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
 
-Publish locations:
+## Default publish locations
 
 :::moniker range=">= aspnetcore-8.0"
 
 * Blazor Web App: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework. Deploy the contents of the `publish` folder to the host.
-* Standalone Blazor WebAssembly: The app is published into the `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish\` folder. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
+* Standalone Blazor WebAssembly: The app is published into the `bin/Release/{TARGET FRAMEWORK}/publish` or `bin/Release/{TARGET FRAMEWORK}/browser-wasm/publish` folder. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
 
 :::moniker-end
 
@@ -56,8 +56,8 @@ Publish locations:
 
 * Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.. Deploy the contents of the `publish` folder to the host.
 * Blazor WebAssembly
-  * Standalone: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
-  * Hosted: The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the client app. Deploy the contents of the `publish` folder to the host.
+  * Standalone: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` or `bin/Release/{TARGET FRAMEWORK}/browser-wasm/publish` folder. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
+  * Hosted: The server ASP.NET Core app and client Blazor WebAssembly app are published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder of the server app, along with any static web assets of the client app. Deploy the contents of the `publish` folder to the host.
 
 :::moniker-end
 
