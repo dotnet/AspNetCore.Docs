@@ -351,6 +351,8 @@ The <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> object pass
 
 For more information, see <xref:blazor/fundamentals/routing#handle-cancellations-in-onnavigateasync>.
 
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
+
 ## `OnNavigateAsync` events and renamed assembly files
 
 The resource loader relies on the assembly names that are defined in the boot manifest file. If [assemblies are renamed](xref:blazor/host-and-deploy/webassembly/index#change-the-file-name-extension-of-dll-files), the assembly names used in an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback and the assembly names in the boot manifest file are out of sync.
@@ -359,6 +361,8 @@ To rectify this:
 
 * Check to see if the app is running in the `Production` environment when determining which assembly names to use.
 * Store the renamed assembly names in a separate file and read from that file to determine what assembly name to use with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service and <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback.
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 

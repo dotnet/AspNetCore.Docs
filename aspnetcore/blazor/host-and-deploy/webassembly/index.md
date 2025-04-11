@@ -325,7 +325,7 @@ For more information, see the following articles:
 
 A *standalone deployment* serves the Blazor WebAssembly app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
-Standalone deployment assets are published into either the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish\` folder (depending on the version of the .NET SDK in use), where the `{TARGET FRAMEWORK}` placeholder is the target framework.
+Standalone deployment assets are published into either the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin/Release/{TARGET FRAMEWORK}/browser-wasm/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
 ## Azure App Service
 
@@ -439,42 +439,22 @@ Blazor performs Intermediate Language (IL) linking on each Release build to remo
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 ## Change the file name extension of DLL files
 
-*This section applies to ASP.NET Core 6.x and 7.x. In ASP.NET Core in .NET 8 or later, .NET assemblies are deployed as WebAssembly files (`.wasm`) using the Webcil file format. In ASP.NET Core in .NET 8 or later, this section only applies if the Webcil file format has been disabled in the app's project file.*
+*This section applies to .NET 5 through .NET 7. In .NET 8 or later, .NET assemblies are deployed as WebAssembly files (`.wasm`) using the Webcil file format.*
 
 If a firewall, anti-virus program, or network security appliance is blocking the transmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the file name extensions of the app's published DLL files.
 
-:::moniker-end
+Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
 
-:::moniker range=">= aspnetcore-8.0"
+For a more robust approach in environments that block the download and execution of DLL files, take ***either*** of the following approaches:
 
-> [!NOTE]
-> Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
->
-> For a more robust approach in environments that block the download and execution of DLL files, use ASP.NET Core in .NET 8 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
->
-> Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
+* Use .NET 8 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
+* In .NET 6 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly/deployment-layout).
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
-
-> [!NOTE]
-> Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
->
-> For a more robust approach in environments that block the download and execution of DLL files, take ***either*** of the following approaches:
->
-> * Use ASP.NET Core in .NET 8 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
-> * In ASP.NET Core in .NET 6 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly/deployment-layout).
->
-> Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0"
+Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
 After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension in the directory of the app's published output.
 
@@ -487,31 +467,21 @@ In the following examples:
 
 To use a different file extension than `.bin`, replace `.bin` in the following commands with the desired file extension.
 
-On Windows:
+# [Windows](#tab/windows)
 
-:::moniker-end
+In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations).
 
-:::moniker range=">= aspnetcore-10.0"
+Rename file extensions in the folder:
 
 ```powershell
 dir {PATH} | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-((Get-Content {PATH}\dotnet.boot.js -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\dotnet.boot.js
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-10.0"
+Rename file extensions in the `blazor.boot.json` file:
 
 ```powershell
-dir {PATH} | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
 ((Get-Content {PATH}\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\blazor.boot.json
 ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0"
-
-In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\{TFM}\browser-wasm\publish\wwwroot\_framework` from the project's root folder, where the `{TFM}` placeholder is the [target framework moniker (TFM)](/dotnet/standard/frameworks)).
 
 If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app):
 
@@ -521,31 +491,21 @@ If service worker assets are also in use because the app is a [Progressive Web A
 
 In the preceding command, the `{PATH}` placeholder is the path to the published `service-worker-assets.js` file.
 
-On Linux or macOS:
+# [Linux / macOS](#tab/linux-macos)
 
-:::moniker-end
+In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations).
 
-:::moniker range=">= aspnetcore-10.0"
+Rename file extensions in the folder:
 
 ```console
 for f in {PATH}/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
-sed -i 's/\.dll"/.bin"/g' {PATH}/dotnet.boot.js
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-10.0"
+Rename file extensions in the `blazor.boot.json` file:
 
 ```console
-for f in {PATH}/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
 sed -i 's/\.dll"/.bin"/g' {PATH}/blazor.boot.json
 ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0"
-
-In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\{TFM}\browser-wasm\publish\wwwroot\_framework` from the project's root folder), where the `{TFM}` placeholder is the [target framework moniker (TFM)](/dotnet/standard/frameworks))
 
 If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app):
 
@@ -555,77 +515,47 @@ sed -i 's/\.dll"/.bin"/g' {PATH}/service-worker-assets.js
 
 In the preceding command, the `{PATH}` placeholder is the path to the published `service-worker-assets.js` file.
 
-:::moniker-end
+---
 
-:::moniker range=">= aspnetcore-10.0"
+To address the compressed `blazor.boot.json` file, adopt either of the following approaches:
 
-To address the compressed `dotnet.boot.js.gz` and `dotnet.boot.js.br` files, adopt either of the following approaches:
+* Recompress the updated `blazor.boot.json` file, producing new `blazor.boot.json.gz` and `blazor.boot.json.br` files. (*Recommended*)
+* Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. (*Compression is disabled with this approach.*)
 
-* Remove the compressed `dotnet.boot.js.gz` and `dotnet.boot.js.br` files. **Compression is disabled with this approach.**
-* Recompress the updated `dotnet.boot.js` file.
+For a [Progressive Web App (PWA)](xref:blazor/progressive-web-app)'s compressed `service-worker-assets.js` file, adopt either of the following approaches:
 
-The preceding guidance for the compressed `dotnet.boot.js` file also applies when service worker assets are in use. Remove or recompress `service-worker-assets.js.br` and `service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
+* Recompress the updated `service-worker-assets.js` file, producing new `service-worker-assets.js.br` and `service-worker-assets.js.gz` files. (*Recommended*)
+* Remove the compressed `service-worker-assets.js.gz` and `service-worker-assets.js.br` files. (*Compression is disabled with this approach.*)
 
-The following Windows example for .NET 6 or later uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `dotnet.boot.js` file. Pass the app's path and TFM to the script.
-
-`ChangeDLLExtensions.ps1:`:
-
-```powershell
-param([string]$filepath,[string]$tfm)
-dir $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\dotnet.boot.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\dotnet.boot.js
-Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\dotnet.boot.js.gz
-Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\dotnet.boot.js.br
-```
-
-Recompress `dotnet.boot.js` to re-enable compression.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-10.0"
-
-To address the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files, adopt either of the following approaches:
-
-* Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. **Compression is disabled with this approach.**
-* Recompress the updated `blazor.boot.json` file.
-
-The preceding guidance for the compressed `blazor.boot.json` file also applies when service worker assets are in use. Remove or recompress `service-worker-assets.js.br` and `service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
-
-The following Windows example for .NET 6 to .NET 9 uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file. Pass the app's path and TFM to the script.
+To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app). The path to the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations) is passed to the script when it's executed.
 
 `ChangeDLLExtensions.ps1:`:
 
 ```powershell
-param([string]$filepath,[string]$tfm)
-dir $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json
-Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json.gz
-Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json.br
+param([string]$filepath)
+dir $filepath\wwwroot\_framework | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content $filepath\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\wwwroot\_framework\blazor.boot.json
+Remove-Item $filepath\wwwroot\_framework\blazor.boot.json.gz
+Remove-Item $filepath\wwwroot\_framework\blazor.boot.json.br
 ```
-
-Recompress `blazor.boot.json` to re-enable compression.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0"
 
 If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app), add the following commands:
 
 ```powershell
-((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js
-Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js.gz
-Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js.br
+((Get-Content $filepath\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\wwwroot\service-worker-assets.js
+Remove-Item $filepath\wwwroot\service-worker-assets.js.gz
+Remove-Item $filepath\wwwroot\service-worker-assets.js.br
 ```
-
-Recompress `service-worker-assets.js` to re-enable compression.
 
 In the project file, the script is executed after publishing the app for the `Release` configuration:
 
 ```xml
 <Target Name="ChangeDLLFileExtensions" AfterTargets="AfterPublish" Condition="'$(Configuration)'=='Release'">
-  <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)' '$(TargetFramework)'}&quot;" />
+  <Exec Command="powershell.exe -command &quot;&amp; {.\ChangeDLLExtensions.ps1 '$(SolutionDir)'}&quot;" />
 </Target>
 ```
+
+After publishing the app, manually recompress `blazor.boot.json`, and `service-worker-assets.js` if used, to re-enable compression.
 
 > [!NOTE]
 > When renaming and lazy loading the same assemblies, see the guidance in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
