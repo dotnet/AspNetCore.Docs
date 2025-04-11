@@ -646,7 +646,7 @@ else
 
     private async Task<string> LoadDataAsync()
     {
-        await Task.Delay(10000);
+        await Task.Delay(5000);
         return "Finished!";
     }
 }
@@ -701,7 +701,7 @@ else
 
     private async Task<string> LoadDataAsync()
     {
-        await Task.Delay(10000);
+        await Task.Delay(5000);
         return "Finished!";
     }
 

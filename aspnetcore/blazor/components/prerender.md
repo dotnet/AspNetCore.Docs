@@ -79,6 +79,55 @@ The following counter component example persists counter state during prerenderi
 
 <h1>Prerendered Counter 2</h1>
 
+<p role="status">Current count: @State?.CurrentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    [SupplyParameterFromPersistentComponentState]
+    public CounterState? State { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (State is null)
+        {
+            State = new() { CurrentCount = Random.Shared.Next(100) };
+            Logger.LogInformation("CurrentCount set to {Count}", 
+                State.CurrentCount);
+        }
+        else
+        {
+            Logger.LogInformation("CurrentCount restored to {Count}", 
+                State.CurrentCount);
+        }
+    }
+
+    private void IncrementCount()
+    {
+        if (State is not null)
+        {
+            State.CurrentCount++;
+        }
+    }
+
+    public class CounterState
+    {
+        public int CurrentCount { get; set; }
+    }
+}
+```
+
+<!-- HOLD until https://github.com/dotnet/aspnetcore/issues/61456 
+     is resolved
+
+```razor
+@page "/prerendered-counter-2"
+@inject ILogger<PrerenderedCounter2> Logger
+
+<PageTitle>Prerendered Counter 2</PageTitle>
+
+<h1>Prerendered Counter 2</h1>
+
 <p role="status">Current count: @CurrentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
@@ -89,13 +138,31 @@ The following counter component example persists counter state during prerenderi
 
     protected override void OnInitialized()
     {
-        CurrentCount ??= Random.Shared.Next(100);
-        Logger.LogInformation("CurrentCount set to {Count}", CurrentCount);
+        if (CurrentCount == 0)
+        {
+            CurrentCount = Random.Shared.Next(100);
+            Logger.LogInformation("CurrentCount set to {Count}", CurrentCount);
+        }
+        else
+        {
+            Logger.LogInformation("CurrentCount restored to {Count}", CurrentCount);
+        }
     }
 
     private void IncrementCount() => CurrentCount++;
 }
 ```
+-->
+
+When the component executes, `CurrentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
+
+> [!NOTE]
+> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
+
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
+> :::no-loc text="      CurrentCount set to 96":::  
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
+> :::no-loc text="      CurrentCount restored to 96":::
 
 In the following example that serializes state for multiple components of the same type:
 
@@ -283,6 +350,16 @@ The following counter component example persists counter state during prerenderi
 }
 ```
 
+When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
+
+> [!NOTE]
+> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
+
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter3[0]":::  
+> :::no-loc text="      currentCount set to 96":::  
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter3[0]":::  
+> :::no-loc text="      currentCount restored to 96":::
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-10.0"
@@ -340,17 +417,17 @@ The following counter component example persists counter state during prerenderi
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PrerenderedCounter2.razor":::
 
-:::moniker-end
-
 When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
 
 > [!NOTE]
-> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter2` component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
+> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      currentCount set to 96":::  
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      currentCount restored to 96":::
+
+:::moniker-end
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
