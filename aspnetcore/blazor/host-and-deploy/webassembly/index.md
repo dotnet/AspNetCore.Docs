@@ -325,7 +325,7 @@ For more information, see the following articles:
 
 A *standalone deployment* serves the Blazor WebAssembly app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
-Standalone deployment assets are published into either the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish\` folder (depending on the version of the .NET SDK in use), where the `{TARGET FRAMEWORK}` placeholder is the target framework.
+Standalone deployment assets are published into either the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin/Release/{TARGET FRAMEWORK}/browser-wasm/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
 ## Azure App Service
 
@@ -469,7 +469,7 @@ To use a different file extension than `.bin`, replace `.bin` in the following c
 
 # [Windows](#tab/windows)
 
-In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](xref:blazor/host-and-deploy/index#publish-locations).
+In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations).
 
 Rename file extensions in the folder:
 
@@ -493,7 +493,7 @@ In the preceding command, the `{PATH}` placeholder is the path to the published 
 
 # [Linux / macOS](#tab/linux-macos)
 
-In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](xref:blazor/host-and-deploy/index#publish-locations).
+In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations).
 
 Rename file extensions in the folder:
 
@@ -527,7 +527,7 @@ For a [Progressive Web App (PWA)](xref:blazor/progressive-web-app)'s compressed 
 * Recompress the updated `service-worker-assets.js` file, producing new `service-worker-assets.js.br` and `service-worker-assets.js.gz` files. (*Recommended*)
 * Remove the compressed `service-worker-assets.js.gz` and `service-worker-assets.js.br` files. (*Compression is disabled with this approach.*)
 
-To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app). Pass the path to the [`publish` folder](xref:blazor/host-and-deploy/index#publish-locations) to the script.
+To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app). Pass the path to the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations) to the script.
 
 `ChangeDLLExtensions.ps1:`:
 
