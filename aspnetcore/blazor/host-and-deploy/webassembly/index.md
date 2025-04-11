@@ -551,7 +551,7 @@ In the project file, the script is executed after publishing the app for the `Re
 
 ```xml
 <Target Name="ChangeDLLFileExtensions" AfterTargets="AfterPublish" Condition="'$(Configuration)'=='Release'">
-  <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)'}&quot;" />
+  <Exec Command="powershell.exe -command &quot;&amp; {.\ChangeDLLExtensions.ps1 '$(SolutionDir)'}&quot;" />
 </Target>
 ```
 
