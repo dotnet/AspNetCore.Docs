@@ -79,6 +79,55 @@ The following counter component example persists counter state during prerenderi
 
 <h1>Prerendered Counter 2</h1>
 
+<p role="status">Current count: @State?.CurrentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    [SupplyParameterFromPersistentComponentState]
+    public CounterState? State { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (State is null)
+        {
+            State = new() { CurrentCount = Random.Shared.Next(100) };
+            Logger.LogInformation("CurrentCount set to {Count}", 
+                State.CurrentCount);
+        }
+        else
+        {
+            Logger.LogInformation("CurrentCount restored to {Count}", 
+                State.CurrentCount);
+        }
+    }
+
+    private void IncrementCount()
+    {
+        if (State is not null)
+        {
+            State.CurrentCount++;
+        }
+    }
+
+    public class CounterState
+    {
+        public int CurrentCount { get; set; }
+    }
+}
+```
+
+<!-- HOLD until https://github.com/dotnet/aspnetcore/issues/61456 
+     is resolved
+
+```razor
+@page "/prerendered-counter-2"
+@inject ILogger<PrerenderedCounter2> Logger
+
+<PageTitle>Prerendered Counter 2</PageTitle>
+
+<h1>Prerendered Counter 2</h1>
+
 <p role="status">Current count: @CurrentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
@@ -103,6 +152,7 @@ The following counter component example persists counter state during prerenderi
     private void IncrementCount() => CurrentCount++;
 }
 ```
+-->
 
 When the component executes, `CurrentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
 
