@@ -11,12 +11,12 @@ uid: fundamentals/openapi/aspnet-openapi-xml
 <!-- backup author: rick-anderson -->
 # OpenAPI XML documentation comment support in ASP.NET Core
 
-OpenAPI XML documentation extracts code comments automatically to populate API documentation, ensuring the code and documentation remain synchronized. Metadata from XML documentation comments is included in the generated OpenAPI document without requiring changes to the app code, as long as the project is configured to generate the XML documentation file. XML documentation comments are automatically detected in the application assembly and referenced assemblies with XML documentation enabled.
-
-XML documentation processing doesn't affect runtime performance. The source generator processes XML documentation at compile time and caches the results, with minimal runtime overhead when rendering the OpenAPI documentation. Furthermore, the OpenAPI document can be cached at runtime using [output-caching](/aspnet/core/performance/caching/overview#output-caching) to further optimize performance.
+OpenAPI XML documentation processing extracts code comments automatically to populate API documentation, ensuring the code and documentation remain synchronized. Metadata from XML documentation comments is included in the generated OpenAPI document without requiring changes to the app code, as long as the project is configured to generate the XML documentation file. XML documentation comments are automatically detected in the application assembly and referenced assemblies with XML documentation enabled.
 
 ASP.NET Core processes [XML documentation tags](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`.
 For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
+
+XML documentation processing doesn't affect runtime performance. The source generator processes XML documentation at compile time and caches the results, with minimal runtime overhead when rendering the OpenAPI documentation. Furthermore, the OpenAPI document can be cached at runtime using [output-caching](/aspnet/core/performance/caching/overview#output-caching) to further optimize performance.
 
 This article includes a [sample app](#download10) that demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents. The sample app is a minimal ASP.NET Core Web API project that uses the `Microsoft.AspNetCore.OpenApi` package to generate OpenAPI documents. The XML documentation comments are used to populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
 
