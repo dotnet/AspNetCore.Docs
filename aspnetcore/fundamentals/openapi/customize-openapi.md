@@ -49,7 +49,7 @@ All schemas are added to the document before any operation processing occurs, so
 * Operation transformers are executed when an operation is added to the document. Operation transformers are executed in the order in which they were added.
 All operations are added to the document before any document transformers are executed.
 * Document transformers are executed when the document is generated. This is the final pass over the document, and all operations and schemas have been add by this point.
-* When an app is configured to generate multiple OpenAPI documents, each document is generated in the order in which it was registered, and the transformers are executed as documents are generated.
+* When an app is configured to generate multiple OpenAPI documents, transformers are executed for each document independently.
 
 For example, in the following snippet:
 * `SchemaTransformer2` is executed and has access to the modifications made by `SchemaTransformer1`.
