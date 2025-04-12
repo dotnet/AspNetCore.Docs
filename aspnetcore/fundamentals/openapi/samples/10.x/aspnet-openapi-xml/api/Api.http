@@ -1,0 +1,73 @@
+@Api_HostAddress = http://localhost:5052
+
+GET {{Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+### Project Board Endpoints ###
+
+### Get all project boards
+GET {{Api_HostAddress}}/api/projectboards
+Accept: application/json
+
+### Get project board by ID
+GET {{Api_HostAddress}}/api/projectboards/1
+Accept: application/json
+
+### Create a new project board
+POST {{Api_HostAddress}}/api/projectboards
+Content-Type: application/json
+
+{
+  "name": "Website Redesign",
+  "description": "Tasks for redesigning the company website"
+}
+
+### Update a project board
+PUT {{Api_HostAddress}}/api/projectboards/1
+Content-Type: application/json
+
+{
+  "name": "Website Redesign v2",
+  "description": "Updated tasks for redesigning the company website"
+}
+
+### Delete a project board
+DELETE {{Api_HostAddress}}/api/projectboards/1
+
+
+### Todo Endpoints ###
+
+### Get all todos for a project board
+GET {{Api_HostAddress}}/api/projectboards/1/todos
+Accept: application/json
+
+### Get a specific todo by ID
+GET {{Api_HostAddress}}/api/projectboards/1/todos/1
+Accept: application/json
+
+### Create a new todo
+POST {{Api_HostAddress}}/api/projectboards/1/todos
+Content-Type: application/json
+
+{
+  "title": "Design new homepage",
+  "description": "Create wireframes for the new homepage design",
+  "isComplete": false,
+  "priority": 2,
+  "dueDate": "2025-03-20T00:00:00Z"
+}
+
+### Update a todo
+PUT {{Api_HostAddress}}/api/projectboards/1/todos/1
+Content-Type: application/json
+
+{
+  "title": "Design new homepage with feedback",
+  "description": "Update wireframes based on stakeholder feedback",
+  "isComplete": true,
+  "priority": 3,
+  "dueDate": "2025-03-25T00:00:00Z"
+}
+
+### Delete a todo
+DELETE {{Api_HostAddress}}/api/projectboards/1/todos/1

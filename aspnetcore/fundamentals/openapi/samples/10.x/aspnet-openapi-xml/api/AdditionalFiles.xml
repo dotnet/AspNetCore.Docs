@@ -1,0 +1,8 @@
+<ItemGroup>
+  <PackageReference Include="Some.Package" Version="10.0.0"
+                    GeneratePathProperty="true" />
+</ItemGroup>
+
+<ItemGroup>
+  <AdditionalFiles Include="$(PkgSome_Package)/lib/net10.0/Some.Package.xml" />
+</ItemGroup>
