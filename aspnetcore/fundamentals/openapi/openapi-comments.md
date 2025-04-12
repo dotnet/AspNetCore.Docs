@@ -1,5 +1,5 @@
 ---
-title: OpenAPI XML documentation comment support in ASP.NET Core
+title: ASP.NET Core OpenAPI XML documentation comment support in ASP.NET Core
 author: captainsafia
 description: Learn how to integrate XML documentation comments on types by OpenAPI document generation in ASP.NET Core.
 ms.author: safia
@@ -11,18 +11,49 @@ uid: fundamentals/openapi/aspnet-openapi-xml
 <!-- backup author: rick-anderson -->
 # OpenAPI XML documentation comment support in ASP.NET Core
 
-OpenAPI XML documentation processing extracts code comments automatically to populate API documentation, ensuring the code and documentation remain synchronized. Metadata from XML documentation comments is included in the generated OpenAPI document without requiring changes to the app code, as long as the project is configured to generate the XML documentation file. XML documentation comments are automatically detected in the application assembly and referenced assemblies with XML documentation enabled.
+ASP.NET Core XML documentation processing extracts code comments automatically to populate API documentation, ensuring the code and documentation remain synchronized. Metadata from XML documentation comments is included in the generated OpenAPI document without requiring changes to the app code, as long as the project is configured to generate the XML documentation file. XML documentation comments are automatically detected in the application assembly and referenced assemblies with XML documentation enabled.
 
 ASP.NET Core processes [XML documentation tags](https://learn.microsoft.com/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`.
 For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
 
-XML documentation processing doesn't affect runtime performance. The source generator processes XML documentation at compile time and caches the results, with minimal runtime overhead when rendering the OpenAPI documentation. Furthermore, the OpenAPI document can be cached at runtime using [output-caching](/aspnet/core/performance/caching/overview#output-caching) to further optimize performance.
+ASP.NET Core XML documentation processing doesn't affect runtime performance. The source generator processes XML documentation at compile time and caches the results, with minimal runtime overhead when rendering the OpenAPI documentation. Furthermore, the OpenAPI document can be cached at runtime using [output-caching](/aspnet/core/performance/caching/overview#output-caching) to further optimize performance.
 
 This article includes a [sample app](#download10) that demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents. The sample app is a minimal ASP.NET Core Web API project that uses the `Microsoft.AspNetCore.OpenApi` package to generate OpenAPI documents. The XML documentation comments are used to populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
 
 The following image shows the Scalar UI with XML documentation comments integrated into the OpenAPI document of the sample app:
 
 ![screenshot of app with XML comments in sclaar UI](~/fundamentals/openapi/_static/screenshot.png)
+
+### Supported XML documentation tags
+
+* [`<summary>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#summary) 
+* [`<remarks>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#remarks)
+* [`<param>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#param)
+* [`<returns>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#returns)
+* [`<response>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#response)
+* [`<example>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#example)
+* [`<deprecated>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#deprecated)
+* [`<inheritdoc>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc)
+
+### Document HTTP responses
+
+Document HTTP responses with the `<response>` tag and the `code` attribute:
+
+:::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/ProjectBoardApis.cs" id="snippet_1" highlight="6-7":::
+
+<!--```csharp
+/// <response code="200">Success response with data</response>
+/// <response code="404">Resource not found</response>
+```-->
+
+### Add examples
+
+To add examples to documentation, use the [`<example>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#example) tag for types or the `example` attribute for parameters:
+
+```csharp
+/// <example>{"name":"Sample","value":42}</example>
+/// <param name="id" example="42">The unique identifier</param>
+```
 
 ## Customizing XML documentation behavior
 
@@ -122,37 +153,6 @@ The automatic resolution behavior is currently available for XML documentation c
   * Developing an understanding of the inheritance hierarchy associated with the types.
 
 XML documentation comments from `ProjectReferences` are automatically resolved and don't require additional configuration.
-
-### Supported XML documentation tags
-
-* [`<summary>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#summary) 
-* [`<remarks>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#remarks)
-* [`<param>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#param)
-* [`<returns>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#returns)
-* [`<response>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#response)
-* [`<example>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#example)
-* [`<deprecated>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#deprecated)
-* [`<inheritdoc>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#inheritdoc)
-
-### Document HTTP responses
-
-Document HTTP responses with the `<response>` tag and the `code` attribute:
-
-:::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/ProjectBoardApis.cs" id="snippet_1" highlight="6-7":::
-
-<!--```csharp
-/// <response code="200">Success response with data</response>
-/// <response code="404">Resource not found</response>
-```-->
-
-### Add examples
-
-To add examples to documentation, use the [`<example>`](/dotnet/csharp/language-reference/xmldoc/recommended-tags#example) tag for types or the `example` attribute for parameters:
-
-```csharp
-/// <example>{"name":"Sample","value":42}</example>
-/// <param name="id" example="42">The unique identifier</param>
-```
 
 <a name="download10"></a>
 
