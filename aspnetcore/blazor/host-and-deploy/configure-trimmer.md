@@ -33,9 +33,9 @@ To configure the IL Trimmer, see the [Trimming options](/dotnet/core/deploying/t
 The default trimmer granularity for Blazor apps is `partial`. To trim all assemblies, change the granularity to `full` in the app's project file:
 
 ```xml
-<ItemGroup>
+<PropertyGroup>
   <TrimMode>full</TrimMode>
-</ItemGroup>
+</PropertyGroup>
 ```
 
 For more information, see [Trimming options (.NET documentation)](/dotnet/core/deploying/trimming/trimming-options#trimming-granularity).
