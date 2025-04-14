@@ -265,40 +265,234 @@ The preceding web API controller:
 
 ## Test the web API
 
+# [Visual Studio](#tab/visual-studio)
+
+This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
+
 1. Build and run the app.
 
-1. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method. A JSON response similar to the following is displayed:
+1. In **Endpoints Explorer**, right-click the first **GET** endpoint `/api/books`, and select **Generate request**.
+
+   The following content is added to the `BookStoreApi.http` file.
+   If this is the first time that a request is generated, the file is created in the project root.
+
+   ```
+   @BookStoreApi_HostAddress = https://localhost:<port>
+    
+   GET {{BookStoreApi_HostAddress}}/api/books
+    
+   ###
+   ```
+
+   The port number should already be set to the port used by the app, for example, `https://localhost:56874`.
+   If that's not the case you can find your port number in the output window when you launch the app.
+
+1. Select the **Send request** link above the new `GET` request line.
+
+   The GET request is sent to the app and the response is displayed in the **Response** pane.
+
+1. The response body shows the JSON result containing the book entries similar to the following:
 
    ```json
    [
      {
-       "id": "61a6058e6c43f32854e51f51",
-       "bookName": "Design Patterns",
-       "price": 54.93,
-       "category": "Computers",
-       "author": "Ralph Johnson"
+       "Id": "61a6058e6c43f32854e51f51",
+       "Name": "Design Patterns",
+       "Price": 54.93,
+       "Category": "Computers",
+       "Author": "Ralph Johnson"
      },
      {
-       "id": "61a6058e6c43f32854e51f52",
-       "bookName": "Clean Code",
-       "price": 43.15,
-       "category": "Computers",
-       "author": "Robert C. Martin"
+       "Id": "61a6058e6c43f32854e51f52",
+       "Name": "Clean Code",
+       "Price": 43.15,
+       "Category": "Computers",
+       "Author": "Robert C. Martin"
      }
    ]
    ```
 
-1. Navigate to `https://localhost:<port>/api/books/{id here}` to test the controller's overloaded `Get` action method. A JSON response similar to the following is displayed:
+1. To retrieve a single book, right-click the `/api/books/{id}, params (string id)` **GET** endpoint in the **Endpoints Explorer**, and select **Generate request**.
+
+   The following content is appended to the `BookStoreApi.http` file:
+
+   ```
+   @id=string
+   GET {{BookStoreApi_HostAddress}}/api/books/{{id}}
+
+   ###
+   ```
+
+1. Replace `id` variable with one of the IDs returned from the earlier request, for example:
+
+   ```
+   @id="61a6058e6c43f32854e51f52"
+   GET {{BookStoreApi_HostAddress}}/api/books/{{id}}
+
+   ###
+   ```
+
+1. Select the **Send request** link above the new `GET` request line.
+
+   The GET request is sent to the app and the response is displayed in the **Response** pane.
+
+1. The response body shows JSON similar to the following:
 
    ```json
    {
-     "id": "61a6058e6c43f32854e51f52",
-     "bookName": "Clean Code",
-     "price": 43.15,
-     "category": "Computers",
-     "author": "Robert C. Martin"
+     "Id": "61a6058e6c43f32854e51f52",
+     "Name": "Clean Code",
+     "Price": 43.15,
+     "Category": "Computers",
+     "Author": "Robert C. Martin"
    }
    ```
+
+1. To test the POST endpoint, right-click the `/api/books` **POST** endpoint and select **Generate request**.
+
+   The following content is added to the `BookStoreApi.http` file:
+
+   ```
+   POST {{BookStoreApi_HostAddress}}/api/books
+   Content-Type: application/json
+
+   {
+     //Book
+   }
+   
+   ###
+   ```
+
+1. Replace the Book comment with a book object as the JSON request body:
+
+   ```
+   POST {{BookStoreApi_HostAddress}}/api/books
+   Content-Type: application/json
+
+    {
+      "Name": "The Pragmatic Programmer",
+      "Price": 49.99,
+      "Category": "Computers",
+      "Author": "Andy Hunt"
+    }
+   
+   ###
+   ```
+
+1. Select the **Send request** link above the `POST` request line.
+
+   The POST request is sent to the app, and the response is displayed in the **Response** pane. The response should include the newly created book with its assigned ID.
+
+1. Lastly, to delete a book, right-click the `/api/books/{id}, params (string id)` **DELETE** endpoint and select **Generate request**.
+
+   The following content is appended to the `BookStoreApi.http` file:
+
+   ```
+   DELETE {{BookStoreApi_HostAddress}}/api/Books/{{id}}
+    
+   ###
+   ```
+
+1. Replace the `id` variable with one of the IDs returned from the earlier request, and click **Send request**. For example:
+
+   ```
+   DELETE {{BookStoreApi_HostAddress}}/api/Books/67f417517ce1b36aeab71236
+
+   ###
+   ```
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+This tutorial uses the [OpenAPI specification (openapi.json) and Swagger UI](xref:tutorials/web-api-help-pages-using-swagger) to test the API.
+
+1. Install Swagger UI by running the following command:
+
+  ```dotnetcli
+  dotnet add package NSwag.AspNetCore
+  ```
+
+The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) package, which contains tools to generate Swagger documents and UI.
+Because our project is using OpenAPI, we only use the NSwag package to generate the Swagger UI.
+
+1. Configure Swagger middleware
+
+In `Program.cs`, add the following highlighted code:
+
+:::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Program.cs" id="snippet_UseSwagger" highlight="6-9":::
+
+The previous code enables the Swagger middleware for serving the generated JSON document using the Swagger UI. Swagger is only enabled in a development environment. Enabling Swagger in a production environment could expose potentially sensitive details about the API's structure and implementation.
+
+The app uses the OpenAPI document generated by OpenApi, located at `/openapi/v1.json`, to generate the UI.
+View the generated OpenAPI specification for the `WeatherForecast` API while the project is running by navigating to `https://localhost:<port>/openapi/v1.json` in your browser.
+
+The OpenAPI specification is a document in JSON format that describes the structure and capabilities of your API, including endpoints, request/response formats, parameters, and more. It's essentially a blueprint of your API that can be used by various tools to understand and interact with your API.
+
+1. Build and run the app.
+
+1. Navigate to `https://localhost:<port>/swagger` in your browser. Swagger provides a UI to test all the API endpoints based on the OpenAPI document.
+
+1. Expand the **GET /api/books** endpoint and click the **Try it out** button.
+
+1. Click the **Execute** button to send the request to the API.
+
+1. The **Response body** section displays a JSON array with books similar to the following:
+
+   ```json
+   [
+     {
+       "Id": "61a6058e6c43f32854e51f51",
+       "Name": "Design Patterns",
+       "Price": 54.93,
+       "Category": "Computers",
+       "Author": "Ralph Johnson"
+     },
+     {
+       "Id": "61a6058e6c43f32854e51f52",
+       "Name": "Clean Code",
+       "Price": 43.15,
+       "Category": "Computers",
+       "Author": "Robert C. Martin"
+     }
+   ]
+   ```
+
+1. Next, expand the **GET /api/books/{id}** endpoint and click **Try it out**.
+
+1. Enter one of the book IDs from the previous response in the **id** field, then click **Execute**.
+
+1. The **Response body** section displays the JSON object for the specified book. For example, the result for the ID `61a6058e6c43f32854e51f52` is similar to the following:
+
+   ```json
+   {
+     "Id": "61a6058e6c43f32854e51f52",
+     "Name": "Clean Code",
+     "Price": 43.15,
+     "Category": "Computers",
+     "Author": "Robert C. Martin"
+   }
+   ```
+
+1. To test creating a new book, expand the **POST /api/books** endpoint and click **Try it out**.
+
+1. Replace the default request body with a new book object:
+
+   ```json
+   {
+     "Name": "The Pragmatic Programmer",
+     "Price": 49.99,
+     "Category": "Computers",
+     "Author": "Andy Hunt"
+   }
+   ```
+
+1. Click **Execute** to send the request.
+
+1. The response should have a status code of 201 (Created) and include the newly created book with its assigned ID in the response body.
+
+1. Lastly, to delete a book record, expand the **DELETE /api/books/{id}** endpoint, click **Try it out**, and enter one of the book IDs from the previous response in the **id** field. Click **Execute** to send the request.
+ 
+1. The response should have a status code of 204 (No Content), indicating that the book was successfully deleted. 
+---
 
 ## Configure JSON serialization options
 
