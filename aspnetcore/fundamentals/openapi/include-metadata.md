@@ -493,6 +493,8 @@ of the property in the schema.
 
 ### type and format
 
+:::moniker range="< aspnetcore-10.0"
+
 The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as follows:
 
 | C# Type        | OpenAPI `type` | OpenAPI `format` |
@@ -519,6 +521,69 @@ The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as
 Note that object and dynamic types have _no_ type defined in the OpenAPI because these can contain data of any type, including primitive types like int or string.
 
 The `type` and `format` can also be set with a [Schema Transformer](xref:fundamentals/openapi/customize-openapi#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+#### Numeric types
+
+The JSON Schema library maps standard C# numeric types to OpenAPI `type` and `format` based on the
+<xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property of the <xref:System.Text.Json.JsonSerializerOptions>
+used in the app. In ASP.NET Core Web API apps, the default value of this property is `JsonNumberHandling.AllowReadingFromString`.
+
+When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property is set to `JsonNumberHandling.AllowReadingFromString`, the numeric types are mapped as follows:
+
+| C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               |
+| -------------- | ---------------- | ---------------- | ------------------------------ |
+| int            | [integer,string] | int32            | pattern `<digits>` | <!-- pattern: "^-?(?:0|[1-9]\\d*)$" -->
+| long           | [integer,string] | int64            | pattern `<digits>` |
+| short          | [integer,string] | int16            | pattern `<digits>` |
+| byte           | [integer,string] | uint8            | pattern `<digits>` |
+| float          | [number,string]  | float            | pattern `<digits with decimal >` | <!-- pattern: "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$" -->
+| double         | [number,string]  | double           | pattern `<digits with decimal >` |
+| decimal        | [number,string]  | double           | pattern `<digits with decimal >` | <!-- pattern: "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$" -->
+
+If the app is configured to produce OpenAPI 3.0 or OpenAPI v2 documents, where the `type` field cannot have an array value, the `type` field is dropped.
+
+When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property is set to `JsonNumberHandling.Strict`, the numeric types are mapped as follows:
+
+| C# Type        | OpenAPI `type` | OpenAPI `format` |
+| -------------- | -------------- | ---------------- |
+| int            | integer        | int32            |
+| long           | integer        | int64            |
+| short          | integer        | int16            |
+| byte           | integer        | uint8            |
+| float          | number         | float            |
+| double         | number         | double           |
+| decimal        | number         | double           |
+
+#### String types
+
+The following C# types map to `string` type properties in the generated OpenAPI document as follows:
+
+| C# Type        | OpenAPI `type` | OpenAPI `format` | Other assertions               |
+| -------------- | -------------- | ---------------- | ------------------------------ |
+| string         | string         |                  | |
+| char           | string         | char             | minLength: 1, maxLength: 1 |
+| byte[]         | string         | byte             | |
+| DateTimeOffset | string         | date-time        | |
+| DateOnly       | string         | date             | |
+| TimeOnly       | string         | time             | |
+| Uri            | string         | uri              | |
+| Guid           | string         | uuid             | |
+
+#### Other types
+
+Here's how other C# types are represented in the generated OpenAPI document:
+
+| C# Type        | OpenAPI `type` | OpenAPI `format` |
+| -------------- | -------------- | ---------------- |
+| bool           | boolean        |                  |
+| object         | _omitted_      |                  |
+| dynamic        | _omitted_      |                  |
+
+:::moniker-end
 
 ### Use attributes to add metadata
 
