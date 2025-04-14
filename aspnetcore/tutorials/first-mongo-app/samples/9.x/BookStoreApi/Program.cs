@@ -25,9 +25,9 @@ builder.Services.AddControllers()
 
 builder.Services.AddOpenApi();
 
+// <snippet_UseSwagger>
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -36,6 +36,7 @@ if (app.Environment.IsDevelopment())
         options.SwaggerEndpoint("/openapi/v1.json", "v1");
     });
 }
+// </snippet_UseSwagger>
 
 app.UseHttpsRedirection();
 
