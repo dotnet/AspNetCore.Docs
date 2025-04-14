@@ -13,7 +13,7 @@ Some of the changes you will see in the generated OpenAPI document include:
 * Instead of a `nullable: true` property, they have a `type` keyword whose value is an array that includes `null` as one of the types.
 * Properties or parameters defined as a C# `int` or `long` now appear in the generated OpenAPI document without the `type: integer` field
 and have a `pattern` field limiting the value to digits.
-This happens when the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property in the <xref:System.Text.Json.JsonSerializerOptions> is set to `AllowReadingFromString`, the default for ASP.NET Core Web apps. To enable C# `int` and `long` to be represented in the OpenAPI as `type: integer`, set the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property to `Strict`.
+This happens when the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property in the <xref:System.Text.Json.JsonSerializerOptions> is set to `AllowReadingFromString`, the default for ASP.NET Core Web apps. To enable C# `int` and `long` to be represented in the OpenAPI document as `type: integer`, set the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property to `Strict`.
 
 With this feature, the default OpenAPI version for generated documents is`3.1`. The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi).
 
