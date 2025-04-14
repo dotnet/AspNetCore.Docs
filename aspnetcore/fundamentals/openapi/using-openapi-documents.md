@@ -20,9 +20,10 @@ The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's
 
 * Install the `Swashbuckle.AspNetCore.SwaggerUi` package.
 * Enable the swagger-ui middleware with a reference to the [OpenAPI route registered earlier](xref:fundamentals/openapi/aspnetcore-openapi#customize-the-openapi-endpoint-route).
-* To limit information disclosure and security vulnerability, ***only enable Swagger UI in development environments.***
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_swaggerui)]
+
+As a security best practice on limiting information disclosure, ***OpenAPI user interfaces (Swagger UI, ReDoc, Scalar) should only be enabled in development environments.*** For example, see [Swagger OAuth 2.0 configuration](https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/).
 
 ## Use Scalar for interactive API documentation
 
