@@ -263,6 +263,33 @@ The preceding web API controller:
 * Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
 * Calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> in the `Create` action method to return an [HTTP 201](https://www.rfc-editor.org/rfc/rfc9110#status.201) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtAction` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
 
+## Configure JSON serialization options
+
+There are two details to change about the JSON responses returned in the [Test the web API](#test-the-web-api) section:
+
+* The property names' default camel casing should be changed to match the Pascal casing of the CLR object's property names.
+* The `bookName` property should be returned as `Name`.
+
+To satisfy the preceding requirements, make the following changes:
+
+1. In `Program.cs`, chain the following highlighted code on to the `AddControllers` method call:
+
+   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-11":::
+
+   With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author` instead of `author`.
+
+1. In `Models/Book.cs`, annotate the `BookName` property with the [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute:
+
+   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Models/Book.cs" id="snippet_BookName" highlight="2":::
+
+   The `[JsonPropertyName]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
+
+1. Add the following code to the top of `Models/Book.cs` to resolve the `[JsonProperty]` attribute reference:
+
+   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Models/Book.cs" id="snippet_UsingSystemTextJsonSerialization":::
+
+1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
+
 ## Test the web API
 
 # [Visual Studio](#tab/visual-studio)
@@ -493,33 +520,6 @@ The OpenAPI specification is a document in JSON format that describes the struct
  
 1. The response should have a status code of 204 (No Content), indicating that the book was successfully deleted. 
 ---
-
-## Configure JSON serialization options
-
-There are two details to change about the JSON responses returned in the [Test the web API](#test-the-web-api) section:
-
-* The property names' default camel casing should be changed to match the Pascal casing of the CLR object's property names.
-* The `bookName` property should be returned as `Name`.
-
-To satisfy the preceding requirements, make the following changes:
-
-1. In `Program.cs`, chain the following highlighted code on to the `AddControllers` method call:
-
-   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-11":::
-
-   With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author` instead of `author`.
-
-1. In `Models/Book.cs`, annotate the `BookName` property with the [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute:
-
-   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Models/Book.cs" id="snippet_BookName" highlight="2":::
-
-   The `[JsonPropertyName]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
-
-1. Add the following code to the top of `Models/Book.cs` to resolve the `[JsonProperty]` attribute reference:
-
-   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Models/Book.cs" id="snippet_UsingSystemTextJsonSerialization":::
-
-1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
 
 ## Add authentication support to a web API
 
