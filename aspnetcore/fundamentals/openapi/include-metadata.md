@@ -560,7 +560,7 @@ When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property i
 
 #### String types
 
-The following C# types map to `string` type properties in the generated OpenAPI document as follows:
+The following table shows how C# types map to `string` type properties in the generated OpenAPI document:
 
 | C# Type        | OpenAPI `type` | OpenAPI `format` | Other assertions               |
 | -------------- | -------------- | ---------------- | ------------------------------ |
@@ -575,7 +575,7 @@ The following C# types map to `string` type properties in the generated OpenAPI 
 
 #### Other types
 
-Here's how other C# types are represented in the generated OpenAPI document:
+Other C# types are represented in the generated OpenAPI document as shown in the following table:
 
 | C# Type        | OpenAPI `type` | OpenAPI `format` |
 | -------------- | -------------- | ---------------- |
