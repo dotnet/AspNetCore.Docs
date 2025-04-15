@@ -529,16 +529,14 @@ window.jsInterop = {
 
 ### Asynchronous `GetValueAsync` and `SetValueAsync`
 
-Use `GetValueAsync<TValue>(string identifier)` to read the value of the specified JS property asynchronously. The property can't be a `set`-only property. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist. The following example returns a value of 10 from the property:
+Use `GetValueAsync<TValue>(string identifier)` to read the value of the specified JS property asynchronously. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist or is a `set`-only property.
 
 ```csharp
 var valueFromDataPropertyAsync = await JSRuntime.GetValueAsync<int>(
   "jsInterop.testObject.num");
 ```
 
-The special overload `IJSObjectReference.GetValueAsync<TValue>()` doesn't take an identifier and simply returns the value of the object. `TValue` is a model of the object's properties that the caller is interested in.
-
-Use `SetValueAsync<TValue>(string identifier, TValue value)`to update the value of the specified JS property asynchronously. The property can't be a `get`-only property. If the property isn't defined on the target object, the property is created. In the following example, `testObject.num` is set to 20, and `num2` is created with a value of 30 on `testObject`:
+Use `SetValueAsync<TValue>(string identifier, TValue value)` to update the value of the specified JS property asynchronously. If the property isn't defined on the target object, the property is created. A <xref:Microsoft.JSInterop.JSException> is thrown if the property exists but isn't writable or when a new property can't be added to the object.
 
 ```csharp
 await JSRuntime.SetValueAsync("jsInterop.testObject.num", 20);
@@ -547,14 +545,14 @@ await JSRuntime.SetValueAsync("jsInterop.testObject.num2", 30);
 
 ### Synchronous `GetValue` and `SetValue`
 
-Use `GetValue<TValue>(string identifier)` to read the value of the specified JS property synchronously. The property can't be a `set`-only property. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist. The following example returns a value of 10 from the property:
+Use `GetValue<TValue>(string identifier)` to read the value of the specified JS property synchronously. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist or is a `set`-only property.
 
 ```csharp
 var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
 var valueFromDataProperty = inProcRuntime.GetValue<int>("jsInterop.testObject.num");
 ```
 
-Use `SetValue<TValue>(string identifier, TValue value)` to update the value of the specified JS property synchronously. The property can't be a `get`-only property. If the property isn't defined on the target object, the property is created. In the following example, `testObject.num` is set to 20, and `num2` is created with a value of 30 on `testObject`:
+Use `SetValue<TValue>(string identifier, TValue value)` to update the value of the specified JS property synchronously. The property can't be a `get`-only property. If the property isn't defined on the target object, the property is created. A <xref:Microsoft.JSInterop.JSException> is thrown if the property exists but isn't writable or when a new property can't be added to the object.
 
 ```csharp
 var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
