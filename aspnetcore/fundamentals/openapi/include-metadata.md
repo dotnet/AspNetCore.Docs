@@ -537,11 +537,11 @@ When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property i
 | C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               |
 | -------------- | ---------------- | ---------------- | ------------------------------ |
 | int            | [integer,string] | int32            | pattern `<digits>` | <!-- pattern: "^-?(?:0|[1-9]\\d*)$" -->
-| long           | [integer,string] | int64            | pattern `<digits>` |
-| short          | [integer,string] | int16            | pattern `<digits>` |
-| byte           | [integer,string] | uint8            | pattern `<digits>` |
+| long           | [integer,string] | int64            | pattern `<digits>` | <!--                                -->
+| short          | [integer,string] | int16            | pattern `<digits>` |  <!--                                -->
+| byte           | [integer,string] | uint8            | pattern `<digits>` |  <!--                                -->
 | float          | [number,string]  | float            | pattern `<digits with decimal >` | <!-- pattern: "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$" -->
-| double         | [number,string]  | double           | pattern `<digits with decimal >` |
+| double         | [number,string]  | double           | pattern `<digits with decimal >` |  <!--                                -->
 | decimal        | [number,string]  | double           | pattern `<digits with decimal >` | <!-- pattern: "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$" -->
 
 If the app is configured to produce OpenAPI 3.0 or OpenAPI v2 documents, where the `type` field cannot have an array value, the `type` field is dropped.
