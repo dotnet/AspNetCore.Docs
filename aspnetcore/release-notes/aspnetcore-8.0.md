@@ -324,7 +324,7 @@ For more information, see <xref:migration/70-to-80#drop-blazor-server-with-yarp-
 
 <!-- UPDATE 10.0 Confirm or update -->
 
-Support for multiple Blazor Web Apps per server project will be considered for .NET 10 (November, 2025).
+Support for multiple Blazor Web Apps per server project will be considered for a future .NET release.
 
 For more information, see [Support for multiple Blazor Web apps per server project (`dotnet/aspnetcore` #52216)](https://github.com/dotnet/aspnetcore/issues/52216).
 
