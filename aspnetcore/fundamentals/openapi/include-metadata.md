@@ -546,7 +546,7 @@ When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property i
 
 
 
-<!-->
+<!--
 | C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               | 
 | -------------- | ---------------- | ---------------- | ------------------------------ | 
 | int            | [integer,string] | int32            | pattern `<digits>` |  pattern: "^-?(?:0|[1-9]\\d*)$" 
