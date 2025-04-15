@@ -665,7 +665,30 @@ An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.
 
 #### nullable
 
+:::moniker range="< aspnetcore-10.0"
+
 Properties defined as a nullable value or reference type have `nullable: true` in the generated schema. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
+
+:::moniker-end
+:::moniker range=">= aspnetcore-10.0"
+
+Properties defined as a nullable value or reference type appear in the generated schema with a `type` keyword whose value is an array that includes `null` as one of the types. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
+
+For example, a C# property defined as `string?` is represented in the generated schema as:
+
+```json
+  "nullableString": {
+    "description": "A property defined as string?",
+    "type": [
+      "null",
+      "string"
+    ]
+  },
+```
+
+If the app is configured to produce OpenAPI v3.0 or OpenAPI v2 documents, nullable value or reference types have `nullable: true` in the generated schema because these OpenAPI versions do not allow the `type` field to be an array.
+
+::moniker-end
 
 #### additionalProperties
 
