@@ -292,11 +292,10 @@ Blazor adds support for the following JS interop features:
 
 The following asynchronous methods are available on <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> with the same scoping behavior as the existing <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> method:
 
-* `InvokeNewAsync(string identifier, object?[]? args)`: Invokes the specified JS constructor function asynchronously. The function is invoked with the `new` operator. In the following example, `jsInteropTests.TestClass` is a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSObjectReference>:
+* `InvokeNewAsync(string identifier, object?[]? args)`: Invokes the specified JS constructor function asynchronously. The function is invoked with the `new` operator. In the following example, `jsInterop.TestClass` is a class with a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSObjectReference>:
 
   ```csharp
-  var classRef = await JSRuntime.InvokeNewAsync("jsInteropTests.TestClass", 
-      "text value");
+  var classRef = await JSRuntime.InvokeNewAsync("jsInterop.TestClass", "Blazor!");
   var text = await classRef.GetValueAsync<string>("text");
   var textLength = await classRef.InvokeAsync<int>("getTextLength");
   ```
@@ -305,13 +304,13 @@ The following asynchronous methods are available on <xref:Microsoft.JSInterop.IJ
 
   ```csharp
   var valueFromDataPropertyAsync = await JSRuntime.GetValueAsync<int>(
-      "jsInteropTests.testObject.num");
+    "jsInterop.testObject.num");
   ```
 
 * `SetValueAsync<TValue>(string identifier, TValue value)`: Updates the value of the specified JS property asynchronously. The property can't be a `get`-only property. If the property isn't defined on the target object, the property is created. In the following example, `num` is created on `testObject` with a value of 30 if it doesn't exist:
 
   ```csharp
-  await JSRuntime.SetValueAsync("jsInteropTests.testObject.num", 30);
+  await JSRuntime.SetValueAsync("jsInterop.testObject.num", 30);
   ```
 
 Overloads are available for each of the preceding methods that take a <xref:System.Threading.CancellationToken> argument or <xref:System.TimeSpan> timeout argument.
@@ -320,11 +319,11 @@ The special overload `IJSObjectReference.GetValueAsync<TValue>()` doesn't take a
 
 The following synchronous methods are available on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> with the same scoping behavior as the existing <xref:Microsoft.JSInterop.IJSInProcessObjectReference.Invoke%2A?displayProperty=nameWithType> method:
 
-* `InvokeNew(string identifier, object?[]? args)`: Invokes the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `jsInteropTests.TestClass` is a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>:
+* `InvokeNew(string identifier, object?[]? args)`: Invokes the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `jsInterop.TestClass` is a class with a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>:
 
   ```csharp
   var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
-  var classRef = inProcRuntime.InvokeNew("jsInteropTests.TestClass", "text value");
+  var classRef = inProcRuntime.InvokeNew("jsInterop.TestClass", "Blazor!");
   var text = await classRef.GetValueAsync<string>("text");
   var textLength = await classRef.InvokeAsync<int>("getTextLength");
   ```
@@ -334,14 +333,14 @@ The following synchronous methods are available on <xref:Microsoft.JSInterop.IJS
   ```csharp
   var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
   var valueFromDataProperty = inProcRuntime.GetValue<int>(
-      "jsInteropTests.testObject.num");
+    "jsInterop.testObject.num");
   ```
 
 * `SetValue<TValue>(string identifier, TValue value)`: Updates the value of the specified JS property synchronously. The property can't be a `get`-only property. If the property isn't defined on the target object, the property is created. In the following example, `num` is created on `testObject` with a value of 20 if it doesn't exist:
 
   ```csharp
   var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
-  inProcRuntime.SetValue("jsInteropTests.testObject.num", 20);
+  inProcRuntime.SetValue("jsInterop.testObject.num", 20);
   ```
 
 For more information, see the following sections of the *Call JavaScript functions from .NET methods* article:

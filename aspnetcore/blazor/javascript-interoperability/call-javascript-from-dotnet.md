@@ -462,8 +462,8 @@ IJSRuntime JS { get; set; }
 
 Create an instance of a JS object using a constructor function and get the <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference> .NET handle for referencing the instance with the following API:
 
-* `InvokeNewAsync`
-* `InvokeNew`
+* `InvokeNewAsync` (asynchronous)
+* `InvokeNew` (synchronous)
 
 Examples in this section demonstrate the API calls with the following `TestClass` with a constructor function (`constructor(text)`):
 
@@ -512,8 +512,8 @@ An overload is available that takes a <xref:System.Threading.CancellationToken> 
 
 Read or modify the value of a JS object property, both data and accessor properties, with the following API:
 
-* `GetValueAsync`/`SetValueAsync`
-* `GetValue`/`SetValue`
+* `GetValueAsync`/`SetValueAsync` (asynchronous)
+* `GetValue`/`SetValue` (synchronous)
 
 Examples in this section demonstrate the API calls with the following JS object (`testObject`):
 
