@@ -534,7 +534,7 @@ used in the app. In ASP.NET Core Web API apps, the default value of this propert
 
 When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property is set to `JsonNumberHandling.AllowReadingFromString`, the numeric types are mapped as follows:
 
-| C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               |  <!--                                -->
+| C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               | 
 | -------------- | ---------------- | ---------------- | ------------------------------ |  <!--                                -->
 | int            | [integer,string] | int32            | pattern `<digits>` | <!-- pattern: "^-?(?:0|[1-9]\\d*)$" -->
 | long           | [integer,string] | int64            | pattern `<digits>` | <!--                                -->
