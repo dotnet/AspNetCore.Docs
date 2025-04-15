@@ -460,33 +460,35 @@ IJSRuntime JS { get; set; }
 
 ## Create an instance of a JS object using a constructor function
 
-Create an instance of a JS object using a constructor function and get the <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference> .NET handle for referencing the instance with the following API.
+Create an instance of a JS object using a constructor function and get the <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference> .NET handle for referencing the instance with the following API:
 
-.NET API call examples for `InvokeNewAsync`/`InvokeNew` in this section use the following JS constructor function example (`TestClass`):
+* `InvokeNewAsync`
+* `InvokeNew`
+
+Examples in this section demonstrate the API calls with the following `TestClass` with a constructor function (`constructor(text)`):
 
 ```javascript
 class TestClass {
-    constructor(text) {
-        this.text = text;
-    }
+  constructor(text) {
+    this.text = text;
+  }
 
-    getTextLength() {
-        return this.text.length;
-    }
+  getTextLength() {
+    return this.text.length;
+  }
 }
 
-window.jsInteropTests = {
+window.jsInterop = {
   TestClass: TestClass
 };
 ```
 
 ### Asynchronous `InvokeNewAsync`
 
-Use `InvokeNewAsync(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> to invoke the specified JS constructor function asynchronously. The function is invoked with the `new` operator. In the following example, `jsInteropTests.TestClass` is a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
+Use `InvokeNewAsync(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> to invoke the specified JS constructor function asynchronously. The function is invoked with the `new` operator. In the following example, `jsInterop.TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 ```csharp
-var classRef = await JSRuntime.InvokeNewAsync("jsInteropTests.TestClass", 
-    "text value");
+var classRef = await JSRuntime.InvokeNewAsync("jsInterop.TestClass", "Blazor!");
 var text = await classRef.GetValueAsync<string>("text");
 var textLength = await classRef.InvokeAsync<int>("getTextLength");
 ```
@@ -495,11 +497,11 @@ An overload is available that takes a <xref:System.Threading.CancellationToken> 
 
 ### Synchronous `InvokeNew`
 
-Use `InvokeNew(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> to invoke the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `jsInteropTests.TestClass` is a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>.
+Use `InvokeNew(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> to invoke the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `jsInterop.TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>.
 
 ```csharp
 var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
-var classRef = inProcRuntime.InvokeNew("jsInteropTests.TestClass", "text value");
+var classRef = inProcRuntime.InvokeNew("jsInterop.TestClass", "Blazor!");
 var text = await classRef.GetValueAsync<string>("text");
 var textLength = await classRef.InvokeAsync<int>("getTextLength");
 ```
@@ -508,16 +510,19 @@ An overload is available that takes a <xref:System.Threading.CancellationToken> 
 
 ## Read or modify the value of a JS object property
 
-Read or modify the value of a JS object property, both data and accessor properties, with 
+Read or modify the value of a JS object property, both data and accessor properties, with the following API:
 
-.NET API call examples for `GetValueAsync`/`SetValueAsync`/`GetValue`/`SetValue` in this section use the following JS object example (`testObject`):
+* `GetValueAsync`/`SetValueAsync`
+* `GetValue`/`SetValue`
+
+Examples in this section demonstrate the API calls with the following JS object (`testObject`):
 
 ```javascript
 const testObject = {
-    num: 10
+  num: 10
 }
 
-window.jsInteropTests = {
+window.jsInterop = {
   testObject: testObject
 };
 ```
@@ -528,7 +533,7 @@ Use `GetValueAsync<TValue>(string identifier)` to read the value of the specifie
 
 ```csharp
 var valueFromDataPropertyAsync = await JSRuntime.GetValueAsync<int>(
-    "jsInteropTests.testObject.num");
+  "jsInterop.testObject.num");
 ```
 
 The special overload `IJSObjectReference.GetValueAsync<TValue>()` doesn't take an identifier and simply returns the value of the object. `TValue` is a model of the object's properties that the caller is interested in.
@@ -536,8 +541,8 @@ The special overload `IJSObjectReference.GetValueAsync<TValue>()` doesn't take a
 Use `SetValueAsync<TValue>(string identifier, TValue value)`to update the value of the specified JS property asynchronously. The property can't be a `get`-only property. If the property isn't defined on the target object, the property is created. In the following example, `testObject.num` is set to 20, and `num2` is created with a value of 30 on `testObject`:
 
 ```csharp
-await JSRuntime.SetValueAsync("jsInteropTests.testObject.num", 20);
-await JSRuntime.SetValueAsync("jsInteropTests.testObject.num2", 30);
+await JSRuntime.SetValueAsync("jsInterop.testObject.num", 20);
+await JSRuntime.SetValueAsync("jsInterop.testObject.num2", 30);
 ```
 
 ### Synchronous `GetValue` and `SetValue`
@@ -546,16 +551,15 @@ Use `GetValue<TValue>(string identifier)` to read the value of the specified JS 
 
 ```csharp
 var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
-var valueFromDataProperty = inProcRuntime.GetValue<int>(
-    "jsInteropTests.testObject.num");
+var valueFromDataProperty = inProcRuntime.GetValue<int>("jsInterop.testObject.num");
 ```
 
 Use `SetValue<TValue>(string identifier, TValue value)` to update the value of the specified JS property synchronously. The property can't be a `get`-only property. If the property isn't defined on the target object, the property is created. In the following example, `testObject.num` is set to 20, and `num2` is created with a value of 30 on `testObject`:
 
 ```csharp
 var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
-inProcRuntime.SetValue("jsInteropTests.testObject.num", 20);
-inProcRuntime.SetValue("jsInteropTests.testObject.num2", 30);
+inProcRuntime.SetValue("jsInterop.testObject.num", 20);
+inProcRuntime.SetValue("jsInterop.testObject.num2", 30);
 ```
 
 :::moniker-end
