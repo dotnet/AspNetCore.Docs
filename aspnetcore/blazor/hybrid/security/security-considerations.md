@@ -88,7 +88,7 @@ iOS and :::no-loc text="Mac Catalyst"::: both use [`WKWebView`](https://develope
 
 ### Windows (.NET MAUI, WPF, Windows Forms)
 
-On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webview2/) is required to run Blazor web apps.
+On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webview2/) is required to run Blazor Web Apps.
 
 The newest installed version of `WebView2`, known as the *:::no-loc text="Evergreen distribution":::*, is used. If you wish to ship a specific version of `WebView2` with the app, use the *:::no-loc text="Fixed Version distribution":::*.
 

@@ -31,7 +31,7 @@ To create a Blazor app with Visual Studio, use the following guidance:
 
 * Create a new project using one of the available Blazor templates:
 
-  * **Blazor Web App**: Creates a Blazor web app that supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR). The Blazor Web App template is recommended for getting started with Blazor to learn about server-side and client-side Blazor features.
+  * **Blazor Web App**: Creates an app that supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR). The Blazor Web App template is recommended for getting started with Blazor to learn about server-side and client-side Blazor features.
   * **Blazor WebAssembly Standalone App**: Creates a standalone client web app that can be deployed as a static site.
 
 Select **Next**.
@@ -61,13 +61,6 @@ Select **Next**.
 * Provide a **Project name** and confirm that the **Location** is correct.
 
 * For more information on the options in the **Additional information** dialog, see the [Blazor project templates and template options](#blazor-project-templates-and-template-options) section.
-
-:::moniker range=">= aspnetcore-8.0"
-
-  > [!NOTE]
-  > The Hosted Blazor WebAssembly project template isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8.0 must be selected with the **ASP.NET Core Hosted** checkbox.
-
-:::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -507,6 +500,14 @@ The Blazor framework provides project templates for creating new apps. The templ
 
 * Blazor Web App project template: `blazor`
 * Standalone Blazor WebAssembly app project template: `blazorwasm`
+
+> [!NOTE]
+> The "Hosted" Blazor WebAssembly project template option isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8.0 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
+>
+> * <xref:blazor/index#build-a-full-stack-web-app-with-blazor>
+> * <xref:aspnetcore-8#new-blazor-web-app-template>
+> * <xref:blazor/project-structure#blazor-web-app>
+> * <xref:migration/70-to-80#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app>
 
 :::moniker-end
 

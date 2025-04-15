@@ -66,7 +66,7 @@ Assets are delivered via the <xref:Microsoft.AspNetCore.Components.ComponentBase
 
 ## `ImportMap` component
 
-*This section applies to server-side Blazor apps.*
+*This section applies to Blazor Web Apps that call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.*
 
 The `ImportMap` component (<xref:Microsoft.AspNetCore.Components.ImportMap>) represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The Import Map component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
 
@@ -189,6 +189,8 @@ The preceding code results in the following import map:
 ```
 
 ## Import map Content Security Policy (CSP) violations
+
+*This section applies to Blazor Web Apps that call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.*
 
 The `ImportMap` component is rendered as an inline `<script>` tag, which violates a strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) that sets the `default-src` or `script-src` directive.
 
