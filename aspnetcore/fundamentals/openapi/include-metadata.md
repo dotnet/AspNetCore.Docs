@@ -534,8 +534,8 @@ used in the app. In ASP.NET Core Web API apps, the default value of this propert
 
 When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property is set to `JsonNumberHandling.AllowReadingFromString`, the numeric types are mapped as follows:
 
-| C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               |
-| -------------- | ---------------- | ---------------- | ------------------------------ |
+| C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               |  <!--                                -->
+| -------------- | ---------------- | ---------------- | ------------------------------ |  <!--                                -->
 | int            | [integer,string] | int32            | pattern `<digits>` | <!-- pattern: "^-?(?:0|[1-9]\\d*)$" -->
 | long           | [integer,string] | int64            | pattern `<digits>` | <!--                                -->
 | short          | [integer,string] | int16            | pattern `<digits>` |  <!--                                -->
@@ -688,7 +688,7 @@ For example, a C# property defined as `string?` is represented in the generated 
 
 If the app is configured to produce OpenAPI v3.0 or OpenAPI v2 documents, nullable value or reference types have `nullable: true` in the generated schema because these OpenAPI versions do not allow the `type` field to be an array.
 
-::moniker-end
+:::moniker-end
 
 #### additionalProperties
 
