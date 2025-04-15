@@ -42,9 +42,23 @@ Transformers can be registered onto the document by calling the <xref:Microsoft.
 
 ### Execution order for transformers
 
-Transformers execute in first-in first-out order based on registration. In the following snippet, the document transformer has access to the modifications made by the operation transformer:
+Transformers are executed as follows:
 
-[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_transInOut&highlight=3-9)]
+* Schema transformers are executed when a schema is registered to the document. Schema transformers are executed in the order in which they were added.
+All schemas are added to the document before any operation processing occurs, so all schema transformers are executed before any operation transformers.
+* Operation transformers are executed when an operation is added to the document. Operation transformers are executed in the order in which they were added.
+All operations are added to the document before any document transformers are executed.
+* Document transformers are executed when the document is generated. This is the final pass over the document, and all operations and schemas have been add by this point.
+* When an app is configured to generate multiple OpenAPI documents, transformers are executed for each document independently.
+
+For example, in the following snippet:
+* `SchemaTransformer2` is executed and has access to the modifications made by `SchemaTransformer1`.
+* Both `OperationTransformer1` and `OperationTransformer2` have access to the modifications made by both schema transformers for the types involved in the operation they are called to process.
+* `OperationTransformer2` is executed after `OperationTransformer1`, so it has access to the modifications made by `OperationTransformer1`.
+* Both `DocumentTransformer1` and `DocumentTransformer2` are executed after all operations and schemas have been added to the document, so they have access to all modifications made by the operation and schema transformers.
+* `DocumentTransformer2` is executed after `DocumentTransformer1`, so it has access to the modifications made by `DocumentTransformer1`.
+
+[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_transInOut&highlight=6-14)]
 
 ## Use document transformers
 

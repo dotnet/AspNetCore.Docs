@@ -1,8 +1,8 @@
 //#define DEFAULT
-//#define DOCUMENTtransformerInOut
+#define DOCUMENTtransformerInOut
 //#define DOCUMENTtransformer1
 //#define DOCUMENTtransformer2
-#define DOCUMENTtransformerUse999
+// #define DOCUMENTtransformerUse999
 //#define FIRST
 //#define OPENAPIWITHSCALAR
 //#define MAPOPENAPIWITHCACHING
@@ -296,7 +296,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    
+
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/openapi/v1.json", "v1");
@@ -484,14 +484,19 @@ internal class MySchemaTransformer : IOpenApiSchemaTransformer
 
 #if DOCUMENTtransformerInOut
 // <snippet_transInOut>
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.AddOperationTransformer((operation, context, cancellationToken)
-                                     => Task.CompletedTask);
-    options.AddDocumentTransformer((document, context, cancellationToken)
-                                     => Task.CompletedTask);
+    options.AddDocumentTransformer<DocumentTransformer1>();
+    options.AddSchemaTransformer<SchemaTransformer1>();
+    options.AddDocumentTransformer<DocumentTransformer2>();
+    options.AddOperationTransformer<OperationTransformer1>();
+    options.AddSchemaTransformer<SchemaTransformer2>();
+    options.AddOperationTransformer<OperationTransformer2>();
 });
 
 var app = builder.Build();
@@ -505,5 +510,35 @@ app.MapGet("/", () => "Hello world!");
 
 app.Run();
 // </snippet_transInOut>
+
+internal class DocumentTransformer1 : IOpenApiDocumentTransformer
+{
+    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken) => Task.CompletedTask;
+}
+
+internal class DocumentTransformer2 : IOpenApiDocumentTransformer
+{
+    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken) => Task.CompletedTask;
+}
+
+internal class OperationTransformer1 : IOpenApiOperationTransformer
+{
+    public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken) => Task.CompletedTask;
+}
+
+internal class OperationTransformer2 : IOpenApiOperationTransformer
+{
+    public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken) => Task.CompletedTask;
+}
+
+internal class SchemaTransformer1 : IOpenApiSchemaTransformer
+{
+    public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken) => Task.CompletedTask;
+}
+
+internal class SchemaTransformer2 : IOpenApiSchemaTransformer
+{
+    public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken) => Task.CompletedTask;
+}
 
 #endif
