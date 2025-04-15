@@ -524,7 +524,8 @@ window.testObject = {
 Use `GetValueAsync<TValue>(string identifier)` to read the value of the specified JS property asynchronously. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist or is a `set`-only property.
 
 ```csharp
-var valueFromDataPropertyAsync = await JSRuntime.GetValueAsync<int>("testObject.num");
+var valueFromDataPropertyAsync = 
+    await JSRuntime.GetValueAsync<int>("testObject.num");
 ```
 
 Use `SetValueAsync<TValue>(string identifier, TValue value)` to update the value of the specified JS property asynchronously. If the property isn't defined on the target object, the property is created. A <xref:Microsoft.JSInterop.JSException> is thrown if the property exists but isn't writable or when a new property can't be added to the object.
