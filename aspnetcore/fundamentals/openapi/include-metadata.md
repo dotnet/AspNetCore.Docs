@@ -544,11 +544,6 @@ When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property i
 | double         | [number,string]  | double           | pattern `<digits with decimal >` |
 | decimal        | [number,string]  | double           | pattern `<digits with decimal >` |
 
-
-
-
-| C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               | 
-| -------------- | ---------------- | ---------------- | ------------------------------ | 
 <!--
 | int            | [integer,string] | int32            | pattern `<digits>` |  pattern: `"^-?(?:0|[1-9]\\d*)$"`
 | long           | [integer,string] | int64            | pattern `<digits>` |                                 
