@@ -1,16 +1,4 @@
----
-title: Generate OpenAPI documents
-author: captainsafia
-description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app
-ms.author: safia
-monikerRange: '>= aspnetcore-6.0'
-ms.custom: mvc
-ms.date: 2/23/2025
-uid: fundamentals/openapi/aspnetcore-openapi
----
-# Generate OpenAPI documents
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
@@ -259,14 +247,26 @@ Create a new ASP.NET Core Web API (Native AOT) project.
 dotnet new webapiaot
 ```
 
+Add the Microsoft.AspNetCore.OpenAPI package.
+
+```console
+dotnet add package Microsoft.AspNetCore.OpenApi
+```
+
+Update `Program.cs` to enable generating OpenAPI documents.
+
+```diff
++ builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
++ app.MapOpenApi();
+```
+
+:::moniker-end
+
 Publish the app.
 
 ```console
 dotnet publish
 ```
-
-:::moniker-end
-
-[!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
-
-[!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi9.md)]
