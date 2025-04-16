@@ -91,4 +91,4 @@ if (RedirectHttpResult.IsLocalUrl(url))
     return Results.LocalRedirect(url);
 }
 
-:::moniker range=">= aspnetcore-10.0"
+:::moniker-end
