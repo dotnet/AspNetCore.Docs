@@ -265,6 +265,8 @@ Publish the app.
 dotnet publish
 ```
 
+:::moniker-end
+
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
 
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi9.md)]
