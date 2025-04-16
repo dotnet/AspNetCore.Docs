@@ -103,9 +103,7 @@ GET http://localhost:5000/openapi/internal.json
 
 ### Customize the OpenAPI version of a generated document
 
-By default, OpenAPI document generation creates a document that is compliant with
-
-[OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html). The following code demonstrates how to modify the default version of the OpenAPI document:
+By default, OpenAPI document generation creates a document that is compliant with [OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html). The following code demonstrates how to modify the default version of the OpenAPI document:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
