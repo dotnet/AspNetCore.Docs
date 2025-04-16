@@ -248,7 +248,7 @@ See [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 
 Using the [Microsoft Identity Web authentication library](/entra/msal/dotnet/microsoft-identity-web/) is the easiest and a secure approach. It only works with Microsoft Entra ID, Microsoft Entra External ID.
 
-For more information, see [[Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
+For more information, see [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow).
 
 ### Use the same delegated access token sent to the API
 
