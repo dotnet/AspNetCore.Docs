@@ -38,8 +38,8 @@ builder.Services.AddOpenApi(options =>
 When generating the OpenAPI document at build time, the OpenAPI version can be selected by setting the `--openapi-version` in the `OpenApiGenerateDocumentsOptions` MSBuild item.
 
 ```xml
-    <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.0 document. -->
-    <OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_0</OpenApiGenerateDocumentsOptions>
+    <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document. -->
+    <OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
 ```
 
 ## Package installation
@@ -103,12 +103,14 @@ GET http://localhost:5000/openapi/internal.json
 
 ### Customize the OpenAPI version of a generated document
 
-By default, OpenAPI document generation creates a document that is compliant with [v3.0 of the OpenAPI specification](https://spec.openapis.org/oas/v3.0.0). The following code demonstrates how to modify the default version of the OpenAPI document:
+By default, OpenAPI document generation creates a document that is compliant with
+
+[OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html). The following code demonstrates how to modify the default version of the OpenAPI document:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
 {
-    options.OpenApiVersion = OpenApiSpecVersion.OpenApi2_0;
+    options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_0;
 });
 ```
 
@@ -286,6 +288,10 @@ Publish the app.
 ```console
 dotnet publish
 ```
+
+### Additional resources
+
+* 
 
 :::moniker-end
 
