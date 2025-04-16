@@ -287,10 +287,6 @@ Publish the app.
 dotnet publish
 ```
 
-### Additional resources
-
-* 
-
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
