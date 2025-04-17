@@ -12,6 +12,8 @@ uid: fundamentals/openapi/include-metadata
 
 ## Include OpenAPI metadata for endpoints
 
+:::moniker range=">= aspnetcore-10.0"
+
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
 In controller-based apps, metadata is collected from attributes like [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
 and [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute).
@@ -674,3 +676,5 @@ A schema transformer can be used to override any default metadata or add additio
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/include-metadata9.md)]
+
+:::moniker-end
