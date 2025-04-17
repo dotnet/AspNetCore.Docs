@@ -129,7 +129,7 @@ Invoke `{APP NAMESPACE}.Profiling.TakeHeapshot()` from your code in order to cre
 [EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
 
 * Manual testing
-  * Browser developer tools: Download, open in Visual Studio, and find expected calls.
+  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find expected calls.
   * [`dotnet-trace`](/dotnet/core/diagnostics/dotnet-trace): Open the `.nettrace` output file in Visual Studio and find the expected method calls.
 * Web-based testing
   * Use the JavaScript API to obtain a [promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) of NetTrace (`.nettrace`) bytes.
@@ -145,7 +145,7 @@ Built-in performance counters are available to track:
 ## GC (Garbage Collector) dumps
 
 * Manual testing
-  * Browser developer tools: Download, open in Visual Studio, and find the expected classes.
+  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find expected calls.
   * [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump): To view the captured GC dump files, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
 * Web-based testing
   * Use the JavaScript API to obtain a [promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) of NetTrace (`.nettrace`) bytes.
@@ -155,7 +155,7 @@ Built-in performance counters are available to track:
 ## Counters trace
 
 * Manual testing
-  * Browser developer tools: Download, open in Visual Studio, and find the expected counters/values.
+  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find expected calls.
   * [`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters): Open the `.csv`/`.json` output file in Visual Studio and find the expected counters/values.
 * Web-based testing
   * Use the JavaScript API to obtain a [promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) of NetTrace (`.nettrace`) bytes.
