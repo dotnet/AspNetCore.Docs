@@ -51,8 +51,6 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiPopulateXMLDocComments.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiNetV2Prev7.md)]
-
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/webapiaotTemplateAddedOpenAPI.md)]
 
 ## Authentication and authorization
