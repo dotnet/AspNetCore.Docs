@@ -10,13 +10,13 @@ uid: blazor/performance/profiling
 ---
 # ASP.NET Core Blazor WebAssembly performance profiling and diagnostic counters
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article describes performance profiling tools and diagnostic counters for Blazor WebAssembly apps.
 
 ## Prerequisite
 
-Install the [.NET WebAssembly build tools](xref:blazor/webassembly-build-tools-and-aot#net-webassembly-build-tools):
+Install the [.NET WebAssembly build tools](xref:blazor/tooling/webassembly#net-webassembly-build-tools):
 
 ```dotnetcli
 dotnet workload install wasm-tools

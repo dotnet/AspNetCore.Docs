@@ -1397,6 +1397,11 @@
             "source_path": "aspnetcore/blazor/host-and-deploy/webassembly/integrity-check-failures.md",
             "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/performance.md",
+            "redirect_url": "/aspnet/core/blazor/performance/",
+            "redirect_document_id": false
         }
     ]
 }
