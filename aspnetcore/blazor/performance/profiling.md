@@ -10,7 +10,11 @@ uid: blazor/performance/profiling
 ---
 # ASP.NET Core Blazor WebAssembly performance profiling and diagnostic counters
 
-[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+<!-- UPDATE 10.0 - Activate ...
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 This article describes performance profiling tools and diagnostic counters for Blazor WebAssembly apps.
 
