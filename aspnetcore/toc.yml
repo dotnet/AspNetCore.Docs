@@ -651,7 +651,17 @@ items:
           - name: WebAssembly native dependencies
             uid: blazor/webassembly-native-dependencies
           - name: Performance
-            uid: blazor/performance
+            items:
+              - name: Overview
+                uid: blazor/performance/index
+              - name: Rendering speed
+                uid: blazor/performance/rendering
+              - name: App download size
+                uid: blazor/performance/app-download-size
+              - name: JavaScript interop
+                uid: blazor/performance/js-interop
+              - name: WebAssembly profiling
+                uid: blazor/performance/profiling
           - name: Test components
             uid: blazor/test
           - name: Progressive Web Applications

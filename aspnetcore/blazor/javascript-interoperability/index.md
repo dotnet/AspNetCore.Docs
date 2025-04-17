@@ -18,6 +18,7 @@ Further JS interop guidance is provided in the following articles:
 
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
+* <xref:blazor/performance/js-interop>
 
 :::moniker range=">= aspnetcore-7.0"
 

@@ -178,4 +178,4 @@ Because custom types are never trimmed by Blazor when an app is published, the c
 ## Additional resources
 
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained)
-* <xref:blazor/performance#intermediate-language-il-trimming>
+* <xref:blazor/performance/app-download-size#intermediate-language-il-trimming>
