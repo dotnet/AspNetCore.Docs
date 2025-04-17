@@ -263,10 +263,10 @@ var app = builder.Build();
 + app.MapOpenApi();
 ```
 
-:::moniker-end
-
 Publish the app.
 
 ```console
 dotnet publish
 ```
+
+:::moniker-end
