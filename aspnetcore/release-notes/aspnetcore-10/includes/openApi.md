@@ -11,6 +11,9 @@ Some of the changes you will see in the generated OpenAPI document include:
 
 * Nullable types no longer have the `nullable: true` property in the schema.
 * Instead of a `nullable: true` property, they have a `type` keyword whose value is an array that includes `null` as one of the types.
+* Properties or parameters defined as a C# `int` or `long` now appear in the generated OpenAPI document without the `type: integer` field
+and have a `pattern` field limiting the value to digits.
+This happens when the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property in the <xref:System.Text.Json.JsonSerializerOptions> is set to `AllowReadingFromString`, the default for ASP.NET Core Web apps. To enable C# `int` and `long` to be represented in the OpenAPI document as `type: integer`, set the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property to `Strict`.
 
 With this feature, the default OpenAPI version for generated documents is`3.1`. The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi).
 
@@ -34,6 +37,10 @@ OpenAPI 3.1 support was primarily added in the following [PR](https://github.com
 ### OpenAPI 3.1 breaking changes
 
 Support for OpenAPI 3.1 requires an update to the underlying OpenAPI.NET library to a new major version, 2.0. This new version has some breaking changes from the previous version. The breaking changes may impact apps if they have any document, operation, or schema transformers.
+Breaking changes in this iteration include the following:
+
+* Entities within the OpenAPI document, like operations and parameters, are typed as interfaces. Concrete implementations exist for the inlined and referenced variants of an entity. For example, an `IOpenApiSchema` can either be an inlined `OpenApiSchema` or an `OpenApiSchemaReference` that points to a schema defined elsewhere in the document.
+* The `Nullable` property has been removed from the `OpenApiSchema` type. To determine if a type is nullable, evaluate if the `OpenApiSchema.Type` property sets `JsonSchemaType.Null`.
 
 One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. The following diff shows the changes in schema transformer from .NET 9 to .NET 10: 
 
