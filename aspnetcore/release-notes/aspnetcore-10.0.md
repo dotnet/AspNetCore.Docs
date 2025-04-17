@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 10.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/10/2025
+ms.date: 4/10/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core 10.0
@@ -50,8 +50,6 @@ This section describes new features for OpenAPI.
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/responseDescProducesResponseType.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiPopulateXMLDocComments.md)]
-
-[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiNetV2Prev7.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/webapiaotTemplateAddedOpenAPI.md)]
 
