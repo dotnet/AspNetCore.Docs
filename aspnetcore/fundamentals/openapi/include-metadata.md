@@ -485,33 +485,6 @@ of the property in the schema.
 
 ### type and format
 
-The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as follows:
-
-| C# Type        | OpenAPI `type` | OpenAPI `format` |
-| -------------- | -------------- | ---------------- |
-| int            | integer        | int32            |
-| long           | integer        | int64            |
-| short          | integer        | int16            |
-| byte           | integer        | uint8            |
-| float          | number         | float            |
-| double         | number         | double           |
-| decimal        | number         | double           |
-| bool           | boolean        |                  |
-| string         | string         |                  |
-| char           | string         | char             |
-| byte[]         | string         | byte             |
-| DateTimeOffset | string         | date-time        |
-| DateOnly       | string         | date             |
-| TimeOnly       | string         | time             |
-| Uri            | string         | uri              |
-| Guid           | string         | uuid             |
-| object         | _omitted_      |                  |
-| dynamic        | _omitted_      |                  |
-
-Note that object and dynamic types have _no_ type defined in the OpenAPI because these can contain data of any type, including primitive types like int or string.
-
-The `type` and `format` can also be set with a [Schema Transformer](xref:fundamentals/openapi/customize-openapi#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
-
 #### Numeric types
 
 The JSON Schema library maps standard C# numeric types to OpenAPI `type` and `format` based on the
@@ -700,4 +673,4 @@ A schema transformer can be used to override any default metadata or add additio
 
 :::moniker-end
 
-[!INCLUDE[](~\fundamentals\openapi\includes\include-metadata9.md)]
+[!INCLUDE[](~/fundamentals/openapi/includes/include-metadata9.md)]
