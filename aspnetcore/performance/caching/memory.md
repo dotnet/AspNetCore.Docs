@@ -160,7 +160,7 @@ Using a <xref:System.Threading.CancellationTokenSource> allows multiple cache en
 
 ## Additional notes
 
-* Expiration doesn't happen in the background. There's no timer that actively scans the cache for expired items. Any activity on the cache (`Get`, `Set`, `Remove`) can trigger a background scan for expired items. A timer on the `CancellationTokenSource` (<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>) also removes the entry and triggers a scan for expired items. The following example uses <xref:System.Threading.CancellationTokenSource.%23ctor(System.TimeSpan)> for the registered token. When this token fires, it removes the entry immediately and fires the eviction callbacks:
+* Expiration doesn't happen in the background. There's no timer that actively scans the cache for expired items. Any activity on the cache (`Get`, `TryGetValue`, `Set`, `Remove`) can trigger a background scan for expired items. A timer on the `CancellationTokenSource` (<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>) also removes the entry and triggers a scan for expired items. The following example uses <xref:System.Threading.CancellationTokenSource.%23ctor(System.TimeSpan)> for the registered token. When this token fires, it removes the entry immediately and fires the eviction callbacks:
 
   :::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGeCacheExpirationToken":::
 
