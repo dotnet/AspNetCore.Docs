@@ -243,7 +243,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 
 ## Clear a form or field
 
-Reset a form by clearing its model back its default state, which can be performed inside or outside of an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s markup:
+Reset a form by clearing its model back to its default state, which can be performed inside or outside of an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s markup:
 
 ```razor
 <button @onclick="ClearForm">Clear form</button>
