@@ -68,7 +68,7 @@ options.AddSchemaTransformer((schema, context, cancellationToken) =>
 
 Note that these changes are necessary even when only configuring the OpenAPI version to 3.0.
 
-### OpenAPI in Yaml
+### OpenAPI in YAML
 
 ASP.NET now supports serving the generated OpenAPI document in YAML format. YAML can be more concise than JSON, eliminating curly braces and quotation marks when these can be inferred. YAML also supports multi-line strings, which can be useful for long descriptions.
 

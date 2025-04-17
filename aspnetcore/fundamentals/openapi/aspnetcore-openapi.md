@@ -78,6 +78,16 @@ Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to vie
 
 The following sections demonstrate how to customize OpenAPI document generation.
 
+### Generate OpenAPI document in YAML format
+
+The OpenAPI document can be generated in either JSON or YAML format. By default, the OpenAPI document is generated in JSON format. To generate the OpenAPI document in YAML format, specify the endpoint in the MapOpenApi call with a ".yaml" or ".yml" suffix, as shown in the following example:
+
+```csharp
+app.MapOpenApi("/openapi/{documentName}.yaml");
+```
+
+Generating penAPI documents in YAML format at build time is currently not supported, but planned in a future preview.
+
 ### Customize the OpenAPI document name
 
 Each OpenAPI document in an app has a unique name. The default document name that is registered is `v1`.
