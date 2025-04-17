@@ -4,7 +4,8 @@ The [ProducesAttribute](/dotnet/api/microsoft.aspnetcore.mvc.producesattribute-1
 
 ```csharp
 [HttpGet(Name = "GetWeatherForecast")]
-[ProducesResponseType<IEnumerable<WeatherForecast>>(StatusCodes.Status200OK, Description = "The weather forecast for the next 5 days.")]
+[ProducesResponseType<IEnumerable<WeatherForecast>>(StatusCodes.Status200OK,
+                   Description = "The weather forecast for the next 5 days.")]
 public IEnumerable<WeatherForecast> Get()
 {
 ```
