@@ -1,18 +1,4 @@
----
-title: Include OpenAPI metadata in an ASP.NET Core app
-author: captainsafia
-description: Learn how to add OpenAPI metadata in an ASP.NET Core app
-ms.author: safia
-monikerRange: '>= aspnetcore-9.0'
-ms.custom: mvc
-ms.date: 10/26/2024
-uid: fundamentals/openapi/include-metadata
----
-# Include OpenAPI metadata in an ASP.NET Core app
-
-## Include OpenAPI metadata for endpoints
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
 In controller-based apps, metadata is collected from attributes like [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
@@ -316,17 +302,6 @@ app.MapGet("/todos",
     async (TodoDb db) => await db.Todos.ToListAsync());
 ```
 
-[`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute), [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute), and [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) also support an optional string property called `Description` that can be used to describe the response. This is useful for explaining why or when clients can expect a specific response:
-
-```csharp
-app.MapGet("/todos/{id}",
-    [ProducesResponseType<Todo>(200, 
-        Description = "Returns the requested Todo item.")]
-    [ProducesResponseType(404, Description = "Requested item not found.")]
-    [ProducesDefault(Description = "Undocumented status code.")]
-    async (int id, TodoDb db) => /* Code here */);
-```
-
 Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
 
 ```csharp
@@ -395,18 +370,6 @@ In controller-based apps, ASP.NET Core can extract the response metadata from th
 Only one [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601> attributes may be applied to an action method, but multiple [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attributes with different status codes may be applied to a single action method.
 
 All of the above attributes can be applied to individual action methods or to the controller class where it applies to all action methods in the controller.
-
-[`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute), [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute), and [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) also support an optional string property called `Description` that can be used to describe the response. This is useful for explaining why or when clients can expect a specific response:
-
-```csharp
-[HttpGet("/todos/{id}")]
-[ProducesResponseType<Todo>(StatusCodes.Status200OK, 
-    "application/json", Description = "Returns the requested Todo item.")]
-[ProducesResponseType(StatusCodes.Status404NotFound, 
-    Description = "Requested Todo item not found.")]
-[ProducesDefault(Description = "Undocumented status code.")]
-public async Task<ActionResult<Todo>> GetTodoItem(string id, Todo todo)
-```
 
 When not specified by an attribute:
 
@@ -487,37 +450,7 @@ of the property in the schema.
 
 ### type and format
 
-#### Numeric types
-
-The JSON Schema library maps standard C# numeric types to OpenAPI `type` and `format` based on the
-<xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property of the <xref:System.Text.Json.JsonSerializerOptions>
-used in the app. In ASP.NET Core Web API apps, the default value of this property is `JsonNumberHandling.AllowReadingFromString`.
-
-When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property is set to `JsonNumberHandling.AllowReadingFromString`, the numeric types are mapped as follows:
-
-| C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               |
-| -------------- | ---------------- | ---------------- | ------------------------------ |
-| int            | [integer,string] | int32            | pattern `<digits>` |
-| long           | [integer,string] | int64            | pattern `<digits>` |
-| short          | [integer,string] | int16            | pattern `<digits>` |
-| byte           | [integer,string] | uint8            | pattern `<digits>` |
-| float          | [number,string]  | float            | pattern `<digits with decimal >` |
-| double         | [number,string]  | double           | pattern `<digits with decimal >` |
-| decimal        | [number,string]  | double           | pattern `<digits with decimal >` |
-
-<!--
-| int            | [integer,string] | int32            | pattern `<digits>` |  pattern: `"^-?(?:0|[1-9]\\d*)$"`
-| long           | [integer,string] | int64            | pattern `<digits>` |                                 
-| short          | [integer,string] | int16            | pattern `<digits>` |                                  
-| byte           | [integer,string] | uint8            | pattern `<digits>` |                                  
-| float          | [number,string]  | float            | pattern `<digits with decimal >` |   pattern: `"^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$"`
-| double         | [number,string]  | double           | pattern `<digits with decimal >` |                                  
-| decimal        | [number,string]  | double           | pattern `<digits with decimal >` |   pattern: `"^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$"`
- -->
-
-If the app is configured to produce OpenAPI 3.0 or OpenAPI v2 documents, where the `type` field cannot have an array value, the `type` field is dropped.
-
-When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property is set to `JsonNumberHandling.Strict`, the numeric types are mapped as follows:
+The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as follows:
 
 | C# Type        | OpenAPI `type` | OpenAPI `format` |
 | -------------- | -------------- | ---------------- |
@@ -528,31 +461,21 @@ When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property i
 | float          | number         | float            |
 | double         | number         | double           |
 | decimal        | number         | double           |
-
-#### String types
-
-The following table shows how C# types map to `string` type properties in the generated OpenAPI document:
-
-| C# Type        | OpenAPI `type` | OpenAPI `format` | Other assertions               |
-| -------------- | -------------- | ---------------- | ------------------------------ |
-| string         | string         |                  | |
-| char           | string         | char             | minLength: 1, maxLength: 1 |
-| byte[]         | string         | byte             | |
-| DateTimeOffset | string         | date-time        | |
-| DateOnly       | string         | date             | |
-| TimeOnly       | string         | time             | |
-| Uri            | string         | uri              | |
-| Guid           | string         | uuid             | |
-
-#### Other types
-
-Other C# types are represented in the generated OpenAPI document as shown in the following table:
-
-| C# Type        | OpenAPI `type` | OpenAPI `format` |
-| -------------- | -------------- | ---------------- |
 | bool           | boolean        |                  |
+| string         | string         |                  |
+| char           | string         | char             |
+| byte[]         | string         | byte             |
+| DateTimeOffset | string         | date-time        |
+| DateOnly       | string         | date             |
+| TimeOnly       | string         | time             |
+| Uri            | string         | uri              |
+| Guid           | string         | uuid             |
 | object         | _omitted_      |                  |
 | dynamic        | _omitted_      |                  |
+
+Note that object and dynamic types have _no_ type defined in the OpenAPI because these can contain data of any type, including primitive types like int or string.
+
+The `type` and `format` can also be set with a [Schema Transformer](xref:fundamentals/openapi/customize-openapi#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
 
 ### Use attributes to add metadata
 
@@ -634,21 +557,7 @@ An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.
 
 #### nullable
 
-Properties defined as a nullable value or reference type appear in the generated schema with a `type` keyword whose value is an array that includes `null` as one of the types. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
-
-For example, a C# property defined as `string?` is represented in the generated schema as:
-
-```json
-  "nullableString": {
-    "description": "A property defined as string?",
-    "type": [
-      "null",
-      "string"
-    ]
-  },
-```
-
-If the app is configured to produce OpenAPI v3.0 or OpenAPI v2 documents, nullable value or reference types have `nullable: true` in the generated schema because these OpenAPI versions do not allow the `type` field to be an array.
+Properties defined as a nullable value or reference type have `nullable: true` in the generated schema. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
 
 #### additionalProperties
 
@@ -672,9 +581,5 @@ A schema transformer can be used to override any default metadata or add additio
 
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
-
-:::moniker-end
-
-[!INCLUDE[](~/fundamentals/openapi/includes/include-metadata9.md)]
 
 :::moniker-end
