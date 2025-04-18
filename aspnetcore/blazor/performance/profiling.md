@@ -37,7 +37,14 @@ Built-in performance counters are available to track:
 * [JIT (Just-In-Time) interpolation](https://developer.mozilla.org/docs/Glossary/Just_In_Time_Compilation) 
 * Call specification (":::no-loc text="callspec":::", sequence and timing of function calls) and instrumentation
 
-Enable integration with the browser's developer tools profiler using the `<WasmProfilers>` property in the app's project file (`.csproj`). The following additional properties that the native code produced by AOT has symbols, which are visible in the browser devtools profiler:
+Enable integration with the browser's developer tools profiler using the `<WasmProfilers>` property in the app's project file (`.csproj`). Include the following additional properties:
+
+* `<WasmProfilers>`: The "`browser`" profiler enables integration with the profiler in the browser's developer tools.
+* `<RunAOTCompilation>`: Run AOT compilation. Default: `false`
+* `<RunAOTCompilationAfterBuild>`: Run AOT compilation after build. By default, it is run only for publish. Default: `false`
+* `<WasmNativeStrip>`: Set to `false` to prevent stripping the native executable. Default: `true`
+* `<WasmNativeDebugSymbols>`: Build with native debug symbols. Default: `true`
+* `<WasmBuildNative>`: Build the native executable. Default: `false`
 
 ```xml
 <PropertyGroup>
@@ -68,11 +75,9 @@ Add Blazor start configuration in `wwwroot/index.html`, using the [fingerprinted
 </script>
 ```
 
-## Call specification (`callspec`)
+## Call specification (:::no-loc text="callspec":::)
 
-If you want to filter profiled methods, you can use callspec
-
-For more information, see [Trace MonoVM profiler events during startup](https://github.com/dotnet/runtime/blob/main/docs/design/mono/diagnostics-tracing.md#trace-monovm-profiler-events-during-startup).
+If you want to filter profiled methods, you can use call specification (:::no-loc text="callspec":::). For more information, see [Trace MonoVM profiler events during startup](https://github.com/dotnet/runtime/blob/main/docs/design/mono/diagnostics-tracing.md#trace-monovm-profiler-events-during-startup).
 
 Add `callspec` to the `browser` WebAssembly profiler in the `<WasmProfilers>` element. In the following example, the `{APP NAMESPACE}` placeholder is the app's namespace:
 
@@ -109,12 +114,12 @@ Enable integration with the log profiler using the `<WasmProfilers>` and `<WasmB
 </PropertyGroup>
 ```
 
-In order to trigger a heap shot, add the following, where the `{APP NAMESPACE}` placeholder is the app's namespace:
+To trigger a heap shot, add the following, where the `{APP NAMESPACE}` placeholder is the app's namespace:
 
 ```csharp
 namespace {APP NAMESPACE};
 
-class Profiling
+public class Profiling
 {
     [JSExport]
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -122,7 +127,7 @@ class Profiling
 }
 ```
 
-Invoke `{APP NAMESPACE}.Profiling.TakeHeapshot()` from your code in order to create a memory heap shot and flush the contents of the profile to the file system. Download the resulting `.mpld` file to analyze the data.
+Invoke `TakeHeapshot` to create a memory heap shot and flush the contents of the profile to the file system. Download the resulting `.mpld` file to analyze the data.
 
 ## EventPipe profiler
 
@@ -181,7 +186,7 @@ The following example:
 
 In the project file (`.csproj`), the following properties enable integration with the browser's profiler:
 
-* `<WasmProfilers>`: Enables integration with the profiler in the browser's developer tools.
+* `<WasmProfilers>`: The "`browser`" profiler enables integration with the profiler in the browser's developer tools.
 * `<WasmPerfTracing>`: Enables diagnostic server.
 * `<WasmPerfInstrumentation>`: Enables performance instrumentation for the sampling CPU profiler.
 * `<MetricsSupport>`: Enables metrics. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
