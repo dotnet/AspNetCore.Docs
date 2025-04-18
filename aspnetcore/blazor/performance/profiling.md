@@ -37,14 +37,16 @@ Built-in performance counters are available to track:
 * [JIT (Just-In-Time) interpolation](https://developer.mozilla.org/docs/Glossary/Just_In_Time_Compilation) 
 * Call specification (":::no-loc text="callspec":::", sequence and timing of function calls) and instrumentation
 
-Enable integration with the browser's developer tools profiler using the `<WasmProfilers>` property in the app's project file (`.csproj`). Include the following additional properties:
+Enable integration with the browser's developer tools profiler using the `<WasmProfilers>` property in the app's project file (`.csproj`). Include the additional properties in the following table.
 
-* `<WasmProfilers>`: The "`browser`" profiler enables integration with the profiler in the browser's developer tools.
-* `<RunAOTCompilation>`: Run AOT compilation. Default: `false`
-* `<RunAOTCompilationAfterBuild>`: Run AOT compilation after build. By default, it is run only for publish. Default: `false`
-* `<WasmNativeStrip>`: Set to `false` to prevent stripping the native executable. Default: `true`
-* `<WasmNativeDebugSymbols>`: Build with native debug symbols. Default: `true`
-* `<WasmBuildNative>`: Build the native executable. Default: `false`
+Property | Default | Set value to&hellip; | Description
+--- | :---: | :---: | ---
+`<WasmProfilers>` | No value | `browser` | Mono profilers to use. Potential values are "`browser`" and "`log`". To use both, separate the values with a semicolon. The `browser` profiler enables integration with the browser's developer tools profiler.
+`<RunAOTCompilation>`| `false` | `true` | Controls AOT compilation.
+`<RunAOTCompilationAfterBuild>` | `false` | `true` | Controls AOT compilation after build. By default, it's run only for publish.
+`<WasmNativeStrip>` | `true` | `false` | Controls stripping the native executable.
+`<WasmNativeDebugSymbols>` | `true` | `true` | Controls building with native debug symbols.
+`<WasmBuildNative>` | `false` | `true` | Controls building the native executable.
 
 ```xml
 <PropertyGroup>
@@ -109,7 +111,7 @@ Enable integration with the log profiler using the `<WasmProfilers>` and `<WasmB
 
 ```xml
 <PropertyGroup>
-  <WasmProfilers>log;</WasmProfilers>
+  <WasmProfilers>log</WasmProfilers>
   <WasmBuildNative>true</WasmBuildNative>
 </PropertyGroup>
 ```
@@ -184,17 +186,19 @@ The following example:
 * Collects performance counters for 60 seconds.
 * Collects CPU counters for 60 seconds.
 
-In the project file (`.csproj`), the following properties enable integration with the browser's profiler:
+In the project file (`.csproj`), the properties in the following table enable integration with the browser's profiler.
 
-* `<WasmProfilers>`: The "`browser`" profiler enables integration with the profiler in the browser's developer tools.
-* `<WasmPerfTracing>`: Enables diagnostic server.
-* `<WasmPerfInstrumentation>`: Enables performance instrumentation for the sampling CPU profiler.
-* `<MetricsSupport>`: Enables metrics. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
-* `<EventSourceSupport>`: Enables system events. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
+Property | Default | Set value to&hellip; | Description
+--- | :---: | :---: | ---
+`<WasmProfilers>` | No value | `browser` | Mono profilers to use. Potential values are "`browser`" and "`log`". To use both, separate the values with a semicolon. The `browser` profiler enables integration with the browser's developer tools profiler.
+`<WasmPerfTracing>` | `false` | `true` | Controls diagnostic server tracing.
+`<WasmPerfInstrumentation>` | `false` | `true` | Controls CPU sampling instrumentation for diagnostic server.
+`<MetricsSupport>` | `false` | `true` | Controls `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
+`<EventSourceSupport>` | `false`| `true` | Controls `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
 
 ```xml
 <PropertyGroup>
-  <WasmProfilers>browser;</WasmProfilers>
+  <WasmProfilers>browser</WasmProfilers>
   <WasmPerfTracing>true</WasmPerfTracing>
   <WasmPerfInstrumentation>true</WasmPerfInstrumentation>
   <MetricsSupport>true</MetricsSupport>
