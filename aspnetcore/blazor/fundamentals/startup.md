@@ -678,7 +678,7 @@ In a component that adopts Interactive WebAssembly rendering, wrap the component
 
 #### Global Interactive WebAssembly rendering with prerendering
 
-*This scenario applies to global Interactive WebAssembly rendering without prerendering (`@rendermode="InteractiveWebAssembly"` on the `HeadOutlet` and `Routes` components in the `App` component).*
+*This scenario applies to global Interactive WebAssembly rendering with prerendering (`@rendermode="InteractiveWebAssembly"` on the `HeadOutlet` and `Routes` components in the `App` component).*
 
 Create a `ContentLoading` component in the `Layout` folder of the `.Client` app that calls <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>:
 
