@@ -136,7 +136,7 @@ Invoke `TakeHeapshot` to create a memory heap shot and flush the contents of the
 [EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
 
 * Manual testing
-  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find expected calls.
+  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected method calls.
   * [`dotnet-trace`](/dotnet/core/diagnostics/dotnet-trace): Open the `.nettrace` output file in Visual Studio and find the expected method calls.
 * Web-based testing
   * Use the JavaScript API to obtain a [promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) of NetTrace (`.nettrace`) bytes.
@@ -147,12 +147,12 @@ Built-in performance counters are available to track:
 
 * [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation)
 * Code interpolation
-* JIT (Just-In-Time) interpolation
+* [JIT (Just-In-Time) interpolation](https://developer.mozilla.org/docs/Glossary/Just_In_Time_Compilation)
 
 ## GC (Garbage Collector) dumps
 
 * Manual testing
-  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find expected calls.
+  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected classes.
   * [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump): To view the captured GC dump files, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
 * Web-based testing
   * Use the JavaScript API to obtain a [promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) of NetTrace (`.nettrace`) bytes.
@@ -162,12 +162,12 @@ Built-in performance counters are available to track:
 ## Counters trace
 
 * Manual testing
-  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find expected calls.
-  * [`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters): Open the `.csv`/`.json` output file in Visual Studio and find the expected counters/values.
+  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected counters.
+  * [`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters): Open the `.csv`/`.json` output file in Visual Studio and find the expected counters.
 * Web-based testing
   * Use the JavaScript API to obtain a [promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) of NetTrace (`.nettrace`) bytes.
   * Upload the file via HTTP.
-  * Parse and validate that the trace contains the expected counters/values.
+  * Parse and validate that the trace contains the expected counters.
 
 ## .NET Core Diagnostics Client Library example
 
@@ -211,8 +211,8 @@ The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/H
 Browser developer tools console calls in the following example that trigger profiling:
 
 * `collectGcDump`: Collect a GC (Garbage Collector) dump.
-* `collectPerfCounters(durationSeconds)`: Collect performance counters.
-* `collectCpuSamples(durationSeconds)`: Collect performance counters.
+* `collectPerfCounters(durationSeconds)`: Collect general performance counters.
+* `collectCpuSamples(durationSeconds)`: Collect CPU performance counters.
 
 ```javascript
 globalThis.getDotnetRuntime(0).collectGcDump();
