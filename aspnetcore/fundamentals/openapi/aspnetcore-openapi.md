@@ -150,11 +150,11 @@ The OpenAPI document is regenerated every time a request to the OpenAPI endpoint
 
 ## Generate multiple OpenAPI documents
 
-In some scenarios, it's helpful to generate multiple OpenAPI documents with different content from a single ASP.NET Core API app. These scenarios include:
+In some scenarios, it's helpful to generate multiple OpenAPI documents with different content from a single ASP.NET Core API app. These scenarios include generating OpenAPI documentation for different:
 
-* Generating OpenAPI documentation for different audiences, such as public and internal APIs.
-* Generating OpenAPI documentation for different versions of an API.
-* Generating OpenAPI documentation for different parts of an app, such as a frontend and backend API.
+* Audiences, such as public and internal APIs.
+* Versions of an API.
+* Parts of an app, such as a frontend and backend API.
 
 To generate multiple OpenAPI documents, call the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> extension method once for each document, specifying a different document name in the first parameter each time.
 
