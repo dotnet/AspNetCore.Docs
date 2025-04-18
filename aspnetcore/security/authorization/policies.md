@@ -174,9 +174,9 @@ Register handlers in the services collection during configuration. For example:
 
 The preceding code registers `MinimumAgeHandler` as a singleton. Handlers can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
 
-It's possible to bundle both a requirement and a handler into a single class implementing both <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> and <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler>. This bundling creates a tight coupling between the handler and requirement and is only recommended for simple requirements and handlers. Creating a class that implements both interfaces removes the need to register the handler in DI because of the built-in [PassThroughAuthorizationHandler](https://github.com/dotnet/aspnetcore/blob/release/6.0/src/Security/Authorization/Core/src/PassThroughAuthorizationHandler.cs) that allows requirements to handle themselves.
+It's possible to bundle both a requirement and a handler into a single class implementing both <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> and <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler>. This bundling creates a tight coupling between the handler and requirement and is only recommended for simple requirements and handlers. Creating a class that implements both interfaces removes the need to register the handler in DI because of the built-in <xref:Microsoft.AspNetCore.Authorization.Infrastructure.PassThroughAuthorizationHandler> that allows requirements to handle themselves.
 
-See the [AssertionRequirement class](https://github.com/dotnet/aspnetcore/blob/release/6.0/src/Security/Authorization/Core/src/AssertionRequirement.cs#L13) for a good example where the `AssertionRequirement` is both a requirement and the handler in a fully self-contained class.
+See the implementation of the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement> class for a good example where the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement> is both a requirement and the handler in a fully self-contained class.
 
 ## What should a handler return?
 
