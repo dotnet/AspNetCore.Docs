@@ -27,7 +27,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vsc-latest.md)]
 
 ### Database engines
 
