@@ -287,14 +287,14 @@ Some secure token servers encrypt the access tokens. Access tokens do not requir
 
 For Blazor examples that use YARP to implement the BFF pattern, see the following articles:
 
-* <xref:blazor/security/blazor-web-app-with-entra?pivots=bff-pattern>
-* <xref:blazor/security/blazor-web-app-with-oidc?pivots=bff-pattern>
+* <xref:blazor/security/blazor-web-app-entra?pivots=bff-pattern>
+* <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern>
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-For a Blazor example that uses YARP to implement the BFF pattern, see <xref:blazor/security/blazor-web-app-with-oidc?pivots=bff-pattern>.
+For a Blazor example that uses YARP to implement the BFF pattern, see <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern>.
 
 :::moniker-end
 
