@@ -281,7 +281,7 @@ Some secure token servers encrypt the access tokens. Access tokens do not requir
 
 ## YARP (Yet Another Reverse Proxy)
 
-[YARP (Yet Another Reverse Proxy)](https://dotnet.github.io/yarp/) is a useful technology for handling HTTP requests and forwarding the requests to other APIs. YARP can implement security logic for acquiring new access credentials. YARP is frequently used when adopting the [Backend for Frontend (BFF) security architecture](/azure/architecture/patterns/backends-for-frontends).
+[YARP (Yet Another Reverse Proxy)](https://dotnet.github.io/yarp/) is a useful technology for handling HTTP requests and forwarding the requests to other APIs. YARP can implement security logic for acquiring new access credentials. YARP is frequently used when adopting [Backend for Frontend (BFF) security architecture](/azure/architecture/patterns/backends-for-frontends).
 
 :::moniker range=">= aspnetcore-9.0"
 
