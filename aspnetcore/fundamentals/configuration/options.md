@@ -108,6 +108,22 @@ In the preceding code, by default, changes to the JSON configuration file after 
 
 <a name="named"></a>
 
+## Specify a custom key name for a configuration property using ConfigurationKeyName
+
+By default, the property names of the Options class are used as the key name in the configuration source. For example, if the property name is `Title`, the key name in the configuration is `Title` as well.
+
+When the names differentiate, you can use [`ConfigurationKeyName` attribute](xref:Microsoft.Extensions.Configuration.ConfigurationKeyNameAttribute) to specify the key name in the configuration source. Using this technique, you can map a property in the configuration to one in your code with a different name. 
+
+This is useful when the property name in the configuration source is not a valid C# identifier, or when you want to use a different name in your code.
+
+For example, consider the following Options class:
+
+:::code language="csharp" source="~/fundamentals/configuration/options/samples/6.x/OptionsSample/Models/PositionOptionsWithConfigurationKeyName.cs" id="snippet":::
+
+With the following `appsettings.json`, the `Title` and `Name` class properties are bound to the `position-title` and `position-name` from the `appsettings.json` file:
+
+:::code language="json" source="~/fundamentals/configuration/options/samples/6.x/OptionsSample/appsettings.KN.json":::
+
 ## Named options support using IConfigureNamedOptions
 
 Named options:
