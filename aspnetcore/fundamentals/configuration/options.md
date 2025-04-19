@@ -114,7 +114,7 @@ By default, the property names of the options class are used as the key name in 
 
 When the names differentiate, you can use the [`ConfigurationKeyName` attribute](xref:Microsoft.Extensions.Configuration.ConfigurationKeyNameAttribute) to specify the key name in the configuration source. Using this technique, you can map a property in the configuration to one in your code with a different name. 
 
-This is useful when the property name in the configuration source is not a valid C# identifier or when you want to use a different name in your code.
+This is useful when the property name in the configuration source isn't a valid C# identifier or when you want to use a different name in your code.
 
 For example, consider the following options class:
 
