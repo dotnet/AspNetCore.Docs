@@ -5,7 +5,7 @@ description: Discover how to use the options pattern to represent groups of rela
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/13/2022
+ms.date: 04/19/2025
 uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
@@ -107,6 +107,22 @@ The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor%60
 In the preceding code, by default, changes to the JSON configuration file after the app has started are read.
 
 <a name="named"></a>
+
+## Specify a custom key name for a configuration property using `ConfigurationKeyName`
+
+By default, the property names of the options class are used as the key name in the configuration source. If the property name is `Title`, the key name in the configuration is `Title` as well.
+
+When the names differentiate, you can use the [`ConfigurationKeyName` attribute](xref:Microsoft.Extensions.Configuration.ConfigurationKeyNameAttribute) to specify the key name in the configuration source. Using this technique, you can map a property in the configuration to one in your code with a different name. 
+
+This is useful when the property name in the configuration source isn't a valid C# identifier or when you want to use a different name in your code.
+
+For example, consider the following options class:
+
+:::code language="csharp" source="~/fundamentals/configuration/options/samples/6.x/OptionsSample/Models/PositionOptionsWithConfigurationKeyName.cs" id="snippet":::
+
+The `Title` and `Name` class properties are bound to the `position-title` and `position-name` from the following `appsettings.json` file:
+
+:::code language="json" source="~/fundamentals/configuration/options/samples/6.x/OptionsSample/appsettings.KN.json":::
 
 ## Named options support using IConfigureNamedOptions
 
