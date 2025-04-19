@@ -35,7 +35,7 @@ gRPC client interceptors intercept outgoing RPC invocations. They provide access
 
 `Interceptor` methods to override for client:
 
-* `BlockingUnaryCall`: Intercepts a blocking invocation of an unary RPC.
+* `BlockingUnaryCall`: Intercepts a blocking invocation of a unary RPC.
 * `AsyncUnaryCall`: Intercepts an asynchronous invocation of an unary RPC.
 * `AsyncClientStreamingCall`: Intercepts an asynchronous invocation of a client-streaming RPC.
 * `AsyncServerStreamingCall`: Intercepts an asynchronous invocation of a server-streaming RPC.
