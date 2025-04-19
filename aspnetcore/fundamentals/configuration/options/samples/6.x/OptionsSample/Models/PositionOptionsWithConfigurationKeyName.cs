@@ -6,10 +6,10 @@
         public const string Position = "Position";
 
         [ConfigurationKeyName("position-title")]
-        public string Title { get; set; } = String.Empty;
+        public string Title { get; set; } = string.Empty;
 
         [ConfigurationKeyName("position-name")]
-        public string Name { get; set; } = String.Empty;
+        public string Name { get; set; } = string.Empty;
     }
     #endregion
 }
