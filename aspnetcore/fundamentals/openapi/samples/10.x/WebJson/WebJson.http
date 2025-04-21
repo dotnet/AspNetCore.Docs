@@ -1,0 +1,5 @@
+@WebJson_HostAddress = https://localhost:7098
+
+GET {{WebJson_HostAddress}}/
+Accept: application/json
+
