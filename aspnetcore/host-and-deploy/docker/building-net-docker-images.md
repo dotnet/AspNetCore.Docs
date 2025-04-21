@@ -18,6 +18,7 @@ Windows Home Edition doesn't support Hyper-V, and Hyper-V is needed for Docker.
 
 See [Containerize a .NET app with dotnet publish](/dotnet/core/docker/publish-as-container) for information on containerized a .NET app with `dotnet publish`.
 
+[!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images10.md)]
 [!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images9.md)]
 [!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images8.md)]
 [!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images7.md)]
