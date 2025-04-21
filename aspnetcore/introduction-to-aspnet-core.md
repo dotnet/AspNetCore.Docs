@@ -80,7 +80,7 @@ We recommend the following sequence of tutorials for an introduction to developi
 
    |Scenario  |Tutorial  |
    |----------|----------|
-   |New development        |[Blazor with Entity Framework Core](xref:blazor/tutorials/movie-database-app/part-1) |
+   |New development        |[Blazor with Entity Framework Core](xref:blazor/tutorials/movie-database-app/index) |
    |New development        |[Razor Pages with Entity Framework Core](xref:data/ef-rp/intro) |
    |Maintaining an MVC app |[MVC with Entity Framework Core](xref:data/ef-mvc/intro) |
 
