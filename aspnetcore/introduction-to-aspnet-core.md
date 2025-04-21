@@ -4,7 +4,7 @@ author: tdykstra
 description: Get an overview of ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/03/2025
+ms.date: 04/21/2025
 uid: index
 ---
 # Overview of ASP.NET Core
@@ -242,6 +242,7 @@ For more information, see [Contribute to the ASP.NET documentation: Code snippet
 
 For more information, see the following resources:
 
+* [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
 * <xref:getting-started>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
