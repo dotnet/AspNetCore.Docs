@@ -37,7 +37,8 @@ For client-side rendering (CSR), which includes Interactive WebAssembly componen
 builder.Services.AddScoped(sp =>
     new HttpClient
     {
-        BaseAddress = new Uri(builder.Configuration["FrontendUrl"] ?? "https://localhost:5002")
+        BaseAddress = new Uri(builder.Configuration["FrontendUrl"] ?? 
+            "https://localhost:5002")
     });
 ```
 
@@ -108,7 +109,11 @@ The solution demonstrates calling a secure web API for the following:
 
 ### `BlazorWebAppOidc`
 
-A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
+A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The solution includes a demonstration of obtaining weather data securely via a web API. <!-- The sample demonstrates how to [pass an access token](xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app) to call a secure web API. -->
+
+### `BlazorWebAppOidcServer`
+
+A Blazor Web App with global Interactive Server interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [pass an access token](xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app) to call a secure web API.
 
 ### `BlazorWebAppOidcBff`
 
@@ -126,6 +131,14 @@ The solution includes a demonstration of obtaining weather data securely via a w
 ### `BlazorWebAppEntra`
 
 A Blazor Web App with global Auto interactivity that uses [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra). The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
+
+<!--
+
+### `BlazorWebAppEntraServer`
+
+A Blazor Web App with global Interactive Server interactivity that uses Microsoft Identity Web with Microsoft Entra-specific packages. The sample demonstrates how to [pass an access token](xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app) to call a secure web API.
+
+-->
 
 ### `BlazorWebAppEntraBff`
 

@@ -21,17 +21,9 @@ This article explains how to configure server-side Blazor for additional securit
 
 :::moniker range=">= aspnetcore-8.0"
 
-For Blazor Web Apps, guidance in this section on how to pass tokens to Razor components should be addressed by [Update section on passing tokens in Blazor Web Apps (`dotnet/AspNetCore.Docs` #31691)](https://github.com/dotnet/AspNetCore.Docs/issues/31691) in 2025.
+*This section applies to Blazor Web Apps. For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).*
 
-For more information, see the following issues:
-
-* [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379): This is the current issue to address passing tokens in Blazor Web Apps with framework features, which will probably be addressed for .NET 11 (late 2026).
-* [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390): This issue was closed as a duplicate of the preceding issue, but it contains helpful discussion and potential workaround strategies.
-
-For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).
-
-<!--
-Tokens available outside of the Razor components in a Blazor Web App can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens, but the approach is valid for other HTTP context state provided by <xref:Microsoft.AspNetCore.Http.HttpContext>.
+Tokens available outside of the Razor components in a Blazor Web App can be passed to interactive components with the approaches described in this section. The examples in this section focus on passing access tokens, but the approach is valid for other HTTP context state provided by <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
 > [!NOTE]
 > Passing the [anti-request forgery (CSRF/XSRF) token](xref:security/anti-request-forgery) to Razor components is useful in scenarios where components POST to Identity or other endpoints that require validation. However, don't follow the guidance in this section for processing form POST requests or web API requests with XSRF support. The Blazor framework provides built-in antiforgery support for forms and calling web APIs. For more information, see the following resources:
@@ -40,111 +32,63 @@ Tokens available outside of the Razor components in a Blazor Web App can be pass
 > * Antiforgery support for forms: <xref:blazor/forms/index#antiforgery-support>
 > * Antiforgery support for web API: <xref:blazor/call-web-api#antiforgery-support>
 
-Authenticate the app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie.
+Reading tokens from the <xref:Microsoft.AspNetCore.Http.HttpContext> using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is a reasonable approach for obtaining tokens during interactive server rendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal%601> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
-In the `Program` file:
+### Blazor Web App that adopts global Interactive Server rendering
+
+Subclass <xref:System.Net.Http.DelegatingHandler> to attach a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario.
+
+`TokenHandler.cs`:
 
 ```csharp
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authentication;
 
-...
-
-builder.Services.Configure<OpenIdConnectOptions>(
-    OpenIdConnectDefaults.AuthenticationScheme, options =>
+public class TokenHandler(IHttpContextAccessor httpContextAccessor) : 
+    DelegatingHandler
 {
-    options.ResponseType = OpenIdConnectResponseType.Code;
-    options.SaveTokens = true;
-    options.Scope.Add(OpenIdConnectScope.OfflineAccess);
-});
-```
-
-<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect?displayProperty=fullName> and <xref:Microsoft.IdentityModel.Protocols.OpenIdConnect?displayProperty=fullName> API is provided by the [`Microsoft.AspNetCore.Authentication.OpenIdConnect`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect) NuGet package.
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-Optionally, additional scopes are added with `options.Scope.Add("{SCOPE}");`, where the `{SCOPE}` placeholder is the additional scope to add.
-
-Define a token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection).
-
-`TokenProvider.cs`:
-
-```csharp
-public class TokenProvider
-{
-    public string? AccessToken { get; set; }
-    public string? RefreshToken { get; set; }
-}
-```
-
-In the `Program` file, add services for:
-
-* <xref:System.Net.Http.IHttpClientFactory>: Used in service classes to obtain data from a server API with an access token. The example in this section is a weather forecast data service (`WeatherForecastService`) that requires an access token.
-* `TokenProvider`: Holds the access and refresh tokens. Register the token provider service as a ***scoped*** service.
-
-```csharp
-builder.Services.AddHttpClient();
-builder.Services.AddScoped<TokenProvider>();
-```
-
-In the `App` component (`Components/App.razor`), resolve the service and initialize it with the data from [`HttpContext` as a cascaded parameter](xref:blazor/security/index#avoid-ihttpcontextaccessorhttpcontext-in-razor-components):
-
-```razor
-@inject TokenProvider TokenProvider
-
-...
-
-@code {
-    [CascadingParameter]
-    public HttpContext? HttpContext { get; set; }
-
-    protected override Task OnInitializedAsync()
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        TokenProvider.AccessToken = await HttpContext.GetTokenAsync("access_token");
-        TokenProvider.RefreshToken = await HttpContext.GetTokenAsync("refresh_token");
+        var accessToken = httpContextAccessor.HttpContext?
+            .GetTokenAsync("access_token").Result ?? 
+            throw new Exception("No access token");
 
-        return base.OnInitializedAsync();
+        request.Headers.Authorization =
+            new AuthenticationHeaderValue("Bearer", accessToken);
+
+        return await base.SendAsync(request, cancellationToken);
     }
 }
 ```
 
-In the service that makes a secure API request, inject the token provider and retrieve the token for the API request:
+In the project's `Program` file, the token handler (`TokenHandler`) is registered as a scoped service and specified as a [named HTTP client's](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
-`WeatherForecastService.cs`:
+In the following example, the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>, and the `{BASE ADDRESS}` placeholder is the web API's base address URI.
+
+In `Program.cs`:
 
 ```csharp
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+builder.Services.AddScoped<TokenHandler>();
 
-public class WeatherForecastService
-{
-    private readonly HttpClient http;
-    private readonly TokenProvider tokenProvider;
-
-    public WeatherForecastService(IHttpClientFactory clientFactory, 
-        TokenProvider tokenProvider)
-    {
-        http = clientFactory.CreateClient();
-        this.tokenProvider = tokenProvider;
-    }
-
-    public async Task<WeatherForecast[]> GetForecastAsync()
-    {
-        var token = tokenProvider.AccessToken;
-        var request = new HttpRequestMessage(HttpMethod.Get, 
-            "https://localhost:5003/WeatherForecast");
-        request.Headers.Add("Authorization", $"Bearer {token}");
-        var response = await http.SendAsync(request);
-        response.EnsureSuccessStatusCode();
-
-        return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ?? 
-            Array.Empty<WeatherForecast>();
-    }
-}
+builder.Services.AddHttpClient("{HTTP CLIENT NAME}",
+      client => client.BaseAddress = new Uri("{BASE ADDRESS}"))
+      .AddHttpMessageHandler<TokenHandler>();
 ```
 
--->
+> [!NOTE]
+> You can supply the HTTP client base address from [configuration](xref:blazor/fundamentals/configuration) with `builder.Configuration["{CONFIGURATION KEY}"]`, where the `{CONFIGURATION KEY}` placeholder is the configuration key.
+
+An <xref:System.Net.Http.HttpClient> created by a component can make secure web API requests. In the following example, the `{REQUEST URI}` is the relative request URI, and the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>:
+
+```csharp
+var request = new HttpRequestMessage(HttpMethod.Get, "{REQUEST URI}");
+var client = ClientFactory.CreateClient("{HTTP CLIENT NAME}");
+
+var response = await client.SendAsync(request);
+```
+
+Additional features are planned for Blazor, which is tracked by [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379), which will probably be addressed for .NET 11 (late 2026). [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390) is a closed issue that contains helpful discussion and potential workaround strategies for advanced use cases.
 
 :::moniker-end
 
