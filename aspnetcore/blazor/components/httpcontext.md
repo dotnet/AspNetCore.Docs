@@ -16,7 +16,7 @@ uid: blazor/components/httpcontext
 
 <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> generally should be avoided with interactive rendering because a valid <xref:Microsoft.AspNetCore.Http.HttpContext> isn't always available.
 
-<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. **However, we recommend avoiding it if possible.** Another valid use case for static server-side rendering is [passing tokens to a server-side app](xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app).
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. **However, we recommend avoiding it if possible.** A valid use case for using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> during static server-side rendering is to [pass tokens to a server-side app](xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app).
 
 <xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in *statically-rendered root components* for general tasks, such as inspecting and modifying headers or other properties in the `App` component (`Components/App.razor`). The value is always `null` for interactive rendering.
 
@@ -24,8 +24,6 @@ uid: blazor/components/httpcontext
 [CascadingParameter]
 public HttpContext? HttpContext { get; set; }
 ```
-
-During interactive rendering, an <xref:Microsoft.AspNetCore.Http.HttpContext> instance might not even exist. For scenarios where the <xref:Microsoft.AspNetCore.Http.HttpContext> is required in interactive components, we recommend flowing context data with [persistent component state](xref:blazor/components/prerender#persist-prerendered-state) from the server.
 
 For additional context in *advanced* edge cases&dagger;, see the discussion in the following articles:
 
