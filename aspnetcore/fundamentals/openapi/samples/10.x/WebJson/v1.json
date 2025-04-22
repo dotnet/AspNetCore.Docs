@@ -20,6 +20,26 @@
             "description": "OK"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "WebJson"
+        ],
+        "parameters": [
+          {
+            "name": "day",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DayOfTheWeekAsString"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/Test/day": {
