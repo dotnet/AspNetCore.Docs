@@ -27,7 +27,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-latest.md)]
 
 ### Database engines
 
@@ -559,7 +559,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-5.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-latest.md)]
 
 ### Database engines
 
@@ -567,7 +567,7 @@ The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/con
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-5.0.md)]
+[!INCLUDE[VS Code prereqs](~/includes/net-prereqs-vsc-latest.md)]
 
 Consider downloading and installing a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
 
@@ -1073,11 +1073,11 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-latest.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[VS Code prereqs](~/includes/net-prereqs-vsc-latest.md)]
 
 ---
 
