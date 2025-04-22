@@ -22,6 +22,20 @@ builder.Services.Configure<JsonOptions>(options =>
     options.SerializerOptions.WriteIndented = true;
 });
 
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Specific converter for DayOfTheWeekAsString enum
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter<DayOfTheWeekAsString>());
+
+        // Generic JsonStringEnumConverter for all enums 
+        options.JsonSerializerOptions.Converters.Add(
+                new JsonStringEnumConverter());
+
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        // Other settings for runtime serialization
+    });
 
 var app = builder.Build();
 
@@ -38,6 +52,9 @@ app.MapGet("/", () =>
     var day = DayOfTheWeekAsString.Friday;
      return Results.Json(day);
 });
+
+app.UseRouting();
+app.MapControllers();
 
 app.Run();
 

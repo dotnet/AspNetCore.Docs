@@ -3,3 +3,17 @@
 GET {{WebJson_HostAddress}}/
 Accept: application/json
 
+###
+GET {{WebJson_HostAddress}}/test/day
+Accept: application/json
+###
+
+
+POST {{WebJson_HostAddress}}/test/day
+Content-Type: application/json
+
+{
+  "day": "Friday"
+}
+
+###
