@@ -5,7 +5,7 @@ description: Learn how to read the request body and write the response body in A
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 5/29/2019
+ms.date: 4/22/2025
 uid: fundamentals/middleware/request-response
 ---
 # Request and response operations in ASP.NET Core
@@ -70,6 +70,11 @@ These issues are fixable, but the code is becoming progressively more complicate
 
 ## Pipelines
 
+When writing directly to `HttpResponse.BodyWriter`, call `PipeWriter.FlushAsync()` manually to ensure the data is flushed to the underlying response stream. Here's why:
+
+* `HttpResponse.BodyWriter` is a `PipeWriter` that buffers data until a flush operation is triggered.
+* Calling `FlushAsync` writes the buffered data to the underlying Stream (`HttpResponse.Body`).
+* 
 The following example shows how the same scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
