@@ -632,9 +632,11 @@ An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.
 
 **Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
 
-The following code shows how to configure JSON options globally:
+The following code shows how to configure JSON options globally, for Minimal APIs and Controler based APIs:
 
-  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=10-16)]
+  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=8-39)]
+
+### 
 
 #### nullable
 

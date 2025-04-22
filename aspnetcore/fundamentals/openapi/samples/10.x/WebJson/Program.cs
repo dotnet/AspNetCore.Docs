@@ -22,20 +22,24 @@ builder.Services.Configure<JsonOptions>(options =>
     options.SerializerOptions.WriteIndented = true;
 });
 
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        // Specific converter for DayOfTheWeekAsString enum
-        options.JsonSerializerOptions.Converters.Add(
-            new JsonStringEnumConverter<DayOfTheWeekAsString>());
+builder.Services.AddControllers();
 
-        // Generic JsonStringEnumConverter for all enums 
-        options.JsonSerializerOptions.Converters.Add(
-                new JsonStringEnumConverter());
+//builder.Services.AddControllers()
+//    .AddJsonOptions(options =>
+//    {
+//        options.JsonSerializerOptions.Converters.Add(
+//            new JsonStringEnumConverter<DayOfTheWeekAsString>());
 
-        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-        // Other settings for runtime serialization
-    });
+//        options.JsonSerializerOptions.Converters.Add(
+//                new JsonStringEnumConverter());
+
+//        options.JsonSerializerOptions.PropertyNamingPolicy =
+//                         JsonNamingPolicy.CamelCase;
+//        options.JsonSerializerOptions.DefaultIgnoreCondition =
+//                         JsonIgnoreCondition.WhenWritingNull;
+//        options.JsonSerializerOptions.WriteIndented = true;
+//    });
+
 
 var app = builder.Build();
 
@@ -50,7 +54,12 @@ app.UseHttpsRedirection();
 app.MapGet("/", () =>
 {
     var day = DayOfTheWeekAsString.Friday;
-     return Results.Json(day);
+    return Results.Json(day);
+});
+
+app.MapPost("/", (DayOfTheWeekAsString day) =>
+{
+    return Results.Json($"Received: {day}");
 });
 
 app.UseRouting();
