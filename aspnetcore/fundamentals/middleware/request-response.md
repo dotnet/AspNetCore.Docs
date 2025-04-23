@@ -71,6 +71,7 @@ These issues are fixable, but the code is becoming progressively more complicate
 ## Pipelines
 
 The following example shows how the preceding stream scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
+
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
 
 This example fixes many issues that the streams implementations had:
