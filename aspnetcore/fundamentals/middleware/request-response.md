@@ -70,7 +70,7 @@ These issues are fixable, but the code is becoming progressively more complicate
 
 ## Pipelines
 
-When writing directly to `HttpResponse.BodyWriter`, call `PipeWriter.FlushAsync()` manually to ensure the data is flushed to the underlying response data structure. Here's why:
+When writing directly to `HttpResponse.BodyWriter`, call `PipeWriter.FlushAsync()` manually to ensure the data is flushed to the underlying response response body. Here's why:
 
 * `HttpResponse.BodyWriter` is a `PipeWriter` that buffers data until a flush operation is triggered.
 * Calling `FlushAsync` writes the buffered data to the underlying network operation
