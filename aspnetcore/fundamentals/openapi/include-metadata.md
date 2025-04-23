@@ -631,7 +631,7 @@ An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.
 **Note:**
 
 * The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
-* See [Set JSON serialization options globally](#set-json-serialization-options-globally) later in this article.
+* See [Set JSON serialization options globally](#set-json-serialization-options-globally), which sets `JsonStringEnumConverter` globally.
 
 #### nullable
 
@@ -674,6 +674,19 @@ A schema transformer can be used to override any default metadata or add additio
 The following code shows how to configure JSON options globally, for Minimal APIs and Controler based APIs:
 
   [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=8-19)]
+
+## MVC JSON options and global JSON options
+
+### Key Differences
+
+| **Aspect**           | **MVC JSON Options**                       | **Global JSON Options**             |
+|-----------------------|--------------------------------------------|-----------------------------------------------|
+| **Scope**             | Limited to MVC controllers and endpoints.  | Minimal Api's and OpenAPI docs.   |
+| **Configuration**     | `AddControllers().AddJsonOptions()`        | `Configure<JsonOptions>()`                    |
+| **Purpose**           | Handles serialization and deserializtion of JSON requests and responses in APIs.  | Defines global JSON handling for Minimal APIs and OpenAPI schemas. |
+| **Influence on OpenAPI** | None                                     | Directly influences OpenAPI schema generation.|
+
+---
 
 ## Additional resources
 
