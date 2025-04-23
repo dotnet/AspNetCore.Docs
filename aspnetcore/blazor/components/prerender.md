@@ -241,7 +241,7 @@ Serialized properties are identified from the actual service instance:
 
 As an alternative to using the declarative model for persisting state with the `[SupplyParameterFromPersistentComponentState]` attribute, you can use the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service directly, which offers greater flexibility for complex state persistence scenarios. Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> to register a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
-The following counter component example persists counter state during prerendering and retrieves the state to initialize the component:
+The following counter component example persists counter state during prerendering and retrieves the state to initialize the component.
 
 `PrerenderedCounter3.razor`:
 
