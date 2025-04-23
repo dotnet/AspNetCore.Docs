@@ -619,24 +619,19 @@ public enum DayOfTheWeekAsString
 }
 ```
 
-A special case is when an enum type has the `[Flags]` attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags enum with a `[JsonConverterAttribute]` is defined as `type: string` in the generated schema with no `enum` property, since the value could be any combination of the enum values. For example, the following enum:
+A special case is when an enum type has the `[Flags]` attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags `enum` with a `[JsonConverterAttribute]` is defined as `type: string` in the generated schema with no `enum` property. No `enum` property is generated because the value could be any combination of the enum values. For example, the following `enum` could have values such as `"Pepperoni, Sausage"` or `"Sausage, Mushrooms, Anchovies"`:
 
 ```csharp
 [Flags, JsonConverter(typeof(JsonStringEnumConverter<PizzaToppings>))]
 public enum PizzaToppings { Pepperoni = 1, Sausage = 2, Mushrooms = 4, Anchovies = 8 }
 ```
 
-could have values such as `"Pepperoni, Sausage"` or `"Sausage, Mushrooms, Anchovies"`.
-
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
 
-**Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
+**Note:**
 
-The following code shows how to configure JSON options globally, for Minimal APIs and Controler based APIs:
-
-  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=8-39)]
-
-### 
+* The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
+* zz can be set globally, see 
 
 #### nullable
 
@@ -673,6 +668,12 @@ An abstract class with a [`[JsonPolymorphic]`](xref:System.Text.Json.Serializati
 ### Add metadata with a schema transformer
 
 A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers) for more information.
+
+## Set JSON serialization options globally
+
+The following code shows how to configure JSON options globally, for Minimal APIs and Controler based APIs:
+
+  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=8-39)]
 
 ## Additional resources
 
