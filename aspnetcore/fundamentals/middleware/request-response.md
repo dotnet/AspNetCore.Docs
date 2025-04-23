@@ -83,7 +83,7 @@ This example fixes many issues that the streams implementations had:
 When writing directly to `HttpResponse.BodyWriter`, call `PipeWriter.FlushAsync` manually to ensure the data is flushed to the underlying response response body. Here's why:
 
 * `HttpResponse.BodyWriter` is a `PipeWriter` that buffers data until a flush operation is triggered.
-* Calling `FlushAsync` writes the buffered data to the underlying response body
+* Calling `FlushAsync` writes the buffered data to the underlying response body.
 
 It's up to the developer to decide when to call `FlushAsync`, balancing factors such as buffer size, network write overhead, and whether the data should be sent in discrete chunks. For more information, see [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines).
 
