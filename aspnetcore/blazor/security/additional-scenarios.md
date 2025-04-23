@@ -25,6 +25,10 @@ This article explains how to configure server-side Blazor for additional securit
 
 Tokens available outside of the Razor components in a Blazor Web App can be passed to interactive components with the approaches described in this section. The examples in this section focus on passing access tokens, but the approach is valid for other HTTP context state provided by <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
+For a demonstration of the guidance in this section, see the following sample apps in the [Blazor samples]() repository:
+
+
+
 > [!NOTE]
 > Passing the [anti-request forgery (CSRF/XSRF) token](xref:security/anti-request-forgery) to Razor components is useful in scenarios where components POST to Identity or other endpoints that require validation. However, don't follow the guidance in this section for processing form POST requests or web API requests with XSRF support. The Blazor framework provides built-in antiforgery support for forms and calling web APIs. For more information, see the following resources:
 >
@@ -34,7 +38,10 @@ Tokens available outside of the Razor components in a Blazor Web App can be pass
 
 Reading tokens from the <xref:Microsoft.AspNetCore.Http.HttpContext> using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is a reasonable approach for obtaining tokens during interactive server rendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal%601> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
-### Blazor Web App that adopts global Interactive Server rendering
+The following approach is aimed at attaching a user's access token to outgoing requests, specifically to make web API calls to separate web API apps. The approach is shown for a Blazor Web App that adopts global Interactive Server rendering, but the same general approach applies to Blazor Web Apps that adopt the global Interactive Auto render mode. The critical concern is that any attempt to access the <xref:Microsoft.AspNetCore.Http.HttpContext> using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is only performed during static SSR.
+
+> [!NOTE]
+> [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) provides a simple API to call web APIs from Blazor Web Apps. For more information, see <xref:blazor/security/blazor-web-app-entra> and the `BlazorWebAppEntra` sample app in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples) for .NET 9 or later (`9.0` sample folder or later in the repository).
 
 Subclass <xref:System.Net.Http.DelegatingHandler> to attach a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario.
 
@@ -87,6 +94,10 @@ var client = ClientFactory.CreateClient("{HTTP CLIENT NAME}");
 
 var response = await client.SendAsync(request);
 ```
+
+### Blazor Web App that adopts global Interactive Auto rendering
+
+
 
 Additional features are planned for Blazor, which is tracked by [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379), which will probably be addressed for .NET 11 (late 2026). [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390) is a closed issue that contains helpful discussion and potential workaround strategies for advanced use cases.
 
