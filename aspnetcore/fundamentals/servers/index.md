@@ -43,7 +43,7 @@ Kestrel has the following advantages over HTTP.sys:
   * Cross platform
   * Agility, it's developed and patched independent of the OS.
   * Programmatic port and TLS configuration
-  * Extensibility that allows for protocols like [PPv2](https://github.com/aspnet/AspLabs/blob/main/src/ProxyProtocol/ProxyProtocol.Sample/ProxyProtocol.cs) and alternate transports.
+  * Extensibility that allows for protocols like [PPv2](https://www.haproxy.org/download/3.1/doc/proxy-protocol.txt) and alternate transports.
 
 Http.Sys operates as a shared kernel mode component with the following features that kestrel does not have:
 
