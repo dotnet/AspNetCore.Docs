@@ -74,6 +74,7 @@ When writing directly to `HttpResponse.BodyWriter`, call `PipeWriter.FlushAsync`
 
 * `HttpResponse.BodyWriter` is a `PipeWriter` that buffers data until a flush operation is triggered.
 * Calling `FlushAsync` writes the buffered data to the underlying response body
+
 It's up to the developer to decide when to call `FlushAsync`, balancing factors such as buffer size, network write overhead, and whether the data should be sent in discrete chunks. For more information, see [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines).
 The following example shows how the same scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
 
