@@ -70,14 +70,7 @@ These issues are fixable, but the code is becoming progressively more complicate
 
 ## Pipelines
 
-When writing directly to `HttpResponse.BodyWriter`, call `PipeWriter.FlushAsync` manually to ensure the data is flushed to the underlying response response body. Here's why:
-
-* `HttpResponse.BodyWriter` is a `PipeWriter` that buffers data until a flush operation is triggered.
-* Calling `FlushAsync` writes the buffered data to the underlying response body
-
-It's up to the developer to decide when to call `FlushAsync`, balancing factors such as buffer size, network write overhead, and whether the data should be sent in discrete chunks. For more information, see [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines).
-The following example shows how the same scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
-
+The following example shows how the preceding stream scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
 
 This example fixes many issues that the streams implementations had:
@@ -86,6 +79,12 @@ This example fixes many issues that the streams implementations had:
 * Encoded strings are directly added to the list of returned strings.
 * Other than the `ToArray` call, and the memory used by the string, string creation is allocation free.
 
+When writing directly to `HttpResponse.BodyWriter`, call `PipeWriter.FlushAsync` manually to ensure the data is flushed to the underlying response response body. Here's why:
+
+* `HttpResponse.BodyWriter` is a `PipeWriter` that buffers data until a flush operation is triggered.
+* Calling `FlushAsync` writes the buffered data to the underlying response body
+
+It's up to the developer to decide when to call `FlushAsync`, balancing factors such as buffer size, network write overhead, and whether the data should be sent in discrete chunks. For more information, see [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines).
 ## Adapters
 
 The `Body`, `BodyReader`, and `BodyWriter` properties are available for `HttpRequest` and `HttpResponse`. When you set `Body` to a different stream, a new set of adapters automatically adapt each type to the other. If you set `HttpRequest.Body` to a new stream, `HttpRequest.BodyReader` is automatically set to a new `PipeReader` that wraps `HttpRequest.Body`.
