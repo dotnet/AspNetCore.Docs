@@ -201,7 +201,7 @@ Blazor's boot configuration, which prior to the release of .NET 10 existed in a 
 * Checking file integrity for published assets with the troubleshoot integrity PowerShell script per the guidance in <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-9.0#troubleshoot-integrity-powershell-script>.
 * Changing the file name extension of DLL files when not using the default Webcil file format per the guidance in <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-9.0#customize-how-boot-resources-are-loaded>.
 
-Currently, there's no documented replacement strategy for the preceding approaches. Developers who require either of those strategies are encouraged to open a new documentation issue describing your scenario using the **Open a documentation issue** link at the bottom of either article.
+Currently, there's no documented replacement strategy for the preceding approaches. If you require either of the preceding strategies, open a new documentation issue describing your scenario using the **Open a documentation issue** link at the bottom of either article.
 
 ### Declarative model for persisting state from components and services
 
