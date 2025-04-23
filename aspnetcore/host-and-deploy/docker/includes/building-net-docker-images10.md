@@ -1,4 +1,4 @@
-:::moniker range="= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-10.0"
 
 ## ASP.NET Core Docker images
 
@@ -16,7 +16,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Prerequisites
 
-* [.NET SDK 9.0](https://dotnet.microsoft.com/download)
+* [.NET SDK 10.0](https://dotnet.microsoft.com/download)
 * Docker client 18.03 or later
 
   * Linux distributions
@@ -25,7 +25,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
     * [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
   * [macOS](https://docs.docker.com/desktop/mac/install/)
   * [Windows](https://docs.docker.com/desktop/windows/install/)
-
+ 
 * [Git](https://git-scm.com/download)
 
 ## Download the sample app
@@ -112,7 +112,7 @@ In some scenarios, you might want to deploy an app to a container by copying its
 To use the manually published app within a Docker container, create a new *Dockerfile* and use the `docker build .` command to build an image.
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
 COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
@@ -122,11 +122,11 @@ To see the new image use the `docker images` command.
 
 ### The Dockerfile
 
-Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  
+Here's the *Dockerfile* used by the `docker build` command you ran earlier. It uses `dotnet publish` the same way you did in this section to build and deploy.
 
 ```dockerfile
 # https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
@@ -140,13 +140,13 @@ WORKDIR /source/aspnetapp
 RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:9.0
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
 COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
-In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
+In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files did not change since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
 
 ## Additional resources
 

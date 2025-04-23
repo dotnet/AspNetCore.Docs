@@ -203,8 +203,8 @@ The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection informa
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
-| `network.type`| string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
+| `network.transport` | string | [OSI transport layer](https://www.geeksforgeeks.org/transport-layer-in-osi-model/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
+| `network.type`| string | [OSI network layer](https://www.geeksforgeeks.org/network-layer-in-osi-model/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port`| int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 
@@ -217,10 +217,10 @@ The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection informa
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `error.type` | string | Describes a type of error the connection ended with, or the unhandled exception type thrown during the connection pipeline. Known connection errors can be found at [Semantic Conventions for Kestrel web server metrics](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/). | `connection_reset`; `invalid_request_headers`; `System.OperationCanceledException` | If the connection ended with a known error or an exception was thrown. |
-| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. | `http`; `web_sockets` | Always |
+| `network.protocol.name` | string | [OSI application layer](https://www.geeksforgeeks.org/application-layer-in-osi-model/) or non-OSI equivalent. | `http`; `web_sockets` | Always |
 | `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. | `1.1`; `2` | Always |
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
+| `network.transport` | string | [OSI transport layer](https://www.geeksforgeeks.org/transport-layer-in-osi-model/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
+| `network.type` | string | [OSI network layer](https://www.geeksforgeeks.org/network-layer-in-osi-model/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 | `tls.protocol.version` | string | TLS protocol version. | `1.2`; `1.3` | If the connection is secured with TLS. |
@@ -245,8 +245,8 @@ When a connection ends with a known error, the `error.type` attribute value is s
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `network.transport`| string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
+| `network.transport`| string | [OSI transport layer](https://www.geeksforgeeks.org/transport-layer-in-osi-model/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
+| `network.type` | string | [OSI network layer](https://www.geeksforgeeks.org/network-layer-in-osi-model/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address`| string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 
@@ -260,8 +260,8 @@ Connections are rejected when the currently active count exceeds the value confi
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
+| `network.transport` | string | [OSI transport layer](https://www.geeksforgeeks.org/transport-layer-in-osi-model/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
+| `network.type` | string | [OSI network layer](https://www.geeksforgeeks.org/network-layer-in-osi-model/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 
@@ -273,10 +273,10 @@ Connections are rejected when the currently active count exceeds the value confi
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `network.protocol.name` | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. | `http`; `web_sockets` | Always |
+| `network.protocol.name` | string | [OSI application layer](https://www.geeksforgeeks.org/application-layer-in-osi-model/) or non-OSI equivalent. | `http`; `web_sockets` | Always |
 | `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. | `1.1`; `2` | Always |
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
+| `network.transport` | string | [OSI transport layer](https://www.geeksforgeeks.org/transport-layer-in-osi-model/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
+| `network.type` | string | [OSI network layer](https://www.geeksforgeeks.org/network-layer-in-osi-model/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 
@@ -288,8 +288,8 @@ Connections are rejected when the currently active count exceeds the value confi
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
+| `network.transport` | string | [OSI transport layer](https://www.geeksforgeeks.org/transport-layer-in-osi-model/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
+| `network.type` | string | [OSI network layer](https://www.geeksforgeeks.org/network-layer-in-osi-model/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 
@@ -304,8 +304,8 @@ The counter only tracks HTTP/1.1 connections.
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `error.type` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` | If an exception was thrown. |
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
+| `network.transport` | string | [OSI transport layer](https://www.geeksforgeeks.org/transport-layer-in-osi-model/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
+| `network.type` | string | [OSI network layer](https://www.geeksforgeeks.org/network-layer-in-osi-model/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 | `tls.protocol.version` | string | TLS protocol version. | `1.2`; `1.3` | If the connection is secured with TLS. |
@@ -320,8 +320,8 @@ When using OpenTelemetry, the default buckets for this metic are set to [ 0.005,
 
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
-| `network.transport` | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
-| `network.type` | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
+| `network.transport` | string | [OSI transport layer](https://www.geeksforgeeks.org/transport-layer-in-osi-model/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). | `tcp`; `unix` | Always |
+| `network.type` | string | [OSI network layer](https://www.geeksforgeeks.org/network-layer-in-osi-model/) or non-OSI equivalent. | `ipv4`; `ipv6` | If the transport is `tcp` or `udp`. |
 | `server.address` | string | Server address domain name if available without reverse DNS lookup;  otherwise, IP address or Unix domain socket name. | `example.com` | Always |
 | `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`. |
 
