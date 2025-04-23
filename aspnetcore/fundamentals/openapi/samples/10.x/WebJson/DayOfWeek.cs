@@ -1,3 +1,4 @@
+//using System.Text.Json.Serialization;
 //[JsonConverter(typeof(JsonStringEnumConverter<DayOfTheWeekAsString>))]
 public enum DayOfTheWeekAsString
 {
