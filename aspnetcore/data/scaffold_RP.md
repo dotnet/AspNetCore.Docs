@@ -10,7 +10,6 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 uid: data/dotnet-scaffold-rp
 ---
-
 # Scaffold a data model with dotnet scaffold in a Razor Pages project
 
 The CLI tool, [dotnet scaffold](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) creates data access UI for many .NET project types, such as API, Aspire, Blazor, MVC, and Razor Pages. `dotnet scaffold` can be run interactively or as a command line tool via passing parameter values.
@@ -39,7 +38,7 @@ To navigate the UI, use the:
 
 ## Create and scaffold a data model in a Razor Pages project
 
-If you have any problems with the following steps, see [Tutorial: Create a Razor Pages web app with ASP.NET Core](/aspnet/core/tutorials/razor-pages/) and select the **Visual Studio Code** tab.
+If you have any problems with the following steps, see <xref:tutorials/razor-pages/index?tabs=visual-studio-code>.
 
 1. Run the following commands to create a Razor Pages project and navigate to the projects folder:
     ```dotnetcli
@@ -78,7 +77,7 @@ In  The preceding commands:
 
 * `dotnet tool uninstall --global dotnet-ef` uninstalls the `dotnet-ef` tool. Uninstalling ensures the latest tool is successfully installed. If `dotnet-ef` isn't installed, an error messages **A tool with the package Id 'dotnet-ef' could not be found.** You can ignore this message.
 * `dotnet tool install --global dotnet-ef` installs globally the `dotnet-ef` tool.
-* `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see [Create the initial database schema using EF's migration feature](/aspnet/core/tutorials/razor-pages/model&tabs=visual-studio-code)
+* `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see <xref:tutorials/razor-pages/model?tabs=visual-studio-code>.
 * `dotnet ef database update` applies the migrations to the database.
 
 Run the app:
@@ -94,5 +93,5 @@ Run the app:
 
 * [dotnet scaffold repo on GitHub](https://github.com/dotnet/Scaffolding)
 * [How to manage .NET tools](/dotnet/core/tools/global-tools)
-* [Microsoft.dotnet-scaffold](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) NuGet package.
-* [Detailed tutorial on EF scaffolding Razor Pages](/aspnet/core/data/scaffold_rp)
+* [`Microsoft.dotnet-scaffold`](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) NuGet package.
+* <xref:data/dotnet-scaffold-rp>
