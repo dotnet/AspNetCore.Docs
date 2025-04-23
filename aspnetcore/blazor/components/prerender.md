@@ -53,21 +53,10 @@ To preserve prerendered state, use the `[SupplyParameterFromPersistentComponentS
 
 By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
-The following example demonstrates the general pattern, where the `{TYPE}` placeholder represents the type of data to persist.
+The following counter component persists counter state during prerendering and retrieves the state to initialize the component:
 
-```razor
-@code {
-    [SupplyParameterFromPersistentComponentState]
-    public {TYPE} Data { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        Data ??= await ...;
-    }
-}
-```
-
-The following counter component example persists counter state during prerendering and retrieves the state to initialize the component.
+* The `[SupplyParameterFromPersistentComponentState]` attribute is applied to the `CounterState` type (`State`).
+* The counter's state is assigned when `null` in `OnInitialized` and restored automatically when the component renders interactively.
 
 `PrerenderedCounter2.razor`:
 
@@ -252,52 +241,7 @@ Serialized properties are identified from the actual service instance:
 
 As an alternative to using the declarative model for persisting state with the `[SupplyParameterFromPersistentComponentState]` attribute, you can use the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service directly, which offers greater flexibility for complex state persistence scenarios. Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> to register a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
-The following example demonstrates the general pattern:
-
-* The `{TYPE}` placeholder represents the type of data to persist.
-* The `{TOKEN}` placeholder is a state identifier string. Consider using `nameof({VARIABLE})`, where the `{VARIABLE}` placeholder is the name of the variable that holds the state. Using [`nameof()`](/dotnet/csharp/language-reference/operators/nameof) for the state identifier avoids the use of a quoted string.
-
-```razor
-@implements IDisposable
-@inject PersistentComponentState ApplicationState
-
-...
-
-@code {
-    private {TYPE} data;
-    private PersistingComponentStateSubscription persistingSubscription;
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (!ApplicationState.TryTakeFromJson<{TYPE}>(
-            "{TOKEN}", out var restored))
-        {
-            data = await ...;
-        }
-        else
-        {
-            data = restored!;
-        }
-
-        // Call at the end to avoid a potential race condition at app shutdown
-        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
-    }
-
-    private Task PersistData()
-    {
-        ApplicationState.PersistAsJson("{TOKEN}", data);
-
-        return Task.CompletedTask;
-    }
-
-    void IDisposable.Dispose()
-    {
-        persistingSubscription.Dispose();
-    }
-}
-```
-
-The following counter component example persists counter state during prerendering and retrieves the state to initialize the component.
+The following counter component example persists counter state during prerendering and retrieves the state to initialize the component:
 
 `PrerenderedCounter3.razor`:
 
@@ -365,51 +309,6 @@ When the component executes, `currentCount` is only set once during prerendering
 :::moniker range="< aspnetcore-10.0"
 
 To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
-
-The following example demonstrates the general pattern:
-
-* The `{TYPE}` placeholder represents the type of data to persist.
-* The `{TOKEN}` placeholder is a state identifier string. Consider using `nameof({VARIABLE})`, where the `{VARIABLE}` placeholder is the name of the variable that holds the state. Using [`nameof()`](/dotnet/csharp/language-reference/operators/nameof) for the state identifier avoids the use of a quoted string.
-
-```razor
-@implements IDisposable
-@inject PersistentComponentState ApplicationState
-
-...
-
-@code {
-    private {TYPE} data;
-    private PersistingComponentStateSubscription persistingSubscription;
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (!ApplicationState.TryTakeFromJson<{TYPE}>(
-            "{TOKEN}", out var restored))
-        {
-            data = await ...;
-        }
-        else
-        {
-            data = restored!;
-        }
-
-        // Call at the end to avoid a potential race condition at app shutdown
-        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
-    }
-
-    private Task PersistData()
-    {
-        ApplicationState.PersistAsJson("{TOKEN}", data);
-
-        return Task.CompletedTask;
-    }
-
-    void IDisposable.Dispose()
-    {
-        persistingSubscription.Dispose();
-    }
-}
-```
 
 The following counter component example persists counter state during prerendering and retrieves the state to initialize the component.
 
