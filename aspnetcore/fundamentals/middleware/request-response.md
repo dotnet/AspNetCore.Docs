@@ -85,6 +85,7 @@ When writing directly to `HttpResponse.BodyWriter`, call `PipeWriter.FlushAsync`
 * Calling `FlushAsync` writes the buffered data to the underlying response body
 
 It's up to the developer to decide when to call `FlushAsync`, balancing factors such as buffer size, network write overhead, and whether the data should be sent in discrete chunks. For more information, see [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines).
+
 ## Adapters
 
 The `Body`, `BodyReader`, and `BodyWriter` properties are available for `HttpRequest` and `HttpResponse`. When you set `Body` to a different stream, a new set of adapters automatically adapt each type to the other. If you set `HttpRequest.Body` to a new stream, `HttpRequest.BodyReader` is automatically set to a new `PipeReader` that wraps `HttpRequest.Body`.
