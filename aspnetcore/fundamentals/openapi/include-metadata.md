@@ -628,10 +628,7 @@ public enum PizzaToppings { Pepperoni = 1, Sausage = 2, Mushrooms = 4, Anchovies
 
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
 
-**Note:**
-
-* The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
-* See [Set JSON serialization options globally](#set-json-serialization-options-globally), which sets `JsonStringEnumConverter` globally.
+**Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
 
 #### nullable
 
