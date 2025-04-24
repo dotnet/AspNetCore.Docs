@@ -13,7 +13,7 @@ uid: fundamentals/servers/kestrel/http3
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range="> aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 [HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is an approved standard and the third major version of HTTP. This article discusses the requirements for HTTP/3. HTTP/3 is fully supported in ASP.NET Core 7.0 and later.
 
@@ -82,7 +82,5 @@ HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
 * Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Currently, HTTP/1.1 and HTTP/2 connections fail with an error when switching networks. An app or web browsers must retry any failed HTTP requests. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 8. It may be available in a future release.
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/servers/kestrel/includes/http3-8.md)]
 
 [!INCLUDE[](~/fundamentals/servers/kestrel/includes/http3-6-7.md)]
