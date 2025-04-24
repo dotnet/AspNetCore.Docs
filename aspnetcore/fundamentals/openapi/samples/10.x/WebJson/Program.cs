@@ -23,7 +23,7 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters.Add(
             new JsonStringEnumConverter<DayOfTheWeekAsString>());
         options.JsonSerializerOptions.DefaultIgnoreCondition =
-        JsonIgnoreCondition.WhenWritingNull;
+            JsonIgnoreCondition.WhenWritingNull;
         options.JsonSerializerOptions.PropertyNamingPolicy =
             JsonNamingPolicy.CamelCase;
     });
