@@ -676,7 +676,7 @@ The following code configures some JSON options globally, for Minimal APIs and C
 
 ## MVC JSON options and global JSON options
 
-### Key Differences
+The following table shows the key Differences beween the MVC JSON options and global Minimal API JSON options:
 
 | **Aspect**           | **MVC JSON Options**                       | **Global JSON Options**             |
 |-----------------------|--------------------------------------------|-----------------------------------------------|
