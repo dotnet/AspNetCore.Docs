@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.Json;
 
@@ -9,6 +10,11 @@ builder.Services.Configure<JsonOptions>(options =>
 {
     options.SerializerOptions.Converters.Add(
         new JsonStringEnumConverter<DayOfTheWeekAsString>());
+    options.SerializerOptions.DefaultIgnoreCondition =
+        JsonIgnoreCondition.WhenWritingNull;
+    options.SerializerOptions.PropertyNamingPolicy =
+        JsonNamingPolicy.CamelCase;
+
 });
 
 builder.Services.AddControllers()
@@ -16,6 +22,10 @@ builder.Services.AddControllers()
     {
         options.JsonSerializerOptions.Converters.Add(
             new JsonStringEnumConverter<DayOfTheWeekAsString>());
+        options.JsonSerializerOptions.DefaultIgnoreCondition =
+        JsonIgnoreCondition.WhenWritingNull;
+        options.JsonSerializerOptions.PropertyNamingPolicy =
+            JsonNamingPolicy.CamelCase;
     });
 
 var app = builder.Build();

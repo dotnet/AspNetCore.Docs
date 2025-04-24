@@ -630,6 +630,8 @@ An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.
 
 **Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
 
+[Set JSON options globally](#set-json-serialization-options-globally) shows how to set the the `JsonStringEnumConverter` globally.
+
 #### nullable
 
 Properties defined as a nullable value or reference type appear in the generated schema with a `type` keyword whose value is an array that includes `null` as one of the types. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
@@ -668,9 +670,9 @@ A schema transformer can be used to override any default metadata or add additio
 
 ## Set JSON serialization options globally
 
-The following code shows how to configure JSON options globally, for Minimal APIs and Controler based APIs:
+The following code configures some JSON options globally, for Minimal APIs and Controler based APIs:
 
-  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=8-19)]
+  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=8-29)]
 
 ## MVC JSON options and global JSON options
 
