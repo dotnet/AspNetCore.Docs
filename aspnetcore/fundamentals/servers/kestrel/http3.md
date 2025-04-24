@@ -22,13 +22,32 @@ uid: fundamentals/servers/kestrel/http3
 
 ## HTTP/3 benefits
 
-HTTP/3 uses the same semantics as HTTP/1.1 and HTTP/2: the same request methods, status codes, and message fields apply to all versions. The differences are in the underlying transport. Both HTTP/1.1 and HTTP/2 use TCP as their transport. HTTP/3 uses a transport technology developed alongside HTTP/3 called [QUIC](https://www.rfc-editor.org/rfc/rfc9000.html).
+`HTTP/3`:
 
-HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
+* Is the latest version of the Hypertext Transfer Protocol.
+* Builds on the strengths of `HTTP/2` while addressing some of its limitations, particularly in terms of performance, latency, reliability, and security.
 
-* Faster response time of the first request. QUIC and HTTP/3 negotiates the connection in fewer round-trips between the client and the server. The first request reaches the server faster.
-* Improved experience when there is connection packet loss. HTTP/2 multiplexes multiple requests via one TCP connection. Packet loss on the connection affects all requests. This problem is called "head-of-line blocking". Because QUIC provides native multiplexing, lost packets only impact the requests where data has been lost.
-* Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Currently, HTTP/1.1 and HTTP/2 connections fail with an error when switching networks. An app or web browsers must retry any failed HTTP requests. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions yet. It may be available in a future release.
++---------------+-------------------------+-------------------------+
+| Feature | `HTTP/2` | `HTTP/3` |
++---------------+-------------------------+-------------------------+
+| Transport | Uses [TCP](https://developer.mozilla.org/docs/Glossary/TCP) | Uses [QUIC](https://www.rfc-editor.org/rfc/rfc9000.html)  |
+| Layer | | |
+| Connection | Slower due to TCP + TLS | Faster with 0-RTT QUIC |
+| Setup | handshake | handshakes |
+| Head-of-Line | Affected by TCP-level | Eliminated with QUIC |
+| Blocking | blocking | stream multiplexing |
+| Encryption | TLS over TCP | TLS is built into QUIC |
++---------------+-------------------------+-------------------------+
+
+
+The key differences from `HTTP/2` to `HTTP/3` are:
+
+* **Transport Protocol**: `HTTP/3` uses QUIC instead of TCP. QUIC offers improved performance, lower latency, and better reliability, especially on mobile and lossy networks.
+* **Head-of-Line Blocking**: `HTTP/2` can suffer from head-of-line blocking at the TCP level, where a delay in one stream can affect others. `HTTP/3`, with QUIC, provides independent streams, so packet loss in one stream doesn't stall others.
+* **Connection Establishment**: `HTTP/3` with QUIC can establish connections faster, sometimes in zero round-trip time (0-RTT) for returning clients, as it combines transport and encryption handshakes.
+* **Encryption**: `HTTP/3` mandates TLS 1.3 encryption, providing enhanced security by default, whereas it's optional in `HTTP/2`.
+* **Multiplexing**: While both support multiplexing, `HTTP/3`'s implementation with QUIC is more efficient and avoids the TCP-level head-of-line blocking issues.
+* **Connection Migration**: QUIC in `HTTP/3` allows connections to persist even when a client's IP address changes (like switching from Wi-Fi to cellular), improving mobile user experience.
 
 ## HTTP/3 requirements
 
