@@ -28,7 +28,7 @@ There are two abstractions for the request and response bodies: <xref:System.IO.
 Streams aren't being removed from the framework. Streams continue to be used throughout .NET:
 
 * Many stream types don't have pipe equivalents, such as `FileStreams` and `ResponseCompression`.
-* It's straightforward adding compression to the stream.
+* It's straightforward adding compression to a stream.
 
 ## Stream examples
 
