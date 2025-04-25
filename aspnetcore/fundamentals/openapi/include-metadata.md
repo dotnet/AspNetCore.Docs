@@ -5,7 +5,7 @@ description: Learn how to add OpenAPI metadata in an ASP.NET Core app
 ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
-ms.date: 10/26/2024
+ms.date: 4/22/2024
 uid: fundamentals/openapi/include-metadata
 ---
 # Include OpenAPI metadata in an ASP.NET Core app
@@ -619,18 +619,18 @@ public enum DayOfTheWeekAsString
 }
 ```
 
-A special case is when an enum type has the `[Flags]` attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags enum with a `[JsonConverterAttribute]` is defined as `type: string` in the generated schema with no `enum` property, since the value could be any combination of the enum values. For example, the following enum:
+A special case is when an enum type has the `[Flags]` attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags `enum` with a `[JsonConverterAttribute]` is defined as `type: string` in the generated schema with no `enum` property. No `enum` property is generated because the value could be any combination of the enum values. For example, the following `enum` could have values such as `"Pepperoni, Sausage"` or `"Sausage, Mushrooms, Anchovies"`:
 
 ```csharp
 [Flags, JsonConverter(typeof(JsonStringEnumConverter<PizzaToppings>))]
 public enum PizzaToppings { Pepperoni = 1, Sausage = 2, Mushrooms = 4, Anchovies = 8 }
 ```
 
-could have values such as `"Pepperoni, Sausage"` or `"Sausage, Mushrooms, Anchovies"`.
-
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
 
 **Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
+
+[Set JSON options globally](#set-json-serialization-options-globally) shows how to set the the `JsonStringEnumConverter` globally.
 
 #### nullable
 
@@ -668,6 +668,25 @@ An abstract class with a [`[JsonPolymorphic]`](xref:System.Text.Json.Serializati
 
 A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers) for more information.
 
+## Set JSON serialization options globally
+
+The following code configures some JSON options globally, for Minimal APIs and Controler based APIs:
+
+  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=8-29)]
+
+## MVC JSON options and global JSON options
+
+The following table shows the key Differences beween the MVC JSON options and global Minimal API JSON options:
+
+| **Aspect**           | **MVC JSON Options**                       | **Global JSON Options**             |
+|-----------------------|--------------------------------------------|-----------------------------------------------|
+| **Scope**             | Limited to MVC controllers and endpoints.  | Minimal Api's and OpenAPI docs.   |
+| **Configuration**     | `AddControllers().AddJsonOptions()`        | `Configure<JsonOptions>()`                    |
+| **Purpose**           | Handles serialization and deserializtion of JSON requests and responses in APIs.  | Defines global JSON handling for Minimal APIs and OpenAPI schemas. |
+| **Influence on OpenAPI** | None                                     | Directly influences OpenAPI schema generation.|
+
+---
+
 ## Additional resources
 
 * <xref:fundamentals/openapi/using-openapi-documents>
@@ -676,5 +695,3 @@ A schema transformer can be used to override any default metadata or add additio
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/include-metadata9.md)]
-
-:::moniker-end
