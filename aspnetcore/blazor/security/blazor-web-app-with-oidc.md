@@ -58,7 +58,7 @@ This section explains how to configure the sample app.
 
 :::moniker-range=">= aspnetcore-9.0"
 
-For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section doesn't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see <xref:blazor/security/blazor-web-app-entra>.
+For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see <xref:blazor/security/blazor-web-app-entra>.
 
 :::moniker-end
 
@@ -298,24 +298,18 @@ Access the sample through the latest version folder in the Blazor samples reposi
 
 ## Microsoft Entra ID app registrations
 
-We recommend using separate registrations for apps and web APIs, even when the apps and web APIs are in the same solution.
+We recommend using separate registrations for apps and web APIs, even when the apps and web APIs are in the same solution. The following guidance is for the `BlazorWebAppOidcServer` app and `MinimalApiJwt` web API of the sample solution, but the same guidance applies generally to any Entra-based registrations for apps and web APIs.
 
-Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app (`BlazorWebAppOidc`).
+Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app. The web API's tenant ID and client ID are used to configure the web API in its `Program` file. After registering the web API, expose the web API in **App registrations** > **Expose an API** with a scope name of `Weather.Get`. Record the App ID URI for use in the app's configuration.
 
-When using Microsoft Entra ID, grant API permission to the app (`BlazorWebAppOidcServer`) to access the web API (`MinimalApiJwt`):
-
-* The web API's (`MinimalApiJwt`) registration exposes its API in **App registrations** > **Expose an API**.
-
-* The app (`BlazorWebAppOidcServer`) registration grants users delegated access to the web API in **App registrations** > **API permissions**. Grant admin consent for the organization to access the web API.
-
-* Authorized users and groups are assigned to the app's (`BlazorWebAppOidcServer`) registration in **Enterprise applications**.
+Next, register the app (`BlazorWebAppOidcServer`). The app's tenant ID and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `Program` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
 
 ## Configuration
 
 This section explains how to configure the sample app.
 
 > [!NOTE]
-> For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section doesn't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see the linked resources.
+> For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see the linked resources.
 
 ### Establish the client secret
 
@@ -687,17 +681,11 @@ Access the sample through the latest version folder in the Blazor samples reposi
 
 ## Microsoft Entra ID app registrations
 
-We recommend using separate registrations for apps and web APIs, even when the apps and web APIs are in the same solution.
+We recommend using separate registrations for apps and web APIs, even when the apps and web APIs are in the same solution. The following guidance is for the `BlazorWebAppOidc` app and `MinimalApiJwt` web API of the sample solution, but the same guidance applies generally to any Entra-based registrations for apps and web APIs.
 
-Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app (`BlazorWebAppOidc`).
+Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app. The web API's tenant ID and client ID are used to configure the web API in its `Program` file. After registering the web API, expose the web API in **App registrations** > **Expose an API** with a scope name of `Weather.Get`. Record the App ID URI for use in the app's configuration.
 
-When using Microsoft Entra ID, grant API permission to the app (`BlazorWebAppOidc`) to access the web API (`MinimalApiJwt`):
-
-* The web API's (`MinimalApiJwt`) registration exposes its API in **App registrations** > **Expose an API**.
-
-* The app (`BlazorWebAppOidc`) registration grants users delegated access to the web API in **App registrations** > **API permissions**. Grant admin consent for the organization to access the web API.
-
-* Authorized users and groups are assigned to the app's (`BlazorWebAppOidc`) registration in **Enterprise applications**.
+Next, register the app (`BlazorWebAppOidc`). The app's tenant ID and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `Program` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
 
 ## .NET Aspire projects
 

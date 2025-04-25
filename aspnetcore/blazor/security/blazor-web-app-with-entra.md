@@ -47,17 +47,11 @@ Access the sample through the latest version folder in the Blazor samples reposi
 
 ## Microsoft Entra ID app registrations
 
-We recommend using separate registrations for apps and web APIs, even when the apps and web APIs are in the same solution.
+We recommend using separate registrations for apps and web APIs, even when the apps and web APIs are in the same solution. The following guidance is for the `BlazorWebAppEntra` app and `MinimalApiJwt` web API of the sample solution, but the same guidance applies generally to any Entra-based registrations for apps and web APIs.
 
-Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app (`BlazorWebAppEntra`).
+Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app. The web API's tenant ID and client ID are used to configure the web API in its `Program` file. After registering the web API, expose the web API in **App registrations** > **Expose an API** with a scope name of `Weather.Get`. Record the App ID URI for use in the app's configuration.
 
-When using Microsoft Entra ID, grant API permission to the app (`BlazorWebAppEntra`) to access the web API (`MinimalApiJwt`):
-
-* The web API's (`MinimalApiJwt`) registration exposes its API in **App registrations** > **Expose an API**.
-
-* The app (`BlazorWebAppEntra`) registration grants users delegated access to the web API in **App registrations** > **API permissions**. Grant admin consent for the organization to access the web API.
-
-* Authorized users and groups are assigned to the app's (`BlazorWebAppEntra`) registration in **Enterprise applications**.
+Next, register the app (`BlazorWebAppEntra`). The app's tenant ID, tenant domain, and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `appsettings.json` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
 
 ## Server-side Blazor Web App project (`BlazorWebAppEntra`)
 
@@ -127,7 +121,7 @@ In the server project's app settings file (`appsettings.json`), provide the app'
 Placeholders in the preceding example:
 
 * `{CLIENT ID}`: The application (client) ID.
-* `{DOMAIN}`: The tenant (publisher) domain.
+* `{TENANT DOMAIN}`: The tenant (publisher) domain.
 * `{TENANT ID}`: The directory (tenant) ID.
 * `{BASE ADDRESS}`: The web API's base address.
 * `{APP ID URI}`: The App ID URI for web API scopes.
@@ -196,17 +190,11 @@ Access the sample through the latest version folder in the Blazor samples reposi
 
 ## Microsoft Entra ID app registrations
 
-We recommend using separate registrations for apps and web APIs, even when the apps and web APIs are in the same solution.
+We recommend using separate registrations for apps and web APIs, even when the apps and web APIs are in the same solution. The following guidance is for the `BlazorWebAppEntra` app and `MinimalApiJwt` web API of the sample solution, but the same guidance applies generally to any Entra-based registrations for apps and web APIs.
 
-Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app (`BlazorWebAppEntra`).
+Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app. The web API's tenant ID and client ID are used to configure the web API in its `Program` file. After registering the web API, expose the web API in **App registrations** > **Expose an API** with a scope name of `Weather.Get`. Record the App ID URI for use in the app's configuration.
 
-When using Microsoft Entra ID, grant API permission to the app (`BlazorWebAppEntra`) to access the web API (`MinimalApiJwt`):
-
-* The web API's (`MinimalApiJwt`) registration exposes its API in **App registrations** > **Expose an API**.
-
-* The app (`BlazorWebAppEntra`) registration grants users delegated access to the web API in **App registrations** > **API permissions**. Grant admin consent for the organization to access the web API.
-
-* Authorized users and groups are assigned to the app's (`BlazorWebAppEntra`) registration in **Enterprise applications**.
+Next, register the app (`BlazorWebAppEntra`). The app's tenant ID, tenant domain, and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `appsettings.json` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
 
 ## .NET Aspire projects
 
@@ -271,7 +259,7 @@ The App ID URI is obtained for the `Weather.Get` scope. Don't include the scope 
 "AzureAd": {
   "CallbackPath": "/signin-oidc",
   "ClientId": "{CLIENT ID}",
-  "Domain": "{DOMAIN}",
+  "Domain": "{TENANT DOMAIN}",
   "Instance": "https://login.microsoftonline.com/",
   "ResponseType": "code",
   "TenantId": "{TENANT ID}"
@@ -286,7 +274,7 @@ The App ID URI is obtained for the `Weather.Get` scope. Don't include the scope 
 Placeholders in the preceding example:
 
 * `{CLIENT ID}`: The application (client) ID.
-* `{DOMAIN}`: The tenant (publisher) domain.
+* `{TENANT DOMAIN}`: The tenant (publisher) domain.
 * `{TENANT ID}`: The directory (tenant) ID.
 * `{BASE ADDRESS}`: The web API's base address.
 * `{APP ID URI}`: The App ID URI for web API scopes.

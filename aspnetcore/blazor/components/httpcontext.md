@@ -16,9 +16,9 @@ uid: blazor/components/httpcontext
 
 <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> generally should be avoided with interactive rendering because a valid <xref:Microsoft.AspNetCore.Http.HttpContext> isn't always available.
 
-<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. **However, we recommend avoiding it if possible.** A valid use case for using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> during static server-side rendering (static SSR) is to [pass tokens to a server-side app](xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app).
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used during static server-side rendering (static SSR), for example, in statically-rendered root components and when [passing tokens to a server-side app](xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app). **We recommend avoiding <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> when static SSR can't be guaranteed.**
 
-<xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in *statically-rendered root components* or during static server-side rendering (static SSR) for general tasks, such as inspecting and modifying headers or other properties in the `App` component (`Components/App.razor`). The value is always `null` for interactive rendering.
+<xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in statically-rendered root components or during static SSR for general tasks, such as inspecting and modifying headers or other properties in the `App` component (`App.razor`). The value is `null` during interactive rendering.
 
 ```csharp
 [CascadingParameter]
@@ -30,7 +30,7 @@ For additional context in *advanced* edge cases&dagger;, see the discussion in t
 * [HttpContext is valid in Interactive Server Rendering Blazor page (`dotnet/AspNetCore.Docs` #34301)](https://github.com/dotnet/AspNetCore.Docs/issues/34301)
 * [Security implications of using IHttpContextAccessor in Blazor Server (`dotnet/aspnetcore` #45699)](https://github.com/dotnet/aspnetcore/issues/45699)
 
-&dagger;Most developers building and maintaining Blazor apps don't need to delve into advanced concepts when the general guidance in this article is followed. The most important concept to keep in mind is that <xref:Microsoft.AspNetCore.Http.HttpContext> is fundamentally a server-based, request-response feature that is only generally available on the server during static SSR and only created when a user's circuit is established.
+&dagger;Most developers building and maintaining Blazor apps don't need to delve into advanced concepts when the general guidance in this article is followed. The most important concept to keep in mind is that <xref:Microsoft.AspNetCore.Http.HttpContext> is fundamentally a server-based, request-response feature that's only generally available on the server during static SSR and only created when a user's circuit is established.
 
 :::moniker-end
 
