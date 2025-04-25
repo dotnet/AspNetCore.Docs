@@ -20,29 +20,38 @@ uid: fundamentals/servers/kestrel/http3
 > [!IMPORTANT]
 > Apps configured to take advantage of HTTP/3 should be designed to also support HTTP/1.1 and HTTP/2.
 
+## HTTP/3 benefits
+
+`HTTP/3`:
+
+* Is the latest version of the Hypertext Transfer Protocol.
+* Builds on the strengths of `HTTP/2` while addressing some of its limitations, particularly in terms of performance, latency, reliability, and security.
+
++---------------+-------------------------+-------------------------+
+| Feature | `HTTP/2` | `HTTP/3` |
++---------------+-------------------------+-------------------------+
+| Transport | Uses [TCP](https://developer.mozilla.org/docs/Glossary/TCP) | Uses [QUIC](https://www.rfc-editor.org/rfc/rfc9000.html)  |
+| Layer | | |
+| Connection | Slower due to TCP + TLS | Faster with 0-RTT QUIC |
+| Setup | handshake | handshakes |
+| Head-of-Line | Affected by TCP-level | Eliminated with QUIC |
+| Blocking | blocking | stream multiplexing |
+| Encryption | TLS over TCP | TLS is built into QUIC |
++---------------+-------------------------+-------------------------+
+
+
+The key differences from `HTTP/2` to `HTTP/3` are:
+
+* **Transport Protocol**: `HTTP/3` uses QUIC instead of TCP. QUIC offers improved performance, lower latency, and better reliability, especially on mobile and lossy networks.
+* **Head-of-Line Blocking**: `HTTP/2` can suffer from head-of-line blocking at the TCP level, where a delay in one stream can affect others. `HTTP/3`, with QUIC, provides independent streams, so packet loss in one stream doesn't stall others.
+* **Connection Establishment**: `HTTP/3` with QUIC can establish connections faster, sometimes in zero round-trip time (0-RTT) for returning clients, as it combines transport and encryption handshakes.
+* **Encryption**: `HTTP/3` mandates TLS 1.3 encryption, providing enhanced security by default, whereas it's optional in `HTTP/2`.
+* **Multiplexing**: While both support multiplexing, `HTTP/3`'s implementation with QUIC is more efficient and avoids the TCP-level head-of-line blocking issues.
+* **Connection Migration**: QUIC in `HTTP/3` allows connections to persist even when a client's IP address changes (like switching from Wi-Fi to cellular), improving mobile user experience.
+
 ## HTTP/3 requirements
 
-HTTP/3 has different requirements depending on the operating system. If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3, then it's disabled, and Kestrel will fall back to other HTTP protocols.
-
-### Windows
-
-* Windows 11 Build 22000 or later OR Windows Server 2022.
-* TLS 1.3 or later connection.
-
-### Linux
-
-* `libmsquic` package installed.
-
-`libmsquic` is published via Microsoft's official Linux package repository at `packages.microsoft.com`. To install this package:
-
-1. Add the `packages.microsoft.com` repository. See [Linux Software Repository for Microsoft Products](/windows-server/administration/linux-package-repository-for-microsoft-software) for instructions.
-2. Install the `libmsquic` package using the distro's package manager. For example, `apt install libmsquic=1.9*` on Ubuntu.
-
-**Note:** .NET 6 is only compatible with the 1.9.x versions of libmsquic. Libmsquic 2.x is not compatible due to breaking changes. Libmsquic receives updates to 1.9.x when needed to incorporate security fixes.  
-
-### macOS
-
-HTTP/3 isn't currently supported on macOS and may be available in a future release.
+HTTP/3 uses QUIC as its transport protocol. The ASP.NET Core implementation of HTTP/3 depends on [MsQuic](https://github.com/microsoft/msquic) to provide QUIC functionality. As a result, ASP.NET Core support of HTTP/3 depends on MsQuic platform requirements. For more information on how to install **MsQuic**, see [QUIC Platform dependencies](/dotnet/fundamentals/networking/quic/quic-overview#platform-dependencies). If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3, then it's disabled, and Kestrel will fall back to other HTTP protocols.
 
 ## Getting started
 
@@ -71,15 +80,7 @@ HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the [`alt-svc`](h
   * Set [`HttpRequestMessage.Version`](xref:System.Net.Http.HttpRequestMessage.Version) to 3.0, or
   * Set [`HttpRequestMessage.VersionPolicy`](xref:System.Net.Http.HttpRequestMessage.VersionPolicy) to [`HttpVersionPolicy.RequestVersionOrHigher`](xref:System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher).
 
-## HTTP/3 benefits
-
-HTTP/3 uses the same semantics as HTTP/1.1 and HTTP/2: the same request methods, status codes, and message fields apply to all versions. The differences are in the underlying transport. Both HTTP/1.1 and HTTP/2 use TCP as their transport. HTTP/3 uses a new transport technology developed alongside HTTP/3 called [QUIC](https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34).
-
-HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
-
-* Faster response time of the first request. QUIC and HTTP/3 negotiates the connection in fewer round-trips between the client and the server. The first request reaches the server faster.
-* Improved experience when there is connection packet loss. HTTP/2 multiplexes multiple requests via one TCP connection. Packet loss on the connection affects all requests. This problem is called "head-of-line blocking". Because QUIC provides native multiplexing, lost packets only impact the requests where data has been lost.
-* Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Currently, HTTP/1.1 and HTTP/2 connections fail with an error when switching networks. An app or web browsers must retry any failed HTTP requests. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 8. It may be available in a future release.
+For more information on how to use HTTP/3 with `HttpClient`, see [HTTP/3 with .NET](/dotnet/core/extensions/httpclient-http3).
 
 :::moniker-end
 
