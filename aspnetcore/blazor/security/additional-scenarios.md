@@ -37,7 +37,7 @@ Note that <xref:Microsoft.AspNetCore.Http.HttpContext> used as a [cascading para
 
 For more information, see <xref:blazor/components/httpcontext>.
 
-### Example
+### Token handler example for web API calls
 
 The following approach is aimed at attaching a user's access token to outgoing requests, specifically to make web API calls to external web API apps. The approach is shown for a Blazor Web App that adopts global Interactive Server rendering, but the same general approach applies to Blazor Web Apps that adopt the global Interactive Auto render mode. The important concept to keep in mind is that accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is only performed during static SSR.
 
@@ -123,6 +123,254 @@ var response = await client.SendAsync(request);
 ```
 
 Additional features are planned for Blazor, which are tracked by [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379). [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390) is a closed issue that contains helpful discussion and potential workaround strategies for advanced use cases.
+
+### Root-level cascading values with notifications 
+
+Tokens can be passed via [root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with subscriber notifications. This general approach works well when you need to interact with tokens outside of calling a web API.
+
+The following `CascadingStateServiceCollectionExtensions` creates a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> from a type that implements <xref:System.ComponentModel.INotifyPropertyChanged>.
+
+> [!NOTE]
+> For Blazor Web App solutions consisting of server and client (`.Client`) projects, place the following `CascadingStateServiceCollectionExtensions.cs` file into the `.Client` project.
+
+`CascadingStateServiceCollectionExtensions.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using System.ComponentModel;
+
+namespace Microsoft.Extensions.DependencyInjection;
+
+public static class CascadingStateServiceCollectionExtensions
+{
+    public static IServiceCollection AddNotifyingCascadingValue<T>(
+        this IServiceCollection services, T state, bool isFixed = false)
+        where T : INotifyPropertyChanged
+    {
+        return services.AddCascadingValue<T>(sp =>
+        {
+            return new CascadingStateValueSource<T>(state, isFixed);
+        });
+    }
+
+    private sealed class CascadingStateValueSource<T>
+        : CascadingValueSource<T>, IDisposable where T : INotifyPropertyChanged
+    {
+        private readonly T state;
+        private readonly CascadingValueSource<T> source;
+
+        public CascadingStateValueSource(T state, bool isFixed = false)
+            : base(state, isFixed = false)
+        {
+            this.state = state;
+            source = new CascadingValueSource<T>(state, isFixed);
+            this.state.PropertyChanged += HandlePropertyChanged;
+        }
+
+        private void HandlePropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            _ = NotifyChangedAsync();
+        }
+
+        public void Dispose()
+        {
+            state.PropertyChanged -= HandlePropertyChanged;
+        }
+    }
+}
+```
+
+Create a class to manage the token state. The following `NotifyingState` example tracks state for access and refresh tokens.
+
+> [!NOTE]
+> For Blazor Web App solutions consisting of server and client (`.Client`) projects, place the following `NotifyingState.cs` file into the `.Client` project.
+
+`NotifyingState.cs`:
+
+```csharp
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace BlazorWebAppOidcServer;
+
+public class NotifyingState : INotifyPropertyChanged
+{
+    public event PropertyChangedEventHandler? PropertyChanged;
+    private string accessToken = string.Empty;
+    private string refreshToken = string.Empty;
+
+    public string AccessToken
+    {
+        get => accessToken;
+        set
+        {
+            if (accessToken != value)
+            {
+                accessToken = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public string RefreshToken
+    {
+        get => refreshToken;
+        set
+        {
+            if (refreshToken != value)
+            {
+                refreshToken = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    protected virtual void OnPropertyChanged(
+        [CallerMemberName] string? propertyName = default)
+            => PropertyChanged?.Invoke(this, new(propertyName));
+}
+```
+
+In the `Program` file&dagger;, `NotifyingState` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>:
+
+```csharp
+builder.Services.AddNotifyingCascadingValue(new NotifyingState());
+```
+
+> [!NOTE]
+> &dagger;For Blazor Web App solutions consisting of server and client (`.Client`) projects, place the preceding code into each project's `Program` file.
+
+The `Program` file of the server project must also register <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>:
+
+```csharp
+builder.Services.AddHttpContextAccessor();
+```
+
+At the top of the `App` component (`App.razor`), add an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Authentication?displayProperty=fullName>:
+
+```razor
+@using Microsoft.AspNetCore.Authentication
+```
+
+Under the markup of the `App` component, add the following `@code` block to set the `AccessToken` and `RefreshToken` properties from the cascaded <xref:Microsoft.AspNetCore.Http.HttpContext>. The following example is suitable when using an OIDC identity provider, an example for Microsoft Entra ID with Microsoft Identity Web packages follows this example.
+
+```razor
+@code {
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
+
+    [CascadingParameter]
+    public NotifyingState? State { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (State is not null)
+        {
+            State.AccessToken = HttpContext?.GetTokenAsync("access_token").Result ?? string.Empty;
+            State.RefreshToken = HttpContext?.GetTokenAsync("refresh_token").Result ?? string.Empty;
+        }
+    }
+}
+```
+
+For app's that rely upon Entra with Microsoft Identity Web, the following approach can obtain the access token:
+
+```razor
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.Identity.Web;
+@inject ITokenAcquisition TokenAcquisition
+@inject AuthenticationStateProvider AuthState
+
+...
+
+@code {
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
+
+    [CascadingParameter]
+    public NotifyingState? State { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (State is not null)
+        {
+            var authState = await AuthState.GetAuthenticationStateAsync();
+
+            if (authState.User.Identity is not null && authState.User.Identity.IsAuthenticated)
+            {
+                State.AccessToken = await TokenAcquisition.GetAccessTokenForUserAsync([ "{SCOPE}" ]);
+            }
+        }
+    }
+}
+```
+
+The app, including within components, can now obtain the access and refresh tokens, keeping in mind that the values are set for the life of the circuit unless developer code updates them. The following approach is effective in server-side scenarios, and an example follows that's useful in Blazor Web Apps that adopt Interactive Auto rendering.
+
+```csharp
+private string? accessToken;
+private string? refreshToken;
+
+[CascadingParameter]
+public NotifyingState? State { get; set; }
+
+protected override async Task OnInitializedAsync()
+{
+    accessToken = State?.AccessToken;
+    refreshToken = State?.RefreshToken;
+}
+```
+
+The following example demonstrates the concept in an app that adopts Interactive Auto rendering with server and `.Client` projects, where the tokens must be persisted from the server during prerendering:
+
+```razor
+@implements IDisposable
+@inject PersistentComponentState ApplicationState
+
+...
+
+@code {
+    private PersistingComponentStateSubscription persistingSubscription;
+    private string? accessToken;
+    private string? refreshToken;
+
+    [CascadingParameter]
+    public NotifyingState? State { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!ApplicationState.TryTakeFromJson<string>(nameof(accessToken), out var restoredAccessToken))
+        {
+            accessToken = State?.AccessToken;
+        }
+        else
+        {
+            accessToken = restoredAccessToken!;
+        }
+
+        if (!ApplicationState.TryTakeFromJson<string>(nameof(refreshToken), out var restoredRefreshToken))
+        {
+            refreshToken = State?.RefreshToken;
+        }
+        else
+        {
+            refreshToken = restoredRefreshToken!;
+        }
+
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
+    }
+
+    private Task PersistData()
+    {
+        ApplicationState.PersistAsJson(nameof(accessToken), accessToken);
+        ApplicationState.PersistAsJson(nameof(refreshToken), refreshToken);
+
+        return Task.CompletedTask;
+    }
+
+    void IDisposable.Dispose() => persistingSubscription.Dispose();
+}
+```
 
 ### Passing the anti-request forgery (CSRF/XSRF) token
 
