@@ -666,7 +666,7 @@ Also, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspi
 
 ## Sample app
 
-The sample app consists of five projects:
+The sample app consists of the following projects:
 
 * .NET Aspire:
   * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.

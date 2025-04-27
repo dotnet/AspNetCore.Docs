@@ -35,7 +35,7 @@ The following specification is covered:
 
 ## Sample app
 
-The sample app consists of two projects:
+The sample app consists of the following projects:
 
 * `BlazorWebAppEntra`: Server-side project of the Blazor Web App, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
@@ -175,7 +175,7 @@ Also, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspi
 
 ## Sample app
 
-The sample app consists of five projects:
+The sample app consists of the following projects:
 
 * .NET Aspire:
   * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.

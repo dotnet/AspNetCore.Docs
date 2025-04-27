@@ -124,7 +124,7 @@ var response = await client.SendAsync(request);
 
 Additional features are planned for Blazor, which are tracked by [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379). [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390) is a closed issue that contains helpful discussion and potential workaround strategies for advanced use cases.
 
-### Root-level cascading values with notifications 
+### Root-level cascading values with notifications
 
 Tokens can be passed via [root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with subscriber notifications. This general approach works well when you need to interact with tokens outside of calling a web API.
 
