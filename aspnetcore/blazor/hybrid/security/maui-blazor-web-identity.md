@@ -210,11 +210,10 @@ In `MauiBlazorWeb/MauiProgram.cs`, core functionality is added by calling <xref:
 builder.Services.AddAuthorizationCore();
 ```
 
-Registration of the app's custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> (`MauiAuthenticationStateProvider`):
+The app's custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> (`MauiAuthenticationStateProvider`) is registered in `MauiProgram.cs`:
 
 ```csharp
-builder.Services.AddScoped<MauiAuthenticationStateProvider, 
-    MauiAuthenticationStateProvider>();
+builder.Services.AddScoped<MauiAuthenticationStateProvider>();
 ```
 
 Use the `MauiAuthenticationStateProvider` when the app requires an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>:
