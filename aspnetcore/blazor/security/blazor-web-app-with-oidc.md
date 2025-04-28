@@ -480,7 +480,7 @@ The format of the Audience depends on the type of tenant in use. The following e
 
 Automatic non-interactive token refresh is managed by a custom cookie refresher (`CookieOidcRefresher.cs`).
 
-A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see <xref:blazor/components/httpcontext> and <xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
+A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see <xref:blazor/components/httpcontext> and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
 
 `TokenHandler.cs`:
 

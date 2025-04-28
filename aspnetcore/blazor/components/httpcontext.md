@@ -16,7 +16,7 @@ uid: blazor/components/httpcontext
 
 <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> generally should be avoided with interactive rendering because a valid <xref:Microsoft.AspNetCore.Http.HttpContext> isn't always available.
 
-<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used during static server-side rendering (static SSR), for example, in statically-rendered root components and when [passing tokens to a server-side app](xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app). **We recommend avoiding <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> when static SSR can't be guaranteed.**
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used during static server-side rendering (static SSR), for example, in statically-rendered root components and when [using a token handler for web API calls](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls). **We recommend avoiding <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> when static SSR can't be guaranteed.**
 
 <xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in statically-rendered root components or during static SSR for general tasks, such as inspecting and modifying headers or other properties in the `App` component (`App.razor`). The value is `null` during interactive rendering.
 
