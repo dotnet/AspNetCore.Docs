@@ -23,13 +23,14 @@ This article explains how to configure server-side Blazor for additional securit
 
 *This section applies to Blazor Web Apps. For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).*
 
-Tokens available outside of a Blazor Web App's Razor components can be passed to interactive components with the approaches described in this section. The examples in this section focus on passing JWT access tokens for secure web API access, but the approaches are valid for other HTTP context state provided by <xref:Microsoft.AspNetCore.Http.HttpContext>.
+For more information, see the following issues:
 
-### Sample app demonstration
+* [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379): This is the current issue to address passing tokens in Blazor Web Apps with framework features, which will probably be addressed for .NET 11 (late 2026).
+* [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390): This issue was closed as a duplicate of the preceding issue, but it contains helpful discussion and potential workaround strategies.
 
-For a demonstration of the guidance in this section, see the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps (.NET 8 or later) in the [Blazor samples](https://github.com/dotnet/blazor-samples) repository. The samples adopt a global interactive render mode and OIDC authentication with Microsoft Entra without using Entra-specific packages. The samples demonstrate how to pass a JWT access token to call a secure web API.
+For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).
 
-### Reading tokens from `HttpContext`
+## Reading tokens from `HttpContext`
 
 Reading tokens from the <xref:Microsoft.AspNetCore.Http.HttpContext> using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal%601> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
@@ -37,14 +38,15 @@ Note that <xref:Microsoft.AspNetCore.Http.HttpContext> used as a [cascading para
 
 For more information, see <xref:blazor/components/httpcontext>.
 
-### Token handler example for web API calls
+## Use a token handler for web API calls
 
-The following approach is aimed at attaching a user's access token to outgoing requests, specifically to make web API calls to external web API apps. The approach is shown for a Blazor Web App that adopts global Interactive Server rendering, but the same general approach applies to Blazor Web Apps that adopt the global Interactive Auto render mode. The important concept to keep in mind is that accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is only performed during static SSR.
+The following approach is aimed at attaching a user's access token to outgoing requests, specifically to make web API calls to external web API apps. The approach is shown for a Blazor Web App that adopts global Interactive Server rendering, but the same general approach applies to Blazor Web Apps that adopt the global Interactive Auto render mode. The important concept to keep in mind is that accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is only performed on the server.
 
-> [!NOTE]
-> [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) provides a simple API to call web APIs from Blazor Web Apps with automatic token management and renewal. For more information, see <xref:blazor/security/blazor-web-app-entra> and the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` sample apps (.NET 9 or later) in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples).
+For a demonstration of the guidance in this section, see the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps (.NET 8 or later) in the [Blazor samples](https://github.com/dotnet/blazor-samples) repository. The samples adopt a global interactive render mode and OIDC authentication with Microsoft Entra without using Entra-specific packages. The samples demonstrate how to pass a JWT access token to call a secure web API.
 
-Subclass <xref:System.Net.Http.DelegatingHandler> to attach a user's access token to outgoing requests. The token handler only executes during static SSR/prerendering, so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe.
+[Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) provides a simple API to call web APIs from Blazor Web Apps with automatic token management and renewal. For more information, see <xref:blazor/security/blazor-web-app-entra> and the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` sample apps (.NET 9 or later) in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples).
+
+Subclass <xref:System.Net.Http.DelegatingHandler> to attach a user's access token to outgoing requests. The token handler only executes on the server, so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe.
 
 `TokenHandler.cs`:
 
