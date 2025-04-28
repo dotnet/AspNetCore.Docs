@@ -5,7 +5,7 @@ description: Learn how to configure server-side Blazor and Blazor Web Apps for a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 04/28/2025
 uid: blazor/security/additional-scenarios
 ---
 # ASP.NET Core server-side and Blazor Web App additional security scenarios

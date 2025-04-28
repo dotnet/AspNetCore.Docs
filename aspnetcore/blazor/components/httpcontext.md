@@ -5,7 +5,7 @@ description: Learn about IHttpContextAccessor and HttpContext in ASP.NET Core Bl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/30/2025
+ms.date: 04/28/2025
 uid: blazor/components/httpcontext
 ---
 # `IHttpContextAccessor`/`HttpContext` in ASP.NET Core Blazor apps

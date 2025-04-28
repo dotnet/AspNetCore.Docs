@@ -5,7 +5,7 @@ description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 04/28/2025
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
@@ -109,7 +109,7 @@ The solution demonstrates calling a secure web API for the following:
 
 ### `BlazorWebAppOidc`
 
-A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The solution includes a demonstration of obtaining weather data securely via a web API located in the server project.
+A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [pass an access token](xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app) to call an external secure web API.
 
 ### `BlazorWebAppOidcServer`
 
