@@ -348,6 +348,9 @@ For more information, see the following sections of the *Call JavaScript functio
 
 ### Blazor WebAssembly performance profiling and diagnostic counters
 
-New performance profiling and diagnostic counters are available for Blazor WebAssembly apps. For more information, see <xref:blazor/performance/profiling>.
+New performance profiling and diagnostic counters are available for Blazor WebAssembly apps. For more information, see the following articles:
+
+* <xref:blazor/performance/developer-tools-profiling>
+* <xref:blazor/performance/event-pipe-profiling>
 
 -->
