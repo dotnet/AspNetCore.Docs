@@ -5,7 +5,7 @@ description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 04/29/2025
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
@@ -19,6 +19,17 @@ This article describes how to call a web API from a Blazor app.
 The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for <xref:System.Net.Http.HttpClient?displayProperty=fullName> and <xref:System.Net.Http.HttpContent?displayProperty=fullName> that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json). The `System.Net.Http.Json` package is provided by the .NET shared framework and doesn't require adding a package reference to the app.
 
 :::moniker range=">= aspnetcore-8.0"
+
+## Use a token handler for web API calls
+
+Blazor Web Apps with OIDC authentication can use a token handler approach to make outgoing requests to secure external web API calls. This approach is used by the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps described in the next section.
+
+For more information, see the following resources:
+
+* <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
+* *Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)*
+  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?view=aspnetcore-9.0&pivots=non-bff-pattern)
+  * [Non-BFF pattern (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?view=aspnetcore-9.0&pivots=non-bff-pattern-server)
 
 ## Sample apps
 
@@ -37,7 +48,8 @@ For client-side rendering (CSR), which includes Interactive WebAssembly componen
 builder.Services.AddScoped(sp =>
     new HttpClient
     {
-        BaseAddress = new Uri(builder.Configuration["FrontendUrl"] ?? "https://localhost:5002")
+        BaseAddress = new Uri(builder.Configuration["FrontendUrl"] ?? 
+            "https://localhost:5002")
     });
 ```
 
@@ -108,7 +120,11 @@ The solution demonstrates calling a secure web API for the following:
 
 ### `BlazorWebAppOidc`
 
-A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
+A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [use a token handler for web API calls](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
+
+### `BlazorWebAppOidcServer`
+
+A Blazor Web App with global Interactive Server interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [pass an access token](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
 
 ### `BlazorWebAppOidcBff`
 
@@ -117,7 +133,7 @@ A Blazor Web App with global Auto interactivity that uses:
 * OIDC authentication with Microsoft Entra without using Entra-specific packages.
 * The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends), which is a pattern of app development that creates backend services for frontend apps or interfaces.
 
-The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
+The solution includes a demonstration of obtaining weather data securely via an external web API when a component that adopts Interactive Auto rendering is rendered on the client.
 
 :::moniker-end
 
@@ -125,7 +141,7 @@ The solution includes a demonstration of obtaining weather data securely via a w
 
 ### `BlazorWebAppEntra`
 
-A Blazor Web App with global Auto interactivity that uses [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra). The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
+A Blazor Web App with global Auto interactivity that uses [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra). The solution includes a demonstration of obtaining weather data securely via an external web API when a component that adopts Interactive Auto rendering is rendered on the client.
 
 ### `BlazorWebAppEntraBff`
 
@@ -134,7 +150,7 @@ A Blazor Web App with global Auto interactivity that uses:
 * [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra).
 * The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends), which is a pattern of app development that creates backend services for frontend apps or interfaces.
 
-The solution includes a demonstration of obtaining weather data securely via a web API when a component that adopts Interactive Auto rendering is rendered on the client.
+The solution includes a demonstration of obtaining weather data securely via an external web API when a component that adopts Interactive Auto rendering is rendered on the client.
 
 :::moniker-end
 
