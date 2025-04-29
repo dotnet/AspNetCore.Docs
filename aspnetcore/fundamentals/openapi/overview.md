@@ -59,8 +59,7 @@ the output directory by setting the `OpenApiDocumentsDirectory` property.
 
 [!code-xml[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/projectFile.xml?highlight=9-12,16-19)]
 
-<!-- Include makes it trivial to move this anywhere in the doc.
- ## API v. Endpoint v. Operation -->
+<!-- Include makes it trivial to move this anywhere in the doc OR add to other docs-->
 [!INCLUDE[](~/fundamentals/openapi/includes/api_endpoint_operation.md)]
 
 ## ASP.NET Core OpenAPI source code on GitHub
