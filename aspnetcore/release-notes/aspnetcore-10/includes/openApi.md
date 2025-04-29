@@ -80,7 +80,7 @@ app.MapOpenApi("/openapi/{documentName}.yaml");
 
 Support for:
 
-* YAML is currently only available for the the OpenAPI served from the OpenAPI endpoint.
+* YAML is currently only available for the OpenAPI served from the OpenAPI endpoint.
 * Generating OpenAPI documents in YAML format at build time is added in a future preview.
 
 See [this PR](https://github.com/dotnet/aspnetcore/pull/58616) which added support for serving the generated OpenAPI document in YAML format.
