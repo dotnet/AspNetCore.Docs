@@ -176,7 +176,8 @@ The following sample demonstrates how to set a description for a parameter.
 
 ```csharp
 [HttpGet("attributes")]
-public IResult Attributes([Description("This is a description.")] string name)
+public IResult Attributes(
+    [Description("This is a description.")] string name)
 {
     return Results.Ok("Hello world!");
 }
@@ -218,9 +219,16 @@ The framework uses the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadat
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
 {
-    public static void PopulateMetadata(ParameterInfo parameter, EndpointBuilder builder)
+    public static void PopulateMetadata(
+        ParameterInfo parameter,
+        EndpointBuilder builder)
     {
-        builder.Metadata.Add(new AcceptsMetadata(["application/xml", "text/xml"], typeof(Todo)));
+        builder.Metadata.Add(
+            new AcceptsMetadata(
+                ["application/xml", "text/xml"], 
+                typeof(Todo)
+            )
+        );
     }
 }
 ```
@@ -238,7 +246,9 @@ Since `application/xml` is not a built-in content type, the `Todo` class must im
 ```csharp
 public class Todo : IBindableFromHttpContext<Todo>
 {
-    public static async ValueTask<Todo?> BindAsync(HttpContext context, ParameterInfo parameter)
+    public static async ValueTask<Todo?> BindAsync(
+        HttpContext context, 
+        ParameterInfo parameter)
     {
         var xmlDoc = await XDocument.LoadAsync(context.Request.Body, LoadOptions.None, context.RequestAborted);
         var serializer = new XmlSerializer(typeof(Todo));
@@ -400,9 +410,9 @@ All of the above attributes can be applied to individual action methods or to th
 
 ```csharp
 [HttpGet("/todos/{id}")]
-[ProducesResponseType<Todo>(StatusCodes.Status200OK, 
+[ProducesResponseType<Todo>(StatusCodes.Status200OK,
     "application/json", Description = "Returns the requested Todo item.")]
-[ProducesResponseType(StatusCodes.Status404NotFound, 
+[ProducesResponseType(StatusCodes.Status404NotFound,
     Description = "Requested Todo item not found.")]
 [ProducesDefault(Description = "Undocumented status code.")]
 public async Task<ActionResult<Todo>> GetTodoItem(string id, Todo todo)
@@ -422,9 +432,12 @@ In controller-based apps, ASP.NET responds with a ProblemDetails response type w
 
 ```csharp
 [HttpPut("/todos/{id}")]
-[ProducesResponseType<Todo>(StatusCodes.Status200OK, "application/json")]
-[ProducesResponseType<Todo>(StatusCodes.Status201Created, "application/json")]
-[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, "application/problem+json")]
+[ProducesResponseType<Todo>(StatusCodes.Status200OK,
+    "application/json")]
+[ProducesResponseType<Todo>(StatusCodes.Status201Created,
+    "application/json")]
+[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest,
+    "application/problem+json")]
 public async Task<ActionResult<Todo>> CreateOrReplaceTodo(string id, Todo todo)
 ```
 
@@ -623,7 +636,12 @@ A special case is when an enum type has the `[Flags]` attribute, which indicates
 
 ```csharp
 [Flags, JsonConverter(typeof(JsonStringEnumConverter<PizzaToppings>))]
-public enum PizzaToppings { Pepperoni = 1, Sausage = 2, Mushrooms = 4, Anchovies = 8 }
+public enum PizzaToppings { 
+    Pepperoni = 1,
+    Sausage = 2,
+    Mushrooms = 4,
+    Anchovies = 8
+}
 ```
 
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
@@ -670,19 +688,19 @@ A schema transformer can be used to override any default metadata or add additio
 
 ## Set JSON serialization options globally
 
-The following code configures some JSON options globally, for Minimal APIs and Controler based APIs:
+The following code configures some JSON options globally, for Minimal APIs and Controller based APIs:
 
-  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=8-29)]
+  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=9-29)]
 
 ## MVC JSON options and global JSON options
 
-The following table shows the key Differences beween the MVC JSON options and global Minimal API JSON options:
+The following table shows the key differences beween the MVC JSON options and global Minimal API JSON options:
 
 | **Aspect**           | **MVC JSON Options**                       | **Global JSON Options**             |
 |-----------------------|--------------------------------------------|-----------------------------------------------|
-| **Scope**             | Limited to MVC controllers and endpoints.  | Minimal Api's and OpenAPI docs.   |
+| **Scope**             | Limited to MVC controllers and endpoints.  | Minimal APIs and OpenAPI docs.   |
 | **Configuration**     | `AddControllers().AddJsonOptions()`        | `Configure<JsonOptions>()`                    |
-| **Purpose**           | Handles serialization and deserializtion of JSON requests and responses in APIs.  | Defines global JSON handling for Minimal APIs and OpenAPI schemas. |
+| **Purpose**           | Handles serialization and deserialization of JSON requests and responses in APIs.  | Defines global JSON handling for Minimal APIs and OpenAPI schemas. |
 | **Influence on OpenAPI** | None                                     | Directly influences OpenAPI schema generation.|
 
 ---
