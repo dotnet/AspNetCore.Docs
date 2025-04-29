@@ -33,9 +33,9 @@ The following specification is covered:
   * When rendering the `Weather` component on the server to display weather data, the component uses the `ServerWeatherForecaster` on the server to directly obtain weather data (not via a web API call).
   * When the `Weather` component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project's Minimal API (`/weather-forecast`) for weather data. The Minimal API endpoint obtains the weather data from the `ServerWeatherForecaster` class and returns it to the client for rendering by the component.
 
-## Sample app
+## Sample solution
 
-The sample app consists of the following projects:
+The sample solution consists of the following projects:
 
 * `BlazorWebAppEntra`: Server-side project of the Blazor Web App, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
@@ -53,11 +53,15 @@ Register the web API (`MinimalApiJwt`) first so that you can then grant access t
 
 Next, register the app (`BlazorWebAppEntra`). The app's tenant ID, tenant domain, and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `appsettings.json` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
 
+In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, don't select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**.
+
+Create a client secret in the app's registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Hold on to the client secret **Value** for use the next section.
+
+Additional Entra configuration guidance for specific settings is provided later in this article.
+
 ## Server-side Blazor Web App project (`BlazorWebAppEntra`)
 
 The `BlazorWebAppEntra` project is the server-side project of the Blazor Web App.
-
-The `BlazorWebAppEntra.http` file can be used for testing the weather data request. Note that the `BlazorWebAppEntra` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 ## Client-side Blazor Web App project (`BlazorWebAppEntra.Client`)
 
@@ -173,9 +177,9 @@ For more information on .NET Aspire, see [General Availability of .NET Aspire: S
 
 Also, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
 
-## Sample app
+## Sample solution
 
-The sample app consists of the following projects:
+The sample solution consists of the following projects:
 
 * .NET Aspire:
   * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
@@ -195,6 +199,12 @@ We recommend using separate registrations for apps and web APIs, even when the a
 Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app. The web API's tenant ID and client ID are used to configure the web API in its `Program` file. After registering the web API, expose the web API in **App registrations** > **Expose an API** with a scope name of `Weather.Get`. Record the App ID URI for use in the app's configuration.
 
 Next, register the app (`BlazorWebAppEntra`). The app's tenant ID, tenant domain, and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `appsettings.json` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
+
+In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, don't select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**.
+
+Create a client secret in the app's registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Hold on to the client secret **Value** for use the next section.
+
+Additional Entra configuration guidance for specific settings is provided later in this article.
 
 ## .NET Aspire projects
 
@@ -384,12 +394,10 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 
 *This section only applies to the server project of the Blazor Web App.*
 
-Create a client secret in the app's Entra ID registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Use the **Value** of the new secret in the following guidance.
-
 Use either or both of the following approaches to supply the client secret to the app:
 
-* [Secret Manager tool](#secret-manager-tool): The Secret Manager tool stores private data on the local machine and is only used during local development.
-* [Azure Key Vault](#azure-key-vault): You can store the client secret in a key vault for use in any environment, including for the Development environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
+* **Secret Manager tool**: The Secret Manager tool stores private data on the local machine and is only used during local development.
+* **Azure Key Vault**: You can store the client secret in a key vault for use in any environment, including for the Development environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the Secret Manager tool for local development.
 
 We strongly recommend that you avoid storing client secrets in project code or configuration files. Use secure authentication flows, such as either or both of the approaches in this section.
 
@@ -397,7 +405,7 @@ We strongly recommend that you avoid storing client secrets in project code or c
 
 The [Secret Manager tool](xref:security/app-secrets) can store the server app's client secret under the configuration key `AzureAd:ClientSecret`.
 
-The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>`) in the server app's project file, which is used internally by the tooling to track secrets for the app:
+The Blazor server app hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>`) in the server app's project file, which is used internally by the tooling to track secrets for the app:
 
 ```dotnetcli
 dotnet user-secrets init
@@ -470,7 +478,7 @@ builder.Services.Configure<MicrosoftIdentityOptions>(
     });
 ```
 
-If you wish to control the environment where the preceding code operates, for example to avoid running the code locally because you've opted to use the [Secret Manager tool](#secret-manager-tool) for local development, you can wrap the preceding code in a conditional statement that checks the environment:
+If you wish to control the environment where the preceding code operates, for example to avoid running the code locally because you've opted to use the Secret Manager tool for local development, you can wrap the preceding code in a conditional statement that checks the environment:
 
 ```csharp
 if (!context.HostingEnvironment.IsDevelopment())

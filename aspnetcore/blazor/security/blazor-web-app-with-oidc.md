@@ -92,9 +92,9 @@ Additional Entra configuration guidance for specific settings is provided later 
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the server app's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
+For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the Blazor server project's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
 
-The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
+The Blazor server project hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
 
 ```dotnetcli
 dotnet user-secrets init
@@ -417,9 +417,9 @@ Additional Entra configuration guidance for specific settings is provided later 
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the app's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
+For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the Blazor server project's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
 
-The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the app's project file):
+The Blazor server project hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the app's project file):
 
 ```dotnetcli
 dotnet user-secrets init
@@ -794,9 +794,9 @@ Additional Entra configuration guidance for specific settings is provided later 
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the server app's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
+For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the Blazor server project's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
 
-The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
+The Blazor server project hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
 
 ```dotnetcli
 dotnet user-secrets init
