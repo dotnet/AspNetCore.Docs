@@ -108,3 +108,13 @@ groups:
       title: Non-BFF pattern
     - id: bff-pattern
       title: BFF pattern
+- id: unit-testing-framework
+  title: Unit testing framework
+  prompt: Choose a unit testing framework
+  pivots:
+  - id: xunit
+    title: xUnit
+  - id: mstest
+    title: MSTest
+  - id: nunit
+    title: NUnit

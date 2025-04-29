@@ -7,6 +7,7 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 3/24/2025
 uid: test/integration-tests
+zone_pivot_groups: unit-testing-framework
 ---
 # Integration tests in ASP.NET Core
 
@@ -63,7 +64,21 @@ The following test class, `BasicTests`, uses the `WebApplicationFactory` to boot
 
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
   
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/xunit/IntegrationTests/BasicTests.cs?name=snippet1":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/mstest/IntegrationTests/BasicTests.cs?name=snippet1":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/nunit/IntegrationTests/BasicTests.cs?name=snippet1":::
+
+:::zone-end
 
 By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
 
@@ -79,7 +94,21 @@ Web host configuration can be created independently of the test classes by inher
 
 1. Inherit from `WebApplicationFactory` and override <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.ConfigureWebHost%2A>. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> allows the configuration of the service collection with [`IWebHostBuilder.ConfigureServices`](xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder.ConfigureServices%2A)
 
-   [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
+   :::zone pivot="xunit"
+
+   :::code language="csharp" source="snippets/xunit/CustomWebApplicationFactory.cs?name=snippet1":::
+
+   :::zone-end
+   :::zone pivot="mstest"
+
+   :::code language="csharp" source="snippets/mstest/CustomWebApplicationFactory.cs?name=snippet1":::
+
+   :::zone-end
+   :::zone pivot="nunit"
+
+   :::code language="csharp" source="snippets/nunit/CustomWebApplicationFactory.cs?name=snippet1":::
+
+   :::zone-end
 
    Database seeding in the [sample app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/10.x/IntegrationTestsSample) is performed by the `InitializeDbForTests` method. The method is described in the [Integration tests sample: Test app organization](#test-app-organization) section.
 
@@ -96,13 +125,41 @@ Web host configuration can be created independently of the test classes by inher
 -->
 2. Use the custom `CustomWebApplicationFactory` in test classes. The following example uses the factory in the `IndexPageTests` class:
 
-   [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
+   :::zone pivot="xunit"
+
+   :::code language="csharp" source="snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+
+   :::zone-end
+   :::zone pivot="mstest"
+
+   :::code language="csharp" source="snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+
+   :::zone-end
+   :::zone pivot="nunit"
+
+   :::code language="csharp" source="snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+
+   :::zone-end
 
    The sample app's client is configured to prevent the `HttpClient` from following redirects. As explained later in the [Mock authentication](#mock-authentication) section, this permits tests to check the result of the app's first response. The first response is a redirect in many of these tests with a `Location` header.
 
 3. A typical test uses the `HttpClient` and helper methods to process the request and the response:
 
-   [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet2)]
+   :::zone pivot="xunit"
+
+   :::code language="csharp" source="snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet2":::
+
+   :::zone-end
+   :::zone pivot="mstest"
+
+   :::code language="csharp" source="snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet2":::
+
+   :::zone-end
+   :::zone pivot="nunit"
+
+   :::code language="csharp" source="snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet2":::
+
+   :::zone-end
 
 Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](xref:security/data-protection/introduction). In order to arrange for a test's POST request, the test app must:
 
@@ -135,7 +192,21 @@ The `Post_DeleteMessageHandler_ReturnsRedirectToRoot` test method of the [sample
 
 Because another test in the `IndexPageTests` class performs an operation that deletes all of the records in the database and may run before the `Post_DeleteMessageHandler_ReturnsRedirectToRoot` method, the database is reseeded in this test method to ensure that a record is present for the SUT to delete. Selecting the first delete button of the `messages` form in the SUT is simulated in the request to the SUT:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet3)]
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet3":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet3":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet3":::
+
+:::zone-end
 
 ## Client options
 
@@ -143,7 +214,21 @@ See the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOption
 
 Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> method:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+
+:::zone-end
 
 ***NOTE:*** To avoid HTTPS redirection warnings in logs when using HTTPS Redirection Middleware, set `BaseAddress = new Uri("https://localhost")`
 
@@ -188,11 +273,39 @@ To test the service and quote injection in an integration test, a mock service i
 
 `IntegrationTests.IndexPageTests.cs`:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4)]
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet4":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet4":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet4":::
+
+:::zone-end
 
 `ConfigureTestServices` is called, and the scoped service is registered:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21)]
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21":::
+
+:::zone-end
 
 The markup produced during the test's execution reflects the quote text supplied by `TestQuoteService`, thus the assertion passes:
 
@@ -214,7 +327,21 @@ In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.Dependency
 
 In the `Get_SecurePageRedirectsAnUnauthenticatedUser` test, a <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions> is set to disallow redirects by setting <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions.AllowAutoRedirect> to `false`:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet2)]
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/xunit/IntegrationTests/AuthTests.cs?name=snippet2":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/mstest/IntegrationTests/AuthTests.cs?name=snippet2":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/nunit/IntegrationTests/AuthTests.cs?name=snippet2":::
+
+:::zone-end
 
 By disallowing the client to follow the redirect, the following checks can be made:
 
@@ -223,11 +350,39 @@ By disallowing the client to follow the redirect, the following checks can be ma
 
 The test app can mock an <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> in <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> in order to test aspects of authentication and authorization. A minimal scenario returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Success%2A?displayProperty=nameWithType>:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18)]
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/xunit/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/mstest/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/nunit/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18":::
+
+:::zone-end
 
 The `TestAuthHandler` is called to authenticate a user when the authentication scheme is set to `TestScheme` where `AddAuthentication` is registered for `ConfigureTestServices`. It's important for the `TestScheme` scheme to match the scheme your app expects. Otherwise, authentication won't work.
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12)]
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/xunit/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/mstest/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/nunit/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12":::
+
+:::zone-end
 
 For more information on `WebApplicationFactoryClientOptions`, see the [Client options](#client-options) section.
 
@@ -239,7 +394,21 @@ See [this GitHub repository](https://github.com/blowdart/idunno.Authentication/t
 
 Set the [environment](xref:fundamentals/environments) in the custom application factory:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1&highlight=36)]
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/xunit/CustomWebApplicationFactory.cs?name=snippet1&highlight=36":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/mstest/CustomWebApplicationFactory.cs?name=snippet1&highlight=36":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/nunit/CustomWebApplicationFactory.cs?name=snippet1&highlight=36":::
+
+:::zone-end
 
 ## How the test infrastructure infers the app content root path
 
@@ -259,7 +428,21 @@ To disable shadow copying when using xUnit, create a `xunit.runner.json` file in
 
 ## Disposal of objects
 
+:::zone pivot="xunit"
+
 After the tests of the `IClassFixture` implementation are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when xUnit disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601). If objects instantiated by the developer require disposal, dispose of them in the `IClassFixture` implementation. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
+
+:::zone-end
+:::zone pivot="mstest"
+
+After the tests of the `TestClass` are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when MSTest disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601) in the `ClassCleanup` method. If objects instantiated by the developer require disposal, dispose of them in the `ClassCleanup` method. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
+
+:::zone-end
+:::zone pivot="nunit"
+
+After the tests of the test class are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when NUnit disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601) in the `TearDown` method. If objects instantiated by the developer require disposal, dispose of them in the `TearDown` method. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
+
+:::zone-end
 
 ## Integration tests sample
 
