@@ -112,9 +112,9 @@ groups:
   title: Unit testing framework
   prompt: Choose a unit testing framework
   pivots:
-  - id: xunit
-    title: xUnit
-  - id: mstest
-    title: MSTest
-  - id: nunit
-    title: NUnit
+    - id: xunit
+      title: xUnit
+    - id: mstest
+      title: MSTest
+    - id: nunit
+      title: NUnit
