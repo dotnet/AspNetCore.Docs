@@ -20,6 +20,17 @@ The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json
 
 :::moniker range=">= aspnetcore-8.0"
 
+## Use a token handler for web API calls
+
+Blazor Web Apps with OIDC authentication can use a token handler approach to make outgoing requests to secure external web API calls. This approach is used by the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps described in the next section.
+
+For more information, see the following resources:
+
+* <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
+* *Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)*
+  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-with-oidc?view=aspnetcore-9.0&pivots=non-bff-pattern)
+  * [Non-BFF pattern (Interactive Server)](xref:blazor/security/blazor-web-app-with-oidc?view=aspnetcore-9.0&pivots=non-bff-pattern-server)
+
 ## Sample apps
 
 For working examples, see the following sample apps in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
