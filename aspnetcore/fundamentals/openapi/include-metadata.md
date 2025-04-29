@@ -648,7 +648,7 @@ An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.
 
 **Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
 
-[Set JSON options globally](#set-json-serialization-options-globally) shows how to set the the `JsonStringEnumConverter` globally.
+[Set JSON options globally](#set-json-serialization-options-globally) shows how to set the `JsonStringEnumConverter` globally.
 
 #### nullable
 
