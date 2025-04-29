@@ -68,7 +68,7 @@ The `NavMenu` component (`Components/Layout/NavMenu.razor`) implements sidebar n
 
 A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> assigned to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match%2A> parameter configures the component to display an active CSS class when it matches the entire current URL.
 
-The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component built into the Blazor framework for any Blazor app to use, while the `NavMenu` component is only part of Blazor project templates.
+The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is built into the Blazor framework for any Blazor app to use, while the `NavMenu` component is only part of Blazor project templates.
 
 `Components/Layout/NavMenu.razor`:
 
