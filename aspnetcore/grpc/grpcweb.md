@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 06/30/2020
+ms.date: 04/29/2025
 uid: grpc/grpcweb
 ---
 # gRPC-Web in ASP.NET Core gRPC apps
@@ -134,7 +134,8 @@ The preceding code:
 * `GrpcWebMode`: An enumeration type that specifies whether the gRPC HTTP request `Content-Type` is `application/grpc-web` or `application/grpc-web-text`.
   * `GrpcWebMode.GrpcWeb` configures sending content without encoding. Default value.
   * `GrpcWebMode.GrpcWebText` configures base64-encoded content. Required for server streaming calls in browsers.
-* `HttpVersion`: HTTP protocol `Version` used to set <xref:System.Net.Http.HttpRequestMessage.Version?displayProperty=nameWithType> on the underlying gRPC HTTP request. gRPC-Web doesn't require a specific version and doesn't override the default unless specified.
+
+`GrpcChannelOptions.HttpVersion` and `GrpcChannelOptions.HttpVersionPolicy` can be used to configure the HTTP protocol version.
 
 > [!IMPORTANT]
 > Generated gRPC clients have synchronous and asynchronous methods for calling unary methods. For example, `SayHello` is synchronous, and `SayHelloAsync` is asynchronous. Asynchronous methods are always required in Blazor WebAssembly. Calling a synchronous method in a Blazor WebAssembly app causes the app to become unresponsive.
