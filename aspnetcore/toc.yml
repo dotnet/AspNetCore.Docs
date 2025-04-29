@@ -660,8 +660,10 @@ items:
                 uid: blazor/performance/app-download-size
               - name: JavaScript interop
                 uid: blazor/performance/js-interop
-              - name: WebAssembly profiling
-                uid: blazor/performance/profiling
+              - name: WebAssembly developer tools profiling
+                uid: blazor/performance/developer-tools-profiling
+              - name: WebAssembly Event Pipe profiling
+                uid: blazor/performance/event-pipe-profiling
           - name: Test components
             uid: blazor/test
           - name: Progressive Web Applications

@@ -66,15 +66,21 @@ After an app is deployed, verify that the app serves compressed files. Inspect t
 
 Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size.
 
-Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
-
-:::moniker range=">= aspnetcore-8.0"
-
-Adopting [invariant globalization](xref:blazor/globalization-localization#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data from the app, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file:
+Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may configure the app to [support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture. Apply the `<InvariantGlobalization>` MSBuild property with a value of `true` in the app's project file (`.csproj`):
 
 ```xml
 <PropertyGroup>
-<InvariantTimezone>true</InvariantTimezone>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
+:::moniker range=">= aspnetcore-8.0"
+
+Adopting [invariant globalization](xref:blazor/globalization-localization#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data from the app, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <InvariantTimezone>true</InvariantTimezone>
 </PropertyGroup>
 ```
 
@@ -89,7 +95,7 @@ A data file is included to make timezone information correct. If the app doesn't
 
 ```xml
 <PropertyGroup>
-<BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+  <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
 </PropertyGroup>
 ```
 
@@ -101,8 +107,12 @@ Collation information is included to make APIs such as <xref:System.StringCompar
 
 ```xml
 <PropertyGroup>
-<BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
+  <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
 </PropertyGroup>
 ```
 
 :::moniker-end
+
+## Additional resources
+
+[Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md)

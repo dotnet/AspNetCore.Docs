@@ -1,14 +1,14 @@
 ---
-title: ASP.NET Core Blazor WebAssembly performance profiling and diagnostic counters
+title: ASP.NET Core Blazor WebAssembly developer tools performance profiling and diagnostic counters
 author: guardrex
-description: Learn about performance profiling and diagnostic counters in ASP.NET Core Blazor WebAssembly apps.
+description: Learn about developer tools performance profiling and diagnostic counters in ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2025
-uid: blazor/performance/profiling
+ms.date: 04/29/2025
+uid: blazor/performance/developer-tools-profiling
 ---
-# ASP.NET Core Blazor WebAssembly performance profiling and diagnostic counters
+# ASP.NET Core Blazor WebAssembly developer tools performance profiling and diagnostic counters
 
 <!-- UPDATE 10.0 - Activate ...
 
@@ -16,7 +16,7 @@ uid: blazor/performance/profiling
 
 -->
 
-This article describes performance profiling tools and diagnostic counters for Blazor WebAssembly apps.
+This article describes developer tools performance profiling tools and diagnostic counters for Blazor WebAssembly apps.
 
 ## Prerequisite
 
@@ -34,10 +34,9 @@ Built-in performance counters are available to track:
 
 * [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation)
 * Code interpolation
-* [JIT (Just-In-Time) interpolation](https://developer.mozilla.org/docs/Glossary/Just_In_Time_Compilation) 
 * Call specification (":::no-loc text="callspec":::", sequence and timing of function calls) and instrumentation
 
-Enable integration with the browser's developer tools profiler using the `<WasmProfilers>` property in the app's project file (`.csproj`). Include the additional properties in the following table.
+The MSBuild properties in the following table enable profiler integration.
 
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
@@ -48,8 +47,12 @@ Property | Default | Set value to&hellip; | Description
 `<WasmNativeDebugSymbols>` | `true` | `true` | Controls building with native debug symbols.
 `<WasmBuildNative>` | `false` | `true` | Controls building the native executable.
 
+Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:ProfilingEnabled=true` (.NET CLI) or `<ProfilingEnabled>true</ProfilingEnabled>` in a Visual Studio publish profile.
+
+In the app's project file (`.csproj`):
+
 ```xml
-<PropertyGroup>
+<PropertyGroup Condition="'$(ProfilingEnabled)' == 'true'">
   <WasmProfilers>browser;</WasmProfilers>
   <RunAOTCompilation>true</RunAOTCompilation>
   <RunAOTCompilationAfterBuild>true</RunAOTCompilationAfterBuild>
@@ -59,7 +62,15 @@ Property | Default | Set value to&hellip; | Description
 </PropertyGroup>
 ```
 
-Add Blazor start configuration in `wwwroot/index.html`, using the [fingerprinted location of the Blazor WebAssembly script](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps). In the following example, the `sampleIntervalMs` option is set to 10 seconds, which is the default setting if `sampleIntervalMs` isn't specified:
+Setting WebAssembly profilers with `<WasmProfilers>browser;</WasmProfilers>` doesn't require AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `false` or removed from the preceding properity group).
+
+The browser developer tools profiler can be used with AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `true`) and without WebAssembly profilers (`<WasmProfilers>browser;</WasmProfilers>` removed from the preceding property group).
+
+To see AOT method names in the developer tools console, install [DWARF chrome extension](https://chromewebstore.google.com/detail/cc++-devtools-support-dwa/pdcpmagijalfljmkmjngeonclgbbannb).
+
+## Set the sample interval
+
+To set the sample interval, add the following Blazor start configuration in `wwwroot/index.html` and add `autostart="false"` to the Blazor `<script>` tag. In the following example, the `sampleIntervalMs` option is set to 10 seconds, which is the default setting if `sampleIntervalMs` isn't specified:
 
 ```html
 <script src="_framework/blazor.webassembly#[.{fingerprint}].js" 
@@ -105,57 +116,12 @@ Configure `callSpec` in `browserProfilerOptions`. Replace the `{APP NAMESPACE}` 
 </script>
 ```
 
-## Log profiling for memory troubleshooting
-
-Enable integration with the log profiler using the `<WasmProfilers>` and `<WasmBuildNative>` properties in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <WasmProfilers>log</WasmProfilers>
-  <WasmBuildNative>true</WasmBuildNative>
-</PropertyGroup>
-```
-
-To trigger a heap shot, add the following, where the `{APP NAMESPACE}` placeholder is the app's namespace:
-
-```csharp
-namespace {APP NAMESPACE};
-
-public class Profiling
-{
-    [JSExport]
-    [MethodImpl(MethodImplOptions.NoInlining)]
-    public static void TakeHeapshot() { }
-}
-```
-
-Invoke `TakeHeapshot` to create a memory heap shot and flush the contents of the profile to the file system. Download the resulting `.mpld` file to analyze the data.
-
-## EventPipe profiler
-
-[EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
-
-* Manual testing
-  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected method calls.
-  * [`dotnet-trace`](/dotnet/core/diagnostics/dotnet-trace): Open the `.nettrace` output file in Visual Studio and find the expected method calls.
-* Web-based testing
-  * Use the JavaScript API to obtain a [promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) of NetTrace (`.nettrace`) bytes.
-  * Upload the file via HTTP.
-  * Parse and validate that the trace contains the expected method calls.
-
-Built-in performance counters are available to track:
-
-* [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation)
-* Code interpolation
-* [JIT (Just-In-Time) interpolation](https://developer.mozilla.org/docs/Glossary/Just_In_Time_Compilation)
-
 ## GC (Garbage Collector) dumps
 
 * Manual testing
   * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected classes.
   * [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump): To view the captured GC dump files, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
 * Web-based testing
-  * Use the JavaScript API to obtain a [promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) of NetTrace (`.nettrace`) bytes.
   * Upload the file via HTTP.
   * Parse and validate that the trace contains the expected classes.
 
@@ -165,7 +131,6 @@ Built-in performance counters are available to track:
   * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected counters.
   * [`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters): Open the `.csv`/`.json` output file in Visual Studio and find the expected counters.
 * Web-based testing
-  * Use the JavaScript API to obtain a [promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) of NetTrace (`.nettrace`) bytes.
   * Upload the file via HTTP.
   * Parse and validate that the trace contains the expected counters.
 
