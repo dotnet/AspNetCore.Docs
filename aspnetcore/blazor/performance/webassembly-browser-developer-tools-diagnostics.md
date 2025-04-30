@@ -1,14 +1,14 @@
 ---
-title: ASP.NET Core Blazor WebAssembly browser developer tools diagnostic profiling
+title: ASP.NET Core Blazor WebAssembly browser developer tools diagnostics
 author: guardrex
-description: Learn about browser developer tools diagnostic profiling in ASP.NET Core Blazor WebAssembly apps.
+description: Learn about browser developer tools diagnostics in ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/30/2025
-uid: blazor/performance/browser-developer-tools
+uid: blazor/performance/webassembly-browser-developer-tools
 ---
-# ASP.NET Core Blazor WebAssembly browser developer tools diagnostic profiling
+# ASP.NET Core Blazor WebAssembly browser developer tools diagnostics
 
 <!-- UPDATE 10.0 - Activate ...
 
@@ -16,7 +16,7 @@ uid: blazor/performance/browser-developer-tools
 
 -->
 
-This article describes browser developer tools diagnostic profiling tools in Blazor WebAssembly apps.
+This article describes browser developer tools diagnostic tools in Blazor WebAssembly apps.
 
 ## Prerequisite
 
@@ -56,17 +56,16 @@ In the app's project file (`.csproj`):
   <WasmProfilers>browser;</WasmProfilers>
   <WasmNativeStrip>false</WasmNativeStrip>
   <WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
-  <WasmBuildNative>true</WasmBuildNative>
 </PropertyGroup>
 ```
 
 Alternatively, enable features when the app is built with the .NET CLI. The following options passed to the `dotnet build` command mirror the preceding MS Build property configuration:
 
 ```dotnetcli
-/p:WasmProfilers=browser /p:WasmNativeStrip=false /p:WasmNativeDebugSymbols=true /p:WasmBuildNative=true
+/p:WasmProfilers=browser /p:WasmNativeStrip=false /p:WasmNativeDebugSymbols=true
 ```
 
-Setting WebAssembly profilers with `<WasmProfilers>browser;</WasmProfilers>` doesn't require AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `false` or removed from the preceding properity group).
+Setting WebAssembly profilers with `<WasmProfilers>browser;</WasmProfilers>` doesn't require AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `false` or removed from the preceding property group).
 
 The browser developer tools profiler can be used with AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `true`) and without WebAssembly profilers (`<WasmProfilers>browser;</WasmProfilers>` removed from the preceding property group).
 

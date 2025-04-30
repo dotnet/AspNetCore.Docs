@@ -1,14 +1,14 @@
 ---
-title: ASP.NET Core Blazor WebAssembly Event Pipe diagnostic profiling
+title: ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
 author: guardrex
-description: Learn about Event Pipe diagnostic profiling, counters, and how to get a Garbage Collector heap dump in ASP.NET Core Blazor WebAssembly apps.
+description: Learn about Event Pipe diagnostics and how to get a Garbage Collector heap dump in ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/30/2025
-uid: blazor/performance/event-pipe
+uid: blazor/performance/webassembly-event-pipe
 ---
-# ASP.NET Core Blazor WebAssembly Event Pipe diagnostic profiling
+# ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
 
 <!-- UPDATE 10.0 - Activate ...
 
@@ -16,7 +16,7 @@ uid: blazor/performance/event-pipe
 
 -->
 
-This article describes Event Pipe diagnostic profiling tools, counters, and how to get a Garbage Collector heap dump in Blazor WebAssembly apps.
+This article describes Event Pipe diagnostic tools, counters, and how to get a Garbage Collector heap dump in Blazor WebAssembly apps.
 
 ## Prerequisite
 

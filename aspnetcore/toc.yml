@@ -661,9 +661,9 @@ items:
               - name: JavaScript interop
                 uid: blazor/performance/js-interop
               - name: WebAssembly browser developer tools diagnostics
-                uid: blazor/performance/browser-developer-tools
+                uid: blazor/performance/webassembly-browser-developer-tools
               - name: WebAssembly Event Pipe diagnostics
-                uid: blazor/performance/event-pipe
+                uid: blazor/performance/webassembly-event-pipe
           - name: Test components
             uid: blazor/test
           - name: Progressive Web Applications
