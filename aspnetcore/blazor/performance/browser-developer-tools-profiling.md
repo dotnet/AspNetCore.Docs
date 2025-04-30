@@ -1,14 +1,14 @@
 ---
-title: ASP.NET Core Blazor WebAssembly developer tools performance profiling and diagnostic counters
+title: ASP.NET Core Blazor WebAssembly browser developer tools diagnostic profiling
 author: guardrex
-description: Learn about developer tools performance profiling and diagnostic counters in ASP.NET Core Blazor WebAssembly apps.
+description: Learn about browser developer tools diagnostic profiling for ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/29/2025
-uid: blazor/performance/developer-tools-profiling
+ms.date: 04/30/2025
+uid: blazor/performance/browser-developer-tools
 ---
-# ASP.NET Core Blazor WebAssembly developer tools performance profiling and diagnostic counters
+# ASP.NET Core Blazor WebAssembly browser developer tools diagnostic profiling
 
 <!-- UPDATE 10.0 - Activate ...
 
@@ -16,7 +16,7 @@ uid: blazor/performance/developer-tools-profiling
 
 -->
 
-This article describes developer tools performance profiling tools and diagnostic counters for Blazor WebAssembly apps.
+This article describes browser developer tools diagnostic profiling tools for Blazor WebAssembly apps.
 
 ## Prerequisite
 
@@ -28,9 +28,9 @@ dotnet workload install wasm-tools
 
 ## Browser developer tools
 
-App code can be manually profiled using the performance profiler in a browser's developer tools console.
+App code can be manually profiled using the diagnostic profiler in a browser's developer tools console.
 
-Built-in performance counters are available to track:
+Built-in diagnostic counters are available to track:
 
 * [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation)
 * Code interpolation
@@ -47,19 +47,23 @@ Property | Default | Set value to&hellip; | Description
 `<WasmNativeDebugSymbols>` | `true` | `true` | Controls building with native debug symbols.
 `<WasmBuildNative>` | `false` | `true` | Controls building the native executable.
 
-Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:ProfilingEnabled=true` (.NET CLI) or `<ProfilingEnabled>true</ProfilingEnabled>` in a Visual Studio publish profile.
+Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
 
 In the app's project file (`.csproj`):
 
 ```xml
-<PropertyGroup Condition="'$(ProfilingEnabled)' == 'true'">
+<PropertyGroup Condition="'$(BlazorSampleProfilingEnabled)' == 'true'">
   <WasmProfilers>browser;</WasmProfilers>
-  <RunAOTCompilation>true</RunAOTCompilation>
-  <RunAOTCompilationAfterBuild>true</RunAOTCompilationAfterBuild>
   <WasmNativeStrip>false</WasmNativeStrip>
   <WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
   <WasmBuildNative>true</WasmBuildNative>
 </PropertyGroup>
+```
+
+Alternatively, enable features when the app is built with the .NET CLI. The following options passed to the `dotnet build` command mirror the preceding MS Build property configuration:
+
+```dotnetcli
+/p:WasmProfilers=browser /p:WasmNativeStrip=false /p:WasmNativeDebugSymbols=true /p:WasmBuildNative=true
 ```
 
 Setting WebAssembly profilers with `<WasmProfilers>browser;</WasmProfilers>` doesn't require AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `false` or removed from the preceding properity group).

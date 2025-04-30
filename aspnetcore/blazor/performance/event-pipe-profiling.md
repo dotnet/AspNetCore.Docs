@@ -1,14 +1,14 @@
 ---
-title: ASP.NET Core Blazor WebAssembly Event Pipe performance profiling and diagnostic counters
+title: ASP.NET Core Blazor WebAssembly Event Pipe diagnostic profiling
 author: guardrex
-description: Learn about Event Pipe performance profiling and diagnostic counters in ASP.NET Core Blazor WebAssembly apps.
+description: Learn about Event Pipe diagnostic profiling, counters, and how to get a Garbage Collector heap dump in ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/29/2025
-uid: blazor/performance/event-pipe-profiling
+ms.date: 04/30/2025
+uid: blazor/performance/event-pipe
 ---
-# ASP.NET Core Blazor WebAssembly Event Pipe performance profiling and diagnostic counters
+# ASP.NET Core Blazor WebAssembly Event Pipe diagnostic profiling
 
 <!-- UPDATE 10.0 - Activate ...
 
@@ -16,7 +16,7 @@ uid: blazor/performance/event-pipe-profiling
 
 -->
 
-This article describes Event Pipe performance profiling tools and diagnostic counters for Blazor WebAssembly apps.
+This article describes Event Pipe diagnostic profiling tools, counters, and how to get a Garbage Collector heap dump in Blazor WebAssembly apps.
 
 ## Prerequisite
 
@@ -37,7 +37,7 @@ dotnet workload install wasm-tools
   * Upload the file via HTTP.
   * Parse and validate that the trace contains the expected method calls.
 
-Built-in performance counters are available to track:
+Built-in diagnostic counters are available to track:
 
 * [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation)
 * Code interpolation
@@ -74,7 +74,7 @@ For more information, see the [.NET Core diagnostics documentation](/dotnet/core
 The following example:
 
 * Collects a GC (Garbage Collector) dump of the live .NET process.
-* Collects performance counters for 60 seconds.
+* Collects diagnostic counters for 60 seconds.
 * Collects CPU counters for 60 seconds.
 
 The MSBuild properties in the following table enable profiler integration.
@@ -82,16 +82,16 @@ The MSBuild properties in the following table enable profiler integration.
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
 `<WasmPerfTracing>` | `false` | `true` | Controls diagnostic server tracing.
-`<WasmPerfInstrumentation>` | `false` | `true` | Controls CPU sampling instrumentation for diagnostic server. Not necessary for memory dump or counters. **Makes the app execute slower. Only set this to `true` for performance profiling.
+`<WasmPerfInstrumentation>` | `false` | `true` | Controls CPU sampling instrumentation for diagnostic server. Not necessary for memory dump or counters. **Makes the app execute slower. Only set this to `true` for performance profiling.**
 `<MetricsSupport>` | `false` | `true` | Controls `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
 `<EventSourceSupport>` | `false`| `true` | Controls `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
 
-Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:ProfilingEnabled=true` (.NET CLI) or `<ProfilingEnabled>true</ProfilingEnabled>` in a Visual Studio publish profile.
+Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
 
 In the app's project file (`.csproj`):
 
 ```xml
-<PropertyGroup Condition="'$(ProfilingEnabled)' == 'true'">
+<PropertyGroup Condition="'$(BlazorSampleProfilingEnabled)' == 'true'">
   <WasmPerfTracing>true</WasmPerfTracing>
   <WasmPerfInstrumentation>true</WasmPerfInstrumentation>
   <MetricsSupport>true</MetricsSupport>
@@ -99,13 +99,19 @@ In the app's project file (`.csproj`):
 </PropertyGroup>
 ```
 
+Alternatively, enable features when the app is built with the .NET CLI. The following options passed to the `dotnet build` command mirror the preceding MS Build property configuration:
+
+```dotnetcli
+/p:WasmPerfTracing=true /p:WasmPerfInstrumentation=true /p:MetricsSupport=true /p:EventSourceSupport=true
+```
+
 The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
 
 Browser developer tools console calls in the following example that trigger profiling:
 
 * `collectGcDump`: Collect a GC (Garbage Collector) dump.
-* `collectPerfCounters(durationSeconds)`: Collect general performance counters.
-* `collectCpuSamples(durationSeconds)`: Collect CPU performance counters.
+* `collectPerfCounters(durationSeconds)`: Collect general diagnostic counters.
+* `collectCpuSamples(durationSeconds)`: Collect CPU diagnostic counters.
 
 ```javascript
 globalThis.getDotnetRuntime(0).collectGcDump();
