@@ -69,7 +69,9 @@ json{
 }
 ```
 
-## API v. API operation v. API endpoint
+## API, API operation, and API endpoint comparison
+
+The following table summarizes the differences between an API, an API operation, and an API endpoint:
 
 | Concept         | API Operation                                      | API Endpoint                                      |
 |-----------------|----------------------------------------------------|--------------------------------------------------|
