@@ -73,7 +73,15 @@ To see AOT method names in the developer tools console, install [DWARF chrome ex
 
 ## Set the sample interval
 
-To set the sample interval, add the following Blazor start configuration in `wwwroot/index.html` and add `autostart="false"` to the Blazor `<script>` tag. In the following example, the `sampleIntervalMs` option is set to 10 seconds, which is the default setting if `sampleIntervalMs` isn't specified:
+Configure the sample interval in the app's project file. In the following example, the `sampleIntervalMs` option is set to 10 seconds, which is the default setting if `sampleIntervalMs` isn't specified:
+
+```xml
+<PropertyGroup>
+  <WasmProfilers>browser:sampleIntervalMs=10;</WasmProfilers>
+</PropertyGroup>
+```
+
+Alternatively, add the following Blazor start configuration in `wwwroot/index.html` and add `autostart="false"` to the Blazor `<script>` tag:
 
 ```html
 <script src="_framework/blazor.webassembly#[.{fingerprint}].js" 
