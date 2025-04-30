@@ -30,10 +30,9 @@ dotnet workload install wasm-tools
 
 App code can be manually profiled using the diagnostic profiler in a browser's developer tools console.
 
-Built-in diagnostic counters are available to track:
+Built-in diagnostic features are available to track:
 
 * [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation)
-* Code interpolation
 * Call specification (":::no-loc text="callspec":::", sequence and timing of function calls) and instrumentation
 
 The MSBuild properties in the following table enable profiler integration.
@@ -41,11 +40,8 @@ The MSBuild properties in the following table enable profiler integration.
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
 `<WasmProfilers>` | No value | `browser` | Mono profilers to use. Potential values are "`browser`" and "`log`". To use both, separate the values with a semicolon. The `browser` profiler enables integration with the browser's developer tools profiler.
-`<RunAOTCompilation>`| `false` | `true` | Controls AOT compilation.
-`<RunAOTCompilationAfterBuild>` | `false` | `true` | Controls AOT compilation after build. By default, it's run only for publish.
 `<WasmNativeStrip>` | `true` | `false` | Controls stripping the native executable.
 `<WasmNativeDebugSymbols>` | `true` | `true` | Controls building with native debug symbols.
-`<WasmBuildNative>` | `false` | `true` | Controls building the native executable.
 
 Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
 
@@ -65,7 +61,7 @@ Alternatively, enable features when the app is built with the .NET CLI. The foll
 /p:WasmProfilers=browser /p:WasmNativeStrip=false /p:WasmNativeDebugSymbols=true
 ```
 
-Setting WebAssembly profilers with `<WasmProfilers>browser;</WasmProfilers>` doesn't require AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `false` or removed from the preceding property group).
+Setting WebAssembly profilers with `<WasmProfilers>browser;</WasmProfilers>` doesn't require AOT.
 
 The browser developer tools profiler can be used with AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `true`) and without WebAssembly profilers (`<WasmProfilers>browser;</WasmProfilers>` removed from the preceding property group).
 
@@ -79,24 +75,6 @@ Configure the sample interval in the app's project file. In the following exampl
 <PropertyGroup>
   <WasmProfilers>browser:sampleIntervalMs={INTERVAL};</WasmProfilers>
 </PropertyGroup>
-```
-
-Alternatively, add the following Blazor start configuration in `wwwroot/index.html` and add `autostart="false"` to the Blazor `<script>` tag. The `{INTERVAL}` placeholder represents the time in milliseconds:
-
-```html
-<script src="_framework/blazor.webassembly#[.{fingerprint}].js" 
-    autostart="false"></script>
-<script>
-  Blazor.start({
-    configureRuntime: function (builder) {
-      builder.withConfig({
-        browserProfilerOptions: {
-          sampleIntervalMs: {INTERVAL},
-        }
-      });
-    }
-  });
-</script>
 ```
 
 ## Call specification (:::no-loc text="callspec":::)
@@ -127,24 +105,6 @@ Alternatively, configure `callSpec` in `browserProfilerOptions`. Replace the `{A
 </script>
 ```
 
-## GC (Garbage Collector) dumps
-
-* Manual testing
-  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected classes.
-  * [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump): To view the captured GC dump files, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
-* Web-based testing
-  * Upload the file via HTTP.
-  * Parse and validate that the trace contains the expected classes.
-
-## Counters trace
-
-* Manual testing
-  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected counters.
-  * [`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters): Open the `.csv`/`.json` output file in Visual Studio and find the expected counters.
-* Web-based testing
-  * Upload the file via HTTP.
-  * Parse and validate that the trace contains the expected counters.
-
 ## .NET Core Diagnostics Client Library example
 
 Parse and validate NetTrace (`.nettrace`) messages using the .NET Core Diagnostics Client Library:
@@ -158,7 +118,6 @@ For more information, see the [.NET Core diagnostics documentation](/dotnet/core
 
 The following example:
 
-* Collects a GC (Garbage Collector) dump of the live .NET process.
 * Collects performance counters for 60 seconds.
 * Collects CPU counters for 60 seconds.
 
