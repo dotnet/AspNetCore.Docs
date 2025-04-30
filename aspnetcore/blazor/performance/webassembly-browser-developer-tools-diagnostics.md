@@ -98,16 +98,11 @@ For more information, see the [.NET Core diagnostics documentation](/dotnet/core
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-The following example:
-
-* Collects performance counters for 60 seconds.
-* Collects CPU counters for 60 seconds.
-
 In the project file (`.csproj`), the properties in the following table enable integration with the browser's profiler.
 
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
-`<WasmProfilers>` | No value | `browser` | Mono profilers to use. Potential values are "`browser`" and "`log`". To use both, separate the values with a semicolon. The `browser` profiler enables integration with the browser's developer tools profiler.
+`<WasmProfilers>` | No value | `browser` | Mono profiler. Currently, only "`browser`" is supported. The `browser` profiler enables integration with the browser's developer tools profiler.
 `<WasmPerfInstrumentation>` | `false` | `true` | Controls CPU sampling instrumentation for diagnostic server.
 
 ```xml
