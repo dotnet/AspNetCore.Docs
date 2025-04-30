@@ -40,7 +40,6 @@ dotnet workload install wasm-tools
 Built-in diagnostic counters are available to track:
 
 * [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation)
-* Code interpolation
 
 ## GC (Garbage Collector) dumps
 
