@@ -62,11 +62,23 @@ For more information, see the [.NET Core diagnostics documentation](/dotnet/core
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-The following example:
+Collect a GC (Garbage Collector) dump of the live .NET process with `collectGcDump`:
 
-* Collects a GC (Garbage Collector) dump of the live .NET process.
-* Collects diagnostic counters for 60 seconds.
-* Collects CPU counters for 60 seconds.
+```javascript
+globalThis.getDotnetRuntime(0).collectGcDump();
+```
+
+Collect diagnostic counters for 60 seconds with `collectPerfCounters(durationSeconds)`:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
+```
+
+Collect CPU counters for 60 seconds with `collectCpuSamples(durationSeconds)`:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
+```
 
 The MSBuild properties in the following table enable profiler integration.
 
@@ -97,26 +109,6 @@ Alternatively, enable features when the app is built with the .NET CLI. The foll
 ```
 
 The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
-
-Browser developer tools console calls in the following example that trigger profiling:
-
-* `collectGcDump`: Collect a GC (Garbage Collector) dump.
-
-  ```javascript
-  globalThis.getDotnetRuntime(0).collectGcDump();
-  ```
-
-* `collectPerfCounters(durationSeconds)`: Collect general diagnostic counters.
-
-    ```javascript
-  globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
-  ```
-
-* `collectCpuSamples(durationSeconds)`: Collect CPU diagnostic counters.
-
-  ```javascript
-  globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
-  ```
 
 ## Additional resources
 
