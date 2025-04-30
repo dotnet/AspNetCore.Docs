@@ -109,7 +109,7 @@ Add `callspec` to the `browser` WebAssembly profiler in the `<WasmProfilers>` el
 <WasmProfilers>browser:callspec=N:{APP NAMESPACE};</WasmProfilers>
 ```
 
-Configure `callSpec` in `browserProfilerOptions`. Replace the `{APP NAMESPACE}` placeholder in the following example with the app's namespace:
+Alternatively, configure `callSpec` in `browserProfilerOptions`. Replace the `{APP NAMESPACE}` placeholder in the following example with the app's namespace:
 
 ```html
 <script src="_framework/blazor.webassembly#[.{fingerprint}].js" 
