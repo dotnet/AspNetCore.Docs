@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor WebAssembly browser developer tools diagnostic profiling
 author: guardrex
-description: Learn about browser developer tools diagnostic profiling for ASP.NET Core Blazor WebAssembly apps.
+description: Learn about browser developer tools diagnostic profiling in ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: riande
 ms.custom: mvc
@@ -16,7 +16,7 @@ uid: blazor/performance/browser-developer-tools
 
 -->
 
-This article describes browser developer tools diagnostic profiling tools for Blazor WebAssembly apps.
+This article describes browser developer tools diagnostic profiling tools in Blazor WebAssembly apps.
 
 ## Prerequisite
 
