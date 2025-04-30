@@ -37,9 +37,7 @@ dotnet workload install wasm-tools
   * Upload the file via HTTP.
   * Parse and validate that the trace contains the expected method calls.
 
-Built-in diagnostic counters are available to track:
-
-* [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation)
+Built-in diagnostic counters are available to track [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation).
 
 ## GC (Garbage Collector) dumps
 
