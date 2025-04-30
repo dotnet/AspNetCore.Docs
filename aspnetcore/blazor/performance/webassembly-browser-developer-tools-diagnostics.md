@@ -169,32 +169,16 @@ Property | Default | Set value to&hellip; | Description
 `<WasmProfilers>` | No value | `browser` | Mono profilers to use. Potential values are "`browser`" and "`log`". To use both, separate the values with a semicolon. The `browser` profiler enables integration with the browser's developer tools profiler.
 `<WasmPerfTracing>` | `false` | `true` | Controls diagnostic server tracing.
 `<WasmPerfInstrumentation>` | `false` | `true` | Controls CPU sampling instrumentation for diagnostic server.
-`<MetricsSupport>` | `false` | `true` | Controls `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
-`<EventSourceSupport>` | `false`| `true` | Controls `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
 
 ```xml
 <PropertyGroup>
   <WasmProfilers>browser</WasmProfilers>
   <WasmPerfTracing>true</WasmPerfTracing>
   <WasmPerfInstrumentation>true</WasmPerfInstrumentation>
-  <MetricsSupport>true</MetricsSupport>
-  <EventSourceSupport>true</EventSourceSupport>
 </PropertyGroup>
 ```
 
 The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
-
-Browser developer tools console calls in the following example that trigger profiling:
-
-* `collectGcDump`: Collect a GC (Garbage Collector) dump.
-* `collectPerfCounters(durationSeconds)`: Collect general performance counters.
-* `collectCpuSamples(durationSeconds)`: Collect CPU performance counters.
-
-```javascript
-globalThis.getDotnetRuntime(0).collectGcDump();
-globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
-globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
-```
 
 ## Additional resources
 
