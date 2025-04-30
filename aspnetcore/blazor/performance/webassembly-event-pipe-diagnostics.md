@@ -37,25 +37,19 @@ dotnet workload install wasm-tools
   * Upload the file via HTTP.
   * Parse and validate that the trace contains the expected method calls.
 
-Built-in diagnostic counters are available to track [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation).
-
 ## GC (Garbage Collector) dumps
 
-* Manual testing
-  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected classes.
-  * [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump): To view the captured GC dump files, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
-* Web-based testing
-  * Upload the file via HTTP.
-  * Parse and validate that the trace contains the expected classes.
+* Manual testing:
+
+* Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected classes.
+* [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump): To view the captured GC dump files, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
 
 ## Counters trace
 
-* Manual testing
-  * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected counters.
-  * [`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters): Open the `.csv`/`.json` output file in Visual Studio and find the expected counters.
-* Web-based testing
-  * Upload the file via HTTP.
-  * Parse and validate that the trace contains the expected counters.
+Manual testing:
+
+* Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected counters.
+* [`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters): Open the `.csv`/`.json` output file in Visual Studio and find the expected counters.
 
 ## .NET Core Diagnostics Client Library example
 
@@ -107,14 +101,22 @@ The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/H
 Browser developer tools console calls in the following example that trigger profiling:
 
 * `collectGcDump`: Collect a GC (Garbage Collector) dump.
+
+  ```javascript
+  globalThis.getDotnetRuntime(0).collectGcDump();
+  ```
+
 * `collectPerfCounters(durationSeconds)`: Collect general diagnostic counters.
+
+    ```javascript
+  globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
+  ```
+
 * `collectCpuSamples(durationSeconds)`: Collect CPU diagnostic counters.
 
-```javascript
-globalThis.getDotnetRuntime(0).collectGcDump();
-globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
-globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
-```
+  ```javascript
+  globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
+  ```
 
 ## Additional resources
 

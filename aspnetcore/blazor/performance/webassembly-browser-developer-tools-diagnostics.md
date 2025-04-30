@@ -87,24 +87,6 @@ Add `callspec` to the `browser` WebAssembly profiler in the `<WasmProfilers>` el
 <WasmProfilers>browser:callspec=N:{APP NAMESPACE};</WasmProfilers>
 ```
 
-Alternatively, configure `callSpec` in `browserProfilerOptions`. Replace the `{APP NAMESPACE}` placeholder in the following example with the app's namespace:
-
-```html
-<script src="_framework/blazor.webassembly#[.{fingerprint}].js" 
-    autostart="false"></script>
-<script>
-  Blazor.start({
-    configureRuntime: function (builder) {
-      builder.withConfig({
-        browserProfilerOptions: {
-          callSpec: "N:{APP NAMESPACE}",
-        }
-      });
-    }
-  });
-</script>
-```
-
 ## .NET Core Diagnostics Client Library example
 
 Parse and validate NetTrace (`.nettrace`) messages using the .NET Core Diagnostics Client Library:
@@ -126,13 +108,11 @@ In the project file (`.csproj`), the properties in the following table enable in
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
 `<WasmProfilers>` | No value | `browser` | Mono profilers to use. Potential values are "`browser`" and "`log`". To use both, separate the values with a semicolon. The `browser` profiler enables integration with the browser's developer tools profiler.
-`<WasmPerfTracing>` | `false` | `true` | Controls diagnostic server tracing.
 `<WasmPerfInstrumentation>` | `false` | `true` | Controls CPU sampling instrumentation for diagnostic server.
 
 ```xml
 <PropertyGroup>
   <WasmProfilers>browser</WasmProfilers>
-  <WasmPerfTracing>true</WasmPerfTracing>
   <WasmPerfInstrumentation>true</WasmPerfInstrumentation>
 </PropertyGroup>
 ```
