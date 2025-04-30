@@ -15,7 +15,7 @@ An API operation represents a specific action or capability that an API provides
 * Controller action methods in MVC-style APIs
 * Route handlers in Minimal APIs
 
-Each operation is defined by its HTTP method (`GET`, `POST`, `PUT`, etc.), parameters, and responses.
+Each operation is defined by its HTTP method (`GET`, `POST`, `PUT`, etc.), path, parameters, and responses.
 
 ### API Endpoint
 
@@ -41,7 +41,7 @@ In the context of OpenAPI, the documentation describes the API as a whole, inclu
 
 API Operations are the primary focus of OpenAPI documentation. The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) organizes documentation by operations, which are grouped by paths (endpoints). Each operation is described with details such as parameters, request bodies, responses, and more. This structured format allows tools to generate client libraries, server stubs, and interactive documentation automatically.
 
-In a OpenAPI document:
+In an OpenAPI document:
 
 * The entire document describes the API as a whole
 * Each path item (like `/api/products/{id}`) represents an endpoint
