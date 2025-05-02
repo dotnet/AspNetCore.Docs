@@ -1,15 +1,4 @@
----
-title: Troubleshoot and debug ASP.NET Core projects
-author: tdykstra
-description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
-ms.author: tdykstra
-ms.custom: mvc
-ms.date: 07/10/2019
-uid: test/troubleshoot
----
-# Troubleshoot and debug ASP.NET Core projects
-
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -169,5 +158,3 @@ The following links provide information on debugging ASP.NET Core apps.
 * See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/2960) for more debugging information.
 
 :::moniker-end
-
-[!INCLUDE[](~/test/troubleshoot/includes/troubleshoot5.md)]
