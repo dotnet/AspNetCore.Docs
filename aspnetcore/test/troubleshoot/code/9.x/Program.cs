@@ -19,7 +19,8 @@ if (app.Environment.IsDevelopment())
         var rule = string.Concat(nl, new string('-', 40), nl);
 
 
-        var authSchemeProvider = app.Services.GetRequiredService<IAuthenticationSchemeProvider>();
+        var authSchemeProvider = app.Services.
+                       GetRequiredService<IAuthenticationSchemeProvider>();
 
         sb.Append($"Request{rule}");
         sb.Append($"{DateTimeOffset.Now}{nl}");
