@@ -1,3 +1,5 @@
+// This is a copy/paste from the previous version embedded in the MD file, used only for productive
+// GitHub diff
 public void Configure(IApplicationBuilder app, IHostingEnvironment env,
     IConfiguration config)
 {
