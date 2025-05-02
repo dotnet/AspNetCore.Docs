@@ -26,42 +26,6 @@ Install the [.NET WebAssembly build tools](xref:blazor/tooling/webassembly#net-w
 dotnet workload install wasm-tools
 ```
 
-## EventPipe profiler
-
-[EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
-
-Collect CPU counters for 60 seconds with `collectCpuSamples(durationSeconds)`:
-
-```javascript
-globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
-```
-
-## GC (Garbage Collector) dumps
-
-Manual testing:
-
-* Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected classes.
-* [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump): To view the captured GC dump files, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
-
-Collect a GC (Garbage Collector) dump of the live .NET process with `collectGcDump`:
-
-```javascript
-globalThis.getDotnetRuntime(0).collectGcDump();
-```
-
-## Counters trace
-
-Manual testing:
-
-* Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected counters.
-* [`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters): Open the `.csv`/`.json` output file in Visual Studio and find the expected counters.
-
-Collect diagnostic counters for 60 seconds with `collectPerfCounters(durationSeconds)`:
-
-```javascript
-globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
-```
-
 ## .NET Core Diagnostics Client Library example
 
 Parse and validate NetTrace (`.nettrace`) messages using the .NET Core Diagnostics Client Library:
@@ -102,6 +66,42 @@ Alternatively, enable features when the app is built with the .NET CLI. The foll
 ```
 
 The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
+
+## EventPipe profiler
+
+[EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
+
+Collect CPU counters for 60 seconds with `collectCpuSamples(durationSeconds)`:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
+```
+
+To view the trace, see [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics/eventpipe#use-eventpipe-to-trace-your-net-application).
+
+## GC (Garbage Collector) dumps
+
+The [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump) global tool collects GC (Garbage Collector) dumps of live .NET processes using [EventPipe](/dotnet/core/diagnostics/eventpipe).
+
+Collect a GC (Garbage Collector) dump of the live .NET process with `collectGcDump`:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectGcDump();
+```
+
+To view the captured GC dump, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
+
+## Counters trace
+
+[`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation.
+
+Collect diagnostic counters for 60 seconds with `collectPerfCounters(durationSeconds)`:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
+```
+
+To view the trace, see [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics/eventpipe#use-eventpipe-to-trace-your-net-application).
 
 ## Additional resources
 
