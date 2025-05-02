@@ -83,7 +83,7 @@ To obtain the environment, use either of the following approaches:
 
 * Assign the environment to a property in `Program.cs`. Check the environment using the property, for example, `if (app.Environment.IsDevelopment())`.
 
-:::code language="csharp" source="~/test/troubleshoot/code/9.x/Program.cs" id="snippet1" highlight="13-85":::
+:::code language="csharp" source="~/test/troubleshoot/code/9.x/Program.cs" highlight="13-85":::
 
 ## Debug ASP.NET Core apps
 
