@@ -5,7 +5,7 @@ description: Learn about Event Pipe diagnostics and how to get a Garbage Collect
 monikerRange: '>= aspnetcore-10.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2025
+ms.date: 05/02/2025
 uid: blazor/performance/webassembly-event-pipe
 ---
 # ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
@@ -30,19 +30,24 @@ dotnet workload install wasm-tools
 
 [EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
 
-* Manual testing
-  * Browser developer tools: Download the `.nettrace` output file, open the file in Visual Studio, and find the expected method calls.
-  * [`dotnet-trace`](/dotnet/core/diagnostics/dotnet-trace): Open the `.nettrace` output file in Visual Studio and find the expected method calls.
-* Web-based testing
-  * Upload the file via HTTP.
-  * Parse and validate that the trace contains the expected method calls.
+Collect CPU counters for 60 seconds with `collectCpuSamples(durationSeconds)`:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
+```
 
 ## GC (Garbage Collector) dumps
 
-* Manual testing:
+Manual testing:
 
 * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected classes.
 * [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump): To view the captured GC dump files, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
+
+Collect a GC (Garbage Collector) dump of the live .NET process with `collectGcDump`:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectGcDump();
+```
 
 ## Counters trace
 
@@ -50,6 +55,12 @@ Manual testing:
 
 * Browser developer tools: Download the `.json` output file, open the file in Visual Studio, and find the expected counters.
 * [`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters): Open the `.csv`/`.json` output file in Visual Studio and find the expected counters.
+
+Collect diagnostic counters for 60 seconds with `collectPerfCounters(durationSeconds)`:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
+```
 
 ## .NET Core Diagnostics Client Library example
 
@@ -61,24 +72,6 @@ Parse and validate NetTrace (`.nettrace`) messages using the .NET Core Diagnosti
 For more information, see the [.NET Core diagnostics documentation](/dotnet/core/diagnostics/) and the [`IpcMessage` API (reference source)](https://github.com/dotnet/diagnostics/blob/main/src/Microsoft.Diagnostics.NETCore.Client/DiagnosticsIpc/IpcMessage.cs).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-Collect a GC (Garbage Collector) dump of the live .NET process with `collectGcDump`:
-
-```javascript
-globalThis.getDotnetRuntime(0).collectGcDump();
-```
-
-Collect diagnostic counters for 60 seconds with `collectPerfCounters(durationSeconds)`:
-
-```javascript
-globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
-```
-
-Collect CPU counters for 60 seconds with `collectCpuSamples(durationSeconds)`:
-
-```javascript
-globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
-```
 
 The MSBuild properties in the following table enable profiler integration.
 

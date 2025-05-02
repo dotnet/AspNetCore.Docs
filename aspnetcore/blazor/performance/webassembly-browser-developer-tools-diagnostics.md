@@ -5,7 +5,7 @@ description: Learn about browser developer tools diagnostics in ASP.NET Core Bla
 monikerRange: '>= aspnetcore-10.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2025
+ms.date: 05/02/2025
 uid: blazor/performance/webassembly-browser-developer-tools
 ---
 # ASP.NET Core Blazor WebAssembly browser developer tools diagnostics
