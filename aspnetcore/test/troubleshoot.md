@@ -79,9 +79,8 @@ Place the following [middleware](xref:fundamentals/middleware/index#create-a-mid
 
 To obtain the environment, use either of the following approaches:
 
-* Inject `IHostingEnvironment` and check the environment with the local variable. The following sample code demonstrates this approach.
-
 * Assign the environment to a property in `Program.cs`. Check the environment using the property, for example, `if (app.Environment.IsDevelopment())`.
+* Inject `IHostingEnvironment` and check the environment with the local variable. The following sample code demonstrates this approach.
 
 :::code language="csharp" source="~/test/troubleshoot/code/9.x/Program.cs" highlight="13-85":::
 
