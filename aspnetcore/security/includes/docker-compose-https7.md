@@ -65,12 +65,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=-\0pw-
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     volumes:
       - ~/.aspnet/https:/https:ro
 ```
-The password specified in the docker compose file must match the password used for the certificate.
+The password specified in the docker compose file must match the password used for the certificate. In the preceding commands, replace `-\0pw-` with a password.
+
 
 Start the container with ASP.NET Core configured for HTTPS:
 
@@ -143,12 +144,14 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=-\0pw-
       - ASPNETCORE_Kestrel__Certificates__Default__Path=C:\https\aspnetapp.pfx
     volumes:
       - ${USERPROFILE}\.aspnet\https:C:\https:ro
 ```
-The password specified in the docker compose file must match the password used for the certificate.
+```suggestion
+The password specified in the docker compose file must match the password used for the certificate. In the preceding commands, replace `-\0pw-` with a password.
+
 
 Start the container with ASP.NET Core configured for HTTPS:
 
