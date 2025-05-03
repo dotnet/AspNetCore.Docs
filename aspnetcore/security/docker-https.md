@@ -1,6 +1,6 @@
 ---
 title: Hosting ASP.NET Core Images with Docker over HTTPS
-author: rick-anderson
+author: wadepickett
 description: Learn how to host ASP.NET Core Images with Docker over HTTPS
 ms.author: wpickett
 ms.custom: mvc

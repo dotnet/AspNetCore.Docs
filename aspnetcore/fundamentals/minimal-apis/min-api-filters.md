@@ -1,6 +1,6 @@
 ---
 title: Filters in Minimal API apps
-author: rick-anderson
+author: wadepickett
 description: Use filters in Minimal API apps
 ms.author: wpickett
 ms.date: 8/11/2022

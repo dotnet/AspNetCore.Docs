@@ -1,6 +1,6 @@
 ---
 title: SignalR API design considerations
-author: bradygaster
+author: wadepickett
 description: Learn how to design SignalR APIs for compatibility across versions of your app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
