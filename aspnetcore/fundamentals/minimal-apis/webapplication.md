@@ -1,6 +1,6 @@
 ---
 title: WebApplication and WebApplicationBuilder in Minimal API apps
-author: rick-anderson
+author: wadepickett
 description: Learn about how to use WebApplication and WebApplicationBuilder.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'

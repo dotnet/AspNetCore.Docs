@@ -1,6 +1,6 @@
 ---
 title: Overview of Single Page Apps (SPAs) in ASP.NET Core
-author: rick-anderson
+author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-6.0'
 description: Overview of Single Page Apps (SPAs) in ASP.NET Core

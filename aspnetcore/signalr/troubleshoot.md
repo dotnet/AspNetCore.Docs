@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core SignalR connection troubleshooting
-author: bradygaster
+author: wadepickett
 description: ASP.NET Core SignalR connection troubleshooting.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett

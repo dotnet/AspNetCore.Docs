@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core SignalR supported platforms
-author: bradygaster
+author: wadepickett
 description: Learn about the supported platforms for ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
