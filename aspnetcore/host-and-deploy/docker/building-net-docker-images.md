@@ -1,6 +1,6 @@
 ---
 title: Run an ASP.NET Core app in Docker containers
-author: rick-anderson
+author: wadepickett
 description: Learn how to use the published ASP.NET Core Docker images from the Docker Registry. Pull and build your own images.
 ms.author: wpickett
 ms.custom: mvc, linux-related-content

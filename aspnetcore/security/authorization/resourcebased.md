@@ -1,6 +1,6 @@
 ---
 title: Resource-based authorization in ASP.NET Core
-author: rick-anderson
+author: wadepickett
 description: Learn how to implement resource-based authorization in an ASP.NET Core app when an Authorize attribute won't suffice.
 ms.author: wpickett
 ms.custom: mvc

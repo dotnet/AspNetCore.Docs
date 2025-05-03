@@ -1,6 +1,6 @@
 ---
 title: Microsoft.AspNetCore.App metapackage for ASP.NET Core
-author: Rick-Anderson
+author: wadepickett
 description: The Microsoft.AspNetCore.App shared framework
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
