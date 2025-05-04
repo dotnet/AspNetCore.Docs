@@ -15,7 +15,9 @@ Some of the changes you will see in the generated OpenAPI document include:
 and have a `pattern` field limiting the value to digits.
 This happens when the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property in the <xref:System.Text.Json.JsonSerializerOptions> is set to `AllowReadingFromString`, the default for ASP.NET Core Web apps. To enable C# `int` and `long` to be represented in the OpenAPI document as `type: integer`, set the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property to `Strict`.
 
-With this feature, the default OpenAPI version for generated documents is`3.1`. The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi).
+With this feature, the default OpenAPI version for generated documents is`3.1`. The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi):
+
+:::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/Program.cs" id="snippet_AddControllers" highlight="3":::
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -25,7 +27,9 @@ builder.Services.AddOpenApi(options =>
 });
 ```
 
-When generating the OpenAPI document at build time, the OpenAPI version can be selected by setting the `--openapi-version` in the `OpenApiGenerateDocumentsOptions` MSBuild item.
+When generating the OpenAPI document at build time, the OpenAPI version can be selected by setting the `--openapi-version` in the `OpenApiGenerateDocumentsOptions` MSBuild item:
+
+:::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/WebAppOpenAPI10.csproj" id="snippet_ConfigBuildTimeOpenApiDocVersion" highlight="7":::
 
 ```xml
     <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.0 document. -->
@@ -43,6 +47,8 @@ Breaking changes in this iteration include the following:
 * The `Nullable` property has been removed from the `OpenApiSchema` type. To determine if a type is nullable, evaluate if the `OpenApiSchema.Type` property sets `JsonSchemaType.Null`.
 
 One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. The following diff shows the changes in schema transformer from .NET 9 to .NET 10: 
+
+:::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/TransformerJsonNode.diff":::
 
 ```diff
 options.AddSchemaTransformer((schema, context, cancellationToken) =>
@@ -73,6 +79,8 @@ Note that these changes are necessary even when only configuring the OpenAPI ver
 ASP.NET now supports serving the generated OpenAPI document in YAML format. YAML can be more concise than JSON, eliminating curly braces and quotation marks when these can be inferred. YAML also supports multi-line strings, which can be useful for long descriptions.
 
 To configure an app to serve the generated OpenAPI document in YAML format, specify the endpoint in the MapOpenApi call with a ".yaml" or ".yml" suffix, as shown in the following example:
+
+:::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/Program.cs" id="snippet_ConfigOpenApiYAM" highlight="3":::
 
 ```csharp
 app.MapOpenApi("/openapi/{documentName}.yaml");
