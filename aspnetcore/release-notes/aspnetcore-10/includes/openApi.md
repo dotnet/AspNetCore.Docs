@@ -48,7 +48,7 @@ Breaking changes in this iteration include the following:
 
 One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. The following diff shows the changes in schema transformer from .NET 9 to .NET 10: 
 
-:::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/TransformerJsonNode.diff":::
+:::code language="diff" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/TransformerJsonNode.diff":::
 
 ```diff
 options.AddSchemaTransformer((schema, context, cancellationToken) =>
