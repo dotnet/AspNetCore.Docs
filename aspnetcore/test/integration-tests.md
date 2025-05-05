@@ -66,17 +66,17 @@ The following test class, `BasicTests`, uses the `WebApplicationFactory` to boot
   
 :::zone pivot="xunit"
 
-:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/BasicTests.cs?name=snippet1":::
+:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/BasicTests.cs" id="snippet1":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/BasicTests.cs?name=snippet1":::
+:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/BasicTests.cs" id="snippet1":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/BasicTests.cs?name=snippet1":::
+:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/BasicTests.cs" id="snippet1":::
 
 :::zone-end
 
@@ -96,17 +96,17 @@ Web host configuration can be created independently of the test classes by inher
 
    :::zone pivot="xunit"
 
-   :::code language="csharp" source="integration-tests/snippets/xunit/CustomWebApplicationFactory.cs?name=snippet1":::
+   :::code language="csharp" source="integration-tests/snippets/xunit/CustomWebApplicationFactory.cs" id="snippet1":::
 
    :::zone-end
    :::zone pivot="mstest"
 
-   :::code language="csharp" source="integration-tests/snippets/mstest/CustomWebApplicationFactory.cs?name=snippet1":::
+   :::code language="csharp" source="integration-tests/snippets/mstest/CustomWebApplicationFactory.cs" id="snippet1":::
 
    :::zone-end
    :::zone pivot="nunit"
 
-   :::code language="csharp" source="integration-tests/snippets/nunit/CustomWebApplicationFactory.cs?name=snippet1":::
+   :::code language="csharp" source="integration-tests/snippets/nunit/CustomWebApplicationFactory.cs" id="snippet1":::
 
    :::zone-end
 
@@ -127,17 +127,17 @@ Web host configuration can be created independently of the test classes by inher
 
    :::zone pivot="xunit"
 
-   :::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+   :::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs" id="snippet1":::
 
    :::zone-end
    :::zone pivot="mstest"
 
-   :::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+   :::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs" id="snippet1":::
 
    :::zone-end
    :::zone pivot="nunit"
 
-   :::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+   :::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs" id="snippet1":::
 
    :::zone-end
 
@@ -147,17 +147,17 @@ Web host configuration can be created independently of the test classes by inher
 
    :::zone pivot="xunit"
 
-   :::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet2":::
+   :::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs" id="snippet2":::
 
    :::zone-end
    :::zone pivot="mstest"
 
-   :::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet2":::
+   :::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs" id="snippet2":::
 
    :::zone-end
    :::zone pivot="nunit"
 
-   :::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet2":::
+   :::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs" id="snippet2":::
 
    :::zone-end
 
@@ -194,17 +194,17 @@ Because another test in the `IndexPageTests` class performs an operation that de
 
 :::zone pivot="xunit"
 
-:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet3":::
+:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs" id="snippet3":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet3":::
+:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs" id="snippet3":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet3":::
+:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs" id="snippet3":::
 
 :::zone-end
 
@@ -216,21 +216,21 @@ Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:M
 
 :::zone pivot="xunit"
 
-:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs" id="snippet1":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs" id="snippet1":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet1":::
+:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs" id="snippet1":::
 
 :::zone-end
 
-***NOTE:*** To avoid HTTPS redirection warnings in logs when using HTTPS Redirection Middleware, set `BaseAddress = new Uri("https://localhost")`
+**_NOTE:_** To avoid HTTPS redirection warnings in logs when using HTTPS Redirection Middleware, set `BaseAddress = new Uri("https://localhost")`
 
 ## Inject mock services
 
@@ -275,17 +275,17 @@ To test the service and quote injection in an integration test, a mock service i
 
 :::zone pivot="xunit"
 
-:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet4":::
+:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs" id="snippet4":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet4":::
+:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs" id="snippet4":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet4":::
+:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs" id="snippet4":::
 
 :::zone-end
 
@@ -293,17 +293,17 @@ To test the service and quote injection in an integration test, a mock service i
 
 :::zone pivot="xunit"
 
-:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21":::
+:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/IndexPageTests.cs" id="snippet5" highlight="7-10,17,20-21":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21":::
+:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/IndexPageTests.cs" id="snippet5" highlight="7-10,17,20-21":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21":::
+:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/IndexPageTests.cs" id="snippet5" highlight="7-10,17,20-21":::
 
 :::zone-end
 
@@ -329,17 +329,17 @@ In the `Get_SecurePageRedirectsAnUnauthenticatedUser` test, a <xref:Microsoft.As
 
 :::zone pivot="xunit"
 
-:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/AuthTests.cs?name=snippet2":::
+:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/AuthTests.cs" id="snippet2":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/AuthTests.cs?name=snippet2":::
+:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/AuthTests.cs" id="snippet2":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/AuthTests.cs?name=snippet2":::
+:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/AuthTests.cs" id="snippet2":::
 
 :::zone-end
 
@@ -352,17 +352,17 @@ The test app can mock an <xref:Microsoft.AspNetCore.Authentication.Authenticatio
 
 :::zone pivot="xunit"
 
-:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18":::
+:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/AuthTests.cs" id="snippet4" highlight="11-18":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18":::
+:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/AuthTests.cs" id="snippet4" highlight="11-18":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18":::
+:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/AuthTests.cs" id="snippet4" highlight="11-18":::
 
 :::zone-end
 
@@ -370,17 +370,17 @@ The `TestAuthHandler` is called to authenticate a user when the authentication s
 
 :::zone pivot="xunit"
 
-:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12":::
+:::code language="csharp" source="integration-tests/snippets/xunit/IntegrationTests/AuthTests.cs" id="snippet3" highlight="7-12":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12":::
+:::code language="csharp" source="integration-tests/snippets/mstest/IntegrationTests/AuthTests.cs" id="snippet3" highlight="7-12":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12":::
+:::code language="csharp" source="integration-tests/snippets/nunit/IntegrationTests/AuthTests.cs" id="snippet3" highlight="7-12":::
 
 :::zone-end
 
@@ -396,17 +396,17 @@ Set the [environment](xref:fundamentals/environments) in the custom application 
 
 :::zone pivot="xunit"
 
-:::code language="csharp" source="integration-tests/snippets/xunit/CustomWebApplicationFactory.cs?name=snippet1&highlight=36":::
+:::code language="csharp" source="integration-tests/snippets/xunit/CustomWebApplicationFactory.cs" id="snippet1" highlight="36":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="integration-tests/snippets/mstest/CustomWebApplicationFactory.cs?name=snippet1&highlight=36":::
+:::code language="csharp" source="integration-tests/snippets/mstest/CustomWebApplicationFactory.cs" id="snippet1" highlight="36":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="integration-tests/snippets/nunit/CustomWebApplicationFactory.cs?name=snippet1&highlight=36":::
+:::code language="csharp" source="integration-tests/snippets/nunit/CustomWebApplicationFactory.cs" id="snippet1" highlight="36":::
 
 :::zone-end
 

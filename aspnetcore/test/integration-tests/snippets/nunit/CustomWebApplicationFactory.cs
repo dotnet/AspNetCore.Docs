@@ -16,7 +16,7 @@ public class CustomWebApplicationFactory<TProgram>
         builder.ConfigureServices(services =>
         {
             var dbContextDescriptor = services.SingleOrDefault(
-                d => d.ServiceType == 
+                d => d.ServiceType ==
                     typeof(IDbContextOptionsConfiguration<ApplicationDbContext>));
 
             services.Remove(dbContextDescriptor);

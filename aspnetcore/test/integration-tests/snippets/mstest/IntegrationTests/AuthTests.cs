@@ -15,23 +15,27 @@ using RazorPagesProject.Tests.Helpers;
 namespace RazorPagesProject.Tests.IntegrationTests;
 
 [TestClass]
-public class AuthTests {
+public class AuthTests
+{
 
     private static CustomWebApplicationFactory<Program> _factory;
 
     [ClassInitialize]
-    public static void AssemblyInitialize(TestContext _) {
+    public static void AssemblyInitialize(TestContext _)
+    {
         _factory = new CustomWebApplicationFactory<Program>();
     }
 
     [ClassCleanup(ClassCleanupBehavior.EndOfClass)]
-    public static void AssemblyCleanup(TestContext _) {
+    public static void AssemblyCleanup(TestContext _)
+    {
         _factory.Dispose();
     }
 
     // <snippet1>
     [TestMethod]
-    public async Task Get_GithubProfilePageCanGetAGithubUser() {
+    public async Task Get_GithubProfilePageCanGetAGithubUser()
+    {
         // Arrange
         void ConfigureTestServices(IServiceCollection services) =>
             services.AddSingleton<IGithubClient>(new TestGithubClient());
@@ -57,17 +61,22 @@ public class AuthTests {
         Assert.AreEqual("user", userLogin.TextContent);
     }
 
-    public class TestGithubClient : IGithubClient {
-        public Task<GithubUser> GetUserAsync(string userName) {
-            if (userName == "user") {
+    public class TestGithubClient : IGithubClient
+    {
+        public Task<GithubUser> GetUserAsync(string userName)
+        {
+            if (userName == "user")
+            {
                 return Task.FromResult(
-                    new GithubUser {
+                    new GithubUser
+                    {
                         Login = "user",
                         Company = "Contoso Blockchain",
                         Name = "John Doe"
                     });
             }
-            else {
+            else
+            {
                 return Task.FromResult<GithubUser>(null);
             }
         }
@@ -76,10 +85,12 @@ public class AuthTests {
 
     // <snippet2>
     [TestMethod]
-    public async Task Get_SecurePageRedirectsAnUnauthenticatedUser() {
+    public async Task Get_SecurePageRedirectsAnUnauthenticatedUser()
+    {
         // Arrange
         var client = _factory.CreateClient(
-            new WebApplicationFactoryClientOptions {
+            new WebApplicationFactoryClientOptions
+            {
                 AllowAutoRedirect = false
             });
 
@@ -94,16 +105,20 @@ public class AuthTests {
 
     // <snippet3>
     [TestMethod]
-    public async Task Get_SecurePageIsReturnedForAnAuthenticatedUser() {
+    public async Task Get_SecurePageIsReturnedForAnAuthenticatedUser()
+    {
         // Arrange
-        var client = _factory.WithWebHostBuilder(builder => {
-            builder.ConfigureTestServices(services => {
+        var client = _factory.WithWebHostBuilder(builder =>
+        {
+            builder.ConfigureTestServices(services =>
+            {
                 services.AddAuthentication(defaultScheme: "TestScheme")
                     .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(
                         "TestScheme", options => { });
             });
         })
-            .CreateClient(new WebApplicationFactoryClientOptions {
+            .CreateClient(new WebApplicationFactoryClientOptions
+            {
                 AllowAutoRedirect = false,
             });
 
@@ -120,13 +135,16 @@ public class AuthTests {
 }
 
 // <snippet4>
-public class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions> {
+public class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
+{
     public TestAuthHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
         ILoggerFactory logger, UrlEncoder encoder)
-        : base(options, logger, encoder) {
+        : base(options, logger, encoder)
+    {
     }
 
-    protected override Task<AuthenticateResult> HandleAuthenticateAsync() {
+    protected override Task<AuthenticateResult> HandleAuthenticateAsync()
+    {
         var claims = new[] { new Claim(ClaimTypes.Name, "Test user") };
         var identity = new ClaimsIdentity(claims, "Test");
         var principal = new ClaimsPrincipal(identity);

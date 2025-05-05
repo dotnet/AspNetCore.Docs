@@ -1,17 +1,20 @@
 namespace RazorPagesProject.Tests.IntegrationTests;
 
 // <snippet1>
-public class BasicTests {
+public class BasicTests
+{
     private CustomWebApplicationFactory<Program>
         _factory;
 
     [SetUp]
-    public void SetUp() {
+    public void SetUp()
+    {
         _factory = new CustomWebApplicationFactory<Program>();
     }
 
     [TearDown]
-    public void TearDown() {
+    public void TearDown()
+    {
         _factory.Dispose();
     }
 
@@ -19,7 +22,8 @@ public class BasicTests {
     public string[] values = ["/", "/Index", "/About", "/Privacy", "/Contact"];
 
     [Theory]
-    public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url) {
+    public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
+    {
         // Arrange
         var client = _factory.CreateClient();
 

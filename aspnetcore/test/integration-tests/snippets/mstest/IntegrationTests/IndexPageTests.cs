@@ -11,28 +11,33 @@ namespace RazorPagesProject.Tests.IntegrationTests;
 
 // <snippet1>
 [TestClass]
-public class IndexPageTests {
+public class IndexPageTests
+{
     private static HttpClient _client;
     private static CustomWebApplicationFactory<Program>
         _factory;
 
     [ClassInitialize]
-    public static void AssemblyInitialize(TestContext _) {
+    public static void AssemblyInitialize(TestContext _)
+    {
         _factory = new CustomWebApplicationFactory<Program>();
-        _client = _factory.CreateClient(new WebApplicationFactoryClientOptions {
+        _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
             AllowAutoRedirect = false
         });
     }
 
     [ClassCleanup(ClassCleanupBehavior.EndOfClass)]
-    public static void AssemblyCleanup(TestContext _) {
+    public static void AssemblyCleanup(TestContext _)
+    {
         _factory.Dispose();
     }
     // </snippet1>
 
     // <snippet2>
     [TestMethod]
-    public async Task Post_DeleteAllMessagesHandler_ReturnsRedirectToRoot() {
+    public async Task Post_DeleteAllMessagesHandler_ReturnsRedirectToRoot()
+    {
         // Arrange
         var defaultPage = await _client.GetAsync("/");
         var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
@@ -51,9 +56,11 @@ public class IndexPageTests {
 
     // <snippet3>
     [TestMethod]
-    public async Task Post_DeleteMessageHandler_ReturnsRedirectToRoot() {
+    public async Task Post_DeleteMessageHandler_ReturnsRedirectToRoot()
+    {
         // Arrange
-        using (var scope = _factory.Services.CreateScope()) {
+        using (var scope = _factory.Services.CreateScope())
+        {
             var scopedServices = scope.ServiceProvider;
             var db = scopedServices.GetRequiredService<ApplicationDbContext>();
 
@@ -78,7 +85,8 @@ public class IndexPageTests {
     // </snippet3>
 
     [TestMethod]
-    public async Task Post_AddMessageHandler_ReturnsSuccess_WhenMissingMessageText() {
+    public async Task Post_AddMessageHandler_ReturnsSuccess_WhenMissingMessageText()
+    {
         // Arrange
         var defaultPage = await _client.GetAsync("/");
         var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
@@ -88,7 +96,8 @@ public class IndexPageTests {
         var response = await _client.SendAsync(
             (IHtmlFormElement)content.QuerySelector("form[id='addMessage']"),
             (IHtmlButtonElement)content.QuerySelector("button[id='addMessageBtn']"),
-            new Dictionary<string, string> {
+            new Dictionary<string, string>
+            {
                 ["Message.Text"] = messageText
             });
 
@@ -100,7 +109,8 @@ public class IndexPageTests {
     }
 
     [TestMethod]
-    public async Task Post_AddMessageHandler_ReturnsSuccess_WhenMessageTextTooLong() {
+    public async Task Post_AddMessageHandler_ReturnsSuccess_WhenMessageTextTooLong()
+    {
         // Arrange
         var defaultPage = await _client.GetAsync("/");
         var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
@@ -110,7 +120,8 @@ public class IndexPageTests {
         var response = await _client.SendAsync(
             (IHtmlFormElement)content.QuerySelector("form[id='addMessage']"),
             (IHtmlButtonElement)content.QuerySelector("button[id='addMessageBtn']"),
-            new Dictionary<string, string> {
+            new Dictionary<string, string>
+            {
                 ["Message.Text"] = messageText
             });
 
@@ -122,7 +133,8 @@ public class IndexPageTests {
     }
 
     [TestMethod]
-    public async Task Post_AnalyzeMessagesHandler_ReturnsRedirectToRoot() {
+    public async Task Post_AnalyzeMessagesHandler_ReturnsRedirectToRoot()
+    {
         // Arrange
         var defaultPage = await _client.GetAsync("/");
         var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
@@ -141,8 +153,10 @@ public class IndexPageTests {
     // <snippet4>
     // Quote ©1975 BBC: The Doctor (Tom Baker); Pyramids of Mars
     // https://www.bbc.co.uk/programmes/p00pys55
-    public class TestQuoteService : IQuoteService {
-        public Task<string> GenerateQuote() {
+    public class TestQuoteService : IQuoteService
+    {
+        public Task<string> GenerateQuote()
+        {
             return Task.FromResult(
                 "Something's interfering with time, Mr. Scarman, " +
                 "and time is my business.");
@@ -152,13 +166,16 @@ public class IndexPageTests {
 
     // <snippet5>
     [TestMethod]
-    public async Task Get_QuoteService_ProvidesQuoteInPage() {
+    public async Task Get_QuoteService_ProvidesQuoteInPage()
+    {
         // Arrange
-        var client = _factory.WithWebHostBuilder(builder => {
-            builder.ConfigureTestServices(services => {
-                services.AddScoped<IQuoteService, TestQuoteService>();
-            });
-        })
+        var client = _factory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureTestServices(services =>
+                {
+                    services.AddScoped<IQuoteService, TestQuoteService>();
+                });
+            })
             .CreateClient();
 
         //Act
