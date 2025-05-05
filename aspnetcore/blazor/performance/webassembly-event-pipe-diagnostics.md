@@ -42,7 +42,6 @@ The MSBuild properties in the following table enable profiler integration.
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
 `<WasmPerfTracing>` | `false` | `true` | Controls diagnostic server tracing.
-`<WasmPerfInstrumentation>` | `false` | `true` | Controls CPU sampling instrumentation for diagnostic server. Not necessary for memory dump or counters. **Makes the app execute slower. Only set this to `true` for performance profiling.**
 `<MetricsSupport>` | `false` | `true` | Controls `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
 `<EventSourceSupport>` | `false`| `true` | Controls `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
 
@@ -53,7 +52,6 @@ In the app's project file (`.csproj`):
 ```xml
 <PropertyGroup Condition="'$(BlazorSampleProfilingEnabled)' == 'true'">
   <WasmPerfTracing>true</WasmPerfTracing>
-  <WasmPerfInstrumentation>true</WasmPerfInstrumentation>
   <MetricsSupport>true</MetricsSupport>
   <EventSourceSupport>true</EventSourceSupport>
 </PropertyGroup>
@@ -70,6 +68,16 @@ The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/H
 ## EventPipe profiler
 
 [EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
+
+Use the `<WasmPerfInstrumentation>` property to enable CPU sampling instrumentation for diagnostic server. This setting isn't necessary for memory dump or counters. **Makes the app execute slower. Only set this to `true` for performance profiling.**
+
+Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
+
+```xml
+<PropertyGroup Condition="'$(BlazorSampleProfilingEnabled)' == 'true'">
+  <WasmPerfInstrumentation>true</WasmPerfInstrumentation>
+</PropertyGroup>
+```
 
 Collect CPU counters for 60 seconds with `collectCpuSamples(durationSeconds)`:
 
