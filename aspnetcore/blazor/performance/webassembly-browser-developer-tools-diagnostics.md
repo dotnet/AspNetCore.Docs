@@ -73,7 +73,7 @@ Configure the sample interval in the app's project file. In the following exampl
 
 ```xml
 <PropertyGroup>
-  <WasmProfilers>browser:sampleIntervalMs={INTERVAL};</WasmProfilers>
+  <WasmProfilers>browser:interval={INTERVAL};</WasmProfilers>
 </PropertyGroup>
 ```
 
@@ -89,15 +89,6 @@ Add `callspec` to the `browser` WebAssembly profiler in the `<WasmProfilers>` el
 
 ## .NET Core Diagnostics Client Library example
 
-Parse and validate NetTrace (`.nettrace`) messages using the .NET Core Diagnostics Client Library:
-
-* [`dotnet/diagnostics` GitHub repository](https://github.com/dotnet/diagnostics)
-* [`Microsoft.Diagnostics.NETCore.Client` NuGet package](https://www.nuget.org/packages/Microsoft.Diagnostics.NETCore.Client)
-
-For more information, see the [.NET Core diagnostics documentation](/dotnet/core/diagnostics/) and the [`IpcMessage` API (reference source)](https://github.com/dotnet/diagnostics/blob/main/src/Microsoft.Diagnostics.NETCore.Client/DiagnosticsIpc/IpcMessage.cs).
-
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
 In the project file (`.csproj`), the properties in the following table enable integration with the browser's profiler.
 
 Property | Default | Set value to&hellip; | Description
@@ -108,7 +99,6 @@ Property | Default | Set value to&hellip; | Description
 ```xml
 <PropertyGroup>
   <WasmProfilers>browser</WasmProfilers>
-  <WasmPerfInstrumentation>true</WasmPerfInstrumentation>
 </PropertyGroup>
 ```
 
