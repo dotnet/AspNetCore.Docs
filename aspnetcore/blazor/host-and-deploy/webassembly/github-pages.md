@@ -1,18 +1,18 @@
 ---
-title: Host and deploy ASP.NET Core Blazor WebAssembly with GitHub Pages
+title: Host and deploy ASP.NET Core standalone Blazor WebAssembly with GitHub Pages
 author: guardrex
-description: Learn how to host and deploy Blazor WebAssembly using GitHub Pages.
+description: Learn how to host and deploy standalone Blazor WebAssembly using GitHub Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/31/2025
 uid: blazor/host-and-deploy/webassembly/github-pages
 ---
-# Host and deploy ASP.NET Core Blazor WebAssembly with GitHub Pages
+# Host and deploy ASP.NET Core standalone Blazor WebAssembly with GitHub Pages
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to host and deploy Blazor WebAssembly using [GitHub Pages](https://pages.github.com/).
+This article explains how to host and deploy standalone Blazor WebAssembly using [GitHub Pages](https://pages.github.com/).
 
 The following guidance for GitHub Pages deployments of Blazor WebAssembly apps demonstrates concepts with a live tool deployed to GitHub Pages. The tool is used by the ASP.NET Core documentation authors to create cross-reference (XREF) links to API documentation for article markdown:
 
