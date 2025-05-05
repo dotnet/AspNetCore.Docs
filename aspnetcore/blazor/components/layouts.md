@@ -20,9 +20,7 @@ Some app elements, such as menus, copyright messages, and company logos, are usu
 
 A Blazor layout is a Razor component that shares markup with components that reference it. Layouts can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
 
-## Layout components
-
-### Create a layout component
+## Create a layout component
 
 To create a layout component:
 
@@ -73,7 +71,7 @@ The following `DoctorWhoLayout` component shows the Razor template of a layout c
 
 :::moniker-end
 
-### `MainLayout` component
+## `MainLayout` component
 
 In an app created from a [Blazor project template](xref:blazor/project-structure), the `MainLayout` component is the app's [default layout](#apply-a-default-layout-to-an-app). Blazor's layout adopts the [:::no-loc text="Flexbox"::: layout model](https://developer.mozilla.org/docs/Glossary/Flexbox) ([W3C specification](https://www.w3.org/TR/css-flexbox-1/)).
 
@@ -91,6 +89,76 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 [Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 11.0 Is https://github.com/dotnet/aspnetcore/issues/52768 addressed
+                 to resolve the following limitation? -->
+
+## Statically-rendered layout components
+
+When a Blazor Web App adopts per-page/component rendering (the `Routes` component doesn't specify an interactive render mode), layout components are rendered statically on the server. Applying an interactive render mode directly to a layout isn't supported because Blazor doesn't support serializing a <xref:Microsoft.AspNetCore.Components.RenderFragment> (`@Body` in this case) as a root component parameter. For example, placing `@rendermode InteractiveServer` at the top of the `MainLayout` component results in the following runtime exception:
+
+> :::no-loc text="System.InvalidOperationException: Cannot pass the parameter 'Body' to component 'MainLayout' with rendermode 'InteractiveServerRenderMode'. This is because the parameter is of the delegate type 'Microsoft.AspNetCore.Components.RenderFragment', which is arbitrary code and cannot be serialized.":::
+
+This applies to any layout component that inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> in an app that adopts per-page/component rendering.
+
+This scenario might be addressed in a future release of Blazor. For more information, see [[Blazor] Support serializing render fragments from SSR (`dotnet/aspnetcore` #52768)](https://github.com/dotnet/aspnetcore/issues/52768). In the meantime, you can adopt the following approach in a Blazor Web App that adopts per-page/component rendering.
+
+Create a wrapper component that's capable of interactivity. In the following example, a wrapper component contains a [Blazor section](xref:blazor/components/sections) that can receive content from a child component.
+
+`Pages/InteractiveWrapper.razor`:
+
+```razor
+@rendermode InteractiveServer
+
+<div>
+    <SectionOutlet SectionName="top-bar" />
+</div>
+
+@ChildContent
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
+```
+
+The `Counter` component can use the wrapper component and set interactive section content. In the following example, an interactively-rendered counter button is placed in the section.
+
+`Pages/Counter.razor`:
+
+```razor
+@page "/counter"
+@rendermode InteractiveServer
+
+<InteractiveWrapper>
+
+    <SectionContent SectionName="top-bar">
+        <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+    </SectionContent>
+
+    <PageTitle>Counter</PageTitle>
+
+    <h1>Counter</h1>
+
+    <p role="status">Current count: @currentCount</p>
+
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+</InteractiveWrapper>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
 
 :::moniker-end
 
