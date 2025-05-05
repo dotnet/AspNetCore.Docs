@@ -1,18 +1,18 @@
 ---
-title: Host and deploy ASP.NET Core Blazor WebAssembly with Azure Static Web Apps
+title: Host and deploy ASP.NET Core standalone Blazor WebAssembly with Azure Static Web Apps
 author: guardrex
-description: Learn how to host and deploy Blazor WebAssembly with Microsoft Azure Static Web Apps.
+description: Learn how to host and deploy standalone Blazor WebAssembly with Microsoft Azure Static Web Apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/31/2025
 uid: blazor/host-and-deploy/webassembly/azure-static-web-apps
 ---
-# Host and deploy ASP.NET Core Blazor WebAssembly with Azure Static Web Apps
+# Host and deploy ASP.NET Core standalone Blazor WebAssembly with Azure Static Web Apps
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to host and deploy Blazor WebAssembly with [Microsoft Azure Static Web Apps](https://azure.microsoft.com/products/app-service/static).
+This article explains how to host and deploy standalone Blazor WebAssembly with [Microsoft Azure Static Web Apps](https://azure.microsoft.com/products/app-service/static).
 
 ## Deploy from Visual Studio
 
