@@ -306,7 +306,7 @@ To test the service and quote injection in an integration test, a mock service i
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="../snippets/nunit/IntegrationTests/IndexPageTests.cs" id="snippet5" highlight="7-10,17,20-21":::
+:::code language="csharp" source="../snippets/nunit/IntegrationTests/IndexPageTests.cs" id="snippet5" highlight="7-10,17,20-22":::
 
 :::zone-end
 
