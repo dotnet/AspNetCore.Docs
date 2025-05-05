@@ -298,7 +298,7 @@ Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Rout
 <RouteView RouteData="routeData" DefaultLayout="typeof({LAYOUT})" />
 ```
 
-In the preceding example, the `{LAYOUT}` placeholder is the layout (for example, `DoctorWhoLayout` if the layout file name is `DoctorWhoLayout.razor`). You may need to idenfity the layout's namespace depending on the .NET version and type of Blazor app. For more information, see the [Make the layout namespace available](#make-the-layout-namespace-available) section.
+In the preceding example, the `{LAYOUT}` placeholder is the layout (for example, `DoctorWhoLayout` if the layout file name is `DoctorWhoLayout.razor`). You may need to identify the layout's namespace depending on the .NET version and type of Blazor app. For more information, see the [Make the layout namespace available](#make-the-layout-namespace-available) section.
 
 Specifying the layout as a default layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.RouteView> is a useful practice because you can override the layout on a per-component or per-folder basis, as described in the preceding sections of this article. We recommend using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to set the app's default layout because it's the most general and flexible approach for using layouts.
 
