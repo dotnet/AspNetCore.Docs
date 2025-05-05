@@ -40,6 +40,9 @@ For event handling:
 
 :::moniker-end
 
+> [!IMPORTANT]
+> The Blazor framework doesn't track `void`-returning asynchronous methods (`async`). As a result, the entire process fails when an exception isn't caught if `void` is returned. Always return a <xref:System.Threading.Tasks.Task>/<xref:System.Threading.Tasks.ValueTask> from asynchronous methods.
+
 The following code:
 
 * Calls the `UpdateHeading` method when the button is selected in the UI.
