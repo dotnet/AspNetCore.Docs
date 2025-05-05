@@ -1,12 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+	<!-- <snippet_ConfigBuildTimeOpenApiDocVersion> -->
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
+		<!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.0 document. -->
 		<OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_0</OpenApiGenerateDocumentsOptions>
 	</PropertyGroup>
+	<!-- </snippet_ConfigBuildTimeOpenApiDocVersion> -->
 
 	<ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-preview.3.25172.1" />
