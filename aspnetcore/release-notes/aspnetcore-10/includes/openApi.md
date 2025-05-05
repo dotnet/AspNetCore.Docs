@@ -37,28 +37,6 @@ One of the most significant changes is that the `OpenApiAny` class has been drop
 
 :::code language="diff" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/TransformerJsonNode.cs":::
 
-```diff
-options.AddSchemaTransformer((schema, context, cancellationToken) =>
-{
-    if (context.JsonTypeInfo.Type == typeof(WeatherForecast))
-    {
--       schema.Example = new OpenApiObject
-+       schema.Example = new JsonObject
-        {
--           ["date"] = new OpenApiString(DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")),
-+           ["date"] = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"),
--           ["temperatureC"] = new OpenApiInteger(0),
-+           ["temperatureC"] = 0,
--           ["temperatureF"] = new OpenApiInteger(32),
-+           ["temperatureF"] = 32,
--           ["summary"] = new OpenApiString("Bracing"),
-+           ["summary"] = "Bracing",
-        };
-    }
-    return Task.CompletedTask;
-});
-```
-
 Note that these changes are necessary even when only configuring the OpenAPI version to 3.0.
 
 ### OpenAPI in YAML
@@ -67,11 +45,7 @@ ASP.NET now supports serving the generated OpenAPI document in YAML format. YAML
 
 To configure an app to serve the generated OpenAPI document in YAML format, specify the endpoint in the MapOpenApi call with a ".yaml" or ".yml" suffix, as shown in the following example:
 
-:::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/Program.cs" id="snippet_ConfigOpenApiYAM" highlight="3":::
-
-```csharp
-app.MapOpenApi("/openapi/{documentName}.yaml");
-```
+:::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/Program.cs" id="snippet_ConfigOpenApiYAML" highlight="3":::
 
 Support for:
 
