@@ -1,6 +1,6 @@
 ---
 title: Logging and diagnostics in ASP.NET Core SignalR
-author: wpickett
+author: wadepickett
 description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett

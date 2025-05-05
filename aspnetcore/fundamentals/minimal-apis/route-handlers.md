@@ -1,6 +1,6 @@
 ---
 title: Route handlers in Minimal API apps
-author: rick-anderson
+author: wadepickett
 description: Learn how to handle requests in Minimal API apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'

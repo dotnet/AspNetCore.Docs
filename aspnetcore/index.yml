@@ -9,7 +9,7 @@ metadata:
   description: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse tutorials, sample code, fundamentals, API reference and more.
   ms.product: aspnet
   ms.topic: hub-page
-  author: WadePickett
+  author: wadepickett
   ms.author: wpickett
   ms.date: 02/23/2024
 

@@ -1,6 +1,6 @@
 ---
 title: Test Minimal API apps
-author: rick-anderson
+author: wadepickett
 description: Unit and integration tests in Minimal API apps
 ms.author: wpickett
 ms.date: 05/31/2024
