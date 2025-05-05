@@ -19,22 +19,9 @@ With this feature, the default OpenAPI version for generated documents is`3.1`. 
 
 :::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/Program.cs" id="snippet_DefaultOpenApiVersion" highlight="3":::
 
-```csharp
-builder.Services.AddOpenApi(options =>
-{
-    // Specify the OpenAPI version to use.
-    options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
-});
-```
-
 When generating the OpenAPI document at build time, the OpenAPI version can be selected by setting the `--openapi-version` in the `OpenApiGenerateDocumentsOptions` MSBuild item:
 
-:::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/WebAppOpenAPI10.csproj" id="snippet_ConfigBuildTimeOpenApiDocVersion" highlight="7":::
-
-```xml
-    <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.0 document. -->
-    <OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_0</OpenApiGenerateDocumentsOptions>
-```
+:::code language="xml" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/WebAppOpenAPI10.csproj" id="snippet_ConfigBuildTimeOpenApiDocVersion" highlight="7":::
 
 OpenAPI 3.1 support was primarily added in the following [PR](https://github.com/dotnet/aspnetcore/pull/59480).
 
@@ -46,9 +33,9 @@ Breaking changes in this iteration include the following:
 * Entities within the OpenAPI document, like operations and parameters, are typed as interfaces. Concrete implementations exist for the inlined and referenced variants of an entity. For example, an `IOpenApiSchema` can either be an inlined `OpenApiSchema` or an `OpenApiSchemaReference` that points to a schema defined elsewhere in the document.
 * The `Nullable` property has been removed from the `OpenApiSchema` type. To determine if a type is nullable, evaluate if the `OpenApiSchema.Type` property sets `JsonSchemaType.Null`.
 
-One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. The following diff shows the changes in schema transformer from .NET 9 to .NET 10: 
+One of the most significant changes is that the `OpenApiAny` class has been dropped in favor of using `JsonNode` directly. Transformers that use `OpenApiAny` need to be updated to use `JsonNode`. The following diff shows the changes in schema transformer from .NET 9 to .NET 10:
 
-:::code language="diff" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/TransformerJsonNode.diff":::
+:::code language="diff" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/TransformerJsonNode.cs":::
 
 ```diff
 options.AddSchemaTransformer((schema, context, cancellationToken) =>
