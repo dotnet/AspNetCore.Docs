@@ -134,7 +134,7 @@ Create the following interactive wrapper component in the `Pages` folder.
 }
 ```
 
-The `Counter` component can use the wrapper component and set interactive section content. In the following example, an interactively-rendered counter button is placed in the section.
+The `Counter` component can use the wrapper component and set interactive section content. In the following example, a counter button is placed in the section.
 
 `Pages/Counter.razor`:
 
