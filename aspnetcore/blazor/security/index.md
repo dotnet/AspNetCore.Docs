@@ -772,7 +772,7 @@ else
 The server project implements `IWeatherForecaster` as `ServerWeatherForecaster`, which generates and returns mock weather data via its `GetWeatherForecastAsync` method:
 
 ```csharp
-public class ServerWeatherForecaster() : IWeatherForecaster
+internal sealed class ServerWeatherForecaster() : IWeatherForecaster
 {
     public readonly string[] summaries =
     [
@@ -793,6 +793,45 @@ public class ServerWeatherForecaster() : IWeatherForecaster
                 summaries[Random.Shared.Next(summaries.Length)]
             ))
         .ToArray();
+    }
+}
+```
+
+Alternatively, the `ServerWeatherForecaster` can call an external web API using a [named HTTP Client and token handler approach](xref:blazor/call-web-api#use-a-token-handler-for-web-API-calls), as the following example demonstrates:
+
+```csharp
+internal sealed class ServerWeatherForecaster(IHttpClientFactory clientFactory) : IWeatherForecaster
+{
+    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
+        var client = clientFactory.CreateClient("ExternalApi");
+
+        var response = await client.SendAsync(request);
+
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
+            throw new IOException("No weather forecast!");
+    }
+}
+```
+
+If the app uses [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) (see <xref:blazor/call-web-api#microsoft-identity-platform-for-web-api-calls>), the `ServerWeatherForecaster` might appear like the following class to make external web API calls:
+
+```csharp
+internal sealed class ServerWeatherForecaster(IDownstreamApi downstreamApi) : IWeatherForecaster
+{
+    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
+    {
+        var response = await downstreamApi.CallApiForUserAsync("DownstreamApi",
+            options =>
+            {
+                options.RelativePath = "/weather-forecast";
+            });
+
+        return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
+            throw new IOException("No weather forecast!");
     }
 }
 ```

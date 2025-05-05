@@ -22,14 +22,25 @@ The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json
 
 ## Use a token handler for web API calls
 
-Blazor Web Apps with OIDC authentication can use a token handler approach to make outgoing requests to secure external web API calls. This approach is used by the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps described in the next section.
+Blazor Web Apps with OIDC authentication can use a token handler approach to make outgoing requests to secure external web API calls. This approach is used by the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps described in the *Sample apps* section of this article.
 
 For more information, see the following resources:
 
 * <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
 * *Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)*
-  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?view=aspnetcore-9.0&pivots=non-bff-pattern)
-  * [Non-BFF pattern (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?view=aspnetcore-9.0&pivots=non-bff-pattern-server)
+  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?pivots=non-bff-pattern)
+  * [Non-BFF pattern (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?pivots=non-bff-pattern-server)
+
+## Microsoft identity platform for web API calls
+
+Blazor Web Apps that use use [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) can make streamlined calls using Entra-specific API. This approach is used by the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` sample apps described in the *Sample apps* section of this article.
+
+For more information, see the following resources:
+
+* <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
+* *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
+  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern)
+  * [BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern-server)
 
 ## Sample apps
 
