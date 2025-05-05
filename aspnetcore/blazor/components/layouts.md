@@ -109,6 +109,14 @@ This scenario might be addressed in a future release of Blazor. For more informa
 
 Create a wrapper component that's capable of interactivity. In the following example, a wrapper component contains a [Blazor section](xref:blazor/components/sections) that can receive content from a child component.
 
+In the `_Imports.razor` file, add an [`@using`](xref:mvc/views/razor#using) directive for sections (<xref:Microsoft.AspNetCore.Components.Sections?displayProperty=fullName>):
+
+```razor
+@using Microsoft.AspNetCore.Components.Sections
+```
+
+Create the following interactive wrapper component in the `Pages` folder.
+
 `Pages/InteractiveWrapper.razor`:
 
 ```razor
@@ -159,6 +167,8 @@ The `Counter` component can use the wrapper component and set interactive sectio
     }
 }
 ```
+
+Other components around the app can also wrap content in the `InteractiveWrapper` component and set interactive section content.
 
 :::moniker-end
 
