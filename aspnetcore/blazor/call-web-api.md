@@ -39,8 +39,8 @@ For more information, see the following resources:
 
 * <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
 * *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
-  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-with-entra?pivots=non-bff-pattern)
-  * [BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-with-entra?pivots=non-bff-pattern-server)
+  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern)
+  * [BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern-server)
 
 ## Sample apps
 
