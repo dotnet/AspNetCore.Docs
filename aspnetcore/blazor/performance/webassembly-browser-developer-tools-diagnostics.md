@@ -91,10 +91,7 @@ Add `callspec` to the `browser` WebAssembly profiler in the `<WasmProfilers>` el
 
 In the project file (`.csproj`), the properties in the following table enable integration with the browser's profiler.
 
-Property | Default | Set value to&hellip; | Description
---- | :---: | :---: | ---
-`<WasmProfilers>` | No value | `browser` | Mono profiler. Currently, only "`browser`" is supported. The `browser` profiler enables integration with the browser's developer tools profiler.
-`<WasmPerfInstrumentation>` | `false` | `true` | Controls CPU sampling instrumentation for diagnostic server.
+Use the `<WasmProfilers>` property set to `browser` for the Mono profiler. Currently, only "`browser`" is supported. The `browser` profiler enables integration with the browser's developer tools profiler.
 
 ```xml
 <PropertyGroup>
