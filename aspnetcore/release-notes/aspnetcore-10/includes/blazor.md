@@ -130,7 +130,7 @@ Last year, the release of .NET 9 introduced [server-side fingerprinting](https:/
 
 In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
 
-The following changes must be made in the `wwwwoot/index.html` file to adopt the fingerprinting feature. The standalone Blazor WebAssembly project template will be updated to include these changes in an upcoming preview release:
+The following markup must be present in the `wwwwoot/index.html` file to adopt the fingerprinting feature:
 
 ```diff
 <head>
@@ -159,6 +159,12 @@ In the project file (`.csproj`), add the `<WriteImportMapToHtml>` property set t
 +   <WriteImportMapToHtml>true</WriteImportMapToHtml>
   </PropertyGroup>
 </Project>
+```
+
+Any script in `index.html` with the fingerprint marker is fingerprinted by the framework. For example, a script file named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
+
+```html
+<script src="js/scripts#[.{fingerprint}].js"></script>
 ```
 
 To fingerprint additional JS modules in standalone Blazor WebAssembly apps, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
@@ -281,7 +287,7 @@ else
 }
 ```
 
-For more information, see <xref:blazor/components/prerender?view=aspnetcore-10.0#persist-prerendered-state>. Additional API implementation notes, which are subject to change at any time, are available in [[Blazor] Support for declaratively persisting component and services state (`dotnet/aspnetcore` #60634)](https://github.com/dotnet/aspnetcore/pull/60634).
+State can be serialized for multiple components of the same type, and you can establish declarative state in a service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender?view=aspnetcore-10.0#persist-prerendered-state>.
 
 <!-- PREVIEW 4
 
