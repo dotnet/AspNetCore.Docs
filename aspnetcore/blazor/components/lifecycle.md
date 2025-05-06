@@ -326,7 +326,7 @@ If a disposable component doesn't use a <xref:System.Threading.CancellationToken
 
 For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
 
-For an example of implementing `SetParametersAsync` manually to improve performance in some scenarios, see <xref:blazor/performance#implement-setparametersasync-manually>.
+For an example of implementing `SetParametersAsync` manually to improve performance in some scenarios, see <xref:blazor/performance/rendering#implement-setparametersasync-manually>.
 
 ## After component render (`OnAfterRender{Async}`)
 

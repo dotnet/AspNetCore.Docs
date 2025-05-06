@@ -822,4 +822,4 @@ When the `Robot` component from the RCL is requested at `/robot`, the `GrantImah
 ## Additional resources
 
 * [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
-* <xref:blazor/performance>
+* <xref:blazor/performance/index>

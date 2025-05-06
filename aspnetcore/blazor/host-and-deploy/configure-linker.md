@@ -119,4 +119,4 @@ For more information, see [I18N: Pnetlib Internationalization Framework Library 
 
 ## Additional resources
 
-* <xref:blazor/performance#intermediate-language-il-linking>
+<xref:blazor/performance/app-download-size#intermediate-language-il-linking>
