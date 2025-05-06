@@ -13,7 +13,7 @@ The following articles provide information about how to optimize the performance
 
 :::moniker range=">= aspnetcore-8.0"
 
-* <xref:blazor/performance>
+* <xref:blazor/performance/index>
 * <xref:fundamentals/best-practices>
 * <xref:performance/caching/overview>
 * <xref:performance/rate-limit>
@@ -30,7 +30,7 @@ The following articles provide information about how to optimize the performance
 
 :::moniker range="< aspnetcore-8.0"
 
-* <xref:blazor/performance>
+* <xref:blazor/performance/index>
 * <xref:fundamentals/best-practices>
 * <xref:performance/caching/overview>
 * <xref:performance/rate-limit>

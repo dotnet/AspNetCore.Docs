@@ -348,4 +348,11 @@ For more information, see the following sections of the *Call JavaScript functio
 * [Create an instance of a JS object using a constructor function](xref:blazor/js-interop/call-javascript-from-dotnet#create-an-instance-of-a-js-object-using-a-constructor-function)
 * [Read or modify the value of a JS object property](xref:blazor/js-interop/call-javascript-from-dotnet#read-or-modify-the-value-of-a-js-object-property)
 
+### Blazor WebAssembly performance profiling and diagnostic counters
+
+New performance profiling and diagnostic counters are available for Blazor WebAssembly apps. For more information, see the following articles:
+
+* <xref:blazor/performance/webassembly-browser-developer-tools>
+* <xref:blazor/performance/webassembly-event-pipe>
+
 -->

@@ -580,7 +580,7 @@ It's often convenient to close over additional values using C# method parameters
 
 :::moniker-end
 
-Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
+Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance/rendering#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
 
 Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
 

@@ -1,27 +1,20 @@
 ---
-title: ASP.NET Core Blazor performance best practices
+title: ASP.NET Core Blazor rendering performance best practices
 author: guardrex
-description: Tips for increasing performance in ASP.NET Core Blazor apps and avoiding common performance problems.
+description: Tips for improving the rendering performance of ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2024
-uid: blazor/performance
+ms.date: 04/16/2025
+uid: blazor/performance/rendering
 ---
-# ASP.NET Core Blazor performance best practices
+# ASP.NET Core Blazor rendering performance best practices
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
-
-> [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later.
-
-## Optimize rendering speed
-
 Optimize rendering speed to minimize rendering workload and improve UI responsiveness, which can yield a *ten-fold or higher improvement* in UI rendering speed.
 
-### Avoid unnecessary rendering of component subtrees
+## Avoid unnecessary rendering of component subtrees
 
 You might be able to remove the majority of a parent component's rendering cost by skipping the rerendering of child component subtrees when an event occurs. You should only be concerned about skipping the rerendering subtrees that are particularly expensive to render and are causing UI lag.
 
@@ -77,7 +70,7 @@ For more information, see the following resources:
 
 :::moniker range=">= aspnetcore-5.0"
 
-### Virtualization
+## Virtualization
 
 When rendering large amounts of UI within a loop, for example, a list or grid with thousands of entries, the sheer quantity of rendering operations can lead to a lag in UI rendering. Given that the user can only see a small number of elements at once without scrolling, it's often wasteful to spend time rendering elements that aren't currently visible.
 
@@ -87,7 +80,7 @@ For more information, see <xref:blazor/components/virtualization>.
 
 :::moniker-end
 
-### Create lightweight, optimized components
+## Create lightweight, optimized components
 
 Most Razor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components used to render high-level pieces of the UI, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't usually create high rendering workload, so you can freely use any combination of framework features without much concern about rendering performance.
 
@@ -99,7 +92,7 @@ However, there are common scenarios where components are repeated at scale and o
 
 If modelling each element, cell, or data point as a separate component instance, there are often so many of them that their rendering performance becomes critical. This section provides advice on making such components lightweight so that the UI remains fast and responsive.
 
-#### Avoid thousands of component instances
+## Avoid thousands of component instances
 
 Each component is a separate island that can render independently of its parents and children. By choosing how to split the UI into a hierarchy of components, you are taking control over the granularity of UI rendering. This can result in either good or poor performance.
 
@@ -111,9 +104,7 @@ It's possible to make components more lightweight so that you can have more of t
 
 For more information on memory management, see <xref:blazor/host-and-deploy/server/memory-management>.
 
-##### Inline child components into their parents
-
-Consider the following portion of a parent component that renders child components in a loop:
+**Inline child components into their parents:** Consider the following portion of a parent component that renders child components in a loop:
 
 ```razor
 <div class="chat">
@@ -152,9 +143,7 @@ The preceding example performs well if thousands of messages aren't shown at onc
 </div>
 ```
 
-##### Define reusable `RenderFragments` in code
-
-You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment>. Render the fragment from any location as many times as needed:
+**Define reusable `RenderFragments` in code:** You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment>. Render the fragment from any location as many times as needed:
 
 ```razor
 @RenderWelcomeInfo
@@ -206,7 +195,7 @@ protected RenderFragment DisplayTitle =>
     </div>;
 ```
 
-#### Don't receive too many parameters
+## Don't receive too many parameters
 
 If a component repeats extremely often, for example, hundreds or thousands of times, the overhead of passing and receiving each parameter builds up.
 
@@ -230,7 +219,7 @@ To reduce parameter load, bundle multiple parameters in a custom class. For exam
 
 However, keep in mind that bundling primitive parameters into a class isn't always an advantage. While it can reduce parameter count, it also impacts how change detection and rendering behave. Passing non-primitive parameters always triggers a re-render, because Blazor can't know whether arbitrary objects have internally mutable state, whereas passing primitive parameters only triggers a re-render if their values have actually changed.
 
-Also, consider that it might be an improvement not to have a table cell component, as shown in the preceding example, and instead [inline its logic into the parent component](#inline-child-components-into-their-parents).
+Also, consider that it might be an improvement not to have a table cell component, as shown in the preceding example, and instead [inline its logic into the parent component](#avoid-thousands-of-component-instances).
 
 > [!NOTE]
 > When multiple approaches are available for improving performance, benchmarking the approaches is usually required to determine which approach yields the best results.
@@ -241,7 +230,7 @@ For more information on generic type parameters (`@typeparam`), see the followin
 * <xref:blazor/components/index#generic-type-parameter-support>
 * <xref:blazor/components/templated-components>
 
-#### Ensure cascading parameters are fixed
+## Ensure cascading parameters are fixed
 
 The [`CascadingValue` component](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) has an optional `IsFixed` parameter:
 
@@ -260,7 +249,7 @@ Where a component passes `this` as a cascaded value, `IsFixed` can also be set t
 
 For more information, see <xref:blazor/components/cascading-values-and-parameters>.
 
-#### Avoid attribute splatting with `CaptureUnmatchedValues`
+## Avoid attribute splatting with `CaptureUnmatchedValues`
 
 Components can elect to receive "unmatched" parameter values using the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> flag:
 
@@ -282,7 +271,7 @@ Use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedVal
 
 For more information, see <xref:blazor/components/attribute-splatting>.
 
-#### Implement `SetParametersAsync` manually
+## Implement `SetParametersAsync` manually
 
 A significant source of per-component rendering overhead is writing incoming parameter values to `[Parameter]` properties. The renderer uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/) to write the parameter values, which can lead to poor performance at scale.
 
@@ -340,7 +329,7 @@ In the preceding code, returning the base class <xref:Microsoft.AspNetCore.Compo
 
 As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, it can improve rendering performance by 20-25%, but you should only consider this approach in the extreme scenarios listed earlier in this section.
 
-### Don't trigger events too rapidly
+## Don't trigger events too rapidly
 
 Some browser events fire extremely frequently. For example, `onmousemove` and `onscroll` can fire tens or hundreds of times per second. In most cases, you don't need to perform UI updates this frequently. If events are triggered too rapidly, you may harm UI responsiveness or consume excessive CPU time.
 
@@ -397,7 +386,7 @@ The corresponding JavaScript code registers the DOM event listener for mouse mov
 </script>
 ```
 
-### Avoid rerendering after handling events without state changes
+## Avoid rerendering after handling events without state changes
 
 Components inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>, which automatically invokes <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> after the component's event handlers are invoked. In some cases, it might be unnecessary or undesirable to trigger a rerender after an event handler is invoked. For example, an event handler might not modify component state. In these scenarios, the app can leverage the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface to control the behavior of Blazor's event handling.
 
@@ -542,7 +531,7 @@ In the following example:
 
 In addition to implementing the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface, leveraging the other best practices described in this article can also help reduce unwanted renders after events are handled. For example, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> in child components of the target component can be used to control rerendering.
 
-### Avoid recreating delegates for many repeated elements or components
+## Avoid recreating delegates for many repeated elements or components
 
 Blazor's recreation of [lambda expression delegates](xref:blazor/components/event-handling#lambda-expressions) for elements or components in a loop can lead to poor performance.
 
@@ -638,214 +627,3 @@ If a large number of buttons are rendered using the preceding approach, renderin
     }
 }
 ```
-
-## Optimize JavaScript interop speed
-
-Calls between .NET and JavaScript require additional overhead because:
-
-* Calls are asynchronous.
-* Parameters and return values are JSON-serialized to provide an easy-to-understand conversion mechanism between .NET and JavaScript types.
-
-Additionally for server-side Blazor apps, these calls are passed across the network.
-
-### Avoid excessively fine-grained calls
-
-Since each call involves some overhead, it can be valuable to reduce the number of calls. Consider the following code, which stores a collection of items in the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage):
-
-```csharp
-private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
-{
-    foreach (var item in items)
-    {
-        await JS.InvokeVoidAsync("localStorage.setItem", item.Id, 
-            JsonSerializer.Serialize(item));
-    }
-}
-```
-
-The preceding example makes a separate JS interop call for each item. Instead, the following approach reduces the JS interop to a single call:
-
-```csharp
-private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
-{
-    await JS.InvokeVoidAsync("storeAllInLocalStorage", items);
-}
-```
-
-The corresponding JavaScript function stores the whole collection of items on the client:
-
-```javascript
-function storeAllInLocalStorage(items) {
-  items.forEach(item => {
-    localStorage.setItem(item.id, JSON.stringify(item));
-  });
-}
-```
-
-For Blazor WebAssembly apps, rolling individual JS interop calls into a single call usually only improves performance significantly if the component makes a large number of JS interop calls.
-
-### Consider the use of synchronous calls
-
-:::moniker range=">= aspnetcore-5.0"
-
-#### Call JavaScript from .NET
-
-[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-js.md)]
-
-#### Call .NET from JavaScript
-
-[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-dotnet.md)]
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-js.md)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-7.0"
-
-### Consider the use of unmarshalled calls
-
-*This section only applies to Blazor WebAssembly apps.*
-
-When running on Blazor WebAssembly, it's possible to make unmarshalled calls from .NET to JavaScript. These are synchronous calls that don't perform JSON serialization of arguments or return values. All aspects of memory management and translations between .NET and JavaScript representations are left up to the developer.
-
-> [!WARNING]
-> While using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> has the least overhead of the JS interop approaches, the JavaScript APIs required to interact with these APIs are currently undocumented and subject to breaking changes in future releases.
-
-```javascript
-function jsInteropCall() {
-  return BINDING.js_to_mono_obj("Hello world");
-}
-```
-
-```razor
-@inject IJSRuntime JS
-
-@code {
-    protected override void OnInitialized()
-    {
-        var unmarshalledJs = (IJSUnmarshalledRuntime)JS;
-        var value = unmarshalledJs.InvokeUnmarshalled<string>("jsInteropCall");
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
-### Use JavaScript `[JSImport]`/`[JSExport]` interop
-
-JavaScript `[JSImport]`/`[JSExport]` interop for Blazor WebAssembly apps offers improved performance and stability over the JS interop API in framework releases prior to ASP.NET Core in .NET 7.
-
-For more information, see <xref:blazor/js-interop/import-export-interop>.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
-
-## Ahead-of-time (AOT) compilation
-
-Ahead-of-time (AOT) compilation compiles a Blazor app's .NET code directly into native WebAssembly for direct execution by the browser. AOT-compiled apps result in larger apps that take longer to download, but AOT-compiled apps usually provide better runtime performance, especially for apps that execute CPU-intensive tasks. For more information, see <xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation>.
-
-:::moniker-end
-
-## Minimize app download size
-
-:::moniker range=">= aspnetcore-6.0"
-
-### Runtime relinking
-
-For information on how runtime relinking minimizes an app's download size, see <xref:blazor/tooling/webassembly#runtime-relinking>.
-
-:::moniker-end
-
-### Use `System.Text.Json`
-
-Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> shouldn't result in additional app payload size over adding one or more alternate JSON libraries.
-
-For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
-
-### Intermediate Language (IL) trimming
-
-*This section only applies to client-side Blazor scenarios.*
-
-:::moniker range=">= aspnetcore-5.0"
-
-Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-[Linking a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-linker) reduces the app's size by trimming unused code in the app's binaries. The Intermediate Language (IL) Linker is only enabled when building in `Release` configuration. To benefit from this, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:
-
-```dotnetcli
-dotnet publish -c Release
-```
-
-:::moniker-end
-
-### Lazy load assemblies
-
-*This section only applies to client-side Blazor scenarios.*
-
-Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
-
-### Compression
-
-*This section only applies to Blazor WebAssembly apps.*
-
-When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
-
-After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly/index#compression>.
-
-### Disable unused features
-
-*This section only applies to client-side Blazor scenarios.*
-
-Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size:
-
-* Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
-
-:::moniker range=">= aspnetcore-8.0"
-
-* Adopting [invariant globalization](xref:blazor/globalization-localization#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data from the app, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file:
-
-  ```xml
-  <PropertyGroup>
-    <InvariantTimezone>true</InvariantTimezone>
-  </PropertyGroup>
-  ```
-
-  > [!NOTE]
-  > [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-* A data file is included to make timezone information correct. If the app doesn't require this feature, consider disabling it by setting the `<BlazorEnableTimeZoneSupport>` MSBuild property to `false` in the app's project file:
-
-  ```xml
-  <PropertyGroup>
-    <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
-  </PropertyGroup>
-  ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-* Collation information is included to make APIs such as <xref:System.StringComparison.InvariantCultureIgnoreCase?displayProperty=nameWithType> work correctly. If you're certain that the app doesn't require the collation data, consider disabling it by setting the `BlazorWebAssemblyPreserveCollationData` MSBuild property in the app's project file to `false`:
-
-  ```xml
-  <PropertyGroup>
-    <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
-  </PropertyGroup>
-  ```
-
-:::moniker-end
