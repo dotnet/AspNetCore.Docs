@@ -13,6 +13,8 @@ By [Mike Rousos](https://github.com/mjrousos)
 
 This article lists tools for diagnosing performance issues in ASP.NET Core.
 
+For information on Blazor WebAssembly performance diagnostic tools and counters, see <xref:blazor/performance/webassembly-browser-developer-tools> and <xref:blazor/performance/webassembly-event-pipe>.
+
 ## Visual Studio Diagnostic Tools
 
 The [profiling and diagnostic tools](/visualstudio/profiling) built into Visual Studio are a good place to start investigating performance issues. These tools are powerful and convenient to use from the Visual Studio development environment. The tooling allows analysis of CPU usage, memory usage, and performance events in ASP.NET Core apps. Being built-in makes profiling easy at development time.

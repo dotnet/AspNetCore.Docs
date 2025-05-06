@@ -57,11 +57,36 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 Common locations exist for persisting state:
 
+:::moniker range=">= aspnetcore-10.0"
+
+* [Declarative model for persistent state](#declarative-model-for-persisting-state-server)
 * [Server-side storage](#server-side-storage-server)
 * [URL](#url-server)
 * [Browser storage](#browser-storage-server)
 * [In-memory state container service](#in-memory-state-container-service)
 * [Cascading values and parameters](#cascading-values-and-parameters)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+* [Server-side storage](#server-side-storage-server)
+* [URL](#url-server)
+* [Browser storage](#browser-storage-server)
+* [In-memory state container service](#in-memory-state-container-service)
+* [Cascading values and parameters](#cascading-values-and-parameters)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+<h2 id="declarative-model-for-persisting-state-server">Declarative model for persisting state</h2>
+
+<!-- UPDATE 10.0 - API cross-link -->
+
+Establish declarative state in a dependency injection service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+
+:::moniker-end
 
 <h2 id="server-side-storage-server">Server-side storage</h2>
 
@@ -618,11 +643,36 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 Common locations exist for persisting state:
 
+:::moniker range=">= aspnetcore-10.0"
+
+* [Declarative model for persistent state](#declarative-model-for-persisting-state-wasm)
 * [Server-side storage](#server-side-storage-wasm)
 * [URL](#url-wasm)
 * [Browser storage](#browser-storage-wasm)
 * [In-memory state container service](#in-memory-state-container-service)
 * [Cascading values and parameters](#cascading-values-and-parameters)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+* [Server-side storage](#server-side-storage-wasm)
+* [URL](#url-wasm)
+* [Browser storage](#browser-storage-wasm)
+* [In-memory state container service](#in-memory-state-container-service)
+* [Cascading values and parameters](#cascading-values-and-parameters)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+<h2 id="declarative-model-for-persisting-state-wasm">Declarative model for persisting state</h2>
+
+<!-- UPDATE 10.0 - API cross-link -->
+
+Establish declarative state in a dependency injection service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+
+:::moniker-end
 
 <h2 id="server-side-storage-wasm">Server-side storage</h2>
 
