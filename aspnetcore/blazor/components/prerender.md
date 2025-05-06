@@ -199,7 +199,7 @@ In the following example that serializes state for multiple components of the sa
 }
 ```
 
-In the following example that serializes state for a service:
+In the following example that serializes state for a dependency injection service:
 
 * Properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are serialized during prerendering and deserialized when the app becomes interactive.
 * The `AddPersistentService` method is used to register the service for persistence. The render mode is required because the render mode can't be inferred from the service type. Use any of the following values:
@@ -210,6 +210,8 @@ In the following example that serializes state for a service:
 
 > [!NOTE]
 > Only persisting scoped services is supported.
+
+<!-- UPDATE 10.0 - Flesh out with a fully-working example. -->
 
 `CounterService.cs`:
 
