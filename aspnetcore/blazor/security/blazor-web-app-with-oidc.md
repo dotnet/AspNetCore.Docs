@@ -1067,6 +1067,88 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 :::moniker-end
 
+## Supply configuration with the JSON configuration provider (app settings)
+
+The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional applications use a [configuration provider](xref:blazor/fundamentals/configuration), such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). The guidance in this section explains how to use app settings files for configuration instead of hardcoded configuration in `Program` files.
+
+In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc`/`BlazorWebAppOidcServer`/`BlazorWebAppOidcBff` project, add the following JSON configuration:
+
+```json
+"Authentication": {
+  "Schemes": {
+    "MicrosoftOidc": {
+      "Authority": "https://login.microsoftonline.com/{TENANT ID (BLAZOR APP)}/v2.0/",
+      "ClientId": "{CLIENT ID (BLAZOR APP)}",
+      "CallbackPath": "/signin-oidc",
+      "SignedOutCallbackPath": "/signout-callback-oidc",
+      "RemoteSignOutPath": "/signout-oidc",
+      "SignedOutRedirectUri": "/",
+      "Scope": [
+        "openid",
+        "profile",
+        "offline_access",
+        "{APP ID URI (WEB API)}/Weather.Get"
+      ]
+    }
+  }
+},
+```
+
+Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
+
+* `{TENANT ID (BLAZOR APP)}`: The Tenant Id of the Blazor app.
+* `{CLIENT ID (BLAZOR APP)}`: The Client Id of the Blazor app.
+* `{APP ID URI (WEB API)}`: The App ID URI of the web API.
+
+Update any other values in the preceding configuration to match custom/non-default values used in the `Program` file.
+
+The configuration is automatically picked up by the authentication middleware.
+
+Remove the following lines from the `Program` file:
+
+```diff
+- oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
+- oidcOptions.Scope.Add("...");
+- oidcOptions.CallbackPath = new PathString("...");
+- oidcOptions.SignedOutCallbackPath = new PathString("...");
+- oidcOptions.RemoteSignOutPath = new PathString("...");
+- oidcOptions.Authority = "...";
+- oidcOptions.ClientId = "...";
+```
+
+In the `ConfigureCookieOidc` method of `CookieOidcServiceCollectionExtensions.cs`, remove the following line:
+
+```diff
+- oidcOptions.Scope.Add(OpenIdConnectScope.OfflineAccess);
+```
+
+In the `MinimalApiJwt` project, add the following app settings configuration to the `appsettings.json` file:
+
+```json
+"Authentication": {
+  "Schemes": {
+    "Bearer": {
+      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}/",
+      "ValidAudiences": [ "{APP ID URI (WEB API)}" ]
+    }
+  }
+},
+```
+
+Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
+
+* `{TENANT ID (WEB API)}`: The Tenant Id of the web API.
+* `{APP ID URI (WEB API)}`: The App ID URI of the web API.
+
+The configuration is automatically picked up by the JWT bearer authentication middleware.
+
+Remove the following lines from the project's `Program` file:
+
+```diff
+- jwtOptions.Authority = "...";
+- jwtOptions.Audience = "...";
+```
+
 ## Redirect to the home page on logout
 
 The `LogInOrOut` component (`Layout/LogInOrOut.razor`) sets a hidden field for the return URL (`ReturnUrl`) to the current URL (`currentURL`). When the user signs out of the app, the identity provider returns the user to the page from which they logged out. If the user logs out from a secure page, they're returned to the same secure page and sent back through the authentication process. This authentication flow is reasonable when users need to change accounts regularly.
