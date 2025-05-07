@@ -1069,7 +1069,7 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 ## Supply configuration with the JSON configuration provider (app settings)
 
-The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional applications use a *configuration provider*, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
+The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
 
 In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc`, `BlazorWebAppOidcServer`, or `BlazorWebAppOidcBff` project, add the following JSON configuration:
 
@@ -1104,7 +1104,7 @@ The "common" Authority (`https://login.microsoftonline.com/common/v2.0/`) should
 
 Update any other values in the preceding configuration to match custom/non-default values used in the `Program` file.
 
-The configuration is automatically picked up by the Authentication Middleware.
+The configuration is automatically picked up by the authentication builder.
 
 Remove the following lines from the `Program` file:
 
@@ -1152,7 +1152,7 @@ Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of
 * ME-ID tenant type: `api://{CLIENT ID}`
 * B2C tenant type: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
 
-The configuration is automatically picked up by the JWT bearer Authentication Middleware.
+The configuration is automatically picked up by the JWT bearer authentication builder.
 
 Remove the following lines from the `Program` file:
 
@@ -1183,8 +1183,10 @@ using Microsoft.IdentityModel.Validators;
 Use the following code in the `Program` file where OIDC options are configured:
 
 ```csharp
-var microsoftIssuerValidator = AadIssuerValidator.GetAadIssuerValidator(oidcOptions.Authority);
-oidcOptions.TokenValidationParameters.IssuerValidator = microsoftIssuerValidator.Validate;
+var microsoftIssuerValidator = 
+    AadIssuerValidator.GetAadIssuerValidator(oidcOptions.Authority);
+oidcOptions.TokenValidationParameters.IssuerValidator = 
+    microsoftIssuerValidator.Validate;
 ```
 
 For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
