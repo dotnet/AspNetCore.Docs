@@ -83,7 +83,7 @@ The following settings can be configured:
 
 ## Accept WebSocket requests
 
-Somewhere later in the request life cycle (later in `Program.cs` or in an action method, for example) check if it's a WebSocket request and accept the WebSocket request.
+Later in the request life cycle, such as in `Program.cs` or an action method, check if it's a WebSocket request and accept it.  
 
 The following example is from later in `Program.cs`:
 
@@ -138,7 +138,7 @@ using (var webSocket = await context.WebSockets.AcceptWebSocketAsync(
 Compression is negotiated between the client and server when first establishing a connection. You can read more about the negotiation in the [Compression Extensions for WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc7692#section-7).
 
 > [!NOTE]
-> If the compression negotiation isn't accepted by either the server or client, the connection is still established. However, the connection doesn't use compression when sending and receiving messages.
+> If the server or client doesn't accept the compression negotiation, the connection is still established but doesn't use compression to send and receive messages.
 
 ## Send and receive messages
 
@@ -154,120 +154,34 @@ When accepting the WebSocket connection before beginning the loop, the middlewar
 
 The server isn't automatically informed when the client disconnects due to loss of connectivity. The server receives a disconnect message only if the client sends it, which can't be done if the internet connection is lost. If you want to take some action when that happens, set a timeout after nothing is received from the client within a certain time window.
 
-If the client isn't always sending messages and you don't want to time out just because the connection goes idle, have the client use a timer to send a ping message every X seconds. On the server, if a message hasn't arrived within 2\*X seconds after the previous one, terminate the connection and report that the client disconnected. Wait for twice the expected time interval to leave extra time for network delays that might hold up the ping message.
+If the client isn't always sending messages and you don't want to time out just because the connection goes idle, have the client use a timer to send a ping message every X seconds. On the server, if a message doesn't arrive within 2*X seconds after the previous one, terminate the connection and report that the client disconnected. Wait for twice the expected time interval to leave extra time for network delays that might hold up the ping message.
 
-### Set the server timeout and Keep-Alive interval
+### Keep-Alive Timeout for WebSockets
 
-An updated method to set the server timeout and Keep-Alive interval for SignalR connections was introduced with ASP.NET Core 8.0:
+The [WebSockets middleware]([request streaming](xref:fundamentals/websockets#configure-the-middleware) can be configured for keep-alive timeouts, introduced with ASP.NET 9.0.
 
-<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) can be set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>.
+The keep-alive timeout aborts the WebSocket connection and throws an exception from `WebSocket.ReceiveAsync` if both of the following conditions are met:
 
-#### Prior approach for JavaScript clients
+* The server sends a ping frame using the websocket protocol.
+* The client doesn't reply with a pong frame within the specified timeout.
 
-The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+The server automatically sends the ping frame and configures it with `KeepAliveInterval`. 
 
-```javascript
-var connection = new signalR.HubConnectionBuilder()
-  .withUrl("/chatHub")
-  .build();
+The keep-alive timeout setting is useful for detecting connections that might be slow or ungracefully disconnected.
 
-connection.serverTimeoutInMilliseconds = 60000;
-connection.keepAliveIntervalInMilliseconds = 30000;
-```
+The keep-alive timeout can be configured globally for the WebSocket middleware:
 
-#### New approach for JavaScript clients
+[!code-csharp[](~fundamentals/websockets/samples/9.x/WebSocketsKeepAliveTimeoutExample/Program.cs?name=snippet_WebSocket_KeepAliveTimeout_Global)]
 
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+Or configured per accepted WebSocket:
 
-```javascript
-var connection = new signalR.HubConnectionBuilder()
-  .withUrl("/chatHub")
-  .withServerTimeout(60000)
-  .withKeepAlive(30000)
-  .build();
-```
-
-#### Prior approach for the JavaScript client of a Blazor Server app
-
-The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
-
-```javascript
-Blazor.start({
-  configureSignalR: function (builder) {
-    let c = builder.build();
-    c.serverTimeoutInMilliseconds = 60000;
-    c.keepAliveIntervalInMilliseconds = 30000;
-    builder.build = () => {
-      return c;
-    };
-  }
-});
-```
-
-#### New approach for the JavaScript client of server-side Blazor app
-
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later for Blazor Web Apps and Blazor Server.
-
-Blazor Web App:
-
-```javascript
-Blazor.start({
-  circuit: {
-    configureSignalR: function (builder) {
-      builder.withServerTimeout(60000).withKeepAliveInterval(30000);
-    }
-  }
-});
-```
-
-Blazor Server:
-
-```javascript
-Blazor.start({
-  configureSignalR: function (builder) {
-    builder.withServerTimeout(60000).withKeepAliveInterval(30000);
-  }
-});
-```
-
-#### Prior approach for .NET clients
-
-The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
-
-```csharp
-var builder = new HubConnectionBuilder()
-    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
-    .Build();
-
-builder.ServerTimeout = TimeSpan.FromSeconds(60);
-builder.KeepAliveInterval = TimeSpan.FromSeconds(30);
-
-builder.On<string, string>("ReceiveMessage", (user, message) => ...
-
-await builder.StartAsync();
-```
-
-#### New approach for .NET clients
-
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
-
-```csharp
-var builder = new HubConnectionBuilder()
-    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
-    .WithServerTimeout(TimeSpan.FromSeconds(60))
-    .WithKeepAliveInterval(TimeSpan.FromSeconds(30))
-    .Build();
-
-builder.On<string, string>("ReceiveMessage", (user, message) => ...
-
-await builder.StartAsync();
-```
+[!code-csharp[](~fundamentals/websockets/samples/9.x/WebSocketsKeepAliveTimeoutExample/Program.cs?name=snippet_KeepAliveTimeout_Per_Accepted_WebSocket)]
 
 ## WebSocket origin restriction
 
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
-* Perform CORS pre-flight requests.
+* Perform CORS preflight requests.
 * Respect the restrictions specified in `Access-Control` headers when making WebSocket requests.
 
 However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers to ensure that only WebSockets coming from the expected origins are allowed.
@@ -291,7 +205,7 @@ Windows Server 2012 or later and Windows 8 or later with IIS/IIS Express 8 or la
 To enable support for the WebSocket protocol on Windows Server 2012 or later:
 
 > [!NOTE]
-> These steps are not required when using IIS Express
+> These steps aren't required when using IIS Express
 
 1. Use the **Add Roles and Features** wizard from the **Manage** menu or the link in **Server Manager**.
 1. Select **Role-based or Feature-based Installation**. Select **Next**.
@@ -305,7 +219,7 @@ To enable support for the WebSocket protocol on Windows Server 2012 or later:
 To enable support for the WebSocket protocol on Windows 8 or later:
 
 > [!NOTE]
-> These steps are not required when using IIS Express
+> These steps aren't required when using IIS Express
 
 1. Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
 1. Open the following nodes: **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
