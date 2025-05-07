@@ -20,6 +20,30 @@ For general information on serving static files with Map Static Assets routing e
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-10.0"
+
+## Preloaded Blazor framework static assets
+
+In Blazor Web Apps, framework static assets are automatically preloaded using [`Link` headers](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Link), which allows the browser to preload resources before the initial page is fetched and rendered.
+
+In standalone Blazor WebAssembly apps, framework assets are scheduled for high priority downloading and caching early in browser `index.html` page processing when:
+
+* The `OverrideHtmlAssetPlaceholders` MSBuild property in the app's project file (`.csproj`) is set to `true`:
+
+  ```xml
+  <PropertyGroup>
+    <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
+  </PropertyGroup>
+  ```
+
+* The following `<link>` element containing [`rel="preload"`](https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/rel/preload) is present in the `<head>` content of `wwwroot/index.html`:
+
+  ```html
+  <link rel="preload" id="webassembly" />
+  ```
+
+:::moniker-end
+
 ## Static asset delivery in server-side Blazor apps
 
 :::moniker range=">= aspnetcore-9.0"
