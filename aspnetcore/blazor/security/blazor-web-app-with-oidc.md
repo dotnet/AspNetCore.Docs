@@ -1067,6 +1067,130 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 :::moniker-end
 
+## Supply configuration with the JSON configuration provider (app settings)
+
+The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
+
+In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc`, `BlazorWebAppOidcServer`, or `BlazorWebAppOidcBff` project, add the following JSON configuration:
+
+```json
+"Authentication": {
+  "Schemes": {
+    "MicrosoftOidc": {
+      "Authority": "https://login.microsoftonline.com/{TENANT ID (BLAZOR APP)}/v2.0/",
+      "ClientId": "{CLIENT ID (BLAZOR APP)}",
+      "CallbackPath": "/signin-oidc",
+      "SignedOutCallbackPath": "/signout-callback-oidc",
+      "RemoteSignOutPath": "/signout-oidc",
+      "SignedOutRedirectUri": "/",
+      "Scope": [
+        "openid",
+        "profile",
+        "offline_access",
+        "{APP ID URI (WEB API)}/Weather.Get"
+      ]
+    }
+  }
+},
+```
+
+Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
+
+* `{TENANT ID (BLAZOR APP)}`: The Tenant Id of the Blazor app.
+* `{CLIENT ID (BLAZOR APP)}`: The Client Id of the Blazor app.
+* `{APP ID URI (WEB API)}`: The App ID URI of the web API.
+
+The "common" Authority (`https://login.microsoftonline.com/common/v2.0/`) should be used for multi-tenant apps. To use the "common" Authority for single-tenant apps, see the [Use the "common" Authority for single-tenant apps](#use-the-common-authority-for-single-tenant-apps) section.
+
+Update any other values in the preceding configuration to match custom/non-default values used in the `Program` file.
+
+The configuration is automatically picked up by the authentication builder.
+
+Remove the following lines from the `Program` file:
+
+```diff
+- oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
+- oidcOptions.Scope.Add("...");
+- oidcOptions.CallbackPath = new PathString("...");
+- oidcOptions.SignedOutCallbackPath = new PathString("...");
+- oidcOptions.RemoteSignOutPath = new PathString("...");
+- oidcOptions.Authority = "...";
+- oidcOptions.ClientId = "...";
+```
+
+In the `ConfigureCookieOidc` method of `CookieOidcServiceCollectionExtensions.cs`, remove the following line:
+
+```diff
+- oidcOptions.Scope.Add(OpenIdConnectScope.OfflineAccess);
+```
+
+In the `MinimalApiJwt` project, add the following app settings configuration to the `appsettings.json` file:
+
+```json
+"Authentication": {
+  "Schemes": {
+    "Bearer": {
+      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}/",
+      "ValidAudiences": [ "{APP ID URI (WEB API)}" ]
+    }
+  }
+},
+```
+
+Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
+
+* `{TENANT ID (WEB API)}`: The Tenant Id of the web API.
+* `{APP ID URI (WEB API)}`: The App ID URI of the web API.
+
+Authority formats adopt the following patterns:
+
+* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}/`
+* B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0/`
+
+Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
+
+* ME-ID tenant type: `api://{CLIENT ID}`
+* B2C tenant type: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
+
+The configuration is automatically picked up by the JWT bearer authentication builder.
+
+Remove the following lines from the `Program` file:
+
+```diff
+- jwtOptions.Authority = "...";
+- jwtOptions.Audience = "...";
+```
+
+For more information on configuration, see the following resources:
+
+* <xref:fundamentals/configuration/index>
+* <xref:blazor/fundamentals/configuration>
+
+## Use the "common" Authority for single-tenant apps
+
+You can use the "common" Authority for single-tenant apps, but you must take the following steps to implement a custom issuer validator.
+
+Add the [`Microsoft.IdentityModel.Validators` NuGet package](https://www.nuget.org/packages/Microsoft.IdentityModel.Validators) to the `BlazorWebAppOidc`, `BlazorWebAppOidcServer`, or `BlazorWebAppOidcBff` project.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+At the top of the `Program` file, make the <xref:Microsoft.IdentityModel.Validators?displayProperty=fullName> namespace available:
+
+```csharp
+using Microsoft.IdentityModel.Validators;
+```
+
+Use the following code in the `Program` file where OIDC options are configured:
+
+```csharp
+var microsoftIssuerValidator = 
+    AadIssuerValidator.GetAadIssuerValidator(oidcOptions.Authority);
+oidcOptions.TokenValidationParameters.IssuerValidator = 
+    microsoftIssuerValidator.Validate;
+```
+
+For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
+
 ## Redirect to the home page on logout
 
 The `LogInOrOut` component (`Layout/LogInOrOut.razor`) sets a hidden field for the return URL (`ReturnUrl`) to the current URL (`currentURL`). When the user signs out of the app, the identity provider returns the user to the page from which they logged out. If the user logs out from a secure page, they're returned to the same secure page and sent back through the authentication process. This authentication flow is reasonable when users need to change accounts regularly.
@@ -1106,7 +1230,7 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
 
 The custom cookie refresher (`CookieOidcRefresher.cs`) implementation updates the user's claims automatically when they expire. The current implementation expects to receive an ID token from the token endpoint in exchange for the refresh token. The claims in this ID token are then used to overwrite the user's claims.
 
-The sample implementation doesn't include code for requesting claims from the [UserInfo endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) on token refresh. For more information, see [`BlazorWebAppOidc AddOpenIdConnect with GetClaimsFromUserInfoEndpoint = true doesn't propogate role claims to client` (`dotnet/aspnetcore` #58826)](https://github.com/dotnet/aspnetcore/issues/58826#issuecomment-2492738142).
+The sample implementation doesn't include code for requesting claims from the [UserInfo endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) on token refresh. For more information, see [`BlazorWebAppOidc AddOpenIdConnect with GetClaimsFromUserInfoEndpoint = true doesn't propogate [sic] role claims to client` (`dotnet/aspnetcore` #58826)](https://github.com/dotnet/aspnetcore/issues/58826#issuecomment-2492738142).
 
 > [!NOTE]
 > Some identity providers [only return an access token when using a refresh token](https://openid.net/specs/openid-connect-core-1_0.html#RefreshTokenResponse). The `CookieOidcRefresher` can be updated with additional logic to continue to use the prior set of claims stored in the authentication cookie or use the access token to request claims from the UserInfo endpoint.
