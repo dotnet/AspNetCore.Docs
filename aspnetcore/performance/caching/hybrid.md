@@ -86,7 +86,7 @@ Notice that the inline interpolated string syntax (`$"..."` in the preceding exa
 
 * Keys can be restricted to valid maximum lengths. For example, the default `HybridCache` implementation (via `AddHybridCache(...)`) restricts keys to 1024 characters by default. That number is configurable via `HybridCacheOptions.MaximumKeyLength`, with longer keys bypassing the cache mechanisms to prevent saturation.
 * Keys must be valid Unicode sequences. If invalid Unicode sequences are passed, the behavior is undefined.
-* When using an out-of-process secondary cache such as `IDistributedCache`, the specific backend implementation may impose additional restrictions. As a hypothetical example, a particular backend might use case-insensitive key logic. The default `HybridCache` (via `AddHybridCache(...)`) detects this scenario to prevent confusion attacks, however it may still result in conflicting keys becoming overwritten or evicted sooner than expected.
+* When using an out-of-process secondary cache such as `IDistributedCache`, the specific backend implementation may impose additional restrictions. As a hypothetical example, a particular backend might use case-insensitive key logic. The default `HybridCache` (via `AddHybridCache(...)`) detects this scenario to prevent confusion/alias attacks (using bitwise string equality), however it may still result in conflicting keys becoming overwritten or evicted sooner than expected.
 
 ### The alternative `GetOrCreateAsync` overload
 
@@ -117,7 +117,17 @@ Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
 Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync%2A> with the tag value. An overload lets you specify a collection of tag values.
 
-When an entry is removed, it is removed from both the primary and secondary caches.
+Note that because neither `IMemoryCache` nor `IDistributedCache` have direct support for the concept of tags (and tag-based invalidation), this is a *logical* operation only; it does not actively remove values from either local or distributed cache. Instead, it ensures that when receiving data with such tags, the data will be treated as a cache-miss from both the local and remote cache. The values will expire from `IMemoryCache` and `IDistributedCache` in the usual way based on the configured lifetime.
+
+## Removing all cache entries
+
+The tag `*` is reserved as a wildcard and is disallowed against individual values. Calling `RemoveByTagAsync("*")` has the effect of invalidating *all* `HybridCache` data, even data that does not have any tags. As with individual tags, this is a *logical* operation, and individual values may continue to exist until they expire naturally. Glob-style matches are not supported (you cannot use `RemoveByTagAsync("foo*)` to remove everything
+starting with `"foo"`).
+
+### Additional tag considerations
+
+* The system does not enforce an upper-limit on the number of tags, but excessively large sets of tags may have performance implications
+* Tags cannot be empty or just whitespace, and cannot be the reserved value `"*"`
 
 ## Options
 
