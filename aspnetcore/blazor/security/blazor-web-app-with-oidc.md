@@ -1069,7 +1069,7 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 ## Supply configuration with the JSON configuration provider (app settings)
 
-The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional applications use a [configuration provider](xref:blazor/fundamentals/configuration), such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). The guidance in this section explains how to use app settings files for configuration instead of hardcoded configuration in `Program` files.
+The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional applications use a *configuration provider*, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
 
 In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc`/`BlazorWebAppOidcServer`/`BlazorWebAppOidcBff` project, add the following JSON configuration:
 
@@ -1099,6 +1099,8 @@ Update the placeholders in the preceding configuration to match the values that 
 * `{TENANT ID (BLAZOR APP)}`: The Tenant Id of the Blazor app.
 * `{CLIENT ID (BLAZOR APP)}`: The Client Id of the Blazor app.
 * `{APP ID URI (WEB API)}`: The App ID URI of the web API.
+
+The "common" Authority (`https://login.microsoftonline.com/common/v2.0/`) should be used for multi-tenant apps. You can also use the "common" Authority for single-tenant apps, but it requires a custom Issuer Validator. For more information, see the comments in the sample project's `Program` file.
 
 Update any other values in the preceding configuration to match custom/non-default values used in the `Program` file.
 
@@ -1140,6 +1142,16 @@ Update the placeholders in the preceding configuration to match the values that 
 * `{TENANT ID (WEB API)}`: The Tenant Id of the web API.
 * `{APP ID URI (WEB API)}`: The App ID URI of the web API.
 
+Authority formats adopt the following patterns:
+
+* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}/`
+* B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0/`
+
+Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API):
+
+* ME-ID tenant type: `api://{CLIENT ID}`
+* B2C tenant type: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}` (`{DIRECTORY NAME}` is the directory name, for example, `contoso`)
+
 The configuration is automatically picked up by the JWT bearer authentication middleware.
 
 Remove the following lines from the project's `Program` file:
@@ -1148,6 +1160,11 @@ Remove the following lines from the project's `Program` file:
 - jwtOptions.Authority = "...";
 - jwtOptions.Audience = "...";
 ```
+
+For more information on configuration, see the following resources:
+
+* <xref:fundamentals/configuration/index>
+* <xref:blazor/fundamentals/configuration>
 
 ## Redirect to the home page on logout
 
