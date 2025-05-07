@@ -1071,7 +1071,7 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional applications use a *configuration provider*, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
 
-In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc`/`BlazorWebAppOidcServer`/`BlazorWebAppOidcBff` project, add the following JSON configuration:
+In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc`, `BlazorWebAppOidcServer`, or `BlazorWebAppOidcBff` project, add the following JSON configuration:
 
 ```json
 "Authentication": {
@@ -1100,11 +1100,11 @@ Update the placeholders in the preceding configuration to match the values that 
 * `{CLIENT ID (BLAZOR APP)}`: The Client Id of the Blazor app.
 * `{APP ID URI (WEB API)}`: The App ID URI of the web API.
 
-The "common" Authority (`https://login.microsoftonline.com/common/v2.0/`) should be used for multi-tenant apps. You can also use the "common" Authority for single-tenant apps, but it requires a custom Issuer Validator. For more information, see the comments in the sample project's `Program` file.
+The "common" Authority (`https://login.microsoftonline.com/common/v2.0/`) should be used for multi-tenant apps. To use the "common" Authority for single-tenant apps, see the [Use the "common" Authority for single-tenant apps](#use-the-common-authority-for-single-tenant-apps) section.
 
 Update any other values in the preceding configuration to match custom/non-default values used in the `Program` file.
 
-The configuration is automatically picked up by the authentication middleware.
+The configuration is automatically picked up by the Authentication Middleware.
 
 Remove the following lines from the `Program` file:
 
@@ -1147,14 +1147,14 @@ Authority formats adopt the following patterns:
 * ME-ID tenant type: `https://sts.windows.net/{TENANT ID}/`
 * B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0/`
 
-Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API):
+Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
 
 * ME-ID tenant type: `api://{CLIENT ID}`
-* B2C tenant type: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}` (`{DIRECTORY NAME}` is the directory name, for example, `contoso`)
+* B2C tenant type: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
 
-The configuration is automatically picked up by the JWT bearer authentication middleware.
+The configuration is automatically picked up by the JWT bearer Authentication Middleware.
 
-Remove the following lines from the project's `Program` file:
+Remove the following lines from the `Program` file:
 
 ```diff
 - jwtOptions.Authority = "...";
@@ -1165,6 +1165,29 @@ For more information on configuration, see the following resources:
 
 * <xref:fundamentals/configuration/index>
 * <xref:blazor/fundamentals/configuration>
+
+## Use the "common" Authority for single-tenant apps
+
+You can use the "common" Authority for single-tenant apps, but you must take the following steps to implement a custom issuer validator.
+
+Add the [`Microsoft.IdentityModel.Validators` NuGet package](https://www.nuget.org/packages/Microsoft.IdentityModel.Validators) to the `BlazorWebAppOidc`, `BlazorWebAppOidcServer`, or `BlazorWebAppOidcBff` project.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+At the top of the `Program` file, make the <xref:Microsoft.IdentityModel.Validators?displayProperty=fullName> namespace available:
+
+```csharp
+using Microsoft.IdentityModel.Validators;
+```
+
+Use the following code in the `Program` file where OIDC options are configured:
+
+```csharp
+var microsoftIssuerValidator = AadIssuerValidator.GetAadIssuerValidator(oidcOptions.Authority);
+oidcOptions.TokenValidationParameters.IssuerValidator = microsoftIssuerValidator.Validate;
+```
+
+For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
 
 ## Redirect to the home page on logout
 
