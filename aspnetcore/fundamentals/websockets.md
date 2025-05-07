@@ -1,11 +1,11 @@
 ---
 title: WebSockets support in ASP.NET Core
 author: wadepickett
-description: Learn how to get started with WebSockets in ASP.NET Core.
+description: Learn how to use WebSockets in ASP.NET Core to enable real-time communication in your apps. Follow this guide to quickly configure and implement WebSockets.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/23/2024
+ms.date: 05/06/2025
 uid: fundamentals/websockets
 ---
 # WebSockets support in ASP.NET Core
@@ -18,7 +18,7 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:index#how-to-download-a-sample), [how to run](#sample-app)).
 
-## Http/2 WebSockets support
+## HTTP/2 WebSockets support
 
 Using WebSockets over HTTP/2 takes advantage of new features such as:
 
@@ -33,9 +33,9 @@ These supported features are available in Kestrel on all HTTP/2 enabled platform
 > HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating.
 > For more information, see [Add HTTP/2 WebSockets support for existing controllers](#add-http2-websockets-support-for-existing-controllers) in this article.
 >
-> Chrome and Edge have HTTP/2 WebSockets enabled by default, and you can enable it in FireFox on the `about:config` page with the `network.http.spdy.websockets` flag.
+> Chrome and Microsoft Edge have HTTP/2 WebSockets enabled by default, and you can enable it in FireFox on the `about:config` page with the `network.http.spdy.websockets` flag.
 
-WebSockets were originally designed for HTTP/1.1 but have since been adapted to work over HTTP/2. ([RFC 8441](https://www.rfc-editor.org/rfc/rfc8441))
+WebSockets were originally designed for HTTP/1.1 but later adapted to work over HTTP/2. ([RFC 8441](https://www.rfc-editor.org/rfc/rfc8441))
 
 ## SignalR
 
@@ -56,17 +56,17 @@ For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSoc
 
 ## Prerequisites
 
-* Any OS that supports ASP.NET Core:  
+* Supported on any OS that supports ASP.NET Core:  
   * Windows 7 / Windows Server 2008 or later
   * Linux
   * macOS  
-* If the app runs on Windows with IIS:
+* Supported on Windows with IIS:
   * Windows 8 / Windows Server 2012 or later
   * IIS 8 / IIS 8 Express
   * WebSockets must be enabled. See the [IIS/IIS Express support](#iisiis-express-support) section.  
-* If the app runs on [HTTP.sys](xref:fundamentals/servers/httpsys):
+* Supported on [HTTP.sys](xref:fundamentals/servers/httpsys):
   * Windows 8 / Windows Server 2012 or later
-* For supported browsers, see [Can I use](https://caniuse.com/?search=websockets).
+* Supported browsers: See [Can I use](https://caniuse.com/?search=websockets).
 
 ## Configure the middleware
 
@@ -121,7 +121,7 @@ Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the 
 > [!WARNING]
 > Enabling compression over encrypted connections can make an app subject to CRIME/BREACH attacks.
 > If sending sensitive information, avoid enabling compression or use `WebSocketMessageFlags.DisableCompression` when calling `WebSocket.SendAsync`.
-> This applies to both sides of the WebSocket. Note that the WebSockets API in the browser doesn't have configuration for disabling compression per send.
+> This applies to both sides of the WebSocket. The WebSockets API in the browser doesn't have configuration for disabling compression per send.
 
 If compression of messages over WebSockets is desired, then the accept code must specify that it allows compression as follows:
 
@@ -155,6 +155,113 @@ When accepting the WebSocket connection before beginning the loop, the middlewar
 The server isn't automatically informed when the client disconnects due to loss of connectivity. The server receives a disconnect message only if the client sends it, which can't be done if the internet connection is lost. If you want to take some action when that happens, set a timeout after nothing is received from the client within a certain time window.
 
 If the client isn't always sending messages and you don't want to time out just because the connection goes idle, have the client use a timer to send a ping message every X seconds. On the server, if a message hasn't arrived within 2\*X seconds after the previous one, terminate the connection and report that the client disconnected. Wait for twice the expected time interval to leave extra time for network delays that might hold up the ping message.
+
+### Set the server timeout and Keep-Alive interval
+
+An updated method to set the server timeout and Keep-Alive interval for SignalR connections was introduced with ASP.NET Core 8.0:
+
+<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) can be set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>.
+
+#### Prior approach for JavaScript clients
+
+The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+
+```javascript
+var connection = new signalR.HubConnectionBuilder()
+  .withUrl("/chatHub")
+  .build();
+
+connection.serverTimeoutInMilliseconds = 60000;
+connection.keepAliveIntervalInMilliseconds = 30000;
+```
+
+#### New approach for JavaScript clients
+
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+
+```javascript
+var connection = new signalR.HubConnectionBuilder()
+  .withUrl("/chatHub")
+  .withServerTimeout(60000)
+  .withKeepAlive(30000)
+  .build();
+```
+
+#### Prior approach for the JavaScript client of a Blazor Server app
+
+The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+
+```javascript
+Blazor.start({
+  configureSignalR: function (builder) {
+    let c = builder.build();
+    c.serverTimeoutInMilliseconds = 60000;
+    c.keepAliveIntervalInMilliseconds = 30000;
+    builder.build = () => {
+      return c;
+    };
+  }
+});
+```
+
+#### New approach for the JavaScript client of server-side Blazor app
+
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later for Blazor Web Apps and Blazor Server.
+
+Blazor Web App:
+
+```javascript
+Blazor.start({
+  circuit: {
+    configureSignalR: function (builder) {
+      builder.withServerTimeout(60000).withKeepAliveInterval(30000);
+    }
+  }
+});
+```
+
+Blazor Server:
+
+```javascript
+Blazor.start({
+  configureSignalR: function (builder) {
+    builder.withServerTimeout(60000).withKeepAliveInterval(30000);
+  }
+});
+```
+
+#### Prior approach for .NET clients
+
+The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+
+```csharp
+var builder = new HubConnectionBuilder()
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+    .Build();
+
+builder.ServerTimeout = TimeSpan.FromSeconds(60);
+builder.KeepAliveInterval = TimeSpan.FromSeconds(30);
+
+builder.On<string, string>("ReceiveMessage", (user, message) => ...
+
+await builder.StartAsync();
+```
+
+#### New approach for .NET clients
+
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+
+```csharp
+var builder = new HubConnectionBuilder()
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+    .WithServerTimeout(TimeSpan.FromSeconds(60))
+    .WithKeepAliveInterval(TimeSpan.FromSeconds(30))
+    .Build();
+
+builder.On<string, string>("ReceiveMessage", (user, message) => ...
+
+await builder.StartAsync();
+```
 
 ## WebSocket origin restriction
 
