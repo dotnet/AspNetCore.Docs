@@ -117,7 +117,7 @@ Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
 Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync%2A> with the tag value. An overload lets you specify a collection of tag values.
 
-Note that because neither `IMemoryCache` nor `IDistributedCache` have direct support for the concept of tags (and tag-based invalidation), this is a *logical* operation only; it does not actively remove values from either local or distributed cache. Instead, it ensures that when receiving data with such tags, the data will be treated as a cache-miss from both the local and remote cache. The values will expire from `IMemoryCache` and `IDistributedCache` in the usual way based on the configured lifetime.
+Neither `IMemoryCache` nor `IDistributedCache` has direct support for the concept of tags, so tag-based invalidation is a *logical* operation only. It does not actively remove values from either local or distributed cache. Instead, it ensures that when receiving data with such tags, the data will be treated as a cache-miss from both the local and remote cache. The values will expire from `IMemoryCache` and `IDistributedCache` in the usual way based on the configured lifetime.
 
 ## Removing all cache entries
 
