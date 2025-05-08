@@ -72,7 +72,7 @@ The test app used to generate the figures in the preceding table demonstrates ty
 
 ## Choose a bundling and minification strategy
 
-ASP.NET Core doesn't provide a native bundling and minification solution. Third-party tools, such as [Gulp](https://gulpjs.com) and [Webpack](https://webpack.js.org), provide workflow automation for bundling and minification, as well as linting and image optimization. By using bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that bundling and minification increases build complexity and only works with static files.
+ASP.NET Core doesn't provide a native bundling and minification solution. Third-party tools, such as [Gulp](https://gulpjs.com) and [Webpack](https://webpack.js.org), provide workflow automation for bundling and minification, as well as linting and image optimization. Bundling and minifying before deployment provides the advantage of reduced server load. However, bundling and minification increase build complexity and only work with static files.
 
 ## Environment-based bundling and minification
 
