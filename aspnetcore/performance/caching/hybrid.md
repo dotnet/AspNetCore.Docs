@@ -125,7 +125,7 @@ The asterisk tag (`*`) is reserved as a wildcard and is disallowed against indiv
 
 ### Additional tag considerations
 
-* The system does not enforce an upper-limit on the number of tags, but excessively large sets of tags may have performance implications
+* The system doesn't limit the number of tags you can use, but large sets of tags might negatively impact performance.
 * Tags can't be empty, just whitespace, or the reserved value `*`.
 
 ## Options
