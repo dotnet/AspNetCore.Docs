@@ -570,7 +570,7 @@ In the app settings file (`appsettings.json`) of the `BlazorWebAppEntra` project
 {
   "AzureAd": {
     "CallbackPath": "/signin-oidc",
-    "ClientId": "{CLIENT ID}",
+    "ClientId": "{CLIENT ID (BLAZOR APP)}",
     "Domain": "{DIRECTORY NAME}.onmicrosoft.com",
     "Instance": "https://login.microsoftonline.com/",
     "ResponseType": "code",
@@ -585,11 +585,13 @@ In the app settings file (`appsettings.json`) of the `BlazorWebAppEntra` project
 
 Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
 
-* `{CLIENT ID}`: The application (client) ID.
+* `{CLIENT ID (BLAZOR APP)}`: The application (client) ID.
 * `{DIRECTORY NAME}`: The directory name of the tenant (publisher) domain.
 * `{TENANT ID}`: The directory (tenant) ID.
 * `{BASE ADDRESS}`: The web API's base address.
-* `{APP ID URI}`: The App ID URI for web API scopes.
+* `{APP ID URI}`: The App ID URI for web API scopes. Either of the following formats are used, where the `{CLIENT ID (WEB API)}` placeholder is the Client Id of the web API's Entra registration, and the `{DIRECTORY NAME}` placeholder is the directory name of the tenant (publishers) domain (example: `contoso`).
+  * ME-ID tenant format: `api://{CLIENT ID (WEB API)}`
+  * B2C tenant format: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID (WEB API)}`
 
 Example:
 
