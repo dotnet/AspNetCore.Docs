@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/14/2021
+ms.date: 05/08/2025
 uid: client-side/bundling-and-minification
 ---
 # Bundle and minify static assets in ASP.NET Core
@@ -21,11 +21,11 @@ Bundling and minification primarily improve the first page request load time. On
 
 ### Bundling
 
-Bundling combines multiple files into a single file. Bundling reduces the number of server requests that are necessary to render a web asset, such as a web page. You can create any number of individual bundles specifically for CSS, JavaScript, etc. Fewer files mean fewer HTTP requests from the browser to the server or from the service providing your application. This results in improved first page load performance.
+Bundling combines multiple files into a single file. Bundling reduces the number of server requests necessary to render a web asset, such as a web page. You can create any number of individual bundles specifically for CSS, JavaScript, etc. Fewer files mean fewer HTTP requests from the browser to the server or from the service providing your application. This results in improved first page load performance.
 
 ### Minification
 
-Minification removes unnecessary characters from code without altering functionality. The result is a significant size reduction in requested assets (such as CSS, images, and JavaScript files). Common side effects of minification include shortening variable names to one character and removing comments and unnecessary whitespace.
+Minification removes unnecessary characters from code without altering functionality. The result is a significant size reduction in requested assets (such as CSS, images, and JavaScript files). Common effects of minification include shortening variable names to one character and removing comments and unnecessary whitespace.
 
 Consider the following JavaScript function:
 
@@ -72,9 +72,7 @@ The test app used to generate the figures in the preceding table demonstrates ty
 
 ## Choose a bundling and minification strategy
 
-ASP.NET Core is compatible with WebOptimizer, an open-source bundling and minification solution. For set up instructions and sample projects, see [WebOptimizer](https://github.com/ligershark/WebOptimizer). ASP.NET Core doesn't provide a native bundling and minification solution.
-
-Third-party tools, such as [Gulp](https://gulpjs.com) and [Webpack](https://webpack.js.org), provide workflow automation for bundling and minification, as well as linting and image optimization. By using bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that bundling and minification increases build complexity and only works with static files.
+ASP.NET Core doesn't provide a native bundling and minification solution. Third-party tools, such as [Gulp](https://gulpjs.com) and [Webpack](https://webpack.js.org), provide workflow automation for bundling and minification, as well as linting and image optimization. Bundling and minifying before deployment provides the advantage of reduced server load. However, bundling and minification increase build complexity and only work with static files.
 
 ## Environment-based bundling and minification
 
