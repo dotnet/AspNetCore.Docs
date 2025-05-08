@@ -16,7 +16,7 @@ Integration tests ensure that an app's components function correctly at a level 
 
 :::moniker range=">= aspnetcore-10.0"
 
-This article assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) article and its linked content.
+This article assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Testing in .NET](/dotnet/core/testing/) article and its linked content.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/10.x/IntegrationTestsSample) ([how to download](xref:index#how-to-download-a-sample))
 
