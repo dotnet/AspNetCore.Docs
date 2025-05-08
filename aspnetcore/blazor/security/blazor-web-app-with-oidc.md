@@ -1071,7 +1071,7 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
 
-In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc`, `BlazorWebAppOidcServer`, or `BlazorWebAppOidcBff` project, add the following JSON configuration:
+In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc` or `BlazorWebAppOidcServer` project, add the following JSON configuration:
 
 ```json
 "Authentication": {
