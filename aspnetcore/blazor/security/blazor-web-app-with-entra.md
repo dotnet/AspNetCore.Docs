@@ -96,7 +96,7 @@ The <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExt
 
 ## Configure the backend web API project (`MinimalApiJwt`)
 
-Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> call in the project's `Program` file.
+Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> call in the `MinimalApiJwt` project's `Program` file.
 
 For the web API app's registration, the `Weather.Get` scope is configured in the Entra or Azure portal in **Expose an API**.
 
@@ -144,51 +144,62 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 
 ## Configure the server project (`BlazorWebAppEntra`)
 
-<xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)) is configured by the `AzureAd` section of the server project's `appsettings.json` file.
+<xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)) is configured in the `BlazorWebAppEntra` project's `Program` file.
 
-Obtain the application (client) ID, tenant (publisher) domain, and directory (tenant) ID from the app's registration in the Entra or Azure portal. The App ID URI is obtained for the `Weather.Get` scope. Don't include the scope name, and there's no trailing slash.
+Obtain the application (client) ID, tenant (publisher) domain, and directory (tenant) ID from the app's registration in the Entra or Azure portal. The App ID URI is obtained for the `Weather.Get` scope from the web API's registration. Don't include the scope name when taking the App ID URI from the portal.
 
-```json
-"AzureAd": {
-  "CallbackPath": "/signin-oidc",
-  "ClientId": "{CLIENT ID}",
-  "Domain": "{TENANT DOMAIN}",
-  "Instance": "https://login.microsoftonline.com/",
-  "ResponseType": "code",
-  "TenantId": "{TENANT ID}"
-},
-...
-"DownstreamApi": {
-  "BaseUrl": "{BASE ADDRESS}",
-  "Scopes": [ "{APP ID URI}/{SCOPE NAME}" ]
-}
+In the `BlazorWebAppEntra` project's `Program` file, provide the values for the following placeholders in Microsoft Identity Web configuration:
+
+```csharp
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(msIdentityOptions =>
+    {
+        msIdentityOptions.CallbackPath = "/signin-oidc";
+        msIdentityOptions.ClientId = "{CLIENT ID (BLAZOR APP)}";
+        msIdentityOptions.Domain = "{DIRECTORY NAME}.onmicrosoft.com";
+        msIdentityOptions.Instance = "https://login.microsoftonline.com/";
+        msIdentityOptions.ResponseType = "code";
+        msIdentityOptions.TenantId = "{TENANT ID}";
+    })
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("DownstreamApi", configOptions =>
+    {
+        configOptions.BaseUrl = "{BASE ADDRESS}";
+        configOptions.Scopes = [ "{APP ID URI}/Weather.Get" ];
+    })
+    .AddInMemoryTokenCaches();
 ```
 
-Placeholders in the preceding example:
+Placeholders in the preceding configuration:
 
-* `{CLIENT ID}`: The application (client) ID.
-* `{TENANT DOMAIN}`: The tenant (publisher) domain.
+* `{CLIENT ID (BLAZOR APP)}`: The application (client) ID.
+* `{DIRECTORY NAME}`: The directory name of the tenant (publisher) domain.
 * `{TENANT ID}`: The directory (tenant) ID.
 * `{BASE ADDRESS}`: The web API's base address.
-* `{APP ID URI}`: The App ID URI for web API scopes.
-* `{SCOPE NAME}`: A scope name.
+* `{APP ID URI}`: The App ID URI for web API scopes. Either of the following formats are used, where the `{CLIENT ID (WEB API)}` placeholder is the Client Id of the web API's Entra registration, and the `{DIRECTORY NAME}` placeholder is the directory name of the tenant (publishers) domain (example: `contoso`).
+  * ME-ID tenant format: `api://{CLIENT ID (WEB API)}`
+  * B2C tenant format: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID (WEB API)}`
 
 Example:
 
-```json
-"AzureAd": {
-  "CallbackPath": "/signin-oidc",
-  "ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
-  "Domain": "contoso.onmicrosoft.com",
-  "Instance": "https://login.microsoftonline.com/",
-  "ResponseType": "code",
-  "TenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee"
-},
-...
-"DownstreamApi": {
-  "BaseUrl": "https://localhost:7277",
-  "Scopes": [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ]
-}
+```csharp
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(msIdentityOptions =>
+    {
+        msIdentityOptions.CallbackPath = "/signin-oidc";
+        msIdentityOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
+        msIdentityOptions.Domain = "contoso.onmicrosoft.com";
+        msIdentityOptions.Instance = "https://login.microsoftonline.com/";
+        msIdentityOptions.ResponseType = "code";
+        msIdentityOptions.TenantId = "aaaabbbb-0000-cccc-1111-dddd2222eeee";
+    })
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("DownstreamApi", configOptions =>
+    {
+        configOptions.BaseUrl = "https://localhost:7277";
+        configOptions.Scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
+    })
+    .AddInMemoryTokenCaches();
 ```
 
 :::zone-end
@@ -293,7 +304,7 @@ The <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExt
 
 ## Configure the backend web API project (`MinimalApiJwt`)
 
-Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> call in the project's `Program` file.
+Configure the `MinimalApiJwt` project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> call in the project's `Program` file.
 
 For the web API app's registration, the `Weather.Get` scope is configured in the Entra or Azure portal in **Expose an API**.
 
@@ -341,58 +352,69 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 
 ## Configure the server project (`BlazorWebAppEntra`)
 
-<xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)) is configured by the `AzureAd` section of the server project's `appsettings.json` file.
+<xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)) is configured in the `BlazorWebAppEntra` project's `Program` file.
 
-Obtain the application (client) ID, tenant (publisher) domain, and directory (tenant) ID from the app's registration in the Entra or Azure portal. The App ID URI is obtained for the `Weather.Get` scope. Don't include the scope name, and there's no trailing slash.
+Obtain the application (client) ID, tenant (publisher) domain, and directory (tenant) ID from the app's registration in the Entra or Azure portal. The App ID URI is obtained for the `Weather.Get` scope from the web API's registration. Don't include the scope name when taking the App ID URI from the portal.
 
-```json
-"AzureAd": {
-  "CallbackPath": "/signin-oidc",
-  "ClientId": "{CLIENT ID}",
-  "Domain": "{TENANT DOMAIN}",
-  "Instance": "https://login.microsoftonline.com/",
-  "ResponseType": "code",
-  "TenantId": "{TENANT ID}"
-},
-...
-"DownstreamApi": {
-  "BaseUrl": "{BASE ADDRESS}",
-  "Scopes": [ "{APP ID URI}/{SCOPE}" ]
-}
+In the `BlazorWebAppEntra` project's `Program` file, provide the values for the following placeholders in Microsoft Identity Web configuration:
+
+```csharp
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(msIdentityOptions =>
+    {
+        msIdentityOptions.CallbackPath = "/signin-oidc";
+        msIdentityOptions.ClientId = "{CLIENT ID (BLAZOR APP)}";
+        msIdentityOptions.Domain = "{DIRECTORY NAME}.onmicrosoft.com";
+        msIdentityOptions.Instance = "https://login.microsoftonline.com/";
+        msIdentityOptions.ResponseType = "code";
+        msIdentityOptions.TenantId = "{TENANT ID}";
+    })
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("DownstreamApi", configOptions =>
+    {
+        configOptions.BaseUrl = "{BASE ADDRESS}";
+        configOptions.Scopes = [ "{APP ID URI}/Weather.Get" ];
+    })
+    .AddInMemoryTokenCaches();
 ```
 
-Placeholders in the preceding example:
+Placeholders in the preceding configuration:
 
-* `{CLIENT ID}`: The application (client) ID.
-* `{TENANT DOMAIN}`: The tenant (publisher) domain.
+* `{CLIENT ID (BLAZOR APP)}`: The application (client) ID.
+* `{DIRECTORY NAME}`: The directory name of the tenant (publisher) domain.
 * `{TENANT ID}`: The directory (tenant) ID.
 * `{BASE ADDRESS}`: The web API's base address.
-* `{APP ID URI}`: The App ID URI for web API scopes.
-* `{SCOPE NAME}`: A scope name.
+* `{APP ID URI}`: The App ID URI for web API scopes. Either of the following formats are used, where the `{CLIENT ID (WEB API)}` placeholder is the Client Id of the web API's Entra registration, and the `{DIRECTORY NAME}` placeholder is the directory name of the tenant (publishers) domain (example: `contoso`).
+  * ME-ID tenant format: `api://{CLIENT ID (WEB API)}`
+  * B2C tenant format: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID (WEB API)}`
 
 Example:
 
-```json
-"AzureAd": {
-  "CallbackPath": "/signin-oidc",
-  "ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
-  "Domain": "contoso.onmicrosoft.com",
-  "Instance": "https://login.microsoftonline.com/",
-  "ResponseType": "code",
-  "TenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee"
-},
-...
-"DownstreamApi": {
-  "BaseUrl": "https://localhost:7277",
-  "Scopes": [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ]
-}
+```csharp
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(msIdentityOptions =>
+    {
+        msIdentityOptions.CallbackPath = "/signin-oidc";
+        msIdentityOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
+        msIdentityOptions.Domain = "contoso.onmicrosoft.com";
+        msIdentityOptions.Instance = "https://login.microsoftonline.com/";
+        msIdentityOptions.ResponseType = "code";
+        msIdentityOptions.TenantId = "aaaabbbb-0000-cccc-1111-dddd2222eeee";
+    })
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("DownstreamApi", configOptions =>
+    {
+        configOptions.BaseUrl = "https://localhost:7277";
+        configOptions.Scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
+    })
+    .AddInMemoryTokenCaches();
 ```
 
 :::zone-end
 
 The callback path (`CallbackPath`) must match the redirect URI (login callback path) configured when registering the application in the Entra or Azure portal. Paths are configured in the **Authentication** blade of the app's registration. The default value of `CallbackPath` is `/signin-oidc` for a registered redirect URI of `https://localhost/signin-oidc` (a port isn't required).
 
-The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath%2A> (configuration key: "`SignedOutCallbackPath`") is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from Entra. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri%2A> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri%2A>, if specified.
+The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath%2A> is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from Entra. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri%2A> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri%2A>, if specified.
 
 Configure the signed-out callback path in the app's Entra registration. In the Entra or Azure portal, set the path in the **Web** platform configuration's **Redirect URI** entries:
 
@@ -537,6 +559,125 @@ Configuration is used to facilitate supplying dedicated key vaults and secret na
 In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> to `true`. If you only want the name and role claims serialized for CSR, remove the option or set it to `false`.
 
 :::moniker-end
+
+## Supply configuration with the JSON configuration provider (app settings)
+
+The [sample solution projects](#sample-solution) configure Microsoft Identity Web and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
+
+In the app settings file (`appsettings.json`) of the `BlazorWebAppEntra` project, add the following JSON configuration:
+
+```json
+{
+  "AzureAd": {
+    "CallbackPath": "/signin-oidc",
+    "ClientId": "{CLIENT ID}",
+    "Domain": "{DIRECTORY NAME}.onmicrosoft.com",
+    "Instance": "https://login.microsoftonline.com/",
+    "ResponseType": "code",
+    "TenantId": "{TENANT ID}"
+  },
+  "DownstreamApi": {
+    "BaseUrl": "{BASE ADDRESS}",
+    "Scopes": [ "{APP ID URI}/Weather.Get" ]
+  }
+}
+```
+
+Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
+
+* `{CLIENT ID}`: The application (client) ID.
+* `{DIRECTORY NAME}`: The directory name of the tenant (publisher) domain.
+* `{TENANT ID}`: The directory (tenant) ID.
+* `{BASE ADDRESS}`: The web API's base address.
+* `{APP ID URI}`: The App ID URI for web API scopes.
+
+Example:
+
+```json
+"AzureAd": {
+  "CallbackPath": "/signin-oidc",
+  "ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+  "Domain": "contoso.onmicrosoft.com",
+  "Instance": "https://login.microsoftonline.com/",
+  "ResponseType": "code",
+  "TenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+},
+...
+"DownstreamApi": {
+  "BaseUrl": "https://localhost:7277",
+  "Scopes": [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ]
+}
+```
+
+Update any other values in the preceding configuration to match custom/non-default values used in the `Program` file.
+
+The configuration is automatically picked up by the authentication builder.
+
+Make the following changes in the `Program` file:
+
+```diff
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+-   .AddMicrosoftIdentityWebApp(msIdentityOptions =>
+-   {
+-       msIdentityOptions.CallbackPath = "...";
+-       msIdentityOptions.ClientId = "...";
+-       msIdentityOptions.Domain = "...";
+-       msIdentityOptions.Instance = "...";
+-       msIdentityOptions.ResponseType = "...";
+-       msIdentityOptions.TenantId = "...";
+-   })
++   .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"))
+    .EnableTokenAcquisitionToCallDownstreamApi()
+-   .AddDownstreamApi("DownstreamApi", configOptions =>
+-   {
+-       configOptions.BaseUrl = "...";
+-       configOptions.Scopes = [ "..." ];
+-   })
++   .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
+    .AddInMemoryTokenCaches();
+```
+
+In the `MinimalApiJwt` project, add the following app settings configuration to the `appsettings.json` file:
+
+```json
+"Authentication": {
+  "Schemes": {
+    "Bearer": {
+      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}/",
+      "ValidAudiences": [ "{APP ID URI (WEB API)}" ]
+    }
+  }
+},
+```
+
+Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
+
+* `{TENANT ID (WEB API)}`: The Tenant Id of the web API.
+* `{APP ID URI (WEB API)}`: The App ID URI of the web API.
+
+Authority formats adopt the following patterns:
+
+* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}/`
+* B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0/`
+
+Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
+
+* ME-ID tenant type: `api://{CLIENT ID}`
+* B2C tenant type: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
+
+The configuration is automatically picked up by the JWT bearer authentication builder.
+
+Remove the following lines from the `Program` file:
+
+```diff
+- jwtOptions.Authority = "...";
+- jwtOptions.Audience = "...";
+```
+
+For more information on configuration, see the following resources:
+
+* <xref:fundamentals/configuration/index>
+* <xref:blazor/fundamentals/configuration>
 
 ## Redirect to the home page on logout
 
