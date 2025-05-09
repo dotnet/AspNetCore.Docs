@@ -5,7 +5,7 @@ description: Learn how to host multiple instances of an ASP.NET Core app with sh
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/13/2020
+ms.date: 12/3/2024
 uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
@@ -40,11 +40,17 @@ When an app is scaled to multiple instances, there might be app state that requi
 
 ## Required configuration
 
-Data Protection and Caching require configuration for apps deployed to a web farm.
+Data Protection and Caching may require configuration for apps deployed to a web farm.
 
-### Data Protection
+### Data Protection in distributed environments
 
-The [ASP.NET Core Data Protection system](xref:security/data-protection/introduction) is used by apps to protect data. Data Protection relies upon a set of cryptographic keys stored in a *key ring*. When the Data Protection system is initialized, it applies [default settings](xref:security/data-protection/configuration/default-settings) that store the key ring locally. Under the default configuration, a unique key ring is stored on each node of the web farm. Consequently, each web farm node can't decrypt data that's encrypted by an app on any other node. The default configuration isn't generally appropriate for hosting apps in a web farm. An alternative to implementing a shared key ring is to always route user requests to the same node. For more information on Data Protection system configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>.
+The [ASP.NET Core Data Protection system](xref:security/data-protection/introduction) is used by apps to protect data. Data Protection relies upon a set of cryptographic keys stored in a *key ring*. When the Data Protection system is initialized, it applies [default settings](xref:security/data-protection/configuration/default-settings) that store the key ring locally. The default configuration is appropriate for apps that run in a single instance.
+
+Apps that are running in distributed environments that don't configure Data Protection automatically need to explicitly configure Data Protection. See <xref:security/data-protection/configuration/scaling> for environments that require explicit Data Protection configuration and those that don't.
+
+Under the default configuration, a unique key ring is stored on each node of the web farm. Consequently, each web farm node can't decrypt data that's encrypted by an app on any other node. The default configuration isn't generally appropriate for hosting apps in a web farm. Sticky sessions using [ARR Affinity](/azure/app-service/manage-automatic-scaling?#how-does-arr-affinity-affect-automatic-scaling) is an alternative to implementing a shared key ring. However, ARR can reduce the scalability of a web farm.
+
+For more information on Data Protection system configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>.
 
 ### Caching
 
