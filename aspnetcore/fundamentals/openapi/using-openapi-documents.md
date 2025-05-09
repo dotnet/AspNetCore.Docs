@@ -47,7 +47,7 @@ Launch the app and navigate to `https://localhost:<port>/scalar/v1` to view the 
 
 To automatically launch the app at the Scalar UI URL using the `https` profile of `Properties/launchSettings.json`:
 
-* Set or confirm that `launchBrowser` is enabled (`true`).
+* Confirm that `launchBrowser` is enabled (`true`).
 * Set the `launchUrl` to `scalar/v1`.
 
 ```json
