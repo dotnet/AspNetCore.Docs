@@ -25,6 +25,18 @@ The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's
 
 As a security best practice on limiting information disclosure, ***OpenAPI user interfaces (Swagger UI, ReDoc, Scalar) should only be enabled in development environments.*** For example, see [Swagger OAuth 2.0 configuration](https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/).
 
+Launch the app and navigate to `https://localhost:<port>/swagger` to view the Swagger UI.
+
+To automatically launch the app at the Swagger UI URL using the `https` profile of `Properties/launchSettings.json`:
+
+* Confirm that `launchBrowser` is enabled (`true`).
+* Set the `launchUrl` to `swagger`.
+
+```json
+"launchBrowser": true,
+"launchUrl": "swagger",
+```
+
 ## Use Scalar for interactive API documentation
 
 [Scalar](https://scalar.com/) is an open-source interactive document UI for OpenAPI. Scalar can integrate with the OpenAPI endpoint provided by ASP.NET Core. To configure Scalar, install the `Scalar.AspNetCore` package.
@@ -32,6 +44,16 @@ As a security best practice on limiting information disclosure, ***OpenAPI user 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_openapiwithscalar)]
 
 Launch the app and navigate to `https://localhost:<port>/scalar/v1` to view the Scalar UI.
+
+To automatically launch the app at the Scalar UI URL using the `https` profile of `Properties/launchSettings.json`:
+
+* Confirm that `launchBrowser` is enabled (`true`).
+* Set the `launchUrl` to `scalar/v1`.
+
+```json
+"launchBrowser": true,
+"launchUrl": "scalar/v1",
+```
 
 ## Lint generated OpenAPI documents with Spectral
 
