@@ -29,6 +29,11 @@ ai-usage: ai-assisted
 >   * Visual Studio is a prerequisite even if the CLI tab is selected.
 >   * The CLI must be used to publish even if the Visual Studio tab is selected.
 
+See [Native AOT deployment](/dotnet/core/deploying/native-aot/) for more information, including:
+
+* [Limitations of Native AOT deployment](/dotnet/core/deploying/native-aot/)
+* [Supported platforms](/dotnet/core/deploying/native-aot/)
+
 ## Prerequisites
 
 # [.NET CLI](#tab/net-cli) 
