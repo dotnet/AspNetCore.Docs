@@ -387,7 +387,10 @@ builder.Services.AddScoped(sp => new HttpClient(
 });
 ```
 
-In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
+In the preceding code:
+
+* The scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
+* <xref:System.Net.Http.IHttpClientFactory> isn't used to create <xref:System.Net.Http.HttpClient> instances, so an <xref:System.Net.Http.HttpClientHandler> instance is manually created and assigned to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>'s <xref:System.Net.Http.DelegatingHandler.InnerHandler%2A?displayProperty=nameWithType>.
 
 :::moniker range="< aspnetcore-8.0"
 
