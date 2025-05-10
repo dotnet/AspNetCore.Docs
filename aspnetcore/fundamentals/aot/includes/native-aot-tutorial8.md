@@ -1,43 +1,20 @@
----
-title: "Tutorial: Publish an ASP.NET Core app using Native AOT"
-author: mitchdenny
-description: Learn about how to publish an ASP.NET Core app using Native AOT.
-ms.topic: tutorial
-content_well_notification: AI-contribution
-ms.author: midenn
-ms.custom: mvc
-ms.date: 5/10/2023
-uid: fundamentals/native-aot-tutorial
-ai-usage: ai-assisted
----
-# Tutorial: Publish an ASP.NET Core app using Native AOT
-
-:::moniker range="> aspnetcore-8.0"
-
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+:::moniker range="= aspnetcore-8.0"
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
--->
-
-[.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) is available in ASP.NET Core.
+ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
 
 > [!NOTE]
-> * Minimal APIs are ***not*** compatible with native AOT.
+> * In .NET 8, not all ASP.NET Core features are compatible with Native AOT.
 > * Tabs are provided for the [.NET CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/downloads/) instructions:
 >   * Visual Studio is a prerequisite even if the CLI tab is selected.
 >   * The CLI must be used to publish even if the Visual Studio tab is selected.
-
-See [Native AOT deployment](/dotnet/core/deploying/native-aot/) for more information, including:
-
-* [Limitations of Native AOT deployment](/dotnet/core/deploying/native-aot/)
-* [Supported platforms](/dotnet/core/deploying/native-aot/)
 
 ## Prerequisites
 
 # [.NET CLI](#tab/net-cli) 
 
-* [!INCLUDE[](~/includes/9.0-SDK.md)]
+* [!INCLUDE[](~/includes/8.0-SDK.md)]
 * On Linux, see [Prerequisites for Native AOT deployment](/dotnet/core/deploying/native-aot/?tabs=net8plus#prerequisites-for-native-aot-deployment).
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the **Desktop development with C++** workload installed.
 
@@ -48,7 +25,7 @@ See [Native AOT deployment](/dotnet/core/deploying/native-aot/) for more informa
 
 # [Visual Studio](#tab/visual-studio)
 
-* [!INCLUDE[](~/includes/9.0-SDK.md)]
+* [!INCLUDE[](~/includes/8.0-SDK.md)]
 
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the following workloads installed:
   * **ASP.NET and web development**
@@ -182,5 +159,3 @@ info: Microsoft.Hosting.Lifetime[0]
 * [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/aot/includes/native-aot-tutorial8.md)]
