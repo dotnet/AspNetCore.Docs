@@ -1,8 +1,8 @@
 ---
 title: Overview of OpenAPI support in ASP.NET Core API apps
-author: wadepickett
+author: rick-anderson
 description: Learn about OpenAPI features in ASP.NET Core.
-ms.author: wpickett
+ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 8/02/2024
 uid: fundamentals/openapi/overview
