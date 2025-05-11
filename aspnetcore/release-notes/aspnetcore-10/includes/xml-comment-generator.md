@@ -1,6 +1,6 @@
 ## Improvements to the XML comment generator
 
-XML comment generation handles complex types in .NET 10 better than earlier versions of .NET:
+XML comment generation handles complex types in .NET 10 better than earlier versions of .NET.
 
 * It produces accurate and complete XML comments for a wider range of types.
 * It handles more complex scenarios.
