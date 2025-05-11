@@ -6,16 +6,16 @@
 
 * Is a standard format for describing changes to apply to a JSON document.
 * Is defined in [RFC 6902] and is widely used in RESTful APIs to perform partial updates to JSON resources.
-* Represents a sequence of operations (e.g., Add, Remove, Replace, Move, Copy, test) that can be applied to modify a JSON document.
+* Represents a sequence of operations (for example, Add, Remove, Replace, Move, Copy, Test) that can be applied to modify a JSON document.
 
 In web apps, JSON Patch is commonly used in a PATCH operation to perform partial updates of a resource. Rather than sending the entire resource for an update, clients can send a JSON Patch document containing only the changes. Patching reduces payload size and improves efficiency.
 
 [RFC 6902]: https://tools.ietf.org/html/rfc6902
 
-This release introduces a new implementation of [`JsonPatch`](/dotnet/api/system.text.json?view=net-9.0) based on `System.Text.Json` serialization. This feature:
+This release introduces a new implementation of [`JsonPatch`](/dotnet/api/system.text.json based on `System.Text.Json` serialization. This feature:
 
-* Aligns with modern .NET practices by leveragin the `System.Text.Json` library, which is optimized for .NET.
-* Rrovides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation.
+* Aligns with modern .NET practices by leveraging the `System.Text.Json` library, which is optimized for .NET.
+* Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation.
 
 The following benchmarks compare the performance of the new `System.Text.Json` implementation with the legacy `Newtonsoft.Json` implementation:
 
@@ -29,9 +29,9 @@ The following benchmarks compare the performance of the new `System.Text.Json` i
 These benchmarks highlight significant performance gains and reduced memory usage with the new implementation.
 
 Notes:
- * The new implementation is not a drop-in replacement for the legacy implementation. In particular:
-   * The new implementation doesn't support dynamic types, for example, [`ExpandoObject`](https://learn.microsoft.com/en-us/dotnet/api/system.dynamic.expandoobject?view=net-9.0).
- * The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the new implementation ***doesn't attempt to mitigate inherent security risks***. It is the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. See the [Mitigating Security Risks](#mitigating-security-risks) section for more information.
+ * The new implementation isn't a drop-in replacement for the legacy implementation. In particular:
+   * The new implementation doesn't support dynamic types, for example, [`ExpandoObject`](https://learn.microsoft.com/en-us/dotnet/api/system.dynamic.expandoobject.
+ * The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the new implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
 
 ### Usage
 
@@ -49,7 +49,7 @@ The following examples demonstrate how to use the `ApplyTo` method to apply a JS
 
 The following example demonstrates:
 
-1. The "add", "replace", and "remove" operations.
+1. The `add`, `replace`, and `remove` operations.
 2. Operations on nested properties.
 3. Adding a new item to an array.
 4. Using a JSON String Enum Converter in a JSON patch document.
@@ -123,7 +123,7 @@ Key differences between `System.Text.Json` and the new `JsonPatchDocument<T>` im
 
 ### Example: Applying a JsonPatchDocument with error handling
 
-There are a variety of errors that can occur when applying a JSON Patch document. For example, the target object may not have the specified property, or the value specified may be incompatible with the property type.
+There are various errors that can occur when applying a JSON Patch document. For example, the target object may not have the specified property, or the value specified might be incompatible with the property type.
 
 JSON `Patch` also supports the `test` operation. The `test` operation checks if a specified value is equal to the target property, and if not, returns an error.
 
@@ -187,25 +187,31 @@ Console.WriteLine(JsonSerializer.Serialize(person, serializerOptions));
 
 ### Mitigating security risks
 
-When using the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` package, it is critical to understand and mitigate potential security risks. The following sections outline the identified security risks associated with JSON Patch and provide recommended mitigations to ensure secure usage of the package.
+When using the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` package, it's critical to understand and mitigate potential security risks. The following sections outline the identified security risks associated with JSON Patch and provide recommended mitigations to ensure secure usage of the package.
 
 > [!IMPORTANT]
-> ***This is not an exhaustive list of threats.*** Application developers must conduct their own threat model reviews to determine an application-specific comprehensive list and come up with appropriate mitigations as needed. For example, applications which expose collections to patch operations should consider the potential for algorithmic complexity attacks if those operations insert or remove elements at the beginning of the collection.
+> ***This is not an exhaustive list of threats.*** app developers must conduct their own threat model reviews to determine an app-specific comprehensive list and come up with appropriate mitigations as needed. For example, apps which expose collections to patch operations should consider the potential for algorithmic complexity attacks if those operations insert or remove elements at the beginning of the collection.
 
-By running comprehensive threat models for their own applications and addressing identified threats while following the recommended mitigations below, consumers of these packages can <!-- review removing safely --> integrate JSON Patch functionality into their applications while minimizing security risks.
+By running comprehensive threat models for their own apps and addressing identified threats while following the recommended mitigations below, consumers of these packages can <!-- review removing safely --> integrate JSON Patch functionality into their apps while minimizing security risks.
+
+Consumers of these packages can integrate JSON Patch functionality into their apps while minimizing security risks, including:
+
+* Run comprehensive threat models for their own apps.
+* Address identified threats.
+* Follow the recommended mitigations in the following sections.
 
 #### Denial of Service (DoS) via memory amplification
 
-* **Scenario**: A malicious client submits a `copy` operation that duplicates large bject graphs multiple times, leading to excessive memory consumption.
+* **Scenario**: A malicious client submits a `copy` operation that duplicates large object graphs multiple times, leading to excessive memory consumption.
 * **Impact**: Potential Out-Of-Memory (OOM) conditions, causing service disruptions.
 * **Mitigation**:
-  * Validate incoming JSON Patch documents for size and structure <! review before applying the document --> before calling `ApplyTo`.
-  * The validation needs to be application specific, but an example validation can look similar to the following:
+  * Validate incoming JSON Patch documents for size and structure <!-- review my removing: before applying the document --> before calling `ApplyTo`.
+  * The validation needs to be app specific, but an example validation can look similar to the following:
 
 ```csharp
 public void Validate(JsonPatchDocument<T> patch)
 {
-    // This is just an example. It's up to the developer to make sure that this case is handled properly, based on the application needs.
+    // This is just an example. It's up to the developer to make sure that this case is handled properly, based on the app needs.
     if (patch.Operations.Where(op=>op.OperationType == OperationType.Copy).Count() > MaxCopyOperationsCount)
     {
         throw new InvalidOperationException();
@@ -215,8 +221,8 @@ public void Validate(JsonPatchDocument<T> patch)
 
 #### Business Logic Subversion
 
-* **Scenario**: Patch operations can manipulate fields with implicit invariants, e.g., internal flags, IDs, or computed fields, violating business constraints.
-* **Impact**: Data integrity issues and unintended application behavior.
+* **Scenario**: Patch operations can manipulate fields with implicit invariants, (e.g., internal flags, IDs, or computed fields), violating business constraints.
+* **Impact**: Data integrity issues and unintended app behavior.
 * **Mitigation**:
   * Use POCO objects with explicitly defined properties that are safe to modify.
   * Avoid exposing sensitive or security-critical properties in the target object.
@@ -225,7 +231,7 @@ public void Validate(JsonPatchDocument<T> patch)
 #### Authentication and authorization
 
 * **Scenario**: Unauthenticated or unauthorized clients send malicious JSON Patch requests.
-* **Impact**: Unauthorized access to modify sensitive data or disrupt application behavior.
+* **Impact**: Unauthorized access to modify sensitive data or disrupt app behavior.
 * **Mitigation**:
   * Protect endpoints accepting JSON Patch requests with proper authentication and authorization mechanisms.
   * Restrict access to trusted clients or users with appropriate permissions.
