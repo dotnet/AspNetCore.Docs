@@ -28,7 +28,7 @@ These benchmarks highlight significant performance gains and reduced memory usag
 
 Notes:
  * The new implementation isn't a drop-in replacement for the legacy implementation. In particular:
-   * The new implementation doesn't support dynamic types, for example, [`ExpandoObject`](https://learn.microsoft.com/en-us/dotnet/api/system.dynamic.expandoobject.
+   * The new implementation doesn't support dynamic types, for example, [`ExpandoObject`](/dotnet/api/system.dynamic.expandoobject.
  * The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the new implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
 
 #### Usage
