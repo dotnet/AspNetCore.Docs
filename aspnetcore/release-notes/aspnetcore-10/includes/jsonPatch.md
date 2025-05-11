@@ -1,8 +1,6 @@
-## New JsonPatch Implementation with System.Text.Json
+### New JsonPatch Implementation with System.Text.Json
 
-?view=net-9.0
-
-[JSON Patch](https://jsonpatch.com/):
+**[JSON Patch](https://jsonpatch.com/)**:
 
 * Is a standard format for describing changes to apply to a JSON document.
 * Is defined in [RFC 6902] and is widely used in RESTful APIs to perform partial updates to JSON resources.
@@ -33,7 +31,7 @@ Notes:
    * The new implementation doesn't support dynamic types, for example, [`ExpandoObject`](https://learn.microsoft.com/en-us/dotnet/api/system.dynamic.expandoobject.
  * The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the new implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
 
-### Usage
+#### Usage
 
 To enable JSON Patch support with `System.Text.Json`, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/) NuGet package.
 
@@ -45,7 +43,7 @@ This package provides a `JsonPatchDocument<T>` class to represent a JSON Patch d
 
 The following examples demonstrate how to use the `ApplyTo` method to apply a JSON Patch document to an object.
 
-### Example: Applying a JsonPatchDocument
+#### Example: Applying a JsonPatchDocument
 
 The following example demonstrates:
 
@@ -121,7 +119,7 @@ Key differences between `System.Text.Json` and the new `JsonPatchDocument<T>` im
 * The runtime type of the target object, not the declared type, determines which   properties `ApplyTo` patches.
 * `System.Text.Json` deserialization relies on the declared type to identify eligible properties.
 
-### Example: Applying a JsonPatchDocument with error handling
+#### Example: Applying a JsonPatchDocument with error handling
 
 There are various errors that can occur when applying a JSON Patch document. For example, the target object may not have the specified property, or the value specified might be incompatible with the property type.
 
@@ -185,7 +183,7 @@ Console.WriteLine(JsonSerializer.Serialize(person, serializerOptions));
 // }
 ```
 
-### Mitigating security risks
+#### Mitigating security risks
 
 When using the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` package, it's critical to understand and mitigate potential security risks. The following sections outline the identified security risks associated with JSON Patch and provide recommended mitigations to ensure secure usage of the package.
 
@@ -200,7 +198,7 @@ Consumers of these packages can integrate JSON Patch functionality into their ap
 * Address identified threats.
 * Follow the recommended mitigations in the following sections.
 
-#### Denial of Service (DoS) via memory amplification
+##### Denial of Service (DoS) via memory amplification
 
 * **Scenario**: A malicious client submits a `copy` operation that duplicates large object graphs multiple times, leading to excessive memory consumption.
 * **Impact**: Potential Out-Of-Memory (OOM) conditions, causing service disruptions.
@@ -219,7 +217,7 @@ public void Validate(JsonPatchDocument<T> patch)
 }
 ```
 
-#### Business Logic Subversion
+##### Business Logic Subversion
 
 * **Scenario**: Patch operations can manipulate fields with implicit invariants, (e.g., internal flags, IDs, or computed fields), violating business constraints.
 * **Impact**: Data integrity issues and unintended app behavior.
@@ -228,7 +226,7 @@ public void Validate(JsonPatchDocument<T> patch)
   * Avoid exposing sensitive or security-critical properties in the target object.
   * If no POCO object is used, validate the patched object after applying operations to ensure business rules and invariants aren't violated.
 
-#### Authentication and authorization
+##### Authentication and authorization
 
 * **Scenario**: Unauthenticated or unauthorized clients send malicious JSON Patch requests.
 * **Impact**: Unauthorized access to modify sensitive data or disrupt app behavior.
