@@ -73,7 +73,8 @@ string jsonPatch = """
     { "op": "replace", "path": "/FirstName", "value": "Jane" },
     { "op": "remove", "path": "/Email"},
     { "op": "add", "path": "/Address/ZipCode", "value": "90210" },
-    { "op": "add", "path": "/PhoneNumbers/-", "value": { "Number": "987-654-3210", "Type": "Work" } }
+    { "op": "add", "path": "/PhoneNumbers/-", "value": { "Number": "987-654-3210",
+                                                                "Type": "Work" } }
 ]
 """;
 
@@ -127,7 +128,8 @@ JSON `Patch` also supports the `test` operation. The `test` operation checks if 
 
 The following example demonstrates how to handle these errors gracefully.
 
-> Important: The object passed to the `ApplyTo` method is modified in place. It is the caller's responsiblity to discard these changes if any operation fails.
+> [!Important]
+> The object passed to the `ApplyTo` method is modified in place. It is the caller's responsiblity to discard these changes if any operation fails.
 
 ```csharp
 // Original object
@@ -174,7 +176,8 @@ if (errors != null)
 Console.WriteLine(JsonSerializer.Serialize(person, serializerOptions));
 
 // Output:
-// Error in Person: The current value 'John' at path 'FirstName' is not equal to the test value 'Jane'.
+// Error in Person: The current value 'John' at path 'FirstName' is not equal 
+// to the test value 'Jane'.
 // {
 //   "firstName": "John",
 //   "lastName": "Smith",              <<< Modified!
@@ -209,8 +212,10 @@ Consumers of these packages can integrate JSON Patch functionality into their ap
 ```csharp
 public void Validate(JsonPatchDocument<T> patch)
 {
-    // This is just an example. It's up to the developer to make sure that this case is handled properly, based on the app needs.
-    if (patch.Operations.Where(op=>op.OperationType == OperationType.Copy).Count() > MaxCopyOperationsCount)
+    // This is just an example. It's up to the developer to make sure that
+    // this case is handled properly, based on the app needs.
+    if (patch.Operations.Where(op=>op.OperationType == OperationType.Copy).Count()
+                              > MaxCopyOperationsCount)
     {
         throw new InvalidOperationException();
     }
