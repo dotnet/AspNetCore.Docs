@@ -39,7 +39,7 @@ To enable JSON Patch support with `System.Text.Json`, install the [`Microsoft.As
 dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson --prerelease
 ```
 
-This package provides a `JsonPatchDocument<T>` class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using `System.Text.Json`. The key method of the `JsonPatchDocument<T>` class is `ApplyTo`, which applies the patch operations to a target object of type `T`.
+This package provides a `JsonPatchDocument#### T>` class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using `System.Text.Json`. The key method of the `JsonPatchDocument<T>` class is `ApplyTo`, which applies the patch operations to a target object of type `T`.
 
 The following examples demonstrate how to use the `ApplyTo` method to apply a JSON Patch document to an object.
 
@@ -193,7 +193,7 @@ When using the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` package, it's cri
 > [!IMPORTANT]
 > ***This is not an exhaustive list of threats.*** app developers must conduct their own threat model reviews to determine an app-specific comprehensive list and come up with appropriate mitigations as needed. For example, apps which expose collections to patch operations should consider the potential for algorithmic complexity attacks if those operations insert or remove elements at the beginning of the collection.
 
-By running comprehensive threat models for their own apps and addressing identified threats while following the recommended mitigations below, consumers of these packages can <!-- review removing safely --> integrate JSON Patch functionality into their apps while minimizing security risks.
+By running comprehensive threat models for their own apps and addressing identified threats while following the recommended mitigations below, consumers of these packages can integrate JSON Patch functionality into their apps while minimizing security risks.
 
 Consumers of these packages can integrate JSON Patch functionality into their apps while minimizing security risks, including:
 
@@ -206,7 +206,7 @@ Consumers of these packages can integrate JSON Patch functionality into their ap
 * **Scenario**: A malicious client submits a `copy` operation that duplicates large object graphs multiple times, leading to excessive memory consumption.
 * **Impact**: Potential Out-Of-Memory (OOM) conditions, causing service disruptions.
 * **Mitigation**:
-  * Validate incoming JSON Patch documents for size and structure <!-- review my removing: before applying the document --> before calling `ApplyTo`.
+  * Validate incoming JSON Patch documents for size and structure before calling `ApplyTo`.
   * The validation needs to be app specific, but an example validation can look similar to the following:
 
 ```csharp
