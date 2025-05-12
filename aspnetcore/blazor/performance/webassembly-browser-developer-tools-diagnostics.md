@@ -89,15 +89,15 @@ Add `callspec` with a filter to the `browser` WebAssembly profiler in the `<Wasm
 
 Permissiable `{FILTER}` placeholder values are shown in the following table.
 
-Filter (`{FILTER}`) value | Description
+Filter | Description
 --- | ---
 `all` | All assemblies
 `none` |	No assemblies
 `program` | Entry point assembly
-`assembly` | Specifies an assembly
+`{ASSEMBLY}` | Specifies an assembly (`{ASSEMBLY}`)
 `M:Type:{METHOD}` | Specifies a method (`{METHOD}`)
 `N:{NAMESPACE}` | Specifies a namespace (`{NAMESPACE}`)
-`T:Type` | Specifies a type
+`T:{TYPE}` | Specifies a type (`{TYPE}`)
 `+EXPR` | Includes expression
 `-EXPR` | Excludes expression
 
