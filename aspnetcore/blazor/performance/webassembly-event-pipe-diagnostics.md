@@ -53,10 +53,10 @@ The following table describes permissable `<WasmPerfInstrumentation>` values.
 `all` | All assemblies
 `none` |	No assemblies
 `program` | Entry point assembly
-`assembly` | Specifies an assembly
-`M:Type:Method` | Specifies a method
-`N:Namespace` | Specifies a namespace
-`T:Type` | Specifies a type
+`{ASSEMBLY}` | Specifies an assembly (`{ASSEMBLY}`)
+`M:Type:{METHOD}` | Specifies a method (`{METHOD}`)
+`N:{NAMESPACE}` | Specifies a namespace (`{NAMESPACE}`)
+`T:{TYPE}` | Specifies a type (`{TYPE}`)
 `+EXPR` | Includes expression
 `-EXPR` | Excludes expression
 
