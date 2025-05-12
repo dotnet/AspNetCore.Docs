@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 ---
 # Tutorial: Publish an ASP.NET Core app using Native AOT
 
-:::moniker range="> aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 <!-- UPDATE 9.0 Activate after release and INCLUDE is updated
 
@@ -23,10 +23,7 @@ ai-usage: ai-assisted
 [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) is available in ASP.NET Core.
 
 > [!NOTE]
-> * Minimal APIs are ***not*** compatible with native AOT.
-> * Tabs are provided for the [.NET CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/downloads/) instructions:
->   * Visual Studio is a prerequisite even if the CLI tab is selected.
->   * The CLI must be used to publish even if the Visual Studio tab is selected.
+> Minimal APIs are ***not*** compatible with native AOT.
 
 See [Native AOT deployment](/dotnet/core/deploying/native-aot/) for more information, including:
 
@@ -182,5 +179,3 @@ info: Microsoft.Hosting.Lifetime[0]
 * [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/aot/includes/native-aot-tutorial8.md)]
