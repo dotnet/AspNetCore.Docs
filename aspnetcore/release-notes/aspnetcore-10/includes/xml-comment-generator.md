@@ -15,10 +15,13 @@ This configuration is done with directives in the project build file. The follow
 ```xml
 <Target Name="AddOpenApiDependencies" AfterTargets="ResolveReferences">
   <ItemGroup>
-    <!-- Include XML documentation from Microsoft.AspNetCore.Http.Abstractions to get metadata for ProblemDetails -->
+  <!-- Include XML documentation from Microsoft.AspNetCore.Http.Abstractions
+    to get metadata for ProblemDetails -->
     <AdditionalFiles
-          Include="@(ReferencePath->'%(RootDir)%(Directory)%(Filename).xml')"
-          Condition="'%(ReferencePath.Filename)' == 'Microsoft.AspNetCore.Http.Abstractions'"
+          Include="@(ReferencePath->'
+            %(RootDir)%(Directory)%(Filename).xml')"
+          Condition="'%(ReferencePath.Filename)' ==
+           'Microsoft.AspNetCore.Http.Abstractions'"
           KeepMetadata="Identity;HintPath" />
   </ItemGroup>
 </Target>
