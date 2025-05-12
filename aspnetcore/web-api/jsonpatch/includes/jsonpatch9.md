@@ -1,16 +1,4 @@
----
-title: JsonPatch in ASP.NET Core web API
-author: rick-anderson
-description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/09/2022
-uid: web-api/jsonpatch
----
-# JsonPatch in ASP.NET Core web API
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-10.0"
 
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
@@ -496,5 +484,3 @@ To test the sample, run the app and send HTTP requests with the following settin
 * [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/main/src/Features/JsonPatch/src)
 
 :::moniker-end
-
-[!INCLUDE[](~/web-api/jsonpatch/includes/jsonpatch9.md)]
