@@ -12,5 +12,4 @@ To support adding the schema to the OpenAPI document, a `Document` property has 
 
 To use this feature in a document, operation, or schema transformer, create the schema using the `GetOrCreateSchemaAsync` method provided in the context and add it to the OpenAPI document using the document's `AddComponent` method.
 
-<!-- In the docs, highlight the lines with the call to "GetOrCreateSchemaAsync" and "AddComponent" -->
 :::code language="csharp" source="~/release-notes/aspnetcore-10/samples/WebAppOpenAPI10/Program.cs" id="snippet_Generate_OpenApiSchemas_for_type" highlight="6-7":::
