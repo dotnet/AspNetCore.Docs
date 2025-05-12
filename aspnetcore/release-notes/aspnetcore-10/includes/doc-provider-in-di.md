@@ -2,7 +2,7 @@
 
 ASP.NET Core in .NET 10 supports `IOpenApiDocumentProvider` in the dependency injection (DI) container. Developers can inject it into their applications and use it to access the OpenAPI document. This approach is useful for accessing OpenAPI documents outside the context of HTTP requests, such as in background services or custom middleware.
 
-Previously, running application startup logic without launching an HTTP server could be done by using `HostFactoryResolver` with a no-op `IServer` implementation. The new feature simplifies this process by providing a streamlined API inspired by Aspire's <xref:Aspire.Hosting.Publishing.IDistributedApplicationPublisher>.
+Previously, running application startup logic without launching an HTTP server could be done by using `HostFactoryResolver` with a no-op `IServer` implementation. The new feature simplifies this process by providing a streamlined API inspired by Aspire's <xref:Aspire.Hosting.Publishing.IDistributedApplicationPublisher>For more information, see [Aspire Documentation](https://aspire.example.com/docs/IDistributedApplicationPublisher).
 
 For more information, see [dotnet/aspnetcore #61463](https://github.com/dotnet/aspnetcore/pull/61463)
 
