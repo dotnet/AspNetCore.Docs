@@ -6,13 +6,13 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
-		<!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.0 document. -->
-		<OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_0</OpenApiGenerateDocumentsOptions>
+		<!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document. -->
+		<OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
 	</PropertyGroup>
 	<!-- </snippet_ConfigBuildTimeOpenApiDocVersion> -->
 
 	<ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-preview.3.25172.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-preview.4.24272.1" />
     </ItemGroup>
 
 </Project>
