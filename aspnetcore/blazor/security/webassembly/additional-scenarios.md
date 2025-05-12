@@ -300,6 +300,15 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 }
 ```
 
+> [!NOTE]
+> In this section, the preceding message handler is used when a configured <xref:System.Net.Http.HttpClient> is created from an injected <xref:System.Net.Http.IHttpClientFactory>. If you don't use an <xref:System.Net.Http.IHttpClientFactory>, you must create an <xref:System.Net.Http.HttpClientHandler> instance and assign it to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>'s <xref:System.Net.Http.DelegatingHandler.InnerHandler%2A?displayProperty=nameWithType>:
+>
+> ```csharp
+> InnerHandler = new HttpClientHandler();
+> ```
+>
+> You don't need to make the preceding <xref:System.Net.Http.DelegatingHandler.InnerHandler> assignment if you use <xref:System.Net.Http.IHttpClientFactory>, as the `ExampleAPIMethod` call later in this section demonstrates.
+
 In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
 
 In the `Program` file, `CustomAuthorizationMessageHandler` is registered as a transient service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>.
@@ -378,7 +387,10 @@ builder.Services.AddScoped(sp => new HttpClient(
 });
 ```
 
-In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
+In the preceding code:
+
+* The scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
+* <xref:System.Net.Http.IHttpClientFactory> isn't used to create <xref:System.Net.Http.HttpClient> instances, so an <xref:System.Net.Http.HttpClientHandler> instance is manually created and assigned to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>'s <xref:System.Net.Http.DelegatingHandler.InnerHandler%2A?displayProperty=nameWithType>.
 
 :::moniker range="< aspnetcore-8.0"
 

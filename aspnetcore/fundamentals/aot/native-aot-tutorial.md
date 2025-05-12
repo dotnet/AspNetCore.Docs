@@ -13,6 +13,7 @@ ai-usage: ai-assisted
 ---
 # Tutorial: Publish an ASP.NET Core app using Native AOT
 
+<<<<<<< HEAD
 :::moniker range="> aspnetcore-8.0"
 
 <!-- UPDATE 9.0 Activate after release and INCLUDE is updated
@@ -34,6 +35,24 @@ ai-usage: ai-assisted
 # [.NET CLI](#tab/net-cli) 
 
 * [!INCLUDE[](~/includes/9.0-SDK.md)]
+=======
+[.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) is available in ASP.NET Core.
+
+> [!NOTE]
+> Minimal APIs are ***not*** compatible with native AOT.
+
+See [Native AOT deployment](/dotnet/core/deploying/native-aot/) for more information, including:
+
+* [Limitations of Native AOT deployment](/dotnet/core/deploying/native-aot/#limitations-of-native-aot-deployment)
+* [Supported platforms](/dotnet/core/deploying/native-aot/#platformarchitecture-restrictions)
+
+## Prerequisites
+
+# [.NET CLI](#tab/net-cli)
+<!-- explicitly specify SDK version or we could just list
+https://dotnet.microsoft.com//download and tell them to install the version they're targeting   -->
+* [.NET SDK](https://dotnet.microsoft.com//download)
+>>>>>>> bb32864901912800c9b8354b50b8e3264bca45ee
 * On Linux, see [Prerequisites for Native AOT deployment](/dotnet/core/deploying/native-aot/?tabs=net8plus#prerequisites-for-native-aot-deployment).
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the **Desktop development with C++** workload installed.
 
@@ -44,7 +63,11 @@ ai-usage: ai-assisted
 
 # [Visual Studio](#tab/visual-studio)
 
+<<<<<<< HEAD
 * [!INCLUDE[](~/includes/9.0-SDK.md)]
+=======
+[.NET SDK](https://dotnet.microsoft.com//download)
+>>>>>>> bb32864901912800c9b8354b50b8e3264bca45ee
 
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the following workloads installed:
   * **ASP.NET and web development**
@@ -177,4 +200,7 @@ info: Microsoft.Hosting.Lifetime[0]
 * [Replacing method calls with Interceptors](https://andrewlock.net/exploring-the-dotnet-8-preview-changing-method-calls-with-interceptors/)
 * [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator)
 
+<<<<<<< HEAD
 :::moniker-end
+=======
+>>>>>>> bb32864901912800c9b8354b50b8e3264bca45ee
