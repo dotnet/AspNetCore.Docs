@@ -45,7 +45,6 @@ https://dotnet.microsoft.com//download and tell them to install the version they
 test new moniker range
 
 [!INCLUDE[](~/includes/monikerSdks/moniker8-9-10-sdk.md)]
-:::moniker-end
 :::moniker range=">= aspnetcore-8.0"
 
 end of test new moniker range
