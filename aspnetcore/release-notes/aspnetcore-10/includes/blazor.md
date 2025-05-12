@@ -375,6 +375,7 @@ Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?di
 
 Code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. For example, in the default Blazor Identity UI, the `IdentityRedirectManager` previously threw an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure it wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed.
 
+!!!!!!!!! HOLD THE NEXT BIT FOR PREVIEW 5 !!!!!!!!!
 To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>, set the following <xref:System.AppContext> switch:
 
 ```csharp
@@ -382,5 +383,6 @@ AppContext.SetSwitch(
     "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.EnableThrowNavigationException", 
     isEnabled: true);
 ```
+!!!!!!!!! HOLD END !!!!!!!!!
 
 -->
