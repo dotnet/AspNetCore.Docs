@@ -48,7 +48,7 @@ Property | Default | Set value to&hellip; | Description
 
 The following table describes permissable `<WasmPerfInstrumentation>` values.
 
-Keyword | Description
+`<WasmPerfInstrumentation>` value | Description
 --- | ---
 `all` | All assemblies
 `none` |	No assemblies
