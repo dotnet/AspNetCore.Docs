@@ -40,7 +40,13 @@ https://dotnet.microsoft.com//download and tell them to install the version they
 :::moniker range=">= aspnetcore-10.0"
 * [!INCLUDE[](~/includes/10.0-SDK.md)]
 :::moniker-end
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range=">= aspnetcore-8.0"
+
+test new moniker range
+
+[!INCLUDE[](~/includes/monikerSdks/moniker8-9-10-sdk.md)]
+
+end of test new moniker range
 
 * On Linux, see [Prerequisites for Native AOT deployment](/dotnet/core/deploying/native-aot/?tabs=net8plus#prerequisites-for-native-aot-deployment).
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the **Desktop development with C++** workload installed.
