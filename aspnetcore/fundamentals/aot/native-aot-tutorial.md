@@ -28,43 +28,8 @@ See [Native AOT deployment](/dotnet/core/deploying/native-aot/) for more informa
 
 # [.NET CLI](#tab/net-cli)
 <!-- explicitly specify SDK version or we could just list
-https://dotnet.microsoft.com//download and tell them to install the version they're targeting -->
-
-:::moniker-end
-:::moniker range="= aspnetcore-8.0"
-* [!INCLUDE[](~/includes/8.0-SDK.md)]
-:::moniker-end
-:::moniker range="= aspnetcore-9.0"
-* [!INCLUDE[](~/includes/9.0-SDK.md)]
-:::moniker-end
-:::moniker range=">= aspnetcore-10.0"
-* [!INCLUDE[](~/includes/10.0-SDK.md)]
-:::moniker-end
-:::moniker range=">= aspnetcore-8.0"
-
-test new moniker range
-
-<!-- 
-[!INCLUDE[](~/includes/monikerSdks/moniker8-9-10-sdk.md)]
--->
-
-:::moniker-end
-:::moniker range="= aspnetcore-8.0"
-* [!INCLUDE[](~/includes/8.0-SDK.md)]
-:::moniker-end
-:::moniker range="= aspnetcore-9.0"
-* [!INCLUDE[](~/includes/9.0-SDK.md)]
-:::moniker-end
-:::moniker range=">= aspnetcore-10.0"
-* [!INCLUDE[](~/includes/10.0-SDK.md)]
-:::moniker-end
-
-
-<!--close the include -->
-:::moniker range=">= aspnetcore-8.0"
-
-end of test new moniker range
-
+https://dotnet.microsoft.com//download and tell them to install the version they're targeting   -->
+* [.NET SDK](https://dotnet.microsoft.com//download)
 * On Linux, see [Prerequisites for Native AOT deployment](/dotnet/core/deploying/native-aot/?tabs=net8plus#prerequisites-for-native-aot-deployment).
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the **Desktop development with C++** workload installed.
 
