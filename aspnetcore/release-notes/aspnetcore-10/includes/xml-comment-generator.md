@@ -1,4 +1,4 @@
-## Improvements to the XML comment generator
+### Improvements to the XML comment generator
 
 XML comment generation handles complex types in .NET 10 better than earlier versions of .NET.
 
@@ -25,5 +25,3 @@ This configuration is done with directives in the project build file. The follow
 ```
 
 We expect to include XML comments from a selected set of assemblies in the shared framework in future previews, to avoid the need for this configuration in most cases.
-
-<!--[!INCLUDE[](~/release-notes/aspnetcore-10/includes/xml-comment-generation.md)] -->
