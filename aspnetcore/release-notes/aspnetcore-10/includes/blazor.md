@@ -385,7 +385,7 @@ AppContext.SetSwitch(
 
 -->
 
-## Signal a Not Found response using `NavigationManager`
+## Signal Not Found responses using `NavigationManager`
 
 The `NavigationManager` class now includes a `NotFound` method to handle scenarios where a requested resource isn't found:
 
