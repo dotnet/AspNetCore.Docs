@@ -20,8 +20,8 @@ ai-usage: ai-assisted
 
 See [Native AOT deployment](/dotnet/core/deploying/native-aot/) for more information, including:
 
-* [Limitations of Native AOT deployment](/dotnet/core/deploying/native-aot/)
-* [Supported platforms](/dotnet/core/deploying/native-aot/)
+* [Limitations of Native AOT deployment](/dotnet/core/deploying/native-aot/#limitations-of-native-aot-deployment)
+* [Supported platforms](/dotnet/core/deploying/native-aot/#platformarchitecture-restrictions)
 
 ## Prerequisites
 
