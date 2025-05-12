@@ -1,5 +1,5 @@
 ---
-title: Rate limiting middleware samsples
+title: Rate limiting middleware samples
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-7.0'
