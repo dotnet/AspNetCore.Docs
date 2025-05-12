@@ -10,7 +10,7 @@ In web apps, JSON Patch is commonly used in a PATCH operation to perform partial
 
 [RFC 6902]: https://tools.ietf.org/html/rfc6902
 
-This release introduces a new implementation of [`JsonPatch`](/dotnet/api/system.text.json based on `System.Text.Json` serialization. This feature:
+This release introduces a new implementation of `JsonPatch` based on `System.Text.Json` serialization. This feature:
 
 * Aligns with modern .NET practices by leveraging the `System.Text.Json` library, which is optimized for .NET.
 * Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation.
