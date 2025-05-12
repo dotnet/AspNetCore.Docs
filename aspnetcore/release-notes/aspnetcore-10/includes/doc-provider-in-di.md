@@ -6,5 +6,3 @@ Previously, running application startup logic without launching an HTTP server c
 
 For more information, see [dotnet/aspnetcore #61463](https://github.com/dotnet/aspnetcore/pull/61463)
 
-<!--[!INCLUDE[](~/release-notes/aspnetcore-10/includes/doc-provider-in-di.md)] -->
-
