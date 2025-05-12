@@ -106,7 +106,7 @@ The following counter component persists counter state during prerendering and r
 }
 ```
 
-<!-- HOLD until https://github.com/dotnet/aspnetcore/issues/61456 
+<!-- UPDATE 10.0 - HOLD until https://github.com/dotnet/aspnetcore/issues/61456 
      is resolved
 
 ```razor
@@ -123,11 +123,11 @@ The following counter component persists counter state during prerendering and r
 
 @code {
     [SupplyParameterFromPersistentComponentState]
-    public int CurrentCount { get; set; }
+    public int? CurrentCount { get; set; }
 
     protected override void OnInitialized()
     {
-        if (CurrentCount == 0)
+        if (CurrentCount is null)
         {
             CurrentCount = Random.Shared.Next(100);
             Logger.LogInformation("CurrentCount set to {Count}", CurrentCount);
@@ -373,15 +373,27 @@ Disabling enhanced navigation, which reduces performance but also avoids the pro
 Prerendering guidance is organized in the Blazor documentation by subject matter. The following links cover all of the prerendering guidance throughout the documentation set by subject:
 
 * Fundamentals
-  * <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
-  * [Startup: Control headers in C# code](xref:blazor/fundamentals/startup#control-headers-in-c-code)
+  * [Overview: Client and server rendering concepts](xref:blazor/fundamentals/index#client-and-server-rendering-concepts)
+  * Routing
+    * [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing)
+    * [Route to components from multiple assemblies: Interactive routing](xref:blazor/fundamentals/routing#interactive-routing)
+    * <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
+  * Startup
+    * [Control headers in C# code](xref:blazor/fundamentals/startup#control-headers-in-c-code)
+    * [Client-side loading indicators](xref:blazor/fundamentals/startup#client-side-loading-indicators)
+  * [Environments: Read the environment client-side in a Blazor Web App](xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app)
   * [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
-  * [SignalR: Prerendered state size and SignalR message size limit](xref:blazor/fundamentals/signalr#prerendered-state-size-and-signalr-message-size-limit)
-
-* [Render modes: Prerendering](xref:blazor/components/render-modes#prerendering)
+  * SignalR
+    * [Client-side rendering](xref:blazor/fundamentals/signalr#client-side-rendering)
+    * [Prerendered state size and SignalR message size limit](xref:blazor/fundamentals/signalr#prerendered-state-size-and-signalr-message-size-limit)
 
 * Components
   * [Control `<head>` content during prerendering](xref:blazor/components/control-head-content#control-head-content-during-prerendering)
+  * Render modes
+    * [Prerendering](xref:blazor/components/render-modes#prerendering)
+    * [Detect rendering location, interactivity, and assigned render mode at runtime](xref:blazor/components/render-modes#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime)
+    * [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering)
+    * [Custom shorthand render modes](xref:blazor/components/render-modes#custom-shorthand-render-modes)
   * Razor component lifecycle subjects that pertain to prerendering
     * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
     * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
@@ -391,9 +403,24 @@ Prerendering guidance is organized in the Blazor documentation by subject matter
   * [`QuickGrid` component sample app](xref:blazor/components/quickgrid#sample-app): The [**QuickGrid for Blazor** sample app](https://aspnet.github.io/quickgridsamples/) is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
   * [Prerendering when integrating components into Razor Pages and MVC apps](xref:blazor/components/integration)
 
+* [Call a web API: Prerendered data](xref:blazor/call-web-api#prerendered-data)
+
+* [File uploads: Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr)
+
+* [Globalization and localization: Location override using "Sensors" pane in developer tools](xref:blazor/globalization-localization#location-override-using-sensors-pane-in-developer-tools)
+
 * Authentication and authorization
   * [Server-side threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
-  * [Server-side unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](xref:blazor/security/index#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
-  * [Blazor WebAssembly rendered component authentication with prerendering](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+  * Blazor server-side security overview
+    * [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
+    * [Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](xref:blazor/security/index#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
+  * [Blazor server-side additional scenarios: Reading tokens from `HttpContext`](xref:blazor/security/additional-scenarios#reading-tokens-from-httpcontext)
+  * [Blazor WebAssembly overview: Prerendering support](xref:blazor/security/webassembly/index#prerendering-support)
+  * Blazor WebAssembly additional scenarios
+    * [Rendered component authentication with prerendering](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+    * [Secure a SignalR hub](xref:blazor/security/webassembly/additional-scenarios#secure-a-signalr-hub)
+  * [Interactive server-side rendering: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
 
 * [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering): Besides the *Handle prerendering* section, several of the article's other sections include remarks on prerendering.
+
+For .NET 7 or earlier, see [Blazor WebAssembly security additional scenarios: Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#prerendering-with-authentication). After viewing the content in this section, reset the documentation article version selector dropdown to the latest .NET release version to ensure that documentation pages load for the latest release on subsequent visits.
