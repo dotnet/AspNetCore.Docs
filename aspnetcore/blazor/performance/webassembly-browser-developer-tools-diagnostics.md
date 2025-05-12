@@ -79,9 +79,29 @@ Configure the sample interval in the app's project file. In the following exampl
 
 ## Call specification (:::no-loc text="callspec":::)
 
-If you want to filter profiled methods, you can use call specification (:::no-loc text="callspec":::). For more information, see [Trace MonoVM profiler events during startup](https://github.com/dotnet/runtime/blob/main/docs/design/mono/diagnostics-tracing.md#trace-monovm-profiler-events-during-startup).
+If you want to filter profiled methods, use call specification (:::no-loc text="callspec":::).
 
-Add `callspec` to the `browser` WebAssembly profiler in the `<WasmProfilers>` element. In the following example, the `{APP NAMESPACE}` placeholder is the app's namespace:
+Add `callspec` to the `browser` WebAssembly profiler in the `<WasmProfilers>` element:
+
+```xml
+<WasmProfilers>browser:callspec={KEYWORD};</WasmProfilers>
+```
+
+Permissiable keyword values are shown in the following table.
+
+Keyword | Description
+--- | ---
+`all` | All assemblies
+`none` |	No assemblies
+`program` | Entry point assembly
+`assembly` | Specifies an assembly
+`M:Type:Method` | Specifies a method
+`N:Namespace` | Specifies a namespace
+`T:Type` | Specifies a type
+`+EXPR` | Includes expression
+`-EXPR` | Excludes expression
+
+In the following example, profiled methods are filtered to the app's namespace, which is represented by the `{APP NAMESPACE}` placeholder:
 
 ```xml
 <WasmProfilers>browser:callspec=N:{APP NAMESPACE};</WasmProfilers>
