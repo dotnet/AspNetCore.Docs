@@ -60,6 +60,8 @@ For example, the following JSON documents represent a resource, a JSON Patch doc
 
 ### Resource example
 
+"~/web-api/jsonpatch/samples
+
 :::code language="json" source="~/web-api/jsonpatch/samples/customer.json":::
 
 ### JSON patch example
