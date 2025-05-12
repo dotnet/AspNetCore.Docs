@@ -55,6 +55,8 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/doc-provider-in-di.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
@@ -83,6 +85,9 @@ For more information, see [ASP.NET Core Authorization and Authentication metrics
 This section describes miscellaneous new features in ASP.NET Core 10.0.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
+
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/jsonPatch.md)]
 
 ### Detect if URL is local using `RedirectHttpResult.IsLocalUrl`
 

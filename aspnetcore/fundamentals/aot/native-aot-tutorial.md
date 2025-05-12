@@ -7,32 +7,28 @@ ms.topic: tutorial
 content_well_notification: AI-contribution
 ms.author: midenn
 ms.custom: mvc
-ms.date: 08/10/2023
+ms.date: 5/10/2023
 uid: fundamentals/native-aot-tutorial
 ai-usage: ai-assisted
 ---
 # Tutorial: Publish an ASP.NET Core app using Native AOT
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
-
-ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
+[.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) is available in ASP.NET Core.
 
 > [!NOTE]
-> * The Native AOT feature is currently in preview.
-> * In .NET 8, not all ASP.NET Core features are compatible with Native AOT.
-> * Tabs are provided for the [.NET CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/downloads/) instructions:
->   * Visual Studio is a prerequisite even if the CLI tab is selected.
->   * The CLI must be used to publish even if the Visual Studio tab is selected.
+> Minimal APIs are ***not*** compatible with native AOT.
+
+See [Native AOT deployment](/dotnet/core/deploying/native-aot/) for more information, including:
+
+* [Limitations of Native AOT deployment](/dotnet/core/deploying/native-aot/#limitations-of-native-aot-deployment)
+* [Supported platforms](/dotnet/core/deploying/native-aot/#platformarchitecture-restrictions)
 
 ## Prerequisites
 
-# [.NET CLI](#tab/net-cli) 
-
-* [!INCLUDE[](~/includes/8.0-SDK.md)]
+# [.NET CLI](#tab/net-cli)
+<!-- explicitly specify SDK version or we could just list
+https://dotnet.microsoft.com//download and tell them to install the version they're targeting   -->
+* [.NET SDK](https://dotnet.microsoft.com//download)
 * On Linux, see [Prerequisites for Native AOT deployment](/dotnet/core/deploying/native-aot/?tabs=net8plus#prerequisites-for-native-aot-deployment).
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the **Desktop development with C++** workload installed.
 
@@ -43,7 +39,7 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 
 # [Visual Studio](#tab/visual-studio)
 
-* [!INCLUDE[](~/includes/8.0-SDK.md)]
+[.NET SDK](https://dotnet.microsoft.com//download)
 
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the following workloads installed:
   * **ASP.NET and web development**
@@ -175,3 +171,4 @@ info: Microsoft.Hosting.Lifetime[0]
 * [Exploring the new minimal API source generator](https://andrewlock.net/exploring-the-dotnet-8-preview-exploring-the-new-minimal-api-source-generator/)
 * [Replacing method calls with Interceptors](https://andrewlock.net/exploring-the-dotnet-8-preview-changing-method-calls-with-interceptors/)
 * [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator)
+
