@@ -378,7 +378,9 @@ Code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> b
 To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>, set the following <xref:System.AppContext> switch:
 
 ```csharp
-AppContext.SetSwitch("Microsoft.AspNetCore.Components.Endpoints.NavigationManager.EnableThrowNavigationException", isEnabled: true);
+AppContext.SetSwitch(
+    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.EnableThrowNavigationException", 
+    isEnabled: true);
 ```
 
 -->
