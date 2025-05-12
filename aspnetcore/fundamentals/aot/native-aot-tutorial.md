@@ -39,7 +39,7 @@ https://dotnet.microsoft.com//download and tell them to install the version they
 
 # [Visual Studio](#tab/visual-studio)
 
-* [!INCLUDE[](~/includes/9.0-SDK.md)]
+[.NET SDK](https://dotnet.microsoft.com//download)
 
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with the following workloads installed:
   * **ASP.NET and web development**
