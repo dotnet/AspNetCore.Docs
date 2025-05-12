@@ -87,7 +87,7 @@ Add `callspec` to the `browser` WebAssembly profiler in the `<WasmProfilers>` el
 <WasmProfilers>browser:callspec={KEYWORD};</WasmProfilers>
 ```
 
-Permissiable keyword values are shown in the following table.
+Permissiable `{KEYWORD}` placeholder values are shown in the following table.
 
 Keyword | Description
 --- | ---
