@@ -2,6 +2,7 @@
 title: "Tutorial: Publish an ASP.NET Core app using Native AOT"
 author: mitchdenny
 description: Learn about how to publish an ASP.NET Core app using Native AOT.
+monikerRange: '>= aspnetcore-8.0'
 ms.topic: tutorial
 content_well_notification: AI-contribution
 ms.author: midenn
@@ -11,8 +12,6 @@ uid: fundamentals/native-aot-tutorial
 ai-usage: ai-assisted
 ---
 # Tutorial: Publish an ASP.NET Core app using Native AOT
-
-:::moniker range=">= aspnetcore-8.0"
 
 [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) is available in ASP.NET Core.
 
@@ -173,4 +172,3 @@ info: Microsoft.Hosting.Lifetime[0]
 * [Replacing method calls with Interceptors](https://andrewlock.net/exploring-the-dotnet-8-preview-changing-method-calls-with-interceptors/)
 * [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator)
 
-:::moniker-end
