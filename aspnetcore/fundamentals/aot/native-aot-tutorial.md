@@ -44,7 +44,23 @@ https://dotnet.microsoft.com//download and tell them to install the version they
 
 test new moniker range
 
+<!-- 
 [!INCLUDE[](~/includes/monikerSdks/moniker8-9-10-sdk.md)]
+-->
+
+:::moniker-end
+:::moniker range="= aspnetcore-8.0"
+* [!INCLUDE[](~/includes/8.0-SDK.md)]
+:::moniker-end
+:::moniker range="= aspnetcore-9.0"
+* [!INCLUDE[](~/includes/9.0-SDK.md)]
+:::moniker-end
+:::moniker range=">= aspnetcore-10.0"
+* [!INCLUDE[](~/includes/10.0-SDK.md)]
+:::moniker-end
+
+
+<!--close the include -->
 :::moniker range=">= aspnetcore-8.0"
 
 end of test new moniker range
@@ -192,5 +208,4 @@ info: Microsoft.Hosting.Lifetime[0]
 * [Replacing method calls with Interceptors](https://andrewlock.net/exploring-the-dotnet-8-preview-changing-method-calls-with-interceptors/)
 * [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator)
 
-:::moniker-end
 :::moniker-end
