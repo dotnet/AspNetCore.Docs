@@ -42,7 +42,7 @@ The MSBuild properties in the following table enable profiler integration.
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
 `<WasmPerfTracing>` | `false` | `true` | Enables diagnostic server.
-`<WasmPerfInstrumentation>` | `false` | `all` | Enables instrumentation necessary for sampling profiler. The property follows the :::no-loc text="callspec"::: syntax. For permissible values, see the following table.
+`<WasmPerfInstrumentation>` | `false` | `all` | Enables instrumentation necessary for the sampling profiler. The property follows the :::no-loc text="callspec"::: syntax. For permissible values, see the following table.
 `<MetricsSupport>` | `false` | `true` | Controls `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
 `<EventSourceSupport>` | `false`| `true` | Controls `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
 
