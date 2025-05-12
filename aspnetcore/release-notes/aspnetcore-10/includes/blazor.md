@@ -384,3 +384,17 @@ AppContext.SetSwitch(
 ```
 
 -->
+
+## Signal a Not Found response using `NavigationManager`
+
+The `NavigationManager` class now includes a `NotFound` method to handle scenarios where a requested resource isn't found:
+
+* **Static server-side rendering (static SSR)**: Calling `NotFound` sets the HTTP status code to 404.
+* **Streaming rendering**: Throws an exception if the response has already started.
+* **Interactive rendering**: Signals the `Router` to render a Not Found page.
+
+You can use the `OnNotFound` event on `NavigationManager` to be notified when `NotFound` is invoked.
+
+<!-- NOTE ... I'm still working on my local branch on the reference article 
+              content for this. Chatting with Ilona now and should have it
+              ironed out and on this PR soon! -->
