@@ -48,11 +48,11 @@ For example, the following JSON documents represent a resource, a JSON Patch doc
 
 ### Resource example
 
-:::code language="json" source="jsonpatch/snippets/customer.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/customer.json":::
 
 ### JSON patch example
 
-:::code language="json" source="jsonpatch/snippets/add.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/add.json":::
 
 In the preceding JSON:
 
@@ -163,7 +163,7 @@ The following action method example shows how to apply a patch to a dynamic obje
 
 The following sample patch document sets the value of `CustomerName` and adds an `Order` object to the end of the `Orders` array.
 
-:::code language="json" source="jsonpatch/snippets/add.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/add.json":::
 
 ## The remove operation
 
@@ -176,7 +176,7 @@ The following sample patch document sets the value of `CustomerName` and adds an
 
 The following sample patch document sets `CustomerName` to null and deletes `Orders[0]`:
 
-:::code language="json" source="jsonpatch/snippets/remove.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/remove.json":::
 
 ## The replace operation
 
@@ -184,7 +184,7 @@ This operation is functionally the same as a `remove` followed by an `add`.
 
 The following sample patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object:
 
-:::code language="json" source="jsonpatch/snippets/replace.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/replace.json":::
 
 ## The move operation
 
@@ -200,7 +200,7 @@ The following sample patch document:
 * Sets `Orders[0].OrderName` to null.
 * Moves `Orders[1]` to before `Orders[0]`.
 
-:::code language="json" source="jsonpatch/snippets/move.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/move.json":::
 
 ## The copy operation
 
@@ -211,7 +211,7 @@ The following sample patch document:
 * Copies the value of `Orders[0].OrderName` to `CustomerName`.
 * Inserts a copy of `Orders[1]` before `Orders[0]`.
 
-:::code language="json" source="jsonpatch/snippets/copy.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/copy.json":::
 
 ## The test operation
 
@@ -221,7 +221,7 @@ The `test` operation is commonly used to prevent an update when there's a concur
 
 The following sample patch document has no effect if the initial value of `CustomerName` is "John", because the test fails:
 
-:::code language="json" source="jsonpatch/snippets/test-fail.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/test-fail.json":::
 
 ## Get the code
 
@@ -290,11 +290,11 @@ For example, the following JSON documents represent a resource, a JSON Patch doc
 
 ### Resource example
 
-:::code language="json" source="jsonpatch/snippets/customer.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/customer.json":::
 
 ### JSON patch example
 
-:::code language="json" source="jsonpatch/snippets/add.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/add.json":::
 
 In the preceding JSON:
 
@@ -405,7 +405,7 @@ The following action method example shows how to apply a patch to a dynamic obje
 
 The following sample patch document sets the value of `CustomerName` and adds an `Order` object to the end of the `Orders` array.
 
-:::code language="json" source="jsonpatch/snippets/add.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/add.json":::
 
 ## The remove operation
 
@@ -418,7 +418,7 @@ The following sample patch document sets the value of `CustomerName` and adds an
 
 The following sample patch document sets `CustomerName` to null and deletes `Orders[0]`:
 
-:::code language="json" source="jsonpatch/snippets/remove.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/remove.json":::
 
 ## The replace operation
 
@@ -426,7 +426,7 @@ This operation is functionally the same as a `remove` followed by an `add`.
 
 The following sample patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object:
 
-:::code language="json" source="jsonpatch/snippets/replace.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/replace.json":::
 
 ## The move operation
 
@@ -442,7 +442,7 @@ The following sample patch document:
 * Sets `Orders[0].OrderName` to null.
 * Moves `Orders[1]` to before `Orders[0]`.
 
-:::code language="json" source="jsonpatch/snippets/move.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/move.json":::
 
 ## The copy operation
 
@@ -453,7 +453,7 @@ The following sample patch document:
 * Copies the value of `Orders[0].OrderName` to `CustomerName`.
 * Inserts a copy of `Orders[1]` before `Orders[0]`.
 
-:::code language="json" source="jsonpatch/snippets/copy.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/copy.json":::
 
 ## The test operation
 
@@ -463,7 +463,7 @@ The `test` operation is commonly used to prevent an update when there's a concur
 
 The following sample patch document has no effect if the initial value of `CustomerName` is "John", because the test fails:
 
-:::code language="json" source="jsonpatch/snippets/test-fail.json":::
+:::code language="json" source="~/web-api/jsonpatch/samples/test-fail.json":::
 
 ## Get the code
 
