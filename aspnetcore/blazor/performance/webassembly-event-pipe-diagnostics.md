@@ -42,9 +42,23 @@ The MSBuild properties in the following table enable profiler integration.
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
 `<WasmPerfTracing>` | `false` | `true` | Enables diagnostic server.
-`<WasmPerfInstrumentation>` | `false` | `all` | Enables instrumentation necessary for sampling profiler. The property follows the :::no-loc text="callspec"::: syntax. For more information, including permissible values, see [Trace MonoVM profiler events during startup](https://github.com/dotnet/runtime/blob/main/docs/design/mono/diagnostics-tracing.md#trace-monovm-profiler-events-during-startup).
+`<WasmPerfInstrumentation>` | `false` | `all` | Enables instrumentation necessary for sampling profiler. The property follows the :::no-loc text="callspec"::: syntax. For permissible values, see the following table.
 `<MetricsSupport>` | `false` | `true` | Controls `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
 `<EventSourceSupport>` | `false`| `true` | Controls `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
+
+The following table describes permissable `<WasmPerfInstrumentation>` values.
+
+Keyword | Description
+--- | ---
+`all` | All assemblies
+`none` |	No assemblies
+`program` | Entry point assembly
+`assembly` | Specifies an assembly
+`M:Type:Method` | Specifies a method
+`N:Namespace` | Specifies a namespace
+`T:Type` | Specifies a type
+`+EXPR` | Includes expression
+`-EXPR` | Excludes expression
 
 Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
 
