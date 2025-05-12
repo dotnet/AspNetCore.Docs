@@ -81,22 +81,22 @@ Configure the sample interval in the app's project file. In the following exampl
 
 If you want to filter profiled methods, use call specification (:::no-loc text="callspec":::).
 
-Add `callspec` to the `browser` WebAssembly profiler in the `<WasmProfilers>` element:
+Add `callspec` with a filter to the `browser` WebAssembly profiler in the `<WasmProfilers>` element:
 
 ```xml
-<WasmProfilers>browser:callspec={KEYWORD};</WasmProfilers>
+<WasmProfilers>browser:callspec={FILTER};</WasmProfilers>
 ```
 
-Permissiable `{KEYWORD}` placeholder values are shown in the following table.
+Permissiable `{FILTER}` placeholder values are shown in the following table.
 
-Keyword | Description
+Filter (`{FILTER}`) value | Description
 --- | ---
 `all` | All assemblies
 `none` |	No assemblies
 `program` | Entry point assembly
 `assembly` | Specifies an assembly
-`M:Type:Method` | Specifies a method
-`N:Namespace` | Specifies a namespace
+`M:Type:{METHOD}` | Specifies a method (`{METHOD}`)
+`N:{NAMESPACE}` | Specifies a namespace (`{NAMESPACE}`)
 `T:Type` | Specifies a type
 `+EXPR` | Includes expression
 `-EXPR` | Excludes expression
