@@ -57,7 +57,7 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
 
-## Authentication and authorization
+### Authentication and authorization
 
 This section describes new features for authentication and authorization.
 
