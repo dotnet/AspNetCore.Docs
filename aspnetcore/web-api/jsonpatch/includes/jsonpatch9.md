@@ -9,7 +9,7 @@ JSON Patch support in ASP.NET Core web API is based on `Newtonsoft.Json` and req
 * Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
 * Call <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson%2A>. For example:
 
-  :::code language="csharp" source="jsonpatch/samples/6.x/api/Program.cs" id="snippet1" highlight="4":::
+  :::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Program.cs" id="snippet1" highlight="4":::
 
 `AddNewtonsoftJson` replaces the default `System.Text.Json`-based input and output formatters used for formatting ***all*** JSON content. This extension method is compatible with the following MVC service registration methods:
 
@@ -26,8 +26,8 @@ The `System.Text.Json`-based input formatter doesn't support JSON Patch. To add 
 * Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
 * Update `Program.cs`:
 
-  :::code language="csharp" source="jsonpatch/samples/6.x/api/Program.cs" id="snippet_both" highlight="6-9":::
-  :::code language="csharp" source="jsonpatch/samples/6.x/api/MyJPIF.cs":::
+  :::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Program.cs" id="snippet_both" highlight="6-9":::
+  :::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/MyJPIF.cs":::
 
 The preceding code creates an instance of <xref:Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonPatchInputFormatter> and inserts it as the first entry in the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A?displayProperty=nameWithType> collection. This order of registration ensures that:
 
@@ -119,13 +119,13 @@ In an API controller, an action method for JSON Patch:
 
 Here's an example:
 
-:::code language="csharp" source="jsonpatch/samples/3.x/api/Controllers/HomeController.cs" id="snippet_PatchAction" highlight="1,3,9":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/api/Controllers/HomeController.cs" id="snippet_PatchAction" highlight="1,3,9":::
 
 This code from the sample app works with the following `Customer` model:
 
-:::code language="csharp" source="jsonpatch/samples/6.x/api/Models/Customer.cs":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Models/Customer.cs":::
 
-:::code language="csharp" source="jsonpatch/samples/6.x/api/Models/Order.cs":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Models/Order.cs":::
 
 The sample action method:
 
@@ -151,7 +151,7 @@ The preceding action method example calls an overload of `ApplyTo` that takes mo
 
 The following action method example shows how to apply a patch to a dynamic object:
 
-:::code language="csharp" source="jsonpatch/samples/6.x/api/Controllers/HomeController.cs" id="snippet_Dynamic":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Controllers/HomeController.cs" id="snippet_Dynamic":::
 
 ## The add operation
 
@@ -270,11 +270,11 @@ To enable JSON Patch support in your app, complete the following steps:
 
 `AddNewtonsoftJson` replaces the `System.Text.Json`-based input and output formatters used for formatting **all** JSON content. To add support for JSON Patch using `Newtonsoft.Json`, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` method as follows:
 
-:::code language="csharp" source="jsonpatch/samples/3.x/WebApp1/Startup.cs" id="snippet":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/WebApp1/Startup.cs" id="snippet":::
 
 The preceding code requires the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package and the following `using` statements:
 
-:::code language="csharp" source="jsonpatch/samples/3.x/WebApp1/Startup.cs" id="snippet1":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/WebApp1/Startup.cs" id="snippet1":::
 
 Use the `Newtonsoft.Json.JsonConvert.SerializeObject` method to serialize a JsonPatchDocument.
 
@@ -361,13 +361,13 @@ In an API controller, an action method for JSON Patch:
 
 Here's an example:
 
-:::code language="csharp" source="jsonpatch/samples/3.x/api/Controllers/HomeController.cs" id="snippet_PatchAction" highlight="1,3,9":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/api/Controllers/HomeController.cs" id="snippet_PatchAction" highlight="1,3,9":::
 
 This code from the sample app works with the following `Customer` model:
 
-:::code language="csharp" source="jsonpatch/samples/3.x/api/Models/Customer.cs":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/api/Models/Customer.cs":::
 
-:::code language="csharp" source="jsonpatch/samples/3.x/api/Models/Order.cs":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/api/Models/Order.cs":::
 
 The sample action method:
 
@@ -393,7 +393,7 @@ The preceding action method example calls an overload of `ApplyTo` that takes mo
 
 The following action method example shows how to apply a patch to a dynamic object:
 
-:::code language="csharp" source="jsonpatch/samples/3.x/api/Controllers/HomeController.cs" id="snippet_Dynamic":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/api/Controllers/HomeController.cs" id="snippet_Dynamic":::
 
 ## The add operation
 
