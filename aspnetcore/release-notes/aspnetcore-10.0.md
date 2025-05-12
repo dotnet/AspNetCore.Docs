@@ -53,6 +53,9 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/webapiaotTemplateAddedOpenAPI.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/xml-comment-generator.md)]
+
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
