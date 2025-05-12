@@ -6,8 +6,8 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
-		<!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.0 document. -->
-		<OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_0</OpenApiGenerateDocumentsOptions>
+		<!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document. -->
+		<OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
 	</PropertyGroup>
 	<!-- </snippet_ConfigBuildTimeOpenApiDocVersion> -->
 
