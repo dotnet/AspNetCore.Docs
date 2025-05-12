@@ -82,6 +82,9 @@ This section describes miscellaneous new features in ASP.NET Core 10.0.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
 
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/jsonPatch.md)]
+
 ### Detect if URL is local using `RedirectHttpResult.IsLocalUrl`
 
 Use the new [`RedirectHttpResult.IsLocalUrl(url)`](https://source.dot.net/#Microsoft.AspNetCore.Http.Results/RedirectHttpResult.cs,c0ece2e6266cb369) helper method to detect if a URL is local. A URL is considered local if the following are true:

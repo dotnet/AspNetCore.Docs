@@ -351,14 +351,38 @@ The following synchronous methods are available on <xref:Microsoft.JSInterop.IJS
 
 For more information, see the following sections of the *Call JavaScript functions from .NET methods* article:
 
-* [Create an instance of a JS object using a constructor function](xref:blazor/js-interop/call-javascript-from-dotnet#create-an-instance-of-a-js-object-using-a-constructor-function)
-* [Read or modify the value of a JS object property](xref:blazor/js-interop/call-javascript-from-dotnet#read-or-modify-the-value-of-a-js-object-property)
+* [Create an instance of a JS object using a constructor function](xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-10.0#create-an-instance-of-a-js-object-using-a-constructor-function)
+* [Read or modify the value of a JS object property](xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-10.0#read-or-modify-the-value-of-a-js-object-property)
 
 ### Blazor WebAssembly performance profiling and diagnostic counters
 
 New performance profiling and diagnostic counters are available for Blazor WebAssembly apps. For more information, see the following articles:
 
-* <xref:blazor/performance/webassembly-browser-developer-tools>
-* <xref:blazor/performance/webassembly-event-pipe>
+* <xref:blazor/performance/webassembly-browser-developer-tools?view=aspnetcore-10.0>
+* <xref:blazor/performance/webassembly-event-pipe?view=aspnetcore-10.0>
+
+## Preloaded Blazor framework static assets
+
+In Blazor Web Apps, framework static assets are automatically preloaded using [`Link` headers](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Link), which allows the browser to preload resources before the initial page is fetched and rendered. In standalone Blazor WebAssembly apps, framework assets are scheduled for high priority downloading and caching early in browser `index.html` page processing.
+
+For more information, see <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets>.
+
+## `NavigationManager.NavigateTo` no longer throws a `NavigationException`
+
+Previously, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static server-side rendering (SSR) would throw a <xref:Microsoft.AspNetCore.Components.NavigationException>, interrupting execution before being converted to a redirection response. This caused confusion during debugging and was inconsistent with interactive rendering, where code after <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> continues to execute normally.
+
+Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static SSR no longer throws a <xref:Microsoft.AspNetCore.Components.NavigationException>. Instead, it behaves consistently with interactive rendering by performing the navigation without throwing an exception.
+
+Code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. For example, in the default Blazor Identity UI, the `IdentityRedirectManager` previously threw an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure it wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed.
+
+!!!!!!!!! HOLD THE NEXT BIT FOR PREVIEW 5 !!!!!!!!!
+To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>, set the following <xref:System.AppContext> switch:
+
+```csharp
+AppContext.SetSwitch(
+    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.EnableThrowNavigationException", 
+    isEnabled: true);
+```
+!!!!!!!!! HOLD END !!!!!!!!!
 
 -->
