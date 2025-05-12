@@ -14,12 +14,6 @@ ai-usage: ai-assisted
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
-
 [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) is available in ASP.NET Core.
 
 > [!NOTE]
