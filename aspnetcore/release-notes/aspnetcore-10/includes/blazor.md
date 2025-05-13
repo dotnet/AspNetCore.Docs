@@ -328,8 +328,8 @@ The following synchronous methods are available on <xref:Microsoft.JSInterop.IJS
   ```csharp
   var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
   var classRef = inProcRuntime.InvokeNew("jsInterop.TestClass", "Blazor!");
-  var text = await classRef.GetValueAsync<string>("text");
-  var textLength = await classRef.InvokeAsync<int>("getTextLength");
+  var text = classRef.GetValue<string>("text");
+  var textLength = classRef.Invoke<int>("getTextLength");
   ```
 
 * `GetValue<TValue>(string identifier)`: Reads the value of the specified JS property synchronously. The property can't be a `set`-only property. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist. The following example returns a value from a data property:
