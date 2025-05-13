@@ -42,7 +42,7 @@ The MSBuild properties in the following table enable profiler integration.
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
 `<WasmPerfTracing>` | `false` | `true` | Enables support for WebAssembly performance tracing.
-`<WasmPerfInstrumentation>` | `none` | See table&dagger; | Enables instrumentation necessary for the sampling profiler. The property follows the :::no-loc text="callspec"::: syntax. &dagger;For permissible values, see the following table.
+`<WasmPerfInstrumentation>` | No value | See table&dagger; | Enables instrumentation necessary for the sampling profiler. The property follows the :::no-loc text="callspec"::: syntax. &dagger;For permissible values, see the following table.
 `<MetricsSupport>` | `false` | `true` | Enables `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
 `<EventSourceSupport>` | `false`| `true` | Enables `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
 
@@ -51,7 +51,6 @@ The following table describes permissable `<WasmPerfInstrumentation>` values.
 `<WasmPerfInstrumentation>` value | Description
 --- | ---
 `all` | All assemblies
-`none` |	No assemblies
 `program` | Entry point assembly
 `{ASSEMBLY}` | Specifies an assembly (`{ASSEMBLY}`)
 `M:Type:{METHOD}` | Specifies a method (`{METHOD}`)
