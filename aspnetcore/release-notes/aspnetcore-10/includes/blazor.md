@@ -385,16 +385,16 @@ AppContext.SetSwitch(
 
 -->
 
-## Signal Not Found responses using `NavigationManager`
+## Not Found responses using `NavigationManager` for static SSR and global interactive rendering
 
-The `NavigationManager` class now includes a `NotFound` method to handle scenarios where a requested resource isn't found:
+The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
 
 * **Static server-side rendering (static SSR)**: Calling `NotFound` sets the HTTP status code to 404.
 * **Streaming rendering**: Throws an exception if the response has already started.
-* **Interactive rendering**: Signals the `Router` to render a Not Found page.
+* **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
 
-You can use the `OnNotFound` event on `NavigationManager` to be notified when `NotFound` is invoked.
+Per-page/component rendering support is planned for Preview 5 in June, 2025.
 
-<!-- NOTE ... I'm still working on my local branch on the reference article 
-              content for this. Chatting with Ilona now and should have it
-              ironed out and on this PR soon! -->
+You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
+
+For more information and examples, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
