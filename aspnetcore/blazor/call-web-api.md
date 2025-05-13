@@ -676,6 +676,35 @@ Laid out with indentation, spacing, and unescaped quotes, the unencoded PATCH do
 
 To simplify the creation of PATCH documents in the app issuing PATCH requests, an app can use .NET JSON PATCH support, as the following guidance demonstrates.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+<!-- UPDATE 10.0 - API doc cross-link -->
+
+Install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package and use the API features of the package to compose a `JsonPatchDocument` for a PATCH request.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Add `@using` directives for the <xref:System.Text.Json?displayProperty=fullName>, <xref:System.Text.Json.Serialization?displayProperty=fullName>, and `Microsoft.AspNetCore.JsonPatch.SystemTextJson` <!-- <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson?displayProperty=fullName> --> namespaces to the top of the Razor component:
+
+```razor
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@using Microsoft.AspNetCore.JsonPatch.SystemTextJson
+```
+
+Compose the `JsonPatchDocument` for a `TodoItem` with `IsComplete` set to `true` using the `JsonPatchDocument.Replace` method:
+
+```csharp
+var patchDocument = new JsonPatchDocument<TodoItem>()
+    .Replace(p => p.IsComplete, true);
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-10.0"
+
 Install the [`Microsoft.AspNetCore.JsonPatch`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch) NuGet package and use the API features of the package to compose a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a PATCH request.
 
 [!INCLUDE[](~/includes/package-reference.md)]
@@ -694,6 +723,10 @@ Compose the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a `TodoI
 var patchDocument = new JsonPatchDocument<TodoItem>()
     .Replace(p => p.IsComplete, true);
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 Pass the document's operations (`patchDocument.Operations`) to the <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> call:
 
@@ -716,6 +749,24 @@ Add <xref:System.Text.Json.JsonSerializerOptions.WriteIndented?displayProperty=n
 
 Follow the guidance in the <xref:web-api/jsonpatch> article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](xref:fundamentals/minimal-apis) with the following steps.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+<!-- UPDATE 10.0 - API doc cross-link -->
+
+Add a package reference for the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) NuGet package to the web API app.
+
+In the `Program` file add an `@using` directive for the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` <!-- <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson?displayProperty=fullName> --> namespace:
+
+```csharp
+using Microsoft.AspNetCore.JsonPatch.SystemTextJson;
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-10.0"
+
 Add a package reference for the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) NuGet package to the web API app.
 
 > [!NOTE]
@@ -726,6 +777,10 @@ In the `Program` file add an `@using` directive for the <xref:Microsoft.AspNetCo
 ```csharp
 using Microsoft.AspNetCore.JsonPatch;
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 Provide the endpoint to the request processing pipeline of the web API:
 
