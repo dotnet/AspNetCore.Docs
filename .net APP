@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using Microsoft.Azure.Cosmos.Table;DefaultEndpointsProtocol=https;AccountName=contorso;AccountKey=ACqhifcAsSHzRxg3K9hdevcgWRGWvZx0DDt9B6L1TuM7LSntaPNJlzxr6NyiQiJ7YpDj91a9P0fMACDbH1Bc1A==;TableEndpoint=https://contorso.table.cosmos.azure.com:443/;
+let connectionString = "DefaultEndpointsProtocol=https;AccountName=contorso;AccountKey=ACqhifcAsSHzRxg3K9hdevcgWRGWvZx0DDt9B6L1TuM7LSntaPNJlzxr6NyiQiJ7YpDj91a9P0fMACDbH1Bc1A==;TableEndpoint=https://contorso.table.cosmos.azure.com:443/;";
+
+
+    let connectionString = "DefaultEndpointsProtocol=https;AccountName=contorso;AccountKey=ACqhifcAsSHzRxg3K9hdevcgWRGWvZx0DDt9B6L1TuM7LSntaPNJlzxr6NyiQiJ7YpDj91a9P0fMACDbH1Bc1A==;TableEndpoint=https://contorso.table.cosmos.azure.com:443/;";
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
+    CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+    
