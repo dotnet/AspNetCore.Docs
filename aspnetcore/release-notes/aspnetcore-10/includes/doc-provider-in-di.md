@@ -1,4 +1,4 @@
-## Support for IOpenApiDocumentProvider in the DI container.
+### Support for IOpenApiDocumentProvider in the DI container.
 
 ASP.NET Core in .NET 10 supports [IOpenApiDocumentProvider](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/IOpenApiDocumentProvider.cs) in the dependency injection (DI) container. Developers can inject `IOpenApiDocumentProvider` into their apps and use it to access the OpenAPI document. This approach is useful for accessing OpenAPI documents outside the context of HTTP requests, such as in background services or custom middleware.
 
