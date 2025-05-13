@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 10.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/10/2025
+ms.date: 4/12/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core 10.0
@@ -55,9 +55,13 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/webapiaotTemplateAddedOpenAPI.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/doc-provider-in-di.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/xml-comment-generator.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
 
-## Authentication and authorization
+### Authentication and authorization
 
 This section describes new features for authentication and authorization.
 
