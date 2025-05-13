@@ -43,6 +43,8 @@ Property | Default | Set value to&hellip; | Description
 `<WasmNativeStrip>` | `true` | `false` | Controls stripping the native executable.
 `<WasmNativeDebugSymbols>` | `true` | `true` | Controls building with native debug symbols.
 
+Setting the [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
+
 Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
 
 In the app's project file (`.csproj`):
@@ -106,18 +108,6 @@ In the following example, profiled methods are filtered to the app's namespace, 
 ```xml
 <WasmProfilers>browser:callspec=N:{APP NAMESPACE};</WasmProfilers>
 ```
-
-## .NET Core Diagnostics Client Library example
-
-In the project file (`.csproj`), use the `<WasmProfilers>` property set to `browser` to enable integration with the Mono profiler. Currently, only "`browser`" is supported. The `browser` profiler enables integration with the browser's developer tools profiler.
-
-```xml
-<PropertyGroup>
-  <WasmProfilers>browser</WasmProfilers>
-</PropertyGroup>
-```
-
-The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
 
 ## Additional resources
 
