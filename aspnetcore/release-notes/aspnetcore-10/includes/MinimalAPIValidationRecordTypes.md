@@ -10,7 +10,7 @@ public record Product(
     [Range(1, 1000)] int Quantity);
 ```
 
-When using record types as parameters in minimal API endpoints, validation attributes are automatically applied in the same way as class types:
+When using record types as parameters in Minimal API endpoints, validation attributes are automatically applied in the same way as class types:
 
 ```csharp
 app.MapPost("/products", (Product product) =>
