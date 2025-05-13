@@ -4,5 +4,4 @@ ASP.NET Core in .NET 10 supports [IOpenApiDocumentProvider](https://source.dot.n
 
 Previously, running application startup logic without launching an HTTP server could be done by using `HostFactoryResolver` with a no-op `IServer` implementation. The new feature simplifies this process by providing a streamlined API inspired by Aspire's <xref:Aspire.Hosting.Publishing.IDistributedApplicationPublisher>, which is part of Aspire's framework for distributed application hosting and publishing. For more information, see [Aspire Documentation](https://aspire.example.com/docs/distributed-application-publisher).
 
-For more information, see [Aspire Documentation](https://aspire.example.com/docs/IDistributedApplicationPublisher) and [dotnet/aspnetcore #61463](https://github.com/dotnet/aspnetcore/pull/61463)
 
