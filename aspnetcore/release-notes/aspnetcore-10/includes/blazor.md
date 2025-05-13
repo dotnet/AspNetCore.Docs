@@ -65,16 +65,16 @@ For more information, see <xref:blazor/fundamentals/routing#navlink-component>.
 
 ### Close `QuickGrid` column options
 
-You can now close the `QuickGrid` column options UI using the new `CloseColumnOptionsAsync` method.
+You can now close the `QuickGrid` column options UI using the new `HideColumnOptionsAsync` method.
 
-The following example uses the `CloseColumnOptionsAsync` method to close the column options UI as soon as the title filter is applied:
+The following example uses the `HideColumnOptionsAsync` method to close the column options UI as soon as the title filter is applied:
 
 ```razor
 <QuickGrid @ref="movieGrid" Items="movies">
     <PropertyColumn Property="@(m => m.Title)" Title="Title">
         <ColumnOptions>
             <input type="search" @bind="titleFilter" placeholder="Filter by title" 
-                @bind:after="@(() => movieGrid.CloseColumnOptionsAsync())" />
+                @bind:after="@(() => movieGrid.HideColumnOptionsAsync())" />
         </ColumnOptions>
     </PropertyColumn>
     <PropertyColumn Property="@(m => m.Genre)" Title="Genre" />
@@ -96,7 +96,7 @@ In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClien
 
 This is a breaking change because calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync%2A?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content%2A?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a `BrowserHttpReadStream` and no longer a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
 
-<!-- UNCOMMENT FOR PREVIEW 4? ...
+<!-- UNCOMMENT FOR PREVIEW 5 ...
      Waiting on https://github.com/dotnet/runtime/issues/97449
      ... and update the Call web API article Line 983
 
@@ -147,7 +147,7 @@ The following markup must be present in the `wwwwoot/index.html` file to adopt t
 </html>
 ```
 
-In the project file (`.csproj`), add the `<WriteImportMapToHtml>` property set to `true`:
+In the project file (`.csproj`), add the `<OverrideHtmlAssetPlaceholders>` property set to `true`:
 
 ```diff
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
@@ -156,7 +156,7 @@ In the project file (`.csproj`), add the `<WriteImportMapToHtml>` property set t
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-+   <WriteImportMapToHtml>true</WriteImportMapToHtml>
++   <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
   </PropertyGroup>
 </Project>
 ```
@@ -289,8 +289,6 @@ else
 
 State can be serialized for multiple components of the same type, and you can establish declarative state in a service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender?view=aspnetcore-10.0#persist-prerendered-state>.
 
-<!-- PREVIEW 4
-
 ### New JavaScript interop features
 
 Blazor adds support for the following JS interop features:
@@ -361,13 +359,13 @@ New performance profiling and diagnostic counters are available for Blazor WebAs
 * <xref:blazor/performance/webassembly-browser-developer-tools?view=aspnetcore-10.0>
 * <xref:blazor/performance/webassembly-event-pipe?view=aspnetcore-10.0>
 
-## Preloaded Blazor framework static assets
+### Preloaded Blazor framework static assets
 
 In Blazor Web Apps, framework static assets are automatically preloaded using [`Link` headers](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Link), which allows the browser to preload resources before the initial page is fetched and rendered. In standalone Blazor WebAssembly apps, framework assets are scheduled for high priority downloading and caching early in browser `index.html` page processing.
 
 For more information, see <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets>.
 
-## `NavigationManager.NavigateTo` no longer throws a `NavigationException`
+### `NavigationManager.NavigateTo` no longer throws a `NavigationException`
 
 Previously, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static server-side rendering (SSR) would throw a <xref:Microsoft.AspNetCore.Components.NavigationException>, interrupting execution before being converted to a redirection response. This caused confusion during debugging and was inconsistent with interactive rendering, where code after <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> continues to execute normally.
 
@@ -375,7 +373,8 @@ Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?di
 
 Code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. For example, in the default Blazor Identity UI, the `IdentityRedirectManager` previously threw an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure it wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed.
 
-!!!!!!!!! HOLD THE NEXT BIT FOR PREVIEW 5 !!!!!!!!!
+<!-- HOLD FOR PREVIEW 5
+
 To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>, set the following <xref:System.AppContext> switch:
 
 ```csharp
@@ -383,6 +382,19 @@ AppContext.SetSwitch(
     "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.EnableThrowNavigationException", 
     isEnabled: true);
 ```
-!!!!!!!!! HOLD END !!!!!!!!!
 
 -->
+
+### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
+
+The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
+
+* **Static server-side rendering (static SSR)**: Calling `NotFound` sets the HTTP status code to 404.
+* **Streaming rendering**: Throws an exception if the response has already started.
+* **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
+
+Per-page/component rendering support is planned for Preview 5 in June, 2025.
+
+You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
+
+For more information and examples, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.

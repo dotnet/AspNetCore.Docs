@@ -228,7 +228,7 @@ In the following example:
 
 ### Close `QuickGrid` column options
 
-Close the `QuickGrid` column options UI with the `CloseColumnOptionsAsync` method.
+Close the `QuickGrid` column options UI with the `HideColumnOptionsAsync` method.
 
 The following example closes the column options UI as soon as the title filter is applied:
 
@@ -237,7 +237,7 @@ The following example closes the column options UI as soon as the title filter i
     <PropertyColumn Property="@(m => m.Title)" Title="Title">
         <ColumnOptions>
             <input type="search" @bind="titleFilter" placeholder="Filter by title" 
-                @bind:after="@(() => movieGrid.CloseColumnOptionsAsync())" />
+                @bind:after="@(() => movieGrid.HideColumnOptionsAsync())" />
         </ColumnOptions>
     </PropertyColumn>
     <PropertyColumn Property="@(m => m.Genre)" Title="Genre" />

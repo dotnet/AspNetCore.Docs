@@ -41,11 +41,25 @@ The MSBuild properties in the following table enable profiler integration.
 
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
-`<WasmPerfTracing>` | `false` | `true` | Controls diagnostic server tracing.
-`<MetricsSupport>` | `false` | `true` | Controls `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
-`<EventSourceSupport>` | `false`| `true` | Controls `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
+`<WasmPerfTracing>` | `false` | `true` | Enables support for WebAssembly performance tracing.
+`<WasmPerfInstrumentation>` | No value | See table&dagger; | Enables instrumentation necessary for the sampling profiler. The property follows the :::no-loc text="callspec"::: syntax. &dagger;For permissible values, see the following table.
+`<MetricsSupport>` | `false` | `true` | Enables `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
+`<EventSourceSupport>` | `false`| `true` | Enables `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
 
-Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
+The following table describes permissable `<WasmPerfInstrumentation>` values.
+
+`<WasmPerfInstrumentation>` value | Description
+--- | ---
+`all` | All assemblies
+`program` | Entry point assembly
+`{ASSEMBLY}` | Specifies an assembly (`{ASSEMBLY}`)
+`M:Type:{METHOD}` | Specifies a method (`{METHOD}`)
+`N:{NAMESPACE}` | Specifies a namespace (`{NAMESPACE}`)
+`T:{TYPE}` | Specifies a type (`{TYPE}`)
+`+EXPR` | Includes expression
+`-EXPR` | Excludes expression
+
+Enabling profilers has negative size and performance impacts, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
 
 In the app's project file (`.csproj`):
 
@@ -60,7 +74,7 @@ In the app's project file (`.csproj`):
 Alternatively, enable features when the app is built with the .NET CLI. The following options passed to the `dotnet build` command mirror the preceding MS Build property configuration:
 
 ```dotnetcli
-/p:WasmPerfTracing=true /p:WasmPerfInstrumentation=true /p:MetricsSupport=true /p:EventSourceSupport=true
+/p:WasmPerfTracing=true /p:WasmPerfInstrumentation=all /p:MetricsSupport=true /p:EventSourceSupport=true
 ```
 
 The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
@@ -69,13 +83,13 @@ The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/H
 
 [EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
 
-Use the `<WasmPerfInstrumentation>` property to enable CPU sampling instrumentation for diagnostic server. This setting isn't necessary for memory dump or counters. **Makes the app execute slower. Only set this to `true` for performance profiling.**
+Use the `<WasmPerfInstrumentation>` property to enable CPU sampling instrumentation for diagnostic server. This setting isn't necessary for memory dump or counters. **Makes the app execute slower. Only enable this for performance profiling.**
 
 Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
 
 ```xml
 <PropertyGroup Condition="'$(BlazorSampleProfilingEnabled)' == 'true'">
-  <WasmPerfInstrumentation>true</WasmPerfInstrumentation>
+  <WasmPerfInstrumentation>all</WasmPerfInstrumentation>
 </PropertyGroup>
 ```
 
