@@ -39,6 +39,8 @@ This section describes new features for minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/ValidationSupportMinAPI.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/MinimalAPIValidationRecordTypes.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/sse.md)]
 
 ## OpenAPI
