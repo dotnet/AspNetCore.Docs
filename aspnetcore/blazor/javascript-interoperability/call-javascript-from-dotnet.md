@@ -498,8 +498,8 @@ Use `InvokeNew(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop
 ```csharp
 var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
 var classRef = inProcRuntime.InvokeNew("TestClass", "Blazor!");
-var text = await classRef.GetValueAsync<string>("text");
-var textLength = await classRef.InvokeAsync<int>("getTextLength");
+var text = classRef.GetValue<string>("text");
+var textLength = classRef.Invoke<int>("getTextLength");
 ```
 
 An overload is available that takes a <xref:System.Threading.CancellationToken> argument or <xref:System.TimeSpan> timeout argument.
