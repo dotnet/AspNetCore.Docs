@@ -96,7 +96,7 @@ In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClien
 
 This is a breaking change because calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync%2A?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content%2A?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a `BrowserHttpReadStream` and no longer a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
 
-<!-- UNCOMMENT FOR PREVIEW 5? ...
+<!-- UNCOMMENT FOR PREVIEW 5 ...
      Waiting on https://github.com/dotnet/runtime/issues/97449
      ... and update the Call web API article Line 983
 
@@ -359,13 +359,13 @@ New performance profiling and diagnostic counters are available for Blazor WebAs
 * <xref:blazor/performance/webassembly-browser-developer-tools?view=aspnetcore-10.0>
 * <xref:blazor/performance/webassembly-event-pipe?view=aspnetcore-10.0>
 
-## Preloaded Blazor framework static assets
+### Preloaded Blazor framework static assets
 
 In Blazor Web Apps, framework static assets are automatically preloaded using [`Link` headers](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Link), which allows the browser to preload resources before the initial page is fetched and rendered. In standalone Blazor WebAssembly apps, framework assets are scheduled for high priority downloading and caching early in browser `index.html` page processing.
 
 For more information, see <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets>.
 
-## `NavigationManager.NavigateTo` no longer throws a `NavigationException`
+### `NavigationManager.NavigateTo` no longer throws a `NavigationException`
 
 Previously, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static server-side rendering (SSR) would throw a <xref:Microsoft.AspNetCore.Components.NavigationException>, interrupting execution before being converted to a redirection response. This caused confusion during debugging and was inconsistent with interactive rendering, where code after <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> continues to execute normally.
 
@@ -385,7 +385,7 @@ AppContext.SetSwitch(
 
 -->
 
-## Not Found responses using `NavigationManager` for static SSR and global interactive rendering
+### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
 
 The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
 
