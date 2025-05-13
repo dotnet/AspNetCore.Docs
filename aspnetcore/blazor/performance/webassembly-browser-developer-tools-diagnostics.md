@@ -5,7 +5,7 @@ description: Learn about browser developer tools diagnostics in ASP.NET Core Bla
 monikerRange: '>= aspnetcore-10.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2025
+ms.date: 05/13/2025
 uid: blazor/performance/webassembly-browser-developer-tools
 ---
 # ASP.NET Core Blazor WebAssembly browser developer tools diagnostics
@@ -40,8 +40,8 @@ The MSBuild properties in the following table enable profiler integration.
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
 `<WasmProfilers>` | No value | `browser` | Mono profilers to use. Potential values are "`browser`" and "`log`". To use both, separate the values with a semicolon. The `browser` profiler enables integration with the browser's developer tools profiler.
-`<WasmNativeStrip>` | `true` | `false` | Controls stripping the native executable.
-`<WasmNativeDebugSymbols>` | `true` | `true` | Controls building with native debug symbols.
+`<WasmNativeStrip>` | `true` | `false` | Enables stripping the native executable.
+`<WasmNativeDebugSymbols>` | `true` | `true` | Enables building with native debug symbols.
 
 Setting the [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
 
