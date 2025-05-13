@@ -571,7 +571,25 @@ Slashes and segments of the captured path are decoded. For a route template of `
 
 Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and navigation in C# code. <xref:Microsoft.AspNetCore.Components.NavigationManager> provides the event and methods shown in the following table.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
+
+<!-- UPDATE 10.0 - API doc cross-links -->
+
+Member | Description
+--- | ---
+<xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI.
+<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)).
+<xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `false`:<ul><li>And enhanced navigation is available at the current URL, Blazor's enhanced navigation is activated.</li><li>Otherwise, Blazor performs a full-page reload for the requested URL.</li></ul>If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side interactive router.</li></ul><p>For more information, see the [Enhanced navigation and form handling](#enhanced-navigation-and-form-handling) section.</p><p>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack.</p>
+<xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section.
+`NotFound` | Called to handle scenarios where a requested resource isn't found. For more information, see the [Not Found responses](#not-found-responses) section.
+<xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI.
+<xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to the base URI prefix](#produce-a-uri-relative-to-the-base-uri-prefix) section.
+[`RegisterLocationChangingHandler`](#handleprevent-location-changes) | Registers a handler to process incoming navigation events. Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes the handler.
+<xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 Member | Description
 --- | ---
@@ -683,6 +701,113 @@ The following component:
 :::moniker-end
 
 For more information on component disposal, see <xref:blazor/components/component-disposal>.
+
+:::moniker range=">= aspnetcore-10.0"
+
+## Not Found responses
+
+<!-- UPDATE 10.0 - API doc cross-links -->
+
+*In ASP.NET Core 10.0 Preview 4, Not Found responses are only available for static SSR and global interactive rendering. Per-page/component rendering support is planned for Preview 5 in June, 2025.*
+
+<xref:Microsoft.AspNetCore.Components.NavigationManager> provides a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
+
+* **Static SSR**: Calling `NotFound` sets the HTTP status code to 404.
+* **Streaming rendering**: Throws an exception if the response has already started.
+* **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
+
+When a component is rendered statically (static SSR) and `NavigationManager.NotFound` is called, the 404 status code is set on the response:
+
+```razor
+@page "/render-not-found-ssr"
+@inject NavigationManager Navigation
+
+@code {
+    protected override void OnInitialized()
+    {
+        Navigation.NotFound();
+    }
+}
+```
+
+Two approaches for providing Not Found content for global interactive rendering:
+
+* Use a Not Found page (Razor component).
+* Specify Not Found content in the [`Router` component's](xref:blazor/fundamentals/routing#route-templates) <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A> property (`<NotFound>...</NotFound>` markup or by setting the `NotFound` parameter to a render fragment in C# code).
+
+The following example uses a Not Found page (`NotFoundPage` component) to render Not Found content.
+
+`NotFoundPage.razor`:
+
+```razor
+<h1>Not Found</h1>
+
+<p>Sorry! Nothing to show.</p>
+```
+
+Specify the `NotFoundPage` component to the `Router` component in `Routes.razor`. You might need to specify the component's namespace with an [`@using`](xref:mvc/views/razor#using) directive either at the top of the `Routes.razor` file or in an [`_Imports.razor` file](xref:blazor/components/index#component-name-class-name-and-namespace).
+
+```razor
+<Router ...>
+    <Found ...>
+        ...
+    </Found>
+    <NotFound>
+        <NotFoundPage />
+    </NotFound>
+</Router>
+```
+
+When a component is rendered with a global interactive render mode, calling `NotFound` signals the Blazor router to render Not Found content, which is the `NotFoundPage` component:
+
+```razor
+@page "/render-not-found-interactive"
+@inject NavigationManager Navigation
+
+@if (RendererInfo.IsInteractive)
+{
+    <button @onclick="TriggerNotFound">Trigger Not Found</button>
+}
+
+@code {
+    private void TriggerNotFound()
+    {
+        Navigation.NotFound();
+    }
+}
+```
+
+You can use the `OnNotFound` event for notifications when `NotFound` is invoked. The following example uses a render fragment (<xref:Microsoft.AspNetCore.Components.RenderFragment>) to render the Not Found content.
+
+`Routes.razor`:
+
+```razor
+@inject NavigationManager Navigation
+@inject ILogger<Routes> Logger
+
+<Router AppAssembly="typeof(Program).Assembly" NotFound="renderFragment">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+</Router>
+
+@code {
+    private RenderFragment renderFragment = 
+        @<div><h1>Not Found</h1><p>Sorry! Nothing to show.</p></div>;
+
+    protected override void OnInitialized() => Navigation.OnNotFound += OnNotFound;
+
+    private void OnNotFound(object? sender, EventArgs args)
+    {
+        Logger.LogError("Something wasn't found!");
+    }
+
+    public void Dispose() => Navigation.OnNotFound -= OnNotFound;
+}
+```
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
