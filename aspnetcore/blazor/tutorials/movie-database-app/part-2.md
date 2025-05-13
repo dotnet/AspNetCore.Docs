@@ -134,32 +134,18 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 > [!IMPORTANT]
 > After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - Remove this when the 9.0.300 SDK lands. -->
+<!-- UPDATE 10.0 - Remove at 10.0 GA -->
 
 > [!IMPORTANT]
-> A breaking change in EF Core tooling for .NET SDK 9.0.200 prevents scaffolding from executing with the following exception:
+> A breaking change in EF Core tooling for .NET SDK 9.0.200 prevented scaffolding from executing with the following exception:
 >
 > > :::no-loc text="Could not load file or assembly 'Microsoft.EntityFrameworkCore.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.":::
 > 
-> To resolve the error until the .NET SDK 9.0.300 is released, add a package reference to the app for the [`Microsoft.EntityFrameworkCore.Design`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design) NuGet package:
+> To resolve the error, upgrade to a .NET SDK of 9.0.300 or later.
 >
-> ```dotnetcli
-> dotnet add package Microsoft.EntityFrameworkCore.Design
-> ```
-> 
-> Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
->
-> ```diff
-> <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
->   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
->   <PrivateAssets>all</PrivateAssets>
-> + <Publish>true</Publish>
-> </PackageReference>
->  ```
->
-> The preceding changes are a workaround for a breaking change in .NET 9.0.200 EF Core tooling. This workaround won't be required for .NET SDK 9.0.300 or later, when the entire package reference can be removed from the app. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
+> For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
 
 :::moniker-end
 
@@ -205,32 +191,20 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - Remove this when the 9.0.300 SDK lands. -->
+<!-- UPDATE 10.0 - Remove at 10.0 GA -->
 
 > [!IMPORTANT]
-> A breaking change in EF Core tooling for .NET SDK 9.0.200 prevents scaffolding from executing with the following exception:
+> A breaking change in EF Core tooling for .NET SDK 9.0.200 prevented scaffolding from executing with the following exception:
 >
 > > :::no-loc text="Could not load file or assembly 'Microsoft.EntityFrameworkCore.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.":::
 > 
-> To resolve the error until the .NET SDK 9.0.300 is released, add a package reference to the app for the [`Microsoft.EntityFrameworkCore.Design`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design) NuGet package:
+> To resolve the error, upgrade to a .NET SDK of 9.0.300 or later.
 >
-> ```dotnetcli
-> dotnet add package Microsoft.EntityFrameworkCore.Design
-> ```
-> 
-> Open the app's project file (`BlazorWebAppMovies.csproj`). Mark the `Microsoft.EntityFrameworkCore.Design` assembly reference as publishable by adding `<Publish>true</Publish>` to the package reference. In the following example, the `{VERSION}` placeholder is the package's version and remains unchanged: 
->
-> ```diff
-> <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{VERSION}">
->   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
->   <PrivateAssets>all</PrivateAssets>
-> + <Publish>true</Publish>
-> </PackageReference>
->  ```
->
-> The preceding changes are a workaround for a breaking change in .NET 9.0.200 EF Core tooling. This workaround won't be required for .NET SDK 9.0.300 or later, when the entire package reference can be removed from the app. For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
+> For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
+
+:::moniker-end
 
 :::moniker-end
 
