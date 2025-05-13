@@ -55,6 +55,8 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/doc-provider-in-di.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/xml-comment-generator.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
 
 ### Authentication and authorization
