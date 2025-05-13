@@ -63,9 +63,9 @@ Alternatively, enable features when the app is built with the .NET CLI. The foll
 /p:WasmProfilers=browser /p:WasmNativeStrip=false /p:WasmNativeDebugSymbols=true
 ```
 
-Setting WebAssembly profilers with `<WasmProfilers>browser;</WasmProfilers>` doesn't require AOT.
+Setting WebAssembly profilers with `<WasmProfilers>` doesn't require [ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly).
 
-The browser developer tools profiler can be used with AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `true`) and without WebAssembly profilers (`<WasmProfilers>browser;</WasmProfilers>` removed from the preceding property group).
+The browser developer tools profiler can be used with AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `true`) and without WebAssembly profilers (`<WasmProfilers>` removed).
 
 To see AOT method names in the developer tools console, install [DWARF chrome extension](https://chromewebstore.google.com/detail/cc++-devtools-support-dwa/pdcpmagijalfljmkmjngeonclgbbannb).
 
