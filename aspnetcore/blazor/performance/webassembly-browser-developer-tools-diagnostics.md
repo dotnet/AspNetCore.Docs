@@ -94,7 +94,6 @@ Permissiable `{FILTER}` placeholder values are shown in the following table.
 Filter | Description
 --- | ---
 `all` | All assemblies
-`none` |	No assemblies
 `program` | Entry point assembly
 `{ASSEMBLY}` | Specifies an assembly (`{ASSEMBLY}`)
 `M:Type:{METHOD}` | Specifies a method (`{METHOD}`)
