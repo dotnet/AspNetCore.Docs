@@ -161,4 +161,6 @@ builder.Services.AddOpenApi(options =>
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
 
+:::moniker-end
+
 [!INCLUDE[](~/fundamentals/openapi/includes/customize-openapi9.md)]
