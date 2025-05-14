@@ -777,35 +777,95 @@ When a component is rendered with a global interactive render mode, calling `Not
 }
 ```
 
-You can use the `OnNotFound` event for notifications when `NotFound` is invoked. The following example uses a render fragment (<xref:Microsoft.AspNetCore.Components.RenderFragment>) to render the Not Found content.
+You can use the `OnNotFound` event for notifications when `NotFound` is invoked. The event is only fired when `NotFound` is called, not for any 404 response. For example, setting `HttpContextAccessor.HttpContext.Response.StatusCode` to `404` doesn't trigger `NotFound`/`OnNotFound`.
 
-`Routes.razor`:
+In the following example, custom content is rendered depending on where `OnNotFound` is called. If the event is triggered by the following `Movie` component, a custom message states that the requested movie isn't found. If the event is triggered by the `User` component, a message states that the user isn't found.
+
+The following `NotFoundContext` service manages the context and the message for when content isn't found by components.
+
+`NotFoundContext.cs`:
+
+```csharp
+public class NotFoundContext
+{
+    public string Context { get; private set; } = "Not Found";
+    public string Message { get; private set; } = 
+        "Sorry, the page that you requested couldn't be found.";
+
+    public void UpdateContext(string context, string message)
+    {
+        Context = context;
+        Message = message;
+    }
+}
+```
+
+The service is registered in the `Program` file:
+
+```csharp
+builder.Services.AddScoped<NotFoundContext>();
+```
+
+The `Routes` component (`Routes.razor`):
+
+* Injects the `NotFoundContext` service.
+* Displays the context (`Context`) and message (`Message`) when `OnNotFound` is triggered by a call to `NotFound`.
 
 ```razor
-@inject NavigationManager Navigation
-@inject ILogger<Routes> Logger
+@inject NotFoundContext NotFoundContext
 
-<Router AppAssembly="typeof(Program).Assembly" NotFound="renderFragment">
+<Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
         <FocusOnNavigate RouteData="routeData" Selector="h1" />
     </Found>
+    <NotFound>
+        <LayoutView Layout="typeof(Layout.MainLayout)">
+            <h1>@NotFoundContext.Context</h1> 
+            <div>
+                <p>@NotFoundContext.Message</p>
+            </div>
+        </LayoutView>
+    </NotFound>
 </Router>
+```
 
-@code {
-    private RenderFragment renderFragment = 
-        @<div><h1>Not Found</h1><p>Sorry! Nothing to show.</p></div>;
+`Movie` component (`Movie.razor`):
 
-    protected override void OnInitialized() => Navigation.OnNotFound += OnNotFound;
+```razor
+@inject NavigationManager NavigationManager
+@inject NotFoundContext NotFoundContext
 
-    private void OnNotFound(object? sender, EventArgs args)
+
+```
+
+// User.razor
+
+```razor
+
+protected override async Task OnInitializedAsync()
+{
+    NavigationManager.OnNotFound += HandleNotFound;
+    movie = await UserService.GetUserByIdAsync(id);
+
+    if (movie == null)
     {
-        Logger.LogError("Something wasn't found!");
+        NavigationManager.NotFound();
     }
+}
 
-    public void Dispose() => Navigation.OnNotFound -= OnNotFound;
+private void HandleNotFound(object? sender, NotFoundEventArgs e)
+{
+    NotFoundContext.UpdateContext("User", "The requested user was not found");
+}
+
+public void Dispose()
+{
+    NavigationManager.OnNotFound -= HandleNotFound;
 }
 ```
+
+
 
 :::moniker-end
 
