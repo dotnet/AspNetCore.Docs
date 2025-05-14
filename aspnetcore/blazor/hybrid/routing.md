@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor Hybrid routing and navigation
 author: guardrex
 description: Learn how to manage request routing and navigation in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: "mvc"
 ms.date: 11/12/2024
 uid: blazor/hybrid/routing

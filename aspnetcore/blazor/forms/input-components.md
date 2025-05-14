@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor input components
 author: guardrex
 description: Learn about built-in Blazor input components.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/forms/input-components

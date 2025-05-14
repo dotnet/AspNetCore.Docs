@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor authentication state
 author: guardrex
 description: Learn how to create a custom authentication state provider and receive notifications of user authentication state changes.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/security/authentication-state

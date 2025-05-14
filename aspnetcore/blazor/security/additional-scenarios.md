@@ -3,7 +3,7 @@ title: ASP.NET Core server-side and Blazor Web App additional security scenarios
 author: guardrex
 description: Learn how to configure server-side Blazor and Blazor Web Apps for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 04/29/2025
 uid: blazor/security/additional-scenarios

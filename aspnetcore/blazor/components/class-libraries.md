@@ -3,7 +3,7 @@ title: Consume ASP.NET Core Razor components from a Razor class library (RCL)
 author: guardrex
 description: Discover how components can be included in Blazor apps from an external Razor class library (RCL).
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/class-libraries

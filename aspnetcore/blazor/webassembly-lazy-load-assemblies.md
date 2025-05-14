@@ -3,7 +3,7 @@ title: Lazy load assemblies in ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Discover how to lazy load assemblies in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/webassembly-lazy-load-assemblies

@@ -3,7 +3,7 @@ title: Build a Blazor todo list app
 author: guardrex
 description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/tutorials/build-a-blazor-app

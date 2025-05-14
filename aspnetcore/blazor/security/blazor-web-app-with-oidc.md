@@ -3,7 +3,7 @@ title: Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)
 author: guardrex
 description: Learn how to secure a Blazor Web App with OpenID Connect (OIDC).
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 04/29/2025
 uid: blazor/security/blazor-web-app-oidc

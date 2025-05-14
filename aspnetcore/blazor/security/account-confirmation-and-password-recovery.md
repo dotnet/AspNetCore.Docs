@@ -2,7 +2,7 @@
 title: Account confirmation and password recovery in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to configure an ASP.NET Core Blazor Web App with email confirmation and password recovery.
-ms.author: riande
+ms.author: wpickett
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/12/2024
 uid: blazor/security/account-confirmation-and-password-recovery

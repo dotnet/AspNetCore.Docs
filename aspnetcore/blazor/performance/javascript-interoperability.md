@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor JavaScript interoperability (JS interop) performance 
 author: guardrex
 description: Tips for improving JS interop performance in ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 04/16/2025
 uid: blazor/performance/js-interop

@@ -3,7 +3,7 @@ title: ASP.NET Core Razor component disposal
 author: guardrex
 description: Learn about ASP.NET Core Razor component component disposal with IDisposable and IAsyncDisposable.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 03/18/2025
 uid: blazor/components/component-disposal

@@ -3,7 +3,7 @@ title: Integrate ASP.NET Core Razor components with MVC or Razor Pages
 author: guardrex
 description: Learn about Razor component integration scenarios for MVC or Razor Pages, including prerendering of Razor components on the server.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/integration

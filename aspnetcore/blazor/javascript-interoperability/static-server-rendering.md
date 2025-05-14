@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor JavaScript with static server-side rendering (static 
 author: guardrex
 description: Learn how to use JavaScript in a Blazor Web App with static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/js-interop/ssr

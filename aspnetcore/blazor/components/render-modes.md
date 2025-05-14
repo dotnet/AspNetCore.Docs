@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor render modes
 author: guardrex
 description: Learn about Blazor render modes and how to apply them in Blazor Web Apps.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/render-modes

@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor WebAssembly .NET bundle caching and integrity check f
 author: guardrex
 description: Learn about WebAssembly .NET app and runtime bundle caching and how to resolve integrity check failures in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 04/03/2025
 uid: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures

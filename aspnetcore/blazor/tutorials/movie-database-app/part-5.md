@@ -3,7 +3,7 @@ title: Build a Blazor movie database app (Part 5 - Add validation)
 author: guardrex
 description: This part of the Blazor movie database app tutorial explains how metadata (data annotations) of the movie model is used to validate user input in the forms that create and edit movies.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-5
