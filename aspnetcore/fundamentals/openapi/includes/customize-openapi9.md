@@ -1,7 +1,5 @@
 :::moniker range="= aspnetcore-9.0"
 
-# Customize OpenAPI documents
-
 <a name="transformers"></a>
 
 ## OpenAPI document transformers

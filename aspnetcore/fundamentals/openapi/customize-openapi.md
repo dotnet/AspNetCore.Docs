@@ -3,12 +3,14 @@ title: Customize OpenAPI documents
 author: captainsafia
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 ms.author: safia
-monikerRange: '>= aspnetcore-10.0'
+monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
 ms.date: 10/26/2024
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
+
+:::moniker range=">= aspnetcore-10.0"
 
 <a name="transformers"></a>
 
