@@ -3,7 +3,7 @@ title: Threat mitigation guidance for ASP.NET Core Blazor interactive server-sid
 author: guardrex
 description: Learn how to mitigate security threats in interactive server-side Blazor.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/security/interactive-server-side-rendering

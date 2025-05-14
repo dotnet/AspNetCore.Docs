@@ -3,7 +3,7 @@ title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra 
 author: guardrex
 description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 04/07/2025
 uid: blazor/security/webassembly/hosted-with-microsoft-entra-id

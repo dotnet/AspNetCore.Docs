@@ -3,7 +3,7 @@ title: Host and deploy ASP.NET Core Blazor WebAssembly with Apache
 author: guardrex
 description: Learn how to host and deploy Blazor WebAssembly using Apache.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc, linux-related-content
 ms.date: 03/31/2025
 uid: blazor/host-and-deploy/webassembly/apache

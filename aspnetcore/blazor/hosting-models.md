@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor hosting models
 author: guardrex
 description: Learn about Blazor hosting models and how to pick which one to use.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/hosting-models

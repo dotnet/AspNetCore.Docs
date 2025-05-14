@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor synchronization context
 author: guardrex
 description: Learn about Blazor's synchronization context, how to avoid thread-blocking calls, and how to invoke component methods externally.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/sync-context

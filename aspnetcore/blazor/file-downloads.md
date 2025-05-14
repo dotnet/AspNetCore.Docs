@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor file downloads
 author: guardrex
 description: Learn how to download files in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/file-downloads

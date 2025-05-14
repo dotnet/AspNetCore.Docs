@@ -3,7 +3,7 @@ title: Build a Blazor movie database app (Part 8 - Add interactivity)
 author: guardrex
 description: This part of the Blazor movie database app tutorial explains how to adopt interactive SSR rendering in the app.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-8
