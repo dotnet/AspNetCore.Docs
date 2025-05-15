@@ -5,7 +5,7 @@ description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
-ms.date: 10/26/2024
+ms.date: 05/15/2025
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -44,18 +44,18 @@ Transformers can be registered onto the document by calling the <xref:Microsoft.
 
 ### Execution order for transformers
 
-Transformers are executed as follows:
+Transformers execute in the following order:  
 
-* Schema transformers are executed when a schema is registered to the document. Schema transformers are executed in the order in which they were added.
-All schemas are added to the document before any operation processing occurs, so all schema transformers are executed before any operation transformers.
-* Operation transformers are executed when an operation is added to the document. Operation transformers are executed in the order in which they were added.
-All operations are added to the document before any document transformers are executed.
-* Document transformers are executed when the document is generated. This is the final pass over the document, and all operations and schemas have been add by this point.
-* When an app is configured to generate multiple OpenAPI documents, transformers are executed for each document independently.
+* Schema transformers execute when a schema is registered to the document. They execute in the order they're added.  
+All schemas are added to the document before any operation processing occurs, so schema transformers execute before operation transformers.  
+* Operation transformers execute when an operation is added to the document. They execute in the order they're added.  
+All operations are added to the document before any document transformers execute.  
+* Document transformers execute when the document is generated. This is the final pass over the document, and all operations and schemas are added by this point.  
+* When an app is configured to generate multiple OpenAPI documents, transformers execute for each document independently.  
 
 For example, in the following snippet:
 * `SchemaTransformer2` is executed and has access to the modifications made by `SchemaTransformer1`.
-* Both `OperationTransformer1` and `OperationTransformer2` have access to the modifications made by both schema transformers for the types involved in the operation they are called to process.
+* Both `OperationTransformer1` and `OperationTransformer2` have access to the modifications made by both schema transformers for the types involved in the operation they're called to process.
 * `OperationTransformer2` is executed after `OperationTransformer1`, so it has access to the modifications made by `OperationTransformer1`.
 * Both `DocumentTransformer1` and `DocumentTransformer2` are executed after all operations and schemas have been added to the document, so they have access to all modifications made by the operation and schema transformers.
 * `DocumentTransformer2` is executed after `DocumentTransformer1`, so it has access to the modifications made by `DocumentTransformer1`.
@@ -119,6 +119,23 @@ For example, the following schema transformer sets the `format` of decimal types
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_schematransformer1)]
 
+## Support for generating OpenApiSchemas in transformers
+<!-- https://github.com/dotnet/aspnetcore/pull/61050 -->
+
+Developers can generate a schema for a C# type using the same logic as ASP.NET Core OpenAPI document generation and add it to the OpenAPI document. The schema can then be referenced from elsewhere in the OpenAPI document. This capability is available starting with .NET 10.
+
+The context passed to document, operation, and schema transformers includes a new `GetOrCreateSchemaAsync` method that can be used to generate a schema for a type.
+This method also has an optional `ApiParameterDescription` parameter to specify additional metadata for the generated schema.
+
+To support adding the schema to the OpenAPI document, a `Document` property has been added to the Operation and Schema transformer contexts. This allows any transformer to add a schema to the OpenAPI document using the document's `AddComponent` method.
+
+#### Example
+
+To use this feature in a document, operation, or schema transformer, create the schema using the `GetOrCreateSchemaAsync` method provided in the context and add it to the OpenAPI document using the document's `AddComponent` method.
+
+:::code language="csharp" source="~/fundamentals/openapi/samples/10.x/WebAppOpenAPI10/Program.cs" id="snippet_Generate_OpenApiSchemas_for_type" highlight="6-7":::
+
+
 ## Customize schema reuse
 
 After all transformers have been applied, the framework makes a pass over the document to transfer certain schemas
@@ -145,7 +162,7 @@ that uses the name of the type, but you can replace it with your own implementat
 As a simple example of this customization, you might choose to always inline enum schemas.
 This is done by setting <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> to a delegate
 that returns null for enum types, and otherwise returns the value from the default implementation.
-The following code shows how to do this:
+The following code demonstrates this:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
