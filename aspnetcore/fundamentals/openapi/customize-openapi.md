@@ -10,6 +10,8 @@ uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
 
+:::moniker range=">= aspnetcore-10.0"
+
 <a name="transformers"></a>
 
 ## OpenAPI document transformers
@@ -38,7 +40,7 @@ Transformers can be registered onto the document by calling the <xref:Microsoft.
 * Register a schema transformer using an instance of <xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer>.
 * Register a schema transformer using a DI-activated <xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer>.
 
-[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=8-19)]
+[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=8-19)]
 
 ### Execution order for transformers
 
@@ -58,7 +60,7 @@ For example, in the following snippet:
 * Both `DocumentTransformer1` and `DocumentTransformer2` are executed after all operations and schemas have been added to the document, so they have access to all modifications made by the operation and schema transformers.
 * `DocumentTransformer2` is executed after `DocumentTransformer1`, so it has access to the modifications made by `DocumentTransformer1`.
 
-[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_transInOut&highlight=6-14)]
+[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_transInOut&highlight=6-14)]
 
 ## Use document transformers
 
@@ -70,18 +72,18 @@ Document transformers have access to a context object that includes:
 
 Document transformers can also mutate the OpenAPI document that is generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
 
-[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
+[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
 Service-activated document transformers can utilize instances from DI to modify the app. The following sample demonstrates a document transformer that uses the <xref:Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider> service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the app and adds them to the OpenAPI document's top level:
 
-[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
+[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
 
 Document transformers are unique to the document instance they're associated with. In the following example, a transformer:
 
 * Registers authentication-related requirements to the `internal` document.
 * Leaves the `public` document unmodified.
 
-[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_multidoc_operationtransformer1)]
+[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_multidoc_operationtransformer1)]
 
 ## Use operation transformers
 
@@ -98,7 +100,7 @@ Operation transformers have access to a context object which contains:
 
 For example, the following operation transformer adds `500` as a response status code supported by all operations in the document.
 
-[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
+[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
 
 ## Use schema transformers
 
@@ -115,7 +117,7 @@ Schema transformers have access to a context object which contains:
 
 For example, the following schema transformer sets the `format` of decimal types to `decimal` instead of `double`:
 
-[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_schematransformer1)]
+[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_schematransformer1)]
 
 ## Customize schema reuse
 
@@ -158,3 +160,7 @@ builder.Services.AddOpenApi(options =>
 
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
+
+:::moniker-end
+
+[!INCLUDE[](~/fundamentals/openapi/includes/customize-openapi9.md)]

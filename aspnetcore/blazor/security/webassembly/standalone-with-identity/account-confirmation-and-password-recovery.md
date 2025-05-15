@@ -2,7 +2,7 @@
 title: Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 author: guardrex
 description: Learn how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
-ms.author: riande
+ms.author: wpickett
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/21/2024
 uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery

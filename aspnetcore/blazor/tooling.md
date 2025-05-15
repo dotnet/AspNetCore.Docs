@@ -3,7 +3,7 @@ title: Tooling for ASP.NET Core Blazor
 author: guardrex
 description: Learn about the tools available to build Blazor apps and how to use them.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/tooling

@@ -3,7 +3,7 @@ title: Handle errors in ASP.NET Core Blazor apps
 author: guardrex
 description: Discover how ASP.NET Core Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/fundamentals/handle-errors

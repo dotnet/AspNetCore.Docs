@@ -80,6 +80,7 @@
         "**/blazor/hybrid/**/**.md": "blazor-hybrid",
         "**/client-side/dotnet-interop/index.md": "blazor",
         "**/client-side/dotnet-interop/wasm-browser-app.md": "blazor",
+        "**/client-side/dotnet-interop/dotnet-interop.md": "blazor",
         "**/mvc/views/tag-helpers/built-in/component-tag-helper.md": "blazor",
         "**/mvc/views/tag-helpers/built-in/persist-component-state.md": "blazor"
       },

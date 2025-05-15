@@ -3,7 +3,7 @@ title: Debug ASP.NET Core Blazor apps
 author: guardrex
 description: Learn how to debug Blazor apps, including debugging Blazor WebAssembly with browser developer tools or an integrated development environment (IDE).
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/debug
