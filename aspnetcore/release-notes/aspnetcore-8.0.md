@@ -777,22 +777,22 @@ Apps that use asynchronous I/O and that can have more than one write outstanding
 
 ## Authentication and authorization
 
-ASP.NET Core 8 adds new features to authentication and authorization.
+.NET 8 adds new features to authentication and authorization.
 
 ### Identity API endpoints
 
 [`MapIdentityApi<TUser>`](xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and nonbrowser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
 
-### IAuthorizationRequirementData
+### `IAuthorizationRequirementData`
 
-Prior to ASP.NET Core 8, adding a parameterized authorization policy to an endpoint required implementing an:
+Prior to the release of .NET 8, adding a parameterized authorization policy to an endpoint required implementing:
 
 * `AuthorizeAttribute` for each policy.
 * `AuthorizationPolicyProvider` to process a custom policy from a string-based contract.
 * `AuthorizationRequirement` for the policy.
 * `AuthorizationHandler` for each requirement.
 
-For example, consider the following sample written for ASP.NET Core 7.0:
+For example, consider the following code written for .NET 7:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Program.cs" highlight="9":::
 
@@ -800,27 +800,27 @@ For example, consider the following sample written for ASP.NET Core 7.0:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
 
-The complete sample is [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
+The complete sample for .NET 7 or earlier is the [OldStyleAuthRequirements sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-ASP.NET Core 8 introduces the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface. The `IAuthorizationRequirementData` interface allows the attribute definition to specify the requirements associated with the authorization policy. Using `IAuthorizationRequirementData`, the preceding custom authorization policy code can be written with fewer lines of code. The updated `Program.cs` file:
+.NET 8 introduces the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface. The `IAuthorizationRequirementData` interface allows the attribute definition to specify the requirements associated with the authorization policy. Using `IAuthorizationRequirementData`, the preceding custom authorization policy code can be written with fewer lines of code. The updated `Program.cs` file:
 
 ```diff
-  using AuthRequirementsData.Authorization;
-  using Microsoft.AspNetCore.Authorization;
+using AuthRequirementsData.Authorization;
+using Microsoft.AspNetCore.Authorization;
   
-  var builder = WebApplication.CreateBuilder();
+var builder = WebApplication.CreateBuilder();
   
-  builder.Services.AddAuthentication().AddJwtBearer();
-  builder.Services.AddAuthorization();
-  builder.Services.AddControllers();
-- builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
-  builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
+builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddAuthorization();
+builder.Services.AddControllers();
+-builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
+builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
   
-  var app = builder.Build();
+var app = builder.Build();
   
-  app.MapControllers();
+app.MapControllers();
   
-  app.Run();
+app.Run();
 ```
 
 The updated `MinimumAgeAuthorizationHandler`:
@@ -832,28 +832,23 @@ using System.Security.Claims;
 
 namespace AuthRequirementsData.Authorization;
 
-- class MinimumAgeAuthorizationHandler : AuthorizationHandler<MinimumAgeRequirement>
-+ class MinimumAgeAuthorizationHandler : AuthorizationHandler<MinimumAgeAuthorizeAttribute>
+class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger) 
+-    : AuthorizationHandler<MinimumAgeRequirement>
++    : AuthorizationHandler<MinimumAgeAuthorizeAttribute>
 {
-    private readonly ILogger<MinimumAgeAuthorizationHandler> _logger;
-
-    public MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger)
+    protected override Task HandleRequirementAsync(
+        AuthorizationHandlerContext context,
+-       MinimumAgeRequirement requirement)
++       MinimumAgeAuthorizeAttribute requirement)
     {
-        _logger = logger;
+        ...
     }
-
-    // Check whether a given MinimumAgeRequirement is satisfied or not for a particular
-    // context
-    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
--                                              MinimumAgeRequirement requirement)
-+                                              MinimumAgeAuthorizeAttribute requirement)
-    {
-        // Remaining code omitted for brevity.
+}
 ```
 
-The complete updated sample can be found [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData).
+The updated sample is the [AuthRequirementsData sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-See <xref:security/authorization/iard> for a detailed examination of the new sample.
+For more information, see <xref:security/authorization/iard>.
 
 ### Securing Swagger UI endpoints
 
