@@ -44,12 +44,34 @@ The output produces a token after "`Token`" in the console:
 ```dotnetcli
 New JWT saved with ID '{JWT ID}'.
 Name: {USER}
-Custom Claims: [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=2025-01-01]
+Custom Claims: [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01]
 
 Token: {TOKEN}
 ```
 
 Set the value of the token (`{TOKEN}` placeholder) aside for use later.
+
+You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jwt.ms/) to see its contents, revealing that it contains a `birthdate` claim with the user's birth date:
+
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}.{
+  "unique_name": "{USER}",
+  "sub": "{USER}",
+  "jti": "{JWT ID}",
+  "birthdate": "1989-01-01",
+  "aud": [
+    "https://localhost:51100",
+    "http://localhost:51101"
+  ],
+  "nbf": 1747315312,
+  "exp": 1755264112,
+  "iat": 1747315313,
+  "iss": "dotnet-user-jwts"
+}.[Signature]
+```
 
 Execute the command again with a `dateofbirth` value that makes the user presenting the claim under the age of 16:
 
@@ -61,7 +83,7 @@ Set the value of second token aside.
 
 Start the app in Visual Studio or with the `dotnet watch` command in the .NET CLI.
 
-In the .NET CLI, execute the following `curl.exe` command to request the `api/greetings/hello` endpoint with the JWT bearer token. Replace the `{TOKEN}` placeholder with the first token that you saved earlier:
+In the .NET CLI, execute the following `curl.exe` command to request the `api/greetings/hello` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
 
 ```dotnetcli
 curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:51100/api/greetings/hello
