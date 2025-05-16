@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn the best practices for building high-performance gRPC services.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 04/11/2023
+ms.date: 05/16/2025
 uid: grpc/performance
 ---
 # Performance best practices with gRPC
