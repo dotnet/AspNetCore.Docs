@@ -42,9 +42,11 @@ builder.Services.AddSingleton<IAuthorizationHandler,
     MinimumAgeAuthorizationHandler>();
 ```
 
-The `GreetingsController` displays the user's name when they satisfy the minimum age policy:
+The `GreetingsController` displays the user's name when they satisfy the minimum age policy, using an age of 21 years with the `MinimumAgeAuthorize` attribute`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Controllers/GreetingsController.cs":::
+
+If the user's birth date claim indicates that they're at least 21 years old, the controller displays the greeting string, issuing a 200 (OK) status code. If the user is missing the birth date claim or the claim indicates that they aren't at least 21 years old, the greeting isn't displayed and a 403 (Forbidden) status code is issued.
 
 JWT bearer authentication services are added in the app's `Program` file:
 
