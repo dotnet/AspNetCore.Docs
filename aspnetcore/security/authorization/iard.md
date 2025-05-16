@@ -42,7 +42,7 @@ builder.Services.AddSingleton<IAuthorizationHandler,
     MinimumAgeAuthorizationHandler>();
 ```
 
-The `GreetingsController` displays the user's name when they satisfy the minimum age policy, using an age of 21 years with the `MinimumAgeAuthorize` attribute`:
+The `GreetingsController` displays the user's name when they satisfy the minimum age policy, using an age of 21 years old with the `[MinimumAgeAuthorize({AGE})]` attribute, where the `{AGE}` placeholder is the age:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Controllers/GreetingsController.cs":::
 
@@ -54,7 +54,7 @@ JWT bearer authentication services are added in the app's `Program` file:
 builder.Services.AddAuthentication().AddJwtBearer();
 ```
 
-The app settings file (`appsettings.json`) configures the audience and issuer for JWT bearer authentication. The localhost audience matches the localhost address specified by `applicationUrl` in the app's launch profile (`Properties/launchSettings.json`):
+The app settings file (`appsettings.json`) configures the audience and issuer for JWT bearer authentication:
 
 ```json
 "Authentication": {
@@ -69,17 +69,19 @@ The app settings file (`appsettings.json`) configures the audience and issuer fo
 }
 ```
 
+In the preceding example, the localhost audience matches the localhost address specified by `applicationUrl` in the app's launch profile (`Properties/launchSettings.json`).
+
 ## Demonstration
 
-The sample can be tested with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl.
+Test the sample with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl.
 
-From the project's folder in a console, execute the following command to create a JWT bearer token with a birth date claim that makes the user over 21 years old:
+From the project's folder in a command shell, execute the following command to create a JWT bearer token with a birth date claim that makes the user over 21 years old:
 
 ```dotnetcli
 dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01
 ```
 
-The output produces a token after "`Token`" in the console:
+The output produces a token after "`Token:`" in the command shell:
 
 ```dotnetcli
 New JWT saved with ID '{JWT ID}'.
@@ -89,7 +91,7 @@ Custom Claims: [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirt
 Token: {TOKEN}
 ```
 
-Set the value of the token (`{TOKEN}` placeholder) aside for use later.
+Set the value of the token (where the `{TOKEN}` placeholder appears in the preceding output) aside for use later.
 
 You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jwt.ms/) to see its contents, revealing that it contains a `birthdate` claim with the user's birth date:
 
@@ -113,7 +115,7 @@ You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jw
 }.[Signature]
 ```
 
-Execute the command again with a `dateofbirth` value that makes the user presenting the claim under the age of 21:
+Execute the command again with a `dateofbirth` value that makes the user under the age of 21:
 
 ```dotnetcli
 dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=2020-01-01
@@ -129,7 +131,7 @@ In the .NET CLI, execute the following `curl.exe` command to request the `api/gr
 curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:51100/api/greetings/hello
 ```
 
-The output in the console indicates success because the user's birth date claim indicates that they're at least 21 years old:
+The output indicates success because the user's birth date claim indicates that they're at least 21 years old:
 
 ```dotnetcli
 HTTP/1.1 200 OK
@@ -146,7 +148,7 @@ Logging indicates that the age requirement was met:
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Minimum age authorization requirement 21 satisfied":::
 
-Re-execute the `curl` command with the second token, which indicates the user is under 21 years old. The output indicates that the requirement wasn't met. Access to the endpoint is forbidden (status code 403):
+Re-execute the `curl.exe` command with the second token, which indicates the user is under 21 years old. The output indicates that the requirement isn't met. Access to the endpoint is forbidden (status code 403):
 
 ```dotnetcli
 HTTP/1.1 403 Forbidden
