@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn the best practices for building high-performance gRPC services.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 04/11/2023
+ms.date: 05/16/2025
 uid: grpc/performance
 ---
 # Performance best practices with gRPC
@@ -156,6 +156,9 @@ gRPC calls between a client and service are usually sent over TCP sockets. TCP i
 Consider using a transport like Unix domain sockets or named pipes for gRPC calls between processes on the same machine. For more information, see <xref:grpc/interprocess>.
 
 ## Keep alive pings
+
+> [!IMPORTANT]
+> Keep alive pings require the cooperation of the server. Do not enable keep alive pings in the client without verifying that the server supports them. A server which does not support keep alive pings will usually ignore the first few pings, and will then send a `GOAWAY` message, closing the active HTTP/2 connection.
 
 Keep alive pings can be used to keep HTTP/2 connections alive during periods of inactivity. Having an existing HTTP/2 connection ready when an app resumes activity allows for the initial gRPC calls to be made quickly, without a delay caused by the connection being reestablished.
 
