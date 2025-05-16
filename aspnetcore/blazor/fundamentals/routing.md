@@ -777,34 +777,195 @@ When a component is rendered with a global interactive render mode, calling `Not
 }
 ```
 
-You can use the `OnNotFound` event for notifications when `NotFound` is invoked. The following example uses a render fragment (<xref:Microsoft.AspNetCore.Components.RenderFragment>) to render the Not Found content.
+You can use the `OnNotFound` event for notifications when `NotFound` is invoked. The event is only fired when `NotFound` is called, not for any 404 response. For example, setting `HttpContextAccessor.HttpContext.Response.StatusCode` to `404` doesn't trigger `NotFound`/`OnNotFound`.
 
-`Routes.razor`:
+<!-- UPDATE 10.0 - For Pre5, the following can be expanded to 
+                   cover CSR with an added bit of coverage for 
+                   re-execution middleware. -->
+
+In the following example for components that adopt [interactive server-side rendering (interactive SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), custom content is rendered depending on where `OnNotFound` is called. If the event is triggered by the following `Movie` component when a movie isn't found on component initialization, a custom message states that the requested movie isn't found. If the event is triggered by the `User` component, a different message states that the user isn't found.
+
+The following `NotFoundContext` service manages the context and the message for when content isn't found by components.
+
+`NotFoundContext.cs`:
+
+```csharp
+public class NotFoundContext
+{
+    public string Heading { get; private set; } = "Not Found";
+    public string Message { get; private set; } = 
+        "Sorry, the page that you requested couldn't be found.";
+
+    public void UpdateContext(string heading, string message)
+    {
+        Heading = heading;
+        Message = message;
+    }
+}
+```
+
+The service is registered in the server-side `Program` file:
+
+```csharp
+builder.Services.AddScoped<NotFoundContext>();
+```
+
+The `Routes` component (`Routes.razor`):
+
+* Injects the `NotFoundContext` service.
+* Displays the heading (`Heading`) and message (`Message`) when `OnNotFound` is triggered by a call to `NotFound`.
 
 ```razor
-@inject NavigationManager Navigation
-@inject ILogger<Routes> Logger
+@inject NotFoundContext NotFoundContext
 
-<Router AppAssembly="typeof(Program).Assembly" NotFound="renderFragment">
+<Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
         <FocusOnNavigate RouteData="routeData" Selector="h1" />
     </Found>
+    <NotFound>
+        <LayoutView Layout="typeof(Layout.MainLayout)">
+            <h1>@NotFoundContext.Heading</h1> 
+            <div>
+                <p>@NotFoundContext.Message</p>
+            </div>
+        </LayoutView>
+    </NotFound>
 </Router>
+```
+
+In the following example components:
+
+* The `NotFoundContext` service is injected, along with the <xref:Microsoft.AspNetCore.Components.NavigationManager>.
+* In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, `HandleNotFound` is an event handler assigned to the `OnNotFound` event. `HandleNotFound` calls `NotFoundContext.UpdateContext` to set a heading and message for Not Found content that's displayed by the `Router` component in the `Routes` component (`Routes.razor`).
+* The components would normally use an ID from a route parameter to obtain a movie or user from a data store, such as a database. In the following examples, no entity is returned (`null`) to simulate what happens when an entity isn't found.
+* When no entity is returned to <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, `NavigationManager.NotFound` is called, which in turn triggers the `OnNotFound` event and the `HandleNotFound` event handler. Not Found content is displayed by the router.
+* The `HandleNotFound` method is unhooked on component disposal in <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
+
+`Movie` component (`Movie.razor`):
+
+```razor
+@page "/movie/{Id:int}"
+@implements IDisposable
+@inject NavigationManager NavigationManager
+@inject NotFoundContext NotFoundContext
+
+<div>
+    No matter what ID is used, no matching movie is returned
+    from the call to GetMovie().
+</div>
 
 @code {
-    private RenderFragment renderFragment = 
-        @<div><h1>Not Found</h1><p>Sorry! Nothing to show.</p></div>;
+    [Parameter]
+    public int Id { get; set; }
 
-    protected override void OnInitialized() => Navigation.OnNotFound += OnNotFound;
-
-    private void OnNotFound(object? sender, EventArgs args)
+    protected override async Task OnInitializedAsync()
     {
-        Logger.LogError("Something wasn't found!");
+        NavigationManager.OnNotFound += HandleNotFound;
+
+        var movie = await GetMovie(Id);
+
+        if (movie == null)
+        {
+            NavigationManager.NotFound();
+        }
     }
 
-    public void Dispose() => Navigation.OnNotFound -= OnNotFound;
+    private void HandleNotFound(object? sender, NotFoundEventArgs e)
+    {
+        NotFoundContext.UpdateContext("Movie Not Found",
+            "Sorry! The requested movie wasn't found.");
+    }
+
+    private async Task<MovieItem[]?> GetMovie(int id)
+    {
+        // Simulate no movie with matching id found
+        return await Task.FromResult<MovieItem[]?>(null);
+    }
+
+    void IDisposable.Dispose()
+    {
+        NavigationManager.OnNotFound -= HandleNotFound;
+    }
+
+    public class MovieItem
+    {
+        public int Id { get; set; }
+        public string? Title { get; set; }
+    }
 }
+```
+
+`User` component (`User.razor`):
+
+```razor
+@page "/user/{Id:int}"
+@implements IDisposable
+@inject NavigationManager NavigationManager
+@inject NotFoundContext NotFoundContext
+
+<div>
+    No matter what ID is used, no matching user is returned
+    from the call to GetUser().
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        NavigationManager.OnNotFound += HandleNotFound;
+
+        var user = await GetUser(Id);
+
+        if (user == null)
+        {
+            NavigationManager.NotFound();
+        }
+    }
+
+    private void HandleNotFound(object? sender, NotFoundEventArgs e)
+    {
+        NotFoundContext.UpdateContext("User Not Found",
+            "Sorry! The requested user wasn't found.");
+    }
+
+    private async Task<UserItem[]?> GetUser(int id)
+    {
+        // Simulate no user with matching id found
+        return await Task.FromResult<UserItem[]?>(null);
+    }
+
+    void IDisposable.Dispose()
+    {
+        NavigationManager.OnNotFound -= HandleNotFound;
+    }
+
+    public class UserItem
+    {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+    }
+}
+```
+
+To reach the preceding components in a local demonstration with a test app, create entries in the `NavMenu` component (`NavMenu.razor`) to reach the `Movie` and `User` components. The entity IDs, passed as route parameters, in the following example are mock values that have no effect because they aren't actually used by the components, which simulate not finding a movie or user.
+
+In `NavMenu.razor`:
+
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="movie/1">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Movie
+    </NavLink>
+</div>
+
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="user/2">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> User
+    </NavLink>
+</div>
 ```
 
 :::moniker-end
