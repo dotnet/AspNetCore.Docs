@@ -46,12 +46,12 @@ Transformers can be registered onto the document by calling the <xref:Microsoft.
 
 Transformers execute in the following order:  
 
-* Schema transformers execute when a schema is registered to the document. They execute in the order they're added.  
-All schemas are added to the document before any operation processing occurs, so schema transformers execute before operation transformers.  
-* Operation transformers execute when an operation is added to the document. They execute in the order they're added.  
-All operations are added to the document before any document transformers execute.  
-* Document transformers execute when the document is generated. This is the final pass over the document, and all operations and schemas are added by this point.  
-* When an app is configured to generate multiple OpenAPI documents, transformers execute for each document independently.  
+* Schema transformers execute when a schema is registered to the document. They execute in the order they're added.
+All schemas are added to the document before any operation processing occurs, so schema transformers execute before operation transformers.
+* Operation transformers execute when an operation is added to the document. They execute in the order they're added.
+All operations are added to the document before any document transformers execute.
+* Document transformers execute when the document is generated. This is the final pass over the document, and all operations and schemas are added by this point.
+* When an app is configured to generate multiple OpenAPI documents, transformers execute for each document independently.
 
 For example, in the following snippet:
 * `SchemaTransformer2` is executed and has access to the modifications made by `SchemaTransformer1`.
