@@ -135,7 +135,6 @@ To use this feature in a document, operation, or schema transformer, create the 
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/10.x/WebAppOpenAPI10/Program.cs" id="snippet_Generate_OpenApiSchemas_for_type" highlight="6-7":::
 
-
 ## Customize schema reuse
 
 After all transformers have been applied, the framework makes a pass over the document to transfer certain schemas
