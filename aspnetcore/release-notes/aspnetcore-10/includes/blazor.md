@@ -1,3 +1,15 @@
+### New and updated Blazor Web App security samples
+
+We've added and updated Blazor Web App security samples cross-linked in the following articles:
+
+* <xref:blazor/security/blazor-web-app-oidc>
+* <xref:blazor/security/blazor-web-app-entra>
+* <xref:blazor/security/blazor-web-app-windows-authentication>
+
+Our OIDC and Entra sample solutions now include a separate web API project (`MinimalApiJwt`) to demonstrate how to configure and call an external web API securely. Calling web APIs is demonstrated with a token handler and named HTTP client for an OIDC identity provider or Microsoft Identity Web packages/API for Microsoft Entra ID.
+
+The sample solutions are configured in C# code in their `Program` files. To configure the solutions from app settings files (for example, `appsettings.json`) see the *Supply configuration with the JSON configuration provider (app settings)* section of either article.
+
 ### QuickGrid `RowClass` parameter
 
 Apply a stylesheet class to a row of the grid based on the row item using the new `RowClass` parameter. In the following example, the `GetRowCssClass` method is called on each row to conditionally apply a stylesheet class based on the row item:
