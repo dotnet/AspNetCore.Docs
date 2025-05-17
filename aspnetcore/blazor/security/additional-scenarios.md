@@ -23,12 +23,206 @@ This article explains how to configure server-side Blazor for additional securit
 
 *This section applies to Blazor Web Apps. For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).*
 
-For more information, see the following issues:
+If you merely want to use access tokens to make web API calls from a Blazor Web App with a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section, which explains how to use a <xref:System.Net.Http.DelegatingHandler> implementation to attach a user's access token to outgoing requests. The following guidance in this section is for developers who need access tokens, refresh tokens, and other authentication properties throughout the app for general use.
 
-* [Access `AuthenticationStateProvider` in outgoing request middleware (`dotnet/aspnetcore` #52379)](https://github.com/dotnet/aspnetcore/issues/52379): This is the current issue to address passing tokens in Blazor Web Apps with framework features, which will probably be addressed for .NET 11 (late 2026).
-* [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390): This issue was closed as a duplicate of the preceding issue, but it contains helpful discussion and potential workaround strategies.
+To save tokens and other authentication properties in Blazor Web Apps, we recommend putting them into user claims, which can be accessed from anywhere in the app, including on the client (in the `.Client` project) when [passing authentication state](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps) and setting <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> to `true`.
 
-For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).
+In the context of an app that adopts [OpenId Connect (OIDC) authentication](xref:blazor/security/blazor-web-app-oidc), the following example shows how to retain the access token of a user that just signed into the app.
+
+Where cookie authentication options (`CookieAuthenticationOptions`) are configured:
+
+```csharp
+services.AddOptions<CookieAuthenticationOptions>(cookieScheme)
+    .Configure<CookieOidcRefresher>((cookieOptions, refresher) =>
+{
+    cookieOptions.Events.OnValidatePrincipal = context => 
+        refresher.ValidateOrRefreshCookieAsync(context, oidcScheme);
+
+    cookieOptions.Events.OnSigningIn = (context) =>
+    {
+        if (context.Principal?.Identity is not null && 
+            context.Principal.Identity.IsAuthenticated)
+        {
+            var accessToken = context.Properties.GetTokenValue("access_token");
+            var claimsIdentity = new ClaimsIdentity(context.Principal?.Identity,
+                [new Claim("AccessToken", accessToken ?? "No Access Token!")]);
+            context.Principal = new ClaimsPrincipal(claimsIdentity);
+            context.Properties.Items.Remove("access_token");
+        }
+
+        return Task.CompletedTask;
+    };
+});
+```
+
+Where the principal is validated (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal%2A>) to update user access tokens when they expire, the claim is also updated with the new access token by replacing the principal:
+
+```csharp
+public async Task ValidateOrRefreshCookieAsync(
+    CookieValidatePrincipalContext validateContext, string oidcScheme)
+{
+    ...
+
+    validationResult.Claims.Remove("AccessToken");
+    validationResult.ClaimsIdentity.AddClaim(
+        new Claim("AccessToken", message.AccessToken));
+    validateContext.ReplacePrincipal(
+        new ClaimsPrincipal(validationResult.ClaimsIdentity));
+
+    ...
+}
+```
+
+App code and components, including components that render on the client, can use the claim to read tokens and authentication properties. In the following `ServerWeatherForecaster` service for obtaining weather data on the server, the `AccessToken` claim is used to make a secure call to a backend web API for weather data:
+
+```csharp
+internal sealed class ServerWeatherForecaster(IHttpClientFactory clientFactory, 
+    IHttpContextAccessor httpContextAccessor, IConfiguration config) 
+    : IWeatherForecaster
+{
+    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
+        var accessToken = httpContextAccessor.HttpContext?.User.Claims.First(
+            c => c.Type == "AccessToken").Value 
+            ?? throw new Exception("No access token!");
+        request.Headers.Authorization = 
+            new AuthenticationHeaderValue("Bearer", accessToken);
+        var client = clientFactory.CreateClient();
+        client.BaseAddress = new Uri(config["ExternalApiUri"] 
+            ?? throw new Exception("No base address!"));
+
+        var response = await client.SendAsync(request);
+
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
+            throw new IOException("No weather forecast!");
+    }
+}
+```
+
+The following code demonstrates a similar approach in a component that calls a secure web API:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+```razor
+@page "/..."
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+...
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    [SupplyParameterFromPersistentComponentState]
+    public string AccessToken { get; set; } = "Not set!";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            var authState = await authenticationState;
+            var user = authState?.User;
+
+            if (user is not null)
+            {
+                AccessToken ??= user.Claims.FirstOrDefault(
+                    c => c.Type == "AccessToken")?.Value ?? "Not found!";
+
+                request.Headers.Authorization = 
+                    new AuthenticationHeaderValue("Bearer", AccessToken);
+                var client = clientFactory.CreateClient();
+                client.BaseAddress = new Uri(...);
+
+                var response = await client.SendAsync(request);
+
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadFromJsonAsync<...>() ??
+                    throw new IOException("No data!");
+            }
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
+```razor
+@page "/..."
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@implements IDisposable
+@inject PersistentComponentState ApplicationState
+
+...
+
+@code {
+    private PersistingComponentStateSubscription persistingSubscription;
+    private string accessToken = "Not set!";
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            var authState = await authenticationState;
+            var user = authState?.User;
+
+            if (user is not null)
+            {
+                if (!ApplicationState.TryTakeFromJson<string>(nameof(accessToken), 
+                    out var restoredAccessToken))
+                {
+                    accessToken = user.Claims.FirstOrDefault(
+                        c => c.Type == "AccessToken")?.Value ?? "Not found!";
+
+                    request.Headers.Authorization = 
+                        new AuthenticationHeaderValue("Bearer", accessToken);
+                    var client = clientFactory.CreateClient();
+                    client.BaseAddress = new Uri(...);
+
+                    var response = await client.SendAsync(request);
+
+                    response.EnsureSuccessStatusCode();
+
+                    return await response.Content.ReadFromJsonAsync<...>() ??
+                        throw new IOException("No data!");
+                }
+                else
+                {
+                    accessToken = restoredAccessToken!;
+                }
+            }
+        }
+
+        // Call at the end to avoid a potential race condition at app shutdown
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
+    }
+
+    private Task PersistData()
+    {
+        ApplicationState.PersistAsJson(nameof(accessToken), accessToken);
+
+        return Task.CompletedTask;
+    }
+
+    void IDisposable.Dispose() => persistingSubscription.Dispose();
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ## Reading tokens from `HttpContext`
 
