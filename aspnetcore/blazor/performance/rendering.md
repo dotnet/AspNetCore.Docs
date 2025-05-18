@@ -30,7 +30,7 @@ To prevent rendering recursion into a particular subtree, use either of the foll
 
 * Ensure that child component parameters are of primitive immutable types, such as `string`, `int`, `bool`, `DateTime`, and other similar types. The built-in logic for detecting changes automatically skips rerendering if the primitive immutable parameter values haven't changed. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
 * Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>:
-  * To accept nonprimitive parameter values, such as complex custom model types, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values.
+  * To accept nonprimitive parameter values, such as complex custom model types or <xref:Microsoft.AspNetCore.Components.RenderFragment> values.
   * If authoring a UI-only component that doesn't change after the initial render, regardless of parameter value changes.
 
 The following airline flight search tool example uses private fields to track the necessary information to detect changes. The previous inbound flight identifier (`prevInboundFlightId`) and previous outbound flight identifier (`prevOutboundFlightId`) track information for the next potential component update. If either of the flight identifiers change when the component's parameters are set in [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the component is rerendered because `shouldRender` is set to `true`. If `shouldRender` evaluates to `false` after checking the flight identifiers, an expensive rerender is avoided:
