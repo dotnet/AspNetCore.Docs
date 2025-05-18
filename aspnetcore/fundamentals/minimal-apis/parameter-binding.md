@@ -12,6 +12,7 @@ uid: fundamentals/minimal-apis/parameter-binding
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+[!INCLUDE [parameter-binding](~/fundamentals/minimal-apis/includes/parameter-binding10.md)]
 [!INCLUDE [parameter-binding](~/fundamentals/minimal-apis/includes/parameter-binding9.md)]
 [!INCLUDE [parameter-binding](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
 [!INCLUDE [parameter-binding](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]

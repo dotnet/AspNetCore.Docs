@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-9.0"
 
 Parameter binding is the process of converting request data into strongly typed parameters that are expressed by route handlers. A binding source determines where parameters are bound from. Binding sources can be explicit or inferred based on HTTP method and parameter type.
 
