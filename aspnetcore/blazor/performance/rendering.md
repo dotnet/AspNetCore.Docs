@@ -22,7 +22,7 @@ At runtime, components exist in a hierarchy. A root component (the first compone
 
 1. The event is dispatched to the component that rendered the event's handler. After executing the event handler, the component is rerendered.
 1. When a component is rerendered, it supplies a new copy of parameter values to each of its child components.
-1. After a new set of parameter values is received, each component decides whether to rerender. Components rerender if the parameter values may have changed, for example, if they're mutable objects.
+1. After a new set of parameter values is received, Blazor decides whether to rerender the component. Components rerender if the `ShouldRender()` method returns `true` (which is the default behavior unless overridden) and the parameter values may have changed, for example, if they're mutable objects.
 
 The last two steps of the preceding sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. Events targeting high-level components can cause expensive rerendering because every component below the high-level component must rerender.
 
