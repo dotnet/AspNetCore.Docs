@@ -1,22 +1,4 @@
----
-title: Minimal APIs quick reference
-author: wadepickett
-description: Provides an overview of minimal APIs in ASP.NET Core
-ms.author: wpickett
-content_well_notification: AI-contribution
-monikerRange: '>= aspnetcore-6.0'
-ms.date: 02/07/2025
-uid: fundamentals/minimal-apis
-ai-usage: ai-assisted
----
-
-<!-- When working on this file, open all the LATEST VERSION MD files in ~/fundamentals/minimal-apis/includes/ and search for the target text -->
-
-# Minimal APIs quick reference
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-8.0"
 
 This document:
 
@@ -28,7 +10,7 @@ The minimal APIs consist of:
 * [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
 * [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
 
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication10.md)]
+[!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication8.md)]
 
 ## ASP.NET Core Middleware
 
@@ -68,7 +50,7 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 ## Parameter binding
 
-[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding10.md)]
+[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
 
 ## Responses
 
@@ -284,8 +266,3 @@ The following code disables `ValidateScopes` and `ValidateOnBuild` in `Developme
 * [Fluent validation discussion on GitHub](https://github.com/dotnet/aspnetcore/issues/51834#issuecomment-1837180853)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/minimal-apis9.md)]
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/minimal-apis8.md)]
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/minimal-apis7.md)]
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/minimal-apis6.md)]
