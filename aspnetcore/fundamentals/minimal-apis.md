@@ -28,7 +28,7 @@ The minimal APIs consist of:
 * [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
 * [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
 
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication8.md)]
+[!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication10.md)]
 
 ## ASP.NET Core Middleware
 
