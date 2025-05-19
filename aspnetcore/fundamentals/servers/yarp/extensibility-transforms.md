@@ -88,7 +88,7 @@ public class AddRequestBodyMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         // Only modify specific route and method
-        if (context.Request.Method == HttpMethods.Post &&
+        if (context.Request.Method == HttpMethods.Get &&
             context.Request.Path == "/special-route")
         {
             var bodyContent = "key=value";
