@@ -28,12 +28,54 @@ The last two steps of the preceding sequence continue recursively down the compo
 
 To prevent rendering recursion into a particular subtree, use either of the following approaches:
 
-* Ensure that child component parameters are of primitive immutable types, such as `string`, `int`, `bool`, `DateTime`, and other similar types. The built-in logic for detecting changes automatically skips rerendering if the primitive immutable parameter values haven't changed. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
+tree.AddComponentParameter(1, "MyString", "Some fixed string");
+            tree.AddComponentParameter(1, "MyByte", (byte)123);
+            tree.AddComponentParameter(1, "MyInt", int.MaxValue);
+            tree.AddComponentParameter(1, "MyLong", long.MaxValue);
+            tree.AddComponentParameter(1, "MyBool", true);
+            tree.AddComponentParameter(1, "MyFloat", float.MaxValue);
+            tree.AddComponentParameter(1, "MyDouble", double.MaxValue);
+            tree.AddComponentParameter(1, "MyDecimal", decimal.MinusOne);
+            tree.AddComponentParameter(1, "MyDate", dateTimeWillNotChange);
+            tree.AddComponentParameter(1, "MyGuid", Guid.Empty);
+
+            NEW ....
+            
+            tree.AddComponentParameter(1, "MySByte", (sbyte)123);
+            tree.AddComponentParameter(1, "MyShort", (short)123);
+            tree.AddComponentParameter(1, "MyUShort", (ushort)123);
+            tree.AddComponentParameter(1, "MyUInt", uint.MaxValue);
+            tree.AddComponentParameter(1, "MyULong", ulong.MaxValue);
+            tree.AddComponentParameter(1, "MyChar", 'c');
+            tree.AddComponentParameter(1, "MyEnum", StringComparison.OrdinalIgnoreCase);
+            tree.AddComponentParameter(1, "MyEventCallBack", EventCallback.Empty);
+            tree.AddComponentParameter(1, "MyEventCallBackOfT", EventCallback<int>.Empty);
+
+:::moniker range=">= aspnetcore-8.0"
+
+* Ensure that child component parameters are of primitive immutable types&dagger;. The built-in logic for detecting changes automatically skips rerendering if the primitive immutable parameter values haven't changed. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
+* Override [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender):
+  * When parameters receive nonprimitive values, such as complex custom model types or <xref:Microsoft.AspNetCore.Components.RenderFragment> values.
+  * If authoring a UI-only component that doesn't change after the initial render, regardless of parameter value changes.
+
+ &dagger;Primative immutable types for change detection:  `bool`, `byte`, `char`, `DateTime`, `decimal`, `double`, `Enum`, `EventCallback`/`EventCallback<T>`, `float`, `Guid`, `int`, `long`, `sbyte`, `short`, `string`, `unit`
+ 
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* Ensure that child component parameters are of primitive immutable types&dagger;. The built-in logic for detecting changes automatically skips rerendering if the primitive immutable parameter values haven't changed. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
 * Override [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender):
   * When parameters receive nonprimitive values, such as complex custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values.
   * If authoring a UI-only component that doesn't change after the initial render, regardless of parameter value changes.
+ 
+&dagger;Primative immutable types for change detection: `bool`, `byte`, `DateTime`, `decimal`, `double`, `float`, `Guid`, `int`, `long`, `string`
+
+:::moniker-end
 
 The following airline flight search tool example uses private fields to track the necessary information to detect changes. The previous inbound flight identifier (`prevInboundFlightId`) and previous outbound flight identifier (`prevOutboundFlightId`) track information for the next potential component update. If either of the flight identifiers change when the component's parameters are set in [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the component is rerendered because `shouldRender` is set to `true`. If `shouldRender` evaluates to `false` after checking the flight identifiers, an expensive rerender is avoided:
+
+
 
 ```razor
 @code {
