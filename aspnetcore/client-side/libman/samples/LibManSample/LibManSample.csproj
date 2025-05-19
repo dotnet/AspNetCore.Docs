@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <!-- <snippet_RestoreOnBuildPackage> -->
-    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.113" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="3.0.71" />
     <!-- </snippet_RestoreOnBuildPackage> -->
   </ItemGroup>
 
