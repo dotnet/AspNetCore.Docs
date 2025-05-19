@@ -41,7 +41,7 @@ For an app that adopts [OpenId Connect (OIDC) authentication](xref:blazor/securi
 
 For a local demonstration of the approach, you can implement the following example in the sample app that accompanies <xref:blazor/security/blazor-web-app-oidc>.
 
-Where cookie authentication options (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>) are configured, create an access token claim, named "`AccessToken`," when the user signs into the app (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnSigningIn%2A>):
+Where cookie authentication options (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>) are configured, create an access token claim, which is named "`AccessToken`" in the following example, when the user signs into the app (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnSigningIn%2A>):
 
 ```csharp
 services.AddOptions<CookieAuthenticationOptions>(cookieScheme)
@@ -89,7 +89,7 @@ For sample code that fully implements the preceding `ValidateOrRefreshCookieAsyn
 
 Make sure that <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> is set to `true` if you need the authentication data client-side (in the `.Client` project of the Blazor Web App). For more information, see <xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps>.
 
-App code and components, including components that render on the client, can use claims to read tokens and authentication properties. In the following `ServerWeatherForecaster` service for obtaining weather data on the server, the `AccessToken` claim is used to make a secure call to an external backend web API for weather data:
+Classes and components, including components that render on the client, can read tokens and other authentication property data from claims. In the following `ServerWeatherForecaster` service for obtaining weather data on the server, the `AccessToken` claim is used to make a secure call to an external web API for weather data:
 
 ```csharp
 internal sealed class ServerWeatherForecaster(IHttpClientFactory clientFactory, 
@@ -154,14 +154,14 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 
 Make sure that <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> is set to `true` if you need the authentication data client-side (in the `.Client` project of the Blazor Web App). For more information, see <xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps>.
 
-See the [Demonstration `Weather` component](#demonstration-weather-component) section for an example component that obtains weather data from a web API in developer code using an <xref:System.Net.Http.HttpRequestMessage>. However, we recommend using Microsoft Identity Web packages/API for Entra in most cases for the best developer experience, which is demonstrated by the sample app described by <xref:blazor/security/blazor-web-app-entra>. The `Weather` component in the *Demonstration `Weather` component* section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
+See the [Demonstration `Weather` component](#demonstration-weather-component) section for an example component that obtains weather data from a web API in developer code using an <xref:System.Net.Http.HttpRequestMessage>. However, we recommend using Microsoft Identity Web packages/API for Entra in most cases for the best developer experience, which is demonstrated by the sample app for <xref:blazor/security/blazor-web-app-entra>. The `Weather` component in the *Demonstration `Weather` component* section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
 
 ### Demonstration `Weather` component
 
 The following component is presented to demonstrate using an access token from the user's claims in C# code using an <xref:System.Net.Http.HttpRequestMessage>.
 
 > [!NOTE]
-> If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages/API](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), we recommend using the API provided by Microsoft to call web APIs, which provides a better developer experience. The example in this section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
+> If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages/API](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), we recommend using the API provided by Microsoft to call web APIs, which usually provide a better developer experience. The example in this section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
 
 [CORS](xref:security/cors) configuration is required when the web API is hosted at a different origin than the calling app.
 
