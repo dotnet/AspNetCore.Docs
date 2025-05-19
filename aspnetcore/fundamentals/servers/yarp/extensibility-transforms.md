@@ -71,7 +71,7 @@ This sample requires YARP 1.1, see https://github.com/microsoft/reverse-proxy/pu
 });
 ```
 
-Custom transforms can only modify a request body if one is already present. They can't add a new body to a request that doesn't have one (for example, a POST request without a body or a GET request). If you need to add a body for a specific HTTP method and route, you must do so in middleware that runs before YARP, not in a transform.
+Custom transforms can only modify a request body if one is already present. They can't add a new body to a request that doesn't have one (for example, a POST request without a body or a GET request). If you need to add a body for a specific HTTP method and route, you must do so in [middleware](xref:fundamentals/middleware/index) that runs before YARP, not in a transform.
 
 The following middleware demonstrates how to add a body to a request that doesn't have one:
 
