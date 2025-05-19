@@ -52,7 +52,6 @@ The below example uses simple, inefficient buffering to transform requests. A mo
 
 This sample requires YARP 1.1, see https://github.com/microsoft/reverse-proxy/pull/1569.
 
-#### Example: Modifying an existing request body
 ```csharp
 .AddTransforms(context =>
 {
@@ -77,12 +76,10 @@ This sample requires YARP 1.1, see https://github.com/microsoft/reverse-proxy/pu
 });
 ```
 
-### Important limitations
-> **Custom transforms can only modify a request body if one is already present** in the incoming request.  
-> They **cannot add a new body** to a request that originally did not have one (e.g., a POST request with no body or a GET request).  
-> If you need to add a body where none exists, you must do so in **middleware that runs before YARP**, not in a transform.
+Custom transforms can only modify a request body if one is already present. They can't add a new body to a request that doesn't have one (for example, a POST request without a body or a GET request). If you need to add a body for a specific HTTP method and route, you must do so in middleware that runs before YARP, not in a transform.
 
-#### Example: Adding a body to a request that did not originally have one
+The following middleware demonstrates how to add a body to a request that doesn't have one:
+
 ```csharp
 public class AddRequestBodyMiddleware
 {
@@ -96,7 +93,8 @@ public class AddRequestBodyMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         // Only modify specific route and method
-        if (context.Request.Method == HttpMethods.Post && context.Request.Path == "/my-special-route")
+        if (context.Request.Method == HttpMethods.Post &&
+            context.Request.Path == "/special-route")
         {
             var bodyContent = "key=value";
             var bodyBytes = Encoding.UTF8.GetBytes(bodyContent);
@@ -105,8 +103,10 @@ public class AddRequestBodyMiddleware
             context.Request.Body = new MemoryStream(bodyBytes);
             context.Request.ContentLength = bodyBytes.Length;
 
-            // Replace IHttpRequestBodyDetectionFeature so YARP knows a body is present 
-            context.Features.Set<IHttpRequestBodyDetectionFeature>(new CustomBodyDetectionFeature());
+            // Replace IHttpRequestBodyDetectionFeature so YARP knows
+            // a body is present
+            context.Features.Set<IHttpRequestBodyDetectionFeature>(
+                new CustomBodyDetectionFeature());
         }
 
         await _next(context);
@@ -118,12 +118,10 @@ public class AddRequestBodyMiddleware
         public bool CanHaveBody => true;
     }
 }
-
 ```
 
-#### Note  
+> [!NOTE] 
 > You can use `context.GetRouteModel().Config.RouteId` in middleware to conditionally apply this logic for specific YARP routes.
-
 
 ## Response body transforms
 
