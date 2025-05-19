@@ -67,7 +67,7 @@ services.AddOptions<CookieAuthenticationOptions>(cookieScheme)
 });
 ```
 
-In the event handler assigned to <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal%2A>, where the user's access token renewed on expiration, update the `AccessToken` claim:
+In the event handler assigned to <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal%2A>, where the user's access token is renewed on expiration, update the `AccessToken` claim:
 
 ```csharp
 public async Task ValidateOrRefreshCookieAsync(
@@ -161,11 +161,11 @@ See the [Demonstration `Weather` component](#demonstration-weather-component) se
 The following component is presented to demonstrate using an access token from the user's claims in C# code using an <xref:System.Net.Http.HttpRequestMessage>.
 
 > [!NOTE]
-> If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages/API](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), we recommend using the API provided by Microsoft to call web APIs, which usually provide a better developer experience. The example in this section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
+> If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages/API](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), we recommend using the API provided by Microsoft to call web APIs, which usually provides a better developer experience. The example in this section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
 
 [CORS](xref:security/cors) configuration is required when the web API is hosted at a different origin than the calling app.
 
-With additional code, the weather forecasts can be persisted when the component is prerendered. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+With additional code, the weather forecast can be persisted when the component is prerendered. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
 ```razor
 @page "/weather"
@@ -181,7 +181,7 @@ With additional code, the weather forecasts can be persisted when the component 
 
 <p>This component demonstrates showing data.</p>
 
-@if (forecasts == null)
+@if (forecast == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -197,7 +197,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var forecast in forecast)
             {
                 <tr>
                     <td>@forecast.Date.ToShortDateString()</td>
@@ -211,7 +211,7 @@ else
 }
 
 @code {
-    private IEnumerable<WeatherForecast>? forecasts;
+    private IEnumerable<WeatherForecast>? forecast;
 
     [CascadingParameter]
     private Task<AuthenticationState>? AuthState { get; set; }
@@ -240,7 +240,7 @@ else
 
                 response.EnsureSuccessStatusCode();
 
-                forecasts = await response.Content
+                forecast = await response.Content
                     .ReadFromJsonAsync<IEnumerable<WeatherForecast>>() ??
                     throw new IOException("No data!");
             }
