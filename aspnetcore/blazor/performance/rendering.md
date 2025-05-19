@@ -30,8 +30,7 @@ To prevent rendering recursion into a particular subtree, use either of the foll
 
 * Ensure that child component parameters are of primitive immutable types, such as `string`, `int`, `bool`, `DateTime`, and other similar types&dagger;. The built-in logic for detecting changes automatically skips rerendering if the primitive immutable parameter values haven't changed. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
 * Override [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender):
-  * When parameters receive nonprimitive values, such as complex custom model types or <xref:Microsoft.AspNetCore.Components.RenderFragment> values.
-  * When parameters receive primative `IntPtr`, `UIntPtr`, or `Type` values&dagger;, which aren't supported for change detection.
+  * When parameters receive nonprimitive values or unsupported primitive values&dagger;, such as complex custom model types or <xref:Microsoft.AspNetCore.Components.RenderFragment> values.
   * If authoring a UI-only component that doesn't change after the initial render, regardless of parameter value changes.
 
 &dagger;For more information, see [the change detection logic in Blazor's reference source (`ChangeDetection.cs`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
