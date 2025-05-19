@@ -23,7 +23,7 @@ This article explains how to configure server-side Blazor for additional securit
 
 *This section applies to Blazor Web Apps. For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).*
 
-If you merely want to use access tokens to make web API calls from a Blazor Web App with a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section, which explains how to use a <xref:System.Net.Http.DelegatingHandler> implementation to attach a user's access token to outgoing requests. The following guidance in this section is for developers who need access tokens, refresh tokens, and other authentication properties throughout the app for general use.
+If you merely want to use access tokens to make web API calls from a Blazor Web App with a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section, which explains how to use a <xref:System.Net.Http.DelegatingHandler> implementation to attach a user's access token to outgoing requests. The guidance in this section is for developers who need access tokens, refresh tokens, and other authentication properties throughout the app for other use cases.
 
 To save tokens and other authentication properties in Blazor Web Apps, we recommend putting them into user claims, which can be accessed from anywhere in the app, including on the client (in the `.Client` project) when [passing authentication state](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps) and setting <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> to `true`.
 
@@ -34,7 +34,7 @@ The following scenarios are covered:
 
 ### Passing tokens in apps that use an OIDC identity provider
 
-In the context of an app that adopts [OpenId Connect (OIDC) authentication](xref:blazor/security/blazor-web-app-oidc), the following example shows how to retain the access token of a user that just signed into the app in a claim and refresh the claim when a new access token is issued by the identity provider.
+In the context of an app that adopts [OpenId Connect (OIDC) authentication](xref:blazor/security/blazor-web-app-oidc), the following example shows how to retain the access token of a user in a claim and refresh the claim when a new access token is issued by the identity provider.
 
 The following example can be implemented in the sample app that accompanies <xref:blazor/security/blazor-web-app-oidc> for a local demonstration of the approach.
 
@@ -64,7 +64,7 @@ services.AddOptions<CookieAuthenticationOptions>(cookieScheme)
 });
 ```
 
-Where the principal is validated (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal%2A>) to update the user's access token when it's renewed, update the `AccessToken` claim:
+In the event handler assigned to <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal%2A> where the user's access token renewed on expiration, update the `AccessToken` claim:
 
 ```csharp
 public async Task ValidateOrRefreshCookieAsync(
@@ -81,6 +81,8 @@ public async Task ValidateOrRefreshCookieAsync(
     ...
 }
 ```
+
+For more information on the `ValidateOrRefreshCookieAsync` method that we recommend for refreshing cookies, see <xref:blazor/security/blazor-web-app-oidc>, which includes a full implementation of the preceding method in its sample app.
 
 > [!NOTE]
 > Make sure that <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> is set to `true` if you need the authentication data client-side (in the `.Client` project of the Blazor Web App). For more information, see <xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps>.
@@ -114,13 +116,13 @@ internal sealed class ServerWeatherForecaster(IHttpClientFactory clientFactory,
 }
 ```
 
-See the [Demonstration `Weather` component](#demonstration-weather-component) section for a demonstration `Weather` component that obtains weather data from a web API in developer code.
+See the [Demonstration `Weather` component](#demonstration-weather-component) section for a demonstration `Weather` component that obtains weather data from a web API in developer code using an <xref:System.Net.Http.HttpRequestMessage>.
 
 ### Passing tokens in apps that use Microsoft Identity Web packages/API for Entra ID
 
 In a Blazor Web App with [Microsoft identity platform](/entra/identity-platform/)/[Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), use the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnTokenResponseReceived%2A> event to store tokens and other authentication data in the user's claims principal. The following example shows how to retain and update the access token of a user.
 
-The following example can be implemented in the sample app that accompanies <xref:blazor/security/blazor-web-app-entra> for a local demonstration of the approach.
+The following example can be implemented in the sample app that accompanies <xref:blazor/security/blazor-web-app-entra> for a local demonstration of the approach. See the sample app that accompanies the article for a full implementation of the approach.
 
 ```csharp
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
@@ -151,11 +153,11 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 > [!NOTE]
 > Make sure that <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> is set to `true` if you need the authentication data client-side (in the `.Client` project of the Blazor Web App). For more information, see <xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps>.
 
-See the [Demonstration `Weather` component](#demonstration-weather-component) section for a demonstration `Weather` component that obtains weather data from a web API in developer code. Note that we recommend using Microsoft Identity Web packages/API for Entra in most cases for the best developer experience, which is demonstrated by the sample app for <xref:blazor/security/blazor-web-app-entra>. The `Weather` component demonstration is for demonstration purposes. 
+See the [Demonstration `Weather` component](#demonstration-weather-component) section for a demonstration `Weather` component that obtains weather data from a web API in developer code. Note that we recommend using Microsoft Identity Web packages/API for Entra in most cases for the best developer experience, which is demonstrated by the sample app for <xref:blazor/security/blazor-web-app-entra>. The `Weather` component is for demonstration purposes. 
 
 ### Demonstration `Weather` component
 
-The following component is presented to demonstrate using an access token from the user's claims.
+The following component is presented to demonstrate using an access token from the user's claims in C# code using an <xref:System.Net.Http.HttpRequestMessage>.
 
 [CORS](xref:security/cors) configuration is required when the web API is hosted at a different origin than the calling app.
 
