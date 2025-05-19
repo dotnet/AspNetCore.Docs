@@ -28,29 +28,6 @@ The last two steps of the preceding sequence continue recursively down the compo
 
 To prevent rendering recursion into a particular subtree, use either of the following approaches:
 
-tree.AddComponentParameter(1, "MyString", "Some fixed string");
-            tree.AddComponentParameter(1, "MyByte", (byte)123);
-            tree.AddComponentParameter(1, "MyInt", int.MaxValue);
-            tree.AddComponentParameter(1, "MyLong", long.MaxValue);
-            tree.AddComponentParameter(1, "MyBool", true);
-            tree.AddComponentParameter(1, "MyFloat", float.MaxValue);
-            tree.AddComponentParameter(1, "MyDouble", double.MaxValue);
-            tree.AddComponentParameter(1, "MyDecimal", decimal.MinusOne);
-            tree.AddComponentParameter(1, "MyDate", dateTimeWillNotChange);
-            tree.AddComponentParameter(1, "MyGuid", Guid.Empty);
-
-            NEW ....
-            
-            tree.AddComponentParameter(1, "MySByte", (sbyte)123);
-            tree.AddComponentParameter(1, "MyShort", (short)123);
-            tree.AddComponentParameter(1, "MyUShort", (ushort)123);
-            tree.AddComponentParameter(1, "MyUInt", uint.MaxValue);
-            tree.AddComponentParameter(1, "MyULong", ulong.MaxValue);
-            tree.AddComponentParameter(1, "MyChar", 'c');
-            tree.AddComponentParameter(1, "MyEnum", StringComparison.OrdinalIgnoreCase);
-            tree.AddComponentParameter(1, "MyEventCallBack", EventCallback.Empty);
-            tree.AddComponentParameter(1, "MyEventCallBackOfT", EventCallback<int>.Empty);
-
 :::moniker range=">= aspnetcore-8.0"
 
 * Ensure that child component parameters are of primitive immutable types&dagger;. The built-in logic for detecting changes automatically skips rerendering if the primitive immutable parameter values haven't changed. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
