@@ -14,6 +14,20 @@ uid: blazor/host-and-deploy/webassembly/azure-static-web-apps
 
 This article explains how to host and deploy standalone Blazor WebAssembly with [Microsoft Azure Static Web Apps](https://azure.microsoft.com/products/app-service/static).
 
+## App configuration
+
+To ensure that requests for any path return `index.html`, set a navigation fallback route.
+
+Create a file named `staticwebapp.config.json` in the project's root folder with the following content:
+
+```json
+{
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  }
+}
+```
+
 ## Deploy from Visual Studio
 
 To deploy from Visual Studio, create a publish profile for Azure Static Web Apps:
