@@ -43,6 +43,8 @@ The sample solution consists of the following projects:
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppEntra` folder for .NET 9 or later.
 
+
+
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 ## Microsoft Entra ID app registrations
@@ -416,6 +418,9 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 
 :::zone-end
 
+> [!NOTE]
+> The preceding examples use in-memory token caches, but production apps should use distributed token caches. For more information, see the [Use distributed token caches in production](#use-distributed-token-caches-in-production) section.
+
 The callback path (`CallbackPath`) must match the redirect URI (login callback path) configured when registering the application in the Entra or Azure portal. Paths are configured in the **Authentication** blade of the app's registration. The default value of `CallbackPath` is `/signin-oidc` for a registered redirect URI of `https://localhost/signin-oidc` (a port isn't required).
 
 The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath%2A> is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from Entra. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri%2A> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri%2A>, if specified.
@@ -643,6 +648,9 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddInMemoryTokenCaches();
 ```
 
+> [!NOTE]
+> The preceding example uses in-memory token caches, but production apps should use distributed token caches. For more information, see the [Use distributed token caches in production](#use-distributed-token-caches-in-production) section.
+
 In the `MinimalApiJwt` project, add the following app settings configuration to the `appsettings.json` file:
 
 ```json
@@ -684,6 +692,12 @@ For more information on configuration, see the following resources:
 
 * <xref:fundamentals/configuration/index>
 * <xref:blazor/fundamentals/configuration>
+
+## Use distributed token caches in production
+
+In-memory token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.InMemory.InMemoryTokenCacheProviderExtension.AddInMemoryTokenCaches%2A>, but production web apps and web APIs should use distributed token caches (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)) in conjunction with a constrained memory cache.
+
+For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches).
 
 ## Redirect to the home page on logout
 
