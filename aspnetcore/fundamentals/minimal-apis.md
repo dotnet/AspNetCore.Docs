@@ -86,6 +86,8 @@ When a parameter to a Minimal API endpoint is a class or record type, validation
 public record Product(
     [Required] string Name,
     [Range(1, 1000)] int Quantity);
+```
+Developers customize the behavior of the validation system by:
 
 * Creating custom [`[Validation]`](xref:System.ComponentModel.DataAnnotations.ValidationAttribute) attribute implementations.
 * Implementing the [`IValidatableObject`](xref:System.ComponentModel.DataAnnotations.IValidatableObject) interface for complex validation logic.
