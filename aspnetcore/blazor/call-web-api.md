@@ -61,20 +61,33 @@ In the app's `Program` file, call:
 
 * <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilder.EnableTokenAcquisitionToCallDownstreamApi%2A>: Enables token acquisition to call web APIs.
 * `AddDownstreamApi`: Adds a named downstream web service related to a specific configuration section.
-* <xref:Microsoft.Identity.Web.TokenCacheProviders.InMemory.InMemoryTokenCacheProviderExtension.AddInMemoryTokenCaches%2A>: Adds both the app and per-user in-memory token caches.
+* <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A>: Adds the .NET Core distributed cache based app token cache to the service collection.
+* <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>: Adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory.
 
 ```csharp
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"))
     .EnableTokenAcquisitionToCallDownstreamApi()
-    .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
-    .AddInMemoryTokenCaches();
+    .AddDownstreamApi("DownstreamApi", 
+        builder.Configuration.GetSection("DownstreamApi"))
+    .AddDistributedTokenCaches();
+
+// Requires the 'Microsoft.Extensions.Caching.Memory' NuGet package
+builder.Services.AddDistributedMemoryCache();
 ```
 
-> [IMPORTANT]
-> In-memory token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.InMemory.InMemoryTokenCacheProviderExtension.AddInMemoryTokenCaches%2A>, but production web apps and web APIs should use distributed token caches (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)) in conjunction with a constrained memory cache.
->
-> For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches).
+In-memory distributed token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A> to ensure that there is a base implementation available for distributed token caching.
+
+Production web apps and web APIs should use a production distributed token cache (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)).
+
+<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory, which is used by Microsoft Identity Web for token caching.
+
+> [!NOTE]
+> <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> requires a package reference to the [`Microsoft.Extensions.Caching.Memory` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory).
+
+To configure a production distributed cache provider, see <xref:performance/caching/distributed>. 
+
+For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>. Don't attempt to use the code shown in a Blazor app.
 
 Inject <xref:Microsoft.Identity.Abstractions.IDownstreamApi> and call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> when calling on behalf of a user:
 

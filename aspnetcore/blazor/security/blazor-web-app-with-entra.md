@@ -171,7 +171,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         configOptions.BaseUrl = "{BASE ADDRESS}";
         configOptions.Scopes = [ "{APP ID URI}/Weather.Get" ];
     })
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
 
 Placeholders in the preceding configuration:
@@ -203,7 +203,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         configOptions.BaseUrl = "https://localhost:7277";
         configOptions.Scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
     })
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
 
 :::zone-end
@@ -381,7 +381,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         configOptions.BaseUrl = "{BASE ADDRESS}";
         configOptions.Scopes = [ "{APP ID URI}/Weather.Get" ];
     })
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
 
 Placeholders in the preceding configuration:
@@ -413,13 +413,13 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         configOptions.BaseUrl = "https://localhost:7277";
         configOptions.Scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
     })
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
 
 :::zone-end
 
 > [!NOTE]
-> The preceding examples use in-memory token caches, but production apps should use distributed token caches. For more information, see the [Use distributed token caches in production](#use-distributed-token-caches-in-production) section.
+> The preceding examples use in-memory distributed token caches, but production apps should use a production distributed token cache provider. For more information, see the [Use a production distributed token cache provider](#use-a-production-distributed-token-cache-provider) section.
 
 The callback path (`CallbackPath`) must match the redirect URI (login callback path) configured when registering the application in the Entra or Azure portal. Paths are configured in the **Authentication** blade of the app's registration. The default value of `CallbackPath` is `/signin-oidc` for a registered redirect URI of `https://localhost/signin-oidc` (a port isn't required).
 
@@ -645,11 +645,11 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 -       configOptions.Scopes = [ "..." ];
 -   })
 +   .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
 
 > [!NOTE]
-> The preceding example uses in-memory token caches, but production apps should use distributed token caches. For more information, see the [Use distributed token caches in production](#use-distributed-token-caches-in-production) section.
+> The preceding example uses in-memory distributed token caches, but production apps should use a production distributed token cache provider. For more information, see the [Use a production distributed token cache provider](#use-a-production-distributed-token-cache-provider) section.
 
 In the `MinimalApiJwt` project, add the following app settings configuration to the `appsettings.json` file:
 
@@ -693,11 +693,24 @@ For more information on configuration, see the following resources:
 * <xref:fundamentals/configuration/index>
 * <xref:blazor/fundamentals/configuration>
 
-## Use distributed token caches in production
+## Use a production distributed token cache provider
 
-In-memory token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.InMemory.InMemoryTokenCacheProviderExtension.AddInMemoryTokenCaches%2A>, but production web apps and web APIs should use distributed token caches (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)) in conjunction with a constrained memory cache.
+In-memory distributed token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A> to ensure that there is a base implementation available for distributed token caching.
 
-For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches).
+Production web apps and web APIs should use a production distributed token cache (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)).
+
+<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory, which is used by Microsoft Identity Web for token caching:
+
+```csharp
+builder.Services.AddDistributedMemoryCache();
+```
+
+> [!NOTE]
+> <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> requires a package reference to the [`Microsoft.Extensions.Caching.Memory` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory).
+
+To configure a production distributed cache provider, see <xref:performance/caching/distributed>. 
+
+For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>. Don't attempt to use the code shown in a Blazor app.
 
 ## Redirect to the home page on logout
 
