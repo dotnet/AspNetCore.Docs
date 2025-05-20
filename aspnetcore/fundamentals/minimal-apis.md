@@ -5,7 +5,7 @@ description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 02/07/2025
+ms.date: 05/19/2025
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
@@ -124,7 +124,7 @@ app.MapPost("/products", (Product product) =>
     // Endpoint logic here
     return TypedResults.Ok(product);
 });
-``
+```
 
 ## Responses
 
