@@ -78,7 +78,14 @@ Support for validation in Minimal APIs is now available. This feature allows you
 * Header
 * Request body
 
-Validations are defined using attributes in the [`DataAnnotations`](xref:System.ComponentModel.DataAnnotations) namespace. Developers customize the behavior of the validation system by:
+Validations are defined using attributes in the [`DataAnnotations`](xref:System.ComponentModel.DataAnnotations) namespace. 
+
+When a parameter to a Minimal API endpoint is a class or record type, validation attributes are automatically applied. For example:
+
+```csharp
+public record Product(
+    [Required] string Name,
+    [Range(1, 1000)] int Quantity);
 
 * Creating custom [`[Validation]`](xref:System.ComponentModel.DataAnnotations.ValidationAttribute) attribute implementations.
 * Implementing the [`IValidatableObject`](xref:System.ComponentModel.DataAnnotations.IValidatableObject) interface for complex validation logic.
@@ -102,28 +109,6 @@ app.MapPost("/products",
     ([EvenNumber(ErrorMessage = "Product ID must be even")] int productId, [Required] string name)
         => TypedResults.Ok(productId))
     .DisableValidation();
-```
-
-### Validation with record types
-<!-- https://github.com/dotnet/aspnetcore/pull/61193 -->
-<!-- https://github.com/dotnet/aspnetcore/pull/61402 -->
-
-Minimal APIs also support validation with C# record types. Record types can be validated using attributes from the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace, similar to classes. For example:
-
-```csharp
-public record Product(
-    [Required] string Name,
-    [Range(1, 1000)] int Quantity);
-```
-
-When using record types as parameters in Minimal API endpoints, validation attributes are automatically applied in the same way as class types:
-
-```csharp
-app.MapPost("/products", (Product product) =>
-{
-    // Endpoint logic here
-    return TypedResults.Ok(product);
-});
 ```
 
 ## Responses
