@@ -103,6 +103,8 @@ Production web apps and web APIs should use a production distributed token cache
 > ```csharp
 > builder.Services.AddInMemoryTokenCaches();
 > ```
+>
+> Later in the development and testing period, adopt a production distributed token cache provider.
 
 <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory, which is used by Microsoft Identity Web for token caching.
 
@@ -117,6 +119,17 @@ To configure a production distributed cache provider, see <xref:performance/cach
 > Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
 
 For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>.
+
+Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A?displayProperty=nameWithType> is set to `true`.
+
+> [!NOTE]
+> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A> to `false` and configure a shared Data Protection key ring later:
+>
+> ```csharp
+> options.Encrypt = false;
+> ```
+>
+> Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
 
 The following example shows how to use [Azure Blob Storage and Azure Key Vault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. Add the following packages to the server project of the Blazor Web App:
 
