@@ -98,7 +98,7 @@ In-memory distributed token caches are created when calling <xref:Microsoft.Iden
 Production web apps and web APIs should use a production distributed token cache (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)).
 
 > [!NOTE]
-> For local testing and development on a single machine, you can use in-memory token caches instead of distributed token caches:
+> For local development and testing on a single machine, you can use in-memory token caches instead of distributed token caches:
 >
 > ```csharp
 > builder.Services.AddInMemoryTokenCaches();
