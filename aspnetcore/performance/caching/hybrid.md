@@ -65,7 +65,7 @@ cache.GetOrCreateAsync($"user_prefs_{userId}", ...);
 
 It's the caller's responsibility to ensure that a key scheme is valid and can't cause data to become confused.
 
-Avoid using external user input directly in cache keys. For example, don't use raw strings from user interfaces as cache keys. Doing so can expose your app to security risks, such as unauthorized access or denial-of-service attacks caused by flooding the cache with random or meaningless keys. In the valid examples above, the *order* and *user preference* data are clearly separated and use trusted identifiers:
+Avoid using external user input directly in cache keys. For example, don't use raw strings from user interfaces as cache keys. Doing so can expose your app to security risks, such as unauthorized access or denial-of-service attacks caused by flooding the cache with random or meaningless keys. In the preceding valid examples, the *order* and *user preference* data are clearly separated and use trusted identifiers:
 
 * `orderid` and `userId` are internally generated identifiers.
 * `region` might be an enum or string from a predefined list of known regions.
