@@ -416,8 +416,8 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 
 :::zone-end
 
-> [!NOTE]
-> The preceding examples use in-memory distributed token caches, but production apps should use a production distributed token cache provider. For more information, see the [Use a production distributed token cache provider](#use-a-production-distributed-token-cache-provider) section.
+> [!WARNING]
+> The preceding examples use in-memory distributed token caches, but production apps should use a production distributed token cache provider. Otherwise, the app may have poor performance in some scenarios. For more information, see the [Use a production distributed token cache provider](#use-a-production-distributed-token-cache-provider) section.
 
 The callback path (`CallbackPath`) must match the redirect URI (login callback path) configured when registering the application in the Entra or Azure portal. Paths are configured in the **Authentication** blade of the app's registration. The default value of `CallbackPath` is `/signin-oidc` for a registered redirect URI of `https://localhost/signin-oidc` (a port isn't required).
 
@@ -647,7 +647,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 ```
 
 > [!NOTE]
-> The preceding example uses in-memory distributed token caches, but production apps should use a production distributed token cache provider. For more information, see the [Use a production distributed token cache provider](#use-a-production-distributed-token-cache-provider) section.
+> The preceding example uses in-memory distributed token caches, but production apps should use a production distributed token cache provider. Otherwise, the app may have poor performance in some scenarios. For more information, see the [Use a production distributed token cache provider](#use-a-production-distributed-token-cache-provider) section.
 
 In the `MinimalApiJwt` project, add the following app settings configuration to the `appsettings.json` file:
 
@@ -708,7 +708,10 @@ builder.Services.AddDistributedMemoryCache();
 >
 > [!INCLUDE[](~/includes/package-reference.md)]
 
-To configure a production distributed cache provider, see <xref:performance/caching/distributed>. 
+To configure a production distributed cache provider, see <xref:performance/caching/distributed>.
+
+> [!WARNING]
+> Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
 
 For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>.
 

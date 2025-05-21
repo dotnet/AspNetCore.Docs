@@ -87,7 +87,10 @@ Production web apps and web APIs should use a production distributed token cache
 >
 > [!INCLUDE[](~/includes/package-reference.md)]
 
-To configure a production distributed cache provider, see <xref:performance/caching/distributed>. 
+To configure a production distributed cache provider, see <xref:performance/caching/distributed>.
+
+> [!WARNING]
+> Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
 
 For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>.
 
