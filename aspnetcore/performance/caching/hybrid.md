@@ -242,8 +242,7 @@ A concrete implementation of the `HybridCache` abstract class is included in the
 
   Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see <xref:fundamentals/native-aot>.
 
-So the main difference if you want to use AOT with `AddHybridCache` is the need to ensure that your serialization setup is AOT-compatible. Otherwise, `HybridCache` works the same way in Native AOT as in regular ASP.NET Core apps.
-
+If you set up serialization and trimming correctly, `HybridCache` behaves the sme way in Native AOT as in regular ASP.NET Core apps.
 
 ## Compatibility
 
