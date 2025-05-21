@@ -30,7 +30,7 @@ To save tokens and other authentication properties in Blazor Web Apps, we recomm
 The following scenarios are covered:
 
 * [Passing tokens in apps that use an OIDC identity provider](#passing-tokens-in-apps-that-use-an-oidc-identity-provider)
-* [Passing tokens in apps that use Microsoft Identity Web packages/API for Entra ID](#passing-tokens-in-apps-that-use-microsoft-identity-web-packagesapi-for-entra-id)
+* [Passing tokens in apps that use Microsoft Identity Web packages for Entra ID](#passing-tokens-in-apps-that-use-microsoft-identity-web-packagesapi-for-entra-id)
 
 ### Passing tokens in apps that use an OIDC identity provider
 
@@ -120,9 +120,9 @@ internal sealed class ServerWeatherForecaster(IHttpClientFactory clientFactory,
 
 See the [Demonstration `Weather` component](#demonstration-weather-component) section for an example component that obtains weather data from a web API in developer code using an <xref:System.Net.Http.HttpRequestMessage>.
 
-### Passing tokens in apps that use Microsoft Identity Web packages/API for Entra ID
+### Passing tokens in apps that use Microsoft Identity Web packages for Entra ID
 
-In a Blazor Web App with [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages/API](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), use the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnTokenResponseReceived%2A> event to store tokens and other authentication data in the user's claims principal. The following example shows how to retain and update the access token of a user.
+In a Blazor Web App with [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), use the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnTokenResponseReceived%2A> event to store tokens and other authentication data in the user's claims principal. The following example shows how to retain and update the access token of a user.
 
 For a local demonstration of the approach, you can implement the following example in the sample app that accompanies <xref:blazor/security/blazor-web-app-entra>.
 
@@ -154,14 +154,14 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 
 Make sure that <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> is set to `true` if you need the authentication data client-side (in the `.Client` project of the Blazor Web App). For more information, see <xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps>.
 
-See the [Demonstration `Weather` component](#demonstration-weather-component) section for an example component that obtains weather data from a web API in developer code using an <xref:System.Net.Http.HttpRequestMessage>. However, we recommend using Microsoft Identity Web packages/API for Entra in most cases for the best developer experience, which is demonstrated by the sample app for <xref:blazor/security/blazor-web-app-entra>. The `Weather` component in the *Demonstration `Weather` component* section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
+See the [Demonstration `Weather` component](#demonstration-weather-component) section for an example component that obtains weather data from a web API in developer code using an <xref:System.Net.Http.HttpRequestMessage>. However, we recommend using Microsoft Identity Web packages for Entra in most cases for the best developer experience, which is demonstrated by the sample app for <xref:blazor/security/blazor-web-app-entra>. The `Weather` component in the *Demonstration `Weather` component* section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
 
 ### Demonstration `Weather` component
 
 The following component is presented to demonstrate using an access token from the user's claims in C# code using an <xref:System.Net.Http.HttpRequestMessage>.
 
 > [!NOTE]
-> If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages/API](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), we recommend using the API provided by Microsoft to call web APIs, which usually provides a better developer experience. The example in this section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
+> If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), we recommend using the API provided by Microsoft to call web APIs, which usually provides a better developer experience. The example in this section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
 
 [CORS](xref:security/cors) configuration is required when the web API is hosted at a different origin than the calling app.
 
@@ -261,7 +261,7 @@ The following approach is aimed at attaching a user's access token to outgoing r
 
 For a demonstration of the guidance in this section, see the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps (.NET 8 or later) in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples). The samples adopt a global interactive render mode and OIDC authentication with Microsoft Entra without using Entra-specific packages. The samples demonstrate how to pass a JWT access token to call a secure web API.
 
-[Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages/API](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) provides a API to call web APIs from Blazor Web Apps with automatic token management and renewal. For more information, see <xref:blazor/security/blazor-web-app-entra> and the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` sample apps (.NET 9 or later) in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples).
+[Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) provides a API to call web APIs from Blazor Web Apps with automatic token management and renewal. For more information, see <xref:blazor/security/blazor-web-app-entra> and the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` sample apps (.NET 9 or later) in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples).
 
 Subclass <xref:System.Net.Http.DelegatingHandler> to attach a user's access token to outgoing requests. The token handler only executes on the server, so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe.
 

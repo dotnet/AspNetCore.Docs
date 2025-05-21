@@ -817,7 +817,7 @@ internal sealed class ServerWeatherForecaster(IHttpClientFactory clientFactory) 
 }
 ```
 
-If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages/API](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) (see <xref:blazor/call-web-api#microsoft-identity-platform-for-web-api-calls>), the `ServerWeatherForecaster` might appear like the following class to make external web API calls:
+If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) (see <xref:blazor/call-web-api#microsoft-identity-platform-for-web-api-calls>), the `ServerWeatherForecaster` might appear like the following class to make external web API calls:
 
 ```csharp
 internal sealed class ServerWeatherForecaster(IDownstreamApi downstreamApi) : IWeatherForecaster
