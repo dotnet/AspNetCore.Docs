@@ -118,7 +118,14 @@ To configure a production distributed cache provider, see <xref:performance/cach
 
 For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>.
 
-Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A?displayProperty=nameWithType> is set to `true`. The following example shows how to use [Azure Blob Storage and Azure Key Vault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. The `{BLOB URI WITH SAS TOKEN}` placeholder is the full URI where the key file should be stored with the SAS token as a query string parameter, and the `{KEY IDENTIFIER}` placeholder is the key vault key identifier used for key encryption:
+The following example shows how to use [Azure Blob Storage and Azure Key Vault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. Add the following packages to the server project of the Blazor Web App:
+
+* [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
+* [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Configure Azure Blob Storage to maintain the encrypted keys and protect them with Azure Key Vault. In the following example, the `{BLOB URI WITH SAS TOKEN}` placeholder is the full URI where the key file should be stored with the SAS token as a query string parameter, and the `{KEY IDENTIFIER}` placeholder is the key vault key identifier used for key encryption:
 
 ```csharp
 builder.Services.AddDataProtection()
