@@ -30,7 +30,7 @@ To save tokens and other authentication properties in Blazor Web Apps, we recomm
 The following scenarios are covered:
 
 * [Passing tokens in apps that use an OIDC identity provider](#passing-tokens-in-apps-that-use-an-oidc-identity-provider)
-* [Passing tokens in apps that use Microsoft Identity Web packages for Entra ID](#passing-tokens-in-apps-that-use-microsoft-identity-web-packagesapi-for-entra-id)
+* [Passing tokens in apps that use Microsoft Identity Web packages for Entra ID](#passing-tokens-in-apps-that-use-microsoft-identity-web-packages-for-entra-id)
 
 ### Passing tokens in apps that use an OIDC identity provider
 
