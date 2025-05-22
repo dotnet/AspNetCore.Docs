@@ -171,7 +171,7 @@ With additional code, the weather forecast can be persisted when the component i
 @page "/weather"
 @using System.Net.Http.Headers
 @using Microsoft.AspNetCore.Authorization
-@using BlazorWebAppEntra.Client.Weather
+@using BlazorWebAppOidc.Client.Weather
 @attribute [Authorize]
 @inject IHttpClientFactory ClientFactory
 
@@ -181,7 +181,7 @@ With additional code, the weather forecast can be persisted when the component i
 
 <p>This component demonstrates showing data.</p>
 
-@if (forecast == null)
+@if (forecasts == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -197,7 +197,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecast)
+            @foreach (var forecast in forecasts)
             {
                 <tr>
                     <td>@forecast.Date.ToShortDateString()</td>
@@ -211,7 +211,7 @@ else
 }
 
 @code {
-    private IEnumerable<WeatherForecast>? forecast;
+    private IEnumerable<WeatherForecast>? forecasts;
 
     [CascadingParameter]
     private Task<AuthenticationState>? AuthState { get; set; }
@@ -227,17 +227,13 @@ else
             {
                 var accessToken = 
                     user.Claims.First(c => c.Type == "AccessToken")?.Value;
-
                 var request = 
                     new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-
                 request.Headers.Authorization =
                     new AuthenticationHeaderValue("Bearer", accessToken);
                 var client = ClientFactory.CreateClient();
                 client.BaseAddress = new Uri("https://localhost:7277");
-
                 var response = await client.SendAsync(request);
-
                 response.EnsureSuccessStatusCode();
 
                 forecast = await response.Content
