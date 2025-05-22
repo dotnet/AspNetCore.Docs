@@ -94,6 +94,8 @@ builder.Services.AddCascadingValue(sp =>
 >
 > Avoid using <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> to register a component type as a cascading value. Instead, wrap the `<Router>...</Router>` in the `Routes` component (`Components/Routes.razor`) with the component and adopt global interactive server-side rendering (interactive SSR). For an example, see the [`CascadingValue` component](#cascadingvalue-component) section.
 
+## Root-level cascading values with notifications
+
 Calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> to issue update notifications can be used to signal multiple Razor component subscribers that a cascading value has changed. Notifications aren't possible for subscribers that adopt static server-side rendering (static SSR), so subscribers must adopt an interactive render mode. 
 
 In the following example:
@@ -409,6 +411,7 @@ Blazor Web Apps provide alternative approaches for cascading values that apply m
 For more information, see the following sections of this article:
 
 * [Root-level cascading values](#root-level-cascading-values)
+* [Root-level cascading values with notifications](#root-level-cascading-values-with-notifications)
 * [Cascading values/parameters and render mode boundaries](#cascading-valuesparameters-and-render-mode-boundaries)
 
 :::moniker-end
@@ -507,7 +510,7 @@ Cascading parameters aren't JSON-serializable because the typical usage patterns
 
 Recommendations:
 
-* If you need to make state available to all interactive components as a cascading parameter, we recommend using [root-level cascading values](#root-level-cascading-values). A factory pattern is available, and the app can emit updated values after app startup. Root-level cascading values are available to all components, including interactive components, since they're processed as DI services.
+* If you need to make state available to all interactive components as a cascading parameter, we recommend using [root-level cascading values](#root-level-cascading-values) or [root-level cascading values with notifications](#root-level-cascading-values-with-notifications). A factory pattern is available, and the app can emit updated values after app startup. Root-level cascading values are available to all components, including interactive components, since they're processed as DI services.
 
 * For component library authors, you can create an extension method for library consumers similar to the following:
 
