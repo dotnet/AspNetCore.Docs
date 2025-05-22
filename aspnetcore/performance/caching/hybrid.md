@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: tdykstra
-ms.date: 07/16/2024
+ms.date: 05/22/2025
 uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
