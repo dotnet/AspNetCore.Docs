@@ -105,6 +105,9 @@ In the following example:
 
 Keep in mind for production code that any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state they use. We recommend creating granular classes, cascading them separately with specific subscriptions to ensure that only components subscribed to a specific portion of the application state are affected by changes.
 
+> [!NOTE]
+> For a Blazor Web App solution consisting of server and client (`.Client`) projects, the following `NotifyingDalek.cs` file is placed in the `.Client` project.
+
 `NotifyingDalek.cs`:
 
 ```csharp
@@ -144,6 +147,9 @@ public class NotifyingDalek : INotifyPropertyChanged
 ```
 
 The following `CascadingStateServiceCollectionExtensions` creates a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> from a type that implements <xref:System.ComponentModel.INotifyPropertyChanged>.
+
+> [!NOTE]
+> For a Blazor Web App solution consisting of server and client (`.Client`) projects, the following `CascadingStateServiceCollectionExtensions.cs` file is placed in the `.Client` project.
 
 `CascadingStateServiceCollectionExtensions.cs`:
 
@@ -194,17 +200,14 @@ public static class CascadingStateServiceCollectionExtensions
 
 The type's <xref:System.ComponentModel.PropertyChangedEventHandler> (`HandlePropertyChanged`) calls the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> method to notify subscribers that the cascading value has changed. The <xref:System.Threading.Tasks.Task> is discarded when calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> because the call only represents the duration of the dispatch to the synchronous context. Exceptions are handled internally by dispatching them to the renderer within the context of whichever component threw when receiving the update. This is the same way that exceptions are processed with a <xref:Microsoft.AspNetCore.Components.CascadingValue%601>, which isn't notified about exceptions that happen inside notification recipients. The event handler is disconnected in the `Dispose` method to prevent a memory leak.
 
-In the `Program` file&dagger;, `NotifyingDalek` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with an initial `Unit` value of 888 units:
+In the `Program` file, `NotifyingDalek` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with an initial `Unit` value of 888 units:
 
 ```csharp
 builder.Services.AddNotifyingCascadingValue(new NotifyingDalek() { Units = 888 });
 ```
 
 > [!NOTE]
-> &dagger;For Blazor Web App solutions consisting of server and client (`.Client`) projects:
->
-> * The preceding `NotifyingDalek.cs` and `CascadingStateServiceCollectionExtensions.cs` files are placed in the `.Client` project.
-> * The preceding code is placed into each project's `Program` file.
+> For a Blazor Web App solution consisting of server and client (`.Client`) projects, the preceding code is placed into each project's `Program` file.
 
 The following component is used to demonstrate how changing the value of `NotifyingDalek.Units` notifies subscribers.
 
