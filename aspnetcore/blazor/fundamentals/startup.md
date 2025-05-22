@@ -676,6 +676,10 @@ In a component that adopts Interactive WebAssembly rendering, wrap the component
 }
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
 #### Global Interactive WebAssembly rendering with prerendering
 
 *This scenario applies to global Interactive WebAssembly rendering with prerendering (`@rendermode="InteractiveWebAssembly"` on the `HeadOutlet` and `Routes` components in the `App` component).*
@@ -721,6 +725,10 @@ In `Layout/MainLayout.razor`:
     @Body
 + </ContentLoading>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 #### Global Interactive WebAssembly rendering without prerendering
 
