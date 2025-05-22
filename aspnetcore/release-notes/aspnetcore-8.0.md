@@ -179,7 +179,10 @@ For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-8.0&
 
 Root-level cascading values can be registered for the entire component hierarchy. Named cascading values and subscriptions for update notifications are supported.
 
-For more information, see <xref:blazor/components/cascading-values-and-parameters?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values>.
+For more information, see the following resources:
+
+* [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values)
+* [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values-with-notifications)
 
 ### Virtualize empty content
 
