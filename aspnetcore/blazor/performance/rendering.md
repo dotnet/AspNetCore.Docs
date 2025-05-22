@@ -22,16 +22,20 @@ At runtime, components exist in a hierarchy. A root component (the first compone
 
 1. The event is dispatched to the component that rendered the event's handler. After executing the event handler, the component is rerendered.
 1. When a component is rerendered, it supplies a new copy of parameter values to each of its child components.
-1. After a new set of parameter values is received, each component decides whether to rerender. Components rerender if the parameter values may have changed, for example, if they're mutable objects.
+1. After a new set of parameter values is received, Blazor decides whether to rerender the component. Components rerender if [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) returns `true`, which is the default behavior unless overridden, and the parameter values may have changed, for example, if they're mutable objects.
 
 The last two steps of the preceding sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. Events targeting high-level components can cause expensive rerendering because every component below the high-level component must rerender.
 
 To prevent rendering recursion into a particular subtree, use either of the following approaches:
 
-* Ensure that child component parameters are of primitive immutable types, such as `string`, `int`, `bool`, `DateTime`, and other similar types. The built-in logic for detecting changes automatically skips rerendering if the primitive immutable parameter values haven't changed. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
-* Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>:
-  * To accept nonprimitive parameter values, such as complex custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values.
+* Ensure that child component parameters are of specific immutable types&dagger;, such as `string`, `int`, `bool`, and `DateTime`. The built-in logic for detecting changes automatically skips rerendering if the immutable parameter values haven't changed. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
+* Override [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender), returning `false`:
+  * When parameters are nonprimitive types or unsupported immutable types&dagger;, such as complex custom model types or <xref:Microsoft.AspNetCore.Components.RenderFragment> values, and the parameter values haven't changed,
   * If authoring a UI-only component that doesn't change after the initial render, regardless of parameter value changes.
+
+&dagger;For more information, see [the change detection logic in Blazor's reference source (`ChangeDetection.cs`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 The following airline flight search tool example uses private fields to track the necessary information to detect changes. The previous inbound flight identifier (`prevInboundFlightId`) and previous outbound flight identifier (`prevOutboundFlightId`) track information for the next potential component update. If either of the flight identifiers change when the component's parameters are set in [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the component is rerendered because `shouldRender` is set to `true`. If `shouldRender` evaluates to `false` after checking the flight identifiers, an expensive rerender is avoided:
 
