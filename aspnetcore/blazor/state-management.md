@@ -863,7 +863,7 @@ Use [cascading values and parameters](xref:blazor/components/cascading-values-an
 
 :::moniker range=">= aspnetcore-8.0"
 
-Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values>.
+Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications>.
 
 :::moniker-end
 

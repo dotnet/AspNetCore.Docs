@@ -974,7 +974,7 @@ To address this scenario, inject the service in a new imports file placed in the
   * <xref:blazor/fundamentals/signalr#websocket-compression-for-interactive-server-components>
   * <xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>
 * <xref:blazor/js-interop/ssr>
-* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading parameters](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-parameters) section earlier in the article.
+* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) and [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications) sections earlier in the article.
 * <xref:blazor/components/class-libraries-with-static-ssr>
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
@@ -983,7 +983,7 @@ To address this scenario, inject the service in a new imports file placed in the
 :::moniker range="< aspnetcore-9.0"
 
 * <xref:blazor/js-interop/ssr>
-* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading parameters](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-parameters) section earlier in the article.
+* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) and [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications) sections earlier in the article.
 * <xref:blazor/components/class-libraries-with-static-ssr>
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
