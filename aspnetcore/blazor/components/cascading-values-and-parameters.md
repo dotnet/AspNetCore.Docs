@@ -94,6 +94,8 @@ builder.Services.AddCascadingValue(sp =>
 >
 > Avoid using <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> to register a component type as a cascading value. Instead, wrap the `<Router>...</Router>` in the `Routes` component (`Components/Routes.razor`) with the component and adopt global interactive server-side rendering (interactive SSR). For an example, see the [`CascadingValue` component](#cascadingvalue-component) section.
 
+## Root-level cascading values with notifications
+
 Calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> to issue update notifications can be used to signal multiple Razor component subscribers that a cascading value has changed. Notifications aren't possible for subscribers that adopt static server-side rendering (static SSR), so subscribers must adopt an interactive render mode. 
 
 In the following example:
