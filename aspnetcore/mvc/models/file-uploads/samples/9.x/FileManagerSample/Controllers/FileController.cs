@@ -19,21 +19,35 @@ namespace FileManagerSample.Controllers
         {
             try
             {
-                // Validate if the request has a body
                 if (!Request.HasFormContentType)
                 {
                     return BadRequest("The request does not contain a valid form.");
                 }
+                _ = Request.Headers.TryGetValue("Content-Type", out var contentType);
+                _logger.LogInformation("Content-Type: {ContentType}", contentType!);
 
                 var bodyReader = Request.BodyReader;
 
-                // Initialize streaming variables
                 long totalBytesRead = 0;
-                const int bufferSize = 16 * 1024; // 16 KB buffer size
+                const int bufferSize = 16 * 1024 * 1024; // 16 MB buffer size
+
+                string targetFilePath = Path.Combine(Directory.GetCurrentDirectory(), "file-upload.dat");
+                if (System.IO.File.Exists(targetFilePath))
+                {
+                    System.IO.File.Delete(targetFilePath);
+                    _logger.LogDebug("Removed existing output file: {path}", targetFilePath);
+                }
+
+                using FileStream outputFileStream = new FileStream(
+                    path: targetFilePath,
+                    mode: FileMode.OpenOrCreate,
+                    access: FileAccess.Write,
+                    share: FileShare.ReadWrite,
+                    bufferSize: bufferSize,
+                    useAsync: true);
 
                 while (true)
                 {
-                    // Read from the body in chunks
                     var readResult = await bodyReader.ReadAsync();
 
                     // Get the buffer containing the data
