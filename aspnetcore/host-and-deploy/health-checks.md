@@ -43,7 +43,7 @@ The following example creates a health check endpoint at `/healthz`:
 [Docker](xref:host-and-deploy/docker/index) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
 
 ```dockerfile
-HEALTHCHECK CMD curl --fail http://localhost:5000/healthz || exit
+HEALTHCHECK CMD curl --fail http://localhost:5000/healthz || exit 1
 ```
 
 The preceding example uses `curl` to make an HTTP request to the health check endpoint at `/healthz`. `curl` isn't included in the .NET Linux container images, but it can be added by installing the required package in the Dockerfile. Containers that use images based on Alpine Linux can use the included `wget` in place of `curl`.
