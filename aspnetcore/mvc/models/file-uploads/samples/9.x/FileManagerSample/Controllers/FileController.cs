@@ -52,7 +52,7 @@ namespace FileManagerSample.Controllers
 
         [HttpPost]
         [Route(nameof(Upload))]
-        public async Task<IActionResult> Upload()
+        public async Task<IActionResult> Upload(CancellationToken cancellationToken)
         {
             try
             {
@@ -85,12 +85,12 @@ namespace FileManagerSample.Controllers
 
                 while (true)
                 {
-                    var readResult = await bodyReader.ReadAsync();
+                    var readResult = await bodyReader.ReadAsync(cancellationToken);
                     var buffer = readResult.Buffer;
 
                     foreach (var memory in buffer)
                     {
-                        await outputFileStream.WriteAsync(memory, default);
+                        await outputFileStream.WriteAsync(memory, cancellationToken);
                         totalBytesRead += memory.Length;
                     }
 
@@ -121,8 +121,8 @@ namespace FileManagerSample.Controllers
                 return false;
             }
 
-            using (FileStream fs1 = System.IO.File.OpenRead(filePath1))
-            using (FileStream fs2 = System.IO.File.OpenRead(filePath2))
+            using (var fs1 = System.IO.File.OpenRead(filePath1))
+            using (var fs2 = System.IO.File.OpenRead(filePath2))
             {
                 byte[] buffer1 = new byte[8192]; // 8 KB buffer
                 byte[] buffer2 = new byte[8192];
