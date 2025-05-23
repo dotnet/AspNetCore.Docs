@@ -9,8 +9,8 @@ namespace FileManagerSample.Controllers
     [Route("[controller]")]
     public class FileController : ControllerBase
     {
-        private const int BufferSize = 16 * 1024 * 1024; // 16 MB buffer size
-        private const string UploadFilePath = "file-upload.dat";
+        public const int BufferSize = 16 * 1024 * 1024; // 16 MB buffer size
+        public const string UploadFilePath = "file-upload.dat";
 
         private readonly ILogger<FileController> _logger;
 
@@ -30,10 +30,7 @@ namespace FileManagerSample.Controllers
                     return BadRequest("The request does not contain valid multipart form data.");
                 }
 
-                // Extract the boundary from the Content-Type header
-                var boundary = Microsoft.Net.Http.Headers.HeaderUtilities.RemoveQuotes(
-                    Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Parse(Request.ContentType).Boundary).Value;
-
+                var boundary = HeaderUtilities.RemoveQuotes(MediaTypeHeaderValue.Parse(Request.ContentType).Boundary).Value;
                 if (string.IsNullOrWhiteSpace(boundary))
                 {
                     return BadRequest("Missing boundary in multipart form data.");
@@ -42,7 +39,7 @@ namespace FileManagerSample.Controllers
                 var reader = new MultipartReader(boundary, Request.Body);
 
                 // Process each section in the multipart body
-                MultipartSection section;
+                MultipartSection? section;
                 long totalBytesRead = 0;
                 string targetFilePath = Path.Combine(Directory.GetCurrentDirectory(), UploadFilePath);
 
@@ -75,7 +72,7 @@ namespace FileManagerSample.Controllers
                     else if (contentDisposition != null && contentDisposition.IsFormDisposition())
                     {
                         // Handle metadata (form fields)
-                        string key = contentDisposition.Name.Value;
+                        string key = contentDisposition.Name.Value!;
                         using var streamReader = new StreamReader(section.Body);
                         string value = await streamReader.ReadToEndAsync();
                         _logger.LogInformation($"Received metadata: {key} = {value}");
@@ -128,21 +125,15 @@ namespace FileManagerSample.Controllers
                 while (true)
                 {
                     var readResult = await bodyReader.ReadAsync();
-
-                    // Get the buffer containing the data
                     var buffer = readResult.Buffer;
 
-                    // Process the buffer data (streaming logic here)
                     foreach (var memory in buffer)
                     {
                         await outputFileStream.WriteAsync(memory);
                         totalBytesRead += memory.Length;
                     }
-
-                    // Mark the buffer as processed
                     bodyReader.AdvanceTo(buffer.End);
 
-                    // Break the loop if there's no more data to read
                     if (readResult.IsCompleted)
                     {
                         break;
