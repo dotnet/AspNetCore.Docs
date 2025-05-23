@@ -6,9 +6,8 @@ namespace FileManagerSample.Controllers
     [Route("[controller]")]
     public class FileController : ControllerBase
     {
+        private const int BufferSize = 16 * 1024 * 1024; // 16 MB buffer size
         private const string UploadFilePath = "file-upload.dat";
-        // private const string OriginalFilePath = "/* replace with your file path */";
-        private const string OriginalFilePath = @"D:\.other\big-files\bigfile.dat";
 
         private readonly ILogger<FileController> _logger;
 
@@ -18,41 +17,8 @@ namespace FileManagerSample.Controllers
         }
 
         [HttpPost]
-        [Route(nameof(Compare))]
-        public IActionResult Compare()
-        {
-            try
-            {
-                string targetFilePath = Path.Combine(Directory.GetCurrentDirectory(), UploadFilePath);
-                if (!System.IO.File.Exists(targetFilePath))
-                {
-                    return NotFound($"File not found: {targetFilePath}");
-                }
-                if (!System.IO.File.Exists(OriginalFilePath))
-                {
-                    return NotFound($"File not found: {OriginalFilePath}");
-                }
-
-                bool areFilesEqual = CompareFiles(targetFilePath, OriginalFilePath);
-                if (areFilesEqual)
-                {
-                    return Ok(new { Message = "The files are identical." });
-                }
-                else
-                {
-                    return Ok(new { Message = "The files are different." });
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error during file comparison");
-                return StatusCode(500, "An error occurred while comparing the files.");
-            }
-        }
-
-        [HttpPost]
-        [Route(nameof(Upload))]
-        public async Task<IActionResult> Upload(CancellationToken cancellationToken)
+        [Route(nameof(UploadPipeReader))]
+        public async Task<IActionResult> UploadPipeReader()
         {
             try
             {
@@ -66,7 +32,7 @@ namespace FileManagerSample.Controllers
                 var bodyReader = Request.BodyReader;
 
                 long totalBytesRead = 0;
-                const int bufferSize = 16 * 1024 * 1024; // 16 MB buffer size
+                
 
                 string targetFilePath = Path.Combine(Directory.GetCurrentDirectory(), UploadFilePath);
                 if (System.IO.File.Exists(targetFilePath))
@@ -80,21 +46,27 @@ namespace FileManagerSample.Controllers
                     mode: FileMode.OpenOrCreate,
                     access: FileAccess.Write,
                     share: FileShare.ReadWrite,
-                    bufferSize: bufferSize,
+                    bufferSize: BufferSize,
                     useAsync: true);
 
                 while (true)
                 {
-                    var readResult = await bodyReader.ReadAsync(cancellationToken);
+                    var readResult = await bodyReader.ReadAsync();
+
+                    // Get the buffer containing the data
                     var buffer = readResult.Buffer;
 
+                    // Process the buffer data (streaming logic here)
                     foreach (var memory in buffer)
                     {
-                        await outputFileStream.WriteAsync(memory, cancellationToken);
+                        await outputFileStream.WriteAsync(memory, default);
                         totalBytesRead += memory.Length;
                     }
 
+                    // Mark the buffer as processed
                     bodyReader.AdvanceTo(buffer.End);
+
+                    // Break the loop if there's no more data to read
                     if (readResult.IsCompleted)
                     {
                         break;
@@ -109,38 +81,6 @@ namespace FileManagerSample.Controllers
                 _logger.LogError(ex, "Error during file upload");
                 return StatusCode(500, "An error occurred while uploading the file.");
             }
-        }
-
-        private bool CompareFiles(string filePath1, string filePath2)
-        {
-            var fileInfo1 = new FileInfo(filePath1);
-            var fileInfo2 = new FileInfo(filePath2);
-
-            if (fileInfo1.Length != fileInfo2.Length)
-            {
-                return false;
-            }
-
-            using (var fs1 = System.IO.File.OpenRead(filePath1))
-            using (var fs2 = System.IO.File.OpenRead(filePath2))
-            {
-                byte[] buffer1 = new byte[8192]; // 8 KB buffer
-                byte[] buffer2 = new byte[8192];
-                int bytesRead1, bytesRead2;
-
-                do
-                {
-                    bytesRead1 = fs1.Read(buffer1, 0, buffer1.Length);
-                    bytesRead2 = fs2.Read(buffer2, 0, buffer2.Length);
-
-                    if (bytesRead1 != bytesRead2 || !buffer1.SequenceEqual(buffer2))
-                    {
-                        return false;
-                    }
-                } while (bytesRead1 > 0 && bytesRead2 > 0);
-            }
-
-            return true;
         }
     }
 }
