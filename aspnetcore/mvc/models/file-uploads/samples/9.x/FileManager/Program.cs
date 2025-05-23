@@ -1,5 +1,6 @@
 /*
-    This sample allows to compare "big files" byte by byte which FileManagerSample demonstrates how to use in aspnetcore.
+    This sample allows to compare "big files" byte by byte which FileManagerSample emits.
+    Look at FileManagerSample to understand how working with "big files" can be done in aspnetcore.
 */
 
 string targetFilePath = @"D:\code\AspNetCore.Docs\aspnetcore\mvc\models\file-uploads\samples\9.x\FileManagerSample\file-upload.dat";

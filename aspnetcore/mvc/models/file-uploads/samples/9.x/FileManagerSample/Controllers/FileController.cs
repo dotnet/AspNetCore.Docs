@@ -54,7 +54,7 @@ namespace FileManagerSample.Controllers
                     mode: FileMode.Create,
                     access: FileAccess.Write,
                     share: FileShare.None,
-                    bufferSize: 16 * 1024 * 1024, // 16 MB buffer
+                    bufferSize: BufferSize,
                     useAsync: true);
 
                 while ((section = await reader.ReadNextSectionAsync()) != null)
