@@ -24,7 +24,7 @@ namespace SampleApp.Controllers
         private readonly AppDbContext _context;
         private readonly long _fileSizeLimit;
         private readonly ILogger<StreamingController> _logger;
-        private readonly string[] _permittedExtensions = { ".txt" };
+        private readonly string[] _permittedExtensions = { ".txt", ".vhdx" };
         private readonly string _targetFilePath;
 
         // Get the default form options so that we can use them to set the default 
@@ -100,9 +100,12 @@ namespace SampleApp.Controllers
                         trustedFileNameForDisplay = WebUtility.HtmlEncode(
                                 contentDisposition.FileName.Value);
 
-                        streamedFileContent = 
-                            await FileHelpers.ProcessStreamedFile(section, contentDisposition, 
-                                ModelState, _permittedExtensions, _fileSizeLimit);
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await FileHelpers.ProcessStreamedFile(section, contentDisposition,
+                                ModelState, _permittedExtensions, _fileSizeLimit, memoryStream);
+                            streamedFileContent = memoryStream.ToArray();
+                        }   
 
                         if (!ModelState.IsValid)
                         {
@@ -269,19 +272,18 @@ namespace SampleApp.Controllers
                         // For more information, see the topic that accompanies 
                         // this sample.
 
-                        var streamedFileContent = await FileHelpers.ProcessStreamedFile(
-                            section, contentDisposition, ModelState, 
-                            _permittedExtensions, _fileSizeLimit);
-
-                        if (!ModelState.IsValid)
-                        {
-                            return BadRequest(ModelState);
-                        }
-
                         using (var targetStream = System.IO.File.Create(
                             Path.Combine(_targetFilePath, trustedFileNameForFileStorage)))
                         {
-                            await targetStream.WriteAsync(streamedFileContent);
+
+                            await FileHelpers.ProcessStreamedFile(
+                                section, contentDisposition, ModelState, 
+                                _permittedExtensions, _fileSizeLimit, targetStream);
+
+                            if (!ModelState.IsValid)
+                            {
+                                return BadRequest(ModelState);
+                            }
 
                             _logger.LogInformation(
                                 "Uploaded file '{TrustedFileNameForDisplay}' saved to " +
