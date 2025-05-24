@@ -274,7 +274,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 
 | Middleware | Description | Order |
 | ---------- | ----------- | ----- |
-| [Antiforgery](xref:aspnet/core/security/anti-request-forgery) | Provides anti-request-forgery support. | After authentication and authorization, before endpoints. |
+| [Antiforgery](xref:security/anti-request-forgery) | Provides anti-request-forgery support. | After authentication and authorization, before endpoints. |
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
 | [Authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) | Provides authorization support. | Immediately after the Authentication Middleware. |
 | [Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData). |
