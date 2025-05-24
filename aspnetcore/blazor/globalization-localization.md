@@ -54,7 +54,7 @@ The [`@bind`](xref:mvc/views/razor#bind) attribute directive applies formats and
 
 The current culture can be accessed from the <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName> property.
 
-<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType> is used for the following field types (`<input type="{TYPE}" />`, where the `{TYPE}` placeholder is the type):
+<xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=nameWithType> is used for the following field types (`<input type="{TYPE}" />`, where the `{TYPE}` placeholder is the type):
 
 * `date`
 * `number`
