@@ -1,14 +1,14 @@
 ---
-title: Articles based on ASP.NET Core projects created with individual user accounts
+title: Articles based on ASP.NET Core projects created with individual accounts
 author: rick-anderson
-description: Discover articles based on ASP.NET Core projects created with individual user accounts.
+description: Discover articles based on ASP.NET Core projects created with individual accounts.
 ms.author: riande
 ms.date: 12/11/2019
 uid: security/authentication/individual
 ---
-# Articles based on ASP.NET Core projects created with individual user accounts
+# Articles based on ASP.NET Core projects created with individual accounts
 
-ASP.NET Core Identity is included in project templates in Visual Studio with the "Individual User Accounts" option.
+ASP.NET Core Identity is included in project templates in Visual Studio with the "Individual Accounts" option.
 
 The authentication templates are available in .NET CLI with `-au Individual`:
 
@@ -71,15 +71,15 @@ The following table shows the authentication options available when creating a n
 | Option | Type of authentication | Link for more information |
  | ----------------- | ------------ | ---------- |
 | None            |  No authentication | | 
-| Individual User Accounts / Store user accounts in-app |  Individual authentication | <xref:security/authentication/identity> |
-| Individual User Accounts / Connect to an existing user store in the cloud |  Cloud-hosted individual authentication with Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
+| Individual Accounts / Store user accounts in-app |  Individual authentication | <xref:security/authentication/identity> |
+| Individual Accounts / Connect to an existing user store in the cloud |  Cloud-hosted individual authentication with Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
 | Work or School Cloud / Single Org  |  Organizational authentication for a single tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Work or School Cloud / Multiple Org |  Organizational authentication for multiple tenants | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
 
 ## Additional resources
 
-The following articles show how to use the code generated in ASP.NET Core templates that use individual user accounts:
+The following articles show how to use the code generated in ASP.NET Core templates that use individual accounts:
 
 * [Account confirmation and password recovery in ASP.NET Core](xref:security/authentication/accconfirm)
 * [Create an ASP.NET Core app with user data protected by authorization](xref:security/authorization/secure-data)

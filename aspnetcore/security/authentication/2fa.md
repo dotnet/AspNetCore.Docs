@@ -21,7 +21,7 @@ This tutorial shows how to set up two-factor authentication (2FA) using SMS. Ins
 
 ## Create a new ASP.NET Core project
 
-Create a new ASP.NET Core web app named `Web2FA` with individual user accounts. Follow the instructions in <xref:security/enforcing-ssl> to set up and require HTTPS.
+Create a new ASP.NET Core web app named `Web2FA` with individual accounts. Follow the instructions in <xref:security/enforcing-ssl> to set up and require HTTPS.
 
 ### Create an SMS account
 
