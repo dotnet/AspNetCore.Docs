@@ -652,7 +652,7 @@ The `@model` directive specifies the type of the model passed to a view or page:
 @model TypeNameOfModel
 ```
 
-In an ASP.NET Core MVC or Razor Pages app created with individual user accounts, `Views/Account/Login.cshtml` contains the following model declaration:
+In an ASP.NET Core MVC or Razor Pages app created with individual accounts, `Views/Account/Login.cshtml` contains the following model declaration:
 
 ```cshtml
 @model LoginViewModel
