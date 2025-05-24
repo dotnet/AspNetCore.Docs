@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -370,7 +370,7 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0  < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 The template-generated app doesn't use [authorization](xref:security/authorization/secure-data). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, `UseAuthorization`, and `UseEndpoints` must be called in the order shown in the preceding code.
 
