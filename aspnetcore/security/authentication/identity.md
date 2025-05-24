@@ -41,12 +41,12 @@ ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/
 
 ## Create a Web app with authentication
 
-Create an ASP.NET Core Web Application project with Individual User Accounts.
+Create an ASP.NET Core Web Application project with Individual Accounts.
 
 # [Visual Studio](#tab/visual-studio)
 
 * Select the **ASP.NET Core Web App** template. Name the project **WebApp1** to have the same namespace as the project download. Click **OK**.
-* In the **Authentication type** input,  select  **Individual User Accounts**.
+* In the **Authentication type** input, select **Individual Accounts**.
 
 # [.NET CLI](#tab/net-cli)
 
