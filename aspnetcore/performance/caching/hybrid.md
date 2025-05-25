@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-9.0'
 ms.author: tdykstra
 ms.date: 05/22/2025
 uid: performance/caching/hybrid
+ms.ai: assisted
 ---
 # HybridCache library in ASP.NET Core
 
