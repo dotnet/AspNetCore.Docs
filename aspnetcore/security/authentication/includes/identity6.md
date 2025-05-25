@@ -96,7 +96,7 @@ Services are added in `Program.cs`. The typical pattern is to call methods in th
 1. `Add{Service}`
 1. `builder.Services.Configure{Service}`
 
-[!code-csharp[](identity/sample/WebApp6x/Program.cs?name=snippet_)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp6x/Program.cs?name=snippet_)]
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
@@ -139,7 +139,7 @@ For more information on scaffolding Identity, see [Scaffold identity into a Razo
 
 When a user clicks the **Register** button on the `Register` page, the `RegisterModel.OnPostAsync` action is invoked. The user is created by <xref:Microsoft.AspNetCore.Identity.UserManager%601.CreateAsync(%600)> on the `_userManager` object:
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
 
 <!-- .NET 5 fixes this, see
 https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
@@ -155,7 +155,7 @@ The Login form is displayed when:
 
 When the form on the Login page is submitted, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object.
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
 For information on how to make authorization decisions, see <xref:security/authorization/introduction>.
 
@@ -163,7 +163,7 @@ For information on how to make authorization decisions, see <xref:security/autho
 
 The **Log out** link invokes the `LogoutModel.OnPost` action. 
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Logout.cshtml.cs?highlight=36)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Areas/Identity/Pages/Account/Logout.cshtml.cs?highlight=36)]
 
 In the preceding code, the code `return RedirectToPage();` needs to be a redirect so that the browser performs a new request and the identity for the user gets updated.
 
@@ -171,13 +171,13 @@ In the preceding code, the code `return RedirectToPage();` needs to be a redirec
 
 Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 
-[!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
+[!code-cshtml[](/security/authentication/identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
 ## Test Identity
 
 The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute):
 
-[!code-csharp[](identity/sample/WebApp3/Pages/Privacy.cshtml.cs?highlight=7)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Pages/Privacy.cshtml.cs?highlight=7)]
 
 If you are signed in, sign out. Run the app and select the **Privacy** link. You are redirected to the login page.
 
@@ -348,25 +348,25 @@ Services are added in `ConfigureServices`. The typical pattern is to call all th
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-[!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configureservices&highlight=11-99)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Startup.cs?name=snippet_configureservices&highlight=11-99)]
 
 The preceding highlighted code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
 Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
-[!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configure&highlight=19)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Startup.cs?name=snippet_configure&highlight=19)]
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configureservices&highlight=12-99)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp5x/Startup.cs?name=snippet_configureservices&highlight=12-99)]
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
 Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
-[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configure&highlight=19)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp5x/Startup.cs?name=snippet_configure&highlight=19)]
 
 :::moniker-end
 
@@ -407,7 +407,7 @@ For more information on scaffolding Identity, see [Scaffold identity into a Razo
 
 When a user clicks the **Register** button on the `Register` page, the `RegisterModel.OnPostAsync` action is invoked. The user is created by <xref:Microsoft.AspNetCore.Identity.UserManager%601.CreateAsync(%600)> on the `_userManager` object:
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
 
 <!-- .NET 5 fixes this, see
 https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
@@ -423,7 +423,7 @@ The Login form is displayed when:
 
 When the form on the Login page is submitted, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object.
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
 For information on how to make authorization decisions, see <xref:security/authorization/introduction>.
 
@@ -431,7 +431,7 @@ For information on how to make authorization decisions, see <xref:security/autho
 
 The **Log out** link invokes the `LogoutModel.OnPost` action. 
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Logout.cshtml.cs?highlight=36)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Areas/Identity/Pages/Account/Logout.cshtml.cs?highlight=36)]
 
 In the preceding code, the code `return RedirectToPage();` needs to be a redirect so that the browser performs a new request and the identity for the user gets updated.
 
@@ -439,13 +439,13 @@ In the preceding code, the code `return RedirectToPage();` needs to be a redirec
 
 Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 
-[!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
+[!code-cshtml[](/security/authentication/identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
 ## Test Identity
 
 The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute):
 
-[!code-csharp[](identity/sample/WebApp3/Pages/Privacy.cshtml.cs?highlight=7)]
+[!code-csharp[](/security/authentication/identity/sample/WebApp3/Pages/Privacy.cshtml.cs?highlight=7)]
 
 If you are signed in, sign out. Run the app and select the **Privacy** link. You are redirected to the login page.
 
