@@ -420,9 +420,9 @@ For scenarios where large file uploads are required, streaming uploads allow you
 > [!TIP]
 > In modern .NET versions, streaming solutions are available using `MultipartReader` (designed for parsing `multipart` data), `IFormFeature` (a wrapper over `MultipartReader`), and even `IPipeReader` for the most precise control over request body processing.
 
-The [sample application for 9.x](./file-uploads/samples/9.x/) demonstrates how a server can receive a file and stream the data directly to disk, supporting robust cancellation via the HTTP request's cancellation token.
+The [sample application for 9.x](file-uploads/samples/9.x) demonstrates how a server can receive a file and stream the data directly to disk, supporting robust cancellation via the HTTP request's cancellation token.
 
-[`MultipartReader`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.webutilities.multipartreader) is an ASP.NET Core utility for reading files from incoming requests. The following snippet shows how to process a request and stream the file into an `outputStream` (such as a `FileStream`):
+[`MultipartReader`](/dotnet/api/microsoft.aspnetcore.webutilities.multipartreader) is an ASP.NET Core utility for reading files from incoming requests. The following snippet shows how to process a request and stream the file into an `outputStream` (such as a `FileStream`):
 ```csharp
 // Read the boundary from the Content-Type header
 var boundary = HeaderUtilities.RemoveQuotes(MediaTypeHeaderValue.Parse(request.ContentType).Boundary).Value;
@@ -440,7 +440,7 @@ while ((section = await reader.ReadNextSectionAsync(cancellationToken)) != null)
 }
 ```
 
-[`IFormFeature`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.features.iformfeature) is a wrapper around `MultipartReader` that lets you avoid writing manual request body parsing code. You can use its [`ReadFormAsync(CancellationToken)`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.features.iformfeature.readformasync#microsoft-aspnetcore-http-features-iformfeature-readformasync(system-threading-cancellationtoken)) method to populate the request's form data, then access uploaded files from the built-in collection:
+[`IFormFeature`](/dotnet/api/microsoft.aspnetcore.http.features.iformfeature) is a wrapper around `MultipartReader` that lets you avoid writing manual request body parsing code. You can use its [`ReadFormAsync(CancellationToken)`](/dotnet/api/microsoft.aspnetcore.http.features.iformfeature.readformasync#microsoft-aspnetcore-http-features-iformfeature-readformasync(system-threading-cancellationtoken)) method to populate the request's form data, then access uploaded files from the built-in collection:
 ```csharp
 // Get the IFormFeature and read the form
 var formFeature = Request.HttpContext.Features.GetRequiredFeature<IFormFeature>();
@@ -451,11 +451,11 @@ var filePath = Request.Form.Files.First().FileName;
 return Results.Ok("Saved file at " + filePath);
 ```
 
-For more advanced scenarios, you can manually parse the raw request body using [`HttpRequest.BodyReader`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httprequest.bodyreader), which exposes an [`IPipeReader`](https://learn.microsoft.com/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample application includes endpoint handlers that use `IPipeReader` in both minimal APIs and controllers.
+For more advanced scenarios, you can manually parse the raw request body using [`HttpRequest.BodyReader`](/dotnet/api/microsoft.aspnetcore.http.httprequest.bodyreader), which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample application includes endpoint handlers that use `IPipeReader` in both minimal APIs and controllers.
 
 > [!WARNING]
 > **Model binding quirk:**  
-> In controller actions, adding any model-bound parameter (such as a `CancellationToken`, `string`, or custom model) causes ASP.NET Core's model binding pipeline to eagerly read and buffer the entire form body before your handler executes. This defeats streaming and can cause performance or memory issues with large uploads. For true streaming, use only infrastructure parameters in your method signature and access request data manually. To get a cancellation token tied to the HTTP request, use [`HttpContext.RequestAborted`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext.requestaborted).
+> In controller actions, adding any model-bound parameter (such as a `CancellationToken`, `string`, or custom model) causes ASP.NET Core's model binding pipeline to eagerly read and buffer the entire form body before your handler executes. This defeats streaming and can cause performance or memory issues with large uploads. For true streaming, use only infrastructure parameters in your method signature and access request data manually. To get a cancellation token tied to the HTTP request, use [`HttpContext.RequestAborted`](/dotnet/api/microsoft.aspnetcore.http.httpcontext.requestaborted).
 
 The [3.1 example](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/file-uploads/samples/3.x/SampleApp/Pages/StreamedSingleFileUploadDb.cshtml) demonstrates how to use JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, form model binding is disabled by another custom filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. After the multipart sections are read, the action performs its own model binding.
 
