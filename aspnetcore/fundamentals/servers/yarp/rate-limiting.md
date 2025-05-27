@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 ## Introduction
 The reverse proxy can be used to rate-limit requests before they are proxied to the destination servers. This can reduce load on the destination servers, add a layer of protection, and ensure consistent policies are implemented across your applications.
 
-> This feature is only available when using .NET 7.0 or later
+> This feature is only available when using .NET 7 or later
 
 ## Defaults
 

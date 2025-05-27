@@ -8,13 +8,13 @@ ms.date: 10/22/2021
 uid: migration/50-to-60-samples
 ---
 
-# Code samples migrated to the new minimal hosting model in ASP.NET Core 6.0
+# Code samples migrated to the new minimal hosting model in ASP.NET Core in .NET 6
 
 <!-- 
 This content from https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d#differences-in-the-hosting-model
  -->
 
-This article provides samples of code migrated to ASP.NET Core 6.0. ASP.NET Core 6.0 uses a new minimal hosting model. For more information, see [New hosting model](xref:migration/50-to-60#nhm).
+This article provides samples of code migrated to ASP.NET Core in .NET 6. ASP.NET Core in .NET 6 uses a new minimal hosting model. For more information, see [New hosting model](xref:migration/50-to-60#nhm).
 
 ## Middleware
 
@@ -30,7 +30,7 @@ public class Startup
 }
 ```
 
-The following code adds the Static File Middleware to an ASP.NET Core 6 app:
+The following code adds the Static File Middleware to an ASP.NET Core in .NET 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_mid)]
 
@@ -54,7 +54,7 @@ public class Startup
 }
 ```
 
-In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. The following code adds an endpoint to an ASP.NET Core 6 app:
+In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. The following code adds an endpoint to an ASP.NET Core in .NET 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_rt)]
 
@@ -83,7 +83,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-### ASP.NET Core 6
+### ASP.NET Core in .NET 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_root)]
 
@@ -116,7 +116,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-### ASP.NET Core 6
+### ASP.NET Core in .NET 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_conf)]
 
@@ -139,7 +139,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-### ASP.NET Core 6
+### ASP.NET Core in .NET 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_log)]
 
@@ -163,7 +163,7 @@ public class Startup
 }
 ```
 
-### ASP.NET Core 6
+### ASP.NET Core in .NET 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_svc)]
 
@@ -187,7 +187,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-#### ASP.NET Core 6
+#### ASP.NET Core in .NET 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
 
@@ -206,7 +206,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-### ASP.NET Core 6
+### ASP.NET Core in .NET 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_whb)]
 
@@ -227,7 +227,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-### ASP.NET Core 6
+### ASP.NET Core in .NET 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_wr)]
 
@@ -262,7 +262,7 @@ public class Startup
 }
 ```
 
-### ASP.NET Core 6
+### ASP.NET Core in .NET 6
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -307,9 +307,9 @@ public class Startup
 }
 ```
 
-### ASP.NET Core 6
+### ASP.NET Core in .NET 6
 
-In ASP.NET Core 6:
+In ASP.NET Core in .NET 6:
 
 * There are a few common services available as top level properties on <xref:Microsoft.AspNetCore.Builder.WebApplication>.
 * Additional services need to be manually resolved from the `IServiceProvider` via [WebApplication.Services](xref:Microsoft.AspNetCore.Builder.WebApplication.Services).
@@ -433,7 +433,7 @@ class MockHelloService : IHelloService
 }
 ```
 
-### ASP.NET Core 6
+### ASP.NET Core in .NET 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_test)]
 
