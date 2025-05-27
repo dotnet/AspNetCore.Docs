@@ -139,7 +139,7 @@ For more information on scaffolding Identity, see [Scaffold identity into a Razo
 
 When a user clicks the **Register** button on the `Register` page, the `RegisterModel.OnPostAsync` action is invoked. The user is created by <xref:Microsoft.AspNetCore.Identity.UserManager%601.CreateAsync(%600)> on the `_userManager` object:
 
-:::code language="csharp" source="../sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs" name="snippet" highlight="9":::
+:::code language="csharp" source="../sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs" id="snippet" highlight="9":::
 
 <!-- .NET 5 fixes this, see
 https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
@@ -155,7 +155,7 @@ The Login form is displayed when:
 
 When the form on the Login page is submitted, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object.
 
-:::code language="csharp" source="../sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs" name="snippet" highlight="10-11":::
+:::code language="csharp" source="../sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs" id="snippet" highlight="10-11":::
 
 For information on how to make authorization decisions, see <xref:security/authorization/introduction>.
 
@@ -360,13 +360,13 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="csharp" source="../sample/WebApp5x/Startup.cs" name="snippet_configureservices" highlight="12-99":::
+:::code language="csharp" source="../sample/WebApp5x/Startup.cs" id="snippet_configureservices" highlight="12-99":::
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
 Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
-:::code language="csharp" source="../sample/WebApp5x/Startup.cs" name="snippet_configure" highlight="19":::
+:::code language="csharp" source="../sample/WebApp5x/Startup.cs" id="snippet_configure" highlight="19":::
 
 :::moniker-end
 
@@ -407,7 +407,7 @@ For more information on scaffolding Identity, see [Scaffold identity into a Razo
 
 When a user clicks the **Register** button on the `Register` page, the `RegisterModel.OnPostAsync` action is invoked. The user is created by <xref:Microsoft.AspNetCore.Identity.UserManager%601.CreateAsync(%600)> on the `_userManager` object:
 
-:::code language="csharp" source="../sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs" name="snippet" highlight="9":::
+:::code language="csharp" source="../sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs" id="snippet" highlight="9":::
 
 <!-- .NET 5 fixes this, see
 https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
@@ -423,7 +423,7 @@ The Login form is displayed when:
 
 When the form on the Login page is submitted, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object.
 
-:::code language="csharp" source="../sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs" name="snippet" highlight="10-11":::
+:::code language="csharp" source="../sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs" id="snippet" highlight="10-11":::
 
 For information on how to make authorization decisions, see <xref:security/authorization/introduction>.
 
