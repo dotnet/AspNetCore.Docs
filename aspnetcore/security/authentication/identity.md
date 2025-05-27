@@ -258,4 +258,4 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 
 :::moniker-end
 
-[!INCLUDE[](./includes/identity6.md)]
+[!INCLUDE[](./identity/includes/identity6.md)]
