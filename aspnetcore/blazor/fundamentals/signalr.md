@@ -177,11 +177,11 @@ To resolve the problem, use ***either*** of the following approaches:
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
-## Use session affinity (sticky sessions) for server-side webfarm hosting
+## Use session affinity (sticky sessions) for server-side web farm hosting
 
 When more than one backend server is in use, the app must implement session affinity, also called *sticky sessions*. Session affinity ensures that a client's circuit reconnects to the same server if the connection is dropped, which is important because client state is only held in the memory of the server that first established the client's circuit.
 
-The following error is thrown by an app that hasn't enabled session affinity in a webfarm:
+The following error is thrown by an app that hasn't enabled session affinity in a web farm:
 
 > :::no-loc text="Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.":::
 
