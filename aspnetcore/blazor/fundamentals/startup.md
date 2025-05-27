@@ -683,6 +683,12 @@ else
 
 :::moniker range=">= aspnetcore-8.0"
 
+If you didn't already have a `Layout` folder in the `.Client` project, add the namespace for the `Layout` folder to the `_Imports.razor` file. In the following example, the project's namespace is `BlazorSample.Client`:
+
+```razor
+@using BlazorSample.Client.Layout
+```
+
 In a component that adopts Interactive WebAssembly rendering, wrap the component's Razor markup with the `ContentLoading` component. The following example demonstrates the approach with the `Counter` component of an app created from the Blazor Web App project template.
 
 `Pages/Counter.razor`:
