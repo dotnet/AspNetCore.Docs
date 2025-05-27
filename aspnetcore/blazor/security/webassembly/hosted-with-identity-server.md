@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc, linux-related-content
-ms.date: 04/07/2025
+ms.date: 05/27/2025
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
