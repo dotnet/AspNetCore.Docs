@@ -788,6 +788,12 @@ else
 
 :::moniker range=">= aspnetcore-8.0"
 
+If you didn't already have a `Layout` folder in the `.Client` project, add the namespace for the `Layout` folder to the `_Imports.razor` file. In the following example, the project's namespace is `BlazorSample.Client`:
+
+```razor
+@using BlazorSample.Client.Layout
+```
+
 In the `MainLayout` component (`Layout/MainLayout.razor`) of the `.Client` project, wrap the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> property (`@Body`) with the `ContentLoading` component:
 
 In `Layout/MainLayout.razor`:
