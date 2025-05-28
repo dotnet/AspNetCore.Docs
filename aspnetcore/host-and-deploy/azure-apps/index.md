@@ -5,7 +5,7 @@ description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/6/2020
+ms.date: 05/27/2025
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -25,8 +25,6 @@ Use Visual Studio to create and deploy an ASP.NET Core web app to Azure App Serv
 
 [Create an ASP.NET Core app in App Service on Linux](/azure/app-service/containers/quickstart-dotnetcore)  
 Use the command line to create and deploy an ASP.NET Core web app to Azure App Service on Linux.
-
-See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
 
 Subscribe to the [App Service Announcements](https://github.com/Azure/app-service-announcements/) repository and monitor the issues. The App Service team regularly posts announcements and scenarios arriving in App Service.
 
@@ -152,8 +150,6 @@ To deploy an app that uses a preview release of .NET Core, see the following res
 * [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app)
 * [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers)
 * [Install the preview site extension](#install-the-preview-site-extension)
-
-See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
 
 See [Select the .NET Core version to use](/dotnet/core/versions/selection) for information on selecting the version of the .NET SDK for self-contained deployments.
 
