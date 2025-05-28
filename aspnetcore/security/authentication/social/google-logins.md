@@ -7,33 +7,49 @@ ms.custom: mvc
 ms.date: 3/3/2022
 uid: security/authentication/google-logins
 ---
+
 # Google external login setup in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Sharaf Abacery](https://github.com/sharafabacery)
 
-This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
+This tutorial with code examples shows how to enable your users to sign in with their Google account using a sample ASP.NET Core project created on the  [previous page](xref:security/authentication/social/index). We start by creating a Google App ID by following the [official steps](https://developers.google.com/identity/gsi/web/guides/overview).
 
-## Create the Google OAuth 2.0 Client ID and secret
+## Create the app in Google
 
-* Follow the guidance in [Integrating Google Sign-In into your web app](https://developers.google.com/identity/gsi/web/guides/overview) (Google documentation)
-* Go to [Google API & Services](https://console.cloud.google.com/apis).
-* A **Project** must exist first, you may have to create one. Once a project is selected, enter the **Dashboard**.
+* Navigate to the [Google API & Services](https://console.cloud.google.com/apis) page of the Google Cloud platform.
+* Create a new project by clicking on the **Create Project** button. If you already have a project, select the project.
+* Enter a **Project name**.
+* Optionally, select a **Organization** for the project.
 
-* In the **OAuth consent screen** of the **Dashboard**:
-  * Select **User Type - External** and **CREATE**.
-  * In the **App information** dialog, Provide an **app name** for the app, **user support email**, and **developer contact information**.
-  * Step through the **Scopes** step.
-  * Step through the **Test users** step.
-  * Review the **OAuth consent screen** and go back to the app **Dashboard**.
+After creating the project you are redirected to the **Dashboard** page of the project, where it's possible to configure the project.
 
-* In the **Credentials** tab of the application Dashboard, select **CREATE CREDENTIALS** > **OAuth client ID**.
-* Select **Application type** > **Web application**, choose a **name**.
-* In the **Authorized redirect URIs** section, select **ADD URI** to set the redirect URI. Example redirect URI: `https://localhost:{PORT}/signin-google`, where the `{PORT}` placeholder is the app's port.
-* Select the **CREATE** button.
-* Save the **Client ID** and **Client Secret** for use in the app's configuration.
-* When deploying the site, either:
-  * Update the app's redirect URI in the **Google Console** to the app's deployed redirect URI.
-  * Create a new Google API registration in the **Google Console** for the production app with its production redirect URI.
+Open the **Credentials** tab to create the OAuth client.
+The prerequisite to create credentials is to configure the OAuth consent screen.
+If the consent is not configured yet, you are prompted to configure the consent screen first.
+
+* Click on **Configure consent screen** (or go to OAuth consent screen by clicking on the menu item).
+* In the **OAuth consent screen** click on **Get started**.
+* Provide the App information, such as the **App name** and a **User support email**.
+* Set the audience type to **External**.
+* Add **contact information** by entering a contact email address.
+* Agree the terms. 
+* Click on **Create**. 
+
+Next, create the client credentials for the app by opening to the **Clients** tab.
+
+* Click on **Create client**
+* Select **Web application** as the **Application type**.
+* Enter a **name** for the client.
+* Add an **Authorized redirect URI**. By default this is set to `https://localhost:{PORT}/signin-google`, where the `{PORT}` placeholder is the app's port.
+* **Create** the Client.
+* Save the Client ID and client secret, which is going to be used in the ASP.NET application configuration.
+
+  > [!NOTE]
+  > The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> class.
+
+When deploying the site, either:
+* Update the app's redirect URI in the **Google Console** to the app's deployed redirect URI.
+* Create a new Google API registration in the **Google Console** for the production app with its production redirect URI.
 
 ## Store the Google client ID and secret
 
@@ -53,30 +69,46 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 ## Configure Google authentication
 
-* Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) NuGet package to the app.
-* Add the Authentication service to the `program.cs`:
-* Follow [`Add Authentication for asp.net app`](https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth#configure-your-application-to-use-google.apis.auth.aspnetcore3)
+Add the Authentication service to the `Program`:
 
-[!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
+:::moniker range="< aspnetcore-6.0"
+
+Add the Authentication service to the `Startup.ConfigureServices`:
+
+```csharp
+services.AddAuthentication().AddGoogle(googleOptions =>
+{
+      googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+      googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+});
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+Add the Authentication service to the `Program`:
+
+:::code language="csharp" source="~/security/authentication/social/social-code/6.x/ProgramGoogle.cs" id="snippet1":::
+
+:::moniker-end
+
+[!INCLUDE [default settings configuration](includes/default-settings.md)]
 
 ## Sign in with Google
-* Get a link to the library at [Google Developer Library](https://developers.google.com/identity/gsi/web/guides/client-library).
-* Then go to [Google Developer Button Generation](https://developers.google.com/identity/gsi/web/tools/configurator).
-* Setup your Controller to match the `data-login_uri="{HostName}/{ControllerName}/{actionName}"` attribute, as it will forward you to that link after a successful login.
-* Create a controller and action that takes one argument `string credential`, which is returned by Google upon completing the login process.
-* Verify the `credential` using the following line of code:
-`GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);`
-* This will retrieve the available information about the logged-in user, which could then be stored in a database.
 
+* Run the app and select **Log in**. 
+* Under **Use another service to log in.**, select Google.
+* You are redirected to **Google** for authentication.
+* Select the Google account you want to log in with, or enter your Google credentials.
+* If this is the first time you are signing in, you may be prompted to allow the app to access your Google account.
+* You are redirected back to your site where you can set your email.
 
-## Change the default callback URI
-
-The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> class.
+You are now logged in using your Google credentials.
 
 ## Troubleshooting
 
 * If the sign-in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
-* If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate results in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures Identity is configured.
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Select **Apply Migrations** to create the database, and refresh the page to continue past the error.
 * HTTP 500 error after successfully authenticating the request by the OAuth 2.0 provider such as Google: See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/14169).
 * How to implement external authentication with Google for React and other SPA apps: See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/14169).
