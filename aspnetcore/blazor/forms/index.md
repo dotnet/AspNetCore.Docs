@@ -394,13 +394,13 @@ Examples don't adopt enhanced form handling for form POST requests, but all of t
 
 :::moniker range="< aspnetcore-5.0"
 
-Examples use the [target-typed `new` operator](/dotnet/csharp/language-reference/operators/new-operator#target-typed-new), which was introduced with C# 9.0 and .NET 5. In the following example, the type isn't explicitly stated for the `new` operator:
+Examples use the [target-typed `new` operator](/dotnet/csharp/language-reference/operators/new-operator#target-typed-new), which was introduced with C# 9 and .NET 5. In the following example, the type isn't explicitly stated for the `new` operator:
 
 ```csharp
 public ShipDescription ShipDescription { get; set; } = new();
 ```
 
-If using C# 8.0 or earlier (ASP.NET Core 3.1), modify the example code to state the type to the `new` operator:
+If using C# 8 or earlier (ASP.NET Core 3.1), modify the example code to state the type to the `new` operator:
 
 ```csharp
 public ShipDescription ShipDescription { get; set; } = new ShipDescription();
@@ -412,11 +412,11 @@ public ShipDescription ShipDescription { get; set; } = new ShipDescription();
 
 Components use nullable reference types (NRTs), and the .NET compiler performs null-state static analysis, both of which are supported in .NET 6 or later. For more information, see <xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis>.
 
-If using C# 9.0 or earlier (.NET 5 or earlier), remove the NRTs from the examples. Usually, this merely involves removing the question marks (`?`) and exclamation points (`!`) from the types in the example code.
+If using C# 9 or earlier (.NET 5 or earlier), remove the NRTs from the examples. Usually, this merely involves removing the question marks (`?`) and exclamation points (`!`) from the types in the example code.
 
 The .NET SDK applies implicit global `using` directives to projects when targeting .NET 6 or later. The examples use a logger to log information about form processing, but it isn't necessary to specify an `@using` directive for the <xref:Microsoft.Extensions.Logging?displayProperty=nameWithType> namespace in the component examples. For more information, see [.NET project SDKs: Implicit using directives](/dotnet/core/project-sdk/overview#implicit-using-directives).
 
-If using C# 9.0 or earlier (.NET 5 or earlier), add `@using` directives to the top of the component after the `@page` directive for any API required by the example. Find API namespaces through Visual Studio (right-click the object and select **Peek Definition**) or the [.NET API browser](/dotnet/api/).
+If using C# 9 or earlier (.NET 5 or earlier), add `@using` directives to the top of the component after the `@page` directive for any API required by the example. Find API namespaces through Visual Studio (right-click the object and select **Peek Definition**) or the [.NET API browser](/dotnet/api/).
 
 :::moniker-end
 

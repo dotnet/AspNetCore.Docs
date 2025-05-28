@@ -84,7 +84,7 @@ To obtain static assets, use **one** of the following approaches:
   
   In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
   
-  **If you aren't converting an app for the latest release**, pass the `-f|--framework` option. The following example creates the app for ASP.NET Core version 5.0:
+  **If you aren't converting an app for the latest release**, pass the `-f|--framework` option. The following example creates the app for .NET 5:
   
   ```dotnetcli
   dotnet new blazorwasm -o MyBlazorPwa --pwa -f net5.0
@@ -120,7 +120,7 @@ In the app's `wwwroot/index.html` file:
 
 :::moniker range="< aspnetcore-8.0"
 
-* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to the `v7.0.0` tag reference source and assets. If you're using a version of ASP.NET Core later than 7.0, change the document version selector at the top of this article to see the updated guidance for this section. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to the `v7.0.0` tag reference source and assets. If you're using .NET 8 or later, change the document version selector at the top of this article to see the updated guidance for this section. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
 
   [Blazor WebAssembly project template `wwwroot` folder (`v7.0.0` tag)](https://github.com/dotnet/aspnetcore/tree/v7.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 

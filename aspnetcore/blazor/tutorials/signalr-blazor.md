@@ -78,7 +78,7 @@ Follow the guidance for your choice of tooling:
 # [Visual Studio](#tab/visual-studio)
 
 > [!NOTE]
-> Visual Studio 2022 or later and .NET Core SDK 8.0.0 or later are required.
+> Visual Studio 2022 or later and .NET 8 SDK or later are required.
 
 In Visual Studio:
 
@@ -285,7 +285,7 @@ Follow the guidance for your choice of tooling to create a hosted Blazor WebAsse
 # [Visual Studio](#tab/visual-studio)
 
 > [!NOTE]
-> Visual Studio 2022 or later and .NET Core SDK 6.0.0 or later are required.
+> Visual Studio 2022 or later and .NET 6 SDK or later are required.
 
 Create a new project.
 

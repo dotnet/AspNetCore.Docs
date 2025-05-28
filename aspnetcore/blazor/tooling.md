@@ -322,7 +322,7 @@ Create a new project:
   ```
 
   > [!NOTE]
-  > The Hosted Blazor WebAssembly project template isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app using a .NET 8 or later SDK, pass the `-f|--framework` option with a 7.0 target framework (`net7.0`):
+  > The Hosted Blazor WebAssembly project template isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app using a .NET 8 or later SDK, pass the `-f|--framework` option with a .NET 7 target framework (`net7.0`):
   >
   > ```dotnet cli
   > dotnet new blazorwasm -o BlazorApp -ho -f net7.0

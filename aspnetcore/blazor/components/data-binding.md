@@ -387,7 +387,7 @@ Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `i
 :::moniker range="< aspnetcore-7.0"
 
 > [!NOTE]
-> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For an example, see [the `NestedChild` component of the *Bind across more than two components* section](#bind-across-more-than-two-components). For two-way data binding in .NET 7 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in 7.0 or later versions of this article.
+> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For an example, see [the `NestedChild` component of the *Bind across more than two components* section](#bind-across-more-than-two-components). For two-way data binding in .NET 7 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in .NET 7 or later versions of this article.
 
 :::moniker-end
 
