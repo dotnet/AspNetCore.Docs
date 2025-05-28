@@ -78,7 +78,7 @@ Kestrel doesn't support HTTP/2 with TLS on macOS before .NET 8. The ASP.NET Core
 
 > Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on macOS due to missing ALPN support.'.
 
-To work around this issue in .NET 7 and earlier, configure Kestrel and the gRPC client to use HTTP/2 *without* TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption. For more information see [Asp.Net Core 7.0: Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot?view=aspnetcore-7.0#unable-to-start-aspnet-core-grpc-app-on-macos).
+To work around this issue in .NET 7 and earlier, configure Kestrel and the gRPC client to use HTTP/2 *without* TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption. For more information see [ASP.NET Core in .NET 7: Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot?view=aspnetcore-7.0#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ## gRPC C# assets are not code generated from `.proto` files
 

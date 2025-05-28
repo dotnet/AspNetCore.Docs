@@ -121,7 +121,7 @@ Without a Chromium browser, HTTP/2 protocol, or HTTPS, client-side Blazor reads 
 
 :::moniker range="< aspnetcore-9.0"
 
-Client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. We recommend adopting [request streaming](xref:blazor/call-web-api?view=aspnetcore-9.0&preserve-view=true#client-side-request-streaming) with ASP.NET Core 9.0 or later.
+Client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. We recommend adopting [request streaming](xref:blazor/call-web-api?view=aspnetcore-9.0&preserve-view=true#client-side-request-streaming) with .NET 9 or later.
 
 :::moniker-end
 
@@ -1148,7 +1148,7 @@ The following pattern:
 * Can be enhanced with additional code for file size and content type [validation feedback](xref:blazor/forms/validation).
 * Incurs a performance penalty and [DoS](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks) risk. Carefully weigh the risk when reading any file into memory and consider alternative approaches, especially for larger files. Alternative approaches include saving files directly to disk or a third-party service for antivirus/antimalware checks, further processing, and serving to clients.
 
-For the following example to work in a Blazor Web App (ASP.NET Core 8.0 or later), the component must adopt an [interactive render mode](xref:blazor/fundamentals/index#static-and-interactive-rendering-concepts) (for example, `@rendermode InteractiveServer`) to call `HandleSelectedThumbnail` on an `InputFile` component file change (`OnChange` parameter/event). Blazor Server app components are always interactive and don't require a render mode.
+For the following example to work in a Blazor Web App (.NET 8 or later), the component must adopt an [interactive render mode](xref:blazor/fundamentals/index#static-and-interactive-rendering-concepts) (for example, `@rendermode InteractiveServer`) to call `HandleSelectedThumbnail` on an `InputFile` component file change (`OnChange` parameter/event). Blazor Server app components are always interactive and don't require a render mode.
 
 In the following example, a small thumbnail (<= 100 KB) in an <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> is saved to a database with EF Core. If a file isn't selected by the user for the `InputFile` component, a default thumbnail is saved to the database.
 

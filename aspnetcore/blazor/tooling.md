@@ -322,7 +322,7 @@ Create a new project:
   ```
 
   > [!NOTE]
-  > The Hosted Blazor WebAssembly project template isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app using a .NET 8 or later SDK, pass the `-f|--framework` option with a 7.0 target framework (`net7.0`):
+  > The Hosted Blazor WebAssembly project template isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app using a .NET 8 or later SDK, pass the `-f|--framework` option with a 7.0 target framework (`net7.0`):
   >
   > ```dotnet cli
   > dotnet new blazorwasm -o BlazorApp -ho -f net7.0
@@ -349,7 +349,7 @@ Create a new project:
   ```
 
   > [!NOTE]
-  > The hosted Blazor WebAssembly project template isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app using a .NET 8 or later SDK, pass the `-f|--framework` option with the target framework moniker (for example, `net6.0`):
+  > The hosted Blazor WebAssembly project template isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app using a .NET 8 or later SDK, pass the `-f|--framework` option with the target framework moniker (for example, `net6.0`):
   >
   > ```dotnet cli
   > dotnet new blazorwasm -o BlazorApp -ho -f net6.0
@@ -502,7 +502,7 @@ The Blazor framework provides project templates for creating new apps. The templ
 * Standalone Blazor WebAssembly app project template: `blazorwasm`
 
 > [!NOTE]
-> The "Hosted" Blazor WebAssembly project template option isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
+> The "Hosted" Blazor WebAssembly project template option isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
 >
 > * <xref:blazor/index#build-a-full-stack-web-app-with-blazor>
 > * <xref:aspnetcore-8#new-blazor-web-app-template>

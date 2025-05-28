@@ -1,15 +1,15 @@
 ---
-title: What's new in ASP.NET Core 7.0
+title: What's new in ASP.NET Core in .NET 7
 author: rick-anderson
-description: Learn about the new features in ASP.NET Core 7.0.
+description: Learn about the new features in ASP.NET Core in .NET 7.
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2022
 uid: aspnetcore-7
 ---
-# What's new in ASP.NET Core 7.0
+# What's new in ASP.NET Core in .NET 7
 
-This article highlights the most significant changes in ASP.NET Core 7.0 with links to relevant documentation.
+This article highlights the most significant changes in ASP.NET Core in .NET 7 with links to relevant documentation.
 
 ## Rate limiting middleware in ASP.NET Core
 
@@ -53,7 +53,7 @@ In rare cases, automatic DI can break apps that have a type in DI that is also a
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
 
-In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService> to determine if an argument in an API controller action comes from DI or from the other sources.
+In .NET 7, types in DI are checked at app startup with <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService> to determine if an argument in an API controller action comes from DI or from the other sources.
 
 The new mechanism to infer binding source of API Controller action parameters uses the following rules:
 

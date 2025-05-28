@@ -339,7 +339,7 @@ Stateful reconnect achieves this by:
 * Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is up and replaying messages that might have been sent while the connection was down.
 
-Stateful reconnect is available in ASP.NET Core 8.0 and later.
+Stateful reconnect is available in .NET 8 and later.
 
 Opt in to stateful reconnect at both the server hub endpoint and the client:
 
