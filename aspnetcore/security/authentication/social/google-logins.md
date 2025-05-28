@@ -24,7 +24,7 @@ This tutorial with code examples shows how to enable your users to sign in with 
 After creating the project you are redirected to the **Dashboard** page of the project, where it's possible to configure the project.
 
 Open the **Credentials** tab to create the OAuth client.
-The prerequisite to create credentials is to configure the OAuth consent screen.
+The prerequisite to creating the credentials is to configure the OAuth consent screen.
 If the consent is not configured yet, you are prompted to configure the consent screen first.
 
 * Click on **Configure consent screen** (or go to OAuth consent screen by clicking on the menu item).
@@ -32,15 +32,15 @@ If the consent is not configured yet, you are prompted to configure the consent 
 * Provide the App information, such as the **App name** and a **User support email**.
 * Set the audience type to **External**.
 * Add **contact information** by entering a contact email address.
-* Agree the terms. 
+* Agree on the terms. 
 * Click on **Create**. 
 
-Next, create the client credentials for the app by opening to the **Clients** tab.
+Next, create the client credentials for the app by opening the **Clients** tab.
 
 * Click on **Create client**
 * Select **Web application** as the **Application type**.
 * Enter a **name** for the client.
-* Add an **Authorized redirect URI**. By default this is set to `https://localhost:{PORT}/signin-google`, where the `{PORT}` placeholder is the app's port.
+* Add an **Authorized redirect URI**. By default, this is set to `https://localhost:{PORT}/signin-google`, where the `{PORT}` placeholder is the app's port.
 * **Create** the Client.
 * Save the Client ID and client secret, which is going to be used in the ASP.NET application configuration.
 
@@ -100,7 +100,7 @@ Add the Authentication service to the `Program`:
 * Run the app and select **Log in**. 
 * Under **Use another service to log in.**, select Google.
 * You are redirected to **Google** for authentication.
-* Select the Google account you want to log in with, or enter your Google credentials.
+* Select the Google account to login, or enter your Google credentials.
 * If this is the first time you are signing in, you may be prompted to allow the app to access your Google account.
 * You are redirected back to your site where you can set your email.
 
