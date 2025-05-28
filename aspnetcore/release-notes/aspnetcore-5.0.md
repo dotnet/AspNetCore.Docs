@@ -1,15 +1,15 @@
 ---
-title: What's new in ASP.NET Core 5.0
+title: What's new in ASP.NET Core in .NET 5
 author: rick-anderson
-description: Learn about the new features in ASP.NET Core 5.0.
+description: Learn about the new features in ASP.NET Core in .NET 5.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/29/2020
 uid: aspnetcore-5.0
 ---
-# What's new in ASP.NET Core 5.0
+# What's new in ASP.NET Core in .NET 5
 
-This article highlights the most significant changes in ASP.NET Core 5.0 with links to relevant documentation.
+This article highlights the most significant changes in ASP.NET Core in .NET 5 with links to relevant documentation.
 
 ## ASP.NET Core MVC and Razor improvements
 
@@ -52,7 +52,7 @@ The `Person/Index.cshtml` file:
 
 ### Improvements to DynamicRouteValueTransformer
 
-ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use custom endpoint to dynamically select an MVC controller action or a Razor page. ASP.NET Core 5.0 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
+ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use custom endpoint to dynamically select an MVC controller action or a Razor page. .NET 5 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
 
 ### Miscellaneous
 
@@ -68,7 +68,7 @@ see https://learn.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcor
 
 [OpenAPI Specification](http://spec.openapis.org/oas/v3.0.3) is an industry standard for describing HTTP APIs and integrating them into complex business processes or with third parties. OpenAPI is widely supported by all cloud providers and many API registries. Apps that emit OpenAPI documents from web APIs have a variety of new opportunities in which those APIs can be used. In partnership with the maintainers of the open-source project [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/), the ASP.NET Core API template contains a NuGet dependency on [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). Swashbuckle is a popular open-source NuGet package that emits OpenAPI documents dynamically. Swashbuckle does this by introspecting over the API controllers and generating the OpenAPI document at run-time, or at build time using the Swashbuckle CLI.
 
-In ASP.NET Core 5.0, the web API templates enable the OpenAPI support by default. To disable OpenAPI:
+In .NET 5, the web API templates enable the OpenAPI support by default. To disable OpenAPI:
 
 * From the command line:
 
@@ -106,7 +106,7 @@ When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16
 
 ### Better launch experience for web API projects
 
-With OpenAPI enabled by default, the app launching experience (F5) for web API developers significantly improves. With ASP.NET Core 5.0, the web API template comes pre-configured to load up the Swagger UI page. The Swagger UI page provides both the documentation added for the published API, and enables testing the APIs with a single click.
+With OpenAPI enabled by default, the app launching experience (F5) for web API developers significantly improves. With .NET 5, the web API template comes pre-configured to load up the Swagger UI page. The Swagger UI page provides both the documentation added for the published API, and enables testing the APIs with a single click.
 
 ![swagger/index.html view](~/release-notes/static/swagger-ui-page-rc1.png)
 
@@ -168,7 +168,7 @@ Catch-all route parameters, which capture paths across multiple folder boundarie
 
 ### Debugging improvements
 
-Debugging Blazor WebAssembly apps is improved in ASP.NET Core 5.0. Additionally, debugging is now supported on Visual Studio for Mac. For more information, see <xref:blazor/debug>.
+Debugging Blazor WebAssembly apps is improved in .NET 5. Additionally, debugging is now supported on Visual Studio for Mac. For more information, see <xref:blazor/debug>.
 
 ### Microsoft Identity v2.0 and MSAL v2.0
 
@@ -184,7 +184,7 @@ Component integration is improved across hosting models, and Blazor WebAssembly 
 
 ### Trimming/linking improvements
 
-Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a build to trim unnecessary IL from the app's output assemblies. With the release of ASP.NET Core 5.0, Blazor WebAssembly performs improved trimming with additional configuration options. For more information, see <xref:blazor/host-and-deploy/configure-trimmer> and [Trimming options](/dotnet/core/deploying/trimming-options).
+Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a build to trim unnecessary IL from the app's output assemblies. With the release of .NET 5, Blazor WebAssembly performs improved trimming with additional configuration options. For more information, see <xref:blazor/host-and-deploy/configure-trimmer> and [Trimming options](/dotnet/core/deploying/trimming-options).
 
 ### Browser compatibility analyzer
 

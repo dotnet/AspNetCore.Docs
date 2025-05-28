@@ -18,7 +18,7 @@ This article provides samples of code migrated to ASP.NET Core in .NET 6. ASP.NE
 
 ## Middleware
 
-The following code adds the Static File Middleware to an ASP.NET Core 5 app:
+The following code adds the Static File Middleware to a .NET 5 app:
 
 ```csharp
 public class Startup
@@ -38,7 +38,7 @@ The following code adds the Static File Middleware to an ASP.NET Core in .NET 6 
 
 ## Routing
 
-The following code adds an endpoint to an ASP.NET Core 5 app:
+The following code adds an endpoint to an .NET 5 app:
 
 ```csharp
 public class Startup
@@ -68,7 +68,7 @@ For more information, see <xref:fundamentals/routing?view=aspnetcore-6.0>
 
 ## Change the content root, app name, and environment
 
-### ASP.NET Core 5
+### ASP.NET Core in .NET 5
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -101,7 +101,7 @@ The following table shows the environment variable and command-line argument use
 
 ## Add configuration providers
 
-### ASP.NET Core 5
+### ASP.NET Core in .NET 5
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -124,7 +124,7 @@ For detailed information, see [File configuration providers](xref:fundamentals/c
 
 ## Add logging providers
 
-### ASP.NET Core 5
+### ASP.NET Core in .NET 5
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -147,7 +147,7 @@ For more information, see  <xref:fundamentals/logging/index?view=aspnetcore-6.0#
 
 ## Add services
 
-### ASP.NET Core 5
+### ASP.NET Core in .NET 5
 
 ```csharp
 public class Startup
@@ -175,7 +175,7 @@ For more information, see  <xref:fundamentals/dependency-injection?view=aspnetco
 
 ### Customize IHostBuilder
 
-#### ASP.NET Core 5
+#### ASP.NET Core in .NET 5
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -193,7 +193,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ### Customize IWebHostBuilder
 
-### ASP.NET Core 5
+### ASP.NET Core in .NET 5
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -214,7 +214,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed by setting the <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions.WebRootPath> property on <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions>:
 
-### ASP.NET Core 5
+### ASP.NET Core in .NET 5
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -237,7 +237,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 The following .NET 5 and .NET 6 samples use [Autofac](https://docs.autofac.org/en/latest/integration/aspnetcore.html)
 
-### ASP.NET Core 5
+### ASP.NET Core in .NET 5
 
 **Program class**
 
@@ -280,7 +280,7 @@ var app = builder.Build();
 
 `Startup.Configure`  can inject any service added via the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>.
 
-### ASP.NET Core 5
+### ASP.NET Core in .NET 5
 
 ```csharp
 public class Startup
@@ -320,7 +320,7 @@ In ASP.NET Core in .NET 6:
 
 ## Test with WebApplicationFactory or TestServer
 
-### ASP.NET Core 5
+### ASP.NET Core in .NET 5
 
 In the following samples, the test project uses `TestServer` and <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. These ship as separate packages that require explicit reference:
 
@@ -340,7 +340,7 @@ In the following samples, the test project uses `TestServer` and <xref:Microsoft
 </ItemGroup>
 ```
 
-#### ASP.NET Core 5 code
+#### ASP.NET Core in .NET 5 code
 
 ```csharp
 public class Startup

@@ -859,7 +859,7 @@ Swagger UI endpoints can now be secured in production environments by calling [`
 
 ## Miscellaneous
 
-The following sections describe miscellaneous new features in ASP.NET Core 8.
+The following sections describe miscellaneous new features in ASP.NET Core in .NET 8.
 
 ### Keyed services support in Dependency Injection
 
@@ -1028,7 +1028,7 @@ var network = new IPNetwork(IPAddress.Parse("2001:db8:3c4d::1"), 128);
 
 ### Redis-based output caching
 
-ASP.NET Core 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
+ASP.NET Core in .NET 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
 
 ### Short-circuit middleware after routing
 
