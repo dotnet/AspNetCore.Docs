@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/3/2022
+ms.date: 05/28/2025
 uid: security/authentication/google-logins
 ---
 
