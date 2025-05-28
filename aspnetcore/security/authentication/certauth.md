@@ -1041,7 +1041,7 @@ There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) wher
 
 Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
 
-For .NET 5 and earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
+For .NET 5 or earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
 
 :::moniker-end
 
@@ -1699,7 +1699,7 @@ There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) wher
 
 Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
 
-For .NET 5 and earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
+For .NET 5 or earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
 
 :::moniker-end
 

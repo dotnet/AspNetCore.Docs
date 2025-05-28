@@ -86,7 +86,7 @@ Each controller endpoint can be tested, however, layout and styles are covered l
 
 ## Migrate static content
 
-In ASP.NET MVC 5 and earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is *{content root}/wwwroot*, but it can be changed. For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files#serve-static-files).
+In ASP.NET MVC 5 or earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is *{content root}/wwwroot*, but it can be changed. For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files#serve-static-files).
 
 Copy the static content from the ASP.NET MVC *WebApp1* project to the *wwwroot* directory in the ASP.NET Core *WebApp1* project:
 
@@ -280,7 +280,7 @@ Note the lack of styling and menu items. The styling will be fixed in the next s
 
 ## Static content
 
-In ASP.NET MVC 5 and earlier, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* directory. Copy the static content from the ASP.NET MVC app to the *wwwroot* directory in the ASP.NET Core project. In this sample conversion:
+In ASP.NET MVC 5 or earlier, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* directory. Copy the static content from the ASP.NET MVC app to the *wwwroot* directory in the ASP.NET Core project. In this sample conversion:
 
 * Copy the *favicon.ico* file from the ASP.NET MVC project to the *wwwroot* directory in the ASP.NET Core project.
 
@@ -466,7 +466,7 @@ Note the lack of styling and menu items. The styling will be fixed in the next s
 
 ## Static content
 
-In ASP.NET MVC 5 and earlier, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* directory. Copy the static content from the ASP.NET MVC app to the *wwwroot* directory in the ASP.NET Core project. In this sample conversion:
+In ASP.NET MVC 5 or earlier, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* directory. Copy the static content from the ASP.NET MVC app to the *wwwroot* directory in the ASP.NET Core project. In this sample conversion:
 
 * Copy the *favicon.ico* file from the ASP.NET MVC project to the *wwwroot* directory in the ASP.NET Core project.
 

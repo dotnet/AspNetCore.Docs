@@ -2894,7 +2894,7 @@ The following list provides some insight into routing features that are relative
   * Are significantly more expensive than parsing a regular URL path segment.
   * Result in many more substrings being allocated.
   * The complex segment logic was not updated in ASP.NET Core 3.0 routing performance update.
-* Synchronous data access: Many complex apps have database access as part of their routing. ASP.NET Core 2.2 and earlier routing might not provide the right extensibility points to support database access routing. For example, <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>, and <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are synchronous. Extensibility points such as <xref:Microsoft.AspNetCore.Routing.MatcherPolicy> and <xref:Microsoft.AspNetCore.Routing.EndpointSelectorContext> are asynchronous.
+* Synchronous data access: Many complex apps have database access as part of their routing. ASP.NET Core 2.2 or earlier routing might not provide the right extensibility points to support database access routing. For example, <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>, and <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are synchronous. Extensibility points such as <xref:Microsoft.AspNetCore.Routing.MatcherPolicy> and <xref:Microsoft.AspNetCore.Routing.EndpointSelectorContext> are asynchronous.
 
 ## Guidance for library authors
 
