@@ -19,7 +19,7 @@ Use object pooling only after collecting performance data using realistic scenar
 
 :::moniker-end
 :::moniker range="< aspnetcore-3.0"
-**WARNING: The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.** `ObjectPool` in ASP.NET Core 3.0 and later supports `IDisposable`.
+**WARNING: The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.** `ObjectPool` in ASP.NET Core 3.0 or later supports `IDisposable`.
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
 

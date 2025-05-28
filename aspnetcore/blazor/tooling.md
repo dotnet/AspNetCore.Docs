@@ -322,7 +322,7 @@ Create a new project:
   ```
 
   > [!NOTE]
-  > The Hosted Blazor WebAssembly project template isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app using a .NET 8.0 or later SDK, pass the `-f|--framework` option with a 7.0 target framework (`net7.0`):
+  > The Hosted Blazor WebAssembly project template isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app using a .NET 8 or later SDK, pass the `-f|--framework` option with a .NET 7 target framework (`net7.0`):
   >
   > ```dotnet cli
   > dotnet new blazorwasm -o BlazorApp -ho -f net7.0
@@ -349,7 +349,7 @@ Create a new project:
   ```
 
   > [!NOTE]
-  > The hosted Blazor WebAssembly project template isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app using a .NET 8.0 or later SDK, pass the `-f|--framework` option with the target framework moniker (for example, `net6.0`):
+  > The hosted Blazor WebAssembly project template isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app using a .NET 8 or later SDK, pass the `-f|--framework` option with the target framework moniker (for example, `net6.0`):
   >
   > ```dotnet cli
   > dotnet new blazorwasm -o BlazorApp -ho -f net6.0
@@ -502,7 +502,7 @@ The Blazor framework provides project templates for creating new apps. The templ
 * Standalone Blazor WebAssembly app project template: `blazorwasm`
 
 > [!NOTE]
-> The "Hosted" Blazor WebAssembly project template option isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8.0 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
+> The "Hosted" Blazor WebAssembly project template option isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
 >
 > * <xref:blazor/index#build-a-full-stack-web-app-with-blazor>
 > * <xref:aspnetcore-8#new-blazor-web-app-template>
@@ -544,7 +544,7 @@ Detailed guidance on render modes is provided by the <xref:blazor/components/ren
 * To enable both interactive rendering modes and the ability to automatically switch between them at runtime, use the **Auto (Server and WebAssembly)** (automatic) render mode option.
 * If interactivity is set to `None`, the generated app has no interactivity. The app is only configured for static server-side rendering.
 
-The Interactive Auto render mode initially uses interactive SSR while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to Interactive WebAssembly rendering.
+The Interactive Auto render mode initially uses interactive SSR while the .NET app bundle and runtime are downloaded to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to Interactive WebAssembly rendering.
 
 The Blazor Web App template enables both static and interactive SSR using a single project. If you also enable CSR, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic render modes must be built from the client project.
 

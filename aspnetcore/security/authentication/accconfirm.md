@@ -32,7 +32,7 @@ For Blazor guidance, which adds to or supersedes the guidance in this article, s
 
 ## Prerequisites
 
-* [.NET Core 6.0 SDK or later](https://dotnet.microsoft.com/download/dotnet/6.0)
+* [.NET 6 or later SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 * Successfully [send email from a C# console app](https://www.twilio.com/blog/send-emails-using-the-sendgrid-api-with-dotnetnet-6-and-csharp).
 
 ## Create and test a web app with authentication
@@ -231,7 +231,7 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 ## Prerequisites
 
-[.NET Core 3.0 SDK or later](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+[.NET Core 3.0 or later SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
 ## Create and test a web app with authentication
 
@@ -354,7 +354,7 @@ Run the web app, and test the account confirmation and password recovery flow.
 
 ## Resend email confirmation
 
-In ASP.NET Core 5.0 and later, select the **Resend email confirmation** link on the **Login** page.
+In .NET 5 or later, select the **Resend email confirmation** link on the **Login** page.
 
 ### Change email and activity timeout
 

@@ -18,10 +18,6 @@ Right-click the *Models* folder > **Add** > **Class**. Name the file `Movie.cs`.
 
 Add a file named `Movie.cs` to the *Models* folder.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Control-click the **Models** folder and select **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
-
 ---
 
 Update the `Models/Movie.cs` file with the following code:
@@ -54,53 +50,6 @@ Build the project as a check for compiler errors.
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 In the *Panel* below the editor region, select the *PROBLEMS* tab, or from the *View* menu, select *Problems* if it is not currently in view. Verify there are no compilation errors.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* From the **Project** menu, select **Manage NuGet Packages**.
-* Select the **Browse** tab.
-* Select **Include prereleases**.
-* In the **Search** field in the upper right:
-  * Enter `Microsoft.EntityFrameworkCore.SQLite`.
-  * Press the <kbd>Return</kbd> key to search.
-  * Select the matching NuGet package and select the **Add Package** button.
-
-![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages_VS22.png)
-
-The **Select Projects** dialog displays, with the `MvcMovie` project selected. Select the **Ok** button.
-
-A **License Acceptance** dialog displays. Review the licenses, then select the **Accept** button.
-
-Repeat the above steps to install the following NuGet packages:
-
-* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
-* `Microsoft.EntityFrameworkCore.SqlServer`
-* `Microsoft.EntityFrameworkCore.Design`
-* `Microsoft.EntityFrameworkCore.Tools`
-
-The preceding packages include:
-
-* The EF Core SQLite provider, which installs the EF Core package as a dependency.
-* Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
-* Design time tools for EF Core.
-
-Run the following .NET CLI commands:
-
-```dotnetcli
-dotnet tool uninstall --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool uninstall --global dotnet-ef
-dotnet tool install --global dotnet-ef
-```
-
-[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
-
-The preceding commands add:
-
-* The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-
-Build the project as a check for compiler errors.
 
 ---
 
@@ -207,51 +156,6 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLiteDevProd&highlight=3-99)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Open a command window in the project directory. The project directory is the directory that contains the `.csproj` file.
-
-Export the scaffold tool path:
-
-```console
-export PATH=$HOME/.dotnet/tools:$PATH
-```
-
-Run the following command:
-
-```dotnetcli
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovie.Data.MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
-```
-
-[!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
-
-Scaffolding creates the following:
-
-* A movies controller: `Controllers/MoviesController.cs`
-* Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
-* A database context class: `Data/MvcMovieContext.cs`
-
-Scaffolding updates the following:
-
-* Registers the database context in the `Program.cs` file
-* Adds a database connection string to the `appsettings.json` file.
-
-The automatic creation of these files and file updates is known as *scaffolding*.
-
-The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
-
-Build the app to verify that there are no errors.
-
-<a name="sqlite-dev-vs-mac"></a>
-
-### Use SQLite for development, SQL Server for production
-
-The following highlighted code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLiteDevProd&highlight=3-99)]
-
-<a name="scaffolding-created"></a>
-
 ---
 
 <a name="migration"></a>
@@ -284,7 +188,7 @@ Ignore the preceding warning, it's fixed in a later tutorial.
 
 [!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following .NET CLI commands:
 
@@ -317,7 +221,7 @@ If you get an exception similar to the following, you may have missed the `Updat
 SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
 ```
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Run the app and select the **Movie App** link.
 
@@ -356,7 +260,7 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_FirstSQLServer&highlight=3-4)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_FirstSQLite&highlight=3-4)]
 
@@ -374,7 +278,7 @@ Scaffolding added a connection string to the `appsettings.json` file:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/appsettings.json?highlight=9-10)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/appsettings_SQLite.json?highlight=9-10)]
 

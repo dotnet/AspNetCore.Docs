@@ -14,6 +14,20 @@ uid: blazor/host-and-deploy/webassembly/azure-static-web-apps
 
 This article explains how to host and deploy standalone Blazor WebAssembly with [Microsoft Azure Static Web Apps](https://azure.microsoft.com/products/app-service/static).
 
+## App configuration
+
+To ensure that requests for any path return `index.html`, set a navigation fallback route.
+
+Create a file named `staticwebapp.config.json` in the project's root folder with the following content:
+
+```json
+{
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  }
+}
+```
+
 ## Deploy from Visual Studio
 
 To deploy from Visual Studio, create a publish profile for Azure Static Web Apps:
@@ -30,10 +44,8 @@ To deploy from Visual Studio, create a publish profile for Azure Static Web Apps
 
 After the publish profile is created, deploy the app to the Azure Static Web Apps instance using the publish profile by selecting the **Publish** button.
 
-## Deploy from Visual Studio Code
+## GitHub deployment scenarios
 
-To deploy from Visual Studio Code, see [Quickstart: Build your first static site with Azure Static Web Apps](/azure/static-web-apps/getting-started?tabs=blazor).
-
-## Deploy from GitHub
-
-To deploy from a GitHub repository, see [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor).
+* Visual Studio Code: [Quickstart: Build your first static site with Azure Static Web Apps](/azure/static-web-apps/getting-started?tabs=blazor)
+* .NET CLI: [Deploy Blazor websites to the cloud with Azure Static Web Apps (Video)](/shows/deploy-websites-to-the-cloud-with-azure-static-web-apps/deploy-blazor-websites-to-the-cloud-with-azure-static-web-apps)
+* Deploy from GitHub: [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor)

@@ -84,7 +84,7 @@ To obtain static assets, use **one** of the following approaches:
   
   In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
   
-  **If you aren't converting an app for the latest release**, pass the `-f|--framework` option. The following example creates the app for ASP.NET Core version 5.0:
+  **If you aren't converting an app for the latest release**, pass the `-f|--framework` option. The following example creates the app for .NET 5:
   
   ```dotnetcli
   dotnet new blazorwasm -o MyBlazorPwa --pwa -f net5.0
@@ -120,7 +120,7 @@ In the app's `wwwroot/index.html` file:
 
 :::moniker range="< aspnetcore-8.0"
 
-* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to the `v7.0.0` tag reference source and assets. If you're using a version of ASP.NET Core later than 7.0, change the document version selector at the top of this article to see the updated guidance for this section. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to the `v7.0.0` tag reference source and assets. If you're using .NET 8 or later, change the document version selector at the top of this article to see the updated guidance for this section. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
 
   [Blazor WebAssembly project template `wwwroot` folder (`v7.0.0` tag)](https://github.com/dotnet/aspnetcore/tree/v7.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
@@ -322,9 +322,15 @@ The `AssetUrl` metadata specifies the base-relative URL that the browser should 
 
 Like any other PWA, a Blazor WebAssembly PWA can receive push notifications from a backend server. The server can send push notifications at any time, even when the user isn't actively using the app. For example, push notifications can be sent when a different user performs a relevant action.
 
+<!-- UPDATE 10.0 - REMOVING FOR NOW. The content at the destination was pulled
+                   on https://github.com/dotnet-presentations/blazor-workshop/pull/368.
+                   I'll converse with DR about what else we can point to for this.
+                   
 The mechanism for sending a push notification is entirely independent of Blazor WebAssembly, since it's implemented by the backend server which can use any technology. If you want to send push notifications from an ASP.NET Core server, consider [using a technique similar to the approach taken in the Blazing Pizza workshop](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#sending-push-notifications).
 
 The mechanism for receiving and displaying a push notification on the client is also independent of Blazor WebAssembly, since it's implemented in the service worker JavaScript file. For an example, see [the approach used in the Blazing Pizza workshop](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#displaying-notifications).
+
+-->
 
 ## Caveats for offline PWAs
 

@@ -102,10 +102,10 @@ Filter | Description
 `+EXPR` | Includes expression
 `-EXPR` | Excludes expression
 
-In the following example, profiled methods are filtered to the app's namespace, which is represented by the `{APP NAMESPACE}` placeholder:
+In the following example, profiled methods are filtered to the app's namespace `SampleApp` and sampling interval is 50ms.
 
 ```xml
-<WasmProfilers>browser:callspec=N:{APP NAMESPACE};</WasmProfilers>
+<WasmProfilers>browser:callspec=N:SampleApp,interval=50</WasmProfilers>
 ```
 
 ## Additional resources

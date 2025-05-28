@@ -155,7 +155,7 @@ Visual Studio displays the following tags in a distinctive bold font used for Ta
 
 ![VS17 view of Create.cshtml page](~/tutorials/razor-pages/page/_static/8/tag_helpers_VS22_17.8.0.png)
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 The following Tag Helpers are shown in the preceding markup:
 

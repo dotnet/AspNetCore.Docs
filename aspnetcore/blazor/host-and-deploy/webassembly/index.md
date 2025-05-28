@@ -451,7 +451,7 @@ Changing the file name extensions of the app's DLL files might not resolve the p
 
 For a more robust approach in environments that block the download and execution of DLL files, take ***either*** of the following approaches:
 
-* Use .NET 8 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
+* Use .NET 8 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in a .NET 8 or later version of this article.
 * In .NET 6 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly/deployment-layout).
 
 Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).

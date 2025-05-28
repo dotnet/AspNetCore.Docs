@@ -100,7 +100,7 @@ By utilizing the [Nullable feature introduced in C# 8](/dotnet/csharp/whats-new/
 
 In this case, the intent is that the `Name` and `Category` can be nullable types.
 
-ASP.NET Core 6.0 projects enable nullable reference types by default. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
+ASP.NET Core in .NET 6 projects enable nullable reference types by default. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
 ## Copy the *ProductsController*
 

@@ -1,7 +1,7 @@
 :::moniker range="= aspnetcore-8.0"
 
 > [!NOTE]
-> If you're using .NET 9 SDK or later, see the updated Linux procedures in the [.NET 9 version of this article](?view=aspnetcore-9.0&preserve-view=true).
+> If you're using .NET 9 or later SDK, see the updated Linux procedures in the [.NET 9 version of this article](?view=aspnetcore-9.0&preserve-view=true).
 
 > [!WARNING]
 > ## API projects

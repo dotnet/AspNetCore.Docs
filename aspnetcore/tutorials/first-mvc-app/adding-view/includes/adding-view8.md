@@ -47,21 +47,6 @@ Add an `Index` view for the `HelloWorldController`:
 * Add a new folder named *Views/HelloWorld*.
 * Add a new file to the *Views/HelloWorld* folder, and name it `Index.cshtml`.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Control-click the *Views* folder and select **Add > New Folder** and name the folder *HelloWorld*.
-
-Control-click the *Views/HelloWorld* folder and select **Add > New File**.
-
-In the **New File** dialog:
-
-* Select **ASP.NET Core** in the left pane.
-* Select **Razor View** in the center pane.
-* Type *Index* in the **Name** box.
-* Select **Create**.
-
-![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/add_view_macVS22.png)
-
 ---
 
 Replace the contents of the `Views/HelloWorld/Index.cshtml` Razor view file with the following:

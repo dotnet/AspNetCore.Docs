@@ -95,7 +95,7 @@ Build-time and publish-time compilation of Razor files is enabled by default by 
 
 ## Enable runtime compilation at project creation
 
-The Razor Pages and MVC project templates include an option to enable runtime compilation when the project is created. This option is supported in ASP.NET Core 3.1 and later.
+The Razor Pages and MVC project templates include an option to enable runtime compilation when the project is created. This option is supported in ASP.NET Core 3.1 or later.
 
 # [Visual Studio](#tab/visual-studio)
 

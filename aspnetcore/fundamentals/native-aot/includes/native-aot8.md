@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-8.0"
 
-ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
+.NET 8 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
 
 ## Why use Native AOT with ASP.NET Core
 

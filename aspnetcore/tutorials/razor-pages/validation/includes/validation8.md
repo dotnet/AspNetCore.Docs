@@ -195,7 +195,7 @@ Update-Database
 
 `Update-Database` runs the `Up` method of the `New_DataAnnotations` class.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Use the following commands to add a migration for the new DataAnnotations:
 

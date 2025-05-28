@@ -21,10 +21,6 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
-
 ---
 
 ## Create a Razor Pages web app
@@ -66,24 +62,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In Visual Studio for Mac 2022, select **File** > **New Project...**.
-
-* In the **Choose a template for your new project** dialog:
-  * Select **Web and Console** > **App** > **Web Application**.
-  * Select **Continue**.
-
-* In the **Configure your new Web Application** dialog:
-  * Verify: **Target framework** is set to **.NET 8.0** (or later).
-  * Verify: **Authentication** is set to **No Authentication**.
-  * Verify: **Do not use top-level statements** is unchecked.
-  * Select **Continue**.
-
-* In the **Configure your new Web Application** dialog:
-  * Enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
-  * Select **Create**.
 
 ---
 
@@ -131,14 +109,6 @@ The default browser launched with the following URL: `https://localhost:<port>` 
 Close the browser window.
 
 In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Select **Debug** > **Start Debugging** to launch the app.
-
-Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is the port number randomly assigned at project creation and is set in `Properties/launchSettings.json`.
-
-Close the browser window.
 
 ---
 

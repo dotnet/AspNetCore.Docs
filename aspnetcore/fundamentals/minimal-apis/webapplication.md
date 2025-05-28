@@ -14,3 +14,5 @@ uid: fundamentals/minimal-apis/webapplication
 
 [!INCLUDE [WebApplication and WebApplicationBuilder](~/fundamentals/minimal-apis/includes/webapplication7.md)]
 [!INCLUDE [WebApplication and WebApplicationBuilder](~/fundamentals/minimal-apis/includes/webapplication8.md)]
+[!INCLUDE [WebApplication and WebApplicationBuilder](~/fundamentals/minimal-apis/includes/webapplication9.md)]
+[!INCLUDE [WebApplication and WebApplicationBuilder](~/fundamentals/minimal-apis/includes/webapplication10.md)]

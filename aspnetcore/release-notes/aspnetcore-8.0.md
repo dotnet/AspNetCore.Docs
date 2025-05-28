@@ -1,15 +1,15 @@
 ---
-title: What's new in ASP.NET Core 8.0
+title: What's new in ASP.NET Core in .NET 8
 author: rick-anderson
-description: Learn about the new features in ASP.NET Core 8.0.
+description: Learn about the new features in ASP.NET Core in .NET 8.
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2024
 uid: aspnetcore-8
 ---
-# What's new in ASP.NET Core 8.0
+# What's new in ASP.NET Core in .NET 8
 
-This article highlights the most significant changes in ASP.NET Core 8.0 with links to relevant documentation.
+This article highlights the most significant changes in ASP.NET Core in .NET 8 with links to relevant documentation.
 
 ## Blazor
 
@@ -179,7 +179,10 @@ For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-8.0&
 
 Root-level cascading values can be registered for the entire component hierarchy. Named cascading values and subscriptions for update notifications are supported.
 
-For more information, see <xref:blazor/components/cascading-values-and-parameters?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values>.
+For more information, see the following resources:
+
+* [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values)
+* [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values-with-notifications)
 
 ### Virtualize empty content
 
@@ -354,7 +357,7 @@ The `[Parameter]` attribute is no longer required when supplying a parameter fro
 
 #### Prior approach for JavaScript clients
 
-The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+The following example shows the assignment of values that are double the default values in .NET 7 or earlier:
 
 ```javascript
 var connection = new signalR.HubConnectionBuilder()
@@ -367,7 +370,7 @@ connection.keepAliveIntervalInMilliseconds = 30000;
 
 #### New approach for JavaScript clients
 
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+The following example shows the ***new approach*** for assigning values that are double the default values in .NET 8 or later:
 
 ```javascript
 var connection = new signalR.HubConnectionBuilder()
@@ -379,7 +382,7 @@ var connection = new signalR.HubConnectionBuilder()
 
 #### Prior approach for the JavaScript client of a Blazor Server app
 
-The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+The following example shows the assignment of values that are double the default values in .NET 7 or earlier:
 
 ```javascript
 Blazor.start({
@@ -396,7 +399,7 @@ Blazor.start({
 
 #### New approach for the JavaScript client of server-side Blazor app
 
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later for Blazor Web Apps and Blazor Server.
+The following example shows the ***new approach*** for assigning values that are double the default values in .NET 8 or later for Blazor Web Apps and Blazor Server.
 
 Blazor Web App:
 
@@ -422,7 +425,7 @@ Blazor.start({
 
 #### Prior approach for .NET clients
 
-The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+The following example shows the assignment of values that are double the default values in .NET 7 or earlier:
 
 ```csharp
 var builder = new HubConnectionBuilder()
@@ -439,7 +442,7 @@ await builder.StartAsync();
 
 #### New approach for .NET clients
 
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+The following example shows the ***new approach*** for assigning values that are double the default values in .NET 8 or later:
 
 ```csharp
 var builder = new HubConnectionBuilder()
@@ -463,7 +466,7 @@ Stateful reconnect achieves this by:
 * Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is returning and replaying messages that might have been sent while the connection was down.
 
-Stateful reconnect is available in ASP.NET Core 8.0 and later.
+Stateful reconnect is available in .NET 8 or later.
 
 Opt in to stateful reconnect at both the server hub endpoint and the client:
 
@@ -523,7 +526,7 @@ This section describes new features for minimal APIs. See also [the section on N
 
 ### User override culture
 
-Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use nondefault Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
+Starting in .NET 8, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use nondefault Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
 
 ```csharp
     app.UseRequestLocalization(options =>
@@ -777,22 +780,22 @@ Apps that use asynchronous I/O and that can have more than one write outstanding
 
 ## Authentication and authorization
 
-ASP.NET Core 8 adds new features to authentication and authorization.
+.NET 8 adds new features to authentication and authorization.
 
 ### Identity API endpoints
 
 [`MapIdentityApi<TUser>`](xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and nonbrowser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
 
-### IAuthorizationRequirementData
+### `IAuthorizationRequirementData`
 
-Prior to ASP.NET Core 8, adding a parameterized authorization policy to an endpoint required implementing an:
+Prior to the release of .NET 8, adding a parameterized authorization policy to an endpoint required implementing:
 
 * `AuthorizeAttribute` for each policy.
 * `AuthorizationPolicyProvider` to process a custom policy from a string-based contract.
 * `AuthorizationRequirement` for the policy.
 * `AuthorizationHandler` for each requirement.
 
-For example, consider the following sample written for ASP.NET Core 7.0:
+For example, consider the following code written for .NET 7:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Program.cs" highlight="9":::
 
@@ -800,27 +803,27 @@ For example, consider the following sample written for ASP.NET Core 7.0:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
 
-The complete sample is [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
+The complete sample for .NET 7 or earlier is the [OldStyleAuthRequirements sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-ASP.NET Core 8 introduces the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface. The `IAuthorizationRequirementData` interface allows the attribute definition to specify the requirements associated with the authorization policy. Using `IAuthorizationRequirementData`, the preceding custom authorization policy code can be written with fewer lines of code. The updated `Program.cs` file:
+.NET 8 introduces the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface. The `IAuthorizationRequirementData` interface allows the attribute definition to specify the requirements associated with the authorization policy. Using `IAuthorizationRequirementData`, the preceding custom authorization policy code can be written with fewer lines of code. The updated `Program.cs` file:
 
 ```diff
-  using AuthRequirementsData.Authorization;
-  using Microsoft.AspNetCore.Authorization;
+using AuthRequirementsData.Authorization;
+using Microsoft.AspNetCore.Authorization;
   
-  var builder = WebApplication.CreateBuilder();
+var builder = WebApplication.CreateBuilder();
   
-  builder.Services.AddAuthentication().AddJwtBearer();
-  builder.Services.AddAuthorization();
-  builder.Services.AddControllers();
-- builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
-  builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
+builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddAuthorization();
+builder.Services.AddControllers();
+-builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
+builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
   
-  var app = builder.Build();
+var app = builder.Build();
   
-  app.MapControllers();
+app.MapControllers();
   
-  app.Run();
+app.Run();
 ```
 
 The updated `MinimumAgeAuthorizationHandler`:
@@ -832,28 +835,23 @@ using System.Security.Claims;
 
 namespace AuthRequirementsData.Authorization;
 
-- class MinimumAgeAuthorizationHandler : AuthorizationHandler<MinimumAgeRequirement>
-+ class MinimumAgeAuthorizationHandler : AuthorizationHandler<MinimumAgeAuthorizeAttribute>
+class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger) 
+-    : AuthorizationHandler<MinimumAgeRequirement>
++    : AuthorizationHandler<MinimumAgeAuthorizeAttribute>
 {
-    private readonly ILogger<MinimumAgeAuthorizationHandler> _logger;
-
-    public MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger)
+    protected override Task HandleRequirementAsync(
+        AuthorizationHandlerContext context,
+-       MinimumAgeRequirement requirement)
++       MinimumAgeAuthorizeAttribute requirement)
     {
-        _logger = logger;
+        ...
     }
-
-    // Check whether a given MinimumAgeRequirement is satisfied or not for a particular
-    // context
-    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
--                                              MinimumAgeRequirement requirement)
-+                                              MinimumAgeAuthorizeAttribute requirement)
-    {
-        // Remaining code omitted for brevity.
+}
 ```
 
-The complete updated sample can be found [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData).
+The updated sample is the [AuthRequirementsData sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-See <xref:security/authorization/iard> for a detailed examination of the new sample.
+For more information, see <xref:security/authorization/iard>.
 
 ### Securing Swagger UI endpoints
 
@@ -861,7 +859,7 @@ Swagger UI endpoints can now be secured in production environments by calling [`
 
 ## Miscellaneous
 
-The following sections describe miscellaneous new features in ASP.NET Core 8.
+The following sections describe miscellaneous new features in ASP.NET Core in .NET 8.
 
 ### Keyed services support in Dependency Injection
 
@@ -911,7 +909,7 @@ Generic variants are supported for the following attributes:
 
 ### Code analysis in ASP.NET Core apps
 
-The new analyzers shown in the following table are available in ASP.NET Core 8.0.
+The new analyzers shown in the following table are available in .NET 8.
 
 | Diagnostic ID | Breaking or nonbreaking | Description |
 | --- | --- | --- |
@@ -1030,7 +1028,7 @@ var network = new IPNetwork(IPAddress.Parse("2001:db8:3c4d::1"), 128);
 
 ### Redis-based output caching
 
-ASP.NET Core 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
+ASP.NET Core in .NET 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
 
 ### Short-circuit middleware after routing
 

@@ -24,10 +24,6 @@ This document shows how to get started with gRPC services using ASP.NET Core.
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
-
 ---
 
 ## Get started with gRPC service in ASP.NET Core
@@ -38,7 +34,7 @@ This document shows how to get started with gRPC services using ASP.NET Core.
 
 See [Get started with gRPC services](xref:tutorials/grpc/grpc-start) for detailed instructions on how to create a gRPC project.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Run `dotnet new grpc -o GrpcGreeter` from the command line.
 

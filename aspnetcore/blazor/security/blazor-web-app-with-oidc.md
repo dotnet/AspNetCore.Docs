@@ -15,13 +15,13 @@ zone_pivot_groups: blazor-web-app-oidc-specification
 
 This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 8 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-:::moniker-range=">= aspnetcore-9.0"
+:::zone pivot="non-bff-pattern"
+
+:::moniker range=">= aspnetcore-9.0"
 
 For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this article don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see <xref:blazor/security/blazor-web-app-entra>.
 
 :::moniker-end
-
-:::zone pivot="non-bff-pattern"
 
 This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with an app that adopts global Interactive Auto rendering (server and `.Client` projects). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **BFF pattern** if the app's specification calls for adopting the BFF pattern.
 
@@ -377,6 +377,12 @@ The sample app only provides a user name and email for display purposes.
 
 :::zone pivot="non-bff-pattern-server"
 
+:::moniker range=">= aspnetcore-9.0"
+
+For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this article don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see <xref:blazor/security/blazor-web-app-entra>.
+
+:::moniker-end
+
 This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with an app that adopts global Interactive Server rendering (single project). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **BFF pattern** if the app's specification calls for adopting the BFF pattern with global Interactive Auto rendering.
 
 The following specification is adopted:
@@ -719,6 +725,12 @@ oidcOptions.TokenValidationParameters.IssuerValidator = microsoftIssuerValidator
 :::zone-end
 
 :::zone pivot="bff-pattern"
+
+:::moniker range=">= aspnetcore-9.0"
+
+For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this article don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see <xref:blazor/security/blazor-web-app-entra>.
+
+:::moniker-end
 
 This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). If the app's specification doesn't call for adopting the BFF pattern, change the article version selector to **Non-BFF pattern (Interactive Auto)** (Interactive Auto rendering) or **Non-BFF pattern (Interactive Server)** (Interactive Server rendering).
 
