@@ -18,4 +18,9 @@
   * [Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
   * [Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 
+## Visual Studio for Mac help
+
+* [Visual Studio for Mac Tour](/visualstudio/mac/ide-tour)
+* [Introducing Visual Studio for Mac](/visualstudio/mac/)
+
 ---
