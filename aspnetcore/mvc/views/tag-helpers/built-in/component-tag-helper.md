@@ -42,7 +42,7 @@ To render a component from a page or view, use the [Component Tag Helper](xref:M
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5.0 or later.
+> Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5 or later.
 
 :::moniker-end
 

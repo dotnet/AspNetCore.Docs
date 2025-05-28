@@ -1,15 +1,15 @@
 ---
-title: What's new in ASP.NET Core 8.0
+title: What's new in ASP.NET Core in .NET 8
 author: rick-anderson
-description: Learn about the new features in ASP.NET Core 8.0.
+description: Learn about the new features in ASP.NET Core in .NET 8.
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2024
 uid: aspnetcore-8
 ---
-# What's new in ASP.NET Core 8.0
+# What's new in ASP.NET Core in .NET 8
 
-This article highlights the most significant changes in ASP.NET Core 8.0 with links to relevant documentation.
+This article highlights the most significant changes in ASP.NET Core in .NET 8 with links to relevant documentation.
 
 ## Blazor
 
@@ -357,7 +357,7 @@ The `[Parameter]` attribute is no longer required when supplying a parameter fro
 
 #### Prior approach for JavaScript clients
 
-The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+The following example shows the assignment of values that are double the default values in .NET 7 or earlier:
 
 ```javascript
 var connection = new signalR.HubConnectionBuilder()
@@ -370,7 +370,7 @@ connection.keepAliveIntervalInMilliseconds = 30000;
 
 #### New approach for JavaScript clients
 
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+The following example shows the ***new approach*** for assigning values that are double the default values in .NET 8 or later:
 
 ```javascript
 var connection = new signalR.HubConnectionBuilder()
@@ -382,7 +382,7 @@ var connection = new signalR.HubConnectionBuilder()
 
 #### Prior approach for the JavaScript client of a Blazor Server app
 
-The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+The following example shows the assignment of values that are double the default values in .NET 7 or earlier:
 
 ```javascript
 Blazor.start({
@@ -399,7 +399,7 @@ Blazor.start({
 
 #### New approach for the JavaScript client of server-side Blazor app
 
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later for Blazor Web Apps and Blazor Server.
+The following example shows the ***new approach*** for assigning values that are double the default values in .NET 8 or later for Blazor Web Apps and Blazor Server.
 
 Blazor Web App:
 
@@ -425,7 +425,7 @@ Blazor.start({
 
 #### Prior approach for .NET clients
 
-The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+The following example shows the assignment of values that are double the default values in .NET 7 or earlier:
 
 ```csharp
 var builder = new HubConnectionBuilder()
@@ -442,7 +442,7 @@ await builder.StartAsync();
 
 #### New approach for .NET clients
 
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+The following example shows the ***new approach*** for assigning values that are double the default values in .NET 8 or later:
 
 ```csharp
 var builder = new HubConnectionBuilder()
@@ -466,7 +466,7 @@ Stateful reconnect achieves this by:
 * Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is returning and replaying messages that might have been sent while the connection was down.
 
-Stateful reconnect is available in ASP.NET Core 8.0 and later.
+Stateful reconnect is available in .NET 8 or later.
 
 Opt in to stateful reconnect at both the server hub endpoint and the client:
 
@@ -526,7 +526,7 @@ This section describes new features for minimal APIs. See also [the section on N
 
 ### User override culture
 
-Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use nondefault Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
+Starting in .NET 8, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use nondefault Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
 
 ```csharp
     app.UseRequestLocalization(options =>
@@ -859,7 +859,7 @@ Swagger UI endpoints can now be secured in production environments by calling [`
 
 ## Miscellaneous
 
-The following sections describe miscellaneous new features in ASP.NET Core 8.
+The following sections describe miscellaneous new features in ASP.NET Core in .NET 8.
 
 ### Keyed services support in Dependency Injection
 
@@ -909,7 +909,7 @@ Generic variants are supported for the following attributes:
 
 ### Code analysis in ASP.NET Core apps
 
-The new analyzers shown in the following table are available in ASP.NET Core 8.0.
+The new analyzers shown in the following table are available in .NET 8.
 
 | Diagnostic ID | Breaking or nonbreaking | Description |
 | --- | --- | --- |
@@ -1028,7 +1028,7 @@ var network = new IPNetwork(IPAddress.Parse("2001:db8:3c4d::1"), 128);
 
 ### Redis-based output caching
 
-ASP.NET Core 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
+ASP.NET Core in .NET 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
 
 ### Short-circuit middleware after routing
 

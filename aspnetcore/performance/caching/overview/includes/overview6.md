@@ -34,6 +34,6 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/distributed-cac
 
 ## Output caching
 
-[Output caching](xref:performance/caching/overview?view=aspnetcore-7.0#oc7) is available in .NET 7 and later.
+[Output caching](xref:performance/caching/overview?view=aspnetcore-7.0#oc7) is available in .NET 7 or later.
 
 :::moniker-end

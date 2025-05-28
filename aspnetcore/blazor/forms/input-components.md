@@ -54,7 +54,7 @@ For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFil
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> components are available in ASP.NET Core 5.0 or later. For more information, select a 5.0 or later version of this article.
+> <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> components are available in .NET 5 or later. For more information, select a .NET 5 or later version of this article.
 
 :::moniker-end
 

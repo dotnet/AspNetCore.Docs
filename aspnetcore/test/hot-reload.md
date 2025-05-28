@@ -10,7 +10,7 @@ uid: test/hot-reload
 ---
 # .NET Hot Reload support for ASP.NET Core
 
-.NET Hot Reload applies code changes, including changes to stylesheets, to a running app without restarting the app and without losing app state. Hot Reload is supported for all ASP.NET Core 6.0 and later projects.
+.NET Hot Reload applies code changes, including changes to stylesheets, to a running app without restarting the app and without losing app state. Hot Reload is supported for all ASP.NET Core in .NET 6 or later projects.
 
 Generally, updated code is rerun to take effect with the following conditions:
 

@@ -12,7 +12,7 @@ uid: tutorials/web-api-help-pages-using-swagger
 
 :::moniker range=">= aspnetcore-8.0"
 
-By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https://blog.rsuter.com/)
+By [Rico Suter](https://blog.rsuter.com/)
 
 [Swagger](https://swagger.io/) ([OpenAPI](https://www.openapis.org/)) is a language-agnostic specification for describing REST APIs. It allows both computers and humans to understand the capabilities of a REST API without direct access to the source code. Its main goals are to:
 

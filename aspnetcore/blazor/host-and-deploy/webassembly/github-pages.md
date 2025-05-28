@@ -52,7 +52,7 @@ For more information, see [Using pre-written building blocks in your workflow: U
 
 Configure the following entries in the script for your deployment:
 
-* Publish directory (`PUBLISH_DIR`): Use the path to the repository's folder where the Blazor WebAssembly app is published. The app is compiled for a specific .NET version, and the path segment for the version must match. Example: `BlazorWebAssemblyXrefGenerator/bin/Release/net9.0/publish/wwwroot` is the path for an app that adopts the `net9.0` [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) for the .NET 9.0 SDK.
+* Publish directory (`PUBLISH_DIR`): Use the path to the repository's folder where the Blazor WebAssembly app is published. The app is compiled for a specific .NET version, and the path segment for the version must match. Example: `BlazorWebAssemblyXrefGenerator/bin/Release/net9.0/publish/wwwroot` is the path for an app that adopts the `net9.0` [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) for the .NET 9 SDK.
 * Push path (`on:push:paths`): Set the push path to match the app's repo folder with a `**` wildcard. Example: `BlazorWebAssemblyXrefGenerator/**`.
 * .NET SDK version (`dotnet-version` via the [`actions/setup-dotnet` Action](https://github.com/actions/setup-dotnet)): Currently, there's no way to set the version to "latest" (see [Allow specifying 'latest' as dotnet-version (`actions/setup-dotnet` #497)](https://github.com/actions/setup-dotnet/issues/497) to up-vote the feature request). Set the SDK version at least as high as the app's framework version.
 * Publish path (`dotnet publish` command): Set the publish folder path to the app's repo folder. Example: `dotnet publish BlazorWebAssemblyXrefGenerator -c Release`.

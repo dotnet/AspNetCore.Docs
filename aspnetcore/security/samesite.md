@@ -66,13 +66,13 @@ All ASP.NET Core components that emit cookies override the preceding defaults wi
 | <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
 | [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) | <xref:Microsoft.AspNetCore.Http.CookieOptions> | `Unspecified` |
 
-ASP.NET Core 3.1 and later provides the following SameSite support:
+ASP.NET Core 3.1 or later provides the following SameSite support:
 
 * Redefines the behavior of `SameSiteMode.None` to emit `SameSite=None`
 * Adds a new value `SameSiteMode.Unspecified` to omit the SameSite attribute.
 * All cookies APIs default to `Unspecified`. Some components that use cookies set values more specific to their scenarios. See the table above for examples.
 
-In ASP.NET Core 3.0 and later the SameSite defaults were changed to avoid conflicting with inconsistent client defaults. The following APIs have changed the default from `SameSiteMode.Lax ` to `-1` to avoid emitting a SameSite attribute for these cookies:
+In ASP.NET Core 3.0 or later the SameSite defaults were changed to avoid conflicting with inconsistent client defaults. The following APIs have changed the default from `SameSiteMode.Lax ` to `-1` to avoid emitting a SameSite attribute for these cookies:
 
 * <xref:Microsoft.AspNetCore.Http.CookieOptions> used with [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*)
 * <xref:Microsoft.AspNetCore.Http.CookieBuilder>  used as a factory for `CookieOptions`
@@ -87,7 +87,7 @@ SameSite support was first implemented in ASP.NET Core in 2.0 using the [2016 dr
 * Is **not** backwards compatible with the 2016 draft. For more information, see [Supporting older browsers](#sob) in this document.
 * Specifies cookies are treated as `SameSite=Lax` by default.
 * Specifies cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
-* Is supported by patches issued for ASP.NET Core 2.1, 2.2, and 3.0. ASP.NET Core 3.1 and later has additional SameSite support.
+* Is supported by patches issued for ASP.NET Core 2.1, 2.2, and 3.0. ASP.NET Core 3.1 or later has additional SameSite support.
 * Is scheduled to be enabled by [Chrome](https://chromestatus.com/feature/5088147346030592) by default in [Feb 2020](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html). Browsers started moving to this standard in 2019.
 
 ## APIs impacted by the change from the 2016 SameSite draft standard to the 2019 draft standard
@@ -189,11 +189,11 @@ The following sample can be downloaded and tested:
 
 ## .NET Core support for the sameSite attribute
 
-.NET Core 3.1 and later support the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to Strict, Lax, or None results in those values being written on the network with the cookie. Setting it equal to `(SameSiteMode)(-1)` indicates that no sameSite attribute should be included on the network with the cookie
+.NET Core 3.1 or later support the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to Strict, Lax, or None results in those values being written on the network with the cookie. Setting it equal to `(SameSiteMode)(-1)` indicates that no sameSite attribute should be included on the network with the cookie
 
 [!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
 
-.NET Core 3.1 and later support the updated SameSite values and adds an extra enum value, `SameSiteMode.Unspecified` to the `SameSiteMode` enum.
+.NET Core 3.1 or later support the updated SameSite values and adds an extra enum value, `SameSiteMode.Unspecified` to the `SameSiteMode` enum.
 This new value indicates no sameSite should be sent with the cookie.
 
 ## API usage with SameSite
@@ -216,13 +216,13 @@ All ASP.NET Core components that emit cookies override the preceding defaults wi
 | <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
 | [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) | <xref:Microsoft.AspNetCore.Http.CookieOptions> | `Unspecified` |
 
-ASP.NET Core 3.1 and later provides the following SameSite support:
+ASP.NET Core 3.1 or later provides the following SameSite support:
 
 * Redefines the behavior of `SameSiteMode.None` to emit `SameSite=None`
 * Adds a new value `SameSiteMode.Unspecified` to omit the SameSite attribute.
 * All cookies APIs default to `Unspecified`. Some components that use cookies set values more specific to their scenarios. See the table above for examples.
 
-In ASP.NET Core 3.0 and later the SameSite defaults were changed to avoid conflicting with inconsistent client defaults. The following APIs have changed the default from `SameSiteMode.Lax ` to `-1` to avoid emitting a SameSite attribute for these cookies:
+In ASP.NET Core 3.0 or later the SameSite defaults were changed to avoid conflicting with inconsistent client defaults. The following APIs have changed the default from `SameSiteMode.Lax ` to `-1` to avoid emitting a SameSite attribute for these cookies:
 
 * <xref:Microsoft.AspNetCore.Http.CookieOptions> used with [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*)
 * <xref:Microsoft.AspNetCore.Http.CookieBuilder>  used as a factory for `CookieOptions`

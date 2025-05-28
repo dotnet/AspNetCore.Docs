@@ -728,7 +728,7 @@ For more information, see the following resources:
 
 :::moniker range="< aspnetcore-8.0"
 
-Quiescence during prerendering results in a poor user experience. The delay can be addressed in apps that target .NET 8 or later with a feature called *streaming rendering*, usually combined with [persisting component state during prerendering](xref:blazor/components/integration#persist-prerendered-state) to avoid waiting for the asynchronous task to complete. In versions of .NET earlier than 8.0, executing a [long-running background task](#cancelable-background-work) that loads the data after final rendering can address a long rendering delay due to quiescence.
+Quiescence during prerendering results in a poor user experience. The delay can be addressed in apps that target .NET 8 or later with a feature called *streaming rendering*, usually combined with [persisting component state during prerendering](xref:blazor/components/integration#persist-prerendered-state) to avoid waiting for the asynchronous task to complete. In versions of .NET earlier than .NET 8, executing a [long-running background task](#cancelable-background-work) that loads the data after final rendering can address a long rendering delay due to quiescence.
 
 :::moniker-end
 

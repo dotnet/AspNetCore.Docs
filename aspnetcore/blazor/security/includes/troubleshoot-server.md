@@ -2,7 +2,7 @@
 
 The server app is a standard ASP.NET Core app. See the [ASP.NET Core logging guidance](xref:fundamentals/logging/index) to enable a lower logging level in the server app.
 
-To enable debug or trace logging for Blazor WebAssembly authentication, see the *Client-side authentication logging* section of <xref:blazor/fundamentals/logging> with the article version selector set to ASP.NET Core 7.0 or later.
+To enable debug or trace logging for Blazor WebAssembly authentication, see the *Client-side authentication logging* section of <xref:blazor/fundamentals/logging> with the article version selector set to ASP.NET Core in .NET 7 or later.
 
 ### Common errors
 

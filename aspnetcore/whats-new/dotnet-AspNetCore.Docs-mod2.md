@@ -146,7 +146,7 @@ Welcome to what's new in the ASP.NET Core docs for February 2024. This article l
 * <xref:aspnetcore-9>
   - .NET 9 Preview 1
   - Blazor What's New guidance
-  - What's new in ASP.NET Core 9.0 stub
+  - What's new in ASP.NET Core in .NET 9
 * <xref:aspnetcore-8> - Update to Native capitalization
 
 ## Security

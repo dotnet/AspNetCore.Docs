@@ -46,7 +46,7 @@ Trimming may have detrimental effects for a published app leading to runtime err
 
 The IL Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
 
-Consider the following client-side component in a Blazor Web App (ASP.NET Core 8.0 or later) that deserializes a <xref:System.Collections.Generic.KeyValuePair> collection (`List<KeyValuePair<string, string>>`):
+Consider the following client-side component in a Blazor Web App (.NET 8 or later) that deserializes a <xref:System.Collections.Generic.KeyValuePair> collection (`List<KeyValuePair<string, string>>`):
 
 ```razor
 @rendermode @(new InteractiveWebAssemblyRenderMode(false))

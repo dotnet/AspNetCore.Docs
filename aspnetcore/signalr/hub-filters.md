@@ -13,7 +13,7 @@ uid: signalr/hub-filters
 
 Hub filters:
 
-* Are available in ASP.NET Core 5.0 or later.
+* Are available in .NET 5 or later.
 * Allow logic to run before and after hub methods are invoked by clients.
 
 This article provides guidance for writing and using hub filters.
