@@ -339,7 +339,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 ## Create the starter app
 
 * Create a Razor Pages app named "ContactManager"
-  * Create the app with **Individual User Accounts**.
+  * Create the app with **Individual Accounts**.
   * Name it "ContactManager" so the namespace matches the namespace used in the sample.
   * `-uld` specifies LocalDB instead of SQLite
 
@@ -700,7 +700,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 ## Create the starter app
 
 * Create a Razor Pages app named "ContactManager"
-  * Create the app with **Individual User Accounts**.
+  * Create the app with **Individual Accounts**.
   * Name it "ContactManager" so the namespace matches the namespace used in the sample.
   * `-uld` specifies LocalDB instead of SQLite
 
