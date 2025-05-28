@@ -1117,4 +1117,3 @@ https://localhost:5001/>
 * [HttpRepl GitHub repository](https://github.com/dotnet/HttpRepl)
 * [Configure Visual Studio to launch HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-for-windows-to-launch-httprepl-on-f5)
 * [Configure Visual Studio Code to launch HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-code-to-launch-httprepl-on-debug)
-* [Configure Visual Studio for Mac to launch HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-for-mac-to-launch-httprepl-as-a-custom-tool)
