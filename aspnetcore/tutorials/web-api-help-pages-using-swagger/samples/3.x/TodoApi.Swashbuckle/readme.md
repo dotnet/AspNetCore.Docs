@@ -138,18 +138,6 @@ XML comments can be enabled with the following approaches:
 </PropertyGroup>
 ```
 
-#### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
-* Manually add the highlighted lines to the `.csproj` file:
-
-```xml
-<PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);1591</NoWarn>
-</PropertyGroup>
-```
-
 #### [Visual Studio Code](#tab/visual-studio-code)
 
 Manually add the highlighted lines to the `.csproj` file:

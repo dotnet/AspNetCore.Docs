@@ -16,7 +16,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 ```
 
-In `Startup.ConfigureServices` for versions of ASP.NET Core earlier than 6.0:
+In `Startup.ConfigureServices` for .NET 5 or earlier:
 
 ```csharp
 using System.Security.Claims;

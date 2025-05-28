@@ -27,7 +27,7 @@ Enabling users to sign in with their existing credentials:
 * Select the **ASP.NET Core Web App** template. Select **OK**.
 * In the **Authentication type** input,  select  **Individual Accounts**.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the terminal.  For Visual Studio Code you can open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 

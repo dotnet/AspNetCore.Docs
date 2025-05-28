@@ -15,9 +15,9 @@ The implementation of the `<machineKey>` element in ASP.NET [is replaceable](htt
 ## Package installation
 
 > [!NOTE]
-> The new data protection system can only be installed into an existing ASP.NET application targeting .NET 4.5.1 or later. Installation will fail if the application targets .NET 4.5 or lower.
+> The new data protection system can only be installed into an existing ASP.NET application targeting .NET Framework 4.5.1 or later. Installation will fail if the application targets .NET Framework 4.5 or lower.
 
-To install the new data protection system into an existing ASP.NET 4.5.1+ project, install the package Microsoft.AspNetCore.DataProtection.SystemWeb. This will instantiate the data protection system using the [default configuration](xref:security/data-protection/configuration/default-settings) settings.
+To install the new data protection system into an existing .NET Framework 4.5.1+ project, install the package Microsoft.AspNetCore.DataProtection.SystemWeb. This will instantiate the data protection system using the [default configuration](xref:security/data-protection/configuration/default-settings) settings.
 
 When you install the package, it inserts a line into *Web.config* that tells ASP.NET to use it for [most cryptographic operations](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/), including forms authentication, view state, and calls to MachineKey.Protect. It does not use the [data protection API](xref:security/data-protection/using-data-protection). The line that's inserted reads as follows.
 

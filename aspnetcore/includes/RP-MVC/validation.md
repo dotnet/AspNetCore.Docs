@@ -1,4 +1,4 @@
-<!-- USED in RP and MVC tutorial for .NET 5 and earlier-->
+<!-- USED in RP and MVC tutorial for .NET 5 or earlier-->
 
 ## Add validation rules to the movie model
 

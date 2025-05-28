@@ -11,7 +11,7 @@ uid: host-and-deploy/docker/visual-studio-tools-for-docker
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Visual Studio 2017 and later versions support building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
+Visual Studio 2017 or later versions support building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -29,7 +29,7 @@ For Docker installation, first review the information at [Docker for Windows: Wh
 ![Dialog to select local C drive sharing for containers](visual-studio-tools-for-docker/_static/settings-shared-drives-win.png)
 
 > [!TIP]
-> Visual Studio 2017 versions 15.6 and later prompt when **Shared Drives** aren't configured.
+> Visual Studio 2017 versions 15.6 or later prompt when **Shared Drives** aren't configured.
 
 ## Add a project to a Docker container
 

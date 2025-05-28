@@ -43,7 +43,7 @@ To create a new ASP.NET Core web app:
 
 1. Use the **File** > **New** > **Project** menu option and choose the **ASP.NET Core Empty** template. Select **Next**.
 1. Name the project `SignalRWebpack`, and select **Create**.
-1. Select `.NET 6.0 (Long Term Support)` from the **Framework** drop-down. Select **Create**.
+1. Select **.NET 6.0 (Long Term Support)** from the **Framework** drop-down. Select **Create**.
 
 Add the [Microsoft.TypeScript.MSBuild](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild/) NuGet package to the project:
 

@@ -139,11 +139,11 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 <!-- UPDATE 10.0 - Remove at 10.0 GA -->
 
 > [!IMPORTANT]
-> A breaking change in EF Core tooling for .NET SDK 9.0.200 prevented scaffolding from executing with the following exception:
+> A breaking change in EF Core tooling for .NET 9.0.200 SDK prevented scaffolding from executing with the following exception:
 >
 > > :::no-loc text="Could not load file or assembly 'Microsoft.EntityFrameworkCore.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.":::
 > 
-> To resolve the error, upgrade to a .NET SDK of 9.0.300 or later.
+> To resolve the error, upgrade to a .NET 9.0.300 or later SDK.
 >
 > For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
 
@@ -196,11 +196,11 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 <!-- UPDATE 10.0 - Remove at 10.0 GA -->
 
 > [!IMPORTANT]
-> A breaking change in EF Core tooling for .NET SDK 9.0.200 prevented scaffolding from executing with the following exception:
+> A breaking change in EF Core tooling for .NET 9.0.200 SDK prevented scaffolding from executing with the following exception:
 >
 > > :::no-loc text="Could not load file or assembly 'Microsoft.EntityFrameworkCore.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.":::
 > 
-> To resolve the error, upgrade to a .NET SDK of 9.0.300 or later.
+> To resolve the error, upgrade to a .NET 9.0.300 or later SDK.
 >
 > For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
 
