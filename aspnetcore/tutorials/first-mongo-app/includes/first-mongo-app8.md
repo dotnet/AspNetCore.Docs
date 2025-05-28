@@ -24,10 +24,6 @@ In this tutorial, you learn how to:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
-
 ---
 
 ## Configure MongoDB
@@ -156,17 +152,6 @@ Use the previously installed MongoDB Shell in the following steps to create a da
    ```dotnetcli
    dotnet add package MongoDB.Driver
    ```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. Select **File** > **New Project...**.
-1. Select **Web and Console** > **App** from the sidebar.
-1. Select the **ASP.NET Core** > **API** C# project template, and select **Next**.
-1. Select **.NET 8.0** from the **Target Framework** drop-down list, and select **Next**.
-1. Enter *BookStoreApi* for the **Project Name**, and select **Create**.
-1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Manage NuGet Packages**.
-1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and select **Add Package**.
-1. Select the **Accept** button in the **License Acceptance** dialog.
 
 ---
 

@@ -97,7 +97,7 @@ Another option is to delete the database and use migrations to re-create the dat
    Update-Database
    ```
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ### Add a migration for rating
 Use the following commands to add a migration for the rating field:

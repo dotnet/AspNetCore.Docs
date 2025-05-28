@@ -42,18 +42,6 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png)
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-In **Solution Explorer**, control-click **Controllers** and select **Add > New File**.
-
-![Contextual menu for adding a controller](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller_MacVS22.png)
-
-Select **ASP.NET Core** and **Controller Class**.
-
-Name the controller **HelloWorldController**.
-
-![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac_MacVS22.png)
-
 ---
 
 Replace the contents of `Controllers/HelloWorldController.cs` with the following code:

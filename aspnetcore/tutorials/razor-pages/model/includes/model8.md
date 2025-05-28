@@ -58,31 +58,6 @@ In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app withou
 
 In the *Panel* below the editor region, select the *PROBLEMS* tab, or from the *View* menu, select *Problems* if it is not currently in view. Verify there are no compilation errors.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder `Models`.
-1. Control-click the `Models` folder, and then select **Add** > **New Class...**.
-1. In the **New File** dialog:
-   1. Select **General** in the left pane.
-   1. Select **Empty Class** in the center pane.
-   1. Name the class **Movie** and select **Create**.
-
-1. Add the following properties to the `Movie` class:
-
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/Movie.cs?name=snippet1)]
-
-The `Movie` class contains:
-
-* An `ID` field to provide a primary key for the database.
-* A [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute to specify the type of data in the `ReleaseDate` field. With this attribute:
-
-  * The user isn't required to enter time information in the date field.
-  * Only the date is displayed, not time information.
-
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
-
-Build the project to verify there are no compilation errors.
-
 ---
 
 ## Scaffold the movie model
@@ -143,47 +118,6 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 [!INCLUDE[](~/includes/DevProdSQLite.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-<!--
-Author note 8-16-23: VS for Mac 2022 17.6.3 and the 7.05 packages and .NET 7 or the 8.0 packages and .NEt 8.0 Preview 7: EF scaffolding on the Mac loads all packages needed including SQLite 7.0.5, but then can't find SQLite and will not scaffold the files. Workaround is add Microsoft.EntityFrameworkCore.Sqlite as a step before scaffolding.  Remove once this issue is fixed.
--->
-
-1. Add the NuGet package `Microsoft.EntityFrameworkCore.Sqlite`, which is required for the scaffolding tool.
-   1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Open in Terminal**.
-
-     The Terminal window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
-
-   1. Run the following .NET CLI command:
-
-     ```dotnetcli
-       dotnet add package Microsoft.EntityFrameworkCore.SQLite
-     ```
-
-1. Create a *Pages/Movies* folder:
-   1. Control-click on the *Pages* folder > **Add** > **New Folder**.
-   1. Name the folder *Movies*.
-
-1. Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
-
-   ![New Scaffolding on Mac](~/tutorials/razor-pages/model/_static/6/scaMac6.png)
-
-1. In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
-
-   ![Add Scaffolding on Mac](~/tutorials/razor-pages/model/_static/7/add_scaffoldMac7.png)
-
-1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
-   1. In the **Model class to use:** row, enter `Movie`.
-   1. In the **DbContext Class to use:** row, name the class `RazorPagesMovie.Data.RazorPagesMovieContext`.
-   1. Select **Finish**.
-
-   ![Add Razor Pages on Mac](~/tutorials/razor-pages/model/_static/arpMac.png)
-
-The scaffolding process may take some time to complete as required packages are automatically downloaded and added to the project.
-
-The `appsettings.json` file is updated with the connection string used to connect to a local database.
-
-[!INCLUDE[](~/includes/DevProdSQLite.md)]
-
 ---
 
 [!INCLUDE [managed-identities-test-non-production](~/includes/managed-identities-test-non-production.md)]
@@ -200,8 +134,11 @@ The created files are explained in the next tutorial.
 The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
+
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all&highlight=1-3,8-9)]
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all_sl&highlight=1-2,8-9)]
 
 ---
@@ -272,36 +209,6 @@ The following warning is displayed, which is addressed in a later step:
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Control-click the *RazorPagesMovie* project, and then select **Open in Terminal**.
-
-  The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
-
-* Run the following .NET CLI commands:
-
-  ```dotnetcli
-  dotnet tool uninstall --global dotnet-ef
-  dotnet tool install --global dotnet-ef
-  dotnet ef migrations add InitialCreate
-  dotnet ef database update
-  ```
-
-* The `tool` commands install the latest [Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) after uninstalling any previous version, if one exists.
-
-  [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
-
-* The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
-
-* The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
-
-> [!NOTE]
-> For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
-
-The following warning is displayed, which is addressed in a later step:
-
-> No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
-
 ---
 
 The data context `RazorPagesMovieContext`:
@@ -352,7 +259,7 @@ The scaffolding tool automatically created a database context and registered it 
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all&highlight=9-10)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all_sl&highlight=7-8)]
 
 ---

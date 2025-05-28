@@ -22,7 +22,7 @@ Some of the scenarios that dev tunnels enable:
 
 ## Prerequisites
 
-* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.6 or later with the **ASP.NET and web development** workload installed. You need to be signed in to Visual Studio to create and use dev tunnels. The feature isn't available in Visual Studio for Mac.
+* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.6 or later with the **ASP.NET and web development** workload installed. You need to be signed in to Visual Studio to create and use dev tunnels.
 * One or more ASP.NET Core projects. This article uses a solution with two sample projects to demonstrate the feature.
 
 ## Create a tunnel

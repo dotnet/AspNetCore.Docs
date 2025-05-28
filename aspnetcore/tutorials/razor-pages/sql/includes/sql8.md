@@ -7,7 +7,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_di&highlight=8-9)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_di_sl&highlight=7-8)]
 
@@ -21,7 +21,7 @@ The generated connection string is similar to the following JSON:
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/appsettings.json?highlight=10-12)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/appsettings_SQLite.json?highlight=9-11)]
 
@@ -52,7 +52,7 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
    ![Movie table open showing table data](~/tutorials/razor-pages/sql/_static/8/view_data_VS22_17.8.0.png)
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ## SQLite
 
@@ -108,7 +108,7 @@ Update the `Program.cs` with the following highlighted code:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/ProgramSeed.cs?name=snippet_all&highlight=3,13-18)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/ProgramSeed.cs?name=snippet_all_sl&highlight=3,13-18)]
 
