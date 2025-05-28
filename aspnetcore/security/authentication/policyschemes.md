@@ -16,7 +16,7 @@ Authentication policy schemes make it easier to have a single logical authentica
 
 All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> and the associated <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601>:
 
-* Are automatically policy schemes in ASP.NET Core 2.1 and later.
+* Are automatically policy schemes in ASP.NET Core 2.1 or later.
 * Can be enabled via configuring the scheme's options.
 
 [!code-csharp[sample](policyschemes/samples/AuthenticationSchemeOptions.cs?name=snippet)]

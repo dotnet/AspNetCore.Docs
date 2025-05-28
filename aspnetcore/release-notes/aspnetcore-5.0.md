@@ -58,7 +58,7 @@ ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteV
 
 * The [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attribute can be applied to properties on a Razor Page model.
 * Parameters and properties bound from the body are considered required by default. <!-- Review: How is this different from 3.1
-The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
+The validation system in .NET Core 3.0 or later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
 see https://learn.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcore-3.1   
 -->
 
@@ -100,7 +100,7 @@ The template generated code won't accidentally expose the API's description when
 
 #### Azure API Management Import
 
-When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 and later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](xref:tutorials/publish-to-azure-api-management-using-vs) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
+When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 or later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](xref:tutorials/publish-to-azure-api-management-using-vs) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
 
 ![Azure API Management Import VS publishing](~/release-notes/static/publish-to-apim.png)
 

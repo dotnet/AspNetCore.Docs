@@ -37,7 +37,7 @@ If the server runs IIS, the WebSockets transport requires IIS 8.0 or later on Wi
 
 ## Java client
 
-The [Java client](xref:signalr/java-client) supports Java 8 and later versions.
+The [Java client](xref:signalr/java-client) supports Java 8 or later versions.
 
 ## Swift client
 

@@ -109,7 +109,7 @@ The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbC
 
 :::moniker range="< aspnetcore-5.0"
 
-In versions of .NET prior to 5.0, use the following `DbContextFactory`:
+In versions of .NET prior to .NET 5, use the following `DbContextFactory`:
 
 ```csharp
 using System;

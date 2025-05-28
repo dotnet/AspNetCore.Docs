@@ -37,7 +37,7 @@ Create a new solution with a new ASP.NET Core project to migrate to:
 
 ## Configure the ASP.NET Core site to use MVC
 
-In ASP.NET Core 3.0 and later projects, .NET Framework is no longer a supported target framework. Your project must target .NET Core. The ASP.NET Core shared framework, which includes MVC, is part of the .NET Core runtime installation. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in the project file:
+In ASP.NET Core 3.0 or later projects, .NET Framework is no longer a supported target framework. Your project must target .NET Core. The ASP.NET Core shared framework, which includes MVC, is part of the .NET Core runtime installation. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">

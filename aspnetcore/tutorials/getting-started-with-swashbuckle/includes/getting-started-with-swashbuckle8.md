@@ -2,7 +2,7 @@
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 > [!NOTE]
-> Swashbuckle is not available in .NET 9 and later. For an alternative, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
+> Swashbuckle is not available in .NET 9 or later. For an alternative, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
 
 There are three main components to Swashbuckle:
 

@@ -236,7 +236,7 @@ GC.Collect();
 
 See <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> for information on compacting the LOH.
 
-In containers using .NET Core 3.0 and later, the LOH is automatically compacted.
+In containers using .NET Core 3.0 or later, the LOH is automatically compacted.
 
 The following API that illustrates this behavior:
 

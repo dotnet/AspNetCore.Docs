@@ -354,7 +354,7 @@ Run the web app, and test the account confirmation and password recovery flow.
 
 ## Resend email confirmation
 
-In ASP.NET Core 5.0 and later, select the **Resend email confirmation** link on the **Login** page.
+In ASP.NET Core 5.0 or later, select the **Resend email confirmation** link on the **Login** page.
 
 ### Change email and activity timeout
 
