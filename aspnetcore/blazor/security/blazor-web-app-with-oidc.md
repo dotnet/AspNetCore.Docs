@@ -554,10 +554,11 @@ The `Weather` component uses the [`[Authorize]` attribute](xref:Microsoft.AspNet
 The `ExternalApi` HTTP client is used to make a request for weather data to the secure web API. In the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of `Weather.razor`:
 
 ```csharp
-var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-var client = ClientFactory.CreateClient("ExternalApi");
+using var request = 
+    new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
+using var client = ClientFactory.CreateClient("ExternalApi");
 
-var response = await client.SendAsync(request);
+using var response = await client.SendAsync(request);
 
 response.EnsureSuccessStatusCode();
 

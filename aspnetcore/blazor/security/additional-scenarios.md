@@ -5,7 +5,7 @@ description: Learn how to configure server-side Blazor and Blazor Web Apps for a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/29/2025
+ms.date: 05/30/2025
 uid: blazor/security/additional-scenarios
 ---
 # ASP.NET Core server-side and Blazor Web App additional security scenarios
@@ -23,233 +23,47 @@ This article explains how to configure server-side Blazor for additional securit
 
 *This section applies to Blazor Web Apps. For Blazor Server, view the [.NET 7 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).*
 
-If you merely want to use access tokens to make web API calls from a Blazor Web App with a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section, which explains how to use a <xref:System.Net.Http.DelegatingHandler> implementation to attach a user's access token to outgoing requests. The guidance in this section is for developers who need access tokens, refresh tokens, and other authentication properties throughout the app for other purposes.
+If you merely want to use access tokens to make web API calls from a Blazor Web App with a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section, which explains how to use a <xref:System.Net.Http.DelegatingHandler> implementation to attach a user's access token to outgoing requests. The following guidance in this section is for developers who need access tokens, refresh tokens, and other authentication properties server-side for other purposes.
 
-To save tokens and other authentication properties in Blazor Web Apps, we recommend putting them into user claims, which can be accessed from anywhere in the app, including on the client (in the `.Client` project) when [passing authentication state](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps) and setting <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> to `true`.
+To save tokens and other authentication properties for server-side use in Blazor Web Apps, we recommend using [`IHttpContextAccessor`/`HttpContext`](xref:blazor/components/httpcontext) (<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, <xref:Microsoft.AspNetCore.Http.HttpContext>). Reading tokens from <xref:Microsoft.AspNetCore.Http.HttpContext>, including as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal%601> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>. For more information, see <xref:blazor/components/httpcontext>.
 
-The following scenarios are covered:
-
-* [Passing tokens in apps that use an OIDC identity provider](#passing-tokens-in-apps-that-use-an-oidc-identity-provider)
-* [Passing tokens in apps that use Microsoft Identity Web packages for Entra ID](#passing-tokens-in-apps-that-use-microsoft-identity-web-packages-for-entra-id)
-
-### Passing tokens in apps that use an OIDC identity provider
-
-For an app that adopts [OpenId Connect (OIDC) authentication](xref:blazor/security/blazor-web-app-oidc), the following example shows how to:
-
-* Retain the access token of a user in a claim when the user signs into the app.
-* Update the claim when the authentication cookie is updated with a new access token on principal validation.
-
-For a local demonstration of the approach, you can implement the following example in the sample app that accompanies <xref:blazor/security/blazor-web-app-oidc>.
-
-Where cookie authentication options (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>) are configured, create an access token claim, which is named "`AccessToken`" in the following example, when the user signs into the app (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnSigningIn%2A>):
+The following general approaches are available. The first approach is to add the namespace <xref:Microsoft.AspNetCore.Authentication?displayProperty=fullName> to surface the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A> method on <xref:Microsoft.AspNetCore.Http.HttpContext>:
 
 ```csharp
-services.AddOptions<CookieAuthenticationOptions>(cookieScheme)
-    .Configure<CookieOidcRefresher>((cookieOptions, refresher) =>
-{
-    cookieOptions.Events.OnValidatePrincipal = context => 
-        refresher.ValidateOrRefreshCookieAsync(context, oidcScheme);
+using Microsoft.AspNetCore.Authentication;
 
-    cookieOptions.Events.OnSigningIn = (context) =>
+public class TokenProcessor(IHttpContextAccessor httpContextAccessor)
+{
+    public async Task ProcessTokenAsync()
     {
-        if (context.Principal?.Identity is not null && 
-            context.Principal.Identity.IsAuthenticated)
-        {
-            var accessToken = context.Properties.GetTokenValue("access_token");
-            var claimsIdentity = new ClaimsIdentity(context.Principal?.Identity,
-                [new Claim("AccessToken", accessToken ?? "No Access Token!")]);
-            context.Principal = new ClaimsPrincipal(claimsIdentity);
-            context.Properties.Items.Remove("access_token");
-        }
-
-        return Task.CompletedTask;
-    };
-});
-```
-
-In the event handler assigned to <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal%2A>, where the user's access token is renewed on expiration, update the `AccessToken` claim:
-
-```csharp
-public async Task ValidateOrRefreshCookieAsync(
-    CookieValidatePrincipalContext validateContext, string oidcScheme)
-{
-    ...
-
-    validationResult.Claims.Remove("AccessToken");
-    validationResult.ClaimsIdentity.AddClaim(
-        new Claim("AccessToken", message.AccessToken));
-    validateContext.ReplacePrincipal(
-        new ClaimsPrincipal(validationResult.ClaimsIdentity));
-
-    ...
-}
-```
-
-For sample code that fully implements the preceding `ValidateOrRefreshCookieAsync` method, see <xref:blazor/security/blazor-web-app-oidc> and the sample app that accompanies the article.
-
-Make sure that <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> is set to `true` if you need the authentication data client-side (in the `.Client` project of the Blazor Web App). For more information, see <xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps>.
-
-Classes and components, including components that render on the client, can read tokens and other authentication property data from claims. In the following `ServerWeatherForecaster` service for obtaining weather data on the server, the `AccessToken` claim is used to make a secure call to an external web API for weather data:
-
-```csharp
-internal sealed class ServerWeatherForecaster(IHttpClientFactory clientFactory, 
-    IHttpContextAccessor httpContextAccessor, IConfiguration config) 
-    : IWeatherForecaster
-{
-    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
-    {
-        var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-        var accessToken = httpContextAccessor.HttpContext?.User.Claims.First(
-            c => c.Type == "AccessToken").Value 
-            ?? throw new Exception("No access token!");
-        request.Headers.Authorization = 
-            new AuthenticationHeaderValue("Bearer", accessToken);
-        var client = clientFactory.CreateClient();
-        client.BaseAddress = new Uri(config["ExternalApiUri"] 
-            ?? throw new Exception("No base address!"));
-
-        var response = await client.SendAsync(request);
-
-        response.EnsureSuccessStatusCode();
-
-        return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
-            throw new IOException("No weather forecast!");
+        var accessToken = httpContextAccessor.HttpContext?
+            .GetTokenAsync("access_token").Result ?? 
+            throw new Exception("No access token");
     }
 }
 ```
 
-See the [Demonstration `Weather` component](#demonstration-weather-component) section for an example component that obtains weather data from a web API in developer code using an <xref:System.Net.Http.HttpRequestMessage>.
-
-### Passing tokens in apps that use Microsoft Identity Web packages for Entra ID
-
-In a Blazor Web App with [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), use the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnTokenResponseReceived%2A> event to store tokens and other authentication data in the user's claims principal. The following example shows how to retain and update the access token of a user.
-
-For a local demonstration of the approach, you can implement the following example in the sample app that accompanies <xref:blazor/security/blazor-web-app-entra>.
+The second approach involves calling <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A> on <xref:Microsoft.AspNetCore.Http.HttpContext>. For the returned <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Properties%2A?displayProperty=nameWithType>, call <xref:Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenValue%2A>:
 
 ```csharp
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(msIdentityOptions =>
-    {
-        ...
+using Microsoft.AspNetCore.Authentication;
 
-        msIdentityOptions.Events.OnTokenResponseReceived = context =>
-        {
-            var claim = context.Principal?.Claims.FirstOrDefault(c => c.Type == "AccessToken");
-
-            if (context.Principal?.Identity is not null && claim is not null)
-            {
-                ((ClaimsIdentity)context.Principal.Identity).RemoveClaim(claim);
-            }
-
-            var tokens = context.TokenEndpointResponse;
-            var claimsIdentity = new ClaimsIdentity();
-            claimsIdentity.AddClaim(new Claim("AccessToken", tokens.AccessToken));
-            context.Principal?.AddIdentity(claimsIdentity);
-
-            return Task.CompletedTask;
-        };
-    })
-    .AddInMemoryTokenCaches();
-```
-
-Make sure that <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> is set to `true` if you need the authentication data client-side (in the `.Client` project of the Blazor Web App). For more information, see <xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps>.
-
-See the [Demonstration `Weather` component](#demonstration-weather-component) section for an example component that obtains weather data from a web API in developer code using an <xref:System.Net.Http.HttpRequestMessage>. However, we recommend using Microsoft Identity Web packages for Entra in most cases for the best developer experience, which is demonstrated by the sample app for <xref:blazor/security/blazor-web-app-entra>. The `Weather` component in the *Demonstration `Weather` component* section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
-
-### Demonstration `Weather` component
-
-The following component is presented to demonstrate using an access token from the user's claims in C# code using an <xref:System.Net.Http.HttpRequestMessage>.
-
-> [!NOTE]
-> If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), we recommend using the API provided by Microsoft to call web APIs, which usually provides a better developer experience. The example in this section is only for demonstration purposes in an app that adopts Microsoft Identity Web for Entra.
-
-[CORS](xref:security/cors) configuration is required when the web API is hosted at a different origin than the calling app.
-
-With additional code, the weather forecast can be persisted when the component is prerendered. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
-
-```razor
-@page "/weather"
-@using System.Net.Http.Headers
-@using Microsoft.AspNetCore.Authorization
-@using BlazorWebAppOidc.Client.Weather
-@attribute [Authorize]
-@inject IHttpClientFactory ClientFactory
-
-<PageTitle>Weather</PageTitle>
-
-<h1>Weather</h1>
-
-<p>This component demonstrates showing data.</p>
-
-@if (forecasts == null)
+public class TokenProcessor(IHttpContextAccessor httpContextAccessor)
 {
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th aria-label="Temperature in Celsius">Temp. (C)</th>
-                <th aria-label="Temperature in Fahrenheit">Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-
-@code {
-    private IEnumerable<WeatherForecast>? forecasts;
-
-    [CascadingParameter]
-    private Task<AuthenticationState>? AuthState { get; set; }
-
-    protected override async Task OnInitializedAsync()
+    public async Task ProcessTokenAsync()
     {
-        if (AuthState is not null)
-        {
-            var authState = await AuthState;
-            var user = authState?.User;
-
-            if (user is not null)
-            {
-                var accessToken = 
-                    user.Claims.First(c => c.Type == "AccessToken")?.Value;
-                var request = 
-                    new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-                request.Headers.Authorization =
-                    new AuthenticationHeaderValue("Bearer", accessToken);
-                var client = ClientFactory.CreateClient();
-                client.BaseAddress = new Uri("https://localhost:7277");
-                var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
-
-                forecast = await response.Content
-                    .ReadFromJsonAsync<IEnumerable<WeatherForecast>>() ??
-                    throw new IOException("No data!");
-            }
-        }
+        var authResult = httpContextAccessor.HttpContext?
+            .AuthenticateAsync().Result;
+        var accessToken = authResult?.Properties?
+            .GetTokenValue("access_token");
     }
 }
 ```
 
-## Reading tokens from `HttpContext`
-
-Reading tokens from <xref:Microsoft.AspNetCore.Http.HttpContext>, including as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal%601> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>.
-
-For more information, see <xref:blazor/components/httpcontext>.
+> [!CAUTION]
+> Ensure that access tokens are never transmitted and handled by the client (the `.Client` project), for example, in a component that adopts Interactive Auto rendering and is rendered on the client or by a client-side service. Always have the client call the server (project) to process requests with tokens. **Tokens and other authentication data should never leave the server.**
+>
+> For Interactive Auto components, see <xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering>, which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in <xref:blazor/security/blazor-web-app-oidc>.
 
 ## Use a token handler for web API calls
 
@@ -287,11 +101,13 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
 
 In the project's `Program` file, the token handler (`TokenHandler`) is registered as a scoped service and specified as a [named HTTP client's](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
-In the following example, the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>, and the `{BASE ADDRESS}` placeholder is the web API's base address URI.
+In the following example, the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>, and the `{BASE ADDRESS}` placeholder is the web API's base address URI. For more information on <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor%2A>, see <xref:blazor/components/httpcontext>.
 
 In `Program.cs`:
 
 ```csharp
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped<TokenHandler>();
 
 builder.Services.AddHttpClient("{HTTP CLIENT NAME}",
@@ -324,17 +140,17 @@ In `appsettings.json`, specify the `ExternalApiUri`. The following example sets 
 At this point, an <xref:System.Net.Http.HttpClient> created by a component can make secure web API requests. In the following example, the `{REQUEST URI}` is the relative request URI, and the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>:
 
 ```csharp
-var request = new HttpRequestMessage(HttpMethod.Get, "{REQUEST URI}");
-var client = ClientFactory.CreateClient("{HTTP CLIENT NAME}");
-var response = await client.SendAsync(request);
+using var request = new HttpRequestMessage(HttpMethod.Get, "{REQUEST URI}");
+using var client = ClientFactory.CreateClient("{HTTP CLIENT NAME}");
+using var response = await client.SendAsync(request);
 ```
 
 Example:
 
 ```csharp
-var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-var client = ClientFactory.CreateClient("ExternalApi");
-var response = await client.SendAsync(request);
+using var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
+using var client = ClientFactory.CreateClient("ExternalApi");
+using var response = await client.SendAsync(request);
 ```
 
 <!-- UPDATE 11.0 - Scheduled for features in .NET 11 -->
@@ -571,10 +387,10 @@ public class WeatherForecastService
     public async Task<WeatherForecast[]> GetForecastAsync()
     {
         var token = tokenProvider.AccessToken;
-        var request = new HttpRequestMessage(HttpMethod.Get, 
+        using var request = new HttpRequestMessage(HttpMethod.Get, 
             "https://localhost:5003/WeatherForecast");
         request.Headers.Add("Authorization", $"Bearer {token}");
-        var response = await http.SendAsync(request);
+        using var response = await http.SendAsync(request);
         response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ?? 

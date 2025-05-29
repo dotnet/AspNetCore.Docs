@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 05/30/2025
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -589,7 +589,7 @@ For more information on client-side authentication, see <xref:blazor/security/we
 
 When a Blazor Web App adopts server-side rendering (SSR) and client-side rendering (CSR) for components or an entire app that specifies the [Interactive Auto render mode](xref:blazor/components/render-modes#automatic-auto-rendering), authorization to access components and data is applied in *two places*. The component restricts access to itself (and any data that it obtains) when rendered on the server by virtue of an authorization attribute in the component's definition file (`@attribute [Authorize]`). When the component is rendered on the client, access to data is restricted via the server web API endpoints that are called from the client. Care must be taken when securing data access in both locations to prevent improper data access.
 
-Consider the following scenario where secure weather data is displayed by a component. The following example can be examined and demonstrated in a running sample app with either the `BlazorWebAppEntra`/`BlazorWebAppEntraBff` samples (.NET 9 or later) or the `BlazorWebAppOidc` sample (.NET 8 or later) in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+Consider the following scenario where secure weather data is displayed by a component. Demonstrations of some of the following approaches can be evaluated and tested using the `BlazorWebAppEntra`/`BlazorWebAppEntraBff` samples (.NET 9 or later) or the `BlazorWebAppOidc`/`BlazorWebAppOidcBff` samples (.NET 8 or later) in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
 The client project maintains a `WeatherForecast` class to hold weather data:
 
@@ -769,7 +769,7 @@ else
 
 :::moniker range=">= aspnetcore-8.0"
 
-The server project implements `IWeatherForecaster` as `ServerWeatherForecaster`, which generates and returns mock weather data via its `GetWeatherForecastAsync` method:
+The server project implements `IWeatherForecaster` as `ServerWeatherForecaster`, which generates and returns weather data via its `GetWeatherForecastAsync` method:
 
 ```csharp
 internal sealed class ServerWeatherForecaster() : IWeatherForecaster
@@ -797,17 +797,23 @@ internal sealed class ServerWeatherForecaster() : IWeatherForecaster
 }
 ```
 
-Alternatively, the `ServerWeatherForecaster` can call an external web API using a [named HTTP Client and token handler approach](xref:blazor/call-web-api#use-a-token-handler-for-web-API-calls), as the following example demonstrates:
+Alternatively for calling an external web API to obtain the weather data, you can inject an HTTP client (`HttpClient`) to request the data:
 
 ```csharp
-internal sealed class ServerWeatherForecaster(IHttpClientFactory clientFactory) : IWeatherForecaster
+internal sealed class ServerWeatherForecaster(HttpClient httpClient, 
+    IHttpContextAccessor httpContextAccessor) : IWeatherForecaster
 {
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-        var client = clientFactory.CreateClient("ExternalApi");
+        var httpContext = httpContextAccessor.HttpContext ??
+            throw new InvalidOperationException("No HttpContext!");
+        var accessToken = await httpContext.GetTokenAsync("access_token") ??
+            throw new InvalidOperationException("No access_token was saved");
+        using var request = 
+            new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
+        request.Headers.Authorization = new("Bearer", accessToken);
 
-        var response = await client.SendAsync(request);
+        using var response = await httpClient.SendAsync(request);
 
         response.EnsureSuccessStatusCode();
 
@@ -817,14 +823,16 @@ internal sealed class ServerWeatherForecaster(IHttpClientFactory clientFactory) 
 }
 ```
 
-If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) (see <xref:blazor/call-web-api#microsoft-identity-platform-for-web-api-calls>), the `ServerWeatherForecaster` might appear like the following class to make external web API calls:
+In yet another approach, you can inject an HTTP client factory (`IHttpClientFactory`) into the `ServerWeatherForecaster` and call an external web API using a named HTTP Client with a token handler. For more information, see <xref:blazor/call-web-api#use-a-token-handler-for-web-API-calls>.
+
+If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) (see <xref:blazor/call-web-api#microsoft-identity-platform-for-web-api-calls>), the following `ServerWeatherForecaster` demonstrates making an external web API call. The access token is automatically attached to the request.
 
 ```csharp
 internal sealed class ServerWeatherForecaster(IDownstreamApi downstreamApi) : IWeatherForecaster
 {
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
     {
-        var response = await downstreamApi.CallApiForUserAsync("DownstreamApi",
+        using var response = await downstreamApi.CallApiForUserAsync("DownstreamApi",
             options =>
             {
                 options.RelativePath = "/weather-forecast";
@@ -836,7 +844,7 @@ internal sealed class ServerWeatherForecaster(IDownstreamApi downstreamApi) : IW
 }
 ```
 
-The server project maintains a secure web API endpoint for client weather data calls:
+Regardless of the approach taken by the `ServerWeatherForecaster` to obtain the data, the server project maintains a secure web API endpoint for client weather data calls. This endpoint results in a `ServerWeatherForecaster.GetWeatherForecastAsync` call on the server:
 
 ```csharp
 app.MapGet("/weather-forecast", (

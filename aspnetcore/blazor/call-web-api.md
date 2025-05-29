@@ -1117,10 +1117,10 @@ For a demonstration, see <xref:blazor/security/webassembly/standalone-with-ident
 When composing an <xref:System.Net.Http.HttpRequestMessage>, set the browser request credentials and header directly:
 
 ```csharp
-var requestMessage = new HttpRequestMessage() { ... };
+var request = new HttpRequestMessage() { ... };
 
-requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
-requestMessage.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
+request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+request.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
 ```
 
 ## `HttpClient` and `HttpRequestMessage` with Fetch API request options
@@ -1153,7 +1153,7 @@ requestMessage.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
 
     private async Task PostRequest()
     {
-        var requestMessage = new HttpRequestMessage()
+        var request = new HttpRequestMessage()
         {
             Method = new HttpMethod("POST"),
             RequestUri = new Uri("https://localhost:10000/todoitems"),
@@ -1169,13 +1169,13 @@ requestMessage.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
 
         if (tokenResult.TryGetToken(out var token))
         {
-            requestMessage.Headers.Authorization =
+            request.Headers.Authorization =
                 new AuthenticationHeaderValue("Bearer", token.Value);
 
-            requestMessage.Content.Headers.TryAddWithoutValidation(
+            request.Content.Headers.TryAddWithoutValidation(
                 "x-custom-header", "value");
 
-            var response = await Http.SendAsync(requestMessage);
+            var response = await Http.SendAsync(request);
             var responseStatusCode = response.StatusCode;
 
             responseBody = await response.Content.ReadAsStringAsync();
@@ -1219,10 +1219,10 @@ To opt-out of response streaming globally, use either of the following approache
 
 To opt-out of response streaming globally, set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
 
-To opt-out of response streaming for an individual request, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage> (`requestMessage` in the following example):
+To opt-out of response streaming for an individual request, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage> (`request` in the following example):
 
 ```csharp
-requestMessage.SetBrowserResponseStreamingEnabled(false);
+request.SetBrowserResponseStreamingEnabled(false);
 ```
 
 :::moniker-end
@@ -1232,14 +1232,14 @@ requestMessage.SetBrowserResponseStreamingEnabled(false);
 The HTTP response is typically buffered to enable support for synchronous reads on the response content. To enable support for response streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A>  to `true` on the <xref:System.Net.Http.HttpRequestMessage>:
 
 ```csharp
-requestMessage.SetBrowserResponseStreamingEnabled(true);
+request.SetBrowserResponseStreamingEnabled(true);
 ```
 
 By default, [`HttpCompletionOption.ResponseContentRead`](xref:System.Net.Http.HttpCompletionOption) is set, which results in the <xref:System.Net.Http.HttpClient> completing after reading the entire response, including the content. In order to be able to use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> option on large files, set [`HttpCompletionOption.ResponseHeadersRead`](xref:System.Net.Http.HttpCompletionOption) to avoid caching the file's content in memory:
 
 ```diff
-- var response = await Http.SendAsync(requestMessage);
-+ var response = await Http.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead);
+- var response = await Http.SendAsync(request);
++ var response = await Http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
 ```
 
 :::moniker-end
@@ -1247,7 +1247,7 @@ By default, [`HttpCompletionOption.ResponseContentRead`](xref:System.Net.Http.Ht
 To include credentials in a cross-origin request, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> extension method:
 
 ```csharp
-requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 ```
 
 For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch(): Parameters](https://developer.mozilla.org/docs/Web/API/fetch#Parameters).
