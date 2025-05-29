@@ -32,6 +32,19 @@ For additional context in *advanced* edge cases&dagger;, see the discussion in t
 
 &dagger;Most developers building and maintaining Blazor apps don't need to delve into advanced concepts when the general guidance in this article is followed. The most important concept to keep in mind is that <xref:Microsoft.AspNetCore.Http.HttpContext> is fundamentally a server-based, request-response feature that's only generally available on the server during static SSR and only created when a user's circuit is established.
 
+## Don't set or modify headers after the response starts
+
+Attempting to set or modify a header after the first rendering (after the response starts) results in an error:
+
+> :::no-loc text="System.InvalidOperationException: 'Headers are read-only, response has already started.'":::
+
+Examples of situations that result in this error include:
+
+* Calling <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasswordSignInAsync%2A?displayProperty=nameWithType>, which must set headers for Identity to function correctly, while adopting [streaming rendering](xref:blazor/components/rendering#streaming-rendering).
+* Attempting to set or modify a header after the response has started during interactive rendering.
+
+For guidance on setting headers before the response starts, see <xref:blazor/fundamentals/startup#control-headers-in-c-code>.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
