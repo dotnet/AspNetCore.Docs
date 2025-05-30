@@ -610,6 +610,12 @@ public static class CircuitServicesServiceCollectionExtensions
 }
 ```
 
+Call `AddCircuitServicesAccessor` in the app's `Program` file:
+
+```csharp
+builder.Services.AddCircuitServicesAccessor();
+```
+
 Access the circuit-scoped services by injecting the `CircuitServicesAccessor` where it's needed.
 
 For an example that shows how to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> set up using <xref:System.Net.Http.IHttpClientFactory>, see <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
