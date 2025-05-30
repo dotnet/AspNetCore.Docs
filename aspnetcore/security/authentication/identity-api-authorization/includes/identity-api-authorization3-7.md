@@ -417,7 +417,7 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 :::moniker range="< aspnetcore-6.0"
 
-The ASP.NET Core 3.1 and later templates offer authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [IdentityServer](https://identityserver.io/) for implementing OpenID Connect.
+The ASP.NET Core 3.1 or later templates offer authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [IdentityServer](https://identityserver.io/) for implementing OpenID Connect.
 
 An authentication parameter was added to the **Angular** and **React** project templates that is similar to the authentication parameter in the **Web Application (Model-View-Controller)** (MVC) and **Web Application** (Razor Pages) project templates. The allowed parameter values are **None** and **Individual**. The **React.js and Redux** project template doesn't support the authentication parameter at this time.
 

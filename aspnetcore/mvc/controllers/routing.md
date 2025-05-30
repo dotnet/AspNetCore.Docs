@@ -985,7 +985,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 
 * Automatically assign an **order** value to their endpoints based on the order they are invoked.
 
-Endpoint routing in ASP.NET Core 3.0 and later:
+Endpoint routing in ASP.NET Core 3.0 or later:
 
 * Doesn't have a concept of routes.
 * Doesn't provide ordering guarantees for the execution of extensibility,  all endpoints are processed at once.
@@ -1022,7 +1022,7 @@ The preceding example:
 * Is an example of [Slug](https://developer.mozilla.org/docs/Glossary/Slug) style routing where it's typical to have an article name as part of the URL.
 
 > [!WARNING]
-> In ASP.NET Core 3.0 and later, routing doesn't:
+> In ASP.NET Core 3.0 or later, routing doesn't:
 > * Define a concept called a *route*. `UseRouting` adds route matching to the middleware pipeline. The `UseRouting` middleware looks at the set of endpoints defined in the app, and selects the best endpoint match based on the request.
 > * Provide guarantees about the execution order of extensibility like <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> or <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
 >

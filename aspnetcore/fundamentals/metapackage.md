@@ -1,7 +1,7 @@
 ---
 title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 author: Rick-Anderson
-description: The Microsoft.AspNetCore.All metapackage is not recommended for ASP.NET Core 2.1 and later.
+description: The Microsoft.AspNetCore.All metapackage is not recommended for ASP.NET Core 2.1 or later.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
@@ -15,12 +15,12 @@ uid: fundamentals/metapackage
 :::moniker range=">= aspnetcore-3.0"
 
 > [!NOTE]
-> The `Microsoft.AspNetCore.All` metapackage isn't used in ASP.NET Core 3.0 and later. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/314).
+> The `Microsoft.AspNetCore.All` metapackage isn't used in ASP.NET Core 3.0 or later. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/314).
 
 :::moniker-end
 
 > [!NOTE]
-> We recommend applications targeting ASP.NET Core 2.1 and later use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) rather than this package. See [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](#migrate) in this article.
+> We recommend applications targeting ASP.NET Core 2.1 or later use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) rather than this package. See [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](#migrate) in this article.
 
 This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 
@@ -89,7 +89,7 @@ Any dependencies of the preceding packages that otherwise aren't dependencies of
 
 ## Update ASP.NET Core 2.1
 
-We recommend migrating to the `Microsoft.AspNetCore.App` metapackage for 2.1 and later. To keep using the `Microsoft.AspNetCore.All` metapackage and ensure the latest patch version is deployed:
+We recommend migrating to the `Microsoft.AspNetCore.App` metapackage for 2.1 or later. To keep using the `Microsoft.AspNetCore.All` metapackage and ensure the latest patch version is deployed:
 
 * On development machines and build servers: Install the latest [.NET Core SDK](https://dotnet.microsoft.com/download).
 * On deployment servers: Install the latest [.NET Core runtime](https://dotnet.microsoft.com/download).

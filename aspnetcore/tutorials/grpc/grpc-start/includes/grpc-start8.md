@@ -18,10 +18,6 @@ In this tutorial, you:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
-
 ---
 
 ## Create a gRPC service
@@ -52,14 +48,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   The `code` command opens the *GrpcGreeter* project folder in the current instance of Visual Studio Code.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Start Visual Studio 2022 for Mac and select **File** > **New Project**.
-* In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Continue**.
-* Select **.NET 8.0** for the target framework and select **Continue**.
-* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
-* Select **Continue**.
 
 ---
 
@@ -114,14 +102,6 @@ info: Microsoft.Hosting.Lifetime[0]
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In Visual Studio 2022 for Mac select **File** > **Add** > **Project...**.
-* In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **Console Application**, and select **Continue**.
-* Select **.NET 8.0** for the target framework, and select **Continue**.
-* Name the project **GrpcGreeterClient**. It's important to name the project *GrpcGreeterClient* so the namespaces match when you copy and paste code.
-* Select **Continue**.
-
 ---
 
 ### Add required NuGet packages
@@ -166,15 +146,6 @@ dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ```
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**.
-* Enter **Grpc.Net.Client** in the search box.
-* Select the **Grpc.Net.Client** package from the results pane and select **Add Package**.
-* In **Select Projects** select **OK**.
-* If the **License Acceptance** dialog appears, select **Accept** if you agree to the license terms.
-* Repeat for `Google.Protobuf` and `Grpc.Tools`.
-
 ---
 
 ### Add greet.proto
@@ -196,10 +167,6 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 # [Visual Studio Code](#tab/visual-studio-code)
 
   Select the `GrpcGreeterClient.csproj` file.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-  Right-click the project and select **Edit Project File**.
 
   ---
 
@@ -254,11 +221,6 @@ Update the `appsettings.Development.json` file by adding the following highlight
 * In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the client without the debugger.
 
 # [Visual Studio Code](#tab/visual-studio-code)
-
-* Start the Greeter service.
-* Start the client.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Start the Greeter service.
 * Start the client.

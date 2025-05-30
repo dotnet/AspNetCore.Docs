@@ -20,7 +20,7 @@ To make a synchronous call from .NET to JavaScript in a client-side component, c
 }
 ```
 
-When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 5.0 or later client-side components, you can use <xref:Microsoft.JSInterop.IJSInProcessObjectReference> synchronously instead. <xref:Microsoft.JSInterop.IJSInProcessObjectReference> implements <xref:System.IAsyncDisposable>/<xref:System.IDisposable> and should be disposed for garbage collection to prevent a memory leak, as the following example demonstrates:
+When working with <xref:Microsoft.JSInterop.IJSObjectReference> in .NET 5 or later client-side components, you can use <xref:Microsoft.JSInterop.IJSInProcessObjectReference> synchronously instead. <xref:Microsoft.JSInterop.IJSInProcessObjectReference> implements <xref:System.IAsyncDisposable>/<xref:System.IDisposable> and should be disposed for garbage collection to prevent a memory leak, as the following example demonstrates:
 
 ```razor
 @inject IJSRuntime JS

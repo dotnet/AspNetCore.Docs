@@ -61,13 +61,13 @@ The properties and items in the following table are used to configure inputs and
 | `RazorCompileToolset` | Used to determine the toolset used to build the Razor assembly. Valid values are `Implicit`, `RazorSDK`, and `PrecompilationTool`. |
 | [EnableDefaultContentItems](https://github.com/dotnet/sdk/blob/main/src/WebSdk/ProjectSystem/Targets/Microsoft.NET.Sdk.Web.ProjectSystem.targets) | Default is `true`. When `true`, includes *web.config*, `.json`, and `.cshtml` files as content in the project. When referenced via `Microsoft.NET.Sdk.Web`, files under *wwwroot* and config files are also included. |
 | `EnableDefaultRazorGenerateItems` | When `true`, includes `.cshtml` files from `Content` items in `RazorGenerate` items. |
-| `GenerateRazorTargetAssemblyInfo` | Not used in .NET 6 and later. |
-| `EnableDefaultRazorTargetAssemblyInfoAttributes` | Not used in .NET 6 and later. |
+| `GenerateRazorTargetAssemblyInfo` | Not used in .NET 6 or later. |
+| `EnableDefaultRazorTargetAssemblyInfoAttributes` | Not used in .NET 6 or later. |
 | `CopyRazorGenerateFilesToPublishDirectory` | When `true`, copies `RazorGenerate` items (`.cshtml`) files to the publish directory. Typically, Razor files aren't required for a published app if they participate in compilation at build-time or publish-time. Defaults to `false`. |
 | `PreserveCompilationReferences` | When `true`, copy reference assembly items to the publish directory. Typically, reference assemblies aren't required for a published app if Razor compilation occurs at build-time or publish-time. Set to `true` if your published app requires runtime compilation. For example, set the value to `true` if the app modifies `.cshtml` files at runtime or uses embedded views. Defaults to `false`. |
 | `IncludeRazorContentInPack` | When `true`, all Razor content items (`.cshtml` files) are marked for inclusion in the generated NuGet package. Defaults to `false`. |
 | `EmbedRazorGenerateSources` | When `true`, adds RazorGenerate (`.cshtml`) items as embedded files to the generated Razor assembly. Defaults to `false`. |
-| `GenerateMvcApplicationPartsAssemblyAttributes` | Not used in .NET 6 and later. |
+| `GenerateMvcApplicationPartsAssemblyAttributes` | Not used in .NET 6 or later. |
 | `DefaultWebContentItemExcludes` | A globbing pattern for item elements that are to be excluded from the `Content` item group in projects targeting the Web or Razor SDK |
 | `ExcludeConfigFilesFromBuildOutput` | When `true`, *.config* and `.json` files do not get copied to the build output directory. |
 | `AddRazorSupportForMvc` | When `true`, configures the Razor SDK to add support for the MVC configuration that is required when building applications containing MVC views or Razor Pages. This property is implicitly set for .NET Core 3.0 or later projects targeting the Web SDK |

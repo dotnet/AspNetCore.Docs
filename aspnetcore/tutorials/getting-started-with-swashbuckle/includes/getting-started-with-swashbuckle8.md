@@ -2,7 +2,7 @@
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 > [!NOTE]
-> Swashbuckle is not available in .NET 9 and later. For an alternative, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
+> Swashbuckle is not available in .NET 9 or later. For an alternative, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
 
 There are three main components to Swashbuckle:
 
@@ -33,14 +33,6 @@ Swashbuckle can be added with the following approaches:
   * Ensure the "Include prerelease" option is enabled
   * Enter "Swashbuckle.AspNetCore" in the search box
   * Select the latest "Swashbuckle.AspNetCore" package from the **Browse** tab and click **Install**
-
-### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
-* Set the **Add Packages** window's **Source** drop-down to "nuget.org"
-* Ensure the "Show pre-release packages" option is enabled
-* Enter "Swashbuckle.AspNetCore" in the search box
-* Select the latest "Swashbuckle.AspNetCore" package from the results pane and click **Add Package**
 
 ### [Visual Studio Code](#tab/visual-studio-code)
 
@@ -117,17 +109,6 @@ XML comments can be enabled with the following approaches:
 #### [Visual Studio](#tab/visual-studio)
 
 * Right-click the project in **Solution Explorer** and select *`Edit <project_name>.csproj`*.
-* Add [GenerateDocumentationFile](/dotnet/core/project-sdk/msbuild-props#generatedocumentationfile)  to the `.csproj` file:
-
-```XML
-<PropertyGroup>
-  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-</PropertyGroup>
-```
-
-#### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
 * Add [GenerateDocumentationFile](/dotnet/core/project-sdk/msbuild-props#generatedocumentationfile)  to the `.csproj` file:
 
 ```XML
@@ -289,14 +270,6 @@ Swashbuckle can be added with the following approaches:
   * Enter "Swashbuckle.AspNetCore" in the search box
   * Select the latest "Swashbuckle.AspNetCore" package from the **Browse** tab and click **Install**
 
-### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
-* Set the **Add Packages** window's **Source** drop-down to "nuget.org"
-* Ensure the "Show pre-release packages" option is enabled
-* Enter "Swashbuckle.AspNetCore" in the search box
-* Select the latest "Swashbuckle.AspNetCore" package from the results pane and click **Add Package**
-
 ### [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following command from the **Integrated Terminal**:
@@ -382,13 +355,6 @@ XML comments can be enabled with the following approaches:
 #### [Visual Studio](#tab/visual-studio)
 
 * Right-click the project in **Solution Explorer** and select *`Edit <project_name>.csproj`*.
-* Manually add the highlighted lines to the `.csproj` file:
-
-:::code language="xml" source="~/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
-
-#### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
 * Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="~/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::

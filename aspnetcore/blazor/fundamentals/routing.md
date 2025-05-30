@@ -708,7 +708,7 @@ For more information on component disposal, see <xref:blazor/components/componen
 
 <!-- UPDATE 10.0 - API doc cross-links -->
 
-*In ASP.NET Core 10.0 Preview 4, Not Found responses are only available for static SSR and global interactive rendering. Per-page/component rendering support is planned for Preview 5 in June, 2025.*
+*In .NET 10 Preview 4, Not Found responses are only available for static SSR and global interactive rendering. Per-page/component rendering support is planned for Preview 5 in June, 2025.*
 
 <xref:Microsoft.AspNetCore.Components.NavigationManager> provides a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
 

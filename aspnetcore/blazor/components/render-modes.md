@@ -686,7 +686,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Http.HttpContext> casc
 
 ### Area (folder) of static SSR components
 
-*For an example of the approach in this section, see the [`BlazorWebAppAreaOfStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppAreaOfStaticSsrComponents). The technique described in this section is most appropriate for 8.0 Blazor Web Apps, but the sample is implemented in 9.0 using Blazor features that simplify demonstrating how the approach works.*
+*For an example of the approach in this section, see the [`BlazorWebAppAreaOfStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppAreaOfStaticSsrComponents). The technique described in this section is most appropriate for .NET 8 Blazor Web Apps, but the sample is implemented in .NET 9 using Blazor features that simplify demonstrating how the approach works.*
 
 The approach described in this subsection is used by the Blazor Web App project template with global interactivity.
 
@@ -767,7 +767,7 @@ The components that must adopt static SSR in the `Account` folder aren't require
 
 ### Static SSR components spread out across the app
 
-*For an example of the approach in this section, see the [`BlazorWebAppSpreadOutStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppSpreadOutStaticSsrComponents). The technique described in this section is most appropriate for 8.0 Blazor Web Apps, but the sample is implemented in 9.0 using Blazor features that simplify demonstrating how the approach works.*
+*For an example of the approach in this section, see the [`BlazorWebAppSpreadOutStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppSpreadOutStaticSsrComponents). The technique described in this section is most appropriate for .NET 8 Blazor Web Apps, but the sample is implemented in .NET 9 using Blazor features that simplify demonstrating how the approach works.*
 
 In the [preceding subsection](#area-folder-of-static-ssr-components), the app controls the render mode of the components by setting the render mode globally in the `App` component. Alternatively, the `App` component can also adopt ***per-component*** render modes for setting the render mode, which permits components spread around the app to enforce adoption of static SSR. This subsection describes the approach.
 
@@ -974,7 +974,7 @@ To address this scenario, inject the service in a new imports file placed in the
   * <xref:blazor/fundamentals/signalr#websocket-compression-for-interactive-server-components>
   * <xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>
 * <xref:blazor/js-interop/ssr>
-* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading parameters](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-parameters) section earlier in the article.
+* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) and [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications) sections earlier in the article.
 * <xref:blazor/components/class-libraries-with-static-ssr>
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
@@ -983,7 +983,7 @@ To address this scenario, inject the service in a new imports file placed in the
 :::moniker range="< aspnetcore-9.0"
 
 * <xref:blazor/js-interop/ssr>
-* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading parameters](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-parameters) section earlier in the article.
+* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) and [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications) sections earlier in the article.
 * <xref:blazor/components/class-libraries-with-static-ssr>
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 

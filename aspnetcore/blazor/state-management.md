@@ -16,7 +16,7 @@ zone_pivot_groups: blazor-app-models
 This article describes common approaches for maintaining a user's data (state) while they use an app and across browser sessions.
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from types in the article's examples.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from types in the article's examples.
 
 ## Maintain user state
 
@@ -776,7 +776,7 @@ Server-side apps (`Program` file, ASP.NET Core in .NET 6 or later):
 builder.Services.AddScoped<StateContainer>();
 ```
 
-Server-side apps (`Startup.ConfigureServices` of `Startup.cs`, ASP.NET Core earlier than 6.0):
+Server-side apps (`Startup.ConfigureServices` of `Startup.cs` in .NET 6 or earlier):
 
 ```csharp
 services.AddScoped<StateContainer>();
@@ -863,7 +863,7 @@ Use [cascading values and parameters](xref:blazor/components/cascading-values-an
 
 :::moniker range=">= aspnetcore-8.0"
 
-Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values>.
+Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications>.
 
 :::moniker-end
 

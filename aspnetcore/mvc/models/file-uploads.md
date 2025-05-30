@@ -310,7 +310,7 @@ Files uploaded using the <xref:Microsoft.AspNetCore.Http.IFormFile> technique ar
 For another example that loops over multiple files for upload and uses safe file names, see `Pages/BufferedMultipleFileUploadPhysical.cshtml.cs` in the sample app.
 
 > [!WARNING]
-> In .NET 7 and earlier versions, [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName%2A) throws an <xref:System.IO.IOException> when more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following articles:
+> In .NET 7 or earlier versions, [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName%2A) throws an <xref:System.IO.IOException> when more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following articles:
 >
 > * [GetTempFileNameA function](/windows/desktop/api/fileapi/nf-fileapi-gettempfilenamea#remarks)
 > * <xref:System.IO.Path.GetTempFileName*>

@@ -1,15 +1,15 @@
 ---
-title: What's new in ASP.NET Core 6.0
+title: What's new in ASP.NET Core in .NET 6
 author: rick-anderson
-description: Learn about the new features in ASP.NET Core 6.0.
+description: Learn about the new features in ASP.NET Core in .NET 6.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/29/2021
 uid: aspnetcore-6.0
 ---
-# What's new in ASP.NET Core 6.0
+# What's new in ASP.NET Core in .NET 6
 
-This article highlights the most significant changes in ASP.NET Core 6.0 with links to relevant documentation.
+This article highlights the most significant changes in ASP.NET Core in .NET 6 with links to relevant documentation.
 
 ## ASP.NET Core MVC and Razor improvements
 
@@ -434,7 +434,7 @@ See the blog entry [HTTP/3 support in .NET 6](https://devblogs.microsoft.com/dot
 
 ### Nullable Reference Type Annotations
 
-Portions of the [ASP.NET Core 6.0 source code](https://github.com/dotnet/aspnetcore/tree/v6.0.0/src) has had [nullability annotations](/dotnet/csharp/nullable-migration-strategies) applied.
+Portions of the [ASP.NET Core in .NET 6 source code](https://github.com/dotnet/aspnetcore/tree/v6.0.0/src) has had [nullability annotations](/dotnet/csharp/nullable-migration-strategies) applied.
 
 By utilizing the new [Nullable feature in C# 8](/dotnet/csharp/whats-new/csharp-8#nullable-reference-types), ASP.NET Core can provide additional compile-time safety in the handling of reference types. For example, protecting against `null` reference exceptions. Projects that have opted in to using nullable annotations may see new build-time warnings from ASP.NET Core APIs.
 
@@ -534,7 +534,7 @@ class MyViewComponent
 }
 ```
 
-With ASP.NET Core 6, the tag helper can be invoked without having to specify a value for the `showSomething` parameter:
+With ASP.NET Core in .NET 6, the tag helper can be invoked without having to specify a value for the `showSomething` parameter:
 
 ```razor
 <vc:my />
@@ -542,7 +542,7 @@ With ASP.NET Core 6, the tag helper can be invoked without having to specify a v
 
 ### Angular template updated to Angular 12
 
-The ASP.NET Core 6.0 template for Angular now uses Angular 12.
+The ASP.NET Core in .NET 6 template for Angular now uses Angular 12.
 
 The React template has been updated to [React 17](https://reactjs.org/blog/2020/10/20/react-v17.html).
 

@@ -300,7 +300,7 @@ When using the root, intermediate, or child certificates, the certificates can b
 
 ## Certificate validation caching
 
-ASP.NET Core 5.0 and later versions support the ability to enable caching of validation results. The caching dramatically improves performance of certificate authentication, as validation is an expensive operation.
+.NET 5 or later versions support the ability to enable caching of validation results. The caching dramatically improves performance of certificate authentication, as validation is an expensive operation.
 
 By default, certificate authentication disables caching. To enable caching, call `AddCertificateCache` in `Program.cs`:
 
@@ -334,7 +334,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 
-ASP.NET Core 5 and later adds more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+.NET 5 or later adds more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
@@ -956,7 +956,7 @@ namespace AspNetCoreCertificateAuthApi
 
 ## Certificate validation caching
 
-ASP.NET Core 5.0 and later versions support the ability to enable caching of validation results. The caching dramatically improves performance of certificate authentication, as validation is an expensive operation.
+.NET 5 or later versions support the ability to enable caching of validation results. The caching dramatically improves performance of certificate authentication, as validation is an expensive operation.
 
 By default, certificate authentication disables caching. To enable caching, call `AddCertificateCache` in `Startup.ConfigureServices`:
 
@@ -1002,7 +1002,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 
-ASP.NET Core 5 and later adds more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+.NET 5 or later adds more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
@@ -1041,7 +1041,7 @@ There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) wher
 
 Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
 
-For .NET 5 and earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
+For .NET 5 or earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
 
 :::moniker-end
 
@@ -1660,7 +1660,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 
-ASP.NET Core 5 and later adds more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+.NET 5 or later adds more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
@@ -1699,7 +1699,7 @@ There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) wher
 
 Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
 
-For .NET 5 and earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
+For .NET 5 or earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
 
 :::moniker-end
 

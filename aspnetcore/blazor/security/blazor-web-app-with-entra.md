@@ -169,7 +169,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         configOptions.BaseUrl = "{BASE ADDRESS}";
         configOptions.Scopes = [ "{APP ID URI}/Weather.Get" ];
     })
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
 
 Placeholders in the preceding configuration:
@@ -201,7 +201,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         configOptions.BaseUrl = "https://localhost:7277";
         configOptions.Scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
     })
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
 
 :::zone-end
@@ -379,7 +379,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         configOptions.BaseUrl = "{BASE ADDRESS}";
         configOptions.Scopes = [ "{APP ID URI}/Weather.Get" ];
     })
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
 
 Placeholders in the preceding configuration:
@@ -411,10 +411,13 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         configOptions.BaseUrl = "https://localhost:7277";
         configOptions.Scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
     })
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
 
 :::zone-end
+
+> [!WARNING]
+> Production apps should use a production distributed token cache provider. Otherwise, the app may have poor performance in some scenarios. For more information, see the [Use a production distributed token cache provider](#use-a-production-distributed-token-cache-provider) section.
 
 The callback path (`CallbackPath`) must match the redirect URI (login callback path) configured when registering the application in the Entra or Azure portal. Paths are configured in the **Authentication** blade of the app's registration. The default value of `CallbackPath` is `/signin-oidc` for a registered redirect URI of `https://localhost/signin-oidc` (a port isn't required).
 
@@ -608,7 +611,6 @@ Example:
   "ResponseType": "code",
   "TenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee"
 },
-...
 "DownstreamApi": {
   "BaseUrl": "https://localhost:7277",
   "Scopes": [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ]
@@ -640,8 +642,11 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 -       configOptions.Scopes = [ "..." ];
 -   })
 +   .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
-    .AddInMemoryTokenCaches();
+    .AddDistributedTokenCaches();
 ```
+
+> [!NOTE]
+> Production apps should use a production distributed token cache provider. Otherwise, the app may have poor performance in some scenarios. For more information, see the [Use a production distributed token cache provider](#use-a-production-distributed-token-cache-provider) section.
 
 In the `MinimalApiJwt` project, add the following app settings configuration to the `appsettings.json` file:
 
@@ -684,6 +689,162 @@ For more information on configuration, see the following resources:
 
 * <xref:fundamentals/configuration/index>
 * <xref:blazor/fundamentals/configuration>
+
+## Use a production distributed token cache provider
+
+In-memory distributed token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A> to ensure that there's a base implementation available for distributed token caching.
+
+Production web apps and web APIs should use a production distributed token cache (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)).
+
+> [!NOTE]
+> For local development and testing on a single machine, you can use in-memory token caches instead of distributed token caches:
+>
+> ```csharp
+> builder.Services.AddInMemoryTokenCaches();
+> ```
+>
+> Later in the development and testing period, adopt a production distributed token cache provider.
+
+<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory, which is used by Microsoft Identity Web for token caching.
+
+The distributed token cache is configured by <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions>:
+
+* In development for debugging purposes, you can disable the L1 cache by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.DisableL1Cache%2A> to `true`. ***Be sure to reset it back to `false` for production.***
+* Set the maximum size of your L1 cache with [`L1CacheOptions.SizeLimit`](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit%2A) to prevent the cache from overrunning the server's memory. The default value is 500 MB.
+* In development for debugging purposes, you can disable token encryption at rest by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A> to `false`, which is the default value. ***Be sure to reset it back to `true` for production.***
+* Set token eviction from the cache with <xref:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration%2A>. The default value is 1 hour.
+* For more information, including guidance on the callback for L2 cache failures (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.OnL2CacheFailure%2A>) and asynchronous L2 cache writes (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.EnableAsyncL2Write%2A>), see <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions> and [Token cache serialization: Distributed token caches](/entra/msal/dotnet/how-to/token-cache-serialization#distributed-token-caches).
+
+```csharp
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.Configure<MsalDistributedTokenCacheAdapterOptions>(
+    options => 
+    {
+      // The following lines that are commented out reflect
+      // default values. We recommend overriding the default
+      // value of Encrypt to encrypt tokens at rest.
+
+      //options.DisableL1Cache = false;
+      //options.L1CacheOptions.SizeLimit = 500 * 1024 * 1024;
+      options.Encrypt = true;
+      //options.SlidingExpiration = TimeSpan.FromHours(1);
+    });
+```
+
+> [!NOTE]
+> <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> requires a package reference to the [`Microsoft.Extensions.Caching.Memory` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory).
+>
+> [!INCLUDE[](~/includes/package-reference.md)]
+
+To configure a production distributed cache provider, see <xref:performance/caching/distributed>.
+
+> [!WARNING]
+> Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
+
+For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>.
+
+Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A?displayProperty=nameWithType> is set to `true`.
+
+> [!NOTE]
+> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A> to `false` and configure a shared Data Protection key ring later:
+>
+> ```csharp
+> options.Encrypt = false;
+> ```
+>
+> Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
+
+The following example shows how to use [Azure Blob Storage and Azure Key Vault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. Add the following packages to the server project of the Blazor Web App:
+
+* [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
+* [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Configure Azure Blob Storage to maintain the encrypted keys and protect them with Azure Key Vault. The following code is typically implemented at the same time that a [production distributed token cache provider](xref:performance/caching/distributed) is implemented. Other options, both within Azure and outside of Azure, are available for managing Data Protection keys across multiple app instances, but the sample app demonstrates how to use Azure services.
+
+The <xref:Microsoft.Extensions.Azure.AzureEventSourceLogForwarder> service in the following example requires the [`Microsoft.Extensions.Azure` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Azure) and a `using` statement at the top of the `Program` file for the <xref:Microsoft.Extensions.Azure?displayProperty=fullName> namespace.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+```csharp
+builder.Services.TryAddSingleton<AzureEventSourceLogForwarder>();
+
+builder.Services.AddDataProtection()
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI WITH SAS TOKEN}"))
+    .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), new DefaultAzureCredential());
+```
+
+* `{BLOB URI WITH SAS TOKEN}`: The full URI where the key file should be stored with the SAS (shared access signature) token as a query string parameter. The URI is generated by Azure Storage when you request a SAS after creating a container. The container name in the following example is `data-protection`, and the storage account name is `contoso`. The key file is named `keys.xml`. When you create the SAS, use the following permissions: `Read`, `Write`, `Delete`, `List`, and `Create`.
+
+  Example: :::no-loc text="https://contoso.blob.core.windows.net/data-protection/keys.xml?sp={PERMISSIONS}&st={START DATETIME}&se={EXPIRATION DATETIME}&spr=https&sv={STORAGE VERSION DATE}&sr=c&sig={TOKEN}":::
+
+  > [!TIP]
+  > If you run the app once without enabling the code that calls <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.ProtectKeysWithAzureKeyVault%2A>, the Data Protection key file (`keys.xml`) is automatically generated in Azure Blob Storage for you. After you've verified the file's presence in Azure Blob Storage with the Storage Browser in the Entra or Azure portal, enable the call to <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.ProtectKeysWithAzureKeyVault%2A>.
+
+* `{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. The key vault name is `contoso` in the following example, and an access policy allows the application to access the key vault with `Get`, `Wrap Key`, and `Unwrap Key` permissions. The example key name is `data-protection`. The version of the key for the `{KEY VERSION}` placeholder is obtained from the key in the Entra or Azure Portal after it's created.
+
+  Example: :::no-loc text="https://contoso.vault.azure.net/keys/data-protection/{KEY VERSION}":::
+
+To configure the app with app settings, add the following to the app settings file:
+
+```json
+"DistributedTokenCache": {
+    "DisableL1Cache": false,
+    "L1CacheSizeLimit": 524288000,
+    "Encrypt": true,
+    "SlidingExpirationInHours": 1
+  },
+"DataProtection": {
+  "BlobUriWithSasToken": "https://contoso.blob.core.windows.net/data-protection/keys.xml?sp={PERMISSIONS}&st={START DATETIME}&se={EXPIRATION DATETIME}&spr=https&sv={STORAGE VERSION DATE}&sr=c&sig={TOKEN}",
+  "KeyIdentifier": "https://contoso.vault.azure.net/keys/data-protection/{KEY VERSION}"
+}
+```
+
+Make the following changes in the `Program` file:
+
+```diff
+builder.Services.Configure<MsalDistributedTokenCacheAdapterOptions>(
+    options =>
+    {
++       var config = builder.Configuration.GetSection("DistributedTokenCache");
+
+-       options.DisableL1Cache = false;
++       options.DisableL1Cache = config.GetValue<bool>("DisableL1Cache");
+
+-       options.L1CacheOptions.SizeLimit = 500 * 1024 * 1024;
++       options.L1CacheOptions.SizeLimit = config.GetValue<long>("L1CacheSizeLimit");
+
+-       options.Encrypt = true;
++       options.Encrypt = config.GetValue<bool>("Encrypt");
+
+-       options.SlidingExpiration = TimeSpan.FromHours(1);
++       options.SlidingExpiration = 
++           TimeSpan.FromHours(config.GetValue<int>("SlidingExpirationInHours"));
+    });
+
+- builder.Services.AddDataProtection()
+-   .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI WITH SAS TOKEN}"))
+-   .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), new DefaultAzureCredential());
+
++ var config = builder.Configuration.GetSection("DataProtection");
+
++ builder.Services.AddDataProtection()
++   .PersistKeysToAzureBlobStorage(
++       new Uri(config.GetValue<string>("BlobUriWithSasToken") ??
++       throw new Exception("Missing Blob URI")))
++   .ProtectKeysWithAzureKeyVault(
++       new Uri(config.GetValue<string>("KeyIdentifier") ?? 
++       throw new Exception("Missing Key Identifier")), 
++       new DefaultAzureCredential());
+```
+
+For more information on using a shared Data Protection key ring and key storage providers, see the following resources:
+
+* <xref:host-and-deploy/web-farm#data-protection>
+* <xref:security/data-protection/configuration/overview>
+* <xref:security/data-protection/implementation/key-storage-providers>
 
 ## Redirect to the home page on logout
 

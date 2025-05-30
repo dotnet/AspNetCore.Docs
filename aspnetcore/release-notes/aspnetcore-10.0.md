@@ -1,15 +1,15 @@
 ---
-title: What's new in ASP.NET Core 10.0
+title: What's new in ASP.NET Core in .NET 10
 author: rick-anderson
-description: Learn about the new features in ASP.NET Core 10.0.
+description: Learn about the new features in ASP.NET Core in .NET 10.
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/12/2025
 uid: aspnetcore-10
 ---
-# What's new in ASP.NET Core 10.0
+# What's new in ASP.NET Core in .NET 10
 
-This article highlights the most significant changes in ASP.NET Core 10.0 with links to relevant documentation.
+This article highlights the most significant changes in ASP.NET Core in .NET 10 with links to relevant documentation.
 
 This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes).
 
@@ -88,7 +88,7 @@ For more information, see [ASP.NET Core Authorization and Authentication metrics
 
 ## Miscellaneous
 
-This section describes miscellaneous new features in ASP.NET Core 10.0.
+This section describes miscellaneous new features in .NET 10.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
 

@@ -30,10 +30,6 @@ From the *View* menu, select *Terminal* and enter the following command:
 dotnet build
 ```
 
-### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Press <kbd>⌘</kbd>+<kbd>B</kbd>
-
 ---
 
 Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In `MoviesController.cs`, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
@@ -50,7 +46,7 @@ Edit the `/Views/Movies/Index.cshtml` file and add a `Rating` field:
 
 Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
-# [Visual Studio / Visual Studio for Mac](#tab/visual-studio+visual-studio-mac)
+# [Visual Studio](#tab/visual-studio)
 
 You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
@@ -103,7 +99,7 @@ The name "Rating" is arbitrary and is used to name the migration file. It's help
 
 If all the records in the DB are deleted, the initialize method will seed the DB and include the `Rating` field.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 

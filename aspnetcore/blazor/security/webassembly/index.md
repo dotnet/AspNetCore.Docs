@@ -316,7 +316,7 @@ if (tokenResult.TryGetToken(out var token))
 
 *This section applies to Blazor WebAssembly apps in ASP.NET Core in .NET 7 or later.*
 
-To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in a 7.0 or later version of the <xref:blazor/fundamentals/logging> article.
+To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in a .NET 7 or later version of the <xref:blazor/fundamentals/logging> article.
 
 ## The WebAssembly sandbox
 
