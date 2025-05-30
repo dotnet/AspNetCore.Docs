@@ -554,10 +554,11 @@ The `Weather` component uses the [`[Authorize]` attribute](xref:Microsoft.AspNet
 The `ExternalApi` HTTP client is used to make a request for weather data to the secure web API. In the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of `Weather.razor`:
 
 ```csharp
-var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-var client = ClientFactory.CreateClient("ExternalApi");
+using var request = 
+    new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
+using var client = ClientFactory.CreateClient("ExternalApi");
 
-var response = await client.SendAsync(request);
+using var response = await client.SendAsync(request);
 
 response.EnsureSuccessStatusCode();
 
@@ -1435,3 +1436,4 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 * [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
 * [Refresh token during http request in Blazor Interactive Server with OIDC (`dotnet/aspnetcore` #55213)](https://github.com/dotnet/aspnetcore/issues/55213)
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
+* [How to access an `AuthenticationStateProvider` from a `DelegatingHandler`](xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware)
