@@ -60,7 +60,7 @@ The service is registered in the server project's `Program` file:
 builder.Services.AddScoped<AuthenticationProcessor>();
 ```
 
-`TokenProcessor` can be injected into server-side services, for example in a <xref:System.Net.Http.DelegatingHandler> for a preconfigured <xref:System.Net.Http.HttpClient>. The following example is only for demonstration purposes or in case you need to perform special processing in the `AuthenticationProcessor` service because you can just inject <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> and obtain the token directly for calling external web APIs (for more information on using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> directly to call web APIs, see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section). 
+`AuthenticationProcessor` can be injected into server-side services, for example in a <xref:System.Net.Http.DelegatingHandler> for a preconfigured <xref:System.Net.Http.HttpClient>. The following example is only for demonstration purposes or in case you need to perform special processing in the `AuthenticationProcessor` service because you can just inject <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> and obtain the token directly for calling external web APIs (for more information on using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> directly to call web APIs, see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section). 
 
 ```csharp
 using System.Net.Http.Headers;
