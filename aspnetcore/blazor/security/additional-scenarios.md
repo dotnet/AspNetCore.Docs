@@ -70,6 +70,9 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
 }
 ```
 
+> [!NOTE]
+> For guidance on how to access an `AuthenticationStateProvider` from a `DelegatingHandler`, see the [Access `AuthenticationStateProvider` in outgoing request middleware](#access-authenticationstateprovider-in-outgoing-request-middleware) section.
+
 In the project's `Program` file, the token handler (`TokenHandler`) is registered as a scoped service and specified as a [named HTTP client's](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
 In the following example, the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>, and the `{BASE ADDRESS}` placeholder is the web API's base address URI.
@@ -789,6 +792,8 @@ Use the `CircuitServicesAccessor` to access the <xref:Microsoft.AspNetCore.Compo
 `AuthenticationStateHandler.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Components.Authorization;
+
 public class AuthenticationStateHandler(
     CircuitServicesAccessor circuitServicesAccessor) 
     : DelegatingHandler
@@ -796,12 +801,12 @@ public class AuthenticationStateHandler(
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        var authStateProvider = circuitServicesAccessor.Services
+        var authStateProvider = circuitServicesAccessor.Services?
             .GetRequiredService<AuthenticationStateProvider>();
-        var authState = await authStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
+        var authState = authStateProvider?.GetAuthenticationStateAsync().Result;
+        var user = authState?.User;
 
-        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        if (user?.Identity is not null && user.Identity.IsAuthenticated)
         {
             request.Headers.Add("X-USER-IDENTITY-NAME", user.Identity.Name);
         }

@@ -1095,6 +1095,9 @@ public class CookieHandler : DelegatingHandler
 }
 ```
 
+> [!NOTE]
+> For guidance on how to access an `AuthenticationStateProvider` from a `DelegatingHandler`, see <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
+
 The `CookieHandler` is registered in the `Program` file:
 
 ```csharp
