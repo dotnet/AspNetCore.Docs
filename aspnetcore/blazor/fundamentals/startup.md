@@ -525,6 +525,9 @@ Control headers at startup in C# code using the following approaches.
 
 In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string. For more information on CSPs, see <xref:blazor/security/content-security-policy>.
 
+> [!NOTE]
+> Headers can't be set after the response starts. The approaches in this section only set headers before the response starts, so the approaches described here are safe. For more information, see <xerf:blazor/components/httpcontext#dont-set-or-modify-headers-after-the-response-starts>.
+
 ### Server-side and prerendered client-side scenarios
 
 Use [ASP.NET Core Middleware](xref:fundamentals/middleware/index) to control the headers collection.
