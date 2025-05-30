@@ -812,9 +812,7 @@ internal sealed class ServerWeatherForecaster(HttpClient httpClient,
         using var request = 
             new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
         request.Headers.Authorization = new("Bearer", accessToken);
-
         using var response = await httpClient.SendAsync(request);
-
         response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
