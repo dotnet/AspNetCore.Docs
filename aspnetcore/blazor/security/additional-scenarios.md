@@ -27,41 +27,75 @@ If you merely want to use access tokens to make web API calls from a Blazor Web 
 
 To save tokens and other authentication properties for server-side use in Blazor Web Apps, we recommend using [`IHttpContextAccessor`/`HttpContext`](xref:blazor/components/httpcontext) (<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, <xref:Microsoft.AspNetCore.Http.HttpContext>). Reading tokens from <xref:Microsoft.AspNetCore.Http.HttpContext>, including as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal%601> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>. For more information, see <xref:blazor/components/httpcontext>.
 
-The following general approaches are available. The first approach is to add the namespace <xref:Microsoft.AspNetCore.Authentication?displayProperty=fullName> to surface the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A> method on <xref:Microsoft.AspNetCore.Http.HttpContext>:
+In a service class, obtain access to the members of the namespace <xref:Microsoft.AspNetCore.Authentication?displayProperty=fullName> to surface the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A> method on <xref:Microsoft.AspNetCore.Http.HttpContext>. An alternative approach, which is commented out in the preceding example, is to call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A> on <xref:Microsoft.AspNetCore.Http.HttpContext>. For the returned <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Properties%2A?displayProperty=nameWithType>, call <xref:Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenValue%2A>.
 
 ```csharp
 using Microsoft.AspNetCore.Authentication;
 
-public class TokenProcessor(IHttpContextAccessor httpContextAccessor)
+public class AuthenticationProcessor(IHttpContextAccessor httpContextAccessor)
 {
-    public async Task ProcessTokenAsync()
+    public string? GetAccessToken()
     {
+        // Approach 1: Call 'GetTokenAsync'
         var accessToken = httpContextAccessor.HttpContext?
-            .GetTokenAsync("access_token").Result ?? 
+            .GetTokenAsync("access_token").Result ??
             throw new Exception("No access token");
-    }
-}
-```
 
-The second approach involves calling <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A> on <xref:Microsoft.AspNetCore.Http.HttpContext>. For the returned <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Properties%2A?displayProperty=nameWithType>, call <xref:Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenValue%2A>:
-
-```csharp
-using Microsoft.AspNetCore.Authentication;
-
-public class TokenProcessor(IHttpContextAccessor httpContextAccessor)
-{
-    public async Task ProcessTokenAsync()
-    {
+        // Approach 2: Authenticate the user and call 'GetTokenValue'
+        /*
         var authResult = httpContextAccessor.HttpContext?
             .AuthenticateAsync().Result;
         var accessToken = authResult?.Properties?
             .GetTokenValue("access_token");
+        */
+
+        return accessToken;
     }
 }
 ```
 
+The service is registered in the server project's `Program` file:
+
+```csharp
+builder.Services.AddScoped<AuthenticationProcessor>();
+```
+
+When the `TokenProcessor` is injected, for example in a <xref:System.Net.Http.DelegatingHandler> on a preconfigured <xref:System.Net.Http.HttpClient>, `GetAccessToken` is called to obtain the access token. The following example is for demonstration purposes because you can just inject `IHttpContextorAccessor` and obtain the token directly (for more information, see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section). 
+
+```csharp
+using System.Net.Http.Headers;
+
+public class TokenHandler(AuthenticationProcessor authProcessor) : 
+    DelegatingHandler
+{
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        var accessToken = authProcessor.GetAccessToken();
+
+        request.Headers.Authorization =
+            new AuthenticationHeaderValue("Bearer", accessToken);
+
+        return await base.SendAsync(request, cancellationToken);
+    }
+}
+```
+
+The token handler is registered and acts as the delegating handler for a named HTTP client in the `Program` file:
+
+```csharp
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<TokenHandler>();
+
+builder.Services.AddHttpClient("ExternalApi",
+      client => client.BaseAddress = new Uri(builder.Configuration["ExternalApiUri"] ?? 
+          throw new Exception("Missing base address!")))
+      .AddHttpMessageHandler<TokenHandler>();
+```
+
 > [!CAUTION]
-> Ensure that access tokens are never transmitted and handled by the client (the `.Client` project), for example, in a component that adopts Interactive Auto rendering and is rendered on the client or by a client-side service. Always have the client call the server (project) to process requests with tokens. **Tokens and other authentication data should never leave the server.**
+> Ensure that tokens are never transmitted and handled by the client (the `.Client` project), for example, in a component that adopts Interactive Auto rendering and is rendered on the client or by a client-side service. Always have the client call the server (project) to process requests with tokens. **Tokens and other authentication data should never leave the server.**
 >
 > For Interactive Auto components, see <xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering>, which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in <xref:blazor/security/blazor-web-app-oidc>.
 

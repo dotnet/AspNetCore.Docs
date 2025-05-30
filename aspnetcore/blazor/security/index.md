@@ -797,7 +797,7 @@ internal sealed class ServerWeatherForecaster() : IWeatherForecaster
 }
 ```
 
-Alternatively for calling an external web API to obtain the weather data, you can inject an HTTP client (`HttpClient`) to request the data:
+If the app must call an external web API to obtain the weather data, you can inject an HTTP client (`HttpClient`) to request the data:
 
 ```csharp
 internal sealed class ServerWeatherForecaster(HttpClient httpClient, 
