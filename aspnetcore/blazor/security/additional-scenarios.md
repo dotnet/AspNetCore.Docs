@@ -885,6 +885,7 @@ public class AuthenticationStateHandler(
         var authState = await authStateProvider.GetAuthenticationStateAsync();
 
         var user = authState?.User;
+
         if (user?.Identity is not null && user.Identity.IsAuthenticated)
         {
             request.Headers.Add("X-USER-IDENTITY-NAME", user.Identity.Name);
