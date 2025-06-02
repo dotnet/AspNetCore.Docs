@@ -121,9 +121,17 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        var accessToken = httpContextAccessor.HttpContext?
-            .GetTokenAsync("access_token").Result ?? 
+        if (httpContextAccessor.HttpContext is null)
+        {
+            throw new Exception("HttpContext.Current not available.");
+        }
+
+        var accessToken = await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+
+        if (accessToken is null)
+        {
             throw new Exception("No access token");
+        }
 
         request.Headers.Authorization =
             new AuthenticationHeaderValue("Bearer", accessToken);
@@ -868,7 +876,14 @@ public class AuthenticationStateHandler(
     {
         var authStateProvider = circuitServicesAccessor.Services?
             .GetRequiredService<AuthenticationStateProvider>();
-        var authState = authStateProvider?.GetAuthenticationStateAsync().Result;
+
+        if (authStateProvider is null)
+        {
+            throw new Exception("AuthenticationStateProvider not available.");
+        }
+
+        var authState = await authStateProvider.GetAuthenticationStateAsync();
+
         var user = authState?.User;
 
         if (user?.Identity is not null && user.Identity.IsAuthenticated)
