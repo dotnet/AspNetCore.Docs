@@ -36,22 +36,17 @@ public class AuthenticationProcessor(IHttpContextAccessor httpContextAccessor)
 {
     public async Task<string?> GetAccessToken()
     {
-        // Approach 1: Call 'GetTokenAsync'
         if (httpContextAccessor.HttpContext is null)
         {
             throw new Exception("HttpContext not available");
         }
 
+        // Approach 1: Call 'GetTokenAsync'
         var accessToken = await httpContextAccessor.HttpContext
             .GetTokenAsync("access_token");
 
         // Approach 2: Authenticate the user and call 'GetTokenValue'
         /*
-        if (httpContextAccessor.HttpContext is null)
-        {
-            throw new Exception("HttpContext not available");
-        }
-
         var authResult = await httpContextAccessor.HttpContext.AuthenticateAsync();
         var accessToken = authResult?.Properties?.GetTokenValue("access_token");
         */
