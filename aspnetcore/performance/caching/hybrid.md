@@ -237,7 +237,7 @@ A concrete implementation of the `HybridCache` abstract class is included in the
 
 * **Serialization**  
 
-  Native AOT doesn't support runtime reflection-based serialization. If you cache custom types, you must use source generators or explicitly configure serializers that are compatible with AOT, like `System.Text.Json` source generation. For example, with `System.Text.Json`, register a `JsonSerializerContext` for your types and configure it in `AddHybridCache`.
+  Native AOT doesn't support runtime reflection-based serialization. If you cache custom types, you must use source generators or explicitly configure serializers that are compatible with AOT, like `System.Text.Json` source generation. `HybridCache` is still under development, and simplifying the way to use it with AOT is a high priority for that development. For more information, see pull request [dotnet/extensions#6475](https://github.com/dotnet/extensions/pull/6475)
 
 * **Trimming**
 
