@@ -349,7 +349,7 @@ The configured <xref:System.Net.Http.HttpClient> is used to make authorized requ
     {
         try
         {
-            using var client = ClientFactory.CreateClient("WebAPI");
+            var client = ClientFactory.CreateClient("WebAPI");
 
             var examples = 
                 await client.GetFromJsonAsync<ExampleType[]>("ExampleAPIMethod");
@@ -551,7 +551,7 @@ A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.
 @code {
     protected override async Task OnInitializedAsync()
     {
-        using var client = ClientFactory.CreateClient("WebAPI.NoAuthenticationClient");
+        var client = ClientFactory.CreateClient("WebAPI.NoAuthenticationClient");
 
         var examples = await client.GetFromJsonAsync<ExampleType[]>(
             "ExampleNoAuthentication");

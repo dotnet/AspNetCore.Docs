@@ -34,19 +34,21 @@ using Microsoft.AspNetCore.Authentication;
 
 public class AuthenticationProcessor(IHttpContextAccessor httpContextAccessor)
 {
-    public string? GetAccessToken()
+    public async Task<string?> GetAccessToken()
     {
+        if (httpContextAccessor.HttpContext is null)
+        {
+            throw new Exception("HttpContext not available");
+        }
+
         // Approach 1: Call 'GetTokenAsync'
-        var accessToken = httpContextAccessor.HttpContext?
-            .GetTokenAsync("access_token").Result ??
-            throw new Exception("No access token");
+        var accessToken = await httpContextAccessor.HttpContext
+            .GetTokenAsync("access_token");
 
         // Approach 2: Authenticate the user and call 'GetTokenValue'
         /*
-        var authResult = httpContextAccessor.HttpContext?
-            .AuthenticateAsync().Result;
-        var accessToken = authResult?.Properties?
-            .GetTokenValue("access_token");
+        var authResult = await httpContextAccessor.HttpContext.AuthenticateAsync();
+        var accessToken = authResult?.Properties?.GetTokenValue("access_token");
         */
 
         return accessToken;
@@ -121,9 +123,17 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        var accessToken = httpContextAccessor.HttpContext?
-            .GetTokenAsync("access_token").Result ?? 
+        if (httpContextAccessor.HttpContext is null)
+        {
+            throw new Exception("HttpContext not available");
+        }
+
+        var accessToken = await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+
+        if (accessToken is null)
+        {
             throw new Exception("No access token");
+        }
 
         request.Headers.Authorization =
             new AuthenticationHeaderValue("Bearer", accessToken);
@@ -178,7 +188,7 @@ At this point, an <xref:System.Net.Http.HttpClient> created by a component can m
 
 ```csharp
 using var request = new HttpRequestMessage(HttpMethod.Get, "{REQUEST URI}");
-using var client = ClientFactory.CreateClient("{HTTP CLIENT NAME}");
+var client = ClientFactory.CreateClient("{HTTP CLIENT NAME}");
 using var response = await client.SendAsync(request);
 ```
 
@@ -186,7 +196,7 @@ Example:
 
 ```csharp
 using var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-using var client = ClientFactory.CreateClient("ExternalApi");
+var client = ClientFactory.CreateClient("ExternalApi");
 using var response = await client.SendAsync(request);
 ```
 
@@ -868,7 +878,14 @@ public class AuthenticationStateHandler(
     {
         var authStateProvider = circuitServicesAccessor.Services?
             .GetRequiredService<AuthenticationStateProvider>();
-        var authState = authStateProvider?.GetAuthenticationStateAsync().Result;
+
+        if (authStateProvider is null)
+        {
+            throw new Exception("AuthenticationStateProvider not available");
+        }
+
+        var authState = await authStateProvider.GetAuthenticationStateAsync();
+
         var user = authState?.User;
 
         if (user?.Identity is not null && user.Identity.IsAuthenticated)
