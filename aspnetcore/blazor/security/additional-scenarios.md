@@ -34,19 +34,21 @@ using Microsoft.AspNetCore.Authentication;
 
 public class AuthenticationProcessor(IHttpContextAccessor httpContextAccessor)
 {
-    public string? GetAccessToken()
+    public async Task<string?> GetAccessToken()
     {
+        if (httpContextAccessor.HttpContext is null)
+        {
+            throw new Exception("HttpContext not available");
+        }
+
         // Approach 1: Call 'GetTokenAsync'
-        var accessToken = httpContextAccessor.HttpContext?
-            .GetTokenAsync("access_token").Result ??
-            throw new Exception("No access token");
+        var accessToken = await httpContextAccessor.HttpContext
+            .GetTokenAsync("access_token");
 
         // Approach 2: Authenticate the user and call 'GetTokenValue'
         /*
-        var authResult = httpContextAccessor.HttpContext?
-            .AuthenticateAsync().Result;
-        var accessToken = authResult?.Properties?
-            .GetTokenValue("access_token");
+        var authResult = await httpContextAccessor.HttpContext.AuthenticateAsync();
+        var accessToken = authResult?.Properties?.GetTokenValue("access_token");
         */
 
         return accessToken;
@@ -123,7 +125,7 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
     {
         if (httpContextAccessor.HttpContext is null)
         {
-            throw new Exception("HttpContext.Current not available.");
+            throw new Exception("HttpContext not available");
         }
 
         var accessToken = await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
@@ -186,7 +188,7 @@ At this point, an <xref:System.Net.Http.HttpClient> created by a component can m
 
 ```csharp
 using var request = new HttpRequestMessage(HttpMethod.Get, "{REQUEST URI}");
-using var client = ClientFactory.CreateClient("{HTTP CLIENT NAME}");
+var client = ClientFactory.CreateClient("{HTTP CLIENT NAME}");
 using var response = await client.SendAsync(request);
 ```
 
@@ -194,7 +196,7 @@ Example:
 
 ```csharp
 using var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-using var client = ClientFactory.CreateClient("ExternalApi");
+var client = ClientFactory.CreateClient("ExternalApi");
 using var response = await client.SendAsync(request);
 ```
 
@@ -879,7 +881,7 @@ public class AuthenticationStateHandler(
 
         if (authStateProvider is null)
         {
-            throw new Exception("AuthenticationStateProvider not available.");
+            throw new Exception("AuthenticationStateProvider not available");
         }
 
         var authState = await authStateProvider.GetAuthenticationStateAsync();
