@@ -744,7 +744,7 @@ In the following component, update the namespace of the **`Shared`** project (`@
 
         try
         {
-            var response = await Http.PostAsJsonAsync<Starship>(
+            using var response = await Http.PostAsJsonAsync<Starship>(
                 "StarshipValidation", (Starship)editContext.Model);
 
             var errors = await response.Content
@@ -888,7 +888,7 @@ The preceding example sets the base address with `builder.HostEnvironment.BaseAd
 
         try
         {
-            var response = await Http.PostAsJsonAsync<Starship>(
+            using var response = await Http.PostAsJsonAsync<Starship>(
                 "StarshipValidation", (Starship)editContext.Model);
 
             var errors = await response.Content

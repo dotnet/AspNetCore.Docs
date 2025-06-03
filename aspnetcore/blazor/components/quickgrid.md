@@ -446,7 +446,7 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
                 { "limit", req.Count },
             });
 
-            var response = await Http.GetFromJsonAsync<FoodRecallQueryResult>(
+            using var response = await Http.GetFromJsonAsync<FoodRecallQueryResult>(
                 url, req.CancellationToken);
 
             return GridItemsProviderResult.From(

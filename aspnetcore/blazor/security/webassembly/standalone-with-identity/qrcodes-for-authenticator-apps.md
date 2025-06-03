@@ -184,7 +184,7 @@ public async Task<FormResult> LoginAsync(string email, string password)
 {
     try
     {
-        var result = await httpClient.PostAsJsonAsync(
+        using var result = await httpClient.PostAsJsonAsync(
             "login?useCookies=true", new
             {
                 email,
@@ -199,7 +199,7 @@ public async Task<FormResult> LoginAsync(string email, string password)
         }
         else if (result.StatusCode == HttpStatusCode.Unauthorized)
         {
-            var responseJson = await result.Content.ReadAsStringAsync();
+            using var responseJson = await result.Content.ReadAsStringAsync();
             var response = JsonSerializer.Deserialize<LoginResponse>(
                 responseJson, jsonSerializerOptions);
 
@@ -236,7 +236,7 @@ public async Task<FormResult> LoginTwoFactorCodeAsync(
 {
     try
     {
-        var result = await httpClient.PostAsJsonAsync(
+        using var result = await httpClient.PostAsJsonAsync(
             "login?useCookies=true", new
             {
                 email,
@@ -274,7 +274,7 @@ public async Task<FormResult> LoginTwoFactorRecoveryCodeAsync(string email,
 {
     try
     {
-        var result = await httpClient.PostAsJsonAsync(
+        using var result = await httpClient.PostAsJsonAsync(
             "login?useCookies=true", new
             {
                 email,
@@ -318,7 +318,7 @@ public async Task<TwoFactorResponse> TwoFactorRequestAsync(TwoFactorRequest twoF
     string[] defaultDetail = 
         [ "An unknown error prevented two-factor authentication." ];
 
-    var response = await httpClient.PostAsJsonAsync("manage/2fa", twoFactorRequest, 
+    using var response = await httpClient.PostAsJsonAsync("manage/2fa", twoFactorRequest, 
         jsonSerializerOptions);
 
     // successful?

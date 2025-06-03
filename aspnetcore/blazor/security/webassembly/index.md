@@ -58,10 +58,10 @@ Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssem
 
           var urlEncodedRequestUri = WebUtility.UrlEncode("{REQUEST URI}");
 
-          var request = new HttpRequestMessage(HttpMethod.Get, 
+          using var request = new HttpRequestMessage(HttpMethod.Get, 
               $"https://corsproxy.io/?{urlEncodedRequestUri}");
 
-          var response = await client.SendAsync(request);
+          using var response = await client.SendAsync(request);
 
           ...
       }

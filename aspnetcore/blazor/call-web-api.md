@@ -364,6 +364,27 @@ The solution includes a demonstration of obtaining weather data securely via an 
 
 :::moniker-end
 
+## Disposal of `HttpRequestMessage`, `HttpResponseMessage`, and `HttpClient`
+
+An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal with a [`using` declaration (C# 8 or later)](/dotnet/csharp/language-reference/proposals/csharp-8.0/using) or a `using` block (earlier than C# 8), but we recommend disposing with every use for the following reasons:
+
+* It provides a performance improvement by avoiding finalizers.
+* It hardens the code for the future in case a request body is ever added to a <xref:System.Net.Http.HttpRequestMessage> that didn't initially have one.
+* It potentially avoids functional issues if a delegating handler expects <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A> to be called.
+* It's simpler to apply a general rule everywhere than trying to remember the specific cases when it matters.
+
+Always dispose of <xref:System.Net.Http.HttpResponseMessage> instances.
+
+***Never*** dispose of <xref:System.Net.Http.HttpClient> instances created by calling <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> because they're managed by the framework.
+
+Example:
+
+```csharp
+using var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
+var client = clientFactory.CreateClient("ExternalApi");
+using var response = await client.SendAsync(request);
+```
+
 ## Client-side scenarios for calling external web APIs
 
 Client-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file:
@@ -411,12 +432,12 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get,
+        using var request = new HttpRequestMessage(HttpMethod.Get,
             "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
         request.Headers.Add("Accept", "application/vnd.github.v3+json");
         request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
 
-        var response = await Client.SendAsync(request);
+        using var response = await Client.SendAsync(request);
 
         if (response.IsSuccessStatusCode)
         {
@@ -471,10 +492,10 @@ Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssem
 
           var urlEncodedRequestUri = WebUtility.UrlEncode("{REQUEST URI}");
 
-          var request = new HttpRequestMessage(HttpMethod.Get, 
+          using var request = new HttpRequestMessage(HttpMethod.Get, 
               $"https://corsproxy.io/?{urlEncodedRequestUri}");
 
-          var response = await client.SendAsync(request);
+          using var response = await client.SendAsync(request);
 
           ...
       }
@@ -528,14 +549,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get,
+        using var request = new HttpRequestMessage(HttpMethod.Get,
             "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
         request.Headers.Add("Accept", "application/vnd.github.v3+json");
         request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
 
         var client = ClientFactory.CreateClient();
 
-        var response = await client.SendAsync(request);
+        using var response = await client.SendAsync(request);
 
         if (response.IsSuccessStatusCode)
         {
@@ -639,11 +660,11 @@ In the following file upload example:
 * `Http` is the <xref:System.Net.Http.HttpClient>.
 
 ```csharp
-var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
+using var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
 request.SetBrowserRequestStreamingEnabled(true);
 request.Content = content;
 
-var response = await Http.SendAsync(request);
+using var response = await Http.SendAsync(request);
 ```
 
 Streaming requests:
@@ -797,7 +818,7 @@ As of C# 11 (.NET 7), you can compose a JSON string as a [raw string literal](/d
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON todo item data as an array. An empty array is created if no item data is returned by the method, so `content` isn't null after the statement executes:
 
 ```csharp
-var response = await Http.PatchAsJsonAsync(...);
+using var response = await Http.PatchAsJsonAsync(...);
 var content = await response.Content.ReadFromJsonAsync<TodoItem[]>() ??
     Array.Empty<TodoItem>();
 ```
@@ -1180,7 +1201,7 @@ For a demonstration, see <xref:blazor/security/webassembly/standalone-with-ident
 When composing an <xref:System.Net.Http.HttpRequestMessage>, set the browser request credentials and header directly:
 
 ```csharp
-var request = new HttpRequestMessage() { ... };
+using var request = new HttpRequestMessage() { ... };
 
 request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 request.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
@@ -1216,7 +1237,7 @@ request.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
 
     private async Task PostRequest()
     {
-        var request = new HttpRequestMessage()
+        using var request = new HttpRequestMessage()
         {
             Method = new HttpMethod("POST"),
             RequestUri = new Uri("https://localhost:10000/todoitems"),
@@ -1238,7 +1259,7 @@ request.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
             request.Content.Headers.TryAddWithoutValidation(
                 "x-custom-header", "value");
 
-            var response = await Http.SendAsync(request);
+            using var response = await Http.SendAsync(request);
             var responseStatusCode = response.StatusCode;
 
             responseBody = await response.Content.ReadAsStringAsync();
@@ -1301,8 +1322,9 @@ request.SetBrowserResponseStreamingEnabled(true);
 By default, [`HttpCompletionOption.ResponseContentRead`](xref:System.Net.Http.HttpCompletionOption) is set, which results in the <xref:System.Net.Http.HttpClient> completing after reading the entire response, including the content. In order to be able to use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> option on large files, set [`HttpCompletionOption.ResponseHeadersRead`](xref:System.Net.Http.HttpCompletionOption) to avoid caching the file's content in memory:
 
 ```diff
-- var response = await Http.SendAsync(request);
-+ var response = await Http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+- using var response = await Http.SendAsync(request);
++ using var response = await Http.SendAsync(request, 
++     HttpCompletionOption.ResponseHeadersRead);
 ```
 
 :::moniker-end
@@ -1405,9 +1427,9 @@ To add antiforgery support to an HTTP request, inject the `AntiforgeryStateProvi
 private async Task OnSubmit()
 {
     var antiforgery = Antiforgery.GetAntiforgeryToken();
-    var request = new HttpRequestMessage(HttpMethod.Post, "action");
+    using var request = new HttpRequestMessage(HttpMethod.Post, "action");
     request.Headers.Add("RequestVerificationToken", antiforgery.RequestToken);
-    var response = await client.SendAsync(request);
+    using var response = await client.SendAsync(request);
     ...
 }
 ```
