@@ -139,7 +139,7 @@ Use a shared Data Protection key ring in production so that instances of the app
 >
 > Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
 
-The following example shows how to use [Azure Blob Storage and Azure Key Vault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using their dedicated documentation sets, which are listed at the end of this section.
+The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using their dedicated documentation sets, which are listed at the end of this section.
 
 Add the following packages to the server project of the Blazor Web App:
 
@@ -179,7 +179,7 @@ When establishing the key vault in the Entra or Azure portal:
 
 * When key encryption is active, keys in the key file include the comment, ":::no-loc text="This key is encrypted with Azure Key Vault.":::" After starting the app, select the **View/edit** command from the context menu at the end of the key row to confirm that a key is present with key vault security applied.
 
-The <xref:Microsoft.Extensions.Azure.AzureEventSourceLogForwarder> service in the following example requires the [`Microsoft.Extensions.Azure` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Azure).
+The <xref:Microsoft.Extensions.Azure.AzureEventSourceLogForwarder> service in the following example forwards log messages from Azure SDK for logging and requires the [`Microsoft.Extensions.Azure` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Azure).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -206,8 +206,6 @@ Example: :::no-loc text="https://contoso.blob.core.windows.net/data-protection/k
 `{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. The key vault name is `contoso` in the following example, and an access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The example key name is `data-protection`. The version of the key (`{KEY VERSION}` placeholder) is obtained from the key in the Entra or Azure portal after it's created.
 
 Example: :::no-loc text="https://contoso.vault.azure.net/keys/data-protection/{KEY VERSION}":::
-
-For more information on using a shared Data Protection key ring, see <xref:host-and-deploy/web-farm#data-protection> and <xref:security/data-protection/configuration/overview>.
 
 Inject <xref:Microsoft.Identity.Abstractions.IDownstreamApi> and call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> when calling on behalf of a user:
 
@@ -237,6 +235,9 @@ For more information, see the following resources:
 * *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
   * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern)
   * [BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern-server)
+* [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
+* <xref:security/data-protection/configuration/overview>
+* <xref:security/data-protection/implementation/key-storage-providers>
 * [Azure Key Vault documentation](/azure/key-vault/general/)
 * [Azure Storage documentation](/azure/storage/)
 

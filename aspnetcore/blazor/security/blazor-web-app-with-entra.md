@@ -759,7 +759,7 @@ Use a shared Data Protection key ring in production so that instances of the app
 >
 > Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
 
-The following example shows how to use [Azure Blob Storage and Azure Key Vault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using their dedicated documentation sets, which are listed at the end of this section.
+The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using their dedicated documentation sets, which are listed at the end of this section.
 
 Confirm the presence of the following packages in the server project of the Blazor Web App:
 
@@ -801,7 +801,7 @@ When establishing the key vault in the Entra or Azure portal:
 
 * When key encryption is active, keys in the key file include the comment, ":::no-loc text="This key is encrypted with Azure Key Vault.":::" After starting the app, select the **View/edit** command from the context menu at the end of the key row to confirm that a key is present with key vault security applied.
 
-The <xref:Microsoft.Extensions.Azure.AzureEventSourceLogForwarder> service in the following example requires the [`Microsoft.Extensions.Azure` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Azure).
+The <xref:Microsoft.Extensions.Azure.AzureEventSourceLogForwarder> service in the following example forwards log messages from Azure SDK for logging and requires the [`Microsoft.Extensions.Azure` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Azure).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -888,7 +888,7 @@ builder.Services.AddDataProtection()
 
 For more information on using a shared Data Protection key ring and key storage providers, see the following resources:
 
-* <xref:host-and-deploy/web-farm#data-protection>
+* [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
 * <xref:security/data-protection/configuration/overview>
 * <xref:security/data-protection/implementation/key-storage-providers>
 * [Azure Key Vault documentation](/azure/key-vault/general/)
