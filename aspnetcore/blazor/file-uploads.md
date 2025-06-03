@@ -709,11 +709,11 @@ In a Blazor Web App, add the <xref:Microsoft.AspNetCore.Components.WebAssembly.H
 
         if (upload)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
+            using var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
             request.SetBrowserRequestStreamingEnabled(true);
             request.Content = content;
 
-            var response = await Http.SendAsync(request);
+            using var response = await Http.SendAsync(request);
 
             var newUploadResults = await response.Content
                 .ReadFromJsonAsync<IList<UploadResult>>();

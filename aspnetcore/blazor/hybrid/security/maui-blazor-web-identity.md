@@ -162,7 +162,7 @@ In `MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`:
         // Call the Login endpoint and pass the email and password
         var httpClient = HttpClientHelper.GetHttpClient();
         var loginData = new { loginModel.Email, loginModel.Password };
-        var response = await httpClient.PostAsJsonAsync(HttpClientHelper.LoginUrl, 
+        using var response = await httpClient.PostAsJsonAsync(HttpClientHelper.LoginUrl, 
             loginData);
 
         LoginStatus = 
