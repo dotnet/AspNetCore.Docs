@@ -21,7 +21,7 @@ Instead of using the default UI provided by ASP.NET Core Identity for SPA and Bl
 On the client, call the `/register` endpoint to register a user with their email address and password:
 
 ```csharp
-var result = await _httpClient.PostAsJsonAsync(
+using var result = await _httpClient.PostAsJsonAsync(
     "register", new
     {
         email,
@@ -32,7 +32,7 @@ var result = await _httpClient.PostAsJsonAsync(
 On the client, log in a user with cookie authentication using the `/login` endpoint with `useCookies` query string set to `true`:
 
 ```csharp
-var result = await _httpClient.PostAsJsonAsync(
+using var result = await _httpClient.PostAsJsonAsync(
     "login?useCookies=true", new
     {
         email,

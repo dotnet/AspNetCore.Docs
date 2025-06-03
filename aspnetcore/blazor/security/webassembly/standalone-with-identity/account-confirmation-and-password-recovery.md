@@ -331,7 +331,7 @@ public async Task<bool> ForgotPasswordAsync(string email)
 {
     try
     {
-        var result = await httpClient.PostAsJsonAsync(
+        using var result = await httpClient.PostAsJsonAsync(
             "forgotPassword", new
             {
                 email
@@ -354,7 +354,7 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
 
     try
     {
-        var result = await httpClient.PostAsJsonAsync(
+        using var result = await httpClient.PostAsJsonAsync(
             "resetPassword", new
             {
                 email,
