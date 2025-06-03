@@ -366,14 +366,14 @@ The solution includes a demonstration of obtaining weather data securely via an 
 
 ## Disposal of `HttpRequestMessage`, `HttpResponseMessage`, and `HttpClient`
 
-An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal with a [`using` declaration (C# 8 or later)](/dotnet/csharp/language-reference/proposals/csharp-8.0/using) or a `using` block (earlier than C# 8), but we recommend disposing with every use for the following reasons:
+An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal with a [`using` declaration (C# 8 or later)](/dotnet/csharp/language-reference/proposals/csharp-8.0/using) or a [`using` block (all C# releases)](/dotnet/csharp/language-reference/keywords/using), but we recommend disposing with every use for the following reasons:
 
-* It provides a performance improvement by avoiding finalizers.
-* It hardens the code for the future in case a request body is ever added to a <xref:System.Net.Http.HttpRequestMessage> that didn't initially have one.
-* It potentially avoids functional issues if a delegating handler expects <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A> to be called.
-* It's simpler to apply a general rule everywhere than trying to remember the specific cases when it matters.
+* To gain a performance improvement by avoiding finalizers.
+* It hardens the code for the future in case a request body is ever added to an <xref:System.Net.Http.HttpRequestMessage> that didn't initially have one.
+* To potentially avoid functional issues if a delegating handler expects a call to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>.
+* It's simpler to apply a general rule everywhere than trying to remember specific cases.
 
-Always dispose of <xref:System.Net.Http.HttpResponseMessage> instances.
+***Always*** dispose of <xref:System.Net.Http.HttpResponseMessage> instances.
 
 ***Never*** dispose of <xref:System.Net.Http.HttpClient> instances created by calling <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> because they're managed by the framework.
 
