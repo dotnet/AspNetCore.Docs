@@ -139,7 +139,9 @@ Use a shared Data Protection key ring in production so that instances of the app
 >
 > Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
 
-The following example shows how to use [Azure Blob Storage and Azure Key Vault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. Add the following packages to the server project of the Blazor Web App:
+The following example shows how to use [Azure Blob Storage and Azure Key Vault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using their dedicated documentation sets, which are listed at the end of this section.
+
+Add the following packages to the server project of the Blazor Web App:
 
 * [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
 * [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
@@ -149,7 +151,7 @@ The following example shows how to use [Azure Blob Storage and Azure Key Vault](
 > [!NOTE]
 > Before proceeding with the following steps, confirm that the app is registered with Microsoft Entra.
 
-Configure Azure Blob Storage to maintain the encrypted keys and protect them with Azure Key Vault:
+Configure Azure Blob Storage to maintain Data Protection keys and encrypt them at rest with Azure Key Vault:
 
 * Create an Azure storage account. The account name in the following example is `contoso`.
 
@@ -177,9 +179,17 @@ When establishing the key vault in the Entra or Azure portal:
 
 * When key encryption is active, keys in the key file include the comment, ":::no-loc text="This key is encrypted with Azure Key Vault.":::" After starting the app, select the **View/edit** command from the context menu at the end of the key row to confirm that a key is present with key vault security applied.
 
-The <xref:Microsoft.Extensions.Azure.AzureEventSourceLogForwarder> service in the following `Program` file code example requires the [`Microsoft.Extensions.Azure` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Azure) and a `using` statement at the top of the `Program` file for the <xref:Microsoft.Extensions.Azure?displayProperty=fullName> namespace.
+The <xref:Microsoft.Extensions.Azure.AzureEventSourceLogForwarder> service in the following example requires the [`Microsoft.Extensions.Azure` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Azure).
 
 [!INCLUDE[](~/includes/package-reference.md)]
+
+At the top of the `Program` file, provide access to the API in the <xref:Microsoft.Extensions.Azure?displayProperty=fullName> namespace:
+
+```csharp
+using Microsoft.Extensions.Azure;
+```
+
+Use the following code in the `Program` file where services are registered:
 
 ```csharp
 builder.Services.TryAddSingleton<AzureEventSourceLogForwarder>();
@@ -228,6 +238,7 @@ For more information, see the following resources:
   * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern)
   * [BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern-server)
 * [Azure Key Vault documentation](/azure/key-vault/general/)
+* [Azure Storage documentation](/azure/storage/)
 
 ## Sample apps
 
