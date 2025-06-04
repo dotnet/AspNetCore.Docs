@@ -54,6 +54,45 @@ dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson --prerelease
 
 This package provides a `JsonPatchDocument<T>` class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using `System.Text.Json`. The key method of the `JsonPatchDocument<T>` class is `ApplyTo`, which applies the patch operations to a target object of type `T`.
 
+## Action method code
+
+In an API controller, an action method for JSON Patch:
+
+* Is annotated with the `HttpPatch` attribute.
+* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601>, typically with [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
+* Calls <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
+
+Here's an example:
+
+:::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/api/Controllers/HomeController.cs" id="snippet_PatchAction" highlight="1,3,9":::
+
+This code from the sample app works with the following `Customer` model:
+
+:::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Models/Customer.cs":::
+
+:::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Models/Order.cs":::
+
+The sample action method:
+
+* Constructs a `Customer`.
+* Applies the patch.
+* Returns the result in the body of the response.
+
+> [!NOTE]
+> In a real app, the data would typically be retrieved from a store such as a database. After applying the patch, the updated data would be saved back to the database.
+
+### Model state
+
+The preceding action method example calls an overload of `ApplyTo` that takes model state as one of its parameters. With this option, you can get error messages in responses. The following example shows the body of a 400 Bad Request response for a `test` operation:
+
+```json
+{
+  "Customer": [
+    "The current value 'John' at path 'customerName' != test value 'Nancy'."
+  ]
+}
+```
+
 ## JSON Patch Operations
 
 The following sections describe the supported JSON Patch operations `add`, `remove`, `replace`, `move`, `copy`, and `test` that modify a JSON document and provide examples of their usage.
@@ -202,7 +241,7 @@ Example:
 
 The following examples demonstrate how to use the `ApplyTo` method to apply a JSON Patch document to an object.
 
-## Example: Apply a `JsonPatchDocument` to an object
+### Example: Apply a `JsonPatchDocument` to an object
 
 The following example demonstrates:
 
@@ -282,7 +321,7 @@ Key differences between `System.Text.Json` and the new `JsonPatchDocument<T>` im
 * The runtime type of the target object, not the declared type, determines which properties `ApplyTo` patches.
 * `System.Text.Json` deserialization relies on the declared type to identify eligible properties.
 
-## Example: Apply a JsonPatchDocument with error handling
+### Example: Apply a JsonPatchDocument with error handling
 
 There are various errors that can occur when applying a JSON Patch document. For example, the target object may not have the specified property, or the value specified might be incompatible with the property type.
 
@@ -403,6 +442,17 @@ public void Validate(JsonPatchDocument<T> patch)
 * **Mitigation**:
   * Protect endpoints accepting JSON Patch requests with proper authentication and authorization mechanisms.
   * Restrict access to trusted clients or users with appropriate permissions.
+
+## Get the code
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples). ([How to download](xref:index#how-to-download-a-sample)).
+
+To test the sample, run the app and send HTTP requests with the following settings:
+
+* URL: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`
+* HTTP method: `PATCH`
+* Header: `Content-Type: application/json-patch+json`
+* Body: Copy and paste one of the JSON patch document samples from the *JSON* project folder.
 
 ## Additional resources
 
