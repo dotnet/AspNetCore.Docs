@@ -60,7 +60,7 @@ In the app's `Program` file, call:
 <!-- UPDATE 10.0 - Missing API doc for 'AddDownstreamApi' -->
 
 * <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilder.EnableTokenAcquisitionToCallDownstreamApi%2A>: Enables token acquisition to call web APIs.
-* `AddDownstreamApi`: Adds a named downstream web service related to a specific configuration section.
+* `AddDownstreamApi`: Adds a named downstream web service related to a specific configuration section. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into a server-side class, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> to obtain weather data from an external web API (`MinimalApiJwt` project).
 * <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A>: Adds the .NET Core distributed token caches to the service collection.
 * <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>: Adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory.
 * Configure the distributed token cache options (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions>):
@@ -234,6 +234,7 @@ This approach is used by the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` samp
 For more information, see the following resources:
 
 * [Web API documentation | Microsoft identity platform](/entra/identity-platform/index-web-api)
+* [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
 * <xref:Microsoft.Identity.Abstractions.IDownstreamApi>
 * *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
   * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern)
