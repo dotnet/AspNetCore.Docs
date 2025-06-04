@@ -206,10 +206,10 @@ The following examples demonstrate how to use the `ApplyTo` method to apply a JS
 
 The following example demonstrates:
 
-1. The `add`, `replace`, and `remove` operations.
-1. Operations on nested properties.
-1. Adding a new item to an array.
-1. Using a JSON String Enum Converter in a JSON patch document.
+* The `add`, `replace`, and `remove` operations.
+* Operations on nested properties.
+* Adding a new item to an array.
+* Using a JSON String Enum Converter in a JSON patch document.
 
 ```csharp
 // Original object
@@ -282,7 +282,7 @@ Key differences between `System.Text.Json` and the new `JsonPatchDocument<T>` im
 * The runtime type of the target object, not the declared type, determines which properties `ApplyTo` patches.
 * `System.Text.Json` deserialization relies on the declared type to identify eligible properties.
 
-## Example: Applying a JsonPatchDocument with error handling
+## Example: Apply a JsonPatchDocument with error handling
 
 There are various errors that can occur when applying a JSON Patch document. For example, the target object may not have the specified property, or the value specified might be incompatible with the property type.
 
