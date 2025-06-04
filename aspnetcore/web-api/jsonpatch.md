@@ -1,11 +1,11 @@
 ---
 title: JsonPatch in ASP.NET Core web API
-author: rick-anderson
+author: wadepickett
 description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/22/2025
+ms.date: 06/03/2025
 uid: web-api/jsonpatch
 ---
 # JsonPatch in ASP.NET Core web API
@@ -25,7 +25,7 @@ In web apps, JSON Patch is commonly used in a PATCH operation to perform partial
 JSON Patch support in ASP.NET Core web API is based on `System.Text.Json` serialization, starting with .NET 10. This release introduces a new implementation of `JsonPatch` based on `System.Text.Json` serialization. This feature:
 
 * Aligns with modern .NET practices by leveraging the `System.Text.Json` library, which is optimized for .NET.
-* Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation. For more information on the legacy `Newtonsoft.Json`-based implementation, see the [.NET 9 version of this article](~/web-api/jsonpatch?view=aspnetcore-9.0).
+* Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation. For more information on the legacy `Newtonsoft.Json`-based implementation, see the [.NET 9 version of this article](xref:/web-api/jsonpatch?view=aspnetcore-9.0&preserve-view=true).
 
 The following benchmarks compare the performance of the new `System.Text.Json` implementation with the legacy `Newtonsoft.Json` implementation:
 
