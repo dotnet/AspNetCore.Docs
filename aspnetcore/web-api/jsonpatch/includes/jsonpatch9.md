@@ -2,12 +2,12 @@
 
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
+> [!IMPORTANT]
+> The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, this implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
+
 ## Package installation
 
 JSON Patch support in ASP.NET Core web API is based on `Newtonsoft.Json` and requires the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package. 
-
-> [!IMPORTANT]
-> The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, this implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
 
 To enable JSON Patch support:
 
@@ -239,6 +239,53 @@ To test the sample, run the app and send HTTP requests with the following settin
 * Header: `Content-Type: application/json-patch+json`
 * Body: Copy and paste one of the JSON patch document samples from the *JSON* project folder.
 
+## Mitigating security risks
+
+When using the `Microsoft.AspNetCore.JsonPatch` package with the `Newtonsoft.Json`-based implementation, it's critical to understand and mitigate potential security risks. The following sections outline the identified security risks associated with JSON Patch and provide recommended mitigations to ensure secure usage of the package.
+
+> [!IMPORTANT]
+> ***This is not an exhaustive list of threats.*** App developers must conduct their own threat model reviews to determine an app-specific comprehensive list and come up with appropriate mitigations as needed. For example, apps which expose collections to patch operations should consider the potential for algorithmic complexity attacks if those operations insert or remove elements at the beginning of the collection.
+
+By running comprehensive threat models for their own apps and addressing identified threats while following the recommended mitigations below, consumers of these packages can integrate JSON Patch functionality into their apps while minimizing security risks.
+
+### Denial of Service (DoS) via memory amplification
+
+* **Scenario**: A malicious client submits a `copy` operation that duplicates large object graphs multiple times, leading to excessive memory consumption.
+* **Impact**: Potential Out-Of-Memory (OOM) conditions, causing service disruptions.
+* **Mitigation**:
+  * Validate incoming JSON Patch documents for size and structure before calling `ApplyTo`.
+  * The validation needs to be app specific, but an example validation can look similar to the following:
+
+```csharp
+public void Validate(JsonPatchDocument patch)
+{
+    // This is just an example. It's up to the developer to make sure that
+    // this case is handled properly, based on the app needs.
+    if (patch.Operations.Where(op => op.OperationType == OperationType.Copy).Count()
+                              > MaxCopyOperationsCount)
+    {
+        throw new InvalidOperationException();
+    }
+}
+```
+
+### Business Logic Subversion
+
+* **Scenario**: Patch operations can manipulate fields with implicit invariants (for example, internal flags, IDs, or computed fields), violating business constraints.
+* **Impact**: Data integrity issues and unintended app behavior.
+* **Mitigation**:
+  * Use POCO objects with explicitly defined properties that are safe to modify.
+  * Avoid exposing sensitive or security-critical properties in the target object.
+  * If no POCO object is used, validate the patched object after applying operations to ensure business rules and invariants aren't violated.
+
+### Authentication and authorization
+
+* **Scenario**: Unauthenticated or unauthorized clients send malicious JSON Patch requests.
+* **Impact**: Unauthorized access to modify sensitive data or disrupt app behavior.
+* **Mitigation**:
+  * Protect endpoints accepting JSON Patch requests with proper authentication and authorization mechanisms.
+  * Restrict access to trusted clients or users with appropriate permissions.
+
 ## Additional resources
 
 * [IETF RFC 5789 PATCH method specification](https://tools.ietf.org/html/rfc5789)
@@ -251,6 +298,9 @@ To test the sample, run the app and send HTTP requests with the following settin
 :::moniker range="< aspnetcore-6.0"
 
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
+
+> [!IMPORTANT]
+> The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, this implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
 
 ## Package installation
 
