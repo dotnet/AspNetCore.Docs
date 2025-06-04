@@ -59,7 +59,7 @@ Using the [[EnableCors]](#attr) attribute with a named policy provides the fines
 
 Each approach is detailed in the following sections.
 
-<a name="np"></a>
+<a id="np"></a>
 
 ## CORS with named policy and middleware
 
@@ -89,13 +89,13 @@ The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> methods ca
 
 Note: The specified URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
-<a name="uc1"></a>
+<a id="uc1"></a>
 
 ## UseCors and UseStaticFiles order
 
 Typically, `UseStaticFiles` is called before `UseCors`. Apps that use JavaScript to retrieve static files cross site must call `UseCors` before `UseStaticFiles`.
 
-<a name="dp"></a>
+<a id="dp"></a>
 
 ### CORS with default policy and middleware
 
@@ -105,7 +105,7 @@ The following highlighted code enables the default CORS policy:
 
 The preceding code applies the default CORS policy to all controller endpoints.
 
-<a name="ecors6"></a>
+<a id="ecors6"></a>
 
 ## Enable Cors with endpoint routing
 
@@ -123,7 +123,7 @@ The [[DisableCors]](#dc6) attribute does **not**  disable CORS that has been ena
 
 See [Test CORS with [EnableCors] attribute and RequireCors method](#tcer) for instructions on testing code similar to the preceding.
 
-<a name="attr"></a>
+<a id="attr"></a>
 
 ## Enable CORS with attributes
 
@@ -160,7 +160,7 @@ The code in the next section meets the preceding list.
 
 
 
-<a name="dc6"></a>
+<a id="dc6"></a>
 
 ### Disable CORS
 
@@ -183,7 +183,7 @@ The preceding code:
 
 See [Test CORS](#testc6) for instructions on testing the preceding code.
 
-<a name="cpo6"></a>
+<a id="cpo6"></a>
 
 ## CORS policy options
 
@@ -308,7 +308,7 @@ I don't like "all CORS enabled domains must be trusted", because it implies that
 
 The CORS specification also states that setting origins to `"*"` (all origins) is invalid if the `Access-Control-Allow-Credentials` header is present.
 
-<a name="pref"></a>
+<a id="pref"></a>
 
 ## Preflight requests
 
@@ -382,7 +382,7 @@ Browsers aren't consistent in how they set `Access-Control-Request-Headers`. If 
 * <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader%2A> is called:
   Include at least `Accept`, `Content-Type`, and `Origin`, plus any custom headers that you want to support.
 
-<a name="apf"></a>
+<a id="apf"></a>
 
 ### Automatic preflight request code
 
@@ -395,7 +395,7 @@ ASP.NET Core responds to the preflight OPTIONS request.
 
 The [Test CORS](#testc6) section of this document demonstrates this behavior.
 
-<a name="pro6"></a>
+<a id="pro6"></a>
 
 ### [HttpOptions] attribute for preflight requests
 
@@ -415,7 +415,7 @@ The `Access-Control-Max-Age` header specifies how long the response to the prefl
 
 ## Enable CORS on an endpoint
 
-<a name="how-cors"></a>
+<a id="how-cors"></a>
 
 ## How CORS works
 
@@ -520,7 +520,7 @@ If <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrig
 
 If the response doesn't include the `Access-Control-Allow-Origin` header, the cross-origin request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser doesn't make the response available to the client app.
 
-<a name="no-http"></a>
+<a id="no-http"></a>
 
 ### HTTP redirection to HTTPS causes ERR_INVALID_REDIRECT on the CORS preflight request
 
@@ -528,14 +528,14 @@ Requests to an endpoint using HTTP that are redirected to HTTPS by <xref:Microso
 
 API projects can reject HTTP requests rather than use `UseHttpsRedirection` to redirect requests to HTTPS.
 
-<a name="options"></a>
+<a id="options"></a>
 
 ## CORS in IIS
 
 When deploying to IIS, CORS has to run before Windows Authentication if the server isn't configured to allow anonymous access. To support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
 needs to be installed and configured for the app.
 
-<a name="testc6"></a>
+<a id="testc6"></a>
 
 ## Test CORS
 
@@ -582,7 +582,7 @@ C:\Program Files\Git\mingw64\bin\
 
 -->
 
-<a name="tcer"></a>
+<a id="tcer"></a>
 
 ### Test CORS with [EnableCors] attribute and RequireCors method
 
