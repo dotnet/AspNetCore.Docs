@@ -16,17 +16,16 @@ uid: blazor/performance/webassembly-event-pipe
 
 -->
 
-This article describes Event Pipe diagnostic tools, counters, and how to get a Garbage Collector heap dump in Blazor WebAssembly apps.
+This article describes diagnostic tools and how to use them in Blazor WebAssembly apps.
 
-### Scenario : I want to understand how my WebAssembly application uses memory and troubleshoot memory leaks
+## Scenario : I want to understand how my WebAssembly application uses memory and troubleshoot memory leaks
 
 In the app's project file (`.csproj`) add following properties for the duration of the investigation:
 
 ```xml
+<!-- do not use this in production, it has negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
-  <MetricsSupport>true</MetricsSupport>
-  <EventSourceSupport>true</EventSourceSupport>
 </PropertyGroup>
 ```
 
@@ -50,11 +49,12 @@ To view the converted `.gcdump` file, use Visual Studio or in PrefView.
 
 See also [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump) for more info.
 
-### Scenario : I want to understand how my WebAssembly application uses CPU and find slow or hot methods
+## Scenario : I want to understand how my WebAssembly application uses CPU and find slow or hot methods
 
 In the app's project file (`.csproj`) add following properties for the duration of the investigation:
 
 ```xml
+<!-- do not use this in production, it has negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
   <WasmPerformanceInstrumentation>all</WasmPerformanceInstrumentation>
@@ -73,7 +73,9 @@ globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
 
 This API could be called from browser dev tools console or could be called from JavaScript code of your application.
 
-This will download `.nettrace` file from the browser into local folder.
+Start using the application to run problematic code.
+
+After predefined time, browser will download `.nettrace` file into local folder.
 
 To view the `.nettrace` file, use Visual Studio or in PrefView.
 
@@ -81,11 +83,12 @@ See also [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics
 
 The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
 
-### Scenario : I want to observe metrics emmited by my WebAssembly application
+## Scenario : I want to observe metrics emmited by my WebAssembly application
 
 In the app's project file (`.csproj`) add following properties for the duration of the investigation:
 
 ```xml
+<!-- do not use this in production, it has negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
   <MetricsSupport>true</MetricsSupport>
@@ -105,7 +108,7 @@ globalThis.getDotnetRuntime(0).collectMetrics({durationSeconds: 60});
 
 This API could be called from browser dev tools console or could be called from JavaScript code of your application.
 
-This will download `.nettrace` file from the browser into local folder.
+After predefined time, browser will download `.nettrace` file into local folder.
 
 To view the `.nettrace` file, use Visual Studio or in PrefView.
 
@@ -141,7 +144,9 @@ The following table describes permissable `<WasmPerformanceInstrumentation>` val
 `+EXPR` | Includes expression
 `-EXPR` | Excludes expression
 
-Enabling profilers has negative size and performance impacts, so don't publish an app for production with profilers enabled.
+Your code should yield to main browser loop often to allow the trace to be collected. When executing long running loops, the internal diagnostic buffers could overflow.
+
+**Enabling profilers and diagnostic tools has negative size and performance impacts, so don't publish an app for production with profilers enabled.**
 
 ## Additional resources
 
