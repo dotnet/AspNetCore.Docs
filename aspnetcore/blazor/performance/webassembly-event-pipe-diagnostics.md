@@ -26,12 +26,12 @@ Install the [.NET WebAssembly build tools](xref:blazor/tooling/webassembly#net-w
 dotnet workload install wasm-tools
 ```
 
-## Scenario: How a WebAssembly app uses memory and how to troubleshoot memory leaks
+## How a WebAssembly app uses memory and how to troubleshoot memory leaks
 
 In the app's project file (`.csproj`), add following properties for the duration of the investigation:
 
 ```xml
-<!-- Do not enable diagnostics in production, as it has a negative performance impact -->
+<!-- do not enable diagnostics in production, as it has a negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
 </PropertyGroup>
@@ -40,7 +40,7 @@ In the app's project file (`.csproj`), add following properties for the duration
 > [!WARNING]
 > Don't enable diagnostics in production because it has a negative performance impact. 
 
-Build your application with `wasm-tools` workload.
+Build your app with the `wasm-tools` workload.
 
 Open the app in a browser and navigate to problematic pages or components.
 
@@ -50,20 +50,20 @@ Take a managed memory dump by calling `collectGcDump` JavaScript API:
 globalThis.getDotnetRuntime(0).collectGcDump();
 ```
 
-This API could be called from a browser devoloper tools console or JavaScript code of your app.
+Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
 
 A `.nettrace` file is downloaded from the browser into a local folder.
 
-Convert the dump to `.gcdump` format using `dotnet-gcdump` tool. To view the converted `.gcdump` file, use Visual Studio or PrefView.
+Convert the dump to `.gcdump` format using the `dotnet-gcdump` tool. To view the converted `.gcdump` file, use Visual Studio or PrefView.
 
 For more information, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
 
-## Scenario: How a WebAssembly app uses CPU and how to find slow or hot methods
+## How a WebAssembly app uses CPU and how to find slow or hot methods
 
 In the app's project file (`.csproj`), add following properties for the duration of the investigation:
 
 ```xml
-<!-- Do not enable diagnostics in production, as it has a negative performance impact -->
+<!-- do not enable diagnostics in production, as it has a negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
   <WasmPerformanceInstrumentation>all</WasmPerformanceInstrumentation>
@@ -83,7 +83,7 @@ Start colllecting CPU samples for 60 seconds by calling the `collectCpuSamples` 
 globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
 ```
 
-This API could be called from a browser devoloper tools console or JavaScript code of your app.
+Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
 
 Start using the app to run problematic code.
 
@@ -93,12 +93,12 @@ For more information, see [Use EventPipe to trace your .NET application](/dotnet
 
 The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
 
-## Scenario: How to observe metrics emmited by a WebAssembly app
+## How to observe metrics emmited by a WebAssembly app
 
 In the app's project file (`.csproj`), add following properties for the duration of the investigation:
 
 ```xml
-<!-- Do not enable diagnostics in production, as it has a negative performance impact -->
+<!-- do not enable diagnostics in production, as it has a negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
   <MetricsSupport>true</MetricsSupport>
@@ -119,7 +119,7 @@ Start colllecting metrics for 60 seconds by calling the `collectMetrics` JavaScr
 globalThis.getDotnetRuntime(0).collectMetrics({durationSeconds: 60});
 ```
 
-This API could be called from a browser devoloper tools console or JavaScript code of your app.
+Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
 
 After the predefined period, the browser downloads a `.nettrace` file into a local folder. To view the `.nettrace` file, use Visual Studio or PrefView.
 
