@@ -253,7 +253,7 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * <xref:security/authentication/identity-enable-qrcodes>
 * <xref:migration/identity>
 * <xref:security/authentication/accconfirm>
-* <xref:security/authentication/2fa>
+* <xref:security/authentication/mfa>
 * <xref:host-and-deploy/web-farm>
 
 :::moniker-end
