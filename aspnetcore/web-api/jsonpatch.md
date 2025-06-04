@@ -179,7 +179,7 @@ Example:
 
 ### The `test` Operation
 
-* Behavior**: If the value at the location indicated by `path` is different from the value provided in `value`, the request fails. In that case, the entire PATCH request fails, even if all other operations in the patch document would otherwise succeed.
+* If the value at the location indicated by `path` is different from the value provided in `value`, the request fails. In that case, the entire PATCH request fails, even if all other operations in the patch document would otherwise succeed.
 
 Example:
 
