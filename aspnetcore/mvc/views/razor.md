@@ -289,6 +289,21 @@ The preceding Razor markup generates the following HTML:
 <input type="checkbox" name="null">
 ```
 
+> [!NOTE]
+> Razor does not omit `data-` attributes if their values are `null` or `false`.
+>
+> For example, the following razor:
+>
+> ```razor
+> <div data-foo="@null" data-bar="@false"></div>
+> ```
+>
+> generates the following HTML:
+>
+> ```razor
+> <div data-foo="" data-bar="False"></div>
+> ```
+
 ## Control structures
 
 Control structures are an extension of code blocks. All aspects of code blocks (transitioning to markup, inline C#) also apply to the following structures:
