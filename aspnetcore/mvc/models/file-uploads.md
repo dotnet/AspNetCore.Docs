@@ -450,10 +450,6 @@ return Results.Ok("Saved file at " + filePath);
 
 For more advanced scenarios, you can manually parse the raw request body using [`HttpRequest.BodyReader`](/dotnet/api/microsoft.aspnetcore.http.httprequest.bodyreader), which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample application includes endpoint handlers that use `IPipeReader` in both minimal APIs and controllers.
 
-> [!WARNING]
-> **Model binding quirk:**  
-> In controller actions, adding any model-bound parameter (such as a `CancellationToken`, `string`, or custom model) causes ASP.NET Core's model binding pipeline to eagerly read and buffer the entire form body before your handler executes. This defeats streaming and can cause performance or memory issues with large uploads. For true streaming, use only infrastructure parameters in your method signature and access request data manually. To get a cancellation token tied to the HTTP request, use [`HttpContext.RequestAborted`](/dotnet/api/microsoft.aspnetcore.http.httpcontext.requestaborted).
-
 The [3.1 example](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/file-uploads/samples/3.x/SampleApp/Pages/StreamedSingleFileUploadDb.cshtml) demonstrates how to use JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, form model binding is disabled by another custom filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. After the multipart sections are read, the action performs its own model binding.
 
 The initial page response loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieAttribute` attribute). The attribute uses ASP.NET Core's built-in [antiforgery support](xref:security/anti-request-forgery) to set a cookie with a request token:
