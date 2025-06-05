@@ -66,6 +66,9 @@ In the app's project file (`.csproj`), add following properties for the duration
 <!-- do not enable diagnostics in production, as it has a negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
+  <!-- disable debugger -->
+  <WasmDebugLevel>0</WasmDebugLevel>
+  <!-- sampling in all methods, see below for filtering options -->
   <WasmPerformanceInstrumentation>all</WasmPerformanceInstrumentation>
 </PropertyGroup>
 ```
