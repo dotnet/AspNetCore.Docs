@@ -261,9 +261,9 @@ Extra `@` characters in a Razor file can cause compiler errors at statements lat
 
 ### Conditional attribute rendering
 
-Razor automatically omits attributes that aren't needed. If the value passed in is `null` or `false`, the attribute isn't rendered.
+Razor automatically omits attributes that aren't required. If the value passed in is `null` or `false`, the attribute isn't rendered.
 
-For example,  consider the following razor:
+For example, consider the following Razor markup:
 
 ```cshtml
 <div class="@false">False</div>
@@ -287,6 +287,20 @@ The preceding Razor markup generates the following HTML:
 <input type="checkbox" checked="checked" name="true">
 <input type="checkbox" name="false">
 <input type="checkbox" name="null">
+```
+
+Razor retains `data-` attributes if their values are `null` or `false`.
+
+Consider the following Razor markup:
+
+```cshtml
+<div data-id="@null" data-active="@false"></div>
+```
+
+The preceding Razor markup generates the following HTML:
+
+```html
+<div data-id="" data-active="False"></div>
 ```
 
 ## Control structures
