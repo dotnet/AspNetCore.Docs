@@ -110,10 +110,6 @@ In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClien
 
 This is a breaking change because calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync%2A?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content%2A?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a `BrowserHttpReadStream` and no longer a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
 
-<!-- UNCOMMENT FOR PREVIEW 5 ...
-     Waiting on https://github.com/dotnet/runtime/issues/97449
-     ... and update the Call web API article Line 983
-
 To opt-out of response streaming globally, use either of the following approaches:
 
 * Add the `<WasmEnableStreamingResponse>` property to the project file with a value of `false`:
@@ -123,12 +119,6 @@ To opt-out of response streaming globally, use either of the following approache
   ```
 
 * Set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
-
-............. AND REMOVE THE NEXT LINE .............
-
--->
-
-To opt-out of response streaming globally, set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
 
 To opt-out of response streaming for an individual request, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage> (`requestMessage` in the following example):
 
@@ -387,8 +377,6 @@ Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?di
 
 Code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. For example, in the default Blazor Identity UI, the `IdentityRedirectManager` previously threw an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure it wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed.
 
-<!-- HOLD FOR PREVIEW 5
-
 To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>, set the following <xref:System.AppContext> switch:
 
 ```csharp
@@ -396,8 +384,6 @@ AppContext.SetSwitch(
     "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.EnableThrowNavigationException", 
     isEnabled: true);
 ```
-
--->
 
 ### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
 
@@ -412,3 +398,21 @@ Per-page/component rendering support is planned for Preview 5 in June, 2025.
 You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
 
 For more information and examples, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
+
+### Blazor router has a `NotFoundPage` parameter
+
+Rendering content after triggering the `NavigationManager.NotFound` method can be now handled by passing a parameter with a component type to the router. This is now recommended over using the `NotFound` render fragment because `NotFoundPage` supports routing that can be used across re-execution middleware, including non-Blazor middleware. If the `NotFound` render fragment is defined together with `NotFoundPage`, the page has higher priority.
+
+In the following example, a `NotFound` component is present in the app's `Pages` folder and passed to the `NotFoundPage` parameter. The `NotFound` page takes priority over the content in the `NotFound` fragment.
+
+```razor
+<Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>This content is ignored because 'NotFoundPage' is defined.</NotFound>
+</Router>
+```
+
+For more information, see <xref:blazor/fundamentals/routing#not-found-responses>.
