@@ -429,6 +429,7 @@ var boundary = HeaderUtilities.RemoveQuotes(
 // Use MultipartReader to stream data to a destination
 var reader = new MultipartReader(boundary, Request.Body);
 MultipartSection? section;
+
 while ((section = await reader.ReadNextSectionAsync(cancellationToken)) != null)
 {
     var contentDisposition = section.GetContentDispositionHeader();
