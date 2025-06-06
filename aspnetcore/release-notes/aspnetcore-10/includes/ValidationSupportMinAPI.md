@@ -31,3 +31,6 @@ app.MapPost("/products",
         => TypedResults.Ok(productId))
     .DisableValidation();
 ```
+
+> [!NOTE]
+> Several small improvements and fixes have been made to the Minimal APIs validation generator introduced in ASP.NET Core 10. To support future enhancements, the underlying validation resolver APIs are now marked as experimental. The top-level `AddValidation` APIs and the built-in validation filter remain stable and non-experimental.
