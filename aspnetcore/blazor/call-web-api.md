@@ -1289,8 +1289,6 @@ Calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync%2A?displayProperty=n
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-<!-- UPDATE 10.0 - Tracking on https://github.com/dotnet/runtime/issues/97449
-
 To opt-out of response streaming globally, use either of the following approaches:
 
 * Add the `<WasmEnableStreamingResponse>` property to the project file with a value of `false`:
@@ -1300,12 +1298,6 @@ To opt-out of response streaming globally, use either of the following approache
   ```
 
 * Set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
-
-............. AND REMOVE THE NEXT LINE .............
-
--->
-
-To opt-out of response streaming globally, set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
 
 To opt-out of response streaming for an individual request, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage> (`request` in the following example):
 
