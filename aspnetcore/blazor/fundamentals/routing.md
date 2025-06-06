@@ -732,6 +732,9 @@ When a component is rendered statically (static SSR) and `NavigationManager.NotF
 
 To provide Not Found content for global interactive rendering, use a Not Found page (Razor component).
 
+> [!NOTE]
+> The Blazor project template includes a `NotFound.razor` page by default. This page automatically renders whenever `NavigationManager.NotFound` is called, making it easier to handle missing routes with a consistent user experience.
+
 `NotFound.razor`:
 
 ```razor
