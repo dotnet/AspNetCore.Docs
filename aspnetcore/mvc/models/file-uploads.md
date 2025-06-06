@@ -440,7 +440,7 @@ while ((section = await reader.ReadNextSectionAsync(cancellationToken)) != null)
 }
 ```
 
-[`IFormFeature`](/dotnet/api/microsoft.aspnetcore.http.features.iformfeature) is a wrapper around `MultipartReader` that lets you avoid writing manual request body parsing code. You can use its [`ReadFormAsync(CancellationToken)`](/dotnet/api/microsoft.aspnetcore.http.features.iformfeature.readformasync#microsoft-aspnetcore-http-features-iformfeature-readformasync(system-threading-cancellationtoken)) method to populate the request's form data, then access uploaded files from the built-in collection:
+<xref:Microsoft.AspNetCore.Http.Features.IFormFeature> is a wrapper around <xref:Microsoft.AspNetCore.WebUtilities.MultipartReader> that doesn't require you to write manual request body parsing code. You can use its <xref:Microsoft.AspNetCore.Http.Features.IFormFeature.ReadFormAsync%2A> method to populate the request's form data, then access uploaded files from the built-in collection:
 ```csharp
 // Get the IFormFeature and read the form
 var formFeature = Request.HttpContext.Features.GetRequiredFeature<IFormFeature>();
