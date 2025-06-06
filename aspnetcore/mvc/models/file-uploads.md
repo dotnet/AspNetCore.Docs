@@ -419,7 +419,8 @@ For scenarios where large file uploads are required, streaming uploads allow you
 
 The [sample application for 9.x](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/9.x/FileManagerSample) demonstrates how a server can receive a file and stream the data directly to disk, supporting robust cancellation via the HTTP request's cancellation token.
 
-[`MultipartReader`](/dotnet/api/microsoft.aspnetcore.webutilities.multipartreader) is an ASP.NET Core utility for reading files from incoming requests. The following snippet shows how to process a request and stream the file into an `outputStream` (such as a `FileStream`):
+<xref:Microsoft.AspNetCore.WebUtilities.MultipartReader> is an ASP.NET Core utility for reading files from incoming requests. The following snippet shows how to process a request and stream the file into an `outputStream` (such as a <xref:System.IO.FileStream>):
+
 ```csharp
 // Read the boundary from the Content-Type header
 var boundary = HeaderUtilities.RemoveQuotes(MediaTypeHeaderValue.Parse(request.ContentType).Boundary).Value;
