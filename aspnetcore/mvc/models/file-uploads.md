@@ -417,7 +417,7 @@ The preceding example is similar to a scenario demonstrated in the sample app:
 
 For scenarios where large file uploads are required, streaming uploads allow you to process incoming multipart form data directly without buffering the entire file in memory or on disk via model binding. This technique is especially important for files that could exceed server or framework buffering thresholds.
 
-The [sample application for 9.x](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/9.x/FileManagerSample) demonstrates how a server can receive a file and stream the data directly to disk, supporting robust cancellation via the HTTP request's cancellation token. There are several approaches.
+The [sample application for 9.x](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/9.x/FileManagerSample) demonstrates how a server can receive a file and stream the data directly to disk, supporting robust cancellation via the HTTP request's cancellation token.
 
 [`MultipartReader`](/dotnet/api/microsoft.aspnetcore.webutilities.multipartreader) is an ASP.NET Core utility for reading files from incoming requests. The following snippet shows how to process a request and stream the file into an `outputStream` (such as a `FileStream`):
 ```csharp
