@@ -450,7 +450,7 @@ await formFeature.ReadFormAsync(cancellationToken);
 // Access the uploaded file (example: first file)
 var filePath = Request.Form.Files.First().FileName;
 
-return Results.Ok("Saved file at " + filePath);
+return Results.Ok($"Saved file at {filePath}");
 ```
 
 For more advanced scenarios, you can manually parse the raw request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader%2A?displayProperty=nameWithType>, which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample app includes endpoint handlers that use `IPipeReader` in both minimal APIs and controllers.
