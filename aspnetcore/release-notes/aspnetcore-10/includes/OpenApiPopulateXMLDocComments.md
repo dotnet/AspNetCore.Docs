@@ -10,8 +10,6 @@ ASP.NET Core OpenAPI document generation will now include metadata from XML doc 
 
 At build-time, the OpenAPI package will leverage a source generator to discover XML comments in the current application assembly and any project references and emit source code to insert them into the document via an OpenAPI document transformer.
 
-Support for generating OpenAPI metadata from XML documentation comments has been extended with ASP.NET Core in .NET 10 to extract metadata for operation responses from `<returns>` and `<response>` XML tags.
-
 Note that the C# build process does not capture XML doc comments placed on lambda expresions, so to use XML doc comments to add metadata to a minimal API endpoint, you must define the endpoint handler as a method, put the XML doc comments on the method, and then reference that method from the `MapXXX` method. For example, to use XML doc comments to add metadata to a minimal API endpoint originally defined as a lambda expression:
 
 ```csharp
