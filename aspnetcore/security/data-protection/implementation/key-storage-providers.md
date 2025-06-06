@@ -3,7 +3,7 @@ title: Key storage providers in ASP.NET Core
 author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.author: riande
-ms.date: 10/29/2024
+ms.date: 06/06/2025
 uid: security/data-protection/implementation/key-storage-providers
 ---
 <!-- ms.sfi.ropc: t -->
@@ -30,42 +30,154 @@ The `DirectoryInfo` can point to a directory on the local machine, or it can poi
 
 ## Azure Storage
 
-The [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) package allows storing data protection keys in Azure Blob Storage. Keys can be shared across several instances of a web app. Apps can share authentication cookies or CSRF protection across multiple servers.
+The [`Azure.Extensions.AspNetCore.DataProtection.Blobs` NuGet package](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) provides API for storing data protection keys in Azure Blob Storage. Keys can be shared across several instances of a web app. Apps can share authentication cookies or CSRF protection across multiple servers.
 
-To configure the Azure Blob Storage provider, call one of the <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.PersistKeysToAzureBlobStorage%2A> overloads.
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Configure Azure Blob Storage to maintain data protection keys:
+
+* Create an Azure storage account.
+
+* Create a container to hold the data protection key file.
+
+* Use a text editor to create an XML key file on your local machine:
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <repository>
+  </repository>
+  ```
+
+* Upload the key file to the container of the storage account. Use the context menu's **View/edit** command at the end of the key row in the portal to confirm that the blob contains the preceding content.
+
+* Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Storage Blob Data Contributor** role. Assign the Managed Identity to the App Service hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
+
+To configure the Azure Blob Storage provider, call one of the <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.PersistKeysToAzureBlobStorage%2A> overloads in the app. The following example uses the overload that accepts a blob URI and token credential (<xref:Azure.Core.TokenCredential>), relying on an Azure Managed Identity for role-based access control (RBAC).
+
+Other overloads are based on:
+
+* A blob URI and storage shared key credential (<xref:Azure.Storage.StorageSharedKeyCredential>).
+* A blob URI with a shared access signature (SAS).
+* A connection string, container name, and blob name.
+* A blob client (<xref:Azure.Storage.Blobs.BlobClient>). This approach is demonstrated later in this section.
+
+For more information on the Azure SDK's API and authentication, see [Authenticate .NET apps to Azure services using the Azure Identity library](/dotnet/azure/sdk/authentication/). For logging guidance, see [Logging with the Azure SDK for .NET: Logging without client registration](/dotnet/azure/sdk/logging#logging-without-client-registration). For apps using dependency injection, an app can call <xref:Microsoft.Extensions.Azure.AzureClientServiceCollectionExtensions.AddAzureClientsCore%2A>, passing `true` for `enableLogForwarding`, to create and wire up the logging infrastructure.
+
+:::moniker range=">= aspnetcore-6.0"
+
+In the `Program` file where services are registered:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
+TokenCredential? credential;
+
+if (builder.Environment.IsProduction())
 {
-    services.AddDataProtection()
-        .PersistKeysToAzureBlobStorage(new Uri("<blob URI including SAS token>"));
+    credential = new ManagedIdentityCredential("{MANAGED IDENTITY CLIENT ID}");
 }
+else
+{
+    // Local development and testing only
+    credential = new DefaultAzureCredential();
+}
+
+builder.Services.AddDataProtection()
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI}"), credential);
+
+/* Alternative without using an Azure Managed Identity
+builder.Services.AddDataProtection()
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI WITH SAS}"));
+*/
 ```
 
-If the web app is running as an Azure service, connection string can be used to authenticate to Azure storage by using [Azure.Storage.Blobs](xref:Azure.Storage.Blobs.BlobContainerClient).
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In `Startup.ConfigureServices`:
+
+```csharp
+TokenCredential? credential;
+
+if (_env.IsProduction())
+{
+    credential = new ManagedIdentityCredential("{MANAGED IDENTITY CLIENT ID}");
+}
+else
+{
+    // Local development and testing only
+    credential = new DefaultAzureCredential();
+}
+
+services.AddDataProtection()
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI}"), credential);
+
+/* Alternative without using an Azure Managed Identity
+services.AddDataProtection()
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI WITH SAS}"));
+*/
+```
+
+`{MANAGED IDENTITY CLIENT ID}`: The Azure Managed Identity Client ID (GUID).
+
+`{BLOB URI}`: Full URI to the key file. The URI is generated by Azure Storage when you create the key file. Do not use a SAS.
+
+Example:
+
+> :::no-loc text="https://contoso.blob.core.windows.net/data-protection/keys.xml":::
+
+`{BLOB URI WITH SAS}`: The full URI where the key file should be stored with the SAS token as a query string parameter. The URI is generated by Azure Storage when you request a SAS for the uploaded key file. In the following example, the container name is `data-protection`, and the storage account name is `contoso`. The key file is named `keys.xml`. The shared access signature (SAS) query string is at the end of the URI (`{SHARED ACCESS SIGNATURE}` placeholder).
+
+Example:
+
+> :::no-loc text="https://contoso.blob.core.windows.net/data-protection/keys.xml{SHARED ACCESS SIGNATURE}":::
+
+:::moniker-end
+
+If the web app is running as an Azure service, a connection string can be used to authenticate to Azure Storage using <xref:Azure.Storage.Blobs.BlobContainerClient>, as seen in the following example.
 
 [!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
-```csharp
-string connectionString = "<connection_string>";
-string containerName = "my-key-container";
-string blobName = "keys.xml";
-BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
+The optional call to <xref:Azure.Storage.Blobs.BlobContainerClient.CreateIfNotExistsAsync%2A> provisions the container automatically if it doesn't exist.
 
-// optional - provision the container automatically
-await container.CreateIfNotExistsAsync();
+The connection string (`{CONNECTION STRING}` placeholder) to the storage account can be found in the Entra or Azure portal under the "Access Keys" section or by running the following Azure CLI command:
 
-BlobClient blobClient = container.GetBlobClient(blobName);
-
-services.AddDataProtection()
-    .PersistKeysToAzureBlobStorage(blobClient);
+```azurecli
+az storage account show-connection-string --name <account_name> --resource-group <resource_group>
 ```
 
-> [!NOTE]
-> The connection string to your storage account can be found in the Azure Portal under the "Access Keys" section or by running the following CLI command: 
-> ```bash
-> az storage account show-connection-string --name <account_name> --resource-group <resource_group>
-> ```
+:::moniker range=">= aspnetcore-6.0"
+
+In the `Program` file where services are registered:
+
+```csharp
+string connectionString = "{CONNECTION STRING}";
+string containerName = "{CONTAINER NAME}";
+string blobName = "keys.xml";
+var container = new BlobContainerClient(connectionString, containerName);
+await container.CreateIfNotExistsAsync();
+BlobClient blobClient = container.GetBlobClient(blobName);
+
+builder.Services.AddDataProtection().PersistKeysToAzureBlobStorage(blobClient);
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In `Startup.ConfigureServices`:
+
+```csharp
+string connectionString = "{CONNECTION STRING}";
+string containerName = "{CONTAINER NAME}";
+string blobName = "keys.xml";
+var container = new BlobContainerClient(connectionString, containerName);
+await container.CreateIfNotExistsAsync();
+BlobClient blobClient = container.GetBlobClient(blobName);
+
+services.AddDataProtection().PersistKeysToAzureBlobStorage(blobClient);
+```
+
+:::moniker-end
 
 ## Redis
 

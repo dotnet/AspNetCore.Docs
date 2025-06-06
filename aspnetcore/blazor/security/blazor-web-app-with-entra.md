@@ -5,7 +5,7 @@ description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/03/2025
+ms.date: 06/06/2025
 uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
@@ -515,6 +515,9 @@ public static class AzureHelper
 }
 ```
 
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
 Where services are registered in the server project's `Program` file, obtain and apply the client secret using the following code:
 
 ```csharp
@@ -760,7 +763,7 @@ Use a shared Data Protection key ring in production so that instances of the app
 >
 > Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
 
-The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using their dedicated documentation sets, which are listed at the end of this section.
+The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using their dedicated documentation sets, which are listed at the end of this section.
 
 Confirm the presence of the following packages in the server project of the Blazor Web App:
 
@@ -772,80 +775,77 @@ Confirm the presence of the following packages in the server project of the Blaz
 > [!NOTE]
 > Before proceeding with the following steps, confirm that the app is registered with Microsoft Entra.
 
-The following code is typically implemented at the same time that a [production distributed token cache provider](xref:performance/caching/distributed) is implemented. Other options, both within Azure and outside of Azure, are available for managing Data Protection keys across multiple app instances, but the sample app demonstrates how to use Azure services.
+The following code is typically implemented at the same time that a [production distributed token cache provider](xref:performance/caching/distributed) is implemented. Other options, both within Azure and outside of Azure, are available for managing data protection keys across multiple app instances, but the sample app demonstrates how to use Azure services.
 
-Configure Azure Blob Storage to maintain Data Protection keys and encrypt them at rest with Azure Key Vault:
+Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in <xref:security/data-protection/implementation/key-storage-providers#azure-storage>.
 
-* Create an Azure storage account. The account name in the following example is `contoso`.
-
-* Create a container to hold the Data Protection keys. The container name in the following example is `data-protection`.  
-
-* Create the key file on your local machine. In the following example, the key file is named `keys.xml`. You can use a text editor to create the file.
-
-  `keys.xml`:
-
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <repository>
-  </repository>
-  ```
-
-* Upload the key file (`keys.xml`) to the container of the storage account. Use the context menu's **View/edit** command at the end of the key row in the portal to confirm that the blob contains the preceding content.
-
-* Use the context menu's **Generate SAS** command to obtain the blob's URI with a shared access signature (SAS). When you create the SAS, use the following permissions: `Read`, `Add`, `Create`, `Write`, `Delete`. The URI is used later where the `{BLOB URI WITH SAS}` placeholder appears.
-
-When establishing the key vault in the Entra or Azure portal:
-
-* Configure the key vault to use a **Vault access policy**. Confirm that public access on the **Networking** step is **enabled** (checked).
-
-* In the **Access policies** pane, create a new access policy with `Get`, `Unwrap Key`, and `Wrap Key` Key permissions. Select the registered application as the service principal.
-
-* When key encryption is active, keys in the key file include the comment, ":::no-loc text="This key is encrypted with Azure Key Vault.":::" After starting the app, select the **View/edit** command from the context menu at the end of the key row to confirm that a key is present with key vault security applied.
-
-The <xref:Microsoft.Extensions.Azure.AzureEventSourceLogForwarder> service in the following example forwards log messages from Azure SDK for logging and requires the [`Microsoft.Extensions.Azure` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Azure).
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-At the top of the `Program` file, provide access to the API in the <xref:Microsoft.Extensions.Azure?displayProperty=fullName> namespace:
-
-```csharp
-using Microsoft.Extensions.Azure;
-```
+Configure Azure Key Vault to encrypt the data protection keys at rest. Follow the guidance in <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>.
 
 Use the following code in the `Program` file where services are registered:
 
 ```csharp
-builder.Services.TryAddSingleton<AzureEventSourceLogForwarder>();
+// Recommended: Azure Managed Identity approach
+TokenCredential? credential;
+
+if (builder.Environment.IsProduction())
+{
+    credential = new ManagedIdentityCredential("{MANAGED IDENTITY CLIENT ID}");
+}
+else
+{
+    // Local development and testing only
+    credential = new DefaultAzureCredential();
+}
 
 builder.Services.AddDataProtection()
+    .SetApplicationName("BlazorWebAppEntra")
+    .PersistKeysToAzureBlobStorage(
+        new Uri("{BLOB URI}"),
+        credential)
+    .ProtectKeysWithAzureKeyVault(
+        new Uri("{KEY IDENTIFIER}"),
+        credential);
+
+/* Blob URI with SAS approach
+builder.Services.AddDataProtection()
+    .SetApplicationName("BlazorWebAppEntra")
     .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI WITH SAS}"))
-    .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), new DefaultAzureCredential());
+    .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), credential);
+*/
 ```
 
-`{BLOB URI WITH SAS}`: The full URI where the key file should be stored with the SAS token as a query string parameter. The URI is generated by Azure Storage when you request a SAS for the uploaded key file. The container name in the following example is `data-protection`, and the storage account name is `contoso`. The key file is named `keys.xml`.
+`{MANAGED IDENTITY CLIENT ID}`: The Azure Managed Identity Client ID (GUID).
 
-Example:
+`{BLOB URI}`: Full URI to the key file. The URI is generated by Azure Storage when you create the key file. Do not use a SAS.
 
-> :::no-loc text="https://contoso.blob.core.windows.net/data-protection/keys.xml?sp={PERMISSIONS}&st={START DATETIME}&se={EXPIRATION DATETIME}&spr=https&sv={STORAGE VERSION DATE}&sr=c&sig={TOKEN}":::
+`{BLOB URI WITH SAS}`: The full URI where the key file should be stored with the SAS token as a query string parameter. The URI is generated by Azure Storage when you request a SAS for the uploaded key file.
 
-`{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. The key vault name is `contoso` in the following example, and an access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The example key name is `data-protection`. The version of the key (`{KEY VERSION}` placeholder) is obtained from the key in the Entra or Azure portal after it's created.
+`{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The version of the key is obtained from the key in the Entra or Azure portal after it's created.
 
-Example:
-
-> :::no-loc text="https://contoso.vault.azure.net/keys/data-protection/{KEY VERSION}":::
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> locally (non-Production environment) to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as the <xref:Azure.Identity.ManagedIdentityCredential> shown in the preceding example. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 Alternatively, you can configure the app to supply the values from app settings files using the JSON Configuration Provider. Add the following to the app settings file:
 
 ```json
 "DistributedTokenCache": {
-    "DisableL1Cache": false,
-    "L1CacheSizeLimit": 524288000,
-    "Encrypt": true,
-    "SlidingExpirationInHours": 1
-  },
+  "DisableL1Cache": false,
+  "L1CacheSizeLimit": 524288000,
+  "Encrypt": true,
+  "SlidingExpirationInHours": 1
+},
 "DataProtection": {
-  "BlobUriWithSasToken": "{BLOB URI WITH SAS}",
+  "BlobUri": "{BLOB URI}",
   "KeyIdentifier": "{KEY IDENTIFIER}"
+}
+```
+
+Example `DataProtection` section:
+
+```json
+"DataProtection": {
+  "BlobUri": "https://contoso.blob.core.windows.net/data-protection/keys.xml",
+  "KeyIdentifier": "https://contoso.vault.azure.net/keys/data-protection/11112222bbbb3333cccc4444dddd5555"
 }
 ```
 
@@ -872,8 +872,13 @@ builder.Services.Configure<MsalDistributedTokenCacheAdapterOptions>(
     });
 
 - builder.Services.AddDataProtection()
--     .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI WITH SAS}"))
--     .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), new DefaultAzureCredential());
+-     .SetApplicationName("BlazorWebAppEntra")
+-     .PersistKeysToAzureBlobStorage(
+-         new Uri("{BLOB URI}"),
+-         credential)
+-     .ProtectKeysWithAzureKeyVault(
+-         new Uri("{KEY IDENTIFIER}"),
+-         credential);
 ```
 
 Add the following code where services are configured in the `Program` file:
@@ -882,17 +887,22 @@ Add the following code where services are configured in the `Program` file:
 var config = builder.Configuration.GetSection("DataProtection");
 
 builder.Services.AddDataProtection()
+    .SetApplicationName("BlazorSample")
     .PersistKeysToAzureBlobStorage(
-        new Uri(config.GetValue<string>("BlobUriWithSasToken") ??
-        throw new Exception("Missing Blob URI")))
+        new Uri(config.GetValue<string>("BlobUri") ??
+        throw new Exception("Missing Blob URI")),
+        credential)
     .ProtectKeysWithAzureKeyVault(
         new Uri(config.GetValue<string>("KeyIdentifier") ?? 
         throw new Exception("Missing Key Identifier")), 
-        new DefaultAzureCredential());
+        credential);
 ```
 
 For more information on using a shared Data Protection key ring and key storage providers, see the following resources:
 
+* <xref:security/data-protection/implementation/key-storage-providers#azure-storage>
+* <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>
+* [Use the Azure SDK for .NET in ASP.NET Core apps](/dotnet/azure/sdk/aspnetcore-guidance?tabs=api)
 * [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
 * <xref:security/data-protection/configuration/overview>
 * <xref:security/data-protection/implementation/key-storage-providers>
