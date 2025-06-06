@@ -401,9 +401,7 @@ For more information and examples, see <xref:blazor/fundamentals/routing?view=as
 
 ### Blazor router has a `NotFoundPage` parameter
 
-Rendering content after triggering the `NavigationManager.NotFound` method can be now handled by passing a parameter with a component type to the router. This is now recommended over using the `NotFound` render fragment because `NotFoundPage` supports routing that can be used across re-execution middleware, including non-Blazor middleware. If the `NotFound` render fragment is defined together with `NotFoundPage`, the page has higher priority.
-
-In the following example, a `NotFound` component is present in the app's `Pages` folder and passed to the `NotFoundPage` parameter. The `NotFound` page takes priority over the content in the `NotFound` fragment.
+Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` by passing a page type to the `Router` component using the `NotFoundPage` parameter. This approach is recommended over the previous `NotFound` fragment, as it supports routing, works across code re-execution middleware, and is compatible even with non-Blazor scenarios. If both a `NotFound` fragment and `NotFoundPage` are defined, the page specified by `NotFoundPage` takes priority.
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -411,8 +409,10 @@ In the following example, a `NotFound` component is present in the app's `Pages`
         <RouteView RouteData="@routeData" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
-    <NotFound>This content is ignored because 'NotFoundPage' is defined.</NotFound>
+    <NotFound>This content is ignored because NotFoundPage is defined.</NotFound>
 </Router>
 ```
+
+The Blazor project template now includes a `NotFound.razor` page by default. This page automatically renders whenever `NavigationManager.NotFound` is called in your app, making it easier to handle missing routes with a consistent user experience.
 
 For more information, see <xref:blazor/fundamentals/routing#not-found-responses>.
