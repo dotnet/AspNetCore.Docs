@@ -122,15 +122,37 @@ This property represents the table in which the keys are stored. Create the tabl
 
 ## Protect keys configuration API (`ProtectKeysWith\*`)
 
-You can configure the system to protect keys at rest by calling any of the [ProtectKeysWith\*](xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions) configuration APIs. Consider the example below, which stores keys on a UNC share and encrypts those keys at rest with a specific X.509 certificate:
+You can configure the system to protect keys at rest by calling any of the [`ProtectKeysWith\*`](xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions) configuration APIs. Consider the example below, which stores keys on a UNC share and encrypts those keys at rest with a specific X.509 certificate.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A> from a file by calling <xref:System.Security.Cryptography.X509Certificates.X509CertificateLoader.LoadCertificateFromFile%2A?displayProperty=nameWithType>:
+
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificateX509Certificate2":::
+
+The following code example demonstrates how to load a certificate using a thumbprint:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificate":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>, such as a certificate loaded from a file:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificateX509Certificate2":::
 
-See [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest) for more examples and discussion on the built-in key encryption mechanisms.
+The following code example demonstrates how to load a certificate using a thumbprint:
+
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificate":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+For examples and discussion on the built-in key encryption mechanisms, see <xref:security/data-protection/implementation/key-encryption-at-rest>.
 
 ## Unprotect keys with any certificate (`UnprotectKeysWithAnyCertificate`)
 
@@ -186,7 +208,7 @@ For more information on how the discriminator is used, see the following section
 > app.MapGet("/", () => Assembly.GetEntryAssembly()!.GetName().Name);
 > 
 > app.Run();
->  ```
+> ```
 
 ## Disable automatic key generation (`DisableAutomaticKeyGeneration`)
 
@@ -418,7 +440,7 @@ public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
 
 This property represents the table in which the keys are stored. Create the table manually or with `DbContext` Migrations. For more information, see <xref:Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey>.
 
-## `ProtectKeysWith\*`
+## Protect keys configuration API (`ProtectKeysWith\*`)
 
 You can configure the system to protect keys at rest by calling any of the [`ProtectKeysWith\*`](xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions) configuration APIs. Consider the example below, which stores keys on a UNC share and encrypts those keys at rest with a specific X.509 certificate:
 

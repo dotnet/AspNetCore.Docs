@@ -58,7 +58,7 @@ Deleting a key makes its protected data permanently inaccessible. To mitigate th
 
 We recommend not deleting data protection keys.
 
-:::code language="csharp" source="~/security/data-protection/configuration/samples/9/deleteKeys/Program.cs" :::
+:::code language="csharp" source="~/security/data-protection/configuration/samples/9.x/deleteKeys/Program.cs" :::
 
 ## Additional resources
 
