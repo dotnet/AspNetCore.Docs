@@ -423,7 +423,8 @@ The [sample application for 9.x](https://github.com/dotnet/AspNetCore.Docs/tree/
 
 ```csharp
 // Read the boundary from the Content-Type header
-var boundary = HeaderUtilities.RemoveQuotes(MediaTypeHeaderValue.Parse(request.ContentType).Boundary).Value;
+var boundary = HeaderUtilities.RemoveQuotes(
+    MediaTypeHeaderValue.Parse(request.ContentType).Boundary).Value;
 
 // Use MultipartReader to stream data to a destination
 var reader = new MultipartReader(boundary, Request.Body);
