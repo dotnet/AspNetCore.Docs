@@ -13,7 +13,6 @@ This article highlights the most significant changes in ASP.NET Core in .NET 10 
 
 This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes).
 
-<!-- New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file. -->
 
 ## Blazor
 
@@ -92,7 +91,6 @@ This section describes miscellaneous new features in .NET 10.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
 
-
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/jsonPatch.md)]
 
 ### Detect if URL is local using `RedirectHttpResult.IsLocalUrl`
@@ -114,5 +112,7 @@ if (RedirectHttpResult.IsLocalUrl(url))
 ```
 
 Thank you [@martincostello](https://github.com/martincostello) for this contribution!
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/httpsys.md)]
 
 ## Related content
