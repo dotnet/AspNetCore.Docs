@@ -416,3 +416,9 @@ Blazor now provides an improved way to display a "Not Found" page when navigatin
 The Blazor project template now includes a `NotFound.razor` page by default. This page automatically renders whenever `NavigationManager.NotFound` is called in your app, making it easier to handle missing routes with a consistent user experience.
 
 For more information, see <xref:blazor/fundamentals/routing#not-found-responses>.
+
+### Metrics and tracing
+
+This release introduces comprehensive metrics and tracing capabilities for Blazor apps, providing detailed observability of the component lifecycle, navigation, event handling, and circuit management.
+
+For more information, see <xref:blazor/performance/index#metrics-and-tracing>.
