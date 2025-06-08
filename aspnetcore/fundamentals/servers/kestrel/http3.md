@@ -30,7 +30,6 @@ uid: fundamentals/servers/kestrel/http3
 | Feature      | `HTTP/2`                                                    | `HTTP/3`                                                 |
 |--------------|-------------------------------------------------------------|----------------------------------------------------------|
 | Transport    | Uses [TCP](https://developer.mozilla.org/docs/Glossary/TCP) | Uses [QUIC](https://www.rfc-editor.org/rfc/rfc9000.html) |
-| Layer        |                                                             |                                                          |
 | Connection   | Slower due to TCP + TLS                                     | Faster with 0-RTT QUIC                                   |
 | Setup        | handshake                                                   | handshakes                                               |
 | Head-of-Line | Affected by TCP-level                                       | Eliminated with QUIC                                     |
