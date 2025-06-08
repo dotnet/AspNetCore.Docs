@@ -1,15 +1,19 @@
-### Configure Custom Security Descriptors for HTTP.sys Request Queues
+## Configure Custom Security Descriptors for HTTP.sys Request Queues
 <!--PR: https://github.com/dotnet/aspnetcore/pull/61325-->
+<!-- This section was deliberately made H2 -->
+You can now specify a custom security descriptor for HTTP.sys request queues. The new `[RequestQueueSecurityDescriptor](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs,a556950881fd2d87) property on <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> enables more granular control over access rights for the request queue. This granular control lets you tailor security to your application's needs.
 
-You can now specify a custom security descriptor for HTTP.sys request queues using the new `RequestQueueSecurityDescriptor` property on `HttpSysOptions`. This feature enables more granular control over access rights for the request queue, helping you tailor security to your application's needs.
+### Why customizability matters
 
-# Why this matters
+HTTP.sys relies on a security descriptor for access control. This descriptor determines which users or groups are allowed to access specific HTTP URLs.
 
-By customizing the security descriptor, you can allow or deny specific users or groups access to the request queue. This is particularly useful in scenarios where you want to restrict or delegate HTTP.sys request handling at the operating system level.
+By customizing the security descriptor, you can allow or deny specific users or groups access to the request queue. This is useful in scenarios where you want to restrict or delegate HTTP.sys request handling at the operating system level.
 
-# How to use
+### How to Customize a descriptor
 
-Set the `RequestQueueSecurityDescriptor` property to a `GenericSecurityDescriptor` instance when configuring your HTTP.sys server. For example, to allow all users but deny guests:
+The `RequestQueueSecurityDescriptor`property applies only when creating a new request queue. This property doesn't affect existing request queues.
+
+Set the `RequestQueueSecurityDescriptor` property to a `GenericSecurityDescriptor` instance when configuring your HTTP.sys server. For example, to allow all authenticated users but deny guests:
 
 ```csharp
 using System.Security.AccessControl;
@@ -47,8 +51,6 @@ builder.WebHost.UseHttpSys(options =>
 });
 ```
 
-# Additional Notes
+### Related content
 
-The `RequestQueueSecurityDescriptor` applies only when creating a new request queue.
-This property does not affect existing request queues.
-See the official documentation for more information about Windows security descriptors and their usage.
+<xref:fundamentals/servers/httpsys>
