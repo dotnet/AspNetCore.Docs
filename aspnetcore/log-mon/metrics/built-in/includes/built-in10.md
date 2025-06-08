@@ -3,7 +3,113 @@
 This article describes the metrics built-in for ASP.NET Core produced using the
 <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. For a listing of metrics based on the older [EventCounters](/dotnet/core/diagnostics/event-counters) API, see [Available counters](/dotnet/core/diagnostics/available-counters).
 
-See [Using ASP.NET Core metrics](xref:log-mon/metrics/metrics) for information about how to collect, report, enrich, and test ASP.NET Core metrics
+For information about how to collect, report, enrich, and test ASP.NET Core metrics, see <xref:log-mon/metrics/metrics>.
+
+## `Microsoft.AspNetCore.Components`
+
+The `Microsoft.AspNetCore.Components` metrics report information on Razor component route changes and browser events:
+
+* [`aspnetcore.components.navigation`](#metric-aspnetcorecomponentsnavigation)
+* [`aspnetcore.components.event_handler`](#metric-aspnetcorecomponentsevent_handler)
+
+#### Metric: `aspnetcore.components.navigation`
+
+Name | Instrument Type | Unit (UCUM) | Description
+--- | --- | --- | ---
+`aspnetcore.components.navigation`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsnavigation)--> | Histogram | `s` | Tracks the total number of route changes in the app.
+
+Attribute | Type | Description | Examples | Presence
+--- | --- | --- | --- | ---
+xxx | xxx | xxx | xxx | xxx
+
+.
+
+#### Metric: `aspnetcore.components.event_handler`
+
+Name | Instrument Type | Unit (UCUM) | Description
+--- | --- | --- | ---
+`aspnetcore.components.event_handler`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsevent_handler)--> | Histogram | `s` | Measures the duration of processing browser events, including business logic.
+
+Attribute | Type | Description | Examples | Presence
+--- | --- | --- | --- | ---
+xxx | xxx | xxx | xxx | xxx
+
+.
+
+## `Microsoft.AspNetCore.Components.Lifecycle`
+
+The `Microsoft.AspNetCore.Components.Lifecycle` metrics report information on Razor component lifecycle events:
+
+* [`aspnetcore.components.update_parameters`](#metric-aspnetcorecomponentsupdate_parameters)
+* [`aspnetcore.components.render_diff`](#metric-aspnetcorecomponentsrender_diff)
+
+#### Metric: `aspnetcore.components.update_parameters`
+
+Name | Instrument Type | Unit (UCUM) | Description
+--- | --- | --- | ---
+`aspnetcore.components.update_parameters`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsupdate_parameters)--> | Histogram | `s` | Measures the duration of processing component parameters, including business logic.
+
+Attribute | Type | Description | Examples | Presence
+--- | --- | --- | --- | ---
+xxx | xxx | xxx | xxx | xxx
+
+.
+
+#### Metric: `aspnetcore.components.render_diff`
+
+Name | Instrument Type | Unit (UCUM) | Description
+--- | --- | --- | ---
+`aspnetcore.components.render_diff`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsrender_diff) | Histogram | `s` | Tracks the duration of rendering batches.
+
+Attribute | Type | Description | Examples | Presence
+--- | --- | --- | --- | ---
+xxx | xxx | xxx | xxx | xxx
+
+.
+
+## `Microsoft.AspNetCore.Components.Server.Circuits`
+
+The `Microsoft.AspNetCore.Components.Server.Circuits` metrics report information on server-side Blazor circuits in Blazor Server and Blazor Web Apps:
+
+* [`aspnetcore.components.circuit.active`](#metric-aspnetcorecomponentscircuitactive)
+* [`aspnetcore.components.circuit.connected`](#metric-aspnetcorecomponentscircuitconnected)
+* [`aspnetcore.components.circuit.duration`](#metric-aspnetcorecomponentscircuitduration)
+
+#### Metric: `aspnetcore.components.circuit.active`
+
+Name | Instrument Type | Unit (UCUM) | Description
+--- | --- | --- | ---
+`aspnetcore.components.circuit.active`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitactive)--> | Histogram | `s` | Shows the number of active circuits currently in memory.
+
+Attribute | Type | Description | Examples | Presence
+--- | --- | --- | --- | ---
+xxx | xxx | xxx | xxx | xxx
+
+.
+
+#### Metric: `aspnetcore.components.circuit.connected`
+
+Name | Instrument Type | Unit (UCUM) | Description
+--- | --- | --- | ---
+`aspnetcore.components.circuit.connected`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitconnected)--> | Histogram | `s` | Tracks the number of circuits connected to clients.
+
+Attribute | Type | Description | Examples | Presence
+--- | --- | --- | --- | ---
+xxx | xxx | xxx | xxx | xxx
+
+.
+
+#### Metric: `aspnetcore.components.circuit.duration`
+
+Name | Instrument Type | Unit (UCUM) | Description
+--- | --- | --- | ---
+`aspnetcore.components.circuit.duration`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitduration)--> | Histogram | `s` | Measures circuit lifetime duration and provides total circuit count.
+
+Attribute | Type | Description | Examples | Presence
+--- | --- | --- | --- | ---
+xxx | xxx | xxx | xxx | xxx
+
+.
 
 ## `Microsoft.AspNetCore.Hosting`
 
