@@ -11,7 +11,7 @@ A *request queue* in HTTP.sys is a kernel-level structure that temporarily store
 
 The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. The property doesn't affect existing request queues. To use this property, set it to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server.
 
-For example, The following code allows all authenticated users but denies guests:
+For example, the following code allows all authenticated users but denies guests:
 
 ```csharp
 using System.Security.AccessControl;
