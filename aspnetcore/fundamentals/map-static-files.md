@@ -2,7 +2,7 @@
 title: Map static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to serve and secure mapped static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 3/18/2025
@@ -10,7 +10,11 @@ uid: fundamentals/map-static-files
 ---
 # Map static files in ASP.NET Core
 
-:::moniker range=">= aspnetcore-9.0"
+<!-- UPDATE 10.0 - Activate at GA
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -209,5 +213,3 @@ The following code updates `IWebHostEnvironment.WebRootPath` to a non developmen
 * [Introduction to ASP.NET Core](xref:index)
 * <xref:blazor/file-uploads>
 * <xref:blazor/file-downloads>
-
-:::moniker-end
