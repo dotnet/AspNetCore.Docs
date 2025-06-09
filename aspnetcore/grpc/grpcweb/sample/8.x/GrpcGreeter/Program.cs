@@ -33,7 +33,7 @@ var app = builder.Build();
 
 app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 
-app.MapGrpcService<GreeterService>().EnableGrpcWeb();
+app.MapGrpcService<GreeterService>();
 app.MapGet("/", () => "All gRPC service are supported by default in this example, and are callable from browser apps using the gRPC-Web protocol");
 
 app.Run();
