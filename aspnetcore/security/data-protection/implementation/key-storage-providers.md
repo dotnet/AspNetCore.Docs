@@ -34,6 +34,14 @@ The [`Azure.Extensions.AspNetCore.DataProtection.Blobs` NuGet package](https://w
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
+To interact with [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) locally using developer credentials, either sign into your storage account in Visual Studio or sign in with the [Azure CLI](/cli/azure/). If you haven't already installed the Azure CLI, see [How to install the Azure CLI](/cli/azure/install-azure-cli). You can execute the following command in the Developer PowerShell panel in Visual Studio or from a command shell when not using Visual Studio:
+
+```azurecli
+az login
+```
+
+For more information, see [Sign-in to Azure using developer tooling](/dotnet/azure/sdk/authentication/local-development-dev-accounts#sign-in-to-azure-using-developer-tooling).
+
 Configure Azure Blob Storage to maintain data protection keys:
 
 * Create an Azure storage account.
@@ -52,6 +60,9 @@ Configure Azure Blob Storage to maintain data protection keys:
 
 * Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Storage Blob Data Contributor** role. Assign the Managed Identity to the App Service hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
 
+  > [!NOTE]
+  > If you also plan to run an app locally with an authorized user for blob access using the [Azure CLI](/cli/azure/) or Visual Studio's Azure Service Authentication, add your developer Azure user account in **Access Control (IAM)** with the **Storage Blob Data Contributor** role. If you want to use the Azure CLI through Visual Studio, execute the `az login` command from the Developer PowerShell panel and follow the prompts to authenticate with the tenant.
+
 To configure the Azure Blob Storage provider, call one of the <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.PersistKeysToAzureBlobStorage%2A> overloads in the app. The following example uses the overload that accepts a blob URI and token credential (<xref:Azure.Core.TokenCredential>), relying on an Azure Managed Identity for role-based access control (RBAC).
 
 Other overloads are based on:
@@ -59,7 +70,7 @@ Other overloads are based on:
 * A blob URI and storage shared key credential (<xref:Azure.Storage.StorageSharedKeyCredential>).
 * A blob URI with a shared access signature (SAS).
 * A connection string, container name, and blob name.
-* A blob client (<xref:Azure.Storage.Blobs.BlobClient>). This approach is demonstrated later in this section.
+* A blob client (<xref:Azure.Storage.Blobs.BlobClient>).
 
 For more information on the Azure SDK's API and authentication, see [Authenticate .NET apps to Azure services using the Azure Identity library](/dotnet/azure/sdk/authentication/). For logging guidance, see [Logging with the Azure SDK for .NET: Logging without client registration](/dotnet/azure/sdk/logging#logging-without-client-registration). For apps using dependency injection, an app can call <xref:Microsoft.Extensions.Azure.AzureClientServiceCollectionExtensions.AddAzureClientsCore%2A>, passing `true` for `enableLogForwarding`, to create and wire up the logging infrastructure.
 
