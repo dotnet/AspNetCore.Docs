@@ -9,7 +9,7 @@ HTTP.sys relies on a security descriptor for access control. This descriptor det
 
 By customizing the security descriptor, you can allow or deny specific users or groups access to the request queue. This is useful in scenarios where you want to restrict or delegate HTTP.sys request handling at the operating system level.
 
-#### How to Customize a descriptor
+#### How to customize a descriptor
 
 The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. This property doesn't affect existing request queues.
 
@@ -51,4 +51,4 @@ builder.WebHost.UseHttpSys(options =>
 });
 ```
 
-For more information see <xref:fundamentals/servers/httpsys>.
+For more information, see <xref:fundamentals/servers/httpsys>.
