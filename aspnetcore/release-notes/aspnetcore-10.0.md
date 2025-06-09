@@ -89,6 +89,8 @@ For more information, see [ASP.NET Core Authorization and Authentication metrics
 
 This section describes miscellaneous new features in .NET 10.
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/httpsys.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/jsonPatch.md)]
@@ -112,9 +114,6 @@ if (RedirectHttpResult.IsLocalUrl(url))
 ```
 
 Thank you [@martincostello](https://github.com/martincostello) for this contribution!
-
-<!-- This include file is H2 -->
-[!INCLUDE[](~/release-notes/aspnetcore-10/includes/httpsys.md)]
 
 ## Related content
 
