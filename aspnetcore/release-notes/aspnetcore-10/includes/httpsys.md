@@ -1,4 +1,4 @@
-## Configure Custom Security Descriptors for HTTP.sys Request Queues
+## Customizable security descriptors for HTTP.sys
 <!--PR: https://github.com/dotnet/aspnetcore/pull/61325-->
 <!-- This section was deliberately made H2 -->
 You can now specify a custom security descriptor for HTTP.sys request queues. The new `[RequestQueueSecurityDescriptor](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs,a556950881fd2d87) property on <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> enables more granular control over access rights for the request queue. This granular control lets you tailor security to your application's needs.
