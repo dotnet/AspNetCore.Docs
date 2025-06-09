@@ -77,7 +77,7 @@ For more information, see [in-process hosting for IIS](xref:host-and-deploy/aspn
 
 ASP.NET Core 2.2 introduces a Java Client for SignalR. This client supports connecting to an ASP.NET Core SignalR Server from Java code, including Android apps.
 
-For more information, see [ASP.NET Core SignalR Java client](../signalr/java-client.md?view=aspnetcore-2.2).
+For more information, see [ASP.NET Core SignalR Java client](../signalr/java-client.md?view=aspnetcore-2.2&preserve-view=true).
 
 ## CORS improvements
 
