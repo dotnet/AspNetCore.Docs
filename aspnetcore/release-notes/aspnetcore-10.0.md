@@ -113,6 +113,9 @@ if (RedirectHttpResult.IsLocalUrl(url))
 
 Thank you [@martincostello](https://github.com/martincostello) for this contribution!
 
+<!-- This include file is H2 -->
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/httpsys.md)]
 
 ## Related content
+
+<xref:servers/httpsys>
