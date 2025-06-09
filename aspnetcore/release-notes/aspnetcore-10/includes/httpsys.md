@@ -1,19 +1,17 @@
 ### Customizable security descriptors for HTTP.sys
 <!--PR: https://github.com/dotnet/aspnetcore/pull/61325-->
 
-You can now specify a custom security descriptor for HTTP.sys request queues. The new `[RequestQueueSecurityDescriptor](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs,a556950881fd2d87) property on <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> enables more granular control over access rights for the request queue. This granular control lets you tailor security to your application's needs.
+You can now specify a custom security descriptor for HTTP.sys request queues. The new [RequestQueueSecurityDescriptor](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs,a556950881fd2d87) property on <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> enables more granular control over access rights for the request queue. This granular control lets you tailor security to your application's needs.
 
-#### Why customizability matters
+#### Why use the new property?
 
-HTTP.sys relies on a security descriptor for access control. This descriptor determines which users or groups are allowed to access specific HTTP URLs.
+A *request queue* in HTTP.sys is a kernel-level structure that temporarily stores incoming HTTP requests until your application is ready to process them. By customizing the security descriptor, you can allow or deny specific users or groups access to the request queue. This is useful in scenarios where you want to restrict or delegate HTTP.sys request handling at the operating system level.
 
-By customizing the security descriptor, you can allow or deny specific users or groups access to the request queue. This is useful in scenarios where you want to restrict or delegate HTTP.sys request handling at the operating system level.
+#### How to use the new property
 
-#### How to customize a descriptor
+The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. The property doesn't affect existing request queues. To use this property, set it to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server.
 
-The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. This property doesn't affect existing request queues.
-
-Set the `RequestQueueSecurityDescriptor` property to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server. For example, to allow all authenticated users but deny guests:
+For example, The following code allows all authenticated users but denies guests:
 
 ```csharp
 using System.Security.AccessControl;
