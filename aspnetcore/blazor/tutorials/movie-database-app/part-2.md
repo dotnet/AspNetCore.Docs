@@ -134,21 +134,6 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 > [!IMPORTANT]
 > After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
-:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
-
-<!-- UPDATE 10.0 - Remove at 10.0 GA -->
-
-> [!IMPORTANT]
-> A breaking change in EF Core tooling for .NET 9.0.200 SDK prevented scaffolding from executing with the following exception:
->
-> > :::no-loc text="Could not load file or assembly 'Microsoft.EntityFrameworkCore.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.":::
-> 
-> To resolve the error, upgrade to a .NET 9.0.300 or later SDK.
->
-> For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
-
-:::moniker-end
-
 > [!NOTE]
 > The preceding commands are .NET CLI commands, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
 
@@ -190,23 +175,6 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
 dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
-
-:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
-
-<!-- UPDATE 10.0 - Remove at 10.0 GA -->
-
-> [!IMPORTANT]
-> A breaking change in EF Core tooling for .NET 9.0.200 SDK prevented scaffolding from executing with the following exception:
->
-> > :::no-loc text="Could not load file or assembly 'Microsoft.EntityFrameworkCore.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.":::
-> 
-> To resolve the error, upgrade to a .NET 9.0.300 or later SDK.
->
-> For more information, see [Breaking changes in EF Core 9 (EF9)](/ef/core/what-is-new/ef-core-9.0/breaking-changes#microsoftentityframeworkcoredesign-not-found-when-using-ef-tools).
-
-:::moniker-end
-
-:::moniker-end
 
 Save the project file.
 
