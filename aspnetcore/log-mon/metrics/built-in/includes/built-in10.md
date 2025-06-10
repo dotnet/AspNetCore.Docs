@@ -21,7 +21,7 @@ Name | Instrument Type | Unit (UCUM) | Description
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 `aspnetcore.components.type` | string | Component navigated to. | `TestComponent` | Always
-`aspnetcore.components.route` | string | The component's route | `/test-route` | Always
+`aspnetcore.components.route` | string | The component's route. | `/test-route` | Always
 
 #### Metric: `aspnetcore.components.event_handler`
 
@@ -33,8 +33,8 @@ Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 `aspnetcore.components.type` | string | Component type handling the event. | `TestComponent` | Always
 `aspnetcore.components.method` | string | C# method handling the event. | `OnClick` | Always
-`aspnetcore.components.attribute.name` | string | Component attribute name. | `onclick` | Always
-`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception was thrown.
+`aspnetcore.components.attribute.name` | string | Component attribute name handling the event. | `onclick` | Always
+`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
 
 ## `Microsoft.AspNetCore.Components.Lifecycle`
 
@@ -52,7 +52,7 @@ Name | Instrument Type | Unit (UCUM) | Description
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 `aspnetcore.components.type` | string | Component type handling the event. | `TestComponent` | Always
-`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception was thrown.
+`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
 
 #### Metric: `aspnetcore.components.render_diff`
 
@@ -63,8 +63,7 @@ Name | Instrument Type | Unit (UCUM) | Description
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 `aspnetcore.components.diff.length` | int | The length of the render diff. | 50 | Always
-`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception was thrown.
-
+`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
 
 ## `Microsoft.AspNetCore.Components.Server.Circuits`
 
@@ -80,29 +79,17 @@ Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
 `aspnetcore.components.circuit.active`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitactive)--> | UpDownCounter | `{circuit}` | Shows the number of active circuits currently in memory.
 
-Attribute | Type | Description | Examples | Presence
---- | --- | --- | --- | ---
-xxx | xxx | xxx | xxx | xxx
-
 #### Metric: `aspnetcore.components.circuit.connected`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
 `aspnetcore.components.circuit.connected`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitconnected)--> | UpDownCounter | `{circuit}` | Tracks the number of circuits connected to clients.
 
-Attribute | Type | Description | Examples | Presence
---- | --- | --- | --- | ---
-xxx | xxx | xxx | xxx | xxx
-
 #### Metric: `aspnetcore.components.circuit.duration`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
 `aspnetcore.components.circuit.duration`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitduration)--> | Histogram | `s` | Measures circuit lifetime duration and provides total circuit count.
-
-Attribute | Type | Description | Examples | Presence
---- | --- | --- | --- | ---
-xxx | xxx | xxx | xxx | xxx
 
 ## `Microsoft.AspNetCore.Hosting`
 
