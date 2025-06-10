@@ -491,7 +491,7 @@ Disable default headers:
 transformBuilderContext.UseDefaultForwarders = false;
 ```
 
-When the proxy connects to the destination server, the connection is indepenent from the one the client made to the proxy. The destination server likely needs original connection information for security checks and to properly generate absolute URIs for links and redirects. To enable information about the client connection to be passed to the destination a set of extra headers can be added. Until the `Forwarded` standard was created, a common solution is to use `X-Forwarded-*` headers. There is no official standard that defines the `X-Forwarded-*` headers and implementations vary, check your destination server for support.
+When the proxy connects to the destination server, the connection is independent from the one the client made to the proxy. The destination server likely needs original connection information for security checks and to properly generate absolute URIs for links and redirects. To enable information about the client connection to be passed to the destination a set of extra headers can be added. Until the `Forwarded` standard was created, a common solution is to use `X-Forwarded-*` headers. There is no official standard that defines the `X-Forwarded-*` headers and implementations vary, check your destination server for support.
 
 This transform is enabled by default even if not specified in the route config.
 
