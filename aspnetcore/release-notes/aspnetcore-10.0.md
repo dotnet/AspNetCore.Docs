@@ -1,10 +1,10 @@
 ---
 title: What's new in ASP.NET Core in .NET 10
-author: rick-anderson
+author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 10.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 4/12/2025
+ms.date: 06/10/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10
@@ -13,7 +13,6 @@ This article highlights the most significant changes in ASP.NET Core in .NET 10 
 
 This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes).
 
-<!-- New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file. -->
 
 ## Blazor
 
@@ -61,7 +60,7 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiNetUpdatePrev17.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiNetUpdatePrev.md)]
 
 ### Authentication and authorization
 
@@ -90,8 +89,9 @@ For more information, see [ASP.NET Core Authorization and Authentication metrics
 
 This section describes miscellaneous new features in .NET 10.
 
-[!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/httpsys.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/jsonPatch.md)]
 
@@ -116,3 +116,5 @@ if (RedirectHttpResult.IsLocalUrl(url))
 Thank you [@martincostello](https://github.com/martincostello) for this contribution!
 
 ## Related content
+
+<xref:fundamentals/servers/httpsys>
