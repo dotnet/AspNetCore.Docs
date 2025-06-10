@@ -16,7 +16,7 @@ The `Microsoft.AspNetCore.Components` metrics report information on Razor compon
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.navigation`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsnavigation)--> | Histogram | `s` | Tracks the total number of route changes in the app.
+`aspnetcore.components.navigation`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsnavigation)--> | Counter | `{route}` | Tracks the total number of route changes in the app.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
@@ -79,7 +79,7 @@ The `Microsoft.AspNetCore.Components.Server.Circuits` metrics report information
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.circuit.active`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitactive)--> | Histogram | `s` | Shows the number of active circuits currently in memory.
+`aspnetcore.components.circuit.active`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitactive)--> | UpDownCounter | `{circuit}` | Shows the number of active circuits currently in memory.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
@@ -91,7 +91,7 @@ xxx | xxx | xxx | xxx | xxx
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.circuit.connected`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitconnected)--> | Histogram | `s` | Tracks the number of circuits connected to clients.
+`aspnetcore.components.circuit.connected`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitconnected)--> | UpDownCounter | `{circuit}` | Tracks the number of circuits connected to clients.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
