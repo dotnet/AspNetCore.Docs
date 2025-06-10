@@ -1,6 +1,6 @@
 ### New and updated Blazor Web App security samples
 
-We've added and updated Blazor Web App security samples cross-linked in the following articles:
+We've added and updated the Blazor Web App security samples linked in the following articles:
 
 * <xref:blazor/security/blazor-web-app-oidc>
 * <xref:blazor/security/blazor-web-app-entra>
