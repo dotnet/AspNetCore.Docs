@@ -730,14 +730,12 @@ When a component is rendered statically (static SSR) and `NavigationManager.NotF
 }
 ```
 
-Two approaches for providing Not Found content for global interactive rendering:
+To provide Not Found content for global interactive rendering, use a Not Found page (Razor component).
 
-* Use a Not Found page (Razor component).
-* Specify Not Found content in the [`Router` component's](xref:blazor/fundamentals/routing#route-templates) <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A> property (`<NotFound>...</NotFound>` markup or by setting the `NotFound` parameter to a render fragment in C# code).
+> [!NOTE]
+> The Blazor project template includes a `NotFound.razor` page by default. This page automatically renders whenever `NavigationManager.NotFound` is called, making it easier to handle missing routes with a consistent user experience.
 
-The following example uses a Not Found page (`NotFoundPage` component) to render Not Found content.
-
-`NotFoundPage.razor`:
+`NotFound.razor`:
 
 ```razor
 <h1>Not Found</h1>
@@ -745,20 +743,20 @@ The following example uses a Not Found page (`NotFoundPage` component) to render
 <p>Sorry! Nothing to show.</p>
 ```
 
-Specify the `NotFoundPage` component to the `Router` component in `Routes.razor`. You might need to specify the component's namespace with an [`@using`](xref:mvc/views/razor#using) directive either at the top of the `Routes.razor` file or in an [`_Imports.razor` file](xref:blazor/components/index#component-name-class-name-and-namespace).
+Assign the `NotFound` component to the router's `NotFoundPage` parameter. `NotFoundPage` supports routing that can be used across re-execution middleware, including non-Blazor middleware. If the `NotFound` render fragment is defined together with `NotFoundPage`, the page has higher priority.
+
+In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the `NotFoundPage` parameter:
 
 ```razor
-<Router ...>
-    <Found ...>
-        ...
+<Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
-    <NotFound>
-        <NotFoundPage />
-    </NotFound>
 </Router>
 ```
 
-When a component is rendered with a global interactive render mode, calling `NotFound` signals the Blazor router to render Not Found content, which is the `NotFoundPage` component:
+When a component is rendered with a global interactive render mode, calling `NotFound` signals the Blazor router to render the `NotFound` component:
 
 ```razor
 @page "/render-not-found-interactive"
