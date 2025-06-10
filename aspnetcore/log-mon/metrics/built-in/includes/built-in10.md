@@ -20,9 +20,8 @@ Name | Instrument Type | Unit (UCUM) | Description
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
-xxx | xxx | xxx | xxx | xxx
-
-.
+`aspnetcore.components.type` | string | Component navigated to. | `TestComponent` | Always
+`aspnetcore.components.route` | string | The component's route | `/test-route` | Always
 
 #### Metric: `aspnetcore.components.event_handler`
 
@@ -32,9 +31,10 @@ Name | Instrument Type | Unit (UCUM) | Description
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
-xxx | xxx | xxx | xxx | xxx
-
-.
+`aspnetcore.components.type` | string | Component type handling the event. | `TestComponent` | Always
+`aspnetcore.components.method` | string | C# method handling the event. | `OnClick` | Always
+`aspnetcore.components.attribute.name` | string | Component attribute name. | `onclick` | Always
+`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception was thrown.
 
 ## `Microsoft.AspNetCore.Components.Lifecycle`
 
@@ -51,21 +51,20 @@ Name | Instrument Type | Unit (UCUM) | Description
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
-xxx | xxx | xxx | xxx | xxx
-
-.
+`aspnetcore.components.type` | string | Component type handling the event. | `TestComponent` | Always
+`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception was thrown.
 
 #### Metric: `aspnetcore.components.render_diff`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.render_diff`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsrender_diff) | Histogram | `s` | Tracks the duration of rendering batches.
+`aspnetcore.components.render_diff`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsrender_diff)--> | Histogram | `s` | Tracks the duration of rendering batches.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
-xxx | xxx | xxx | xxx | xxx
+`aspnetcore.components.diff.length` | int | The length of the render diff. | 50 | Always
+`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception was thrown.
 
-.
 
 ## `Microsoft.AspNetCore.Components.Server.Circuits`
 
@@ -85,8 +84,6 @@ Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 xxx | xxx | xxx | xxx | xxx
 
-.
-
 #### Metric: `aspnetcore.components.circuit.connected`
 
 Name | Instrument Type | Unit (UCUM) | Description
@@ -97,8 +94,6 @@ Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 xxx | xxx | xxx | xxx | xxx
 
-.
-
 #### Metric: `aspnetcore.components.circuit.duration`
 
 Name | Instrument Type | Unit (UCUM) | Description
@@ -108,8 +103,6 @@ Name | Instrument Type | Unit (UCUM) | Description
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 xxx | xxx | xxx | xxx | xxx
-
-.
 
 ## `Microsoft.AspNetCore.Hosting`
 
