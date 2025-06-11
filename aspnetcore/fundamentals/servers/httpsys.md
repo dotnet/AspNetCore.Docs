@@ -31,7 +31,7 @@ HTTP.sys supports the following features:
 * Direct file transmission
 * Response caching
 * WebSockets (Windows 8 or later)
-* Request queue security management
+* Customizable security descriptors
 
 Supported Windows versions:
 
