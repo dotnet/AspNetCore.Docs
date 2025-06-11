@@ -547,7 +547,7 @@ The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnet
   > `WithOrigins("https://localhost:<port>");` should only be used for testing a sample app similar to the [download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/8.0sample/Cors).
 
 > [!NOTE]
-> If you're using launchSettings.json in Visual Studio or [configuring C# debug settings in VS Code](https://code.visualstudio.com/docs/csharp/debugger-settings), and using IIS Express to debug locally, ensure that you've configured the IISExpress for `"anonymousAuthentication": true`. When `"anonymousAuthentication"` is `false`, the ASP.NET Core web environment host will not see any preflight requests. In particular, if you're using NTLM authentication (`"windowsAuthentication": true`), the first step of the NTLM challenge-response is to send the web browser a 401 challenge, which can make it challenging to verify your preflight route is configured correctly.
+> If you're using `launchSettings.json` in Visual Studio or [configuring C# debug settings in VS Code](https://code.visualstudio.com/docs/csharp/debugger-settings), and using IIS Express to debug locally, ensure that you've configured IIS Express for `"anonymousAuthentication": true`. When `"anonymousAuthentication"` is `false`, the ASP.NET Core web environment host will not see any preflight requests. In particular, if you're using NTLM authentication (`"windowsAuthentication": true`), the first step of the NTLM challenge-response is to send the web browser a 401 challenge, which can make it challenging to verify your preflight route is configured correctly.
 
 The following `ValuesController` provides the endpoints for testing:
 
