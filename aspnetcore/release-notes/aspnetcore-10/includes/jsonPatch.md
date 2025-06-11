@@ -1,87 +1,89 @@
-### New JsonPatch Implementation with System.Text.Json
+### New JSON Patch implementation with `System.Text.Json`
 
 **[JSON Patch](https://jsonpatch.com/)**:
 
 * Is a standard format for describing changes to apply to a JSON document.
-* Is defined in [RFC 6902] and is widely used in RESTful APIs to perform partial updates to JSON resources.
+* Is defined in RFC 6902 and is widely used in RESTful APIs to perform partial updates to JSON resources.
 * Represents a sequence of operations (for example, Add, Remove, Replace, Move, Copy, Test) that can be applied to modify a JSON document.
 
 In web apps, JSON Patch is commonly used in a PATCH operation to perform partial updates of a resource. Rather than sending the entire resource for an update, clients can send a JSON Patch document containing only the changes. Patching reduces payload size and improves efficiency.
 
 [RFC 6902]: https://tools.ietf.org/html/rfc6902
 
-This release introduces a new implementation of `JsonPatch` based on `System.Text.Json` serialization. This feature:
+This release introduces a new implementation of <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json?displayProperty=fullName> serialization. This feature:
 
 * Aligns with modern .NET practices by leveraging the `System.Text.Json` library, which is optimized for .NET.
 * Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation.
 
-The following benchmarks compare the performance of the new `System.Text.Json` implementation with the legacy `Newtonsoft.Json` implementation:
+The following benchmarks compare the performance of the new `System.Text.Json` implementation with the legacy `Newtonsoft.Json` implementation.
 
-| Scenario                   | Implementation         | Mean       | Allocated Memory |
-|----------------------------|------------------------|------------|------------------|
-| **Application Benchmarks** | Newtonsoft.JsonPatch   | 271.924 µs | 25 KB            |
-|                            | System.Text.JsonPatch  | 1.584 µs   | 3 KB             |
-| **Deserialization Benchmarks** | Newtonsoft.JsonPatch | 19.261 µs  | 43 KB            |
-|                            | System.Text.JsonPatch  | 7.917 µs   | 7 KB             |
+| Scenario                       | Implementation        | Mean       | Allocated Memory |
+| ------------------------------ | --------------------- | :--------: | :--------------: |
+| **Application Benchmarks**     | Newtonsoft.JsonPatch  | 271.924 µs | 25 KB            |
+|                                | System.Text.JsonPatch | 1.584 µs   | 3 KB             |
+| **Deserialization Benchmarks** | Newtonsoft.JsonPatch  | 19.261 µs  | 43 KB            |
+|                                | System.Text.JsonPatch | 7.917 µs   | 7 KB             |
 
 These benchmarks highlight significant performance gains and reduced memory usage with the new implementation.
 
 Notes:
- * The new implementation isn't a drop-in replacement for the legacy implementation. In particular:
-   * The new implementation doesn't support dynamic types, for example, [`ExpandoObject`](/dotnet/api/system.dynamic.expandoobject).
+ * The new implementation isn't a drop-in replacement for the legacy implementation. In particular, the new implementation doesn't support dynamic types, for example, <xref:System.Dynamic.ExpandoObject>.
  * The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the new implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
 
 #### Usage
 
-To enable JSON Patch support with `System.Text.Json`, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/) NuGet package.
+To enable JSON Patch support with `System.Text.Json`, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package.
 
-```sh
+```dotnetcli
 dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson --prerelease
 ```
 
-This package provides a `JsonPatchDocument#### T>` class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using `System.Text.Json`. The key method of the `JsonPatchDocument<T>` class is `ApplyTo`, which applies the patch operations to a target object of type `T`.
+This package provides a `JsonPatchDocument<T>` class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using `System.Text.Json`. The key method of the `JsonPatchDocument<T>` class is `ApplyTo`, which applies the patch operations to a target object of type `T`.
 
 The following examples demonstrate how to use the `ApplyTo` method to apply a JSON Patch document to an object.
 
-#### Example: Applying a JsonPatchDocument
+#### Example: Applying a `JsonPatchDocument`
 
 The following example demonstrates:
 
 1. The `add`, `replace`, and `remove` operations.
 2. Operations on nested properties.
 3. Adding a new item to an array.
-4. Using a JSON String Enum Converter in a JSON patch document.
+4. Using a JSON String Enum Converter in a JSON Patch document.
 
 ```csharp
 // Original object
 var person = new Person {
-    FirstName = "John",
-    LastName = "Doe",
-    Email = "johndoe@gmail.com",
-    PhoneNumbers = [new() {Number = "123-456-7890", Type = PhoneNumberType.Mobile}],
-    Address = new Address
-    {
-        Street = "123 Main St",
-        City = "Anytown",
-        State = "TX"
-    }
+  FirstName = "John",
+  LastName = "Doe",
+  Email = "johndoe@gmail.com",
+  PhoneNumbers = [new() {Number = "123-456-7890", Type = PhoneNumberType.Mobile}],
+  Address = new Address
+  {
+    Street = "123 Main St",
+    City = "Anytown",
+    State = "TX"
+  }
 };
 
-// Raw JSON patch document
-string jsonPatch = """
+// Raw JSON Patch document
+var jsonPatch = """
 [
-    { "op": "replace", "path": "/FirstName", "value": "Jane" },
-    { "op": "remove", "path": "/Email"},
-    { "op": "add", "path": "/Address/ZipCode", "value": "90210" },
-    { "op": "add", "path": "/PhoneNumbers/-", "value": { "Number": "987-654-3210",
-                                                                "Type": "Work" } }
+  { "op": "replace", "path": "/FirstName", "value": "Jane" },
+  { "op": "remove", "path": "/Email"},
+  { "op": "add", "path": "/Address/ZipCode", "value": "90210" },
+  {
+    "op": "add",
+    "path": "/PhoneNumbers/-",
+    "value": { "Number": "987-654-3210", "Type": "Work" }
+  }
 ]
 """;
 
-// Deserialize the JSON patch document
+// Deserialize the JSON Patch document
 var patchDoc = JsonSerializer.Deserialize<JsonPatchDocument<Person>>(jsonPatch);
 
-// Apply the JSON patch document
+// Apply the JSON Patch document
 patchDoc!.ApplyTo(person);
 
 // Output updated object
@@ -112,46 +114,46 @@ Console.WriteLine(JsonSerializer.Serialize(person, serializerOptions));
 
 The `ApplyTo` method generally follows the conventions and options of `System.Text.Json` for processing the `JsonPatchDocument`, including the behavior controlled by the following options:
 
-* `NumberHandling`: Whether numeric properties can be read from strings.
+* `NumberHandling`: Whether numeric properties are read from strings.
 * `PropertyNameCaseInsensitive`: Whether property names are case-sensitive.
 
 Key differences between `System.Text.Json` and the new `JsonPatchDocument<T>` implementation:
 
-* The runtime type of the target object, not the declared type, determines which   properties `ApplyTo` patches.
+* The runtime type of the target object, not the declared type, determines which properties `ApplyTo` patches.
 * `System.Text.Json` deserialization relies on the declared type to identify eligible properties.
 
-#### Example: Applying a JsonPatchDocument with error handling
+#### Example: Applying a `JsonPatchDocument` with error handling
 
 There are various errors that can occur when applying a JSON Patch document. For example, the target object may not have the specified property, or the value specified might be incompatible with the property type.
 
-JSON `Patch` also supports the `test` operation. The `test` operation checks if a specified value is equal to the target property, and if not, returns an error.
+JSON Patch also supports the `test` operation. The `test` operation checks if a specified value is equal to the target property, and if not, returns an error.
 
 The following example demonstrates how to handle these errors gracefully.
 
-> [!Important]
+> [!IMPORTANT]
 > The object passed to the `ApplyTo` method is modified in place. It is the caller's responsiblity to discard these changes if any operation fails.
 
 ```csharp
 // Original object
 var person = new Person {
-    FirstName = "John",
-    LastName = "Doe",
-    Email = "johndoe@gmail.com"
+  FirstName = "John",
+  LastName = "Doe",
+  Email = "johndoe@gmail.com"
 };
 
-// Raw JSON patch document
-string jsonPatch = """
+// Raw JSON Patch document
+var jsonPatch = """
 [
-    { "op": "replace", "path": "/Email", "value": "janedoe@gmail.com"},
-    { "op": "test", "path": "/FirstName", "value": "Jane" },
-    { "op": "replace", "path": "/LastName", "value": "Smith" }
+  { "op": "replace", "path": "/Email", "value": "janedoe@gmail.com"},
+  { "op": "test", "path": "/FirstName", "value": "Jane" },
+  { "op": "replace", "path": "/LastName", "value": "Smith" }
 ]
 """;
 
-// Deserialize the JSON patch document
+// Deserialize the JSON Patch document
 var patchDoc = JsonSerializer.Deserialize<JsonPatchDocument<Person>>(jsonPatch);
 
-// Apply the JSON patch document, catching any errors
+// Apply the JSON Patch document, catching any errors
 Dictionary<string, string[]>? errors = null;
 patchDoc!.ApplyTo(person, jsonPatchError =>
     {
@@ -191,7 +193,7 @@ Console.WriteLine(JsonSerializer.Serialize(person, serializerOptions));
 When using the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` package, it's critical to understand and mitigate potential security risks. The following sections outline the identified security risks associated with JSON Patch and provide recommended mitigations to ensure secure usage of the package.
 
 > [!IMPORTANT]
-> ***This is not an exhaustive list of threats.*** app developers must conduct their own threat model reviews to determine an app-specific comprehensive list and come up with appropriate mitigations as needed. For example, apps which expose collections to patch operations should consider the potential for algorithmic complexity attacks if those operations insert or remove elements at the beginning of the collection.
+> ***This is not an exhaustive list of threats.*** App developers must conduct their own threat model reviews to determine an app-specific comprehensive list and come up with appropriate mitigations as needed. For example, apps which expose collections to patch operations should consider the potential for algorithmic complexity attacks if those operations insert or remove elements at the beginning of the collection.
 
 By running comprehensive threat models for their own apps and addressing identified threats while following the recommended mitigations below, consumers of these packages can integrate JSON Patch functionality into their apps while minimizing security risks.
 
@@ -207,15 +209,15 @@ Consumers of these packages can integrate JSON Patch functionality into their ap
 * **Impact**: Potential Out-Of-Memory (OOM) conditions, causing service disruptions.
 * **Mitigation**:
   * Validate incoming JSON Patch documents for size and structure before calling `ApplyTo`.
-  * The validation needs to be app specific, but an example validation can look similar to the following:
+  * The validation must be app specific, but an example validation can look similar to the following:
 
 ```csharp
 public void Validate(JsonPatchDocument<T> patch)
 {
     // This is just an example. It's up to the developer to make sure that
-    // this case is handled properly, based on the app needs.
+    // this case is handled properly, based on the app's requirements.
     if (patch.Operations.Where(op=>op.OperationType == OperationType.Copy).Count()
-                              > MaxCopyOperationsCount)
+        > MaxCopyOperationsCount)
     {
         throw new InvalidOperationException();
     }
@@ -224,7 +226,7 @@ public void Validate(JsonPatchDocument<T> patch)
 
 ##### Business Logic Subversion
 
-* **Scenario**: Patch operations can manipulate fields with implicit invariants, (e.g., internal flags, IDs, or computed fields), violating business constraints.
+* **Scenario**: Patch operations can manipulate fields with implicit invariants, (for example, internal flags, IDs, or computed fields), violating business constraints.
 * **Impact**: Data integrity issues and unintended app behavior.
 * **Mitigation**:
   * Use POCO objects with explicitly defined properties that are safe to modify.
