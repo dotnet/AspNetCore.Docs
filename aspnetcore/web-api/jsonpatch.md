@@ -14,6 +14,8 @@ uid: web-api/jsonpatch
 
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
+JSON Patch support in ASP.NET Core web API is based on `System.Text.Json` serialization, and requires the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package.
+
 **[JSON Patch](https://jsonpatch.com/)**:
 
 * Is a standard format for describing changes to apply to a JSON document.
@@ -46,7 +48,7 @@ These benchmarks highlight significant performance gains and reduced memory usag
 
 ## Enable JSON Patch support with `System.Text.Json`
 
-To enable JSON Patch support with `System.Text.Json`, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/) NuGet package.
+To enable JSON Patch support with `System.Text.Json`, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package.
 
 ```dotnetcli
 dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson --prerelease
