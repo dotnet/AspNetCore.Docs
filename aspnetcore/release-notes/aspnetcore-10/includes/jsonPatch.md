@@ -33,7 +33,7 @@ Notes:
 
 #### Usage
 
-To enable JSON Patch support with `System.Text.Json`, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/) NuGet package.
+To enable JSON Patch support with `System.Text.Json`, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson/) NuGet package.
 
 ```sh
 dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson --prerelease
