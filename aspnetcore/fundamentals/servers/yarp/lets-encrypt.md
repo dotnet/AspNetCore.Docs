@@ -3,6 +3,7 @@ uid: fundamentals/servers/yarp/lets-encrypt
 title: YARP Lets Encrypt
 description: YARP Lets Encrypt
 author: samsp-msft
+monikerRange: '<= aspnetcore-8.0'
 ms.author: samsp
 ms.date: 2/6/2025
 ms.topic: article
