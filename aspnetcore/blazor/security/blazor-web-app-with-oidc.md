@@ -193,9 +193,13 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        var accessToken = httpContextAccessor.HttpContext?
-            .GetTokenAsync("access_token").Result ?? 
-            throw new Exception("No access token");
+        if (httpContextAccessor.HttpContext is null)
+        {
+            throw new Exception("HttpContext not available");
+        }
+
+        var accessToken = await httpContextAccessor.HttpContext
+            .GetTokenAsync("access_token");
 
         request.Headers.Authorization =
             new AuthenticationHeaderValue("Bearer", accessToken);
@@ -526,9 +530,13 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        var accessToken = httpContextAccessor.HttpContext?
-            .GetTokenAsync("access_token").Result ?? 
-            throw new Exception("No access token");
+        if (httpContextAccessor.HttpContext is null)
+        {
+            throw new Exception("HttpContext not available");
+        }
+
+        var accessToken = await httpContextAccessor.HttpContext
+            .GetTokenAsync("access_token");
 
         request.Headers.Authorization =
             new AuthenticationHeaderValue("Bearer", accessToken);
