@@ -2,8 +2,9 @@
 title: Key storage providers in ASP.NET Core
 author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 06/09/2025
+ms.date: 06/11/2025
 uid: security/data-protection/implementation/key-storage-providers
 ---
 <!-- ms.sfi.ropc: t -->
@@ -48,17 +49,20 @@ Configure Azure Blob Storage to maintain data protection keys:
 
 * Create a container to hold the data protection key file.
 
-* Use a text editor to create an XML key file on your local machine:
+* We recommend using Azure Managed Identity and role-based access control (RBAC) to access the key storage blob. ***You don't need to create a key file and upload it to the container of the storage account.*** The framework creates the file for you. To inspect the contents of a key file, use the context menu's **View/edit** command at the end of a key row in the portal.
+  
+> ![NOTE]
+> If you plan to use a blob URI with a shared access signature (SAS) instead of a Managed Identity, use a text editor to create an XML key file on your local machine:
+>
+>  ```xml
+>  <?xml version="1.0" encoding="utf-8"?>
+>  <repository>
+>  </repository>
+>  ```
+>
+>  Upload the key file to the container of the storage account. Use the context menu's **View/edit** command at the end of the key row in the portal to confirm that the blob contains the preceding content. By creating the file manually, you're able to obtain the blob URI with SAS from the portal for configuring the app in a later step.
 
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <repository>
-  </repository>
-  ```
-
-* Upload the key file to the container of the storage account. Use the context menu's **View/edit** command at the end of the key row in the portal to confirm that the blob contains the preceding content.
-
-* Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Storage Blob Data Contributor** role. Assign the Managed Identity to the App Service that's hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
+* Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Storage Blob Data Contributor** role. Assign the Managed Identity to the Azure App Service that's hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
 
   > [!NOTE]
   > If you also plan to run an app locally with an authorized user for blob access using the [Azure CLI](/cli/azure/) or Visual Studio's Azure Service Authentication, add your developer Azure user account in **Access Control (IAM)** with the **Storage Blob Data Contributor** role. If you want to use the Azure CLI through Visual Studio, execute the `az login` command from the Developer PowerShell panel and follow the prompts to authenticate with the tenant.
@@ -79,7 +83,6 @@ For more information on the Azure SDK's API and authentication, see [Authenticat
 In the `Program` file where services are registered:
 
 ```csharp
-// Recommended: Azure Managed Identity approach
 TokenCredential? credential;
 
 if (builder.Environment.IsProduction())
@@ -118,7 +121,6 @@ builder.Services.AddDataProtection()
 In `Startup.ConfigureServices`:
 
 ```csharp
-// Recommended: Azure Managed Identity approach
 TokenCredential? credential;
 
 if (_env.IsProduction())

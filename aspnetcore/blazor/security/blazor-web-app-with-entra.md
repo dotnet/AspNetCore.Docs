@@ -5,7 +5,7 @@ description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/09/2025
+ms.date: 06/11/2025
 uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
@@ -784,7 +784,6 @@ Configure Azure Key Vault to encrypt the data protection keys at rest. Follow th
 Use the following code in the `Program` file where services are registered:
 
 ```csharp
-// Recommended: Azure Managed Identity approach
 TokenCredential? credential;
 
 if (builder.Environment.IsProduction())
@@ -812,7 +811,7 @@ You can pass any app name to <xref:Microsoft.AspNetCore.DataProtection.DataProte
 `{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The version of the key is obtained from the key in the Entra or Azure portal after it's created. If you enable autorotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
 
 > [!NOTE]
-> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> locally (non-Production environment) to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+> In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 Alternatively, you can configure the app to supply the values from app settings files using the JSON Configuration Provider. Add the following to the app settings file:
 
@@ -875,7 +874,7 @@ Add the following code where services are configured in the `Program` file:
 var config = builder.Configuration.GetSection("DataProtection");
 
 builder.Services.AddDataProtection()
-    .SetApplicationName("BlazorSample")
+    .SetApplicationName("BlazorWebAppEntra")
     .PersistKeysToAzureBlobStorage(
         new Uri(config.GetValue<string>("BlobUri") ??
         throw new Exception("Missing Blob URI")),
