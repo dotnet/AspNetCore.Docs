@@ -41,7 +41,7 @@ The following benchmarks compare the performance of the new `System.Text.Json` i
 These benchmarks highlight significant performance gains and reduced memory usage with the new implementation.
 
 > [!NOTE]
-> The new implementation of `JsonPatch` based on `System.Text.Json` serialization isn't a drop-in replacement for the legacy `Newtonsoft.Json`-based implementation. It doesn't support dynamic types, for example [`ExpandoObject`](/dotnet/api/system.dynamic.expandoobject).
+> The new implementation of <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json?displayProperty=fullName> serialization isn't a drop-in replacement for the legacy `Newtonsoft.Json`-based implementation. It doesn't support dynamic types, for example <xref:System.Dynamic.ExpandoObject>.
 
 > [!IMPORTANT]
 > The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the new implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
@@ -315,7 +315,7 @@ The previous example results in the following output of the updated object:
 
 The `ApplyTo` method generally follows the conventions and options of `System.Text.Json` for processing the `JsonPatchDocument`, including the behavior controlled by the following options:
 
-* `NumberHandling`: Whether numeric properties can be read from strings.
+* `NumberHandling`: Whether numeric properties are read from strings.
 * `PropertyNameCaseInsensitive`: Whether property names are case-sensitive.
 
 Key differences between `System.Text.Json` and the new `JsonPatchDocument<T>` implementation:
@@ -397,7 +397,7 @@ to the test value 'Jane'.
 When using the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` package, it's critical to understand and mitigate potential security risks. The following sections outline the identified security risks associated with JSON Patch and provide recommended mitigations to ensure secure usage of the package.
 
 > [!IMPORTANT]
-> ***This is not an exhaustive list of threats.*** app developers must conduct their own threat model reviews to determine an app-specific comprehensive list and come up with appropriate mitigations as needed. For example, apps which expose collections to patch operations should consider the potential for algorithmic complexity attacks if those operations insert or remove elements at the beginning of the collection.
+> ***This is not an exhaustive list of threats.*** App developers must conduct their own threat model reviews to determine an app-specific comprehensive list and come up with appropriate mitigations as needed. For example, apps which expose collections to patch operations should consider the potential for algorithmic complexity attacks if those operations insert or remove elements at the beginning of the collection.
 
 By running comprehensive threat models for their own apps and addressing identified threats while following the recommended mitigations below, consumers of these packages can integrate JSON Patch functionality into their apps while minimizing security risks.
 
@@ -413,7 +413,7 @@ Consumers of these packages can integrate JSON Patch functionality into their ap
 * **Impact**: Potential Out-Of-Memory (OOM) conditions, causing service disruptions.
 * **Mitigation**:
   * Validate incoming JSON Patch documents for size and structure before calling `ApplyTo`.
-  * The validation needs to be app specific, but an example validation can look similar to the following:
+  * The validation must be app specific, but an example validation can look similar to the following:
 
 ```csharp
 public void Validate(JsonPatchDocument<T> patch)
