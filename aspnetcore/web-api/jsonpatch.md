@@ -14,7 +14,7 @@ uid: web-api/jsonpatch
 
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
-JSON Patch support in ASP.NET Core web API is based on `System.Text.Json` serialization, and requires the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package.
+JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> serialization, and requires the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package.
 
 **[JSON Patch](https://jsonpatch.com/)**:
 
@@ -24,12 +24,12 @@ JSON Patch support in ASP.NET Core web API is based on `System.Text.Json` serial
 
 In web apps, JSON Patch is commonly used in a PATCH operation to perform partial updates of a resource. Rather than sending the entire resource for an update, clients can send a JSON Patch document containing only the changes. Patching reduces payload size and improves efficiency.
 
-JSON Patch support in ASP.NET Core web API is based on `System.Text.Json` serialization, starting with .NET 10. This release introduces a new implementation of `JsonPatch` based on `System.Text.Json` serialization. This feature:
+JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> serialization, starting with .NET 10. This release introduces a new implementation of <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json> serialization. This feature:
 
-* Aligns with modern .NET practices by leveraging the `System.Text.Json` library, which is optimized for .NET.
+* Aligns with modern .NET practices by leveraging the <xref:System.Text.Json> library, which is optimized for .NET.
 * Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation. For more information on the legacy `Newtonsoft.Json`-based implementation, see the [.NET 9 version of this article](xref:web-api/jsonpatch?view=aspnetcore-9.0&preserve-view=true).
 
-The following benchmarks compare the performance of the new `System.Text.Json` implementation with the legacy `Newtonsoft.Json` implementation:
+The following benchmarks compare the performance of the new <xref:System.Text.Json> implementation with the legacy `Newtonsoft.Json` implementation:
 
 | Scenario                   | Implementation         | Mean       | Allocated Memory |
 |----------------------------|------------------------|------------|------------------|
@@ -46,22 +46,22 @@ These benchmarks highlight significant performance gains and reduced memory usag
 > [!IMPORTANT]
 > The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the new implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
 
-## Enable JSON Patch support with `System.Text.Json`
+## Enable JSON Patch support with <xref:System.Text.Json>
 
-To enable JSON Patch support with `System.Text.Json`, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package.
+To enable JSON Patch support with <xref:System.Text.Json>, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package.
 
 ```dotnetcli
 dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson --prerelease
 ```
 
-This package provides a `JsonPatchDocument<T>` class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using `System.Text.Json`. The key method of the `JsonPatchDocument<T>` class is `ApplyTo`, which applies the patch operations to a target object of type `T`.
+This package provides a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using <xref:System.Text.Json>. The key method of the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> class is <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)>, which applies the patch operations to a target object of type `T`.
 
 ## Action method code
 
 In an API controller, an action method for JSON Patch:
 
-* Is annotated with the `HttpPatch` attribute.
-* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601>, typically with [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
+* Is annotated with the <xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute> attribute.
+* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601>, typically with [<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute>](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
 * Calls <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
 
 Here's an example:
@@ -85,7 +85,7 @@ The sample action method:
 
 ### Model state
 
-The preceding action method example calls an overload of `ApplyTo` that takes model state as one of its parameters. With this option, you can get error messages in responses. The following example shows the body of a 400 Bad Request response for a `test` operation:
+The preceding action method example calls an overload of <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> that takes model state as one of its parameters. With this option, you can get error messages in responses. The following example shows the body of a 400 Bad Request response for a `test` operation:
 
 ```json
 {
@@ -241,9 +241,9 @@ Example:
 
 ## Apply a JSON Patch document to an object
 
-The following examples demonstrate how to use the `ApplyTo` method to apply a JSON Patch document to an object.
+The following examples demonstrate how to use the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> method to apply a JSON Patch document to an object.
 
-### Example: Apply a `JsonPatchDocument` to an object
+### Example: Apply a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> to an object
 
 The following example demonstrates:
 
@@ -313,15 +313,15 @@ The previous example results in the following output of the updated object:
 }
 ```
 
-The `ApplyTo` method generally follows the conventions and options of `System.Text.Json` for processing the `JsonPatchDocument`, including the behavior controlled by the following options:
+The <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> method generally follows the conventions and options of <xref:System.Text.Json> for processing the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601>, including the behavior controlled by the following options:
 
-* `NumberHandling`: Whether numeric properties are read from strings.
-* `PropertyNameCaseInsensitive`: Whether property names are case-sensitive.
+* <xref:System.Text.Json.Serialization.JsonNumberHandling>: Whether numeric properties are read from strings.
+* <xref:System.Text.Json.JsonSerializerOptions.PropertyNameCaseInsensitive>: Whether property names are case-sensitive.
 
-Key differences between `System.Text.Json` and the new `JsonPatchDocument<T>` implementation:
+Key differences between <xref:System.Text.Json> and the new <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> implementation:
 
-* The runtime type of the target object, not the declared type, determines which properties `ApplyTo` patches.
-* `System.Text.Json` deserialization relies on the declared type to identify eligible properties.
+* The runtime type of the target object, not the declared type, determines which properties <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> patches.
+* <xref:System.Text.Json> deserialization relies on the declared type to identify eligible properties.
 
 ### Example: Apply a JsonPatchDocument with error handling
 
@@ -332,7 +332,7 @@ JSON `Patch` supports the `test` operation, which checks if a specified value eq
 The following example demonstrates how to handle these errors gracefully.
 
 > [!Important]
-> The object passed to the `ApplyTo` method is modified in place. The caller is responsible for discarding changes if any operation fails.
+> The object passed to the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> method is modified in place. The caller is responsible for discarding changes if any operation fails.
 
 ```csharp
 // Original object
@@ -412,7 +412,7 @@ Consumers of these packages can integrate JSON Patch functionality into their ap
 * **Scenario**: A malicious client submits a `copy` operation that duplicates large object graphs multiple times, leading to excessive memory consumption.
 * **Impact**: Potential Out-Of-Memory (OOM) conditions, causing service disruptions.
 * **Mitigation**:
-  * Validate incoming JSON Patch documents for size and structure before calling `ApplyTo`.
+  * Validate incoming JSON Patch documents for size and structure before calling <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)>.
   * The validation must be app specific, but an example validation can look similar to the following:
 
 ```csharp
@@ -433,9 +433,9 @@ public void Validate(JsonPatchDocument<T> patch)
 * **Scenario**: Patch operations can manipulate fields with implicit invariants, (for example, internal flags, IDs, or computed fields), violating business constraints.
 * **Impact**: Data integrity issues and unintended app behavior.
 * **Mitigation**:
-  * Use POCO objects with explicitly defined properties that are safe to modify.
-  * Avoid exposing sensitive or security-critical properties in the target object.
-  * If no POCO object is used, validate the patched object after applying operations to ensure business rules and invariants aren't violated.
+  * Use POCOs (Plain Old CLR Objects) with explicitly defined properties that are safe to modify.
+    * Avoid exposing sensitive or security-critical properties in the target object.
+    * If a POCO object isn't used, validate the patched object after applying operations to ensure business rules and invariants aren't violated.
 
 ### Authentication and authorization
 
