@@ -45,10 +45,12 @@ Create an ASP.NET Core Blazor Web App project with Individual Accounts.
 
 > [!NOTE]
 > For a Razor Pages experience, see the [Create a Razor Pages app with authentication](#create-a-razor-pages-app-with-authentication) section.
+>
+> For an MVC experience, see the [Create an MVC app with authentication](#create-an-mvc-app-with-authentication) section.
 
 # [Visual Studio](#tab/visual-studio)
 
-* Select the **Blazor Web App** template and select **Next**. Name the project **BlazorApp1**. Select **Next**.
+* Select the **Blazor Web App** template and select **Next**. Select **Next**.
 * Make the following selections:
   * **Authentication type**: **Individual Accounts**
   * **Interactive render mode**: **Server**
@@ -61,7 +63,9 @@ Create an ASP.NET Core Blazor Web App project with Individual Accounts.
 dotnet new blazor -au Individual -o BlazorApp1
 ```
 
-The preceding command creates a Blazor Web App using SQLite. To create the web app with LocalDB, run the following command:
+The `-o|--output` option creates a folder for the app with a folder name matching the default app name/namespace.
+
+The preceding command creates a Blazor Web App using SQLite. To create the app with LocalDB, run the following command:
 
 ```dotnetcli
 dotnet new blazor -au Individual -uld -o BlazorApp1
@@ -73,9 +77,9 @@ The generated project includes Identity Razor components. The components are fou
 
 * `/Components/Account/Pages/Register`
 * `/Components/Account/Pages/Login`
-* `/Components/Account/Pages/ChangePassword`
+* `/Components/Account/Pages/Manage/ChangePassword`
 
-Blazor Identity components can be viewed in the [Blazor project template in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account).
+Identity Razor components are described individually in the documentation for specific use cases and are subject to change each release. To view all of the components in the framework, see the [Blazor project template in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -83,32 +87,69 @@ For more information, see <xref:blazor/security/index> and the articles that fol
 
 ## Create a Razor Pages app with authentication
 
-Create an ASP.NET Core Web Application project with Individual Accounts.
+Create an ASP.NET Core Web Application (Razor Pages) project with Individual Accounts.
 
 # [Visual Studio](#tab/visual-studio)
 
-* Select the **ASP.NET Core Web App** template. Name the project **WebApp1**. Click **OK**.
-* In the **Authentication type** input, select **Individual Accounts**.
+* Select the **ASP.NET Core Web App (Razor Pages)** template. Select **Next**.
+* For the **Authentication type** input, select **Individual Accounts**.
+* Select **Create**.
 
 # [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
-dotnet new webapp --auth Individual -o WebApp1
+dotnet new webapp -au Individual -o WebApp1
 ```
 
-The preceding command creates a Razor web app using SQLite. To create the web app with LocalDB, run the following command:
+The `-o|--output` option creates a folder for the app with a folder name matching the default app name/namespace.
+
+The preceding command creates a Razor Pages app using SQLite. To create the app with LocalDB, run the following command:
 
 ```dotnetcli
-dotnet new webapp --auth Individual -uld -o WebApp1
+dotnet new webapp -au Individual -uld -o WebApp1
 ```
 
 ---
 
 The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library](xref:razor-pages/ui-class). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
 
-* `/Identity/Account/Login`
-* `/Identity/Account/Logout`
-* `/Identity/Account/Manage`
+* `Areas/Identity/Pages/Account/Register`
+* `Areas/Identity/Pages/Account/Logoin`
+* `Areas/Identity/Pages/Account/Manage/ChangePassword`
+
+Pages are described individually in the documentation for specific use cases and are subject to change each release. To view all of the pages in the framework, see the [ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository, `Identity/UI/src/Areas/Identity/Pages` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/Identity/UI/src/Areas/Identity/Pages).
+
+## Create an MVC app with authentication
+
+Create an ASP.NET Core MVC project with Individual Accounts.
+
+# [Visual Studio](#tab/visual-studio)
+
+* Select the **ASP.NET Core Web App (Model-View-Controller)** template. Select **Next**.
+* For the **Authentication type** input, select **Individual Accounts**.
+* Select **Create**.
+
+# [.NET CLI](#tab/net-cli)
+
+```dotnetcli
+dotnet new mvc -au Individual -o WebApplication1
+```
+
+The `-o|--output` option creates a folder for the app with a folder name matching the default app name/namespace.
+
+The preceding command creates an MVC app using SQLite. To create the web app with LocalDB, run the following command:
+
+```dotnetcli
+dotnet new mvc -au Individual -uld -o WebApplication1
+```
+
+---
+
+The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library](xref:razor-pages/ui-class). The Identity Razor class library is based on Razor Pages and exposes endpoints with the `Identity` area. For example:
+
+* `Areas/Identity/Pages/Account/Register`
+* `Areas/Identity/Pages/Account/Logoin`
+* `Areas/Identity/Pages/Account/Manage/ChangePassword`
 
 Pages are described individually in the documentation for specific use cases and are subject to change each release. To view all of the pages, see the [ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository, `Identity/UI/src/Areas/Identity/Pages` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/Identity/UI/src/Areas/Identity/Pages).
 
