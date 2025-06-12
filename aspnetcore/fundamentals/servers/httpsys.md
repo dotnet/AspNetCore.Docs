@@ -14,7 +14,7 @@ uid: fundamentals/servers/httpsys
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
 
-:::moniker range=">= aspnetcore-10"
+:::moniker range=">= aspnetcore-10.0"
 
 [HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](xref:fundamentals/servers/index) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](xref:fundamentals/servers/kestrel) server and offers some features that Kestrel doesn't provide.
 
