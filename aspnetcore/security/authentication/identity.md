@@ -63,7 +63,7 @@ Create an ASP.NET Core Blazor Web App project with Individual Accounts.
 dotnet new blazor -au Individual -o BlazorApp1
 ```
 
-The `-o|--output` option creates a folder for the app with a folder name matching the default app name/namespace.
+The `-o|--output` option creates a folder for the app and sets the app name/namespace.
 
 The preceding command creates a Blazor Web App using SQLite. To create the app with LocalDB, run the following command:
 
@@ -79,7 +79,7 @@ The generated project includes Identity Razor components. The components are fou
 * `/Components/Account/Pages/Login`
 * `/Components/Account/Pages/Manage/ChangePassword`
 
-Identity Razor components are described individually in the documentation for specific use cases and are subject to change each release. To view all of the components in the framework, see the [Blazor project template in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account).
+Identity Razor components are described individually in the documentation for specific use cases and are subject to change each release. When you generate a Blazor Web App with Individual Accounts, Identity Razor components are included in the generated project. The Identity Razor components can also be inspected in the [Blazor project template in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account). 
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -101,7 +101,7 @@ Create an ASP.NET Core Web Application (Razor Pages) project with Individual Acc
 dotnet new webapp -au Individual -o WebApp1
 ```
 
-The `-o|--output` option creates a folder for the app with a folder name matching the default app name/namespace.
+The `-o|--output` option creates a folder for the app and sets the app name/namespace.
 
 The preceding command creates a Razor Pages app using SQLite. To create the app with LocalDB, run the following command:
 
@@ -111,13 +111,13 @@ dotnet new webapp -au Individual -uld -o WebApp1
 
 ---
 
-The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library](xref:razor-pages/ui-class). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
+The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
 
 * `Areas/Identity/Pages/Account/Register`
 * `Areas/Identity/Pages/Account/Logoin`
 * `Areas/Identity/Pages/Account/Manage/ChangePassword`
 
-Pages are described individually in the documentation for specific use cases and are subject to change each release. To view all of the pages in the framework, see the [ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository, `Identity/UI/src/Areas/Identity/Pages` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/Identity/UI/src/Areas/Identity/Pages).
+Pages are described individually in the documentation for specific use cases and are subject to change each release. To view all of the pages in the RCL, see the [ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository, `Identity/UI/src/Areas/Identity/Pages` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/Identity/UI/src/Areas/Identity/Pages). You can *scaffold* individual pages or all of the pages into the app. For more information, see <xref:security/authentication/scaffold-identity>.
 
 ## Create an MVC app with authentication
 
@@ -135,7 +135,7 @@ Create an ASP.NET Core MVC project with Individual Accounts.
 dotnet new mvc -au Individual -o WebApplication1
 ```
 
-The `-o|--output` option creates a folder for the app with a folder name matching the default app name/namespace.
+The `-o|--output` option creates a folder for the app and sets the app name/namespace.
 
 The preceding command creates an MVC app using SQLite. To create the web app with LocalDB, run the following command:
 
@@ -145,13 +145,13 @@ dotnet new mvc -au Individual -uld -o WebApplication1
 
 ---
 
-The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library](xref:razor-pages/ui-class). The Identity Razor class library is based on Razor Pages and exposes endpoints with the `Identity` area. For example:
+The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). The Identity Razor class library is based on Razor Pages and exposes endpoints with the `Identity` area. For example:
 
 * `Areas/Identity/Pages/Account/Register`
 * `Areas/Identity/Pages/Account/Logoin`
 * `Areas/Identity/Pages/Account/Manage/ChangePassword`
 
-Pages are described individually in the documentation for specific use cases and are subject to change each release. To view all of the pages, see the [ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository, `Identity/UI/src/Areas/Identity/Pages` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/Identity/UI/src/Areas/Identity/Pages).
+Pages are described individually in the documentation for specific use cases and are subject to change each release. To view all of the pages in the RCL, see the [ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository, `Identity/UI/src/Areas/Identity/Pages` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/Identity/UI/src/Areas/Identity/Pages). You can *scaffold* individual pages or all of the pages into the app. For more information, see <xref:security/authentication/scaffold-identity>.
 
 ### Apply migrations
 
