@@ -115,7 +115,7 @@ For more information about HTTP.sys options, see <xref:Microsoft.AspNetCore.Serv
 
 ### Customize security descriptors
 
-[A *request queue* in HTTP.sys](https://www.bing.com/search?q=all-about-iis-asp-net-request-queues) is a kernel-level structure that temporarily stores incoming HTTP requests until your application is ready to process them. Manage access to the request queue by using the [RequestQueueSecurityDescriptor](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs,a556950881fd2d87) property on <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. Set it to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server.
+A *request queue* in HTTP.sys is a kernel-level structure that temporarily stores incoming HTTP requests until your application is ready to process them. Manage access to the request queue by using the [RequestQueueSecurityDescriptor](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs,a556950881fd2d87) property on <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. Set it to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server.
 
 By customizing the security descriptor, you can allow or deny specific users or groups access to the request queue. This is useful in scenarios where you want to restrict or delegate HTTP.sys request handling at the operating system level.
 
