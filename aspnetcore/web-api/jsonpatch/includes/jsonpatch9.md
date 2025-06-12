@@ -531,6 +531,7 @@ To test the sample, run the app and send HTTP requests with the following settin
 * Header: `Content-Type: application/json-patch+json`
 * Body: Copy and paste one of the JSON patch document samples from the *JSON* project folder.
 
+:::moniker-end
 ## Mitigating security risks
 
 When using the `Microsoft.AspNetCore.JsonPatch` package with the `Newtonsoft.Json`-based implementation, it's critical to understand and mitigate potential security risks. The following sections outline the identified security risks associated with JSON Patch and provide recommended mitigations to ensure secure usage of the package.
@@ -585,4 +586,3 @@ public void Validate(JsonPatchDocument patch)
 * [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
 * [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/main/src/Features/JsonPatch/src)
 
-:::moniker-end
