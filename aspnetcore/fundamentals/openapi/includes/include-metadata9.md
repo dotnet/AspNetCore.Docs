@@ -1,10 +1,12 @@
 :::moniker range="= aspnetcore-9.0"
 
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
-In controller-based apps, metadata is collected from attributes like [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
-and [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute).
-In minimal APIs, metadata can be collected from attributes, but may also be set by using extension methods
-and other strategies, such as returning <xref:Microsoft.AspNetCore.Http.TypedResults> from route handlers.
+
+In controller-based apps, metadata is collected from attributes such as [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
+and [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) when the controller has the [`[ApiController]` attribute](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute).
+
+In minimal APIs, metadata can be collected from attributes but may also be set by using extension methods and other strategies, such as returning <xref:Microsoft.AspNetCore.Http.TypedResults> from route handlers.
+
 The following table provides an overview of the metadata collected and the strategies for setting it.
 
 | Metadata | Attribute | Extension method | Other strategies |
