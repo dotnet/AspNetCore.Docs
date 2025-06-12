@@ -92,7 +92,7 @@ Create an ASP.NET Core Web Application (Razor Pages) project with Individual Acc
 # [Visual Studio](#tab/visual-studio)
 
 * Select the **ASP.NET Core Web App (Razor Pages)** template. Select **Next**.
-* For the **Authentication type** input, select **Individual Accounts**.
+* For **Authentication type**, select **Individual Accounts**.
 * Select **Create**.
 
 # [.NET CLI](#tab/net-cli)
@@ -126,7 +126,7 @@ Create an ASP.NET Core MVC project with Individual Accounts.
 # [Visual Studio](#tab/visual-studio)
 
 * Select the **ASP.NET Core Web App (Model-View-Controller)** template. Select **Next**.
-* For the **Authentication type** input, select **Individual Accounts**.
+* For **Authentication type**, select **Individual Accounts**.
 * Select **Create**.
 
 # [.NET CLI](#tab/net-cli)
