@@ -31,11 +31,11 @@ HTTP.sys is useful for deployments where:
 
 * There's a need to expose the server directly to the Internet without using IIS.
 
-  ![HTTP.sys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
+  ![HTTP.sys communicates directly with the Internet](~/fundamentals/servers/httpsys/_static/httpsys-to-internet.png)
 
 * An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
 
-  ![HTTP.sys communicates directly with the internal network](httpsys/_static/httpsys-to-internal.png)
+  ![HTTP.sys communicates directly with the internal network](~/fundamentals/servers/httpsys/_static/httpsys-to-internal.png)
 
 HTTP.sys is mature technology that protects against many types of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of HTTP.sys.
 
@@ -262,7 +262,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    A development certificate is used in this example. The page loads securely after bypassing the browser's untrusted certificate warning.
 
-   ![Browser window showing the app's Index page loaded](httpsys/_static/browser.png)
+   ![Browser window showing the app's Index page loaded](~/fundamentals/servers/httpsys/_static/browser.png)
 
 ## Proxy server and load balancer scenarios
 
