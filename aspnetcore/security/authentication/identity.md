@@ -83,7 +83,7 @@ Identity Razor components are described individually in the documentation for sp
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-For more information, see <xref:blazor/security/index> and the articles that follow it in the Blazor documentation. Most of the articles in the *Security and Identity* area of the main ASP.NET Core documentation set apply to Blazor apps. However, the Blazor documentation set contains articles and guidance that supercedes or adds information. We recommend studying the general ASP.NET Core documentation set first, followed by accessing the articles in the Blazor *Security and Identity* documentation.
+For more information, see <xref:blazor/security/index> and the articles that follow it in the Blazor documentation. Most of the articles in the *Security and Identity* area of the main ASP.NET Core documentation set apply to Blazor apps. However, the Blazor documentation set contains articles and guidance that supersedes or adds information. We recommend studying the general ASP.NET Core documentation set first, followed by accessing the articles in the Blazor *Security and Identity* documentation.
 
 ## Create a Razor Pages app with authentication
 
@@ -114,7 +114,7 @@ dotnet new webapp -au Individual -uld -o WebApp1
 The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
 
 * `Areas/Identity/Pages/Account/Register`
-* `Areas/Identity/Pages/Account/Logoin`
+* `Areas/Identity/Pages/Account/Login`
 * `Areas/Identity/Pages/Account/Manage/ChangePassword`
 
 Pages are described individually in the documentation for specific use cases and are subject to change each release. To view all of the pages in the RCL, see the [ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository, `Identity/UI/src/Areas/Identity/Pages` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/Identity/UI/src/Areas/Identity/Pages). You can *scaffold* individual pages or all of the pages into the app. For more information, see <xref:security/authentication/scaffold-identity>.
@@ -148,7 +148,7 @@ dotnet new mvc -au Individual -uld -o WebApplication1
 The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). The Identity Razor class library is based on Razor Pages and exposes endpoints with the `Identity` area. For example:
 
 * `Areas/Identity/Pages/Account/Register`
-* `Areas/Identity/Pages/Account/Logoin`
+* `Areas/Identity/Pages/Account/Login`
 * `Areas/Identity/Pages/Account/Manage/ChangePassword`
 
 Pages are described individually in the documentation for specific use cases and are subject to change each release. To view all of the pages in the RCL, see the [ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository, `Identity/UI/src/Areas/Identity/Pages` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/Identity/UI/src/Areas/Identity/Pages). You can *scaffold* individual pages or all of the pages into the app. For more information, see <xref:security/authentication/scaffold-identity>.
