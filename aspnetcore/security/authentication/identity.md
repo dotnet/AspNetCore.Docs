@@ -50,7 +50,7 @@ Create an ASP.NET Core Blazor Web App project with Individual Accounts.
 
 # [Visual Studio](#tab/visual-studio)
 
-* Select the **Blazor Web App** template and select **Next**. Select **Next**.
+* Select the **Blazor Web App** template. Select **Next**.
 * Make the following selections:
   * **Authentication type**: **Individual Accounts**
   * **Interactive render mode**: **Server**
