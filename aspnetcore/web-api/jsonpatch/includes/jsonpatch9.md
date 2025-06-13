@@ -3,7 +3,7 @@
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
 > [!IMPORTANT]
-> The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, this implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
+> The JSON Patch standard has ***inherent security risks***. This implementation ***doesn't attempt to mitigate these inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
 
 ## Package installation
 
