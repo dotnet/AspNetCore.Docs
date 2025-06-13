@@ -1,20 +1,5 @@
----
-title: HTTP.sys web server implementation in ASP.NET Core
-author: tdykstra
-description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Built on the HTTP.sys kernel-mode driver, HTTP.sys is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
-ms.custom: mvc
-ms.date: 06/12/2025
-uid: fundamentals/servers/httpsys
----
-# HTTP.sys web server implementation in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range=">= aspnetcore-8.0 <= aspnetcore-9.0"
 
 [HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](xref:fundamentals/servers/index) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](xref:fundamentals/servers/kestrel) server and offers some features that Kestrel doesn't provide.
 
@@ -46,11 +31,11 @@ HTTP.sys is useful for deployments where:
 
 * There's a need to expose the server directly to the Internet without using IIS.
 
-  ![HTTP.sys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
+  ![HTTP.sys communicates directly with the Internet](~/fundamentals/servers/httpsys/_static/httpsys-to-internet.png)
 
 * An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
 
-  ![HTTP.sys communicates directly with the internal network](httpsys/_static/httpsys-to-internal.png)
+  ![HTTP.sys communicates directly with the internal network](~/fundamentals/servers/httpsys/_static/httpsys-to-internal.png)
 
 HTTP.sys is mature technology that protects against many types of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of HTTP.sys.
 
@@ -112,18 +97,6 @@ Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseH
 Additional HTTP.sys configuration is handled through [registry settings](https://support.microsoft.com/help/820129/http-sys-registry-settings-for-windows).
 
 For more information about HTTP.sys options, see <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>.
-
-### Customize security descriptors
-
-A *request queue* in HTTP.sys is a kernel-level structure that temporarily stores incoming HTTP requests until your application is ready to process them. Manage access to the request queue by using the [RequestQueueSecurityDescriptor](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs,a556950881fd2d87) property on <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. Set it to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server.
-
-By customizing the security descriptor, you can allow or deny specific users or groups access to the request queue. This is useful in scenarios where you want to restrict or delegate HTTP.sys request handling at the operating system level.
-
-For example, the following code allows all authenticated users but denies guests:
-
-[!code-csharp[](~/fundamentals/servers/httpsys/samples_snapshot/10.x/HttpSysConfig/Program.cs)]
-
-The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. The property doesn't affect existing request queues.
 
 <a name="maxrequestbodysize"></a>
 
@@ -289,7 +262,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    A development certificate is used in this example. The page loads securely after bypassing the browser's untrusted certificate warning.
 
-   ![Browser window showing the app's Index page loaded](httpsys/_static/browser.png)
+   ![Browser window showing the app's Index page loaded](~/fundamentals/servers/httpsys/_static/browser.png)
 
 ## Proxy server and load balancer scenarios
 
@@ -349,6 +322,3 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 * <xref:test/troubleshoot>
 
 :::moniker-end
-
-[!INCLUDE [httpsys5-7](~/fundamentals/servers/httpsys/includes/httpsys5-7.md)]
-[!INCLUDE [httpsys8-9](~/fundamentals/servers/httpsys/includes/httpsys8-9.md)]
