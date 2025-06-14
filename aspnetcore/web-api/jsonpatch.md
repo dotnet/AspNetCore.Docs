@@ -8,43 +8,39 @@ ms.custom: mvc
 ms.date: 06/03/2025
 uid: web-api/jsonpatch
 ---
-# JsonPatch in ASP.NET Core web API
+# JSON Patch support in ASP.NET Core web API
 
 :::moniker range=">= aspnetcore-10.0"
 
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
-JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> serialization, and requires the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package.
+JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> serialization, and requires the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package. 
 
-**[JSON Patch](https://jsonpatch.com/)**:
+## What is the JSON Patch standard?
+
+The JSON Patch standard:
 
 * Is a standard format for describing changes to apply to a JSON document.
-* Is defined in [RFC 6902] and is widely used in RESTful APIs to perform partial updates to JSON resources.
+* Is defined in [RFC 6902](https://datatracker.ietf.org/doc/html/rfc6902) and is widely used in RESTful APIs to perform partial updates to JSON resources.
 * Describes a sequence of operations such as `add`, `remove`, `replace`, `move`, `copy`, and `test` that modify a JSON document.
 
 In web apps, JSON Patch is commonly used in a PATCH operation to perform partial updates of a resource. Rather than sending the entire resource for an update, clients can send a JSON Patch document containing only the changes. Patching reduces payload size and improves efficiency.
 
-JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> serialization, starting with .NET 10. This release introduces a new implementation of <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json> serialization. This feature:
+For an overview of the JSON Patch standard, see [jsonpatch.com](https://jsonpatch.com/).
 
+## JSON Patch support in ASP.NET Core web API
+
+JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> serialization, starting with .NET 10, implementing <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json> serialization. This feature:
+
+* Requires the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package. 
 * Aligns with modern .NET practices by leveraging the <xref:System.Text.Json> library, which is optimized for .NET.
 * Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation. For more information on the legacy `Newtonsoft.Json`-based implementation, see the [.NET 9 version of this article](xref:web-api/jsonpatch?view=aspnetcore-9.0&preserve-view=true).
 
-The following benchmarks compare the performance of the new <xref:System.Text.Json> implementation with the legacy `Newtonsoft.Json` implementation:
-
-| Scenario                   | Implementation         | Mean       | Allocated Memory |
-|----------------------------|------------------------|------------|------------------|
-| **Application Benchmarks** | Newtonsoft.JsonPatch   | 271.924 µs | 25 KB            |
-|                            | System.Text.JsonPatch  | 1.584 µs   | 3 KB             |
-| **Deserialization Benchmarks** | Newtonsoft.JsonPatch | 19.261 µs  | 43 KB            |
-|                            | System.Text.JsonPatch  | 7.917 µs   | 7 KB             |
-
-These benchmarks highlight significant performance gains and reduced memory usage with the new implementation.
-
 > [!NOTE]
-> The new implementation of <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json?displayProperty=fullName> serialization isn't a drop-in replacement for the legacy `Newtonsoft.Json`-based implementation. It doesn't support dynamic types, for example <xref:System.Dynamic.ExpandoObject>.
+> The implementation of <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json?displayProperty=fullName> serialization isn't a drop-in replacement for the legacy `Newtonsoft.Json`-based implementation. It doesn't support dynamic types, for example <xref:System.Dynamic.ExpandoObject>.
 
 > [!IMPORTANT]
-> The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the new implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
+> The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the ASP.NET Core implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
 
 ## Enable JSON Patch support with <xref:System.Text.Json>
 
@@ -255,9 +251,7 @@ When using the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` package, it's cri
 > [!IMPORTANT]
 > ***This is not an exhaustive list of threats.*** App developers must conduct their own threat model reviews to determine an app-specific comprehensive list and come up with appropriate mitigations as needed. For example, apps which expose collections to patch operations should consider the potential for algorithmic complexity attacks if those operations insert or remove elements at the beginning of the collection.
 
-By running comprehensive threat models for their own apps and addressing identified threats while following the recommended mitigations below, consumers of these packages can integrate JSON Patch functionality into their apps while minimizing security risks.
-
-Consumers of these packages can integrate JSON Patch functionality into their apps while minimizing security risks, including:
+To minimize security risks when integrating JSON Patch functionality into their apps, developers should:
 
 * Run comprehensive threat models for their own apps.
 * Address identified threats.
@@ -286,7 +280,7 @@ public void Validate(JsonPatchDocument<T> patch)
 
 ### Business Logic Subversion
 
-* **Scenario**: Patch operations can manipulate fields with implicit invariants, (for example, internal flags, IDs, or computed fields), violating business constraints.
+* **Scenario**: Patch operations can manipulate fields with implicit invariants (for example, internal flags, IDs, or computed fields), violating business constraints.
 * **Impact**: Data integrity issues and unintended app behavior.
 * **Mitigation**:
   * Use POCOs (Plain Old CLR Objects) with explicitly defined properties that are safe to modify.
