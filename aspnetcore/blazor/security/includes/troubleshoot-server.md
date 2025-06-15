@@ -107,8 +107,8 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 Blazor Web Apps:
 
-* For one of the Backend-for-Frontend (BFF) pattern sample solutions, start the solution from the ***`Aspire/Aspire.AppHost` project***.
-* For one of the non-BFF pattern sample solutions, start the solution from the ***server project***.
+* For one of the Backend-for-Frontend (BFF) pattern samples, start the solution from the ***`Aspire/Aspire.AppHost` project***.
+* For one of the non-BFF pattern samples, start the solution from the ***server project***.
 
 Blazor Server solutions:
 
