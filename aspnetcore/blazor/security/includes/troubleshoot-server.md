@@ -110,7 +110,7 @@ Blazor Web Apps:
 * For one of the Backend-for-Frontend (BFF) pattern samples, start the solution from the ***`Aspire/Aspire.AppHost` project***.
 * For one of the non-BFF pattern samples, start the solution from the ***server project***.
 
-Blazor Server solutions:
+Blazor Server:
 
 Start the solution from the ***server project***.
 
