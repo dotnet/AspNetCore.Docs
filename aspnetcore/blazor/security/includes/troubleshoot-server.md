@@ -103,9 +103,16 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 > [!NOTE]
 > Use of package versions incompatible with the app's target framework isn't supported. For information on a package, use the [NuGet Gallery](https://www.nuget.org).
 
-### Run the server app
+### Start the solution from the correct project
 
-When testing and troubleshooting Blazor Web App, make sure that you're running the app from the server project.
+Blazor Web Apps:
+
+* For one of the Backend-for-Frontend (BFF) pattern samples, start the solution from the ***`Aspire/Aspire.AppHost` project***.
+* For one of the non-BFF pattern samples, start the solution from the ***server project***.
+
+Blazor Server:
+
+Start the solution from the ***server project***.
 
 ### Inspect the user
 
