@@ -43,6 +43,8 @@ The sample solution consists of the following projects:
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppEntra` folder for .NET 9 or later.
 
+Start the solution from the ***`Aspire/Aspire.AppHost` project***.
+
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 ## Microsoft Entra ID app registrations

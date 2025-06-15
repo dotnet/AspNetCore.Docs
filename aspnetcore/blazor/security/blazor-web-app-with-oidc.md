@@ -45,6 +45,8 @@ The sample app consists of the following projects:
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppOidc` folder for .NET 8 or later.
 
+Start the solution from the ***`Aspire/Aspire.AppHost` project***.
+
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 Sample solution features:
