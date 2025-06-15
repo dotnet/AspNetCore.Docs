@@ -103,7 +103,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 > [!NOTE]
 > Use of package versions incompatible with the app's target framework isn't supported. For information on a package, use the [NuGet Gallery](https://www.nuget.org).
 
-### Start the solution
+### Start the solution from the correct project
 
 Blazor Web Apps:
 
