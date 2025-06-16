@@ -22,7 +22,14 @@ The JSON Patch standard:
 
 * Is a standard format for describing changes to apply to a JSON document.
 * Is defined in [RFC 6902](https://datatracker.ietf.org/doc/html/rfc6902) and is widely used in RESTful APIs to perform partial updates to JSON resources.
-* Describes a sequence of operations such as `add`, `remove`, `replace`, `move`, `copy`, and `test` that modify a JSON document.
+* Describes a sequence of operations that modify a JSON document such as:
+  
+  * `add`
+  * `remove`
+  * `replace`
+  * `move`
+  * `copy`
+  * `test`
 
 In web apps, JSON Patch is commonly used in a PATCH operation to perform partial updates of a resource. Rather than sending the entire resource for an update, clients can send a JSON Patch document containing only the changes. Patching reduces payload size and improves efficiency.
 
@@ -64,7 +71,7 @@ Here's an example:
 
 :::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/api/Controllers/HomeController.cs" id="snippet_PatchAction" highlight="1,3,9":::
 
-This code from the sample app works with the following `Customer` model:
+This code from the sample app works with the following `Customer` and `Order` models:
 
 :::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Models/Customer.cs":::
 
@@ -75,9 +82,6 @@ The sample action method:
 * Constructs a `Customer`.
 * Applies the patch.
 * Returns the result in the body of the response.
-
-> [!NOTE]
-> In a real app, the data would typically be retrieved from a store such as a database. After applying the patch, the updated data would be saved back to the database.
 
 ### Model state
 
