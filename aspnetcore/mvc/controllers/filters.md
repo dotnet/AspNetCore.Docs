@@ -66,7 +66,7 @@ Each filter type is executed at a different stage in the filter pipeline:
   * Can be invoked on both actions and route handler-based endpoints.
 
 * [Exception filters](#exception-filters):
-  *  Apply global policies to unhandled exceptions that occur before the response body has been written to.
+  * Apply global policies to unhandled exceptions that occur before the response body has been written to.
   * Run after model binding and action filters, but before the action result is executed.
   * Run only if an unhandled exception occurs during action execution or action result execution.
   * Do not run for exceptions thrown during middleware execution, routing, or model binding.
