@@ -9,7 +9,7 @@ uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
 
-By [Valeriy Novytskyy](https://github.com/01binary), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Sharaf Abacery](https://github.com/sharafabacery)
+By [Valeriy Novytskyy](https://github.com/01binary), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Sharaf Abacery](https://github.com/sharafabacery).
 
 This tutorial with code examples shows how to enable user sign in with Google accounts using a sample ASP.NET Core project created in <xref:security/authentication/social/index>. Follow Google's official guidance in [Sign in with Google for Web: Setup](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid) to create a Google API client ID.
 
@@ -26,15 +26,15 @@ After creating the project, the **Dashboard** page of the project loads, where i
 
 Open the **Credentials** tab to create the OAuth client.
 
-The prerequisite to creating the credentials is to configure the OAuth consent screen. If the consent isn't configured, you're prompted to configure the consent screen.
+The prerequisite to creating the credentials is to configure the OAuth consent screen. If the consent isn't configured, there's a prompt to configure the consent screen.
 
-* Click on **Configure consent screen** or select **OAuth consent screen** in the sidebar.
+* Select **Configure consent screen** or select **OAuth consent screen** in the sidebar.
 * In the **OAuth consent screen**, select **Get started**.
 * Set the **App name** and **User support email**.
 * Set the audience type to **External**.
 * Add **Contact information** by entering a contact email address.
 * Agree on the terms. 
-* Select **Create**. 
+* Select **Create**.
 
 Create the client credentials for the app by opening the **Clients** sidebar menu item:
 
@@ -46,7 +46,7 @@ Create the client credentials for the app by opening the **Clients** sidebar men
 * Save the **Client ID** and **Client secret**, which are used later in the ASP.NET app configuration.
 
 > [!NOTE]
-> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> class.
+> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. It's possible to change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> class.
 
 When deploying the app, either:
 
@@ -101,10 +101,10 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 * Under **Use another service to log in.**, select Google.
 * The browser is redirected to **Google** for authentication.
 * Select the Google account to login or enter Google credentials.
-* If this is the first time you are signing in, you may be prompted to allow the app to access your Google account.
-* The browser is redirected back to the app, where you can set your email.
+* If this is the first time signing in, there is a prompt to allow the app to access the Google account information.
+* The browser is redirected back to the app, where it's possible to set the email.
 
-You are now logged in using your Google credentials.
+The user is now logged in using Google credentials.
 
 ## Troubleshooting
 
