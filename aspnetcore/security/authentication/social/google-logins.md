@@ -16,7 +16,7 @@ This tutorial with code examples shows how to enable user sign in with Google ac
 ## Create the app in Google
 
 * Navigate to the [Google API & Services](https://console.cloud.google.com/apis) page of the Google Cloud platform.
-* Create a new project by clicking on the **Create Project** button. If you already have a project or want to add a project, select the loaded project's button in the top-left corner of the UI, followed by either selecting the project or **New project**.
+* Create a new project by selecting the **Create Project** button. If there's already a project or to add a project, select the loaded project's button in the top-left corner of the UI, followed by either selecting the project or **New project**.
 * When creating a new project:
   * Enter a **Project name**.
   * Optionally, select an **Organization** for the project.
@@ -33,7 +33,7 @@ The prerequisite to creating the credentials is to configure the OAuth consent s
 * Set the **App name** and **User support email**.
 * Set the audience type to **External**.
 * Add **Contact information** by entering a contact email address.
-* Agree on the terms. 
+* Agree to the terms. 
 * Select **Create**.
 
 Create the client credentials for the app by opening the **Clients** sidebar menu item:
@@ -55,9 +55,9 @@ When deploying the app, either:
 
 ## Store the Google client ID and secret
 
-Store sensitive settings such as the Google client ID and secret values with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+Store sensitive settings such as the Google client ID and secret values with [Secret Manager](xref:security/app-secrets). For this sample, follow these steps:
 
-1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
+1. Initialize the project for secret storage according to the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Google:ClientId` (`{CLIENT ID}`) and `Authentication:Google:ClientSecret` (`{CLIENT SECRET}`):
 
     ```dotnetcli
@@ -100,8 +100,8 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 * Run the app and select **Log in**. 
 * Under **Use another service to log in.**, select Google.
 * The browser is redirected to **Google** for authentication.
-* Select the Google account to login or enter Google credentials.
-* If this is the first time signing in, there is a prompt to allow the app to access the Google account information.
+* Select the Google account to log in or enter Google credentials.
+* If this is the first time signing in, there's a prompt to allow the app to access the Google account information.
 * The browser is redirected back to the app, where it's possible to set the email.
 
 The user is now logged in using Google credentials.
@@ -110,7 +110,7 @@ The user is now logged in using Google credentials.
 
 * If the sign-in doesn't work without receiving any errors, switch to development mode to make the app and Google registration easier to debug.
 * If the site's database hasn't been created by applying the initial migration, the following error occurs: *A database operation failed while processing the request*. Select **Apply Migrations** to create the database and refresh the page to continue past the error.
-* For an HTTP 500 error after successfully authenticating the request by the OAuth 2.0 provider such as Google and information on how to implement external authentication with Google for React and other SPA apps, see [Middleware not handling 'signin-google' route after successful authentication in Asp.Net Core Web Api External Login Authentication (`dotnet/AspNetCore.Docs` #14169)](https://github.com/dotnet/AspNetCore.Docs/issues/14169).
+* For information about an HTTP 500 error after successfully authenticating the request by the OAuth 2.0 provider such as Google and information on how to implement external authentication with Google for React and other SPA apps, see [Middleware not handling 'signin-google' route after successful authentication in Asp.Net Core Web Api External Login Authentication (`dotnet/AspNetCore.Docs` #14169)](https://github.com/dotnet/AspNetCore.Docs/issues/14169).
 
 ## Next steps
 
