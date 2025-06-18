@@ -897,6 +897,27 @@ For more information on using a shared Data Protection key ring and key storage 
 * [Azure Storage documentation](/azure/storage/)
 * [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide?tabs=azure-cli)
 
+## YARP forwarder destination prefix
+
+The Blazor Web App server project's YARP forwarder, where the user's access token is attached to the `MinimalApiJwt` web API call, specifies a destination prefix of `https://weatherapi`. This value matches the project name passed to <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> in the `Program` file of the `Aspire.AppHost` project.
+
+Forwarder in the Blazor Web App server project (`BlazorWebAppEntra`):
+
+```csharp
+app.MapForwarder("/weather-forecast", "https://weatherapi", transformBuilder =>
+{
+    ...
+}).RequireAuthorization();
+```
+
+Matching project name in the `Program` file of the Aspire App Host project (`Aspire.AppHost`):
+
+```csharp
+var weatherApi = builder.AddProject<Projects.MinimalApiJwt>("weatherapi");
+```
+
+There's no need to change the destination prefix of the YARP forwarder when deploying the Blazor Web App to production. The Microsoft Identity Web Downstream API package uses the base URI passed via configuration to make the web API call from the `ServerWeatherForecaster`, not the destination prefix of the YARP forwarder. In production, the YARP forwarder merely transforms the request, adding the user's access token.
+
 ## Redirect to the home page on logout
 
 The `LogInOrOut` component (`Layout/LogInOrOut.razor`) sets a hidden field for the return URL (`ReturnUrl`) to the current URL (`currentURL`). When the user signs out of the app, the identity provider returns the user to the page from which they logged out. If the user logs out from a secure page, they're returned to the same secure page and sent back through the authentication process. This authentication flow is reasonable when users need to change accounts regularly.
