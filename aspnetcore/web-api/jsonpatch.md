@@ -59,7 +59,7 @@ dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson --prerelease
 
 This package provides a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using <xref:System.Text.Json>. The key method of the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> class is <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)>, which applies the patch operations to a target object of type `T`.
 
-## Action method code
+## Controller Action method code applying JSON Patch
 
 In an API controller, an action method for JSON Patch:
 
@@ -67,30 +67,38 @@ In an API controller, an action method for JSON Patch:
 * Accepts a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601>, typically with [<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute>](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
 * Calls <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
 
-Here's an example:
+### Example Action method:
 
-:::code language="csharp" source="~/web-api/jsonpatch/samples/3.x/api/Controllers/HomeController.cs" id="snippet_PatchAction" highlight="1,3,9":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/Controllers/CustomerController.cs" id="snippet_PatchAction" highlight="1,2,14-19":::
 
 This code from the sample app works with the following `Customer` and `Order` models:
 
-:::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Models/Customer.cs":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/api/Models/Customer.cs":::
 
-:::code language="csharp" source="~/web-api/jsonpatch/samples/6.x/api/Models/Order.cs":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/api/Models/Order.cs":::
 
-The sample action method:
+The sample action method's key steps:
 
-* Constructs a `Customer`.
-* Applies the patch.
-* Returns the result in the body of the response.
+* **Retrieve the Customer**:
+  * The method retrieves a `Customer` object from the database `AppDb` using the provided id.
+  * If no `Customer` object is found, it returns a `404 Not Found` response.
+* **Apply JSON Patch**:
+  * The <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> method applies the JSON Patch operations from the patchDoc to the retrieved `Customer` object.
+  * If errors occur during the patch application, such as invalid operations or conflicts, they are captured by an error handling delegate. This delegate adds error messages to the `ModelState` using the type name of the affected object and the error message.
+* **Validate ModelState**:
+  * After applying the patch, the method checks the `ModelState` for errors.
+  * If the `ModelState` is invalid, such as due to patch errors, it returns a `400 Bad Request` response with the validation errors.
+* **Return the Updated Customer**:
+  * If the patch is successfully applied and the `ModelState` is valid, the method returns the updated `Customer` object in the response.
 
-### Model state
+### Example error response:
 
-The preceding action method example calls an overload of <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> that takes model state as one of its parameters. With this option, you can get error messages in responses. The following example shows the body of a 400 Bad Request response for a `test` operation:
+The following example shows the body of a `400 Bad Request` response for a JSON Patch operation when the specified path is invalid:
 
 ```json
 {
   "Customer": [
-    "The current value 'John' at path 'customerName' != test value 'Nancy'."
+    "The target location specified by path segment 'foobar' was not found."
   ]
 }
 ```
