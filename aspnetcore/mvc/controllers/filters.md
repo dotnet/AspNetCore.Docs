@@ -65,17 +65,17 @@ Each filter type is executed at a different stage in the filter pipeline:
   * Are **not** supported in Razor Pages.
   * Can be invoked on both actions and route handler-based endpoints.
 
-* [Exception filters](#exception-filters) apply global policies to unhandled exceptions that occur before the response body has been written to.
+* [Exception filters](#exception-filters):
+  * Apply global policies to unhandled exceptions that occur before the response body has been written to.
+  * Run after model binding and action filters, but before the action result is executed.
+  * Run only if an unhandled exception occurs during action execution or action result execution.
+  * Do not run for exceptions thrown during middleware execution, routing, or model binding.
 
 * [Result filters](#result-filters):
   
   * Run immediately before and after the execution of action results.
   * Run only when the action method executes successfully.
   * Are useful for logic that must surround view or formatter execution.
-
-The following diagram shows how filter types interact in the filter pipeline:
-
-:::image source="~/mvc/controllers/filters/_static/filter-pipeline-2.png" alt-text="The request is processed through Authorization Filters, Resource Filters, Model Binding, Action Filters, Action Execution and Action Result Conversion, Exception Filters, Result Filters, and Result Execution. On the way out, the request is only processed by Result Filters and Resource Filters before becoming a response sent to the client.":::
 
 Razor Pages also support [Razor Page filters](xref:razor-pages/filter), which run before and after a Razor Page handler.
 
