@@ -1929,9 +1929,9 @@ items:
     items:
       - name: Overview
         uid: performance/overview
-     -  name: Best practices
-          displayName: performance
-          uid: fundamentals/best-practices
+      - name: Best practices
+        displayName: performance
+        uid: fundamentals/best-practices
         - name: Caching
           items:
           - name: Overview
