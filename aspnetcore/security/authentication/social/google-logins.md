@@ -16,7 +16,7 @@ This tutorial shows how to enable user sign in with Google accounts using a samp
 ## Create the app in Google
 
 * Navigate to the [Google API & Services](https://console.cloud.google.com/apis) page of the Google Cloud platform.
-* If no project exists, create a new project by selecting the **Create Project** button. To select a different existing project or add a project, select the loaded project's button in the top-left corner of the UI, followed by either selecting the project or the **New project** button.
+* If no project exists, create a new project by selecting the **Create Project** button. To select a different project than an existing project that loads, select the loaded project's button in the top-left corner of the UI, followed by the project. To add a new project, select the loaded project's button in the top-left corner of the UI, followed by the **New project** button.
 * When creating a new project:
   * Enter a **Project name**.
   * Optionally, select an **Organization** for the project.
