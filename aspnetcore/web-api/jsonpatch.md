@@ -59,7 +59,7 @@ dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson --prerelease
 
 This package provides a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using <xref:System.Text.Json>. The key method of the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> class is <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)>, which applies the patch operations to a target object of type `T`.
 
-## Controller Action method code applying JSON Patch
+## Action method code applying JSON Patch
 
 In an API controller, an action method for JSON Patch:
 
@@ -67,15 +67,15 @@ In an API controller, an action method for JSON Patch:
 * Accepts a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601>, typically with [<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute>](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
 * Calls <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
 
-### Example Action method:
+### Example Controller Action method:
 
 :::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/Controllers/CustomerController.cs" id="snippet_PatchAction" highlight="1,2,14-19":::
 
 This code from the sample app works with the following `Customer` and `Order` models:
 
-:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/api/Models/Customer.cs":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/Models/Customer.cs":::
 
-:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/api/Models/Order.cs":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/Models/Order.cs":::
 
 The sample action method's key steps:
 
