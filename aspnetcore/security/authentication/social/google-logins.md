@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/16/2025
+ms.date: 06/18/2025
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -16,7 +16,7 @@ This tutorial shows how to enable user sign in with Google accounts using a samp
 ## Create the app in Google
 
 * Navigate to the [Google API & Services](https://console.cloud.google.com/apis) page of the Google Cloud platform.
-* Create a new project by selecting the **Create Project** button. To select a different existing project or add a project, select the loaded project's button in the top-left corner of the UI, followed by either selecting the project or the **New project** button.
+* If no project exists, create a new project by selecting the **Create Project** button. To select a different existing project or add a project, select the loaded project's button in the top-left corner of the UI, followed by either selecting the project or the **New project** button.
 * When creating a new project:
   * Enter a **Project name**.
   * Optionally, select an **Organization** for the project.
