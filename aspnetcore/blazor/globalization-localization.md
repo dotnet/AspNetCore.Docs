@@ -1750,7 +1750,6 @@ For more information, see [Blazor Localization does not work with InteractiveSer
 * <xref:fundamentals/localization>
 * [Globalizing and localizing .NET applications](/dotnet/core/extensions/globalization-and-localization)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
 * [Calling `InvokeAsync(StateHasChanged)` causes page to fallback to default culture (dotnet/aspnetcore #28521)](https://github.com/dotnet/aspnetcore/issues/28521)
 * [Blazor Localization does not work with InteractiveServer (`dotnet/aspnetcore` #53707)](https://github.com/dotnet/aspnetcore/issues/53707) ([Location override using "Sensors" pane](#location-override-using-sensors-pane-in-developer-tools))
