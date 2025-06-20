@@ -74,7 +74,7 @@ By default, the new middleware:
 
 ![Microsoft Entra ID: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
-:::moniker range=">= aspnetcore-2.1
+:::moniker range=">= aspnetcore-2.1"
 
 ## Use WS-Federation without ASP.NET Core Identity
 
@@ -94,7 +94,7 @@ The WS-Federation middleware can be used without Identity. For example:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-2.1
+:::moniker range=">= aspnetcore-2.1"
 
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
