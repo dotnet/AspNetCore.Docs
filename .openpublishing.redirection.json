@@ -981,13 +981,8 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/migration/proper-to-2x/mvc2.md",
-            "redirect_url": "migration/fx-to-core/areas/mvc/",
-            "redirect_document_id": false
-        },
-        {
             "source_path": "aspnetcore/proper-to-2x/mvc2.md",
-            "redirect_url": "migration/fx-to-core/areas/mvc/mvc2",
+            "redirect_url": "migration/mvc/",
             "redirect_document_id": false
         },        
         {
