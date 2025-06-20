@@ -192,7 +192,7 @@ gRPC client metrics are reported on `Grpc.Net.Client` event source.
 [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with either `Grpc.AspNetCore.Server` or `Grpc.Net.Client` as the provider name.
 
 ```console
-> dotnet-counters monitor --process-id 1902 Grpc.AspNetCore.Server
+> dotnet-counters monitor --process-id 1902 --counters Grpc.AspNetCore.Server
 
 Press p to pause, r to resume, q to quit.
     Status: Running
