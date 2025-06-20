@@ -976,8 +976,13 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/proper-to-2x/membership-to-core-identity.md",
+            "source_path": "aspnetcore/migration/proper-to-2x/membership-to-core-identity.md",
             "redirect_url": "migration/fx-to-core/areas/membership/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/proper-to-2x/mvc2.md",
+            "redirect_url": "migration/fx-to-core/areas/mvc/",
             "redirect_document_id": false
         },
         {
