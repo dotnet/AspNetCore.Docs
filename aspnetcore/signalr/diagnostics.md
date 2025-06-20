@@ -277,7 +277,7 @@ SignalR server metrics are reported on the <xref:Microsoft.AspNetCore.Http.Conne
 [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with `Microsoft.AspNetCore.Http.Connections` as the provider name. For example:
 
 ```console
-> dotnet-counters monitor --process-id 37016 Microsoft.AspNetCore.Http.Connections
+> dotnet-counters monitor --process-id 37016 --counters Microsoft.AspNetCore.Http.Connections
 
 Press p to pause, r to resume, q to quit.
     Status: Running
