@@ -1,51 +1,74 @@
 ---
-title: Update from ASP.NET to ASP.NET Core
+title: Migrate from ASP.NET Framework to ASP.NET Core
 author: isaacrlevin
-description: Guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
+description: Your complete guide to migrating ASP.NET Framework applications to ASP.NET Core, with practical approaches and step-by-step guidance.
 ms.author: riande
-ms.date: 10/18/2019
+ms.date: 06/20/2025
 uid: migration/proper-to-2x/index
 ---
-# Upgrade from ASP.NET Framework to ASP.NET Core
+# Migrate from ASP.NET Framework to ASP.NET Core
 
- :::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-6.0"
 
-## Why upgrade to the latest .NET
+## Start here: Choose your migration path
 
-ASP.NET Core is the modern web framework for .NET. While ASP.NET Core has many similarities to ASP.NET in the .NET Framework, it's a new framework that's completely rewritten. ASP.NET apps updated to ASP.NET Core can benefit from improved performance and access to the latest web development features and capabilities.
+Your ASP.NET Framework application can successfully move to ASP.NET Core. The key is choosing the right approach for your specific situation.
 
-## ASP.NET Framework update approaches
+### Quick decision guide
 
-Most non-trivial ASP.NET Framework apps should consider using the [incremental upgrade](/aspnet/core/migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core upgrade](/aspnet/core/migration/inc/overview).
+**For most production applications:** Use the [**incremental migration approach**](xref:migration/inc/overview) - it's safer, faster to start, and keeps your app running in production throughout the process.
 
-For ASP.NET MVC and Web API apps, see <xref:migration/mvc>. For ASP.NET Framework Web Forms apps, see <xref:migration/web_forms>.
+**For smaller applications or greenfield rewrites:** Consider the complete migration approach using our specialized guides.
 
-[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+## The incremental approach: Best for most teams
 
-## URI decoding differences between ASP.NET to ASP.NET Core
+Most non-trivial ASP.NET Framework applications should use incremental migration. This approach:
 
-ASP.NET Core has the following URI decoding differences with ASP.NET Framework:
+- **Keeps your current app running** while you migrate piece by piece
+- **Reduces risk** by moving functionality gradually
+- **Delivers value faster** with immediate deployment of migrated components
+- **Uses proven tools** like YARP proxy and System.Web adapters
 
-| ASCII   | Encoded | ASP.NET Core | ASP.NET Framework |
-| ------------- | ------------- | ------------- | ------------- |
-| `\` | `%5C`  |  `\` |  `/` |
-| `/` | `%2F`  |  `%2F` |  `/` |
+**→ [Start your incremental migration](xref:migration/inc/overview)**
 
-When decoding `%2F` on ASP.NET Core:
+## Application-specific migration guides
 
-* The entire path gets unescaped except `%2F` because converting it to `/` would change the path structure. It can’t be decoded until the path is split into segments.
+If you're doing a complete rewrite or have a smaller application, these guides provide detailed, step-by-step instructions:
 
-To generate the value for `HttpRequest.Url`, use `new Uri(this.AspNetCoreHttpRequest.GetEncodedUrl());` to avoid `Uri` misinterpreting the values.
+| Application Type | Migration Guide | Best For |
+|------------------|-----------------|----------|
+| **MVC Applications** | [MVC Migration Guide](xref:migration/mvc) | Traditional MVC web apps with controllers and views |
+| **Web API Applications** | [Web API Migration Guide](xref:migration/webapi) | REST APIs and service endpoints |
+| **Web Forms Applications** | [Web Forms Migration Guide](xref:migration/web_forms) | Legacy Web Forms applications |
 
-## Migrating User Secrets from ASP.NET Framework to ASP.NET Core
+## Migration tools and resources
 
-See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/27611).
+### Automated assistance
+- **[.NET Upgrade Assistant](https://dotnet.microsoft.com/platform/upgrade-assistant)** - Command-line tool for initial project conversion
+- **[Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant)** - GUI-based upgrade assistance
 
-<!-- remove these comments when the following overview topic is updated
-## Additional resources
+### Comprehensive guides
+- **[Porting ASP.NET Apps eBook](https://aka.ms/aspnet-porting-ebook)** - Complete reference guide
+- **[eShop Migration Example](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop)** - Real-world case study
 
-- [Overview of porting from .NET Framework to .NET](/dotnet/core/porting/libraries)
--->
+## Key benefits of ASP.NET Core
+
+Understanding these advantages will help justify your migration effort:
+
+- **Performance**: Up to 10x faster than ASP.NET Framework
+- **Cross-platform**: Deploy on Windows, Linux, or macOS
+- **Modern features**: Built-in dependency injection, configuration, and logging
+- **Cloud-ready**: Optimized for containers and microservices
+- **Future-proof**: Regular updates and long-term support
+
+## Important technical differences
+
+Before you begin, review the [technical differences between ASP.NET Framework and ASP.NET Core](xref:migration/proper-to-2x/technical-differences) to understand key changes that may affect your migration.
+
+## What's next?
+
+1. **[Review incremental migration](xref:migration/inc/overview)** - Recommended for most teams
+2. **Choose your application-specific guide** from the table above
+3. **Bookmark the [migration hub](.)** for ongoing reference
+
 :::moniker-end
-
-[!INCLUDE[](~/migration/proper-to-2x/includes/index5.md)]
