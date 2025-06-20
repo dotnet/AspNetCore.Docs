@@ -195,7 +195,7 @@ The solution is to get the options objects with the actual options values in you
 
 ## Incremental IHttpModule migration
 
-[Modules](xref:migration/fx-to-core/areas/http-modules) are types that implement <xref:System.Web.IHttpModule> and are used in ASP.NET Framework to hook into the request pipeline at various events. In an ASP.NET Core application, these should ideally be migrated to middleware. However, there are times when this cannot be done. In order to support migration scenarios in which modules are required and cannot be moved to middleware, System.Web adapters support adding them to ASP.NET Core.
+There are times when converting modules to middleware cannot easily be done. In order to support migration scenarios in which modules are required and cannot be moved to middleware, System.Web adapters support adding them to ASP.NET Core.
 
 ### IHttpModule Example
 
