@@ -6,7 +6,7 @@ ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/9/2022
 ms.topic: article
-uid: migration/inc/session
+uid: migration/fx-to-core/inc/session
 ---
 
 # ASP.NET to ASP.NET Core incremental session state migration
@@ -31,7 +31,7 @@ A default JSON implementation is provided that is configured via the `JsonSessio
 * `RegisterKey<T>(string)` - Registers a session key to a known type. This is required in order to serialize/deserialize the session state correctly. If a key is found that there is no registration for, an error will be thrown and session will not be available.
 
 
-:::code language="csharp" source="~/migration/inc/samples/session/Program.cs" id="snippet_Serialization" :::
+:::code language="csharp" source="~/migration/fx-to-core/inc/samples/session/Program.cs" id="snippet_Serialization" :::
 
 ## Implementations
 
@@ -45,5 +45,5 @@ Below are the available implementations:
 
 | Implementation                                              | Strongly typed | Locking | Standalone |
 |-------------------------------------------------------------|----------------|---------|------------|
-| [Remote app](xref:migration/inc/remote-session)                             | ✔️             | ✔️     | ⛔        |
-| [Wrapped ASP.NET Core](xref:migration/inc/wrapped)       | ✔️             | ⛔     | ✔️        |
+| [Remote app](xref:migration/fx-to-core/inc/remote-session)                             | ✔️             | ✔️     | ⛔        |
+| [Wrapped ASP.NET Core](xref:migration/fx-to-core/inc/wrapped)       | ✔️             | ⛔     | ✔️        |

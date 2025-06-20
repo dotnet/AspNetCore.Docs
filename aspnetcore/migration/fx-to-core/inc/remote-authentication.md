@@ -6,7 +6,7 @@ ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/9/2022
 ms.topic: article
-uid: migration/inc/remote-authentication
+uid: migration/fx-to-core/inc/remote-authentication
 ---
 
 # Remote Authentication
@@ -15,21 +15,21 @@ The System.Web adapters' remote authentication feature allows an ASP.NET Core ap
 
 ## Configuration
 
-There are just a few small code changes needed to enable remote authentication in a solution that's already set up according to the [Getting Started](xref:migration/inc/overview).
+There are just a few small code changes needed to enable remote authentication in a solution that's already set up according to the [Getting Started](xref:migration/fx-to-core/inc/overview).
 
-First, follow the [remote app setup](xref:migration/inc/remote-app-setup) instructions to connect the ASP.NET Core and ASP.NET apps. Then, there are just a couple extra extension methods to call to enable remote app authentication.
+First, follow the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) instructions to connect the ASP.NET Core and ASP.NET apps. Then, there are just a couple extra extension methods to call to enable remote app authentication.
 
 ### ASP.NET app configuration
 
 The ASP.NET app needs to be configured to add the authentication endpoint. Adding the authentication endpoint is done by calling the `AddAuthenticationServer` extension method to set up the HTTP module that watches for requests to the authentication endpoint. Note that remote authentication scenarios typically want to add proxy support as well, so that any authentication related redirects correctly route to the ASP.NET Core app rather than the ASP.NET one.
 
-:::code language="csharp" source="~/migration/inc/samples/remote-authentication/AspNetApp.cs" id="snippet_SystemWebAdapterConfiguration" :::
+:::code language="csharp" source="~/migration/fx-to-core/inc/samples/remote-authentication/AspNetApp.cs" id="snippet_SystemWebAdapterConfiguration" :::
 
 ### ASP.NET Core app configuration
 
 Next, the ASP.NET Core app needs to be configured to enable the authentication handler that will authenticate users by making an HTTP request to the ASP.NET app. Again, this is done by calling `AddAuthenticationClient` when registering System.Web adapters services:
 
-:::code language="csharp" source="~/migration/inc/samples/remote-authentication/AspNetCore.cs" id="snippet_AddSystemWebAdapters" highlight="8" :::
+:::code language="csharp" source="~/migration/fx-to-core/inc/samples/remote-authentication/AspNetCore.cs" id="snippet_AddSystemWebAdapters" highlight="8" :::
 
 The boolean that is passed to the `AddAuthenticationClient` call specifies whether remote app authentication should be the default authentication scheme. Passing `true` will cause the user to be authenticated via remote app authentication for all requests, whereas passing `false` means that the user will only be authenticated with remote app authentication if the remote app scheme is specifically requested (with `[Authorize(AuthenticationSchemes = RemoteAppAuthenticationDefaults.AuthenticationScheme)]` on a controller or action method, for example). Passing false for this parameter has the advantage of only making HTTP requests to the original ASP.NET app for authentication for endpoints that require remote app authentication but has the disadvantage of requiring annotating all such endpoints to indicate that they will use remote app auth.
 
@@ -41,7 +41,7 @@ In addition to the require boolean, an optional callback may be passed to `AddAu
 
 Finally, if the ASP.NET Core app didn't previously include authentication middleware, that will need to be enabled (after routing middleware, but before authorization middleware):
 
-:::code language="csharp" source="~/migration/inc/samples/remote-authentication/AspNetCore.cs" id="snippet_UseAuthentication" :::
+:::code language="csharp" source="~/migration/fx-to-core/inc/samples/remote-authentication/AspNetCore.cs" id="snippet_UseAuthentication" :::
 
 ## Design
 

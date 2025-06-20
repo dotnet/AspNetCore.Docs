@@ -6,7 +6,7 @@ ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 2/24/2025
 ms.topic: article
-uid: migration/inc/wrapped
+uid: migration/fx-to-core/inc/wrapped
 ---
 
 # Wrapped ASP.NET Core session state
@@ -15,7 +15,7 @@ The [AddWrappedAspNetCoreSession](https://github.com/dotnet/systemweb-adapters/b
 
 Configuration for ASP.NET Core looks similar to the following:
 
-:::code language="csharp" source="~/migration/inc/samples/wrapped/Program.cs" id="snippet_WrapAspNetCoreSession" :::
+:::code language="csharp" source="~/migration/fx-to-core/inc/samples/wrapped/Program.cs" id="snippet_WrapAspNetCoreSession" :::
 
 The framework app doesn't need any changes to enable this behavior.
 

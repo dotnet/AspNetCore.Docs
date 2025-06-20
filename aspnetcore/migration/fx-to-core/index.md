@@ -16,7 +16,7 @@ Your ASP.NET Framework application can successfully move to ASP.NET Core. The ke
 
 ### Quick decision guide
 
-**For most production applications:** Use the [**incremental migration approach**](xref:migration/inc/overview) - it's safer, faster to start, and keeps your app running in production throughout the process.
+**For most production applications:** Use the [**incremental migration approach**](xref:migration/fx-to-core/inc/overview) - it's safer, faster to start, and keeps your app running in production throughout the process.
 
 **For smaller applications or greenfield rewrites:** Consider the complete migration approach using our specialized guides.
 
@@ -29,7 +29,7 @@ Most non-trivial ASP.NET Framework applications should use incremental migration
 - **Delivers value faster** with immediate deployment of migrated components
 - **Uses proven tools** like YARP proxy and System.Web adapters
 
-**→ [Start your incremental migration](xref:migration/inc/overview)**
+**→ [Start your incremental migration](xref:migration/fx-to-core/inc/overview)**
 
 ## Application-specific migration guides
 
@@ -67,7 +67,7 @@ Before you begin, review the [technical differences between ASP.NET Framework an
 
 ## What's next?
 
-1. **[Review incremental migration](xref:migration/inc/overview)** - Recommended for most teams
+1. **[Review incremental migration](xref:migration/fx-to-core/inc/overview)** - Recommended for most teams
 2. **Choose your application-specific guide** from the table above
 
 :::moniker-end

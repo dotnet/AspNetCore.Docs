@@ -6,7 +6,7 @@ ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/9/2022
 ms.topic: article
-uid: migration/inc/adapters
+uid: migration/fx-to-core/systemweb-adapters
 ---
 
 # System.Web adapters
@@ -17,7 +17,17 @@ An important feature of the adapters is the adapters allow the library to be use
 
 Let's take a look at an example using the adapters moving from .NET Framework to ASP.NET Core.
 
+## Packages
+
+* `Microsoft.AspNetCore.SystemWebAdapters`: This package is used in supporting libraries and provide the System.Web APIs you may have taken a dependency on, such as `HttpContext` and others. This package targets .NET Standard 2.0, .NET Framework 4.5+, and .NET 5+.
+* `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`: This package only targets .NET Framework and is intended to provide services to ASP.NET Framework applications that may need to provide incremental migrations. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
+* `Microsoft.AspNetCore.SystemWebAdapters.CoreServices`: This package only targets .NET 6+ and is intended to provide services to ASP.NET Core applications to configure behavior of `System.Web` APIs as well as opting into any behaviors for incremental migration. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
+* `Microsoft.AspNetCore.SystemWebAdapters.Abstractions`: This package is a supporting package that provides abstractions for services used by both the ASP.NET Core and ASP.NET Framework application such as session state serialization.
+
+## Example
+
 ### ASP.NET Framework
+
 Consider a controller that does something such as:
 
 ```cs
@@ -65,4 +75,4 @@ Notice that since there's a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpCo
 
 ## See also
 
-* <xref:migration/inc/unit-testing>
+* <xref:migration/fx-to-core/inc/unit-testing>

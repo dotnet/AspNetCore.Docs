@@ -10,11 +10,11 @@ uid: migration/mvc
 
  :::moniker range=">= aspnetcore-7.0"
 
-This article shows how to upgrade an ASP.NET Framework MVC or Web API app to ASP.NET Core MVC using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/inc/overview) approach.
+This article shows how to upgrade an ASP.NET Framework MVC or Web API app to ASP.NET Core MVC using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/fx-to-core/inc/overview) approach.
 
 ## Upgrade using  the .NET Upgrade Assistant
 
-If your .NET Framework project has supporting libraries in the solution that are required, they should be upgraded to .NET Standard 2.0, if possible. For more information, see [Upgrade supporting libraries](/aspnet/core/migration/inc/start#upgrade-supporting-libraries).
+If your .NET Framework project has supporting libraries in the solution that are required, they should be upgraded to .NET Standard 2.0, if possible. For more information, see [Upgrade supporting libraries](/aspnet/core/migration/fx-to-core/inc/start#upgrade-supporting-libraries).
 
 1. Install the [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) Visual Studio extension.
 1. Open the ASP.NET MVC or Web API solution in Visual Studio.
@@ -29,7 +29,7 @@ If your .NET Framework project has supporting libraries in the solution that are
 
 ## Incremental update
 
-Follow the steps in [Get started with incremental ASP.NET to ASP.NET Core migration](/aspnet/core/migration/inc/start) to continue the update process.
+Follow the steps in [Get started with incremental ASP.NET to ASP.NET Core migration](/aspnet/core/migration/fx-to-core/inc/start) to continue the update process.
 
 :::moniker-end
 

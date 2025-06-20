@@ -6,14 +6,14 @@ ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/9/2022
 ms.topic: article
-uid: migration/inc/remote-app-setup
+uid: migration/fx-to-core/inc/remote-app-setup
 ---
 
 # Remote app setup
 
 In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app to be able to communicate with the original ASP.NET app.
 
-Specifically, this capability is used, currently, for [remote app authentication](xref:migration/inc/remote-authentication) and [remote session](xref:migration/inc/remote-session) features.
+Specifically, this capability is used, currently, for [remote app authentication](xref:migration/fx-to-core/inc/remote-authentication) and [remote session](xref:migration/fx-to-core/inc/remote-session) features.
 
 ## Configuration
 
@@ -69,7 +69,7 @@ In the preceding code:
 * The `AddRemoteApp` call is used to configure the remote app's URL and the shared secret API key.
 * The `RemoteAppUrl` property specifies the URL of the ASP.NET Framework app that the ASP.NET Core app communicates with. In this example, the URL is read from an existing configuration setting used by the YARP proxy that proxies requests to the ASP.NET Framework app as part of the incremental migration's *strangler fig pattern*.
 
-With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/inc/remote-authentication) or [remote session](xref:migration/inc/remote-session), as needed.
+With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/inc/remote-authentication) or [remote session](xref:migration/fx-to-core/inc/remote-session), as needed.
 
 ## Securing the remote app connection
 
