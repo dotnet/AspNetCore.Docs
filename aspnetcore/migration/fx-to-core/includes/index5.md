@@ -36,23 +36,23 @@ The `.csproj` file format has been simplified in ASP.NET Core. Some notable chan
 * There are no GUID-based references to other projects, which improves file readability.
 * The file can be edited without unloading it in Visual Studio:
 
-    ![Edit CSPROJ context menu option in Visual Studio 2017](~/migration/fx-to-corex/_static/EditProjectVs2017.png)]
+    ![Edit CSPROJ context menu option in Visual Studio 2017](~/migration/fx-to-core/_static/EditProjectVs2017.png)]
 
 ## Global.asax file replacement
 
 ASP.NET Core introduced a new mechanism for bootstrapping an app. The entry point for ASP.NET applications is the *Global.asax* file. Tasks such as route configuration and filter and area registrations are handled in the *Global.asax* file.
 
-[!code-csharp[](~/migration/fx-to-corex/samples/globalasax-sample.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/globalasax-sample.cs)]
 
 This approach couples the application and the server to which it's deployed in a way that interferes with the implementation. In an effort to decouple, [OWIN](http://owin.org/) was introduced to provide a cleaner way to use multiple frameworks together. OWIN provides a pipeline to add only the modules needed. The hosting environment takes a [Startup](xref:fundamentals/startup) function to configure services and the app's request pipeline. `Startup` registers a set of middleware with the application. For each request, the application calls each of the middleware components with the head pointer of a linked list to an existing set of handlers. Each middleware component can add one or more handlers to the request handling pipeline. This is accomplished by returning a reference to the handler that's the new head of the list. Each handler is responsible for remembering and invoking the next handler in the list. With ASP.NET Core, the entry point to an application is `Startup`, and you no longer have a dependency on *Global.asax*. When using OWIN with .NET Framework, use something like the following as a pipeline:
 
-[!code-csharp[](~/migration/fx-to-corex/samples/webapi-owin.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/webapi-owin.cs)]
 
 This configures your default routes, and defaults to XmlSerialization over Json. Add other Middleware to this pipeline as needed (loading services, configuration settings, static files, etc.).
 
 ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the entry. Instead, that's done through the `Program.cs` `Main` method (similar to console applications) and `Startup` is loaded through there.
 
-[!code-csharp[](~/migration/fx-to-corex/samples/program.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/program.cs)]
 
 `Startup` must include a `Configure` method. In `Configure`, add the necessary middleware to the pipeline. In the following example (from the default web site template), extension methods configure the pipeline with support for:
 
@@ -61,7 +61,7 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 * HTTP redirection to HTTPS
 * ASP.NET Core MVC
 
-[!code-csharp[](~/migration/fx-to-corex/samples/startup.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/startup.cs)]
 
 The host and application have been decoupled, which provides the flexibility of moving to a different platform in the future.
 
@@ -72,23 +72,23 @@ The host and application have been decoupled, which provides the flexibility of 
 
 ASP.NET supports storing settings. These setting are used, for example, to support the environment to which the applications were deployed. A common practice was to store all custom key-value pairs in the `<appSettings>` section of the *Web.config* file:
 
-[!code-xml[](~/migration/fx-to-corex/samples/webconfig-sample.xml)]
+[!code-xml[](~/migration/fx-to-core/samples/webconfig-sample.xml)]
 
 Applications read these settings using the `ConfigurationManager.AppSettings` collection in the `System.Configuration` namespace:
 
-[!code-csharp[](~/migration/fx-to-corex/samples/read-webconfig.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/read-webconfig.cs)]
 
 ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping. The default file used in the project templates is `appsettings.json`:
 
-[!code-json[](~/migration/fx-to-corex/samples/appsettings-sample.json)]
+[!code-json[](~/migration/fx-to-core/samples/appsettings-sample.json)]
 
 Loading this file into an instance of `IConfiguration` inside your application is done in `Startup.cs`:
 
-[!code-csharp[](~/migration/fx-to-corex/samples/startup-builder.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/startup-builder.cs)]
 
 The app reads from `Configuration` to get the settings:
 
-[!code-csharp[](~/migration/fx-to-corex/samples/read-appsettings.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/read-appsettings.cs)]
 
 There are extensions to this approach to make the process more robust, such as using [Dependency Injection](xref:fundamentals/dependency-injection) (DI) to load a service with these values. The DI approach provides a strongly-typed set of configuration objects.
 
@@ -108,19 +108,19 @@ In ASP.NET apps, developers rely on a third-party library to implement Dependenc
 
 An example of setting up Dependency Injection with Unity is implementing `IDependencyResolver` that wraps a `UnityContainer`:
 
-[!code-csharp[](~/migration/fx-to-corex/samples/sample8.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/sample8.cs)]
 
 Create an instance of your `UnityContainer`, register your service, and set the dependency resolver of `HttpConfiguration` to the new instance of `UnityResolver` for your container:
 
-[!code-csharp[](~/migration/fx-to-corex/samples/sample9.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/sample9.cs)]
 
 Inject `IProductRepository` where needed:
 
-[!code-csharp[](~/migration/fx-to-corex/samples/sample5.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/sample5.cs)]
 
 Because Dependency Injection is part of ASP.NET Core, you can add your service in the `ConfigureServices` method of `Startup.cs`:
 
-[!code-csharp[](~/migration/fx-to-corex/samples/configure-services.cs)]
+[!code-csharp[](~/migration/fx-to-core/samples/configure-services.cs)]
 
 The repository can be injected anywhere, as was true with Unity.
 
@@ -135,7 +135,7 @@ In ASP.NET, static files are stored in various directories and referenced in the
 
 In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt;/wwwroot*), unless configured otherwise. The files are loaded into the request pipeline by invoking the `UseStaticFiles` extension method from `Startup.Configure`:
 
-[!code-csharp[](~/migration/fx-to-corex/samples/globalasax-sample.cs?highlight=3&name=snippet_ConfigureMethod)]
+[!code-csharp[](~/migration/fx-to-core/samples/globalasax-sample.cs?highlight=3&name=snippet_ConfigureMethod)]
 
 > [!NOTE]
 > If targeting .NET Framework, install the NuGet package `Microsoft.AspNetCore.StaticFiles`.

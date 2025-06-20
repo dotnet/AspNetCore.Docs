@@ -2128,7 +2128,7 @@ items:
             - name: Blazor support with YARP
               uid: migration/inc/blazor
           - name: Technical differences
-            uid: migration/fx-to-corex/technical-differences
+            uid: migration/fx-to-core/technical-differences
           - name: MVC and Web API
             uid: migration/mvc
           - name: Web Forms
@@ -2142,9 +2142,13 @@ items:
           - name: ClaimsPrincipal.Current
             uid: migration/claimsprincipal-current
           - name: Membership to Identity
-            uid: migration/fx-to-corex/membership-to-core-identity
-          - name: HTTP modules to middleware
-            uid: migration/http-modules
+            uid: migration/fx-to-core/membership-to-core-identity
+          - name: Technology Areas
+            items:
+            - name: Overview            
+              uid: migration/fx-to-core/areas
+            - name: HTTP modules
+              uid: migration/fx-to-core/areas/http-modules
   - name: API reference
     href: /dotnet/api/
   - name: Contribute

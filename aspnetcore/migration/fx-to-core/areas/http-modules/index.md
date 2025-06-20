@@ -4,7 +4,7 @@ description: Migrate HTTP handlers and modules to ASP.NET Core middleware
 author: rick-anderson
 ms.author: riande
 ms.date: 3/22/2024
-uid: migration/http-modules
+uid: migration/fx-to-core/http-modules
 ---
 # Migrate HTTP handlers and modules to ASP.NET Core middleware
 

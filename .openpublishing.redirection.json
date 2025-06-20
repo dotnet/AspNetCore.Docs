@@ -962,7 +962,7 @@
         },
         {
             "source_path": "aspnetcore/migration/index.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-corex/",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/",
             "redirect_document_id": false
         },
         {
