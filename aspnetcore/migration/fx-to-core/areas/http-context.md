@@ -1,14 +1,14 @@
 ---
-title: Migrate from ASP.NET Framework HttpContext to ASP.NET Core
-description: Learn how to migrate from ASP.NET Framework HttpContext to ASP.NET Core HttpContext
+title: Migrate from System.Web.HttpContext to Micrsoft.AspNetCore.Http.HttpContext
+description: Learn how to migrate from System.Web.HttpContext to Micrsoft.AspNetCore.Http.HttpContext
 author: twsouthwick
 ms.author: tasou
 ms.date: 6/20/2025
-uid: migration/fx-to-core/areas/httpcontext
+uid: migration/fx-to-core/areas/http-context
 ---
-# Migrate from ASP.NET Framework HttpContext to ASP.NET Core
+# Migrate from System.Web.HttpContext to Micrsoft.AspNetCore.Http.HttpContext
 
-This article shows how to translate the most commonly used properties of <xref:System.Web.HttpContext?displayProperty=fullName> to the new `Microsoft.AspNetCore.Http.HttpContext` in ASP.NET Core.
+This article shows how to translate the most commonly used properties of <xref:System.Web.HttpContext?displayProperty=fullName> to the equivalent <xref:Microsoft.AspNetCore.Http.HttpContext?displayProperty=fullName> in ASP.NET Core.
 
 ## Overview
 
