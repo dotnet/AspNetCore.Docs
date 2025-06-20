@@ -17,7 +17,7 @@ namespace WebApplication88
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(sharedOptions =>
@@ -64,6 +64,6 @@ namespace WebApplication88
                 endpoints.MapRazorPages();
             });
         }
-        #endregion
+        // </snippet>
     }
 }
