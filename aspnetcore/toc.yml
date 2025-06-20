@@ -2139,14 +2139,16 @@ items:
             uid: migration/identity
           - name: ClaimsPrincipal.Current
             uid: migration/claimsprincipal-current
-          - name: Membership to Identity
-            uid: migration/fx-to-core/membership-to-core-identity
           - name: Technology Areas
             items:
             - name: Overview            
               uid: migration/fx-to-core/areas
+            - name: MVC
+              uid: migration/fx-to-core/areas/mvc/mvc2
             - name: HTTP modules
               uid: migration/fx-to-core/areas/http-modules
+            - name: Membership
+              uid: migration/fx-to-core/areas/membership
   - name: API reference
     href: /dotnet/api/
   - name: Contribute

@@ -378,7 +378,6 @@ The `SetCookies` callback method would look like the following:
 
 ## Additional resources
 
-* [Incremental HTTP module migration](inc/http-modules.md)
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
 * [Configuration](xref:fundamentals/configuration/index)
 * [Application Startup](xref:fundamentals/startup)

@@ -5,7 +5,7 @@ description: Receive guidance for migrating existing ASP.NET MVC or Web API appl
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 10/24/2018
-uid: migration/mvc2
+uid: migration/fx-to-core/areas/mvc/mvc2
 ---
 # Migrate from ASP.NET to ASP.NET Core 2.0
 
