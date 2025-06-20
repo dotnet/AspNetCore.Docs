@@ -26,7 +26,7 @@ For ASP.NET Framework Web Forms apps, see <xref:migration/web_forms>.
 
 If you have supporting libraries in your solution that you will need to use, they should be upgraded to .NET Standard 2.0, if possible.  [Upgrade Assistant](https://github.com/dotnet/upgrade-assistant) is a great tool for this. If libraries are unable to target .NET Standard, you can target .NET 6 or later either along with the .NET Framework target in the original project or in a new project alongside the original.
 
-The [adapters](xref:migration/fx-to-core/inc/adapters) can be used in these libraries to enable support for `System.Web.HttpContext` usage in class libraries. In order to enable `System.Web.HttpContext` usage in a library:
+The [adapters](xref:migration/fx-to-core/systemweb-adapters) can be used in these libraries to enable support for `System.Web.HttpContext` usage in class libraries. In order to enable `System.Web.HttpContext` usage in a library:
 
 1. Remove reference to `System.Web` in the project file
 1. Add the `Microsoft.AspNetCore.SystemWebAdapters` package

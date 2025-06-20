@@ -68,7 +68,7 @@ The `Microsoft.AspNetCore.SystemWebAdapters` namespace is a collection of runtim
 * `Microsoft.AspNetCore.SystemWebAdapters.CoreServices`: This package only targets .NET 6+ and is intended to provide services to ASP.NET Core applications to configure behavior of `System.Web` APIs as well as opting into any behaviors for incremental migration. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
 * `Microsoft.AspNetCore.SystemWebAdapters.Abstractions`: This package is a supporting package that provides abstractions for services used by both the ASP.NET Core and ASP.NET Framework application such as session state serialization.
 
-For examples of scenarios where this is useful, see [the adapters article](xref:migration/fx-to-core/inc/adapters).
+For examples of scenarios where this is useful, see [the adapters article](xref:migration/fx-to-core/systemweb-adapters).
 
 For guidance around usage, see the [usage guidance article](xref:migration/fx-to-core/inc/usage_guidance).
 
