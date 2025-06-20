@@ -9,10 +9,10 @@ uid: log-mon/metrics/built-in
 ---
 # ASP.NET Core built-in metrics
 
-This article describes the metrics built-in for ASP.NET Core produced using the
+This article describes the built-in metrics for ASP.NET Core produced using the
 <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. For a listing of metrics based on the older [EventCounters](/dotnet/core/diagnostics/event-counters) API, see [Available counters](/dotnet/core/diagnostics/available-counters).
 
-For information about how to collect, report, enrich, and test ASP.NET Core metrics, see <xref:log-mon/metrics/metrics>.
+For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:log-mon/metrics/metrics>.
 
 :::moniker range=">= aspnetcore-10.0"
 
