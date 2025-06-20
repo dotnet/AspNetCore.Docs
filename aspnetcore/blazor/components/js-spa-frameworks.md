@@ -378,8 +378,6 @@ The following `Counter` component uses an `IncrementAmount` parameter to set the
 `Counter.razor`:
 
 ```razor
-@page "/counter"
-
 <h1>Counter</h1>
 
 <p role="status">Current count: @currentCount</p>
