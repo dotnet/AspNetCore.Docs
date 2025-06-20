@@ -25,7 +25,7 @@ These deep dive guides address areas where:
 
 The following guides provide comprehensive coverage of the most challenging migration scenarios:
 
-### [HTTP Modules and Handlers Migration](areas/http-modules/http-modules.md)
+### [HTTP Modules and Handlers Migration](http-modules/http-modules.md)
 
 HTTP modules and handlers represent one of the most complex migration scenarios due to fundamental differences in request processing architecture.
 
