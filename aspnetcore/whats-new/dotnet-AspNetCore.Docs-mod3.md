@@ -95,7 +95,7 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
 
 ### New articles
 
-* <xref:migration/fx-to-core/areas/http-modules>
+* <xref:migration/inc/http-modules>
 
 ### Updated articles
 
@@ -103,7 +103,7 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
   * Add coverage on antiforgery services and middleware
   * Control <head> content and migration updates
   * Blazor Server script fallback policy authorization
-* <xref:migration/fx-to-core/areas/http-modules>
+* <xref:migration/inc/http-modules>
   * move snippets to code sample
   * Add doc for incrementally migration IHttpModule implementations
 
