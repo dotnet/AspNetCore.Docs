@@ -11,69 +11,281 @@ uid: migration/inc/overview
 
 <!-- see mermaid.txt to change diagrams -->
 
-# Incremental ASP.NET to ASP.NET Core update
+---
+title: Incremental ASP.NET Framework to ASP.NET Core migration
+description: Migrate ASP.NET Framework applications to ASP.NET Core gradually while maintaining production availability using YARP proxy and System.Web adapters.
+author: rick-anderson
+ms.author: riande
+monikerRange: '>= aspnetcore-6.0'
+ms.date: 6/20/2025
+ms.topic: article
+uid: migration/inc/overview
+---
 
-Updating an app from ASP.NET Framework to ASP.NET Core is non-trivial for the majority of production apps. These apps often incorporate new technologies as they become available and are often composed of many legacy decisions. This article provides guidance and links to tools for updating ASP.NET Framework apps to ASP.NET Core with as little change as possible.
+<!-- see mermaid.txt to change diagrams -->
 
-One of the larger challenges is the pervasive use of <xref:System.Web.HttpContext> throughout a code base. Without the incremental approach and tools, a large scale rewrite is required to remove the <xref:System.Web.HttpContext> dependency. The adapters in [dotnet/systemweb-adapters](https://github.com/dotnet/systemweb-adapters) provide a set of runtime helpers to access the types used in the ASP.NET Framework app in a way that works in ASP.NET Core with minimal changes.
+# Incremental ASP.NET Framework to ASP.NET Core migration
 
-A complete migration may take considerable effort depending on the size of the app, dependencies, and non-portable APIs used. In order to keep deploying an app to production while working on updating, the best pattern is to follow is the [Strangler Fig pattern](/azure/architecture/patterns/strangler-fig). The *Strangler Fig pattern* allows for continual development on the old system with an incremental approach to replacing specific pieces of functionality with new services. This document describes how to apply the Strangler Fig pattern to an ASP.NET app updating towards ASP.NET Core.
+Incremental migration enables you to modernize ASP.NET Framework applications systematically while maintaining production availability. This approach minimizes business disruption and reduces migration risk by updating functionality piece by piece rather than requiring a complete rewrite.
 
-If you'd like to skip this overview article and get started, see [Get started](xref:migration/inc/start).
+## Business case for incremental migration
 
-## App migration to ASP.NET Core
+### When incremental migration delivers maximum value
 
-Before starting the migration, the app targets ASP.NET Framework and runs on Windows with its supporting libraries:
+**Production-critical applications**: Maintain business continuity during migration without extended downtime windows.
 
-![Before starting the migration](~/migration/inc/overview/static/1.png)
+**Complex business logic**: Preserve existing functionality while gradually adopting ASP.NET Core patterns and capabilities.
 
-Migration starts by introducing a new app based on ASP.NET Core that becomes the entry point. Incoming requests go to the ASP.NET Core app, which either handles the request or proxies the request to the .NET Framework app via [YARP](https://dotnet.github.io/yarp/). At first, the majority of code providing responses is in the .NET Framework app, but the ASP.NET Core app is now set up to start migrating routes:
+**Team learning curve**: Allow development teams to master ASP.NET Core incrementally rather than requiring comprehensive knowledge upfront.
 
-![start updating routes](~/migration/inc/overview/static/nop.png)
+**Risk mitigation**: Reduce deployment risk through gradual rollout with immediate rollback capability.
 
-To migrate business logic that relies on `HttpContext`, the libraries need to be built with `Microsoft.AspNetCore.SystemWebAdapters`. Building the libraries with `SystemWebAdapters` allows:
+## How incremental migration works
 
-* The libraries to be built against .NET Framework, .NET Core, or .NET Standard 2.0.
-* Ensures that the libraries are using APIs that are available on both ASP.NET Framework and ASP.NET Core.
+Incremental migration follows the [Strangler Fig pattern](/azure/architecture/patterns/strangler-fig), gradually replacing legacy functionality with modern implementations. This approach enables continuous deployment and immediate benefits realization.
 
-![Microsoft.AspNetCore.SystemWebAdapters](~/migration/inc/overview/static/sys_adapt.png)
+### Migration architecture overview
 
-Once the ASP.NET Core app using YARP is set up, you can start updating routes from ASP.NET Framework to ASP.NET Core. For example, WebAPI or MVC controller action methods,handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
+The migration process transforms your application architecture through four distinct phases:
 
-During the migration process, additional services and infrastructure are identified that must be updated to run on .NET Core. Options listed in order of maintainability include:
+**Phase 1: Establish proxy foundation**
+Create an ASP.NET Core application that serves as the entry point for all requests. Initially, this application proxies all traffic to your existing ASP.NET Framework application through [YARP](https://dotnet.github.io/yarp/).
 
-1. Move the code to shared libraries
-1. Link the code in the new project
-1. Duplicate the code
+![Initial proxy setup](~/migration/inc/overview/static/nop.png)
 
-Eventually, the ASP.NET Core app handles more of the routes than the .NET Framework app:
+**Phase 2: Enable code sharing**
+Upgrade supporting libraries to use `Microsoft.AspNetCore.SystemWebAdapters`, enabling seamless operation across both ASP.NET Framework and ASP.NET Core environments.
 
-![the ASP.NET Core app handles more of the routes](~/migration/inc/overview/static/sys_adapt.png)
+![System.Web adapters integration](~/migration/inc/overview/static/sys_adapt.png)
 
-Once the ASP.NET Framework app is no longer needed and deleted:
+**Phase 3: Migrate functionality incrementally**
+Transfer routes, controllers, and business logic from Framework to Core applications systematically. The ASP.NET Core application handles migrated functionality while proxying remaining requests to the Framework application.
 
-* The app is running on the ASP.NET Core app stack, but is still using the adapters.
-* The remaining migration work is removing the use of adapters.
+**Phase 4: Complete modernization**
+Remove the ASP.NET Framework application once all functionality migrates to ASP.NET Core. Gradually eliminate adapter dependencies to fully leverage ASP.NET Core capabilities.
 
-![final pic](~/migration/inc/overview/static/final.png)
+![Completed migration](~/migration/inc/overview/static/final.png)
 
-The Visual Studio extension [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) can help upgrade ASP.NET Framework web apps to ASP.NET Core. For more information see the blog post [Upgrading your .NET projects with Visual Studio](https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/).
+## Core migration components
 
-## System.Web Adapters
+### YARP (Yet Another Reverse Proxy)
 
-The `Microsoft.AspNetCore.SystemWebAdapters` namespace is a collection of runtime helpers that facilitate using code written against `System.Web` while moving to ASP.NET Core. There are a few packages that may be used to use features from these adapters:
+[YARP](https://dotnet.github.io/yarp/) provides intelligent request routing between ASP.NET Core and ASP.NET Framework applications. This enables seamless user experience during migration while maintaining production performance.
 
-* `Microsoft.AspNetCore.SystemWebAdapters`: This package is used in supporting libraries and provide the System.Web APIs you may have taken a dependency on, such as `HttpContext` and others. This package targets .NET Standard 2.0, .NET Framework 4.5+, and .NET 5+.
-* `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`: This package only targets .NET Framework and is intended to provide services to ASP.NET Framework applications that may need to provide incremental migrations. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
-* `Microsoft.AspNetCore.SystemWebAdapters.CoreServices`: This package only targets .NET 6+ and is intended to provide services to ASP.NET Core applications to configure behavior of `System.Web` APIs as well as opting into any behaviors for incremental migration. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
-* `Microsoft.AspNetCore.SystemWebAdapters.Abstractions`: This package is a supporting package that provides abstractions for services used by both the ASP.NET Core and ASP.NET Framework application such as session state serialization.
+**Key capabilities:**
+- Load balancing between Framework and Core applications
+- Header forwarding for authentication continuity
+- Health check integration for reliability
+- Performance monitoring and logging
 
-For examples of scenarios where this is useful, see [the adapters article](xref:migration/inc/adapters).
+### System.Web Adapters
 
-For guidance around usage, see the [usage guidance article](xref:migration/inc/usage_guidance).
+The `Microsoft.AspNetCore.SystemWebAdapters` package collection provides compatibility APIs that enable `System.Web`-dependent code to function in ASP.NET Core with minimal modification.
 
-## Additional Resources
+#### Package components
 
-* [Example migration of eShop to ASP.NET Core](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop)
-* [Video:Tooling for Incremental ASP.NET Core Migrations](https://www.youtube.com/watch?v=P96l0pDNVpM)
-* <xref:migration/inc/unit-testing>
+**Microsoft.AspNetCore.SystemWebAdapters**
+Core compatibility layer for shared libraries. Targets .NET Standard 2.0, .NET Framework 4.5+, and .NET 5+ for maximum compatibility across migration phases.
+
+**Microsoft.AspNetCore.SystemWebAdapters.CoreServices**
+ASP.NET Core-specific services for configuring `System.Web` API behavior and migration features. Targets .NET 6+ applications.
+
+**Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices**
+ASP.NET Framework-specific services for incremental migration support. Enables Framework applications to participate in shared authentication and session state.
+
+**Microsoft.AspNetCore.SystemWebAdapters.Abstractions**
+Shared abstractions for services used by both Framework and Core applications, including session state serialization interfaces.
+
+## Migration strategy by application type
+
+### ASP.NET MVC and Web API applications
+
+MVC and Web API applications typically achieve excellent results with incremental migration:
+
+**Migration advantages:**
+- Controller-by-controller migration with immediate testing
+- Preserve existing routing and URL structures
+- Maintain dependency injection patterns during transition
+- Share authentication and authorization across applications
+
+**Optimal migration sequence:**
+1. Simple controllers with minimal dependencies
+2. Complex business logic controllers
+3. Authentication and authorization components
+4. Custom filters and middleware components
+
+**Get started:** [MVC/Web API incremental migration](xref:migration/inc/start)
+
+### ASP.NET Web Forms applications
+
+Web Forms applications benefit from incremental migration when:
+
+**Business logic preservation**: Complex code-behind logic requires gradual extraction and modernization rather than complete rewrite.
+
+**User control migration**: Custom user controls can be migrated systematically to Razor components or partial views.
+
+**Authentication integration**: Existing authentication providers and user management systems require continuity during transition.
+
+**Get started:** [Web Forms incremental migration](xref:migration/web_forms)
+
+## Critical migration scenarios
+
+### Shared authentication and authorization
+
+> [!IMPORTANT]
+> **Business continuity benefit**: Users maintain authentication state when navigating between migrated and non-migrated application areas, eliminating re-authentication requirements and preserving user experience.
+
+**Implementation approach:**
+- Configure authentication sharing between Framework and Core applications
+- Maintain existing authentication providers during migration
+- Gradually migrate authentication logic while preserving user sessions
+
+[Detailed authentication migration guide](xref:migration/inc/remote-authentication)
+
+### Session state management
+
+> [!IMPORTANT]
+> **Data continuity benefit**: Session data persists across Framework and Core applications, enabling gradual migration of session-dependent features without user impact.
+
+**Implementation approach:**
+- Configure session state sharing between applications
+- Serialize complex session objects for cross-platform compatibility
+- Gradually migrate session-dependent functionality
+
+[Comprehensive session state migration guide](xref:migration/inc/session)
+
+### HTTP modules and handlers
+
+> [!IMPORTANT]
+> **Functionality preservation benefit**: Continue using existing security modules, logging components, and request processing logic while gradually adopting ASP.NET Core middleware patterns.
+
+**Implementation approach:**
+- Maintain existing HTTP modules during initial migration phases
+- Gradually convert modules to ASP.NET Core middleware
+- Preserve security and auditing functionality throughout migration
+
+[HTTP modules migration guide](xref:migration/inc/http-modules)
+
+## Migration planning and execution
+
+### Assessment phase
+
+**Application complexity evaluation:**
+- Identify `System.Web` dependencies and usage patterns
+- Catalog custom HTTP modules and handlers
+- Assess authentication and session state requirements
+- Evaluate third-party component compatibility
+
+**Business impact analysis:**
+- Determine acceptable downtime windows
+- Identify critical functionality that cannot be interrupted
+- Assess team ASP.NET Core expertise and training needs
+- Plan testing and validation strategies
+
+### Implementation phases
+
+#### Foundation establishment (Weeks 1-2)
+- [ ] Create ASP.NET Core proxy application
+- [ ] Configure YARP for request routing
+- [ ] Implement System.Web adapters
+- [ ] Validate proxy functionality with existing application
+
+#### Infrastructure migration (Weeks 3-6)
+- [ ] Upgrade supporting libraries to .NET Standard 2.0
+- [ ] Configure shared authentication between applications
+- [ ] Implement shared session state management
+- [ ] Migrate critical HTTP modules if required
+
+#### Incremental functionality migration (Weeks 7-20)
+- [ ] Begin with simple routes and controllers
+- [ ] Progress to complex business logic components
+- [ ] Migrate authentication and authorization features
+- [ ] Complete all application functionality migration
+
+#### Optimization and modernization (Weeks 21-24)
+- [ ] Remove ASP.NET Framework application
+- [ ] Eliminate System.Web adapter dependencies
+- [ ] Optimize ASP.NET Core-specific features
+- [ ] Implement performance improvements
+
+### Success metrics and monitoring
+
+**Migration progress indicators:**
+- Percentage of routes handled by ASP.NET Core application
+- Performance metrics for both Framework and Core components
+- Error rates and user experience impact
+- Team productivity and learning curve progress
+
+**Quality assurance metrics:**
+- Test coverage for migrated functionality
+- User acceptance testing results
+- Performance benchmarking comparisons
+- Security audit compliance
+
+## Risk management and mitigation
+
+### Technical risk factors
+
+**Performance impact**: Monitor proxy overhead and optimize routing configuration for production workloads.
+
+**Compatibility issues**: Test adapter functionality thoroughly with existing dependencies and third-party components.
+
+**Data consistency**: Validate session state and authentication sharing across application boundaries.
+
+### Business risk mitigation
+
+**Rollback capability**: Maintain ability to route traffic back to Framework application if issues arise during migration.
+
+**Incremental validation**: Test each migrated component thoroughly before proceeding to the next migration phase.
+
+**User communication**: Plan communication strategy for any temporary functionality changes or performance impacts.
+
+## Implementation best practices
+
+### Technical excellence
+- Start with simple functionality and progress to complex components systematically
+- Maintain comprehensive automated testing throughout migration process
+- Use adapters strategically for initial migration, then eliminate them for optimal performance
+- Monitor application performance and user experience continuously
+
+### Project management
+- Establish clear migration phases with defined success criteria
+- Maintain regular stakeholder communication about progress and any issues
+- Plan for team training and knowledge transfer throughout the process
+- Document migration decisions and architectural changes for future reference
+
+## Expected outcomes and benefits
+
+### Immediate benefits
+- **Production continuity**: Maintain business operations throughout migration process
+- **Risk reduction**: Minimize deployment risk through gradual rollout approach
+- **Team development**: Build ASP.NET Core expertise incrementally rather than requiring complete knowledge upfront
+
+### Long-term value
+- **Modern platform capabilities**: Access to cross-platform deployment, improved performance, and latest development features
+- **Reduced technical debt**: Systematic modernization of legacy code patterns and dependencies
+- **Enhanced maintainability**: Improved code organization and modern development practices
+
+## Getting started
+
+Ready to begin your incremental migration? Choose your technology-specific starting point:
+
+**For MVC and Web API applications:**
+[MVC/Web API incremental migration setup](xref:migration/inc/start)
+
+**For Web Forms applications:**
+[Web Forms incremental migration setup](xref:migration/web_forms)
+
+**For detailed migration planning:**
+[Comprehensive migration planning guide](xref:migration/inc/start)
+
+## Additional resources
+
+### Migration examples and case studies
+- [eShop migration case study](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop): Complete enterprise application migration example
+- [Incremental migration video guide](https://www.youtube.com/watch?v=P96l0pDNVpM): Visual walkthrough of migration process
+
+### Advanced migration topics
+- [A/B testing during migration](xref:migration/inc/ab-testing): Test migrated functionality gradually
+- [Unit testing migration strategies](xref:migration/inc/unit-testing): Maintain test coverage throughout migration
+- [Migration usage guidance](xref:migration/inc/usage_guidance): Best practices and common pitfalls
