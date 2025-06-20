@@ -163,7 +163,7 @@ The `Invoke` method in your middleware takes a parameter of type `HttpContext`:
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext` has significantly changed in ASP.NET Core. For detailed information on how to translate the most commonly used properties of `System.Web.HttpContext` to the new `Microsoft.AspNetCore.Http.HttpContext`, see [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](httpcontext.md).
+`HttpContext` has significantly changed in ASP.NET Core. For detailed information on how to translate the most commonly used properties of `System.Web.HttpContext` to the new `Microsoft.AspNetCore.Http.HttpContext`, see [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](http-context.md).
 
 ## Additional resources
 
@@ -171,4 +171,4 @@ public async Task Invoke(HttpContext context)
 * [Configuration](xref:fundamentals/configuration/index)
 * [Application Startup](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)
-* [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](httpcontext.md)
+* [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](http-context.md)

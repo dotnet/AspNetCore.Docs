@@ -103,7 +103,7 @@ A middleware handles this by not calling `Invoke` on the next middleware in the 
 
 [!code-csharp[](./sample/Asp.Net.Core/Middleware/MyTerminatingMiddleware.cs?highlight=7,8&name=snippet_Terminate)]
 
-When you migrate your module's functionality to your new middleware, you may find that your code doesn't compile because the `HttpContext` class has significantly changed in ASP.NET Core. See [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](httpcontext.md) to learn how to migrate to the new ASP.NET Core HttpContext.
+When you migrate your module's functionality to your new middleware, you may find that your code doesn't compile because the `HttpContext` class has significantly changed in ASP.NET Core. See [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](http-context.md) to learn how to migrate to the new ASP.NET Core HttpContext.
 
 ## Migrating module insertion into the request pipeline
 
@@ -199,4 +199,4 @@ The solution is to get the options objects with the actual options values in you
 * [Configuration](xref:fundamentals/configuration/index)
 * [Application Startup](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)
-* [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](httpcontext.md)
+* [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](http-context.md)

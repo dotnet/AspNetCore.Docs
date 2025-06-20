@@ -25,7 +25,7 @@ These deep dive guides address areas where:
 
 The following guides provide comprehensive coverage of the most challenging migration scenarios:
 
-### [HTTP Modules and Handlers Migration](http-modules/)
+### [HTTP Modules and Handlers Migration](areas/http-modules/)
 
 HTTP modules and handlers represent one of the most complex migration scenarios due to fundamental differences in request processing architecture.
 
@@ -38,7 +38,7 @@ HTTP modules and handlers represent one of the most complex migration scenarios 
 **What you'll learn:**
 * [Migrating HTTP Modules](http-modules/http-modules.md) - Convert IHttpModule implementations to middleware
 * [Migrating HTTP Handlers](http-modules/http-handlers.md) - Transform IHttpHandler logic for ASP.NET Core
-* [HttpContext Migration](http-modules/httpcontext.md) - Adapt to the new HttpContext API surface
+* [HttpContext Migration](http-modules/http-context.md) - Adapt to the new HttpContext API surface
 
 ### Authentication and Authorization Patterns
 
@@ -84,14 +84,7 @@ When tackling complex migration scenarios:
 
 For complex migration scenarios not covered in these guides:
 
-* Review the [ASP.NET Core migration overview](xref:migration/index)
+* Review the [ASP.NET Core migration overview](xref:migration/fx-to-core/index)
 * Consult the [ASP.NET Core fundamentals documentation](xref:fundamentals/index)
 * Engage with the community through [GitHub discussions](https://github.com/dotnet/aspnetcore/discussions)
 * Consider professional migration services for mission-critical applications
-
-## Additional resources
-
-* [ASP.NET Core Migration Overview](xref:migration/index)
-* [ASP.NET Core Fundamentals](xref:fundamentals/index)
-* [Breaking Changes Documentation](xref:migration/breaking-changes)
-* [Migration Tools and Utilities](xref:migration/tools)
