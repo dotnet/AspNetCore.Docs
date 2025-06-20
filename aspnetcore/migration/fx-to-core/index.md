@@ -4,7 +4,7 @@ author: isaacrlevin
 description: Your complete guide to migrating ASP.NET Framework applications to ASP.NET Core, with practical approaches and step-by-step guidance.
 ms.author: riande
 ms.date: 06/20/2025
-uid: migration/proper-to-2x/index
+uid: migration/fx-to-corex/index
 ---
 # Migrate from ASP.NET Framework to ASP.NET Core
 
@@ -63,7 +63,7 @@ Understanding these advantages will help justify your migration effort:
 
 ## Important technical differences
 
-Before you begin, review the [technical differences between ASP.NET Framework and ASP.NET Core](xref:migration/proper-to-2x/technical-differences) to understand key changes that may affect your migration.
+Before you begin, review the [technical differences between ASP.NET Framework and ASP.NET Core](xref:migration/fx-to-corex/technical-differences) to understand key changes that may affect your migration.
 
 ## What's next?
 

@@ -2097,7 +2097,7 @@ items:
         displayName: migrate, migration
         items:
           - name: Overview
-            uid: migration/proper-to-2x/index
+            uid: migration/fx-to-core/index
           - name: Incremental migration
             displayName: migrate, migration
             items:
@@ -2128,7 +2128,7 @@ items:
             - name: Blazor support with YARP
               uid: migration/inc/blazor
           - name: Technical differences
-            uid: migration/proper-to-2x/technical-differences
+            uid: migration/fx-to-corex/technical-differences
           - name: MVC and Web API
             uid: migration/mvc
           - name: Web Forms
@@ -2142,7 +2142,7 @@ items:
           - name: ClaimsPrincipal.Current
             uid: migration/claimsprincipal-current
           - name: Membership to Identity
-            uid: migration/proper-to-2x/membership-to-core-identity
+            uid: migration/fx-to-corex/membership-to-core-identity
           - name: HTTP modules to middleware
             uid: migration/http-modules
   - name: API reference

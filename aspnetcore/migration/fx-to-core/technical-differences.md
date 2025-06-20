@@ -4,7 +4,7 @@ author: tasou
 description: Important technical differences to understand when migrating from ASP.NET Framework to ASP.NET Core.
 ms.author: twsouthwick
 ms.date: 06/20/2025
-uid: migration/proper-to-2x/technical-differences
+uid: migration/fx-to-corex/technical-differences
 ---
 # Technical differences between ASP.NET Framework and ASP.NET Core
 
