@@ -2145,8 +2145,12 @@ items:
               uid: migration/fx-to-core/areas
             - name: MVC
               uid: migration/fx-to-core/areas/mvc/mvc2
-            - name: HTTP modules
+            - name: HttpContext
+              uid: migration/fx-to-core/areas/httpcontext
+            - name: HTTP Modules
               uid: migration/fx-to-core/areas/http-modules
+            - name: HTTP Handlers
+              uid: migration/fx-to-core/areas/http-handlers
             - name: Membership
               uid: migration/fx-to-core/areas/membership
   - name: API reference

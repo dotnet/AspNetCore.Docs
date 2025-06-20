@@ -1,28 +1,20 @@
 ---
-title: Migrate HTTP handlers and modules to ASP.NET Core middleware
-description: Migrate HTTP handlers and modules to ASP.NET Core middleware
-author: rick-anderson
-ms.author: riande
-ms.date: 3/22/2024
+title: Migrate HTTP modules to ASP.NET Core middleware
+description: Migrate HTTP modules to ASP.NET Core middleware
+author: twsouthwick
+ms.author: tasou
+ms.date: 6/20/2025
 uid: migration/fx-to-core/areas/http-modules
 ---
-# Migrate HTTP handlers and modules to ASP.NET Core middleware
+# Migrate HTTP modules to ASP.NET Core middleware
 
-This article shows how to migrate existing ASP.NET [HTTP modules and handlers from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
+This article shows how to migrate existing ASP.NET [HTTP modules from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
 
-## Modules and handlers revisited
+## Modules revisited
 
-Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules and handlers work:
+Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules work:
 
 ![Modules Handler](_static/moduleshandlers.png)
-
-**Handlers are:**
-
-* Classes that implement <xref:System.Web.IHttpHandler>
-
-* Used to handle requests with a given file name or extension, such as *.report*
-
-* [Configured](/iis/configuration/system.webserver/handlers/) in *Web.config*
 
 **Modules are:**
 
@@ -44,13 +36,13 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 In addition to modules, you can add handlers for the life cycle events to your `Global.asax.cs` file. These handlers run after the handlers in the configured modules.
 
-## From handlers and modules to middleware
+## From modules to middleware
 
-**Middleware are simpler than HTTP modules and handlers:**
+**Middleware are simpler than HTTP modules:**
 
-* Modules, handlers, `Global.asax.cs`, *Web.config* (except for IIS configuration) and the application life cycle are gone
+* Modules, `Global.asax.cs`, *Web.config* (except for IIS configuration) and the application life cycle are gone
 
-* The roles of both modules and handlers have been taken over by middleware
+* The roles of modules have been taken over by middleware
 
 * Middleware are configured using code rather than in *Web.config*
 
@@ -111,7 +103,7 @@ A middleware handles this by not calling `Invoke` on the next middleware in the 
 
 [!code-csharp[](./sample/Asp.Net.Core/Middleware/MyTerminatingMiddleware.cs?highlight=7,8&name=snippet_Terminate)]
 
-When you migrate your module's functionality to your new middleware, you may find that your code doesn't compile because the `HttpContext` class has significantly changed in ASP.NET Core. [Later on](#migrating-to-the-new-httpcontext), you'll see how to migrate to the new ASP.NET Core HttpContext.
+When you migrate your module's functionality to your new middleware, you may find that your code doesn't compile because the `HttpContext` class has significantly changed in ASP.NET Core. See [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](httpcontext.md) to learn how to migrate to the new ASP.NET Core HttpContext.
 
 ## Migrating module insertion into the request pipeline
 
@@ -129,41 +121,9 @@ As previously stated, there's no application life cycle in ASP.NET Core and the 
 
 If ordering becomes a problem, you could split your module into multiple middleware components that can be ordered independently.
 
-## Migrating handler code to middleware
-
-An HTTP handler looks something like this:
-
-[!code-csharp[](./sample/Asp.Net4/Asp.Net4/HttpHandlers/ReportHandler.cs?highlight=5,7,13,14,15,16)]
-
-In your ASP.NET Core project, you would translate this to a middleware similar to this:
-
-[!code-csharp[](./sample/Asp.Net.Core/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,40,42,44)]
-
-This middleware is very similar to the middleware corresponding to modules. The only real difference is that here there's no call to `_next.Invoke(context)`. That makes sense, because the handler is at the end of the request pipeline, so there will be no next middleware to invoke.
-
-## Migrating handler insertion into the request pipeline
-
-Configuring an HTTP handler is done in *Web.config* and looks something like this:
-
-[!code-xml[](./sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32,46-48,50,101)]
-
-You could convert this by adding your new handler middleware to the request pipeline in your `Startup` class, similar to middleware converted from modules. The problem with that approach is that it would send all requests to your new handler middleware. However, you only want requests with a given extension to reach your middleware. That would give you the same functionality you had with your HTTP handler.
-
-One solution is to branch the pipeline for requests with a given extension, using the `MapWhen` extension method. You do this in the same `Configure` method where you add the other middleware:
-
-[!code-csharp[](./sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=27-34)]
-
-`MapWhen` takes these parameters:
-
-1. A lambda that takes the `HttpContext` and returns `true` if the request should go down the branch. This means you can branch requests not just based on their extension, but also on request headers, query string parameters, etc.
-
-2. A lambda that takes an `IApplicationBuilder` and adds all the middleware for the branch. This means you can add additional middleware to the branch in front of your handler middleware.
-
-Middleware added to the pipeline before the branch will be invoked on all requests; the branch will have no impact on them.
-
 ## Loading middleware options using the options pattern
 
-Some modules and handlers have configuration options that are stored in *Web.config*. However, in ASP.NET Core a new configuration model is used in place of *Web.config*.
+Some modules have configuration options that are stored in *Web.config*. However, in ASP.NET Core a new configuration model is used in place of *Web.config*.
 
 The new [configuration system](xref:fundamentals/configuration/index) gives you these options to solve this:
 
@@ -233,152 +193,10 @@ The solution is to get the options objects with the actual options values in you
 
    Note how this wraps the options object in an `OptionsWrapper` object. This implements `IOptions`, as expected by the middleware constructor.
 
-## Migrating to the new HttpContext
-
-You saw earlier that the `Invoke` method in your middleware takes a parameter of type `HttpContext`:
-
-```csharp
-public async Task Invoke(HttpContext context)
-```
-
-`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of <xref:System.Web.HttpContext?displayProperty=fullName> to the new `Microsoft.AspNetCore.Http.HttpContext`.
-
-### HttpContext
-
-**HttpContext.Items** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Items)]
-
-**Unique request ID (no System.Web.HttpContext counterpart)**
-
-Gives you a unique id for each request. Very useful to include in your logs.
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Trace)]
-
-### HttpContext.Request
-
-**HttpContext.Request.HttpMethod** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Method)]
-
-**HttpContext.Request.QueryString** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Query)]
-
-**HttpContext.Request.Url** and **HttpContext.Request.RawUrl** translate to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Url)]
-
-**HttpContext.Request.IsSecureConnection** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Secure)]
-
-**HttpContext.Request.UserHostAddress** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
-
-**HttpContext.Request.Cookies** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
-
-**HttpContext.Request.RequestContext.RouteData** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Route)]
-
-**HttpContext.Request.Headers** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Headers)]
-
-**HttpContext.Request.UserAgent** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Agent)]
-
-**HttpContext.Request.UrlReferrer** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Referrer)]
-
-**HttpContext.Request.ContentType** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Type)]
-
-**HttpContext.Request.Form** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Form)]
-
-> [!WARNING]
-> Read form values only if the content sub type is *x-www-form-urlencoded* or *form-data*.
-
-**HttpContext.Request.InputStream** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Input)]
-
-> [!WARNING]
-> Use this code only in a handler type middleware, at the end of a pipeline.
->
->You can read the raw body as shown above only once per request. Middleware trying to read the body after the first read will read an empty body.
->
->This doesn't apply to reading a form as shown earlier, because that's done from a buffer.
-
-### HttpContext.Response
-
-**HttpContext.Response.Status** and **HttpContext.Response.StatusDescription** translate to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Status)]
-
-**HttpContext.Response.ContentEncoding** and **HttpContext.Response.ContentType** translate to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespType)]
-
-**HttpContext.Response.ContentType** on its own also translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespTypeOnly)]
-
-**HttpContext.Response.Output** translates to:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Output)]
-
-**HttpContext.Response.TransmitFile**
-
-Serving up a file is discussed in <xref:fundamentals/request-features>.
-
-**HttpContext.Response.Headers**
-
-Sending response headers is complicated by the fact that if you set them after anything has been written to the response body, they will not be sent.
-
-The solution is to set a callback method that will be called right before writing to the response starts. This is best done at the start of the `Invoke` method in your middleware. It's this callback method that sets your response headers.
-
-The following code sets a callback method called `SetHeaders`:
-
-```csharp
-public async Task Invoke(HttpContext httpContext)
-{
-    // ...
-    httpContext.Response.OnStarting(SetHeaders, state: httpContext);
-```
-
-The `SetHeaders` callback method would look like this:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)]
-
-**HttpContext.Response.Cookies**
-
-Cookies travel to the browser in a *Set-Cookie* response header. As a result, sending cookies requires the same callback as used for sending response headers:
-
-```csharp
-public async Task Invoke(HttpContext httpContext)
-{
-    // ...
-    httpContext.Response.OnStarting(SetCookies, state: httpContext);
-    httpContext.Response.OnStarting(SetHeaders, state: httpContext);
-```
-
-The `SetCookies` callback method would look like the following:
-
-[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
-
 ## Additional resources
 
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
 * [Configuration](xref:fundamentals/configuration/index)
 * [Application Startup](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)
+* [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](httpcontext.md)
