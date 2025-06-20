@@ -1,38 +1,14 @@
 ---
 title: Migrate HTTP handlers and modules to ASP.NET Core middleware
-description: Choose between incremental and full migration approaches for HTTP modules and handlers based on complexity and business requirements.
+description: Migrate HTTP handlers and modules to ASP.NET Core middleware
 author: rick-anderson
 ms.author: riande
-ms.date: 6/20/2025
+ms.date: 3/22/2024
 uid: migration/http-modules
 ---
 # Migrate HTTP handlers and modules to ASP.NET Core middleware
 
-HTTP modules and handlers require different migration strategies depending on your application's complexity and business constraints. This guide helps you choose between incremental migration using System.Web adapters and complete conversion to ASP.NET Core middleware.
-
-## Choose your migration approach
-
-### Incremental migration (recommended for complex modules)
-
-**Use incremental migration when:**
-- HTTP modules contain complex business logic that cannot be easily rewritten
-- Security modules require continuous operation during migration
-- Custom authentication or authorization modules need gradual migration
-- Existing modules integrate deeply with other application components
-
-**Key advantage**: Continue using existing HTTP modules while gradually converting to ASP.NET Core middleware patterns.
-
-**Get started**: [Incremental HTTP modules migration](xref:migration/inc/http-modules)
-
-### Complete middleware migration
-
-**Use complete migration when:**
-- HTTP modules have straightforward functionality
-- You want to leverage native ASP.NET Core middleware capabilities fully
-- Module logic can be easily converted to modern patterns
-- Performance optimization is a primary goal
-
-This guide focuses on complete migration to ASP.NET Core middleware.
+This article shows how to migrate existing ASP.NET [HTTP modules and handlers from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
 
 ## Modules and handlers revisited
 

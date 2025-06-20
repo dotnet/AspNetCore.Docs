@@ -1,97 +1,26 @@
 ---
-title: Migrate from ASP.NET Framework to ASP.NET Core
-author: rick-anderson
-description: Choose the right approach for migrating your ASP.NET Framework application to ASP.NET Core based on complexity, timeline, and business requirements.
+title: Update from ASP.NET to ASP.NET Core
+author: isaacrlevin
+description: Guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 ms.author: riande
-ms.date: 6/20/2025
+ms.date: 10/18/2019
 uid: migration/proper-to-2x/index
 ---
-# Migrate from ASP.NET Framework to ASP.NET Core
+# Upgrade from ASP.NET Framework to ASP.NET Core
 
  :::moniker range=">= aspnetcore-7.0"
 
-ASP.NET Core delivers improved performance, cross-platform capabilities, and modern development features. This guide helps you choose the most effective migration approach for your ASP.NET Framework application.
+## Why upgrade to the latest .NET
 
-## Choose your migration strategy
+ASP.NET Core is the modern web framework for .NET. While ASP.NET Core has many similarities to ASP.NET in the .NET Framework, it's a new framework that's completely rewritten. ASP.NET apps updated to ASP.NET Core can benefit from improved performance and access to the latest web development features and capabilities.
 
-Your migration success depends on selecting the right approach for your specific situation:
+## ASP.NET Framework update approaches
 
-### Incremental migration (recommended for most applications)
+Most non-trivial ASP.NET Framework apps should consider using the [incremental upgrade](/aspnet/core/migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core upgrade](/aspnet/core/migration/inc/overview).
 
-**Use incremental migration when:**
-- Your application has complex business logic or extensive `System.Web` dependencies
-- You cannot afford extended production downtime
-- Your team needs to learn ASP.NET Core while migrating
-- You want to minimize initial code changes
+For ASP.NET MVC and Web API apps, see <xref:migration/mvc>. For ASP.NET Framework Web Forms apps, see <xref:migration/web_forms>.
 
-The incremental approach uses a proxy architecture to gradually migrate functionality while maintaining production availability. Most non-trivial ASP.NET Framework applications benefit from this strategy.
-
-**Get started:** [Incremental ASP.NET to ASP.NET Core migration](xref:migration/inc/overview)
-
-### Full migration
-
-**Use full migration when:**
-- Your application has limited complexity and dependencies
-- You can allocate dedicated migration time
-- You want to modernize your architecture completely
-- You prefer a clean slate approach
-
-**Technology-specific guidance:**
-- **MVC and Web API:** [Migrate ASP.NET MVC and Web API](xref:migration/mvc)
-- **Web Forms:** [Migrate ASP.NET Web Forms](xref:migration/web_forms)
-
-## Planning your migration
-
-Before choosing an approach, assess your application's complexity and requirements:
-
-### Application assessment
-- **Business logic complexity**: Applications with extensive custom business logic benefit from incremental migration
-- **System.Web dependencies**: Heavy use of `HttpContext`, session state, or custom modules favors incremental approach
-- **Third-party integrations**: Evaluate compatibility with ASP.NET Core
-- **Team expertise**: Consider your team's ASP.NET Core experience
-
-### Timeline considerations
-- **Incremental migration**: Longer overall timeline but maintains production availability
-- **Full migration**: Shorter concentrated effort but requires dedicated migration window
-
-### Risk factors
-- **Production constraints**: Incremental migration reduces deployment risk
-- **Business continuity**: Assess impact of potential downtime
-- **Rollback strategy**: Plan for both approaches
-
-## Migration tools and resources
-
-### Assessment tools
-- [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant): Automated migration assistance
-- [.NET Portability Analyzer](/dotnet/standard/analyzers/portability-analyzer): Evaluate API compatibility
-
-### Migration examples
-- [eShop migration example](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop): Complete migration case study
-- [Incremental migration video guide](https://www.youtube.com/watch?v=P96l0pDNVpM): Visual walkthrough of incremental approach
-
-## Common migration challenges
-
-### Authentication and authorization
-Both migration approaches must handle authentication. The incremental approach allows you to share authentication between Framework and Core applications during transition.
-
-### Session state management
-Session state requires careful planning. Incremental migration can preserve session continuity across both applications.
-
-### Configuration management
-Migrate from Web.config to appsettings.json systematically. The incremental approach allows gradual configuration migration.
-
-## Success factors
-
-### Technical preparation
-- Upgrade supporting libraries to .NET Standard 2.0 when possible
-- Identify and plan for breaking changes
-- Establish testing strategies for both approaches
-
-### Team readiness
-- Provide ASP.NET Core training for development teams
-- Establish migration guidelines and coding standards
-- Plan for knowledge transfer and documentation
-
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
 
