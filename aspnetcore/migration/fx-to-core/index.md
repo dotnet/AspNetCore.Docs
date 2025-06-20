@@ -69,6 +69,5 @@ Before you begin, review the [technical differences between ASP.NET Framework an
 
 1. **[Review incremental migration](xref:migration/inc/overview)** - Recommended for most teams
 2. **Choose your application-specific guide** from the table above
-3. **Bookmark the [migration hub](.)** for ongoing reference
 
 :::moniker-end
