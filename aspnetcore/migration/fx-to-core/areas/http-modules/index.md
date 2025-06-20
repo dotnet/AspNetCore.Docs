@@ -14,7 +14,7 @@ This article shows how to migrate existing ASP.NET [HTTP modules and handlers fr
 
 Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules and handlers work:
 
-![Modules Handler](http-modules/_static/moduleshandlers.png)
+![Modules Handler](_static/moduleshandlers.png)
 
 **Handlers are:**
 
@@ -81,7 +81,7 @@ In addition to modules, you can add handlers for the life cycle events to your `
 
 * See [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder)
 
-![Authorization Middleware short-circuits a request for a user who isn't authorized. A request for the Index page is permitted and processed by MVC Middleware. A request for a sales report is permitted and processed by a custom report Middleware.](http-modules/_static/middleware.png)
+![Authorization Middleware short-circuits a request for a user who isn't authorized. A request for the Index page is permitted and processed by MVC Middleware. A request for a sales report is permitted and processed by a custom report Middleware.](_static/middleware.png)
 
 Note how in the image above, the authentication middleware short-circuited the request.
 
@@ -173,13 +173,13 @@ The new [configuration system](xref:fundamentals/configuration/index) gives you 
 
 1. Create a class to hold your middleware options, for example:
 
-   [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Options)]
+   [!code-csharp[](sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Options)]
 
 2. Store the option values
 
    The configuration system allows you to store option values anywhere you want. However, most sites use `appsettings.json`, so we'll take that approach:
 
-   [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
+   [!code-json[](sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
 
    *MyMiddlewareOptionsSection* here is a section name. It doesn't have to be the same as the name of your options class.
 
@@ -221,11 +221,11 @@ The solution is to get the options objects with the actual options values in you
 
    To add a second set of options to the `appsettings.json` file, use a new key to uniquely identify it:
 
-   [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
+   [!code-json[](sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
 2. Retrieve options values and pass them to middleware. The `Use...` extension method (which adds your middleware to the pipeline) is a logical place to pass in the option values: 
 
-   [!code-csharp[](http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=20-23)]
+   [!code-csharp[](sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=20-23)]
 
 3. Enable middleware to take an options parameter. Provide an overload of the `Use...` extension method (that takes the options parameter and passes it to `UseMiddleware`). When `UseMiddleware` is called with parameters, it passes the parameters to your middleware constructor when it instantiates the middleware object.
 
@@ -247,70 +247,70 @@ public async Task Invoke(HttpContext context)
 
 **HttpContext.Items** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Items)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Items)]
 
 **Unique request ID (no System.Web.HttpContext counterpart)**
 
 Gives you a unique id for each request. Very useful to include in your logs.
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Trace)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Trace)]
 
 ### HttpContext.Request
 
 **HttpContext.Request.HttpMethod** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Method)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Method)]
 
 **HttpContext.Request.QueryString** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Query)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Query)]
 
 **HttpContext.Request.Url** and **HttpContext.Request.RawUrl** translate to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Url)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Url)]
 
 **HttpContext.Request.IsSecureConnection** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Secure)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Secure)]
 
 **HttpContext.Request.UserHostAddress** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
 
 **HttpContext.Request.Cookies** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
 
 **HttpContext.Request.RequestContext.RouteData** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Route)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Route)]
 
 **HttpContext.Request.Headers** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Headers)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Headers)]
 
 **HttpContext.Request.UserAgent** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Agent)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Agent)]
 
 **HttpContext.Request.UrlReferrer** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Referrer)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Referrer)]
 
 **HttpContext.Request.ContentType** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Type)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Type)]
 
 **HttpContext.Request.Form** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Form)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Form)]
 
 > [!WARNING]
 > Read form values only if the content sub type is *x-www-form-urlencoded* or *form-data*.
 
 **HttpContext.Request.InputStream** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Input)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Input)]
 
 > [!WARNING]
 > Use this code only in a handler type middleware, at the end of a pipeline.
@@ -323,19 +323,19 @@ Gives you a unique id for each request. Very useful to include in your logs.
 
 **HttpContext.Response.Status** and **HttpContext.Response.StatusDescription** translate to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Status)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Status)]
 
 **HttpContext.Response.ContentEncoding** and **HttpContext.Response.ContentType** translate to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespType)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespType)]
 
 **HttpContext.Response.ContentType** on its own also translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespTypeOnly)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespTypeOnly)]
 
 **HttpContext.Response.Output** translates to:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Output)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Output)]
 
 **HttpContext.Response.TransmitFile**
 
@@ -358,7 +358,7 @@ public async Task Invoke(HttpContext httpContext)
 
 The `SetHeaders` callback method would look like this:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)]
 
 **HttpContext.Response.Cookies**
 
@@ -374,7 +374,7 @@ public async Task Invoke(HttpContext httpContext)
 
 The `SetCookies` callback method would look like the following:
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
+[!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
 
 ## Additional resources
 
