@@ -2144,7 +2144,7 @@ items:
             - name: Overview            
               uid: migration/fx-to-core/areas
             - name: MVC
-              uid: migration/fx-to-core/areas/mvc
+              uid: migration/mvc
             - name: HttpContext
               uid: migration/fx-to-core/areas/httpcontext
             - name: HTTP Modules
