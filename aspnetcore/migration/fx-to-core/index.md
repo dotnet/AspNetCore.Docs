@@ -61,9 +61,9 @@ Understanding these advantages will help justify your migration effort:
 - **Cloud-ready**: Optimized for containers and microservices
 - **Future-proof**: Regular updates and long-term support
 
-## Important technical differences
+## Changes to technology areas
 
-Before you begin, review the [technical differences between ASP.NET Framework and ASP.NET Core](xref:migration/fx-to-core/technical-differences) to understand key changes that may affect your migration.
+Before you begin, review the [technical differences between ASP.NET Framework and ASP.NET Core](xref:migration/fx-to-core/areas) to understand key changes that may affect your migration.
 
 ## What's next?
 

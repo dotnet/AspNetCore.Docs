@@ -2127,8 +2127,6 @@ items:
               uid: migration/inc/ab-testing
             - name: Blazor support with YARP
               uid: migration/inc/blazor
-          - name: Technical differences
-            uid: migration/fx-to-core/technical-differences
           - name: MVC and Web API
             uid: migration/mvc
           - name: Web Forms
