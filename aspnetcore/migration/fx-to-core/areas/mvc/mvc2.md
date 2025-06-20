@@ -72,7 +72,7 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 * ASP.NET Core MVC
 * Identity
 
-[!code-csharp[](../../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
+[!code-csharp[](../../../../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
 
 The host and application have been decoupled, which provides the flexibility of moving to a different platform in the future.
 
@@ -143,7 +143,7 @@ In ASP.NET, static files are stored in various directories and referenced in the
 
 In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt;/wwwroot*), unless configured otherwise. The files are loaded into the request pipeline by invoking the `UseStaticFiles` extension method from `Startup.Configure`:
 
-[!code-csharp[](../../fundamentals/static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
+[!code-csharp[](../../../../fundamentals/static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
 **Note:** If targeting .NET Framework, install the NuGet package `Microsoft.AspNetCore.StaticFiles`.
 
