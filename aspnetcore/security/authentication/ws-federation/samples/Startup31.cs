@@ -18,7 +18,7 @@ namespace WebApplication88
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -45,7 +45,7 @@ namespace WebApplication88
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
-        #endregion
+        // </snippet>
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
