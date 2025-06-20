@@ -2115,8 +2115,6 @@ items:
               uid: migration/inc/wrapped
             - name: Session state migration
               uid: migration/inc/session
-            - name: Module migration
-              uid: migration/inc/http-modules
             - name: Remote app session state
               uid: migration/inc/remote-session
             - name: Remote Authentication
