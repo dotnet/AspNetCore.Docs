@@ -25,7 +25,7 @@ These deep dive guides address areas where:
 
 The following guides provide comprehensive coverage of the most challenging migration scenarios:
 
-### [HTTP Modules and Handlers Migration](http-modules/http-modules.md)
+### [HTTP Modules and Handlers Migration](http-modules.md)
 
 HTTP modules and handlers represent one of the most complex migration scenarios due to fundamental differences in request processing architecture.
 
@@ -36,9 +36,9 @@ HTTP modules and handlers represent one of the most complex migration scenarios 
 * Converting Web.config-based configuration to code-based setup
 
 **What you'll learn:**
-* [Migrating HTTP Modules](http-modules/http-modules.md) - Convert IHttpModule implementations to middleware
-* [Migrating HTTP Handlers](http-modules/http-handlers.md) - Transform IHttpHandler logic for ASP.NET Core
-* [HttpContext Migration](http-modules/http-context.md) - Adapt to the new HttpContext API surface
+* [Migrating HTTP Modules](http-modules.md) - Convert IHttpModule implementations to middleware
+* [Migrating HTTP Handlers](http-handlers.md) - Transform IHttpHandler logic for ASP.NET Core
+* [HttpContext Migration](http-context.md) - Adapt to the new HttpContext API surface
 
 ### Authentication and Authorization Patterns
 

@@ -972,7 +972,7 @@
         },
         {
             "source_path": "aspnetcore/migration/http-modules.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/http-modules/",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/http-modules",
             "redirect_document_id": false
         },
         {

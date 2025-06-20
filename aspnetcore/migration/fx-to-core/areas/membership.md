@@ -21,7 +21,7 @@ This article demonstrates migrating the database schema for ASP.NET apps using M
 
 Prior to ASP.NET 2.0, developers were tasked with creating the entire authentication and authorization process for their apps. With ASP.NET 2.0, Membership was introduced, providing a boilerplate solution to handling security within ASP.NET apps. Developers were now able to bootstrap a schema into a SQL Server database with the ASP.NET SQL Server Registration Tool (`Aspnet_regsql.exe`) (no longer supported). After running this command, the following tables were created in the database.
 
-![Membership Tables](identity/_static/membership-tables.png)
+![Membership Tables](_static/identity/membership-tables.png)
 
 To migrate existing apps to ASP.NET Core 2.0 Identity, the data in these tables needs to be migrated to the tables used by the new Identity schema.
 
@@ -56,7 +56,7 @@ The fastest way to view the schema for ASP.NET Core 2.0 Identity is to create a 
 
     The `Update-Database` command created the database specified with the schema and any data needed for app initialization. The following image depicts the table structure that's created with the preceding steps.
 
-    ![Identity Tables](identity/_static/identity-tables.png)
+    ![Identity Tables](_static/identity/identity-tables.png)
 
 ## Migrate the schema
 
@@ -194,7 +194,7 @@ After completion of the preceding script, the ASP.NET Core Identity app created 
 
 In the `PageModel` of the Login Page, located at , remove the `[EmailAddress]` attribute from the *Email* property. Rename it to *UserName*. This requires a change wherever `EmailAddress` is mentioned, in the *View* and *PageModel*. The result looks like the following:
 
- ![Fixed Login](identity/_static/fixed-login.png)
+ ![Fixed Login](_static/identity/fixed-login.png)
 
 ## Next steps
 
