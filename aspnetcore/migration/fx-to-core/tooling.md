@@ -4,7 +4,7 @@ description: Learn how to upgrade ASP.NET Framework MVC, Web API, or Web Forms p
 author: rick-anderson
 ms.author: riande
 ms.date: 06/20/2025
-uid: migration/tooling
+uid: migration/fx-to-core/tooling
 ---
 # Use tooling to help migrate ASP.NET Framework to ASP.NET Core
 

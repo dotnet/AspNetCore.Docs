@@ -2125,24 +2125,12 @@ items:
               uid: migration/fx-to-core/inc/ab-testing
             - name: Blazor support with YARP
               uid: migration/fx-to-core/inc/blazor
-          - name: MVC and Web API
-            uid: migration/mvc
-          - name: Web Forms
-            uid: migration/web_forms
-          - name: Web API
-            uid: migration/webapi
-          - name: Configuration
-            uid: migration/configuration
-          - name: Authentication and Identity
-            uid: migration/identity
-          - name: ClaimsPrincipal.Current
-            uid: migration/claimsprincipal-current
+          - name: Tooling
+            uid: migration/fx-to-core
           - name: Technology Areas
             items:
             - name: Overview            
               uid: migration/fx-to-core/areas
-            - name: MVC
-              uid: migration/mvc
             - name: HttpContext
               uid: migration/fx-to-core/areas/http-context
             - name: HTTP Modules
@@ -2151,6 +2139,14 @@ items:
               uid: migration/fx-to-core/areas/http-handlers
             - name: Membership
               uid: migration/fx-to-core/areas/membership
+            - name: Web API
+              uid: migration/fx-to-core/areas/webapi
+            - name: Configuration
+              uid: migration/fx-to-core/areas/configuration
+            - name: Identity
+              uid: migration/fx-to-core/areas/identity
+            - name: ClaimsPrincipal.Current
+              uid: migration/fx-to-core/areas/claimsprincipal-current
   - name: API reference
     href: /dotnet/api/
   - name: Contribute
