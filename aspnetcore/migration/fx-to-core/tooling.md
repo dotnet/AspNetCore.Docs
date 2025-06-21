@@ -8,8 +8,6 @@ uid: migration/fx-to-core/tooling
 ---
 # Use tooling to help migrate ASP.NET Framework to ASP.NET Core
 
-:::moniker range=">= aspnetcore-7.0"
-
 This article shows how to upgrade ASP.NET Framework applications (MVC, Web API, and Web Forms) to ASP.NET Core using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/fx-to-core/inc/overview) approach.
 
 
@@ -47,7 +45,3 @@ If your .NET Framework project has supporting libraries in the solution that are
 
    > [!NOTE]
    > **For MVC and Web API projects:** The summary includes a pie chart showing the migrated endpoints. Select **Upgrade Controller** and then select a controller to upgrade. Select the component to upgrade, then select **Upgrade selection**.
-
-:::moniker-end
-
-[!INCLUDE[](~/migration/mvc/includes/mvc6.md)]
