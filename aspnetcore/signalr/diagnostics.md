@@ -5,7 +5,7 @@ description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: devx-track-csharp, signalr, linux-related-content
-ms.date: 03/30/2025
+ms.date: 06/20/2025
 uid: signalr/diagnostics
 ---
 # Logging and diagnostics in ASP.NET Core SignalR
@@ -277,7 +277,7 @@ SignalR server metrics are reported on the <xref:Microsoft.AspNetCore.Http.Conne
 [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with `Microsoft.AspNetCore.Http.Connections` as the provider name. For example:
 
 ```console
-> dotnet-counters monitor --process-id 37016 Microsoft.AspNetCore.Http.Connections
+> dotnet-counters monitor --process-id 37016 --counters Microsoft.AspNetCore.Http.Connections
 
 Press p to pause, r to resume, q to quit.
     Status: Running
