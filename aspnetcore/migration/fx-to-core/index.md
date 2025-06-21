@@ -31,16 +31,6 @@ Most non-trivial ASP.NET Framework applications should use incremental migration
 
 **→ [Start your incremental migration](xref:migration/fx-to-core/inc/overview)**
 
-## Application-specific migration guides
-
-If you're doing a complete rewrite or have a smaller application, these guides provide detailed, step-by-step instructions:
-
-| Application Type | Migration Guide | Best For |
-|------------------|-----------------|----------|
-| **MVC Applications** | [MVC Migration Guide](xref:migration/mvc) | Traditional MVC web apps with controllers and views |
-| **Web API Applications** | [Web API Migration Guide](xref:migration/webapi) | REST APIs and service endpoints |
-| **Web Forms Applications** | [Web Forms Migration Guide](xref:migration/web_forms) | Legacy Web Forms applications |
-
 ## Migration tools and resources
 
 ### Automated assistance

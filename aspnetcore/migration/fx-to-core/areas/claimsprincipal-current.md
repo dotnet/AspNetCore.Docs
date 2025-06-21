@@ -5,7 +5,7 @@ description: Learn how to migrate away from ClaimsPrincipal.Current to retrieve 
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 03/26/2019
-uid: migration/claimsprincipal-current
+uid: migration/fx-to-core/areas/claimsprincipal-current
 ---
 # Migrate from ClaimsPrincipal.Current
 

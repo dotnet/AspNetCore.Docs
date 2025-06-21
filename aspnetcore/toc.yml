@@ -2126,7 +2126,7 @@ items:
             - name: Blazor support with YARP
               uid: migration/fx-to-core/inc/blazor
           - name: Tooling
-            uid: migration/fx-to-core
+            uid: migration/fx-to-core/tooling
           - name: Technology Areas
             items:
             - name: Overview            

@@ -172,7 +172,7 @@ The following example applies a convention to routes that aren't using attribute
 ASP.NET Core MVC uses a different set of conventions from ASP.NET Web API 2. Using custom conventions, you can modify an ASP.NET Core MVC app's behavior to be consistent with that of a web API app. Microsoft ships the [`WebApiCompatShim` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) specifically for this purpose.
 
 > [!NOTE]
-> For more information on migration from ASP.NET Web API, see <xref:migration/webapi>.
+> For more information on migration from ASP.NET Web API, see <xref:migration/fx-to-core/areas/webapi>.
 
 To use the Web API Compatibility Shim:
 

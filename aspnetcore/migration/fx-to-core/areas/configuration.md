@@ -15,7 +15,7 @@ The *web.config* file has also been replaced in ASP.NET Core. Configuration itse
 
 [!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 
-For this article, we are starting with the partially migrated ASP.NET Core project from [the previous article](xref:migration/mvc). To setup configuration, add the following constructor and property to the `Startup.cs` file located in the root of the project:
+To setup configuration, add the following constructor and property to the `Startup.cs` file located in the root of the project:
 
 [!code-csharp[](configuration/samples/WebApp1/src/WebApp1/Startup.cs?range=11-16)]
 
