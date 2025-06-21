@@ -33,7 +33,7 @@ Add an `appsettings.json` file to the root of the project using the appropriate 
 
 Our ASP.NET MVC project included the required database connection string in *web.config*, in the `<connectionStrings>` element. In our ASP.NET Core project, we are going to store this information in the `appsettings.json` file. Open `appsettings.json`, and note that it already includes the following:
 
-[!code-json[](../migration/configuration/samples/WebApp1/src/WebApp1/appsettings.json?highlight=4)]
+[!code-json[](configuration/samples/WebApp1/src/WebApp1/appsettings.json?highlight=4)]
 
 In the highlighted line depicted above, change the name of the database from **_CHANGE_ME** to the name of your database.
 

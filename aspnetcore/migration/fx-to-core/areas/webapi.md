@@ -193,7 +193,7 @@ This article demonstrates the steps required to migrate from ASP.NET 4.x Web API
 
 ## Prerequisites
 
-[!INCLUDE [prerequisites](../includes/net-core-prereqs-vs-3.1.md)]
+[!INCLUDE [prerequisites](../../../includes/net-core-prereqs-vs-3.1.md)]
 
 ## Review ASP.NET 4.x Web API project
 
