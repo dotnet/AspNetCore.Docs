@@ -92,7 +92,7 @@ We recommend the following sequence of tutorials for an introduction to developi
 
 ## Migrate from .NET Framework
 
-For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:migration/proper-to-2x/index>.
+For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:migration/fx-to-core/index>.
 
 :::moniker-end
 
@@ -178,7 +178,7 @@ We recommend the following sequence of tutorials and articles for an introductio
 
 ## Migrate from .NET Framework
 
-For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migration/proper-to-2x/index>.
+For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migration/fx-to-core/index>.
 
 :::moniker-end
 

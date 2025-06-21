@@ -357,7 +357,7 @@ additionalContent:
             text: "ASP.NET Core 2.0 to 2.1"
           - url: migration/1x-to-2x/index.md
             text: "ASP.NET Core 1.x to 2.0"
-          - url: migration/proper-to-2x/index.md
+          - url: migration/fx-to-core/index.md
             text: "ASP.NET to ASP.NET Core"
       # Card
       - title: Architecture
