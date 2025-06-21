@@ -292,7 +292,7 @@ The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.
 
 ## Migrating to ASP.NET Core Identity
 
-For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/fx-to-core/areas/identity).
+For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/fx-to-core/examples/identity).
 
 ## Setting password strength
 

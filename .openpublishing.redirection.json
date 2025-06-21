@@ -1502,6 +1502,26 @@
             "source_path": "aspnetcore/blazor/performance.md",
             "redirect_url": "/aspnet/core/blazor/performance/",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/claimsprincipal-current.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/claimsprincipal-current",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/webapi.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/webapi",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/configuration.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/examples/configuration",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/identity.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/examples/identity",
+            "redirect_document_id": false
         }
     ]
 }

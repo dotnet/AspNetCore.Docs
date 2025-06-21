@@ -20,7 +20,7 @@ Migrating from ASP.NET MVC is a multi-step process. This article covers:
 * Static content.
 * Client-side dependencies.
 
-For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/fx-to-core/areas/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/fx-to-core/areas/identity).
+For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](configuration.md) and [Migrate Authentication and Identity to ASP.NET Core](identity.md).
 
 ## Prerequisites
 
@@ -168,7 +168,7 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 
 ## Next steps
 
-* <xref:migration/fx-to-core/areas/identity>
+* <identity.md>
 
 ## Additional resources
 
@@ -186,7 +186,7 @@ This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Cor
 * Static content
 * Client-side dependencies.
 
-For migrating configuration and Identity code, see <xref:migration/fx-to-core/areas/configuration> and <xref:migration/fx-to-core/areas/identity>.
+For migrating configuration and Identity code, see <configuration.md> and <identity.md>.
 
 > [!NOTE]
 > The version numbers in the samples might not be current, update the projects accordingly.
@@ -313,7 +313,7 @@ Open `_Layout.cshtml` file and make the following changes (the completed code is
 
 * Remove `@Scripts.Render("~/bundles/modernizr")`.
 
-* Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`). For more information, see [Migrate Authentication and Identity to ASP.NET Core](xref:migration/fx-to-core/areas/identity)
+* Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`). For more information, see [Migrate Authentication and Identity to ASP.NET Core](identity.md)
 
 * Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).
 
@@ -372,7 +372,7 @@ This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Cor
 * Static content
 * Client-side dependencies.
 
-For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/fx-to-core/areas/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/fx-to-core/areas/identity).
+For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](configuration.md) and [Migrate Authentication and Identity to ASP.NET Core](identity.md).
 
 > [!NOTE]
 > The version numbers in the samples might not be current, update the projects accordingly.
@@ -499,7 +499,7 @@ Open `_Layout.cshtml` file and make the following changes (the completed code is
 
 * Remove `@Scripts.Render("~/bundles/modernizr")`.
 
-* Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`). For more information, see [Migrate Authentication and Identity to ASP.NET Core](xref:migration/fx-to-core/areas/identity)
+* Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`). For more information, see [Migrate Authentication and Identity to ASP.NET Core](identity.md)
 
 * Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).
 

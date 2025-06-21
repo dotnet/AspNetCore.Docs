@@ -2149,10 +2149,6 @@ items:
               uid: migration/fx-to-core/areas/membership
             - name: Web API
               uid: migration/fx-to-core/areas/webapi
-            - name: Configuration
-              uid: migration/fx-to-core/areas/configuration
-            - name: Identity
-              uid: migration/fx-to-core/areas/identity
             - name: ClaimsPrincipal.Current
               uid: migration/fx-to-core/areas/claimsprincipal-current
   - name: API reference
