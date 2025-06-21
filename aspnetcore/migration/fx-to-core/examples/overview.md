@@ -9,7 +9,7 @@ uid: migration/fx-to-core/examples/overview
 
 # Upgrade from ASP.NET MVC and Web API to ASP.NET Core MVC
 
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-7.0"
+:::moniker range=">= aspnetcore-3.0"
 
 This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](xref:mvc/overview). In the process, it highlights related changes from ASP.NET MVC.
 
