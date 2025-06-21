@@ -2127,6 +2127,14 @@ items:
               uid: migration/fx-to-core/inc/blazor
           - name: Tooling
             uid: migration/fx-to-core/tooling
+          - name: Example Migration
+            items:
+            - name: Overview
+              uid: migration/fx-to-core/examples/overview
+            - name: Configuration
+              uid: migration/fx-to-core/examples/configuration
+            - name: Identity
+              uid: migration/fx-to-core/examples/identity
           - name: Technology Areas
             items:
             - name: Overview            

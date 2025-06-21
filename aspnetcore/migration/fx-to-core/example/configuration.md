@@ -7,7 +7,14 @@ ms.date: 10/14/2016
 uid: migration/fx-to-core/areas/configuration
 ms.sfi.ropc: t
 ---
+
 # Migrate configuration to ASP.NET Core
+
+In the previous article, we began to [migrate an ASP.NET MVC project to ASP.NET Core MVC](xref:overview.md). In this article, we migrate configuration.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
+
+## Setup configuration
 
 ASP.NET Core no longer uses the *Global.asax* and *web.config* files that previous versions of ASP.NET utilized. In the earlier versions of ASP.NET, application startup logic was placed in an `Application_StartUp` method within *Global.asax*. Later, in ASP.NET MVC, a `Startup.cs` file was included in the root of the project; and, it was called when the application started. ASP.NET Core has adopted this approach completely by placing all startup logic in the `Startup.cs` file.
 
@@ -17,7 +24,7 @@ The *web.config* file has also been replaced in ASP.NET Core. Configuration itse
 
 To setup configuration, add the following constructor and property to the `Startup.cs` file located in the root of the project:
 
-[!code-csharp[](configuration/samples/WebApp1/src/WebApp1/Startup.cs?range=11-16)]
+[!code-csharp[](_static/configuration/samples/WebApp1/src/WebApp1/Startup.cs?range=11-16)]
 
 Note that at this point, the `Startup.cs` file won't compile, as we still need to add the following `using` statement:
 
@@ -27,13 +34,13 @@ using Microsoft.Extensions.Configuration;
 
 Add an `appsettings.json` file to the root of the project using the appropriate item template:
 
-![Add AppSettings JSON](configuration/_static/add-appsettings-json.png)
+![Add AppSettings JSON](_static/configuration/add-appsettings-json.png)
 
 ## Migrate configuration settings from web.config
 
 Our ASP.NET MVC project included the required database connection string in *web.config*, in the `<connectionStrings>` element. In our ASP.NET Core project, we are going to store this information in the `appsettings.json` file. Open `appsettings.json`, and note that it already includes the following:
 
-[!code-json[](configuration/samples/WebApp1/src/WebApp1/appsettings.json?highlight=4)]
+[!code-json[](_static/configuration/samples/WebApp1/src/WebApp1/appsettings.json?highlight=4)]
 
 In the highlighted line depicted above, change the name of the database from **_CHANGE_ME** to the name of your database.
 
