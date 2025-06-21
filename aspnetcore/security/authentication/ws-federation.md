@@ -2,12 +2,15 @@
 title: Authenticate users with WS-Federation in ASP.NET Core
 author: chlowell
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 01/16/2019
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Microsoft Entra ID](/azure/active-directory/). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
 
@@ -74,13 +77,9 @@ By default, the new middleware:
 
 ![Microsoft Entra ID: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
-:::moniker range=">= aspnetcore-2.1"
-
 ## Use WS-Federation without ASP.NET Core Identity
 
 The WS-Federation middleware can be used without Identity. For example:
-
-:::moniker-end
 
 :::moniker range=">= aspnetcore-3.0"
 
@@ -88,13 +87,11 @@ The WS-Federation middleware can be used without Identity. For example:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 :::code language="csharp" source="ws-federation/samples/StartupNon21.cs" id="snippet":::
 
 :::moniker-end
-
-:::moniker range=">= aspnetcore-2.1"
 
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
@@ -102,23 +99,19 @@ The WS-Federation middleware can be used without Identity. For example:
 
 * Add WS-Federation to `Startup.ConfigureServices`:
 
-:::moniker-end
-
 :::moniker range=">= aspnetcore-3.0"
 
 :::code language="csharp" source="ws-federation/samples/Startup31.cs" id="snippet":::
 
-[!INCLUDE [default settings configuration](social/includes/default-settings.md)]
-
 :::moniker-end
 
-:::moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 :::code language="csharp" source="ws-federation/samples/Startup21.cs" id="snippet":::
 
-[!INCLUDE [default settings configuration](social/includes/default-settings.md)]
-
 :::moniker-end
+
+[!INCLUDE [default settings configuration](social/includes/default-settings.md)]
 
 ### Log in with WS-Federation
 
