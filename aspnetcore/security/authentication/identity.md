@@ -337,7 +337,7 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
 * <xref:security/authentication/identity-enable-qrcodes>
-* <xref:migration/fx-to-core/areas/identity>
+* <xref:migration/fx-to-core/examples/identity>
 * <xref:security/authentication/accconfirm>
 * <xref:security/authentication/mfa>
 * <xref:host-and-deploy/web-farm>
