@@ -217,7 +217,7 @@ Use Response Compression Middleware at the top of the processing pipeline's conf
 app.UseResponseCompression();
 ```
 
-Add an endpoint for the hub immediately before the line that runs the app (`app.Run();`):
+Add an endpoint for the hub:
 
 ```csharp
 app.MapHub<ChatHub>("/chathub");
