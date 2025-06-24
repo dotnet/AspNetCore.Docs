@@ -64,8 +64,8 @@ This package provides a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.Json
 In an API controller, an action method for JSON Patch:
 
 * Is annotated with the <xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute> attribute.
-* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601>, typically with [<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute>](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
-* Calls <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
+* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601>, typically with [<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute>](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
+* Calls <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
 
 ### Example Controller Action method:
 
@@ -83,7 +83,7 @@ The sample action method's key steps:
   * The method retrieves a `Customer` object from the database `AppDb` using the provided id.
   * If no `Customer` object is found, it returns a `404 Not Found` response.
 * **Apply JSON Patch**:
-  * The <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> method applies the JSON Patch operations from the patchDoc to the retrieved `Customer` object.
+  * The <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method applies the JSON Patch operations from the patchDoc to the retrieved `Customer` object.
   * If errors occur during the patch application, such as invalid operations or conflicts, they are captured by an error handling delegate. This delegate adds error messages to the `ModelState` using the type name of the affected object and the error message.
 * **Validate ModelState**:
   * After applying the patch, the method checks the `ModelState` for errors.
@@ -105,9 +105,9 @@ The following example shows the body of a `400 Bad Request` response for a JSON 
 
 ## Apply a JSON Patch document to an object
 
-The following examples demonstrate how to use the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> method to apply a JSON Patch document to an object.
+The following examples demonstrate how to use the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method to apply a JSON Patch document to an object.
 
-### Example: Apply a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> to an object
+### Example: Apply a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> to an object
 
 The following example demonstrates:
 
@@ -177,14 +177,14 @@ The previous example results in the following output of the updated object:
 }
 ```
 
-The <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> method generally follows the conventions and options of <xref:System.Text.Json> for processing the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601>, including the behavior controlled by the following options:
+The <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method generally follows the conventions and options of <xref:System.Text.Json> for processing the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601>, including the behavior controlled by the following options:
 
 * <xref:System.Text.Json.Serialization.JsonNumberHandling>: Whether numeric properties are read from strings.
 * <xref:System.Text.Json.JsonSerializerOptions.PropertyNameCaseInsensitive>: Whether property names are case-sensitive.
 
-Key differences between <xref:System.Text.Json> and the new <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601> implementation:
+Key differences between <xref:System.Text.Json> and the new <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> implementation:
 
-* The runtime type of the target object, not the declared type, determines which properties <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> patches.
+* The runtime type of the target object, not the declared type, determines which properties <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> patches.
 * <xref:System.Text.Json> deserialization relies on the declared type to identify eligible properties.
 
 ### Example: Apply a JsonPatchDocument with error handling
@@ -196,7 +196,7 @@ JSON `Patch` supports the `test` operation, which checks if a specified value eq
 The following example demonstrates how to handle these errors gracefully.
 
 > [!Important]
-> The object passed to the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> method is modified in place. The caller is responsible for discarding changes if any operation fails.
+> The object passed to the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method is modified in place. The caller is responsible for discarding changes if any operation fails.
 
 ```csharp
 // Original object
@@ -274,7 +274,7 @@ To minimize security risks when integrating JSON Patch functionality into their 
 * **Scenario**: A malicious client submits a `copy` operation that duplicates large object graphs multiple times, leading to excessive memory consumption.
 * **Impact**: Potential Out-Of-Memory (OOM) conditions, causing service disruptions.
 * **Mitigation**:
-  * Validate incoming JSON Patch documents for size and structure before calling <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)>.
+  * Validate incoming JSON Patch documents for size and structure before calling <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)>.
   * The validation must be app specific, but an example validation can look similar to the following:
 
 ```csharp
