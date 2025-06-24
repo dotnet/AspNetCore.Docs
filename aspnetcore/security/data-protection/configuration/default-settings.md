@@ -36,7 +36,7 @@ The app attempts to detect its operational environment and handle key configurat
 
 The developer is always in full control and can override how and where keys are stored. The first three options above should provide good defaults for most apps similar to how the ASP.NET **\<machineKey>** auto-generation routines worked in the past. The final, fallback option is the only scenario that requires the developer to specify [configuration](xref:security/data-protection/configuration/overview) upfront if they want key persistence, but this fallback only occurs in rare situations.
 
-When hosting in a Docker container, keys should be persisted in a folder that's a Docker volume (a shared volume or a host-mounted volume that persists beyond the container's lifetime) or in an external provider, such as [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) or [Redis](https://redis.io/). An external provider is also useful in web farm scenarios if apps can't access a shared network volume (see [PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persistkeystofilesystem) for more information).
+When hosting in a Docker container, keys should be persisted in a folder that's a Docker volume (a shared volume or a host-mounted volume that persists beyond the container's lifetime) or in an external provider, such as [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) or [Redis](https://redis.io/). An external provider is also useful in web farm scenarios if apps can't access a shared network volume (see [PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persist-keys-to-the-file-system-persistkeystofilesystem) for more information).
 
 > [!WARNING]
 > If the developer overrides the rules outlined above and points the Data Protection system at a specific key repository, automatic encryption of keys at rest is disabled. At-rest protection can be re-enabled via [configuration](xref:security/data-protection/configuration/overview).
@@ -58,7 +58,7 @@ Deleting a key makes its protected data permanently inaccessible. To mitigate th
 
 We recommend not deleting data protection keys.
 
-:::code language="csharp" source="~/security/data-protection/configuration/samples/9/deleteKeys/Program.cs" :::
+:::code language="csharp" source="~/security/data-protection/configuration/samples/9.x/deleteKeys/Program.cs":::
 
 ## Additional resources
 
