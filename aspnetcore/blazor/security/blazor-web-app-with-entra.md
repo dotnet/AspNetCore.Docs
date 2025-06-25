@@ -478,7 +478,7 @@ If using Visual Studio, you can confirm that the secret is set by right-clicking
 
 [Azure Key Vault](https://azure.microsoft.com/products/key-vault/) provides a safe approach for providing the app's client secret to the app.
 
-To create a key vault and set a client secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret. For the example in this section, the secret name is "`BlazorWebAppEntra`."
+To create a key vault and set a client secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret. For the example in this section, the secret name is "`BlazorWebAppEntraClientSecret`."
 
 When establishing the key vault in the Entra or Azure portal:
 
@@ -489,7 +489,7 @@ When establishing the key vault in the Entra or Azure portal:
   > [!NOTE]
   > If you also plan to run an app locally with an authorized user for blob access using the [Azure CLI](/cli/azure/) or Visual Studio's Azure Service Authentication, add your developer Azure user account in **Access Control (IAM)** with the **Key Vault Secrets User** role. If you want to use the Azure CLI through Visual Studio, execute the `az login` command from the Developer PowerShell panel and follow the prompts to authenticate with the tenant.
 
-To implement the code in this section, record the key vault URI (example: "`https://contoso.vault.azure.net/`", trailing slash required) and the secret name (example: "`BlazorWebAppEntra`") from Azure when you create the key vault and secret.
+To implement the code in this section, record the key vault URI (example: "`https://contoso.vault.azure.net/`", trailing slash required) and the secret name (example: "`BlazorWebAppEntraClientSecret`") from Azure when you create the key vault and secret.
 
 > [!IMPORTANT]
 > A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.
@@ -557,7 +557,7 @@ msIdentityOptions.ClientSecret = AzureHelper.GetKeyVaultSecret("{VAULT URI}",
 
 `{VAULT URI}`: Key vault URI. Include the trailing slash on the URI. Example: `https://contoso.vault.azure.net/`
 
-`{SECRET NAME}`: Secret name. Example: `BlazorWebAppEntra`
+`{SECRET NAME}`: Secret name. Example: `BlazorWebAppEntraClientSecret`
 
 Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
 

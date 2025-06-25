@@ -152,7 +152,7 @@ builder.Configuration.GetSection(authMessageSenderOptions.EmailAuthKey)
 > [!NOTE]
 > In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 >
-> The preceding example implies that the Managed Identity Client ID (`{MANAGED IDENTITY CLIENT ID}`), directory (tenant) ID (`{TENANT ID}`), and key vault URI (`{VAULT URI}`, `https://contoso.vault.azure.net/`, trailing slash required) are supplied by hard-coded values. Any or all of these values can be supplied from app settings configuration. For example, the following obtains the vault URI from the `AzureAd` node of an app settings file, and `vaultUri` can be used in the call to `GetKeyVaultSecret` in the preceding example:
+> The preceding example implies that the Managed Identity Client ID (`{MANAGED IDENTITY CLIENT ID}`), directory (tenant) ID (`{TENANT ID}`), and key vault URI (`{VAULT URI}`, example: `https://contoso.vault.azure.net/`, trailing slash required) are supplied by hard-coded values. Any or all of these values can be supplied from app settings configuration. For example, the following obtains the vault URI from the `AzureAd` node of an app settings file, and `vaultUri` can be used in the call to `GetKeyVaultSecret` in the preceding example:
 >
 > ```csharp
 > var vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
