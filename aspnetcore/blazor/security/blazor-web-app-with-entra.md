@@ -478,10 +478,18 @@ If using Visual Studio, you can confirm that the secret is set by right-clicking
 
 [Azure Key Vault](https://azure.microsoft.com/products/key-vault/) provides a safe approach for providing the app's client secret to the app.
 
-To create a key vault and set a client secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret. When you set the access policy for the secret in the **Access policies** panel:
+To create a key vault and set a client secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret. For the example in this section, the secret name is "`BlazorWebAppEntra`."
 
-* Only the **Get** secret permission is required.
-* Select the application as the **Principal** for the secret.
+When establishing the key vault in the Entra or Azure portal:
+
+* Configure the key vault to use Azure role-based access control (RABC). If you aren't operating on an [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview), including for local development and testing, confirm that public access on the **Networking** step is **enabled** (checked). Enabling public access only exposes the key vault endpoint. Authenticated accounts are still required for access.
+
+* Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Key Vault Secrets User** role. Assign the Managed Identity to the Azure App Service that's hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
+
+  > [!NOTE]
+  > If you also plan to run an app locally with an authorized user for blob access using the [Azure CLI](/cli/azure/) or Visual Studio's Azure Service Authentication, add your developer Azure user account in **Access Control (IAM)** with the **Key Vault Secrets User** role. If you want to use the Azure CLI through Visual Studio, execute the `az login` command from the Developer PowerShell panel and follow the prompts to authenticate with the tenant.
+
+To implement the code in this section, record the key vault URI (example: "`https://contoso.vault.azure.net/`", trailing slash required) and the secret name (example: "`BlazorWebAppEntra`") from Azure when you create the key vault and secret.
 
 > [!IMPORTANT]
 > A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.

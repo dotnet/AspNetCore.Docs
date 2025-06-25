@@ -84,10 +84,10 @@ When establishing the key vault in the Entra or Azure portal:
 
 * Configure the key vault to use Azure role-based access control (RABC). If you aren't operating on an [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview), including for local development and testing, confirm that public access on the **Networking** step is **enabled** (checked). Enabling public access only exposes the key vault endpoint. Authenticated accounts are still required for access.
 
-* Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Key Vault Crypto User** role. Assign the Managed Identity to the Azure App Service that's hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
+* Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Key Vault Secrets User** role. Assign the Managed Identity to the Azure App Service that's hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
 
   > [!NOTE]
-  > If you also plan to run an app locally with an authorized user for blob access using the [Azure CLI](/cli/azure/) or Visual Studio's Azure Service Authentication, add your developer Azure user account in **Access Control (IAM)** with the **Key Vault Crypto User** role. If you want to use the Azure CLI through Visual Studio, execute the `az login` command from the Developer PowerShell panel and follow the prompts to authenticate with the tenant.
+  > If you also plan to run an app locally with an authorized user for blob access using the [Azure CLI](/cli/azure/) or Visual Studio's Azure Service Authentication, add your developer Azure user account in **Access Control (IAM)** with the **Key Vault Secrets User** role. If you want to use the Azure CLI through Visual Studio, execute the `az login` command from the Developer PowerShell panel and follow the prompts to authenticate with the tenant.
 
 To implement the code in this section, record the key vault URI (example: "`https://contoso.vault.azure.net/`", trailing slash required) and the secret name (example: "`EmailAuthKey`") from Azure when you create the key vault and secret.
 
