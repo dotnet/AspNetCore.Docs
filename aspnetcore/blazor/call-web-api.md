@@ -166,7 +166,15 @@ if (builder.Environment.IsProduction())
 else
 {
     // Local development and testing only
-    credential = new DefaultAzureCredential();
+    DefaultAzureCredentialOptions options = new()
+    {
+        // Specify the tenant ID to use the dev credentials when running the app locally
+        // in Visual Studio.
+        VisualStudioTenantId = "{TENANT ID}",
+        SharedTokenCacheTenantId = "{TENANT ID}"
+    };
+
+    credential = new DefaultAzureCredential(options);
 }
 
 builder.Services.AddDataProtection()
@@ -176,6 +184,8 @@ builder.Services.AddDataProtection()
 ```
 
 `{MANAGED IDENTITY CLIENT ID}`: The Azure Managed Identity Client ID (GUID).
+
+`{TENANT ID}`: Tenant ID.
 
 `{APPLICATION NAME}`: <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName%2A> sets the unique name of this app within the data protection system. The value should match across deployments of the app.
 
