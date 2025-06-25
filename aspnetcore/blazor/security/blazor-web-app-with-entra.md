@@ -491,25 +491,17 @@ Add the following `AzureHelper` class to the server project. The `GetKeyVaultSec
 `Helpers/AzureHelper.cs`:
 
 ```csharp
-using Azure;
-using Azure.Identity;
+using Azure.Core;
 using Azure.Security.KeyVault.Secrets;
 
 namespace BlazorWebAppEntra.Helpers;
 
 public static class AzureHelper
 {
-    public static string GetKeyVaultSecret(string tenantId, string vaultUri, string secretName)
+    public static string GetKeyVaultSecret(string vaultUri, 
+        TokenCredential credential, string secretName)
     {
-        DefaultAzureCredentialOptions options = new()
-        {
-            // Specify the tenant ID to use the dev credentials when running the app locally
-            // in Visual Studio.
-            VisualStudioTenantId = tenantId,
-            SharedTokenCacheTenantId = tenantId
-        };
-
-        var client = new SecretClient(new Uri(vaultUri), new DefaultAzureCredential(options));
+        var client = new SecretClient(new Uri(vaultUri), credential);
         var secret = client.GetSecretAsync(secretName).Result;
 
         return secret.Value.Value;
@@ -523,46 +515,41 @@ public static class AzureHelper
 Where services are registered in the server project's `Program` file, obtain and apply the client secret using the following code:
 
 ```csharp
-var tenantId = builder.Configuration.GetValue<string>("AzureAd:TenantId")!;
-var vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
-var secretName = builder.Configuration.GetValue<string>("AzureAd:SecretName")!;
+TokenCredential? credential;
 
-builder.Services.Configure<MicrosoftIdentityOptions>(
-    OpenIdConnectDefaults.AuthenticationScheme,
-    options =>
-    {
-        options.ClientSecret = 
-            AzureHelper.GetKeyVaultSecret(tenantId, vaultUri, secretName);
-    });
-```
-
-If you wish to control the environment where the preceding code operates, for example to avoid running the code locally because you've opted to use the Secret Manager tool for local development, you can wrap the preceding code in a conditional statement that checks the environment:
-
-```csharp
-if (!context.HostingEnvironment.IsDevelopment())
+if (builder.Environment.IsProduction())
 {
-    ...
+    credential = new ManagedIdentityCredential("{MANAGED IDENTITY CLIENT ID}");
+}
+else
+{
+    // Local development and testing only
+    DefaultAzureCredentialOptions options = new()
+    {
+        // Specify the tenant ID to use the dev credentials when running the app locally
+        // in Visual Studio.
+        VisualStudioTenantId = "{TENANT ID}",
+        SharedTokenCacheTenantId = "{TENANT ID}"
+    };
+
+    credential = new DefaultAzureCredential(options);
 }
 ```
 
-In the `AzureAd` section of `appsettings.json`, add the following `VaultUri` and `SecretName` configuration keys and values:
+Where <xref:Microsoft.Identity.Web.MicrosoftIdentityOptions> are set, call `GetKeyVaultSecret` to receive and assign the app's client secret:
 
-```json
-"VaultUri": "{VAULT URI}",
-"SecretName": "{SECRET NAME}"
+```csharp
+msIdentityOptions.ClientSecret = AzureHelper.GetKeyVaultSecret("{VAULT URI}", 
+    credential, "{SECRET NAME}");
 ```
 
-In the preceding example:
+`{MANAGED IDENTITY CLIENT ID}`: The Azure Managed Identity Client ID (GUID).
 
-* The `{VAULT URI}` placeholder is the key vault URI. Include the trailing slash on the URI.
-* The `{SECRET NAME}` placeholder is the secret name.
+`{TENANT ID}`: The directory (tenant) ID. Example: `aaaabbbb-0000-cccc-1111-dddd2222eeee`
 
-Example:
+`{VAULT URI}`: Key vault URI. Include the trailing slash on the URI. Example: `https://contoso.vault.azure.net/`
 
-```json
-"VaultUri": "https://contoso.vault.azure.net/",
-"SecretName": "BlazorWebAppEntra"
-```
+`{SECRET NAME}`: Secret name. Example: `BlazorWebAppEntra`
 
 Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
 
@@ -795,7 +782,15 @@ if (builder.Environment.IsProduction())
 else
 {
     // Local development and testing only
-    credential = new DefaultAzureCredential();
+    DefaultAzureCredentialOptions options = new()
+    {
+        // Specify the tenant ID to use the dev credentials when running the app locally
+        // in Visual Studio.
+        VisualStudioTenantId = "{TENANT ID}",
+        SharedTokenCacheTenantId = "{TENANT ID}"
+    };
+
+    credential = new DefaultAzureCredential(options);
 }
 
 builder.Services.AddDataProtection()
@@ -807,6 +802,8 @@ builder.Services.AddDataProtection()
 You can pass any app name to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName%2A>. Just confirm that all app deployments use the same value.
 
 `{MANAGED IDENTITY CLIENT ID}`: The Azure Managed Identity Client ID (GUID).
+
+`{TENANT ID}`: Tenant ID.
 
 `{BLOB URI}`: Full URI to the key file. The URI is generated by Azure Storage when you create the key file. Do not use a SAS.
 
