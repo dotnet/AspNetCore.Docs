@@ -41,23 +41,8 @@ Most non-trivial ASP.NET Framework applications should use incremental migration
 - **[Porting ASP.NET Apps eBook](https://aka.ms/aspnet-porting-ebook)** - Complete reference guide
 - **[eShop Migration Example](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop)** - Real-world case study
 
-## Key benefits of ASP.NET Core
-
-Understanding these advantages will help justify your migration effort:
-
-- **Performance**: Up to 10x faster than ASP.NET Framework
-- **Cross-platform**: Deploy on Windows, Linux, or macOS
-- **Modern features**: Built-in dependency injection, configuration, and logging
-- **Cloud-ready**: Optimized for containers and microservices
-- **Future-proof**: Regular updates and long-term support
-
 ## Changes to technology areas
 
 Before you begin, review the [technical differences between ASP.NET Framework and ASP.NET Core](xref:migration/fx-to-core/areas) to understand key changes that may affect your migration.
-
-## What's next?
-
-1. **[Review incremental migration](xref:migration/fx-to-core/inc/overview)** - Recommended for most teams
-2. **Choose your application-specific guide** from the table above
 
 :::moniker-end
