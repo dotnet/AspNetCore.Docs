@@ -2137,6 +2137,8 @@ items:
               uid: migration/fx-to-core/examples/identity
           - name: Technology Areas
             items:
+            - name: Overview            
+              uid: migration/fx-to-core/areas
             - name: HttpContext
               uid: migration/fx-to-core/areas/http-context
             - name: HTTP Modules
