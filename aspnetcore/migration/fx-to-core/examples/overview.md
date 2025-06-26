@@ -65,7 +65,7 @@ For more information, see <xref:fundamentals/startup>.
 
 In the ASP.NET Core project, open the `Startup.cs` file:
 
-[!code-csharp[](_static/overview/samples/3.x/Startup.cs?highlight=13,30,32&name=snippet)]
+[!code-csharp[](samples/mvc/3.x/Startup.cs?highlight=13,30,32&name=snippet)]
 
 ASP.NET Core apps must opt in to framework features with middleware. The previous template-generated code adds the following services and middleware:
 
@@ -150,7 +150,7 @@ The completed replacement markup for jQuery and Bootstrap JavaScript inclusion:
 
 The updated `_Layout.cshtml` file is shown below:
 
-[!code-cshtml[](_static/overview/samples/3.x/Views/Shared/_Layout.cshtml?highlight=7-10,40-42)]
+[!code-cshtml[](samples/mvc/3.x/Views/Shared/_Layout.cshtml?highlight=7-10,40-42)]
 
 View the site in the browser. It should render with the expected styles in place.
 
@@ -162,7 +162,7 @@ ASP.NET Core is compatible with several open-source bundling and minification so
 
 There are many problems that can cause an HTTP 500 error message that contains no information on the source of the problem. For example, if the `Views/_ViewImports.cshtml` file contains a namespace that doesn't exist in the project, an HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the environment is *Development*. This is detailed in the following code:
 
-[!code-csharp[](_static/overview/samples/3.x/Startup.cs?highlight=17-21&name=snippet)]
+[!code-csharp[](samples/mvc/3.x/Startup.cs?highlight=17-21&name=snippet)]
 
 ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
 
@@ -219,7 +219,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Open the `Startup.cs` file and change the code to match the following:
 
-[!code-csharp[](_static/overview/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
+[!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
 The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
 
@@ -338,7 +338,7 @@ The replacement markup for jQuery and Bootstrap JavaScript inclusion:
 
 The updated `_Layout.cshtml` file is shown below:
 
-[!code-cshtml[](_static/overview/samples/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
+[!code-cshtml[](samples/mvc/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
@@ -352,7 +352,7 @@ For information about how to configure bundling and minification, see [Bundling 
 
 There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the `Views/_ViewImports.cshtml` file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
 
-[!code-csharp[](_static/overview/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
+[!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
 ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
 
@@ -405,7 +405,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Open the `Startup.cs` file and change the code to match the following:
 
-[!code-csharp[](_static/overview/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
+[!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
 The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. The `UseMvc` extension method adds routing. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
 
@@ -524,7 +524,7 @@ The replacement markup for jQuery and Bootstrap JavaScript inclusion:
 
 The updated `_Layout.cshtml` file is shown below:
 
-[!code-cshtml[](_static/overview/samples/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
+[!code-cshtml[](samples/mvc/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
@@ -538,7 +538,7 @@ For information about how to configure bundling and minification, see [Bundling 
 
 There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the `Views/_ViewImports.cshtml` file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
 
-[!code-csharp[](_static/overview/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
+[!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
 ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
 
