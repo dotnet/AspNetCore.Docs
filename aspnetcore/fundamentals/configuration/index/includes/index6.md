@@ -923,7 +923,7 @@ This topic only pertains to *app configuration*. Other aspects of running and ho
 
 Environment variables set in `launchSettings.json` override those set in the system environment.
 
-For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/fx-to-core/index#store-configurations>.
+For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/configuration>.
 
 ## Add configuration from an external assembly
 
