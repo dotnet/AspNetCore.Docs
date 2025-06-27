@@ -2,9 +2,9 @@
 
 We've added and updated the Blazor Web App security samples linked in the following articles:
 
-* <xref:blazor/security/blazor-web-app-oidc>
-* <xref:blazor/security/blazor-web-app-entra>
-* <xref:blazor/security/blazor-web-app-windows-authentication>
+* <xref:blazor/security/blazor-web-app-oidc?view=aspnetcore-10.0>
+* <xref:blazor/security/blazor-web-app-entra?view=aspnetcore-10.0>
+* <xref:blazor/security/blazor-web-app-windows-authentication?view=aspnetcore-10.0>
 
 All of our OIDC and Entra sample solutions now include a separate web API project (`MinimalApiJwt`) to demonstrate how to configure and call an external web API securely. Calling web APIs is demonstrated with a token handler and named HTTP client for an OIDC identity provider or Microsoft Identity Web packages/API for Microsoft Entra ID.
 
@@ -75,7 +75,7 @@ public class CustomNavLink : NavLink
 }
 ```
 
-For more information, see <xref:blazor/fundamentals/routing#navlink-component>.
+For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#navlink-component>.
 
 ### Close `QuickGrid` column options
 
@@ -391,7 +391,7 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `Not
 
 * **Static server-side rendering (static SSR)**: Calling `NotFound` sets the HTTP status code to 404.
 * **Streaming rendering**: Throws an exception if the response has already started.
-* **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
+* **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#route-templates)) to render Not Found content.
 
 Per-page/component rendering support is planned for Preview 5 in June, 2025.
 
@@ -415,10 +415,10 @@ Blazor now provides an improved way to display a "Not Found" page when navigatin
 
 The Blazor project template now includes a `NotFound.razor` page by default. This page automatically renders whenever `NavigationManager.NotFound` is called in your app, making it easier to handle missing routes with a consistent user experience.
 
-For more information, see <xref:blazor/fundamentals/routing#not-found-responses>.
+For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
 
 ### Metrics and tracing
 
 This release introduces comprehensive metrics and tracing capabilities for Blazor apps, providing detailed observability of the component lifecycle, navigation, event handling, and circuit management.
 
-For more information, see <xref:blazor/performance/index#metrics-and-tracing>.
+For more information, see <xref:blazor/performance/index?view=aspnetcore-10.0#metrics-and-tracing>.
