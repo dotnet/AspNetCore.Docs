@@ -11,7 +11,7 @@ Request delegates are used to build the request pipeline. The request delegates 
 
 Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A>, <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A>, and <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> extension methods. An individual request delegate can be specified in-line as an anonymous method (called in-line middleware), or it can be defined in a reusable class. These reusable classes and in-line anonymous methods are *middleware*, also called *middleware components*. Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the pipeline. When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
 
-<xref:migration/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
+<xref:migration/fx-to-core/areas/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
 
 ## The role of middleware by app type
 
@@ -274,7 +274,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
 * [Configure gRPC-Web in ASP.NET Core](xref:grpc/browser#configure-grpc-web-in-aspnet-core)
-* <xref:migration/http-modules>
+* <xref:migration/fx-to-core/areas/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
 * <xref:fundamentals/middleware/extensibility>
@@ -295,7 +295,7 @@ Request delegates are used to build the request pipeline. The request delegates 
 
 Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A>, <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A>, and <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> extension methods. An individual request delegate can be specified in-line as an anonymous method (called in-line middleware), or it can be defined in a reusable class. These reusable classes and in-line anonymous methods are *middleware*, also called *middleware components*. Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the pipeline. When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
 
-<xref:migration/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
+<xref:migration/fx-to-core/areas/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
 
 ## Middleware code analysis
 
@@ -550,7 +550,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
 * [Configure gRPC-Web in ASP.NET Core](xref:grpc/browser#configure-grpc-web-in-aspnet-core)
-* <xref:migration/http-modules>
+* <xref:migration/fx-to-core/areas/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
 * <xref:fundamentals/middleware/extensibility>
@@ -571,7 +571,7 @@ Request delegates are used to build the request pipeline. The request delegates 
 
 Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A>, <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A>, and <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> extension methods. An individual request delegate can be specified in-line as an anonymous method (called in-line middleware), or it can be defined in a reusable class. These reusable classes and in-line anonymous methods are *middleware*, also called *middleware components*. Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the pipeline. When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
 
-<xref:migration/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
+<xref:migration/fx-to-core/areas/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
 
 ## Create a middleware pipeline with IApplicationBuilder
 
@@ -820,7 +820,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 * [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
-* <xref:migration/http-modules>
+* <xref:migration/fx-to-core/areas/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
 * <xref:fundamentals/middleware/extensibility>

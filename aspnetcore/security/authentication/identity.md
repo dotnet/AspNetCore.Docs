@@ -292,7 +292,7 @@ The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.
 
 ## Migrating to ASP.NET Core Identity
 
-For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/identity).
+For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/fx-to-core/examples/identity).
 
 ## Setting password strength
 
@@ -337,7 +337,7 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
 * <xref:security/authentication/identity-enable-qrcodes>
-* <xref:migration/identity>
+* <xref:migration/fx-to-core/examples/identity>
 * <xref:security/authentication/accconfirm>
 * <xref:security/authentication/mfa>
 * <xref:host-and-deploy/web-farm>
