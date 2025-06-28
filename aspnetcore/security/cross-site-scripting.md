@@ -6,6 +6,7 @@ ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 2/15/2020
 uid: security/cross-site-scripting
+ai-usage: ai-assisted
 ---
 # Prevent Cross-Site Scripting (XSS) in ASP.NET Core
 
