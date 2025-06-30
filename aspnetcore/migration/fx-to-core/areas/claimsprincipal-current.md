@@ -15,7 +15,7 @@ The current ClaimsPrincipal is a fundamental component of authenticated web appl
 
 ASP.NET Framework and ASP.NET Core have fundamentally different approaches to accessing the current user:
 
-* **ASP.NET Framework** uses static properties like <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType> and <xref:System.Threading.Thread.CurrentPrincipal> with automatic context management. These properties are interchangeable and both provide access to the current user's identity.
+* **ASP.NET Framework** uses static properties like <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType> and <xref:System.Threading.Thread.CurrentPrincipal?displayProperty=nameWithType> with automatic context management. These properties are interchangeable and both provide access to the current user's identity.
 * **ASP.NET Core** stores the current user in <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> and avoids static state.
 
 These differences mean you can't simply continue using static principal properties (<xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType> or <xref:System.Threading.Thread.CurrentPrincipal?displayProperty=nameWithType>) in ASP.NET Core without changes. By default, the static properties aren't set, and code depending on them needs to be updated to get the current authenticated user's identity through different means.
