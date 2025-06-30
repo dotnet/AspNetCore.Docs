@@ -41,7 +41,7 @@ For ASP.NET Core applications, add these values to your `appsettings.json`:
 }
 ```
 
-For ASP.NET Framework applications, it is recommended to use <xref:/aspnet/config-builder> to allow injecting values into the application without touching the `web.config`.
+For ASP.NET Framework applications, it is recommended to use [Configuration Builders](/aspnet/config-builder) to allow injecting values into the application without touching the `web.config`.
 
 ### ASP.NET app configuration
 
