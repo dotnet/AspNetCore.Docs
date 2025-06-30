@@ -190,7 +190,7 @@ Add this change to `Global.asax.cs`:
 
 Readonly sessions retrieve session state without locking. The process uses a single `GET` request that returns session state and closes immediately.
 
-![Readonly session will retrieve the session state from the framework app](~/migration/fx-to-core/inc/overview/static/readonly_session.png)
+![Readonly session will retrieve the session state from the framework app](~/migration/fx-to-core/areas/session/_static/readonly_session.png)
 
 #### Writeable sessions
 
@@ -201,4 +201,4 @@ Writeable sessions require additional steps:
 * Use an additional `PUT` request to update state
 * Close the initial request only after updating is complete
 
-![Writeable session state protocol starts with the same as the readonly](~/migration/fx-to-core/inc/overview/static/writesession.png)
+![Writeable session state protocol starts with the same as the readonly](~/migration/fx-to-core/areas/session/_static/writesession.png)
