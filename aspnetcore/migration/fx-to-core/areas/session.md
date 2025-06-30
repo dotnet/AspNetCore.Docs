@@ -152,7 +152,7 @@ In order to serialize session state, a serializer for the state object must be r
 
 :::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_Serialization" :::
 
-In ASP.NET Core, <xref:System.Runtime.Serializer.Formatters.Binary.BinaryFormatterSerializer> was used to automatically serialize session value contents. In order to serialize these with for use with the System.Web adapters, the serialization must be explicitly configured using `ISessionKeySerializer` implementations.
+In ASP.NET Core, <xref:System.Runtime.Serializer.Formatters.Binary.BinaryFormatter> was used to automatically serialize session value contents. In order to serialize these with for use with the System.Web adapters, the serialization must be explicitly configured using `ISessionKeySerializer` implementations.
 
 Out of the box, there is a simple JSON serializer that allows each session key to be registered to a known type using `JsonSessionSerializerOptions`:
 
