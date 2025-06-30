@@ -2098,6 +2098,8 @@ items:
         items:
           - name: Overview
             uid: migration/fx-to-core/index
+          - name: Tooling
+            uid: migration/fx-to-core/tooling
           - name: Incremental migration
             displayName: migrate, migration
             items:
@@ -2113,16 +2115,6 @@ items:
               uid: migration/fx-to-core/inc/ab-testing
             - name: Blazor support with YARP
               uid: migration/fx-to-core/inc/blazor
-          - name: Tooling
-            uid: migration/fx-to-core/tooling
-          - name: Example Migration
-            items:
-            - name: Overview
-              uid: migration/fx-to-core/examples/overview
-            - name: Configuration
-              uid: migration/fx-to-core/examples/configuration
-            - name: Identity
-              uid: migration/fx-to-core/examples/identity
           - name: Technology Areas
             items:
             - name: Overview            
@@ -2143,6 +2135,14 @@ items:
               uid: migration/fx-to-core/areas/webapi
             - name: ClaimsPrincipal.Current
               uid: migration/fx-to-core/areas/claimsprincipal-current
+          - name: Example Migration
+            items:
+            - name: Overview
+              uid: migration/fx-to-core/examples/overview
+            - name: Configuration
+              uid: migration/fx-to-core/examples/configuration
+            - name: Identity
+              uid: migration/fx-to-core/examples/identity
   - name: API reference
     href: /dotnet/api/
   - name: Contribute
