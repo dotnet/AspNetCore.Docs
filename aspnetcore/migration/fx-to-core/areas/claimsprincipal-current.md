@@ -1,17 +1,17 @@
 ---
-title: Migrate from ClaimsPrincipal.Current
+title: Migrate from static ClaimsPrincipal access
 author: mjrousos
-description: Learn how to migrate away from ClaimsPrincipal.Current to retrieve the current authenticated user's identity and claims in ASP.NET Core.
+description: Learn how to migrate away from static ClaimsPrincipal access to retrieve the current authenticated user's identity and claims in ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 06/30/2025
 uid: migration/fx-to-core/areas/claimsprincipal-current
 ---
-# Migrate from ClaimsPrincipal.Current
+# Migrate from static ClaimsPrincipal access
 
 The current ClaimsPrincipal is a fundamental component of authenticated web applications, providing access to the current user's identity and claims. When migrating from ASP.NET Framework to ASP.NET Core, accessing this presents unique challenges because the two frameworks have different approaches to user context management.
 
-## Why ClaimsPrincipal migration is complex
+## Why static ClaimsPrincipal migration is complex
 
 ASP.NET Framework and ASP.NET Core have fundamentally different approaches to accessing the current user:
 
