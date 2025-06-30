@@ -33,7 +33,15 @@ You need to configure two configuration values in both applications:
 * `RemoteAppApiKey`: A key (required to be parseable as a [GUID](/dotnet/api/system.guid)) that is shared between the two applications. This should be a GUID value like `12345678-1234-1234-1234-123456789012`.
 * `RemoteAppUri`: The URI of the remote ASP.NET Framework application (only required in the ASP.NET Core application configuration). This should be the full URL where the ASP.NET Framework app is hosted, such as `https://localhost:44300` or `https://myapp.example.com`.
 
+### ASP.NET Framework
+
 For ASP.NET Framework applications, add these values to your `web.config` in the `<appSettings>` section:
+
+> [!IMPORTANT]
+> ASP.NET Framework stores its appSettings in `web.config`. However, they can be retrieved from other sources (such as environment variables) with the use of [configuration Builders](/aspnet/config-builder). This makes sharing configuration values much easier between the local and remote applications in this setup.
+
+> [!IMPORTANT]
+> The ASP.NET Framework application should be hosted with SSL enabled. In the remote app setup for incremental migration, it is not required to have direct access externally. It is recommended to only allow access from the client application via the proxy.
 
 ```xml
 <appSettings>
@@ -41,20 +49,7 @@ For ASP.NET Framework applications, add these values to your `web.config` in the
 </appSettings>
 ```
 
-For ASP.NET Core applications, add these values to your `appsettings.json`:
-
-```json
-{
-  "RemoteAppApiKey": "...",
-  "RemoteAppUri": "https://localhost:44300"
-}
-```
-
-For ASP.NET Framework applications, it is recommended to use [Configuration Builders](/aspnet/config-builder) to allow injecting values into the application without touching the `web.config`.
-
-### ASP.NET app configuration
-
-To set up the ASP.NET app to be able to receive requests from the ASP.NET Core app:
+To configure the application to be available to handle the requests from the ASP.NET Core client, set up the following:
 
 1. Install the NuGet package [`Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`](https://www.nuget.org/packages/Microsoft.AspNetCore.SystemWebAdapters)
 
@@ -74,12 +69,6 @@ To set up the ASP.NET app to be able to receive requests from the ASP.NET Core a
     }
     ```
     
-    In the options configuration method passed to the `AddRemoteAppServer` call, an API key must be specified. The API key is:
-    
-    * Used to secure the endpoint so that only trusted callers can make requests to it.
-    * The same API key provided to the ASP.NET Core app when it is configured.
-    * A string and must be parsable as a [GUID](/dotnet/api/system.guid). Hyphens in the key are optional.
-    
 1. Add the `SystemWebAdapterModule` module to the `web.config` if it wasn't already added by NuGet. This module configuration is required for IIS hosting scenarios. The `SystemWebAdapterModule` module is not added automatically when using SDK style projects for ASP.NET Core.
 
 ```diff
@@ -89,9 +78,17 @@ To set up the ASP.NET app to be able to receive requests from the ASP.NET Core a
 +      <add name="SystemWebAdapterModule" type="Microsoft.AspNetCore.SystemWebAdapters.SystemWebAdapterModule, Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices" preCondition="managedHandler" />
     </modules>
 </system.webServer>
-```
 
-### ASP.NET Core app
+### ASP.NET Core
+
+For ASP.NET Core applications, add these values to your `appsettings.json`:
+
+```json
+{
+  "RemoteAppApiKey": "...",
+  "RemoteAppUri": "https://localhost:44300"
+}
+```
 
 To set up the ASP.NET Core app to be able to send requests to the ASP.NET app, configure the remote app client by calling `AddRemoteAppClient` after registering System.Web adapter services with `AddSystemWebAdapters`.
 
