@@ -15,7 +15,7 @@ In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app 
 
 Common scenarios this enables:
 
-* Fallback to the legacy application with YARP
+* Fallback to the legacy application with [YARP](xref:fundamentals/servers/yarp/yarp-overview)
 * [Remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn)
 * [Remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state)
 
@@ -35,13 +35,13 @@ You need to configure two configuration values in both applications:
 
 ### ASP.NET Framework
 
+> [!IMPORTANT]
+> The ASP.NET Framework application should be hosted with SSL enabled. In the remote app setup for incremental migration, it is not required to have direct access externally. It is recommended to only allow access from the client application via the proxy.
+
 For ASP.NET Framework applications, add these values to your `web.config` in the `<appSettings>` section:
 
 > [!IMPORTANT]
 > ASP.NET Framework stores its appSettings in `web.config`. However, they can be retrieved from other sources (such as environment variables) with the use of [configuration Builders](/aspnet/config-builder). This makes sharing configuration values much easier between the local and remote applications in this setup.
-
-> [!IMPORTANT]
-> The ASP.NET Framework application should be hosted with SSL enabled. In the remote app setup for incremental migration, it is not required to have direct access externally. It is recommended to only allow access from the client application via the proxy.
 
 ```xml
 <appSettings>
@@ -104,3 +104,49 @@ builder.Services.AddSystemWebAdapters()
 ```
 
 With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
+
+## Proxying
+
+To enable proxying from the ASP.NET Core application to the ASP.NET Framework application, you can set up a fallback route that forwards unmatched requests to the legacy application. This allows for a gradual migration where the ASP.NET Core app handles migrated functionality while falling back to the original app for unmigrated features.
+
+1. Install the YARP (Yet Another Reverse Proxy) NuGet package following the [latest guidance](~/fundamentals/servers/yarp/getting-started).
+
+1. Add the required using statements to your `Program.cs`:
+
+    ```csharp
+    using Microsoft.Extensions.Options;
+    using Microsoft.AspNetCore.SystemWebAdapters;
+    ```
+
+1. Register the reverse proxy services in your `Program.cs`:
+
+    ```csharp
+    builder.Services.AddReverseProxy();
+    ```
+
+1. After building the app and configuring other middleware, add the fallback route mapping:
+    
+    ```csharp
+    var app = builder.Build();
+    
+    // Configure your other middleware here (authentication, routing, etc.)
+    
+    // Map the fallback route
+    app.MapForwarder("/{**catch-all}", app.ServiceProvider.GetRequiredService<IOptions<RemoteAppClientOptions>>().Value.RemoteAppUrl.OriginalString)
+    
+        // Ensures this route has the lowest priority (runs last)
+        .WithOrder(int.MaxValue)
+    
+        // Skips remaining middleware when this route matches
+        .ShortCircuit();
+    
+    app.Run();
+    ```
+
+With this configuration:
+
+1. **Local routes take precedence**: If the ASP.NET Core application has a matching route, it will handle the request locally
+2. **Fallback to legacy app**: Unmatched requests are automatically forwarded to the ASP.NET Framework application
+3. **Middleware optimization**: The `.ShortCircuit()` method prevents unnecessary middleware execution when forwarding requests
+
+This setup enables a seamless user experience during incremental migration, where users can access both migrated and legacy functionality through a single endpoint.

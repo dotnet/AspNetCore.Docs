@@ -2135,6 +2135,8 @@ items:
               uid: migration/fx-to-core/areas/webapi
             - name: ClaimsPrincipal.Current
               uid: migration/fx-to-core/areas/claimsprincipal-current
+            - name: Miscellaneous
+              uid: migration/fx-to-core/areas/misc
           - name: Example Migration
             items:
             - name: Overview
