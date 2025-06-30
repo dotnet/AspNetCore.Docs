@@ -230,22 +230,18 @@ This section shows how to translate the most commonly used properties of <xref:S
   
   Must use callback pattern to set cookies before response starts
 
-#### Response headers and cookies patterns
+* Setting response headers:
+    
+    ```csharp
+    public async Task Invoke(HttpContext httpContext)
+    {
+        // Set callback to execute before response starts
+        httpContext.Response.OnStarting(SetHeaders, state: httpContext);
+        // ... rest of middleware logic
+    }
+    ```
 
-Since response headers and cookies require special handling in ASP.NET Core, here are the patterns:
-
-**Setting response headers:**
-
-```csharp
-public async Task Invoke(HttpContext httpContext)
-{
-    // Set callback to execute before response starts
-    httpContext.Response.OnStarting(SetHeaders, state: httpContext);
-    // ... rest of middleware logic
-}
-```
-
-**Setting response cookies:**
+* Setting response cookies:
 
 ```csharp
 public async Task Invoke(HttpContext httpContext)
