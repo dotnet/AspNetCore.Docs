@@ -39,3 +39,21 @@ Simplest way to enable this with similar behavior as ASP.NET Framework would be 
 ```csharp
 app.UseRequestLocalization();
 ```
+
+### Threading considerations
+
+[!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
+
+ASP.NET Core does not guarantee thread affinity for requests. If your code requires thread affinity, you must ensure proper synchronization or use the `SingleThreadedRequest` attribute:
+
+```csharp
+[SingleThreadedRequest]
+public class LegacyController : Controller
+{
+    public IActionResult Index()
+    {
+        // Some code that requires to be run on a single thread
+        return View();
+    }
+}
+```
