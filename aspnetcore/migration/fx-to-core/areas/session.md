@@ -11,13 +11,27 @@ uid: migration/fx-to-core/areas/session
 
 # Migrate ASP.NET Framework Session to ASP.NET Core
 
-For most applications, migrating to [ASP.NET Core session](~/fundamentals/app-state) provides the best performance and maintainability. However, larger applications may need an incremental approach using System.Web adapters.
-
-[!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
+For most applications, migrating to [ASP.NET Core session]((xref:fundamentals/app-state.md) provides the best performance and maintainability. However, larger applications may need an incremental approach using System.Web adapters.
 
 ## Choose your migration approach
 
-There are a few options available for how to migrate session usage. As you decide which migration pattern to use, it helps to understand the differences between ASP.NET Framework and Core session designs:
+You have three main options for migrating session state from ASP.NET Framework to ASP.NET Core. Your choice depends on your migration timeline, whether you need to run both applications simultaneously, and how much code you're willing to rewrite.
+
+### Quick decision guide
+
+**Answer these questions to choose your approach:**
+
+1. **Are you doing a complete rewrite or incremental migration?**
+   * Complete rewrite → [Built-in ASP.NET Core session](#built-in-aspnet-core-session-state)
+   * Incremental migration → Continue to question 2
+
+2. **Do both your ASP.NET Framework and ASP.NET Core apps need to access the same session data?**
+   * Yes, shared session needed → [Remote app session](#remote-app-session-state)
+   * No, separate sessions are fine → [Wrapped ASP.NET Core session](#wrapped-aspnet-core-session-state)
+
+### Understanding the differences
+
+Before diving into implementation details, it's important to understand how ASP.NET Framework and ASP.NET Core handle session state differently:
 
 * **Object serialization**
   * ASP.NET Framework automatically serializes and deserializes objects (unless using in-memory storage)
@@ -26,34 +40,18 @@ There are a few options available for how to migrate session usage. As you decid
   * ASP.NET Framework locks session usage within a session, handling subsequent requests serially
   * ASP.NET Core provides no session locking guarantees
 
-The [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md) bridge these differences through two key interfaces:
+### Migration approaches comparison
+
+| Approach | Code Changes | Performance | Session Sharing | When to Use |
+|----------|-------------|-------------|-----------------|-------------|
+| **[Built-in ASP.NET Core](#built-in-aspnet-core-session-state)** | High - Rewrite all session code | Best | None | Complete rewrites, performance-critical apps |
+| **[Wrapped ASP.NET Core](#wrapped-aspnet-core-session-state)** | Low - Keep existing session patterns | Good | None | Incremental migrations, no shared state needed |
+| **[Remote app](#remote-app-session-state)** | Low - Keep existing session patterns | Fair | Full | Running both apps simultaneously |
+
+The [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md) enable the "Wrapped" and "Remote app" approaches by bridging the differences between ASP.NET Framework and Core session implementations through two key interfaces:
 
 * `Microsoft.AspNetCore.SystemWebAdapters.ISessionManager`: Accepts an <xref:Microsoft.AspNetCore.Http.HttpContext> and session metadata, returns an `ISessionState` object
 * `Microsoft.AspNetCore.SystemWebAdapters.ISessionState`: Describes session object state and backs the <xref:System.Web.SessionState.HttpSessionState> type
-
-The main scenarios covered in this document are:
-
-| Implementation | Best for | Strongly typed | Locking | Session sharing |
-|----------------|----------|----------------|---------|-----------------|
-| [Built-in ASP.NET Core](#built-in-aspnet-core-session-state) | Complete rewrites with no legacy session compatibility needed | ⛔ | ⛔ | ⛔ |
-| [Wrapped ASP.NET Core](#wrapped-aspnet-core-session-state) | Migrations where session doesn't need to be shared with the legacy app | ✔️ | ⛔ | ⛔ |
-| [Remote app](#remote-app-session-state) | Incremental migrations requiring shared session state between apps | ✔️ | ✔️ | ✔️ |
-
-**Use built-in ASP.NET Core session** when:
-* You're performing a complete rewrite and don't need System.Web compatibility
-* You can rewrite all session-related code to use ASP.NET Core patterns
-* You want the best performance and smallest footprint
-* You don't need to maintain session data structure compatibility with legacy code
-
-**Use wrapped ASP.NET Core session** when:
-* You're migrating components that don't need to share session data with the legacy application
-* You want to leverage ASP.NET Core's native session infrastructure
-* You're doing a more complete migration where both apps don't run simultaneously
-
-**Use remote app session** when:
-* You need to share session state between your ASP.NET Framework and ASP.NET Core applications
-* You're running both applications simultaneously during migration
-* You require the same session locking behavior as ASP.NET Framework
 
 ## Built-in ASP.NET Core session state
 
@@ -61,7 +59,7 @@ Choose this approach when you're performing a complete migration and can rewrite
 
 ASP.NET Core provides a lightweight, high-performance session state implementation that stores data as `byte[]` and requires explicit serialization. This approach offers the best performance but requires more code changes during migration.
 
-For details on how to set this up and use it, see the [ASP.NET session documentation](~/fundamentals/app-state).
+For details on how to set this up and use it, see the [ASP.NET session documentation]((xref:fundamentals/app-state.md).
 
 ### Pros and cons
 
@@ -101,6 +99,8 @@ When migrating to built-in ASP.NET Core session:
 
 ## Wrapped ASP.NET Core session state
 
+[!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
+
 Choose this approach when your migrated components don't need to share session data with your legacy application.
 
 The `Microsoft.Extensions.DependencyInjection.WrappedSessionExtensions.AddWrappedAspNetCoreSession` extension method adds a wraps ASP.NET Core session to work with the adapters. It uses the same backing store as <xref:Microsoft.AspNetCore.Http.ISession> while providing strongly-typed access.
@@ -114,6 +114,8 @@ Your Framework application requires no changes.
 For more information, see the [wrapped session state sample app](https://github.com/dotnet/systemweb-adapters/blob/main/samples/SessionLocal/SessionLocalCore/Program.cs)
 
 ## Remote app session state
+
+[!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
 
 Choose this approach when you need to share session state between your ASP.NET Framework and ASP.NET Core applications during incremental migration.
 

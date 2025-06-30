@@ -1066,6 +1066,21 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/migration/fx-to-core/inc/remote-session.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/session#remote-app-session-state",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/fx-to-core/inc/session.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/session",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/fx-to-core/inc/wrapped.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/session#wrapped-aspnet-core-session-state",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/security/blazor/server-side.md",
             "redirect_url": "/aspnet/core/blazor/security/server/",
             "redirect_document_id": false

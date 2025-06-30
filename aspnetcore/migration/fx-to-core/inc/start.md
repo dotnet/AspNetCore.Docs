@@ -36,7 +36,7 @@ This step may require a number of projects to change depending on your solution 
 
 ## Enable Session Support
 
-Session is a commonly used feature of ASP.NET that shares the name with a feature in ASP.NET Core the APIs are much different. See the documentation on [session support](xref:migration/fx-to-core/inc/session).
+Session is a commonly used feature of ASP.NET that shares the name with a feature in ASP.NET Core the APIs are much different. See the documentation on [session support](xref:migration/fx-to-core/fx-to-core/session).
 
 ## Enable shared authentication support
 
