@@ -2111,12 +2111,6 @@ items:
               uid: migration/fx-to-core/inc/remote-app-setup
             - name: Usage Guidance
               uid: migration/fx-to-core/inc/usage_guidance
-            - name: Wrapped session state
-              uid: migration/fx-to-core/inc/wrapped
-            - name: Session state migration
-              uid: migration/fx-to-core/inc/session
-            - name: Remote app session state
-              uid: migration/fx-to-core/inc/remote-session
             - name: Remote Authentication
               uid: migration/fx-to-core/inc/remote-authentication
             - name: Unit testing
@@ -2145,6 +2139,8 @@ items:
               uid: migration/fx-to-core/areas/http-modules
             - name: HTTP Handlers
               uid: migration/fx-to-core/areas/http-handlers
+            - name: Session
+              uid: migration/fx-to-core/areas/session
             - name: Membership
               uid: migration/fx-to-core/areas/membership
             - name: Web API
