@@ -13,7 +13,7 @@ uid: migration/fx-to-core/inc/remote-app-setup
 
 In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app to be able to communicate with the original ASP.NET app.
 
-Specifically, this capability is used, currently, for [remote app authentication](xref:migration/fx-to-core/inc/remote-authentication) and [remote session](xref:migration/fx-to-core/inc/remote-session) features.
+Specifically, this capability is used, currently, for [remote app authentication](xref:migration/fx-to-core/inc/remote-authentication) and [remote session](xref:migration/fx-to-core/areas/session#remote) features.
 
 ## Configuration
 

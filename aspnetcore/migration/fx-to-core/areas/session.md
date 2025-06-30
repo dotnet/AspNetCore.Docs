@@ -13,7 +13,7 @@ uid: migration/fx-to-core/areas/session
 
 For most applications, migrating to [ASP.NET Core session](fundamentals/app-state) provides the best performance and maintainability. However, larger applications may need an incremental approach using System.Web adapters.
 
-[!INCLUDE[](~/aspnetcore/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
+[!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
 
 ## Choose your migration approach
 
@@ -59,7 +59,7 @@ The [System.Web adapters](~/aspnetcore/migration/fx-to-core/inc/systemweb-adapte
 
 Choose this approach when your migrated components don't need to share session data with your legacy application.
 
-The <xref:Microsoft.Extensions.DependencyInjection.WrappedSessionExtensions.AddWrappedAspNetCoreSession> method adds a wraps ASP.NET Core session to work with the adapters. It uses the same backing store as [`Microsoft.AspNetCore.Http.ISession`](/dotnet/api/microsoft.aspnetcore.http.isession) while providing strongly-typed access.
+The <xref:Microsoft.Extensions.DependencyInjection.WrappedSessionExtensions.AddWrappedAspNetCoreSession> method adds a wraps ASP.NET Core session to work with the adapters. It uses the same backing store as <xref:Microsoft.AspNetCore.Http.ISession> while providing strongly-typed access.
 
 **Configuration for ASP.NET Core:**
 
