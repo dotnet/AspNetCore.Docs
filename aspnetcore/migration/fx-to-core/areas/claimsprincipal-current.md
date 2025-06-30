@@ -56,7 +56,7 @@ You have two main options for migrating static principal access from ASP.NET Fra
 
 Choose this approach when you're performing a complete migration or want the best performance and maintainability.
 
-ASP.NET Core provides several options for retrieving the current authenticated user's `ClaimsPrincipal` without relying on static properties. This approach requires rewriting static principal access code but offers the most benefits in the long term.
+ASP.NET Core provides several options for retrieving the current authenticated user's <xref:System.Security.Claims.ClaimsPrincipal> without relying on static properties. This approach requires rewriting static principal access code but offers the most benefits in the long term.
 
 ### Complete rewrite pros and cons
 
@@ -70,18 +70,12 @@ ASP.NET Core provides several options for retrieving the current authenticated u
 
 ### ASP.NET Core ClaimsPrincipal access patterns
 
-There are several options for retrieving the current authenticated user's `ClaimsPrincipal` in ASP.NET Core in place of <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>:
+There are several options for retrieving the current authenticated user's <xref:System.Security.Claims.ClaimsPrincipal> in ASP.NET Core in place of <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>:
 
-* **ControllerBase.User**. MVC controllers can access the current authenticated user with their <xref:Microsoft.AspNetCore.Mvc.ControllerBase.User%2A> property.
-* **HttpContext.User**. Components with access to the current `HttpContext` (middleware, for example) can get the current user's `ClaimsPrincipal` from <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>.
-* **Passed in from caller**. Libraries without access to the current `HttpContext` are often called from controllers or middleware components and can have the current user's identity passed as an argument.
-* **IHttpContextAccessor**. The project being migrated to ASP.NET Core may be too large to easily pass the current user's identity to all necessary locations. In such cases, <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used as a workaround. `IHttpContextAccessor` is able to access the current `HttpContext` (if one exists). If DI is being used, see <xref:fundamentals/httpcontext>. A short-term solution to getting the current user's identity in code that hasn't yet been updated to work with ASP.NET Core's DI-driven architecture would be:
-
-  * Make `IHttpContextAccessor` available in the DI container by calling [AddHttpContextAccessor](https://github.com/aspnet/Hosting/issues/793) in `Startup.ConfigureServices`.
-  * Get an instance of `IHttpContextAccessor` during startup and store it in a static variable. The instance is made available to code that was previously retrieving the current user from a static property.
-  * Retrieve the current user's `ClaimsPrincipal` using `HttpContextAccessor.HttpContext?.User`. If this code is used outside of the context of an HTTP request, the `HttpContext` is null.
-
-The final option, using an `IHttpContextAccessor` instance stored in a static variable, is contrary to the ASP.NET Core principle of preferring injected dependencies to static dependencies. Plan to eventually retrieve `IHttpContextAccessor` instances from DI instead. A static helper can be a useful bridge, though, when migrating large existing ASP.NET apps that use <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>.
+* **<xref:Microsoft.AspNetCore.Mvc.ControllerBase.User?displayProperty=nameWithType>**
+* **<xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>**
+* **Passed in from caller**. Libraries without access to the current <xref:Microsoft.AspNetCore.Http.HttpContext> are often called from controllers or middleware components and can have the current user's identity passed as an argument.
+* **<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>**. The project being migrated to ASP.NET Core may be too large to easily pass the current user's identity to all necessary locations. In such cases, <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used as a workaround. This is not ideal as it uses a static accessor behind the scenes. Prefer a more direct option if possible.
 
 ### Code examples
 
@@ -96,24 +90,6 @@ public class UserService
         // Both ClaimsPrincipal.Current and Thread.CurrentPrincipal work interchangeably
         return ClaimsPrincipal.Current?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         // or: return Thread.CurrentPrincipal?.Identity?.Name;
-    }
-}
-```
-
-**ASP.NET Core (after) - Dependency Injection:**
-```csharp
-public class UserService
-{
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    
-    public UserService(IHttpContextAccessor httpContextAccessor)
-    {
-        _httpContextAccessor = httpContextAccessor;
-    }
-    
-    public string GetCurrentUserId()
-    {
-        return _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     }
 }
 ```
@@ -146,10 +122,28 @@ public class HomeController : Controller
 }
 ```
 
+**ASP.NET Core (after) - Dependency Injection:**
+```csharp
+public class UserService
+{
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    
+    public UserService(IHttpContextAccessor httpContextAccessor)
+    {
+        _httpContextAccessor = httpContextAccessor;
+    }
+    
+    public string GetCurrentUserId()
+    {
+        return _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    }
+}
+```
+
 ### When to choose this approach
 
 * You can afford to rewrite static principal access code
-* Performance is a top priority (in this case, prefer the passing as a parameter option)
+* Performance is a top priority (in this case, prefer passing the identity as a parameter over DI)
 * You want to eliminate static dependencies
 * You're not sharing code with legacy applications
 * You want the most testable and maintainable solution
@@ -206,41 +200,3 @@ public class HomeController : Controller
 * **Native ASP.NET Core patterns** provide the best performance with no overhead
 * **System.Web adapters** introduce some performance overhead but enable gradual migration
 * **Static variables** should be avoided as they can cause memory leaks and threading issues
-
-### Testing considerations
-
-* **Dependency injection approach** is most testable - you can easily inject mock `IHttpContextAccessor` or pass test `ClaimsPrincipal` objects
-* **Static access patterns** are harder to test and may require additional setup in unit tests
-
-### Security considerations
-
-* Ensure that `ClaimsPrincipal` access is properly validated in all scenarios
-* Be aware of potential null reference exceptions when `HttpContext` is not available
-* Consider the security implications of storing user context in static variables
-
-## Common issues and solutions
-
-### Issue: Static principal properties are null
-
-**Problem**: Code that previously worked with static principal properties (<xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType> or <xref:System.Threading.Thread.CurrentPrincipal?displayProperty=nameWithType>) now returns null.
-
-**Solution**: 
-* For complete rewrite: Use `HttpContext.User` or inject `IHttpContextAccessor`
-* For incremental migration: Enable System.Web adapters with proper configuration
-
-### Issue: Thread.CurrentPrincipal not working
-
-**Problem**: <xref:System.Threading.Thread.CurrentPrincipal?displayProperty=nameWithType> is not set in ASP.NET Core.
-
-**Solution**: 
-* Preferred: Refactor to use `HttpContext.User` or dependency injection
-* Temporary: Use `SetThreadCurrentPrincipalAttribute` with System.Web adapters
-
-### Issue: Null reference exceptions
-
-**Problem**: `HttpContext` may be null in certain scenarios (background tasks, etc.).
-
-**Solution**: Always check for null before accessing user properties:
-```csharp
-var userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-```
