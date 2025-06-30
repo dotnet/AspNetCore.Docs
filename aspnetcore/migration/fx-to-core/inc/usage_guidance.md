@@ -97,11 +97,11 @@ app.MapDefaultControllerRoute()
     .RequireSystemWebAdapterSession();
 ```
 
-This also requires some implementation of a session store. For details of options here, see [here](xref:migration/fx-to-core/inc/session).
+This also requires some implementation of a session store. For details of options here, see [migration guidance for session](xref:migration/fx-to-core/areas/session).
 
 ## Remote session exposes additional endpoint for application
 
-The [remote session support](xref:migration/fx-to-core/inc/remote-session) exposes an endpoint that allows the core app to retrieve session information. This may cause a potentially long-lived request to exist between the core app and the framework app, but will time out with the current request or the session timeout (by default is 20 minutes).
+The [remote session support](xref:migration/fx-to-core/areas/session#remote-app-session-state) exposes an endpoint that allows the core app to retrieve session information. This may cause a potentially long-lived request to exist between the core app and the framework app, but will time out with the current request or the session timeout (by default is 20 minutes).
 
 **Recommendation**: Ensure the API key used is a strong one and that the connection with the framework app is done over SSL.
 

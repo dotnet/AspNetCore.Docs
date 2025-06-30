@@ -13,7 +13,7 @@ uid: migration/fx-to-core/inc/remote-app-setup
 
 In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app to be able to communicate with the original ASP.NET app.
 
-Specifically, this capability is used, currently, for [remote app authentication](xref:migration/fx-to-core/inc/remote-authentication) and [remote session](xref:migration/fx-to-core/areas/session#remote) features.
+Specifically, this capability is used, currently, for [remote app authentication](xref:migration/fx-to-core/inc/remote-authentication) and [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state) features.
 
 ## Configuration
 
@@ -22,7 +22,7 @@ To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessa
 ### ASP.NET app configuration
 
 To set up the ASP.NET app to be able to receive requests from the ASP.NET Core app:
-1. Install the nuget package [`Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`](https://www.nuget.org/packages/Microsoft.AspNetCore.SystemWebAdapters)
+1. Install the NuGet package [`Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`](https://www.nuget.org/packages/Microsoft.AspNetCore.SystemWebAdapters)
 2. Call the `AddRemoteAppServer` extension method on the `ISystemWebAdapterBuilder`:
 
 ```CSharp
@@ -69,7 +69,7 @@ In the preceding code:
 * The `AddRemoteApp` call is used to configure the remote app's URL and the shared secret API key.
 * The `RemoteAppUrl` property specifies the URL of the ASP.NET Framework app that the ASP.NET Core app communicates with. In this example, the URL is read from an existing configuration setting used by the YARP proxy that proxies requests to the ASP.NET Framework app as part of the incremental migration's *strangler fig pattern*.
 
-With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/inc/remote-authentication) or [remote session](xref:migration/fx-to-core/inc/remote-session), as needed.
+With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/inc/remote-authentication) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
 
 ## Securing the remote app connection
 
