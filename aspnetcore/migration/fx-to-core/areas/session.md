@@ -30,7 +30,7 @@ You have three main approaches for handling session state during migration:
 2. **Incremental with separate sessions** - Migrate components piece by piece, with each app maintaining its own session state
 3. **Incremental with shared sessions** - Migrate components while sharing session data between Framework and Core applications
 
-For most applications, migrating to [ASP.NET Core session](xref:fundamentals/app-state) provides the best performance and maintainability. However, larger applications or those with complex session requirements may benefit from an incremental approach using [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md).
+For most applications, migrating to [ASP.NET Core session](xref:fundamentals/app-state) provides the best performance and maintainability. However, larger applications or those with complex session requirements may benefit from an incremental approach using the System.Web adapters.
 
 ## Choose your migration approach
 
@@ -126,7 +126,7 @@ The `Microsoft.Extensions.DependencyInjection.WrappedSessionExtensions.AddWrappe
 
 **Configuration for ASP.NET Core:**
 
-:::code language="csharp" source="~/migration/fx-to-core/inc/samples/wrapped/Program.cs" id="snippet_WrapAspNetCoreSession" :::
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/wrapped/Program.cs" id="snippet_WrapAspNetCoreSession" :::
 
 Your Framework application requires no changes.
 
@@ -150,7 +150,7 @@ The <xref:System.Web.SessionState.HttpSessionState> object requires serializatio
 
 In order to serialize session state, a serializer for the state object must be registered:
 
-:::code language="csharp" source="~/migration/fx-to-core/inc/samples/remote-session/Program.cs" id="snippet_Serialization" :::
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_Serialization" :::
 
 In ASP.NET Core, <xref:System.Runtime.Serializer.Formatters.Binary.BinaryFormatterSerializer> was used to automatically serialize session value contents. In order to serialize these with for use with the System.Web adapters, the serialization must be explicitly configured using `ISessionKeySerializer` implementations.
 
@@ -158,7 +158,7 @@ Out of the box, there is a simple JSON serializer that allows each session key t
 
 * `RegisterKey<T>(string)` - Registers a session key to a known type. This registration is required for correct serialization/deserialization. Missing registrations cause errors and prevent session access.
 
-:::code language="csharp" source="~/migration/fx-to-core/inc/samples/session/Program.cs" id="snippet_Serialization" :::
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_Serialization" :::
 
 ### Application configuration
 
@@ -166,23 +166,23 @@ Out of the box, there is a simple JSON serializer that allows each session key t
 
 Call `AddRemoteAppSession` and `AddJsonSessionSerializer` to register known session item types:
 
-:::code language="csharp" source="~/migration/fx-to-core/inc/samples/remote-session/Program.cs" id="snippet_Configuration" :::
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_Configuration" :::
 
 Session support requires explicit activation. Configure it per-route using ASP.NET Core metadata.
 
 #### Option 1: Annotate controllers
 
-:::code language="csharp" source="~/migration/fx-to-core/inc/samples/remote-session/SomeController.cs" id="snippet_Controller" :::
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/SomeController.cs" id="snippet_Controller" :::
 
 #### Option 2: Enable globally for all endpoints
 
-:::code language="csharp" source="~/migration/fx-to-core/inc/samples/remote-session/Program.cs" id="snippet_RequireSystemWebAdapterSession" :::
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_RequireSystemWebAdapterSession" :::
 
 **ASP.NET Framework configuration:**
 
 Add this change to `Global.asax.cs`:
 
-:::code language="csharp" source="~/migration/fx-to-core/inc/samples/remote-session/Global.asax.cs":::
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Global.asax.cs":::
 
 ### Communication protocol
 
