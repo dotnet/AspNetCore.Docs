@@ -13,7 +13,11 @@ uid: migration/fx-to-core/inc/remote-app-setup
 
 In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app to be able to communicate with the original ASP.NET app.
 
-Specifically, this capability is used, currently, for [remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn) and [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state) features.
+Common scenarios this enables:
+
+* Fallback to the legacy application with YARP
+* [Remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn)
+* [Remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state) features.
 
 ## Configuration
 
@@ -21,8 +25,6 @@ Specifically, this capability is used, currently, for [remote app authentication
 > Framework and Core applications must use identical virtual directory layouts.
 >
 > The virtual directory setup is used for route generation, authorization, and other services within the system. At this point, no reliable method has been found to enable different virtual directories due to how ASP.NET Framework works.
-
-**Recommendation**: Ensure your two applications are on different sites (hosts and/or ports) with the same application/virtual directory layout.
 
 To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessary to make a couple small changes to each app.
 
@@ -56,28 +58,28 @@ To set up the ASP.NET app to be able to receive requests from the ASP.NET Core a
 
 1. Install the NuGet package [`Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`](https://www.nuget.org/packages/Microsoft.AspNetCore.SystemWebAdapters)
 
-2. Add the configuration code to the `Application_Start` method in your `Global.asax.cs` file:
+1. Add the configuration code to the `Application_Start` method in your `Global.asax.cs` file:
 
-```CSharp
-protected void Application_Start()
-{
-    SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
-        .AddRemoteAppServer(options =>
-        {
-            // ApiKey is a string representing a GUID
-            options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
-        });
+    ```CSharp
+    protected void Application_Start()
+    {
+        SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
+            .AddRemoteAppServer(options =>
+            {
+                // ApiKey is a string representing a GUID
+                options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
+            });
+        
+        // ...existing code...
+    }
+    ```
     
-    // ...existing code...
-}
-```
-
-In the options configuration method passed to the `AddRemoteAppServer` call, an API key must be specified. The API key is:
-
-* Used to secure the endpoint so that only trusted callers can make requests to it.
-* The same API key provided to the ASP.NET Core app when it is configured.
-* A string and must be parsable as a [GUID](/dotnet/api/system.guid). Hyphens in the key are optional.
-
+    In the options configuration method passed to the `AddRemoteAppServer` call, an API key must be specified. The API key is:
+    
+    * Used to secure the endpoint so that only trusted callers can make requests to it.
+    * The same API key provided to the ASP.NET Core app when it is configured.
+    * A string and must be parsable as a [GUID](/dotnet/api/system.guid). Hyphens in the key are optional.
+    
 1. Add the `SystemWebAdapterModule` module to the `web.config` if it wasn't already added by NuGet. This module configuration is required for IIS hosting scenarios. The `SystemWebAdapterModule` module is not added automatically when using SDK style projects for ASP.NET Core.
 
 ```diff
