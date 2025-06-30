@@ -15,7 +15,7 @@ In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app 
 
 Common scenarios this enables:
 
-* Fallback to the legacy application with [YARP](xref:fundamentals/servers/yarp/yarp-overview)
+* Fallback to the legacy application with [YARP](~/fundamentals/servers/yarp/yarp-overview.md)
 * [Remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn)
 * [Remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state)
 
@@ -110,7 +110,7 @@ With both the ASP.NET and ASP.NET Core app updated, extension methods can now be
 
 To enable proxying from the ASP.NET Core application to the ASP.NET Framework application, you can set up a fallback route that forwards unmatched requests to the legacy application. This allows for a gradual migration where the ASP.NET Core app handles migrated functionality while falling back to the original app for unmigrated features.
 
-1. Install the YARP (Yet Another Reverse Proxy) NuGet package following the [latest guidance](~/fundamentals/servers/yarp/getting-started).
+1. Install the YARP (Yet Another Reverse Proxy) NuGet package following the [latest guidance](~/fundamentals/servers/yarp/getting-started.md).
 
 1. Add the required using statements to your `Program.cs`:
 
