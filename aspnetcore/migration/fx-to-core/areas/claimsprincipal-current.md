@@ -29,3 +29,12 @@ There are several options for retrieving the current authenticated user's `Claim
   * Retrieve the current user's `ClaimsPrincipal` using `HttpContextAccessor.HttpContext?.User`. If this code is used outside of the context of an HTTP request, the `HttpContext` is null.
 
 The final option, using an `IHttpContextAccessor` instance stored in a static variable, is contrary to the ASP.NET Core principle of preferring injected dependencies to static dependencies. Plan to eventually retrieve `IHttpContextAccessor` instances from DI instead. A static helper can be a useful bridge, though, when migrating large existing ASP.NET apps that use `ClaimsPrincipal.Current`.
+
+## Thread.CurrentPrincipal migration
+
+> [!WARNING]
+> Using `Thread.CurrentPrincipal` should be avoided in ASP.NET Core. This approach is only provided for incremental migration scenarios and has performance implications.
+
+In ASP.NET Framework, <xref:System.Threading.Thread.CurrentPrincipal> and <xref:System.Security.Claims.ClaimsPrincipal.Current> would be set to the current user. This is not available on ASP.NET Core out of the box. Support for this is available with these adapters by adding the `ISetThreadCurrentPrincipal` to the endpoint (available to controllers via the `SetThreadCurrentPrincipalAttribute`). However, it should only be used if the code cannot be refactored to remove usage.
+
+**Recommendation**: If possible, use the property <xref:Microsoft.AspNetCore.Http.HttpContext.User> or <xref:System.Web.HttpContext.User> instead by passing it through to the call site. If not possible, enable setting the current user and also consider setting the request to be a logical single thread (see [HttpContext threading considerations](xref:migration/fx-to-core/areas/http-context#request-threading-considerations) for details).

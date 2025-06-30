@@ -51,6 +51,57 @@ You have two main options for migrating HttpContext from ASP.NET Framework to AS
 | **[Complete rewrite](#complete-rewrite-to-aspnet-core-httpcontext)** | High - Rewrite all HttpContext code | Best | Requires updates | Complete rewrites, performance-critical apps |
 | **[System.Web adapters](#systemweb-adapters)** | Low - Keep existing patterns | Good | Works with existing code | Incremental migrations, extensive HttpContext usage |
 
+## Important differences
+
+### HttpContext lifetime
+
+The adapters are backed by <xref:Microsoft.AspNetCore.Http.HttpContext> which cannot be used past the lifetime of a request. Thus, <xref:System.Web.HttpContext> when run on ASP.NET Core cannot be used past a request as well, while on ASP.NET Framework it would work at times. An <xref:System.ObjectDisposedException> will be thrown in cases where it is used past a request end.
+
+**Recommendation**: Store the values needed into a POCO and hold onto that.
+
+### Request threading considerations
+
+> [!WARNING]
+> ASP.NET Core does not guarantee thread affinity for requests. If your code requires thread-safe access to `HttpContext`, you must ensure proper synchronization.
+
+In ASP.NET Framework, a request had thread-affinity and <xref:System.Web.HttpContext.Current> would only be available if on that thread. ASP.NET Core does not have this guarantee so <xref:System.Web.HttpContext.Current> will be available within the same async context, but no guarantees about threads are made.
+
+**Recommendation**: If reading/writing to the <xref:System.Web.HttpContext>, you must ensure you are doing so in a single-threaded way. You can force a request to never run concurrently on any async context by setting the `ISingleThreadedRequestMetadata`. This will have performance implications and should only be used if you can't refactor usage to ensure non-concurrent access. There is an implementation available to add to controllers with `SingleThreadedRequestAttribute`:
+
+```csharp
+[SingleThreadedRequest]
+public class SomeController : Controller
+{
+    ...
+} 
+```
+
+### Request stream buffering
+
+By default, the incoming request is not always seekable nor fully available. In order to get behavior seen in .NET Framework, you can opt into prebuffering the input stream. This will fully read the incoming stream and buffer it to memory or disk (depending on settings). 
+
+**Recommendation**: This can be enabled by applying endpoint metadata that implements the `IPreBufferRequestStreamMetadata` interface. This is available as an attribute `PreBufferRequestStreamAttribute` that can be applied to controllers or methods.
+
+To enable this on all MVC endpoints, there is an extension method that can be used as follows:
+
+```cs
+app.MapDefaultControllerRoute()
+    .PreBufferRequestStream();
+```
+
+### Response stream buffering
+
+Some APIs on <xref:System.Web.HttpContext.Response> require that the output stream is buffered, such as <xref:System.Web.HttpResponse.Output>, <xref:System.Web.HttpResponse.End>, <xref:System.Web.HttpResponse.Clear>, and <xref:System.Web.HttpResponse.SuppressContent>.
+
+**Recommendation**: In order to support behavior for <xref:System.Web.HttpContext.Response> that requires buffering the response before sending, endpoints must opt-into it with endpoint metadata implementing `IBufferResponseStreamMetadata`.
+
+To enable this on all MVC endpoints, there is an extension method that can be used as follows:
+
+```cs
+app.MapDefaultControllerRoute()
+    .BufferResponseStream();
+```
+
 ## Complete rewrite to ASP.NET Core HttpContext
 
 Choose this approach when you're performing a complete migration and can rewrite HttpContext-related code to use ASP.NET Core's native implementation.

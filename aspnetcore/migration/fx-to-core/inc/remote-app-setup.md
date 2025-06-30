@@ -17,6 +17,13 @@ Specifically, this capability is used, currently, for [remote app authentication
 
 ## Configuration
 
+> [!IMPORTANT]
+> Framework and Core applications must use identical virtual directory layouts.
+>
+> The virtual directory setup is used for route generation, authorization, and other services within the system. At this point, no reliable method has been found to enable different virtual directories due to how ASP.NET Framework works.
+
+**Recommendation**: Ensure your two applications are on different sites (hosts and/or ports) with the same application/virtual directory layout.
+
 To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessary to make a couple small changes to each app.
 
 You need to configure two configuration values in both applications:
@@ -98,11 +105,3 @@ builder.Services.AddSystemWebAdapters()
 ```
 
 With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
-
-## Securing the remote app connection
-
-Because remote app features involve serving requests on new endpoints from the ASP.NET app, it's important that communication to and from the ASP.NET app be secure.
-
-First, make sure that the API key string used to authenticate the ASP.NET Core app with the ASP.NET app is unique and kept secret. It is a best practice to not store the API key in source control. Instead, load it at runtime from a secure source such as Azure Key Vault or other secure runtime configuration. In order to encourage secure API keys, remote app connections require that the keys be non-empty GUIDs (128-bit hex numbers).
-
-Second, because it's important for the ASP.NET Core app to be able to trust that it is requesting information from the correct ASP.NET app, the ASP.NET app should use HTTPS in any production scenarios so that the ASP.NET Core app can know responses are being served by a trusted source.

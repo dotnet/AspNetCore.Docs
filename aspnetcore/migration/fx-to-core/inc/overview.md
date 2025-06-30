@@ -70,8 +70,6 @@ The `Microsoft.AspNetCore.SystemWebAdapters` namespace is a collection of runtim
 
 For examples of scenarios where this is useful, see [the adapters article](xref:migration/fx-to-core/systemweb-adapters).
 
-For guidance around usage, see the [usage guidance article](xref:migration/fx-to-core/inc/usage_guidance).
-
 ## Additional Resources
 
 * [Example migration of eShop to ASP.NET Core](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop)

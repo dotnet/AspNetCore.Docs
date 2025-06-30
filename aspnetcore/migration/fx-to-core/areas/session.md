@@ -72,6 +72,22 @@ The [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md) enab
 * `Microsoft.AspNetCore.SystemWebAdapters.ISessionManager`: Accepts an <xref:Microsoft.AspNetCore.Http.HttpContext> and session metadata, returns an `ISessionState` object
 * `Microsoft.AspNetCore.SystemWebAdapters.ISessionState`: Describes session object state and backs the <xref:System.Web.SessionState.HttpSessionState> type
 
+### Shared session state requirements
+
+> [!NOTE]
+> To use session state with System.Web adapters, endpoints must explicitly opt-in via metadata implementing `ISessionMetadata`.
+
+In order to support <xref:System.Web.HttpContext.Session>, endpoints must opt-into it via metadata implementing `ISessionMetadata`.
+
+**Recommendation**: To enable this on all MVC endpoints, there is an extension method that can be used as follows:
+
+```cs
+app.MapDefaultControllerRoute()
+    .RequireSystemWebAdapterSession();
+```
+
+This also requires some implementation of a session store. For details of options here, see the sections below on different session approaches.
+
 ## Built-in ASP.NET Core session state
 
 Choose this approach when you're performing a complete migration and can rewrite session-related code to use ASP.NET Core's native session implementation.

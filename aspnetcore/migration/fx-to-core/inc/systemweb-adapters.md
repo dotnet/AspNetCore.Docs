@@ -24,6 +24,22 @@ Let's take a look at an example using the adapters moving from .NET Framework to
 * `Microsoft.AspNetCore.SystemWebAdapters.CoreServices`: This package only targets .NET 6+ and is intended to provide services to ASP.NET Core applications to configure behavior of `System.Web` APIs as well as opting into any behaviors for incremental migration. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
 * `Microsoft.AspNetCore.SystemWebAdapters.Abstractions`: This package is a supporting package that provides abstractions for services used by both the ASP.NET Core and ASP.NET Framework application such as session state serialization.
 
+### Converting to System.Web.HttpContext
+
+To convert between the two representations of HttpContext, you may do the following:
+
+For <xref:Microsoft.AspNetCore.Http.HttpContext> to <xref:System.Web.HttpContext>:
+
+* Implicit casting
+* `HttpContext.AsSystemWeb()`
+
+For <xref:System.Web.HttpContext> to <xref:Microsoft.AspNetCore.Http.HttpContext>
+
+* Implicit casting
+* `HttpContext.AsAspNetCore()`
+
+Both of these methods will use a cached <xref:System.Web.HttpContext> representation for the duration of a request. This allows for targeted rewrites to <xref:Microsoft.AspNetCore.Http.HttpContext> as needed.
+
 ## Example
 
 ### ASP.NET Framework
