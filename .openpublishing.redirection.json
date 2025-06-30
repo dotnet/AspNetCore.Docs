@@ -1056,11 +1056,6 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/migration/inc/unit-testing.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/inc/unit-testing",
-            "redirect_document_id": false
-        },
-        {
             "source_path": "aspnetcore/migration/inc/usage_guidance.md",
             "redirect_url": "/aspnet/core/migration/fx-to-core/",
             "redirect_document_id": false

@@ -164,7 +164,7 @@ This section shows how to translate the most commonly used properties of <xref:S
   
   [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
 
-* **<xref:System.Web.HttpRequest.RequestContext>** → **<xref:Microsoft.AspNetCore.Http.HttpContextExtensions.GetRouteData*>**
+* **<xref:System.Web.HttpRequest.RequestContext>** → **<xref:Microsoft.AspNetCore.Routing.RoutingHttpContextExtensions.GetRouteData*>**
   
   [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Route)]
 
@@ -210,7 +210,7 @@ This section shows how to translate the most commonly used properties of <xref:S
   
   [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespTypeOnly)]
 
-* **<xref:System.Web.HttpResponse.Output>** → **<xref:Microsoft.AspNetCore.Http.HttpResponse.WriteAsync*>**
+* **<xref:System.Web.HttpResponse.Output>** → **<xref:Microsoft.AspNetCore.Http.HttpResponseWritingExtensions.WriteAsync*>**
   
   [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Output)]
 
