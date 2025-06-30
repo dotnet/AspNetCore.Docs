@@ -11,7 +11,26 @@ uid: migration/fx-to-core/areas/session
 
 # Migrate ASP.NET Framework Session to ASP.NET Core
 
-For most applications, migrating to [ASP.NET Core session]((xref:fundamentals/app-state.md) provides the best performance and maintainability. However, larger applications may need an incremental approach using System.Web adapters.
+Session state is a critical component of many web applications, storing user-specific data across HTTP requests. When migrating from ASP.NET Framework to ASP.NET Core, session state presents unique challenges because the two frameworks handle sessions very differently.
+
+## Why session migration is complex
+
+ASP.NET Framework and ASP.NET Core have fundamentally different approaches to session management:
+
+* **ASP.NET Framework** provides automatic object serialization and built-in session locking
+* **ASP.NET Core** requires manual serialization and offers no session locking guarantees
+
+These differences mean you can't simply move your session code from Framework to Core without changes.
+
+## Migration strategies overview
+
+You have three main approaches for handling session state during migration:
+
+1. **Complete rewrite** - Rewrite all session code to use ASP.NET Core's native session implementation
+2. **Incremental with separate sessions** - Migrate components piece by piece, with each app maintaining its own session state
+3. **Incremental with shared sessions** - Migrate components while sharing session data between Framework and Core applications
+
+For most applications, migrating to [ASP.NET Core session](xref:fundamentals/app-state) provides the best performance and maintainability. However, larger applications or those with complex session requirements may benefit from an incremental approach using [System.Web adapters](xref:migration/fx-to-core/inc/systemweb-adapters).
 
 ## Choose your migration approach
 
