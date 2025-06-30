@@ -150,7 +150,7 @@ Depending on your application, you may also need to address:
 
 If you have supporting libraries in your solution that you will need to use for the routes you're migrating, they should be upgraded to .NET Standard 2.0, if possible. [Upgrade Assistant](https://github.com/dotnet/upgrade-assistant) is a great tool for this. If libraries are unable to target .NET Standard, you can target .NET 8 or later either along with the .NET Framework target in the original project or in a new project alongside the original.
 
-The [System.Web adapters](xref:migration/fx-to-core/inc/systemweb-adapters) can be used in these libraries to enable support for <xref:System.Web.HttpContext> usage in class libraries. In order to enable <xref:System.Web.HttpContext> usage in a library:
+The [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md) can be used in these libraries to enable support for <xref:System.Web.HttpContext> usage in class libraries. In order to enable <xref:System.Web.HttpContext> usage in a library:
 
 1. Remove reference to `System.Web` in the project file
 2. Add the `Microsoft.AspNetCore.SystemWebAdapters` package
