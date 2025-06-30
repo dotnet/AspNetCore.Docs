@@ -19,19 +19,50 @@ Specifically, this capability is used, currently, for [remote app authentication
 
 To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessary to make a couple small changes to each app.
 
+You need to configure two configuration values in both applications:
+
+* `RemoteAppApiKey`: A key (required to be parseable as a [GUID](/dotnet/api/system.guid)) that is shared between the two applications. This should be a GUID value like `12345678-1234-1234-1234-123456789012`.
+* `RemoteAppUri`: The URI of the remote ASP.NET Framework application (only required in the ASP.NET Core application configuration). This should be the full URL where the ASP.NET Framework app is hosted, such as `https://localhost:44300` or `https://myapp.example.com`.
+
+For ASP.NET Framework applications, add these values to your `web.config` in the `<appSettings>` section:
+
+```xml
+<appSettings>
+  <add key="RemoteAppApiKey" value="..." />
+</appSettings>
+```
+
+For ASP.NET Core applications, add these values to your `appsettings.json`:
+
+```json
+{
+  "RemoteAppApiKey": "...",
+  "RemoteAppUri": "https://localhost:44300"
+}
+```
+
+For ASP.NET Framework applications, it is recommended to use <xref:/aspnet/config-builder> to allow injecting values into the application without touching the `web.config`.
+
 ### ASP.NET app configuration
 
 To set up the ASP.NET app to be able to receive requests from the ASP.NET Core app:
+
 1. Install the NuGet package [`Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`](https://www.nuget.org/packages/Microsoft.AspNetCore.SystemWebAdapters)
-2. Call the `AddRemoteAppServer` extension method on the `ISystemWebAdapterBuilder`:
+
+2. Add the configuration code to the `Application_Start` method in your `Global.asax.cs` file:
 
 ```CSharp
-SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
-    .AddRemoteAppServer(options =>
-    {
-        // ApiKey is a string representing a GUID
-        options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
-    });
+protected void Application_Start()
+{
+    SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
+        .AddRemoteAppServer(options =>
+        {
+            // ApiKey is a string representing a GUID
+            options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
+        });
+    
+    // ...existing code...
+}
 ```
 
 In the options configuration method passed to the `AddRemoteAppServer` call, an API key must be specified. The API key is:
@@ -40,7 +71,7 @@ In the options configuration method passed to the `AddRemoteAppServer` call, an 
 * The same API key provided to the ASP.NET Core app when it is configured.
 * A string and must be parsable as a [GUID](/dotnet/api/system.guid). Hyphens in the key are optional.
 
-3. **Optional :** Add the `SystemWebAdapterModule` module to the `web.config` if it wasn't already added by NuGet. The `SystemWebAdapterModule` module is not added automatically when using SDK style projects for ASP.NET Core.
+1. Add the `SystemWebAdapterModule` module to the `web.config` if it wasn't already added by NuGet. This module configuration is required for IIS hosting scenarios. The `SystemWebAdapterModule` module is not added automatically when using SDK style projects for ASP.NET Core.
 
 ```diff
   <system.webServer>
@@ -53,21 +84,18 @@ In the options configuration method passed to the `AddRemoteAppServer` call, an 
 
 ### ASP.NET Core app
 
-To set up the ASP.NET Core app to be able to send requests to the ASP.NET app, you need to make a similar change, calling `AddRemoteApp` after registering System.Web adapter services with `AddSystemWebAdapters`.
+To set up the ASP.NET Core app to be able to send requests to the ASP.NET app, configure the remote app client by calling `AddRemoteAppClient` after registering System.Web adapter services with `AddSystemWebAdapters`.
+
+Add this configuration to your `Program.cs` file:
 
 ```CSharp
 builder.Services.AddSystemWebAdapters()
     .AddRemoteAppClient(options =>
     {
-        options.RemoteAppUrl = new(builder.Configuration["ReverseProxy:Clusters:fallbackCluster:Destinations:fallbackApp:Address"]);
+        options.RemoteAppUrl = new(builder.Configuration["RemoteAppUri"]);
         options.ApiKey = builder.Configuration["RemoteAppApiKey"];
     });
 ```
-
-In the preceding code:
-
-* The `AddRemoteApp` call is used to configure the remote app's URL and the shared secret API key.
-* The `RemoteAppUrl` property specifies the URL of the ASP.NET Framework app that the ASP.NET Core app communicates with. In this example, the URL is read from an existing configuration setting used by the YARP proxy that proxies requests to the ASP.NET Framework app as part of the incremental migration's *strangler fig pattern*.
 
 With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/inc/remote-authentication) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
 
