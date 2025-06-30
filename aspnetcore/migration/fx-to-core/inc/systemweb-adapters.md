@@ -73,6 +73,12 @@ public class SomeController : Controller
 
 Notice that since there's a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext> property, they can pass that through, but it generally looks the same. Using implicit conversions, the <xref:Microsoft.AspNetCore.Http.HttpContext> can be converted into the adapter that could then be passed around through the levels utilizing the code in the same way.
 
-## See also
+## Unit Testing
 
-* <xref:migration/fx-to-core/inc/unit-testing>
+When unit testing code that uses the System.Web adapters, there are some special considerations to keep in mind.
+
+In most cases, there's no need to set up additional components for running tests. But if the component being tested uses <xref:System.Web.HttpRuntime>, it might be necessary to start up the `SystemWebAdapters` service, as shown in the following example:
+
+:::code language="csharp" source="~/migration/fx-to-core/inc/samples/unit-testing/Program.cs" id="snippet_UnitTestingFixture" :::
+
+The tests must be executed in sequence, not in parallel. The preceding example illustrates how to achieve this by setting [XUnit's `DisableParallelization` option](https://xunit.net/docs/running-tests-in-parallel#parallelism-in-test-frameworks) to `true`. This setting disables parallel execution for a specific test collection, ensuring that the tests within that collection run one after the other, without concurrency.
