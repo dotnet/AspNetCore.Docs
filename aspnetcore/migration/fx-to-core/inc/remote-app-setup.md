@@ -17,7 +17,7 @@ Common scenarios this enables:
 
 * Fallback to the legacy application with YARP
 * [Remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn)
-* [Remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state) features.
+* [Remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state)
 
 ## Configuration
 
