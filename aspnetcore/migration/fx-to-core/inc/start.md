@@ -40,7 +40,7 @@ Session is a commonly used feature of ASP.NET that shares the name with a featur
 
 ## Enable shared authentication support
 
-It is possible to share authentication between the original ASP.NET app and the new ASP.NET Core app by using the `System.Web` adapters remote authentication feature. This feature allows the ASP.NET Core app to defer authentication to the ASP.NET app. See the [remote app connection](xref:migration/fx-to-core/inc/remote-app-setup) and [remote authentication](xref:migration/fx-to-core/inc/remote-authentication) docs for more details.
+It is possible to share authentication between the original ASP.NET app and the new ASP.NET Core app by using the `System.Web` adapters remote authentication feature. This feature allows the ASP.NET Core app to defer authentication to the ASP.NET app. See the [remote app connection](xref:migration/fx-to-core/inc/remote-app-setup) and [remote authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn) docs for more details.
 
 ## General Usage Guidance
 
