@@ -75,40 +75,109 @@ This section shows how to translate the most commonly used properties of <xref:S
 
 #### HttpContext properties
 
-| ASP.NET Framework | ASP.NET Core | Code Sample | Notes |
-|-------------------|--------------|-------------|-------|
-| <xref:System.Web.HttpContext.Items> | <xref:Microsoft.AspNetCore.Http.HttpContext.Items> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Items)] | Works the same way |
-| *No equivalent* | <xref:Microsoft.AspNetCore.Http.HttpContext.TraceIdentifier> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Trace)] | Unique request ID for logging |
+* **<xref:System.Web.HttpContext.Items>** → **<xref:Microsoft.AspNetCore.Http.HttpContext.Items>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Items)]
+
+* ***No equivalent*** → **<xref:Microsoft.AspNetCore.Http.HttpContext.TraceIdentifier>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Trace)]
+  
+  Unique request ID for logging
 
 #### HttpRequest properties
 
-| ASP.NET Framework | ASP.NET Core | Code Sample | Notes |
-|-------------------|--------------|-------------|-------|
-| <xref:System.Web.HttpRequest.HttpMethod> | <xref:Microsoft.AspNetCore.Http.HttpRequest.Method> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Method)] | |
-| <xref:System.Web.HttpRequest.QueryString> | <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Query)] | |
-| <xref:System.Web.HttpRequest.Url><br/><xref:System.Web.HttpRequest.RawUrl> | Multiple properties | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Url)] | Use Request.Scheme, Host, PathBase, Path, QueryString |
-| <xref:System.Web.HttpRequest.IsSecureConnection> | <xref:Microsoft.AspNetCore.Http.HttpRequest.IsHttps> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Secure)] | |
-| <xref:System.Web.HttpRequest.UserHostAddress> | <xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)] | |
-| <xref:System.Web.HttpRequest.Cookies> | <xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)] | |
-| <xref:System.Web.HttpRequest.RequestContext> | <xref:Microsoft.AspNetCore.Http.HttpContextExtensions.GetRouteData*> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Route)] | |
-| <xref:System.Web.HttpRequest.Headers> | <xref:Microsoft.AspNetCore.Http.HttpRequest.Headers> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Headers)] | |
-| <xref:System.Web.HttpRequest.UserAgent> | <xref:Microsoft.AspNetCore.Http.HttpRequest.Headers> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Agent)] | Access via Headers["User-Agent"] |
-| <xref:System.Web.HttpRequest.UrlReferrer> | <xref:Microsoft.AspNetCore.Http.HttpRequest.Headers> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Referrer)] | Access via Headers["Referer"] |
-| <xref:System.Web.HttpRequest.ContentType> | <xref:Microsoft.AspNetCore.Http.HttpRequest.ContentType> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Type)] | |
-| <xref:System.Web.HttpRequest.Form> | <xref:Microsoft.AspNetCore.Http.HttpRequest.Form> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Form)] | **Warning**: Read form values only if content type is *x-www-form-urlencoded* or *form-data* |
-| <xref:System.Web.HttpRequest.InputStream> | <xref:Microsoft.AspNetCore.Http.HttpRequest.Body> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Input)] | **Warning**: Use only in handler middleware at end of pipeline. Body can only be read once per request |
+* **<xref:System.Web.HttpRequest.HttpMethod>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.Method>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Method)]
+
+* **<xref:System.Web.HttpRequest.QueryString>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Query)]
+
+* **<xref:System.Web.HttpRequest.Url>** / **<xref:System.Web.HttpRequest.RawUrl>** → **Multiple properties**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Url)]
+  
+  Use Request.Scheme, Host, PathBase, Path, QueryString
+
+* **<xref:System.Web.HttpRequest.IsSecureConnection>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.IsHttps>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Secure)]
+
+* **<xref:System.Web.HttpRequest.UserHostAddress>** → **<xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
+
+* **<xref:System.Web.HttpRequest.Cookies>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
+
+* **<xref:System.Web.HttpRequest.RequestContext>** → **<xref:Microsoft.AspNetCore.Http.HttpContextExtensions.GetRouteData*>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Route)]
+
+* **<xref:System.Web.HttpRequest.Headers>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Headers)]
+
+* **<xref:System.Web.HttpRequest.UserAgent>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Agent)]
+
+* **<xref:System.Web.HttpRequest.UrlReferrer>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Referrer)]
+
+* **<xref:System.Web.HttpRequest.ContentType>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.ContentType>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Type)]
+
+* **<xref:System.Web.HttpRequest.Form>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.Form>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Form)]
+  
+  **Warning**: Read form values only if content type is *x-www-form-urlencoded* or *form-data*
+
+* **<xref:System.Web.HttpRequest.InputStream>** → **<xref:Microsoft.AspNetCore.Http.HttpRequest.Body>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Input)]
+  
+  **Warning**: Use only in handler middleware at end of pipeline. Body can only be read once per request
 
 #### HttpResponse properties
 
-| ASP.NET Framework | ASP.NET Core | Code Sample | Notes |
-|-------------------|--------------|-------------|-------|
-| <xref:System.Web.HttpResponse.Status><br/><xref:System.Web.HttpResponse.StatusDescription> | <xref:Microsoft.AspNetCore.Http.HttpResponse.StatusCode> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Status)] | |
-| <xref:System.Web.HttpResponse.ContentEncoding><br/><xref:System.Web.HttpResponse.ContentType> | <xref:Microsoft.AspNetCore.Http.HttpResponse.ContentType> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespType)] | |
-| <xref:System.Web.HttpResponse.ContentType> | <xref:Microsoft.AspNetCore.Http.HttpResponse.ContentType> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespTypeOnly)] | |
-| <xref:System.Web.HttpResponse.Output> | <xref:Microsoft.AspNetCore.Http.HttpResponse.WriteAsync*> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Output)] | |
-| <xref:System.Web.HttpResponse.TransmitFile*> | See request features | | Serving files is discussed in <xref:fundamentals/request-features> |
-| <xref:System.Web.HttpResponse.Headers> | <xref:Microsoft.AspNetCore.Http.HttpResponse.OnStarting*> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)] | Must use callback pattern to set headers before response starts |
-| <xref:System.Web.HttpResponse.Cookies> | <xref:Microsoft.AspNetCore.Http.HttpResponse.OnStarting*> | [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)] | Must use callback pattern to set cookies before response starts |
+* **<xref:System.Web.HttpResponse.Status>** / **<xref:System.Web.HttpResponse.StatusDescription>** → **<xref:Microsoft.AspNetCore.Http.HttpResponse.StatusCode>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Status)]
+
+* **<xref:System.Web.HttpResponse.ContentEncoding>** / **<xref:System.Web.HttpResponse.ContentType>** → **<xref:Microsoft.AspNetCore.Http.HttpResponse.ContentType>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespType)]
+
+* **<xref:System.Web.HttpResponse.ContentType>** → **<xref:Microsoft.AspNetCore.Http.HttpResponse.ContentType>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespTypeOnly)]
+
+* **<xref:System.Web.HttpResponse.Output>** → **<xref:Microsoft.AspNetCore.Http.HttpResponse.WriteAsync*>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Output)]
+
+* **<xref:System.Web.HttpResponse.TransmitFile*>** → **See request features**
+  
+  Serving files is discussed in <xref:fundamentals/request-features>
+
+* **<xref:System.Web.HttpResponse.Headers>** → **<xref:Microsoft.AspNetCore.Http.HttpResponse.OnStarting*>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)]
+  
+  Must use callback pattern to set headers before response starts
+
+* **<xref:System.Web.HttpResponse.Cookies>** → **<xref:Microsoft.AspNetCore.Http.HttpResponse.OnStarting*>**
+  
+  [!code-csharp[](sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
+  
+  Must use callback pattern to set cookies before response starts
 
 #### Response headers and cookies patterns
 
