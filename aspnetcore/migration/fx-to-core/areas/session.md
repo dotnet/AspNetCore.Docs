@@ -30,7 +30,7 @@ You have three main approaches for handling session state during migration:
 2. **Incremental with separate sessions** - Migrate components piece by piece, with each app maintaining its own session state
 3. **Incremental with shared sessions** - Migrate components while sharing session data between Framework and Core applications
 
-For most applications, migrating to [ASP.NET Core session](xref:fundamentals/app-state) provides the best performance and maintainability. However, larger applications or those with complex session requirements may benefit from an incremental approach using [System.Web adapters](xref:migration/fx-to-core/inc/systemweb-adapters).
+For most applications, migrating to [ASP.NET Core session](xref:fundamentals/app-state) provides the best performance and maintainability. However, larger applications or those with complex session requirements may benefit from an incremental approach using [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md).
 
 ## Choose your migration approach
 
@@ -148,11 +148,13 @@ Complete the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) 
 
 The <xref:System.Web.SessionState.HttpSessionState> object requires serialization for remote app session state.
 
-**For HttpSessionState serialization**, implement `Microsoft.AspNetCore.SystemWebAdapters.SessionState.Serialization.ISessionSerializer`. A default binary writer implementation is provided:
+In order to serialize session state, a serializer for the state object must be registered:
 
 :::code language="csharp" source="~/migration/fx-to-core/inc/samples/remote-session/Program.cs" id="snippet_Serialization" :::
 
-**For strongly-typed session access**, configure JSON serialization. Register each session key to a known type using `JsonSessionSerializerOptions`:
+In ASP.NET Core, <xref:System.Runtime.Serializer.Formatters.Binary.BinaryFormatterSerializer> was used to automatically serialize session value contents. In order to serialize these with for use with the System.Web adapters, the serialization must be explicitly configured using `ISessionKeySerializer` implementations.
+
+Out of the box, there is a simple JSON serializer that allows each session key to be registered to a known type using `JsonSessionSerializerOptions`:
 
 * `RegisterKey<T>(string)` - Registers a session key to a known type. This registration is required for correct serialization/deserialization. Missing registrations cause errors and prevent session access.
 
