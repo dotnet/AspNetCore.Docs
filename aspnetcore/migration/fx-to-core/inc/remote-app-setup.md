@@ -71,13 +71,14 @@ To configure the application to be available to handle the requests from the ASP
     
 1. Add the `SystemWebAdapterModule` module to the `web.config` if it wasn't already added by NuGet. This module configuration is required for IIS hosting scenarios. The `SystemWebAdapterModule` module is not added automatically when using SDK style projects for ASP.NET Core.
 
-```diff
-  <system.webServer>
-    <modules>
-+      <remove name="SystemWebAdapterModule" />
-+      <add name="SystemWebAdapterModule" type="Microsoft.AspNetCore.SystemWebAdapters.SystemWebAdapterModule, Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices" preCondition="managedHandler" />
-    </modules>
-</system.webServer>
+    ```diff
+      <system.webServer>
+        <modules>
+    +      <remove name="SystemWebAdapterModule" />
+    +      <add name="SystemWebAdapterModule" type="Microsoft.AspNetCore.SystemWebAdapters.SystemWebAdapterModule, Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices" preCondition="managedHandler" />
+        </modules>
+    </system.webServer>
+    ```
 
 ### ASP.NET Core
 
