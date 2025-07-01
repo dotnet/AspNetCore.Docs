@@ -7,6 +7,7 @@ monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/9/2022
 ms.topic: article
 uid: migration/fx-to-core/inc/remote-app-setup
+zone_pivot_groups: migration-remote-app-setup
 ---
 
 # Remote app setup
@@ -23,6 +24,8 @@ Common scenarios this enables:
 * Fallback to the legacy application with [YARP](~/fundamentals/servers/yarp/yarp-overview.md)
 * [Remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn)
 * [Remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state)
+
+:::zone pivot="manual"
 
 ## Configuration Values
 
@@ -163,9 +166,9 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 >     <add key=".NET Libraries Daily" value="https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-libraries/nuget/v3/index.json" />
 >   </packageSources>
 > </configuration>
->
-> This requires v2.0.1-preview1.25351.3 of the System.Web adapters or later.
 > ```
+>
+> **NOTE**: This requires v2.0.1-preview1.25351.3 of the System.Web adapters or later.
 
 1. Add Aspire orchestration for the ASP.NET Framework application
 1. Add a new ASP.NET Core application to the solution and add it to your Aspire orchestration
