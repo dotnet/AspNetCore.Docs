@@ -133,6 +133,8 @@ Your Framework application requires no changes.
 
 For more information, see the [wrapped session state sample app](https://github.com/dotnet/systemweb-adapters/blob/main/samples/SessionLocal/SessionLocalCore/Program.cs)
 
+[!INCLUDE[](~/migration/fx-to-core/areas/includes/enable-session.md)]
+
 ## Remote app session state
 
 [!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
@@ -149,17 +151,21 @@ Complete the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) 
 
 The <xref:System.Web.SessionState.HttpSessionState> object requires serialization for remote app session state.
 
-In order to serialize session state, a serializer for the state object must be registered:
-
-:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_Serialization" :::
-
-In ASP.NET Core, [BinaryFormatter](/dotnet/api/system.runtime.serialization.formatters.binary.binaryformatter) was used to automatically serialize session value contents. In order to serialize these with for use with the System.Web adapters, the serialization must be explicitly configured using `ISessionKeySerializer` implementations.
+In ASP.NET Framework, [BinaryFormatter](/dotnet/api/system.runtime.serialization.formatters.binary.binaryformatter) was used to automatically serialize session value contents. In order to serialize these with for use with the System.Web adapters, the serialization must be explicitly configured using `ISessionKeySerializer` implementations.
 
 Out of the box, there is a simple JSON serializer that allows each session key to be registered to a known type using `JsonSessionSerializerOptions`:
 
 * `RegisterKey<T>(string)` - Registers a session key to a known type. This registration is required for correct serialization/deserialization. Missing registrations cause errors and prevent session access.
 
 :::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/serialization/Program.cs" id="snippet_Serialization" :::
+
+If more customization is needed, then `ISessionKeySerializer` can be implemented:
+
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/serialization/Program_Custom.cs" id="snippet_Serialization" :::
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/serialization/Program_Custom.cs" id="snippet_CustomSerializer" :::
+
+> [!NOTE]
+> When using the `AddJsonSessionSerializer` registration pattern, there is no need to call `AddSessionSerializer` as it will automatically be added. If you only want to use a customimplementation, then you must manually add it.
 
 ### Application configuration
 
@@ -194,18 +200,7 @@ var coreApp = builder.AddProject<Projects.CoreApplication>("core")
 
 :::zone-end
 
-### Enable session
-
-Session support requires explicit activation. Configure it per-route using ASP.NET Core metadata.
-
-#### Option 1: Annotate controllers
-
-:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/SomeController.cs" id="snippet_Controller" :::
-
-#### Option 2: Enable globally for all endpoints
-
-:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_RequireSystemWebAdapterSession" :::
-
+[!INCLUDE[](~/migration/fx-to-core/areas/includes/enable-session.md)]
 
 ### Communication protocol
 
