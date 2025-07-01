@@ -85,7 +85,7 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 The preceding example:
 
-* Uses <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipesTransportOptionsExtensions.UseNamedPipes%2A> to access and configure <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions>.
+* Uses `UseNamedPipes` to access and configure <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions>.
 * Sets the <xref:System.IO.Pipes.PipeSecurity> property to control which users or groups can connect to the named pipe.
 * Grants read/write access to the `Users` group. Additional security rules can be added as needed for the scenario.
 
