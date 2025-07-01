@@ -150,13 +150,13 @@ If the user agrees to receive notifications, this code sends the data to the ser
 
 To demonstrate how the code works, run the app and start placing an order. Go to the checkout screen to see the subscription request:
 
-![The Blazing Pizza app requests permission from the user to show notifications.](~/blazor/progressive-web-app/push-notifications/_static/image1.png)
+![The Blazing Pizza app requests permission from the user to show notifications.](~/blazor/progressive-web-app/push-notifications/_static/show-notifications-request.png)
 
 Choose **Allow** and check in the browser developer tools console for errors. A breakpoint on the server in `PizzaApiExtensions`'s `MapPut("/notifications/subscribe"...)` API method with the app run with debugging allows inspection of the incoming data from the browser, which includes an endpoint URL and cryptographic tokens.
 
 Once the user has either allowed or blocked notifications for a given site, the browser won't ask again. To reset the permission for further testing for either Google Chrome or Microsoft Edge, select the "information" icon (&#x1F6C8;) to the left of the browser's address bar and change **Notifications** back to **Ask (default)** as seen in the following image:
 
-![Selecting "Ask (default)" for "Notifications" from this app to reset notifications back to a disabled state.](~/blazor/progressive-web-app/push-notifications/_static/image2.png)
+![Selecting "Ask (default)" for "Notifications" from this app to reset notifications back to a disabled state.](~/blazor/progressive-web-app/push-notifications/_static/reset-notifications.png)
 
 ## Send a notification
 
@@ -197,7 +197,7 @@ private static async Task SendNotificationAsync(Order order,
 
 Thus far, the server is capable of sending notifications, but the browser doesn't display them. That's because the service worker doesn't handle incoming notifications at this point. Even before the app is capable of displaying notifications, which are covered in the [Display notifications](#display-notifications) section, the browser's developer tools console indicates the arrival of notifications ten seconds after orders are placed. On the **Application** tab, open the **Push Messaging** section. Select the the circle to **Start recording**.
 
-![Browser developer tools console on the "Application" tab with "Push Messaging" open showing three pushed notifications to the app with their timestamps.](~/blazor/progressive-web-app/push-notifications/_static/image3.png)
+![Browser developer tools console on the "Application" tab with "Push Messaging" open showing three pushed notifications to the app with their timestamps.](~/blazor/progressive-web-app/push-notifications/_static/developer-tools-console-notifications.png)
 
 ## Display notifications
 
@@ -223,7 +223,7 @@ The preceding code doesn't take effect until after the next page load when the b
 
 With the preceding code in place and new order placed by a user, the order moves into *Out for delivery* status after 10 seconds per the app's built-in demonstration logic and the browser receives a push notification:
 
-![A pop-up notification indicating to the user that their pizza order has been dispatched.](~/blazor/progressive-web-app/push-notifications/_static/image4.png)
+![A pop-up notification indicating to the user that their pizza order has been dispatched.](~/blazor/progressive-web-app/push-notifications/_static/order-dispatched-notification.png)
 
 When using either Google Chrome or the latest Microsoft Edge browser, the notification appears even if the user isn't on the Blazing Pizza app, but only if the browser is running (or the next time the browser is opened). When using the installed PWA, the notification should be delivered even if the user isn't running the app.
 
