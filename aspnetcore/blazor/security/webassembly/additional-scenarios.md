@@ -410,7 +410,7 @@ A typed client can be defined that handles all of the HTTP and token acquisition
 ```csharp
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using static {ASSEMBLY NAME}.Data;
+using static {PACKAGE ID/ASSEMBLY NAME}.Data;
 
 public class WeatherForecastClient(HttpClient http)
 {
@@ -433,7 +433,7 @@ public class WeatherForecastClient(HttpClient http)
 }
 ```
 
-In the preceding example, the `WeatherForecast` type is a static class that holds weather forecast data. The `{ASSEMBLY NAME}` placeholder is the app's assembly name (for example, `using static BlazorSample.Data;`).
+In the preceding example, the `WeatherForecast` type is a static class that holds weather forecast data. The `{PACKAGE ID/ASSEMBLY NAME}` placeholder is the project's package ID (`<PackageId>` in the project file) for a library or assembly name for an app (for example, `using static BlazorSample.Data;`).
 
 In the following example, <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A?displayProperty=nameWithType> is an extension in <xref:Microsoft.Extensions.Http?displayProperty=fullName>. Add the package to an app that doesn't already reference it.
 
