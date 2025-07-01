@@ -159,7 +159,7 @@ Out of the box, there is a simple JSON serializer that allows each session key t
 
 * `RegisterKey<T>(string)` - Registers a session key to a known type. This registration is required for correct serialization/deserialization. Missing registrations cause errors and prevent session access.
 
-:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_Serialization" :::
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/serialization/Program.cs" id="snippet_Serialization" :::
 
 ### Application configuration
 

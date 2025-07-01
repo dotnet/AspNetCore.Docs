@@ -223,8 +223,6 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
         
             <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" />
             <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
-        
-            <Compile Remove="Framework/**/*" />
           </ItemGroup>
         
           <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
