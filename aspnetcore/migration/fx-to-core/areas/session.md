@@ -7,6 +7,7 @@ monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/9/2022
 ms.topic: article
 uid: migration/fx-to-core/areas/session
+zone_pivot_groups: migration-remote-app-setup
 ---
 
 # Migrate ASP.NET Framework Session to ASP.NET Core
@@ -178,6 +179,7 @@ Out of the box, there is a simple JSON serializer that allows each session key t
 
 ### Application configuration
 
+:::zone pivot="default"
 **ASP.NET Core configuration:**
 
 Call `AddRemoteAppSession` and `AddJsonSessionSerializer` to register known session item types:
@@ -199,6 +201,26 @@ Session support requires explicit activation. Configure it per-route using ASP.N
 Add this change to `Global.asax.cs`:
 
 :::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Global.asax.cs":::
+
+:::zone-end
+
+:::zone pivot="aspire"
+When using Aspire, the configuration will be done via environment variables and are set by the AppHost. To enable remote session, the option must be enabled:
+
+```csharp
+...
+
+var coreApp = builder.AddProject<Projects.CoreApplication>("core")
+    .WithHttpHealthCheck()
+    .WaitFor(frameworkApp)
+    .WithIncrementalMigrationFallback(frameworkApp, options => options.RemoteSession = RemoteSession.Enabled);
+
+...
+```
+
+Once this is done, it will be automatically hooked up in both the framework and core applications.
+
+:::zone-end
 
 ### Communication protocol
 

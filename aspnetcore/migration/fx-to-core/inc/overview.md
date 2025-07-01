@@ -57,10 +57,12 @@ Once the ASP.NET Framework app is no longer needed and deleted:
 
 ![final pic](~/migration/fx-to-core/inc/overview/static/final.png)
 
-## Next Steps
+The Visual Studio extension [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) can help upgrade ASP.NET Framework web apps to ASP.NET Core. For more information see the blog post [Upgrading your .NET projects with Visual Studio](https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/).
 
-See the [Getting Started](~/migration/fx-to-core/inc/start.md) guide for how to update an existing application to take advantage of this pattern.
+For guidance around usage, see the [usage guidance article](xref:migration/fx-to-core/inc/usage_guidance).
 
 ## Additional Resources
 
-* [Migration Tooling](~/migration/fx-to-core/tooling.md)
+* [Example migration of eShop to ASP.NET Core](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop)
+* [Video:Tooling for Incremental ASP.NET Core Migrations](https://www.youtube.com/watch?v=P96l0pDNVpM)
+* <xref:migration/fx-to-core/inc/unit-testing>
