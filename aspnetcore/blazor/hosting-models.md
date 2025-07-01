@@ -101,7 +101,7 @@ When a standalone Blazor WebAssembly app uses a backend ASP.NET Core app to serv
 
 :::moniker range=">= aspnetcore-6.0"
 
-A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/progressive-web-app) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
+A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
 
 :::moniker-end
 
