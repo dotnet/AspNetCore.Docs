@@ -259,7 +259,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
         + #if NET
                             .AddAspNetCoreInstrumentation()
         + #else
-        +                     .AddAspNetInstrumentation()
+        +                   .AddAspNetInstrumentation()
         + #endif
                             .AddSqlClientInstrumentation()
                             .AddHttpClientInstrumentation()
@@ -271,7 +271,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
         + #if NET
                             .AddAspNetCoreInstrumentation()
         + #else
-        +                     .AddAspNetInstrumentation()
+        +                   .AddAspNetInstrumentation()
         + #endif
                             .AddSqlClientInstrumentation()
                             .AddHttpClientInstrumentation();
