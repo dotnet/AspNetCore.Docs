@@ -187,7 +187,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
         .AddSiteProject<Projects.FrameworkApplication>("framework")
         .WithDefaultIISExpressEndpoints()
         .WithOtlpExporter()
-        .WithHttpHealthCheck(path: "/framework");
+        .WithHttpHealthCheck();
     
     var coreApp = builder.AddProject<Projects.CoreApplication>("core")
         .WithHttpHealthCheck()
