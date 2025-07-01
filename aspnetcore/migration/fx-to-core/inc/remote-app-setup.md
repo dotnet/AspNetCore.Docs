@@ -170,6 +170,11 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 
 1. Add Aspire orchestration for the ASP.NET Framework application
 1. Add a new ASP.NET Core application to the solution and add it to your Aspire orchestration
+1. Update the AppHost to target Windows as IIS integration requires that:
+    ```diff
+    - <TargetFramework>net9.0</TargetFramework>
+    + <TargetFramework>net9.0-windows</TargetFramework>
+    ```
 1. Add the following Aspire integrations to your app host:
     * `Aspire.Hosting.IncrementalMigration`
     * `C3D.Extensions.Aspire.IISExpress`
