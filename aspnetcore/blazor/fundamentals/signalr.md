@@ -1303,13 +1303,13 @@ Blazor Server:
 
 :::moniker range=">= aspnetcore-9.0"
 
-Blazor automatically attempts reconnection and refreshes the browser when reconnection fails. For more information, see the [Adjust the server-side reconnection retry count and interval](#adjust-the-server-side-reconnection-retry-count-and-interval) section. However, developer code can implement a custom reconnection handler to take full control of reconnection behavior:
+Blazor automatically attempts reconnection and refreshes the browser when reconnection fails. For more information, see the [Adjust the server-side reconnection retry count and interval](#adjust-the-server-side-reconnection-retry-count-and-interval) section. However, developer code can implement a custom reconnection handler to take full control of reconnection behavior.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-9.0"
 
-The default reconnection behavior requires the user to take manual action to refresh the page after reconnection fails. However, developer code can implement a custom reconnection handler to take full control of reconnection behavior, including implementing automatic page refresh after reconnection attempts fail:
+The default reconnection behavior requires the user to take manual action to refresh the page after reconnection fails. However, developer code can implement a custom reconnection handler to take full control of reconnection behavior, including implementing automatic page refresh after reconnection attempts fail.
 
 :::moniker-end
 
