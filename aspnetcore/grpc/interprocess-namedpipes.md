@@ -4,6 +4,7 @@ author: jamesnk
 description: Learn how to use gRPC for inter-process communication with Named pipes.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
+ai-usage: ai-assisted
 ms.date: 07/01/2025
 uid: grpc/interprocess-namedpipes
 ---
