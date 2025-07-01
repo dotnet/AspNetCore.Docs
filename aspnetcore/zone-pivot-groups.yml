@@ -126,3 +126,11 @@ groups:
       title: Manually
     - id: aspire
       title: Aspire
+- id: fx-to-core-migration
+  title: Migration Approach
+  prompt: Choose migration approach
+  pivots:
+    - id: incremental
+      title: Incremental
+    - id: inplace
+      title: In Place

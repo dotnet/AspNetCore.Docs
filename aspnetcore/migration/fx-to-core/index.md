@@ -5,6 +5,7 @@ description: Your complete guide to migrating ASP.NET Framework applications to 
 ms.author: riande
 ms.date: 06/20/2025
 uid: migration/fx-to-core/index
+zone_pivot_groups: fx-to-core-migration
 ---
 # Migrate from ASP.NET Framework to ASP.NET Core
 
@@ -24,22 +25,26 @@ Your ASP.NET Framework application can successfully move to ASP.NET Core. The ke
 
 Most non-trivial ASP.NET Framework applications should use incremental migration. This approach:
 
-- **Keeps your current app running** while you migrate piece by piece
-- **Reduces risk** by moving functionality gradually
-- **Delivers value faster** with immediate deployment of migrated components
-- **Uses proven tools** like YARP proxy and System.Web adapters
+* **Keeps your current app running** while you migrate piece by piece
+* **Reduces risk** by moving functionality gradually
+* **Delivers value faster** with immediate deployment of migrated components
+* **Uses proven tools** like YARP proxy and System.Web adapters
 
+:::zone pivot="incremental"
 **→ [Start your incremental migration](xref:migration/fx-to-core/inc/overview)**
+:::zone-end
 
 ## Migration tools and resources
 
 ### Automated assistance
-- **[.NET Upgrade Assistant](https://dotnet.microsoft.com/platform/upgrade-assistant)** - Command-line tool for initial project conversion
-- **[Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant)** - GUI-based upgrade assistance
+
+* **[.NET Upgrade Assistant](https://dotnet.microsoft.com/platform/upgrade-assistant)** - Command-line tool for initial project conversion
+* **[Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant)** - GUI-based upgrade assistance
 
 ### Comprehensive guides
-- **[Porting ASP.NET Apps eBook](https://aka.ms/aspnet-porting-ebook)** - Complete reference guide
-- **[eShop Migration Example](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop)** - Real-world case study
+
+* **[Porting ASP.NET Apps eBook](https://aka.ms/aspnet-porting-ebook)** - Complete reference guide
+* **[eShop Migration Example](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop)** - Real-world case study
 
 ## Changes to technology areas
 
