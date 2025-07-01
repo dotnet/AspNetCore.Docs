@@ -27,7 +27,7 @@ Common scenarios this enables:
 
 :::zone pivot="manual"
 
-## Manual Configuration
+## Configuration Values
 
 To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessary to make a couple small changes to each app.
 
@@ -36,7 +36,7 @@ You need to configure two configuration values in both applications:
 * `RemoteAppApiKey`: A key (required to be parseable as a [GUID](/dotnet/api/system.guid)) that is shared between the two applications. This should be a GUID value like `12345678-1234-1234-1234-123456789012`.
 * `RemoteAppUri`: The URI of the remote ASP.NET Framework application (only required in the ASP.NET Core application configuration). This should be the full URL where the ASP.NET Framework app is hosted, such as `https://localhost:44300` or `https://myapp.example.com`.
 
-### ASP.NET Framework
+## Configure ASP.NET Framework Application
 
 > [!IMPORTANT]
 > The ASP.NET Framework application should be hosted with SSL enabled. In the remote app setup for incremental migration, it is not required to have direct access externally. It is recommended to only allow access from the client application via the proxy.
@@ -83,7 +83,7 @@ To configure the application to be available to handle the requests from the ASP
     </system.webServer>
     ```
 
-### ASP.NET Core
+## Configure ASP.NET Core Application
 
 For ASP.NET Core applications, add these values to your `appsettings.json`:
 
@@ -109,7 +109,7 @@ builder.Services.AddSystemWebAdapters()
 
 With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
 
-## Proxying
+### Enable proxying
 
 To enable proxying from the ASP.NET Core application to the ASP.NET Framework application, you can set up a fallback route that forwards unmatched requests to the legacy application. This allows for a gradual migration where the ASP.NET Core app handles migrated functionality while falling back to the original app for unmigrated features.
 
