@@ -181,6 +181,8 @@ There are just a few small code changes needed to enable remote authentication i
 
 First, follow the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) instructions to connect the ASP.NET Core and ASP.NET apps. Then, there are just a couple extra extension methods to call to enable remote app authentication.
 
+:::zone pivot="manual"
+
 #### ASP.NET app configuration
 
 The ASP.NET app needs to be configured to add the authentication endpoint. Adding the authentication endpoint is done by calling the `AddAuthenticationServer` extension method to set up the HTTP module that watches for requests to the authentication endpoint. Note that remote authentication scenarios typically want to add proxy support as well, so that any authentication related redirects correctly route to the ASP.NET Core app rather than the ASP.NET one.
@@ -194,6 +196,25 @@ Next, the ASP.NET Core app needs to be configured to enable the authentication h
 :::code language="csharp" source="~/migration/fx-to-core/areas/authentication/samples/AspNetCore.cs" id="snippet_AddSystemWebAdapters" highlight="8" :::
 
 The boolean that is passed to the `AddAuthenticationClient` call specifies whether remote app authentication should be the default authentication scheme. Passing `true` will cause the user to be authenticated via remote app authentication for all requests, whereas passing `false` means that the user will only be authenticated with remote app authentication if the remote app scheme is specifically requested (with `[Authorize(AuthenticationSchemes = RemoteAppAuthenticationDefaults.AuthenticationScheme)]` on a controller or action method, for example). Passing false for this parameter has the advantage of only making HTTP requests to the original ASP.NET app for authentication for endpoints that require remote app authentication but has the disadvantage of requiring annotating all such endpoints to indicate that they will use remote app auth.
+
+:::zone-end
+
+:::zone pivot="aspire"
+When using Aspire, the configuration will be done via environment variables and are set by the AppHost. To enable remote session, the option must be enabled:
+
+```csharp
+...
+
+var coreApp = builder.AddProject<Projects.AuthRemoteIdentityCore>("core")
+    .WithHttpHealthCheck()
+    .WaitFor(frameworkApp)
+    .WithIncrementalMigrationFallback(frameworkApp, options => options.RemoteAuthentication = RemoteAuthentication.DefaultScheme);
+
+...
+```
+
+Once this is done, it will be automatically hooked up in both the framework and core applications.
+:::zone-end
 
 #### Using Remote Authentication with Specific Endpoints
 
