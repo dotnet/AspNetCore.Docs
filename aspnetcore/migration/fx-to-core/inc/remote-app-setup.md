@@ -12,6 +12,11 @@ zone_pivot_groups: migration-remote-app-setup
 
 # Remote app setup
 
+> [!IMPORTANT]
+> Framework and Core applications must use identical virtual directory layouts.
+>
+> The virtual directory setup is used for route generation, authorization, and other services within the system. At this point, no reliable method has been found to enable different virtual directories due to how ASP.NET Framework works.
+
 In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app to be able to communicate with the original ASP.NET app.
 
 Common scenarios this enables:
@@ -20,14 +25,9 @@ Common scenarios this enables:
 * [Remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn)
 * [Remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state)
 
-## Configuration
-
-> [!IMPORTANT]
-> Framework and Core applications must use identical virtual directory layouts.
->
-> The virtual directory setup is used for route generation, authorization, and other services within the system. At this point, no reliable method has been found to enable different virtual directories due to how ASP.NET Framework works.
-
 :::zone pivot="manual"
+
+## Manual Configuration
 
 To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessary to make a couple small changes to each app.
 
@@ -151,7 +151,9 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 
 :::zone pivot="aspire"
 
-> [!NOTE]
+## Setup Aspire orchestration
+
+> [!WARNING]
 > This is still in preview and not available on NuGet.org, so you must configure your NuGet config to pull libraries from the .NET Libraries daily feed:
 >
 > ```xml
@@ -165,8 +167,6 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 >   </packageSources>
 > </configuration>
 > ```
-
-## Setup Aspire orchestration
 
 1. Add Aspire orchestration for the ASP.NET Framework application
 1. Add a new ASP.NET Core application to the solution and add it to your Aspire orchestration
