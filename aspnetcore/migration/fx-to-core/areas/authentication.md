@@ -7,6 +7,7 @@ monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/9/2022
 ms.topic: article
 uid: migration/fx-to-core/areas/authentication
+zone_pivot_groups: migration-remote-app-setup
 ---
 
 # Migrate ASP.NET Framework Authentication to ASP.NET Core
@@ -218,37 +219,6 @@ public class HomeController : Controller
         return View();
     }
 }
-```
-
-#### Advanced Configuration Options
-
-In addition to the require boolean, an optional callback may be passed to `AddAuthenticationClient` to modify some other aspects of the remote authentication process's behavior:
-
-* `RequestHeadersToForward`: This property contains headers that should be forwarded from a request when calling the authenticate API. By default, the only headers forwarded are `Authorization` and `Cookie`. Additional headers can be forwarded by adding them to this list. Alternatively, if the list is cleared (so that no headers are specified), then all headers will be forwarded. that no headers are specified), then all headers will be forwarded.
-* `ResponseHeadersToForward`: This property lists response headers that should be propagated back from the authenticate request to the original call that prompted authentication in scenarios where identity is challenged. By default, this includes `Location`, `Set-Cookie`, and `WWW-Authenticate` headers.
-* `AuthenticationEndpointPath`: The endpoint on the ASP.NET app where authenticate requests should be made. This defaults to `/systemweb-adapters/authenticate` and must match the endpoint specified in the ASP.NET authentication endpoint configuration.
-
-Here's an example of configuring these options:
-
-```csharp
-builder.Services.AddSystemWebAdapters()
-    .AddRemoteAppClient(options =>
-    {
-        options.RemoteAppUrl = new Uri(builder.Configuration
-            ["ReverseProxy:Clusters:fallbackCluster:Destinations:fallbackApp:Address"]);
-        options.ApiKey = builder.Configuration["RemoteAppApiKey"];
-    })
-    .AddAuthenticationClient(false, options =>
-    {
-        // Forward additional headers for authentication
-        options.RequestHeadersToForward.Add("X-Custom-Auth-Header");
-        
-        // Forward additional response headers
-        options.ResponseHeadersToForward.Add("X-Custom-Response-Header");
-        
-        // Use a custom authentication endpoint path
-        options.AuthenticationEndpointPath = "/custom-auth-endpoint";
-    });
 ```
 
 #### Implementing Custom Authentication Result Processors
