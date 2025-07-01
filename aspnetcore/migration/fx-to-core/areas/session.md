@@ -179,7 +179,7 @@ Out of the box, there is a simple JSON serializer that allows each session key t
 
 ### Application configuration
 
-:::zone pivot="default"
+:::zone pivot="manual"
 **ASP.NET Core configuration:**
 
 Call `AddRemoteAppSession` and `AddJsonSessionSerializer` to register known session item types:

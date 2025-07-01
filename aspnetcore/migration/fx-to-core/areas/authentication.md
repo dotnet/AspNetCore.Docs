@@ -181,7 +181,7 @@ There are just a few small code changes needed to enable remote authentication i
 
 First, follow the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) instructions to connect the ASP.NET Core and ASP.NET apps. Then, there are just a couple extra extension methods to call to enable remote app authentication.
 
-:::zone pivot="default"
+:::zone pivot="manual"
 
 #### ASP.NET app configuration
 
