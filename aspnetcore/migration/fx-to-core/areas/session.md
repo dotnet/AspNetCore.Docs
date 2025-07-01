@@ -117,35 +117,9 @@ When migrating to built-in ASP.NET Core session:
 * You're not sharing session data with legacy applications
 * You want to eliminate System.Web dependencies completely
 
-## Wrapped ASP.NET Core session state
+## System.Web Adapter Session
 
 [!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
-
-Choose this approach when your migrated components don't need to share session data with your legacy application.
-
-The `Microsoft.Extensions.DependencyInjection.WrappedSessionExtensions.AddWrappedAspNetCoreSession` extension method adds a wraps ASP.NET Core session to work with the adapters. It uses the same backing store as <xref:Microsoft.AspNetCore.Http.ISession> while providing strongly-typed access.
-
-**Configuration for ASP.NET Core:**
-
-:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/wrapped/Program.cs" id="snippet_WrapAspNetCoreSession" :::
-
-Your Framework application requires no changes.
-
-For more information, see the [wrapped session state sample app](https://github.com/dotnet/systemweb-adapters/blob/main/samples/SessionLocal/SessionLocalCore/Program.cs)
-
-[!INCLUDE[](~/migration/fx-to-core/areas/includes/enable-session.md)]
-
-## Remote app session state
-
-[!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
-
-Choose this approach when you need to share session state between your ASP.NET Framework and ASP.NET Core applications during incremental migration.
-
-Remote app session enables communication between applications to retrieve and set session state by exposing an endpoint on the ASP.NET Framework app.
-
-### Prerequisites
-
-Complete the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) instructions to connect your ASP.NET Core and ASP.NET Framework applications.
 
 ### Serialization configuration
 
@@ -166,6 +140,44 @@ If more customization is needed, then `ISessionKeySerializer` can be implemented
 
 > [!NOTE]
 > When using the `AddJsonSessionSerializer` registration pattern, there is no need to call `AddSessionSerializer` as it will automatically be added. If you only want to use a customimplementation, then you must manually add it.
+
+### Enable session
+
+Session support requires explicit activation. Configure it per-route or globally using ASP.NET Core metadata:
+
+* Annotate controllers
+
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/SomeController.cs" id="snippet_Controller" :::
+
+* Enable globally for all endpoints
+
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_RequireSystemWebAdapterSession" :::
+
+## Wrapped ASP.NET Core session state
+
+Choose this approach when your migrated components don't need to share session data with your legacy application.
+
+The `Microsoft.Extensions.DependencyInjection.WrappedSessionExtensions.AddWrappedAspNetCoreSession` extension method adds a wraps ASP.NET Core session to work with the adapters. It uses the same backing store as <xref:Microsoft.AspNetCore.Http.ISession> while providing strongly-typed access.
+
+**Configuration for ASP.NET Core:**
+
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/wrapped/Program.cs" id="snippet_WrapAspNetCoreSession" :::
+
+Your Framework application requires no changes.
+
+For more information, see the [wrapped session state sample app](https://github.com/dotnet/systemweb-adapters/blob/main/samples/SessionLocal/SessionLocalCore/Program.cs)
+
+## Remote app session state
+
+[!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
+
+Choose this approach when you need to share session state between your ASP.NET Framework and ASP.NET Core applications during incremental migration.
+
+Remote app session enables communication between applications to retrieve and set session state by exposing an endpoint on the ASP.NET Framework app.
+
+### Prerequisites
+
+Complete the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) instructions to connect your ASP.NET Core and ASP.NET Framework applications.
 
 ### Application configuration
 
@@ -199,8 +211,6 @@ var coreApp = builder.AddProject<Projects.CoreApplication>("core")
 ```
 
 :::zone-end
-
-[!INCLUDE[](~/migration/fx-to-core/areas/includes/enable-session.md)]
 
 ### Communication protocol
 
