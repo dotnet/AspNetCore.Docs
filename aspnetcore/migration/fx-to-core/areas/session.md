@@ -186,16 +186,6 @@ Call `AddRemoteAppSession` and `AddJsonSessionSerializer` to register known sess
 
 :::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_Configuration" :::
 
-Session support requires explicit activation. Configure it per-route using ASP.NET Core metadata.
-
-#### Option 1: Annotate controllers
-
-:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/SomeController.cs" id="snippet_Controller" :::
-
-#### Option 2: Enable globally for all endpoints
-
-:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_RequireSystemWebAdapterSession" :::
-
 **ASP.NET Framework configuration:**
 
 Add this change to `Global.asax.cs`:
@@ -218,9 +208,20 @@ var coreApp = builder.AddProject<Projects.CoreApplication>("core")
 ...
 ```
 
-Once this is done, it will be automatically hooked up in both the framework and core applications.
-
 :::zone-end
+
+### Enable session
+
+Session support requires explicit activation. Configure it per-route using ASP.NET Core metadata.
+
+#### Option 1: Annotate controllers
+
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/SomeController.cs" id="snippet_Controller" :::
+
+#### Option 2: Enable globally for all endpoints
+
+:::code language="csharp" source="~/migration/fx-to-core/areas/session/samples/remote/Program.cs" id="snippet_RequireSystemWebAdapterSession" :::
+
 
 ### Communication protocol
 
