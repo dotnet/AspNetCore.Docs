@@ -46,6 +46,7 @@ builder.Services.ConfigureOpenTelemetryMeterProvider(meterProvider =>
 builder.Services.ConfigureOpenTelemetryTracerProvider(tracerProvider =>
 {
     tracerProvider.AddSource("Microsoft.AspNetCore.Components");
+    tracerProvider.AddSource("Microsoft.AspNetCore.Components.Server.Circuits");
 });
 ```
 
@@ -81,34 +82,28 @@ Circuit lifecycle tracing:
 
 `Microsoft.AspNetCore.Components.CircuitStart`: Traces circuit initialization with the format `Circuit {circuitId}`.
 
-* Tag: `aspnetcore.components.circuit.id`
-* Link: HTTP activity
+Tag: `aspnetcore.components.circuit.id`
 
 Navigation tracing:
 
 `Microsoft.AspNetCore.Components.RouteChange`: Tracks route changes with the format `Route {route} -> {componentType}`.
 
-* Tags
-  * `aspnetcore.components.circuit.id`
-  * `aspnetcore.components.route`
-  * `aspnetcore.components.type`
-* Links
-  * HTTP trace
-  * Circuit trace
+Tags:
+
+* `aspnetcore.components.circuit.id`
+* `aspnetcore.components.route`
+* `aspnetcore.components.type`
 
 Event handling tracing:
 
 `Microsoft.AspNetCore.Components.HandleEvent`: Traces event handling with the format `Event {attributeName} -> {componentType}.{methodName}`.
 
-* Tags
-  * `aspnetcore.components.attribute.name`
-  * `aspnetcore.components.circuit.id`
-  * `aspnetcore.components.method`
-  * `aspnetcore.components.type`
-  * `error.type`
-* Links
-  * HTTP trace
-  * Circuit trace
-  * Router trace
+Tags:
+
+* `aspnetcore.components.attribute.name`
+* `aspnetcore.components.circuit.id`
+* `aspnetcore.components.method`
+* `aspnetcore.components.type`
+* `error.type`
 
 :::moniker-end
