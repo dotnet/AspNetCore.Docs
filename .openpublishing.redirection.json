@@ -1522,6 +1522,11 @@
             "source_path": "aspnetcore/migration/identity.md",
             "redirect_url": "/aspnet/core/migration/fx-to-core/examples/identity",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/progressive-web-app.md",
+            "redirect_url": "/aspnet/core/blazor/progressive-web-app/",
+            "redirect_document_id": false
         }
     ]
 }
