@@ -10,9 +10,14 @@ Previously, memory allocated by the pool would remain reserved, even when not in
 
 Metrics have been added to the default memory pool used by our server implementations. The new metrics are under the name `"Microsoft.AspNetCore.MemoryPool"`.
 
-For information about metrics and how to use them, <xref:log-mon/metrics/metrics>.
+For information about metrics and how to use them, see <xref:log-mon/metrics/metrics>.
 
-We have also enabled the ability to use:
+#### Manage memory pools
+
+Besides using memory pools more efficiently by evicting unneeded memory blocks, .NET 10 improves the experience of creating memory pools. It does this by providing a built-in `IMemoryPoolFactory`interface and implementation. It makes the implementation available to your application through dependency injection. 
+
+
+The following code example shows a simple background service that uses the built-in memory pool factory implementation to create memory pools. These pools benefit from the automatic eviction feature:
 
 ```csharp
 public class MyBackgroundService : BackgroundService
@@ -21,7 +26,7 @@ public class MyBackgroundService : BackgroundService
 
     public MyBackgroundService(IMemoryPoolFactory<byte> factory)
     {
-        _memoryPool = factory.CreatePool();
+        _memoryPool = factory.Create();
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -44,16 +49,18 @@ public class MyBackgroundService : BackgroundService
 }
 ```
 
-or replace the memory pool being used:
+To use your own memory pool factory, make a class that implements `IMemoryPoolFactory` and register it with dependency injection, as the following example does. Memory pools created this way also benefit from the automatic eviction feature:
 
 ```csharp
-services.AddSingleton<IMemoryPoolFactory<byte>, CustomMemoryPoolFactory>();
+services.AddSingleton<IMemoryPoolFactory<byte>,
+CustomMemoryPoolFactory>();
 
 public class CustomMemoryPoolFactory : IMemoryPoolFactory<byte>
 {
-    public MemoryPool<byte> CreatePool()
+    public MemoryPool<byte> Create()
     {
-        // Return a custom MemoryPool implementation or the default.
+        // Return a custom MemoryPool implementation
+       //or the default, as is shown here.
         return MemoryPool<byte>.Shared;
     }
 }
