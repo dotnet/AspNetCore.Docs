@@ -1,6 +1,6 @@
 ### Automatic eviction from memory pool
 
-The memory pools used by Kestrel, IIS, and HTTP.sys now automatically evict memory blocks when the application is idle or under less load. The feature does not need to be enabled or configured manually. it runs automatically
+The memory pools used by Kestrel, IIS, and HTTP.sys now automatically evict memory blocks when the application is idle or under less load. The feature does not need to be enabled or configured manually. It runs automatically
 
 #### Why memory eviction matters
 
@@ -14,7 +14,7 @@ For information about metrics and how to use them, see <xref:log-mon/metrics/met
 
 #### Manage memory pools
 
-Besides using memory pools more efficiently by evicting unneeded memory blocks, .NET 10 improves the experience of creating memory pools. It does this by providing a built-in `IMemoryPoolFactory`interface and implementation. It makes the implementation available to your application through dependency injection. 
+Besides using memory pools more efficiently by evicting unneeded memory blocks, .NET 10 improves the experience of creating memory pools. It does this by providing a built-in `IMemoryPoolFactory` interface and implementation. It makes the implementation available to your application through dependency injection. 
 
 
 The following code example shows a simple background service that uses the built-in memory pool factory implementation to create memory pools. These pools benefit from the automatic eviction feature:
@@ -60,7 +60,7 @@ public class CustomMemoryPoolFactory : IMemoryPoolFactory<byte>
     public MemoryPool<byte> Create()
     {
         // Return a custom MemoryPool implementation
-       //or the default, as is shown here.
+        // or the default, as is shown here.
         return MemoryPool<byte>.Shared;
     }
 }
