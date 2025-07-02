@@ -381,8 +381,8 @@ To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Comp
 
 ```csharp
 AppContext.SetSwitch(
-    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.EnableThrowNavigationException", 
-    isEnabled: true);
+    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException", 
+    isEnabled: false);
 ```
 
 ### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
