@@ -427,4 +427,19 @@ For more information, see <xref:blazor/performance/index?view=aspnetcore-10.0#me
 
 Blazor's build output isn't compatible with JavaScript bundlers, such as [Gulp](https://gulpjs.com), [Webpack](https://webpack.js.org), and [Rollup](https://rollupjs.org/). Blazor can now produce bundler-friendly output during publish by setting the `WasmBundlerFriendlyBootConfig` MSBuild property to `true`.
 
-For more information, see <xref:blazor/host-and-deploy/?view=aspnetcore-10.0#javascript-bundler-support>.
+For more information, see <xref:blazor/host-and-deploy/index?view=aspnetcore-10.0#javascript-bundler-support>.
+
+### Blazor WebAssembly static asset preloading in Blazor Web Apps
+
+We replaced `<link>` headers with a `LinkPreload` component (`<LinkPreload />`) for preloading WebAssembly assets in Blazor Web Apps. This permits the app base path configuration (`<base href="..." />`) to correctly identify the app's root.
+
+Removing the component disables the feature if the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup#load-client-side-boot-resources) to modify URLs.
+
+The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `LinkPreload` component after the `<base>` tag in the `App` component (`App.razor`):
+
+```diff
+<base href="/" />
++ <LinkPreload />
+```
+
+For more information, see <xref:blazor/host-and-deploy/server/index?view=aspnetcore-10.0#static-asset-preloading>.
