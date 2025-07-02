@@ -422,3 +422,9 @@ For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0
 This release introduces comprehensive metrics and tracing capabilities for Blazor apps, providing detailed observability of the component lifecycle, navigation, event handling, and circuit management.
 
 For more information, see <xref:blazor/performance/index?view=aspnetcore-10.0#metrics-and-tracing>.
+
+### JavaScript bundler support
+
+Blazor's build output isn't compatible with JavaScript bundlers, such as [Gulp](https://gulpjs.com), [Webpack](https://webpack.js.org), and [Rollup](https://rollupjs.org/). Blazor can now produce bundler-friendly output during publish by setting the `WasmBundlerFriendlyBootConfig` MSBuild property to `true`.
+
+For more information, see <xref:blazor/host-and-deploy/?view=aspnetcore-10.0#javascript-bundler-support>.
