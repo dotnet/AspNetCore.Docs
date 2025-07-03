@@ -29,7 +29,7 @@ Ahead-of-time (AOT) compilation compiles a Blazor app's .NET code directly into 
 
 *This section applies to Blazor Web Apps rendering client-side pages and standalone Blazor WebAssembly apps.*
 
-The Microsoft Edge browser's WebAssembly (WASM) interpreter running in [enhanced security mode](/DeployEdge/microsoft-edge-security-browse-safer) might not yield the same performance as when Blazor is running without enhanced security. We recommend adding the site as an [exception](/DeployEdge/microsoft-edge-security-browse-safer#enhanced-security-sites) in Microsoft Edge to opt out of enhanced security mode.
+The Microsoft Edge browser's WebAssembly (WASM) interpreter running in [enhanced security mode](/DeployEdge/microsoft-edge-security-browse-safer) might not yield the same performance as when Blazor is running without enhanced security. If performance is degraded in Microsoft Edge, we recommend adding the site as an [exception](/DeployEdge/microsoft-edge-security-browse-safer#enhanced-security-sites) to opt out of enhanced security mode.
 
 :::moniker range=">= aspnetcore-10.0"
 
