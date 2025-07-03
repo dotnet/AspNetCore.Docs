@@ -445,3 +445,80 @@ The Blazor Web App template adopts the feature by default in .NET 10, and apps u
 ```
 
 For more information, see <xref:blazor/host-and-deploy/server/index?view=aspnetcore-10.0#static-asset-preloading>.
+
+### Improved form validation
+
+Blazor now has improved form validation capabilities, including support for validating properties of nested objects and collection items.
+
+To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, just as before.
+
+To opt into the new validation feature:
+
+1. Call the `AddValidation` extension method in the `Program` file where services are registered.
+2. Declare the form model types in a C# class file, not in a Razor component (`.razor`).
+3. Annotate the root form model type with the `[ValidatableType]` attribute.
+
+Without following the preceding steps, the validation behavior remains the same as in previous .NET releases.
+
+The following example demonstrates customer orders with the improved form validation (details omitted for brevity):
+
+In `Program.cs`, call `AddValidation` on the service collection to enable the new validation behavior:
+
+```csharp
+builder.Services.AddValidation();
+```
+
+In the following `Order` class, the `[ValidatableType]` attribute is required on the top-level model type. The other types are discovered automatically. `OrderItem` and `ShippingAddress` aren't shown for brevity, but nested and collection validation works the same way in those types if they were shown.
+
+`Order.cs`:
+
+```csharp
+[ValidatableType]
+public class Order
+{
+    public Customer Customer { get; set; } = new();
+    public List<OrderItem> OrderItems { get; set; } = [];
+}
+
+public class Customer
+{
+    [Required(ErrorMessage = "Name is required.")]
+    public string? FullName { get; set; }
+
+    [Required(ErrorMessage = "Email is required.")]
+    public string? Email { get; set; }
+
+    public ShippingAddress ShippingAddress { get; set; } = new();
+}
+```
+
+In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
+
+`OrderPage.razor`:
+
+```razor
+<EditForm Model="Model">
+    <DataAnnotationsValidator />
+
+    <h3>Customer Details</h3>
+    <div class="mb-3">
+        <label>
+            Full Name
+            <InputText @bind-Value="Model!.Customer.FullName" />
+        </label>
+        <ValidationMessage For="@(() => Model!.Customer.FullName)" />
+    </div>
+
+    @* ... form continues ... *@
+</EditForm>
+
+@code {
+    public Order? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    // ... code continues ...
+}
+```
+
+The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the new validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
