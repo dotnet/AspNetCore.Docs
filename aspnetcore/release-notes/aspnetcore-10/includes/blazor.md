@@ -435,11 +435,15 @@ We replaced `<link>` headers with a `LinkPreload` component (`<LinkPreload />`) 
 
 Removing the component disables the feature if the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup#load-client-side-boot-resources) to modify URLs.
 
-The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `LinkPreload` component after the `<base>` tag in the `App` component (`App.razor`):
+The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `LinkPreload` component after the base URL tag (`<base>`) in the `App` component's head content (`App.razor`):
 
 ```diff
-<base href="/" />
-+ <LinkPreload />
+<head>
+    ...
+    <base href="/" />
++   <LinkPreload />
+    ...
+</head>
 ```
 
 For more information, see <xref:blazor/host-and-deploy/server/index?view=aspnetcore-10.0#static-asset-preloading>.

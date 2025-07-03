@@ -44,7 +44,7 @@ Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-sty
 
 ## Blazor WebAssembly static asset preloading
 
-The `LinkPreload` component in the `App` component (`App.razor`) is used to reference Blazor static assets. The component is placed after the `<base href="..." />` tag:
+The `LinkPreload` component in the `App` component's head content (`App.razor`) is used to reference Blazor static assets. The component is placed after the base URL tag (`<base>`):
 
 ```razor
 <LinkPreload />
@@ -52,7 +52,7 @@ The `LinkPreload` component in the `App` component (`App.razor`) is used to refe
 
 A Razor component is used instead of `<link>` elements because:
 
-* The component permits the `<base href="..." />` tag to correctly identify the root of the Blazor app within an ASP.NET Core app.
+* The component permits the base URL (`<base>` tag's `href` attribute value) to correctly identify the root of the Blazor app within an ASP.NET Core app.
 * The feature can be removed by removing the `LinkPreload` component tag from the `App` component. This is helpful in cases where the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup#load-client-side-boot-resources) to modify URLs.
 
 :::moniker-end
