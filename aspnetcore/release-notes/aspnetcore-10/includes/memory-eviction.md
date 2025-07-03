@@ -35,12 +35,12 @@ public class MyBackgroundService : BackgroundService
             try
             {
                 await Task.Delay(20, stoppingToken);
-                // do work that needs memory
-                using var rented = _memoryPool.Rent(100);
-                // Use the rented memory here
+                 // do work that needs memory
+                 var rented = _memoryPool.Rent(100);
+                rented.Dispose();
             }
             catch (OperationCanceledException)
-            {
+           {
                 return;
             }
         }
