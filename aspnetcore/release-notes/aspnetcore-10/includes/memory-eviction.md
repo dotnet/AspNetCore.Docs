@@ -36,8 +36,8 @@ public class MyBackgroundService : BackgroundService
             {
                 await Task.Delay(20, stoppingToken);
                 // do work that needs memory
-                var rented = _memoryPool.Rent(100);
-                rented.Dispose();
+                using var rented = _memoryPool.Rent(100);
+                // Use the rented memory here
             }
             catch (OperationCanceledException)
             {
@@ -45,13 +45,7 @@ public class MyBackgroundService : BackgroundService
             }
         }
     }
-    
-    public void override Dispose()
-    {
-        _memoryPool.Dispose();
-    }
-}
-```
+}```
 
 To use your own memory pool factory, make a class that implements `IMemoryPoolFactory` and register it with dependency injection, as the following example does. Memory pools created this way also benefit from the automatic eviction feature:
 
