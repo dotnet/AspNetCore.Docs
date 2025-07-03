@@ -45,6 +45,11 @@ public class MyBackgroundService : BackgroundService
             }
         }
     }
+    
+    public void override Dispose()
+    {
+        _memoryPool.Dispose();
+    }
 }
 ```
 
