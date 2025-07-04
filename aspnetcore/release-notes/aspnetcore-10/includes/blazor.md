@@ -522,3 +522,13 @@ In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Component
 ```
 
 The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the new validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
+
+### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
+
+Now that all Blazor client-side files are fingerprinted and cached by the browser, Blazor's custom caching mechanism and the `BlazorCacheBootResources` MSBuild property have been removed from the framework. If the client-side project's project file contains the MSBuild property, remove the property, as it no longer has any effect:
+
+```diff
+- <BlazorCacheBootResources>...</BlazorCacheBootResources>
+```
+
+For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-10.0>.
