@@ -708,13 +708,11 @@ For more information on component disposal, see <xref:blazor/components/componen
 
 <!-- UPDATE 10.0 - API doc cross-links -->
 
-*In .NET 10 Preview 4, Not Found responses are only available for static SSR and global interactive rendering. Per-page/component rendering support is planned for Preview 5 in June, 2025.*
-
 <xref:Microsoft.AspNetCore.Components.NavigationManager> provides a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
 
 * **Static SSR**: Calling `NotFound` sets the HTTP status code to 404.
-* **Streaming rendering**: Throws an exception if the response has already started.
 * **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
+* **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh. In these contexts, Not Found content is defined as a `NotFoundPage` passed to the `Router` component (described later in this section), otherwise as a re-execution page when [re-execution middleware is set](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>.
 
 When a component is rendered statically (static SSR) and `NavigationManager.NotFound` is called, the 404 status code is set on the response:
 

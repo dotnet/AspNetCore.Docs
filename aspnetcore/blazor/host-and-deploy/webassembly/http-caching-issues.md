@@ -54,6 +54,8 @@ Usually the source of cache state problems is limited to the HTTP browser cache,
 
 You can optionally include the `storage` directive to clear local storage caches at the same time that you're clearing the HTTP browser cache. However, apps that use client storage might experience a loss of important information if the `storage` directive is used.
 
+:::moniker range="< aspnetcore-10.0"
+
 ### Append a query string to the Blazor script tag
 
 If none of the previous recommended actions are effective, possible to use for your deployment, or apply to your app, consider temporarily appending a query string to the Blazor script's `<script>` tag source. This action should be enough in most situations to force the browser to bypass the local HTTP cache and download a new version of the app. There's no need to read or use the query string in the app.
@@ -73,3 +75,5 @@ Alternatively, you can apply a persistent query string with relevant versioning.
 ```
 
 For the location of the Blazor script `<script>` tag, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker-end

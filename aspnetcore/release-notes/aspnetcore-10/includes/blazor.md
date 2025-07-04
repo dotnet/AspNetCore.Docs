@@ -381,8 +381,8 @@ To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Comp
 
 ```csharp
 AppContext.SetSwitch(
-    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.EnableThrowNavigationException", 
-    isEnabled: true);
+    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException", 
+    isEnabled: false);
 ```
 
 ### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
@@ -390,10 +390,8 @@ AppContext.SetSwitch(
 The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
 
 * **Static server-side rendering (static SSR)**: Calling `NotFound` sets the HTTP status code to 404.
-* **Streaming rendering**: Throws an exception if the response has already started.
 * **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#route-templates)) to render Not Found content.
-
-Per-page/component rendering support is planned for Preview 5 in June, 2025.
+* **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh. In these contexts, Not Found content is defined as a `NotFoundPage` passed to the `Router` component (described in the next section of this article), otherwise as a re-execution page when [re-execution middleware is set](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>.
 
 You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
 
@@ -401,7 +399,7 @@ For more information and examples, see <xref:blazor/fundamentals/routing?view=as
 
 ### Blazor router has a `NotFoundPage` parameter
 
-Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` by passing a page type to the `Router` component using the `NotFoundPage` parameter. This approach is recommended over the previous `NotFound` fragment, as it supports routing, works across code re-execution middleware, and is compatible even with non-Blazor scenarios. If both a `NotFound` fragment and `NotFoundPage` are defined, the page specified by `NotFoundPage` takes priority.
+Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` by passing a page type to the `Router` component using the `NotFoundPage` parameter. This approach is recommended over the previous [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A), as it supports routing, works across code re-execution middleware, and is compatible even with non-Blazor scenarios. If both a `NotFound` render fragment and `NotFoundPage` are defined, the page specified by `NotFoundPage` takes priority.
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -422,3 +420,115 @@ For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0
 This release introduces comprehensive metrics and tracing capabilities for Blazor apps, providing detailed observability of the component lifecycle, navigation, event handling, and circuit management.
 
 For more information, see <xref:blazor/performance/index?view=aspnetcore-10.0#metrics-and-tracing>.
+
+### JavaScript bundler support
+
+Blazor's build output isn't compatible with JavaScript bundlers, such as [Gulp](https://gulpjs.com), [Webpack](https://webpack.js.org), and [Rollup](https://rollupjs.org/). Blazor can now produce bundler-friendly output during publish by setting the `WasmBundlerFriendlyBootConfig` MSBuild property to `true`.
+
+For more information, see <xref:blazor/host-and-deploy/index?view=aspnetcore-10.0#javascript-bundler-support>.
+
+### Blazor WebAssembly static asset preloading in Blazor Web Apps
+
+We replaced `<link>` headers with a `LinkPreload` component (`<LinkPreload />`) for preloading WebAssembly assets in Blazor Web Apps. This permits the app base path configuration (`<base href="..." />`) to correctly identify the app's root.
+
+Removing the component disables the feature if the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup#load-client-side-boot-resources) to modify URLs.
+
+The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `LinkPreload` component after the base URL tag (`<base>`) in the `App` component's head content (`App.razor`):
+
+```diff
+<head>
+    ...
+    <base href="/" />
++   <LinkPreload />
+    ...
+</head>
+```
+
+For more information, see <xref:blazor/host-and-deploy/server/index?view=aspnetcore-10.0#static-asset-preloading>.
+
+### Improved form validation
+
+Blazor now has improved form validation capabilities, including support for validating properties of nested objects and collection items.
+
+To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, just as before.
+
+To opt into the new validation feature:
+
+1. Call the `AddValidation` extension method in the `Program` file where services are registered.
+2. Declare the form model types in a C# class file, not in a Razor component (`.razor`).
+3. Annotate the root form model type with the `[ValidatableType]` attribute.
+
+Without following the preceding steps, the validation behavior remains the same as in previous .NET releases.
+
+The following example demonstrates customer orders with the improved form validation (details omitted for brevity):
+
+In `Program.cs`, call `AddValidation` on the service collection to enable the new validation behavior:
+
+```csharp
+builder.Services.AddValidation();
+```
+
+In the following `Order` class, the `[ValidatableType]` attribute is required on the top-level model type. The other types are discovered automatically. `OrderItem` and `ShippingAddress` aren't shown for brevity, but nested and collection validation works the same way in those types if they were shown.
+
+`Order.cs`:
+
+```csharp
+[ValidatableType]
+public class Order
+{
+    public Customer Customer { get; set; } = new();
+    public List<OrderItem> OrderItems { get; set; } = [];
+}
+
+public class Customer
+{
+    [Required(ErrorMessage = "Name is required.")]
+    public string? FullName { get; set; }
+
+    [Required(ErrorMessage = "Email is required.")]
+    public string? Email { get; set; }
+
+    public ShippingAddress ShippingAddress { get; set; } = new();
+}
+```
+
+In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
+
+`OrderPage.razor`:
+
+```razor
+<EditForm Model="Model">
+    <DataAnnotationsValidator />
+
+    <h3>Customer Details</h3>
+    <div class="mb-3">
+        <label>
+            Full Name
+            <InputText @bind-Value="Model!.Customer.FullName" />
+        </label>
+        <ValidationMessage For="@(() => Model!.Customer.FullName)" />
+    </div>
+
+    @* ... form continues ... *@
+</EditForm>
+
+@code {
+    public Order? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    // ... code continues ...
+}
+```
+
+The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the new validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
+
+### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
+
+Now that all Blazor client-side files are fingerprinted and cached by the browser, Blazor's custom caching mechanism and the `BlazorCacheBootResources` MSBuild property have been removed from the framework. If the client-side project's project file contains the MSBuild property, remove the property, as it no longer has any effect:
+
+```diff
+- <BlazorCacheBootResources>...</BlazorCacheBootResources>
+```
+
+For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-10.0>.
