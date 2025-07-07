@@ -5,34 +5,41 @@ description: Learn how to issue push notifications in Blazor Progressive Web App
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/02/2025
+ms.date: 07/07/2025
 uid: blazor/progressive-web-app/push-notifications
 ---
 # Push notifications for ASP.NET Core Blazor Progressive Web Applications (PWAs)
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Blazor PWAs can receive and display *push notifications* from a backend server, even when the user isn't actively using the app. For example, push notifications can be sent when a different user performs an action in their installed PWA or when the app or users interacting directly with the backend server app perform an action.
+Blazor PWAs can receive and display *push notifications* (data messages) from a backend server, even when the user isn't actively using the app. For example, push notifications can be sent when a different user performs an action in their installed PWA or when the app or users interacting directly with the backend server app perform an action.
 
 Use push notifications to:
 
- * Notify users that something important has happened, prompting them to return to the app.
- * Update data stored in the app, such as a news feed, so the user has fresh data on their next return, even if they're offline at the time.
+* Notify users that something important has happened, prompting them to return to the app.
+* Update data stored in the app, such as a news feed, so the user has fresh data on their next return to the app, even if they're offline when the push notification is issued.
 
-The example in this article uses push notifications to provide status updates to app users.
+The mechanisms for sending, receiving, and displaying a push notification are independent of Blazor WebAssembly. Sending a push notification is implemented by the backend server, which can use any technology. Receiving and displaying a push notification on the client is implemented in the service worker JavaScript (JS) file.
 
-The mechanism for sending a push notification is entirely independent of Blazor WebAssembly, since it's implemented by the backend server which can use any technology.
-
-The approaches demonstrated in this article send push notifications from an ASP.NET Core server to the [Blazing Pizza Workshop PWA demonstration app](https://github.com/dotnet-presentations/blazor-workshop).
+The example in this article uses push notifications to provide order status updates to the customers of a pizza restaurant based on the [Blazing Pizza Workshop PWA demonstration app](https://github.com/dotnet-presentations/blazor-workshop). You aren't required to participate in the online workshop to use this article, but the workshop is a helpful introduction to Blazor PWA development.
 
 > [!NOTE]
 > The Blazing Pizza app adopts the *repository pattern* to create an abstraction layer between the UI layer and the data access layer. For more information, see [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html) and [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design).
 
-The mechanism for receiving and displaying a push notification on the client is also independent of Blazor WebAssembly, since it's implemented in the service worker JS file. This article covers the concepts with examples in the [Display notifications](#display-notifications) section.
-
 ## Establish public and private keys
 
-Generate the cryptographic public and private keys for securing push notifications either locally or using an online tool. 
+Generate the cryptographic public and private keys for securing push notifications either locally, for example with PowerShell or IIS, or using an online tool. 
+
+> [!CAUTION]
+> This article's use of a unencrypted, insecure private key in the app's code ***is for demonstration purposes and local testing only.*** We recommend using a secure approach for supplying a private key to an ASP.NET Core app at all stages of development. When working locally in the Development environment, a private key can be provided to the app using the [Secret Manager](xref:security/app-secrets#secret-manager) tool. In Development, Staging, and Production environments, [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) can be used, noting in passing that to obtain a certificate's private key from a key vault that the certificate must have an exportable private key.
+
+<!-- We'll expand this article to include explicit guidance on key management with AKV. A 
+     Google search with 'get certificate private key from azure key vault for use in c# code'
+     generates a decent code sample. I didn't see such a good starting point in AKV Learn 
+     articles, so we'll use the AI-generated code as a starting point.
+
+     The preceding CAUTION statement also appears in the 'Send a notification' section.
+-->
 
 Placeholders used in this article's example code:
 
@@ -41,26 +48,21 @@ Placeholders used in this article's example code:
 
 For this article's C# examples, update the `someone@example.com` email address to match the address used when creating the custom key pair.
 
-To supply the keys from configuration to the article's code examples, see the following resources:
-
-* <xref:fundamentals/configuration/index>
-* <xref:blazor/fundamentals/configuration>
-
 ## Create a subscription
 
-Before sending push notifications to a user, the app must ask the user for permission. If they agree, their browser generates a *subscription*, which is a set of tokens the app can use to route notifications to the user.
+Before sending push notifications to a user, the app must ask the user for permission. If they grant permission to receive notifications, their browser generates a *subscription*, which includes a set of tokens the app can use to route notifications to the user.
 
-Permission can be obtained at any time by the app, but for the best chance of success, we recommend asking users only when it's clear why they would want to subscribe. You might want to implement a **Send me updates** button. For simplicity, the following example asks users when they arrive on the checkout page (`Checkout` component) because at that point it's clear that the user is serious about placing an order.
+Permission can be obtained at any time by the app, but we only recommend asking users for permission when it's clear why they would want to subscribe for notifications from the app. The following example asks users when they arrive on the checkout page (`Checkout` component) because at that point it's clear that the user is serious about placing an order.
 
 If the user agrees to receive notifications, the following example sends the push notification subscription data to the server, where push notification tokens are stored in the database for later use.
 
-Add a push notifications JavaScript (JS) file to request a subscription:
+Add a push notifications JS file to request a subscription:
 
 * Call [`navigator.serviceWorker.getRegistration`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistration) to get the service worker's registration.
 * Call [`worker.pushManager.getSubscription`](https://developer.mozilla.org/docs/Web/API/PushManager/getSubscription) to determine if a subscription exists.
-* If a subscription doesn't exist, create a new subscription using the [`PushManager.subscribe`](https://developer.mozilla.org/docs/Web/API/PushManager/subscribe) function and return the new subscription's URL and tokens. For more information, see [Message Encryption for Web Push (draft-ietf-webpush-encryption-08): Push Message Encryption Overview](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08#section-2).
+* If a subscription doesn't exist, create a new subscription using the [`PushManager.subscribe`](https://developer.mozilla.org/docs/Web/API/PushManager/subscribe) function and return the new subscription's URL and tokens.
 
-In the Blazing Pizza app, the JS file is named `pushNotifications.js` and located in the public static assets folder (`wwwroot`) of the solution's Razor class library project (`BlazingPizza.ComponentsLibrary`). A call to `blazorPushNotifications.requestSubscription` requests a subscription.
+In the Blazing Pizza app, the JS file is named `pushNotifications.js` and located in the public static assets folder (`wwwroot`) of the solution's Razor class library project (`BlazingPizza.ComponentsLibrary`). The `blazorPushNotifications.requestSubscription` function requests a subscription.
 
 `BlazingPizza.ComponentsLibrary/wwwroot/pushNotifications.js`:
 
@@ -151,11 +153,12 @@ app.MapPut("/notifications/subscribe",
             return Results.Unauthorized();
         }
 
+        // Remove old subscriptions for this user
         var oldSubscriptions = db.NotificationSubscriptions.Where(
             e => e.UserId == userId);
         db.NotificationSubscriptions.RemoveRange(oldSubscriptions);
 
-        // Store new subscription
+        // Store the new subscription
         subscription.UserId = userId;
         db.NotificationSubscriptions.Attach(subscription);
 
@@ -189,7 +192,7 @@ public class HttpRepository : IRepository
 }
 ```
 
-The repository interface (`BlazingPizza.Shared/IRepository.cs`) includes the method signature:
+The repository interface (`BlazingPizza.Shared/IRepository.cs`) includes the method signature of `SubscribeToNotifications`:
 
 ```csharp
 public interface IRepository
@@ -242,17 +245,20 @@ To demonstrate how the code works, run the Blazing Pizza app and start placing a
 
 ![The Blazing Pizza app requests permission from the user to show notifications.](~/blazor/progressive-web-app/push-notifications/_static/show-notifications-request.png)
 
-Choose **Allow** and check in the browser developer tools console for errors. A breakpoint on the server in `PizzaApiExtensions`'s `MapPut("/notifications/subscribe"...)` API method with the app run with debugging allows inspection of the incoming data from the browser, which includes an endpoint URL and cryptographic tokens.
+Choose **Allow** and check in the browser developer tools console for errors. You can set a breakpoint in the `PizzaApiExtensions`'s `MapPut("/notifications/subscribe"...)` code and run the app with debugging to inspect the incoming data from the browser. The data includes an endpoint URL and cryptographic tokens.
 
-Once the user has either allowed or blocked notifications for a given site, the browser won't ask again. To reset the permission for further testing for either Google Chrome or Microsoft Edge, select the "information" icon (&#x1F6C8;) to the left of the browser's address bar and change **Notifications** back to **Ask (default)** as seen in the following image:
+After the user has either allowed or blocked notifications for a given site, the browser won't ask again. To reset the permission for further testing for either Google Chrome or Microsoft Edge, select the "information" icon (&#x1F6C8;) to the left of the browser's address bar and change **Notifications** back to **Ask (default)**, as seen in the following image:
 
 ![Selecting "Ask (default)" for "Notifications" from this app to reset notifications back to a disabled state.](~/blazor/progressive-web-app/push-notifications/_static/reset-notifications.png)
 
 ## Send a notification
 
-Sending notifications involves performing some complex cryptographic operations on the server to protect the data in transit. The bulk of the complexity is handled for the app by a third-party NuGet package, [`WebPush`](https://www.nuget.org/packages/WebPush), which is used by the server project (`BlazingPizza.Server`) in the Blazing Pizza app.
+Sending a notification involves performing some complex cryptographic operations on the server to protect the data in transit. The bulk of the complexity is handled for the app by a third-party NuGet package, [`WebPush`](https://www.nuget.org/packages/WebPush), which is used by the server project (`BlazingPizza.Server`) in the Blazing Pizza app.
 
 The `SendNotificationAsync` method dispatches order notifications using the captured subscription. The following code makes uses of `WebPush` APIs for dispatching the notification. The payload of the notification is JSON serialized and includes a message and a URL. The message is displayed to the user, and the URL allows the user to reach the pizza order associated with the notification. Additional parameters can be serialized as required for other notification scenarios.
+
+> [!CAUTION]
+> This article's use of a unencrypted, insecure private key in the app's code ***is for demonstration purposes and local testing only.*** We recommend using a secure approach for supplying a private key to an ASP.NET Core app at all stages of development. When working locally in the Development environment, a private key can be provided to the app using the [Secret Manager](xref:security/app-secrets#secret-manager) tool. In Development, Staging, and Production environments, [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) can be used, noting in passing that to obtain a certificate's private key from a key vault that the certificate must have an exportable private key.
 
 ```csharp
 private static async Task SendNotificationAsync(Order order, 
@@ -295,7 +301,7 @@ The browser's developer tools console indicates the arrival of notifications ten
 
 The PWA's service worker (`service-worker.js`) must handle push notifications in order for the app to display them.
 
-The following [`push` event handler](https://developer.mozilla.org/docs/Web/API/PushEvent) in the Blazing Pizza app calls [`showNotification`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/showNotification) to create a notification on the active service worker.
+The following [`push` event handler](https://developer.mozilla.org/docs/Web/API/PushEvent) in the Blazing Pizza app calls [`showNotification`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/showNotification) to create a notification for the active service worker.
 
 In `BlazingPizza/wwwroot/service-worker.js`:
 
@@ -315,11 +321,13 @@ self.addEventListener('push', event => {
 
 The preceding code doesn't take effect until after the next page load when the browser logs `Installing service worker...`. When struggling to get the service worker to update, use the **Application** tab in the browser's developer tools console. Under **Service Workers**, choose **Update** or use **Unregister** to force a new registration on the next load.
 
-With the preceding code in place and new order placed by a user, the order moves into *Out for delivery* status after 10 seconds per the app's built-in demonstration logic and the browser receives a push notification:
+With the preceding code in place and new order placed by a user, the order moves into *Out for delivery* status after 10 seconds per the app's built-in demonstration logic. The browser receives a push notification:
 
 ![A pop-up notification indicating to the user that their pizza order has been dispatched.](~/blazor/progressive-web-app/push-notifications/_static/order-dispatched-notification.png)
 
-When using either Google Chrome or the latest Microsoft Edge browser, the notification appears even if the user isn't on the Blazing Pizza app, but only if the browser is running (or the next time the browser is opened). When using the installed PWA, the notification should be delivered even if the user isn't running the app.
+When using the app in either Google Chrome or Microsoft Edge, the notification appears even if the user isn't actively using the Blazing Pizza app. However, the browser must be running, or the notification appears the next time that the browser is opened.
+
+When using the installed PWA, the notification should be delivered even if the user isn't running the app.
 
 ## Handle notification clicks
 
@@ -328,7 +336,7 @@ Register a [`notificationclick` event handler](https://developer.mozilla.org/doc
 * Close the notification by calling [`event.notification.close`](https://developer.mozilla.org/docs/Web/API/Notification/close).
 * Call [`clients.openWindow`](https://developer.mozilla.org/docs/Web/API/Clients/openWindow) to create a new top-level browsing context and load the URL passed to the method.
 
-The following example in the Blazing Pizza app takes the user to the order status page for whichever order pertains to the notification. The URL is provided by the `event.notification.data.url` parameter, which is set by server-side code with in the notification's payload.
+The following example in the Blazing Pizza app takes the user to the order status page for the order that pertains to the notification. The URL is provided by the `event.notification.data.url` parameter, which is sent by the server in the notification's payload.
 
 In the service worker file (`service-worker.js`):
 
@@ -343,5 +351,7 @@ If the PWA is installed on the device, the PWA is shown on the device. If the PW
 
 ## Additional resources
 
-* [Service Worker API (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Service_Worker_API)
+* [Push API (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Push_API)
 * [Message Encryption for Web Push (draft-ietf-webpush-encryption-08)](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08)
+* [Push API (W3C Working Draft 03 September 2024)](https://www.w3.org/TR/push-api/)
+* [Service Worker API (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Service_Worker_API)
