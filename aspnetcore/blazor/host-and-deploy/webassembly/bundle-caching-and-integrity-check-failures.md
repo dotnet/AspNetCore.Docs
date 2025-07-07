@@ -181,7 +181,7 @@ To disable integrity checks, add the following to a property group in the Blazor
 :::moniker-end
 
 > [!NOTE]
-> The preceding approach doesn't disable integrity checks for [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app). For guidance pertaining to PWAs, see the [Disable integrity checking for PWAs](#disable-integrity-checking-for-pwas) section.
+> The preceding approach doesn't disable integrity checks for [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app/index). For guidance pertaining to PWAs, see the [Disable integrity checking for PWAs](#disable-integrity-checking-for-pwas) section.
 
 We can't provide an exhaustive list of scenarios where disabling integrity checking is required. Servers can answer a request in arbitrary ways outside of the scope of the Blazor framework. The framework permits the preceding approach to make the app runnable at the cost of *losing a guarantee of integrity that the app can provide*. Again, we don't recommend disabling integrity checking, especially for production deployments. Developers should seek to solve the underlying integrity problem that's causing integrity checking to fail.
 

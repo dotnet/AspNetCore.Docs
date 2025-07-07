@@ -3,7 +3,7 @@ title: ASP.NET Core built-in metrics
 description: Learn about built-in metrics for ASP.NET Core apps.
 author: guardrex
 ms.author: wpickett
-ms.date: 6/20/2025
+ms.date: 7/7/2025
 ms.topic: reference
 uid: log-mon/metrics/built-in
 ---
@@ -33,12 +33,15 @@ Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 `aspnetcore.components.type` | string | Component navigated to. | `TestComponent` | Always
 `aspnetcore.components.route` | string | The component's route. | `/test-route` | Always
+`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
+
+Usage: How many different Blazor pages users visited?
 
 ### Metric: `aspnetcore.components.event_handler`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.event_handler`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsevent_handler)--> | Histogram | `s` | Measures the duration of processing browser events, including business logic.
+`aspnetcore.components.event_handler`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsevent_handler)--> | Histogram | `s` | Measures the duration of processing browser events, including business logic of the component but not affected child components.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
@@ -46,6 +49,11 @@ Attribute | Type | Description | Examples | Presence
 `aspnetcore.components.method` | string | C# method handling the event. | `OnClick` | Always
 `aspnetcore.components.attribute.name` | string | Component attribute name handling the event. | `onclick` | Always
 `error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
+
+Usage:
+
+* Click to which component is slow?
+* Which buttons are selected often?
 
 ## `Microsoft.AspNetCore.Components.Lifecycle`
 
@@ -65,6 +73,11 @@ Attribute | Type | Description | Examples | Presence
 `aspnetcore.components.type` | string | Component type handling the event. | `TestComponent` | Always
 `error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
 
+Usage:
+
+* Which components are slow to update?
+* Which components are updated often?
+
 ### Metric: `aspnetcore.components.render_diff`
 
 Name | Instrument Type | Unit (UCUM) | Description
@@ -73,8 +86,13 @@ Name | Instrument Type | Unit (UCUM) | Description
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
-`aspnetcore.components.diff.length` | int | The length of the render diff. | 50 | Always
+`aspnetcore.components.diff.length` | int | The length of the render diff/size of the batch (bucketed). | 50 | Always
 `error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
+
+Usage:
+
+* Is server rendering slow?
+* Do I render diffs that are too large? (network bandwidth, DOM update)
 
 ## `Microsoft.AspNetCore.Components.Server.Circuits`
 
@@ -90,17 +108,26 @@ Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
 `aspnetcore.components.circuit.active`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitactive)--> | UpDownCounter | `{circuit}` | Shows the number of active circuits currently in memory.
 
+Usage: How much memory does the session state hold?
+
 ### Metric: `aspnetcore.components.circuit.connected`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
 `aspnetcore.components.circuit.connected`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitconnected)--> | UpDownCounter | `{circuit}` | Tracks the number of circuits connected to clients.
 
+Usage: How many SignalR connections are open?
+
 ### Metric: `aspnetcore.components.circuit.duration`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
 `aspnetcore.components.circuit.duration`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentscircuitduration)--> | Histogram | `s` | Measures circuit lifetime duration and provides total circuit count.
+
+Usage:
+
+* How many sessions processed?
+* How long do users keep the session/tab open?
 
 ## `Microsoft.AspNetCore.Hosting`
 

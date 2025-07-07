@@ -101,12 +101,18 @@ To produce build output compatible with JavaScript bundlers *during publish*, se
 
 The output isn't directly runnable in the browser, but it can be consumed by JavaScript tools to bundle JavaScript files with the rest of the developer-supplied scripts.
 
+When `WasmBundlerFriendlyBootConfig` is enabled, the produced JavaScript contains `import` directives for all of the assets in the app, which makes the dependencies visible for the bundler. Many of the assets aren't loadable by the browser, but bundlers usually can be configured to recognize the assets by their file type to handle loading. For details on how to configure your bundler, refer to the bundler's documentation.
+
 The [`package.json`](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/testassets/JavascriptBundlers/package.json) and [`rollup.config.mjs`](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/testassets/JavascriptBundlers/rollup.config.mjs) files in the `dotnet/runtime` GitHub repository contain a demonstration of bundler-friendly output for an npm project with [Rollup](https://rollupjs.org/). Rollup can compile all of the app's JavaScript files into a single file and handle additional .NET files by copying them to the npm build output.
 
 > [!NOTE]
 > Replacing the `files` plugin with `url`, all of the app's JavaScript files, including the Blazor-WebAssembly runtime (base64 encoded in the JavaScript), are bundled into the output. The size of the file is significantly larger (for example, 300% larger) than when the files are curated with the `files` plugin, so we don't recommend using the `url` plugin as a general practice when producing bundler-friendly output for JavaScript bundler processing.
 
+<!-- UPDATE 10.0 - Surface this after Marek updates the app.
+
 For a demonstration sample app, see the [.NET on WASM in a React component sample (`maraf/dotnet-wasm-react` GitHub repository)](https://github.com/maraf/dotnet-wasm-react).
+
+-->
 
 :::moniker-end
 
