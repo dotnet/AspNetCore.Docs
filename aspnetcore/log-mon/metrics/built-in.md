@@ -41,7 +41,7 @@ Usage: How many different Blazor pages did users visit?
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.event_handler`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsevent_handler)--> | Histogram | `s` | Measures the duration of processing browser events, including business logic of the component but not affected child components.
+`aspnetcore.components.event_handler`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsevent_handler)--> | Histogram | `s` | Measures the duration of processing browser events, including business logic of the component, excluding the duration of child component event handling.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---

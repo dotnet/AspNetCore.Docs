@@ -1613,7 +1613,7 @@ In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Component
 
 `OrderPage.razor`:
 
-```csharp
+```razor
 <EditForm Model="Model">
     <DataAnnotationsValidator />
 
