@@ -58,13 +58,13 @@ CSS isolation occurs at build time. Blazor rewrites CSS selectors to match marku
 Blazor Web Apps:
 
 ```html
-<link href="@Assets["{ASSEMBLY NAME}.styles.css"]" rel="stylesheet">
+<link href="@Assets["{PACKAGE ID/ASSEMBLY NAME}.styles.css"]" rel="stylesheet">
 ```
 
 Standalone Blazor WebAssembly apps:
 
 ```html
-<link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">
+<link href="{PACKAGE ID/ASSEMBLY NAME}.styles.css" rel="stylesheet">
 ```
 
 :::moniker-end
@@ -72,12 +72,12 @@ Standalone Blazor WebAssembly apps:
 :::moniker range="< aspnetcore-9.0"
 
 ```html
-<link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">
+<link href="{PACKAGE ID/ASSEMBLY NAME}.styles.css" rel="stylesheet">
 ```
 
 :::moniker-end
 
-The `{ASSEMBLY NAME}` placeholder is the project's assembly name.
+The `{PACKAGE ID/ASSEMBLY NAME}` placeholder is the project's package ID (`<PackageId>` in the project file) for a library or assembly name for an app.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -95,7 +95,7 @@ Within the bundled file, each component is associated with a scope identifier. F
 <h1 b-3xxtam6d07>
 ```
 
-The `{ASSEMBLY NAME}.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
+The `{PACKAGE ID/ASSEMBLY NAME}.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
 
 ```css
 /* /Components/Pages/Counter.razor.rz.scp.css */
@@ -104,11 +104,11 @@ h1[b-3xxtam6d07] {
 }
 ```
 
-At build time, a project bundle is created with the convention `obj/{CONFIGURATION}/{TARGET FRAMEWORK}/scopedcss/projectbundle/{ASSEMBLY NAME}.bundle.scp.css`, where the placeholders are:
+At build time, a project bundle is created with the convention `obj/{CONFIGURATION}/{TARGET FRAMEWORK}/scopedcss/projectbundle/{PACKAGE ID/ASSEMBLY NAME}.bundle.scp.css`, where the placeholders are:
 
 * `{CONFIGURATION}`: The app's build configuration (for example, `Debug`, `Release`).
 * `{TARGET FRAMEWORK}`: The target framework (for example, `net6.0`).
-* `{ASSEMBLY NAME}`: The app's assembly name (for example, `BlazorSample`).
+* `{PACKAGE ID/ASSEMBLY NAME}`: The project's package ID (`<PackageId>` in the project file) for a library or assembly name for an app (for example, `BlazorSample`).
 
 ## Child component support
 

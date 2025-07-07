@@ -483,7 +483,7 @@ Rename file extensions in the `blazor.boot.json` file:
 ((Get-Content {PATH}\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\blazor.boot.json
 ```
 
-If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app):
+If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index):
 
 ```powershell
 ((Get-Content {PATH}\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\service-worker-assets.js
@@ -507,7 +507,7 @@ Rename file extensions in the `blazor.boot.json` file:
 sed -i 's/\.dll"/.bin"/g' {PATH}/blazor.boot.json
 ```
 
-If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app):
+If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index):
 
 ```console
 sed -i 's/\.dll"/.bin"/g' {PATH}/service-worker-assets.js
@@ -522,12 +522,12 @@ To address the compressed `blazor.boot.json` file, adopt either of the following
 * Recompress the updated `blazor.boot.json` file, producing new `blazor.boot.json.gz` and `blazor.boot.json.br` files. (*Recommended*)
 * Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. (*Compression is disabled with this approach.*)
 
-For a [Progressive Web App (PWA)](xref:blazor/progressive-web-app)'s compressed `service-worker-assets.js` file, adopt either of the following approaches:
+For a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index)'s compressed `service-worker-assets.js` file, adopt either of the following approaches:
 
 * Recompress the updated `service-worker-assets.js` file, producing new `service-worker-assets.js.br` and `service-worker-assets.js.gz` files. (*Recommended*)
 * Remove the compressed `service-worker-assets.js.gz` and `service-worker-assets.js.br` files. (*Compression is disabled with this approach.*)
 
-To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app). The path to the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations) is passed to the script when it's executed.
+To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index). The path to the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations) is passed to the script when it's executed.
 
 `ChangeDLLExtensions.ps1:`:
 
@@ -539,7 +539,7 @@ Remove-Item $filepath\wwwroot\_framework\blazor.boot.json.gz
 Remove-Item $filepath\wwwroot\_framework\blazor.boot.json.br
 ```
 
-If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app), add the following commands:
+If service worker assets are also in use because the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index), add the following commands:
 
 ```powershell
 ((Get-Content $filepath\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\wwwroot\service-worker-assets.js

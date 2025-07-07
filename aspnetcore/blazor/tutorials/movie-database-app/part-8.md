@@ -246,7 +246,7 @@ When you're finished with the tutorial and delete the sample app from your local
 1. Access SSOX by selecting **View** > **SQL Server Object Explorer** from the menu bar.
 1. Display the database list by selecting the triangles next to `SQL Server` > `(localdb)\MSSQLLocalDB` > `Databases`.
 1. Right-click the `BlazorWebAppMovies` database in the list and select **Delete**.
-1. Select the checkbox to close existing collections before selecting **OK**.
+1. Select the checkbox to close existing connections before selecting **OK**.
 
 When deleting the database in SSOX, the database's physical files are removed from your Windows user folder.
 

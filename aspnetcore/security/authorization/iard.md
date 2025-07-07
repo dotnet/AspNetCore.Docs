@@ -35,7 +35,7 @@ The `HandleRequirementAsync` method:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizationHandler.cs":::
 
-The `MinimumAgeAuthorizationHandler` is registered as a scoped <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> service in the app's `Program` file:
+The `MinimumAgeAuthorizationHandler` is registered as a singleton <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> service in the app's `Program` file:
 
 ```csharp
 builder.Services.AddSingleton<IAuthorizationHandler,
