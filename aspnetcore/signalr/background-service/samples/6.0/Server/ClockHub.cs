@@ -6,7 +6,7 @@ namespace Server;
 #region ClockHub
 public class ClockHub : Hub<IClock>
 {
-    public async Task SendTimeToClients(DateTime dateTime)
+    public async Task SendMyLocalTimeToOtherClients(DateTime dateTime)
     {
         await Clients.All.ShowTime(dateTime);
     }
