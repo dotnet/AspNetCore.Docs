@@ -84,7 +84,7 @@ Circuit lifecycle tracing:
 
 Tags:
 
-* `aspnetcore.components.circuit.id`: Class name of the Razor component.
+* `aspnetcore.components.circuit.id`: Unique circuit identifier.
 * `error.type`: Exception type full name (optional)
 
 Links:

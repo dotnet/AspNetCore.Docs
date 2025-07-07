@@ -35,7 +35,7 @@ Attribute | Type | Description | Examples | Presence
 `aspnetcore.components.route` | string | The component's route. | `/test-route` | Always
 `error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
 
-Usage: How many different Blazor pages users visited?
+Usage: How many different Blazor pages did users visit?
 
 ### Metric: `aspnetcore.components.event_handler`
 
@@ -52,7 +52,7 @@ Attribute | Type | Description | Examples | Presence
 
 Usage:
 
-* Click to which component is slow?
+* Which component's click event handler is slow?
 * Which buttons are selected often?
 
 ## `Microsoft.AspNetCore.Components.Lifecycle`

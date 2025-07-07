@@ -81,7 +81,7 @@ To begin, set up a new empty web application and add TypeScript example files. T
 
 Next, configure npm to download grunt and grunt-tasks.
 
-1. In the Solution Explorer, right-click the project and select **Add > New Item** from the context menu. Select the **npm Configuration File** item, leave the default name, `package.json`, and click the **Add** button.
+1. In the Solution Explorer, right-click the project and select **Add** > **New Item** from the context menu. Select the **npm Configuration File** item, leave the default name, `package.json`, and click the **Add** button.
 
 2. In the `package.json` file, inside the `devDependencies` object braces, enter "grunt". Select `grunt` from the Intellisense list and press the Enter key. Visual Studio will quote the grunt package name, and add a colon. To the right of the colon, select the latest stable version of the package from the top of the Intellisense list (press `Ctrl-Space` if Intellisense doesn't appear).
 
