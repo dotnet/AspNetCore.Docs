@@ -667,7 +667,11 @@ items:
           - name: Test components
             uid: blazor/test
           - name: Progressive Web Applications
-            uid: blazor/progressive-web-app
+            items:
+              - name: Overview
+                uid: blazor/progressive-web-app/index
+              - name: Push notifications
+                uid: blazor/progressive-web-app/push-notifications
           - name: Host and deploy
             items:
               - name: Overview
