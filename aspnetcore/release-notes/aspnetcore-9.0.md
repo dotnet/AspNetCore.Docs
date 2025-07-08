@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core in .NET 9.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/19/2024
+$105/28/2025
 uid: aspnetcore-9
 ---
 # What's new in ASP.NET Core in .NET 9

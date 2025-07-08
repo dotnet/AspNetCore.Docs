@@ -4,7 +4,7 @@ description: Incremental ASP.NET to ASP.NET Core Migration Usage Guidance
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 11/9/2022
+$106/21/2025
 ms.topic: article
 uid: migration/fx-to-core/inc/usage_guidance
 ---

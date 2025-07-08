@@ -4,7 +4,7 @@ title: YARP HTTP header guidelines
 description: Learn about YARP HTTP header guidelines.
 author: samsp-msft
 ms.author: samsp
-ms.date: 2/6/2025
+$104/03/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted

@@ -5,7 +5,7 @@ description: This tutorial provides a walkthrough of adding Swagger to generate 
 ms.author: wpickett
 ms.custom: mvc
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
-ms.date: 4/25/2024
+$105/28/2025
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API documentation with Swagger / OpenAPI

@@ -3,7 +3,7 @@ title: Complex migration scenarios - Deep dive areas
 description: Detailed guidance for complex ASP.NET Framework to ASP.NET Core migration scenarios
 author: twsouthwick
 ms.author: tasou
-ms.date: 6/20/2025
+$106/27/2025
 uid: migration/fx-to-core/areas
 ---
 # Technology specific guidance

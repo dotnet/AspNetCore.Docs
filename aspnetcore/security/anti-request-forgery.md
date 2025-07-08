@@ -6,7 +6,7 @@ ms.author: tdykstra
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 11/16/2023
+$103/13/2025
 uid: security/anti-request-forgery
 ai-usage: ai-assisted
 ---

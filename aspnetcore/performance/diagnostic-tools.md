@@ -4,7 +4,7 @@ author: mjrousos
 description: Useful tools for diagnosing performance issues in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: tdykstra
-ms.date: 04/11/2019
+$105/06/2025
 uid: performance/diagnostic-tools
 ---
 # Performance Diagnostic Tools

@@ -4,7 +4,7 @@ author: pkellner
 description: Find out how ASP.NET Core built-in Tag Helpers boost your productivity.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2018
+$106/04/2022
 uid: mvc/views/tag-helpers/builtin-th/Index
 ---
 # ASP.NET Core built-in Tag Helpers

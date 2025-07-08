@@ -4,7 +4,7 @@ title: YARP Kubernetes Ingress Controller
 description: YARP Kubernetes Ingress Controller
 author: samsp-msft
 ms.author: samsp
-ms.date: 3/6/2025
+$104/03/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted

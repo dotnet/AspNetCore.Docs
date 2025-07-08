@@ -5,7 +5,7 @@ description: Learn how filters work and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 6/20/2023
+$106/19/2025
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core

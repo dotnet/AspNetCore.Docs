@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn the basic concepts when writing code-first gRPC with .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 02/23/2022
+$111/05/2024
 uid: grpc/code-first
 ---
 # Code-first gRPC services and clients with .NET

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/20/2022
+$111/15/2024
 monikerRange: '>= aspnetcore-3.1'
 uid: mvc/views/view-components
 ---

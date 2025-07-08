@@ -5,7 +5,7 @@ description: Learn about using HTTP/3 with Kestrel, the cross-platform web serve
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wigodbe
 ms.custom: mvc, linux-related-content
-ms.date: 08/24/2023
+$106/08/2025
 uid: fundamentals/servers/kestrel/http3
 ---
 

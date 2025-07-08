@@ -5,7 +5,7 @@ description: Learn how to create and use authorization policy handlers for enfor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/5/2023
+$104/19/2025
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core

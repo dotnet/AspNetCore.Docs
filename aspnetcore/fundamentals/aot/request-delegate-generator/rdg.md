@@ -6,7 +6,7 @@ ms.author: riande
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: article
-ms.date: 9/21/2023
+$103/01/2025
 uid: fundamentals/aot/rdg
 ai-usage: ai-assisted
 ---

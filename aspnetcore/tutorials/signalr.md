@@ -6,7 +6,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc, engagement-fy23
-ms.date: 11/06/2023
+$105/28/2025
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.

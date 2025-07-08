@@ -3,7 +3,7 @@ title: Migrate from System.Web.HttpContext to Micrsoft.AspNetCore.Http.HttpConte
 description: Learn how to migrate from System.Web.HttpContext to Micrsoft.AspNetCore.Http.HttpContext
 author: twsouthwick
 ms.author: tasou
-ms.date: 6/20/2025
+$106/21/2025
 uid: migration/fx-to-core/areas/http-context
 ---
 # Migrate from System.Web.HttpContext to Micrsoft.AspNetCore.Http.HttpContext

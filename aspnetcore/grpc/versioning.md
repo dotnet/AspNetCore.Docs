@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to version gRPC services.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 01/09/2020
+$109/24/2024
 uid: grpc/versioning
 ---
 # Versioning gRPC services

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Create an ASP.NET Core app using Identity with external authentication providers such as Facebook, Twitter, Google, and Microsoft.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/07/2022
+$105/28/2025
 uid: security/authentication/social/index
 ---
 # External provider authentication in ASP.NET Core Identity

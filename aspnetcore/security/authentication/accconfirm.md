@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build an ASP.NET Core app with email confirmation and password reset.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 2/9/2022
+$105/28/2025
 uid: security/authentication/accconfirm
 ---
 # Account confirmation and password recovery in ASP.NET Core

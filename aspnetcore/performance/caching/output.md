@@ -5,7 +5,7 @@ description: Learn how to configure and use output caching middleware in ASP.NET
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/20/2024
+$104/28/2025
 uid: performance/caching/output
 ---
 # Output caching middleware in ASP.NET Core

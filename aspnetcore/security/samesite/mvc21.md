@@ -1,11 +1,11 @@
-﻿---
+---
 title: ASP.NET Core 2.1 MVC SameSite cookie sample
 author: rick-anderson
 description: ASP.NET Core 2.1 MVC SameSite cookie sample
 monikerRange: '>= aspnetcore-2.1 < aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/03/2019
+$108/10/2022
 uid: security/samesite/mvc21
 ---
 

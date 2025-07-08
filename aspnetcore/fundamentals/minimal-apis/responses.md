@@ -4,7 +4,7 @@ author: brunolins16
 description: Learn how to create responses for minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 02/07/2025
+$105/09/2025
 uid: fundamentals/minimal-apis/responses
 ---
 

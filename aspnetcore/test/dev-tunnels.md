@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use dev tunnels in Visual Studio with ASPNET Core apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
-ms.date: 02/03/2023
+$105/28/2025
 uid: test/tunnels
 ---
 # How to use dev tunnels in Visual Studio 2022 with ASP.NET Core apps

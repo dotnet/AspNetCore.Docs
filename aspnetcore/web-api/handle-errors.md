@@ -5,7 +5,7 @@ description: Learn about error handling with ASP.NET Core controller-based web A
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/30/2024
+$108/02/2024
 uid: web-api/handle-errors
 ---
 # Handle errors in ASP.NET Core controller-based web APIs

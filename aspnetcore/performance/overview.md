@@ -4,7 +4,7 @@ author: tdykstra
 description: Links to articles about performance in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: tdykstra
-ms.date: 04/27/2023
+$105/06/2025
 uid: performance/overview
 ---
 # ASP.NET Core performance

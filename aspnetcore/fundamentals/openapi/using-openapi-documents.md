@@ -5,7 +5,7 @@ description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 09/04/2024
+$105/09/2025
 uid: fundamentals/openapi/using-openapi-documents
 ---
 # Use openAPI documents

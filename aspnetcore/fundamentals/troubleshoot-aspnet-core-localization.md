@@ -3,7 +3,7 @@ title: Troubleshoot ASP.NET Core localization
 author: hishamco
 description: Learn how to diagnose problems with localization in ASP.NET Core apps.
 ms.author: riande
-ms.date: 01/24/2019
+$105/03/2024
 uid: fundamentals/troubleshoot-aspnet-core-localization
 ---
 # Troubleshoot ASP.NET Core localization

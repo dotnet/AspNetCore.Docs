@@ -5,7 +5,7 @@ description: Learn how to set up JWT bearer authentication in an ASP.NET Core ap
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/7/2024
+$104/19/2025
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
 # Configure JWT bearer authentication in ASP.NET Core

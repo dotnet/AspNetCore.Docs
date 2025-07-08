@@ -5,7 +5,7 @@ description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/29/2024
+$103/13/2025
 uid: security/authentication/mfa
 ---
 <!-- ms.sfi.ropc: t -->

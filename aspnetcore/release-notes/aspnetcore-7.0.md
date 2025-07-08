@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core in .NET 7.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2022
+$105/28/2025
 uid: aspnetcore-7
 ---
 # What's new in ASP.NET Core in .NET 7

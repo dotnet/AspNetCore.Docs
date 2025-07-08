@@ -5,7 +5,7 @@ description: This tutorial demonstrates how to use WS-Federation in an ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 01/16/2019
+$106/21/2025
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core

@@ -5,7 +5,7 @@ description: ActionResult vs IActionResult
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 6/20/2023
+$104/08/2025
 uid: web-api/action-return-types
 ---
 # Controller action return types in ASP.NET Core web API

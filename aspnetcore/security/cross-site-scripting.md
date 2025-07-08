@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 2/15/2020
+$106/28/2025
 uid: security/cross-site-scripting
 ai-usage: ai-assisted
 ---

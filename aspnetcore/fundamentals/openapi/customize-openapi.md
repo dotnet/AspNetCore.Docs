@@ -5,7 +5,7 @@ description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
-ms.date: 05/15/2025
+$105/17/2025
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents

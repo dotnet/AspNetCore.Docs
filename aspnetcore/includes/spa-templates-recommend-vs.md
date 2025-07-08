@@ -1,7 +1,7 @@
 ---
 author: tdykstra
 ms.author: tdykstra
-ms.date: 10/10/2023
+$110/18/2024
 ms.topic: include
 ---
 Visual Studio provides project templates for creating single-page apps (SPAs) based on JavaScript frameworks such as [Angular](https://angular.dev/), [React](https://react.dev/), and [Vue](https://vuejs.org/) that have an ASP.NET Core backend. These templates:

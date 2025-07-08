@@ -3,7 +3,7 @@ title: Data Protection configuration in ASP.NET Core
 author: rick-anderson
 description: Discover topics that explain how to configure Data Protection in ASP.NET Core.
 ms.author: riande
-ms.date: 10/12/2017
+$106/04/2022
 uid: security/data-protection/configuration/index
 ---
 # Data Protection configuration in ASP.NET Core

@@ -3,7 +3,7 @@ title: Limit the lifetime of protected payloads in ASP.NET Core
 author: rick-anderson
 description: Learn how to limit the lifetime of a protected payload using the ASP.NET Core Data Protection APIs.
 ms.author: riande
-ms.date: 10/14/2016
+$106/04/2022
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
 ---
 # Limit the lifetime of protected payloads in ASP.NET Core

@@ -5,7 +5,7 @@ description: Learn how to integrate XML documentation comments on types by OpenA
 ms.author: safia
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
-ms.date: 4/12/2025
+$104/15/2025
 uid: fundamentals/openapi/aspnet-openapi-xml
 ---
 <!-- backup author: rick-anderson -->

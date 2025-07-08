@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core middleware and the request pipeline.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/03/2023
+$106/21/2025
 uid: fundamentals/middleware/index
 ms.ai: assisted
 ---

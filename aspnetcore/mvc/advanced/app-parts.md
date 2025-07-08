@@ -3,7 +3,7 @@ title: Share controllers, views, Razor Pages and more with Application Parts in 
 author: rick-anderson
 description: Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
 ms.author: riande
-ms.date: 11/11/2019
+$106/04/2022
 uid: mvc/extensibility/app-parts
 ---
 

@@ -2,7 +2,7 @@
 title: "ASP.NET Core docs: What's new for January 2024"
 description: "What's new in the ASP.NET Core docs for January 2024."
 ms.custom: January-2024
-ms.date: 02/01/2024
+$107/07/2025
 ---
 
 # ASP.NET Core docs: What's new for January 2024

@@ -3,7 +3,7 @@ title: Prevent open redirect attacks in ASP.NET Core
 author: ardalis
 description: Shows how to prevent open redirect attacks against an ASP.NET Core app
 ms.author: riande
-ms.date: 07/07/2017
+$104/17/2025
 uid: security/preventing-open-redirects
 ---
 # Prevent open redirect attacks in ASP.NET Core

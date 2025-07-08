@@ -5,7 +5,7 @@ description: Learn about the ASP.NET Core Module (ANCM) for hosting ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/04/2022
+$109/25/2024
 uid: host-and-deploy/aspnet-core-module
 ---
 

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to unprotect data, protected with keys that have since been revoked, in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+$109/25/2024
 uid: security/data-protection/consumer-apis/dangerous-unprotect
 ---
 

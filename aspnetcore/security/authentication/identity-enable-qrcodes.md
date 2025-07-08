@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover how to enable QR code generation for TOTP authenticator apps that work with ASP.NET Core two-factor authentication.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 08/14/2018
+$112/12/2024
 uid: security/authentication/identity-enable-qrcodes
 ---
 

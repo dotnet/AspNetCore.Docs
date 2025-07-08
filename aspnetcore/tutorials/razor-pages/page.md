@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 3 of tutorial series on Razor Pages.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 06/23/2024
+$106/26/2024
 uid: tutorials/razor-pages/page
 ---
 

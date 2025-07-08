@@ -4,7 +4,7 @@ author: mjrousos
 description: Learn how to migrate away from ClaimsPrincipal.Current to retrieve the current authenticated user's identity and claims in ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/26/2019
+$106/21/2025
 uid: migration/fx-to-core/areas/claimsprincipal-current
 ---
 # Migrate from ClaimsPrincipal.Current

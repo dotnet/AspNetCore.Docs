@@ -5,7 +5,7 @@ description: Learn how to log HTTP requests and responses.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/25/2023
+$104/25/2025
 uid: fundamentals/http-logging/index
 ---
 # HTTP logging in ASP.NET Core

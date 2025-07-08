@@ -5,7 +5,7 @@ description: Learn how to write custom ASP.NET Core middleware.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2021
+$106/21/2025
 uid: fundamentals/middleware/write
 ---
 # Write custom ASP.NET Core middleware

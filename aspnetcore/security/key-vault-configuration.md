@@ -5,7 +5,7 @@ description: Learn how to use the Azure Key Vault configuration provider to conf
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc, devx-track-azurecli
-ms.date: 10/29/2024
+$106/24/2025
 uid: security/key-vault-configuration
 ---
 <!-- ms.sfi.ropc: t -->

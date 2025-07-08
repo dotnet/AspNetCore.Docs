@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a controller-based web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 02/17/2025
+$103/27/2025
 uid: tutorials/first-web-api
 ---
 

@@ -5,7 +5,7 @@ description: Learn how to map claims, do claims transformations, customize claim
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 2/16/2022
+$103/13/2025
 uid: security/authentication/claims
 ---
 # Mapping, customizing, and transforming claims in ASP.NET Core

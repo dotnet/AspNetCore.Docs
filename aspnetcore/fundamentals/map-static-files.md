@@ -5,7 +5,7 @@ description: Learn how to serve and secure mapped static files and configure sta
 monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/18/2025
+$106/09/2025
 uid: fundamentals/map-static-files
 ---
 # Map static files in ASP.NET Core

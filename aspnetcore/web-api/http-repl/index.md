@@ -5,7 +5,7 @@ description: Learn how to use the HttpRepl .NET Core Global Tool to browse and t
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/17/2023
+$105/28/2025
 uid: web-api/http-repl
 ---
 # Test web APIs with the HttpRepl

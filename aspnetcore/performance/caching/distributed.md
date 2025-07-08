@@ -5,7 +5,7 @@ description: Learn how to use an ASP.NET Core distributed cache to improve app p
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/29/2024
+$109/28/2024
 uid: performance/caching/distributed
 ms.sfi.ropc: t
 ---

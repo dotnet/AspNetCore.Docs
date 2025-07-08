@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 09/21/2023
+$105/28/2025
 uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core

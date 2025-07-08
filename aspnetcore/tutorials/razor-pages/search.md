@@ -3,7 +3,7 @@ title: Part 6, add search
 author: wadepickett
 description: Part 6 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 06/23/2024
+$106/26/2024
 uid: tutorials/razor-pages/search
 ---
 # Part 6, add search to ASP.NET Core Razor Pages

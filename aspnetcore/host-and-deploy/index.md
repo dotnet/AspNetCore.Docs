@@ -5,7 +5,7 @@ description: Learn how to set up hosting environments and deploy ASP.NET Core ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/07/2020
+$112/04/2024
 uid: host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core

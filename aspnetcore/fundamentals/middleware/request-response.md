@@ -5,7 +5,7 @@ description: Learn how to read the request body and write the response body in A
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 4/22/2025
+$104/24/2025
 uid: fundamentals/middleware/request-response
 ---
 # Request and response operations in ASP.NET Core

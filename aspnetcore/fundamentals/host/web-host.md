@@ -5,7 +5,7 @@ description: Learn about Web Host in ASP.NET Core, which is responsible for app 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/29/2024
+$109/06/2024
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host

@@ -3,7 +3,7 @@ title: Part 5, update the generated pages
 author: wadepickett
 description: Part 5 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 06/23/2024
+$106/26/2024
 uid: tutorials/razor-pages/da1
 ---
 # Part 5, update the generated pages in an ASP.NET Core app

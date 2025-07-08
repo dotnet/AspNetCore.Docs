@@ -5,7 +5,7 @@ description: Learn about using HttpContext in ASP.NET Core apps. HttpContext isn
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/31/2022
+$102/12/2025
 uid: fundamentals/httpcontext
 ---
 # Access `HttpContext` in ASP.NET Core

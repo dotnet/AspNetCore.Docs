@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn about gRPC services with Kestrel server and the ASP.NET Core stack.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 01/24/2024
+$103/01/2025
 uid: grpc/index
 ---
 # Overview for gRPC on .NET

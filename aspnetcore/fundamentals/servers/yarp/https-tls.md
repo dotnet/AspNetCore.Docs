@@ -4,7 +4,7 @@ title: YARP HTTPS & TLS
 description: YARP HTTPS & TLS
 author: samsp-msft
 ms.author: samsp
-ms.date: 2/6/2025
+$102/14/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted

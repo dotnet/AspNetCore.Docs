@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about OpenAPI features in ASP.NET Core.
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 8/02/2024
+$105/14/2025
 uid: fundamentals/openapi/overview
 ---
 # OpenAPI support in ASP.NET Core API apps

@@ -5,7 +5,7 @@ description: Learn about response compression and how to use Response Compressio
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 3/17/2022
+$106/25/2024
 uid: performance/response-compression
 ---
 # Response compression in ASP.NET Core

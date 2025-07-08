@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to migrate ASP.NET Core samples to the new minimal hosting model in 6.0.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
-ms.date: 10/22/2021
+$105/28/2025
 uid: migration/50-to-60-samples
 ---
 

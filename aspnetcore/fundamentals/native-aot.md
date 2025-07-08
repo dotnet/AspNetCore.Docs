@@ -5,7 +5,7 @@ ms.author: riande
 description: Learn about ASP.NET Core support for Native AOT
 content_well_notification: AI-contribution
 ms.custom: mvc, engagement-fy23
-ms.date: 8/11/2024
+$103/27/2025
 uid: fundamentals/native-aot
 ai-usage: ai-assisted
 ---

@@ -5,7 +5,7 @@ description: Learn about when to use a reverse proxy in front of Kestrel, the cr
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/01/2022
+$102/06/2025
 uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
 ---
 

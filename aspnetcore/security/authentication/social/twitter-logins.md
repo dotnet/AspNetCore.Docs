@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates the integration of Twitter account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/08/2021
+$108/31/2024
 monikerRange: '>= aspnetcore-3.0'
 uid: security/authentication/twitter-logins
 ---

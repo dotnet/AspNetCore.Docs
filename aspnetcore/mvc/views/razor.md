@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: tdykstra
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: tdykstra
-ms.date: 02/12/2020
+$106/05/2025
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core

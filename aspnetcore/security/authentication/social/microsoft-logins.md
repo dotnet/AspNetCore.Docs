@@ -4,7 +4,7 @@ author: rick-anderson
 description: This sample demonstrates the integration of Microsoft account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/01/2025
+$103/04/2025
 monikerRange: '>= aspnetcore-3.1'
 uid: security/authentication/microsoft-logins
 ---
