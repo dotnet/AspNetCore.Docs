@@ -14,8 +14,6 @@ uid: blazor/tooling/webassembly
 
 This article describes the build tools for standalone Blazor WebAssembly apps and how to compile an app ahead of deployment with ahead-of-time (AOT) compilation.
 
-Although the article primarily focuses on standalone Blazor WebAssembly apps, the section on [heap size for some mobile device browsers](#heap-size-for-some-mobile-device-browsers) also applies to the client-side project (`.Client`) of a Blazor Web App.
-
 ## .NET WebAssembly build tools
 
 The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the build tools, use ***either*** of the following approaches:
