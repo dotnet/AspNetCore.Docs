@@ -33,15 +33,31 @@ Apps are published for deployment in Release configuration.
 1. To clean the target's publish folder prior to publishing the app, select **Show all settings**. Select **Settings** > **File Publish Options** > **Delete all existing files prior to publish**. Select **Save**.
 1. Select the **Publish** button.
 
-# [.NET CLI](#tab/net-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app with a Release configuration:
+Open a command shell to the project's root directory.
+
+Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app:
 
 ```dotnetcli
 dotnet publish -c Release
 ```
 
-The `dotnet publish` command generates the necessary files for deployment based on the current state of the project and places the files into the specified output folder. The command doesn't automatically clean the target folder before publishing the app.
+# [.NET CLI](#tab/net-cli)
+
+Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app:
+
+```dotnetcli
+dotnet publish -c Release
+```
+
+---
+
+Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
+
+## Empty the target publish folder
+
+When using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command in a command shell to publish an app, the command generates the necessary files for deployment based on the current state of the project and places the files into the specified output folder. The command doesn't automatically clean the target folder before publishing the app.
 
 To empty the target folder automatically before the app is published, add the following MSBuild target to the app's project file:
 
@@ -50,10 +66,6 @@ To empty the target folder automatically before the app is published, add the fo
   <RemoveDir Directories="$(PublishDir)" Condition="'$(PublishDir)' != ''" />
 </Target>
 ```
-
----
-
-Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
 
 ## Default publish locations
 
