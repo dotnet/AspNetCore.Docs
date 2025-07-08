@@ -29,9 +29,9 @@ Apps are published for deployment in Release configuration.
 
 1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
 1. Select the *publish target*. To publish locally, select **Folder**. Select **Next**.
-1. When publishing locally, accept the default folder location or specify a different location. Select **Finish**, followed by **Close**.
-1. To clean the target's publish folder prior to publishing the app, select **Show all settings**, followed by **Settings** > **File Publish Options** > **Delete all existing files prior to publish**. Select **Save**.
-1. Select the **`Publish`** button.
+1. When publishing locally, accept the default folder location or specify a different location. Select **Finish** to save the profile. Select **Close**.
+1. To clean the target's publish folder prior to publishing the app, select **Show all settings**. Select **Settings** > **File Publish Options** > **Delete all existing files prior to publish**. Select **Save**.
+1. Select the **Publish** button.
 
 # [.NET CLI](#tab/net-cli)
 
