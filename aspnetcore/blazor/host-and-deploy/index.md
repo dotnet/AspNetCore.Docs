@@ -33,23 +33,7 @@ Apps are published for deployment in Release configuration.
 1. To clean the target's publish folder prior to publishing the app, select **Show all settings**. Select **Settings** > **File Publish Options** > **Delete all existing files prior to publish**. Select **Save**.
 1. Select the **Publish** button.
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Open a command shell to the project's root directory.
-
-Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app:
-
-```dotnetcli
-dotnet publish
-```
-
-Prior to .NET 8, the default publish configuration is `Debug`. When publishing an app that targets .NET 7 or earlier, pass the `-c|--configuration` option to the command with "`Release`" to publish in `Release` configuration:
-
-```dotnetcli
-dotnet publish -c Release
-```
-
-# [.NET CLI](#tab/net-cli)
+# [Visual Studio Code and .NET CLI](#tab/visual-studio-code-dotnet-cli)
 
 Open a command shell to the project's root directory.
 
