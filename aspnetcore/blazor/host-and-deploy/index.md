@@ -61,7 +61,7 @@ Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of th
 
 When using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command in a command shell to publish an app, the command generates the necessary files for deployment based on the current state of the project and places the files into the specified output folder. The command doesn't automatically clean the target folder before publishing the app.
 
-To empty the target folder automatically before the app is published, add the following MSBuild target to the app's project file:
+To empty the target folder automatically before the app is published, add the following MSBuild target to the app's project file (`.csproj`) under the root `<Project>` element:
 
 ```xml
 <Target Name="_RemovePublishDirBeforePublishing" BeforeTargets="BeforePublish">
