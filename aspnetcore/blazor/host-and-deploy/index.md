@@ -40,7 +40,7 @@ Open a command shell to the project's root directory.
 Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app:
 
 ```dotnetcli
-dotnet publish -c Release
+dotnet publish
 ```
 
 # [.NET CLI](#tab/net-cli)
@@ -50,7 +50,7 @@ Open a command shell to the project's root directory.
 Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app:
 
 ```dotnetcli
-dotnet publish -c Release
+dotnet publish
 ```
 
 ---
