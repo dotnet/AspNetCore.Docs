@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn about how to use WebApplication and WebApplicationBuilder.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/31/2022
+ms.date: 05/18/2025
 uid: fundamentals/minimal-apis/webapplication
 ---
 

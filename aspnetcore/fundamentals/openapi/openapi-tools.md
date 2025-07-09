@@ -4,7 +4,7 @@ author: ryanbrandenburg
 description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add references to OpenAPI files.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 3/9/2022
+ms.date: 08/06/2024
 uid: fundamentals/openapi/openapi-tools
 ---
 # .NET OpenAPI tool command reference and installation

@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how parameters are populated before invoking minimal route handlers.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 05/17/2025
+ms.date: 05/18/2025
 uid: fundamentals/minimal-apis/parameter-binding
 ---
 
