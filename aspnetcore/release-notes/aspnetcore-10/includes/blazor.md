@@ -532,3 +532,11 @@ Now that all Blazor client-side files are fingerprinted and cached by the browse
 ```
 
 For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-10.0>.
+
+## Web Authentication API (passkey) support for ASP.NET Core Identity
+
+[Web Authentication (WebAuthn) API](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) support, known widely as *passkeys*, is a modern, phishing-resistant authentication method that improves security and user experience by leveraging public key cryptography and device-based authentication. ASP.NET Core Identity now supports passkey authentication based on WebAuthn and FIDO2 standards. This feature allows users to sign in without passwords, using secure, device-based authentication methods, such as biometrics or security keys.
+
+The Preview 6 Blazor Web App project template provides out-of-the-box passkey management and login functionality.
+
+Migration guidance for existing apps will be published for the upcoming release of Preview 7, which is scheduled for mid-August.
