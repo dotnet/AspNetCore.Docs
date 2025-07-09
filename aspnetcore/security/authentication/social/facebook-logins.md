@@ -134,9 +134,7 @@ We recommend the `AccessDeniedPath` page contains the following information:
 <!-- End of React  -->
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
-[!INCLUDE[](includes/chain-auth-providers.md)]
-
- For more information on configuration options supported by Facebook authentication, see the <xref:Microsoft.AspNetCore.Builder.FacebookOptions> API reference. Configuration options can be used to:
+For more information on configuration options supported by Facebook authentication, see the <xref:Microsoft.AspNetCore.Builder.FacebookOptions> API reference. Configuration options can be used to:
 
 * Request different information about the user.
 * Add query string arguments to customize the login experience.
@@ -153,3 +151,7 @@ We recommend the `AccessDeniedPath` page contains the following information:
 * Once you publish your web site to Azure web app, you should reset the `AppSecret` in the Facebook developer portal.
 
 * Set the `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
+
+## Additional resources
+
+[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)
