@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor WebAssembly runtime performance
 author: guardrex
-description: Learn how about ASP.NET Core Blazor WebAssembly runtime performance.
+description: Learn about ASP.NET Core Blazor WebAssembly runtime performance.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
