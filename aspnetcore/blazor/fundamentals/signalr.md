@@ -1541,56 +1541,6 @@ protected override async Task OnInitializedAsync()
 
 :::moniker-end
 
-## Modify the server-side reconnection handler
-
-The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
-
-* To notify the user if the connection is dropped.
-* To perform logging (from the client) when a circuit is connected.
-
-To modify the connection events, register callbacks for the following connection changes:
-
-* Dropped connections use `onConnectionDown`.
-* Established/re-established connections use `onConnectionUp`.
-
-**Both `onConnectionDown` and `onConnectionUp` must be specified.**
-
-:::moniker range=">= aspnetcore-8.0"
-
-Blazor Web App:
-
-```html
-<script src="{BLAZOR SCRIPT}" autostart="false"></script>
-<script>
-  Blazor.start({
-    circuit: {
-      reconnectionHandler: {
-        onConnectionDown: (options, error) => console.error(error),
-        onConnectionUp: () => console.log("Up, up, and away!")
-      }
-    }
-  });
-</script>
-```
-
-Blazor Server:
-
-:::moniker-end
-
-```html
-<script src="{BLAZOR SCRIPT}" autostart="false"></script>
-<script>
-  Blazor.start({
-    reconnectionHandler: {
-      onConnectionDown: (options, error) => console.error(error),
-      onConnectionUp: () => console.log("Up, up, and away!")
-    }
-  });
-</script>
-```
-
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script and the path to use, see <xref:blazor/project-structure#location-of-the-blazor-script>.
-
 :::moniker range=">= aspnetcore-7.0"
 
 ## Programmatic control of reconnection and reload behavior
