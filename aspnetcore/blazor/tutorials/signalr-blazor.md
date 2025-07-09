@@ -3,7 +3,7 @@ title: Use ASP.NET Core SignalR with Blazor
 author: guardrex
 description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/tutorials/signalr-blazor
@@ -78,7 +78,7 @@ Follow the guidance for your choice of tooling:
 # [Visual Studio](#tab/visual-studio)
 
 > [!NOTE]
-> Visual Studio 2022 or later and .NET Core SDK 8.0.0 or later are required.
+> Visual Studio 2022 or later and .NET 8 or later SDK are required.
 
 In Visual Studio:
 
@@ -217,7 +217,7 @@ Use Response Compression Middleware at the top of the processing pipeline's conf
 app.UseResponseCompression();
 ```
 
-Add an endpoint for the hub immediately before the line that runs the app (`app.Run();`):
+Add an endpoint for the hub:
 
 ```csharp
 app.MapHub<ChatHub>("/chathub");
@@ -285,7 +285,7 @@ Follow the guidance for your choice of tooling to create a hosted Blazor WebAsse
 # [Visual Studio](#tab/visual-studio)
 
 > [!NOTE]
-> Visual Studio 2022 or later and .NET Core SDK 6.0.0 or later are required.
+> Visual Studio 2022 or later and .NET or later 6 SDK are required.
 
 Create a new project.
 

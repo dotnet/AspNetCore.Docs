@@ -1,6 +1,6 @@
 ---
 title: Get started with NSwag and ASP.NET Core
-author: zuckerthoben
+author: wadepickett
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 ms.author: wpickett
 ms.custom: mvc
@@ -11,7 +11,8 @@ uid: tutorials/get-started-with-nswag
 # Get started with NSwag and ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
-By [Christoph Nienaber](https://twitter.com/zuckerthoben), [Rico Suter](https://rsuter.com), and [Dave Brock](https://twitter.com/daveabrock)
+
+By [Rico Suter](https://rsuter.com) and [Dave Brock](https://twitter.com/daveabrock)
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/7.x/NSwagSample) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -230,7 +231,7 @@ Run the application and navigate to `http://localhost:<port>/redoc` to view the 
 
 :::moniker range="< aspnetcore-6.0"
 
-By [Christoph Nienaber](https://twitter.com/zuckerthoben), [Rico Suter](https://rsuter.com), and [Dave Brock](https://twitter.com/daveabrock)
+By [Rico Suter](https://rsuter.com) and [Dave Brock](https://twitter.com/daveabrock)
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([how to download](xref:index#how-to-download-a-sample))
 

@@ -3,7 +3,7 @@ title: JavaScript location in ASP.NET Core Blazor apps
 author: guardrex
 description: Learn where to place and how to load JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/js-interop/javascript-location
@@ -59,7 +59,7 @@ Don't place a `<script>` tag in a component file (`.razor`) because the `<script
 :::moniker range="< aspnetcore-5.0"
 
 > [!NOTE]
-> Documentation examples place scripts into a `<script>` tag or load global scripts from external files. These approaches pollute the client with global functions. Placing JS into separate [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) that can be imported when needed is **not** supported in Blazor earlier than ASP.NET Core 5.0. If the app requires the use of JS modules for JS isolation, we recommend using ASP.NET Core 5.0 or later to build the app. For more information, use the **Version** dropdown list to select a 5.0 or later version of this article and see the *JavaScript isolation in JavaScript modules* section.
+> Documentation examples place scripts into a `<script>` tag or load global scripts from external files. These approaches pollute the client with global functions. Placing JS into separate [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) that can be imported when needed is **not** supported in Blazor earlier than .NET 5. If the app requires the use of JS modules for JS isolation, we recommend using .NET 5 or later to build the app. For more information, use the **Version** dropdown list to select a .NET 5 or later version of this article and see the *JavaScript isolation in JavaScript modules* section.
 
 :::moniker-end
 

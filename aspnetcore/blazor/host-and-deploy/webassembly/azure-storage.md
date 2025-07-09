@@ -1,18 +1,18 @@
 ---
-title: Host and deploy ASP.NET Core Blazor WebAssembly with Azure Storage
+title: Host and deploy ASP.NET Core standalone Blazor WebAssembly with Azure Storage
 author: guardrex
-description: Learn how to host and deploy Blazor WebAssembly using Microsoft Azure Storage.
+description: Learn how to host and deploy standalone Blazor WebAssembly using Microsoft Azure Storage.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 03/31/2025
 uid: blazor/host-and-deploy/webassembly/azure-storage
 ---
-# Host and deploy ASP.NET Core Blazor WebAssembly with Azure Storage
+# Host and deploy ASP.NET Core standalone Blazor WebAssembly with Azure Storage
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to host and deploy Blazor WebAssembly using [Microsoft Azure Storage](/azure/storage/common/storage-introduction).
+This article explains how to host and deploy standalone Blazor WebAssembly using [Microsoft Azure Storage](/azure/storage/common/storage-introduction).
 
 Azure Storage static file hosting allows serverless Blazor app hosting. Custom domain names, the Azure Content Delivery Network (CDN), and HTTPS are supported.
 

@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-7.0"
 
-[HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is a proposed standard and the third major version of HTTP. This article discusses requirements for HTTP/3. HTTP/3 is fully supported in ASP.NET Core 7.0 and later.
+[HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is a proposed standard and the third major version of HTTP. This article discusses requirements for HTTP/3. HTTP/3 is fully supported in .NET 7 or later.
 
 > [!IMPORTANT]
 > Apps configured to take advantage of HTTP/3 should be designed to also support HTTP/1.1 and HTTP/2.

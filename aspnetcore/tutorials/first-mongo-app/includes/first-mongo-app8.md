@@ -24,10 +24,6 @@ In this tutorial, you learn how to:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
-
 ---
 
 ## Configure MongoDB
@@ -37,10 +33,10 @@ Enable MongoDB and MongoDB Shell access from anywhere on the development machine
 
 1. Download and Install MongoDB Shell:
    * macOS/Linux: Choose a directory to extract the MongoDB Shell to. Add the resulting path for `mongosh` to the `PATH` environment variable.
-   * Windows: MongoDB Shell (mongosh.exe) is installed at *C:\Users\<user>\AppData\Local\Programs\mongosh*. Add the resulting path for `mongosh.exe` to the `PATH` environment variable.
+   * Windows: MongoDB Shell (mongosh.exe) is installed at *C:\\Users\\\<user>\\AppData\\Local\\Programs\\mongosh*. Add the resulting path for `mongosh.exe` to the `PATH` environment variable.
 1. Download and Install MongoDB:
    * macOS/Linux: Verify the directory that MongoDB was installed at, usually in */usr/local/mongodb*. Add the resulting path for `mongodb` to the `PATH` environment variable.
-   * Windows: MongoDB is installed at *C:\\Program Files\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
+   * Windows: MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
 1. Choose a Data Storage Directory: Select a directory on your development machine for storing data. Create the directory if it doesn't exist. The MongoDB Shell doesn't create new directories:
    * macOS/Linux: For example, `/usr/local/var/mongodb`.
    * Windows: For example, `C:\\BooksData`.
@@ -52,15 +48,13 @@ Enable MongoDB and MongoDB Shell access from anywhere on the development machine
 
 Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
 
-1. Open a MongoDB command shell instance by launching `mongosh.exe`.
-1. In the command shell, connect to the default test database by running the following command:
+1. Open a MongoDB command shell instance by launching `mongosh.exe`, or by running the following command in the command shell:
 
    ```console
    mongosh
    ```
 
-1. Run the following command in the command shell:
-
+1. In the command shell connect to the default test database by running:
    ```console
    use BookStore
    ```
@@ -159,17 +153,6 @@ Use the previously installed MongoDB Shell in the following steps to create a da
    dotnet add package MongoDB.Driver
    ```
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. Select **File** > **New Project...**.
-1. Select **Web and Console** > **App** from the sidebar.
-1. Select the **ASP.NET Core** > **API** C# project template, and select **Next**.
-1. Select **.NET 8.0** from the **Target Framework** drop-down list, and select **Next**.
-1. Enter *BookStoreApi* for the **Project Name**, and select **Create**.
-1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Manage NuGet Packages**.
-1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and select **Add Package**.
-1. Select the **Accept** button in the **License Acceptance** dialog.
-
 ---
 
 ## Add an entity model
@@ -177,7 +160,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Add a *Models* directory to the project root.
 1. Add a `Book` class to the *Models* directory with the following code:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples_snapshot/6.x/Book.cs":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples_snapshot/8.x/Book.cs":::
 
    In the preceding class, the `Id` property is:
 
@@ -191,48 +174,48 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 
 1. Add the following database configuration values to `appsettings.json`:
 
-   :::code language="json" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/appsettings.json" highlight="2-6":::
+   :::code language="json" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/appsettings.json" highlight="2-6":::
 
 1. Add a `BookStoreDatabaseSettings` class to the *Models* directory with the following code:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Models/BookStoreDatabaseSettings.cs":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Models/BookStoreDatabaseSettings.cs":::
 
    The preceding `BookStoreDatabaseSettings` class is used to store the `appsettings.json` file's `BookStoreDatabase` property values. The JSON and C# property names are named identically to ease the mapping process.
 
 1. Add the following highlighted code to `Program.cs`:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BookStoreDatabaseSettings" highlight="4-5":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Program.cs" id="snippet_BookStoreDatabaseSettings" highlight="4-5":::
 
    In the preceding code, the configuration instance to which the `appsettings.json` file's `BookStoreDatabase` section binds is registered in the Dependency Injection (DI) container. For example, the `BookStoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookStoreDatabase:ConnectionString` property in `appsettings.json`.
 
 1. Add the following code to the top of `Program.cs` to resolve the `BookStoreDatabaseSettings` reference:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_UsingModels":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Program.cs" id="snippet_UsingModels":::
 
 ## Add a CRUD operations service
 
 1. Add a *Services* directory to the project root.
 1. Add a `BooksService` class to the *Services* directory with the following code:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Services/BooksService.cs" id="snippet_File":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Services/BooksService.cs" id="snippet_File":::
 
    In the preceding code, a `BookStoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the `appsettings.json` configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
 1. Add the following highlighted code to `Program.cs`:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BooksService" highlight="7":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Program.cs" id="snippet_BooksService" highlight="7":::
 
    In the preceding code, the `BooksService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BooksService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.14/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
 1. Add the following code to the top of `Program.cs` to resolve the `BooksService` reference:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_UsingServices":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Program.cs" id="snippet_UsingServices":::
 
 The `BooksService` class uses the following `MongoDB.Driver` members to run CRUD operations against the database:
 
 * [MongoClient](https://mongodb.github.io/mongo-csharp-driver/2.14/apidocs/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for running database operations. The constructor of this class is provided in the MongoDB connection string:
 
-  :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Services/BooksService.cs" id="snippet_ctor" highlight="4-5":::
+  :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Services/BooksService.cs" id="snippet_ctor" highlight="4-5":::
 
 * [IMongoDatabase](https://mongodb.github.io/mongo-csharp-driver/2.14/apidocs/html/T_MongoDB_Driver_IMongoDatabase.htm): Represents the Mongo database for running operations. This tutorial uses the generic [GetCollection\<TDocument>(collection)](https://mongodb.github.io/mongo-csharp-driver/2.14/apidocs/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Run CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
 
@@ -250,7 +233,7 @@ The `BooksService` class uses the following `MongoDB.Driver` members to run CRUD
 
 Add a `BooksController` class to the *Controllers* directory with the following code:
 
-:::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Controllers/BooksController.cs":::
+:::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Controllers/BooksController.cs":::
 
 The preceding web API controller:
 
@@ -262,7 +245,7 @@ The preceding web API controller:
 
 1. Build and run the app.
 
-1. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method, select **Try it out** > **Execute**. A JSON response similar to the following is displayed:
+1. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method. A JSON response similar to the following is displayed:
 
    ```json
    [
@@ -306,19 +289,19 @@ To satisfy the preceding requirements, make the following changes:
 
 1. In `Program.cs`, chain the following highlighted code on to the `AddControllers` method call:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-11":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-11":::
 
    With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author` instead of `author`.
 
 1. In `Models/Book.cs`, annotate the `BookName` property with the [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Models/Book.cs" id="snippet_BookName" highlight="2":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Models/Book.cs" id="snippet_BookName" highlight="2":::
 
    The `[JsonPropertyName]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
 
 1. Add the following code to the top of `Models/Book.cs` to resolve the `[JsonProperty]` attribute reference:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/6.x/BookStoreApi/Models/Book.cs" id="snippet_UsingSystemTextJsonSerialization":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Models/Book.cs" id="snippet_UsingSystemTextJsonSerialization":::
 
 1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
 
@@ -328,7 +311,7 @@ To satisfy the preceding requirements, make the following changes:
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/8.x/BookStoreApi) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)

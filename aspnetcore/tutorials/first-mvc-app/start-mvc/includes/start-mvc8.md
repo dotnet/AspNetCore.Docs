@@ -24,10 +24,6 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
-
 ---
 
 <!-- 
@@ -77,18 +73,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   The `code` command opens the *MvcMovie* project folder in the current instance of Visual Studio Code.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Select **File** > **New Project...**.
-* Select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Continue**.
-* In the **Configure your new Web Application (Model-View-Controller)** dialog:
-  * Select **.NET 8.0** for the **Target Framework**.
-  * Verify that **Do not use top-level statements** is unchecked.
-* Select **Continue**.
-* Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
-* The **Location** for the project can be set to anywhere.
-* Select **Create**.
 
 ---
 
@@ -149,28 +133,6 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 * Close the browser window.
 
 * In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Select Option+Command+Return to run the app without the debugger.
-
-  Visual Studio for Mac:
-
-  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
-  * Launches a browser.
-  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number, set when Visual Studio creates a web project.
-
-  [!INCLUDE[](~/includes/trustCertMacVS22.md)]
-
-  The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
-
-You can launch the app in debug or non-debug mode from the **Debug** menu.
-
-The following image shows the app:
-
-![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/output_macos_VS22.png)
-
-* Close the browser window.  Visual Studio for Mac will stop the application.
 
 ---
 

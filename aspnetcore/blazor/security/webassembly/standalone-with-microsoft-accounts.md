@@ -3,9 +3,9 @@ title: Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft A
 author: guardrex
 description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Accounts.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 04/07/2025
 uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Accounts
@@ -171,7 +171,13 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### Imports file
 
-[!INCLUDE[](~/blazor/security/includes/imports-file-standalone.md)]
+The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace is made available throughout the app via the `_Imports.razor` file:
+
+```razor
+...
+@using Microsoft.AspNetCore.Components.Authorization
+...
+```
 
 ### Index page
 

@@ -12,10 +12,10 @@ After:
 
 ASP.NET Core has many key-value collections. This improved debugging experience applies to:
 
-- HTTP headers
-- Query strings
-- Forms
-- Cookies
-- View data
-- Route data
-- Features
+* HTTP headers
+* Query strings
+* Forms
+* Cookies
+* View data
+* Route data
+* Features

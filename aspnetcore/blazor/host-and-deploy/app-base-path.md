@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor app base path
 author: guardrex
 description: Learn about the app base path in ASP.NET Core Blazor apps, including configuration guidance.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 03/31/2025
 uid: blazor/host-and-deploy/app-base-path

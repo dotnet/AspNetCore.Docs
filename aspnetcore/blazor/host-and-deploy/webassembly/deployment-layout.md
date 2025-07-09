@@ -3,7 +3,7 @@ title: Deployment layout for ASP.NET Core hosted Blazor WebAssembly apps
 author: guardrex
 description: Learn how to enable hosted Blazor WebAssembly deployments in environments that block the download and execution of dynamic-link library (DLL) files.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/host-and-deploy/webassembly/deployment-layout
@@ -17,7 +17,17 @@ This article explains how to enable hosted Blazor WebAssembly deployments in env
 > [!NOTE]
 > This guidance addresses environments that block clients from downloading and executing DLLs. In .NET 8 or later, Blazor uses the Webcil file format to address this problem. For more information, see <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies>. Multipart bundling using the experimental NuGet package described by this article isn't supported for Blazor apps in .NET 8 or later. You can use the guidance in this article to create your own multipart bundling NuGet package for .NET 8 or later.
 
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor WebAssembly apps require [dynamic-link libraries (DLLs)](/windows/win32/dlls/dynamic-link-libraries) to function, but some environments block clients from downloading and executing DLLs. Security products are often able to scan the content of files traversing the network and block or quarantine DLL files. This article describes one approach for enabling Blazor WebAssembly apps in these environments, where a multipart bundle file is created from the app's DLLs so that the DLLs can be downloaded together bypassing security restrictions.
+
+::: moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Blazor WebAssembly apps require [dynamic-link libraries (DLLs)](/windows/win32/dlls/dynamic-link-libraries) to function, but some environments block clients from downloading and executing DLLs. In a subset of these environments, [changing the file name extension of DLL files (`.dll`)](xref:blazor/host-and-deploy/webassembly/index#change-the-file-name-extension-of-dll-files) is sufficient to bypass security restrictions, but security products are often able to scan the content of files traversing the network and block or quarantine DLL files. This article describes one approach for enabling Blazor WebAssembly apps in these environments, where a multipart bundle file is created from the app's DLLs so that the DLLs can be downloaded together bypassing security restrictions.
+
+::: moniker-end
 
 A hosted Blazor WebAssembly app can customize its published files and packaging of app DLLs using the following features:
 
@@ -35,8 +45,6 @@ The approach demonstrated in this article serves as a starting point for develop
 ## Experimental NuGet package and sample app
 
 The approach described in this article is used by the *experimental* [`Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package (NuGet.org)](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle) for apps targeting .NET 6 or later. The package contains MSBuild targets to customize the Blazor publish output and a [JavaScript initializer](xref:blazor/js-interop/index#javascript-initializers) to use a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources), each of which are described in detail later in this article.
-
-[Experimental code (includes the NuGet package reference source and `CustomPackagedApp` sample app)](https://github.com/aspnet/AspLabs/tree/main/src/BlazorWebAssemblyCustomInitialization)
 
 > [!WARNING]
 > Experimental and preview features are provided for the purpose of collecting feedback and aren't supported for production use.

@@ -3,9 +3,9 @@ title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Dir
 author: guardrex
 description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C.
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 04/07/2025
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
@@ -378,7 +378,13 @@ For more information, see the following sections of the *Additional scenarios* a
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-[!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
+The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace is made available throughout the app via the `_Imports.razor` file:
+
+```razor
+...
+@using Microsoft.AspNetCore.Components.Authorization
+...
+```
 
 ### Index page
 

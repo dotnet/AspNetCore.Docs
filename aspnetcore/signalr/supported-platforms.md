@@ -1,11 +1,11 @@
 ---
 title: ASP.NET Core SignalR supported platforms
-author: bradygaster
+author: wadepickett
 description: Learn about the supported platforms for ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, devx-track-js
-ms.date: 01/09/2025
+ms.date: 04/01/2025
 uid: signalr/supported-platforms
 ---
 # ASP.NET Core SignalR supported platforms
@@ -37,17 +37,16 @@ If the server runs IIS, the WebSockets transport requires IIS 8.0 or later on Wi
 
 ## Java client
 
-The [Java client](xref:signalr/java-client) supports Java 8 and later versions.
+The [Java client](xref:signalr/java-client) supports Java 8 or later versions.
 
 ## Swift client
 
-The [Swift client](https://github.com/dotnet/signalr-client-swift) supports Swift >= 5.10
+The [Swift client](xref:signalr/swift-client) supports Swift >= 5.10
 
 ## Unsupported clients
 
-The following clients are available but are experimental or unofficial. The following clients aren't currently supported and may never be supported:
+The following client is available for experimentation only, isn't currently supported, and may never be supported:
 
 * [C++ client](https://github.com/aspnet/SignalR-Client-Cpp)
-* [3rd party Swift client](https://github.com/moozzyk/SignalR-Client-Swift)
 
 [!INCLUDE[](~/includes/SignalR/es6.md)]

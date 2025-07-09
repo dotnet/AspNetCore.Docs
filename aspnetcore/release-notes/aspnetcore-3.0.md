@@ -126,7 +126,7 @@ connection.onreconnected((connectionId) => {
 });
 ```
 
-SignalR 3.0 and later provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the:
+SignalR 3.0 or later provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the:
 
 * `HubCallerContext`
 * Name of the hub method being invoked.

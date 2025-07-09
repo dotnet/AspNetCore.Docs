@@ -1,0 +1,20 @@
+@WebJson_HostAddress = https://localhost:7098
+
+GET {{WebJson_HostAddress}}/
+Accept: application/json
+
+### Post doesn't need JsonStringEnumConverter
+
+POST {{WebJson_HostAddress}}/?day=Tuesday
+Accept: application/json
+
+###
+GET {{WebJson_HostAddress}}/test/day
+Accept: application/json
+###
+
+### Post doesn't need JsonStringEnumConverter
+POST {{WebJson_HostAddress}}/test/day?day=Friday
+Content-Type: application/json
+
+###

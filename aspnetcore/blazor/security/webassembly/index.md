@@ -3,7 +3,7 @@ title: Secure ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to secure Blazor WebAssembly apps as single-page applications (SPAs).
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/security/webassembly/index
@@ -58,10 +58,10 @@ Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssem
 
           var urlEncodedRequestUri = WebUtility.UrlEncode("{REQUEST URI}");
 
-          var request = new HttpRequestMessage(HttpMethod.Get, 
+          using var request = new HttpRequestMessage(HttpMethod.Get, 
               $"https://corsproxy.io/?{urlEncodedRequestUri}");
 
-          var response = await client.SendAsync(request);
+          using var response = await client.SendAsync(request);
 
           ...
       }
@@ -316,7 +316,7 @@ if (tokenResult.TryGetToken(out var token))
 
 *This section applies to Blazor WebAssembly apps in ASP.NET Core in .NET 7 or later.*
 
-To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in a 7.0 or later version of the <xref:blazor/fundamentals/logging> article.
+To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in a .NET 7 or later version of the <xref:blazor/fundamentals/logging> article.
 
 ## The WebAssembly sandbox
 

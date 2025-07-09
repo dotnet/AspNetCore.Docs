@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor state management
 author: guardrex
 description: Learn how to persist user data (state) in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/state-management
@@ -16,7 +16,7 @@ zone_pivot_groups: blazor-app-models
 This article describes common approaches for maintaining a user's data (state) while they use an app and across browser sessions.
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from types in the article's examples.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from types in the article's examples.
 
 ## Maintain user state
 
@@ -57,11 +57,36 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 Common locations exist for persisting state:
 
+:::moniker range=">= aspnetcore-10.0"
+
+* [Declarative model for persistent state](#declarative-model-for-persisting-state-server)
 * [Server-side storage](#server-side-storage-server)
 * [URL](#url-server)
 * [Browser storage](#browser-storage-server)
 * [In-memory state container service](#in-memory-state-container-service)
 * [Cascading values and parameters](#cascading-values-and-parameters)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+* [Server-side storage](#server-side-storage-server)
+* [URL](#url-server)
+* [Browser storage](#browser-storage-server)
+* [In-memory state container service](#in-memory-state-container-service)
+* [Cascading values and parameters](#cascading-values-and-parameters)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+<h2 id="declarative-model-for-persisting-state-server">Declarative model for persisting state</h2>
+
+<!-- UPDATE 10.0 - API cross-link -->
+
+Establish declarative state in a dependency injection service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+
+:::moniker-end
 
 <h2 id="server-side-storage-server">Server-side storage</h2>
 
@@ -618,11 +643,36 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 Common locations exist for persisting state:
 
+:::moniker range=">= aspnetcore-10.0"
+
+* [Declarative model for persistent state](#declarative-model-for-persisting-state-wasm)
 * [Server-side storage](#server-side-storage-wasm)
 * [URL](#url-wasm)
 * [Browser storage](#browser-storage-wasm)
 * [In-memory state container service](#in-memory-state-container-service)
 * [Cascading values and parameters](#cascading-values-and-parameters)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+* [Server-side storage](#server-side-storage-wasm)
+* [URL](#url-wasm)
+* [Browser storage](#browser-storage-wasm)
+* [In-memory state container service](#in-memory-state-container-service)
+* [Cascading values and parameters](#cascading-values-and-parameters)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+<h2 id="declarative-model-for-persisting-state-wasm">Declarative model for persisting state</h2>
+
+<!-- UPDATE 10.0 - API cross-link -->
+
+Establish declarative state in a dependency injection service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+
+:::moniker-end
 
 <h2 id="server-side-storage-wasm">Server-side storage</h2>
 
@@ -726,7 +776,7 @@ Server-side apps (`Program` file, ASP.NET Core in .NET 6 or later):
 builder.Services.AddScoped<StateContainer>();
 ```
 
-Server-side apps (`Startup.ConfigureServices` of `Startup.cs`, ASP.NET Core earlier than 6.0):
+Server-side apps (`Startup.ConfigureServices` of `Startup.cs` in .NET 6 or earlier):
 
 ```csharp
 services.AddScoped<StateContainer>();
@@ -813,7 +863,7 @@ Use [cascading values and parameters](xref:blazor/components/cascading-values-an
 
 :::moniker range=">= aspnetcore-8.0"
 
-Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values>.
+Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications>.
 
 :::moniker-end
 

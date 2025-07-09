@@ -3,7 +3,7 @@ title: Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to invoke JavaScript functions from .NET methods in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 4/10/2024
 uid: blazor/js-interop/call-javascript-from-dotnet
@@ -453,6 +453,107 @@ IJSRuntime JS { get; set; }
 
 [!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-js.md)]
 
+:::moniker range=">= aspnetcore-10.0"
+
+<!-- UPDATE 10.0 - API Browser cross-links in the next
+                   two H2 sections. -->
+
+## Create an instance of a JS object using a constructor function
+
+Create an instance of a JS object using a constructor function and get the <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference> .NET handle for referencing the instance with the following API:
+
+* `InvokeNewAsync` (asynchronous)
+* `InvokeNew` (synchronous)
+
+Examples in this section demonstrate the API calls with the following `TestClass` with a constructor function (`constructor(text)`):
+
+```javascript
+window.TestClass = class {
+  constructor(text) {
+    this.text = text;
+  }
+
+  getTextLength() {
+    return this.text.length;
+  }
+}
+```
+
+### Asynchronous `InvokeNewAsync`
+
+Use `InvokeNewAsync(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> to invoke the specified JS constructor function asynchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
+
+```csharp
+var classRef = await JSRuntime.InvokeNewAsync("TestClass", "Blazor!");
+var text = await classRef.GetValueAsync<string>("text");
+var textLength = await classRef.InvokeAsync<int>("getTextLength");
+```
+
+An overload is available that takes a <xref:System.Threading.CancellationToken> argument or <xref:System.TimeSpan> timeout argument.
+
+### Synchronous `InvokeNew`
+
+Use `InvokeNew(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> to invoke the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>:
+
+```csharp
+var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
+var classRef = inProcRuntime.InvokeNew("TestClass", "Blazor!");
+var text = classRef.GetValue<string>("text");
+var textLength = classRef.Invoke<int>("getTextLength");
+```
+
+An overload is available that takes a <xref:System.Threading.CancellationToken> argument or <xref:System.TimeSpan> timeout argument.
+
+## Read or modify the value of a JS object property
+
+Read or modify the value of a JS object property, both data and accessor properties, with the following API:
+
+* `GetValueAsync`/`SetValueAsync` (asynchronous)
+* `GetValue`/`SetValue` (synchronous)
+
+Examples in this section demonstrate the API calls with the following JS object (`testObject`):
+
+```javascript
+window.testObject = {
+  num: 10
+}
+```
+
+### Asynchronous `GetValueAsync` and `SetValueAsync`
+
+Use `GetValueAsync<TValue>(string identifier)` to read the value of the specified JS property asynchronously. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist or is a `set`-only property. In the following example, the value of `testObject.num` (10) is stored in `valueFromDataPropertyAsync`:
+
+```csharp
+var valueFromDataPropertyAsync = 
+    await JSRuntime.GetValueAsync<int>("testObject.num");
+```
+
+Use `SetValueAsync<TValue>(string identifier, TValue value)` to update the value of the specified JS property asynchronously. If the property isn't defined on the target object, the property is created. A <xref:Microsoft.JSInterop.JSException> is thrown if the property exists but isn't writable or when a new property can't be added to the object. In the following example, `testObject.num` is set to 20, and `num2` is created with a value of 30 on `testObject`:
+
+```csharp
+await JSRuntime.SetValueAsync("testObject.num", 20);
+await JSRuntime.SetValueAsync("testObject.num2", 30);
+```
+
+### Synchronous `GetValue` and `SetValue`
+
+Use `GetValue<TValue>(string identifier)` to read the value of the specified JS property synchronously. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist or is a `set`-only property. In the following example, the value of `testObject.num` (10) is stored in `valueFromDataProperty`:
+
+```csharp
+var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
+var valueFromDataProperty = inProcRuntime.GetValue<int>("testObject.num");
+```
+
+Use `SetValue<TValue>(string identifier, TValue value)` to update the value of the specified JS property synchronously. The property can't be a `get`-only property. If the property isn't defined on the target object, the property is created. A <xref:Microsoft.JSInterop.JSException> is thrown if the property exists but isn't writable or when a new property can't be added to the object. In the following example, `testObject.num` is set to 20, and `num2` is created with a value of 30 on `testObject`:
+
+```csharp
+var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
+inProcRuntime.SetValue("testObject.num", 20);
+inProcRuntime.SetValue("testObject.num2", 30);
+```
+
+:::moniker-end
+
 ## JavaScript location
 
 Load JavaScript (JS) code using any of approaches described by the [article on JavaScript location](xref:blazor/js-interop/javascript-location):
@@ -519,11 +620,34 @@ For browser compatibility, see [Can I use: JavaScript modules: dynamic import](h
 
 In server-side scenarios, JS interop calls can't be issued after Blazor's SignalR circuit is disconnected. Without a circuit during component disposal or at any other time that a circuit doesn't exist, the following method calls fail and log a message that the circuit is disconnected as a <xref:Microsoft.JSInterop.JSDisconnectedException>:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+<!-- UPDATE 10.0 - API Browser cross-links -->
+
 * JS interop method calls
   * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>)
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
+  * `InvokeNewAsync`
+  * `GetValueAsync`
+  * `SetValueAsync`
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-10.0"
+
+* JS interop method calls
+  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
+* `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
 
 In order to avoid logging <xref:Microsoft.JSInterop.JSDisconnectedException> or to log custom information in server-side Blazor, catch the exception in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement.
 
@@ -627,7 +751,7 @@ In the preceding example:
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
 
-`IJSInProcessObjectReference` represents a reference to a JS object whose functions can be invoked synchronously in client-side components. For more information, see the [Synchronous JS interop in client-side components](#synchronous-js-interop-in-client-side-components) section.
+<xref:Microsoft.JSInterop.IJSInProcessObjectReference> represents a reference to a JS object whose functions can be invoked synchronously in client-side components. For more information, see the [Synchronous JS interop in client-side components](#synchronous-js-interop-in-client-side-components) section.
 
 > [!NOTE]
 > When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:

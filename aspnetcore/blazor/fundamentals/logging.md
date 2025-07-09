@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor logging
 author: guardrex
 description: Learn about Blazor app logging, including configuration and how to write log messages from Razor components.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/fundamentals/logging

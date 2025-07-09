@@ -1,7 +1,7 @@
 ---
 title: Component Tag Helper in ASP.NET Core
 author: guardrex
-ms.author: riande
+ms.author: wpickett
 description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
@@ -42,7 +42,7 @@ To render a component from a page or view, use the [Component Tag Helper](xref:M
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5.0 or later.
+> Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5 or later.
 
 :::moniker-end
 

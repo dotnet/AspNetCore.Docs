@@ -3,7 +3,7 @@ title: ASP.NET Core Razor component rendering
 author: guardrex
 description: Learn about Razor component rendering in ASP.NET Core Blazor apps, including when to manually trigger a component to render.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/rendering
@@ -39,7 +39,7 @@ Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> s
 
 In most cases, <xref:Microsoft.AspNetCore.Components.ComponentBase> conventions result in the correct subset of component rerenders after an event occurs. Developers aren't usually required to provide manual logic to tell the framework which components to rerender and when to rerender them. The overall effect of the framework's conventions is that the component receiving an event rerenders itself, which recursively triggers rerendering of descendant components whose parameter values may have changed.
 
-For more information on the performance implications of the framework's conventions and how to optimize an app's component hierarchy for rendering, see <xref:blazor/performance#optimize-rendering-speed>.
+For more information on the performance implications of the framework's conventions and how to optimize an app's component hierarchy for rendering, see <xref:blazor/performance/rendering>.
 
 ::: moniker range=">= aspnetcore-8.0"
 
@@ -147,7 +147,7 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 ::: moniker-end
 
-For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/performance#avoid-unnecessary-rendering-of-component-subtrees>.
+For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/performance/rendering#avoid-unnecessary-rendering-of-component-subtrees>.
 
 ## `StateHasChanged`
 
@@ -326,4 +326,4 @@ The state manager approach is similar to the earlier case with <xref:System.Time
 <!-- UPDATE 10.0 Will be removed for a new feature in this area. 
                  Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
 
-A loading progress indicator isn't present in an app created from the Blazor Web App project template. A new loading progress indicator feature is planned for a future release of .NET. In the meantime, an app can adopt custom code to create a loading progress indicator. For more information, see <xref:blazor/fundamentals/startup#client-side-loading-progress-indicators>.
+A loading progress indicator isn't present in an app created from the Blazor Web App project template. A new loading progress indicator feature is planned for a future release of .NET. In the meantime, an app can adopt custom code to create a loading progress indicator. For more information, see <xref:blazor/fundamentals/startup#client-side-loading-indicators>.

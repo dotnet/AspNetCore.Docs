@@ -1,22 +1,28 @@
 ---
 title: Include OpenAPI metadata in an ASP.NET Core app
 author: captainsafia
-description: Learn how to add OpenAPI metadata in an ASP.NET Core app
+description: Learn how to add OpenAPI metadata in an ASP.NET Core app.
 ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
-ms.date: 10/26/2024
+ms.date: 4/22/2024
 uid: fundamentals/openapi/include-metadata
 ---
 # Include OpenAPI metadata in an ASP.NET Core app
 
+This article explains how to add OpenAPI metadata in an ASP.NET Core app.
+
 ## Include OpenAPI metadata for endpoints
 
+:::moniker range=">= aspnetcore-10.0"
+
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
-In controller-based apps, metadata is collected from attributes like [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
-and [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute).
-In minimal APIs, metadata can be collected from attributes, but may also be set by using extension methods
-and other strategies, such as returning <xref:Microsoft.AspNetCore.Http.TypedResults> from route handlers.
+
+In controller-based apps, metadata is collected from attributes such as [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
+and [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) when the controller has the [`[ApiController]` attribute](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute).
+
+In minimal APIs, metadata can be collected from attributes but may also be set by using extension methods and other strategies, such as returning <xref:Microsoft.AspNetCore.Http.TypedResults> from route handlers.
+
 The following table provides an overview of the metadata collected and the strategies for setting it.
 
 | Metadata | Attribute | Extension method | Other strategies |
@@ -31,7 +37,7 @@ The following table provides an overview of the metadata collected and the strat
 | responses | [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A>, <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> | <xref:Microsoft.AspNetCore.Http.TypedResults> |
 | Excluding endpoints | [`[ExcludeFromDescription]`](xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute), [`[ApiExplorerSettings]`](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A> | |
 
-ASP.NET Core does not collect metadata from XML doc comments.
+ASP.NET Core can also collect metadata from XML doc comments. For more information, see <xref:fundamentals/openapi/aspnet-openapi-xml> for more details.
 
 The following sections demonstrate how to include metadata in an app to customize the generated OpenAPI document.
 
@@ -48,13 +54,13 @@ Note that the attributes are placed on the delegate method and not on the app.Ma
 
 ```csharp
 app.MapGet("/extension-methods", () => "Hello world!")
-  .WithSummary("This is a summary.")
-  .WithDescription("This is a description.");
+    .WithSummary("This is a summary.")
+    .WithDescription("This is a description.");
 
 app.MapGet("/attributes",
-  [EndpointSummary("This is a summary.")]
-  [EndpointDescription("This is a description.")]
-  () => "Hello world!");
+    [EndpointSummary("This is a summary.")]
+    [EndpointDescription("This is a description.")]
+    () => "Hello world!");
 ```
 
 #### [Controllers](#tab/controllers)
@@ -62,14 +68,15 @@ app.MapGet("/attributes",
 The following sample demonstrates how to set summaries and descriptions.
 
 ```csharp
-  [EndpointSummary("This is a summary.")]
-  [EndpointDescription("This is a description.")]
-  [HttpGet("attributes")]
-  public IResult Attributes()
-  {
-      return Results.Ok("Hello world!");
-  }
+[EndpointSummary("This is a summary.")]
+[EndpointDescription("This is a description.")]
+[HttpGet("attributes")]
+public IResult Attributes()
+{
+    return Results.Ok("Hello world!");
+}
 ```
+
 ---
 
 ### tags
@@ -84,11 +91,11 @@ The following sample demonstrates the different strategies for setting tags.
 
 ```csharp
 app.MapGet("/extension-methods", () => "Hello world!")
-  .WithTags("todos", "projects");
+    .WithTags("todos", "projects");
 
 app.MapGet("/attributes",
-  [Tags("todos", "projects")]
-  () => "Hello world!");
+    [Tags("todos", "projects")]
+    () => "Hello world!");
 ```
 
 #### [Controllers](#tab/controllers)
@@ -98,13 +105,14 @@ In controller-based apps, the controller name is automatically added as a tag on
 The following sample demonstrates how to set tags.
 
 ```csharp
-  [Tags(["todos", "projects"])]
-  [HttpGet("attributes")]
-  public IResult Attributes()
-  {
-      return Results.Ok("Hello world!");
-  }
+[Tags(["todos", "projects"])]
+[HttpGet("attributes")]
+public IResult Attributes()
+{
+    return Results.Ok("Hello world!");
+}
 ```
+
 ---
 
 ### operationId
@@ -119,11 +127,11 @@ The following sample demonstrates the different strategies for setting the opera
 
 ```csharp
 app.MapGet("/extension-methods", () => "Hello world!")
-  .WithName("FromExtensionMethods");
+    .WithName("FromExtensionMethods");
 
 app.MapGet("/attributes",
-  [EndpointName("FromAttributes")]
-  () => "Hello world!");
+    [EndpointName("FromAttributes")]
+    () => "Hello world!");
 ```
 
 #### [Controllers](#tab/controllers)
@@ -133,13 +141,14 @@ In controller-based apps, the operationId can be set using the [`[EndpointName]`
 The following sample demonstrates how to set the operationId.
 
 ```csharp
-  [EndpointName("FromAttributes")]
-  [HttpGet("attributes")]
-  public IResult Attributes()
-  {
-      return Results.Ok("Hello world!");
-  }
+[EndpointName("FromAttributes")]
+[HttpGet("attributes")]
+public IResult Attributes()
+{
+    return Results.Ok("Hello world!");
+}
 ```
+
 ---
 
 ### parameters
@@ -152,24 +161,32 @@ The [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute
 
 #### [Minimal APIs](#tab/minimal-apis)
 
+The [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute works in an MVC app but doesn't work in a Minimal API app at this time. For more information, see [`Description` parameter of `ProducesResponseTypeAttribute` does not work in minimal API app (`dotnet/aspnetcore` #60518)](https://github.com/dotnet/aspnetcore/issues/60518).
+
+<!-- For activation when https://github.com/dotnet/aspnetcore/issues/60518 is resolved ...
+
 The follow sample demonstrates how to set a description for a parameter.
 
 ```csharp
 app.MapGet("/attributes",
-  ([Description("This is a description.")] string name) => "Hello world!");
+    ([Description("This is a description.")] string name) => "Hello world!");
 ```
+
+-->
 
 #### [Controllers](#tab/controllers)
 
 The following sample demonstrates how to set a description for a parameter.
 
 ```csharp
-  [HttpGet("attributes")]
-  public IResult Attributes([Description("This is a description.")] string name)
-  {
-      return Results.Ok("Hello world!");
-  }
+[HttpGet("attributes")]
+public IResult Attributes(
+    [Description("This is a description.")] string name)
+{
+    return Results.Ok("Hello world!");
+}
 ```
+
 ---
 
 ### Describe the request body
@@ -206,9 +223,16 @@ The framework uses the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadat
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
 {
-    public static void PopulateMetadata(ParameterInfo parameter, EndpointBuilder builder)
+    public static void PopulateMetadata(
+        ParameterInfo parameter,
+        EndpointBuilder builder)
     {
-        builder.Metadata.Add(new AcceptsMetadata(["application/xml", "text/xml"], typeof(Todo)));
+        builder.Metadata.Add(
+            new AcceptsMetadata(
+                ["application/xml", "text/xml"], 
+                typeof(Todo)
+            )
+        );
     }
 }
 ```
@@ -218,7 +242,7 @@ In the following example, the endpoint accepts a `Todo` object in the request bo
 
 ```csharp
 app.MapPut("/todos/{id}", (int id, Todo todo) => ...)
-  .Accepts<Todo>("application/xml");
+    .Accepts<Todo>("application/xml");
 ```
 
 Since `application/xml` is not a built-in content type, the `Todo` class must implement the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface to provide a custom binding for the request body. For example:
@@ -226,12 +250,15 @@ Since `application/xml` is not a built-in content type, the `Todo` class must im
 ```csharp
 public class Todo : IBindableFromHttpContext<Todo>
 {
-    public static async ValueTask<Todo?> BindAsync(HttpContext context, ParameterInfo parameter)
+    public static async ValueTask<Todo?> BindAsync(
+        HttpContext context, 
+        ParameterInfo parameter)
     {
         var xmlDoc = await XDocument.LoadAsync(context.Request.Body, LoadOptions.None, context.RequestAborted);
         var serializer = new XmlSerializer(typeof(Todo));
         return (Todo?)serializer.Deserialize(xmlDoc.CreateReader());
     }
+}
 ```
 
 If the endpoint doesn't define any parameters bound to the request body, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method to specify the content type that the endpoint accepts.
@@ -292,7 +319,7 @@ The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produce
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
-  .Produces<IList<Todo>>();
+    .Produces<IList<Todo>>();
 ```
 
 The [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) can be used to add response metadata to an endpoint. Note that the attribute is applied to the route handler method, not the method invocation to create the route, as shown in the following example:
@@ -301,6 +328,17 @@ The [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTyp
 app.MapGet("/todos",
     [ProducesResponseType<List<Todo>>(200)]
     async (TodoDb db) => await db.Todos.ToListAsync());
+```
+
+[`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute), [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute), and [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) also support an optional string property called `Description` that can be used to describe the response. This is useful for explaining why or when clients can expect a specific response:
+
+```csharp
+app.MapGet("/todos/{id}",
+    [ProducesResponseType<Todo>(200, 
+        Description = "Returns the requested Todo item.")]
+    [ProducesResponseType(404, Description = "Requested item not found.")]
+    [ProducesDefault(Description = "Undocumented status code.")]
+    async (int id, TodoDb db) => /* Code here */);
 ```
 
 Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
@@ -315,19 +353,19 @@ app.MapGet("/todos", async (TodoDb db) =>
 
 Only return types that implement <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> create a `responses` entry in the OpenAPI document. The following is a partial list  of some of the <xref:Microsoft.AspNetCore.Http.TypedResults> helper methods that produce a `responses` entry:
 
-| TypedResults helper method | status code |
-| -------------------------- | ----------- |
-| Ok()                       | 200         |
-| Created()                  | 201         |
-| CreatedAtRoute()           | 201         |
-| Accepted()                 | 202         |
-| AcceptedAtRoute()          | 202         |
-| NoContent()                | 204         |
-| BadRequest()               | 400         |
-| ValidationProblem()        | 400         |
-| NotFound()                 | 404         |
-| Conflict()                 | 409         |
-| UnprocessableEntity()      | 422         |
+| `TypedResults` helper method | Status code |
+| ---------------------------- | ----------- |
+| Ok()                         | 200         |
+| Created()                    | 201         |
+| CreatedAtRoute()             | 201         |
+| Accepted()                   | 202         |
+| AcceptedAtRoute()            | 202         |
+| NoContent()                  | 204         |
+| BadRequest()                 | 400         |
+| ValidationProblem()          | 400         |
+| NotFound()                   | 404         |
+| Conflict()                   | 409         |
+| UnprocessableEntity()        | 422         |
 
 All of these methods except `NoContent` have a generic overload that specifies the type of the response body.
 
@@ -372,12 +410,25 @@ Only one [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or <xre
 
 All of the above attributes can be applied to individual action methods or to the controller class where it applies to all action methods in the controller.
 
+[`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute), [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute), and [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) also support an optional string property called `Description` that can be used to describe the response. This is useful for explaining why or when clients can expect a specific response:
+
+```csharp
+[HttpGet("/todos/{id}")]
+[ProducesResponseType<Todo>(StatusCodes.Status200OK,
+    "application/json", Description = "Returns the requested Todo item.")]
+[ProducesResponseType(StatusCodes.Status404NotFound,
+    Description = "Requested Todo item not found.")]
+[ProducesDefault(Description = "Undocumented status code.")]
+public async Task<ActionResult<Todo>> GetTodoItem(string id, Todo todo)
+```
+
 When not specified by an attribute:
-* the status code for the response defaults to 200,
-* the schema for the response body of 2xx responses may be inferred from the return type of the action method, e.g. from `T` in <xref:Microsoft.AspNetCore.Mvc.ActionResult%601>, but otherwise is considered to be not specified,
-* the schema for the response body of 4xx responses is inferred to be a problem details object,
-* the schema for the response body of 3xx and 5xx responses is considered to be not specified,
-* the content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
+
+* The status code for the response defaults to 200.
+* The schema for the response body of 2xx responses may be inferred from the return type of the action method, e.g. from `T` in <xref:Microsoft.AspNetCore.Mvc.ActionResult%601>, but otherwise is considered to be not specified.
+* The schema for the response body of 4xx responses is inferred to be a problem details object.
+* The schema for the response body of 3xx and 5xx responses is considered to be not specified.
+* The content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
 
 By default, there are no compile-time checks to ensure that the response metadata specified with a [`[ProducesResponseType]` attribute](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) is consistent with the actual behavior of the action method, which may return a different status code or response body type than specified by the metadata. To enable these checks, [enable Web API analyzers](xref:web-api/advanced/analyzers).
 
@@ -385,9 +436,12 @@ In controller-based apps, ASP.NET responds with a ProblemDetails response type w
 
 ```csharp
 [HttpPut("/todos/{id}")]
-[ProducesResponseType<Todo>(StatusCodes.Status200OK, "application/json")]
-[ProducesResponseType<Todo>(StatusCodes.Status201Created, "application/json")]
-[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, "application/problem+json")]
+[ProducesResponseType<Todo>(StatusCodes.Status200OK,
+    "application/json")]
+[ProducesResponseType<Todo>(StatusCodes.Status201Created,
+    "application/json")]
+[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest,
+    "application/problem+json")]
 public async Task<ActionResult<Todo>> CreateOrReplaceTodo(string id, Todo todo)
 ```
 
@@ -412,11 +466,11 @@ The following sample demonstrates the different strategies for excluding a given
 
 ```csharp
 app.MapGet("/extension-method", () => "Hello world!")
-  .ExcludeFromDescription();
+    .ExcludeFromDescription();
 
 app.MapGet("/attributes",
-  [ExcludeFromDescription]
-  () => "Hello world!");
+    [ExcludeFromDescription]
+    () => "Hello world!");
 ```
 
 #### [Controllers](#tab/controllers)
@@ -426,12 +480,13 @@ In controller-based apps, the [`[ApiExplorerSettings]`](xref:Microsoft.AspNetCor
 The following example demonstrates how to exclude an endpoint from the generated OpenAPI document:
 
 ```csharp
-  [HttpGet("/private")]
-  [ApiExplorerSettings(IgnoreApi = true)]
-  public IActionResult PrivateEndpoint() {
-      return Ok("This is a private endpoint");
-  }
+[HttpGet("/private")]
+[ApiExplorerSettings(IgnoreApi = true)]
+public IActionResult PrivateEndpoint() {
+    return Ok("This is a private endpoint");
+}
 ```
+
 ---
 
 ## Include OpenAPI metadata for data types
@@ -449,7 +504,37 @@ of the property in the schema.
 
 ### type and format
 
-The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as follows:
+#### Numeric types
+
+The JSON Schema library maps standard C# numeric types to OpenAPI `type` and `format` based on the
+<xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property of the <xref:System.Text.Json.JsonSerializerOptions>
+used in the app. In ASP.NET Core Web API apps, the default value of this property is `JsonNumberHandling.AllowReadingFromString`.
+
+When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property is set to `JsonNumberHandling.AllowReadingFromString`, the numeric types are mapped as follows:
+
+| C# Type        | OpenAPI `type`   | OpenAPI `format` | Other assertions               |
+| -------------- | ---------------- | ---------------- | ------------------------------ |
+| int            | [integer,string] | int32            | pattern `<digits>` |
+| long           | [integer,string] | int64            | pattern `<digits>` |
+| short          | [integer,string] | int16            | pattern `<digits>` |
+| byte           | [integer,string] | uint8            | pattern `<digits>` |
+| float          | [number,string]  | float            | pattern `<digits with decimal >` |
+| double         | [number,string]  | double           | pattern `<digits with decimal >` |
+| decimal        | [number,string]  | double           | pattern `<digits with decimal >` |
+
+<!--
+| int            | [integer,string] | int32            | pattern `<digits>` |  pattern: `"^-?(?:0|[1-9]\\d*)$"`
+| long           | [integer,string] | int64            | pattern `<digits>` |                                 
+| short          | [integer,string] | int16            | pattern `<digits>` |                                  
+| byte           | [integer,string] | uint8            | pattern `<digits>` |                                  
+| float          | [number,string]  | float            | pattern `<digits with decimal >` |   pattern: `"^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$"`
+| double         | [number,string]  | double           | pattern `<digits with decimal >` |                                  
+| decimal        | [number,string]  | double           | pattern `<digits with decimal >` |   pattern: `"^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$"`
+ -->
+
+If the app is configured to produce OpenAPI 3.0 or OpenAPI v2 documents, where the `type` field cannot have an array value, the `type` field is dropped.
+
+When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property is set to `JsonNumberHandling.Strict`, the numeric types are mapped as follows:
 
 | C# Type        | OpenAPI `type` | OpenAPI `format` |
 | -------------- | -------------- | ---------------- |
@@ -460,21 +545,31 @@ The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as
 | float          | number         | float            |
 | double         | number         | double           |
 | decimal        | number         | double           |
+
+#### String types
+
+The following table shows how C# types map to `string` type properties in the generated OpenAPI document:
+
+| C# Type        | OpenAPI `type` | OpenAPI `format` | Other assertions               |
+| -------------- | -------------- | ---------------- | ------------------------------ |
+| string         | string         |                  | |
+| char           | string         | char             | minLength: 1, maxLength: 1 |
+| byte[]         | string         | byte             | |
+| DateTimeOffset | string         | date-time        | |
+| DateOnly       | string         | date             | |
+| TimeOnly       | string         | time             | |
+| Uri            | string         | uri              | |
+| Guid           | string         | uuid             | |
+
+#### Other types
+
+Other C# types are represented in the generated OpenAPI document as shown in the following table:
+
+| C# Type        | OpenAPI `type` | OpenAPI `format` |
+| -------------- | -------------- | ---------------- |
 | bool           | boolean        |                  |
-| string         | string         |                  |
-| char           | string         | char             |
-| byte[]         | string         | byte             |
-| DateTimeOffset | string         | date-time        |
-| DateOnly       | string         | date             |
-| TimeOnly       | string         | time             |
-| Uri            | string         | uri              |
-| Guid           | string         | uuid             |
 | object         | _omitted_      |                  |
 | dynamic        | _omitted_      |                  |
-
-Note that object and dynamic types have _no_ type defined in the OpenAPI because these can contain data of any type, including primitive types like int or string.
-
-The `type` and `format` can also be set with a [Schema Transformer](xref:fundamentals/openapi/customize-openapi#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
 
 ### Use attributes to add metadata
 
@@ -484,12 +579,12 @@ The following table summarizes attributes from the `System.ComponentModel` names
 
 | Attribute                    | Description |
 | ---------------------------- | ----------- |
-| [`[Description]`](xref:System.ComponentModel.DescriptionAttribute)                       | Sets the `description` of a property in the schema. |
-| [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute)          | Marks a property as `required` in the schema. |
-| [`[DefaultValue]`](xref:System.ComponentModel.DefaultValueAttribute)                      | Sets the `default` value of a property in the schema. |
-| [`[Range]`](xref:System.ComponentModel.DataAnnotations.RangeAttribute)             | Sets the `minimum` and `maximum` value of an integer or number. |
-| [`[MinLength]`](xref:System.ComponentModel.DataAnnotations.MinLengthAttribute)         | Sets the `minLength` of a string or `minItems` of an array. |
-| [`[MaxLength]`](xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute)         | Sets the `maxLength` of a string or `maxItems` of an array. |
+| [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) | Sets the `description` of a property in the schema. |
+| [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) | Marks a property as `required` in the schema. |
+| [`[DefaultValue]`](xref:System.ComponentModel.DefaultValueAttribute) | Sets the `default` value of a property in the schema. |
+| [`[Range]`](xref:System.ComponentModel.DataAnnotations.RangeAttribute) | Sets the `minimum` and `maximum` value of an integer or number. |
+| [`[MinLength]`](xref:System.ComponentModel.DataAnnotations.MinLengthAttribute) | Sets the `minLength` of a string or `minItems` of an array. |
+| [`[MaxLength]`](xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute) | Sets the `maxLength` of a string or `maxItems` of an array. |
 | [`[RegularExpression]`](xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute) | Sets the `pattern` of a string. |
 
 Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed explicitly via an endpoint filter, in the route handler's logic, or via a third-party package.
@@ -516,9 +611,10 @@ public record Todo(
 In a class, struct, or record, properties with the [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) attribute or [required](/dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier) modifier are always `required` in the corresponding schema.
 
 Other properties may also be required based on the constructors (implicit and explicit) for the class, struct, or record.
-- For a class or record class with a single public constructor, any property with the same type and name (case-insensitive match) as a parameter to the constructor is required in the corresponding schema.
-- For a class or record class with multiple public constructors, no other properties are required.
-- For a struct or record struct, no other properties are required since C# always defines an implicit parameterless constructor for a struct.
+
+* For a class or record class with a single public constructor, any property with the same type and name (case-insensitive match) as a parameter to the constructor is required in the corresponding schema.
+* For a class or record class with multiple public constructors, no other properties are required.
+* For a struct or record struct, no other properties are required since C# always defines an implicit parameterless constructor for a struct.
 
 #### enum
 
@@ -540,22 +636,41 @@ public enum DayOfTheWeekAsString
 }
 ```
 
-A special case is when an enum type has the `[Flags]` attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags enum with a `[JsonConverterAttribute]` is defined as `type: string` in the generated schema with no `enum` property, since the value could be any combination of the enum values. For example, the following enum:
+A special case is when an enum type has the `[Flags]` attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags `enum` with a `[JsonConverterAttribute]` is defined as `type: string` in the generated schema with no `enum` property. No `enum` property is generated because the value could be any combination of the enum values. For example, the following `enum` could have values such as `"Pepperoni, Sausage"` or `"Sausage, Mushrooms, Anchovies"`:
 
 ```csharp
 [Flags, JsonConverter(typeof(JsonStringEnumConverter<PizzaToppings>))]
-public enum PizzaToppings { Pepperoni = 1, Sausage = 2, Mushrooms = 4, Anchovies = 8 }
+public enum PizzaToppings { 
+    Pepperoni = 1,
+    Sausage = 2,
+    Mushrooms = 4,
+    Anchovies = 8
+}
 ```
-
-could have values such as `"Pepperoni, Sausage"` or `"Sausage, Mushrooms, Anchovies"`.
 
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
 
 **Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
 
+[Set JSON options globally](#set-json-serialization-options-globally) shows how to set the `JsonStringEnumConverter` globally.
+
 #### nullable
 
-Properties defined as a nullable value or reference type have `nullable: true` in the generated schema. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
+Properties defined as a nullable value or reference type appear in the generated schema with a `type` keyword whose value is an array that includes `null` as one of the types. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
+
+For example, a C# property defined as `string?` is represented in the generated schema as:
+
+```json
+  "nullableString": {
+    "description": "A property defined as string?",
+    "type": [
+      "null",
+      "string"
+    ]
+  },
+```
+
+If the app is configured to produce OpenAPI v3.0 or OpenAPI v2 documents, nullable value or reference types have `nullable: true` in the generated schema because these OpenAPI versions do not allow the `type` field to be an array.
 
 #### additionalProperties
 
@@ -575,7 +690,30 @@ An abstract class with a [`[JsonPolymorphic]`](xref:System.Text.Json.Serializati
 
 A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers) for more information.
 
+## Set JSON serialization options globally
+
+The following code configures some JSON options globally, for Minimal APIs and Controller based APIs:
+
+  [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebJson/Program.cs?highlight=9-29)]
+
+## MVC JSON options and global JSON options
+
+The following table shows the key differences beween the MVC JSON options and global Minimal API JSON options:
+
+| **Aspect**           | **MVC JSON Options**                       | **Global JSON Options**             |
+|-----------------------|--------------------------------------------|-----------------------------------------------|
+| **Scope**             | Limited to MVC controllers and endpoints.  | Minimal APIs and OpenAPI docs.   |
+| **Configuration**     | `AddControllers().AddJsonOptions()`        | `Configure<JsonOptions>()`                    |
+| **Purpose**           | Handles serialization and deserialization of JSON requests and responses in APIs.  | Defines global JSON handling for Minimal APIs and OpenAPI schemas. |
+| **Influence on OpenAPI** | None                                     | Directly influences OpenAPI schema generation.|
+
+---
+
 ## Additional resources
 
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
+
+:::moniker-end
+
+[!INCLUDE[](~/fundamentals/openapi/includes/include-metadata9.md)]

@@ -4,10 +4,12 @@ author: tdykstra
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 07/10/2019
+ms.date: 5/2/2025
 uid: test/troubleshoot
 ---
 # Troubleshoot and debug ASP.NET Core projects
+
+:::moniker range=">= aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -75,87 +77,9 @@ If an app is capable of responding to requests, you can obtain the following dat
 
 Place the following [middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) code at the beginning of the `Startup.Configure` method's request processing pipeline. The environment is checked before the middleware is run to ensure that the code is only executed in the Development environment.
 
-To obtain the environment, use either of the following approaches:
+Get the environment from the `Environment` property of `WebApplication`. For example, `if (app.Environment.IsDevelopment())` as in the following sample code.
 
-* Inject the `IHostingEnvironment` into the `Startup.Configure` method and check the environment with the local variable. The following sample code demonstrates this approach.
-
-* Assign the environment to a property in the `Startup` class. Check the environment using the property (for example, `if (Environment.IsDevelopment())`).
-
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
-    IConfiguration config)
-{
-    if (env.IsDevelopment())
-    {
-        app.Run(async (context) =>
-        {
-            var sb = new StringBuilder();
-            var nl = System.Environment.NewLine;
-            var rule = string.Concat(nl, new string('-', 40), nl);
-            var authSchemeProvider = app.ApplicationServices
-                .GetRequiredService<IAuthenticationSchemeProvider>();
-
-            sb.Append($"Request{rule}");
-            sb.Append($"{DateTimeOffset.Now}{nl}");
-            sb.Append($"{context.Request.Method} {context.Request.Path}{nl}");
-            sb.Append($"Scheme: {context.Request.Scheme}{nl}");
-            sb.Append($"Host: {context.Request.Headers["Host"]}{nl}");
-            sb.Append($"PathBase: {context.Request.PathBase.Value}{nl}");
-            sb.Append($"Path: {context.Request.Path.Value}{nl}");
-            sb.Append($"Query: {context.Request.QueryString.Value}{nl}{nl}");
-
-            sb.Append($"Connection{rule}");
-            sb.Append($"RemoteIp: {context.Connection.RemoteIpAddress}{nl}");
-            sb.Append($"RemotePort: {context.Connection.RemotePort}{nl}");
-            sb.Append($"LocalIp: {context.Connection.LocalIpAddress}{nl}");
-            sb.Append($"LocalPort: {context.Connection.LocalPort}{nl}");
-            sb.Append($"ClientCert: {context.Connection.ClientCertificate}{nl}{nl}");
-
-            sb.Append($"Identity{rule}");
-            sb.Append($"User: {context.User.Identity.Name}{nl}");
-            var scheme = await authSchemeProvider
-                .GetSchemeAsync(IISDefaults.AuthenticationScheme);
-            sb.Append($"DisplayName: {scheme?.DisplayName}{nl}{nl}");
-
-            sb.Append($"Headers{rule}");
-            foreach (var header in context.Request.Headers)
-            {
-                sb.Append($"{header.Key}: {header.Value}{nl}");
-            }
-            sb.Append(nl);
-
-            sb.Append($"WebSockets{rule}");
-            if (context.Features.Get<IHttpUpgradeFeature>() != null)
-            {
-                sb.Append($"Status: Enabled{nl}{nl}");
-            }
-            else
-            {
-                sb.Append($"Status: Disabled{nl}{nl}");
-            }
-
-            sb.Append($"Configuration{rule}");
-            foreach (var pair in config.AsEnumerable())
-            {
-                sb.Append($"{pair.Path}: {pair.Value}{nl}");
-            }
-            sb.Append(nl);
-
-            sb.Append($"Environment Variables{rule}");
-            var vars = System.Environment.GetEnvironmentVariables();
-            foreach (var key in vars.Keys.Cast<string>().OrderBy(key => key, 
-                StringComparer.OrdinalIgnoreCase))
-            {
-                var value = vars[key];
-                sb.Append($"{key}: {value}{nl}");
-            }
-
-            context.Response.ContentType = "text/plain";
-            await context.Response.WriteAsync(sb.ToString());
-        });
-    }
-}
-```
+:::code language="csharp" source="~/test/troubleshoot/code/9.x/Program.cs" highlight="13-85":::
 
 ## Debug ASP.NET Core apps
 
@@ -165,3 +89,7 @@ The following links provide information on debugging ASP.NET Core apps.
 * [Debugging .NET Core on Unix over SSH](https://devblogs.microsoft.com/devops/debugging-net-core-on-unix-over-ssh/)
 * [Quickstart: Debug ASP.NET with the Visual Studio debugger](/visualstudio/debugger/quickstart-debug-aspnet)
 * See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/2960) for more debugging information.
+
+:::moniker-end
+
+[!INCLUDE[](~/test/troubleshoot/includes/troubleshoot5.md)]

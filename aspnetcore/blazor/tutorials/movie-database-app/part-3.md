@@ -3,7 +3,7 @@ title: Build a Blazor movie database app (Part 3 - Learn about Razor components)
 author: guardrex
 description: This part of the Blazor movie database app tutorial explains the Razor components in the project that were scaffolded into the app. Improvements are made to the display of movie data.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-3
@@ -68,7 +68,7 @@ The `NavMenu` component (`Components/Layout/NavMenu.razor`) implements sidebar n
 
 A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> assigned to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match%2A> parameter configures the component to display an active CSS class when it matches the entire current URL.
 
-The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component built into the Blazor framework for any Blazor app to use, while the `NavMenu` component is only part of Blazor project templates.
+The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is built into the Blazor framework for any Blazor app to use, while the `NavMenu` component is only part of Blazor project templates.
 
 `Components/Layout/NavMenu.razor`:
 
@@ -205,7 +205,7 @@ The `MainLayout` component adopts the following additional specifications:
   * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) parameter, where components that use the layout are rendered.
   * The error UI (`<div id="blazor-error-ui" ...>`), where a notice about an unhandled error is displayed.
 
-The default layout (`MainLayout` component) is specified in the `Routes` component (`Components/Pages/Routes.razor`):
+The default layout (`MainLayout` component) is specified in the `Routes` component (`Components/Routes.razor`):
 
 ```razor
 <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />

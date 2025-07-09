@@ -3,7 +3,7 @@ title: ASP.NET Core Razor component lifecycle
 author: guardrex
 description: Learn about the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/lifecycle
@@ -326,7 +326,7 @@ If a disposable component doesn't use a <xref:System.Threading.CancellationToken
 
 For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
 
-For an example of implementing `SetParametersAsync` manually to improve performance in some scenarios, see <xref:blazor/performance#implement-setparametersasync-manually>.
+For an example of implementing `SetParametersAsync` manually to improve performance in some scenarios, see <xref:blazor/performance/rendering#implement-setparametersasync-manually>.
 
 ## After component render (`OnAfterRender{Async}`)
 
@@ -594,7 +594,7 @@ Prerendering waits for *quiescence*, which means that a component doesn't render
 
 Welcome to your new app.
 
-<SlowComponent />
+<Slow />
 ```
 
 > [!NOTE]
@@ -615,6 +615,46 @@ Add the [`[StreamRendering]` attribute](xref:Microsoft.AspNetCore.Components.Str
 When the `Home` component is prerendering, the `Slow` component is quickly rendered with its loading message. The `Home` component doesn't wait for ten seconds for the `Slow` component to finish rendering. However, the finished message displayed at the end of prerendering is replaced by the loading message while the component finally renders, which is another ten-second delay. This occurs because the `Slow` component is rendering twice, along with `LoadDataAsync` executing twice. When a component is accessing resources, such as services and databases, double execution of service calls and database queries creates undesirable load on the app's resources.
 
 To address the double rendering of the loading message and the re-execution of service and database calls, persist prerendered state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for final rendering of the component, as seen in the following updates to the `Slow` component:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+```razor
+@page "/slow"
+@attribute [StreamRendering]
+
+<h2>Slow Component</h2>
+
+@if (Data is null)
+{
+    <div><em>Loading...</em></div>
+}
+else
+{
+    <div>@Data</div>
+}
+
+@code {
+    [SupplyParameterFromPersistentComponentState]
+    public string? Data { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Data ??= await LoadDataAsync();
+    }
+
+    private async Task<string> LoadDataAsync()
+    {
+        await Task.Delay(5000);
+        return "Finished!";
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 ```razor
 @page "/slow"
@@ -639,10 +679,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        persistingSubscription =
-            ApplicationState.RegisterOnPersisting(PersistData);
-
-        if (!ApplicationState.TryTakeFromJson<string>("data", out var restored))
+        if (!ApplicationState.TryTakeFromJson<string>(nameof(data), out var restored))
         {
             data = await LoadDataAsync();
         }
@@ -650,18 +687,21 @@ else
         {
             data = restored!;
         }
+
+        // Call at the end to avoid a potential race condition at app shutdown
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
     }
 
     private Task PersistData()
     {
-        ApplicationState.PersistAsJson("data", data);
+        ApplicationState.PersistAsJson(nameof(data), data);
 
         return Task.CompletedTask;
     }
 
     private async Task<string> LoadDataAsync()
     {
-        await Task.Delay(10000);
+        await Task.Delay(5000);
         return "Finished!";
     }
 
@@ -671,6 +711,8 @@ else
     }
 }
 ```
+
+:::moniker-end
 
 By combining streaming rendering with persistent component state:
 
@@ -686,7 +728,7 @@ For more information, see the following resources:
 
 :::moniker range="< aspnetcore-8.0"
 
-Quiescence during prerendering results in a poor user experience. The delay can be addressed in apps that target .NET 8 or later with a feature called *streaming rendering*, usually combined with [persisting component state during prerendering](xref:blazor/components/integration#persist-prerendered-state) to avoid waiting for the asynchronous task to complete. In versions of .NET earlier than 8.0, executing a [long-running background task](#cancelable-background-work) that loads the data after final rendering can address a long rendering delay due to quiescence.
+Quiescence during prerendering results in a poor user experience. The delay can be addressed in apps that target .NET 8 or later with a feature called *streaming rendering*, usually combined with [persisting component state during prerendering](xref:blazor/components/integration#persist-prerendered-state) to avoid waiting for the asynchronous task to complete. In versions of .NET earlier than .NET 8, executing a [long-running background task](#cancelable-background-work) that loads the data after final rendering can address a long rendering delay due to quiescence.
 
 :::moniker-end
 
@@ -827,6 +869,80 @@ In the following example:
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/lifecycle/BackgroundWork.razor":::
 
 :::moniker-end
+
+To display a loading indicator while the background work is taking place, use the following approach.
+
+Create a loading indicator component with a `Loading` parameter that can display child content in a <xref:Microsoft.AspNetCore.Components.RenderFragment>. For the `Loading` parameter:
+
+* When `true`, display a loading indicator.
+* When `false`, render the component's content (`ChildContent`). For more information, see [Child content render fragments](xref:blazor/components/index#child-content-render-fragments).
+
+`ContentLoading.razor`:
+
+```razor
+@if (Loading)
+{
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public bool Loading { get; set; }
+}
+```
+
+:::moniker range=">= aspnetcore-6.0"
+
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+
+```razor
+@if (Loading)
+{
+    <!-- OPTIONAL ...
+    <HeadContent>
+        <style>
+            ...
+        </style>
+    </HeadContent>
+    -->
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
+}
+else
+{
+    @ChildContent
+}
+
+...
+```
+
+:::moniker-end
+
+Wrap the component's Razor markup with the `ContentLoading` component and pass a value in a C# field to the `Loading` parameter when initialization work is performed by the component:
+
+```razor
+<ContentLoading Loading="@loading">
+    ...
+</ContentLoading>
+
+@code {
+    private bool loading = true;
+    ...
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LongRunningWork().ContinueWith(_ => loading = false);
+    }
+
+    ...
+}
+```
 
 ## Blazor Server reconnection events
 

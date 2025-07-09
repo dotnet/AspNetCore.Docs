@@ -1389,7 +1389,7 @@ Can be applied to a public property of a controller or `PageModel` class to caus
 
 ### [BindProperties] attribute
 
-Available in ASP.NET Core 2.1 and later.  Can be applied to a controller or `PageModel` class to tell model binding to target all public properties of the class:
+Available in ASP.NET Core 2.1 or later.  Can be applied to a controller or `PageModel` class to tell model binding to target all public properties of the class:
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs" id="snippet_BindProperties" highlight="1-2":::
 

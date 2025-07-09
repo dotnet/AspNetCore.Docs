@@ -28,7 +28,7 @@ Application configuration in ASP.NET Core is performed using one or more [config
 * Directory files
 * In-memory .NET objects
 
-This article provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
+This article provides information on configuration in ASP.NET Core. For information on using configuration in non-ASP.NET Core apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
 For Blazor configuration guidance, which adds to or supersedes the guidance in this node, see <xref:blazor/fundamentals/configuration>.
 
@@ -958,7 +958,7 @@ This topic only pertains to *app configuration*. Other aspects of running and ho
 
 Environment variables set in `launchSettings.json` override those set in the system environment.
 
-For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/proper-to-2x/index#store-configurations>.
+For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/fx-to-core/examples/configuration>.
 
 ## Add configuration from an external assembly
 

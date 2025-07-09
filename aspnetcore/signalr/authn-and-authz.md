@@ -1,6 +1,6 @@
 ---
 title: Authentication and authorization in ASP.NET Core SignalR
-author: bradygaster
+author: wadepickett
 description: Learn how to use authentication and authorization in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett

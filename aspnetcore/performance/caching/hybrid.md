@@ -4,8 +4,9 @@ author: tdykstra
 description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: tdykstra
-ms.date: 07/16/2024
+ms.date: 05/22/2025
 uid: performance/caching/hybrid
+ms.ai: assisted
 ---
 # HybridCache library in ASP.NET Core
 
@@ -53,30 +54,30 @@ The `key` passed to `GetOrCreateAsync` must uniquely identify the data being cac
 
 Both types of uniqueness are usually ensured by using string concatenation to make a single key string composed of different parts concatenated into one string. For example:
 
-```c#
+```csharp
 cache.GetOrCreateAsync($"/orders/{region}/{orderId}", ...);
 ```
 
-or
+Or
 
-```c#
+```csharp
 cache.GetOrCreateAsync($"user_prefs_{userId}", ...);
 ```
 
 It's the caller's responsibility to ensure that a key scheme is valid and can't cause data to become confused.
 
- We recommend that you not use external user input in the cache key. For example, don't use raw `string` values from a UI as part of a cache key. Such keys could allow malicious access attempts, or could be used in a denial-of-service attack by saturating your cache with data having meaningless keys generated from random strings. In the preceding valid examples, the *order* data and *user preference* data are clearly distinct:
+Avoid using external user input directly in cache keys. For example, don't use raw strings from user interfaces as cache keys. Doing so can expose your app to security risks, such as unauthorized access or denial-of-service attacks caused by flooding the cache with random or meaningless keys. In the preceding valid examples, the *order* and *user preference* data are clearly separated and use trusted identifiers:
 
 * `orderid` and `userId` are internally generated identifiers.
 * `region` might be an enum or string from a predefined list of known regions.
 
-There is no significance placed on tokens such as `/` or `_`. The entire key value is treated as an opaque identifying string. In this case, you could omit the `/` and `_` with no
+No significance is placed on tokens such as `/` or `_`. The entire key value is treated as an opaque identifying string. In this case, you could omit the `/` and `_` with no
 change to the way the cache functions, but a delimiter is usually used to avoid ambiguity - for example `$"order{customerId}{orderId}"` could cause confusion between:
 
-- `customerId` 42 with `orderId` 123
-- `customerId` 421 with `orderId` 23
+* `customerId` 42 with `orderId` 123
+* `customerId` 421 with `orderId` 23
 
-(both of which would generate the cache key `order42123`)
+Both of the preceding examples would generate the cache key `order42123`.
 
 This guidance applies equally to any `string`-based cache API, such as `HybridCache`, `IDistributedCache`, and `IMemoryCache`.
 
@@ -86,11 +87,11 @@ Notice that the inline interpolated string syntax (`$"..."` in the preceding exa
 
 * Keys can be restricted to valid maximum lengths. For example, the default `HybridCache` implementation (via `AddHybridCache(...)`) restricts keys to 1024 characters by default. That number is configurable via `HybridCacheOptions.MaximumKeyLength`, with longer keys bypassing the cache mechanisms to prevent saturation.
 * Keys must be valid Unicode sequences. If invalid Unicode sequences are passed, the behavior is undefined.
-* When using an out-of-process secondary cache such as `IDistributedCache`, the specific backend implementation may impose additional restrictions. As a hypothetical example, a particular backend might use case-insensitive key logic. The default `HybridCache` (via `AddHybridCache(...)`) detects this scenario to prevent confusion attacks, however it may still result in conflicting keys becoming overwritten or evicted sooner than expected.
+* When using an out-of-process secondary cache such as `IDistributedCache`, the backend implementation may impose additional restrictions. As a hypothetical example, a particular backend might use case-insensitive key logic. The default `HybridCache` (via `AddHybridCache(...)`) detects this scenario to prevent confusion attacks or alias attacks (using bitwise string equality). However, this scenario might still result in conflicting keys becoming overwritten or evicted sooner than expected.
 
 ### The alternative `GetOrCreateAsync` overload
 
-The alternative overload might reduce some overhead from [captured variables](/dotnet/csharp/language-reference/operators/lambda-expressions#capture-of-outer-variables-and-variable-scope-in-lambda-expressions) and per-instance callbacks, but at the expense of more complex code. For most scenarios the performance increase doesn't outweigh the code complexity. Here's an example that uses the alternative overload:
+The alternative overload might reduce some overhead from [captured variables](/dotnet/csharp/language-reference/operators/lambda-expressions#capture-of-outer-variables-and-variable-scope-in-lambda-expressions) and per-instance callbacks, but at the expense of more complex code. For most scenarios, the performance increase doesn't outweigh the code complexity. Here's an example that uses the alternative overload:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreatestate" highlight="5-14":::
 
@@ -117,7 +118,16 @@ Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
 Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync%2A> with the tag value. An overload lets you specify a collection of tag values.
 
-When an entry is removed, it is removed from both the primary and secondary caches.
+Neither `IMemoryCache` nor `IDistributedCache` has direct support for the concept of tags, so tag-based invalidation is a *logical* operation only. It doesn't actively remove values from either local or distributed cache. Instead, it ensures that when receiving data with such tags, the data is treated as a cache-miss from both the local and remote cache. The values expire from `IMemoryCache` and `IDistributedCache` in the usual way based on the configured lifetime.
+
+## Removing all cache entries
+
+The asterisk tag (`*`) is reserved as a wildcard and is disallowed against individual values. Calling `RemoveByTagAsync("*")` has the effect of invalidating *all* `HybridCache` data, even data that doesn't have any tags. As with individual tags, this is a *logical* operation, and individual values continue to exist until they expire naturally. Glob-style matches aren't supported. For example, you can't use `RemoveByTagAsync("foo*")` to remove everything starting with `foo`.
+
+### Additional tag considerations
+
+* The system doesn't limit the number of tags you can use, but large sets of tags might negatively impact performance.
+* Tags can't be empty, just whitespace, or the reserved value `*`.
 
 ## Options
 
@@ -182,7 +192,7 @@ For more information, see the [HybridCache serialization sample app](https://git
 By default `HybridCache` uses <xref:System.Runtime.Caching.MemoryCache> for its primary cache storage. Cache entries are stored in-process, so each server has a separate cache that is lost whenever the server process is restarted. For secondary out-of-process storage, such as Redis or SQL Server, `HybridCache` uses [the configured `IDistributedCache` implementation](xref:performance/caching/distributed), if any. But even without an `IDistributedCache`implementation, the `HybridCache` service still provides in-process caching and [stampede protection](https://en.wikipedia.org/wiki/Cache_stampede).
 
 > [!NOTE]
-> When invalidating cache entries by key or by tags, they are invalidated in the current server and in the secondary out-of-process storage. However, the in-memory cache in other servers isn't affected.
+> When invalidating cache entries by key or by tags, they're invalidated in the current server and in the secondary out-of-process storage. However, the in-memory cache in other servers isn't affected.
 
 ## Optimize performance
 
@@ -196,10 +206,10 @@ In typical existing code that uses `IDistributedCache`, every retrieval of an ob
 
 Because much `HybridCache` usage will be adapted from existing `IDistributedCache` code, `HybridCache` preserves this behavior by default to avoid introducing concurrency bugs. However, objects are inherently thread-safe if:
 
-* They are immutable types.
+* They're immutable types.
 * The code doesn't modify them.
 
-In such cases, inform `HybridCache` that it's safe to reuse instances by:
+In such cases, inform `HybridCache` that it's safe to reuse instances by making at least one of the following changes:
 
 * Marking the type as `sealed`. The `sealed` keyword in C# means that the class can't be inherited.
 * Applying the `[ImmutableObject(true)]` attribute to the type. The `[ImmutableObject(true)]` attribute indicates that the object's state can't be changed after it's created.
@@ -221,13 +231,24 @@ dotnet add package Microsoft.Extensions.Caching.SqlServer
 
 A concrete implementation of the `HybridCache` abstract class is included in the shared framework and is provided via dependency injection. But developers are welcome to provide or consume custom implementations of the API, for example [FusionCache](https://github.com/ZiggyCreatures/FusionCache/blob/main/docs/MicrosoftHybridCache.md).
 
+## Use Hybrid Cache with Native AOT
+
+ The following Native AOT-specific considerations apply to `HybridCache`:
+
+* **Serialization**  
+
+  Native AOT doesn't support runtime reflection-based serialization. If you cache custom types, you must use source generators or explicitly configure serializers that are compatible with AOT, like `System.Text.Json` source generation. `HybridCache` is still under development, and simplifying the way to use it with AOT is a high priority for that development. For more information, see pull request [dotnet/extensions#6475](https://github.com/dotnet/extensions/pull/6475)
+
+* **Trimming**
+
+  Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see <xref:fundamentals/native-aot>.
+
+If you set up serialization and trimming correctly, `HybridCache` behaves the same way in Native AOT as in regular ASP.NET Core apps.
+
 ## Compatibility
 
 The `HybridCache` library supports older .NET runtimes, down to .NET Framework 4.7.2 and .NET Standard 2.0.
 
 ## Additional resources
 
-For more information about `HybridCache`, see the following resources:
-
-* GitHub issue [dotnet/aspnetcore #54647](https://github.com/dotnet/aspnetcore/issues/54647).
-* [`HybridCache` source code](https://source.dot.net/#Microsoft.Extensions.Caching.Abstractions/Hybrid/HybridCache.cs,8c0fe94693d1ac8d)  <!--keep--> 
+For more information, see [the `HybridCache` source code](https://source.dot.net/#Microsoft.Extensions.Caching.Abstractions/Hybrid/HybridCache.cs)

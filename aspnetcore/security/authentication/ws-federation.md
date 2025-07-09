@@ -2,12 +2,15 @@
 title: Authenticate users with WS-Federation in ASP.NET Core
 author: chlowell
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 01/16/2019
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Microsoft Entra ID](/azure/active-directory/). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
 
@@ -77,25 +80,35 @@ By default, the new middleware:
 ## Use WS-Federation without ASP.NET Core Identity
 
 The WS-Federation middleware can be used without Identity. For example:
+
 :::moniker range=">= aspnetcore-3.0"
-[!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
+
+:::code language="csharp" source="ws-federation/samples/StartupNon31.cs" id="snippet":::
+
 :::moniker-end
 
-:::moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
-[!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
+:::moniker range="< aspnetcore-3.0"
+
+:::code language="csharp" source="ws-federation/samples/StartupNon21.cs" id="snippet":::
+
 :::moniker-end
 
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
 * Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project.
+
 * Add WS-Federation to `Startup.ConfigureServices`:
 
 :::moniker range=">= aspnetcore-3.0"
-[!code-csharp[](ws-federation/samples/Startup31.cs?name=snippet)]
+
+:::code language="csharp" source="ws-federation/samples/Startup31.cs" id="snippet":::
+
 :::moniker-end
 
-:::moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
-[!code-csharp[](ws-federation/samples/Startup21.cs?name=snippet)]
+:::moniker range="< aspnetcore-3.0"
+
+:::code language="csharp" source="ws-federation/samples/Startup21.cs" id="snippet":::
+
 :::moniker-end
 
 [!INCLUDE [default settings configuration](social/includes/default-settings.md)]
@@ -103,13 +116,17 @@ The WS-Federation middleware can be used without Identity. For example:
 ### Log in with WS-Federation
 
 Browse to the app and click the **Log in** link in the nav header. There's an option to log in with WsFederation:
+
 ![Log in page](ws-federation/_static/WsFederationButton.png)
 
 With ADFS as the provider, the button redirects to an ADFS sign-in page:
+
 ![ADFS sign-in page](ws-federation/_static/AdfsLoginPage.png)
 
 With Microsoft Entra ID as the provider, the button redirects to a Microsoft Entra ID sign-in page:
+
 ![Microsoft Entra ID sign-in page](ws-federation/_static/AadSignIn.png)
 
 A successful sign-in for a new user redirects to the app's user registration page:
+
 ![Register page](ws-federation/_static/Register.png)

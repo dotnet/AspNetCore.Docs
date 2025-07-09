@@ -4,22 +4,22 @@
 
 You might want to use the object pool if the objects that are being managed are:
 
-- Expensive to allocate/initialize.
-- Represent some limited resource.
-- Used predictably and frequently.
+* Expensive to allocate/initialize.
+* Represent some limited resource.
+* Used predictably and frequently.
 
 For example, the ASP.NET Core framework uses the object pool in some places to reuse <xref:System.Text.StringBuilder> instances. `StringBuilder` allocates and manages its own buffers to hold character data. ASP.NET Core regularly uses `StringBuilder` to implement features, and reusing them provides a performance benefit.
 
 Object pooling doesn't always improve performance:
 
-- Unless the initialization cost of an object is high, it's usually slower to get the object from the pool.
-- Objects managed by the pool aren't de-allocated until the pool is de-allocated.
+* Unless the initialization cost of an object is high, it's usually slower to get the object from the pool.
+* Objects managed by the pool aren't de-allocated until the pool is de-allocated.
 
 Use object pooling only after collecting performance data using realistic scenarios for your app or library.
 
 :::moniker-end
 :::moniker range="< aspnetcore-3.0"
-**WARNING: The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.** `ObjectPool` in ASP.NET Core 3.0 and later supports `IDisposable`.
+**WARNING: The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.** `ObjectPool` in ASP.NET Core 3.0 or later supports `IDisposable`.
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
 

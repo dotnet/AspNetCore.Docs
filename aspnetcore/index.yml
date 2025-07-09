@@ -9,7 +9,7 @@ metadata:
   description: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse tutorials, sample code, fundamentals, API reference and more.
   ms.product: aspnet
   ms.topic: hub-page
-  author: WadePickett
+  author: wadepickett
   ms.author: wpickett
   ms.date: 02/23/2024
 
@@ -357,7 +357,7 @@ additionalContent:
             text: "ASP.NET Core 2.0 to 2.1"
           - url: migration/1x-to-2x/index.md
             text: "ASP.NET Core 1.x to 2.0"
-          - url: migration/proper-to-2x/index.md
+          - url: migration/fx-to-core/index.md
             text: "ASP.NET to ASP.NET Core"
       # Card
       - title: Architecture

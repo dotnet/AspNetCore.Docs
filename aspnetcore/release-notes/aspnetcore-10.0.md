@@ -1,19 +1,17 @@
 ---
-title: What's new in ASP.NET Core 10.0
-author: rick-anderson
-description: Learn about the new features in ASP.NET Core 10.0.
-ms.author: riande
+title: What's new in ASP.NET Core in .NET 10
+author: wadepickett
+description: Learn about the new features in ASP.NET Core in .NET 10.
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 3/18/2025
+ms.date: 6/9/2025
 uid: aspnetcore-10
 ---
-# What's new in ASP.NET Core 10.0
+# What's new in ASP.NET Core in .NET 10
 
-This article highlights the most significant changes in ASP.NET Core 10.0 with links to relevant documentation.
+This article highlights the most significant changes in ASP.NET Core in .NET 10 with links to relevant documentation.
 
-This article will be updated as new preview releases are made available. See the [Asp.Net Core announcement page](https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2) until this page is updated.
-
-<!-- New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file. -->
+This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes).
 
 ## Blazor
 
@@ -37,6 +35,12 @@ This section describes new features for minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/MinApiEmptyStringInFormPost.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/ValidationSupportMinAPI.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/MinimalAPIValidationRecordTypes.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/sse.md)]
+
 ## OpenAPI
 
 This section describes new features for OpenAPI.
@@ -47,9 +51,17 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiPopulateXMLDocComments.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiNetV2Prev7.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/webapiaotTemplateAddedOpenAPI.md)]
 
-## Authentication and authorization
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/doc-provider-in-di.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/xml-comment-generator.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiNetUpdatePrev.md)]
+
+### Authentication and authorization
 
 This section describes new features for authentication and authorization.
 
@@ -57,31 +69,37 @@ This section describes new features for authentication and authorization.
 
 Metrics have been added for certain authentication and authorization events in ASP.NET Core. With this change, you can now obtain metrics for the following events:
 
-- Authentication:
-  - Authenticated request duration
-  - Challenge count
-  - Forbid count
-  - Sign in count
-  - Sign out count
-- Authorization:
-  - Count of requests requiring authorization
+* Authentication:
+  * Authenticated request duration
+  * Challenge count
+  * Forbid count
+  * Sign in count
+  * Sign out count
+* Authorization:
+  * Count of requests requiring authorization
 
 The following image shows an example of the Authenticated request duration metric in the Aspire dashboard:
 
 ![Authenticated request duration in the Aspire dashboard](https://github.com/user-attachments/assets/170615e9-ef25-48a1-a482-4933e2e03f03)
 
+For more information, see [ASP.NET Core Authorization and Authentication metrics](xref:log-mon/metrics/built-in#microsoftaspnetcoreauthorization).
+
 ## Miscellaneous
 
-This section describes miscellaneous new features in ASP.NET Core 10.0.
+This section describes miscellaneous new features in .NET 10.
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/httpsys.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/jsonPatch.md)]
 
 ### Detect if URL is local using `RedirectHttpResult.IsLocalUrl`
 
 Use the new [`RedirectHttpResult.IsLocalUrl(url)`](https://source.dot.net/#Microsoft.AspNetCore.Http.Results/RedirectHttpResult.cs,c0ece2e6266cb369) helper method to detect if a URL is local. A URL is considered local if the following are true:
 
-- It doesn't have the [host](https://developer.mozilla.org/docs/Web/API/URL/host) or [authority](https://developer.mozilla.org/docs/Web/URI/Authority) section.
-- It has an [absolute path](https://developer.mozilla.org/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL#absolute_urls_vs._relative_urls).
+* It doesn't have the [host](https://developer.mozilla.org/docs/Web/API/URL/host) or [authority](https://developer.mozilla.org/docs/Web/URI/Authority) section.
+* It has an [absolute path](https://developer.mozilla.org/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL#absolute_urls_vs._relative_urls).
 
 URLs using [virtual paths](/previous-versions/aspnet/ms178116(v=vs.100)) `"~/"` are also local.
 
@@ -97,3 +115,5 @@ if (RedirectHttpResult.IsLocalUrl(url))
 Thank you [@martincostello](https://github.com/martincostello) for this contribution!
 
 ## Related content
+
+<xref:fundamentals/servers/httpsys>

@@ -3,7 +3,7 @@ title: ASP.NET Core Razor components
 author: guardrex
 description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/index
@@ -638,7 +638,7 @@ Razor syntax for C# control structures, directives, and directive attributes are
 
 ### Asynchronous methods (`async`) don't support returning `void`
 
-The Blazor framework doesn't track `void`-returning asynchronous methods (`async`). As a result, exceptions aren't caught if `void` is returned. Always return a <xref:System.Threading.Tasks.Task> from asynchronous methods.
+The Blazor framework doesn't track `void`-returning asynchronous methods (`async`). As a result, the entire process fails when an exception isn't caught if `void` is returned. Always return a <xref:System.Threading.Tasks.Task>/<xref:System.Threading.Tasks.ValueTask> from asynchronous methods.
 
 ### Nested components
 
@@ -1071,14 +1071,14 @@ For more information, see <xref:mvc/views/razor>.
 > [!WARNING]
 > Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. For more information, see <xref:blazor/components/overwriting-parameters>.
 
-Component parameters should be declared as *auto-properties*, meaning that they shouldn't contain custom logic in their `get` or `set` accessors. For example, the following `StartData` property is an auto-property:
+Component parameters should be declared as [automatically-implemented properties (*auto properties*)](/dotnet/csharp/programming-guide/classes-and-structs/auto-implemented-properties), meaning that they shouldn't contain custom logic in their `get` or `set` accessors. For example, the following `StartData` property is an auto property:
 
 ```csharp
 [Parameter]
 public DateTime StartData { get; set; }
 ```
 
-Don't place custom logic in the `get` or `set` accessor because component parameters are purely intended for use as a channel for a parent component to flow information to a child component. If a `set` accessor of a child component property contains logic that causes rerendering of the parent component, an infinite rendering loop results.
+Don't place custom logic in the `get` or `set` accessor because component parameters are purely intended for use as a channel for a parent component to flow information to a child component. If a `set` accessor of a child component property contains logic that causes rerendering of the parent component, an infinite rendering loop results. Other side effects include unexpected extra renderings and parameter value overwrites.
 
 To transform a received parameter value:
 
@@ -1392,7 +1392,7 @@ You can factor out child components purely as a way of reusing rendering logic. 
 }
 ```
 
-For more information, see [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code).
+For more information, see [Reuse rendering logic](xref:blazor/performance/rendering#define-reusable-renderfragments-in-code).
 
 ## Loop variables with component parameters and child content
 

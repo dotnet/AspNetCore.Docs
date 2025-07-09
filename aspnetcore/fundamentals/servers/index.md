@@ -43,7 +43,7 @@ Kestrel has the following advantages over HTTP.sys:
   * Cross platform
   * Agility, it's developed and patched independent of the OS.
   * Programmatic port and TLS configuration
-  * Extensibility that allows for protocols like [PPv2](https://github.com/aspnet/AspLabs/blob/main/src/ProxyProtocol/ProxyProtocol.Sample/ProxyProtocol.cs) and alternate transports.
+  * Extensibility that allows for protocols like [PPv2](https://www.haproxy.org/download/3.1/doc/proxy-protocol.txt) and alternate transports.
 
 Http.Sys operates as a shared kernel mode component with the following features that kestrel does not have:
 
@@ -173,7 +173,6 @@ The server is launched when the Integrated Development Environment (IDE) or edit
 
 * [Visual Studio](https://visualstudio.microsoft.com): Launch profiles can be used to start the app and server with either [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)/[ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) or the console.
 * [Visual Studio Code](https://code.visualstudio.com/): The app and server are started by [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), which activates the CoreCLR debugger.
-* [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/): The app and server are started by the [Mono Soft-Mode Debugger](https://www.mono-project.com/docs/advanced/runtime/docs/soft-debugger/).
 
 When launching the app from a command prompt in the project's folder, [dotnet run](/dotnet/core/tools/dotnet-run) launches the app and server (Kestrel and HTTP.sys only). The configuration is specified by the `-c|--configuration` option, which is set to either `Debug` (default) or `Release`.
 

@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor render modes
 author: guardrex
 description: Learn about Blazor render modes and how to apply them in Blazor Web Apps.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/render-modes
@@ -209,6 +209,52 @@ The following example applies interactive server-side rendering (interactive SSR
 
 Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article. The [Static SSR pages in an interactive app](#static-ssr-pages-in-an-interactive-app) section shows how to use the preceding approach to adopt static SSR in an otherwise interactive app.
 
+## Blazor documentation examples for Blazor Web Apps
+
+When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode.
+
+## Prerendering
+
+*Prerendering* is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank.
+
+Prerendering is enabled by default for interactive components.
+
+Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests, including for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing), [Interactive routing and prerendering](xref:blazor/components/prerender#interactive-routing-and-prerendering), and [Enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
+
+<!-- UPDATE 10.0 Tracking https://github.com/dotnet/aspnetcore/issues/55635
+                 for .NET 10 work in this area. Update the following remark
+                 if changes are made to the framework. -->
+
+Disabling prerendering using the following techniques only takes effect for top-level render modes. If a parent component specifies a render mode, the prerendering settings of its children are ignored. This behavior is under investigation for possible changes with the release of .NET 10 in November, 2025.
+
+To disable prerendering for a *component instance*, pass the `prerender` flag with a value of `false` to the render mode:
+
+* `<... @rendermode="new InteractiveServerRenderMode(prerender: false)" />`
+* `<... @rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)" />`
+* `<... @rendermode="new InteractiveAutoRenderMode(prerender: false)" />`
+
+To disable prerendering in a *component definition*:
+
+* `@rendermode @(new InteractiveServerRenderMode(prerender: false))`
+* `@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))`
+* `@rendermode @(new InteractiveAutoRenderMode(prerender: false))`
+
+To disable prerendering for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
+
+For apps based on the Blazor Web App project template, a render mode assigned to the entire app is specified where the `Routes` component is used in the `App` component (`Components/App.razor`). The following example sets the app's render mode to Interactive Server with prerendering disabled:
+
+```razor
+<Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
+```
+
+Also, disable prerendering for the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component) in the `App` component:
+
+```razor
+<HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
+```
+
+Making a root component, such as the `App` component, interactive with the `@rendermode` directive at the top of the root component's definition file (`.razor`) isn't supported. Therefore, prerendering can't be disabled directly by the `App` component.
+
 :::moniker range=">= aspnetcore-9.0"
 
 ## Detect rendering location, interactivity, and assigned render mode at runtime
@@ -305,52 +351,6 @@ In the preceding example:
 * Otherwise, the render mode is any of `InteractiveServer`, `InteractiveWebAssembly`, or `InteractiveAuto`. The component is capable of using an event handler delegate (`FilterMovies`) and the value bound to the `<input>` element (`titleFilter`) to filter movies interactively over the background SignalR connection.
 
 :::moniker-end
-
-## Blazor documentation examples for Blazor Web Apps
-
-When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode.
-
-## Prerendering
-
-*Prerendering* is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank.
-
-Prerendering is enabled by default for interactive components.
-
-Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests, including for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing), [Interactive routing and prerendering](xref:blazor/components/prerender#interactive-routing-and-prerendering), and [Enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
-
-<!-- UPDATE 10.0 Tracking https://github.com/dotnet/aspnetcore/issues/55635
-                 for .NET 10 work in this area. Update the following remark
-                 if changes are made to the framework. -->
-
-Disabling prerendering using the following techniques only takes effect for top-level render modes. If a parent component specifies a render mode, the prerendering settings of its children are ignored. This behavior is under investigation for possible changes with the release of .NET 10 in November, 2025.
-
-To disable prerendering for a *component instance*, pass the `prerender` flag with a value of `false` to the render mode:
-
-* `<... @rendermode="new InteractiveServerRenderMode(prerender: false)" />`
-* `<... @rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)" />`
-* `<... @rendermode="new InteractiveAutoRenderMode(prerender: false)" />`
-
-To disable prerendering in a *component definition*:
-
-* `@rendermode @(new InteractiveServerRenderMode(prerender: false))`
-* `@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))`
-* `@rendermode @(new InteractiveAutoRenderMode(prerender: false))`
-
-To disable prerendering for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
-
-For apps based on the Blazor Web App project template, a render mode assigned to the entire app is specified where the `Routes` component is used in the `App` component (`Components/App.razor`). The following example sets the app's render mode to Interactive Server with prerendering disabled:
-
-```razor
-<Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
-```
-
-Also, disable prerendering for the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component) in the `App` component:
-
-```razor
-<HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
-```
-
-Making a root component, such as the `App` component, interactive with the `@rendermode` directive at the top of the root component's definition file (`.razor`) isn't supported. Therefore, prerendering can't be disabled directly by the `App` component.
 
 ## Static server-side rendering (static SSR)
 
@@ -576,6 +576,11 @@ Non-serializable component parameters, such as child content or a render fragmen
 
 > :::no-loc text="System.InvalidOperationException: Cannot pass the parameter 'ChildContent' to component 'SharedMessage' with rendermode 'InteractiveServerRenderMode'. This is because the parameter is of the delegate type 'Microsoft.AspNetCore.Components.RenderFragment', which is arbitrary code and cannot be serialized.":::
 
+<!-- UPDATE 11.0 Is https://github.com/dotnet/aspnetcore/issues/52768 addressed
+                 to resolve the following limitation? -->
+
+The same thing happens if you attempt to adopt interactive rendering in a layout that inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, such as the app's `MainLayout` component, in an app that adopts per-page/component rendering. For more information, see <xref:blazor/components/layouts#statically-rendered-layout-components>.
+
 To circumvent the preceding limitation, wrap the child component in another component that doesn't have the parameter. This is the approach taken in the Blazor Web App project template with the `Routes` component (`Components/Routes.razor`) to wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component.
 
 `WrapperComponent.razor`:
@@ -681,7 +686,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Http.HttpContext> casc
 
 ### Area (folder) of static SSR components
 
-*For an example of the approach in this section, see the [`BlazorWebAppAreaOfStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppAreaOfStaticSsrComponents). The technique described in this section is most appropriate for 8.0 Blazor Web Apps, but the sample is implemented in 9.0 using Blazor features that simplify demonstrating how the approach works.*
+*For an example of the approach in this section, see the [`BlazorWebAppAreaOfStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppAreaOfStaticSsrComponents). The technique described in this section is most appropriate for .NET 8 Blazor Web Apps, but the sample is implemented in .NET 9 using Blazor features that simplify demonstrating how the approach works.*
 
 The approach described in this subsection is used by the Blazor Web App project template with global interactivity.
 
@@ -762,7 +767,7 @@ The components that must adopt static SSR in the `Account` folder aren't require
 
 ### Static SSR components spread out across the app
 
-*For an example of the approach in this section, see the [`BlazorWebAppSpreadOutStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppSpreadOutStaticSsrComponents). The technique described in this section is most appropriate for 8.0 Blazor Web Apps, but the sample is implemented in 9.0 using Blazor features that simplify demonstrating how the approach works.*
+*For an example of the approach in this section, see the [`BlazorWebAppSpreadOutStaticSsrComponents` sample app](https://github.com/dotnet/blazor-samples/tree/main/9.0/BlazorWebAppSpreadOutStaticSsrComponents). The technique described in this section is most appropriate for .NET 8 Blazor Web Apps, but the sample is implemented in .NET 9 using Blazor features that simplify demonstrating how the approach works.*
 
 In the [preceding subsection](#area-folder-of-static-ssr-components), the app controls the render mode of the components by setting the render mode globally in the `App` component. Alternatively, the `App` component can also adopt ***per-component*** render modes for setting the render mode, which permits components spread around the app to enforce adoption of static SSR. This subsection describes the approach.
 
@@ -969,7 +974,7 @@ To address this scenario, inject the service in a new imports file placed in the
   * <xref:blazor/fundamentals/signalr#websocket-compression-for-interactive-server-components>
   * <xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>
 * <xref:blazor/js-interop/ssr>
-* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading parameters](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-parameters) section earlier in the article.
+* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) and [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications) sections earlier in the article.
 * <xref:blazor/components/class-libraries-with-static-ssr>
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
@@ -978,7 +983,7 @@ To address this scenario, inject the service in a new imports file placed in the
 :::moniker range="< aspnetcore-9.0"
 
 * <xref:blazor/js-interop/ssr>
-* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading parameters](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-parameters) section earlier in the article.
+* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) and [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications) sections earlier in the article.
 * <xref:blazor/components/class-libraries-with-static-ssr>
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 

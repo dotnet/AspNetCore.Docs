@@ -33,7 +33,7 @@ If no policy is specified, `PowerOfTwoChoices` will be used.
 
 #### File example
 
-```JSON
+```json
 "ReverseProxy": {
   "Clusters": {
     "cluster1": {
@@ -53,7 +53,7 @@ If no policy is specified, `PowerOfTwoChoices` will be used.
 
 #### Code example
 
-```C#
+```csharp
 var clusters = new[]
 {
     new ClusterConfig()
@@ -72,22 +72,27 @@ var clusters = new[]
 ## Built-in policies
 
 YARP ships with the following built-in policies:
-- `FirstAlphabetical`
 
-    Select the alphabetically first available destination without considering load. This is useful for dual destination fail-over systems.
-- `Random`
+* `FirstAlphabetical`
 
-    Select a destination randomly.
-- `PowerOfTwoChoices` (default)
+Select the alphabetically first available destination without considering load. This is useful for dual destination fail-over systems.
 
-    Select two random destinations and then select the one with the least assigned requests.
-    This avoids the overhead of `LeastRequests` and the worst case for `Random` where it selects a busy destination.
-- `RoundRobin`
+* `Random`
 
-    Select a destination by cycling through them in order.
-- `LeastRequests`
+Select a destination randomly.
 
-    Select the destination with the least assigned requests. This requires examining all destinations.
+* `PowerOfTwoChoices` (default)
+
+Select two random destinations and then select the one with the least assigned requests.
+This avoids the overhead of `LeastRequests` and the worst case for `Random` where it selects a busy destination.
+
+* `RoundRobin`
+
+Select a destination by cycling through them in order.
+
+* `LeastRequests`
+
+Select the destination with the least assigned requests. This requires examining all destinations.
 
 ## Extensibility
 
@@ -95,7 +100,7 @@ YARP ships with the following built-in policies:
 
 A custom implementation can be provided in DI.
 
-```c#
+```csharp
 // Implement the ILoadBalancingPolicy
 public sealed class LastLoadBalancingPolicy : ILoadBalancingPolicy
 {

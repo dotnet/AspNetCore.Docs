@@ -3,7 +3,7 @@ title: Build a Blazor movie database app (Part 1 - Create a Blazor Web App)
 author: guardrex
 description: This part of the Blazor movie database app tutorial explains how to create a Blazor Web App that adopts static server-side rendering (static SSR), where content is only rendered on the server.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-1

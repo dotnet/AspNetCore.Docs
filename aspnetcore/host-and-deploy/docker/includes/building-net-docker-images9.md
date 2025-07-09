@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-9.0"
 
 ## ASP.NET Core Docker images
 

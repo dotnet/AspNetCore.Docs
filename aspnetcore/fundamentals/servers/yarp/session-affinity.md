@@ -20,7 +20,7 @@ Session affinity is a mechanism to bind (affinitize) a causally related request 
 Session affinity services are registered in the DI container automatically by `AddReverseProxy()`. The middleware `UseSessionAffinity()` is included by default in the parameterless MapReverseProxy method. If you are customizing the proxy pipeline, place the first middleware **before** adding `UseLoadBalancing()`.
 
 Example:
-```C#
+```csharp
 app.MapReverseProxy(proxyPipeline =>
 {
     proxyPipeline.UseSessionAffinity();
@@ -32,7 +32,7 @@ app.MapReverseProxy(proxyPipeline =>
 
 ### Cluster configuration
 Session affinity is configured per cluster according to the following configuration scheme.
-```JSON
+```json
 "ReverseProxy": {
   "Clusters": {
     "<cluster-name>": {
@@ -59,7 +59,7 @@ Session affinity is configured per cluster according to the following configurat
 
 ### Cookie configuration
 Attributes for configuring the cookie used with the HashCookie, ArrCookie and Cookie policies can be configured using `SessionAffinityCookieConfig`. The properties can be JSON config as show above or in code as shown below:
-```C#
+```csharp
 new ClusterConfig
 {
     ClusterId = "cluster1",
@@ -100,8 +100,9 @@ Once a request arrives and gets routed to a cluster with session affinity enable
 If a new affinity was established for the request, the affinity key gets attached to a response where exact key representation and location depends on the implementation. Currently, there are two built-in policies storing the key on a cookie or custom header. Once the response gets delivered to the client, it's the client responsibility to attach the key to all following requests in the same session. Further, when the next request carrying the key arrives to the proxy, it resolves the existing affinity, but affinity key does not get again attached to the response. Thus, only the first response carries the affinity key.
 
 There are four built-in affinity polices that format and store the key differently on requests and responses. The default policy is `HashCookie`.
-- `HashCookie`, `ArrCookie`, and `Cookie` policies store the key as a cookie, hashed or encrypted respectively, see [Key Protection](#key-protection) below. The request's key will be delivered as a cookie with the configured name and sets the same cookie with `Set-Cookie` header on the first response in an affinitized sequence. The cookie name must be explicitly set via `SessionAffinityConfig.AffinityKeyName`. Other cookie properties can be configured via `SessionAffinityCookieConfig`.
-- `CustomHeader` stores the key as an encrypted header. It expects the affinity key to be delivered in a custom header with the configured name and sets the same header on the first response in an affinitized sequence. The header name must be set via `SessionAffinityConfig.AffinityKeyName`.
+
+* `HashCookie`, `ArrCookie`, and `Cookie` policies store the key as a cookie, hashed or encrypted respectively, see [Key Protection](#key-protection) below. The request's key will be delivered as a cookie with the configured name and sets the same cookie with `Set-Cookie` header on the first response in an affinitized sequence. The cookie name must be explicitly set via `SessionAffinityConfig.AffinityKeyName`. Other cookie properties can be configured via `SessionAffinityCookieConfig`.
+* `CustomHeader` stores the key as an encrypted header. It expects the affinity key to be delivered in a custom header with the configured name and sets the same header on the first response in an affinitized sequence. The header name must be set via `SessionAffinityConfig.AffinityKeyName`.
 
 **Important**: `AffinityKeyName` must be unique across all clusters with enabled session affinity to avoid conflicts.
 
@@ -118,7 +119,7 @@ The `Cookie` and `CustomHeader` policies encrypt the key using Data Protection. 
 ## Affinity failure policy
 If the affinity key cannot be decoded or no healthy destination found it's considered as a failure and an affinity failure policy is called to handle it. The policy has the full access to `HttpContext` and can send response to the client by itself. It returns a boolean value indicating whether the request processing can proceed down the pipeline or must be terminated.
 
-There are two built-in failure policies.  The default is `Redistribute`.
+There are two built-in failure policies. The default is `Redistribute`.
 1. `Redistribute` - tries to establish a new affinity to one of available healthy destinations by skipping the affinity lookup step and passing all healthy destination to the load balancer the same way it is done for a request without any affinity. Request processing continues. This is implemented by `RedistributeAffinityFailurePolicy`.
 
 2. `Return503Error` - sends a `503` response back to the client and request processing is terminated. This is implemented by `Return503ErrorAffinityFailurePolicy`

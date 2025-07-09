@@ -1,6 +1,6 @@
 ---
 title: The features described in this article are obsolete as of ASP.NET Core 3.0
-author: rick-anderson
+author: wadepickett
 description: The features described in this article are obsolete as of ASP.NET Core 3.0
 monikerRange: '>= aspnetcore-2.1 <= aspnetcore-3.0'
 ms.author: wpickett

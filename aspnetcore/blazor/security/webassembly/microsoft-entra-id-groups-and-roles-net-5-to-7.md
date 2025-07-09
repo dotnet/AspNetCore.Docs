@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles 
 author: guardrex
 description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID groups and roles.
 monikerRange: '>= aspnetcore-5.0 < aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 11/12/2024
 uid: blazor/security/webassembly/meid-groups-roles-net5to7

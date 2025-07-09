@@ -1,0 +1,15 @@
+@baseUrl = http://localhost:5201/HeartRate
+
+### Connect to SSE stream
+# This request will open an SSE connection that stays open
+GET {{baseUrl}}/string-item
+Accept: text/event-stream
+
+###
+GET {{baseUrl}}/json-item
+Accept: text/event-stream
+
+###
+
+GET {{baseUrl}}/sse-item
+Accept: text/event-stream

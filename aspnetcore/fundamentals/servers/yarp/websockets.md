@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/websockets
-title: YARP Proxing WebSockets and SPDY
-description: YARP Proxing WebSockets and SPDY
+title: YARP Proxying WebSockets and SPDY
+description: YARP Proxying WebSockets and SPDY
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025
@@ -9,14 +9,13 @@ ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
-
-# YARP Proxing WebSockets and SPDY
+# YARP Proxying WebSockets and SPDY
 
 ## Introduction
 
 YARP enables proxying WebSocket and SPDY connections by default. This support works with both the [direct forwarding](xref:fundamentals/servers/yarp/direct-forwarding) and [full pipeline](xref:fundamentals/servers/yarp/getting-started) approaches.
 
-[WebSockets](https://www.rfc-editor.org/rfc/rfc6455.html) is a bidirectional streaming protocol built on HTTP/1.1 and later adapted to [HTTP/2](https://datatracker.ietf.org/doc/html/rfc8441).
+[WebSockets](https://www.rfc-editor.org/rfc/rfc6455.html) is a bidirectional streaming protocol built on HTTP/1.1 or later adapted to [HTTP/2](https://datatracker.ietf.org/doc/html/rfc8441).
 
 [SPDY](https://www.chromium.org/spdy/spdy-protocol/) is the precursor to HTTP/2 and is commonly used in Kubernetes environments.
 

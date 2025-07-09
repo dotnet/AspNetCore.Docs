@@ -3,7 +3,7 @@ title: Build a Blazor movie database app (Part 7 - Add a new field)
 author: guardrex
 description: This part of the Blazor movie database app tutorial explains how to add a new field to the movie class, CRUD pages, and database.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/tutorials/movie-database-app/part-7

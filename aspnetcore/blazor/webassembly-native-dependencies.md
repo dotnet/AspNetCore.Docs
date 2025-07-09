@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor WebAssembly native dependencies
 author: guardrex
 description: Learn how to build Blazor WebAssembly apps with native dependencies built to run on WebAssembly in the browser.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/webassembly-native-dependencies
@@ -88,7 +88,7 @@ When you build the app with the .NET WebAssembly build tools installed, the nati
 
 Label managed methods that are passed to C++ with the [`[UnmanagedCallersOnly]` attribute](xref:System.Runtime.InteropServices.UnmanagedCallersOnlyAttribute). The method marked with the attribute must be `static`. To call an instance method in a Razor component, pass a <xref:System.Runtime.InteropServices.GCHandle> for the instance to C++ and then pass it back to native. Alternatively, use some other method to identify the instance of the component.
 
-The method marked with the [`[DllImport]` attribute](xref:System.Runtime.InteropServices.DllImportAttribute) must use a [function pointer (C# 9.0 or later)](/dotnet/csharp/language-reference/proposals/csharp-9.0/function-pointers) rather than a delegate type for the callback argument.
+The method marked with the [`[DllImport]` attribute](xref:System.Runtime.InteropServices.DllImportAttribute) must use a [function pointer (C# 9 or later)](/dotnet/csharp/language-reference/proposals/csharp-9.0/function-pointers) rather than a delegate type for the callback argument.
 
 > [!NOTE]
 > For C# function pointer types in [`[DllImport]`](xref:System.Runtime.InteropServices.DllImportAttribute) methods, use <xref:System.IntPtr> in the method signature on the managed side instead of `delegate *unmanaged<int, void>`. For more information, see [[WASM] callback from native code to .NET: Parsing function pointer types in signatures is not supported (`dotnet/runtime` #56145)](https://github.com/dotnet/runtime/issues/56145).

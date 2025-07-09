@@ -19,11 +19,12 @@ Request and response body transforms are not provided by YARP but you can write 
 
 ## Defaults
 The following transforms are enabled by default for all routes. They can be configured or disabled as shown later in this document.
-- Host - Suppress the incoming request's Host header. The proxy request will default to the host name specified in the destination server address. See `RequestHeaderOriginalHost`<!--](-bad bookmark#requestheaderoriginalhost)--> below.
-- X-Forwarded-For - Sets the client's IP address to the X-Forwarded-For header. See <!-- fix [X-Forwarded](#x-forwarded) --> `X-Forwarded` below.
-- X-Forwarded-Proto - Sets the request's original scheme (http/https) to the X-Forwarded-Proto header. See <!-- fix [X-Forwarded](#x-forwarded) --> `X-Forwarded` below.
-- X-Forwarded-Host - Sets the request's original Host to the X-Forwarded-Host header. See <!-- fix [X-Forwarded](#x-forwarded) --> `X-Forwarded` below.
-- X-Forwarded-Prefix - Sets the request's original PathBase, if any, to the X-Forwarded-Prefix header. See <!-- fix [X-Forwarded](#x-forwarded) --> `X-Forwarded` below.
+
+* Host - Suppress the incoming request's Host header. The proxy request will default to the host name specified in the destination server address. See `RequestHeaderOriginalHost`<!--](-bad bookmark#requestheaderoriginalhost)--> below.
+* X-Forwarded-For - Sets the client's IP address to the X-Forwarded-For header. See <!-- fix [X-Forwarded](#x-forwarded) --> `X-Forwarded` below.
+* X-Forwarded-Proto - Sets the request's original scheme (http/https) to the X-Forwarded-Proto header. See <!-- fix [X-Forwarded](#x-forwarded) --> `X-Forwarded` below.
+* X-Forwarded-Host - Sets the request's original Host to the X-Forwarded-Host header. See <!-- fix [X-Forwarded](#x-forwarded) --> `X-Forwarded` below.
+* X-Forwarded-Prefix - Sets the request's original PathBase, if any, to the X-Forwarded-Prefix header. See <!-- fix [X-Forwarded](#x-forwarded) --> `X-Forwarded` below.
 
 For example the following incoming request to `http://IncomingHost:5000/path`:
 ```
@@ -45,7 +46,7 @@ X-Forwarded-Host: IncomingHost:5000
 
 ## Transform Categories
 
-Transforms fall into a few categories: [Request](./transforms-request.md), [Response](./transforms-response.md), and [Response Trailers](./transforms-response.md#responsetrailer).  Request trailers are not supported because they are not supported by the underlying HttpClient.
+Transforms fall into a few categories: [Request](./transforms-request.md), [Response](./transforms-response.md), and [Response Trailers](./transforms-response.md#responsetrailer). Request trailers are not supported because they are not supported by the underlying HttpClient.
 
 If the built-in set of transforms is insufficient, then custom transforms can be added via [extensibility](./extensibility-transforms.md).
 
@@ -58,7 +59,7 @@ Transforms can be added to routes either through configuration or programmatical
 Transforms can be configured on [RouteConfig.Transforms](xref:Yarp.ReverseProxy.Configuration.RouteConfig) and can be bound from the `Routes` sections of the config file. These can be modified and reloaded without restarting the proxy. A transform is configured using one or more key-value string pairs.
 
 Here is an example of common transforms:
-```JSON
+```json
 {
   "ReverseProxy": {
     "Routes": {
@@ -130,7 +131,7 @@ The `AddTransforms` callback provides a [TransformBuilderContext](xref:Yarp.Reve
 
 The `TransformBuilderContext` also includes an `IServiceProvider` for access to any needed services.
 
-```C#
+```csharp
 services.AddReverseProxy()
     .LoadFromConfig(_configuration.GetSection("ReverseProxy"))
     .AddTransforms(builderContext =>

@@ -12,7 +12,7 @@ uid: fundamentals/minimal-apis/responses
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range="> aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 Minimal endpoints support the following types of return values:
 
@@ -97,7 +97,7 @@ The following method does not compile, because `TypedResults.Ok` and `TypedResul
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_111":::
 
-To use `TypedResults`, the return type must be fully declared, which when asynchronous requires the `Task<>` wrapper. Using `TypedResults` is more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
+To use `TypedResults`, the return type must be fully declared; when the method is asynchronous, the declaration requires wrapping the return type in a `Task<>`. Using `TypedResults` is more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
 
@@ -120,11 +120,11 @@ In order to document this endpoint correctly the extension method `Produces` is 
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_04":::
 
-<a name="binr7"></a>
+<a name="binr10"></a>
 
 ### Built-in results
 
-[!INCLUDE [results-helpers](includes/results-helpers.md)]
+[!INCLUDE [results-helpers](~/fundamentals/minimal-apis/includes/results-helpers.md)]
 
 The following sections demonstrate the usage of the common result helpers.
 
@@ -171,6 +171,20 @@ The following example streams an image from [Azure Blob storage](/azure/storage/
 The following example streams a video from an Azure Blob:
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
+
+#### Server-Sent Events (SSE)
+
+The [TypedResults.ServerSentEvents](https://source.dot.net/#Microsoft.AspNetCore.Http.Results/TypedResults.cs,051e6796e1492f84) API supports returning a [ServerSentEvents](xref:System.Net.ServerSentEvents) result.
+
+[Server-Sent Events](https://developer.mozilla.org/docs/Web/API/Server-sent_events) is a server push technology that allows a server to send a stream of event messages to a client over a single HTTP connection. In .NET, the event messages are represented as [`SseItem<T>`](/dotnet/api/system.net.serversentevents.sseitem-1) objects, which may contain an event type, an ID, and a data payload of type `T`.
+
+The [TypedResults](xref:Microsoft.AspNetCore.Http.TypedResults) class has a static method called [ServerSentEvents](https://source.dot.net/#Microsoft.AspNetCore.Http.Results/TypedResults.cs,ceb980606eb9e295) that can be used to return a `ServerSentEvents` result. The first parameter to this method is an `IAsyncEnumerable<SseItem<T>>` that represents the stream of event messages to be sent to the client.
+
+The following example illustrates how to use the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as JSON objects to the client:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs" id="snippet_item" :::
+
+For more information, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
 
 #### Redirect
 
@@ -264,5 +278,7 @@ As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpRespon
 * <xref:fundamentals/minimal-apis/security>
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/minimal-apis/includes/responses9.md)]
 
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/responses7-8.md)]

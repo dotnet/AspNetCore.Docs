@@ -10,7 +10,7 @@ products:
 urlFragment: create-grpc-client
 ---
 
-# Create a gRPC client and server in ASP.NET Core 8
+# Create a gRPC client and server in ASP.NET Core of .NET 8
 
 This sample demonstrates a .NET Core [gRPC](https://grpc.io/docs/guides/) client and an ASP.NET Core gRPC Server.
 

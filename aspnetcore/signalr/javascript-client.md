@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core SignalR JavaScript client
-author: bradygaster
+author: wadepickett
 description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
@@ -12,8 +12,6 @@ uid: signalr/javascript-client
 
 :::moniker range=">= aspnetcore-6.0"
 
-By [Rachel Appel](https://twitter.com/rachelappel)
-
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side SignalR hub code.
 
 ## Install the SignalR client package
@@ -23,11 +21,12 @@ The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs
 ### Install with npm
 
 # [Visual Studio](#tab/visual-studio)
+
 Run the following commands from **Package Manager Console**:
+
 # [Visual Studio Code](#tab/visual-studio-code)
+
 Run the following commands from the **Integrated Terminal**:
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-Run the following commands from a command window:
 
 ---
 

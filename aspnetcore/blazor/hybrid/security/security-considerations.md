@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor Hybrid security considerations
 author: guardrex
 description: Learn about security considerations when developing apps in Blazor Hybrid.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/hybrid/security/security-considerations
@@ -88,7 +88,7 @@ iOS and :::no-loc text="Mac Catalyst"::: both use [`WKWebView`](https://develope
 
 ### Windows (.NET MAUI, WPF, Windows Forms)
 
-On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webview2/) is required to run Blazor web apps.
+On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webview2/) is required to run Blazor Web Apps.
 
 The newest installed version of `WebView2`, known as the *:::no-loc text="Evergreen distribution":::*, is used. If you wish to ship a specific version of `WebView2` with the app, use the *:::no-loc text="Fixed Version distribution":::*.
 

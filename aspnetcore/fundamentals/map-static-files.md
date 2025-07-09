@@ -2,7 +2,7 @@
 title: Map static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to serve and secure mapped static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-9.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 3/18/2025
@@ -10,7 +10,11 @@ uid: fundamentals/map-static-files
 ---
 # Map static files in ASP.NET Core
 
-:::moniker range=">= aspnetcore-9.0"
+<!-- UPDATE 10.0 - Activate at GA
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -45,7 +49,7 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 * Use [Caching Middleware](xref:performance/caching/middleware).
 * Serve [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible. This optimization doesn't include minification.
 * Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
-* [Fingerprinting assets](https://developer.mozilla.org/docs/Glossary/Fingerprinting) to prevent reusing old versions of files.
+* [Fingerprinting assets](https://en.wikipedia.org/wiki/Fingerprint_(computing)) to prevent reusing old versions of files.
 
 `MapStaticAssets`:
 
@@ -54,7 +58,7 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 
 ### `MapStaticAssets` versus `UseStaticFiles`
 
-<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> is available in ASP.NET Core in .NET 9.0 and later. <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> must be used in versions prior to .NET 9.0.
+<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> is available in ASP.NET Core in .NET 9 or later. <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> must be used in versions prior to .NET 9.
 
 `UseStaticFiles` serves static files, but it doesn't provide the same level of optimization as `MapStaticAssets`. `MapStaticAssets` is optimized for serving assets that the app has knowledge of at runtime. If the app serves assets from other locations, such as disk or embedded resources, `UseStaticFiles` should be used.
 
@@ -209,5 +213,3 @@ The following code updates `IWebHostEnvironment.WebRootPath` to a non developmen
 * [Introduction to ASP.NET Core](xref:index)
 * <xref:blazor/file-uploads>
 * <xref:blazor/file-downloads>
-
-:::moniker-end

@@ -2,7 +2,7 @@
 title: Overview of OpenAPI support in ASP.NET Core API apps
 author: rick-anderson
 description: Learn about OpenAPI features in ASP.NET Core.
-ms.author: wpickett
+ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 8/02/2024
 uid: fundamentals/openapi/overview
@@ -58,6 +58,9 @@ By default, the generated OpenAPI document is saved to the `obj` directory, but 
 the output directory by setting the `OpenApiDocumentsDirectory` property.
 
 [!code-xml[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/projectFile.xml?highlight=9-12,16-19)]
+
+<!-- Include makes it trivial to move this anywhere in the doc OR add to other docs-->
+[!INCLUDE[](~/fundamentals/openapi/includes/api_endpoint_operation.md)]
 
 ## ASP.NET Core OpenAPI source code on GitHub
 

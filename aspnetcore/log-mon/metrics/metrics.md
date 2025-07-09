@@ -19,17 +19,19 @@ Metrics are numerical measurements reported over time. They're typically used to
 
 These metrics can be reported to a monitoring system at regular intervals. Dashboards can be setup to view metrics and alerts created to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
-> [!TIP]
-> See [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) for a comprehensive list of all instruments together with their attributes.
+See [ASP.NET Core metrics](xref:log-mon/metrics/built-in) for a comprehensive list of all instruments together with their attributes.
 
-## Using metrics
+## Use metrics
 
-There are two parts to using metrics in a .NET app:
+Using metrics involves the following:
 
 * **Instrumentation:** Code in .NET libraries takes measurements and associates these measurements with a metric name. .NET and ASP.NET Core include many built-in metrics.
-* **Collection:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools may perform configuration outside the app using configuration files or a UI tool.
+* **Collection and storage:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools may perform configuration outside the app using configuration files or a UI tool.
+* **Visualization:** A tool that can display the metrics in a human-readable format. For example, [Grafana](https://grafana.com/) and [Prometheus](https://prometheus.io/).
+* **Alerting:** A tool that provides notifications when a metric exceeds a threshold. For example, if the average response time for a web service exceeds 400 ms, an alert can be sent to the operations staff.
+* **Analysis:** A tool that can analyze the metrics over time. This is often a web-based dashboard that can be customized to show the most important metrics for a specific app.
 
-Instrumented code can record numeric measurements, but the measurements need to be aggregated, transmitted, and stored to create useful metrics for monitoring. The process of aggregating, transmitting, and storing data is called collection. This tutorial shows several examples of collecting metrics:
+Instrumented code can record numeric measurements, but the measurements need to be aggregated, transmitted, and stored to create useful metrics for monitoring. The process of aggregating, transmitting, and storing data is called collection. This tutorial shows several examples of collecting and displaying metrics:
 
 * Populating metrics in [Grafana](https://grafana.com/) with [OpenTelemetry](https://opentelemetry.io/) and [Prometheus](https://prometheus.io/).
 * Viewing metrics in real time with [`dotnet-counters`](/dotnet/core/diagnostics/dotnet-counters)

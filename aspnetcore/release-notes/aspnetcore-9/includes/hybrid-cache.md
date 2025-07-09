@@ -7,7 +7,7 @@ ms.date: 05/21/2024
 ### New `HybridCache` library
 
 > [!IMPORTANT]
-> `HybridCache` is currently still in preview but will be fully released *after* .NET 9.0 in a future minor release of .NET Extensions.
+> `HybridCache` is currently still in preview but will be fully released *after* .NET 9 in a future minor release of .NET Extensions.
 
 The <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> API bridges some gaps in the existing <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> and <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> APIs. It also adds new capabilities, such as:
 
@@ -55,7 +55,7 @@ That's a lot of work to get right each time, including things like serialization
 
 To simplify and improve this code with `HybridCache`, we first need to add the new library `Microsoft.Extensions.Caching.Hybrid`:
 
-``` xml
+```xml
 <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="9.0.0" />
 ```
 

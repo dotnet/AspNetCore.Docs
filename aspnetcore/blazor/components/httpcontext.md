@@ -3,9 +3,9 @@ title: IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps
 author: guardrex
 description: Learn about IHttpContextAccessor and HttpContext in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 01/30/2025
+ms.date: 04/29/2025
 uid: blazor/components/httpcontext
 ---
 # `IHttpContextAccessor`/`HttpContext` in ASP.NET Core Blazor apps
@@ -16,23 +16,34 @@ uid: blazor/components/httpcontext
 
 <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> generally should be avoided with interactive rendering because a valid <xref:Microsoft.AspNetCore.Http.HttpContext> isn't always available.
 
-<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. **However, we recommend avoiding it if possible.**
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used during static server-side rendering (static SSR), for example in statically-rendered root components, and when [using a token handler for web API calls](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) on the server. **We recommend avoiding <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> when static SSR or code running on the server can't be guaranteed.**
 
-<xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in *statically-rendered root components* for general tasks, such as inspecting and modifying headers or other properties in the `App` component (`Components/App.razor`). The value is always `null` for interactive rendering.
+<xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in statically-rendered root components or during static SSR for general tasks, such as inspecting and modifying headers or other properties in the `App` component (`App.razor`). The value is `null` during interactive rendering.
 
 ```csharp
 [CascadingParameter]
 public HttpContext? HttpContext { get; set; }
 ```
 
-During interactive rendering, an <xref:Microsoft.AspNetCore.Http.HttpContext> instance might not even exist. For scenarios where the <xref:Microsoft.AspNetCore.Http.HttpContext> is required in interactive components, we recommend flowing context data with [persistent component state](xref:blazor/components/prerender#persist-prerendered-state) from the server.
-
 For additional context in *advanced* edge cases&dagger;, see the discussion in the following articles:
 
 * [HttpContext is valid in Interactive Server Rendering Blazor page (`dotnet/AspNetCore.Docs` #34301)](https://github.com/dotnet/AspNetCore.Docs/issues/34301)
 * [Security implications of using IHttpContextAccessor in Blazor Server (`dotnet/aspnetcore` #45699)](https://github.com/dotnet/aspnetcore/issues/45699)
 
-&dagger;Most developers building and maintaining Blazor apps don't need to delve into advanced concepts as long as the general guidance in this article is followed.
+&dagger;Most developers building and maintaining Blazor apps don't need to delve into advanced concepts when the general guidance in this article is followed. The most important concept to keep in mind is that <xref:Microsoft.AspNetCore.Http.HttpContext> is fundamentally a server-based, request-response feature that's only generally available on the server during static SSR and only created when a user's circuit is established.
+
+## Don't set or modify headers after the response starts
+
+Attempting to set or modify a header after the first rendering (after the response starts) results in an error:
+
+> :::no-loc text="System.InvalidOperationException: 'Headers are read-only, response has already started.'":::
+
+Examples of situations that result in this error include:
+
+* Calling <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasswordSignInAsync%2A?displayProperty=nameWithType>, which must set headers for Identity to function correctly, while adopting [streaming rendering](xref:blazor/components/rendering#streaming-rendering).
+* Attempting to set or modify a header after the response has started during interactive rendering.
+
+For guidance on setting headers before the response starts, see <xref:blazor/fundamentals/startup#control-headers-in-c-code>.
 
 :::moniker-end
 

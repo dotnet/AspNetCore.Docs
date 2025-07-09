@@ -7,6 +7,7 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/03/2023
 uid: fundamentals/middleware/index
+ms.ai: assisted
 ---
 # ASP.NET Core Middleware
 
@@ -25,7 +26,7 @@ Request delegates are used to build the request pipeline. The request delegates 
 
 Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A>, <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A>, and <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> extension methods. An individual request delegate can be specified in-line as an anonymous method (called in-line middleware), or it can be defined in a reusable class. These reusable classes and in-line anonymous methods are *middleware*, also called *middleware components*. Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the pipeline. When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
 
-<xref:migration/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
+<xref:migration/fx-to-core/areas/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
 
 ## The role of middleware by app type
 
@@ -274,6 +275,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 
 | Middleware | Description | Order |
 | ---------- | ----------- | ----- |
+| [Antiforgery](xref:security/anti-request-forgery) | Provides anti-request-forgery support. | After authentication and authorization, before endpoints. |
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
 | [Authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) | Provides authorization support. | Immediately after the Authentication Middleware. |
 | [Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData). |
@@ -309,7 +311,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
 * [Configure gRPC-Web in ASP.NET Core](xref:grpc/browser#configure-grpc-web-in-aspnet-core)
-* <xref:migration/http-modules>
+* <xref:migration/fx-to-core/areas/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
 * <xref:fundamentals/middleware/extensibility>

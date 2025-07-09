@@ -7,7 +7,6 @@ ms.custom: mvc
 ms.date: 4/05/2019
 uid: performance/memory
 ---
-
 # Memory management and garbage collection (GC) in ASP.NET Core
 
 By [Sébastien Ros](https://github.com/sebastienros) and [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -237,7 +236,7 @@ GC.Collect();
 
 See <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> for information on compacting the LOH.
 
-In containers using .NET Core 3.0 and later, the LOH is automatically compacted.
+In containers using .NET Core 3.0 or later, the LOH is automatically compacted.
 
 The following API that illustrates this behavior:
 
@@ -427,6 +426,7 @@ The main difference is allocated bytes, and as a consequence much fewer generati
 
 ## Additional resources
 
+* <xref:blazor/performance/index>
 * [Garbage Collection](/dotnet/standard/garbage-collection/)
 * [Understanding different GC modes with Concurrency Visualizer](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)
 * [Large Object Heap Uncovered](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)

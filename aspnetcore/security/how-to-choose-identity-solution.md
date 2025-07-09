@@ -17,7 +17,7 @@ Most web apps support authentication to ensure that users are who they claim to 
 ASP.NET Core ships with a built-in authentication provider: [ASP.NET Core Identity](xref:security/authentication/identity). The provider includes the APIs, UI, and backend database configuration to support managing user identities, storing user credentials, and granting or revoking permissions. Other features it supports include:
 
 * [External logins](xref:security/authentication/social/index)
-* [Two-factor authentication (2FA)](xref:security/authentication/2fa)
+* [Multi-factor authentication (MFA)](xref:security/authentication/mfa)
 * [Password management](xref:security/authentication/accconfirm)
 * Account lockout and reactivation
 * Authenticator apps

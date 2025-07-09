@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core SignalR configuration
-author: bradygaster
+author: wadepickett
 description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
@@ -290,7 +290,7 @@ In the .NET Client, timeout values are specified as `TimeSpan` values.
 
 The following example shows values that are double the default values:
 
-```C#
+```csharp
 var builder = new HubConnectionBuilder()
     .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
     .WithServerTimeout(TimeSpan.FromSeconds(60))
@@ -339,7 +339,7 @@ Stateful reconnect achieves this by:
 * Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is up and replaying messages that might have been sent while the connection was down.
 
-Stateful reconnect is available in ASP.NET Core 8.0 and later.
+Stateful reconnect is available in .NET 8 or later.
 
 Opt in to stateful reconnect at both the server hub endpoint and the client:
 

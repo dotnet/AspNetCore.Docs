@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor SignalR guidance
 author: guardrex
 description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/fundamentals/signalr
@@ -177,11 +177,11 @@ To resolve the problem, use ***either*** of the following approaches:
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
-## Use session affinity (sticky sessions) for server-side webfarm hosting
+## Use session affinity (sticky sessions) for server-side web farm hosting
 
 When more than one backend server is in use, the app must implement session affinity, also called *sticky sessions*. Session affinity ensures that a client's circuit reconnects to the same server if the connection is dropped, which is important because client state is only held in the memory of the server that first established the client's circuit.
 
-The following error is thrown by an app that hasn't enabled session affinity in a webfarm:
+The following error is thrown by an app that hasn't enabled session affinity in a web farm:
 
 > :::no-loc text="Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.":::
 
@@ -580,7 +580,7 @@ An element with an `id` of `components-seconds-to-next-attempt` displays the num
 <span id="components-seconds-to-next-attempt"></span>
 ```
 
-The Blazor Web App project template includes a `ReconnectModal` component (`Components/Layout/ReconnectModal.razor`) with collocated stylesheet and JavaScript files (`ReconnectModal.razor.css`, `ReconnectModal.razor.js`) that can be customized as needed. These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template. The component is added to the project when the project is created in Visual Studio with **Interactive render mode** set to **Server** or **Auto** or created with the .NET CLI with the option `--interactivity server` (default) or `--interactivity auto`.
+The Blazor Web App project template includes a `ReconnectModal` component (`Layout/ReconnectModal.razor`) with collocated stylesheet and JavaScript files (`ReconnectModal.razor.css`, `ReconnectModal.razor.js`) that can be customized as needed. These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template. The component is added to the project when the project is created in Visual Studio with **Interactive render mode** set to **Server** or **Auto** or created with the .NET CLI with the option `--interactivity server` (default) or `--interactivity auto`.
 
 * [`ReconnectModal` component](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor)
 * [Stylesheet file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.css)
@@ -1538,6 +1538,240 @@ protected override async Task OnInitializedAsync()
     await hubConnection.StartAsync();
 }
 ```
+
+:::moniker-end
+
+## Modify the server-side reconnection handler
+
+The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
+
+* To notify the user if the connection is dropped.
+* To perform logging (from the client) when a circuit is connected.
+
+To modify the connection events, register callbacks for the following connection changes:
+
+* Dropped connections use `onConnectionDown`.
+* Established/re-established connections use `onConnectionUp`.
+
+**Both `onConnectionDown` and `onConnectionUp` must be specified.**
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      reconnectionHandler: {
+        onConnectionDown: (options, error) => console.error(error),
+        onConnectionUp: () => console.log("Up, up, and away!")
+      }
+    }
+  });
+</script>
+```
+
+Blazor Server:
+
+:::moniker-end
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    reconnectionHandler: {
+      onConnectionDown: (options, error) => console.error(error),
+      onConnectionUp: () => console.log("Up, up, and away!")
+    }
+  });
+</script>
+```
+
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script and the path to use, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker range=">= aspnetcore-7.0"
+
+## Programmatic control of reconnection and reload behavior
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+Blazor automatically attempts reconnection and refreshes the browser when reconnection fails. For more information, see the [Adjust the server-side reconnection retry count and interval](#adjust-the-server-side-reconnection-retry-count-and-interval) section. However, developer code can implement a custom reconnection handler to take full control of reconnection behavior.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-9.0"
+
+The default reconnection behavior requires the user to take manual action to refresh the page after reconnection fails. However, developer code can implement a custom reconnection handler to take full control of reconnection behavior, including implementing automatic page refresh after reconnection attempts fail.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+`App.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`Pages/_Host.cshtml`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+```html
+<div id="reconnect-modal" style="display: none;"></div>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script src="boot.js"></script>
+```
+
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script and the path to use, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+Create the following `wwwroot/boot.js` file.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+```javascript
+(() => {
+  const maximumRetryCount = 3;
+  const retryIntervalMilliseconds = 5000;
+  const reconnectModal = document.getElementById('reconnect-modal');
+  
+  const startReconnectionProcess = () => {
+    reconnectModal.style.display = 'block';
+
+    let isCanceled = false;
+
+    (async () => {
+      for (let i = 0; i < maximumRetryCount; i++) {
+        reconnectModal.innerText = `Attempting to reconnect: ${i + 1} of ${maximumRetryCount}`;
+
+        await new Promise(resolve => setTimeout(resolve, retryIntervalMilliseconds));
+
+        if (isCanceled) {
+          return;
+        }
+
+        try {
+          const result = await Blazor.reconnect();
+          if (!result) {
+            // The server was reached, but the connection was rejected; reload the page.
+            location.reload();
+            return;
+          }
+
+          // Successfully reconnected to the server.
+          return;
+        } catch {
+          // Didn't reach the server; try again.
+        }
+      }
+
+      // Retried too many times; reload the page.
+      location.reload();
+    })();
+
+    return {
+      cancel: () => {
+        isCanceled = true;
+        reconnectModal.style.display = 'none';
+      },
+    };
+  };
+
+  let currentReconnectionProcess = null;
+
+  Blazor.start({
+    circuit: {
+      reconnectionHandler: {
+        onConnectionDown: () => currentReconnectionProcess ??= startReconnectionProcess(),
+        onConnectionUp: () => {
+          currentReconnectionProcess?.cancel();
+          currentReconnectionProcess = null;
+        }
+      }
+    }
+  });
+})();
+```
+
+Blazor Server:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+```javascript
+(() => {
+  const maximumRetryCount = 3;
+  const retryIntervalMilliseconds = 5000;
+  const reconnectModal = document.getElementById('reconnect-modal');
+  
+  const startReconnectionProcess = () => {
+    reconnectModal.style.display = 'block';
+
+    let isCanceled = false;
+
+    (async () => {
+      for (let i = 0; i < maximumRetryCount; i++) {
+        reconnectModal.innerText = `Attempting to reconnect: ${i + 1} of ${maximumRetryCount}`;
+
+        await new Promise(resolve => setTimeout(resolve, retryIntervalMilliseconds));
+
+        if (isCanceled) {
+          return;
+        }
+
+        try {
+          const result = await Blazor.reconnect();
+          if (!result) {
+            // The server was reached, but the connection was rejected; reload the page.
+            location.reload();
+            return;
+          }
+
+          // Successfully reconnected to the server.
+          return;
+        } catch {
+          // Didn't reach the server; try again.
+        }
+      }
+
+      // Retried too many times; reload the page.
+      location.reload();
+    })();
+
+    return {
+      cancel: () => {
+        isCanceled = true;
+        reconnectModal.style.display = 'none';
+      },
+    };
+  };
+
+  let currentReconnectionProcess = null;
+
+  Blazor.start({
+    reconnectionHandler: {
+      onConnectionDown: () => currentReconnectionProcess ??= startReconnectionProcess(),
+      onConnectionUp: () => {
+        currentReconnectionProcess?.cancel();
+        currentReconnectionProcess = null;
+      }
+    }
+  });
+})();
+```
+
+For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 :::moniker-end
 

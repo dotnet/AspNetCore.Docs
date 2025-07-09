@@ -3,7 +3,7 @@ title: Configure the Trimmer for ASP.NET Core Blazor
 author: guardrex
 description: Learn how to control the Intermediate Language (IL) Trimmer when building a Blazor app.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/host-and-deploy/configure-trimmer
@@ -33,9 +33,9 @@ To configure the IL Trimmer, see the [Trimming options](/dotnet/core/deploying/t
 The default trimmer granularity for Blazor apps is `partial`. To trim all assemblies, change the granularity to `full` in the app's project file:
 
 ```xml
-<ItemGroup>
+<PropertyGroup>
   <TrimMode>full</TrimMode>
-</ItemGroup>
+</PropertyGroup>
 ```
 
 For more information, see [Trimming options (.NET documentation)](/dotnet/core/deploying/trimming/trimming-options#trimming-granularity).
@@ -46,7 +46,7 @@ Trimming may have detrimental effects for a published app leading to runtime err
 
 The IL Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
 
-Consider the following client-side component in a Blazor Web App (ASP.NET Core 8.0 or later) that deserializes a <xref:System.Collections.Generic.KeyValuePair> collection (`List<KeyValuePair<string, string>>`):
+Consider the following client-side component in a Blazor Web App (.NET 8 or later) that deserializes a <xref:System.Collections.Generic.KeyValuePair> collection (`List<KeyValuePair<string, string>>`):
 
 ```razor
 @rendermode @(new InteractiveWebAssemblyRenderMode(false))
@@ -178,4 +178,4 @@ Because custom types are never trimmed by Blazor when an app is published, the c
 ## Additional resources
 
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained)
-* <xref:blazor/performance#intermediate-language-il-trimming>
+* <xref:blazor/performance/app-download-size#intermediate-language-il-trimming>

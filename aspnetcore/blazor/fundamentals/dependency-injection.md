@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor dependency injection
 author: guardrex
 description: Learn how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/fundamentals/dependency-injection
@@ -608,6 +608,12 @@ public static class CircuitServicesServiceCollectionExtensions
         return services;
     }
 }
+```
+
+Call `AddCircuitServicesAccessor` in the app's `Program` file:
+
+```csharp
+builder.Services.AddCircuitServicesAccessor();
 ```
 
 Access the circuit-scoped services by injecting the `CircuitServicesAccessor` where it's needed.

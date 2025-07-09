@@ -354,6 +354,7 @@ To satisfy the preceding requirements, make the following changes:
 
 For more information on building ASP.NET Core web APIs, see the following resources:
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/3.x/SampleApp) ([how to download](xref:index#how-to-download-a-sample))
 * [YouTube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>

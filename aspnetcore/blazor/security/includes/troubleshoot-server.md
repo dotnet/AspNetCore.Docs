@@ -2,9 +2,19 @@
 
 The server app is a standard ASP.NET Core app. See the [ASP.NET Core logging guidance](xref:fundamentals/logging/index) to enable a lower logging level in the server app.
 
-To enable debug or trace logging for Blazor WebAssembly authentication, see the *Client-side authentication logging* section of <xref:blazor/fundamentals/logging> with the article version selector set to ASP.NET Core 7.0 or later.
+To enable debug or trace logging for Blazor WebAssembly authentication, see the *Client-side authentication logging* section of <xref:blazor/fundamentals/logging> with the article version selector set to ASP.NET Core in .NET 7 or later.
 
 ### Common errors
+
+* Debugger breaks on an exception during logout with Microsoft Entra External ID
+
+  The following exception stops the Visual Studio debugger during logout with [Microsoft Entra External ID](/entra/external-id/external-identities-overview):
+
+  > :::no-loc text="Uncaught TypeError TypeError: Failed to execute 'postMessage' on 'Window': The provided value cannot be converted to a sequence.":::
+
+  ![Visual Studio Debugger breaking on JavaScript exception during logout](../_static/entra-external-id-logout-exception.png)
+
+  The exception is thrown from Entra JavaScript code, so this isn't a problem with ASP.NET Core. The exception doesn't impact app functionality in production, so the exception can be ignored during local development testing.
 
 * Misconfiguration of the app or Identity Provider (IP)
 
@@ -93,9 +103,16 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 > [!NOTE]
 > Use of package versions incompatible with the app's target framework isn't supported. For information on a package, use the [NuGet Gallery](https://www.nuget.org).
 
-### Run the server app
+### Start the solution from the correct project
 
-When testing and troubleshooting Blazor Web App, make sure that you're running the app from the server project.
+Blazor Web Apps:
+
+* For one of the Backend-for-Frontend (BFF) pattern samples, start the solution from the ***`Aspire/Aspire.AppHost` project***.
+* For one of the non-BFF pattern samples, start the solution from the ***server project***.
+
+Blazor Server:
+
+Start the solution from the ***server project***.
 
 ### Inspect the user
 

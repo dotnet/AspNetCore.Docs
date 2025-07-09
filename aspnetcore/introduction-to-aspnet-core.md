@@ -4,7 +4,7 @@ author: tdykstra
 description: Get an overview of ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/03/2023
+ms.date: 04/21/2025
 uid: index
 ---
 # Overview of ASP.NET Core
@@ -15,7 +15,7 @@ By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.
 
 :::moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps.
+ASP.NET Core is a cross-platform, high-performance framework for building modern web applications. This [open-source](https://github.com/dotnet/aspnetcore) framework allows developers to create web applications, services, and APIs that can run on Windows, macOS, and Linux. It is built for large-scale app development and can handle any size workload, making it a robust choice for enterprise-level applications.
 
 With ASP.NET Core, you can:
 
@@ -32,9 +32,10 @@ Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to creat
 
 ## Build web APIs and web UI using ASP.NET Core MVC
 
-ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-api) and [web apps](xref:tutorials/razor-pages/index):
+ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-api) and [web apps](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro):
 
 * The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps testable.
+* [Blazor](xref:blazor/index), a component-based web UI framework based on C# that supports both server-side rendering and client-side rendering via WebAssembly.
 * [Razor Pages](xref:razor-pages/index) is a page-based programming model that makes building web UI easier and more productive.
 * [Razor markup](xref:mvc/views/razor) provides a productive syntax for [Razor Pages](xref:razor-pages/index) and [MVC views](xref:mvc/views/overview).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
@@ -68,9 +69,9 @@ We recommend the following sequence of tutorials for an introduction to developi
 
    |App type  |Scenario  |Tutorial  |
    |----------|----------|----------|
+   |Web app                   | Client-side web UI development |[Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) |
    |Web app                   | New server-side web UI development |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
    |Web app                   | Maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |Web app                   | Client-side web UI development |[Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) |
    |Web API                   | RESTful HTTP services |[Create a web API](xref:tutorials/first-web-api)&dagger; |
    |Remote Procedure Call app | Contract-first services using Protocol Buffers |[Get started with a gRPC service](xref:tutorials/grpc/grpc-start) |
    |Real-time app             | Bidirectional communication between servers and connected clients |[Get started with SignalR](xref:tutorials/signalr) |
@@ -79,6 +80,7 @@ We recommend the following sequence of tutorials for an introduction to developi
 
    |Scenario  |Tutorial  |
    |----------|----------|
+   |New development        |[Blazor with Entity Framework Core](xref:blazor/tutorials/movie-database-app/index) |
    |New development        |[Razor Pages with Entity Framework Core](xref:data/ef-rp/intro) |
    |Maintaining an MVC app |[MVC with Entity Framework Core](xref:data/ef-mvc/intro) |
 
@@ -90,7 +92,7 @@ We recommend the following sequence of tutorials for an introduction to developi
 
 ## Migrate from .NET Framework
 
-For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:migration/proper-to-2x/index>.
+For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:migration/fx-to-core/index>.
 
 :::moniker-end
 
@@ -176,7 +178,7 @@ We recommend the following sequence of tutorials and articles for an introductio
 
 ## Migrate from .NET Framework
 
-For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migration/proper-to-2x/index>.
+For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migration/fx-to-core/index>.
 
 :::moniker-end
 
@@ -240,6 +242,7 @@ For more information, see [Contribute to the ASP.NET documentation: Code snippet
 
 For more information, see the following resources:
 
+* [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
 * <xref:getting-started>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)

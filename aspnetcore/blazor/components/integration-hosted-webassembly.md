@@ -3,7 +3,7 @@ title: Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted
 author: guardrex
 description: Learn about Razor component integration scenarios for hosted Blazor WebAssembly apps with MVC or Razor Pages, including prerendering of Razor components on the server.
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/integration-hosted-webassembly
@@ -415,7 +415,7 @@ In `Pages/_Host.cshtml` of Blazor apps that are WebAssembly prerendered (`WebAss
 </body>
 ```
 
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 In the following example:
 
@@ -434,9 +434,6 @@ In the following example:
 
     protected override async Task OnInitializedAsync()
     {
-        persistingSubscription = 
-            ApplicationState.RegisterOnPersisting(PersistData);
-
         if (!ApplicationState.TryTakeFromJson<{TYPE}>(
             "{TOKEN}", out var restored))
         {
@@ -446,6 +443,9 @@ In the following example:
         {
             data = restored!;
         }
+
+        // Call at the end to avoid a potential race condition at app shutdown
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
     }
 
     private Task PersistData()
@@ -514,24 +514,24 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        persistingSubscription = 
-            ApplicationState.RegisterOnPersisting(PersistForecasts);
-
         if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>(
-            "fetchdata", out var restored))
+            nameof(forecasts), out var restored))
         {
-            forecasts = 
-                await WeatherForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
+            forecasts = await WeatherForecastService.GetForecastAsync(
+                DateOnly.FromDateTime(DateTime.Now));
         }
         else
         {
             forecasts = restored!;
         }
+
+        // Call at the end to avoid a potential race condition at app shutdown
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
     }
 
-    private Task PersistForecasts()
+    private Task PersistData()
     {
-        ApplicationState.PersistAsJson("fetchdata", forecasts);
+        ApplicationState.PersistAsJson(nameof(forecasts), forecasts);
 
         return Task.CompletedTask;
     }
@@ -975,7 +975,7 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 </body>
 ```
 
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 The following example is an updated version of the `FetchData` component in a hosted Blazor WebAssembly app based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
 
@@ -1029,11 +1029,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        persistingSubscription = 
-            ApplicationState.RegisterOnPersisting(PersistForecasts);
-
         if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>(
-            "fetchdata", out var restored))
+            nameof(forecasts), out var restored))
         {
             forecasts = 
                 await WeatherForecastService.GetForecastAsync(DateTime.Now);
@@ -1042,11 +1039,14 @@ else
         {
             forecasts = restored!;
         }
+
+        // Call at the end to avoid a potential race condition at app shutdown
+        persistingSubscription = ApplicationState.RegisterOnPersisting(PersistData);
     }
 
-    private Task PersistForecasts()
+    private Task PersistData()
     {
-        ApplicationState.PersistAsJson("fetchdata", forecasts);
+        ApplicationState.PersistAsJson(nameof(forecasts), forecasts);
 
         return Task.CompletedTask;
     }

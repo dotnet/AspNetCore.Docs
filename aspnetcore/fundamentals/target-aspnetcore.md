@@ -1,6 +1,6 @@
 ---
 title: Use ASP.NET Core APIs in a class library
-author: rick-anderson
+author: wadepickett
 description: Learn how to use ASP.NET Core APIs in a class library.
 ms.author: wpickett
 ms.custom: mvc

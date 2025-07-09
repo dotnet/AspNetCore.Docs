@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor templated components
 author: guardrex
 description: Learn how templated components can accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/templated-components
@@ -329,6 +329,6 @@ Without using the `@key` directive attribute in the `TableTemplate` component, t
 
 ## Additional resources
 
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance/rendering#define-reusable-renderfragments-in-code>
 * <xref:blazor/components/key>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))

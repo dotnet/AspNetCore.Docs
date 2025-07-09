@@ -21,18 +21,18 @@ As an ASP.NET Core component, YARP can easily integrate into different tracing s
 YARP supports distributed tracing using Open Telemetry (OTEL). When a request comes in, and there is a listener for Activities, then ASP.NET Core will propagate the [Trace Context](https://www.w3.org/TR/trace-context) trace-id, or create one if necessary, and create new spans/activities for the work performed.
 In addition YARP can create activities for:
 
-- Forwarding Requests
-- Active health checks for clusters
+* Forwarding Requests
+* Active health checks for clusters
 
 These will only be created if there is a listener for the [`ActivitySource`](/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs#activitysource) named `Yarp.ReverseProxy`.
 
 ### Example: Application Insights
 
-For example, to monitor the traces with Application Insights, the proxy application needs to use the [Open Telemetry](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry/README) and [Azure Monitor](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/README) SDKs.
+For example, to monitor the traces with Application Insights, the proxy application needs to use the [Open Telemetry](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry) and [Azure Monitor](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore) SDKs.
 
 `application.csproj`:
 
-``` xml
+```xml
 <ItemGroup>
   <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.0.0-beta.3" />
 </ItemGroup>
@@ -40,7 +40,7 @@ For example, to monitor the traces with Application Insights, the proxy applicat
 
 `Program.cs`:
 
-``` c#
+```csharp
 using Azure.Monitor.OpenTelemetry.AspNetCore;
 using OpenTelemetry.Trace;
 using System.Diagnostics;
@@ -70,7 +70,7 @@ app.Run();
 
 ### Example: OpenTelemetry hosting
 
-``` xml
+```xml
   <ItemGroup>
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
@@ -81,7 +81,7 @@ app.Run();
   </ItemGroup>
 ```
 
-``` csharp
+```csharp
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -136,7 +136,7 @@ YARP will remove any header in [`DistributedContextPropagator.Fields`] so that t
 
 If you do not wish the proxy to actively participate in the trace, and wish to keep all the tracing headers as-is, you may do so by setting `SocketsHttpHandler.ActivityHeadersPropagator` to `null`.
 
-```c#
+```csharp
 services.AddReverseProxy()
     .ConfigureHttpClient((context, handler) => handler.ActivityHeadersPropagator = null);
 ```

@@ -70,9 +70,9 @@ As long as the binder can bind request data to appropriately named properties or
 
 In this section we'll implement a custom model binder that:
 
-- Converts incoming request data into strongly typed key arguments.
-- Uses Entity Framework Core to fetch the associated entity.
-- Passes the associated entity as an argument to the action method.
+* Converts incoming request data into strongly typed key arguments.
+* Uses Entity Framework Core to fetch the associated entity.
+* Passes the associated entity as an argument to the action method.
 
 The following sample uses the `ModelBinder` attribute on the `Author` model:
 
@@ -129,9 +129,9 @@ However, if an app requires polymorphic model binding, an implementation might l
 
 Custom model binders:
 
-- Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
-- Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
-- Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
+* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
+* Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
+* Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
 
 :::moniker-end
 :::moniker range="< aspnetcore-3.0"
@@ -191,9 +191,9 @@ As long as the binder can bind request data to appropriately named properties or
 
 In this section we'll implement a custom model binder that:
 
-- Converts incoming request data into strongly typed key arguments.
-- Uses Entity Framework Core to fetch the associated entity.
-- Passes the associated entity as an argument to the action method.
+* Converts incoming request data into strongly typed key arguments.
+* Uses Entity Framework Core to fetch the associated entity.
+* Passes the associated entity as an argument to the action method.
 
 The following sample uses the `ModelBinder` attribute on the `Author` model:
 
@@ -250,8 +250,8 @@ However, if an app requires polymorphic model binding, an implementation might l
 
 Custom model binders:
 
-- Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
-- Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
-- Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
+* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
+* Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
+* Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
 
 :::moniker-end

@@ -12,7 +12,7 @@ uid: fundamentals/websockets
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps.
 
@@ -233,6 +233,7 @@ Select **Connect** to send a WebSocket request to the URL shown. Enter a test me
 
 :::moniker-end
 
+[!INCLUDE[](~/fundamentals/websockets/includes/websockets8.md)]
 [!INCLUDE[](~/fundamentals/websockets/includes/websockets7.md)]
 [!INCLUDE[](~/fundamentals/websockets/includes/websockets6.md)]
 [!INCLUDE[](~/fundamentals/websockets/includes/websockets3-5.md)]

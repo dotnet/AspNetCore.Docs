@@ -175,6 +175,9 @@ The sample app creates an instance of the <xref:Azure.Identity.DefaultAzureCrede
 
 :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Program.cs" id="snippet_Managed":::
 
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
 Key Vault name example value: `contosovault`
 
 `appsettings.json`:
@@ -360,6 +363,9 @@ builder.Configuration.AddAzureKeyVault(
 ```
 
 Disabled secrets cannot be retrieved from Key Vault and are never included.
+
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 ## Troubleshoot
 
@@ -554,6 +560,9 @@ The sample app:
 
 :::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet2" highlight="12-14":::
 
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
 Key Vault name example value: `contosovault`
 
 `appsettings.json`:
@@ -584,6 +593,9 @@ config.AddAzureKeyVault(
         ...
     });
 ```
+
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 The `AzureKeyVaultConfigurationOptions` object contains the following properties.
 
@@ -737,6 +749,9 @@ config.AddAzureKeyVault(
 ```
 
 Disabled secrets cannot be retrieved from Key Vault and are never included.
+
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 ## Troubleshoot
 

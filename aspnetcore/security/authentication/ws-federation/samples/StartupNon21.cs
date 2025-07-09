@@ -17,7 +17,7 @@ namespace WebApp21
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(sharedOptions =>
@@ -62,7 +62,7 @@ namespace WebApp21
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-        #endregion
+        // </snippet>
 
     }
 }

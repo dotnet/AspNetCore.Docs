@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor event handling
 author: guardrex
 description: Learn about Blazor's event handling features, including event argument types, event callbacks, and managing default browser events.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/event-handling
@@ -39,6 +39,9 @@ For event handling:
 * Exceptions are logged.
 
 :::moniker-end
+
+> [!IMPORTANT]
+> The Blazor framework doesn't track `void`-returning asynchronous methods (`async`). As a result, the entire process fails when an exception isn't caught if `void` is returned. Always return a <xref:System.Threading.Tasks.Task>/<xref:System.Threading.Tasks.ValueTask> from asynchronous methods.
 
 The following code:
 
@@ -577,7 +580,7 @@ It's often convenient to close over additional values using C# method parameters
 
 :::moniker-end
 
-Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
+Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance/rendering#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
 
 Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
 

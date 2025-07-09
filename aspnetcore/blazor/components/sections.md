@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor sections
 author: guardrex
 description: Learn how to control the content in a Razor component from a child Razor component.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/sections
@@ -92,3 +92,4 @@ A section interacts with other Blazor features in the following ways:
 * [Cascading values](xref:blazor/components/cascading-values-and-parameters) flow into section content from where the content is defined by the <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component.
 * Unhandled exceptions are handled by [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries) defined around a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component.
 * A Razor component configured for [streaming rendering](xref:blazor/components/rendering#streaming-rendering) also configures section content provided by a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component to use streaming rendering.
+* A section that contains interactive components is statically rendered (non-functional) in a layout component in a Blazor Web App that adopts per-page/component rendering. For more information, see <xref:blazor/components/layouts#statically-rendered-layout-components>.

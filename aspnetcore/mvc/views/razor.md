@@ -261,9 +261,9 @@ Extra `@` characters in a Razor file can cause compiler errors at statements lat
 
 ### Conditional attribute rendering
 
-Razor automatically omits attributes that aren't needed. If the value passed in is `null` or `false`, the attribute isn't rendered.
+Razor automatically omits attributes that aren't required. If the value passed in is `null` or `false`, the attribute isn't rendered.
 
-For example,  consider the following razor:
+For example, consider the following Razor markup:
 
 ```cshtml
 <div class="@false">False</div>
@@ -287,6 +287,20 @@ The preceding Razor markup generates the following HTML:
 <input type="checkbox" checked="checked" name="true">
 <input type="checkbox" name="false">
 <input type="checkbox" name="null">
+```
+
+Razor retains `data-` attributes if their values are `null` or `false`.
+
+Consider the following Razor markup:
+
+```cshtml
+<div data-id="@null" data-active="@false"></div>
+```
+
+The preceding Razor markup generates the following HTML:
+
+```html
+<div data-id="" data-active="False"></div>
 ```
 
 ## Control structures
@@ -652,7 +666,7 @@ The `@model` directive specifies the type of the model passed to a view or page:
 @model TypeNameOfModel
 ```
 
-In an ASP.NET Core MVC or Razor Pages app created with individual user accounts, `Views/Account/Login.cshtml` contains the following model declaration:
+In an ASP.NET Core MVC or Razor Pages app created with individual accounts, `Views/Account/Login.cshtml` contains the following model declaration:
 
 ```cshtml
 @model LoginViewModel
@@ -1092,7 +1106,7 @@ The Razor view engine performs case-sensitive lookups for views. However, the ac
 * File based source:
   * On operating systems with case insensitive file systems (for example, Windows), physical file provider lookups are case insensitive. For example, `return View("Test")` results in matches for `/Views/Home/Test.cshtml`, `/Views/home/test.cshtml`, and any other casing variant.
   * On case-sensitive file systems (for example, Linux, OSX, and with `EmbeddedFileProvider`), lookups are case-sensitive. For example, `return View("Test")` specifically matches `/Views/Home/Test.cshtml`.
-* Precompiled views: With ASP.NET Core 2.0 and later, looking up precompiled views is case insensitive on all operating systems. The behavior is identical to physical file provider's behavior on Windows. If two precompiled views differ only in case, the result of lookup is non-deterministic.
+* Precompiled views: With ASP.NET Core 2.0 or later, looking up precompiled views is case insensitive on all operating systems. The behavior is identical to physical file provider's behavior on Windows. If two precompiled views differ only in case, the result of lookup is non-deterministic.
 
 Developers are encouraged to match the casing of file and directory names to the casing of:
 

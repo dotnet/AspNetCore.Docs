@@ -23,7 +23,7 @@ The requests won't be automatically matched for cors preflight requests unless e
 CORS policies can be specified per route via [RouteConfig.CorsPolicy](xref:Yarp.ReverseProxy.Configuration.RouteConfig) and can be bound from the `Routes` sections of the config file. As with other route properties, this can be modified and reloaded without restarting the proxy. Policy names are case insensitive.
 
 Example:
-```JSON
+```json
 {
   "ReverseProxy": {
     "Routes": {

@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 ## Introduction
 The reverse proxy can be used to cache proxied responses and serve requests before they are proxied to the destination servers. This can reduce load on the destination servers, add a layer of protection, and ensure consistent policies are implemented across your applications.
 
-> This feature is only available when using .NET 7.0 or later
+> This feature is only available when using .NET 7 or later
 
 ## Defaults
 
@@ -25,7 +25,7 @@ No output caching is performed unless enabled in the route or application config
 Output Cache policies can be specified per route via [RouteConfig.OutputCachePolicy](xref:Yarp.ReverseProxy.Configuration.RouteConfig) and can be bound from the `Routes` sections of the config file. As with other route properties, this can be modified and reloaded without restarting the proxy. Policy names are case insensitive.
 
 Example:
-```JSON
+```json
 {
   "ReverseProxy": {
     "Routes": {
@@ -53,7 +53,7 @@ Example:
 [Output cache policies](/aspnet/core/performance/caching/output) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core output caching middleware.
 
 Output cache policies can be configured in Program.cs as follows:
-```c#
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOutputCache(options =>
@@ -64,7 +64,7 @@ builder.Services.AddOutputCache(options =>
 
 Then add the output caching middleware:
 
-```c#
+```csharp
 var app = builder.Build();
 
 app.UseOutputCache();

@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor startup
 author: guardrex
 description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/fundamentals/startup
@@ -139,6 +139,33 @@ For Blazor Web Apps:
 > </script>
 > ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
+Due to a [framework bug in .NET 8 and 9 (`dotnet/aspnetcore` #54049)](https://github.com/dotnet/aspnetcore/issues/54049), the Blazor script must be manually started when `beforeWebAssemblyStart(options, extensions)` or `afterWebAssemblyStarted(blazor)` are called. If the server app doesn't already start Blazor manually with a WebAssembly (`webAssembly: {...}`) configuration, update the `App` component in the server project with the following.
+
+In `Components/App.razor`, remove the existing Blazor `<script>` tag: 
+
+```diff
+- <script src="_framework/blazor.web.js"></script>
+```
+
+Replace the `<script>` tag with the following markup that starts Blazor manually with a WebAssembly (`webAssembly: {...}`) configuration:
+
+```html
+<script src="_framework/blazor.web.js" autostart="false"></script>
+<script>
+    Blazor.start({
+        webAssembly: {}
+    });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
 For Blazor Server, Blazor WebAssembly, and Blazor Hybrid apps:
 
 :::moniker-end
@@ -190,7 +217,7 @@ Both callbacks can return a `Promise`, and the promise is awaited before the sta
 For the file name:
 
 * If the JS initializers are consumed as a static asset in the project, use the format `{ASSEMBLY NAME}.lib.module.js`, where the `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, name the file `BlazorSample.lib.module.js` for a project with an assembly name of `BlazorSample`. Place the file in the app's `wwwroot` folder.
-* If the JS initializers are consumed from an RCL, use the format `{LIBRARY NAME/PACKAGE ID}.lib.module.js`, where the `{LIBRARY NAME/PACKAGE ID}` placeholder is the project's library name or package identifier. For example, name the file `RazorClassLibrary1.lib.module.js` for an RCL with a package identifier of `RazorClassLibrary1`. Place the file in the library's `wwwroot` folder.
+* If the JS initializers are consumed from an RCL, use the format `{LIBRARY NAME/PACKAGE ID}.lib.module.js`, where the `{LIBRARY NAME/PACKAGE ID}` placeholder is the project's library name or package identifier (`<PackageId>` value in the library's project file). For example, name the file `RazorClassLibrary1.lib.module.js` for an RCL with a package identifier of `RazorClassLibrary1`. Place the file in the library's `wwwroot` folder.
 
 :::moniker-end
 
@@ -249,6 +276,7 @@ For examples of JS initializers, see the following resources:
 
 :::moniker range=">= aspnetcore-8.0"
 
+* [Blazor Web App loading indicator](#global-interactive-webassembly-rendering-without-prerendering) (*Global Interactive WebAssembly rendering without prerendering example*)
 * <xref:blazor/js-interop/ssr>
 * <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
 * <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
@@ -525,13 +553,16 @@ When the `loadBootResource` function returns `null`, Blazor uses the default loa
 
 The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly/index#compression>.
 
-For more information, see <xref:blazor/host-and-deploy/webassembly/runtime-and-app-bundle-caching>.
+For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures>.
 
 ## Control headers in C# code
 
 Control headers at startup in C# code using the following approaches.
 
 In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string. For more information on CSPs, see <xref:blazor/security/content-security-policy>.
+
+> [!NOTE]
+> Headers can't be set after the response starts. The approaches in this section only set headers before the response starts, so the approaches described here are safe. For more information, see <xref:blazor/components/httpcontext#dont-set-or-modify-headers-after-the-response-starts>.
 
 ### Server-side and prerendered client-side scenarios
 
@@ -600,85 +631,51 @@ app.MapFallbackToFile("index.html", staticFileOptions);
 
 :::moniker range=">= aspnetcore-7.0"
 
-## Client-side loading progress indicators
+## Client-side loading indicators
 
-A loading progress indicator shows the loading progress of the app to users, indicating that the app is loading normally and that the user should wait until loading is finished.
+A loading indicator shows that the app is loading normally and that the user should wait until loading is finished.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
-### Blazor Web App loading progress
+### Blazor Web App loading indicator
 
-The loading progress indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading progress indicator isn't desirable for interactive WebAssembly components because Blazor Web Apps prerender client-side components on the server for fast initial load times. For mixed-render-mode situations, the framework or developer code must also be careful to avoid the following problems:
+The loading indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading indicator isn't desirable for interactive WebAssembly components because Blazor Web Apps prerender client-side components on the server for fast initial load times. For mixed-render-mode situations, the framework or developer code must also be careful to avoid the following problems:
 
 * Showing multiple loading indicators on the same rendered page.
 * Inadvertently discarding prerendered content while the .NET WebAssembly runtime is loading.
 
-<!-- UPDATE 10.0 Will be removed for a new feature in this area. 
-                 Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
+A future release of .NET might provide a framework-based loading indicator. In the meantime, you can add a custom loading indicator to a Blazor Web App.
 
-A future release of .NET might provide a framework-based loading progress indicator. In the meantime, you can add a custom loading progress indicator to a Blazor Web App.
+#### Per-component Interactive WebAssembly rendering with prerendering
 
-Create a `LoadingProgress` component in the `.Client` app that calls <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>:
+*This scenario applies to per-component Interactive WebAssembly rendering (`@rendermode InteractiveWebAssembly` applied to individual components).*
 
-* When `false`, display a loading progress indicator while the Blazor bundle is downloaded and before the Blazor runtime activates on the client.
+Create a `ContentLoading` component in the `Layout` folder of the `.Client` app that calls <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>:
+
+* When `false`, display a loading indicator.
 * When `true`, render the requested component's content.
 
-The following demonstration uses the loading progress indicator found in apps created from the Blazor WebAssembly template, including a modification of the styles that the template provides. The styles are loaded into the app's `<head>` content by the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
 
-`LoadingProgress.razor`:
+`Layout/ContentLoading.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
 
 ```razor
-@if (!OperatingSystem.IsBrowser())
+@if (!RendererInfo.IsInteractive)
 {
+    <!-- OPTIONAL ...
     <HeadContent>
         <style>
-            .loading-progress {
-                position: relative;
-                display: block;
-                width: 8rem;
-                height: 8rem;
-                margin: 20vh auto 1rem auto;
-            }
-
-                .loading-progress circle {
-                    fill: none;
-                    stroke: #e0e0e0;
-                    stroke-width: 0.6rem;
-                    transform-origin: 50% 50%;
-                    transform: rotate(-90deg);
-                }
-
-                    .loading-progress circle:last-child {
-                        stroke: #1b6ec2;
-                        stroke-dasharray: 
-                            calc(3.142 * var(--blazor-load-percentage, 0%) * 0.8), 
-                            500%;
-                        transition: stroke-dasharray 0.05s ease-in-out;
-                    }
-
-            .loading-progress-text {
-                position: relative;
-                text-align: center;
-                font-weight: bold;
-                top: -90px;
-            }
-
-                .loading-progress-text:after {
-                    content: var(--blazor-load-percentage-text, "Loading");
-                }
-
-            code {
-                color: #c02d76;
-            }
+            ...
         </style>
     </HeadContent>
-    <svg class="loading-progress">
-        <circle r="40%" cx="50%" cy="50%" />
-        <circle r="40%" cx="50%" cy="50%" />
-    </svg>
-    <div class="loading-progress-text"></div>
+    -->
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
 }
 else
 {
@@ -691,7 +688,44 @@ else
 }
 ```
 
-In a component that adopts Interactive WebAssembly rendering, wrap the component's Razor markup with the `LoadingProgress` component. The following example demonstrates the approach with the `Counter` component of an app created from the Blazor Web App project template.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+```razor
+@if (!OperatingSystem.IsBrowser())
+{
+    <!-- OPTIONAL ...
+    <HeadContent>
+        <style>
+            ...
+        </style>
+    </HeadContent>
+    -->
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+If you didn't already have a `Layout` folder in the `.Client` project, add the namespace for the `Layout` folder to the `_Imports.razor` file. In the following example, the project's namespace is `BlazorSample.Client`:
+
+```razor
+@using BlazorSample.Client.Layout
+```
+
+In a component that adopts Interactive WebAssembly rendering, wrap the component's Razor markup with the `ContentLoading` component. The following example demonstrates the approach with the `Counter` component of an app created from the Blazor Web App project template.
 
 `Pages/Counter.razor`:
 
@@ -701,13 +735,13 @@ In a component that adopts Interactive WebAssembly rendering, wrap the component
 
 <PageTitle>Counter</PageTitle>
 
-<LoadingProgress>
+<ContentLoading>
     <h1>Counter</h1>
 
     <p role="status">Current count: @currentCount</p>
 
     <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-</LoadingProgress>
+</ContentLoading>
 
 @code {
     private int currentCount = 0;
@@ -718,6 +752,148 @@ In a component that adopts Interactive WebAssembly rendering, wrap the component
     }
 }
 ```
+
+#### Global Interactive WebAssembly rendering with prerendering
+
+*This scenario applies to global Interactive WebAssembly rendering with prerendering (`@rendermode="InteractiveWebAssembly"` on the `HeadOutlet` and `Routes` components in the `App` component).*
+
+Create a `ContentLoading` component in the `Layout` folder of the `.Client` app that calls <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>:
+
+* When `false`, display a loading indicator.
+* When `true`, render the requested component's content.
+
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+
+`Layout/ContentLoading.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+```razor
+@if (!RendererInfo.IsInteractive)
+{
+    <!-- OPTIONAL ...
+    <HeadContent>
+        <style>
+            ...
+        </style>
+    </HeadContent>
+    -->
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+```razor
+@if (!OperatingSystem.IsBrowser())
+{
+    <!-- OPTIONAL ...
+    <HeadContent>
+        <style>
+            ...
+        </style>
+    </HeadContent>
+    -->
+    <progress id="loadingIndicator" aria-label="Content loading…"></progress>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+If you didn't already have a `Layout` folder in the `.Client` project, add the namespace for the `Layout` folder to the `_Imports.razor` file. In the following example, the project's namespace is `BlazorSample.Client`:
+
+```razor
+@using BlazorSample.Client.Layout
+```
+
+In the `MainLayout` component (`Layout/MainLayout.razor`) of the `.Client` project, wrap the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> property (`@Body`) with the `ContentLoading` component:
+
+In `Layout/MainLayout.razor`:
+
+```diff
++ <ContentLoading>
+    @Body
++ </ContentLoading>
+```
+
+#### Global Interactive WebAssembly rendering without prerendering
+
+*This scenario applies to global Interactive WebAssembly rendering without prerendering (`@rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)"` on the `HeadOutlet` and `Routes` components in the `App` component).*
+
+Add a [JavaScript initializer](#javascript-initializers) to the app. In the following JavaScript module file name example, the `{ASSEMBLY NAME}` placeholder is the assembly name of the server project (for example, `BlazorSample`). The `wwwroot` folder where the module is placed is the `wwwroot` folder in the server-side project, not the `.Client` project.
+
+The following example uses a [`progress`](https://developer.mozilla.org/docs/Web/HTML/Element/progress) indicator that doesn't indicate the actual progress of  [delivering client-side boot resources to the client](#load-client-side-boot-resources), but it serves as a general approach for further development if you want the progress indicator to show the actual progress of loading the app's boot resources.
+
+`wwwroot/{ASSEMBLY NAME}.lib.module.js`:
+
+```javascript
+export function beforeWebStart(options) {
+  var progress = document.createElement("progress");
+  progress.id = 'loadingIndicator';
+  progress.ariaLabel = 'Blazor loading…';
+  progress.style = 'position:absolute;top:50%;left:50%;margin-right:-50%;' +
+    'transform:translate(-50%,-50%);';
+  document.body.appendChild(progress);
+}
+
+export function afterWebAssemblyStarted(blazor) {
+  var progress = document.getElementById('loadingIndicator');
+  progress.remove();
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
+Due to a [framework bug in .NET 8 and 9 (`dotnet/aspnetcore` #54049)](https://github.com/dotnet/aspnetcore/issues/54049), the Blazor script must be manually started. If the server app doesn't already start Blazor manually with a WebAssembly (`webAssembly: {...}`) configuration, update the `App` component in the server project with the following.
+
+In `Components/App.razor`, remove the existing Blazor `<script>` tag: 
+
+```diff
+- <script src="_framework/blazor.web.js"></script>
+```
+
+Replace the `<script>` tag with the following markup that starts Blazor manually with a WebAssembly (`webAssembly: {...}`) configuration:
+
+```html
+<script src="_framework/blazor.web.js" autostart="false"></script>
+<script>
+    Blazor.start({
+        webAssembly: {}
+    });
+</script>
+```
+
+If you notice a short delay between the loading indicator removal and the first page render, you can guarantee removal of the indicator after rendering by calling for indicator removal in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) of either the `MainLayout` or `Routes` components. For more information and a code example, see [Document an approach for a loading indicator that works with global Interactive WebAssembly without prerendering (`dotnet/AspNetCore.Docs` #35111)](https://github.com/dotnet/AspNetCore.Docs/issues/35111#issuecomment-2778796998).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ### Blazor WebAssembly app loading progress
 

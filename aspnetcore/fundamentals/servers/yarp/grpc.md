@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/grpc
-title: YARP Proxing gRPC
-description: YARP Proxing gRPC
+title: YARP Proxying gRPC
+description: YARP Proxying gRPC
 author: samsp-msft
 ms.author: samsp
 ms.date: 2/6/2025
@@ -9,8 +9,7 @@ ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
-
-# YARP Proxing gRPC
+# YARP Proxying gRPC
 
 ## Introduction
 
@@ -20,9 +19,10 @@ ai-usage: ai-assisted
 
 gRPC requires HTTP/2 for most scenarios. HTTP/1.1 and HTTP/2 are enabled by default on ASP.NET Core servers (YARP's front end) but they require https (TLS) for HTTP/2 so YARP needs to be listening on a `https://` URL.
 
-HTTP/2 over http (non-TLS) is only supported on Kestrel and requires specific settings.  For details see [here](/aspnet/core/grpc/aspnetcore#server-options).
+HTTP/2 over http (non-TLS) is only supported on Kestrel and requires specific settings. For more information, see <xref:grpc/aspnetcore#server-options>.
 
 This shows configuring Kestrel to use HTTP/2 over http (non-TLS):
+
 ```json
 {
   "Kestrel": {
@@ -38,9 +38,10 @@ This shows configuring Kestrel to use HTTP/2 over http (non-TLS):
 
 ## Configure YARP's Outgoing Protocols
 
-YARP automatically negotiates HTTP/1.1 or HTTP/2 for outgoing proxy requests, but only for https (TLS). HTTP/2 over http (non-TLS) requires additional settings. Note outgoing protocols are independent of incoming ones. E.g. https can be used for the incoming connection and http for the outgoing one, this is called TLS termination. See [here](http-client-config.md#httprequest) for configuration details.
+YARP automatically negotiates HTTP/1.1 or HTTP/2 for outgoing proxy requests, but only for https (TLS). HTTP/2 over http (non-TLS) requires additional settings. Note that outgoing protocols are independent of incoming ones. E.g. https can be used for the incoming connection and http for the outgoing one, this is called TLS termination. For configuration details, see <xref:fundamentals/servers/yarp/http-client-config#httprequest>.
 
-This shows configuring the outgoing proxy request to use HTTP/2 over http.
+The following shows how to configure the outgoing proxy request to use HTTP/2:
+
 ```json
 "cluster1": {
   "HttpRequest": {
@@ -59,7 +60,7 @@ This shows configuring the outgoing proxy request to use HTTP/2 over http.
 
 [gRPC-Web](https://grpc.io/docs/platforms/web/basics/) is an alternative wire-format for gRPC that's compatible with HTTP/1.1.
 
-* [`application/grpc`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2) - gRPC over HTTP/2 is how gRPC is typically used.
-* [`application/grpc-web`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB) - gRPC-Web modifies the gRPC protocol to be compatible with HTTP/1.1. gRPC-Web can be used in more places. gRPC-Web can be used by browser apps and in networks without complete support for HTTP/2. Two advanced gRPC features are not supported: client streaming and bidirectional streaming.
+* [`application/grpc`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) - gRPC over HTTP/2 is how gRPC is typically used.
+* [`application/grpc-web`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) - gRPC-Web modifies the gRPC protocol to be compatible with HTTP/1.1. gRPC-Web can be used in more places. gRPC-Web can be used by browser apps and in networks without complete support for HTTP/2. Two advanced gRPC features are not supported: client streaming and bidirectional streaming.
 
 gRPC-Web can be proxied by YARP's default configuration without any special considerations.

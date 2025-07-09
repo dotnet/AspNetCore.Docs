@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor `QuickGrid` component
 author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/quickgrid
@@ -228,7 +228,7 @@ In the following example:
 
 ### Close `QuickGrid` column options
 
-Close the `QuickGrid` column options UI with the `CloseColumnOptionsAsync` method.
+Close the `QuickGrid` column options UI with the `HideColumnOptionsAsync` method.
 
 The following example closes the column options UI as soon as the title filter is applied:
 
@@ -237,7 +237,7 @@ The following example closes the column options UI as soon as the title filter i
     <PropertyColumn Property="@(m => m.Title)" Title="Title">
         <ColumnOptions>
             <input type="search" @bind="titleFilter" placeholder="Filter by title" 
-                @bind:after="@(() => movieGrid.CloseColumnOptionsAsync())" />
+                @bind:after="@(() => movieGrid.HideColumnOptionsAsync())" />
         </ColumnOptions>
     </PropertyColumn>
     <PropertyColumn Property="@(m => m.Genre)" Title="Genre" />
@@ -446,7 +446,7 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
                 { "limit", req.Count },
             });
 
-            var response = await Http.GetFromJsonAsync<FoodRecallQueryResult>(
+            using var response = await Http.GetFromJsonAsync<FoodRecallQueryResult>(
                 url, req.CancellationToken);
 
             return GridItemsProviderResult.From(

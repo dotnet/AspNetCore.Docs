@@ -3,7 +3,7 @@ title: Use Razor components in JavaScript apps and SPA frameworks
 author: guardrex
 description: Learn how to create and use Razor components in JavaScript apps and SPA frameworks.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/components/js-spa-frameworks
@@ -17,13 +17,16 @@ This article covers how to render Razor components from JavaScript, use Blazor c
 > [!NOTE]
 > We recommend using the `blazor.server.js` (Blazor Server) and `blazor.webassembly.js` (Blazor WebAssembly) scripts when integrating Razor components into an existing JavaScript app until better support for the `blazor.web.js` (Blazor Web App) script is added in the future. For more information, see [RegisterCustomElement stopped working in Blazor 8 (`dotnet/aspnetcore` #53920)](https://github.com/dotnet/aspnetcore/issues/53920#issuecomment-2261507850).
 
-<!-- DOC AUTHOR NOTE: The `blazor.web.js` (Blazor Web App) portions of
+<!-- UPDATE 11.0 - The `blazor.web.js` (Blazor Web App) portions of
      this article have been commented out for the time being to 
-     facilitate reconstituting the guidance later when support lands. -->
+     facilitate reconstituting the guidance later when support lands. 
+     It was under consideration for .NET 10 on 
+     https://github.com/dotnet/AspNetCore.Docs/issues/35653, but 
+     it didn't make the cut and was backlogged. -->
 
 ## Angular sample apps
 
-<!-- UPDATE 10.0 Add migration instructions -->
+<!-- UPDATE 10.0 Add migration instructions for 9.0 to 10.0 -->
 
 * [CustomElementsBlazorSample (Blazor Server) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-server`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-server): Blazor Server is supported in .NET 8/9. To migrate this .NET 7 sample, see <xref:migration/70-to-80#update-a-blazor-server-app> and <xref:migration/80-to-90>.
 * [CustomElementsBlazorSample (Blazor WebAssembly) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-wasm`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-wasm): To migrate this .NET 7 sample, see <xref:migration/70-to-80#update-a-blazor-webassembly-app> and <xref:migration/80-to-90>.
@@ -378,8 +381,6 @@ The following `Counter` component uses an `IncrementAmount` parameter to set the
 `Counter.razor`:
 
 ```razor
-@page "/counter"
-
 <h1>Counter</h1>
 
 <p role="status">Current count: @currentCount</p>

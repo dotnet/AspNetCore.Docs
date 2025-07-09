@@ -5,7 +5,7 @@ description: Learn how to configure Data Protection in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/30/2024
+ms.date: 06/11/2025
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -34,34 +34,99 @@ The following NuGet packages are required for the Data Protection extensions use
 * [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
 * [Azure.Extensions.AspNetCore.DataProtection.Keys](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
 
-## ProtectKeysWithAzureKeyVault
+## Protect keys with Azure Key Vault (`ProtectKeysWithAzureKeyVault`)
 
-Sign in to Azure using the CLI, for example:
+To interact with [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) locally using developer credentials, either sign into your storage account in Visual Studio or sign in with the [Azure CLI](/cli/azure/). If you haven't already installed the Azure CLI, see [How to install the Azure CLI](/cli/azure/install-azure-cli). You can execute the following command in the Developer PowerShell panel in Visual Studio or from a command shell when not using Visual Studio:
 
 ```azurecli
 az login
 ```
 
-To manage keys with [Azure Key Vault](/azure/key-vault/general/overview), configure the system with <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionKeyVaultKeyBuilderExtensions.ProtectKeysWithAzureKeyVault%2A> in `Program.cs`. `blobUriWithSasToken` is the full URI where the key file should be stored. The URI must contain the SAS token as a query string parameter:
+For more information, see [Sign-in to Azure using developer tooling](/dotnet/azure/sdk/authentication/local-development-dev-accounts#sign-in-to-azure-using-developer-tooling).
 
-:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithAzureKeyVault":::
+When establishing the key vault in the Entra or Azure portal:
 
-For an app to communicate and authorize itself with KeyVault,  the [Azure.Identity](https://www.nuget.org/packages/Azure.Identity/) package  must be added.
+* Configure the key vault to use Azure role-based access control (RABC). If you aren't operating on an [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview), including for local development and testing, confirm that public access on the **Networking** step is **enabled** (checked). Enabling public access only exposes the key vault endpoint. Authenticated accounts are still required for access.
 
-Set the key ring storage location (for example, <xref:Microsoft.AspNetCore.DataProtection.AzureStorageBlobDataProtectionBuilderExtensions.PersistKeysToAzureBlobStorage%2A>). The location must be set because calling `ProtectKeysWithAzureKeyVault` implements an <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlEncryptor> that disables automatic data protection settings, including the key ring storage location. The preceding example uses Azure Blob Storage to persist the key ring. For more information, see [Key storage providers: Azure Storage](xref:security/data-protection/implementation/key-storage-providers#azure-storage). You can also persist the key ring locally with [PersistKeysToFileSystem](xref:security/data-protection/implementation/key-storage-providers#file-system).
+* Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Key Vault Crypto User** role. Assign the Managed Identity to the Azure App Service that's hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
 
-The `keyIdentifier` is the key vault key identifier used for key encryption. For example, a key created in key vault named `dataprotection` in the `contosokeyvault` has the key identifier `https://contosokeyvault.vault.azure.net/keys/dataprotection/`. Provide the app with **Get**, **Unwrap Key** and **Wrap Key** permissions to the key vault.
+  > [!NOTE]
+  > If you also plan to run an app locally with an authorized user for blob access using the [Azure CLI](/cli/azure/) or Visual Studio's Azure Service Authentication, add your developer Azure user account in **Access Control (IAM)** with the **Key Vault Crypto User** role. If you want to use the Azure CLI through Visual Studio, execute the `az login` command from the Developer PowerShell panel and follow the prompts to authenticate with the tenant.
 
-`ProtectKeysWithAzureKeyVault` overloads:
+* When key encryption is active, keys in the key file include the comment, ":::no-loc text="This key is encrypted with Azure Key Vault.":::" After starting the app, select the **View/edit** command from the context menu at the end of the key row to confirm that a key is present with key vault security applied.
 
-* <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionKeyVaultKeyBuilderExtensions.ProtectKeysWithAzureKeyVault(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder,System.Uri,Azure.Core.TokenCredential)> permits the use of a keyIdentifier Uri and a tokenCredential to enable the data protection system to use the key vault.
-* <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionKeyVaultKeyBuilderExtensions.ProtectKeysWithAzureKeyVault(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder,System.String,Azure.Core.Cryptography.IKeyEncryptionKeyResolver)> permits the use of a keyIdentifier string and IKeyEncryptionKeyResolver to enable the data protection system to use the key vault.
+* Optionally, you can enable automatic key vault key rotation without concern about decrypting payloads with data protection keys based on expired/rotated key vault keys. Each generated data protection key includes a reference to the key vault key used to encrypted it. Just make sure that you retain expired key vault keys, don't delete them in the key vault. Also, use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`). Use a similar rotation period for both keys with the key vault key rotating more frequently than the data protection key to ensure that a new key vault key is used at the time of data protection key rotation.
 
-If the app uses the older Azure packages (Microsoft.AspNetCore.DataProtection.AzureStorage and Microsoft.AspNetCore.DataProtection.AzureKeyVault), we recommend ***removing*** these references and upgrading to the [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) and [Azure.Extensions.AspNetCore.DataProtection.Keys](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys). These packages are where new updates are provided, and address some key security and stability issues with the older packages.
+Protecting keys with Azure Key Vault implements an <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlEncryptor> that disables automatic data protection settings, including the key ring storage location. To configure the Azure Blob Storage provider to store the keys in blob storage, follow the guidance in <xref:security/data-protection/implementation/key-storage-providers#azure-storage> and call one of the <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.PersistKeysToAzureBlobStorage%2A> overloads in the app. The following example uses the overload that accepts a blob URI and token credential (<xref:Azure.Core.TokenCredential>), relying on an Azure Managed Identity for role-based access control (RBAC).
 
-:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithAzureKeyVaultConnectionString":::
+To configure the Azure Key Vault provider, call one of the <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionKeyVaultKeyBuilderExtensions.ProtectKeysWithAzureKeyVault%2A> overloads. The following example uses the overload that accepts key identifier and token credential (<xref:Azure.Core.TokenCredential>), relying on a Managed Identity for RBAC in production (<xref:Azure.Identity.ManagedIdentityCredential>) or a <xref:Azure.Identity.DefaultAzureCredential> during development and testing. Other overloads accept either a key vault client or an app client ID with client secret. For more information, see <xref:security/data-protection/implementation/key-storage-providers#azure-storage>.
 
-## PersistKeysToFileSystem
+For more information on the Azure SDK's API and authentication, see [Authenticate .NET apps to Azure services using the Azure Identity library](/dotnet/azure/sdk/authentication/) and [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide?tabs=azure-cli). For logging guidance, see [Logging with the Azure SDK for .NET: Logging without client registration](/dotnet/azure/sdk/logging#logging-without-client-registration). For apps using dependency injection, an app can call <xref:Microsoft.Extensions.Azure.AzureClientServiceCollectionExtensions.AddAzureClientsCore%2A>, passing `true` for `enableLogForwarding`, to create and wire up the logging infrastructure.
+
+In the `Program` file where services are registered:
+
+```csharp
+TokenCredential? credential;
+
+if (builder.Environment.IsProduction())
+{
+    credential = new ManagedIdentityCredential("{MANAGED IDENTITY CLIENT ID}");
+}
+else
+{
+    // Local development and testing only
+    DefaultAzureCredentialOptions options = new()
+    {
+        // Specify the tenant ID to use the dev credentials when running the app locally
+        // in Visual Studio.
+        VisualStudioTenantId = "{TENANT ID}",
+        SharedTokenCacheTenantId = "{TENANT ID}"
+    };
+
+    credential = new DefaultAzureCredential(options);
+}
+
+builder.Services.AddDataProtection()
+    .SetApplicationName("{APPLICATION NAME}")
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI}"), credential)
+    .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), credential);
+```
+
+`{MANAGED IDENTITY CLIENT ID}`: The Azure Managed Identity Client ID (GUID).
+
+`{TENANT ID}`: Tenant ID.
+
+`{APPLICATION NAME}`: <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName%2A> sets the unique name of this app within the data protection system. The value should match across deployments of the app.
+
+`{BLOB URI}`: Full URI to the key file. The URI is generated by Azure Storage when you create the key file. Do not use a SAS.
+
+`{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The version of the key is obtained from the key in the Entra or Azure portal after it's created. If you enable automatic rotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
+
+For an app to communicate and authorize itself with Azure Key Vault, the [`Azure.Identity` NuGet package](https://www.nuget.org/packages/Azure.Identity/) must be referenced by the app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+> [!NOTE]
+> In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
+If the app uses the older Azure packages (`Microsoft.AspNetCore.DataProtection.AzureStorage` and `Microsoft.AspNetCore.DataProtection.AzureKeyVault`), we recommend ***removing*** these references and upgrading to the [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) and [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys) packages. The newer packages address key security and stability issues.
+
+**Alternative shared-access signature (SAS) approach**: As an alternative to using a Managed Identity for access to the key blob in Azure Blob Storage, you can call the <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.PersistKeysToAzureBlobStorage%2A> overload that accepts a blob URI with a SAS token. The following example continues to use either a <xref:Azure.Identity.ManagedIdentityCredential> (production) or <xref:Azure.Identity.DefaultAzureCredential> (development and testing) for its <xref:Azure.Core.TokenCredential>, as seen in the preceding example:
+
+```csharp
+builder.Services.AddDataProtection()
+    .SetApplicationName("{APPLICATION NAME}")
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI WITH SAS}"))
+    .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), credential);
+```
+
+`{APPLICATION NAME}`: <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName%2A> sets the unique name of this app within the data protection system. The value should match across deployments of the app.
+
+`{BLOB URI WITH SAS}`: The full URI where the key file should be stored with the SAS token as a query string parameter. The URI is generated by Azure Storage when you request a SAS for the uploaded key file.
+
+`{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The version of the key is obtained from the key in the Entra or Azure portal after it's created. If you enable automatic rotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
+
+## Persist keys to the file system (`PersistKeysToFileSystem`)
 
 To store keys on a UNC share instead of at the *%LOCALAPPDATA%* default location, configure the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem%2A>:
 
@@ -70,7 +135,7 @@ To store keys on a UNC share instead of at the *%LOCALAPPDATA%* default location
 > [!WARNING]
 > If you change the key persistence location, the system no longer automatically encrypts keys at rest, since it doesn't know whether DPAPI is an appropriate encryption mechanism.
 
-## PersistKeysToDbContext
+## Persist keys in a database (`PersistKeysToDbContext`)
 
 To store keys in a database using EntityFramework, configure the system with the [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) package:
 
@@ -82,31 +147,53 @@ The preceding code stores the keys in the configured database. The database cont
 
 This property represents the table in which the keys are stored. Create the table manually or with `DbContext` Migrations. For more information, see <xref:Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey>.
 
-## ProtectKeysWith\*
+## Protect keys configuration API (`ProtectKeysWith\*`)
 
-You can configure the system to protect keys at rest by calling any of the [ProtectKeysWith\*](xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions) configuration APIs. Consider the example below, which stores keys on a UNC share and encrypts those keys at rest with a specific X.509 certificate:
+You can configure the system to protect keys at rest by calling any of the [`ProtectKeysWith\*`](xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions) configuration APIs. Consider the example below, which stores keys on a UNC share and encrypts those keys at rest with a specific X.509 certificate.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A> from a file by calling <xref:System.Security.Cryptography.X509Certificates.X509CertificateLoader.LoadCertificateFromFile%2A?displayProperty=nameWithType>:
+
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificateX509Certificate2":::
+
+The following code example demonstrates how to load a certificate using a thumbprint:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificate":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>, such as a certificate loaded from a file:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificateX509Certificate2":::
 
-See [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest) for more examples and discussion on the built-in key encryption mechanisms.
+The following code example demonstrates how to load a certificate using a thumbprint:
 
-## UnprotectKeysWithAnyCertificate
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificate":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+For examples and discussion on the built-in key encryption mechanisms, see <xref:security/data-protection/implementation/key-encryption-at-rest>.
+
+## Unprotect keys with any certificate (`UnprotectKeysWithAnyCertificate`)
 
 You can rotate certificates and decrypt keys at rest using an array of <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> certificates with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UnprotectKeysWithAnyCertificate%2A>:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUnprotectKeysWithAnyCertificate":::
 
-## SetDefaultKeyLifetime
+## Set the default key lifetime (`SetDefaultKeyLifetime`)
 
 To configure the system to use a key lifetime of 14 days instead of the default 90 days, use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetDefaultKeyLifetime%2A>:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetDefaultKeyLifetime":::
 
-## SetApplicationName
+## Set the application name (`SetApplicationName`)
 
 By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/index#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
 
@@ -136,21 +223,24 @@ For more information on how the discriminator is used, see the following section
 > In .NET 6, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> normalizes the content root path to end with a <xref:System.IO.Path.DirectorySeparatorChar>. For example, on Windows the content root path ends in `\` and on Linux `/`. Other hosts don't normalize the path. Most apps migrating from <xref:Microsoft.Extensions.Hosting.HostBuilder> or  <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> won't share the same app name because they won't have the terminating `DirectorySeparatorChar`. To work around this issue, remove the directory separator character and set the app name manually, as shown in the following code:
 >
 > ```csharp
-> using Microsoft.AspNetCore.DataProtection;
 > using System.Reflection;
+> using Microsoft.AspNetCore.DataProtection;
 > 
 > var builder = WebApplication.CreateBuilder(args);
-> var trimmedContentRootPath = builder.Environment.ContentRootPath.TrimEnd(Path.DirectorySeparatorChar);
-> builder.Services.AddDataProtection()
->  .SetApplicationName(trimmedContentRootPath);
+>
+> var trimmedContentRootPath = 
+>     builder.Environment.ContentRootPath.TrimEnd(Path.DirectorySeparatorChar);
+>
+> builder.Services.AddDataProtection().SetApplicationName(trimmedContentRootPath);
+>
 > var app = builder.Build();
 > 
 > app.MapGet("/", () => Assembly.GetEntryAssembly()!.GetName().Name);
 > 
 > app.Run();
->  ```
+> ```
 
-## DisableAutomaticKeyGeneration
+## Disable automatic key generation (`DisableAutomaticKeyGeneration`)
 
 You may have a scenario where you don't want an app to automatically roll keys (create new keys) as they approach expiration. One example of this scenario might be apps set up in a primary/secondary relationship, where only the primary app is responsible for key management concerns and secondary apps simply have a read-only view of the key ring. The secondary apps can be configured to treat the key ring as read-only by configuring the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration%2A>:
 
@@ -169,7 +259,7 @@ The unique identifier is designed to survive resets&mdash;both of the individual
 
 This isolation mechanism assumes that the apps aren't malicious. A malicious app can always impact any other app running under the same worker process account. In a shared hosting environment where apps are mutually untrusted, the hosting provider should take steps to ensure OS-level isolation between apps, including separating the apps' underlying key repositories.
 
-If the Data Protection system isn't provided by an ASP.NET Core host (for example, if you instantiate it via the `DataProtectionProvider` concrete type) app isolation is disabled by default. When app isolation is disabled, all apps backed by the same keying material can share payloads as long as they provide the appropriate [purposes](xref:security/data-protection/consumer-apis/purpose-strings). To provide app isolation in this environment, call the [`SetApplicationName`](#setapplicationname) method on the configuration object and provide a unique name for each app.
+If the Data Protection system isn't provided by an ASP.NET Core host (for example, if you instantiate it via the `DataProtectionProvider` concrete type) app isolation is disabled by default. When app isolation is disabled, all apps backed by the same keying material can share payloads as long as they provide the appropriate [purposes](xref:security/data-protection/consumer-apis/purpose-strings). To provide app isolation in this environment, call the [`SetApplicationName`](#set-the-application-name-setapplicationname) method on the configuration object and provide a unique name for each app.
 
 ### Data Protection and app isolation
 
@@ -177,7 +267,7 @@ Consider the following points for app isolation:
 
 * When multiple apps are pointed at the same key repository, the intention is that the apps share the same master key material. Data Protection is developed with the assumption that all apps sharing a key ring can access all items in that key ring. The application unique identifier is used to isolate application specific keys derived from the key ring provided keys. It doesn't expect item level permissions, such as those provided by Azure KeyVault to be used to enforce extra isolation. Attempting item level permissions generates application errors. If you don't want to rely on the built-in application isolation, separate key store locations should be used and not shared between applications.
 
-* The application discriminator (<xref:Microsoft.AspNetCore.DataProtection.DataProtectionOptions.ApplicationDiscriminator>) is used to allow different apps to share the same master key material but to keep their cryptographic payloads distinct from one another. <!-- The docs already draw an analogy between this and multi-tenancy.--> For the apps to be able to read each other's cryptographic payloads, they must have the same application discriminator, which can be set by calling [`SetApplicationName`](#setapplicationname).
+* The application discriminator (<xref:Microsoft.AspNetCore.DataProtection.DataProtectionOptions.ApplicationDiscriminator>) is used to allow different apps to share the same master key material but to keep their cryptographic payloads distinct from one another. <!-- The docs already draw an analogy between this and multi-tenancy.--> For the apps to be able to read each other's cryptographic payloads, they must have the same application discriminator, which can be set by calling [`SetApplicationName`](#set-the-application-name-setapplicationname).
 
 * If an app is compromised (for example, by an RCE attack), all master key material accessible to that app must also be considered compromised, regardless of its protection-at-rest state. This implies that if two apps are pointed at the same repository, even if they use different app discriminators, a compromise of one is functionally equivalent to a compromise of both.
 
@@ -185,7 +275,7 @@ Consider the following points for app isolation:
 
 * If apps need to remain truly isolated from one another, they should use different key repositories. This naturally falls out of the definition of "isolated". Apps are ***not*** isolated if they all have Read and Write access to each other's data stores.
 
-## Changing algorithms with UseCryptographicAlgorithms
+## Changing algorithms with `UseCryptographicAlgorithms`
 
 The Data Protection stack allows you to change the default algorithm used by newly generated keys. The simplest way to do this is to call <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UseCryptographicAlgorithms%2A> from the configuration callback:
 
@@ -236,19 +326,19 @@ Though not exposed as a first-class API, the Data Protection system is extensibl
 When hosting in a [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/) container, keys should be maintained in either:
 
 * A folder that's a Docker volume that persists beyond the container's lifetime, such as a shared volume or a host-mounted volume.
-* An external provider, such as [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) (shown in the [`ProtectKeysWithAzureKeyVault`](#protectkeyswithazurekeyvault) section) or [Redis](https://redis.io).
+* An external provider, such as [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) (shown in the [`ProtectKeysWithAzureKeyVault`](#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) section) or [Redis](https://redis.io).
 
 ## Persisting keys with Redis
 
 Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-redis/cache-how-to-premium-persistence) should be used to store keys. [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction) is persistent and can be used to store keys. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/13476).
 
-## Logging DataProtection
+## Logging
 
-Enable `Information` level logging of DataProtection to help diagnosis problem. The following `appsettings.json` file enables information logging of the DataProtection API:
+Enable the `Information` or lower level of logging to diagnose problems. The following `appsettings.json` file enables information logging of the Data Protection API:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/appsettings.json" highlight="6":::
 
-For more information on logging, see [Logging in .NET Core and ASP.NET Core](xref:fundamentals/logging/index).
+For more information on logging, see <xref:fundamentals/logging/index>.
 
 ## Additional resources
 
@@ -269,58 +359,110 @@ When the Data Protection system is initialized, it applies [default settings](xr
 For these scenarios, the Data Protection system offers a rich configuration API.
 
 > [!WARNING]
-> Similar to configuration files, the data protection key ring should be protected using appropriate permissions. You can choose to encrypt keys at rest, but this doesn't prevent cyberattackers from creating new keys. Consequently, your app's security is impacted. The storage location configured with Data Protection should have its access limited to the app itself, similar to the way you would protect configuration files. For example, if you choose to store your key ring on disk, use file system permissions. Ensure only the identity under which your web app runs has read, write, and create access to that directory. If you use Azure Blob Storage, only the web app should have the ability to read, write, or create new entries in the blob store, etc.
+> Similar to configuration files, the data protection key ring should be protected using appropriate permissions. You can choose to encrypt keys at rest, but this doesn't prevent cyberattackers from creating new keys. Consequently, your app's security is impacted. The storage location configured with Data Protection should have its access limited to the app itself, similar to the way you would protect configuration files. For example, if you choose to store your key ring on disk, use file system permissions. Ensure only the identity under which your web app runs has read, write, and create access to that directory. If you use Azure Blob Storage, only the web app should have the ability to read, write, or create new entries in the blob store.
 >
-> The extension method <xref:Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions.AddDataProtection%2A> returns an <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder>. `IDataProtectionBuilder` exposes extension methods that you can chain together to configure Data Protection options.
+> The extension method <xref:Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions.AddDataProtection%2A> returns an <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder>, which exposes extension methods that you can chain together to configure Data Protection options.
 
 The following NuGet packages are required for the Data Protection extensions used in this article:
 
-* [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
-* [Azure.Extensions.AspNetCore.DataProtection.Keys](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
+* [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
+* [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
 
-## ProtectKeysWithAzureKeyVault
+[!INCLUDE[](~/includes/package-reference.md)]
 
-Sign in to Azure using the CLI, for example:
+## Protect keys with Azure Key Vault (`ProtectKeysWithAzureKeyVault`)
+
+To interact with [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) locally using developer credentials, either sign into your storage account in Visual Studio or sign in with the [Azure CLI](/cli/azure/). If you haven't already installed the Azure CLI, see [How to install the Azure CLI](/cli/azure/install-azure-cli). You can execute the following command in the Developer PowerShell panel in Visual Studio or from a command shell when not using Visual Studio:
 
 ```azurecli
 az login
-``` 
-
-To store keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure the system with <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionKeyVaultKeyBuilderExtensions.ProtectKeysWithAzureKeyVault%2A> in the `Startup` class. `blobUriWithSasToken` is the full URI where the key file should be stored. The URI must contain the SAS token as a query string parameter:
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .PersistKeysToAzureBlobStorage(new Uri("<blobUriWithSasToken>"))
-        .ProtectKeysWithAzureKeyVault(new Uri("<keyIdentifier>"), new DefaultAzureCredential());
-}
 ```
 
-For an app to communicate and authorize itself with KeyVault,  the [Azure.Identity](https://www.nuget.org/packages/Azure.Identity/) package  must be added.
+For more information, see [Sign-in to Azure using developer tooling](/dotnet/azure/sdk/authentication/local-development-dev-accounts#sign-in-to-azure-using-developer-tooling).
 
-Set the key ring storage location (for example, <xref:Microsoft.AspNetCore.DataProtection.AzureStorageBlobDataProtectionBuilderExtensions.PersistKeysToAzureBlobStorage%2A>). The location must be set because calling `ProtectKeysWithAzureKeyVault` implements an <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlEncryptor> that disables automatic data protection settings, including the key ring storage location. The preceding example uses Azure Blob Storage to persist the key ring. For more information, see [Key storage providers: Azure Storage](xref:security/data-protection/implementation/key-storage-providers#azure-storage). You can also persist the key ring locally with [PersistKeysToFileSystem](xref:security/data-protection/implementation/key-storage-providers#file-system).
+When establishing the key vault in the Entra or Azure portal:
 
-The `keyIdentifier` is the key vault key identifier used for key encryption. For example, a key created in key vault named `dataprotection` in the `contosokeyvault` has the key identifier `https://contosokeyvault.vault.azure.net/keys/dataprotection/`. Provide the app with **Get**, **Unwrap Key** and **Wrap Key** permissions to the key vault.
+* Configure the key vault to use Azure role-based access control (RABC). If you aren't operating on an [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview), including for local development and testing, confirm that public access on the **Networking** step is **enabled** (checked). Enabling public access only exposes the key vault endpoint. Authenticated accounts are still required for access.
 
-`ProtectKeysWithAzureKeyVault` overloads:
+* Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Key Vault Crypto User** role. Assign the Managed Identity to the Azure App Service that's hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
 
-* <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionKeyVaultKeyBuilderExtensions.ProtectKeysWithAzureKeyVault(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder,System.Uri,Azure.Core.TokenCredential)> permits the use of a keyIdentifier Uri and a tokenCredential to enable the data protection system to use the key vault.
-* <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionKeyVaultKeyBuilderExtensions.ProtectKeysWithAzureKeyVault(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder,System.String,Azure.Core.Cryptography.IKeyEncryptionKeyResolver)> permits the use of a keyIdentifier string and IKeyEncryptionKeyResolver to enable the data protection system to use the key vault.
+  > [!NOTE]
+  > If you also plan to run an app locally with an authorized user for blob access using the [Azure CLI](/cli/azure/) or Visual Studio's Azure Service Authentication, add your developer Azure user account in **Access Control (IAM)** with the **Key Vault Crypto User** role. If you want to use the Azure CLI through Visual Studio, execute the `az login` command from the Developer PowerShell panel and follow the prompts to authenticate with the tenant.
 
-If the app uses the older Azure packages (Microsoft.AspNetCore.DataProtection.AzureStorage and Microsoft.AspNetCore.DataProtection.AzureKeyVault), we recommend ***removing*** these references and upgrading to the [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) and [Azure.Extensions.AspNetCore.DataProtection.Keys](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys). These packages are where new updates are provided, and address some key security and stability issues with the older packages.
+* When key encryption is active, keys in the key file include the comment, ":::no-loc text="This key is encrypted with Azure Key Vault.":::" After starting the app, select the **View/edit** command from the context menu at the end of the key row to confirm that a key is present with key vault security applied.
+
+* Optionally, you can enable automatic key vault key rotation without concern about decrypting payloads with data protection keys based on expired/rotated key vault keys. Each generated data protection key includes a reference to the key vault key used to encrypted it. Just make sure that you retain expired key vault keys, don't delete them in the key vault. Also, use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`). Use a similar rotation period for both keys with the key vault key rotating more frequently than the data protection key to ensure that a new key vault key is used at the time of data protection key rotation.
+
+Protecting keys with Azure Key Vault implements an <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlEncryptor> that disables automatic data protection settings, including the key ring storage location. To configure the Azure Blob Storage provider to store the keys in blob storage, follow the guidance in <xref:security/data-protection/implementation/key-storage-providers#azure-storage> and call one of the <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.PersistKeysToAzureBlobStorage%2A> overloads in the app. The following example uses the overload that accepts a blob URI and token credential (<xref:Azure.Core.TokenCredential>), relying on an Azure Managed Identity for role-based access control (RBAC).
+
+To configure the Azure Key Vault provider, call one of the <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionKeyVaultKeyBuilderExtensions.ProtectKeysWithAzureKeyVault%2A> overloads. The following example uses the overload that accepts key identifier and token credential (<xref:Azure.Core.TokenCredential>), relying on a Managed Identity for RBAC in production (<xref:Azure.Identity.ManagedIdentityCredential>) or a <xref:Azure.Identity.DefaultAzureCredential> during development and testing. Other overloads accept either a key vault client or an app client ID with client secret. For more information, see <xref:security/data-protection/implementation/key-storage-providers#azure-storage>.
+
+For more information on the Azure SDK's API and authentication, see [Authenticate .NET apps to Azure services using the Azure Identity library](/dotnet/azure/sdk/authentication/) and [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide?tabs=azure-cli). For logging guidance, see [Logging with the Azure SDK for .NET: Logging without client registration](/dotnet/azure/sdk/logging#logging-without-client-registration). For apps using dependency injection, an app can call <xref:Microsoft.Extensions.Azure.AzureClientServiceCollectionExtensions.AddAzureClientsCore%2A>, passing `true` for `enableLogForwarding`, to create and wire up the logging infrastructure.
+
+In the `Program` file where services are registered:
+
+```csharp
+TokenCredential? credential;
+
+if (builder.Environment.IsProduction())
+{
+    credential = new ManagedIdentityCredential("{MANAGED IDENTITY CLIENT ID}");
+}
+else
+{
+    // Local development and testing only
+    DefaultAzureCredentialOptions options = new()
+    {
+        // Specify the tenant ID to use the dev credentials when running the app locally
+        // in Visual Studio.
+        VisualStudioTenantId = "{TENANT ID}",
+        SharedTokenCacheTenantId = "{TENANT ID}"
+    };
+
+    credential = new DefaultAzureCredential(options);
+}
+
+services.AddDataProtection()
+    .SetApplicationName("{APPLICATION NAME}")
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI}"), credential)
+    .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), credential);
+```
+
+`{MANAGED IDENTITY CLIENT ID}`: The Azure Managed Identity Client ID (GUID).
+
+`{TENANT ID}`: Tenant ID.
+
+`{APPLICATION NAME}`: <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName%2A> sets the unique name of this app within the data protection system. The value should match across deployments of the app.
+
+`{BLOB URI}`: Full URI to the key file. The URI is generated by Azure Storage when you create the key file. Do not use a SAS.
+
+`{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The version of the key is obtained from the key in the Entra or Azure portal after it's created. If you enable automatic rotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
+
+For an app to communicate and authorize itself with Azure Key Vault, the [`Azure.Identity` NuGet package](https://www.nuget.org/packages/Azure.Identity/) must be referenced by the app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+> [!NOTE]
+> In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
+If the app uses the older Azure packages (`Microsoft.AspNetCore.DataProtection.AzureStorage` and `Microsoft.AspNetCore.DataProtection.AzureKeyVault`), we recommend ***removing*** these references and upgrading to the [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) and [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys) packages. The newer packages address key security and stability issues.
+
+**Alternative shared-access signature (SAS) approach**: As an alternative to using a Managed Identity for access to the key blob in Azure Blob Storage, you can call the <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.PersistKeysToAzureBlobStorage%2A> overload that accepts a blob URI with a SAS token. The following example continues to use either a <xref:Azure.Identity.ManagedIdentityCredential> (production) or <xref:Azure.Identity.DefaultAzureCredential> (development and testing) for its <xref:Azure.Core.TokenCredential>, as seen in the preceding example:
 
 ```csharp
 services.AddDataProtection()
-    //This blob must already exist before the application is run
-    .PersistKeysToAzureBlobStorage("<storage account connection string", "<key store container name>", "<key store blob name>")
-    //Removing this line below for an initial run will ensure the file is created correctly
-    .ProtectKeysWithAzureKeyVault(new Uri("<keyIdentifier>"), new DefaultAzureCredential());
+    .SetApplicationName("{APPLICATION NAME}")
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI WITH SAS}"))
+    .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), credential);
 ```
 
-[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
+`{APPLICATION NAME}`: <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName%2A> sets the unique name of this app within the data protection system. The value should match across deployments of the app.
 
-## PersistKeysToFileSystem
+`{BLOB URI WITH SAS}`: The full URI where the key file should be stored with the SAS token as a query string parameter. The URI is generated by Azure Storage when you request a SAS for the uploaded key file.
+
+`{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The version of the key is obtained from the key in the Entra or Azure portal after it's created. If you enable automatic rotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
+
+## Persist keys to the file system (`PersistKeysToFileSystem`)
 
 To store keys on a UNC share instead of at the *%LOCALAPPDATA%* default location, configure the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem%2A>:
 
@@ -335,7 +477,7 @@ public void ConfigureServices(IServiceCollection services)
 > [!WARNING]
 > If you change the key persistence location, the system no longer automatically encrypts keys at rest, since it doesn't know whether DPAPI is an appropriate encryption mechanism.
 
-## PersistKeysToDbContext
+## Persist keys in a database (`PersistKeysToDbContext`)
 
 To store keys in a database using EntityFramework, configure the system with the [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) package:
 
@@ -355,9 +497,9 @@ public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
 
 This property represents the table in which the keys are stored. Create the table manually or with `DbContext` Migrations. For more information, see <xref:Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey>.
 
-## ProtectKeysWith\*
+## Protect keys configuration API (`ProtectKeysWith\*`)
 
-You can configure the system to protect keys at rest by calling any of the [ProtectKeysWith\*](xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions) configuration APIs. Consider the example below, which stores keys on a UNC share and encrypts those keys at rest with a specific X.509 certificate:
+You can configure the system to protect keys at rest by calling any of the [`ProtectKeysWith\*`](xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions) configuration APIs. Consider the example below, which stores keys on a UNC share and encrypts those keys at rest with a specific X.509 certificate:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -380,9 +522,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-See [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest) for more examples and discussion on the built-in key encryption mechanisms.
+For more examples and discussion on the built-in key encryption mechanisms, see <xref:security/data-protection/implementation/key-encryption-at-rest>.
 
-## UnprotectKeysWithAnyCertificate
+## Unprotect keys with any certificate (`UnprotectKeysWithAnyCertificate`)
 
 You can rotate certificates and decrypt keys at rest using an array of <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> certificates with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UnprotectKeysWithAnyCertificate%2A>:
 
@@ -399,7 +541,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-## SetDefaultKeyLifetime
+## Set the default key lifetime (`SetDefaultKeyLifetime`)
 
 To configure the system to use a key lifetime of 14 days instead of the default 90 days, use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetDefaultKeyLifetime%2A>:
 
@@ -411,7 +553,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-## SetApplicationName
+## Set the application name (`SetApplicationName`)
 
 By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/index#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
 
@@ -426,7 +568,7 @@ To share protected payloads among apps:
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddDataProtection()
-        .SetApplicationName("shared app name");
+        .SetApplicationName("{APPLICATION NAME}");
 }
 ```
 
@@ -435,7 +577,7 @@ public void ConfigureServices(IServiceCollection services)
 * [Per-application isolation](#per-application-isolation)
 * [Data Protection and app isolation](#data-protection-and-app-isolation)
 
-## DisableAutomaticKeyGeneration
+## Disable automatic key generation (`DisableAutomaticKeyGeneration`)
 
 You may have a scenario where you don't want an app to automatically roll keys (create new keys) as they approach expiration. One example of this scenario might be apps set up in a primary/secondary relationship, where only the primary app is responsible for key management concerns and secondary apps simply have a read-only view of the key ring. The secondary apps can be configured to treat the key ring as read-only by configuring the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration%2A>:
 
@@ -460,7 +602,7 @@ The unique identifier is designed to survive resets&mdash;both of the individual
 
 This isolation mechanism assumes that the apps aren't malicious. A malicious app can always impact any other app running under the same worker process account. In a shared hosting environment where apps are mutually untrusted, the hosting provider should take steps to ensure OS-level isolation between apps, including separating the apps' underlying key repositories.
 
-If the Data Protection system isn't provided by an ASP.NET Core host (for example, if you instantiate it via the `DataProtectionProvider` concrete type) app isolation is disabled by default. When app isolation is disabled, all apps backed by the same keying material can share payloads as long as they provide the appropriate [purposes](xref:security/data-protection/consumer-apis/purpose-strings). To provide app isolation in this environment, call the [SetApplicationName](#setapplicationname) method on the configuration object and provide a unique name for each app.
+If the Data Protection system isn't provided by an ASP.NET Core host (for example, if you instantiate it via the `DataProtectionProvider` concrete type) app isolation is disabled by default. When app isolation is disabled, all apps backed by the same keying material can share payloads as long as they provide the appropriate [purposes](xref:security/data-protection/consumer-apis/purpose-strings). To provide app isolation in this environment, call the [SetApplicationName](#set-the-application-name-setapplicationname) method on the configuration object and provide a unique name for each app.
 
 ### Data Protection and app isolation
 
@@ -468,7 +610,7 @@ Consider the following points for app isolation:
 
 * When multiple apps are pointed at the same key repository, the intention is that the apps share the same master key material. Data Protection is developed with the assumption that all apps sharing a key ring can access all items in that key ring. The application unique identifier is used to isolate application specific keys derived from the key ring provided keys. It doesn't expect item level permissions, such as those provided by Azure KeyVault to be used to enforce extra isolation. Attempting item level permissions generates application errors. If you don't want to rely on the built-in application isolation, separate key store locations should be used and not shared between applications.
 
-* The application discriminator (<xref:Microsoft.AspNetCore.DataProtection.DataProtectionOptions.ApplicationDiscriminator>) is used to allow different apps to share the same master key material but to keep their cryptographic payloads distinct from one another. <!-- The docs already draw an analogy between this and multi-tenancy.--> For the apps to be able to read each other's cryptographic payloads, they must have the same application discriminator, which can be set by calling [`SetApplicationName`](#setapplicationname).
+* The application discriminator (<xref:Microsoft.AspNetCore.DataProtection.DataProtectionOptions.ApplicationDiscriminator>) is used to allow different apps to share the same master key material but to keep their cryptographic payloads distinct from one another. <!-- The docs already draw an analogy between this and multi-tenancy.--> For the apps to be able to read each other's cryptographic payloads, they must have the same application discriminator, which can be set by calling [`SetApplicationName`](#set-the-application-name-setapplicationname).
 
 * If an app is compromised (for example, by an RCE attack), all master key material accessible to that app must also be considered compromised, regardless of its protection-at-rest state. This implies that if two apps are pointed at the same repository, even if they use different app discriminators, a compromise of one is functionally equivalent to a compromise of both.
 
@@ -476,7 +618,7 @@ Consider the following points for app isolation:
 
 * If apps need to remain truly isolated from one another, they should use different key repositories. This naturally falls out of the definition of "isolated". Apps are ***not*** isolated if they all have Read and Write access to each other's data stores.
 
-## Changing algorithms with UseCryptographicAlgorithms
+## Changing algorithms with `UseCryptographicAlgorithms`
 
 The Data Protection stack allows you to change the default algorithm used by newly generated keys. The simplest way to do this is to call <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UseCryptographicAlgorithms%2A> from the configuration callback:
 
@@ -577,17 +719,17 @@ Though not exposed as a first-class API, the Data Protection system is extensibl
 When hosting in a [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/) container, keys should be maintained in either:
 
 * A folder that's a Docker volume that persists beyond the container's lifetime, such as a shared volume or a host-mounted volume.
-* An external provider, such as [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) (shown in the [`ProtectKeysWithAzureKeyVault`](#protectkeyswithazurekeyvault) section) or [Redis](https://redis.io).
+* An external provider, such as [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) (shown in the [Protect keys with Azure Key Vault (`ProtectKeysWithAzureKeyVault`)](#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) section) or [Redis](https://redis.io).
 
 ## Persisting keys with Redis
 
 Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-redis/cache-how-to-premium-persistence) should be used to store keys. [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction) is persistent and can be used to store keys. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/13476).
 
-## Logging DataProtection
+## Logging
 
-Enable `Information` level logging of DataProtection to help diagnosis problem. The following `appsettings.json` file enables information logging of the DataProtection API:
+Enable the `Information` or lower level of logging to diagnose problems. The following `appsettings.json` file enables information logging of the Data Protection API:
 
-```JSON
+```json
 {
   "Logging": {
     "LogLevel": {
@@ -597,7 +739,7 @@ Enable `Information` level logging of DataProtection to help diagnosis problem. 
 }
 ```
 
-For more information on logging, see [Logging in .NET Core and ASP.NET Core](xref:fundamentals/logging/index).
+For more information on logging, see <xref:fundamentals/logging/index>.
 
 ## Additional resources
 

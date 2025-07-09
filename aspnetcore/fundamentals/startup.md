@@ -1,6 +1,6 @@
 ---
 title: App startup in ASP.NET Core
-author: rick-anderson
+author: wadepickett
 description: Learn how the Startup class in ASP.NET Core configures services and the app's request pipeline.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
@@ -80,7 +80,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A> and <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> methods with the minimal hosting model, see:
 
 * [Use Startup with the minimal hosting model](xref:migration/50-to-60#smhm)
-* The [ASP.NET Core 5.0 version of this article](?view=aspnetcore-5.0&preserve-view=true#the-startup-class):
+* The [.NET 5 version of this article](?view=aspnetcore-5.0&preserve-view=true#the-startup-class):
   * [The ConfigureServices method](?view=aspnetcore-5.0&preserve-view=true#the-configureservices-method)
   * [The Configure method](?view=aspnetcore-5.0&preserve-view=true#the-configure-method)
 

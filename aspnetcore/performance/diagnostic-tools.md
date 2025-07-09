@@ -13,6 +13,8 @@ By [Mike Rousos](https://github.com/mjrousos)
 
 This article lists tools for diagnosing performance issues in ASP.NET Core.
 
+For information on Blazor WebAssembly performance diagnostic tools and counters, see <xref:blazor/performance/webassembly-browser-developer-tools> and <xref:blazor/performance/webassembly-event-pipe>.
+
 ## Visual Studio Diagnostic Tools
 
 The [profiling and diagnostic tools](/visualstudio/profiling) built into Visual Studio are a good place to start investigating performance issues. These tools are powerful and convenient to use from the Visual Studio development environment. The tooling allows analysis of CPU usage, memory usage, and performance events in ASP.NET Core apps. Being built-in makes profiling easy at development time.
@@ -25,21 +27,21 @@ More information is available in [Visual Studio documentation](/visualstudio/pro
 
 Azure Application Insights provides multiple ways to give insights on monitored apps:
 
-- [Application Map](/azure/application-insights/app-insights-app-map) – helps spot performance bottlenecks or failure hot-spots across all components of distributed apps.
-- [Azure Metrics Explorer](/azure/azure-monitor/platform/metrics-getting-started) is a component of the Microsoft Azure portal that allows plotting charts, visually correlating trends, and investigating spikes and dips in metrics' values.
-- [Performance blade in Application Insights portal](/azure/application-insights/app-insights-tutorial-performance):
+* [Application Map](/azure/application-insights/app-insights-app-map) – helps spot performance bottlenecks or failure hot-spots across all components of distributed apps.
+* [Azure Metrics Explorer](/azure/azure-monitor/platform/metrics-getting-started) is a component of the Microsoft Azure portal that allows plotting charts, visually correlating trends, and investigating spikes and dips in metrics' values.
+* [Performance blade in Application Insights portal](/azure/application-insights/app-insights-tutorial-performance):
 
-  - Shows performance details for different operations in the monitored app.
-  - Allows drilling into a single operation to check all parts/dependencies that contribute to a long duration.
-  - Profiler can be invoked from here to collect performance traces on-demand.
+  * Shows performance details for different operations in the monitored app.
+  * Allows drilling into a single operation to check all parts/dependencies that contribute to a long duration.
+  * Profiler can be invoked from here to collect performance traces on-demand.
 
-- [Azure Application Insights Profiler](/azure/azure-monitor/app/profiler) allows regular and on-demand profiling of .NET apps.  Azure portal shows captured performance traces with call stacks and hot paths. The trace files can also be downloaded for deeper analysis using PerfView.
+* [Azure Application Insights Profiler](/azure/azure-monitor/app/profiler) allows regular and on-demand profiling of .NET apps.  Azure portal shows captured performance traces with call stacks and hot paths. The trace files can also be downloaded for deeper analysis using PerfView.
 
 Application Insights can be used in a variety of environments:
 
-- Optimized to work in Azure.
-- Works in production, development, and staging.
-- Works locally from [Visual Studio](/azure/application-insights/app-insights-visual-studio) or in other hosting environments.
+* Optimized to work in Azure.
+* Works in production, development, and staging.
+* Works locally from [Visual Studio](/azure/application-insights/app-insights-visual-studio) or in other hosting environments.
 
 For more information on code-based monitoring, see [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core). For more information on codeless monitoring, see [Monitor Azure App Service performance](/azure/azure-monitor/app/azure-web-apps?tabs=netcore).
 
@@ -65,6 +67,6 @@ More information about how to install and get started with PerfCollect is availa
 
 The following lists some third-party performance tools that are useful in performance investigation of .NET Core applications.
 
-- [MiniProfiler](https://miniprofiler.com/)
-- [dotTrace](https://www.jetbrains.com/profiler/) and [dotMemory](https://www.jetbrains.com/dotmemory/) from [JetBrains](https://www.jetbrains.com/)
-- [VTune](https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html) from Intel
+* [MiniProfiler](https://miniprofiler.com/)
+* [dotTrace](https://www.jetbrains.com/profiler/) and [dotMemory](https://www.jetbrains.com/dotmemory/) from [JetBrains](https://www.jetbrains.com/)
+* [VTune](https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html) from Intel

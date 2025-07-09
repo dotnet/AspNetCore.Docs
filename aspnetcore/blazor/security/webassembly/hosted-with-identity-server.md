@@ -3,9 +3,9 @@ title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
 author: guardrex
 description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server.
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc, linux-related-content
-ms.date: 11/12/2024
+ms.date: 05/27/2025
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
@@ -250,7 +250,7 @@ The `{ASSEMBLY NAME}` placeholder is the **:::no-loc text="Client":::** app's as
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-When an app is created to use Individual User Accounts (`Individual`), the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use Individual Accounts (`Individual`), the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
 
@@ -292,7 +292,13 @@ Configuration for the app is loaded by convention from `_configuration/{client-i
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-[!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
+The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace is made available throughout the app via the `_Imports.razor` file:
+
+```razor
+...
+@using Microsoft.AspNetCore.Components.Authorization
+...
+```
 
 ### `Index` page
 

@@ -1,4 +1,4 @@
-# ASP.NET Core 6.0 Minimal API Windows Service Sample
+# ASP.NET Core in .NET 6 Minimal API Windows Service Sample
 
 This sample shows how to host an ASP.NET Core app using Minimal API as a Windows Service without using IIS. This sample demonstrates the scenario described in [Host ASP.NET Core in a Windows Service](https://learn.microsoft.com/aspnet/core/host-and-deploy/windows-service).
 

@@ -26,7 +26,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 
-app.UseHttpLogging(); 
+app.UseHttpLogging();
 
 app.Use(async (context, next) =>
 {
@@ -64,7 +64,6 @@ app.Run();
 // <snippet3>
 using HttpLoggingSample;
 using Microsoft.AspNetCore.HttpLogging;
-
 // <snippet4>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -83,7 +82,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 
-app.UseHttpLogging(); 
+app.UseHttpLogging();
 
 app.Use(async (context, next) =>
 {

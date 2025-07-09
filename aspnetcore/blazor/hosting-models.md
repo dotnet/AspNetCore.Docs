@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor hosting models
 author: guardrex
 description: Learn about Blazor hosting models and how to pick which one to use.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/hosting-models
@@ -87,7 +87,7 @@ The Blazor WebAssembly hosting model runs components client-side in the browser 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor web apps can use the Blazor WebAssembly hosting model to enable client-side interactivity. When an app is created that exclusively runs on the Blazor WebAssembly hosting model without server-side rendering and interactivity, the app is called a *standalone* Blazor WebAssembly app.
+Blazor Web Apps can use the Blazor WebAssembly hosting model to enable client-side interactivity. When an app is created that exclusively runs on the Blazor WebAssembly hosting model without server-side rendering and interactivity, the app is called a *standalone* Blazor WebAssembly app.
 
 :::moniker-end
 
@@ -95,13 +95,13 @@ Blazor web apps can use the Blazor WebAssembly hosting model to enable client-si
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app.
 
-:::moniker-end
-
 When a standalone Blazor WebAssembly app uses a backend ASP.NET Core app to serve its files, the app is called a *hosted* Blazor WebAssembly app. Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](xref:web-api/index), [gRPC-web](xref:grpc/index), and [SignalR](xref:signalr/introduction) (<xref:blazor/tutorials/signalr-blazor>).
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
-A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/progressive-web-app) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
+A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
 
 :::moniker-end
 
@@ -420,7 +420,7 @@ Blazor Hybrid apps have full access to native client API capabilities via .NET n
 
 ### Web-based deployment
 
-Blazor web apps are updated on the next app refresh from the browser.
+Blazor Web Apps are updated on the next app refresh from the browser.
 
 :::moniker range=">= aspnetcore-6.0"
 

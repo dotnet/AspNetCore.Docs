@@ -62,8 +62,8 @@ We recommend using delegated user access tokens whenever a user is involved. Dow
 
 Access tokens can be used as [bearer tokens](https://cloud.google.com/docs/authentication/token-types#bearer) or [sender-constrained tokens](https://docs.verify.ibm.com/ibm-security-verify-access/docs/tasks-certboundaccesstoken) to access resources. Sender-constrained tokens require the requesting client to prove possession of a private key to use the token. Proving possession of a private key guarantees the token can't be used independently. Sender-constrained tokens can be implemented in two ways:
 
-- [Demonstrating Proof of Possession (DPoP)](https://datatracker.ietf.org/doc/html/rfc9449)
-- [Mutual-TLS (MTLS)](https://datatracker.ietf.org/doc/html/rfc8705)
+* [Demonstrating Proof of Possession (DPoP)](https://datatracker.ietf.org/doc/html/rfc9449)
+* [Mutual-TLS (MTLS)](https://datatracker.ietf.org/doc/html/rfc8705)
 
 ### ID tokens
 
@@ -248,7 +248,7 @@ See [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 
 Using the [Microsoft Identity Web authentication library](/entra/msal/dotnet/microsoft-identity-web/) is the easiest and a secure approach. It only works with Microsoft Entra ID, Microsoft Entra External ID.
 
-For more information, see [[Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
+For more information, see [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow).
 
 ### Use the same delegated access token sent to the API
 
@@ -281,7 +281,24 @@ Some secure token servers encrypt the access tokens. Access tokens do not requir
 
 ## YARP (Yet Another Reverse Proxy)
 
-[YARP (Yet Another Reverse Proxy)](https://dotnet.github.io/yarp/) is a good tool for handling HTTP requests and forwarding the requests to other APIs. YARP can implement security logic for acquiring new access credentials. YARP is frequently used in the [backend for frontend (BFF)](https://auth0.com/blog/the-backend-for-frontend-pattern-bff/) security architecture. [The Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-bff-pattern) demonstrates using YARP to implement the BFF pattern.
+[YARP (Yet Another Reverse Proxy)](https://dotnet.github.io/yarp/) is a useful technology for handling HTTP requests and forwarding the requests to other APIs. YARP can implement security logic for acquiring new access credentials. YARP is frequently used when adopting [Backend for Frontend (BFF) security architecture](/azure/architecture/patterns/backends-for-frontends).
+
+:::moniker range=">= aspnetcore-9.0"
+
+For Blazor examples that use YARP to implement the BFF pattern, see the following articles:
+
+* <xref:blazor/security/blazor-web-app-entra?pivots=bff-pattern>
+* <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+For a Blazor example that uses YARP to implement the BFF pattern, see <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern>.
+
+:::moniker-end
+
+For more information, see [auth0: The Backend for Frontend Pattern](https://auth0.com/blog/the-backend-for-frontend-pattern-bff/).
 
 ## Testing APIs
 

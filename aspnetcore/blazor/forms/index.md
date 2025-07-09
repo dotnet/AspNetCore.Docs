@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor forms overview
 author: guardrex
 description: Learn how to use forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/forms/index
@@ -243,7 +243,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 
 ## Clear a form or field
 
-Reset a form by clearing its model back its default state, which can be performed inside or outside of an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s markup:
+Reset a form by clearing its model back to its default state, which can be performed inside or outside of an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s markup:
 
 ```razor
 <button @onclick="ClearForm">Clear form</button>
@@ -368,7 +368,7 @@ To disable enhanced form handling:
 * For an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, remove the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter from the form element (or set it to `false`: `Enhance="false"`).
 * For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
 
-Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
+Blazor's enhanced navigation and form handling may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
 
 In the following example, the content of the `<div>` element is updated dynamically by a script when the page loads:
 
@@ -394,13 +394,13 @@ Examples don't adopt enhanced form handling for form POST requests, but all of t
 
 :::moniker range="< aspnetcore-5.0"
 
-Examples use the [target-typed `new` operator](/dotnet/csharp/language-reference/operators/new-operator#target-typed-new), which was introduced with C# 9.0 and .NET 5. In the following example, the type isn't explicitly stated for the `new` operator:
+Examples use the [target-typed `new` operator](/dotnet/csharp/language-reference/operators/new-operator#target-typed-new), which was introduced with C# 9 and .NET 5. In the following example, the type isn't explicitly stated for the `new` operator:
 
 ```csharp
 public ShipDescription ShipDescription { get; set; } = new();
 ```
 
-If using C# 8.0 or earlier (ASP.NET Core 3.1), modify the example code to state the type to the `new` operator:
+If using C# 8 or earlier (ASP.NET Core 3.1), modify the example code to state the type to the `new` operator:
 
 ```csharp
 public ShipDescription ShipDescription { get; set; } = new ShipDescription();
@@ -412,11 +412,11 @@ public ShipDescription ShipDescription { get; set; } = new ShipDescription();
 
 Components use nullable reference types (NRTs), and the .NET compiler performs null-state static analysis, both of which are supported in .NET 6 or later. For more information, see <xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis>.
 
-If using C# 9.0 or earlier (.NET 5 or earlier), remove the NRTs from the examples. Usually, this merely involves removing the question marks (`?`) and exclamation points (`!`) from the types in the example code.
+If using C# 9 or earlier (.NET 5 or earlier), remove the NRTs from the examples. Usually, this merely involves removing the question marks (`?`) and exclamation points (`!`) from the types in the example code.
 
 The .NET SDK applies implicit global `using` directives to projects when targeting .NET 6 or later. The examples use a logger to log information about form processing, but it isn't necessary to specify an `@using` directive for the <xref:Microsoft.Extensions.Logging?displayProperty=nameWithType> namespace in the component examples. For more information, see [.NET project SDKs: Implicit using directives](/dotnet/core/project-sdk/overview#implicit-using-directives).
 
-If using C# 9.0 or earlier (.NET 5 or earlier), add `@using` directives to the top of the component after the `@page` directive for any API required by the example. Find API namespaces through Visual Studio (right-click the object and select **Peek Definition**) or the [.NET API browser](/dotnet/api/).
+If using C# 9 or earlier (.NET 5 or earlier), add `@using` directives to the top of the component after the `@page` directive for any API required by the example. Find API namespaces through Visual Studio (right-click the object and select **Peek Definition**) or the [.NET API browser](/dotnet/api/).
 
 :::moniker-end
 

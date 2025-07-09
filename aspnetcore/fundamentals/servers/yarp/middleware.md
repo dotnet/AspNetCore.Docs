@@ -19,7 +19,7 @@ ASP.NET Core uses a [middleware pipeline](/aspnet/core/fundamentals/middleware/)
 ## Defaults
 The [getting started](xref:fundamentals/servers/yarp/getting-started) sample shows the following Configure method. This sets up a middleware pipeline with development tools, routing, and proxy configured endpoints (`MapReverseProxy`).
 
-```C#
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
@@ -28,7 +28,7 @@ app.MapReverseProxy();
 app.Run();
 ```
 
-The parmeterless `MapReverseProxy()` in [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) overload includes all standard proxy middleware for [session affinity](xref:fundamentals/servers/yarp/session-affinity), [load balancing](xref:fundamentals/servers/yarp/load-balancing), [passive health checks](dests-health-checks.md#passive-health-checks), and the final proxying of the request. Each of these check the configuration of the matched route, cluster, and destination and perform their task accordingly.
+The parameterless `MapReverseProxy()` in [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) overload includes all standard proxy middleware for [session affinity](xref:fundamentals/servers/yarp/session-affinity), [load balancing](xref:fundamentals/servers/yarp/load-balancing), [passive health checks](dests-health-checks.md#passive-health-checks), and the final proxying of the request. Each of these check the configuration of the matched route, cluster, and destination and perform their task accordingly.
 
 ## Adding Middleware
 
@@ -59,7 +59,7 @@ Middleware inside the `MapReverseProxy` pipeline have access to all of the proxy
 
 The data in `IReverseProxyFeature` are snapshotted from the proxy configuration at the start of the proxy pipeline and will not be affected by proxy configuration changes that occur while the request is being processed.
 
-```C#
+```csharp
 proxyPipeline.Use((context, next) =>
 {
     var proxyFeature = context.GetReverseProxyFeature();
@@ -78,7 +78,7 @@ Middleware can generate logs, control if a request gets proxied or not, influenc
 
 Middleware can inspect request and response fields to generate logs and aggregate metrics. See the note about bodies under "What not to do with middleware" below.
 
-```C#
+```csharp
 proxyPipeline.Use(async (context, next) =>
 {
     LogRequest(context);
@@ -91,7 +91,7 @@ proxyPipeline.Use(async (context, next) =>
 
 If a middleware inspects a request and determines that it should not be proxied, it may generate its own response and return control to the server without calling `next()`.
 
-```C#
+```csharp
 proxyPipeline.Use((context, next) =>
 {
     if (!CheckAllowedRequest(context, out var reason))
@@ -112,9 +112,9 @@ Middleware like session affinity and load balancing examine the `IReverseProxyFe
 
 `AvailableDestinations` lists the destinations currently considered eligible to handle the request. It is initialized to `AllDestinations`, excluding unhealthy ones if health checks are enabled. `AvailableDestinations` should be reduced to a single destination by the end of the pipeline or else one will be selected randomly from the remainder.
 
-`ProxiedDestination` is set by the proxy logic at the end of the pipeline to indicate which destination was ultimately used.  If there are no available destinations remaining then a 503 error response is sent.
+`ProxiedDestination` is set by the proxy logic at the end of the pipeline to indicate which destination was ultimately used. If there are no available destinations remaining then a 503 error response is sent.
 
-```C#
+```csharp
 proxyPipeline.Use(async (context, next) =>
 {
     var proxyFeature = context.GetReverseProxyFeature();
@@ -134,7 +134,7 @@ Middleware can wrap the call to `await next()` in a try/catch block to handle ex
 
 The proxy logic at the end of the pipeline ([IHttpForwarder](xref:fundamentals/servers/yarp/direct-forwarding)) does not throw exceptions for common request proxy errors. These are captured and reported in the [IForwarderErrorFeature](xref:Yarp.ReverseProxy.Forwarder.IForwarderErrorFeature) available from `HttpContext.Features` or the `HttpContext.GetForwarderErrorFeature()` extension method.
 
-```C#
+```csharp
 proxyPipeline.Use(async (context, next) =>
 {
     await next();

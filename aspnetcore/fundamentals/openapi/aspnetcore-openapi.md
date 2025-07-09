@@ -5,20 +5,42 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 2/23/2025
+ms.date: 3/18/2025
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-10.0"
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
+* Support for generating [OpenAPI version 3.1] documents.
+* Support for [JSON Schema draft 2020-12].
 * Support for generating OpenAPI documents at run time and accessing them via an endpoint on the app.
 * Support for "transformer" APIs that allow modifying the generated document.
 * Support for generating multiple OpenAPI documents from a single app.
 * Takes advantage of JSON schema support provided by [`System.Text.Json`](/dotnet/api/system.text.json).
 * Is compatible with native AoT.
+
+[OpenAPI version 3.1]: https://spec.openapis.org/oas/v3.1.1.html
+[JSON Schema draft 2020-12]: https://json-schema.org/specification-links#2020-12
+
+The default OpenAPI version for generated documents is`3.1`. The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi):
+
+```csharp
+builder.Services.AddOpenApi(options =>
+{
+    // Specify the OpenAPI version to use.
+    options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
+});
+```
+
+When generating the OpenAPI document at build time, the OpenAPI version can be selected by setting the `--openapi-version` in the `OpenApiGenerateDocumentsOptions` MSBuild item.
+
+```xml
+    <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document. -->
+    <OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
+```
 
 ## Package installation
 
@@ -56,6 +78,16 @@ Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to vie
 
 The following sections demonstrate how to customize OpenAPI document generation.
 
+### Generate OpenAPI document in YAML format
+
+The OpenAPI document can be generated in either JSON or YAML format. By default, the OpenAPI document is generated in JSON format. To generate the OpenAPI document in YAML format, specify the endpoint in the MapOpenApi call with a ".yaml" or ".yml" suffix, as shown in the following example:
+
+```csharp
+app.MapOpenApi("/openapi/{documentName}.yaml");
+```
+
+Generating penAPI documents in YAML format at build time is currently not supported, but planned in a future preview.
+
 ### Customize the OpenAPI document name
 
 Each OpenAPI document in an app has a unique name. The default document name that is registered is `v1`.
@@ -81,12 +113,12 @@ GET http://localhost:5000/openapi/internal.json
 
 ### Customize the OpenAPI version of a generated document
 
-By default, OpenAPI document generation creates a document that is compliant with [v3.0 of the OpenAPI specification](https://spec.openapis.org/oas/v3.0.0). The following code demonstrates how to modify the default version of the OpenAPI document:
+By default, OpenAPI document generation creates a document that is compliant with [OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html). The following code demonstrates how to modify the default version of the OpenAPI document:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
 {
-    options.OpenApiVersion = OpenApiSpecVersion.OpenApi2_0;
+    options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_0;
 });
 ```
 
@@ -118,11 +150,11 @@ The OpenAPI document is regenerated every time a request to the OpenAPI endpoint
 
 ## Generate multiple OpenAPI documents
 
-In some scenarios, it's helpful to generate multiple OpenAPI documents with different content from a single ASP.NET Core API app. These scenarios include:
+In some scenarios, it's helpful to generate multiple OpenAPI documents with different content from a single ASP.NET Core API app. These scenarios include generating OpenAPI documentation for different:
 
-* Generating OpenAPI documentation for different audiences, such as public and internal APIs.
-* Generating OpenAPI documentation for different versions of an API.
-* Generating OpenAPI documentation for different parts of an app, such as a frontend and backend API.
+* Audiences, such as public and internal APIs.
+* Versions of an API.
+* Parts of an app, such as a frontend and backend API.
 
 To generate multiple OpenAPI documents, call the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> extension method once for each document, specifying a different document name in the first parameter each time.
 
@@ -259,32 +291,14 @@ Create a new ASP.NET Core Web API (Native AOT) project.
 dotnet new webapiaot
 ```
 
-:::moniker-end
-
-:::moniker range="= aspnetcore-9.0"
-
-Add the Microsoft.AspNetCore.OpenAPI package.
-
-```console
-dotnet add package Microsoft.AspNetCore.OpenApi
-```
-
-Update `Program.cs` to enable generating OpenAPI documents.
-
-```diff
-+ builder.Services.AddOpenApi();
-
-var app = builder.Build();
-
-+ app.MapOpenApi();
-```
-
-:::moniker-end
-
 Publish the app.
 
 ```console
 dotnet publish
 ```
 
+:::moniker-end
+
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
+
+[!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi9.md)]

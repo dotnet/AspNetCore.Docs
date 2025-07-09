@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor configuration
 author: guardrex
 description: Learn about Blazor app configuration, including app settings, authentication, and logging configuration.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/fundamentals/configuration
@@ -300,12 +300,12 @@ var hostname = builder.Configuration["HostName"];
 
 ## Cached configuration
 
-Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
+Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app/index), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
 
 * Users have cached versions of the files that they continue to use.
 * The PWA's `service-worker.js` and `service-worker-assets.js` files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
 
-For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
+For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app/index#background-updates>.
 
 ## Options configuration
 

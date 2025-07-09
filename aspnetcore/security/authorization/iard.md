@@ -1,52 +1,161 @@
 ---
-title: Custom authorization policies with IAuthorizationRequirementData
+title: Custom authorization policies with `IAuthorizationRequirementData`
 author: rick-anderson
-description: Learn how to add  custom authorization policies with IAuthorizationRequirementData.
+description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 6/4/2023
+ms.date: 5/16/2025
 uid: security/authorization/iard
 ---
-# Custom authorization policies with IAuthorizationRequirementData
+# Custom authorization policies with `IAuthorizationRequirementData`
 
-Consider the following sample that implements a custom `MinimumAgeAuthorizationHandler`:
+Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Program.cs" highlight="9":::
+## Sample app
 
-The `MinimumAgeAuthorizationHandler` class:
+The complete sample described in this article is the [AuthRequirementsData sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](xref:blazor/fundamentals/index#sample-apps)). The sample app implements a minimum age handler for users, requiring a user to present a birth date claim indicating that they're at least 21 years old.
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
+## Minimum age authorize attribute
 
-The custom `MinimumAgePolicyProvider`:
+The `MinimumAgeAuthorizeAttribute` implementation of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> sets an authorization age:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_all":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizeAttribute.cs":::
 
-ASP.NET Core only uses one authorization policy provider. If the custom implementation
-doesn't handle all policies, including default policies, etc., it should fall back to an
-alternate provider. In the preceding sample, a default authorization policy provider is:
+## Minimum age authorization handler
 
-* Constructed with options from the [dependency injection container](xref:fundamentals/dependency-injection).
-* Used if this custom provider isn't able to handle a given policy name.
+The `MinimumAgeAuthorizationHandler` class handles the single <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> provided by `MinimumAgeAuthorizeAttribute`, as specified by the generic parameter `MinimumAgeAuthorizeAttribute`.
 
-If a custom policy provider is able to handle all expected policy names, setting the fallback policy with <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync> isn't required.
+The `HandleRequirementAsync` method:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_1":::
+* Gets the user's birth date claim.
+* Obtains the user's age from the claim.
+* Adjusts age if the user hasn't had a birthday this year.
+* Marks the authorization requirement succeeded if the user meets the age requirement.
+* Implements logging for demonstration purposes.
 
-Policies are looked up by string name, therefore parameters, for example, `age`, are embedded in the policy names. This is abstracted away from developers by the more strongly-typed attributes derived from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>. For example, the `[MinimumAgeAuthorize()]` attribute in this sample looks up policies by string name.
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizationHandler.cs":::
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_2":::
+The `MinimumAgeAuthorizationHandler` is registered as a singleton <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> service in the app's `Program` file:
 
-The `MinimumAgeAuthorizeAttribute` uses the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface that allows the attribute definition to specify the requirements associated with the authorization policy:
+```csharp
+builder.Services.AddSingleton<IAuthorizationHandler,
+    MinimumAgeAuthorizationHandler>();
+```
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizeAttribute.cs" highlight="6":::
+The `GreetingsController` displays the user's name when they satisfy the minimum age policy, using an age of 21 years old with the `[MinimumAgeAuthorize({AGE})]` attribute, where the `{AGE}` placeholder is the age:
 
-The `GreetingsController` displays the user's name when they satisfy the minimum age policy:
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Controllers/GreetingsController.cs":::
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Controllers/GreetingsController.cs" highlight="10":::
+If the user's birth date claim indicates that they're at least 21 years old, the controller displays the greeting string, issuing a 200 (OK) status code. If the user is missing the birth date claim or the claim indicates that they aren't at least 21 years old, the greeting isn't displayed and a 403 (Forbidden) status code is issued.
 
-The complete sample can be found in the [AuthRequirementsData](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) folder of the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
+JWT bearer authentication services are added in the app's `Program` file:
 
-The sample can be tested with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl:
+```csharp
+builder.Services.AddAuthentication().AddJwtBearer();
+```
 
-* `dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01`
-* `curl -i -H "Authorization: Bearer <token from dotnet user-jwts>" http://localhost:<port>/api/greetings/hello`
+The app settings file (`appsettings.json`) configures the audience and issuer for JWT bearer authentication:
+
+```json
+"Authentication": {
+  "Schemes": {
+    "Bearer": {
+      "ValidAudiences": [
+        "https://localhost:51100"
+      ],
+      "ValidIssuer": "dotnet-user-jwts"
+    }
+  }
+}
+```
+
+In the preceding example, the localhost audience matches the localhost address specified by `applicationUrl` in the app's launch profile (`Properties/launchSettings.json`).
+
+## Demonstration
+
+Test the sample with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl.
+
+From the project's folder in a command shell, execute the following command to create a JWT bearer token with a birth date claim that makes the user over 21 years old:
+
+```dotnetcli
+dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01
+```
+
+The output produces a token after "`Token:`" in the command shell:
+
+```dotnetcli
+New JWT saved with ID '{JWT ID}'.
+Name: {USER}
+Custom Claims: [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01]
+
+Token: {TOKEN}
+```
+
+Set the value of the token (where the `{TOKEN}` placeholder appears in the preceding output) aside for use later.
+
+You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jwt.ms/) to see its contents, revealing that it contains a `birthdate` claim with the user's birth date:
+
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}.{
+  "unique_name": "{USER}",
+  "sub": "{USER}",
+  "jti": "{JWT ID}",
+  "birthdate": "1989-01-01",
+  "aud": [
+    "https://localhost:51100",
+    "http://localhost:51101"
+  ],
+  "nbf": 1747315312,
+  "exp": 1755264112,
+  "iat": 1747315313,
+  "iss": "dotnet-user-jwts"
+}.[Signature]
+```
+
+Execute the command again with a `dateofbirth` value that makes the user under the age of 21:
+
+```dotnetcli
+dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=2020-01-01
+```
+
+Set the value of second token aside.
+
+Start the app in Visual Studio or with the `dotnet watch` command in the .NET CLI.
+
+In the .NET CLI, execute the following `curl.exe` command to request the `api/greetings/hello` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
+
+```dotnetcli
+curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:51100/api/greetings/hello
+```
+
+The output indicates success because the user's birth date claim indicates that they're at least 21 years old:
+
+```dotnetcli
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Date: Thu, 15 May 2025 22:58:10 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+Hello {USER}!
+```
+
+Logging indicates that the age requirement was met:
+
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Minimum age authorization requirement 21 satisfied":::
+
+Re-execute the `curl.exe` command with the second token, which indicates the user is under 21 years old. The output indicates that the requirement isn't met. Access to the endpoint is forbidden (status code 403):
+
+```dotnetcli
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Thu, 15 May 2025 22:58:36 GMT
+Server: Kestrel
+```
+
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Current user's DateOfBirth claim (2020-01-01) doesn't satisfy the minimum age authorization requirement 21":::

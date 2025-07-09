@@ -16,13 +16,13 @@ The *dev tunnels* feature of Visual Studio 2022 enables ad-hoc connections betwe
 Some of the scenarios that dev tunnels enable:
 
 * Test a web app on other devices, like mobile phones and tablets.
-* Test an app with external services. For instance, test and debug [Power Platform connectors](/connectors/custom-connectors/port-tunneling), [Azure Communication Services APIs](https://github.com/Azure-Samples/communication-services-dotnet-quickstarts/tree/main/CallAutomation_AppointmentReminder/CallAutomation_AppointmentReminder), or [Twilio webhooks](https://www.twilio.com/blog/use-visual-studio-port-tunneling-with-twilio-webhooks).
+* Test an app with external services. For instance, test and debug [Power Platform connectors](/connectors/custom-connectors/port-tunneling), [Azure Communication Services APIs](https://github.com/Azure-Samples/communication-services-dotnet-quickstarts), or [Twilio webhooks](https://www.twilio.com/blog/use-visual-studio-port-tunneling-with-twilio-webhooks).
 * Make an app temporarily available to others over the internet, for a presentation or to invite others to review your work on a web app or API.
 * As an alternative to other port-forwarding solutions.
 
 ## Prerequisites
 
-* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.6 or later with the **ASP.NET and web development** workload installed. You need to be signed in to Visual Studio to create and use dev tunnels. The feature isn't available in Visual Studio for Mac.
+* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.6 or later with the **ASP.NET and web development** workload installed. You need to be signed in to Visual Studio to create and use dev tunnels.
 * One or more ASP.NET Core projects. This article uses a solution with two sample projects to demonstrate the feature.
 
 ## Create a tunnel

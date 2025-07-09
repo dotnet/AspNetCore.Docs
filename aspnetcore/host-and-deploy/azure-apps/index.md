@@ -1,11 +1,11 @@
 ---
 title: Deploy ASP.NET Core apps to Azure App Service
-author: bradygaster
+author: wadepickett
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/6/2020
+ms.date: 05/27/2025
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -25,8 +25,6 @@ Use Visual Studio to create and deploy an ASP.NET Core web app to Azure App Serv
 
 [Create an ASP.NET Core app in App Service on Linux](/azure/app-service/containers/quickstart-dotnetcore)  
 Use the command line to create and deploy an ASP.NET Core web app to Azure App Service on Linux.
-
-See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
 
 Subscribe to the [App Service Announcements](https://github.com/Azure/app-service-announcements/) repository and monitor the issues. The App Service team regularly posts announcements and scenarios arriving in App Service.
 
@@ -132,7 +130,7 @@ See the common deployment configuration errors for apps hosted by Azure App Serv
 
 ## Data Protection key ring and deployment slots
 
-[Data Protection keys](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) are persisted to the *%HOME%\ASP.NET\DataProtection-Keys* folder. This folder is backed by network storage and is synchronized across all machines hosting the app. Keys aren't protected at rest. This folder supplies the key ring to all instances of an app in a single deployment slot. Separate deployment slots, such as Staging and Production, don't share a key ring.
+[ASP.NET Core Data Protection keys](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) are persisted to the *%HOME%\ASP.NET\DataProtection-Keys* folder. This folder is backed by network storage and is synchronized across all machines hosting the app. Keys aren't protected at rest. This folder supplies the key ring to all instances of an app in a single deployment slot. Separate deployment slots, such as Staging and Production, don't share a key ring.
 
 When swapping between deployment slots, any system using data protection won't be able to decrypt stored data using the key ring inside the previous slot. ASP.NET Cookie Middleware uses data protection to protect its cookies. This leads to users being signed out of an app that uses the standard ASP.NET Cookie Middleware. For a slot-independent key ring solution, use an external key ring provider, such as:
 
@@ -152,8 +150,6 @@ To deploy an app that uses a preview release of .NET Core, see the following res
 * [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app)
 * [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers)
 * [Install the preview site extension](#install-the-preview-site-extension)
-
-See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
 
 See [Select the .NET Core version to use](/dotnet/core/versions/selection) for information on selecting the version of the .NET SDK for self-contained deployments.
 
@@ -241,7 +237,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 
 **Use the preview site extension with an ARM template**
 
-If an ARM template is used to create and deploy apps, the `Microsoft.Web/sites/siteextensions` resource type can be used to add the site extension to a web app. In the following example, the ASP.NET Core 5.0 (x64) Runtime site extension (`AspNetCoreRuntime.5.0.x64`) is added to the app:
+If an ARM template is used to create and deploy apps, the `Microsoft.Web/sites/siteextensions` resource type can be used to add the site extension to a web app. In the following example, the .NET 5 (x64) Runtime site extension (`AspNetCoreRuntime.5.0.x64`) is added to the app:
 
 [!code-json[](index/sample/arm.json)]
 

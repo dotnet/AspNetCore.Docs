@@ -15,14 +15,14 @@ ai-usage: ai-assisted
 ## Introduction
 The reverse proxy can be used to rate-limit requests before they are proxied to the destination servers. This can reduce load on the destination servers, add a layer of protection, and ensure consistent policies are implemented across your applications.
 
-> This feature is only available when using .NET 7.0 or later
+> This feature is only available when using .NET 7 or later
 
 ## Defaults
 
 No rate limiting is performed on requests unless enabled in the route or application configuration. However, the Rate Limiting middleware (`app.UseRateLimiter()`) can apply a default limiter applied to all routes, and this doesn't require any opt-in from the config.
 
 Example:
-```c#
+```csharp
 services.AddRateLimiter(options => options.GlobalLimiter = globalLimiter);
 ```
 
@@ -30,7 +30,7 @@ services.AddRateLimiter(options => options.GlobalLimiter = globalLimiter);
 Rate Limiter policies can be specified per route via [RouteConfig.RateLimiterPolicy](xref:Yarp.ReverseProxy.Configuration.RouteConfig) and can be bound from the `Routes` sections of the config file. As with other route properties, this can be modified and reloaded without restarting the proxy. Policy names are case insensitive.
 
 Example:
-```JSON
+```json
 {
   "ReverseProxy": {
     "Routes": {
@@ -58,7 +58,7 @@ Example:
 [RateLimiter policies](/aspnet/core/performance/rate-limit) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core rate limiting middleware.
 
 RateLimiter policies can be configured in services as follows:
-```c#
+```csharp
 services.AddRateLimiter(options =>
 {
     options.AddFixedWindowLimiter("customPolicy", opt =>
@@ -73,7 +73,7 @@ services.AddRateLimiter(options =>
 
 Then add the RateLimiter middleware.
 
-```c#
+```csharp
 app.UseRateLimiter();
 
 app.MapReverseProxy();

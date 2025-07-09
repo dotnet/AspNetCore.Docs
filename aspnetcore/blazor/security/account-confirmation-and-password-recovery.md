@@ -2,7 +2,7 @@
 title: Account confirmation and password recovery in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to configure an ASP.NET Core Blazor Web App with email confirmation and password recovery.
-ms.author: riande
+ms.author: wpickett
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/12/2024
 uid: blazor/security/account-confirmation-and-password-recovery
@@ -78,12 +78,18 @@ For more information, see <xref:security/app-secrets>.
 
 [Azure Key Vault](https://azure.microsoft.com/products/key-vault/) provides a safe approach for providing the app's client secret to the app.
 
-To create a key vault and set a secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret. When you set the access policy for the secret in the **Access policies** panel:
+To create a key vault and set a secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. For the example in this section, the secret name is "`EmailAuthKey`."
 
-* Only the **Get** secret permission is required.
-* Select the application as the **Principal** for the secret.
+When establishing the key vault in the Entra or Azure portal:
 
-Confirm in the Azure or Entra portal that the app has been granted access to the secret that you created for the email provider key.
+* Configure the key vault to use Azure role-based access control (RABC). If you aren't operating on an [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview), including for local development and testing, confirm that public access on the **Networking** step is **enabled** (checked). Enabling public access only exposes the key vault endpoint. Authenticated accounts are still required for access.
+
+* Create an Azure Managed Identity (or add a role to the existing Managed Identity that you plan to use) with the **Key Vault Secrets User** role. Assign the Managed Identity to the Azure App Service that's hosting the deployment: **Settings** > **Identity** > **User assigned** > **Add**.
+
+  > [!NOTE]
+  > If you also plan to run an app locally with an authorized user for key vault access using the [Azure CLI](/cli/azure/) or Visual Studio's Azure Service Authentication, add your developer Azure user account in **Access Control (IAM)** with the **Key Vault Secrets User** role. If you want to use the Azure CLI through Visual Studio, execute the `az login` command from the Developer PowerShell panel and follow the prompts to authenticate with the tenant.
+
+To implement the code in this section, record the key vault URI (example: "`https://contoso.vault.azure.net/`", trailing slash required) and the secret name (example: "`EmailAuthKey`") from Azure when you create the key vault and secret.
 
 > [!IMPORTANT]
 > A key vault secret is created with an expiration date. Be sure to track when a key vault secret is going to expire and create a new secret for the app prior to that date passing.
@@ -93,25 +99,17 @@ Add the following `AzureHelper` class to the server project. The `GetKeyVaultSec
 `Helpers/AzureHelper.cs`:
 
 ```csharp
-using Azure;
-using Azure.Identity;
+using Azure.Core;
 using Azure.Security.KeyVault.Secrets;
 
 namespace BlazorSample.Helpers;
 
 public static class AzureHelper
 {
-    public static string GetKeyVaultSecret(string tenantId, string vaultUri, string secretName)
+    public static string GetKeyVaultSecret(string vaultUri, 
+        TokenCredential credential, string secretName)
     {
-        DefaultAzureCredentialOptions options = new()
-        {
-            // Specify the tenant ID to use the dev credentials when running the app locally
-            // in Visual Studio.
-            VisualStudioTenantId = tenantId,
-            SharedTokenCacheTenantId = tenantId
-        };
-
-        var client = new SecretClient(new Uri(vaultUri), new DefaultAzureCredential(options));
+        var client = new SecretClient(new Uri(vaultUri), credential);
         var secret = client.GetSecretAsync(secretName).Result;
 
         return secret.Value.Value;
@@ -122,11 +120,28 @@ public static class AzureHelper
 Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](xref:fundamentals/configuration/options):
 
 ```csharp
-var tenantId = builder.Configuration.GetValue<string>("AzureAd:TenantId")!;
-var vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
+TokenCredential? credential;
 
-var emailAuthKey = AzureHelper.GetKeyVaultSecret(
-    tenantId, vaultUri, "EmailAuthKey");
+if (builder.Environment.IsProduction())
+{
+    credential = new ManagedIdentityCredential("{MANAGED IDENTITY CLIENT ID}");
+}
+else
+{
+    // Local development and testing only
+    DefaultAzureCredentialOptions options = new()
+    {
+        // Specify the tenant ID to use the dev credentials when running the app locally
+        // in Visual Studio.
+        VisualStudioTenantId = "{TENANT ID}",
+        SharedTokenCacheTenantId = "{TENANT ID}"
+    };
+
+    credential = new DefaultAzureCredential(options);
+}
+
+var emailAuthKey = AzureHelper.GetKeyVaultSecret("{VAULT URI}", credential, 
+    "EmailAuthKey");
 
 var authMessageSenderOptions = 
     new AuthMessageSenderOptions() { EmailAuthKey = emailAuthKey };
@@ -134,30 +149,16 @@ builder.Configuration.GetSection(authMessageSenderOptions.EmailAuthKey)
     .Bind(authMessageSenderOptions);
 ```
 
-If you wish to control the environment where the preceding code operates, for example to avoid running the code locally because you've opted to use the [Secret Manager tool](#secret-manager-tool) for local development, you can wrap the preceding code in a conditional statement that checks the environment:
-
-```csharp
-if (!context.HostingEnvironment.IsDevelopment())
-{
-    ...
-}
-```
-
-In the `AzureAd` section of `appsettings.json` in the server project, confirm the presence of the app's Entra ID `TenantId` and add the following `VaultUri` configuration key and value, if it isn't already present:
-
-```json
-"VaultUri": "{VAULT URI}"
-```
-
-In the preceding example, the `{VAULT URI}` placeholder is the key vault URI. Include the trailing slash on the URI.
-
-Example:
-
-```json
-"VaultUri": "https://contoso.vault.azure.net/"
-```
-
-Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
+> [!NOTE]
+> In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+>
+> The preceding example implies that the Managed Identity Client ID (`{MANAGED IDENTITY CLIENT ID}`), directory (tenant) ID (`{TENANT ID}`), and key vault URI (`{VAULT URI}`, example: `https://contoso.vault.azure.net/`, trailing slash required) are supplied by hard-coded values. Any or all of these values can be supplied from app settings configuration. For example, the following obtains the vault URI from the `AzureAd` node of an app settings file, and `vaultUri` can be used in the call to `GetKeyVaultSecret` in the preceding example:
+>
+> ```csharp
+> var vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
+> ```
+>
+> For more information, see <xref:blazor/fundamentals/configuration>.
 
 ## Implement `IEmailSender`
 

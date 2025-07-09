@@ -2,7 +2,7 @@
 title: Enable QR code generation for TOTP authenticator apps in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 author: guardrex
 description: Learn how to configure an ASP.NET Core Blazor WebAssembly app with Identity for QR code generation with TOTP authenticator apps.
-ms.author: riande
+ms.author: wpickett
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/21/2024
 uid: blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps
@@ -184,7 +184,7 @@ public async Task<FormResult> LoginAsync(string email, string password)
 {
     try
     {
-        var result = await httpClient.PostAsJsonAsync(
+        using var result = await httpClient.PostAsJsonAsync(
             "login?useCookies=true", new
             {
                 email,
@@ -199,7 +199,7 @@ public async Task<FormResult> LoginAsync(string email, string password)
         }
         else if (result.StatusCode == HttpStatusCode.Unauthorized)
         {
-            var responseJson = await result.Content.ReadAsStringAsync();
+            using var responseJson = await result.Content.ReadAsStringAsync();
             var response = JsonSerializer.Deserialize<LoginResponse>(
                 responseJson, jsonSerializerOptions);
 
@@ -236,7 +236,7 @@ public async Task<FormResult> LoginTwoFactorCodeAsync(
 {
     try
     {
-        var result = await httpClient.PostAsJsonAsync(
+        using var result = await httpClient.PostAsJsonAsync(
             "login?useCookies=true", new
             {
                 email,
@@ -274,7 +274,7 @@ public async Task<FormResult> LoginTwoFactorRecoveryCodeAsync(string email,
 {
     try
     {
-        var result = await httpClient.PostAsJsonAsync(
+        using var result = await httpClient.PostAsJsonAsync(
             "login?useCookies=true", new
             {
                 email,
@@ -318,7 +318,7 @@ public async Task<TwoFactorResponse> TwoFactorRequestAsync(TwoFactorRequest twoF
     string[] defaultDetail = 
         [ "An unknown error prevented two-factor authentication." ];
 
-    var response = await httpClient.PostAsJsonAsync("manage/2fa", twoFactorRequest, 
+    using var response = await httpClient.PostAsJsonAsync("manage/2fa", twoFactorRequest, 
         jsonSerializerOptions);
 
     // successful?

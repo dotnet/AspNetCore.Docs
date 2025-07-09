@@ -317,6 +317,6 @@ Once you've identified a common policy for your APIs, you can usually encapsulat
 
 ## See also
 
-- [.NET MAUI: Consume a REST-based web service](/dotnet/maui/data-cloud/rest/)
-- [Consume REST web services in .NET MAUI apps](/training/modules/consume-rest-services-maui/)
-- [Create a web API with ASP.NET Core controllers](/training/modules/build-web-api-aspnet-core/)
+* [.NET MAUI: Consume a REST-based web service](/dotnet/maui/data-cloud/rest/)
+* [Consume REST web services in .NET MAUI apps](/training/modules/consume-rest-services-maui/)
+* [Create a web API with ASP.NET Core controllers](/training/modules/build-web-api-aspnet-core/)

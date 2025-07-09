@@ -23,7 +23,7 @@ No authentication or authorization is performed on requests unless enabled in th
 Authorization policies can be specified per route via [RouteConfig.AuthorizationPolicy](xref:Yarp.ReverseProxy.Configuration.RouteConfig) and can be bound from the `Routes` sections of the config file. As with other route properties, this can be modified and reloaded without restarting the proxy. Policy names are case insensitive.
 
 Example:
-```JSON
+```json
 {
   "ReverseProxy": {
     "Routes": {

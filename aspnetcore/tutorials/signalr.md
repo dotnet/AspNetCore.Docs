@@ -1,6 +1,6 @@
 ---
 title: Get started with ASP.NET Core SignalR
-author: bradygaster
+author: wadepickett
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
 <!-- ms.author: bradyg -->
 ms.author: wpickett
@@ -40,10 +40,6 @@ At the end, you'll have a working chat app:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
 
 ---
 
@@ -85,24 +81,6 @@ The `dotnet new` command creates a new Razor Pages project in the `SignalRChat` 
 The `code` command opens the `SignalRChat1 folder in the current instance of Visual Studio Code.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Select **File** > **New Project**.
-
-![macOS New solution](~/tutorials/signalr/_static/7.x/new_project_vsmac.png)
-
-In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Continue**.
-
-![macOS web app template selection](~/tutorials/signalr/_static/7.x/web_app_template_vsmac.png)
-
-In the **Configure your new Web Application** dialog:
-
-* Confirm that **Authentication** is set to **No Authentication**.
-* Confirm that **Target framework** is set to the latest .NET 7.x version.
-* Select **Continue**.
-
-Name the project `SignalRChat` and select **Continue**.
 
 ---
 
@@ -155,39 +133,6 @@ The output looks similar to the following:
 
 ```console
 Downloading file https://unpkg.com/@microsoft/signalr@latest/dist/browser/signalr.js...
-wwwroot/js/signalr/dist/browser/signalr.js written to disk
-Installed library "@microsoft/signalr@latest" to "wwwroot/js/signalr"
-```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-In the **Terminal**, run the following commands to install LibMan after uninstalling any previous version, if one exists.
-
-```dotnetcli
-dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
-dotnet tool install -g Microsoft.Web.LibraryManager.Cli
-```
-
-[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
-
-Navigate to the project folder, which contains the `SignalRChat.csproj` file.
-
-Run the following command to get the SignalR client library by using LibMan:
-
-```console
-libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.js
-```
-
-The parameters specify the following options:
-
-* Use the unpkg provider.
-* Copy files to the `wwwroot/js/signalr` destination.
-* Copy only the specified files.
-
-The output looks like the following example:
-
-```console
-wwwroot/js/signalr/dist/browser/signalr.js written to disk
 wwwroot/js/signalr/dist/browser/signalr.js written to disk
 Installed library "@microsoft/signalr@latest" to "wwwroot/js/signalr"
 ```
@@ -247,10 +192,6 @@ Select <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Select <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Select **Debug** > **Start Without Debugging** to run the app without debugging.
 
 ---
 

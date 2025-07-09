@@ -33,10 +33,6 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
-
 ---
 
 <a name="rpvs17"></a>
@@ -50,10 +46,6 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Run `dotnet new webapp` from the command line.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.
 
 ---
 
