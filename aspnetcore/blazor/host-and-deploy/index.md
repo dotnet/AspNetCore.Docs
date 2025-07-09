@@ -28,12 +28,22 @@ Apps are published for deployment in Release configuration.
 # [Visual Studio](#tab/visual-studio)
 
 1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
-1. Select the *publish target*. To publish locally, select **Folder**.
-1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
+1. Select the *publish target*. To publish locally, select **Folder**. Select **Next**.
+1. When publishing locally, accept the default folder location or specify a different location. Select **Finish** to save the profile. Select **Close**.
+1. To clean the target's publish folder prior to publishing the app, select **Show all settings**. Select **Settings** > **File Publish Options** > **Delete all existing files prior to publish**. Select **Save**.
+1. Select the **Publish** button.
 
-# [.NET CLI](#tab/net-cli)
+# [Visual Studio Code and .NET CLI](#tab/visual-studio-code-dotnet-cli)
 
-Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app with a Release configuration:
+Open a command shell to the project's root directory.
+
+Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app:
+
+```dotnetcli
+dotnet publish
+```
+
+Prior to .NET 8, the default publish configuration is `Debug`. When publishing an app that targets .NET 7 or earlier, pass the `-c|--configuration` option to the command with "`Release`" to publish in `Release` configuration:
 
 ```dotnetcli
 dotnet publish -c Release
@@ -42,6 +52,18 @@ dotnet publish -c Release
 ---
 
 Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
+
+## Empty the target publish folder
+
+When using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command in a command shell to publish an app, the command generates the necessary files for deployment based on the current state of the project and places the files into the specified output folder. The command doesn't automatically clean the target folder before publishing the app.
+
+To empty the target folder automatically before the app is published, add the following MSBuild target to the app's project file (`.csproj`) under the root `<Project>` element:
+
+```xml
+<Target Name="_RemovePublishDirBeforePublishing" BeforeTargets="BeforePublish">
+  <RemoveDir Directories="$(PublishDir)" Condition="'$(PublishDir)' != ''" />
+</Target>
+```
 
 ## Default publish locations
 
