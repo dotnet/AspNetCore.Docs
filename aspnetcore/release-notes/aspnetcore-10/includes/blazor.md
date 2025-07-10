@@ -387,7 +387,7 @@ AppContext.SetSwitch(
 
 ### Blazor router has a `NotFoundPage` parameter
 
-Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` by passing a page type to the `Router` component using the `NotFoundPage` parameter, which is described in the next section. This approach is recommended over the previous [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A) (`<NotFound>...</NotFound>`), as it supports routing, works across code re-execution middleware, and is compatible even with non-Blazor scenarios. If both a `NotFound` render fragment and `NotFoundPage` are defined, the page specified by `NotFoundPage` takes priority.
+Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` (described in the next section) is invoked by passing a page type to the `Router` component using the `NotFoundPage` parameter. This approach is recommended over using the [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A) (`<NotFound>...</NotFound>`), as it supports routing, works across code Status Code Pages Re-execution Middleware, and is compatible even with non-Blazor scenarios. If both a `NotFound` render fragment and `NotFoundPage` are defined, the page specified by `NotFoundPage` takes priority.
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -413,12 +413,12 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `Not
 
 * **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
-Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
 
 Streaming `NavigationManager.NotFound` content rendering uses (in order):
 
 * A `NotFoundPage` passed to the `Router` component, if present.
-* A Re-execution Middleware page, if configured.
+* A Status Code Pages Re-execution Middleware page, if configured.
 * No action if neither of the preceding approaches is adopted.
 
 Non-streaming `NavigationManager.NotFound` content rendering uses (in order):
@@ -427,7 +427,7 @@ Non-streaming `NavigationManager.NotFound` content rendering uses (in order):
 * Not Found render fragment content, if present. *Not recommended in .NET 10 or later.*
 * `DefaultNotFound` 404 content ("`Not found`" plain text).
 
-[Re-execution Middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
+[Status Code Pages Re-execution Middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
 You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
 
