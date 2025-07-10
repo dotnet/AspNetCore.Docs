@@ -108,11 +108,7 @@ The [`package.json`](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/t
 > [!NOTE]
 > Replacing the `files` plugin with `url`, all of the app's JavaScript files, including the Blazor-WebAssembly runtime (base64 encoded in the JavaScript), are bundled into the output. The size of the file is significantly larger (for example, 300% larger) than when the files are curated with the `files` plugin, so we don't recommend using the `url` plugin as a general practice when producing bundler-friendly output for JavaScript bundler processing.
 
-<!-- UPDATE 10.0 - Surface this after Marek updates the app.
-
 For a demonstration sample app, see the [.NET on WASM in a React component sample (`maraf/dotnet-wasm-react` GitHub repository)](https://github.com/maraf/dotnet-wasm-react).
-
--->
 
 :::moniker-end
 
