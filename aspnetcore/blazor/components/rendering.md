@@ -57,7 +57,13 @@ To stream content updates when using static server-side rendering (static SSR) o
 
 :::moniker range=">= aspnetcore-10.0"
 
-If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, streaming rendering renders [Not Found responses](xref:blazor/fundamentals/routing#not-found-responses) without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh. In these contexts, Not Found content is defined as a [`NotFoundPage` passed to the `Router` component](xref:blazor/fundamentals/routing#not-found-responses), otherwise as a re-execution page when [re-execution middleware is set](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>.
+If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, streaming rendering renders [Not Found responses](xref:blazor/fundamentals/routing#not-found-responses) without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh. In these contexts, Not Found content is defined as (in order):
+
+* A [`NotFoundPage` passed to the `Router` component](xref:blazor/fundamentals/routing#not-found-responses) (`NotFoundPage="..."`).
+* Not Found render fragment content (`<NotFound>...</NotFound>`). *Not recommended in .NET 10 or later.*
+* Default 404 content ("`Not found`" plain text).
+
+A re-execution page is served when [re-execution middleware is set](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
 :::moniker-end
 
