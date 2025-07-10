@@ -717,7 +717,7 @@ For more information on component disposal, see <xref:blazor/components/componen
 * **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
 > [!NOTE]
-> The following discussion mentions that a Not Found Razor component can be assigned to the router's `NotFoundPage` parameter. The parameter works in concert with `NavigationManager.NotFound` and is described in more detail later in this section.
+> The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's `NotFoundPage` parameter. The parameter works in concert with `NavigationManager.NotFound` and is described in more detail later in this section.
 
 Streaming rendering can only render components that have a route, such as a Not Found page assignment with the `Router` component's `NotFoundPage` parameter or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
 
