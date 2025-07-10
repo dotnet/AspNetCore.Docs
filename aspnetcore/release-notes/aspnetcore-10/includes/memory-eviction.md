@@ -1,6 +1,6 @@
 ### Automatic eviction from memory pool
 
-The memory pools used by Kestrel, IIS, and HTTP.sys now automatically evict memory blocks when the application is idle or under less load. The feature  runs automatically and doesn't need to be enabled or configured manually.
+The memory pools used by Kestrel, IIS, and HTTP.sys now automatically evict memory blocks when the application is idle or under less load. The feature runs automatically and doesn't need to be enabled or configured manually.
 
 #### Why memory eviction matters
 
@@ -35,12 +35,12 @@ public class MyBackgroundService : BackgroundService
             try
             {
                 await Task.Delay(20, stoppingToken);
-                 // do work that needs memory
-                 var rented = _memoryPool.Rent(100);
+                // do work that needs memory
+                var rented = _memoryPool.Rent(100);
                 rented.Dispose();
             }
             catch (OperationCanceledException)
-           {
+            {
                 return;
             }
         }
