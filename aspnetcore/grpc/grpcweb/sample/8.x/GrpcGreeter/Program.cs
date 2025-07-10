@@ -14,7 +14,8 @@ var app = builder.Build();
 app.UseGrpcWeb();
 
 app.MapGrpcService<GreeterService>().EnableGrpcWeb();
-app.MapGet("/", () => "This gRPC service is gRPC-Web enabled and is callable from browser apps using the gRPC-Web protocol");
+app.MapGet("/", () => "This gRPC service is gRPC-Web enabled and is " +
+    "callable from browser apps using the gRPC-Web protocol");
 
 app.Run();
 // </snippet_WebEnable>
@@ -34,7 +35,9 @@ var app = builder.Build();
 app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 
 app.MapGrpcService<GreeterService>();
-app.MapGet("/", () => "All gRPC service are supported by default in this example, and are callable from browser apps using the gRPC-Web protocol");
+app.MapGet("/", () => "All gRPC service are supported by default in " +
+    "this example, and are callable from browser apps using the " +
+    "gRPC-Web protocol");
 
 app.Run();
 // </snippet_WebEnableAllServices>
@@ -53,7 +56,9 @@ builder.Services.AddCors(o => o.AddPolicy("AllowAll", builder =>
     builder.AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding", "Grpc-Status-Details-Bin");
+            .WithExposedHeaders("Grpc-Status", "Grpc-Message", 
+                "Grpc-Encoding", "Grpc-Accept-Encoding", 
+                "Grpc-Status-Details-Bin");
 }));
 
 var app = builder.Build();
@@ -64,7 +69,9 @@ app.UseCors();
 app.MapGrpcService<GreeterService>().EnableGrpcWeb()
                                     .RequireCors("AllowAll");
 
-app.MapGet("/", () => "This gRPC service is gRPC-Web enabled, CORS enabled, and is callable from browser apps using the gRPC-Web protocol");
+app.MapGet("/", () => "This gRPC service is gRPC-Web enabled, CORS " +
+    "enabled, and is callable from browser apps using the gRPC-Web " +
+    "protocol");
 
 app.Run();
 // </snippet_WebEnableCORS>
