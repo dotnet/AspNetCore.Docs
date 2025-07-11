@@ -1,7 +1,7 @@
 ---
 author: tdykstra
 ms.author: tdykstra
-ms.date: 04/10/2024
+ms.date: 08/07/2024
 ---
 
 :::moniker range=">= aspnetcore-7.0 <= aspnetcore-8.0"

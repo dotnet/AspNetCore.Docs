@@ -4,7 +4,7 @@ author: tdykstra
 description: The ASP.NET Core code generator tool scaffolds ASP.NET Core projects.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 07/05/2024
+ms.date: 11/09/2024
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
 # ASP.NET Core code generator tool (`aspnet-codegenerator`)

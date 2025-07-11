@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to provide localized resources for localizing content of an ASP.NET Core app into different languages and cultures.
 ms.author: riande
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 02/23/2023
+ms.date: 06/20/2025
 uid: fundamentals/localization/provide-resources
 ---
 # Provide localized resources for languages and cultures in an ASP.NET Core app

@@ -1,7 +1,7 @@
 ---
 author: rick-anderson
 ms.author: riande
-ms.date: 10/17/2023
+ms.date: 04/01/2025
 ---
 :::moniker range=">= aspnetcore-6.0 <= aspnetcore-7.0"
 

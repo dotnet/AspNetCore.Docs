@@ -4,7 +4,7 @@ author: jamesnk
 description: How to use HttpContext in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 12/13/2024
+ms.date: 07/09/2025
 uid: fundamentals/use-httpcontext
 ---
 <!-- ms.sfi.ropc: t -->

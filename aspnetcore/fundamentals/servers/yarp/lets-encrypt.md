@@ -5,7 +5,7 @@ description: YARP Lets Encrypt
 author: samsp-msft
 monikerRange: '<= aspnetcore-7.0'
 ms.author: samsp
-ms.date: 6/13/2025
+ms.date: 06/14/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted

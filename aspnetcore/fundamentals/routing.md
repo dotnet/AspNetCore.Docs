@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 content_well_notification: AI-contribution
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 6/14/2023
+ms.date: 09/18/2024
 uid: fundamentals/routing
 ai-usage: ai-assisted
 ---

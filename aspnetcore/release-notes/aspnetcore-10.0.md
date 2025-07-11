@@ -88,6 +88,8 @@ For more information, see [ASP.NET Core Authorization and Authentication metrics
 
 This section describes miscellaneous new features in .NET 10.
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/memory-eviction.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/httpsys.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/testAppsTopLevel.md)]
