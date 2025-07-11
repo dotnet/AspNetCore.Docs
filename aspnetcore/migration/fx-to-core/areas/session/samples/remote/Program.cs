@@ -8,7 +8,7 @@ builder.Services.AddSystemWebAdapters()
     });
 // </snippet_Serialization>
 
-// <snippet_Configuration>
+// <snippet_RemoteConfiguration>
 builder.Services.AddSystemWebAdapters()
     .AddJsonSessionSerializer(options =>
     {
@@ -25,6 +25,16 @@ builder.Services.AddSystemWebAdapters()
         options.ApiKey = builder.Configuration["RemoteAppApiKey"];
     })
     .AddSessionClient();
+// </snippet_RemoteConfiguration>
+
+// <snippet_Configuration>
+builder.Services.AddSystemWebAdapters()
+    .AddJsonSessionSerializer(options =>
+    {
+        // Serialization/deserialization requires each session key to be registered to a type
+        options.RegisterKey<int>("test-value");
+        options.RegisterKey<SessionDemoModel>("SampleSessionItem");
+    });
 // </snippet_Configuration>
 
 var app = builder.Build();
