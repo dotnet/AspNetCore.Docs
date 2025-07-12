@@ -18,6 +18,5 @@ And the generated OpenAPI:
             "description": "The weather forecast for the next 5 days.",
             "content": {
 ```
-[Minimal APIs](https://github.com/dotnet/aspnetcore/issues/58724) currently don't support `ProducesResponseType`.
 
 [Community contribution](https://github.com/dotnet/aspnetcore/pull/58193) by [Sander ten Brinke](https://github.com/sander1095) 🙏
