@@ -19,6 +19,4 @@ Generated OpenAPI data:
     "content": {
 ```
 
-Currently, Minimal APIs don't support <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute>. Support is planned for a future ASP.NET Core release. For more information, see [Improving current methods for setting OpenAPI response descriptions with Minimal APIs (`dotnet/aspnetcore` #58724)](https://github.com/dotnet/aspnetcore/issues/58724).
-
 [Community contribution (`dotnet/aspnetcore` #58193)](https://github.com/dotnet/aspnetcore/pull/58193) by [Sander ten Brinke](https://github.com/sander1095).
