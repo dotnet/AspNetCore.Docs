@@ -230,19 +230,19 @@ WebHost.CreateDefaultBuilder(args)
     .UseSetting("https_port", "8080")
 ```
 
-### HTTPS Ports
+### HTTP Ports
 
-Set the ports to listen on for HTTPS connections.
+Set the ports to listen on for HTTP connections.
 
-**Key**: https_ports
+**Key**: http_ports
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
+**Environment variable**: `ASPNETCORE_HTTP_PORTS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .UseSetting("https_ports", "8080")
+    .UseSetting("http_ports", "8080")
 ```
 
 ### Hosting Startup Exclude Assemblies
