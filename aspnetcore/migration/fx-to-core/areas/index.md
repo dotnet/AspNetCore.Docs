@@ -8,12 +8,15 @@ uid: migration/fx-to-core/areas
 ---
 # Technology specific guidance
 
+* [Authentication](authentication.md)
+* [ClaimsPrincipal.Current](claimsprincipal-current.md)
 * [HttpContext](http-context.md)
 * [HTTP Handlers](http-handlers.md)
 * [HTTP Modules](http-modules.md)
 * [Membership](membership.md)
+* [Miscellaneous](misc.md)
+* [Session State](session.md)
 * [WebAPI](webapi.md)
-* [ClaimsPrincipal.Current](claimsprincipal-current.md)
 
 ## Getting help
 

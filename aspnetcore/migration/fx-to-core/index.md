@@ -8,7 +8,57 @@ uid: migration/fx-to-core/index
 ---
 # Migrate from ASP.NET Framework to ASP.NET Core
 
-:::moniker range=">= aspnetcore-6.0"
+<!-- see mermaid.txt to change diagrams -->
+
+Updating an app from ASP.NET Framework to ASP.NET Core is non-trivial for the majority of production apps. These apps often incorporate new technologies as they become available and are often composed of many legacy decisions. This guide provides practical approaches and tools for updating ASP.NET Framework apps to ASP.NET Core with as little change as possible.
+
+## Why migration is challenging
+
+Migrating from ASP.NET Framework to ASP.NET Core involves several complex challenges that make a complete rewrite difficult and risky for most production applications:
+
+### Technical Debt Accumulation
+
+Production applications often have accumulated technical debt over years of development:
+
+* **System.Web dependencies** - The pervasive use of <xref:System.Web.HttpContext> and associated types throughout a code base.
+* **Outdated package dependencies** that may not have .NET Core equivalents
+* **Legacy build tools and project configurations** that aren't compatible with modern .NET
+* **Deprecated API usage** that needs to be replaced with modern alternatives
+* **Compiler warnings and code quality issues** that complicate migration
+
+### Cross-Cutting Concerns
+
+Many applications have cross-cutting concerns that span multiple layers and need careful coordination during migration:
+
+* **Session state management** - ASP.NET Framework and ASP.NET Core have fundamentally different session APIs and behaviors
+* **Authentication and authorization** - Different authentication models and APIs between frameworks
+* **Logging and monitoring** - Need to maintain consistent logging across both applications during migration
+* **Caching strategies** - In-memory, distributed, or output caching needs to be maintained consistently
+* **Error handling** - Establishing consistent error handling patterns across both applications
+* **Configuration management** - Managing settings that need to be shared or synchronized between applications
+* **Dependency injection** - Migrating from various DI containers to ASP.NET Core's built-in container
+
+### Library Dependency Chains
+
+Supporting libraries often have complex dependency relationships that require careful upgrade ordering:
+
+* **Dependency tree complexity** - Libraries must be upgraded in postorder depth-first search ordering
+* **Multi-targeting requirements** - Libraries need to support both .NET Framework and .NET Core/.NET Standard
+* **API compatibility** - Ensuring libraries work with both framework versions during the migration period
+* **Testing complexity** - Each library upgrade requires thorough testing to ensure compatibility
+
+### Application Architecture Differences
+
+The fundamental differences between ASP.NET Framework and ASP.NET Core create additional challenges:
+
+* **Hosting models** - Different approaches to application hosting and lifecycle management
+* **Middleware pipeline** - Moving from HTTP modules and handlers to middleware
+* **Request processing** - Different request processing models and contexts
+* **Performance characteristics** - Different memory usage patterns and performance profiles
+
+These challenges make incremental migration the preferred approach for most production applications, as it allows teams to address these issues gradually while maintaining a working application in production.
+
+For documentation around important areas that have changed, see the associated topics  available at <xref:migration/fx-to-core/areas>
 
 ## Start here: Choose your migration path
 
@@ -16,33 +66,26 @@ Your ASP.NET Framework application can successfully move to ASP.NET Core. The ke
 
 ### Quick decision guide
 
-**For most production applications:** Use the [**incremental migration approach**](xref:migration/fx-to-core/inc/overview) - it's safer, faster to start, and keeps your app running in production throughout the process.
+**Answer these questions to choose your approach:**
 
-**For smaller applications or greenfield rewrites:** Consider the complete migration approach using our specialized guides.
+1. **What's your timeline and risk tolerance?**
+   * Need to stay in production during migration → [Incremental migration](#incremental-migration)
+   * Can afford a complete rewrite → [In place migration](#in-place-migration)
 
-## The incremental approach: Best for most teams
+2. **How large is your application?**
+   * Small to medium apps → [In place migration](#in-place-migration)
+   * Large production apps → [Incremental migration](#incremental-migration) is safer
 
-Most non-trivial ASP.NET Framework applications should use incremental migration. This approach:
+3. **Do you have complex dependencies?**
+   * Unknown or out of date dependencies → [Incremental migration](#incremental-migration)
+   * Heavy use of System.Web → [Incremental migration](#incremental-migration)
+   * Minimal dependencies → [In place migration](#in-place-migration)
 
-- **Keeps your current app running** while you migrate piece by piece
-- **Reduces risk** by moving functionality gradually
-- **Delivers value faster** with immediate deployment of migrated components
-- **Uses proven tools** like YARP proxy and System.Web adapters
 
-**→ [Start your incremental migration](xref:migration/fx-to-core/inc/overview)**
+## Incremental Migration
 
-## Migration tools and resources
+Incremental migration is an implementation of the Strangler Fig pattern and is best for larger projects or projects that need to continue to stay in production throughout a migration. See <xref:migration/fx-to-core/start> to get started migration an application incrementally.
 
-### Automated assistance
-- **[.NET Upgrade Assistant](https://dotnet.microsoft.com/platform/upgrade-assistant)** - Command-line tool for initial project conversion
-- **[Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant)** - GUI-based upgrade assistance
+## In place migration
 
-### Comprehensive guides
-- **[Porting ASP.NET Apps eBook](https://aka.ms/aspnet-porting-ebook)** - Complete reference guide
-- **[eShop Migration Example](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop)** - Real-world case study
-
-## Changes to technology areas
-
-Before you begin, review the [technical differences between ASP.NET Framework and ASP.NET Core](xref:migration/fx-to-core/areas) to understand key changes that may affect your migration.
-
-:::moniker-end
+In place migration can work for sufficiently small applications. If possible, this allows for a quick replacement of the application. However, small issues may be compounded if you decide to do an in place migration. See <xref:migration/fx-to-core/tooling> for how Upgrade Assistant can help with an in place migration.
