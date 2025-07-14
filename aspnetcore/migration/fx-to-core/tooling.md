@@ -8,7 +8,7 @@ uid: migration/fx-to-core/tooling
 ---
 # Use tooling to help migrate ASP.NET Framework to ASP.NET Core
 
-This article shows how to upgrade ASP.NET Framework applications (MVC, Web API, and Web Forms) to ASP.NET Core using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/fx-to-core/overview) approach.
+This article shows how to upgrade ASP.NET Framework applications (MVC, Web API, and Web Forms) to ASP.NET Core using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/fx-to-core/index) approach.
 
 
    > [!WARNING]
