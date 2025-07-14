@@ -72,19 +72,18 @@ Review and update your NuGet packages to their latest compatible versions:
 Update your build tools and project configuration:
 
 1. **Update tools**: Ensure you're using a recent version of MSBuild/Visual Studio
-2. **Migrate to SDK-style project files**: Convert your existing project files to the modern SDK-style format. This is essential for .NET Core/.NET 5+ compatibility and provides better tooling support
-3. **Review project files**: Consider migrating from `packages.config` to `PackageReference` format if you haven't already in the Web application project
-4. **Update build scripts**: Review and update any custom build scripts or CI/CD configurations
-5. **Clean up unused references**: Remove any unused assembly references or NuGet packages
+1. **Migrate to PackageReference for dependencies**: Consider migrating from `packages.config` to `PackageReference` format if you haven't already in the Web application project
+1. **Clean up unused references**: Remove any unused assembly references or NuGet packages
+1. **Migrate to SDK-style project files**: Convert your existing project files to the modern SDK-style format. This is essential for compatibility with modern .NET projects and provides better tooling support
+1. **Update build scripts**: Review and update any custom build scripts or CI/CD configurations
 
 ### Address Code Quality Issues
 
 Fix known code quality issues that could complicate migration:
 
-1. **Run static analysis**: Use tools like CodeQL or Visual Studio's built-in analyzers
-2. **Fix compiler warnings**: Address any compiler warnings, especially those related to deprecated APIs
-3. **Remove dead code**: Clean up unused classes, methods, and other code elements
-4. **Update deprecated API usage**: Replace usage of deprecated APIs with their modern equivalents where possible
+1. **Fix compiler warnings**: Address any compiler warnings, especially those related to deprecated APIs
+1. **Remove dead code**: Clean up unused classes, methods, and other code elements
+1. **Update deprecated API usage**: Replace usage of deprecated APIs with their modern equivalents where possible
 
 This preparation work will make the library upgrade process much smoother and reduce the likelihood of encountering complex issues during migration.
 

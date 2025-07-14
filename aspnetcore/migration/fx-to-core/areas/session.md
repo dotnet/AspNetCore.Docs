@@ -157,7 +157,7 @@ Session support requires explicit activation. Configure it per-route or globally
 
 Choose this approach when your migrated components don't need to share session data with your legacy application.
 
-The `Microsoft.Extensions.DependencyInjection.WrappedSessionExtensions.AddWrappedAspNetCoreSession` extension method adds a wraps ASP.NET Core session to work with the adapters. It uses the same backing store as <xref:Microsoft.AspNetCore.Http.ISession> while providing strongly-typed access.
+The `Microsoft.Extensions.DependencyInjection.WrappedSessionExtensions.AddWrappedAspNetCoreSession` extension method adds a wrapped ASP.NET Core session to work with the adapters. It uses the same backing store as <xref:Microsoft.AspNetCore.Http.ISession> while providing strongly-typed access.
 
 **Configuration for ASP.NET Core:**
 

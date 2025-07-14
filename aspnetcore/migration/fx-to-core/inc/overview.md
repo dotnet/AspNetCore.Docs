@@ -43,7 +43,10 @@ Once the ASP.NET Core app using YARP is set up, you can start updating routes fr
 During the migration process, additional services and infrastructure are identified that must be updated to run on .NET Core. Options listed in order of maintainability include:
 
 1. Move the code to shared libraries
-1. Link the code in the new project
+1. Link the code in the new project from the old project manually
+    ```xml
+    <Compile Include="[Path to original file]" Link="[Filename in current project]" />
+    ```
 1. Duplicate the code
 
 Eventually, the ASP.NET Core app handles more of the routes than the .NET Framework app:

@@ -23,7 +23,7 @@ If your .NET Framework project has supporting libraries in the solution that are
 1. Open your ASP.NET Framework solution in Visual Studio.
 1. In **Solution Explorer**, right click on the project to upgrade and select **Upgrade**. Select **Side-by-side incremental project upgrade**, which is the only upgrade option.
 1. For the upgrade target, select **New project**.
-1. Name the project and select the appropriate template:
+1. Name the project and select the best fit template (you may add the required services later if you have a solution that uses a mixture of project types):
 
    > [!NOTE]
    > **For MVC projects:** Select **ASP.NET Core MVC** template.

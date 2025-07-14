@@ -153,7 +153,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 
 ## Setup Aspire orchestration
 
-> [!WARNING]
+> [!IMPORTANT]
 > This is still in preview and not available on NuGet.org, so you must configure your NuGet config to pull libraries from the .NET Libraries daily feed:
 >
 > ```xml
@@ -169,6 +169,9 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 > ```
 >
 > **NOTE**: This requires v2.0.1-preview1.25351.5 of the System.Web adapters or later.
+
+> [!WARNING]
+> **NOTE**: This is a 3rd party component that helps run the application in Aspire. At the current time, ASP.NET Framework applications are not supported directly in Aspire, but this project helps with that. This dependency is intended for build and development, but does not need to be deployed into production.
 
 1. Add Aspire orchestration for the ASP.NET Framework application
 1. Add a new ASP.NET Core application to the solution and add it to your Aspire orchestration
