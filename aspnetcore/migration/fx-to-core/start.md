@@ -6,13 +6,13 @@ ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/9/2022
 ms.topic: article
-uid: migration/fx-to-core/inc/start
+uid: migration/fx-to-core/start
 ---
 
 # Get started with incremental ASP.NET to ASP.NET Core migration
 
 > [!IMPORTANT]
-> **Before you begin**: This article assumes you have read the [Incremental ASP.NET to ASP.NET Core migration overview](xref:migration/fx-to-core/inc/overview). If you haven't read it yet, please start there to understand the concepts, approach, and benefits of incremental migration.
+> **Before you begin**: This article assumes you have read the [ASP.NET Core migration overview](xref:migration/fx-to-core/index). If you haven't read it yet, please start there to understand the concepts, approach, and benefits of incremental migration.
 
 For a large migration, we recommend setting up a ASP.NET Core app that proxies to the original .NET Framework app. The new proxy enabled app is shown in the following image:
 
@@ -24,7 +24,7 @@ This article provides the practical steps to proceed with an incremental migrati
 
 Before starting your incremental migration, ensure you have:
 
-1. **Read the overview**: [Incremental ASP.NET to ASP.NET Core migration](xref:migration/fx-to-core/inc/overview)
+1. **Read the overview**: [Incremental ASP.NET to ASP.NET Core migration](xref:migration/fx-to-core/index)
 2. **A working ASP.NET Framework application** that you want to migrate
 3. **Visual Studio 2022** with the latest updates
 4. **.NET 8 or later SDK** installed

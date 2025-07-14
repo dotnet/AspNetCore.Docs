@@ -2098,17 +2098,15 @@ items:
         items:
           - name: Overview
             uid: migration/fx-to-core/index
+          - name: Get started
+            uid: migration/fx-to-core/start
           - name: Tooling
             uid: migration/fx-to-core/tooling
           - name: Incremental migration
             displayName: migrate, migration
             items:
-            - name: Overview
-              uid: migration/fx-to-core/inc/overview
             - name: System.Web adapters
               uid: migration/fx-to-core/systemweb-adapters
-            - name: Get started
-              uid: migration/fx-to-core/inc/start
             - name: Remote app setup
               uid: migration/fx-to-core/inc/remote-app-setup
             - name: A/B Testing endpoints

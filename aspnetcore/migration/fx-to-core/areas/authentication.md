@@ -177,7 +177,7 @@ The System.Web adapters' remote authentication feature allows an ASP.NET Core ap
 
 ### Remote authentication configuration
 
-There are just a few small code changes needed to enable remote authentication in a solution that's already set up according to the [Getting Started](xref:migration/fx-to-core/inc/overview).
+There are just a few small code changes needed to enable remote authentication in a solution that's already set up according to the [Getting Started](xref:migration/fx-to-core/start).
 
 First, follow the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) instructions to connect the ASP.NET Core and ASP.NET apps. Then, there are just a couple extra extension methods to call to enable remote app authentication.
 
@@ -370,5 +370,5 @@ For other scenarios, the remote authentication approach described previously in 
 * <xref:security/cookie-sharing>
 * <xref:security/authentication/cookie>
 * <xref:fundamentals/middleware/index>
-* <xref:migration/fx-to-core/inc/overview>
+* <xref:migration/fx-to-core/index>
 * <xref:migration/fx-to-core/inc/remote-app-setup>
