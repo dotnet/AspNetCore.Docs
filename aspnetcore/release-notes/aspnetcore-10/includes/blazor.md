@@ -551,10 +551,145 @@ Now that all Blazor client-side files are fingerprinted and cached by the browse
 
 For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-10.0>.
 
-## Web Authentication API (passkey) support for ASP.NET Core Identity
+### Web Authentication API (passkey) support for ASP.NET Core Identity
 
 [Web Authentication (WebAuthn) API](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) support, known widely as *passkeys*, is a modern, phishing-resistant authentication method that improves security and user experience by leveraging public key cryptography and device-based authentication. ASP.NET Core Identity now supports passkey authentication based on WebAuthn and FIDO2 standards. This feature allows users to sign in without passwords, using secure, device-based authentication methods, such as biometrics or security keys.
 
 The Preview 6 Blazor Web App project template provides out-of-the-box passkey management and login functionality.
 
 Migration guidance for existing apps will be published for the upcoming release of Preview 7, which is scheduled for mid-August.
+
+### Circuit state persistence
+
+Server-side Blazor apps (Blazor Web Apps, Blazor Server) during server-side rendering can now persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:
+
+* Server restarts (but not app upgrades/deployments)
+* Browser tab throttling
+* Mobile device users switching apps
+* Network interruptions
+* Proactive resource management (pausing inactive circuits)
+
+*[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*
+
+Persisting state requires fewer server resources than persisting circuits:
+
+* Even if disconnected, a circuit might continue to perform work and consume CPU, memory, and other resources. Persisted state only consumes a fixed amount of memory that the developer controls.
+* Persisted state represents a subset of the memory consumed by the app, so the server isn't required to keep track of the app's components and other server-side objects.
+
+State is persisted for two scenarios:
+
+* Component state: State that components use for Interactive Server rendering, for example, a list of items retrieved from the database or a form that the user is filling out.
+* Scoped services: State held inside of a server-side service, for example, the current user.
+
+Conditions:
+
+* The feature is only effective for Interactive Server rendering.
+* If the user refreshes the page (app), the persisted state is lost.
+* The state must be JSON serializable. Cyclic references or ORM entities may not serialize correctly.
+* Use `@key` for uniqueness when rendering components in a loop to avoid key conflicts.
+* Persist only necessary state. Storing excessive data may impact performance.
+* No automatic hibernation. You must opt-in and configure state persistence explicitly.
+* No guarantee of recovery. If state persistence fails, the app falls back to the default disconnected experience.
+* Platform requirements unspecified. If you need platform-specific guarantees, verify the requirements with your deployment environment.
+
+State persistence is enabled by default when <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> is called on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> in the `Program` file and for Blazor Server apps. <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is the default storage implementation for single app instances and stores up to 1,000 persisted circuits for two hours, which are configurable.
+
+Use the following options to change the default values of the in-memory provider:
+
+* `PersistedCircuitInMemoryMaxRetained` (`{CIRCUIT COUNT}` placeholder): The maximum number of circuits to retain. The default is 1,000 circuits. For example, use `2000` to retain state for up to 2,000 circuits.
+* `PersistedCircuitInMemoryRetentionPeriod` (`{RETENTION PERIOD}` placeholder): The maximum retention period as a <xref:System.TimeSpan>. The default is two hours. For example, use `TimeSpan.FromHours(3)` for a three-hour retention period.
+
+```csharp
+services.Configure<CircuitOptions>(options =>
+{
+    options.PersistedCircuitInMemoryMaxRetained = {CIRCUIT COUNT};
+    options.PersistedCircuitInMemoryRetentionPeriod = {RETENTION PERIOD};
+});
+```
+
+Persisting component state across circuits is built on top of the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> API, which continues to persist state for prerendered components that adopt an interactive render mode.
+
+> [NOTE]
+> Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
+
+Annotate component properties with `[SupplyFromPersistentComponentState]` to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
+
+```razor
+@foreach (var item in Items)
+{
+    <ItemDisplay @key="@($"unique-prefix-{item.Id}")" Item="item" />
+}
+
+@code {
+    [SupplyFromPersistentComponentState]
+    public List<Item> Items { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Items ??= await LoadItemsAsync();
+    }
+}
+```
+
+To persist State for scoped services, annotate service properties with `[SupplyFromPersistentComponentState]`, add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
+
+```csharp
+public class CustomUserService
+{
+    [SupplyFromPersistentComponentState]
+    public string UserData { get; set; }
+}
+
+services.AddScoped<CustomUserService>();
+
+services.AddRazorComponents()
+  .AddInteractiveServerComponents()
+  .RegisterPersistentService<CustomUserService>(RenderMode.InteractiveAuto);
+```
+
+> [NOTE]
+> The preceding example persists `UserData` state when the service is used in component prerendering for both Interactive Server and Interactive WebAssembly rendering because `RenderMode.InteractiveAuto` is specified to `RegisterPersistentService`. However, circuit state persistence is only available for the **Interactive Server** render mode.
+
+For more information, see <xref:blazor/components/prerender>.
+
+To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (`PersistedCircuitDistributedRetentionPeriod`, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
+
+In the following example, a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> is implemented with the [Redis](https://redis.io/) storage provider:
+
+```csharp
+services.AddHybridCache()
+    .AddRedis("{CONNECTION STRING}");
+
+services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+```
+
+In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](xref:security/app-secrets#secret-manager) tool in the Development environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
+
+To proactively pause and resume circuits in custom resource management scenarios, call `Blazor.pauseCircuit` and `Blazor.resumeCircuit` from a JavaScript event handler. In the following example, changes in the the visibility of the app either pause or resume the user's circuit:
+
+```javascript
+window.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    Blazor.pauseCircuit();
+  } else if (document.visibilityState === 'visible') {
+    Blazor.resumeCircuit();
+  }
+});
+```
+
+> [!NOTE]
+> Support for circuit state persistence with enhanced navigation is planned for a future release.
+>
+> The following API renaming is planned for the upcoming Preview 7 release in August:
+>
+> `[SupplyFromPersistentComponentState]` will be renamed to `[PersistentState]`.
+> `Blazor.pauseCircuit` will be renamed to `Blazor.pause`.
+> `Blazor.resumeCircuit` will be renamed to `Blazor.resume`.
+
+<!-- UPDATE 10.0 - The reference/conceptual coverage is coming soon on
+                   a separate PR. This will link to the coverage.
+
+For more information, see <xref:>
+
+-->

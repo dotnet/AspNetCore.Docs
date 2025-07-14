@@ -202,7 +202,7 @@ In the following example that serializes state for multiple components of the sa
 In the following example that serializes state for a dependency injection service:
 
 * Properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are serialized during prerendering and deserialized when the app becomes interactive.
-* The `AddPersistentService` method is used to register the service for persistence. The render mode is required because the render mode can't be inferred from the service type. Use any of the following values:
+* The `RegisterPersistentService` extension method is used to register the service for persistence. The render mode is required because the render mode can't be inferred from the service type. Use any of the following values:
   * `RenderMode.Server`: The service is available for the Interactive Server render mode.
   * `RenderMode.Webassembly`: The service is available for the Interactive Webassembly render mode.
   * `RenderMode.InteractiveAuto`: The service is available for both the Interactive Server and Interactive Webassembly render modes if a component renders in either of those modes.
@@ -231,7 +231,8 @@ public class CounterService
 In `Program.cs`:
 
 ```csharp
-builder.Services.AddPersistentService<CounterService>(RenderMode.InteractiveAuto);
+builder.Services.RegisterPersistentService<CounterService>(
+    RenderMode.InteractiveAuto);
 ```
 
 Serialized properties are identified from the actual service instance:
