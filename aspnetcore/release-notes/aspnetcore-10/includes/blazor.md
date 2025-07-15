@@ -10,7 +10,10 @@ All of our OIDC and Entra sample solutions now include a separate web API projec
 
 The sample solutions are configured in C# code in their `Program` files. To configure the solutions from app settings files (for example, `appsettings.json`) see the ***new*** *Supply configuration with the JSON configuration provider (app settings)* section of the OIDC or Entra articles.
 
-Our Entra samples also include new guidance on using an encrypted distributed token cache for web farm hosting scenarios.
+Our Entra article and sample apps also include new guidance on the following approaches:
+
+* How to use an encrypted distributed token cache for web farm hosting scenarios.
+* How to use [Azure Key Vault](https://azure.microsoft.com/products/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for data protection.
 
 ### QuickGrid `RowClass` parameter
 
@@ -561,9 +564,8 @@ Migration guidance for existing apps will be published for the upcoming release 
 
 ### Circuit state persistence
 
-Server-side Blazor apps (Blazor Web Apps, Blazor Server) during server-side rendering can now persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:
+During server-side rendering, Blazor Web Apps can now persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:
 
-* Server restarts (but not app upgrades/deployments)
 * Browser tab throttling
 * Mobile device users switching apps
 * Network interruptions
@@ -590,9 +592,8 @@ Conditions:
 * Persist only necessary state. Storing excessive data may impact performance.
 * No automatic hibernation. You must opt-in and configure state persistence explicitly.
 * No guarantee of recovery. If state persistence fails, the app falls back to the default disconnected experience.
-* Platform requirements unspecified. If you need platform-specific guarantees, verify the requirements with your deployment environment.
 
-State persistence is enabled by default when <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> is called on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> in the `Program` file and for Blazor Server apps. <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is the default storage implementation for single app instances and stores up to 1,000 persisted circuits for two hours, which are configurable.
+State persistence is enabled by default when <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> is called on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> in the `Program` file. <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is the default storage implementation for single app instances and stores up to 1,000 persisted circuits for two hours, which are configurable.
 
 Use the following options to change the default values of the in-memory provider:
 
