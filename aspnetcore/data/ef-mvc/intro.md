@@ -4,7 +4,7 @@ description: "This page is the first in a series of tutorials that explain how t
 author: tdykstra
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/06/2020
+ms.date: 05/28/2025
 ms.topic: tutorial
 uid: data/ef-mvc/intro
 ---
