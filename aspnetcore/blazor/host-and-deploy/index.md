@@ -106,6 +106,40 @@ For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solu
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-10.0"
+
+## JavaScript bundler support
+
+The Blazor runtime relies on JavaScript (JS) files, the .NET runtime compiled into WebAssembly code, and managed assemblies packed as WebAssembly files. When a Blazor app is built, the Blazor runtime depends on these files from different build locations. Due to this constraint, Blazor's build output isn't compatible with JS bundlers, such as [Gulp](https://gulpjs.com), [Webpack](https://webpack.js.org), and [Rollup](https://rollupjs.org/). 
+
+To produce build output compatible with JS bundlers *during publish*, set the `WasmBundlerFriendlyBootConfig` MSBuild property to `true` in the app's project file:
+
+```xml
+<WasmBundlerFriendlyBootConfig>true</WasmBundlerFriendlyBootConfig>
+```
+
+> [!IMPORTANT]
+> This feature only produces the bundler-friendly output when publishing the app.
+
+The output isn't directly runnable in the browser, but it can be consumed by JS tools to bundle JS files with the rest of the developer-supplied scripts.
+
+When `WasmBundlerFriendlyBootConfig` is enabled, the produced JS contains `import` directives for all of the assets in the app, which makes the dependencies visible for the bundler. Many of the assets aren't loadable by the browser, but bundlers usually can be configured to recognize the assets by their file type to handle loading. For details on how to configure your bundler, refer to the bundler's documentation. 
+
+> [!NOTE]
+> Bundling build output should be possible by mapping imports to individual file locations using a JS bundler custom plugin. We don't provide such a plugin at the moment.
+
+> [!NOTE]
+> Replacing the `files` plugin with `url`, all of the app's JS files, including the Blazor-WebAssembly runtime (base64 encoded in the JS), are bundled into the output. The size of the file is significantly larger (for example, 300% larger) than when the files are curated with the `files` plugin, so we don't recommend using the `url` plugin as a general practice when producing bundler-friendly output for JS bundler processing.
+
+The following sample apps are based on [Rollup](https://rollupjs.org/). Similar concepts apply when using other JS bundlers.
+
+Demonstration sample apps:
+
+* [Blazor WASM in a React application (`maraf/blazor-wasm-react` GitHub repository)](https://github.com/maraf/blazor-wasm-react)
+* [.NET on WASM in a React component sample (`maraf/dotnet-wasm-react` GitHub repository)](https://github.com/maraf/dotnet-wasm-react)
+
+:::moniker-end
+
 ## Blazor Server `MapFallbackToPage` configuration
 
 *This section only applies to Blazor Server apps. <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> isn't supported in Blazor Web Apps and Blazor WebAssembly apps.*

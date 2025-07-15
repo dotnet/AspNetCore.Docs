@@ -84,7 +84,7 @@ Common locations exist for persisting state:
 
 <!-- UPDATE 10.0 - API cross-link -->
 
-Establish declarative state in a dependency injection service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+Establish declarative state in a dependency injection service for use around the app by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
 :::moniker-end
 
@@ -668,9 +668,7 @@ Common locations exist for persisting state:
 
 <h2 id="declarative-model-for-persisting-state-wasm">Declarative model for persisting state</h2>
 
-<!-- UPDATE 10.0 - API cross-link -->
-
-Establish declarative state in a dependency injection service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+Establish declarative state in a dependency injection service for use around the app by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
 :::moniker-end
 

@@ -4,7 +4,7 @@ author: tdykstra
 description: Explains ASP.NET Core vs. ASP.NET 4.x and how to choose between them.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 05/28/2025
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
 # Choose between ASP.NET 4.x and ASP.NET Core

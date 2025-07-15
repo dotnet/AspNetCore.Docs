@@ -4,7 +4,7 @@ description: "This tutorial shows how to handle conflicts when multiple users up
 author: tdykstra
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/27/2019
+ms.date: 07/09/2024
 ms.topic: tutorial
 uid: data/ef-mvc/concurrency
 ---

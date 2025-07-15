@@ -40,6 +40,23 @@ For guidance on building secure and scalable server-side Blazor apps, see the fo
 
 Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app. The size of a circuit depends on the app's code and the state maintenance requirements associated with each component. We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).
 
+:::moniker range=">= aspnetcore-10.0"
+
+## Blazor WebAssembly static asset preloading
+
+The `LinkPreload` component in the `App` component's head content (`App.razor`) is used to reference Blazor static assets. The component is placed after the base URL tag (`<base>`):
+
+```razor
+<LinkPreload />
+```
+
+A Razor component is used instead of `<link>` elements because:
+
+* The component permits the base URL (`<base>` tag's `href` attribute value) to correctly identify the root of the Blazor app within an ASP.NET Core app.
+* The feature can be removed by removing the `LinkPreload` component tag from the `App` component. This is helpful in cases where the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup#load-client-side-boot-resources) to modify URLs.
+
+:::moniker-end
+
 ## SignalR configuration
 
 [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor apps that use SignalR.

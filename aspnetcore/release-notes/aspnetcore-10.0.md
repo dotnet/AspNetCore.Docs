@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 10.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 6/9/2025
+ms.date: 7/10/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10
@@ -39,7 +39,11 @@ This section describes new features for minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/MinimalAPIValidationRecordTypes.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/validation-with-problem.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/sse.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/validation-package-move.md)]
 
 ## OpenAPI
 
@@ -87,6 +91,8 @@ For more information, see [ASP.NET Core Authorization and Authentication metrics
 ## Miscellaneous
 
 This section describes miscellaneous new features in .NET 10.
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/memory-eviction.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/httpsys.md)]
 

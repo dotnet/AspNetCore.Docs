@@ -602,10 +602,9 @@ dotnet aspnet-codegenerator blazor -h
 
 For an example use of the QuickGrid scaffolder, see <xref:blazor/tutorials/movie-database-app/index>.
 
-<!-- UPDATE 10.0 - PU work tracked by https://github.com/dotnet/aspnetcore/issues/58716.
-                   Versioning out at 10.0 for now. -->
-
-:::moniker range="< aspnetcore-10.0"
+<!-- UPDATE 11.0 - PU work tracked by https://github.com/dotnet/aspnetcore/issues/58716.
+                   We will continue to show this for now. The PU plans to look at it
+                   for framework updates at 11.0. -->
 
 ## Multiple concurrent EF Core queries trigger `System.InvalidOperationException`
 
@@ -690,5 +689,3 @@ Consider the following example, which is based on the movie database `Index` com
     }
 }
 ```
-
-:::moniker-end
