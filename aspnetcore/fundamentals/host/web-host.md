@@ -245,6 +245,21 @@ WebHost.CreateDefaultBuilder(args)
     .UseSetting("https_ports", "8080")
 ```
 
+### HTTP Ports
+
+Set the ports to listen on for HTTP connections.
+
+**Key**: http_ports
+**Type**: *string*  
+**Default**: A default value isn't set.  
+**Set using**: `UseSetting`  
+**Environment variable**: `ASPNETCORE_HTTP_PORTS`
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseSetting("http_ports", "8080")
+```
+
 ### Hosting Startup Exclude Assemblies
 
 A semicolon-delimited string of hosting startup assemblies to exclude on startup.
