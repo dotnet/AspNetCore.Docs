@@ -160,7 +160,7 @@ app.MapPut("/notifications/subscribe",
 
         // Store the new subscription
         subscription.UserId = userId;
-        db.NotificationSubscriptions.Attach(subscription);
+        db.NotificationSubscriptions.Add(subscription);
 
         await db.SaveChangesAsync();
 

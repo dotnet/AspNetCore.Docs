@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/25/2024
+ms.date: 01/15/2025
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core

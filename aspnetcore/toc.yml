@@ -660,6 +660,8 @@ items:
                 uid: blazor/performance/app-download-size
               - name: JavaScript interop
                 uid: blazor/performance/js-interop
+              - name: WebAssembly runtime performance
+                uid: blazor/performance/webassembly-runtime-performance
               - name: WebAssembly browser developer tools diagnostics
                 uid: blazor/performance/webassembly-browser-developer-tools
               - name: WebAssembly Event Pipe diagnostics

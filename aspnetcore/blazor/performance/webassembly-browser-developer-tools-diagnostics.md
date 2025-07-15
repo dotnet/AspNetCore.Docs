@@ -54,6 +54,8 @@ In the app's project file (`.csproj`):
   <WasmProfilers>browser;</WasmProfilers>
   <WasmNativeStrip>false</WasmNativeStrip>
   <WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
+  <!-- disable debugger -->
+  <WasmDebugLevel>0</WasmDebugLevel>
 </PropertyGroup>
 ```
 
