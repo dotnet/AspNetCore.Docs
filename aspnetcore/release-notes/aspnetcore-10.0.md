@@ -39,7 +39,7 @@ This section describes new features for minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/MinimalAPIValidationRecordTypes.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-10/includes/validation-with-problemdetails.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/validation-with-problem.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/sse.md)]
 
