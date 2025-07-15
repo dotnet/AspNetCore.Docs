@@ -5,7 +5,7 @@ description: Guidance on ASP.NET Core Blazor metrics and tracing, improving app 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/08/2025
+ms.date: 07/07/2025
 uid: blazor/performance/index
 ---
 # ASP.NET Core Blazor performance best practices
@@ -46,6 +46,7 @@ builder.Services.ConfigureOpenTelemetryMeterProvider(meterProvider =>
 builder.Services.ConfigureOpenTelemetryTracerProvider(tracerProvider =>
 {
     tracerProvider.AddSource("Microsoft.AspNetCore.Components");
+    tracerProvider.AddSource("Microsoft.AspNetCore.Components.Server.Circuits");
 });
 ```
 
@@ -81,34 +82,57 @@ Circuit lifecycle tracing:
 
 `Microsoft.AspNetCore.Components.CircuitStart`: Traces circuit initialization with the format `Circuit {circuitId}`.
 
-* Tag: `aspnetcore.components.circuit.id`
-* Link: HTTP activity
+Tags:
+
+* `aspnetcore.components.circuit.id`: Unique circuit identifier.
+* `error.type`: Exception type full name (optional)
+
+Links:
+
+* HTTP trace
+* SignalR trace
+
+Usage: Links other Blazor traces of the same session/circuit to HTTP and SignalR contexts.
 
 Navigation tracing:
 
 `Microsoft.AspNetCore.Components.RouteChange`: Tracks route changes with the format `Route {route} -> {componentType}`.
 
-* Tags
-  * `aspnetcore.components.circuit.id`
-  * `aspnetcore.components.route`
-  * `aspnetcore.components.type`
-* Links
-  * HTTP trace
-  * Circuit trace
+Tags:
+
+* `aspnetcore.components.route`: URL path pattern of the page.
+* `aspnetcore.components.type`: Class name of the Razor component.
+* `error.type`: Exception type full name (optional).
+
+Links:
+
+* HTTP trace
+* SignalR trace
+* Circuit trace
+
+Usage: Which Blazor pages this session visited?
 
 Event handling tracing:
 
 `Microsoft.AspNetCore.Components.HandleEvent`: Traces event handling with the format `Event {attributeName} -> {componentType}.{methodName}`.
 
-* Tags
-  * `aspnetcore.components.attribute.name`
-  * `aspnetcore.components.circuit.id`
-  * `aspnetcore.components.method`
-  * `aspnetcore.components.type`
-  * `error.type`
-* Links
-  * HTTP trace
-  * Circuit trace
-  * Router trace
+Tags:
+
+* `aspnetcore.components.attribute.name`: Name of the HTML attribute that triggers the event (example: `onClick`).
+* `aspnetcore.components.method`: C# method name of the handler.
+* `aspnetcore.components.type`: Full name of target C# component that receives the event.
+* `error.type`: Exception type full name (optional).
+
+Links:
+
+* HTTP trace
+* SignalR trace
+* Circuit trace
+* Route trace
+
+Usages:
+
+* Click to which component caused exception and on which page?
+* In which linked circuit and with what HTTP context it happened?
 
 :::moniker-end

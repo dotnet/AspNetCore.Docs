@@ -10,7 +10,10 @@ All of our OIDC and Entra sample solutions now include a separate web API projec
 
 The sample solutions are configured in C# code in their `Program` files. To configure the solutions from app settings files (for example, `appsettings.json`) see the ***new*** *Supply configuration with the JSON configuration provider (app settings)* section of the OIDC or Entra articles.
 
-Our Entra samples also include new guidance on using an encrypted distributed token cache for web farm hosting scenarios.
+Our Entra article and sample apps also include new guidance on the following approaches:
+
+* How to use an encrypted distributed token cache for web farm hosting scenarios.
+* How to use [Azure Key Vault](https://azure.microsoft.com/products/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for data protection.
 
 ### QuickGrid `RowClass` parameter
 
@@ -381,27 +384,13 @@ To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Comp
 
 ```csharp
 AppContext.SetSwitch(
-    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.EnableThrowNavigationException", 
-    isEnabled: true);
+    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException", 
+    isEnabled: false);
 ```
-
-### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
-
-The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
-
-* **Static server-side rendering (static SSR)**: Calling `NotFound` sets the HTTP status code to 404.
-* **Streaming rendering**: Throws an exception if the response has already started.
-* **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#route-templates)) to render Not Found content.
-
-Per-page/component rendering support is planned for Preview 5 in June, 2025.
-
-You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
-
-For more information and examples, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
 
 ### Blazor router has a `NotFoundPage` parameter
 
-Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` by passing a page type to the `Router` component using the `NotFoundPage` parameter. This approach is recommended over the previous `NotFound` fragment, as it supports routing, works across code re-execution middleware, and is compatible even with non-Blazor scenarios. If both a `NotFound` fragment and `NotFoundPage` are defined, the page specified by `NotFoundPage` takes priority.
+Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` (described in the next section) is invoked by passing a page type to the `Router` component using the `NotFoundPage` parameter. This approach is recommended over using the [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A) (`<NotFound>...</NotFound>`), as it supports routing, works across code Status Code Pages Re-execution Middleware, and is compatible even with non-Blazor scenarios. If both a `NotFound` render fragment and `NotFoundPage` are defined, the page specified by `NotFoundPage` takes priority.
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -417,8 +406,291 @@ The Blazor project template now includes a `NotFound.razor` page by default. Thi
 
 For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
 
+### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
+
+The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
+
+* **Static server-side rendering (static SSR)**: Calling `NotFound` sets the HTTP status code to 404.
+
+* **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#route-templates)) to render Not Found content.
+
+* **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
+
+Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
+
+Streaming `NavigationManager.NotFound` content rendering uses (in order):
+
+* A `NotFoundPage` passed to the `Router` component, if present.
+* A Status Code Pages Re-execution Middleware page, if configured.
+* No action if neither of the preceding approaches is adopted.
+
+Non-streaming `NavigationManager.NotFound` content rendering uses (in order):
+
+* A `NotFoundPage` passed to the `Router` component, if present.
+* Not Found render fragment content, if present. *Not recommended in .NET 10 or later.*
+* `DefaultNotFound` 404 content ("`Not found`" plain text).
+
+[Status Code Pages Re-execution Middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
+
+You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
+
+For more information and examples, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
+
 ### Metrics and tracing
 
 This release introduces comprehensive metrics and tracing capabilities for Blazor apps, providing detailed observability of the component lifecycle, navigation, event handling, and circuit management.
 
 For more information, see <xref:blazor/performance/index?view=aspnetcore-10.0#metrics-and-tracing>.
+
+### JavaScript bundler support
+
+Blazor's build output isn't compatible with JavaScript bundlers, such as [Gulp](https://gulpjs.com), [Webpack](https://webpack.js.org), and [Rollup](https://rollupjs.org/). Blazor can now produce bundler-friendly output during publish by setting the `WasmBundlerFriendlyBootConfig` MSBuild property to `true`.
+
+For more information, see <xref:blazor/host-and-deploy/index?view=aspnetcore-10.0#javascript-bundler-support>.
+
+### Blazor WebAssembly static asset preloading in Blazor Web Apps
+
+We replaced `<link>` headers with a `LinkPreload` component (`<LinkPreload />`) for preloading WebAssembly assets in Blazor Web Apps. This permits the app base path configuration (`<base href="..." />`) to correctly identify the app's root.
+
+Removing the component disables the feature if the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup#load-client-side-boot-resources) to modify URLs.
+
+The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `LinkPreload` component after the base URL tag (`<base>`) in the `App` component's head content (`App.razor`):
+
+```diff
+<head>
+    ...
+    <base href="/" />
++   <LinkPreload />
+    ...
+</head>
+```
+
+For more information, see <xref:blazor/host-and-deploy/server/index?view=aspnetcore-10.0#static-asset-preloading>.
+
+### Improved form validation
+
+Blazor now has improved form validation capabilities, including support for validating properties of nested objects and collection items.
+
+To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, just as before.
+
+To opt into the new validation feature:
+
+1. Call the `AddValidation` extension method in the `Program` file where services are registered.
+2. Declare the form model types in a C# class file, not in a Razor component (`.razor`).
+3. Annotate the root form model type with the `[ValidatableType]` attribute.
+
+Without following the preceding steps, the validation behavior remains the same as in previous .NET releases.
+
+The following example demonstrates customer orders with the improved form validation (details omitted for brevity):
+
+In `Program.cs`, call `AddValidation` on the service collection to enable the new validation behavior:
+
+```csharp
+builder.Services.AddValidation();
+```
+
+In the following `Order` class, the `[ValidatableType]` attribute is required on the top-level model type. The other types are discovered automatically. `OrderItem` and `ShippingAddress` aren't shown for brevity, but nested and collection validation works the same way in those types if they were shown.
+
+`Order.cs`:
+
+```csharp
+[ValidatableType]
+public class Order
+{
+    public Customer Customer { get; set; } = new();
+    public List<OrderItem> OrderItems { get; set; } = [];
+}
+
+public class Customer
+{
+    [Required(ErrorMessage = "Name is required.")]
+    public string? FullName { get; set; }
+
+    [Required(ErrorMessage = "Email is required.")]
+    public string? Email { get; set; }
+
+    public ShippingAddress ShippingAddress { get; set; } = new();
+}
+```
+
+In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
+
+`OrderPage.razor`:
+
+```razor
+<EditForm Model="Model">
+    <DataAnnotationsValidator />
+
+    <h3>Customer Details</h3>
+    <div class="mb-3">
+        <label>
+            Full Name
+            <InputText @bind-Value="Model!.Customer.FullName" />
+        </label>
+        <ValidationMessage For="@(() => Model!.Customer.FullName)" />
+    </div>
+
+    @* ... form continues ... *@
+</EditForm>
+
+@code {
+    public Order? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    // ... code continues ...
+}
+```
+
+The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the new validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
+
+### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
+
+Now that all Blazor client-side files are fingerprinted and cached by the browser, Blazor's custom caching mechanism and the `BlazorCacheBootResources` MSBuild property have been removed from the framework. If the client-side project's project file contains the MSBuild property, remove the property, as it no longer has any effect:
+
+```diff
+- <BlazorCacheBootResources>...</BlazorCacheBootResources>
+```
+
+For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-10.0>.
+
+### Web Authentication API (passkey) support for ASP.NET Core Identity
+
+[Web Authentication (WebAuthn) API](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) support, known widely as *passkeys*, is a modern, phishing-resistant authentication method that improves security and user experience by leveraging public key cryptography and device-based authentication. ASP.NET Core Identity now supports passkey authentication based on WebAuthn and FIDO2 standards. This feature allows users to sign in without passwords, using secure, device-based authentication methods, such as biometrics or security keys.
+
+The Preview 6 Blazor Web App project template provides out-of-the-box passkey management and login functionality.
+
+Migration guidance for existing apps will be published for the upcoming release of Preview 7, which is scheduled for mid-August.
+
+### Circuit state persistence
+
+During server-side rendering, Blazor Web Apps can now persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:
+
+* Browser tab throttling
+* Mobile device users switching apps
+* Network interruptions
+* Proactive resource management (pausing inactive circuits)
+
+*[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*
+
+Persisting state requires fewer server resources than persisting circuits:
+
+* Even if disconnected, a circuit might continue to perform work and consume CPU, memory, and other resources. Persisted state only consumes a fixed amount of memory that the developer controls.
+* Persisted state represents a subset of the memory consumed by the app, so the server isn't required to keep track of the app's components and other server-side objects.
+
+State is persisted for two scenarios:
+
+* Component state: State that components use for Interactive Server rendering, for example, a list of items retrieved from the database or a form that the user is filling out.
+* Scoped services: State held inside of a server-side service, for example, the current user.
+
+Conditions:
+
+* The feature is only effective for Interactive Server rendering.
+* If the user refreshes the page (app), the persisted state is lost.
+* The state must be JSON serializable. Cyclic references or ORM entities may not serialize correctly.
+* Use `@key` for uniqueness when rendering components in a loop to avoid key conflicts.
+* Persist only necessary state. Storing excessive data may impact performance.
+* No automatic hibernation. You must opt-in and configure state persistence explicitly.
+* No guarantee of recovery. If state persistence fails, the app falls back to the default disconnected experience.
+
+State persistence is enabled by default when <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> is called on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> in the `Program` file. <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is the default storage implementation for single app instances and stores up to 1,000 persisted circuits for two hours, which are configurable.
+
+Use the following options to change the default values of the in-memory provider:
+
+* `PersistedCircuitInMemoryMaxRetained` (`{CIRCUIT COUNT}` placeholder): The maximum number of circuits to retain. The default is 1,000 circuits. For example, use `2000` to retain state for up to 2,000 circuits.
+* `PersistedCircuitInMemoryRetentionPeriod` (`{RETENTION PERIOD}` placeholder): The maximum retention period as a <xref:System.TimeSpan>. The default is two hours. For example, use `TimeSpan.FromHours(3)` for a three-hour retention period.
+
+```csharp
+services.Configure<CircuitOptions>(options =>
+{
+    options.PersistedCircuitInMemoryMaxRetained = {CIRCUIT COUNT};
+    options.PersistedCircuitInMemoryRetentionPeriod = {RETENTION PERIOD};
+});
+```
+
+Persisting component state across circuits is built on top of the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> API, which continues to persist state for prerendered components that adopt an interactive render mode.
+
+> [NOTE]
+> Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
+
+Annotate component properties with `[SupplyFromPersistentComponentState]` to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
+
+```razor
+@foreach (var item in Items)
+{
+    <ItemDisplay @key="@($"unique-prefix-{item.Id}")" Item="item" />
+}
+
+@code {
+    [SupplyFromPersistentComponentState]
+    public List<Item> Items { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Items ??= await LoadItemsAsync();
+    }
+}
+```
+
+To persist State for scoped services, annotate service properties with `[SupplyFromPersistentComponentState]`, add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
+
+```csharp
+public class CustomUserService
+{
+    [SupplyFromPersistentComponentState]
+    public string UserData { get; set; }
+}
+
+services.AddScoped<CustomUserService>();
+
+services.AddRazorComponents()
+  .AddInteractiveServerComponents()
+  .RegisterPersistentService<CustomUserService>(RenderMode.InteractiveAuto);
+```
+
+> [NOTE]
+> The preceding example persists `UserData` state when the service is used in component prerendering for both Interactive Server and Interactive WebAssembly rendering because `RenderMode.InteractiveAuto` is specified to `RegisterPersistentService`. However, circuit state persistence is only available for the **Interactive Server** render mode.
+
+For more information, see <xref:blazor/components/prerender>.
+
+To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (`PersistedCircuitDistributedRetentionPeriod`, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
+
+In the following example, a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> is implemented with the [Redis](https://redis.io/) storage provider:
+
+```csharp
+services.AddHybridCache()
+    .AddRedis("{CONNECTION STRING}");
+
+services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+```
+
+In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](xref:security/app-secrets#secret-manager) tool in the Development environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
+
+To proactively pause and resume circuits in custom resource management scenarios, call `Blazor.pauseCircuit` and `Blazor.resumeCircuit` from a JavaScript event handler. In the following example, changes in the the visibility of the app either pause or resume the user's circuit:
+
+```javascript
+window.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    Blazor.pauseCircuit();
+  } else if (document.visibilityState === 'visible') {
+    Blazor.resumeCircuit();
+  }
+});
+```
+
+> [!NOTE]
+> Support for circuit state persistence with enhanced navigation is planned for a future release.
+>
+> The following API renaming is planned for the upcoming Preview 7 release in August:
+>
+> `[SupplyFromPersistentComponentState]` will be renamed to `[PersistentState]`.
+> `Blazor.pauseCircuit` will be renamed to `Blazor.pause`.
+> `Blazor.resumeCircuit` will be renamed to `Blazor.resume`.
+
+<!-- UPDATE 10.0 - The reference/conceptual coverage is coming soon on
+                   a separate PR. This will link to the coverage.
+
+For more information, see <xref:>
+
+-->

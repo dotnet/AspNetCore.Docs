@@ -59,7 +59,7 @@ In the app's project file (`.csproj`):
 </PropertyGroup>
 ```
 
-Alternatively, enable features when the app is built with the .NET CLI. The following options passed to the `dotnet build` command mirror the preceding MS Build property configuration:
+Alternatively, enable features when the app is built with the .NET CLI. The following options passed to the `dotnet build` command mirror the preceding MSBuild property configuration:
 
 ```dotnetcli
 /p:WasmProfilers=browser /p:WasmNativeStrip=false /p:WasmNativeDebugSymbols=true

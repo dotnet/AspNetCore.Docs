@@ -117,7 +117,7 @@ For more information on server-side authentication, see <xref:blazor/security/in
 In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code or configuration files. Outside of local development testing, we recommend avoiding the use of environment variables to store sensitive data, as environment variables aren't the most secure approach. For local development testing, the [Secret Manager tool](xref:security/app-secrets) is recommended for securing sensitive data. For more information, see the following resources:
 
 * [Secure authentication flows (ASP.NET Core documentation)](xref:security/index#secure-authentication-flows)
-* [Managed identities for Microsoft Azure services (Blazor documentation)](xref:blazor/security/index#managed-identities-for-microsoft-azure-services)
+* [Managed identities for Microsoft Azure services (Blazor documentation)](#managed-identities-for-microsoft-azure-services)
 
 For client-side and server-side local development and testing, use the [Secret Manager tool](xref:security/app-secrets) to secure sensitive credentials.
 
