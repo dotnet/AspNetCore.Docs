@@ -86,7 +86,7 @@ The OpenAPI document can be generated in either JSON or YAML format. By default,
 app.MapOpenApi("/openapi/{documentName}.yaml");
 ```
 
-Generating penAPI documents in YAML format at build time is currently not supported, but planned in a future preview.
+Generating OpenAPI documents in YAML format at build time is currently not supported, but planned in a future preview.
 
 ### Customize the OpenAPI document name
 
