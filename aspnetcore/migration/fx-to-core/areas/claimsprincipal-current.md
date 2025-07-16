@@ -13,7 +13,7 @@ The current ClaimsPrincipal is a fundamental component of authenticated web appl
 
 ## Why static ClaimsPrincipal migration is complex
 
-ASP.NET Framework and ASP.NET Core have fundamentally different approaches to accessing the current user:
+ASP.NET Framework and ASP.NET Core take fundamentally different approaches to how the current user is accessed:
 
 * **ASP.NET Framework** uses static properties like <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType> and <xref:System.Threading.Thread.CurrentPrincipal?displayProperty=nameWithType> with automatic context management. These properties are interchangeable and both provide access to the current user's identity.
 * **ASP.NET Core** stores the current user in <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> and avoids static state.
