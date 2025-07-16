@@ -87,7 +87,7 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 ```
 
 > [!NOTE]
-> The gRPC client on .NET Framework is slower than on modern .NET versions. For best performance, apps should be updated to use modern .NET.
+> The gRPC client on .NET Framework is slower than on modern .NET versions. For improved gRPC performance, apps should be updated to use modern .NET.
 
 ## gRPC C# core-library
 
