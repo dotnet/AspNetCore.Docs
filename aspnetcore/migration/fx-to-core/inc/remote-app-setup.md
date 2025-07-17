@@ -107,7 +107,7 @@ builder.Services.AddSystemWebAdapters()
     });
 ```
 
-With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
+With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authentication) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
 
 ### Enable proxying
 
