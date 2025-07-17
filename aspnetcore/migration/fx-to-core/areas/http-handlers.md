@@ -3,7 +3,7 @@ title: Migrate HTTP handlers to ASP.NET Core middleware
 description: Migrate HTTP handlers to ASP.NET Core middleware
 author: twsouthwick
 ms.author: tasou
-ms.date: 07/17/2025
+ms.date: 6/20/2025
 uid: migration/fx-to-core/areas/http-handlers
 ---
 # Migrate HTTP handlers to ASP.NET Core middleware
@@ -83,7 +83,77 @@ One solution is to branch the pipeline for requests with a given extension, usin
 
 Middleware added to the pipeline before the branch will be invoked on all requests; the branch will have no impact on them.
 
-For additional details, see the [middleware documentation](xref:fundamentals/middleware/index) for additional ways to use middleware to replace your usage of handlers. 
+## Loading middleware options using the options pattern
+
+Some handlers have configuration options that are stored in *Web.config*. However, in ASP.NET Core a new configuration model is used in place of *Web.config*.
+
+The new [configuration system](xref:fundamentals/configuration/index) gives you these options to solve this:
+
+* Directly inject the options into the middleware, as shown in the [next section](#loading-middleware-options-through-direct-injection).
+
+* Use the [options pattern](xref:fundamentals/configuration/options):
+
+1. Create a class to hold your middleware options, for example:
+
+   [!code-csharp[](sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Options)]
+
+2. Store the option values
+
+   The configuration system allows you to store option values anywhere you want. However, most sites use `appsettings.json`, so we'll take that approach:
+
+   [!code-json[](sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
+
+   *MyMiddlewareOptionsSection* here is a section name. It doesn't have to be the same as the name of your options class.
+
+3. Associate the option values with the options class
+
+    The options pattern uses ASP.NET Core's dependency injection framework to associate the options type (such as `MyMiddlewareOptions`) with a `MyMiddlewareOptions` object that has the actual options.
+
+    Update your `Startup` class:
+
+   1. If you're using `appsettings.json`, add it to the configuration builder in the `Startup` constructor:
+
+      [!code-csharp[](./sample/Asp.Net.Core/Startup.cs?name=snippet_Ctor&highlight=5-6)]
+
+   2. Configure the options service:
+
+      [!code-csharp[](./sample/Asp.Net.Core/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
+
+   3. Associate your options with your options class:
+
+      [!code-csharp[](./sample/Asp.Net.Core/Startup.cs?name=snippet_ConfigureServices&highlight=6-8)]
+
+4. Inject the options into your middleware constructor. This is similar to injecting options into a controller.
+
+   [!code-csharp[](./sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_MiddlewareWithParams&highlight=4,7,10,15-16)]
+
+   The `UseMiddleware` extension method that adds your middleware to the `IApplicationBuilder` takes care of dependency injection.
+
+   This isn't limited to `IOptions` objects. Any other object that your middleware requires can be injected this way.
+
+## Loading middleware options through direct injection
+
+The options pattern has the advantage that it creates loose coupling between options values and their consumers. Once you've associated an options class with the actual options values, any other class can get access to the options through the dependency injection framework. There's no need to pass around options values.
+
+This breaks down though if you want to use the same middleware twice, with different options. For example an authorization middleware used in different branches allowing different roles. You can't associate two different options objects with the one options class.
+
+The solution is to get the options objects with the actual options values in your `Startup` class and pass those directly to each instance of your middleware.
+
+1. Add a second key to `appsettings.json`
+
+   To add a second set of options to the `appsettings.json` file, use a new key to uniquely identify it:
+
+   [!code-json[](sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
+
+2. Retrieve options values and pass them to middleware. The `Use...` extension method (which adds your middleware to the pipeline) is a logical place to pass in the option values: 
+
+   [!code-csharp[](sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=20-23)]
+
+3. Enable middleware to take an options parameter. Provide an overload of the `Use...` extension method (that takes the options parameter and passes it to `UseMiddleware`). When `UseMiddleware` is called with parameters, it passes the parameters to your middleware constructor when it instantiates the middleware object.
+
+   [!code-csharp[](./sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Extensions&highlight=9-14)]
+
+   Note how this wraps the options object in an `OptionsWrapper` object. This implements `IOptions`, as expected by the middleware constructor.
 
 ## Migrating to the new HttpContext
 
@@ -98,6 +168,7 @@ public async Task Invoke(HttpContext context)
 ## Additional resources
 
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
+* [Configuration](xref:fundamentals/configuration/index)
 * [Application Startup](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)
 * [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](http-context.md)

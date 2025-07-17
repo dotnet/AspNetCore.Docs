@@ -4,7 +4,7 @@ author: isaacrlevin
 description: Learn how to migrate existing ASP.NET apps using Membership authentication to ASP.NET Core 2.0 Identity.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/17/2025
+ms.date: 10/29/2024
 uid: migration/fx-to-core/areas/membership
 ---
 <!-- ms.sfi.ropc: t -->

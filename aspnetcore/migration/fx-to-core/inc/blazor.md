@@ -5,7 +5,7 @@ description: Learn how to enable ASP.NET Core Blazor Server support with Yarp in
 monikerRange: '>= aspnetcore-6.0 < aspnetcore-8.0'
 ms.author: tasou
 ms.custom: "mvc"
-ms.date: 07/17/2025
+ms.date: 03/01/2023
 uid: migration/fx-to-core/inc/blazor
 ---
 # Enable ASP.NET Core Blazor Server support with Yarp in incremental migration
