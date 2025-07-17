@@ -4,7 +4,7 @@ description: Get started with incremental ASP.NET to ASP.NET Core migration
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 11/9/2022
+ms.date: 07/17/2025
 ms.topic: article
 uid: migration/fx-to-core/start
 ---
