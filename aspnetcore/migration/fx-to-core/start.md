@@ -99,7 +99,7 @@ The following sections cover the most common cross-cutting concerns. Configure o
 
 **Configure this if:** Your ASP.NET Framework application uses session state.
 
-See the general [session migration documentation](xref:migration/fx-to-core/areas/session#remote-app-session state) for guidance here.
+See the general [session migration documentation](xref:migration/fx-to-core/areas/session#remote-app-session-state) for guidance here.
 
 Session is a commonly used feature of ASP.NET that shares the name with a feature in ASP.NET Core, but the APIs are much different. When upgrading libraries that use session state, you'll need to configure session support. See the documentation on [remote session support](xref:migration/fx-to-core/areas/session) for detailed guidance on how to enable session state sharing between your applications.
 
