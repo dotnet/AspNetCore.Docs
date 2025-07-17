@@ -22,7 +22,7 @@ In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app 
 Common scenarios this enables:
 
 * Fallback to the legacy application with [YARP](~/fundamentals/servers/yarp/yarp-overview.md)
-* [Remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authenticationn)
+* [Remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authentication)
 * [Remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state)
 
 :::zone pivot="manual"
