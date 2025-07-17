@@ -14,7 +14,7 @@ uid: migration/fx-to-core/start
 > [!IMPORTANT]
 > **Before you begin**: This article assumes you have read the [ASP.NET Core migration overview](xref:migration/fx-to-core/index). If you haven't read it yet, please start there to understand the concepts, approach, and benefits of incremental migration.
 
-For a large migration, we recommend setting up a ASP.NET Core app that proxies to the original .NET Framework app. The new proxy enabled app is shown in the following image:
+For a large migration, we recommend setting up an ASP.NET Core app that proxies to the original .NET Framework app. The new proxy enabled app is shown in the following image:
 
 ![start migrating routes](~/migration/fx-to-core/inc/overview/static/nop.png)
 
