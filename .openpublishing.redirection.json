@@ -1011,6 +1011,16 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/migration/inc/unit-testing.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/systemweb-adapters",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/fx-to-core/inc/unit-testing.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/systemweb-adapters",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/migration/inc/blazor.md",
             "redirect_url": "/aspnet/core/migration/fx-to-core/inc/blazor",
             "redirect_document_id": false
@@ -1022,7 +1032,7 @@
         },
         {
             "source_path": "aspnetcore/migration/inc/overview.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/inc/overview",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/index",
             "redirect_document_id": false
         },
         {
@@ -1047,22 +1057,42 @@
         },
         {
             "source_path": "aspnetcore/migration/inc/start.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/inc/start",
-            "redirect_document_id": false
-        },
-        {
-            "source_path": "aspnetcore/migration/inc/unit-testing.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/inc/unit-testing",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/start",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/inc/usage_guidance.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/inc/usage_guidance",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/fx-to-core/inc/usage_guidance.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/inc/wrapped.md",
             "redirect_url": "/aspnet/core/migration/fx-to-core/inc/wrapped",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/fx-to-core/inc/remote-session.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/session#remote-app-session-state",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/fx-to-core/inc/remote-authentication.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/authentication#remote-authentication",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/fx-to-core/inc/session.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/session",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/fx-to-core/inc/wrapped.md",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/session#wrapped-aspnet-core-session-state",
             "redirect_document_id": false
         },
         {
