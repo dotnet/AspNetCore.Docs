@@ -4,7 +4,7 @@ description: ASP.NET Framework to Core Authentication Migration
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 11/9/2022
+ms.date: 07/17/2025
 ms.topic: article
 uid: migration/fx-to-core/areas/authentication
 zone_pivot_groups: migration-remote-app-setup

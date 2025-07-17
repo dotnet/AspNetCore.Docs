@@ -4,7 +4,7 @@ description: A/B Testing Migrated Endpoints
 author: twsouthwick
 ms.author: tasou
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 3/1/2023
+ms.date: 07/17/2025
 ms.topic: article
 uid: migration/fx-to-core/inc/ab-testing
 ---

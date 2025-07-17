@@ -4,7 +4,7 @@ description: Remote app setup
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/16/2025
+ms.date: 07/17/2025
 ms.topic: article
 uid: migration/fx-to-core/inc/remote-app-setup
 zone_pivot_groups: migration-remote-app-setup
@@ -107,7 +107,7 @@ builder.Services.AddSystemWebAdapters()
     });
 ```
 
-With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authentication) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
+With both the ASP.NET and ASP.NET Core apps updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authentication) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
 
 ### Enable proxying
 
