@@ -84,7 +84,7 @@ Your ASP.NET Framework application can successfully move to ASP.NET Core. The ke
 
 ## Incremental Migration
 
-Incremental migration is an implementation of the Strangler Fig pattern and is best for larger projects or projects that need to continue to stay in production throughout a migration. See <xref:migration/fx-to-core/start> to get started migration an application incrementally.
+Incremental migration is an implementation of the Strangler Fig pattern and is best for larger projects or projects that need to continue to stay in production throughout a migration. See <xref:migration/fx-to-core/start> to get started migrating an application incrementally.
 
 ## In place migration
 
