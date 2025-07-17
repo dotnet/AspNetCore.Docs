@@ -137,7 +137,7 @@ Last year, the release of .NET 9 introduced [server-side fingerprinting](https:/
 
 In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
 
-The following markup must be present in the `wwwwoot/index.html` file to adopt the fingerprinting feature:
+The following markup must be present in the `wwwroot/index.html` file to adopt the fingerprinting feature:
 
 ```diff
 <head>
