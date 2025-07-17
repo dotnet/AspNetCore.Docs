@@ -206,7 +206,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 ## Configure ServiceDefaults to support ASP.NET Framework
 
 1. Add the package `Aspire.Microsoft.AspNetCore.SystemWebAdapters` to your application.
-1. Update the ServiceDefaults project to support .NET Framework. This is based off of the default ServiceDefaults and may different if you have customized anything.
+1. Update the ServiceDefaults project to support .NET Framework. This is based off of the default ServiceDefaults and may differ if you have customized anything.
     * Update the target framework to multitarget:
         ```diff
         - <TargetFramework>net9.0</TargetFramework>
