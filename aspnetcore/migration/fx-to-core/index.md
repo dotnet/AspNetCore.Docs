@@ -88,4 +88,4 @@ Incremental migration is an implementation of the Strangler Fig pattern and is b
 
 ## In place migration
 
-In place migration can work for sufficiently small applications. If possible, this allows for a quick replacement of the application. However, small issues may be compounded if you decide to do an in place migration. See <xref:migration/fx-to-core/tooling> for how Upgrade Assistant can help with an in place migration.
+In place migration can work for sufficiently small applications. If possible, this allows for a quick replacement of the application. However, small issues may be compounded if you decide to do an in place migration. See <xref:migration/fx-to-core/tooling> to learn how Upgrade Assistant can help with an in place migration.
