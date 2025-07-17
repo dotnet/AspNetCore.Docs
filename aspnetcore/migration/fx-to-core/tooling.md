@@ -12,7 +12,7 @@ This article shows how to upgrade ASP.NET Framework applications (MVC, Web API, 
 
 
    > [!WARNING]
-   > There is a Copilot-enabled tool for staying current on modern .NET, but is not currently enabled for migrating ASP.NET Frameworkt to ASP.NET Core. Please see the documentation for [GitHub Copilot app modernization - Upgrade for .NET](/dotnet/core/porting/github-copilot-app-modernization-overview) for details.
+   > There is a Copilot-enabled tool for staying current on modern .NET, but is not currently enabled for migrating ASP.NET Framework to ASP.NET Core. Please see the documentation for [GitHub Copilot app modernization - Upgrade for .NET](/dotnet/core/porting/github-copilot-app-modernization-overview) for details.
 
 ## Prerequisites
 
