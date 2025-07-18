@@ -4,7 +4,7 @@ description: A/B Testing Migrated Endpoints
 author: twsouthwick
 ms.author: tasou
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/17/2025
+ms.date: 3/1/2023
 ms.topic: article
 uid: migration/fx-to-core/inc/ab-testing
 ---
@@ -13,7 +13,7 @@ uid: migration/fx-to-core/inc/ab-testing
 
 During incremental migration, new endpoints are brought over to a [YARP](https://dotnet.github.io/yarp/) enabled ASP.NET Core app. With the default setup, these endpoints are automatically served for all requests once deployed. In order to test these endpoints, or be able to turn them off if needed, additional setup is needed.
 
-This document describes how to setup a conditional endpoint selection system to enable A/B testing during incremental migration. It assumes a setup as described in [incremental migration overview](xref:migration/fx-to-core/index) as a starting point.
+This document describes how to setup a conditional endpoint selection system to enable A/B testing during incremental migration. It assumes a setup as described in [incremental migration overview](xref:migration/fx-to-core/inc/overview) as a starting point.
 
 ## Conditional endpoint selection
 

@@ -118,11 +118,3 @@ groups:
       title: MSTest
     - id: nunit
       title: NUnit
-- id: migration-remote-app-setup
-  title: Remote app setup
-  prompt: Choose how to configure remote app
-  pivots:
-    - id: manual
-      title: Manually
-    - id: aspire
-      title: Aspire
