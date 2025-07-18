@@ -4,7 +4,7 @@ description: System.Web adapters
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 11/9/2022
+ms.date: 07/17/2025
 ms.topic: article
 uid: migration/fx-to-core/systemweb-adapters
 ---
@@ -19,10 +19,26 @@ Let's take a look at an example using the adapters moving from .NET Framework to
 
 ## Packages
 
-* `Microsoft.AspNetCore.SystemWebAdapters`: This package is used in supporting libraries and provide the System.Web APIs you may have taken a dependency on, such as `HttpContext` and others. This package targets .NET Standard 2.0, .NET Framework 4.5+, and .NET 5+.
+* `Microsoft.AspNetCore.SystemWebAdapters`: This package is used in supporting libraries and provides the System.Web APIs you may have taken a dependency on, such as `HttpContext` and others. This package targets .NET Standard 2.0, .NET Framework 4.5+, and .NET 5+.
 * `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`: This package only targets .NET Framework and is intended to provide services to ASP.NET Framework applications that may need to provide incremental migrations. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
 * `Microsoft.AspNetCore.SystemWebAdapters.CoreServices`: This package only targets .NET 6+ and is intended to provide services to ASP.NET Core applications to configure behavior of `System.Web` APIs as well as opting into any behaviors for incremental migration. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
 * `Microsoft.AspNetCore.SystemWebAdapters.Abstractions`: This package is a supporting package that provides abstractions for services used by both the ASP.NET Core and ASP.NET Framework application such as session state serialization.
+
+### Converting to System.Web.HttpContext
+
+To convert between the two representations of HttpContext, you may do the following:
+
+For <xref:Microsoft.AspNetCore.Http.HttpContext> to <xref:System.Web.HttpContext>:
+
+* Implicit casting
+* `HttpContext.AsSystemWeb()`
+
+For <xref:System.Web.HttpContext> to <xref:Microsoft.AspNetCore.Http.HttpContext>
+
+* Implicit casting
+* `HttpContext.AsAspNetCore()`
+
+Both of these methods will use a cached <xref:System.Web.HttpContext> representation for the duration of a request. This allows for targeted rewrites to <xref:Microsoft.AspNetCore.Http.HttpContext> as needed.
 
 ## Example
 
@@ -73,6 +89,12 @@ public class SomeController : Controller
 
 Notice that since there's a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext> property, they can pass that through, but it generally looks the same. Using implicit conversions, the <xref:Microsoft.AspNetCore.Http.HttpContext> can be converted into the adapter that could then be passed around through the levels utilizing the code in the same way.
 
-## See also
+## Unit Testing
 
-* <xref:migration/fx-to-core/inc/unit-testing>
+When unit testing code that uses the System.Web adapters, there are some special considerations to keep in mind.
+
+In most cases, there's no need to set up additional components for running tests. But if the component being tested uses <xref:System.Web.HttpRuntime>, it might be necessary to start up the `SystemWebAdapters` service, as shown in the following example:
+
+:::code language="csharp" source="~/migration/fx-to-core/inc/samples/unit-testing/Program.cs" id="snippet_UnitTestingFixture" :::
+
+The tests must be executed in sequence, not in parallel. The preceding example illustrates how to achieve this by setting [XUnit's `DisableParallelization` option](https://xunit.net/docs/running-tests-in-parallel#parallelism-in-test-frameworks) to `true`. This setting disables parallel execution for a specific test collection, ensuring that the tests within that collection run one after the other, without concurrency.
