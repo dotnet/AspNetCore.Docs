@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ModelBindingSample.Snippets;
 
@@ -50,5 +52,23 @@ public static class Program
                     new SuppressChildValidationMetadataProvider(typeof(Guid)));
             });
         // </snippet_ModelMetadataDetailsProviders>
+    }
+
+    public static void AddJsonOptions(WebApplicationBuilder builder)
+    {
+        // <snippet_AddJsonOptions>
+        builder.Services.AddControllers().AddJsonOptions(options =>
+        {
+            // Configure property naming policy (camelCase)
+            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+
+            // Add enum converter to serialize enums as strings
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+
+            // Configure other JSON options
+            options.JsonSerializerOptions.WriteIndented = true;
+            options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        });
+        // </snippet_AddJsonOptions>
     }
 }
