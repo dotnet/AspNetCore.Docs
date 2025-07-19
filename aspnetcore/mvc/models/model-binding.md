@@ -631,7 +631,7 @@ Used to retrieve all the values from posted form data.
 
 ## Input formatters
 
-Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes JSON based input formatters for handling JSON data using `System.Text.Json`. You can add other formatters for other content types.
+Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes JSON based input formatters for handling JSON data using [`System.Text.Json`](/dotnet/standard/serialization/system-text-json-overview). You can add other formatters for other content types.
 
 The default JSON input formatter can be configured using the `AddJsonOptions` method:
 
