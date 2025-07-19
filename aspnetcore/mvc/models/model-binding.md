@@ -4,7 +4,8 @@ author: tdykstra
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 6/20/2023
+ms.date: 07/19/2025
+ai-usage: ai-assisted
 uid: mvc/models/model-binding
 ---
 
