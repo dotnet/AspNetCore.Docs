@@ -1031,7 +1031,7 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/migration/inc/overview.md",
+            "source_path": "aspnetcore/migration/fx-to-core/inc/overview.md",
             "redirect_url": "/aspnet/core/migration/fx-to-core/index",
             "redirect_document_id": false
         },
@@ -1056,7 +1056,7 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/migration/inc/start.md",
+            "source_path": "aspnetcore/migration/fx-to-core/inc/start.md",
             "redirect_url": "/aspnet/core/migration/fx-to-core/start",
             "redirect_document_id": false
         },
