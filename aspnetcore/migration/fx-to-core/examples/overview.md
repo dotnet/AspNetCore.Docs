@@ -6,7 +6,6 @@ ms.author: riande
 ms.date: 03/07/2017
 uid: migration/fx-to-core/examples/overview
 ---
-
 # Upgrade from ASP.NET MVC and Web API to ASP.NET Core MVC
 
 :::moniker range=">= aspnetcore-3.0"
@@ -58,7 +57,7 @@ For more information, see [Framework reference](xref:migration/22-to-30#framewor
 
 In ASP.NET Core, the `Startup` class:
 
-* Replaces *Global.asax*.
+* Replaces `Global.asax`.
 * Handles all app startup tasks.
 
 For more information, see <xref:fundamentals/startup>.
@@ -97,26 +96,26 @@ Each controller endpoint can be tested, however, layout and styles are covered l
 
 ## Migrate static content
 
-In ASP.NET MVC 5 or earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is *{content root}/wwwroot*, but it can be changed. For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files#serve-static-files).
+In ASP.NET MVC 5 or earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed. For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files).
 
-Copy the static content from the ASP.NET MVC *WebApp1* project to the *wwwroot* directory in the ASP.NET Core *WebApp1* project:
+Copy the static content from the ASP.NET MVC *WebApp1* project to the `wwwroot` directory in the ASP.NET Core *WebApp1* project:
 
-1. In the ASP.NET Core project, right-click the *wwwroot* directory, select **Add** > **Existing Item**.
+1. In the ASP.NET Core project, right-click the `wwwroot` directory, select **Add** > **Existing Item**.
 1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project.
-1. Select the *favicon.ico* file, then select **Add**, replacing the existing file.
+1. Select the `favicon.ico` file, then select **Add**, replacing the existing file.
 
 ## Migrate the layout files
 
 Copy the ASP.NET MVC project layout files to the ASP.NET Core project:
 
-1. In the ASP.NET Core project, right-click the *Views* directory, select **Add** > **Existing Item**.
-1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views* directory.
+1. In the ASP.NET Core project, right-click the `Views` directory, select **Add** > **Existing Item**.
+1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's `Views` directory.
 1. Select the `_ViewStart.cshtml` file then select **Add**.
 
 Copy the ASP.NET MVC project shared layout files to the ASP.NET Core project:
 
-1. In the ASP.NET Core project, right-click the *Views/Shared* directory, select **Add** > **Existing Item**.
-1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Shared* directory.
+1. In the ASP.NET Core project, right-click the `Views/Shared` directory, select **Add** > **Existing Item**.
+1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's `Views/Shared` directory.
 1. Select the `_Layout.cshtml` file, then select **Add**, replacing the existing file.
 
 In the ASP.NET Core project, open the `_Layout.cshtml` file. Make the following changes to match the completed code shown below:
@@ -227,17 +226,17 @@ The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> ext
 
 In this section, a minimal controller and view are added to serve as placeholders for the ASP.NET MVC controller and views migrated in the next section.
 
-* Add a *Controllers* directory.
+* Add a `Controllers` directory.
 
-* Add a **Controller Class** named `HomeController.cs` to the *Controllers* directory.
+* Add a **Controller Class** named `HomeController.cs` to the `Controllers` directory.
 
 ![Add New Item dialog with MVC Controller Class selected](_static/overview/add_mvc_ctl.png)
 
-* Add a *Views* directory.
+* Add a `Views` directory.
 
-* Add a *Views/Home* directory.
+* Add a `Views/Home` directory.
 
-* Add a **Razor View** named `Index.cshtml` to the *Views/Home* directory.
+* Add a **Razor View** named `Index.cshtml` to the `Views/Home` directory.
 
 ![Add New Item dialog with MVC View Page selected](_static/overview/view.png)
 
@@ -291,21 +290,21 @@ Note the lack of styling and menu items. The styling will be fixed in the next s
 
 ## Static content
 
-In ASP.NET MVC 5 or earlier, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* directory. Copy the static content from the ASP.NET MVC app to the *wwwroot* directory in the ASP.NET Core project. In this sample conversion:
+In ASP.NET MVC 5 or earlier, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the `wwwroot` directory. Copy the static content from the ASP.NET MVC app to the `wwwroot` directory in the ASP.NET Core project. In this sample conversion:
 
-* Copy the *favicon.ico* file from the ASP.NET MVC project to the *wwwroot* directory in the ASP.NET Core project.
+* Copy the `favicon.ico` file from the ASP.NET MVC project to the `wwwroot` directory in the ASP.NET Core project.
 
-The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styling and stores the Bootstrap files in the *Content* and *Scripts* directories. The template, which generated the ASP.NET MVC project, references Bootstrap in the layout file (`Views/Shared/_Layout.cshtml`). The `bootstrap.js` and `bootstrap.css` files could be copied from the ASP.NET MVC project to the *wwwroot* directory in the new project. Instead, this document adds support for Bootstrap (and other client-side libraries) using CDNs, in the next section.
+The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styling and stores the Bootstrap files in the `Content` and `Scripts` directories. The template, which generated the ASP.NET MVC project, references Bootstrap in the layout file (`Views/Shared/_Layout.cshtml`). The `bootstrap.js` and `bootstrap.css` files could be copied from the ASP.NET MVC project to the `wwwroot` directory in the new project. Instead, this document adds support for Bootstrap (and other client-side libraries) using CDNs, in the next section.
 
 ## Migrate the layout file
 
-* Copy the `_ViewStart.cshtml` file from the ASP.NET MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. The `_ViewStart.cshtml` file has not changed in ASP.NET Core MVC.
+* Copy the `_ViewStart.cshtml` file from the ASP.NET MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. The `_ViewStart.cshtml` file has not changed in ASP.NET Core MVC.
 
-* Create a *Views/Shared* directory.
+* Create a `Views/Shared` directory.
 
-* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
+* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
 
-* Copy the `_Layout.cshtml` file from the ASP.NET MVC project's *Views/Shared* directory into the ASP.NET Core project's *Views/Shared* directory.
+* Copy the `_Layout.cshtml` file from the ASP.NET MVC project's `Views/Shared` directory into the ASP.NET Core project's `Views/Shared` directory.
 
 Open `_Layout.cshtml` file and make the following changes (the completed code is shown below):
 
@@ -413,17 +412,17 @@ The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> ext
 
 In this section, a minimal controller and view are added to serve as placeholders for the ASP.NET MVC controller and views migrated in the next section.
 
-* Add a *Controllers* directory.
+* Add a `Controllers` directory.
 
-* Add a **Controller Class** named `HomeController.cs` to the *Controllers* directory.
+* Add a **Controller Class** named `HomeController.cs` to the `Controllers` directory.
 
 ![Add New Item dialog with MVC Controller Class selected (prior to the release of ASP.NET Core 2.1)](_static/overview/add_mvc_ctl.png)
 
-* Add a *Views* directory.
+* Add a `Views` directory.
 
-* Add a *Views/Home* directory.
+* Add a `Views/Home` directory.
 
-* Add a **Razor View** named `Index.cshtml` to the *Views/Home* directory.
+* Add a **Razor View** named `Index.cshtml` to the `Views/Home` directory.
 
 ![Add New Item dialog with MVC View Page selected (prior to the release of ASP.NET Core 2.1)](_static/overview/view.png)
 
@@ -477,21 +476,21 @@ Note the lack of styling and menu items. The styling will be fixed in the next s
 
 ## Static content
 
-In ASP.NET MVC 5 or earlier, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* directory. Copy the static content from the ASP.NET MVC app to the *wwwroot* directory in the ASP.NET Core project. In this sample conversion:
+In ASP.NET MVC 5 or earlier, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the `wwwroot` directory. Copy the static content from the ASP.NET MVC app to the `wwwroot` directory in the ASP.NET Core project. In this sample conversion:
 
-* Copy the *favicon.ico* file from the ASP.NET MVC project to the *wwwroot* directory in the ASP.NET Core project.
+* Copy the `favicon.ico` file from the ASP.NET MVC project to the `wwwroot` directory in the ASP.NET Core project.
 
-The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styling and stores the Bootstrap files in the *Content* and *Scripts* directories. The template, which generated the ASP.NET MVC project, references Bootstrap in the layout file (`Views/Shared/_Layout.cshtml`). The `bootstrap.js` and `bootstrap.css` files could be copied from the ASP.NET MVC project to the *wwwroot* directory in the new project. Instead, this document adds support for Bootstrap (and other client-side libraries) using CDNs, in the next section.
+The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styling and stores the Bootstrap files in the `Content` and `Scripts` directories. The template, which generated the ASP.NET MVC project, references Bootstrap in the layout file (`Views/Shared/_Layout.cshtml`). The `bootstrap.js` and `bootstrap.css` files could be copied from the ASP.NET MVC project to the `wwwroot` directory in the new project. Instead, this document adds support for Bootstrap (and other client-side libraries) using CDNs, in the next section.
 
 ## Migrate the layout file
 
-* Copy the `_ViewStart.cshtml` file from the ASP.NET MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. The `_ViewStart.cshtml` file has not changed in ASP.NET Core MVC.
+* Copy the `_ViewStart.cshtml` file from the ASP.NET MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. The `_ViewStart.cshtml` file has not changed in ASP.NET Core MVC.
 
-* Create a *Views/Shared* directory.
+* Create a `Views/Shared` directory.
 
-* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
+* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
 
-* Copy the `_Layout.cshtml` file from the ASP.NET MVC project's *Views/Shared* directory into the ASP.NET Core project's *Views/Shared* directory.
+* Copy the `_Layout.cshtml` file from the ASP.NET MVC project's `Views/Shared` directory into the ASP.NET Core project's `Views/Shared` directory.
 
 Open `_Layout.cshtml` file and make the following changes (the completed code is shown below):
 
