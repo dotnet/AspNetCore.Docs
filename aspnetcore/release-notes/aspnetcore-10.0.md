@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 10.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 7/10/2025
+ms.date: 7/18/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10
@@ -65,11 +65,7 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiNetUpdatePrev.md)]
 
-### Authentication and authorization
-
-This section describes new features for authentication and authorization.
-
-### Authentication and authorization metrics
+## Authentication and authorization metrics
 
 Metrics have been added for certain authentication and authorization events in ASP.NET Core. With this change, you can now obtain metrics for the following events:
 
@@ -86,7 +82,7 @@ The following image shows an example of the Authenticated request duration metri
 
 ![Authenticated request duration in the Aspire dashboard](https://github.com/user-attachments/assets/170615e9-ef25-48a1-a482-4933e2e03f03)
 
-For more information, see [ASP.NET Core Authorization and Authentication metrics](xref:log-mon/metrics/built-in#microsoftaspnetcoreauthorization).
+For more information, see <xref:log-mon/metrics/built-in#microsoftaspnetcoreauthorization>.
 
 ## Miscellaneous
 
