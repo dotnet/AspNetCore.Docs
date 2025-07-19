@@ -3,27 +3,27 @@ title: Learn to upgrade from ASP.NET MVC, Web API, and Web Forms to ASP.NET Core
 description: Learn how to upgrade ASP.NET Framework MVC, Web API, or Web Forms projects to ASP.NET Core using migration tooling
 author: rick-anderson
 ms.author: riande
-ms.date: 06/20/2025
+ms.date: 07/17/2025
 uid: migration/fx-to-core/tooling
 ---
 # Use tooling to help migrate ASP.NET Framework to ASP.NET Core
 
-This article shows how to upgrade ASP.NET Framework applications (MVC, Web API, and Web Forms) to ASP.NET Core using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/fx-to-core/inc/overview) approach.
+This article shows how to upgrade ASP.NET Framework applications (MVC, Web API, and Web Forms) to ASP.NET Core using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/fx-to-core/index) approach.
 
 
    > [!WARNING]
-   > There is a Copilot-enabled tool for staying current on modern .NET, but is not currently enabled for migrating ASP.NET Frameworkt to ASP.NET Core. Please see the documentation for [GitHub Copilot app modernization - Upgrade for .NET](/dotnet/core/porting/github-copilot-app-modernization-overview) for details.
+   > There is a Copilot-enabled tool for staying current on modern .NET, but is not currently enabled for migrating ASP.NET Framework to ASP.NET Core. Please see the documentation for [GitHub Copilot app modernization - Upgrade for .NET](/dotnet/core/porting/github-copilot-app-modernization-overview) for details.
 
 ## Prerequisites
 
-If your .NET Framework project has supporting libraries in the solution that are required, they should be upgraded to .NET Standard 2.0, if possible. For more information, see [Upgrade supporting libraries](xref:migration/fx-to-core/inc/start#upgrade-supporting-libraries).
+If your .NET Framework project has supporting libraries in the solution that are required, they should be upgraded to .NET Standard 2.0, if possible. For more information, see [Upgrade supporting libraries](xref:migration/fx-to-core/start#upgrade-supporting-libraries).
 
 
 1. Install the [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) Visual Studio extension.
 1. Open your ASP.NET Framework solution in Visual Studio.
 1. In **Solution Explorer**, right click on the project to upgrade and select **Upgrade**. Select **Side-by-side incremental project upgrade**, which is the only upgrade option.
 1. For the upgrade target, select **New project**.
-1. Name the project and select the appropriate template:
+1. Name the project and select the most appropriate template. If your solution includes multiple project types, you may add the required services later:
 
    > [!NOTE]
    > **For MVC projects:** Select **ASP.NET Core MVC** template.
