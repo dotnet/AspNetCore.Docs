@@ -39,9 +39,9 @@ See [ReverseProxy.Direct.Sample](https://github.com/microsoft/reverse-proxy/tree
 
 ### Create a new project
 
-Follow the [Getting Started](xref:getting-started) guide to create a project and add the Yarp.ReverseProxy nuget dependency.
+Create a Razor Pages project from the project template and add the [`Yarp.ReverseProxy` NuGet package](https://www.nuget.org/packages/Yarp.ReverseProxy).
 
-### Update Program.cs
+### Update `Program.cs`
 
 In this example the IHttpForwarder is registered in DI, injected into the endpoint method, and used to forward requests from a specific route to `https://localhost:10000/prefix/`.
 

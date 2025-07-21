@@ -8,7 +8,6 @@ ms.custom: "mvc"
 ms.date: 04/23/2025
 uid: data/ef-rp/intro
 ---
-
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
 [!INCLUDE[](~/includes/not-latest-version.md)]

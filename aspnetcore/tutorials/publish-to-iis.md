@@ -62,7 +62,7 @@ Download the installer using the following link:
 
 ## Create an ASP.NET Core Razor Pages app
 
-Follow the <xref:getting-started> tutorial to create a Razor Pages app.
+Create a Razor Pages app from the project template.
 
 ## Publish and deploy the app
 
