@@ -120,7 +120,7 @@ Event handling tracing:
 Tags:
 
 * `aspnetcore.components.attribute.name`: Name of the HTML attribute that triggers the event (example: `onClick`).
-* `aspnetcore.components.method`: C# method name of the handler.
+* `code.function.name`: C# method name of the handler.
 * `aspnetcore.components.type`: Full name of target C# component that receives the event.
 * `error.type`: Exception type full name (optional).
 
