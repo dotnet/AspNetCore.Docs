@@ -111,13 +111,13 @@ Select **RazorPagesMovie** in **Solution Explorer**, and then press Ctrl+F5 to r
 
 Visual Studio displays the following dialog when a project is not yet configured to use SSL:
 
-![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?](~/includes/static/trustCertVS22.png)
+![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?](~/static/trustCertVS22.png)
 
 Select **Yes** if you trust the IIS Express SSL certificate.
 
 The following dialog is displayed:
 
-![Security warning dialog](~/includes/static/cert.png)
+![Security warning dialog](~/static/cert.png)
 
 Select **Yes** if you agree to trust the development certificate.
 

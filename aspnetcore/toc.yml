@@ -10,7 +10,7 @@ items:
       - name: Compare .NET and .NET Framework
         href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
   - name: Get started
-    uid: getting-started
+    uid: get-started
   - name: What's new
     items:
       - name: What's new in 10
