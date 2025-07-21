@@ -50,8 +50,6 @@ The `dotnet watch` command runs the app and opens your default browser to the ap
 dotnet watch
 ```
 
-The browser opens to the app's home page.
-
 Using the app's sidebar navigation, visit the Counter page, where you can select the **:::no-loc text="Click me":::** button to increment the counter.
 
 ## Edit a Razor component
@@ -86,7 +84,7 @@ A paragraph element (`<p>`) displays the current count, which is stored in a var
 <p role="status">Current count: @currentCount</p>
 ```
 
-A button (`<button>`) allows the user to increment the counter, which occurs when the button click executes a C# method named `IncrementCount`:
+A button (`<button>`) allows the user to increment the counter, which occurs when a button click executes a C# method named `IncrementCount`:
 
 ```razor
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
@@ -125,7 +123,7 @@ Change the line so that `currentCount` is incremented by a value of ten each tim
 
 Save the file.
 
-As soon as you save the file, the running app is updated automatically because you used the `dotnet watch` command. Go back to the app in the browser with the Counter page loaded and select the **:::no-loc text="Click me":::** button. Witness how the counter now increments by ten.
+As soon as you save the file, the running app is updated automatically because you used the `dotnet watch` command. Go back to the app in the browser and select the **:::no-loc text="Click me":::** button in the Counter page. Witness how the counter now increments by ten.
 
 To shut down the app:
 
