@@ -30,7 +30,7 @@ Obtain and install the latest .NET SDK at [Download .NET](https://dotnet.microso
 
 ## Create a web app project
 
-Open a command shell to a suitable location for the sample app and enter the following command to create a Blazor Web App. The `-o|--output` option creates a folder for the project and names the project `BlazorSample`:
+Open a command shell to a suitable location for the sample app and use the following command to create a Blazor Web App. The `-o|--output` option creates a folder for the project and names the project `BlazorSample`:
 
 ```dotnetcli
 dotnet new blazor -o BlazorSample
@@ -44,27 +44,25 @@ Change the directory to the `BlazorSample` folder with the following command:
 cd BlazorSample
 ```
 
-Execute the following command to run the app:
+The `dotnet watch` command runs the app and opens your default browser to the app's landing page:
 
 ```dotnetcli
 dotnet watch
 ```
 
-The `dotnet watch` command runs the app and opens your default browser to the app's landing page.
+The browser opens to the app's home page.
 
-The browser shows the app's home page.
-
-Using the app's sidebar navigation, visit the Counter page, where you can select the **:::no-loc text="Click me":::** button to increment the counter. Visit the Weather page to see a page load weather data.
+Using the app's sidebar navigation, visit the Counter page, where you can select the **:::no-loc text="Click me":::** button to increment the counter.
 
 ## Edit a Razor component
 
-Leave the browser open with the app loaded. By using the `dotnet watch` command to run the app, you can make changes to the app's markup and code and see the changes immediately reflected in the browser.
+Leave the browser open with the Counter page loaded. By using the `dotnet watch` command to run the app, you can make changes to the app's markup and code and see the changes immediately reflected in the browser.
 
 The `Counter` Razor component that renders the Counter web page is located at `Components/Pages/Counter.razor` in the project.
 
-Open the `Counter.razor` file in a text editor and note a few interesting lines that render content and make the component's counter feature work:
+Open the `Counter.razor` file in a text editor and note a few interesting lines that render content and make the component's counter feature work.
 
-The component starts with a line that indicates the component's relative path (`/counter`):
+The file starts with a line that indicates the component's relative path (`/counter`):
 
 ```razor
 @page "/counter"
@@ -76,7 +74,7 @@ The title of the page is set by `<PageTitle>` tags:
 <PageTitle>Counter</PageTitle>
 ```
 
-An H1 heading is displayed:
+An H1 heading is displayed to the user:
 
 ```razor
 <h1>Counter</h1>
@@ -88,7 +86,7 @@ A paragraph element (`<p>`) displays the current count, which is stored in a var
 <p role="status">Current count: @currentCount</p>
 ```
 
-A button (`<button>`) allows the user to call a C# method named `IncrementCount` when the button is selected:
+A button (`<button>`) allows the user to increment the counter, which occurs when the button click executes a C# method named `IncrementCount`:
 
 ```razor
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
@@ -127,7 +125,7 @@ Change the line so that `currentCount` is incremented by a value of ten each tim
 
 Save the file.
 
-As soon as you save the file, the running app is updated automatically because you used the `dotnet watch` command to run the app. Go back to the app in the browser with the Counter page loaded and select the **:::no-loc text="Click me":::** button. Witness how the counter now increments by ten.
+As soon as you save the file, the running app is updated automatically because you used the `dotnet watch` command. Go back to the app in the browser with the Counter page loaded and select the **:::no-loc text="Click me":::** button. Witness how the counter now increments by ten.
 
 To shut down the app:
 
