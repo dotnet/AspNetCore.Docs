@@ -1569,7 +1569,7 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/blazor/getting-started/index.md",
+            "source_path": "aspnetcore/getting-started/index.md",
             "redirect_url": "/aspnet/core/blazor/get-started",
             "redirect_document_id": false
         }
