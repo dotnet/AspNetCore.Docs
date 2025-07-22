@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-5.0"
 
-This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
+This tutorial shows how to create a .NET [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
@@ -26,7 +26,7 @@ In this tutorial, you:
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * [Visual Studio for Mac version 8.7 or later](/visualstudio/releasenotes/vs2019-mac-relnotes)
-* [!INCLUDE [.NET Core 3.1 SDK](~/includes/5.0-SDK.md)]
+* [!INCLUDE [.NET 3.1 SDK](~/includes/5.0-SDK.md)]
 
 ---
 
@@ -104,7 +104,7 @@ info: Microsoft.Hosting.Lifetime[0]
 # [Visual Studio](#tab/visual-studio)
 
 * Open a second instance of Visual Studio and select **Create a new project**.
-* In the **Create a new project** dialog, select **Console App (.NET Core)** and select **Next**.
+* In the **Create a new project** dialog, select **Console App (.NET)** and select **Next**.
 * In the **Project name** text box, enter **GrpcGreeterClient** and select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -124,7 +124,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Follow the instructions in [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
+Follow the instructions in [Building a complete .NET solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
 
 ---
 
@@ -132,7 +132,7 @@ Follow the instructions in [Building a complete .NET Core solution on macOS usin
 
 The gRPC client project requires the following packages:
 
-* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET Core client.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET client.
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
 * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/), which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 

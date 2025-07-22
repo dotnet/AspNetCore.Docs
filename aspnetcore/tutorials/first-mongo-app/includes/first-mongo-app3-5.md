@@ -17,20 +17,20 @@ In this tutorial, you learn how to:
 
 # [Visual Studio](#tab/visual-studio)
 
-* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
+* [.NET SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
+* [.NET SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
+* [.NET SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Visual Studio for Mac version 7.7 or later](https://visualstudio.microsoft.com/downloads/)
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
 
@@ -132,7 +132,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 1. Go to **File** > **New** > **Project**.
 1. Select the **ASP.NET Core Web Application** project type, and select **Next**.
 1. Name the project *BooksApi*, and select **Create**.
-1. Select the **.NET Core** target framework and **ASP.NET Core 3.0**. Select the **API** project template, and select **Create**.
+1. Select the **.NET** target framework and **ASP.NET Core 3.0**. Select the **API** project template, and select **Create**.
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
    ```powershell
@@ -148,7 +148,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
    code BooksApi
    ```
 
-   A new ASP.NET Core web API project targeting .NET Core is generated and opened in Visual Studio Code.
+   A new ASP.NET Core web API project targeting .NET is generated and opened in Visual Studio Code.
 
 1. After the status bar's OmniSharp flame icon turns green, a dialog asks **Required assets to build and debug are missing from 'BooksApi'. Add them?**. Select **Yes**.
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET driver for MongoDB:
@@ -159,9 +159,9 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In Visual Studio for Mac earlier than version 8.6, select **File** > **New Solution** > **.NET Core** > **App** from the sidebar. In version 8.6 or later, select **File** > **New Solution** > **Web and Console** > **App** from the sidebar.
+1. In Visual Studio for Mac earlier than version 8.6, select **File** > **New Solution** > **.NET** > **App** from the sidebar. In version 8.6 or later, select **File** > **New Solution** > **Web and Console** > **App** from the sidebar.
 1. Select the **ASP.NET Core** > **API** C# project template, and select **Next**.
-1. Select **.NET Core 3.1** from the **Target Framework** drop-down list, and select **Next**.
+1. Select **.NET 3.1** from the **Target Framework** drop-down list, and select **Next**.
 1. Enter *BooksApi* for the **Project Name**, and select **Create**.
 1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Add Packages**.
 1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and select **Add Package**.

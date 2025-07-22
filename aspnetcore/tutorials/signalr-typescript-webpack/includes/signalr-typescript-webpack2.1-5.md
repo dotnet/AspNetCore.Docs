@@ -18,13 +18,13 @@ In this tutorial, you learn how to:
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
-* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
+* [.NET SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * [Visual Studio Code](https://code.visualstudio.com/download)
-* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
+* [.NET SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [C# for Visual Studio Code version 1.17.1 or later](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
@@ -46,7 +46,7 @@ Visual Studio configuration is complete.
 
 1. Use the **File** > **New** > **Project** menu option and choose the **ASP.NET Core Web Application** template. Select **Next**.
 1. Name the project *SignalRWebPac``, and select **Create**.
-1. Select *.NET Core* from the target framework drop-down, and select *ASP.NET Core 3.1* from the framework selector drop-down. Select the **Empty** template, and select **Create**.
+1. Select *.NET* from the target framework drop-down, and select *ASP.NET Core 3.1* from the framework selector drop-down. Select the **Empty** template, and select **Create**.
 
 Add the `Microsoft.TypeScript.MSBuild` package to the project:
 
@@ -295,13 +295,13 @@ In this tutorial, you learn how to:
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
-* [.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core)
+* [.NET SDK 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * [Visual Studio Code](https://code.visualstudio.com/download)
-* [.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core)
+* [.NET SDK 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [C# for Visual Studio Code version 1.17.1 or later](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
@@ -322,7 +322,7 @@ Visual Studio configuration is completed. It's time to create the project.
 
 1. Use the **File** > **New** > **Project** menu option and choose the **ASP.NET Core Web Application** template.
 1. Name the project *SignalRWebPack`, and select **Create**.
-1. Select *.NET Core* from the target framework drop-down, and select *ASP.NET Core 2.2* from the framework selector drop-down. Select the **Empty** template, and select **Create**.
+1. Select *.NET* from the target framework drop-down, and select *ASP.NET Core 2.2* from the framework selector drop-down. Select the **Empty** template, and select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -332,7 +332,7 @@ Run the following command in the **Integrated Terminal**:
 dotnet new web -o SignalRWebPack
 ```
 
-An empty ASP.NET Core web app, targeting .NET Core, is created in a `SignalRWebPack` directory.
+An empty ASP.NET Core web app, targeting .NET, is created in a `SignalRWebPack` directory.
 
 ---
 

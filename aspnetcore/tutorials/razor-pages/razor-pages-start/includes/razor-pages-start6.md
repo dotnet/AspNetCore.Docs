@@ -132,7 +132,7 @@ Visual Studio:
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET Core**.
+In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET**.
 
 The default browser launched with the following URL: `https://localhost:5001`
 

@@ -81,7 +81,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   ![macOS New solution](~/tutorials/first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
+* In Visual Studio for Mac earlier than version 8.6, select **.NET** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
 
   ![macOS web app template selection](~/tutorials/razor-pages/razor-pages-start/_static/web_app_template_vsmac.png)
 

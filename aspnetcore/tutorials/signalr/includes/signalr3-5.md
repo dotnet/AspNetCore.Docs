@@ -36,7 +36,7 @@ At the end, you'll have a working chat app:
   * From the menu, select **File > New Project**.
   * In the **Create a new project** dialog, select **ASP.NET Core Web Application**, and then select **Next**.
   * In the **Configure your new project** dialog, name the project *SignalRChat*, and then select **Create**.
-  * In the **Create a new ASP.NET Core web Application** dialog, select **.NET Core** and **ASP.NET Core 3.1**.
+  * In the **Create a new ASP.NET Core web Application** dialog, select **.NET** and **ASP.NET Core 3.1**.
   * Select **Web Application** to create a project that uses Razor Pages, and then select **Create**.
 
   ![New Project dialog in Visual Studio](~/tutorials/signalr/_static/3.x/signalr-new-project-dialog.png)
@@ -55,8 +55,8 @@ At the end, you'll have a working chat app:
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
   * From the menu, select **File > New Solution**.
-  * Select **.NET Core > App > Web Application** (Don't select **Web Application (Model-View-Controller)**), and then select **Next**.
-  * Make sure the **Target Framework** is set to **.NET Core 3.1**, and then select **Next**.
+  * Select **.NET > App > Web Application** (Don't select **Web Application (Model-View-Controller)**), and then select **Next**.
+  * Make sure the **Target Framework** is set to **.NET 3.1**, and then select **Next**.
   * Name the project *SignalRChat*, and then select **Create**.
 
 ---

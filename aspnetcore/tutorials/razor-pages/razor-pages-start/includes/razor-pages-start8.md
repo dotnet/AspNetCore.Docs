@@ -100,7 +100,7 @@ Close the browser window.
 
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
-At the **Select debugger** prompt, select **.NET 5+ and .NET Core**.
+At the **Select debugger** prompt, select **.NET 5+ and .NET**.
 
 ![Select environment dialog](~/tutorials/razor-pages/razor-pages-start/_static/vsc-select-debugger.png)
 

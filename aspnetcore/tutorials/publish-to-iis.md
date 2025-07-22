@@ -15,13 +15,13 @@ This tutorial shows how to host an ASP.NET Core app on an IIS server.
 This tutorial covers the following subjects:
 
 > [!div class="checklist"]
-> * Install the .NET Core Hosting Bundle on Windows Server.
+> * Install the .NET Hosting Bundle on Windows Server.
 > * Create an IIS site in IIS Manager.
 > * Deploy an ASP.NET Core app.
 
 ## Prerequisites
 
-* [.NET Core SDK](/dotnet/core/sdk) installed on the development machine.
+* [.NET SDK](/dotnet/core/sdk) installed on the development machine.
 * Windows Server configured with the **Web Server (IIS)** server role. If your server isn't configured to host websites with IIS, follow the guidance in the *IIS configuration* section of the <xref:host-and-deploy/iis/index#iis-configuration> article and then return to this tutorial.
 
 > [!WARNING]
@@ -33,13 +33,13 @@ This tutorial covers the following subjects:
 > * [Configuration of the app pool's Access Control List (ACL)](xref:host-and-deploy/iis/advanced#application-pool-identity)
 > * To focus on IIS deployment concepts, this tutorial deploys an app without HTTPS security configured in IIS. For more information on hosting an app enabled for HTTPS protocol, see the security topics in the [Additional resources](#additional-resources) section of this article. Further guidance for hosting ASP.NET Core apps is provided in the <xref:host-and-deploy/iis/index> article.
 
-## Install the .NET Core Hosting Bundle
+## Install the .NET Hosting Bundle
 
-Install the *.NET Core Hosting Bundle* on the IIS server. The bundle installs the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The module allows ASP.NET Core apps to run behind IIS.
+Install the *.NET Hosting Bundle* on the IIS server. The bundle installs the .NET Runtime, .NET Library, and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The module allows ASP.NET Core apps to run behind IIS.
 
 Download the installer using the following link:
 
-[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 1. Run the installer on the IIS server.
 
@@ -66,7 +66,7 @@ Follow the <xref:getting-started> tutorial to create a Razor Pages app.
 
 ## Publish and deploy the app
 
-*Publish an app* means to produce a compiled app that can be hosted by a server. *Deploy an app* means to move the published app to a hosting system. The publish step is handled by the [.NET Core SDK](/dotnet/core/sdk), while the deployment step can be handled by a variety of approaches. This tutorial adopts the *folder* deployment approach, where:
+*Publish an app* means to produce a compiled app that can be hosted by a server. *Deploy an app* means to move the published app to a hosting system. The publish step is handled by the [.NET SDK](/dotnet/core/sdk), while the deployment step can be handled by a variety of approaches. This tutorial adopts the *folder* deployment approach, where:
  
 * The app is published to a folder.
 * The folder's contents are moved to the IIS site's folder (the **Physical path** to the site in IIS Manager).
@@ -101,7 +101,7 @@ The app is accessible in a browser after it receives the first request. Make a r
 In this tutorial, you learned how to:
 
 > [!div class="checklist"]
-> * Install the .NET Core Hosting Bundle on Windows Server.
+> * Install the .NET Hosting Bundle on Windows Server.
 > * Create an IIS site in IIS Manager.
 > * Deploy an ASP.NET Core app.
 
@@ -140,7 +140,7 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 
 * [IIS documentation](/iis)
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
-* [.NET Core application deployment](/dotnet/core/deploying/)
+* [.NET application deployment](/dotnet/core/deploying/)
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/directory-structure>
 * <xref:host-and-deploy/iis/modules>
