@@ -228,7 +228,7 @@ Add a new API project to migrate to:
 
 1. Add a new **ASP.NET Core Web Application** project to the solution.
 1. In the **Configure your new project** dialog, Name the project *ProductsCore*, and select **Create**.
-1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** project template, and select **Create**.
+1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET** and **ASP.NET Core 3.1** are selected. Select the **API** project template, and select **Create**.
 1. Remove the `WeatherForecast.cs` and `Controllers/WeatherForecastController.cs` example files from the new *ProductsCore* project.
 
 The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.

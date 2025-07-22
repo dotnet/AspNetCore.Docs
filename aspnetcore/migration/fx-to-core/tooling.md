@@ -35,7 +35,7 @@ If your .NET Framework project has supporting libraries in the solution that are
    > **For Web Forms projects:** Select **ASP.NET Core** template.
 
 1. Select **Next**
-1. Select the target framework version and then select **Next**. For more information, see [.NET and .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
+1. Select the target framework version and then select **Next**. For more information, see [.NET and .NET Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 
    > [!NOTE]
    > **For Web Forms projects:** Select **Done** instead of **Next**, then proceed to step 9.
