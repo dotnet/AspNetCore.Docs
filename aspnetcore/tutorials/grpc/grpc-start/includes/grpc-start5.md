@@ -26,7 +26,7 @@ In this tutorial, you:
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * [Visual Studio for Mac version 8.7 or later](/visualstudio/releasenotes/vs2019-mac-relnotes)
-* [!INCLUDE [.NET 3.1 SDK](~/includes/5.0-SDK.md)]
+* [!INCLUDE [.NET Core 3.1 SDK](~/includes/5.0-SDK.md)]
 
 ---
 

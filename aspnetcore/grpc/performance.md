@@ -62,7 +62,7 @@ var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
 
 :::moniker-end
 
-There are a couple of workarounds for .NET 3.1 apps:
+There are a couple of workarounds for .NET Core 3.1 apps:
 
 * Create separate gRPC channels for areas of the app with high load. For example, the `Logger` gRPC service might have a high load. Use a separate channel to create the `LoggerClient` in the app.
 * Use a pool of gRPC channels, for example,  create a list of gRPC channels. `Random` is used to pick a channel from the list each time a gRPC channel is needed. Using `Random` randomly distributes calls over multiple connections.

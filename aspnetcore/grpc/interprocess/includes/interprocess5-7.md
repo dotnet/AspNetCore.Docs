@@ -12,7 +12,7 @@ Processes running on the same machine can be designed to communicate with each o
 
 gRPC calls are sent from a client to a server. To communicate between apps on a machine with gRPC, at least one app must host an ASP.NET Core gRPC server.
 
-ASP.NET Core and gRPC can be hosted in any app using .NET 3.1 or later by adding the `Microsoft.AspNetCore.App` framework to the project.
+ASP.NET Core and gRPC can be hosted in any app using .NET Core 3.1 or later by adding the `Microsoft.AspNetCore.App` framework to the project.
 
 [!code-xml[](~/grpc/interprocess/Server.csproj?highlight=4-6)]
 

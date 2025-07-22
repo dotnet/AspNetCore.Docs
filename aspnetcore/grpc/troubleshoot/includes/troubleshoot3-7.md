@@ -82,7 +82,7 @@ The .NET gRPC client can call insecure gRPC services by specifing `http` in the 
 There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
 * .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
-* .NET 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`:
+* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`:
 
     ```csharp
     // This switch must be set before creating the GrpcChannel/HttpClient.
@@ -94,7 +94,7 @@ There are some additional requirements to call insecure gRPC services depending 
     var client = new Greet.GreeterClient(channel);
     ```
 
-The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET 3.x. It does nothing in .NET 5 and isn't required.
+The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It does nothing in .NET 5 and isn't required.
 
 > [!IMPORTANT]
 > Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
@@ -422,7 +422,7 @@ The .NET gRPC client can call insecure gRPC services by specifing `http` in the 
 There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
 * .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
-* .NET 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`:
+* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`:
 
     ```csharp
     // This switch must be set before creating the GrpcChannel/HttpClient.
@@ -434,7 +434,7 @@ There are some additional requirements to call insecure gRPC services depending 
     var client = new Greet.GreeterClient(channel);
     ```
 
-The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET 3.x. It does nothing in .NET 5 and isn't required.
+The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It does nothing in .NET 5 and isn't required.
 
 > [!IMPORTANT]
 > Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
@@ -671,7 +671,7 @@ The .NET gRPC client can call insecure gRPC services by specifing `http` in the 
 There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
 * .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
-* .NET 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`:
+* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`:
 
     ```csharp
     // This switch must be set before creating the GrpcChannel/HttpClient.
@@ -683,7 +683,7 @@ There are some additional requirements to call insecure gRPC services depending 
     var client = new Greet.GreeterClient(channel);
     ```
 
-The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET 3.x. It does nothing in .NET 5 and isn't required.
+The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It does nothing in .NET 5 and isn't required.
 
 > [!IMPORTANT]
 > Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).

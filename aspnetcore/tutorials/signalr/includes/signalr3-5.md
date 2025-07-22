@@ -56,7 +56,7 @@ At the end, you'll have a working chat app:
 
   * From the menu, select **File > New Solution**.
   * Select **.NET > App > Web Application** (Don't select **Web Application (Model-View-Controller)**), and then select **Next**.
-  * Make sure the **Target Framework** is set to **.NET 3.1**, and then select **Next**.
+  * Make sure the **Target Framework** is set to **.NET Core 3.1**, and then select **Next**.
   * Name the project *SignalRChat*, and then select **Create**.
 
 ---

@@ -29,7 +29,7 @@ gRPC on .NET supports both wire-formats. `application/grpc` is used by default. 
 
 ## ASP.NET Core gRPC server requirements
 
-Hosting gRPC services with ASP.NET Core requires .NET 3.x or later.
+Hosting gRPC services with ASP.NET Core requires .NET Core 3.x or later.
 
 > [!div class="checklist"]
 >
