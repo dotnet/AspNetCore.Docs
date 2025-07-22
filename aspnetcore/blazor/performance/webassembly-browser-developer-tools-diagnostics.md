@@ -112,5 +112,5 @@ In the following example, profiled methods are filtered to the app's namespace `
 
 ## Additional resources
 
-* [What diagnostic tools are available in .NET Core?](/dotnet/core/diagnostics/)
+* [What diagnostic tools are available in .NET?](/dotnet/core/diagnostics/)
 * [.NET diagnostic tools](/dotnet/core/diagnostics/tools-overview)

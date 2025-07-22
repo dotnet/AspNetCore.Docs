@@ -67,7 +67,7 @@ To work with SpaServices, install the following:
 
 * [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 
-  * On Windows using Visual Studio 2017, the SDK is installed by selecting the **.NET Core cross-platform development** workload.
+  * On Windows using Visual Studio 2017, the SDK is installed by selecting the **.NET cross-platform development** workload.
 
 * [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
 

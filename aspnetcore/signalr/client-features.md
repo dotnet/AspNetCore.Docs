@@ -11,17 +11,17 @@ uid: signalr/client-features
 
 ## Versioning, support, and compatibility
 
-The SignalR clients ship alongside the server components and are versioned to match. Any supported client can safely connect to any supported server, and any compatibility issues would be considered bugs to be fixed. SignalR clients are supported in the same support lifecycle as the rest of .NET Core. See [the .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) for details.
+The SignalR clients ship alongside the server components and are versioned to match. Any supported client can safely connect to any supported server, and any compatibility issues would be considered bugs to be fixed. SignalR clients are supported in the same support lifecycle as the rest of .NET. See [the .NET Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) for details.
 
 Many features require a compatible client **and** server. See below for a table showing the minimum versions for various features.
 
-The 1.x versions of SignalR map to the 2.1 and 2.2 .NET Core releases and have the same lifetime. For version 3.x and above, the SignalR version exactly matches the rest of .NET and has the same support lifecycle.
+The 1.x versions of SignalR map to the 2.1 and 2.2 .NET releases and have the same lifetime. For version 3.x and above, the SignalR version exactly matches the rest of .NET and has the same support lifecycle.
 
-| SignalR version | .NET Core version | Support level | End of support |
+| SignalR version | .NET version | Support level | End of support |
 | - | - | - | - |
 | 1.0.x | 2.1.x | Long Term Support | August 21, 2021 |
 | 1.1.x | 2.2.x | End Of Life | December 23, 2019 |
-| 3.x or higher | *same as SignalR version* | See the [the .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) |
+| 3.x or higher | *same as SignalR version* | See the [the .NET Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) |
 
 **NOTE:** In ASP.NET Core 3.0, the JavaScript client *moved* to the `@microsoft/signalr` npm package.
 

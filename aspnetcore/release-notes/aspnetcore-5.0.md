@@ -58,7 +58,7 @@ ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteV
 
 * The [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attribute can be applied to properties on a Razor Page model.
 * Parameters and properties bound from the body are considered required by default. <!-- Review: How is this different from 3.1
-The validation system in .NET Core 3.0 or later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
+The validation system in .NET 3.0 or later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
 see https://learn.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcore-3.1   
 -->
 
@@ -338,7 +338,7 @@ Server Name Indication (SNI) is a TLS extension to include a virtual domain as a
 
 ### Containers
 
-Prior to .NET 5, building and publishing a *Dockerfile* for an ASP.NET Core app required pulling the entire .NET Core SDK and the ASP.NET Core image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET Core image is largely eliminated. For more information, see [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
+Prior to .NET 5, building and publishing a *Dockerfile* for an ASP.NET Core app required pulling the entire .NET SDK and the ASP.NET Core image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET Core image is largely eliminated. For more information, see [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
 
 ## Authentication and authorization
 

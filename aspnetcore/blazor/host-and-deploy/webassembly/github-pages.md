@@ -63,7 +63,7 @@ The GitHub-hosted Ubuntu (latest) server has a version of the .NET SDK pre-insta
 1. Go to the [**Available Images** section of the `actions/runner-images` GitHub repository](https://github.com/actions/runner-images?tab=readme-ov-file#available-images).
 1. Locate the `ubuntu-latest` image, which is the first table row.
 1. Select the link in the `Included Software` column.
-1. Scroll down to the *.NET Tools* section to see the .NET Core SDK installed with the image.
+1. Scroll down to the *.NET Tools* section to see the .NET SDK installed with the image.
 
 ## Deployment notes
 

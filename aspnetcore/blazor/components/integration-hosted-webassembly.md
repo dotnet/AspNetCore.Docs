@@ -16,7 +16,7 @@ uid: blazor/components/integration-hosted-webassembly
 :::moniker range="= aspnetcore-7.0 || = aspnetcore-5.0 || = aspnetcore-3.0 || = aspnetcore-3.1 || = aspnetcore-2.0"
 
 > [!WARNING]
-> This version of ASP.NET Core is no longer supported. For more information, see the [.NET and .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). 
+> This version of ASP.NET Core is no longer supported. For more information, see the [.NET and .NET Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). 
 
 :::moniker-end
 

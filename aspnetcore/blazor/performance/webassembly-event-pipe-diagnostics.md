@@ -157,7 +157,7 @@ Your code should yield to main browser loop often to allow the trace to be colle
 ## Additional resources
 
 * [EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
-* [What diagnostic tools are available in .NET Core?](/dotnet/core/diagnostics/)
+* [What diagnostic tools are available in .NET?](/dotnet/core/diagnostics/)
 * [.NET diagnostic tools](/dotnet/core/diagnostics/tools-overview)
 * [`dotnet/diagnostics` GitHub repository](https://github.com/dotnet/diagnostics)
 * [`Microsoft.Diagnostics.NETCore.Client` NuGet package](https://www.nuget.org/packages/Microsoft.Diagnostics.NETCore.Client)

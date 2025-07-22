@@ -29,15 +29,15 @@ For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core
 
 ## Runtime Store
 
-Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Store contains all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup time.
+Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Runtime Store. The Store contains all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup time.
 
 For more information, see [Runtime store](/dotnet/core/deploying/runtime-store)
 
 ## .NET Standard 2.0
 
-The ASP.NET Core 2.0 packages target .NET Standard 2.0. The packages can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET Core 2.0 and .NET Framework 4.6.1. 
+The ASP.NET Core 2.0 packages target .NET Standard 2.0. The packages can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET 2.0 and .NET Framework 4.6.1. 
 
-The `Microsoft.AspNetCore.All` metapackage targets .NET Core 2.0 only, because it's intended to be used with the .NET Core 2.0 Runtime Store.
+The `Microsoft.AspNetCore.All` metapackage targets .NET 2.0 only, because it's intended to be used with the .NET 2.0 Runtime Store.
 
 ## Configuration update
 

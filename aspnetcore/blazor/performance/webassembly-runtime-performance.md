@@ -102,5 +102,5 @@ For more information, see [Configuring and hosting .NET WebAssembly applications
 
 * <xref:blazor/performance/webassembly-browser-developer-tools>
 * <xref:blazor/performance/webassembly-event-pipe>
-* [What diagnostic tools are available in .NET Core?](/dotnet/core/diagnostics/)
+* [What diagnostic tools are available in .NET?](/dotnet/core/diagnostics/)
 * [.NET diagnostic tools](/dotnet/core/diagnostics/tools-overview)
