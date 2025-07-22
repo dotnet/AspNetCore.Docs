@@ -137,7 +137,7 @@ Kestrel is supported on all platforms and versions that .NET supports.
 * Operating system&dagger;
   * Windows Server 2016/Windows 10 or later&Dagger;
   * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
-* Target framework: .NET 2.2 or later
+* Target framework: .NET Core 2.2 or later
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
 * TLS 1.2 or later connection
 
