@@ -29,14 +29,14 @@ gRPC on .NET supports both wire-formats. `application/grpc` is used by default. 
 
 ## ASP.NET Core gRPC server requirements
 
-Hosting gRPC services with ASP.NET Core requires .NET Core 3.x or later.
+Hosting gRPC services with ASP.NET Core requires .NET 3.x or later.
 
 > [!div class="checklist"]
 >
 > * .NET 5 or later
-> * .NET Core 3
+> * .NET 3
 
-ASP.NET Core gRPC services can be hosted on all operating system that .NET Core supports.
+ASP.NET Core gRPC services can be hosted on all operating system that .NET supports.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -87,7 +87,7 @@ For information about configuring ASP.NET Core servers to run gRPC, see <xref:gr
 
 ## .NET gRPC client requirements
 
-The [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/) package supports gRPC calls over HTTP/2 on .NET Core 3 and .NET 5 or later.
+The [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/) package supports gRPC calls over HTTP/2 on .NET 3 and .NET 5 or later.
 
 Limited support is available for gRPC over HTTP/2 on .NET Framework. Other .NET versions such as UWP and Unity don't have required HTTP/2 support, and must use gRPC-Web instead.
 
@@ -96,8 +96,8 @@ The following table lists .NET implementations and their gRPC client support:
 | .NET implementation                          | gRPC over HTTP/2   | gRPC-Web   |
 |----------------------------------------------|--------------------|------------|
 | .NET 5 or later                              | ✔️                | ✔️         |
-| .NET Core 3                                  | ✔️                | ✔️         |
-| .NET Core 2.1                                | ❌                | ✔️         |
+| .NET 3                                  | ✔️                | ✔️         |
+| .NET 2.1                                | ❌                | ✔️         |
 | .NET Framework 4.6.1                         | ⚠️&dagger;        | ✔️         |
 | Blazor WebAssembly                           | ❌                | ✔️         |
 | Mono 5.4                                     | ❌                | ✔️         |
