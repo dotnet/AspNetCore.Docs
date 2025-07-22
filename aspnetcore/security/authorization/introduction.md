@@ -25,3 +25,8 @@ ASP.NET Core authorization provides a simple, declarative [role](xref:security/a
 Authorization components, including the `AuthorizeAttribute` and `AllowAnonymousAttribute` attributes, are found in the `Microsoft.AspNetCore.Authorization` namespace.
 
 Consult the documentation on [simple authorization](xref:security/authorization/simple).
+
+## Additional resources
+
+* <xref:fundamentals/minimal-apis/security>
+* <xref:blazor/security/index>
