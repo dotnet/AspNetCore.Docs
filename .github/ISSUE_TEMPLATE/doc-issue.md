@@ -31,7 +31,7 @@ If the issue is:
 
 Check the .NET target framework(s) being used, and include the version number(s).
 
-* [ ] .NET
+* [ ] .NET Core
 * [ ] .NET 5.0 or later
 * [ ] .NET Framework
 * [ ] .NET Standard
