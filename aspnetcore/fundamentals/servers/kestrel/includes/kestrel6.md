@@ -146,7 +146,7 @@ Kestrel is supported on all platforms and versions that .NET supports.
 
 If an HTTP/2 connection is established, <xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A?displayProperty=nameWithType> reports `HTTP/2`.
 
-Starting with .NET 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [ListenOptions.Protocols](#listenoptionsprotocols) sections.
+Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [ListenOptions.Protocols](#listenoptionsprotocols) sections.
 
 ## When to use Kestrel with a reverse proxy
 
