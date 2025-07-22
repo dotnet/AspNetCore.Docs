@@ -5,12 +5,14 @@ description: A short tutorial using the .NET CLI to create and run a basic Hello
 monikerRange: ">= aspnetcore-3.1"
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 07/21/2025
+ms.date: 07/22/2025
 uid: get-started
 ---
 # Get started with ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+:::moniker range=">= aspnetcore-8.0"
 
 This tutorial shows how to create, run, and modify an ASP.NET Core Blazor Web App using the .NET CLI.
 
@@ -50,7 +52,11 @@ The `dotnet watch` command runs the app and opens your default browser to the ap
 dotnet watch
 ```
 
+:::image source="get-started/static/blazor-web-app-running.png" alt-text="Blazor Web App running in Microsoft Edge with the homepage rendered in the UI.":::
+
 Using the app's sidebar navigation, visit the Counter page, where you can select the **:::no-loc text="Click me":::** button to increment the counter.
+
+:::image source="get-started/static/blazor-web-app-counter-page-incremented-to-one.png" alt-text="Counter page rendered after the 'Click me' button is selected once, showing the counter incremented to a value of one.":::
 
 ## Edit a Razor component
 
@@ -59,6 +65,29 @@ Leave the browser open with the Counter page loaded. By using the `dotnet watch`
 The `Counter` Razor component that renders the Counter web page is located at `Components/Pages/Counter.razor` in the project.
 
 Open the `Counter.razor` file in a text editor and note a few interesting lines that render content and make the component's counter feature work.
+
+`Components/Pages/Counter.razor`:
+
+```razor
+@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
 
 The file starts with a line that indicates the component's relative path (`/counter`):
 
@@ -123,7 +152,9 @@ Change the line so that `currentCount` is incremented by a value of ten each tim
 
 Save the file.
 
-As soon as you save the file, the running app is updated automatically because you used the `dotnet watch` command. Go back to the app in the browser and select the **:::no-loc text="Click me":::** button in the Counter page. Witness how the counter now increments by ten.
+As soon as you save the file, the running app is updated automatically because you used the `dotnet watch` command. Go back to the app in the browser and select the **:::no-loc text="Click me":::** button in the Counter page. Witness how the counter now increments from its existing value of one to a value of eleven. Each time the button is selected the value increments by ten.
+
+:::image source="get-started/static/blazor-web-app-counter-page-incremented-to-eleven.png" alt-text="Counter page rendered after the 'Click me' button is selected once, showing the counter incremented to a value of eleven.":::
 
 To shut down the app:
 
@@ -142,11 +173,88 @@ In this tutorial, you learned how to:
 > * Change the app.
 > * Shut the app down.
 
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+This tutorial shows how to create and run an ASP.NET Core web app using the .NET CLI.
+
+For Blazor tutorials, see <xref:blazor/tutorials/index>.
+
+You'll learn how to:
+
+> [!div class="checklist"]
+> * Create a web app project.
+> * Run the app.
+> * Edit a Razor page.
+
+At the end, you'll have a working web app running on your local machine.
+
+## Prerequisites
+
+Obtain and install the latest .NET SDK at [Download .NET](https://dotnet.microsoft.com/download/dotnet).
+
+## Create a web app project
+
+Open a command shell to a suitable location for the sample app and use the following command to create a Razor Pages app. The `-o|--output` option creates a folder for the project and names the project `RazorPagesSample`:
+
+```dotnetcli
+dotnet new webapp -o RazorPagesSample
+```
+
+## Run the app
+
+Change the directory to the `RazorPagesSample` folder with the following command:
+
+```dotnetcli
+cd RazorPagesSample
+```
+
+The `dotnet watch` command runs the app and opens your default browser to the app's landing page:
+
+```dotnetcli
+dotnet watch
+```
+
+:::image source="get-started/static/razor-pages-app-running.png" alt-text="Web app home page":::
+
+## Edit a Razor page
+
+Open the `Pages/Index.cshtml` file in a text editor.
+
+After the line with the ":::no-loc text="Welcome":::" greeting, add the following line to display the local system date and time:
+
+```cshtml
+<p>Hello, world! The time on the server is @DateTime.Now</p>
+```
+
+Save the changes.
+
+As soon as you save the file, the running app is updated automatically because you used the `dotnet watch` command.
+
+Refresh the page in the browser to see the result:
+
+:::image source="get-started/static/razor-pages-app-date-time-display.png" alt-text="Web app home page showing the change that was made.":::
+
+To shut down the app:
+
+* Close the browser window.
+* Press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the command shell.
+
+*Congratulations!* You've successfully completed this tutorial.
+
+## Next steps
+
+In this tutorial, you learned how to:
+
+> [!div class="checklist"]
+> * Create a web app project.
+> * Run the project.
+> * Make a change.
+
+:::moniker-end
+
 To learn more about ASP.NET Core, see the following:
 
 > [!div class="nextstepaction"]
 > <xref:index#recommended-learning-path>
-
-## Additional resources
-
-[Additional Blazor tutorials](xref:blazor/tutorials/index)

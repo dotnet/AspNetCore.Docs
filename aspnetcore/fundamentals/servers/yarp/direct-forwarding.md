@@ -9,7 +9,6 @@ ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
-
 # YARP Direct Forwarding
 
 Some applications only need the ability to take a specific request and forward it to a specific destination. These applications do not need, or have addressed in other ways, the other features of the proxy like configuration discovery, routing, load balancing, etc..
@@ -37,9 +36,9 @@ It does not include:
 
 See [ReverseProxy.Direct.Sample](https://github.com/microsoft/reverse-proxy/tree/release/latest/samples/ReverseProxy.Direct.Sample) as a pre-built sample, or use the steps below.
 
-### Create a new project
+### Add the YARP Reverse Proxy NuGet package
 
-Create a Razor Pages project from the project template and add the [`Yarp.ReverseProxy` NuGet package](https://www.nuget.org/packages/Yarp.ReverseProxy).
+Add the [`Yarp.ReverseProxy` NuGet package](https://www.nuget.org/packages/Yarp.ReverseProxy) to the project.
 
 ### Update `Program.cs`
 
