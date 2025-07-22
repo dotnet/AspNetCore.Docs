@@ -13,7 +13,7 @@ uid: fundamentals/metapackage-app
 
 :::moniker range=">= aspnetcore-3.0"
 
- The ASP.NET Core shared framework (`Microsoft.AspNetCore.App`) contains assemblies that are developed and supported by Microsoft. `Microsoft.AspNetCore.App` is installed when the [.NET Core 3.0 or later SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) is installed. The *shared framework* is the set of assemblies (*.dll* files) that are installed on the machine and includes a runtime component and a targeting pack. For more information, see [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
+ The ASP.NET Core shared framework (`Microsoft.AspNetCore.App`) contains assemblies that are developed and supported by Microsoft. `Microsoft.AspNetCore.App` is installed when the [.NET 3.0 or later SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) is installed. The *shared framework* is the set of assemblies (*.dll* files) that are installed on the machine and includes a runtime component and a targeting pack. For more information, see [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
 * Projects that target the `Microsoft.NET.Sdk.Web` SDK implicitly reference the `Microsoft.AspNetCore.App` framework.
 
@@ -37,7 +37,7 @@ The ASP.NET Core shared framework:
 
 :::moniker range="< aspnetcore-3.0"
 
-This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
+This feature requires ASP.NET Core 2.x targeting .NET 2.x.
 
 The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App) [metapackage](/dotnet/core/packages#metapackages) for ASP.NET Core:
 
@@ -89,7 +89,7 @@ Specifying a version number on the `Microsoft.AspNetCore.App` reference does **n
 
   *Warning NU1604: Project dependency Microsoft.AspNetCore.App does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.*
 
-* This is a known issue with the .NET Core 2.1 SDK.
+* This is a known issue with the .NET 2.1 SDK.
 
 :::moniker-end
 
@@ -103,8 +103,8 @@ The `Microsoft.AspNetCore.App` [metapackage](/dotnet/core/packages#metapackages)
 
 To update ASP.NET Core:
 
-* On development machines and build servers: Download and install the [.NET Core SDK](https://dotnet.microsoft.com/download).
-* On deployment servers: Download and install the [.NET Core runtime](https://dotnet.microsoft.com/download).
+* On development machines and build servers: Download and install the [.NET SDK](https://dotnet.microsoft.com/download).
+* On deployment servers: Download and install the [.NET runtime](https://dotnet.microsoft.com/download).
 
  Applications will roll forward to the latest installed version on application restart. It's not necessary to update the `Microsoft.AspNetCore.App` version number in the project file. For more information, see [Framework-dependent apps roll forward](/dotnet/core/versions/selection#framework-dependent-apps-roll-forward).
 

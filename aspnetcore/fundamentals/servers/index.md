@@ -176,7 +176,7 @@ The server is launched when the Integrated Development Environment (IDE) or edit
 
 When launching the app from a command prompt in the project's folder, [dotnet run](/dotnet/core/tools/dotnet-run) launches the app and server (Kestrel and HTTP.sys only). The configuration is specified by the `-c|--configuration` option, which is set to either `Debug` (default) or `Release`.
 
-A `launchSettings.json` file provides configuration when launching an app with `dotnet run` or with a debugger built into tooling, such as Visual Studio. If launch profiles are present in a `launchSettings.json` file, use the `--launch-profile {PROFILE NAME}` option with the `dotnet run` command or select the profile in Visual Studio. For more information, see [dotnet run](/dotnet/core/tools/dotnet-run) and [.NET Core distribution packaging](/dotnet/core/build/distribution-packaging).
+A `launchSettings.json` file provides configuration when launching an app with `dotnet run` or with a debugger built into tooling, such as Visual Studio. If launch profiles are present in a `launchSettings.json` file, use the `--launch-profile {PROFILE NAME}` option with the `dotnet run` command or select the profile in Visual Studio. For more information, see [dotnet run](/dotnet/core/tools/dotnet-run) and [.NET distribution packaging](/dotnet/core/build/distribution-packaging).
 
 ## HTTP/2 support
 
@@ -189,13 +189,13 @@ A `launchSettings.json` file provides configuration when launching an app with `
     * Windows Server 2016/Windows 10 or later&dagger;
     * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
     * macOS 10.15 or later
-  * Target framework: .NET Core 2.2 or later
+  * Target framework: .NET 2.2 or later
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
 * [IIS (in-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Target framework: .NET Core 2.2 or later
+  * Target framework: .NET 2.2 or later
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
@@ -212,13 +212,13 @@ A `launchSettings.json` file provides configuration when launching an app with `
     * Windows Server 2016/Windows 10 or later&dagger;
     * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
     * HTTP/2 will be supported on macOS in a future release.
-  * Target framework: .NET Core 2.2 or later
+  * Target framework: .NET 2.2 or later
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
 * [IIS (in-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Target framework: .NET Core 2.2 or later
+  * Target framework: .NET 2.2 or later
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
@@ -235,13 +235,13 @@ A `launchSettings.json` file provides configuration when launching an app with `
     * Windows Server 2016/Windows 10 or later&dagger;
     * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
     * HTTP/2 will be supported on macOS in a future release.
-  * Target framework: .NET Core 2.2 or later
+  * Target framework: .NET 2.2 or later
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
 * [IIS (in-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Target framework: .NET Core 2.2 or later
+  * Target framework: .NET 2.2 or later
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.

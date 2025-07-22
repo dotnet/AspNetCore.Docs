@@ -21,7 +21,7 @@ uid: fundamentals/servers/kestrel/http2
   * Windows Server 2016/Windows 10 or later&Dagger;
   * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
   * macOS 10.15 or later
-* Target framework: .NET Core 2.2 or later
+* Target framework: .NET 2.2 or later
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
 * TLS 1.2 or later connection
 
@@ -29,7 +29,7 @@ uid: fundamentals/servers/kestrel/http2
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) reports `HTTP/2`.
 
-Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
+Starting with .NET 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
 
 ## Advanced HTTP/2 features
 
@@ -52,7 +52,7 @@ Additional HTTP/2 features in Kestrel support gRPC, including support for respon
 * Operating system&dagger;
   * Windows Server 2016/Windows 10 or later&Dagger;
   * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
-* Target framework: .NET Core 2.2 or later
+* Target framework: .NET 2.2 or later
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
 * TLS 1.2 or later connection
 
@@ -61,7 +61,7 @@ Additional HTTP/2 features in Kestrel support gRPC, including support for respon
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) reports `HTTP/2`.
 
-Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
+Starting with .NET 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
 
 ## Advanced HTTP/2 features
 
@@ -84,7 +84,7 @@ Additional HTTP/2 features in Kestrel support gRPC, including support for respon
 * Operating system&dagger;
   * Windows Server 2016/Windows 10 or later&Dagger;
   * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
-* Target framework: .NET Core 2.2 or later
+* Target framework: .NET 2.2 or later
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
 * TLS 1.2 or later connection
 
@@ -93,7 +93,7 @@ Additional HTTP/2 features in Kestrel support gRPC, including support for respon
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) reports `HTTP/2`.
 
-Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
+Starting with .NET 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
 
 ## Advanced HTTP/2 features
 

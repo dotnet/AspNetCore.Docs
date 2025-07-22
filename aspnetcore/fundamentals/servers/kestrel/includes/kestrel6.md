@@ -11,7 +11,7 @@ Kestrel supports the following scenarios:
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
 
-Kestrel is supported on all platforms and versions that .NET Core supports.
+Kestrel is supported on all platforms and versions that .NET supports.
 
 ## Get started
 
@@ -74,7 +74,7 @@ Kestrel supports the following scenarios:
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
 
-Kestrel is supported on all platforms and versions that .NET Core supports.
+Kestrel is supported on all platforms and versions that .NET supports.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/kestrel/samples/5.x) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -126,7 +126,7 @@ Kestrel supports the following scenarios:
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
 
-Kestrel is supported on all platforms and versions that .NET Core supports.
+Kestrel is supported on all platforms and versions that .NET supports.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/kestrel/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -137,7 +137,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 * Operating system&dagger;
   * Windows Server 2016/Windows 10 or later&Dagger;
   * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
-* Target framework: .NET Core 2.2 or later
+* Target framework: .NET 2.2 or later
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
 * TLS 1.2 or later connection
 
@@ -146,7 +146,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 If an HTTP/2 connection is established, <xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A?displayProperty=nameWithType> reports `HTTP/2`.
 
-Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [ListenOptions.Protocols](#listenoptionsprotocols) sections.
+Starting with .NET 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [ListenOptions.Protocols](#listenoptionsprotocols) sections.
 
 ## When to use Kestrel with a reverse proxy
 
@@ -489,7 +489,7 @@ For more information on these approaches, see [Server URLs](xref:fundamentals/ho
 
 A development certificate is created:
 
-* When the [.NET Core SDK](/dotnet/core/sdk) is installed.
+* When the [.NET SDK](/dotnet/core/sdk) is installed.
 * The [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs) is used to create a certificate.
 
 Some browsers require granting explicit permission to trust the local development certificate.
