@@ -22,7 +22,7 @@ uid: fundamentals/metapackage
 > [!NOTE]
 > We recommend applications targeting ASP.NET Core 2.1 or later use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) rather than this package. See [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](#migrate) in this article.
 
-This feature requires ASP.NET Core 2.x targeting .NET 2.x.
+This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 
 [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) is a metapackage that refers to a shared framework. A *shared framework* is a set of assemblies (*.dll* files) that are not in the app's folders. The shared framework must be installed on the machine to run the app. For more information, see [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
@@ -54,7 +54,7 @@ The project's SDK must be set to `Microsoft.NET.Sdk.Web` in the project file to 
 
 *Warning NU1604: Project dependency Microsoft.AspNetCore.All does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.*
 
-This is a known issue with the .NET 2.1 SDK and will be fixed in the .NET 2.2 SDK.
+This is a known issue with the .NET Core 2.1 SDK and will be fixed in the .NET Core 2.2 SDK.
 
 :::moniker-end
 
@@ -91,6 +91,6 @@ Any dependencies of the preceding packages that otherwise aren't dependencies of
 
 We recommend migrating to the `Microsoft.AspNetCore.App` metapackage for 2.1 or later. To keep using the `Microsoft.AspNetCore.All` metapackage and ensure the latest patch version is deployed:
 
-* On development machines and build servers: Install the latest [.NET SDK](https://dotnet.microsoft.com/download).
-* On deployment servers: Install the latest [.NET runtime](https://dotnet.microsoft.com/download).
+* On development machines and build servers: Install the latest [.NET Core SDK](https://dotnet.microsoft.com/download).
+* On deployment servers: Install the latest [.NET Core runtime](https://dotnet.microsoft.com/download).
  Your app will roll forward to the latest installed version on an application restart.

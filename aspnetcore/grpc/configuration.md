@@ -91,7 +91,7 @@ Note that client interceptors aren't configured with `GrpcChannelOptions`. Inste
 
 `Grpc.Net.Client` uses a HTTP transport derived from `HttpMessageHandler` to make HTTP requests. Each handler offers additional options for how HTTP requests are made.
 
-The handler is configured on a channel and can be overridden by setting `GrpcChannelOptions.HttpHandler`. .NET 3 and .NET 5 or later uses <xref:System.Net.Http.SocketsHttpHandler> by default. gRPC client apps on .NET Framework [should configure WinHttpHandler](xref:grpc/netstandard#net-framework).
+The handler is configured on a channel and can be overridden by setting `GrpcChannelOptions.HttpHandler`. .NET Core 3 and .NET 5 or later uses <xref:System.Net.Http.SocketsHttpHandler> by default. gRPC client apps on .NET Framework [should configure WinHttpHandler](xref:grpc/netstandard#net-framework).
 
 For more information about the different handlers and their configuration options, see:
 

@@ -32,7 +32,7 @@ The following table compares ASP.NET Core to ASP.NET 4.x.
 |Multiple versions per machine|One version per machine|
 |Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#|Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/) using C#, VB, or F#|
 |Higher performance than ASP.NET 4.x|Good performance|
-|[Use .NET runtime](/dotnet/standard/choosing-core-framework-server)|Use .NET Framework runtime|
+|[Use the latest .NET runtime](/dotnet/standard/choosing-core-framework-server)|Use .NET Framework runtime|
 
 See [ASP.NET Core targeting .NET Framework](xref:index#target-framework) for information on ASP.NET Core 2.x support on .NET Framework.
 
