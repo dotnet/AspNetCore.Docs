@@ -4,7 +4,8 @@ author: tdykstra
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 6/20/2023
+ms.date: 07/19/2025
+ai-usage: ai-assisted
 uid: mvc/models/model-binding
 ---
 
@@ -631,7 +632,17 @@ Used to retrieve all the values from posted form data.
 
 ## Input formatters
 
-Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes JSON based input formatters for handling JSON data. You can add other formatters for other content types.
+Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes JSON based input formatters for handling JSON data using [`System.Text.Json`](/dotnet/standard/serialization/system-text-json-overview). You can add other formatters for other content types.
+
+The default JSON input formatter can be configured using the `AddJsonOptions` method:
+
+:::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_AddJsonOptions":::
+
+Common configuration options include:
+
+* **Property naming policy** - Configure camelCase or other naming conventions
+* **Enum converters** - Handle enum serialization as strings
+* **Custom converters** - Add type-specific serialization logic
 
 ASP.NET Core selects input formatters based on the [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute. If no attribute is present, it uses the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 
