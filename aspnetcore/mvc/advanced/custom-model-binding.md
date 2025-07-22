@@ -18,7 +18,7 @@ Model binding allows controller actions to work directly with model types (passe
 
 ## Default model binder limitations
 
-The default model binders support most of the common .NET Core data types and should meet most developers' needs. They expect to bind text-based input from the request directly to model types. You might need to transform the input prior to binding it. For example, when you have a key that can be used to look up model data. You can use a custom model binder to fetch data based on the key.
+The default model binders support most of the common .NET data types and should meet most developers' needs. They expect to bind text-based input from the request directly to model types. You might need to transform the input prior to binding it. For example, when you have a key that can be used to look up model data. You can use a custom model binder to fetch data based on the key.
 
 <!-- Duplicated in uid: mvc/models/model-binding -->
 ## Model binding simple and complex types
@@ -144,7 +144,7 @@ Model binding allows controller actions to work directly with model types (passe
 
 ## Default model binder limitations
 
-The default model binders support most of the common .NET Core data types and should meet most developers' needs. They expect to bind text-based input from the request directly to model types. You might need to transform the input prior to binding it. For example, when you have a key that can be used to look up model data. You can use a custom model binder to fetch data based on the key.
+The default model binders support most of the common .NET data types and should meet most developers' needs. They expect to bind text-based input from the request directly to model types. You might need to transform the input prior to binding it. For example, when you have a key that can be used to look up model data. You can use a custom model binder to fetch data based on the key.
 
 ## Model binding review
 

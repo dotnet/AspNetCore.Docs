@@ -642,7 +642,7 @@ Run the project to seed the database.
 1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to use this exact name including capitalization, so each `namespace` matches when code is copied.
 1. Select **Create**.
 1. In the **Create a new ASP.NET Core web application** dialog, select:
-    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
+    1. **.NET** and **ASP.NET Core 5.0** in the dropdowns.
     1. **ASP.NET Core Web App**.
     1. **Create**
       ![New ASP.NET Core Project dialog](~/data/ef-rp/intro/_static/new-aspnet5.png)
@@ -1153,7 +1153,7 @@ To run the app after downloading the completed project:
 * From the Visual Studio **File** menu, select **New** > **Project**.
 * Select **ASP.NET Core Web Application**.
 * Name the project *ContosoUniversity*. It's important to use this exact name including capitalization, so the namespaces match when code is copied and pasted.
-* Select **.NET Core** and **ASP.NET Core 3.0** in the dropdowns, and then select **Web Application**.
+* Select **.NET** and **ASP.NET Core 3.0** in the dropdowns, and then select **Web Application**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

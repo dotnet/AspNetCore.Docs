@@ -67,7 +67,7 @@ Users can view and update student, course, and instructor information. Here are 
 1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to use this exact name including capitalization, so each `namespace` matches when code is copied.
 1. Select **Create**.
 1. In the **Create a new ASP.NET Core web application** dialog, select:
-    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
+    1. **.NET** and **ASP.NET Core 5.0** in the dropdowns.
     1. **ASP.NET Core Web App (Model-View-Controller)**.
     1. **Create**
       ![New ASP.NET Core Project dialog](~/data/ef-mvc/intro/_static/new-aspnet5.png)
@@ -396,10 +396,10 @@ The sample application is a web site for a fictional Contoso University. It incl
 
 ## Prerequisites
 
-* [.NET Core SDK 2.2](https://dotnet.microsoft.com/download)
+* [.NET SDK 2.2](https://dotnet.microsoft.com/download)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the following workloads:
   * **ASP.NET and web development** workload
-  * **.NET Core cross-platform development** workload
+  * **.NET cross-platform development** workload
 
 ## Troubleshooting
 
@@ -434,7 +434,7 @@ Users can view and update student, course, and instructor information. Here are 
 
 * Wait for the **New ASP.NET Core Web Application** dialog to appear.
 
-* Select **.NET Core**, **ASP.NET Core 2.2** and the **Web Application (Model-View-Controller)** template.
+* Select **.NET**, **ASP.NET Core 2.2** and the **Web Application (Model-View-Controller)** template.
 
 * Make sure **Authentication** is set to **No Authentication**.
 
