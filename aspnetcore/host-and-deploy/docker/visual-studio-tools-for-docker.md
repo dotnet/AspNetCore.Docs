@@ -222,7 +222,7 @@ microsoft/aspnetcore-build  2.0     7fed40fbb647  13 days ago     2.02GB
 microsoft/aspnetcore        2.0     c69d39472da9  13 days ago     347MB
 ```
 
-The `microsoft/aspnetcore-build` and `microsoft/aspnetcore` images listed in the preceding output are replaced with `microsoft/dotnet` images as of .NET 2.1. For more information, see [the Docker repositories migration announcement](https://github.com/aspnet/Announcements/issues/298).
+The `microsoft/aspnetcore-build` and `microsoft/aspnetcore` images listed in the preceding output are replaced with `microsoft/dotnet` images as of .NET Core 2.1. For more information, see [the Docker repositories migration announcement](https://github.com/aspnet/Announcements/issues/298).
 
 :::moniker-end
 

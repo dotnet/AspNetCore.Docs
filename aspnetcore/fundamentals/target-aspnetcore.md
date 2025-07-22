@@ -181,7 +181,7 @@ With the preceding project file:
 * A reference to [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor) is added for consumers targeting .NET Framework 4.6.1 or later or .NET 2.x. Version 2.1.0 of the package works with ASP.NET Core 2.2 because of backwards compatibility.
 * The shared framework is referenced for consumers targeting .NET Core 3.x. The `Microsoft.AspNetCore.Mvc.Razor` package is included in the shared framework.
 
-Alternatively, .NET Standard 2.0 could be targeted instead of targeting both .NET 2.1 and .NET Framework 4.6.1:
+Alternatively, .NET Standard 2.0 could be targeted instead of targeting both .NET Core 2.1 and .NET Framework 4.6.1:
 
 [!code-xml[](target-aspnetcore/samples/multi-tfm/alternative-tag-helpers-library.csproj?highlight=4)]
 

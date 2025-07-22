@@ -340,7 +340,7 @@ The following samples can be downloaded and tested:
 
 ## December patch behavior changes
 
-The specific behavior change for .NET Framework and .NET 2.1 is how the `SameSite` property interprets the `None` value. Before the patch a value of `None` meant "Do not emit the attribute at all", after the patch it means "Emit the attribute with a value of `None`". After the patch a `SameSite` value of `(SameSiteMode)(-1)` causes the attribute not to be emitted.
+The specific behavior change for .NET Framework and .NET Core 2.1 is how the `SameSite` property interprets the `None` value. Before the patch a value of `None` meant "Do not emit the attribute at all", after the patch it means "Emit the attribute with a value of `None`". After the patch a `SameSite` value of `(SameSiteMode)(-1)` causes the attribute not to be emitted.
 
 The default SameSite value for forms authentication and session state cookies was changed from `None` to `Lax`.
 

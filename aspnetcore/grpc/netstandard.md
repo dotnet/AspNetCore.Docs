@@ -19,7 +19,7 @@ This article discusses how to use the .NET gRPC client with .NET implementations
 
 The following .NET implementations (or later) support [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/) but don't have full support for HTTP/2:
 
-* .NET 2.1
+* .NET Core 2.1
 * .NET Framework 4.6.1
 * Mono 5.4
 * Universal Windows Platform 10.0.16299

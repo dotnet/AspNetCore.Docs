@@ -36,7 +36,7 @@ ASP.NET Core SignalR isn't compatible with clients or servers for ASP.NET Signal
 | **JavaScript client npm package** | [signalr](https://www.npmjs.com/package/signalr) | [`@aspnet/signalr`](https://www.npmjs.com/package/@aspnet/signalr) |
 | **Java client** | [GitHub Repository](https://github.com/SignalR/java-client) (deprecated)  | Maven package [com.microsoft.signalr](https://search.maven.org/artifact/com.microsoft.signalr/signalr) |
 | **Server app type** | ASP.NET (System.Web) or OWIN Self-Host | ASP.NET Core |
-| **Supported server platforms** | .NET Framework 4.5 or later | .NET Framework 4.6.1 or later<br>.NET 2.1 or later |
+| **Supported server platforms** | .NET Framework 4.5 or later | .NET Framework 4.6.1 or later<br>.NET Core 2.1 or later |
 
 :::moniker-end
 

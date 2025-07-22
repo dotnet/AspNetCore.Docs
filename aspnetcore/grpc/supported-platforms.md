@@ -97,7 +97,7 @@ The following table lists .NET implementations and their gRPC client support:
 |----------------------------------------------|--------------------|------------|
 | .NET 5 or later                              | ✔️                | ✔️         |
 | .NET 3                                  | ✔️                | ✔️         |
-| .NET 2.1                                | ❌                | ✔️         |
+| .NET Core 2.1                                | ❌                | ✔️         |
 | .NET Framework 4.6.1                         | ⚠️&dagger;        | ✔️         |
 | Blazor WebAssembly                           | ❌                | ✔️         |
 | Mono 5.4                                     | ❌                | ✔️         |

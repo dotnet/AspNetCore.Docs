@@ -508,7 +508,7 @@ ASP.NET Core 3.0 includes many improvements that reduce memory usage and improve
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
-As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET 2.1 LTS release](https://dotnet.microsoft.com/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the three-year LTS period for .NET 2.1.
+As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://dotnet.microsoft.com/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the three-year LTS period for .NET Core 2.1.
 
 For migration information, see [Port your code from .NET Framework to .NET](/dotnet/core/porting/).
 
