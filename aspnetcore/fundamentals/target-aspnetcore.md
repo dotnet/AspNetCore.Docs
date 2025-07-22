@@ -15,7 +15,7 @@ This document provides guidance for using ASP.NET Core APIs in a class library. 
 
 ## Determine which ASP.NET Core versions to support
 
-ASP.NET Core adheres to the [.NET support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). Consult the support policy when determining which ASP.NET Core versions to support in a library. A library should:
+ASP.NET Core adheres to the [.NET and .NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). Consult the support policy when determining which ASP.NET Core versions to support in a library. A library should:
 
 * Make an effort to support all ASP.NET Core versions classified as *Long-Term Support* (LTS).
 * Not feel obligated to support ASP.NET Core versions classified as *End of Life* (EOL).
