@@ -45,7 +45,7 @@ To run the published app locally, run `dotnet <ApplicationName>.dll` from the *p
 
 The *publish* folder contains one or more app assembly files, dependencies, and optionally the .NET runtime.
 
-A .NET Core app can be published as *self-contained deployment* or *framework-dependent deployment*. If the app is self-contained, the assembly files that contain the .NET runtime are included in the *publish* folder. If the app is framework-dependent, the .NET runtime files aren't included because the app has a reference to a version of .NET that's installed on the server. The default deployment model is framework-dependent. For more information, see [.NET Core application deployment](/dotnet/core/deploying/).
+A .NET app can be published as *self-contained deployment* or *framework-dependent deployment*. If the app is self-contained, the assembly files that contain the .NET runtime are included in the *publish* folder. If the app is framework-dependent, the .NET runtime files aren't included because the app has a reference to a version of .NET that's installed on the server. The default deployment model is framework-dependent. For more information, see [.NET application deployment](/dotnet/core/deploying/).
 
 In addition to *.exe* and *.dll* files, the *publish* folder for an ASP.NET Core app typically contains configuration files, static assets, and MVC views. For more information, see <xref:host-and-deploy/directory-structure>.
 
@@ -133,7 +133,7 @@ The [dotnet publish](/dotnet/core/tools/dotnet-publish) command compiles app cod
 
 The *publish* folder contains one or more app assembly files, dependencies, and optionally the .NET runtime.
 
-A .NET Core app can be published as *self-contained deployment* or *framework-dependent deployment*. If the app is self-contained, the assembly files that contain the .NET runtime are included in the *publish* folder. If the app is framework-dependent, the .NET runtime files aren't included because the app has a reference to a version of .NET that's installed on the server. The default deployment model is framework-dependent. For more information, see [.NET Core application deployment](/dotnet/core/deploying/).
+A .NET app can be published as *self-contained deployment* or *framework-dependent deployment*. If the app is self-contained, the assembly files that contain the .NET runtime are included in the *publish* folder. If the app is framework-dependent, the .NET runtime files aren't included because the app has a reference to a version of .NET that's installed on the server. The default deployment model is framework-dependent. For more information, see [.NET application deployment](/dotnet/core/deploying/).
 
 In addition to *.exe* and *.dll* files, the *publish* folder for an ASP.NET Core app typically contains configuration files, static assets, and MVC views. For more information, see <xref:host-and-deploy/directory-structure>.
 

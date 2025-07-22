@@ -36,9 +36,9 @@ The *wwwroot* directory, if present, only contains static assets.
 ## Additional resources
 
 * [dotnet publish](/dotnet/core/tools/dotnet-publish)
-* [.NET Core application deployment](/dotnet/core/deploying/)
+* [.NET application deployment](/dotnet/core/deploying/)
 * [Target frameworks](/dotnet/standard/frameworks)
-* [.NET Core RID Catalog](/dotnet/core/rid-catalog)
+* [.NET RID Catalog](/dotnet/core/rid-catalog)
 
 :::moniker-end
 
@@ -66,9 +66,9 @@ The *wwwroot* directory, if present, only contains static assets.
 ## Additional resources
 
 * [dotnet publish](/dotnet/core/tools/dotnet-publish)
-* [.NET Core application deployment](/dotnet/core/deploying/)
+* [.NET application deployment](/dotnet/core/deploying/)
 * [Target frameworks](/dotnet/standard/frameworks)
-* [.NET Core RID Catalog](/dotnet/core/rid-catalog)
+* [.NET RID Catalog](/dotnet/core/rid-catalog)
 
 :::moniker-end
 
@@ -119,8 +119,8 @@ The deployment directory requires Read/Execute permissions. The *Logs* directory
 ## Additional resources
 
 * [dotnet publish](/dotnet/core/tools/dotnet-publish)
-* [.NET Core application deployment](/dotnet/core/deploying/)
+* [.NET application deployment](/dotnet/core/deploying/)
 * [Target frameworks](/dotnet/standard/frameworks)
-* [.NET Core RID Catalog](/dotnet/core/rid-catalog)
+* [.NET RID Catalog](/dotnet/core/rid-catalog)
 
 :::moniker-end

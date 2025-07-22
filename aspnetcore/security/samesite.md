@@ -38,11 +38,11 @@ The following sample can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) | <xref:security/samesite/rp31> |
+| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) | <xref:security/samesite/rp31> |
 
-## .NET Core support for the sameSite attribute
+## .NET support for the sameSite attribute
 
-.NET Core supports the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to `Strict`, `Lax`, or `None` results in those values being written on the network with the cookie. Setting to `SameSiteMode.Unspecified` indicates no sameSite should be sent with the cookie.
+.NET supports the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to `Strict`, `Lax`, or `None` results in those values being written on the network with the cookie. Setting to `SameSiteMode.Unspecified` indicates no sameSite should be sent with the cookie.
 
 [!code-csharp[](samesite/sample6/WebSameSite/Pages/Privacy.cshtml.cs?name=snippet)]
 
@@ -175,7 +175,7 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
 :::moniker-end
 
@@ -185,15 +185,15 @@ The following sample can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
-## .NET Core support for the sameSite attribute
+## .NET support for the sameSite attribute
 
-.NET Core 3.1 or later support the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to Strict, Lax, or None results in those values being written on the network with the cookie. Setting it equal to `(SameSiteMode)(-1)` indicates that no sameSite attribute should be included on the network with the cookie
+.NET 3.1 or later support the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to Strict, Lax, or None results in those values being written on the network with the cookie. Setting it equal to `(SameSiteMode)(-1)` indicates that no sameSite attribute should be included on the network with the cookie
 
 [!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
 
-.NET Core 3.1 or later support the updated SameSite values and adds an extra enum value, `SameSiteMode.Unspecified` to the `SameSiteMode` enum.
+.NET 3.1 or later support the updated SameSite values and adds an extra enum value, `SameSiteMode.Unspecified` to the `SameSiteMode` enum.
 This new value indicates no sameSite should be sent with the cookie.
 
 ## API usage with SameSite
@@ -325,7 +325,7 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
 :::moniker-end
 
@@ -335,12 +335,12 @@ The following samples can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
-| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+| [.NET MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
+| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
 
 ## December patch behavior changes
 
-The specific behavior change for .NET Framework and .NET Core 2.1 is how the `SameSite` property interprets the `None` value. Before the patch a value of `None` meant "Do not emit the attribute at all", after the patch it means "Emit the attribute with a value of `None`". After the patch a `SameSite` value of `(SameSiteMode)(-1)` causes the attribute not to be emitted.
+The specific behavior change for .NET Framework and .NET 2.1 is how the `SameSite` property interprets the `None` value. Before the patch a value of `None` meant "Do not emit the attribute at all", after the patch it means "Emit the attribute with a value of `None`". After the patch a `SameSite` value of `(SameSiteMode)(-1)` causes the attribute not to be emitted.
 
 The default SameSite value for forms authentication and session state cookies was changed from `None` to `Lax`.
 
@@ -460,7 +460,7 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
-| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+| [.NET MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
+| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
 
 :::moniker-end

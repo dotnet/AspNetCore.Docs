@@ -32,7 +32,7 @@ The `dotnet new mvc` command produces a project file containing the following ro
 
 The preceding `<Project>` element's `Sdk` attribute imports the MSBuild [properties](/visualstudio/msbuild/msbuild-properties) and [targets](/visualstudio/msbuild/msbuild-targets) from *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.props* and *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets*, respectively. The default location for `$(MSBuildSDKsPath)` (with Visual Studio 2022) is the *%programfiles%\Microsoft Visual Studio\2022\Preview\MSBuild\Sdks* folder.
 
-`Microsoft.NET.Sdk.Web` ([Web SDK](xref:razor-pages/web-sdk)) depends on other SDKs, including `Microsoft.NET.Sdk` ([.NET Core SDK](/dotnet/core/project-sdk/msbuild-props)) and `Microsoft.NET.Sdk.Razor` ([Razor SDK](xref:razor-pages/sdk)). The MSBuild properties and targets associated with each dependent SDK are imported. Publish targets import the appropriate set of targets based on the publish method used.
+`Microsoft.NET.Sdk.Web` ([Web SDK](xref:razor-pages/web-sdk)) depends on other SDKs, including `Microsoft.NET.Sdk` ([.NET SDK](/dotnet/core/project-sdk/msbuild-props)) and `Microsoft.NET.Sdk.Razor` ([Razor SDK](xref:razor-pages/sdk)). The MSBuild properties and targets associated with each dependent SDK are imported. Publish targets import the appropriate set of targets based on the publish method used.
 
 When MSBuild or Visual Studio loads a project, the following high-level actions occur:
 
@@ -72,7 +72,7 @@ When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project f
 
 ## Basic command-line publishing
 
-Command-line publishing works on all .NET Core-supported platforms and doesn't require Visual Studio. In the following examples, the .NET CLI's [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the `.csproj` file). If the project folder isn't the current working directory, explicitly pass in the project file path. For example:
+Command-line publishing works on all .NET-supported platforms and doesn't require Visual Studio. In the following examples, the .NET CLI's [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the `.csproj` file). If the project folder isn't the current working directory, explicitly pass in the project file path. For example:
 
 ```dotnetcli
 dotnet publish C:\Webs\Web1
@@ -89,7 +89,7 @@ The `dotnet publish` command produces a variation of the following output:
 
 ```console
 C:\Webs\Web1>dotnet publish
-Microsoft (R) Build Engine version {VERSION} for .NET Core
+Microsoft (R) Build Engine version {VERSION} for .NET
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Restore completed in 36.81 ms for C:\Webs\Web1\Web1.csproj.
@@ -113,7 +113,7 @@ The `dotnet publish` command calls MSBuild, which invokes the `Publish` target. 
 * `-p:<NAME>=<VALUE>`
 * `/p:<NAME>=<VALUE>`
 
-For example, the following command publishes a `Release` build to a network share. The network share is specified with forward slashes (*//r8/*) and works on all .NET Core supported platforms.
+For example, the following command publishes a `Release` build to a network share. The network share is specified with forward slashes (*//r8/*) and works on all .NET supported platforms.
 
 ```dotnetcli
 dotnet publish -c Release /p:PublishDir=//r8/release/AdminWeb
@@ -330,7 +330,7 @@ Done Building Project "C:\Webs\Web1\Web1.csproj" (default targets).
 
 ## Include files
 
-The following sections outline different approaches for file inclusion at publish time. The [General file inclusion](#general-file-inclusion) section uses the `DotNetPublishFiles` item, which is provided by a publish targets file in the [Web SDK](xref:razor-pages/web-sdk). The [Selective file inclusion](#selective-file-inclusion) section uses the `ResolvedFileToPublish` item, which is provided by a publish targets file in the [.NET Core SDK](/dotnet/core/project-sdk/msbuild-props). Because the Web SDK depends on the .NET Core SDK, either item can be used in an ASP.NET Core project.
+The following sections outline different approaches for file inclusion at publish time. The [General file inclusion](#general-file-inclusion) section uses the `DotNetPublishFiles` item, which is provided by a publish targets file in the [Web SDK](xref:razor-pages/web-sdk). The [Selective file inclusion](#selective-file-inclusion) section uses the `ResolvedFileToPublish` item, which is provided by a publish targets file in the [.NET SDK](/dotnet/core/project-sdk/msbuild-props). Because the Web SDK depends on the .NET SDK, either item can be used in an ASP.NET Core project.
 
 ### General file inclusion
 

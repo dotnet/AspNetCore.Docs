@@ -231,7 +231,7 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 ## Prerequisites
 
-[.NET Core 3.0 or later SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+[.NET 3.0 or later SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
 ## Create and test a web app with authentication
 

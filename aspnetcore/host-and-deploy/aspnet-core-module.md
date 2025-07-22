@@ -27,13 +27,13 @@ For more information and configuration guidance, see the following topics:
 
 ## Install ASP.NET Core Module (ANCM)
 
-The ASP.NET Core Module (ANCM) is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+The ASP.NET Core Module (ANCM) is installed with the .NET Runtime from the [.NET Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
 Download the installer using the following link:
 
-[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 For more information, including installing an earlier version of the module, see <xref:host-and-deploy/iis/hosting-bundle>.
 
@@ -143,7 +143,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -560,7 +560,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -877,7 +877,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
 ## Configuration with web.config
 

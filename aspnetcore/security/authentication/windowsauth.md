@@ -104,7 +104,7 @@ Use **either** of the following approaches:
 
   [!code-xml[](windowsauth/sample_snapshot/web_2.config)]
 
-  When the project is published by the .NET Core SDK (without the `<IsTransformWebConfigDisabled>` property set to `true` in the project file), the published *web.config* file includes the `<location><system.webServer><security><authentication>` section. For more information on the `<IsTransformWebConfigDisabled>` property, see <xref:host-and-deploy/iis/web-config>.
+  When the project is published by the .NET SDK (without the `<IsTransformWebConfigDisabled>` property set to `true` in the project file), the published *web.config* file includes the `<location><system.webServer><security><authentication>` section. For more information on the `<IsTransformWebConfigDisabled>` property, see <xref:host-and-deploy/iis/web-config>.
 
 * **After publishing and deploying the project,** perform server-side configuration with the IIS Manager:
 
@@ -117,7 +117,7 @@ Use **either** of the following approaches:
 
   [!code-xml[](windowsauth/sample_snapshot/web_1.config?highlight=4-5)]
 
-  The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the .NET Core SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](xref:host-and-deploy/iis/index#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the .NET Core SDK provided.
+  The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the .NET SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](xref:host-and-deploy/iis/index#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the .NET SDK provided.
 
   When IIS Manager is used to add the IIS configuration, it only affects the app's *web.config* file on the server. A subsequent deployment of the app may overwrite the settings on the server if the server's copy of *web.config* is replaced by the project's *web.config* file. Use **either** of the following approaches to manage the settings:
 
@@ -362,7 +362,7 @@ Use **either** of the following approaches:
 
   [!code-xml[](windowsauth/sample_snapshot/web_2.config)]
 
-  When the project is published by the .NET Core SDK (without the `<IsTransformWebConfigDisabled>` property set to `true` in the project file), the published *web.config* file includes the `<location><system.webServer><security><authentication>` section. For more information on the `<IsTransformWebConfigDisabled>` property, see <xref:host-and-deploy/iis/index#webconfig-file>.
+  When the project is published by the .NET SDK (without the `<IsTransformWebConfigDisabled>` property set to `true` in the project file), the published *web.config* file includes the `<location><system.webServer><security><authentication>` section. For more information on the `<IsTransformWebConfigDisabled>` property, see <xref:host-and-deploy/iis/index#webconfig-file>.
 
 * **After publishing and deploying the project,** perform server-side configuration with the IIS Manager:
 
@@ -375,7 +375,7 @@ Use **either** of the following approaches:
 
   [!code-xml[](windowsauth/sample_snapshot/web_1.config?highlight=4-5)]
 
-  The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the .NET Core SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](xref:host-and-deploy/iis/index#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the .NET Core SDK provided.
+  The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the .NET SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](xref:host-and-deploy/iis/index#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the .NET SDK provided.
 
   When IIS Manager is used to add the IIS configuration, it only affects the app's *web.config* file on the server. A subsequent deployment of the app may overwrite the settings on the server if the server's copy of *web.config* is replaced by the project's *web.config* file. Use **either** of the following approaches to manage the settings:
 

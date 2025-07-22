@@ -22,7 +22,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * `dotnet/core/sdk`
 
-  The sample uses this image for building the app. The image contains the .NET Core SDK, which includes the Command Line Tools (CLI). The image is optimized for local development, debugging, and unit testing. The tools installed for development and compilation make the image relatively large.
+  The sample uses this image for building the app. The image contains the .NET SDK, which includes the Command Line Tools (CLI). The image is optimized for local development, debugging, and unit testing. The tools installed for development and compilation make the image relatively large.
 
 :::moniker-end
 
@@ -62,13 +62,13 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-* [.NET Core SDK 3.1](https://dotnet.microsoft.com/download)
+* [.NET SDK 3.1](https://dotnet.microsoft.com/download)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
 
-* [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core)
+* [.NET 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core)
 
 :::moniker-end
 
