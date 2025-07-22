@@ -24,13 +24,11 @@ You'll learn how to:
 > * Change the app.
 > * Shut the app down.
 
-At the end, you'll have a working web app running on your local machine.
-
 ## Prerequisites
 
 Obtain and install the latest .NET SDK at [Download .NET](https://dotnet.microsoft.com/download/dotnet).
 
-## Create a web app project
+## Create a Blazor Web App
 
 Open a command shell to a suitable location for the sample app and use the following command to create a Blazor Web App. The `-o|--output` option creates a folder for the project and names the project `BlazorSample`:
 
@@ -58,9 +56,9 @@ Using the app's sidebar navigation, visit the Counter page, where you can select
 
 :::image source="get-started/static/blazor-web-app-counter-page-incremented-to-one.png" alt-text="Counter page rendered after the 'Click me' button is selected once, showing the counter incremented to a value of one.":::
 
-## Edit a Razor component
+## Change the app
 
-Leave the browser open with the Counter page loaded. By using the `dotnet watch` command to run the app, you can make changes to the app's markup and code and see the changes immediately reflected in the browser.
+Leave the browser open with the Counter page loaded. By using the `dotnet watch` command to run the app, you can make changes to the app's markup and code without having to rebuild the app to reflect the changes in the browser.
 
 The `Counter` Razor component that renders the Counter web page is located at `Components/Pages/Counter.razor` in the project.
 
@@ -156,6 +154,8 @@ As soon as you save the file, the running app is updated automatically because y
 
 :::image source="get-started/static/blazor-web-app-counter-page-incremented-to-eleven.png" alt-text="Counter page rendered after the 'Click me' button is selected once, showing the counter incremented to a value of eleven.":::
 
+## Shut the app down
+
 To shut down the app:
 
 * Close the browser window.
@@ -184,17 +184,16 @@ For Blazor tutorials, see <xref:blazor/tutorials/index>.
 You'll learn how to:
 
 > [!div class="checklist"]
-> * Create a web app project.
+> * Create a Razor Pages app.
 > * Run the app.
-> * Edit a Razor page.
-
-At the end, you'll have a working web app running on your local machine.
+> * Change the app.
+> * Shut the app down.
 
 ## Prerequisites
 
 Obtain and install the latest .NET SDK at [Download .NET](https://dotnet.microsoft.com/download/dotnet).
 
-## Create a web app project
+## Create Razor Pages app
 
 Open a command shell to a suitable location for the sample app and use the following command to create a Razor Pages app. The `-o|--output` option creates a folder for the project and names the project `RazorPagesSample`:
 
@@ -218,14 +217,14 @@ dotnet watch
 
 :::image source="get-started/static/razor-pages-app-running.png" alt-text="Web app home page":::
 
-## Edit a Razor page
+## Change the app
 
 Open the `Pages/Index.cshtml` file in a text editor.
 
 After the line with the ":::no-loc text="Welcome":::" greeting, add the following line to display the local system date and time:
 
 ```cshtml
-<p>Hello, world! The time on the server is @DateTime.Now</p>
+<p>The time on the server is @DateTime.Now</p>
 ```
 
 Save the changes.
@@ -235,6 +234,8 @@ As soon as you save the file, the running app is updated automatically because y
 Refresh the page in the browser to see the result:
 
 :::image source="get-started/static/razor-pages-app-date-time-display.png" alt-text="Web app home page showing the change that was made.":::
+
+## Shut the app down
 
 To shut down the app:
 
@@ -248,9 +249,10 @@ To shut down the app:
 In this tutorial, you learned how to:
 
 > [!div class="checklist"]
-> * Create a web app project.
-> * Run the project.
-> * Make a change.
+> * Create a Razor Pages app.
+> * Run the app.
+> * Change the app.
+> * Shut the app down.
 
 :::moniker-end
 
