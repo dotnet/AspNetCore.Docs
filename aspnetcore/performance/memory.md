@@ -13,10 +13,10 @@ By [Sébastien Ros](https://github.com/sebastienros) and [Rick Anderson](https:/
 
 Memory management is complex, even in a managed framework like .NET. Analyzing and understanding memory issues can be challenging. This article:
 
-* Was motivated by many *memory leak* and *GC not working* issues. Most of these issues were caused by not understanding how memory consumption works in .NET Core, or not understanding how it's measured.
+* Was motivated by many *memory leak* and *GC not working* issues. Most of these issues were caused by not understanding how memory consumption works in .NET, or not understanding how it's measured.
 * Demonstrates problematic memory use, and suggests alternative approaches.
 
-## How garbage collection (GC) works in .NET Core
+## How garbage collection (GC) works in .NET
 
 The GC allocates heap segments where each segment is a contiguous range of memory. Objects placed in the heap are categorized into one of 3 generations: 0, 1, or 2. The generation determines the frequency the GC attempts to release memory on managed objects that are no longer referenced by the app. Lower numbered generations are GC'd more frequently.
 
@@ -186,7 +186,7 @@ Some scenarios, such as caching, require object references to be held until memo
 
 ### Native memory
 
-Some .NET Core objects rely on native memory. Native memory can **not** be collected by the GC. The .NET object using native memory must free it using native code.
+Some .NET objects rely on native memory. Native memory can **not** be collected by the GC. The .NET object using native memory must free it using native code.
 
 .NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if <xref:System.IDisposable.Dispose%2A> is not called, correctly implemented classes call `Dispose` when the [finalizer](/dotnet/csharp/programming-guide/classes-and-structs/destructors) runs.
 
@@ -236,7 +236,7 @@ GC.Collect();
 
 See <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> for information on compacting the LOH.
 
-In containers using .NET Core 3.0 or later, the LOH is automatically compacted.
+In containers using .NET 3.0 or later, the LOH is automatically compacted.
 
 The following API that illustrates this behavior:
 
