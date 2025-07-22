@@ -146,7 +146,7 @@ To fix this error, run apps in separate IIS application pools.
 
 The out-of-process request handler, *aspnetcorev2_outofprocess.dll*, isn't next to the *aspnetcorev2.dll* file. This indicates a corrupted installation of the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
 
-To fix this error, repair the installation of the [.NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) (for IIS) or Visual Studio (for IIS Express).
+To fix this error, repair the installation of the [.NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle) (for IIS) or Visual Studio (for IIS Express).
 
 ### 500.37 ANCM Failed to Start Within Startup Time Limit
 

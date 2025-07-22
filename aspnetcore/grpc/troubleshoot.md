@@ -67,7 +67,7 @@ The .NET gRPC client can call insecure gRPC services by specifing `http` in the 
 There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
 * .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
-* .NET 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`. For more information see [Asp.Net Core 3.x: Call insecure gRPC services with the .NET client](xref:grpc/troubleshoot?view=aspnetcore-3.1#call-insecure-grpc-services-with-net-core-client-2):
+* .NET 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`. For more information see [Asp.Net Core 3.x: Call insecure gRPC services with the .NET client](xref:grpc/troubleshoot?view=aspnetcore-3.1#call-insecure-grpc-services-with-net-client-2):
 
 > [!IMPORTANT]
 > Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).

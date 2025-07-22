@@ -83,7 +83,7 @@ For information on apps that must protect a subset of the app with a certificate
 
 For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
 
-[Install the .NET Hosting Bundle](#install-the-net-core-hosting-bundle)
+[Install the .NET Hosting Bundle](#install-the-net-hosting-bundle)
 
 ## Supported operating systems
 
@@ -316,7 +316,7 @@ Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
 >
-> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](xref:test/troubleshoot#no-net-core-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
+> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](xref:test/troubleshoot#no-net-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-hosting-bundle>.
 
 ### Direct download (current version)
 
@@ -711,7 +711,7 @@ To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timi
 
 For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
 
-[Install the .NET Hosting Bundle](#install-the-net-core-hosting-bundle)
+[Install the .NET Hosting Bundle](#install-the-net-hosting-bundle)
 
 ## Supported operating systems
 
@@ -895,7 +895,7 @@ Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
 >
-> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](xref:test/troubleshoot#no-net-core-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
+> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](xref:test/troubleshoot#no-net-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-hosting-bundle>.
 
 ### Download
 

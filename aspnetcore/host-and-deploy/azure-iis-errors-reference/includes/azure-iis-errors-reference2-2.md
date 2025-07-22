@@ -28,7 +28,7 @@ The list of errors in this topic isn't exhaustive. If you encounter an error not
 
 Troubleshooting:
 
-Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any app pool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Select **Repair** when the installer is run.
+Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any app pool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle). Select **Repair** when the installer is run.
 
 ## Missing site extension, 32-bit (x86) and 64-bit (x64) site extensions installed, or wrong process bitness set
 
@@ -145,7 +145,7 @@ Troubleshooting:
 
   [Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
+  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle).
 
 * Make sure that the **Application Pool** > **Process Model** > **Identity** is set to **ApplicationPoolIdentity** or the custom identity has the correct permissions to access the app's deployment folder.
 
@@ -183,7 +183,7 @@ Troubleshooting:
 
   [Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
+  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle).
 
   If a specific runtime is required, download the runtime from the [.NET Downloads](https://dotnet.microsoft.com/download/dotnet) page and install it on the system. Complete the installation by restarting the system or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
@@ -316,7 +316,7 @@ The list of errors in this topic isn't exhaustive. If you encounter an error not
 
 Troubleshooting:
 
-Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any app pool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Select **Repair** when the installer is run.
+Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any app pool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle). Select **Repair** when the installer is run.
 
 ## Missing site extension, 32-bit (x86) and 64-bit (x64) site extensions installed, or wrong process bitness set
 
@@ -423,7 +423,7 @@ Troubleshooting:
 
   [Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
+  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle).
 
 * Make sure that the **Application Pool** > **Process Model** > **Identity** is set to **ApplicationPoolIdentity** or the custom identity has the correct permissions to access the app's deployment folder.
 
@@ -459,7 +459,7 @@ Troubleshooting:
 
   [Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
+  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle).
 
   If a specific runtime is required, download the runtime from the [.NET Downloads](https://dotnet.microsoft.com/download/dotnet) page and install it on the system. Complete the installation by restarting the system or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 

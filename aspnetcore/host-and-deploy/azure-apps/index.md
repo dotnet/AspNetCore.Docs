@@ -146,7 +146,7 @@ For more information, see <xref:security/data-protection/implementation/key-stor
 
 To deploy an app that uses a preview release of .NET, see the following resources. These approaches are also used when the runtime is available but the SDK hasn't been installed on Azure App Service.
 
-* [Specify the .NET SDK Version using Azure Pipelines](#specify-the-net-core-sdk-version-using-azure-pipelines)
+* [Specify the .NET SDK Version using Azure Pipelines](#specify-the-net-sdk-version-using-azure-pipelines)
 * [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app)
 * [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers)
 * [Install the preview site extension](#install-the-preview-site-extension)

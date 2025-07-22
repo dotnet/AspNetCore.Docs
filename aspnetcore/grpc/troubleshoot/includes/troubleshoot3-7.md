@@ -124,7 +124,7 @@ builder.WebHost.ConfigureKestrel(options =>
 
 When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
 
-The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-core-client).
+The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
 > [!WARNING]
 > HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
@@ -466,7 +466,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
 
-The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-core-client).
+The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
 > [!WARNING]
 > HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
@@ -715,7 +715,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
 
-The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-core-client).
+The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
 > [!WARNING]
 > HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).

@@ -63,7 +63,7 @@ These warnings appear when the environment variable `PATH` doesn't point to any 
 
 ### Missing SDK after installing the .NET Hosting Bundle
 
-Installing the [.NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) modifies the `PATH` when it installs the .NET runtime to point to the 32-bit (x86) version of .NET (`C:\Program Files (x86)\dotnet\`). This can result in missing SDKs when the 32-bit (x86) .NET `dotnet` command is used ([No .NET SDKs were detected](#no-net-core-sdks-were-detected)). To resolve this problem, move `C:\Program Files\dotnet\` to a position before `C:\Program Files (x86)\dotnet\` on the `PATH`.
+Installing the [.NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle) modifies the `PATH` when it installs the .NET runtime to point to the 32-bit (x86) version of .NET (`C:\Program Files (x86)\dotnet\`). This can result in missing SDKs when the 32-bit (x86) .NET `dotnet` command is used ([No .NET SDKs were detected](#no-net-sdks-were-detected)). To resolve this problem, move `C:\Program Files\dotnet\` to a position before `C:\Program Files (x86)\dotnet\` on the `PATH`.
 
 ## Obtain data from an app
 
