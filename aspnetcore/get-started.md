@@ -14,7 +14,7 @@ uid: get-started
 
 :::moniker range=">= aspnetcore-8.0"
 
-This tutorial shows how to create, run, and modify an ASP.NET Core Blazor Web App using the .NET CLI.
+This tutorial shows how to create, run, and modify an ASP.NET Core Blazor Web App using the .NET CLI. *Blazor* is a .NET frontend web framework that supports both server-side rendering and client interactivity in a single programming model.
 
 You'll learn how to:
 
