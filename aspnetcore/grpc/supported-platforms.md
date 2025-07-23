@@ -34,7 +34,7 @@ Hosting gRPC services with ASP.NET Core requires .NET Core 3.x or later.
 > [!div class="checklist"]
 >
 > * .NET 5 or later
-> * .NET 3
+> * .NET Core 3
 
 ASP.NET Core gRPC services can be hosted on all operating system that .NET supports.
 
