@@ -82,7 +82,7 @@ For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
   ![macOS New solution](~/tutorials/first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
 
   ![macOS web app template selection](~/tutorials/first-mvc-app/start-mvc/_static/web_app_template_vsmac.png)
 

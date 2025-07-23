@@ -40,9 +40,9 @@ If the project file contains `<RuntimeFrameworkVersion>1.{sub-version}</RuntimeF
 
 <a name="global-json"></a>
 
-## Update .NET SDK version in global.json
+## Update .NET Core SDK version in global.json
 
-If your solution relies upon a [global.json](/dotnet/core/tools/global-json) file to target a specific .NET SDK version, update its `version` property to use the 2.0 version installed on your machine:
+If your solution relies upon a [global.json](/dotnet/core/tools/global-json) file to target a specific .NET Core SDK version, update its `version` property to use the 2.0 version installed on your machine:
 
 [!code-json[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/global.json?highlight=3)]
 
@@ -170,11 +170,11 @@ Effortless setup of application performance instrumentation is important. You ca
 
 ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you're not using the Application Insights SDK directly, outside of `Program.cs` and `Startup.cs`, follow these steps:
 
-1. If targeting .NET, remove the following `<PackageReference />` node from the `.csproj` file:
+1. If targeting .NET Core, remove the following `<PackageReference />` node from the `.csproj` file:
 
     [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App.csproj?range=10)]
 
-2. If targeting .NET, remove the `UseApplicationInsights` extension method invocation from `Program.cs`:
+2. If targeting .NET Core, remove the `UseApplicationInsights` extension method invocation from `Program.cs`:
 
     [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Program.cs?name=snippet_ProgramCsMain&highlight=8)]
 

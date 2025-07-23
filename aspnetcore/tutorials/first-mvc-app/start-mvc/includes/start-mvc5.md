@@ -39,7 +39,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 * In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` matches when code is copied.
 * Select **Create**.
 * In the **Create a new ASP.NET Core web application** dialog, select:
-  * **.NET** and **ASP.NET Core 5.0** in the dropdowns.
+  * **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
   * **ASP.NET Core Web App (Model-View-Controller)**.
   * **Create**.
 
@@ -77,7 +77,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   ![macOS New solution](~/tutorials/first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
 
   ![macOS web app template selection](~/tutorials/first-mvc-app/start-mvc/_static/web_app_template_vsmac.png)
 

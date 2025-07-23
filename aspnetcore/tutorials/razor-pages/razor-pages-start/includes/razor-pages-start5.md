@@ -54,7 +54,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
    ![Configure the project](~/tutorials/razor-pages/razor-pages-start/_static/config.png)
 
 1. In the **Create a new ASP.NET Core web application** dialog, select:
-    1. **.NET** and **ASP.NET Core 5.0** in the dropdowns.
+    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
     1. **Web Application**.
     1. **Create**.
 
@@ -89,7 +89,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   ![macOS New solution](~/tutorials/first-mvc-app/start-mvc/_static/new_project_vsmac.png)
   
-1. In Visual Studio for Mac earlier than version 8.6, select **.NET** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
+1. In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
 
   ![macOS web app template selection](~/tutorials/razor-pages/razor-pages-start/_static/web_app_template_vsmac.png)
 

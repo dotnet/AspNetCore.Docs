@@ -65,7 +65,7 @@ Components in Blazor are typically authored using Razor syntax, a natural blend 
 gRPC functionality in ASP.NET Core 3.0 includes:
 
 * [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore): An ASP.NET Core framework for hosting gRPC services. gRPC on ASP.NET Core integrates with standard ASP.NET Core features like logging, dependency injection (DI), authentication, and authorization.
-* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client): A gRPC client for .NET that builds upon the familiar `HttpClient`.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client): A gRPC client for .NET Core that builds upon the familiar `HttpClient`.
 * [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory): gRPC client integration with `HttpClientFactory`.
 
 For more information, see <xref:grpc/index>.
@@ -397,7 +397,7 @@ The Razor class library (RCL) template defaults to Razor component development b
 
 ## Generic Host
 
-The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](xref:migration/22-to-30?view=aspnetcore-2.2#hostbuilder-replaces-webhostbuilder).
+The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](xref:migration/22-to-30?view=aspnetcore-2.2#hostbuilder-replaces-webhostbuilder).
 
 ### Host configuration
 
@@ -481,11 +481,11 @@ Startup errors when hosting ASP.NET Core apps in IIS now produce richer diagnost
 
 ## Worker Service and Worker SDK
 
-.NET Core 3.0 introduces the new Worker Service app template. This template provides a starting point for writing long running services in .NET.
+.NET Core 3.0 introduces the new Worker Service app template. This template provides a starting point for writing long running services in .NET Core.
 
 For more information, see:
 
-* [.NET Workers as Windows Services](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/)
+* [.NET Core Workers as Windows Services](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/)
 * <xref:fundamentals/host/hosted-services>
 * <xref:host-and-deploy/windows-service>
 
@@ -510,7 +510,7 @@ ASP.NET Core 3.0 includes many improvements that reduce memory usage and improve
 
 As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://dotnet.microsoft.com/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the three-year LTS period for .NET Core 2.1.
 
-For migration information, see [Port your code from .NET Framework to .NET](/dotnet/core/porting/).
+For migration information, see [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/).
 
 ## Use the ASP.NET Core shared framework
 

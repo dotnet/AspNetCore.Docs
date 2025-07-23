@@ -338,7 +338,7 @@ Server Name Indication (SNI) is a TLS extension to include a virtual domain as a
 
 ### Containers
 
-Prior to .NET 5, building and publishing a *Dockerfile* for an ASP.NET Core app required pulling the entire .NET SDK and the ASP.NET Core image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET Core image is largely eliminated. For more information, see [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
+Prior to .NET 5, building and publishing a *Dockerfile* for an ASP.NET Core app required pulling the entire .NET Core SDK and the ASP.NET Core image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET Core image is largely eliminated. For more information, see [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
 
 ## Authentication and authorization
 
