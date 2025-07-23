@@ -22,7 +22,7 @@ This article describes [Visual Studio](https://visualstudio.microsoft.com) suppo
 
 * [Visual Studio for Windows](https://visualstudio.microsoft.com/downloads/)
 * **ASP.NET and web development** workload
-* **.NET cross-platform development** workload
+* **.NET Core cross-platform development** workload
 * X.509 security certificate (for HTTPS support)
 
 ## Enable IIS
@@ -144,7 +144,7 @@ This article describes [Visual Studio](https://visualstudio.microsoft.com) suppo
 
 * [Visual Studio for Windows](https://visualstudio.microsoft.com/downloads/)
 * **ASP.NET and web development** workload
-* **.NET cross-platform development** workload
+* **.NET Core cross-platform development** workload
 * X.509 security certificate (for HTTPS support)
 
 ## Enable IIS

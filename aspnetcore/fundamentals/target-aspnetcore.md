@@ -119,7 +119,7 @@ If the project targets .NET Core 3.x, it requires:
 * An `AddRazorSupportForMvc` MSBuild property set to `true`.
 * A `<FrameworkReference>` element for the shared framework.
 
-The **Razor Class Library** project template satisfies the preceding requirements for projects targeting .NET. Use the following instructions for your editor.
+The **Razor Class Library** project template satisfies the preceding requirements for projects targeting .NET Core. Use the following instructions for your editor.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -187,7 +187,7 @@ Alternatively, .NET Standard 2.0 could be targeted instead of targeting both .NE
 
 With the preceding project file, the following caveats exist:
 
-* Since the library only contains Tag Helpers, it's more straightforward to target the specific platforms on which ASP.NET Core runs: .NET and .NET Framework. Tag Helpers can't be used by other .NET Standard 2.0-compliant target frameworks such as Unity and UWP.
+* Since the library only contains Tag Helpers, it's more straightforward to target the specific platforms on which ASP.NET Core runs: .NET Core and .NET Framework. Tag Helpers can't be used by other .NET Standard 2.0-compliant target frameworks such as Unity and UWP.
 * Using .NET Standard 2.0 from .NET Framework has some issues that were addressed in .NET Framework 4.7.2. You can improve the experience for consumers using .NET Framework 4.6.1 through 4.7.1 by targeting .NET Framework 4.6.1.
 
 If your library needs to call platform-specific APIs, target specific .NET implementations instead of .NET Standard. For more information, see [Multi-targeting](/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting).
