@@ -21,7 +21,7 @@ This sample requires [Docker 17.06](https://docs.docker.com/release-notes/docker
 
 ## Prerequisites
 
-The [.NET 2.2 SDK](https://dotnet.microsoft.com/download) or later is required for some of the instructions in this document.
+The [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) or later is required for some of the instructions in this document.
 
 ## Certificates
 

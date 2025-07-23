@@ -34,7 +34,7 @@ Projects targeting .NET Framework should use the TFM of a version greater than o
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=4)]
 
 > [!NOTE]
-> .NET Core 2.0 offers a much larger surface area than .NET 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET 1.x, targeting .NET Core 2.0 is likely to work.
+> .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work.
 
 If the project file contains `<RuntimeFrameworkVersion>1.{sub-version}</RuntimeFrameworkVersion>`, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/3221#issuecomment-413094268).
 
