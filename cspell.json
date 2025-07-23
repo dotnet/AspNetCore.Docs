@@ -43,6 +43,7 @@
     "routable",
     "Routable",
     "signalr",
+    "tdykstra",
     "typeof",
     "wadepickett",
     "wasm",
@@ -51,6 +52,7 @@
     "webforms",
     "websocket",
     "websockets",
+    "wpickett",
     "wwwroot"
   ],
   "flagWords": [
