@@ -5,7 +5,7 @@ description: Learn the fundamental concepts for building ASP.NET Core apps, incl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/01/2024
+ms.date: 07/23/2025
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals overview
