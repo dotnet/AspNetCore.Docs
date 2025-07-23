@@ -168,7 +168,7 @@ If targeting .NET Standard (to support versions earlier than ASP.NET Core 3.x), 
 Multi-targeting is required to author a library that supports multiple variants of ASP.NET Core. Consider a scenario in which a Tag Helpers library must support the following ASP.NET Core variants:
 
 * ASP.NET Core 2.1 targeting .NET Framework 4.6.1
-* ASP.NET Core 2.x targeting .NET 2.x
+* ASP.NET Core 2.x targeting .NET Core 2.x
 * ASP.NET Core 3.x targeting .NET Core 3.x
 
 The following project file supports these variants via the `TargetFrameworks` property:
@@ -178,7 +178,7 @@ The following project file supports these variants via the `TargetFrameworks` pr
 With the preceding project file:
 
 * The `Markdig` package is added for all consumers.
-* A reference to [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor) is added for consumers targeting .NET Framework 4.6.1 or later or .NET 2.x. Version 2.1.0 of the package works with ASP.NET Core 2.2 because of backwards compatibility.
+* A reference to [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor) is added for consumers targeting .NET Framework 4.6.1 or later or .NET Core 2.x. Version 2.1.0 of the package works with ASP.NET Core 2.2 because of backwards compatibility.
 * The shared framework is referenced for consumers targeting .NET Core 3.x. The `Microsoft.AspNetCore.Mvc.Razor` package is included in the shared framework.
 
 Alternatively, .NET Standard 2.0 could be targeted instead of targeting both .NET Core 2.1 and .NET Framework 4.6.1:

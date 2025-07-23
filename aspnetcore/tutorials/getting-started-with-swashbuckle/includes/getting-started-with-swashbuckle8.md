@@ -524,7 +524,7 @@ If targeting .NET Framework or .NET 1.x, add the [Microsoft.AspNetCore.StaticFil
 <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
 ```
 
-The preceding NuGet package is already installed if targeting .NET 2.x and using the [metapackage](xref:fundamentals/metapackage).
+The preceding NuGet package is already installed if targeting .NET Core 2.x and using the [metapackage](xref:fundamentals/metapackage).
 
 Enable Static File Middleware:
 

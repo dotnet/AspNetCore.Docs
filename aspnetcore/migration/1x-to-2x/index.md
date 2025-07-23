@@ -25,7 +25,7 @@ See [Get Started with ASP.NET Core](xref:getting-started).
 
 ## Update Target Framework Moniker (TFM)
 
-Projects targeting .NET should use the [TFM](/dotnet/standard/frameworks) of a version greater than or equal to .NET 2.0. Search for the `<TargetFramework>` node in the `.csproj` file, and replace its inner text with `netcoreapp2.0`:
+Projects targeting .NET Core should use the [TFM](/dotnet/standard/frameworks) of a version greater than or equal to .NET Core 2.0. Search for the `<TargetFramework>` node in the `.csproj` file, and replace its inner text with `netcoreapp2.0`:
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App.csproj?range=3)]
 
@@ -34,7 +34,7 @@ Projects targeting .NET Framework should use the TFM of a version greater than o
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=4)]
 
 > [!NOTE]
-> .NET 2.0 offers a much larger surface area than .NET 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET 1.x, targeting .NET 2.0 is likely to work.
+> .NET Core 2.0 offers a much larger surface area than .NET 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET 1.x, targeting .NET Core 2.0 is likely to work.
 
 If the project file contains `<RuntimeFrameworkVersion>1.{sub-version}</RuntimeFrameworkVersion>`, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/3221#issuecomment-413094268).
 
@@ -52,7 +52,7 @@ If your solution relies upon a [global.json](/dotnet/core/tools/global-json) fil
 
 The `.csproj` file in a 1.x project lists each NuGet package used by the project.
 
-In an ASP.NET Core 2.0 project targeting .NET 2.0, a single [metapackage](xref:fundamentals/metapackage) reference in the `.csproj` file replaces the collection of packages:
+In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single [metapackage](xref:fundamentals/metapackage) reference in the `.csproj` file replaces the collection of packages:
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App.csproj?range=8-10)]
 
@@ -72,7 +72,7 @@ The package `Microsoft.Extensions.CommandLineUtils` has been [retired](https://g
 
 In the `.csproj` file, update the `Version` attribute of each `<DotNetCliToolReference />` node to 2.0.0.
 
-For example, here's the list of CLI tools used in a typical ASP.NET Core 2.0 project targeting .NET 2.0:
+For example, here's the list of CLI tools used in a typical ASP.NET Core 2.0 project targeting .NET Core 2.0:
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App.csproj?range=12-16)]
 

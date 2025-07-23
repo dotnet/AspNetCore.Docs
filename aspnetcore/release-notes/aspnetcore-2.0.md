@@ -37,7 +37,7 @@ For more information, see [Runtime store](/dotnet/core/deploying/runtime-store)
 
 The ASP.NET Core 2.0 packages target .NET Standard 2.0. The packages can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET 2.0 and .NET Framework 4.6.1. 
 
-The `Microsoft.AspNetCore.All` metapackage targets .NET 2.0 only, because it's intended to be used with the .NET 2.0 Runtime Store.
+The `Microsoft.AspNetCore.All` metapackage targets .NET Core 2.0 only, because it's intended to be used with the .NET Core 2.0 Runtime Store.
 
 ## Configuration update
 
