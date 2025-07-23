@@ -11,7 +11,7 @@
 
   The preceding command displays the following dialog, provided the certificate was not previously trusted:
 
-  ![Security warning dialog](~/getting-started/_static/cert.png)
+  ![Security warning dialog](~/static/cert.png)
 
 * Select **Yes** if you agree to trust the development certificate.
 
