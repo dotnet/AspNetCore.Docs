@@ -99,7 +99,7 @@ The title of the page is set by `<PageTitle>` tags:
 <PageTitle>Counter</PageTitle>
 ```
 
-An H1 heading is displayed to the user:
+An H1 heading is displayed:
 
 ```razor
 <h1>Counter</h1>
@@ -117,15 +117,7 @@ A button (`<button>`) allows the user to increment the counter, which occurs whe
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 ```
 
-C# code is present in the `@code` block:
-
-```razor
-@code {
-    ...
-}
-```
-
-Within the `@code` block:
+The `@code` block contains C# code that the component executes:
 
 * The counter variable `currentCount` is established with an initial value of zero.
 * The `IncrementCount` method is defined. The code within the method increments the `currentCount` variable by one each time the method is invoked.
@@ -156,10 +148,10 @@ As soon as you save the file, the running app is updated automatically because y
 
 ## Shut the app down
 
-To shut down the app:
+Follow these steps:
 
 * Close the browser window.
-* Press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the command shell.
+* To shut down the app, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the command shell.
 
 *Congratulations!* You've successfully completed this tutorial.
 
@@ -259,4 +251,4 @@ In this tutorial, you learned how to:
 To learn more about ASP.NET Core, see the following:
 
 > [!div class="nextstepaction"]
-> <xref:index#recommended-learning-path>
+> <xref:index>
