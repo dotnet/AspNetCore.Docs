@@ -103,7 +103,7 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 * Build web apps and services, [Azure IoT (Internet of Things)](https://azure.microsoft.com/solutions/iot) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
 * Deploy to the cloud or on-premises.
-* Run on [.NET or .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
+* Run on [.NET Core or .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
 
 ## Why choose ASP.NET Core?
 
@@ -131,16 +131,16 @@ ASP.NET Core integrates seamlessly with popular client-side frameworks and libra
 
 ## ASP.NET Core targeting .NET Framework
 
-ASP.NET Core 2.x can target .NET or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. Generally, ASP.NET Core 2.x is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
+ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. Generally, ASP.NET Core 2.x is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
 
 ASP.NET Core 2.x is supported on .NET Framework versions that implement .NET Standard 2.0:
 
 * .NET Framework latest version is recommended.
 * .NET Framework 4.6.1 or later.
 
-ASP.NET Core 3.0 or later only run on .NET. For more details regarding this change, see [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
+ASP.NET Core 3.0 or later only run on .NET Core. For more details regarding this change, see [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
 
-There are several advantages to targeting .NET, and these advantages increase with each release. Some advantages of .NET over .NET Framework include:
+There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
 
 * Cross-platform. Runs on macOS, Linux, and Windows.
 * Improved performance
@@ -148,7 +148,7 @@ There are several advantages to targeting .NET, and these advantages increase wi
 * New APIs
 * Open source
 
-To help close the API gap from .NET Framework to .NET, the [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET. These APIs weren't available in .NET 1.x.
+To help close the API gap from .NET Framework to .NET Core, the [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET Core. These APIs weren't available in .NET Core 1.x.
 
 ## Recommended learning path
 

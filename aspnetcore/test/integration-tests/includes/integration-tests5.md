@@ -1,6 +1,6 @@
 :::moniker range="<= aspnetcore-5.0"
 
-This topic assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET and .NET Standard](/dotnet/core/testing/) topic and its linked content.
+This topic assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) topic and its linked content.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) ([how to download](xref:index#how-to-download-a-sample))
 

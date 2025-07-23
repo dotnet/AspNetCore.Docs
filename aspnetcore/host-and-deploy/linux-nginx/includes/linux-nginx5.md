@@ -4,7 +4,7 @@ ms.custom: linux-related-content
 :::moniker range="= aspnetcore-5.0"
 This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
 
-For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites).
+For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
 
 > [!NOTE]
 > For Ubuntu 14.04, `supervisord` is recommended as a solution for monitoring the Kestrel process. `systemd` isn't available on Ubuntu 14.04. For Ubuntu 14.04 instructions, see the [previous version of this topic](https://github.com/dotnet/AspNetCore.Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
@@ -55,7 +55,7 @@ Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development env
 dotnet publish --configuration Release
 ```
 
-The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET runtime on the server.
+The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET Core runtime on the server.
 
 Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, `SCP`, `SFTP`). It's common to locate web apps under the `var` directory (for example, `var/www/helloapp`).
 
@@ -435,7 +435,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 ## Additional resources
 
-* [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites)
+* [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
 * <xref:test/troubleshoot>
 * <xref:host-and-deploy/proxy-load-balancer>
@@ -447,7 +447,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
 
-For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites).
+For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
 
 > [!NOTE]
 > For Ubuntu 14.04, `supervisord` is recommended as a solution for monitoring the Kestrel process. `systemd` isn't available on Ubuntu 14.04. For Ubuntu 14.04 instructions, see the [previous version of this topic](https://github.com/dotnet/AspNetCore.Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
@@ -498,7 +498,7 @@ Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development env
 dotnet publish --configuration Release
 ```
 
-The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET runtime on the server.
+The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET Core runtime on the server.
 
 Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, `SCP`, `SFTP`). It's common to locate web apps under the `var` directory (for example, `var/www/helloapp`).
 
@@ -882,7 +882,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 ## Additional resources
 
-* [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites)
+* [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
 * <xref:test/troubleshoot>
 * <xref:host-and-deploy/proxy-load-balancer>

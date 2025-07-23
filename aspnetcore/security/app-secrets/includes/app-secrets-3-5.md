@@ -53,7 +53,7 @@ Don't write code that depends on the location or format of data saved with the S
 
 The Secret Manager tool operates on project-specific configuration settings stored in your user profile.
 
-The Secret Manager tool includes an `init` command in .NET SDK 3.0.100 or later. To use user secrets, run the following command in the project directory:
+The Secret Manager tool includes an `init` command in .NET Core SDK 3.0.100 or later. To use user secrets, run the following command in the project directory:
 
 ```dotnetcli
 dotnet user-secrets init

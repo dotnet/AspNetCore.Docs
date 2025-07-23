@@ -51,7 +51,7 @@ With the increased focus on security and privacy, enabling HTTPS for web apps is
 
 To facilitate secure website development, HTTPS  is now enabled by default. Starting in 2.1, Kestrel listens on `https://localhost:5001` when a local development certificate is present. A development certificate is created:
 
-* As part of the .NET SDK first-run experience, when you use the SDK for the first time.
+* As part of the .NET Core SDK first-run experience, when you use the SDK for the first time.
 * Manually using the new `dev-certs` tool.
 
 Run `dotnet dev-certs https --trust` to trust the certificate.
