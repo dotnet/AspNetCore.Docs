@@ -355,11 +355,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
- app.UseStaticFiles(new StaticFileOptions
- {
-     ServeUnknownFileTypes = true,
-     DefaultContentType = "image/png"
- });
+app.UseStaticFiles(new StaticFileOptions
+{
+    ServeUnknownFileTypes = true,
+    DefaultContentType = "image/png"
+});
 
 app.UseAuthorization();
 
@@ -387,12 +387,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // <snippet_mul>
- app.UseStaticFiles();
- app.UseStaticFiles(new StaticFileOptions
- {
-     FileProvider = new PhysicalFileProvider(
-         Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"))
- });
+app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"))
+});
 // </snippet_mul>
 
 app.UseAuthorization();
@@ -422,16 +422,14 @@ app.UseHttpsRedirection();
 // <snippet_mult2>
 var webRootProvider = new PhysicalFileProvider(builder.Environment.WebRootPath);
 var newPathProvider = new PhysicalFileProvider(
-  Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"));
+    Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"));
 
-var compositeProvider = new CompositeFileProvider(webRootProvider,
-                                                  newPathProvider);
+var compositeProvider = new CompositeFileProvider(webRootProvider, newPathProvider);
 
 // Update the default provider.
 app.Environment.WebRootFileProvider = compositeProvider;
 
 app.MapStaticAssets();
-
 // </snippet_mult2>
 
 app.UseAuthorization();

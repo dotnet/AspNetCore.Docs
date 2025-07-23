@@ -5,7 +5,7 @@ description: Learn how to serve and secure mapped static files and configure sta
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/18/2025
+ms.date: 07/23/2025
 uid: fundamentals/map-static-files
 ---
 # Map static files in ASP.NET Core
@@ -24,8 +24,8 @@ For Blazor static files guidance, which adds to or supersedes the guidance in th
 
 Creating performant web apps requires optimizing asset delivery to the browser. Possible optimizations with <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> include:
 
-* Serve a given asset once until the file changes or the browser clears its cache. Set the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
-* Prevent the browser from using old or stale assets after an app is updated. Set the [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header.
+* Serve a given asset once until the file changes or the browser clears its cache. Set the [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
+* Prevent the browser from using old or stale assets after an app is updated. Set the [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header.
 * Set appropriate [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) on the response.
 * Use [Caching Middleware](xref:performance/caching/middleware).
 * Serve [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible. This optimization doesn't include minification.
@@ -69,7 +69,7 @@ The following features are supported with `UseStaticFiles` but not with `MapStat
 
 ### Serve files in web root
 
-In the apps' `Program` file, <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> sets the [content root](xref:fundamentals/index#content-root) to the current directory. Call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> method to enable serving static files. The parameterless overload results in serving the files from the app's [web root](xref:fundamentals/index#web-root). The default web root directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the content root.
+In the app's `Program` file, <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> sets the [content root](xref:fundamentals/index#content-root) to the current directory. Call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> method to enable serving static files. The parameterless overload results in serving the files from the app's [web root](xref:fundamentals/index#web-root). The default web root directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the content root.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -95,11 +95,11 @@ In Razor Pages and MVC apps (but not Blazor apps), the tilde character `~` point
 <img src="~/images/icon.jpg" alt="Icon image" />
 ```
 
-The URL format for the preceding example is `https://{HOST}/images/{FILE NAME}`, where the `{HOST}` placeholder is the host and the `{FILE NAME}` placeholder is the file name. For the preceding example, the absolute URL is `https://localhost:5001/images/icon.jpg`.
+The URL format for the preceding example is `https://{HOST}/images/{FILE NAME}`. The `{HOST}` placeholder is the host, and the `{FILE NAME}` placeholder is the file name. For the preceding example running at the app's localhost address on port 5001, the absolute URL is `https://localhost:5001/images/icon.jpg`.
 
 ### Serve files outside of web root
 
-Consider the following directory hierarchy where static files reside outside of the [web root](xref:fundamentals/index#web-root):
+Consider the following directory hierarchy with static files residing outside of the app's [web root](xref:fundamentals/index#web-root) in a folder named `MyStaticFiles`:
 
 * `wwwroot`
   * `css`
@@ -123,7 +123,7 @@ To serve files from multiple locations, see [Serve files from multiple locations
 
 ### Set HTTP response headers
 
-A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring the middleware to serve static files from the [web root](xref:fundamentals/index#web-root), the following code sets the [Cache-Control](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) header:
+A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring the middleware to serve static files from the [web root](xref:fundamentals/index#web-root), the following code sets the [`Cache-Control`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) header:
 
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=16-24)]
 
@@ -151,7 +151,7 @@ Consider the following Razor page which displays the `/MyStaticFiles/image3.png`
 Using the preceding code:
 
 * The `/MyStaticFiles/image3.png` file is displayed.
-* The [Image Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper) <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion> isn't applied because the Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>. `WebRootFileProvider` hasn't been updated to include the `MyStaticFiles` folder.
+* [Image Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper) (<xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion>) aren't applied because Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>. `WebRootFileProvider` hasn't been updated to include the `MyStaticFiles` folder.
 
 The following code updates the `WebRootFileProvider`, which enables the Image Tag Helper to provide a version:
 
