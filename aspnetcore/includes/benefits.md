@@ -1,17 +1,22 @@
 ASP.NET Core provides the following benefits:
 
-* A unified story for building web UI and web APIs.
+:::moniker range=">= aspnetcore-6.0"
+
+<!-- AUTHOR NOTE: >=6.0 content includes Blazor and Minimal APIs -->
+
+* A unified story for building web apps, web APIs, Azure IoT (Internet of Things) apps, and mobile backends.
 * Architected for testability.
-* [Blazor](xref:blazor/index) lets you use C# in the browser alongside JavaScript. Share server-side and client-side app logic all written with .NET.
-* [Razor Pages](xref:razor-pages/index) makes coding page-focused scenarios easier and more productive.
+* [Blazor](xref:blazor/index) lets you create rich interactive client-side UIs using [.NET](/dotnet/standard/tour)/[C#](/dotnet/csharp/) with wide browser support based on HTML/JavaScript, including mobile browsers. You can also build hybrid desktop and mobile apps with .NET and Blazor.
+* [Minimal APIs](xref:fundamentals/minimal-apis) are a simplified approach for building fast web APIs with minimal code and configuration by fluently declaring API routes and actions.
+* Supports [Razor Pages](xref:razor-pages/index) and [Model-View-Controller (MVC)](xref:mvc/overview) app development.
 * Ability to develop and run on Windows, macOS, and Linux.
 * Open-source and [community-focused](https://live.asp.net/).
-* Integration of [modern, client-side frameworks](xref:blazor/index) and development workflows.
+* Integrate seamlessly with popular client-side frameworks and libraries, including [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/). 
 * Support for hosting Remote Procedure Call (RPC) services using [gRPC](xref:grpc/index).
 * A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration/index).
 * Built-in [dependency injection](xref:fundamentals/dependency-injection).
 * A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
-* Ability to host on the following:
+* Ability to host in the cloud or on-premises with the following:
   * [Kestrel](xref:fundamentals/servers/kestrel)
   * [IIS](xref:host-and-deploy/iis/index)
   * [HTTP.sys](xref:fundamentals/servers/httpsys)
@@ -19,3 +24,54 @@ ASP.NET Core provides the following benefits:
   * [Docker](xref:host-and-deploy/docker/index)
 * [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level).
 * Tooling that simplifies modern web development.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+
+<!-- AUTHOR NOTE: >=3.0 <6.0 content includes Blazor -->
+
+* A unified story for building web apps, web APIs, Azure IoT (Internet of Things) apps, and mobile backends.
+* Architected for testability.
+* [Blazor](xref:blazor/index) lets you create rich interactive client-side UIs using [.NET](/dotnet/standard/tour)/[C#](/dotnet/csharp/) with wide browser support based on HTML/JavaScript, including mobile browsers. You can also build hybrid desktop and mobile apps with .NET and Blazor.
+* Supports [Razor Pages](xref:razor-pages/index) and [Model-View-Controller (MVC)](xref:mvc/overview) app development.
+* Ability to develop and run on Windows, macOS, and Linux.
+* Open-source and [community-focused](https://live.asp.net/).
+* Integrate seamlessly with popular client-side frameworks and libraries, including [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/). 
+* Support for hosting Remote Procedure Call (RPC) services using [gRPC](xref:grpc/index).
+* A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration/index).
+* Built-in [dependency injection](xref:fundamentals/dependency-injection).
+* A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
+* Ability to host in the cloud or on-premises with the following:
+  * [Kestrel](xref:fundamentals/servers/kestrel)
+  * [IIS](xref:host-and-deploy/iis/index)
+  * [HTTP.sys](xref:fundamentals/servers/httpsys)
+  * [Nginx](xref:host-and-deploy/linux-nginx)
+  * [Docker](xref:host-and-deploy/docker/index)
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level).
+* Tooling that simplifies modern web development.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-3.0"
+
+* A unified story for building web apps, web APIs, Azure IoT (Internet of Things) apps, and mobile backends.
+* Architected for testability.
+* Supports [Razor Pages](xref:razor-pages/index) and [Model-View-Controller (MVC)](xref:mvc/overview) app development.
+* Ability to develop and run on Windows, macOS, and Linux.
+* Open-source and [community-focused](https://live.asp.net/).
+* Integrate seamlessly with popular client-side frameworks and libraries, including [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/). 
+* Support for hosting Remote Procedure Call (RPC) services using [gRPC](xref:grpc/index).
+* A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration/index).
+* Built-in [dependency injection](xref:fundamentals/dependency-injection).
+* A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
+* Ability to host in the cloud or on-premises with the following:
+  * [Kestrel](xref:fundamentals/servers/kestrel)
+  * [IIS](xref:host-and-deploy/iis/index)
+  * [HTTP.sys](xref:fundamentals/servers/httpsys)
+  * [Nginx](xref:host-and-deploy/linux-nginx)
+  * [Docker](xref:host-and-deploy/docker/index)
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level).
+* Tooling that simplifies modern web development.
+
+:::moniker-end
