@@ -228,7 +228,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a `Controllers` directory.
 
-* Add a **Controller Class** named `HomeController.cs` to the `Controllers` directory.
+* Add a controller class named `HomeController.cs` to the `Controllers` directory.
 
 ![Add New Item dialog with MVC Controller Class selected](_static/overview/add_mvc_ctl.png)
 
