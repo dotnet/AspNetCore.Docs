@@ -60,7 +60,7 @@ Using the app's sidebar navigation, visit the Counter page, where you can select
 
 Leave the browser open with the Counter page loaded. By using the `dotnet watch` command to run the app, you can make changes to the app's markup and code without having to rebuild the app to reflect the changes in the browser.
 
-The `Counter` Razor component that renders the Counter web page is located at `Components/Pages/Counter.razor` in the project.
+The `Counter` Razor component that renders the Counter web page is located at `Components/Pages/Counter.razor` in the project. *Razor* is a syntax for combining HTML markup with C# code designed for developer productivity.
 
 Open the `Counter.razor` file in a text editor and note a few interesting lines that render content and make the component's counter feature work.
 
