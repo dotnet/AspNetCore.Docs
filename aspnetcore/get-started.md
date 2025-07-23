@@ -5,7 +5,7 @@ description: A short tutorial using the .NET CLI to create and run a basic Hello
 monikerRange: ">= aspnetcore-3.1"
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 07/22/2025
+ms.date: 07/23/2025
 uid: get-started
 ---
 # Get started with ASP.NET Core
