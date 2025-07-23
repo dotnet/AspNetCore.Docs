@@ -22,7 +22,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * `dotnet/core/sdk`
 
-  The sample uses this image for building the app. The image contains the .NET SDK, which includes the Command Line Tools (CLI). The image is optimized for local development, debugging, and unit testing. The tools installed for development and compilation make the image relatively large.
+  The sample uses this image for building the app. The image contains the .NET Core SDK, which includes the Command Line Tools (CLI). The image is optimized for local development, debugging, and unit testing. The tools installed for development and compilation make the image relatively large.
 
 :::moniker-end
 

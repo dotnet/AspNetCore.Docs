@@ -50,17 +50,17 @@ The platform architecture (x86/x64) of an App Services app is set in the app's s
 
 :::moniker range=">= aspnetcore-2.2"
 
-ASP.NET Core apps can be published [framework-dependent](/dotnet/core/deploying/) because the runtimes for 64-bit (x64) and 32-bit (x86) apps are present on Azure App Service. The [.NET SDK](/dotnet/core/sdk) available on App Service is 32-bit, but you can deploy 64-bit apps built locally using the [Kudu](https://github.com/projectkudu/kudu/wiki) console or the publish process in Visual Studio. For more information, see the [Publish and deploy the app](#publish-and-deploy-the-app) section.
+ASP.NET Core apps can be published [framework-dependent](/dotnet/core/deploying/) because the runtimes for 64-bit (x64) and 32-bit (x86) apps are present on Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit, but you can deploy 64-bit apps built locally using the [Kudu](https://github.com/projectkudu/kudu/wiki) console or the publish process in Visual Studio. For more information, see the [Publish and deploy the app](#publish-and-deploy-the-app) section.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-2.2"
 
-For apps with native dependencies, runtimes for 32-bit (x86) apps are present on Azure App Service. The [.NET SDK](/dotnet/core/sdk) available on App Service is 32-bit.
+For apps with native dependencies, runtimes for 32-bit (x86) apps are present on Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit.
 
 :::moniker-end
 
-For more information on .NET framework components and distribution methods, such as information on the .NET runtime and the .NET SDK, see [About .NET: Composition](/dotnet/core/about#composition).
+For more information on .NET Core framework components and distribution methods, such as information on the .NET Core runtime and the .NET Core SDK, see [About .NET Core: Composition](/dotnet/core/about#composition).
 
 ### Packages
 
@@ -142,28 +142,28 @@ When swapping between deployment slots, any system using data protection won't b
 For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
 <a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
 
-## Deploy an ASP.NET Core app that uses a .NET preview
+## Deploy an ASP.NET Core app that uses a .NET Core preview
 
-To deploy an app that uses a preview release of .NET, see the following resources. These approaches are also used when the runtime is available but the SDK hasn't been installed on Azure App Service.
+To deploy an app that uses a preview release of .NET Core, see the following resources. These approaches are also used when the runtime is available but the SDK hasn't been installed on Azure App Service.
 
-* [Specify the .NET SDK Version using Azure Pipelines](#specify-the-net-sdk-version-using-azure-pipelines)
+* [Specify the .NET Core SDK Version using Azure Pipelines](#specify-the-net-core-sdk-version-using-azure-pipelines)
 * [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app)
 * [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers)
 * [Install the preview site extension](#install-the-preview-site-extension)
 
-See [Select the .NET version to use](/dotnet/core/versions/selection) for information on selecting the version of the .NET SDK for self-contained deployments.
+See [Select the .NET Core version to use](/dotnet/core/versions/selection) for information on selecting the version of the .NET SDK for self-contained deployments.
 
-### Specify the .NET SDK Version using Azure Pipelines
+### Specify the .NET Core SDK Version using Azure Pipelines
 
 Use [Azure App Service CI/CD scenarios](/azure/app-service/deploy-continuous-deployment) to set up a continuous integration build with Azure DevOps. After the Azure DevOps build is created, optionally configure the build to use a specific SDK version. 
 
-#### Specify the .NET SDK version
+#### Specify the .NET Core SDK version
 
-When using the App Service deployment center to create an Azure DevOps build, the default build pipeline includes steps for `Restore`, `Build`, `Test`, and `Publish`. To specify the SDK version, select the **Add (+)** button in the Agent job list to add a new step. Search for **.NET SDK** in the search bar. 
+When using the App Service deployment center to create an Azure DevOps build, the default build pipeline includes steps for `Restore`, `Build`, `Test`, and `Publish`. To specify the SDK version, select the **Add (+)** button in the Agent job list to add a new step. Search for **.NET Core SDK** in the search bar. 
 
-![Add the .NET SDK step](index/add-sdk-step.png)
+![Add the .NET Core SDK step](index/add-sdk-step.png)
 
-Move the step into the first position in the build so that the steps following it use the specified version of the .NET SDK. Specify the version of the .NET SDK. In this example, the SDK is set to `3.0.100`.
+Move the step into the first position in the build so that the steps following it use the specified version of the .NET Core SDK. Specify the version of the .NET Core SDK. In this example, the SDK is set to `3.0.100`.
 
 ![Completed SDK step](index/sdk-step-first-place.png)
 
@@ -209,7 +209,7 @@ If a problem occurs using the preview site extension, open an [dotnet/AspNetCore
 1. Select **OK** to accept the legal terms.
 1. Select **OK** to install the extension.
 
-When the operation completes, the latest .NET preview is installed. Verify the installation:
+When the operation completes, the latest .NET Core preview is installed. Verify the installation:
 
 1. Select **Advanced Tools**.
 1. Select **Go** in **Advanced Tools**.
@@ -249,7 +249,7 @@ For the placeholder `{SITE NAME}`, use the app's name in Azure App Service (for 
 
 For a 64-bit deployment:
 
-* Use a 64-bit .NET SDK to build a 64-bit app.
+* Use a 64-bit .NET Core SDK to build a 64-bit app.
 * Set the **Platform** to **64 Bit** in the App Service's **Configuration** > **General settings**. The app must use a Basic or higher service plan to enable the choice of platform bitness.
 
 :::moniker-end
