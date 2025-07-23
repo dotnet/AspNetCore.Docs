@@ -34,7 +34,7 @@ The following table compares ASP.NET Core to ASP.NET 4.x.
 |Higher performance than ASP.NET 4.x|Good performance|
 |[Use .NET Core runtime](/dotnet/standard/choosing-core-framework-server)|Use .NET Framework runtime|
 
-See [ASP.NET Core targeting .NET Framework](xref:index#target-framework) for information on ASP.NET Core 2.x support on .NET Framework.
+See [ASP.NET Core targeting .NET Framework](xref:index#aspnet-core-target-frameworks) for information on ASP.NET Core 2.x support on .NET Framework.
 
 ## ASP.NET Core scenarios
 

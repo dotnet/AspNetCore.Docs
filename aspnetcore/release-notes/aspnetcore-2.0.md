@@ -153,4 +153,4 @@ For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0
 
 For the complete list of changes, see the [ASP.NET Core 2.0 Release Notes](https://github.com/dotnet/aspnetcore/releases/tag/2.0.0).
 
-To connect with the ASP.NET Core development team's progress and plans, tune in to the [ASP.NET Community Standup](https://live.asp.net/).
+To connect with the ASP.NET Core development team's progress and plans, tune in to [.NET Live TV](https://dotnet.microsoft.com/live).
