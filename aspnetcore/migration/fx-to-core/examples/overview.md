@@ -2,7 +2,7 @@
 title: Learn to upgrade from ASP.NET MVC and Web API to ASP.NET Core MVC
 description: Learn how to upgrade an ASP.NET MVC Framework or Web API project to ASP.NET Core MVC
 author: rick-anderson
-ms.author: riande
+ms.author: wpickett
 ms.date: 03/07/2017
 uid: migration/fx-to-core/examples/overview
 ---
