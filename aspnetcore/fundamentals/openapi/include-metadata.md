@@ -263,7 +263,7 @@ public class Todo : IBindableFromHttpContext<Todo>
 
 If the endpoint doesn't define any parameters bound to the request body, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method to specify the content type that the endpoint accepts.
 
-If you specify <AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> multiple times, only metadata from the last one is used -- they aren't combined.
+If you specify <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> multiple times, only metadata from the last one is used -- they aren't combined.
 
 #### [Controllers](#tab/controllers)
 

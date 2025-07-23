@@ -78,7 +78,7 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 
 ### Updated articles
 
-* <xref:getting-started> - May Content Health - freshness review
+* <xref:get-started> - May Content Health - freshness review
 
 ## gRPC
 

@@ -982,22 +982,22 @@
         },
         {
             "source_path": "aspnetcore/migration/proper-to-2x/membership-to-core-identity.md",
-            "redirect_url": "migration/fx-to-core/areas/membership/",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/membership/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/proper-to-2x/mvc2.md",
-            "redirect_url": "migration/fx-to-core/areas/mvc/",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/mvc/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/mvc.md",
-            "redirect_url": "migration/fx-to-core/tooling",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/tooling",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/web_forms.md",
-            "redirect_url": "migration/fx-to-core/tooling",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/tooling",
             "redirect_document_id": false
         },
         {
@@ -1566,6 +1566,11 @@
         {
             "source_path": "aspnetcore/blazor/progressive-web-app.md",
             "redirect_url": "/aspnet/core/blazor/progressive-web-app/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/getting-started/index.md",
+            "redirect_url": "/aspnet/core/get-started",
             "redirect_document_id": false
         }
     ]

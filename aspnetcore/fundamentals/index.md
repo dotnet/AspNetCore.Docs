@@ -5,7 +5,7 @@ description: Learn the fundamental concepts for building ASP.NET Core apps, incl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/01/2024
+ms.date: 07/23/2025
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals overview
@@ -210,9 +210,9 @@ The content root is the base path for:
   * Razor files (`.cshtml`, `.razor`)
   * Configuration files (`.json`, `.xml`)
   * Data files (`.db`)
-* The [Web root](#web-root), typically the *wwwroot* folder.
+* The [Web root](#web-root), typically the `wwwroot` folder.
 
-During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [Web root](#web-root). Specify a different content root by setting its path when [building the host](#host). For more information, see [Content root](xref:fundamentals/host/generic-host#contentroot).
+During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [web root](#web-root). Specify a different content root by setting its path when [building the host](#host). For more information, see [Content root](xref:fundamentals/host/generic-host#contentroot).
 
 ## Web root
 
@@ -222,9 +222,9 @@ The web root is the base path for public, static resource files, such as:
 * JavaScript (`.js`)
 * Images (`.png`, `.jpg`)
 
-By default, static files are served only from the web root directory and its sub-directories. The web root path defaults to *{content root}/wwwroot*. Specify a different web root by setting its path when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/generic-host#webroot).
+By default, static files are served only from the web root directory and its sub-directories. The web root path defaults to `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the content root. Specify a different web root by setting its path when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/generic-host#webroot).
 
-Prevent publishing files in *wwwroot* with the [\<Content> project item](/visualstudio/msbuild/common-msbuild-project-items#content) in the project file. The following example prevents publishing content in *wwwroot/local* and its sub-directories:
+Prevent publishing files in `wwwroot` with the [`<Content>` project item](/visualstudio/msbuild/common-msbuild-project-items#content) in the project file. The following example prevents publishing content in `wwwroot/local` and its sub-directories:
 
 ```xml
 <ItemGroup>
