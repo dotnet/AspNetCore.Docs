@@ -89,10 +89,7 @@ The `dotnet publish` command produces a variation of the following output:
 
 ```console
 C:\Webs\Web1>dotnet publish
-Microsoft (R) Build Engine version {VERSION} for .NET
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Restore completed in 36.81 ms for C:\Webs\Web1\Web1.csproj.
+Restore complete (0.4s)
   Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\Web1.dll
   Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\Web1.Views.dll
   Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\publish\

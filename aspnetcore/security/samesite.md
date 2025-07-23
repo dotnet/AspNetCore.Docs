@@ -38,7 +38,7 @@ The following sample can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) |  |
 
 ## .NET support for the sameSite attribute
 
@@ -175,7 +175,7 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  |  |
 
 :::moniker-end
 
@@ -185,9 +185,9 @@ The following sample can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  |  |
 
-## .NET support for the sameSite attribute
+## .NET Core support for the sameSite attribute
 
 .NET Core 3.1 or later support the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to Strict, Lax, or None results in those values being written on the network with the cookie. Setting it equal to `(SameSiteMode)(-1)` indicates that no sameSite attribute should be included on the network with the cookie
 
@@ -325,7 +325,7 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  |  |
 
 :::moniker-end
 
@@ -335,8 +335,8 @@ The following samples can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
-| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  |  |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <security samesite="" rp21=""> | |
 
 ## December patch behavior changes
 
@@ -460,7 +460,7 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [.NET MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
-| [.NET Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  |  |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <security samesite="" rp21=""> | |
 
 :::moniker-end

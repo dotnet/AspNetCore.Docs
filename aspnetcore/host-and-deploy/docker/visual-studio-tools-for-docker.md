@@ -43,11 +43,11 @@ When creating a new app with the **ASP.NET Core Web Application** project templa
 
 ![Enable Docker Support checkbox](visual-studio-tools-for-docker/_static/enable-docker-support-check-box.png)
 
-If the target framework is .NET, the **OS** drop-down allows for the selection of a container type.
+The **OS** drop-down allows for the selection of a container type.
 
 ### Existing app
 
-For ASP.NET Core projects targeting .NET, there are two options for adding Docker support via the tooling. Open the project in Visual Studio, and choose one of the following options:
+There are two options for adding Docker support to an existing project via the tooling. Open the project in Visual Studio, and choose one of the following options:
 
 * Select **Docker Support** from the **Project** menu.
 * Right-click the project in **Solution Explorer** and select **Add** > **Docker Support**.
