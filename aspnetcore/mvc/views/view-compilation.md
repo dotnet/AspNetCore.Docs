@@ -5,7 +5,7 @@ description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/25/2022
+ms.date: 03/20/2023
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
@@ -15,16 +15,21 @@ uid: mvc/views/view-compilation
 Razor files with a `.cshtml` extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring the project.
 
 > [!NOTE]
-> Runtime compilation isn't supported for Razor components of Blazor apps.
+> Runtime compilation:
+> * Isn't supported for Razor components of Blazor apps.
+> * Doesn't support [global using directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives).
+> * Doesn't support [implicit using directives](/dotnet/core/tutorials/top-level-templates#implicit-using-directives).
+> * Disables [.NET Hot Reload](xref:test/hot-reload).
+> * Is recommended for development, not for production.
 
 ## Razor compilation
 
-Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited.
+Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited while the app is running.
 
-In addition to build-time compilation, updating Razor views and Razor Pages is supported using <xref:test/hot-reload>.
+Updating Razor views and Razor Pages during development while the app is running is also supported using [.NET Hot Reload](xref:test/hot-reload).
 
 > [!NOTE]
-> When enabled, runtime compilation currently disables [.NET Hot Reload](xref:test/hot-reload). Runtime compilation with Hot Reload is planned for a future release.
+> When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead of Razor runtime compilation during development.
 
 ## Enable runtime compilation for all environments
 
@@ -60,9 +65,9 @@ Runtime compilation can also be enabled with a [hosting startup assembly](xref:f
 
 With this approach, no code changes are needed in `Program.cs`. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute and that startup code enables runtime compilation.
 
-## Enable runtime compilation for a Razor Class Library
+## Enable runtime compilation for a Razor class library
 
-Consider a scenario in which a Razor Pages project references a [Razor Class Library (RCL)](xref:razor-pages/ui-class) named *MyClassLib*. The RCL contains a `_Layout.cshtml` file consumed by MVC and Razor Pages projects. To enable runtime compilation for the `_Layout.cshtml` file in that RCL, make the following changes in the Razor Pages project:
+Consider a scenario in which a Razor Pages project references a [Razor class library (RCL)](xref:razor-pages/ui-class) named *MyClassLib*. The RCL contains a `_Layout.cshtml` file consumed by MVC and Razor Pages projects. To enable runtime compilation for the `_Layout.cshtml` file in that RCL, make the following changes in the Razor Pages project:
 
 1. Enable runtime compilation with the instructions at [Enable runtime compilation conditionally](#enable-runtime-compilation-conditionally).
 1. Configure <xref:Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.MvcRazorRuntimeCompilationOptions> in `Program.cs`:
@@ -90,7 +95,7 @@ Build-time and publish-time compilation of Razor files is enabled by default by 
 
 ## Enable runtime compilation at project creation
 
-The Razor Pages and MVC project templates include an option to enable runtime compilation when the project is created. This option is supported in ASP.NET Core 3.1 and later.
+The Razor Pages and MVC project templates include an option to enable runtime compilation when the project is created. This option is supported in ASP.NET Core 3.1 or later.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -99,7 +104,7 @@ In the **Create a new ASP.NET Core web application** dialog:
 1. Select either the **Web Application** or the **Web Application (Model-View-Controller)** project template.
 1. Select the **Enable Razor runtime compilation** checkbox.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 Use the `-rrc` or `--razor-runtime-compilation` template option. For example, the following command creates a new Razor Pages project with runtime compilation enabled:
 
@@ -146,9 +151,9 @@ In the following example, runtime compilation is enabled in the Development envi
 
 No code changes are needed in the project's `Startup` class. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute. That startup code enables runtime compilation.
 
-## Enable runtime compilation for a Razor Class Library
+## Enable runtime compilation for a Razor class library
 
-Consider a scenario in which a Razor Pages project references a [Razor Class Library (RCL)](xref:razor-pages/ui-class) named *MyClassLib*. The RCL contains a `_Layout.cshtml` file that all of your team's MVC and Razor Pages projects consume. You want to enable runtime compilation for the `_Layout.cshtml` file in that RCL. Make the following changes in the Razor Pages project:
+Consider a scenario in which a Razor Pages project references a [Razor class library (RCL)](xref:razor-pages/ui-class) named *MyClassLib*. The RCL contains a `_Layout.cshtml` file that all of your team's MVC and Razor Pages projects consume. You want to enable runtime compilation for the `_Layout.cshtml` file in that RCL. Make the following changes in the Razor Pages project:
 
 1. Enable runtime compilation with the instructions at [Conditionally enable runtime compilation in an existing project](#conditionally-enable-runtime-compilation-in-an-existing-project).
 1. Configure the runtime compilation options in `Startup.ConfigureServices`:

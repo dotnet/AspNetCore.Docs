@@ -1,8 +1,8 @@
 ---
 title: Areas in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
-ms.author: riande
+ms.author: tdykstra
 ms.date: 3/21/2022
 uid: mvc/controllers/areas
 ---
@@ -132,7 +132,7 @@ The application root folder is the folder containing the `Program.cs` file in a 
  */Views/_ViewImports.cshtml*, for MVC, and */Pages/_ViewImports.cshtml* for Razor Pages, is not imported to views in areas. Use one of the following approaches to provide view imports to all views:
 
 * Add *_ViewImports.cshtml* to the [application root folder](#arf). A *_ViewImports.cshtml* in the application root folder will apply to all views in the app.
-* Copy the *_ViewImports.cshtml* file to the appropriate view folder under areas. For example, a Razor Pages app created with individual user accounts has a *_ViewImports.cshtml* file in the following folders:
+* Copy the *_ViewImports.cshtml* file to the appropriate view folder under areas. For example, a Razor Pages app created with individual accounts has a *_ViewImports.cshtml* file in the following folders:
   * */Areas/Identity/Pages/_ViewImports.cshtml*
   * */Pages/_ViewImports.cshtml*
 

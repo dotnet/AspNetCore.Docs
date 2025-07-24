@@ -1,7 +1,7 @@
-﻿#define Final
+#define Final
 
 #if Begin
-#region snippet_Begin
+// <snippet_Begin>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,11 +31,11 @@ namespace ContosoUniversity.Models
         public ICollection<Course> Courses { get; set; }
     }
 }
-#endregion
+// </snippet_Begin>
 
 
 #elif Final
-#region snippet_Final
+// <snippet_Final>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -68,5 +68,5 @@ namespace ContosoUniversity.Models
         public ICollection<Course> Courses { get; set; }
     }
 }
-#endregion
+// </snippet_Final>
 #endif  

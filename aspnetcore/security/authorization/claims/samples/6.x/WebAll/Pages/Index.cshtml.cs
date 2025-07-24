@@ -7,7 +7,7 @@ namespace WebAll.Pages
     [Authorize(Policy = "EmployeeOnly")]
     public class IndexModel : PageModel
     {
-       public void OnGet()
+        public void OnGet()
         {
 
         }

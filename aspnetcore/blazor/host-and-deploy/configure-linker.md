@@ -3,18 +3,18 @@ title: Configure the Linker for ASP.NET Core Blazor
 author: guardrex
 description: Learn how to control the Intermediate Language (IL) Linker when building a Blazor app.
 monikerRange: '= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 11/12/2024
 uid: blazor/host-and-deploy/configure-linker
 ---
 # Configure the Linker for ASP.NET Core Blazor
 
 This article explains how to control the Intermediate Language (IL) Linker when building a Blazor app.
 
-Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies. The linker is disabled when building in Debug configuration. Apps must build in Release configuration to enable the linker. We recommend building in Release when deploying your Blazor WebAssembly apps. 
+Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/glossary#il) linking during a build to trim unnecessary IL from the app's output assemblies. The linker is disabled when building in Debug configuration. Apps must build in Release configuration to enable the linker. We recommend building in Release when deploying your Blazor WebAssembly apps. 
 
-Linking an app optimizes for size but may have detrimental effects. Apps that use reflection or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime. To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.
+Linking an app optimizes for size but may have detrimental effects. Apps that use [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/) or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime. To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.
 
 To ensure the trimmed app works correctly once deployed, it's important to test Release builds of the app frequently while developing.
 
@@ -75,7 +75,7 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 </linker>
 ```
 
-For more information and examples, see [Data Formats (dotnet/linker GitHub repository)](https://github.com/dotnet/linker/blob/main/docs/data-formats.md).
+For more information and examples, see [Data Formats (`dotnet/runtime` GitHub repository)](https://github.com/dotnet/runtime/blob/main/docs/tools/illink/data-formats.md).
 
 ## Add an XML linker configuration file to a library
 
@@ -93,7 +93,7 @@ In the following example, the `LinkerConfig.xml` file is specified as an embedde
 
 ### Configure the linker for internationalization
 
-By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. Removing these assemblies minimizes the app's size.
+Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. Removing these assemblies minimizes the app's size.
 
 To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAssemblies>` MSBuild property in the project file:
 
@@ -119,4 +119,4 @@ For more information, see [I18N: Pnetlib Internationalization Framework Library 
 
 ## Additional resources
 
-* <xref:blazor/performance#intermediate-language-il-linking>
+<xref:blazor/performance/app-download-size#intermediate-language-il-linking>

@@ -5,7 +5,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=44364
+      - ASPNETCORE_HTTPS_PORTS=44364
     ports:
       - "59518:80"
       - "44364:443"

@@ -3,12 +3,14 @@ title: gRPC for .NET configuration
 author: jamesnk
 description: Learn how to configure gRPC for .NET apps.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/23/2020
 uid: grpc/configuration
 ---
 # gRPC for .NET configuration
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 ## Configure services options
 
@@ -95,8 +97,6 @@ For more information about the different handlers and their configuration option
 
 * <xref:System.Net.Http.SocketsHttpHandler?displayProperty=fullName>
 * <xref:System.Net.Http.WinHttpHandler?displayProperty=fullName>
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## Additional resources
 

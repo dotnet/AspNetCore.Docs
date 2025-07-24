@@ -1,13 +1,12 @@
 ---
 title: Memory management and patterns in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how memory is managed in ASP.NET Core and how the garbage collector (GC) works.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 4/05/2019
 uid: performance/memory
 ---
-
 # Memory management and garbage collection (GC) in ASP.NET Core
 
 By [Sébastien Ros](https://github.com/sebastienros) and [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -30,13 +29,11 @@ When an ASP.NET Core app starts, the GC:
 
 The preceding memory allocations are done for performance reasons. The performance benefit comes from heap segments in contiguous memory.
 
-### Call GC.Collect
+### GC.Collect caveats 
 
-Calling [GC.Collect](xref:System.GC.Collect%2A) explicitly:
+In general, ASP.NET Core apps in production should **not** use [GC.Collect](xref:System.GC.Collect%2A) explicitly. Inducing garbage collections at sub-optimal times can decrease performance significantly.
 
-* Should **not** be done by production ASP.NET Core apps.
-* Is useful when investigating memory leaks.
-* When investigating, verifies the GC has removed all dangling objects from memory so memory can be measured.
+GC.Collect is useful when investigating memory leaks. Calling `GC.Collect()` triggers a blocking garbage collection cycle that tries to reclaim all objects inaccessible from managed code. It's a useful way to understand the size of the reachable live objects in the heap, and track growth of memory size over time.
 
 ## Analyzing the memory usage of an app
 
@@ -81,7 +78,7 @@ The chart displays two values for the memory usage:
 
 ### Transient objects
 
-The following API creates a 10-KB String instance and returns it to the client. On each request, a new object is allocated in memory and written to the response. Strings are stored as UTF-16 characters in .NET so each character takes 2 bytes in memory.
+The following API creates a 20-KB String instance and returns it to the client. On each request, a new object is allocated in memory and written to the response. Strings are stored as UTF-16 characters in .NET so each character takes 2 bytes in memory.
 
 ```csharp
 [HttpGet("bigstring")]
@@ -158,7 +155,7 @@ When multiple containerized apps are running on one machine, Workstation GC migh
 
 The GC cannot free objects that are referenced. Objects that are referenced but no longer needed result in a memory leak. If the app frequently allocates objects and fails to free them after they are no longer needed, memory usage will increase over time.
 
-The following API creates a 10-KB String instance and returns it to the client. The difference with the previous example is that this instance is referenced by a static member, which means it's never available for collection.
+The following API creates a 20-KB String instance and returns it to the client. The difference with the previous example is that this instance is referenced by a static member, which means it's never available for collection.
 
 ```csharp
 private static ConcurrentBag<string> _staticStrings = new ConcurrentBag<string>();
@@ -217,7 +214,7 @@ The same leak could happen in user code, by one of the following:
 * Not releasing the class correctly.
 * Forgetting to invoke the `Dispose` method of the dependent objects that should be disposed.
 
-### Large objects heap
+### Large object heap
 
 Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it tries to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving large objects imposes a performance penalty. For this reason the GC creates a special memory zone for *large* objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Objects that are greater than 85,000 bytes (approximately 83 KB) are:
 
@@ -239,7 +236,7 @@ GC.Collect();
 
 See <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> for information on compacting the LOH.
 
-In containers using .NET Core 3.0 and later, the LOH is automatically compacted.
+In containers using .NET Core 3.0 or later, the LOH is automatically compacted.
 
 The following API that illustrates this behavior:
 
@@ -429,6 +426,7 @@ The main difference is allocated bytes, and as a consequence much fewer generati
 
 ## Additional resources
 
+* <xref:blazor/performance/index>
 * [Garbage Collection](/dotnet/standard/garbage-collection/)
 * [Understanding different GC modes with Concurrency Visualizer](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)
 * [Large Object Heap Uncovered](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)

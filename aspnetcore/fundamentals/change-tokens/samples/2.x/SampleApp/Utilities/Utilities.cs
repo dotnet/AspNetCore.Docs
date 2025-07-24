@@ -31,15 +31,13 @@ namespace ChangeTokenSample.Utilities
                 }
                 catch (IOException ex)
                 {
-                    if (runCount == 3 || ex.HResult != -2147024864)
+                    if (runCount == 3)
                     {
                         throw;
                     }
-                    else
-                    {
-                        Thread.Sleep(TimeSpan.FromSeconds(Math.Pow(2, runCount)));
-                        runCount++;
-                    }
+
+                    Thread.Sleep(TimeSpan.FromSeconds(Math.Pow(2, runCount)));
+                    runCount++;
                 }
             }
 

@@ -3,15 +3,18 @@
   ```dotnetcli
   dotnet dev-certs https --trust
   ```
-  
-  The preceding command doesn't work on Linux. See your Linux distribution's documentation for trusting a certificate.
+  :::moniker range="<=aspnetcore-8.0"
+
+  The preceding command requires .NET 9 or later SDK on Linux. For Linux on .NET 8.0.401 or earlier SDK, see your Linux distribution's documentation for trusting a certificate.
+
+  :::moniker-end
 
   The preceding command displays the following dialog, provided the certificate was not previously trusted:
 
-  ![Security warning dialog](~/getting-started/_static/cert.png)
+  ![Security warning dialog](~/static/cert.png)
 
 * Select **Yes** if you agree to trust the development certificate.
 
-  See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.
-  
+  For more information, see the **Trust the ASP.NET Core HTTPS development certificate** section of the [Enforcing SSL](xref:security/enforcing-ssl) article.
+
 [!INCLUDE[trust FF](~/includes/trust-ff.md)]

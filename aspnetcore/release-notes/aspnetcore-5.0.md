@@ -1,15 +1,15 @@
 ---
-title: What's new in ASP.NET Core 5.0
+title: What's new in ASP.NET Core in .NET 5
 author: rick-anderson
-description: Learn about the new features in ASP.NET Core 5.0.
+description: Learn about the new features in ASP.NET Core in .NET 5.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/29/2020
 uid: aspnetcore-5.0
 ---
-# What's new in ASP.NET Core 5.0
+# What's new in ASP.NET Core in .NET 5
 
-This article highlights the most significant changes in ASP.NET Core 5.0 with links to relevant documentation.
+This article highlights the most significant changes in ASP.NET Core in .NET 5 with links to relevant documentation.
 
 ## ASP.NET Core MVC and Razor improvements
 
@@ -43,22 +43,22 @@ The `Person/Index.cshtml` file:
 ```cshtml
 @model Person
 
-Name: <input asp-for="Model.Name" />
+<label>Name: <input asp-for="Model.Name" /></label>
 <span asp-validation-for="Model.Name" />
 
-Age: <input asp-for="Model.Age" />
+<label>Age: <input asp-for="Model.Age" /></label>
 <span asp-validation-for="Model.Age" />
 ```
 
 ### Improvements to DynamicRouteValueTransformer
 
-ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use custom endpoint to dynamically select an MVC controller action or a Razor page. ASP.NET Core 5.0 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
+ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use custom endpoint to dynamically select an MVC controller action or a Razor page. .NET 5 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
 
 ### Miscellaneous
 
 * The [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attribute can be applied to properties on a Razor Page model.
 * Parameters and properties bound from the body are considered required by default. <!-- Review: How is this different from 3.1
-The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
+The validation system in .NET Core 3.0 or later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
 see https://learn.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcore-3.1   
 -->
 
@@ -68,7 +68,7 @@ see https://learn.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcor
 
 [OpenAPI Specification](http://spec.openapis.org/oas/v3.0.3) is an industry standard for describing HTTP APIs and integrating them into complex business processes or with third parties. OpenAPI is widely supported by all cloud providers and many API registries. Apps that emit OpenAPI documents from web APIs have a variety of new opportunities in which those APIs can be used. In partnership with the maintainers of the open-source project [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/), the ASP.NET Core API template contains a NuGet dependency on [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). Swashbuckle is a popular open-source NuGet package that emits OpenAPI documents dynamically. Swashbuckle does this by introspecting over the API controllers and generating the OpenAPI document at run-time, or at build time using the Swashbuckle CLI.
 
-In ASP.NET Core 5.0, the web API templates enable the OpenAPI support by default. To disable OpenAPI:
+In .NET 5, the web API templates enable the OpenAPI support by default. To disable OpenAPI:
 
 * From the command line:
 
@@ -100,13 +100,13 @@ The template generated code won't accidentally expose the API's description when
 
 #### Azure API Management Import
 
-When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 and later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](xref:tutorials/publish-to-azure-api-management-using-vs) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
+When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 or later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](xref:tutorials/publish-to-azure-api-management-using-vs) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
 
 ![Azure API Management Import VS publishing](~/release-notes/static/publish-to-apim.png)
 
 ### Better launch experience for web API projects
 
-With OpenAPI enabled by default, the app launching experience (F5) for web API developers significantly improves. With ASP.NET Core 5.0, the web API template comes pre-configured to load up the Swagger UI page. The Swagger UI page provides both the documentation added for the published API, and enables testing the APIs with a single click.
+With OpenAPI enabled by default, the app launching experience (F5) for web API developers significantly improves. With .NET 5, the web API template comes pre-configured to load up the Swagger UI page. The Swagger UI page provides both the documentation added for the published API, and enables testing the APIs with a single click.
 
 ![swagger/index.html view](~/release-notes/static/swagger-ui-page-rc1.png)
 
@@ -114,7 +114,7 @@ With OpenAPI enabled by default, the app launching experience (F5) for web API d
 
 ### Performance improvements
 
-For .NET 5, we made significant improvements to Blazor WebAssembly runtime performance with a specific focus on complex UI rendering and JSON serialization. In our performance tests, Blazor WebAssembly in .NET 5 is two to three times faster for most scenarios. For more information, see [ASP.NET Blog: ASP.NET Core updates in .NET 5 Release Candidate 1](https://devblogs.microsoft.com/aspnet/asp-net-core-updates-in-net-5-release-candidate-1/#blazor-webassembly-performance-improvements).
+For .NET 5, we made significant improvements to .NET WebAssembly runtime performance with a specific focus on complex UI rendering and JSON serialization. In our performance tests, Blazor WebAssembly in .NET 5 is two to three times faster for most scenarios. For more information, see [ASP.NET Blog: ASP.NET Core updates in .NET 5 Release Candidate 1](https://devblogs.microsoft.com/aspnet/asp-net-core-updates-in-net-5-release-candidate-1/#blazor-webassembly-performance-improvements).
 
 ### CSS isolation
 
@@ -126,7 +126,7 @@ The `InputFile` component allows reading one or more files selected by a user fo
 
 ### New `InputRadio` and `InputRadioGroup` components
 
-Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify data binding to radio button groups with integrated validation. For more information, see <xref:blazor/forms-and-input-components>.
+Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify data binding to radio button groups with integrated validation. For more information, see <xref:blazor/forms/input-components>.
 
 ### Component virtualization
 
@@ -142,7 +142,7 @@ Use the `FocusAsync` convenience method on element references to set the UI focu
 
 ### Custom validation CSS class attributes
 
-Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see <xref:blazor/forms-and-input-components#custom-validation-css-class-attributes>.
+Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see <xref:blazor/forms/validation#custom-validation-css-class-attributes>.
 
 ### IAsyncDisposable support
 
@@ -160,7 +160,7 @@ The following built-in components support display names with the `DisplayName` p
 * `InputNumber`
 * `InputSelect`
 
-For more information, see <xref:blazor/forms-and-input-components#display-name-support>.
+For more information, see <xref:blazor/forms/index#display-name-support>.
 
 ### Catch-all route parameters
 
@@ -168,7 +168,7 @@ Catch-all route parameters, which capture paths across multiple folder boundarie
 
 ### Debugging improvements
 
-Debugging Blazor WebAssembly apps is improved in ASP.NET Core 5.0. Additionally, debugging is now supported on Visual Studio for Mac. For more information, see <xref:blazor/debug>.
+Debugging Blazor WebAssembly apps is improved in .NET 5. Additionally, debugging is now supported on Visual Studio for Mac. For more information, see <xref:blazor/debug>.
 
 ### Microsoft Identity v2.0 and MSAL v2.0
 
@@ -184,7 +184,7 @@ Component integration is improved across hosting models, and Blazor WebAssembly 
 
 ### Trimming/linking improvements
 
-Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a build to trim unnecessary IL from the app's output assemblies. With the release of ASP.NET Core 5.0, Blazor WebAssembly performs improved trimming with additional configuration options. For more information, see <xref:blazor/host-and-deploy/configure-trimmer> and [Trimming options](/dotnet/core/deploying/trimming-options).
+Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a build to trim unnecessary IL from the app's output assemblies. With the release of .NET 5, Blazor WebAssembly performs improved trimming with additional configuration options. For more information, see <xref:blazor/host-and-deploy/configure-trimmer> and [Trimming options](/dotnet/core/deploying/trimming-options).
 
 ### Browser compatibility analyzer
 
@@ -338,15 +338,15 @@ Server Name Indication (SNI) is a TLS extension to include a virtual domain as a
 
 ### Containers
 
-Prior to .NET 5.0, building and publishing a *Dockerfile* for an ASP.NET Core app required pulling the entire .NET Core SDK and the ASP.NET Core image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET Core image is largely eliminated. For more information, see [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
+Prior to .NET 5, building and publishing a *Dockerfile* for an ASP.NET Core app required pulling the entire .NET Core SDK and the ASP.NET Core image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET Core image is largely eliminated. For more information, see [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
 
 ## Authentication and authorization
 
-### Azure Active Directory authentication with Microsoft.Identity.Web
+### Microsoft Entra ID authentication with Microsoft.Identity.Web
 
-The ASP.NET Core project templates now integrate with <xref:Microsoft.Identity.Web?displayProperty=fullName> to handle authentication with [Azure Active Directory](/azure/active-directory/fundamentals/active-directory-whatis) (Azure AD). The [Microsoft.Identity.Web package](https://www.nuget.org/packages/Microsoft.Identity.Web/) provides:
+The ASP.NET Core project templates now integrate with <xref:Microsoft.Identity.Web?displayProperty=fullName> to handle authentication with [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis). The [Microsoft.Identity.Web package](https://www.nuget.org/packages/Microsoft.Identity.Web/) provides:
 
-* A better experience for authentication through Azure AD.
+* A better experience for authentication through Microsoft Entra ID.
 * An easier way to access Azure resources on behalf of your users, including [Microsoft Graph](/graph/overview). See the [Microsoft.Identity.Web sample](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2), which starts with a basic login and advances through multi-tenancy, using Azure APIs, using Microsoft Graph, and protecting your own APIs. `Microsoft.Identity.Web` is available alongside .NET 5.
 
 ### Allow anonymous access to an endpoint

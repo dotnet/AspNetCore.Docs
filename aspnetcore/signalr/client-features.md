@@ -1,8 +1,8 @@
 ---
 title: ASP.NET Core SignalR clients
-author: bradygaster
+author: wadepickett
 description: Learn which features are supported by the various ASP.NET Core SignalR clients.
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2019
 uid: signalr/client-features
@@ -29,20 +29,22 @@ The 1.x versions of SignalR map to the 2.1 and 2.2 .NET Core releases and have t
 
 The table below shows the features and support for the clients that offer real-time support. For each feature, the *minimum* version supporting this feature is listed. If no version is listed, the feature isn't supported.
 
-| Feature | Server | .NET client | JavaScript client | Java client |
-| ---- | :-: | :-: | :-: | :-: |
-| Azure SignalR Service Support |2.1.0|1.0.0|1.0.0|1.0.0|
-| [Server-to-client Streaming](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|
-| [Client-to-server Streaming](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|3.0.0|
-| Automatic Reconnection ([.NET](xref:signalr/dotnet-client#handle-lost-connection), [JavaScript](xref:signalr/javascript-client#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
-| WebSockets Transport |2.1.0|1.0.0|1.0.0|1.0.0|
-| Server-Sent Events Transport |2.1.0|1.0.0|1.0.0|❌|
-| Long Polling Transport |2.1.0|1.0.0|1.0.0|3.0.0|
-| JSON Hub Protocol |2.1.0|1.0.0|1.0.0|1.0.0|
-| MessagePack Hub Protocol |2.1.0|1.0.0|1.0.0|5.0.0|
-| Client Results |7.0.0|7.0.0|7.0.0|❌|
+| Feature | Server | .NET client | JavaScript client | Java client | Swift client |
+| ---- | :-: | :-: | :-: | :-: | :-: |
+| Azure SignalR Service Support |2.1.0|1.0.0|1.0.0|1.0.0|1.0.0-preview.1|
+| [Server-to-client Streaming](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|1.0.0-preview.1|
+| [Client-to-server Streaming](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|3.0.0|❌|
+| Automatic Reconnection ([.NET](xref:signalr/dotnet-client#handle-lost-connection), [JavaScript](xref:signalr/javascript-client#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|1.0.0-preview.1|
+| WebSockets Transport |2.1.0|1.0.0|1.0.0|1.0.0|1.0.0-preview.1|
+| Server-Sent Events Transport |2.1.0|1.0.0|1.0.0|❌|1.0.0-preview.1|
+| Long Polling Transport |2.1.0|1.0.0|1.0.0|3.0.0|1.0.0-preview.1|
+| JSON Hub Protocol |2.1.0|1.0.0|1.0.0|1.0.0|1.0.0-preview.1|
+| MessagePack Hub Protocol |2.1.0|1.0.0|1.0.0|5.0.0|1.0.0-preview.1|
+| Client Results |7.0.0|7.0.0|7.0.0|7.0.0|1.0.0-preview.1|
 
 Support for enabling additional client features is tracked in [our issue tracker](https://github.com/dotnet/AspNetCore/issues).
+
+[!INCLUDE[](~/includes/SignalR/es6.md)]
 
 ## Additional resources
 

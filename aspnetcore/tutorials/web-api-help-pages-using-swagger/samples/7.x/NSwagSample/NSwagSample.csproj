@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <!-- <snippet_GenerateDocumentationFile> -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <!-- </snippet_GenerateDocumentationFile> -->
+
+  <!-- <snippet_GenerateDocumentationFileWithNoWarn> -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+  <!-- </snippet_GenerateDocumentationFileWithNoWarn> -->
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.9" />
+    <PackageReference Include="NSwag.AspNetCore" Version="14.0.2" />
+  </ItemGroup>
+
+</Project>

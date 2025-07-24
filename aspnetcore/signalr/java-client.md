@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR Java client
 author: mikaelm12
 description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2019
 uid: signalr/java-client
@@ -12,7 +12,7 @@ uid: signalr/java-client
 
 By [Mikael Mengistu](https://twitter.com/MikaelM_12)
 
-The Java client enables connecting to an ASP.NET Core SignalR server from Java code, including Android apps. Like the [JavaScript client](xref:signalr/javascript-client) and the [.NET client](xref:signalr/dotnet-client), the Java client enables you to receive and send messages to a hub in real time. The Java client is available in ASP.NET Core 2.2 and later.
+The Java client enables connecting to an ASP.NET Core SignalR server from Java code, including Android apps. Like the [JavaScript client](xref:signalr/javascript-client) and the [.NET client](xref:signalr/dotnet-client), the Java client enables you to receive and send messages to a hub in real time. The Java client is available in ASP.NET Core 2.2 or later.
 
 The sample Java console app referenced in this article uses the SignalR Java client.
 
@@ -20,12 +20,12 @@ The sample Java console app referenced in this article uses the SignalR Java cli
 
 ## Install the SignalR Java client package
 
-The *signalr-1.0.0* JAR file allows clients to connect to SignalR hubs. To find the latest JAR file version number, see the [Maven search results](https://search.maven.org/search?q=g:com.microsoft.signalr%20AND%20a:signalr).
+The *signalr-7.0.0* JAR file allows clients to connect to SignalR hubs. To find the latest JAR file version number, see the [Maven search results](https://search.maven.org/search?q=g:com.microsoft.signalr%20AND%20a:signalr).
 
 If using Gradle, add the following line to the `dependencies` section of your *build.gradle* file:
 
 ```gradle
-implementation 'com.microsoft.signalr:signalr:1.0.0'
+implementation 'com.microsoft.signalr:signalr:7.0.0'
 ```
 
 If using Maven, add the following lines inside the `<dependencies>` element of your `pom.xml` file:
@@ -75,8 +75,8 @@ This can safely be ignored.
 
 With regards to Android SDK compatibility for the SignalR client features, consider the following items when specifying your target Android SDK version:
 
-* The SignalR Java Client will run on Android API Level 16 and later.
-* Connecting through the Azure SignalR Service will require Android API Level 20 and later because the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) requires TLS 1.2 and doesn't support SHA-1-based cipher suites. Android [added support for SHA-256 (and above) cipher suites](https://developer.android.com/reference/javax/net/ssl/SSLSocket) in API Level 20.
+* The SignalR Java Client will run on Android API Level 16 or later.
+* Connecting through the Azure SignalR Service will require Android API Level 20 or later because the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) requires TLS 1.2 and doesn't support SHA-1-based cipher suites. Android [added support for SHA-256 (and above) cipher suites](https://developer.android.com/reference/javax/net/ssl/SSLSocket) in API Level 20.
 
 ## Configure bearer token authentication
 

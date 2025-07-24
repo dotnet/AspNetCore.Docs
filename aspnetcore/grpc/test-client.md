@@ -3,12 +3,14 @@ title: Mock gRPC client in tests
 author: jamesnk
 description: Learn how to mock gRPC client in .NET tests.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: jamesnk
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 05/02/2022
 uid: grpc/test-client
 ---
 # Mock gRPC client in tests
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By: [James Newton-King](https://twitter.com/jamesnk)
 

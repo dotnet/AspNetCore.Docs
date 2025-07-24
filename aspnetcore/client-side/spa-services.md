@@ -1,18 +1,16 @@
 ---
-title: Use JavaScript Services to Create Single Page Applications in ASP.NET Core
-author: rick-anderson
-description: Learn about the benefits of using JavaScript Services to create a Single Page Application (SPA) backed by ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: scaddie
+title: The features described in this article are obsolete as of ASP.NET Core 3.0
+author: wadepickett
+description: The features described in this article are obsolete as of ASP.NET Core 3.0
+monikerRange: '>= aspnetcore-2.1 <= aspnetcore-3.0'
+ms.author: wpickett
 ms.custom: H1Hack27Feb2017
 ms.date: 09/06/2019
 uid: client-side/spa-services
 ---
 # Use JavaScript Services to Create Single Page Applications in ASP.NET Core
 
-By [Scott Addie](https://github.com/scottaddie) and [Fiyaz Hasan](https://fiyazhasan.me/)
-
-A Single Page Application (SPA) is a popular type of web application due to its inherent rich user experience. Integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks such as ASP.NET Core can be difficult. JavaScript Services was developed to reduce friction in the integration process. It enables seamless operation between the different client and server technology stacks.
+By [Fiyaz Hasan](https://fiyazhasan.me/)
 
 :::moniker range=">= aspnetcore-3.0"
 
@@ -20,6 +18,8 @@ A Single Page Application (SPA) is a popular type of web application due to its 
 > The features described in this article are obsolete as of ASP.NET Core 3.0. A simpler SPA frameworks integration mechanism is available in the [Microsoft.AspNetCore.SpaServices.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices.Extensions) NuGet package. For more information, see [[Announcement] Obsoleting Microsoft.AspNetCore.SpaServices and Microsoft.AspNetCore.NodeServices](https://github.com/dotnet/AspNetCore/issues/12890).
 
 :::moniker-end
+
+A Single Page Application (SPA) is a popular type of web application due to its inherent rich user experience. Integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.dev/) or [React](https://react.dev/), with server-side frameworks such as ASP.NET Core can be difficult. JavaScript Services was developed to reduce friction in the integration process. It enables seamless operation between the different client and server technology stacks.
 
 ## What is JavaScript Services
 
@@ -211,7 +211,7 @@ Routes are evaluated in the order in which they're configured. Consequently, the
 
 JavaScript Services provide pre-configured application templates. SpaServices is used in these templates in conjunction with different frameworks and libraries such as Angular, React, and Redux.
 
-These templates can be installed via the .NET Core CLI by running the following command:
+These templates can be installed via the .NET CLI by running the following command:
 
 ```dotnetcli
 dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
@@ -244,7 +244,7 @@ Two primary runtime configuration modes exist:
 
 ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. For more information, see [Set the environment](xref:fundamentals/environments#set-the-environment).
 
-### Run with .NET Core CLI
+### Run with .NET CLI
 
 Restore the required NuGet and npm packages by running the following command at the project root:
 
@@ -305,4 +305,4 @@ dotnet publish -c Release
 
 ## Additional resources
 
-* [Angular Docs](https://angular.io/docs)
+* [Angular Docs](https://angular.dev/docs)

@@ -1,15 +1,17 @@
 ---
 title: ASP.NET Core Module (ANCM) for IIS
-author: rick-anderson
+author: tdykstra
 description: Learn about the ASP.NET Core Module (ANCM) for hosting ASP.NET Core apps with IIS.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/04/2022
 uid: host-and-deploy/aspnet-core-module
 ---
 
 # ASP.NET Core Module (ANCM) for IIS
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -25,7 +27,7 @@ For more information and configuration guidance, see the following topics:
 
 ## Install ASP.NET Core Module (ANCM)
 
-The ASP.NET Core Module (ANCM) is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+The ASP.NET Core Module (ANCM) is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -141,7 +143,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -361,7 +363,7 @@ Configure the managed stack size using the `stackSize` setting in bytes in `web.
 
 The proxy created between the ASP.NET Core Module and Kestrel uses the HTTP protocol. There's no risk of eavesdropping the traffic between the module and Kestrel from a location off of the server.
 
-A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the module. The pairing token is also set into a header (`MS-ASPNETCORE-TOKEN`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the module and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, an attacker can't submit requests that bypass the check in the IIS Middleware.
+A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the module. The pairing token is also set into a header (`MS-ASPNETCORE-TOKEN`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the module and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, a cyberattacker can't submit requests that bypass the check in the IIS Middleware.
 
 ## ASP.NET Core Module with an IIS Shared Configuration
 
@@ -558,7 +560,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -758,7 +760,7 @@ See [Configuration with web.config](#configuration-with-webconfig) for an exampl
 
 The proxy created between the ASP.NET Core Module and Kestrel uses the HTTP protocol. There's no risk of eavesdropping the traffic between the module and Kestrel from a location off of the server.
 
-A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the module. The pairing token is also set into a header (`MS-ASPNETCORE-TOKEN`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the module and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, an attacker can't submit requests that bypass the check in the IIS Middleware.
+A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the module. The pairing token is also set into a header (`MS-ASPNETCORE-TOKEN`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the module and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, a cyberattacker can't submit requests that bypass the check in the IIS Middleware.
 
 ## ASP.NET Core Module with an IIS Shared Configuration
 
@@ -1000,7 +1002,7 @@ For more information on path formats, see [File path formats on Windows systems]
 
 The proxy created between the ASP.NET Core Module and Kestrel uses the HTTP protocol. There's no risk of eavesdropping the traffic between the module and Kestrel from a location off of the server.
 
-A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the module. The pairing token is also set into a header (`MS-ASPNETCORE-TOKEN`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the module and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, an attacker can't submit requests that bypass the check in the IIS Middleware.
+A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the module. The pairing token is also set into a header (`MS-ASPNETCORE-TOKEN`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the module and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, a cyberattacker can't submit requests that bypass the check in the IIS Middleware.
 
 ## ASP.NET Core Module with an IIS Shared Configuration
 

@@ -6,6 +6,16 @@
         "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
         "group": "group1", 
         "src": "."
+      },
+      {
+        "files": [
+            "Compiler Breaking Changes - DotNet 8.md",
+            "Compiler Breaking Changes - DotNet 9.md"
+        ],
+        "exclude": [],
+        "group": "group1", 
+        "src": "../_razor/docs",
+        "dest": "_razor/docs"
       }
     ],
     "resource": [
@@ -22,11 +32,18 @@
       "_navPath": "/foo",
       "_navRel": "/foo",
       "breadcrumb_path": "/aspnet/core/breadcrumb/toc.json",
-      "extendBreadcrumb": true,
+      "feedback_system": "OpenSource",
       "feedback_github_repo": "dotnet/AspNetCore.Docs",
+      "open_source_feedback_contributorGuideUrl": "https://learn.microsoft.com/contribute/content/dotnet/dotnet-contribute",
+      "open_source_feedback_issueUrl": "https://github.com/dotnet/aspnetcore.docs/issues/new?template=customer-feedback.yml",
+      "open_source_feedback_productName": "ASP.NET Core",
+      "open_source_feedback_issueTitle": "",
+      "open_source_feedback_issueLabels": "Source - Docs.ms,:watch: Not Triaged",
+      "open_source_feedback_productLogoLightUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
+      "open_source_feedback_productLogoDarkUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
+      "social_image_url": "/dotnet/media/dotnet-logo.png",
       "feedback_product_url": "https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md",
-      "feedback_system": "GitHub",
-      "ms.prod": "aspnet-core",
+      "ms.service": "aspnet-core",
       "ms.topic": "conceptual",
       "uhfHeaderId": "MSDocsHeader-AspNet",
       "searchScope": [ "ASP.NET Core" ],
@@ -39,34 +56,40 @@
       "ms.author": {
         "whats-new/**/**.md": "riande"
       },
-      "ms.technology": {
-        "**/client-side/**/**.md": "aspnetcore-clientside",
-        "**/blazor/**/**.md": "aspnetcore-blazor",
-        "**/data/**/**.md": "aspnetcore-data",
-        "**/fundamentals/**/**.md": "aspnetcore-fundamentals",
-        "**/getting-started/**/**.md": "aspnetcore-getstarted",
-        "**/grpc/**/**.md": "aspnetcore-grpc",
-        "**/host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
-        "introduction-to-aspnet-core.md": "aspnetcore",
-        "**/migration/**/**.md": "aspnetcore-migration",
-        "**/mobile/**/**.md": "aspnetcore-mobile",
-        "**/mvc/**/**.md": "aspnetcore-mvc",
-        "**/performance/**/**.md": "aspnetcore-performance",
-        "**/razor-pages/**/**.md": "aspnetcore-razorpages",
-        "**/release-notes/**/**.md": "aspnetcore-releasenotes",
-        "**/security/**/**.md": "aspnetcore-security",
+      "ms.subservice": {
+        "introduction-to-aspnet-core.md": "index-page",
+        "**/client-side/**/**.md": "client-side",
+        "**/data/**/**.md": "data-access",
+        "**/fundamentals/**/**.md": "fundamentals",
+        "**/getting-started/**/**.md": "get-started",
+        "**/grpc/**/**.md": "grpc",
+        "**/host-and-deploy/**/**.md": "hosting-deployment",
+        "**/migration/**/**.md": "migration",
+        "**/mobile/**/**.md": "mobile",
+        "**/mvc/**/**.md": "mvc",
+        "**/performance/**/**.md": "performance",
+        "**/razor-pages/**/**.md": "razor-pages",
+        "**/release-notes/**/**.md": "release-notes",
+        "**/security/**/**.md": "security",
         "**/signalr/**/**.md": "aspnetcore-signalr",
-        "**/test/**/**.md": "aspnetcore-test",
-        "**/tutorials/**/**.md": "aspnetcore-tutorials",
-        "**/web-api/**/**.md": "aspnetcore-webapi",
-        "whats-new/**/**.md": "aspnetcore-whatsnew"
+        "**/test/**/**.md": "testing",
+        "**/tutorials/**/**.md": "tutorials",
+        "**/web-api/**/**.md": "web-api",
+        "whats-new/**/**.md": "whats-new",
+        "**/blazor/**/**.md": "blazor",
+        "**/blazor/hybrid/**/**.md": "blazor-hybrid",
+        "**/client-side/dotnet-interop/index.md": "blazor",
+        "**/client-side/dotnet-interop/wasm-browser-app.md": "blazor",
+        "**/client-side/dotnet-interop/dotnet-interop.md": "blazor",
+        "**/mvc/views/tag-helpers/built-in/component-tag-helper.md": "blazor",
+        "**/mvc/views/tag-helpers/built-in/persist-component-state.md": "blazor"
       },
       "ms.topic": {
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
       },
       "no-loc": {
-        "**/**.md": [ "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "BREACH", "cookie", "Cookie", "CRIME", "EF Core", "Home" , "Identity", "JS", "Kestrel", ".NET MAUI", ".NET Multi-platform App UI", "Privacy" , "Razor", "REST", "SignalR", "Web View"  ]
+        "**/**.md": [ "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "Kestrel", ".NET Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
       },
       "recommendations": {
         "**/tutorials/**/**.md": "false"

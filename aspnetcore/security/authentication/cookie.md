@@ -70,7 +70,7 @@ The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect the 
 
 To create a cookie holding user information, construct a <xref:System.Security.Claims.ClaimsPrincipal>. The user information is serialized and stored in the cookie. 
 
-Create a <xref:System.Security.Claims.ClaimsIdentity> with any required <xref:System.Security.Claims.Claim>s and call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> to sign in the user:
+Create a <xref:System.Security.Claims.ClaimsIdentity> with any required <xref:System.Security.Claims.Claim>s and call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> to sign in the user. `Login.cshtml.cs` in the sample app contains the following code:
 
 [!code-csharp[](cookie/samples/6.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1&highlight=22-59)]
 

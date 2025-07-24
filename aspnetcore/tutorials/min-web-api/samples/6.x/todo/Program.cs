@@ -118,7 +118,7 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
     {
         db.Todos.Remove(todo);
         await db.SaveChangesAsync();
-        return Results.Ok(todo);
+        return Results.NoContent();
     }
 
     return Results.NotFound();
@@ -126,24 +126,5 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 #endregion
 
 app.Run();
-
-#region snippet_model
-class Todo
-{
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public bool IsComplete { get; set; }
-}
-#endregion
-
-#region snippet_cntx
-class TodoDb : DbContext
-{
-    public TodoDb(DbContextOptions<TodoDb> options)
-        : base(options) { }
-
-    public DbSet<Todo> Todos => Set<Todo>();
-}
-#endregion
 #endregion
 #endif

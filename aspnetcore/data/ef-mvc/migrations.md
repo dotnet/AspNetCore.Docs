@@ -1,9 +1,8 @@
 ---
 title: Tutorial Part 5, apply migrations to the Contoso University sample
 description: Part 5 of the Contoso University tutorial series. Use the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC app.
-author: rick-anderson
-ms.author: riande
-ms.custom: contperf-fy21q2
+author: tdykstra
+ms.author: tdykstra
 ms.date: 11/13/2020
 ms.topic: tutorial
 uid: data/ef-mvc/migrations
@@ -42,6 +41,8 @@ Install EF Core tools as a [global tool](/ef/core/miscellaneous/cli/dotnet) and 
  dotnet tool install --global dotnet-ef
  dotnet ef database drop
  ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 The following section explains how to run CLI commands.
 
@@ -142,13 +143,13 @@ Run the application to verify that everything still works the same as before.
 
 ## Compare CLI and PMC
 
-The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
+The EF tooling for managing migrations is available from .NET CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
 
 The EF commands for the PMC commands are in the [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. This package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), so you don't need to add a package reference if your app has a package reference for `Microsoft.AspNetCore.App`.
 
 **Important:** This isn't the same package as the one you install for the CLI by editing the `.csproj` file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
 
-For more information about the CLI commands, see [.NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
+For more information about the CLI commands, see [.NET CLI](/ef/core/miscellaneous/cli/dotnet).
 
 For more information about the PMC commands, see [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell).
 

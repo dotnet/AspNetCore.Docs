@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    // Markup removed for brevity.
+    <TypescriptOutDir>wwwroot</TypescriptOutDir>
+    <PrepareForBuildDependsOn>
+      CompileTypeScriptWithTSConfig;
+      GetTypeScriptOutputForPublishing;$(PrepareForBuildDependsOn)
+    </PrepareForBuildDependsOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\{path-to-typescript-outputs}" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,45 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Distributed Cache Sample";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <button type="submit" asp-page-handler="ResetCachedTime" class="pull-right btn btn-danger">Reset Cached Time</button>
+            <h3 class="panel-title" style="line-height:2.1">Cached Time (UTC)</h3>
+        </div>
+        <div class="panel-body">
+            <p>The current time is: @DateTime.UtcNow.ToString()</p>
+            <p>The cached time is: @Model.CachedTimeUTC</p>
+        </div>
+    </div>
+</form>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Instructions</h3>
+    </div>
+    <div class="panel-body">
+        <div class="panel-body">
+            <p><code>ASPNETCORE_ENVIRONMENT</code> @Model.ASP_Environment</p>
+        </div>
+        <p>When the app starts, the current time is cached (key = <code>cachedTimeUTC</code>) with a 20 second sliding expiration.</p>
+        <p>Each time this page is loaded, the cache is checked for the cached time. If the cached time hasn't expired, the time is displayed.</p>
+        <p>If 20 seconds have elapsed since the last time the cached time was accessed (the last time this page was loaded), the page displays <code>Cached Time Expired</code>.</p>
+        <p>The cached time can be updated immediately to the current time by selecting the <b>Reset Cached Time</b> button.</p>
+        <p>In the Development environment, the sample uses the Distributed Memory Cache and doesn't require an external cache service.</p>
+        <h4>Distributed Azure Redis Cache</h4>
+        <ol>
+            <li>For more information on how to create an instance of Azure Redis Cache, see <a href="https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-dotnet-core-quickstart">Quickstart: Use Azure Cache for Redis in .NET Core</a></li>
+            <li>
+                Set the <code>ASPNETCORE_ENVIRONMENT</code> environment variable to <code>Production</code>.
+                From project Properties tab, <code>Debug -> General -> Open debug launch profiles UI</code>
+            </li>
+            <li>In the Production environment, the app uses the Distributed Azure Redis Cache when it starts.</li>
+        </ol>
+    </div>
+</div>

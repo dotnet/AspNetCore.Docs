@@ -1,14 +1,16 @@
 ---
 title: Part 2, Razor Pages with EF Core in ASP.NET Core - CRUD 
-author: rick-anderson
+author: tdykstra
 description: Part 2 of Razor Pages and Entity Framework tutorial series.
-ms.author: riande
+ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: "mvc"
 ms.date: 11/11/2021
 uid: data/ef-rp/crud
 ---
 # Part 2, Razor Pages with EF Core in ASP.NET Core - CRUD
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.com/jeremylikness), and [Jon P Smith](https://twitter.com/thereformedprog)
 

@@ -1,0 +1,1 @@
+Common result helpers exist in the <xref:Microsoft.AspNetCore.Http.Results> and <xref:Microsoft.AspNetCore.Http.TypedResults> static classes. Returning `TypedResults` is preferred to returning `Results`. For more information, see [TypedResults vs Results](/aspnet/core/fundamentals/minimal-apis/responses#typedresults-vs-results).

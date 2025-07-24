@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: riande
 ms.date: 03/15/2022
-ms.custom: "mvc, seodec18"
+ms.custom: mvc
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
@@ -35,7 +35,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 * Select **Web Application** > **OK**
 * Build and run the project.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet new webapp -o WebApp1
@@ -58,13 +58,15 @@ dotnet new webapp -o WebApp1
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
 * Select **Add**.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 If you have not previously installed the ASP.NET Core scaffolder, install it now:
 
 ```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (.csproj) file. Run the following command in the project directory:
 
@@ -126,7 +128,7 @@ Update the `Areas/Identity/Pages/Account/Manage/Index.cshtml` with the following
 
 Update the `InputModel` in `Areas/Identity/Pages/Account/Register.cshtml.cs` with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47)]
+[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47,81-82)]
 
 Update the `Areas/Identity/Pages/Account/Register.cshtml` with the following highlighted markup:
 
@@ -149,7 +151,7 @@ Add-Migration CustomUserData
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet ef migrations add CustomUserData
@@ -180,7 +182,7 @@ Test the app:
 * Select **Web Application** > **OK**
 * Build and run the project.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet new webapp -o WebApp1
@@ -203,13 +205,15 @@ dotnet new webapp -o WebApp1
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
 * Select **Add**.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 If you have not previously installed the ASP.NET Core scaffolder, install it now:
 
 ```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (.csproj) file. Run the following command in the project directory:
 
@@ -290,7 +294,7 @@ Add-Migration CustomUserData
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet ef migrations add CustomUserData
@@ -400,7 +404,7 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
 * Select **Web Application** > **OK**
 * Build and run the project.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet new webapp -o WebApp1
@@ -423,13 +427,15 @@ dotnet new webapp -o WebApp1
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
 * Select **Add**.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 If you have not previously installed the ASP.NET Core scaffolder, install it now:
 
 ```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (.csproj) file. Run the following command in the project directory:
 
@@ -511,7 +517,7 @@ Add-Migration CustomUserData
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet ef migrations add CustomUserData

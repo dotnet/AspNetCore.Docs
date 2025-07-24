@@ -1,5 +1,5 @@
-revision: 3
-schema-version: 1
+revision: 6
+schema-version: 5
 owner-ms-alias: adegeo
 
 config:
@@ -9,81 +9,38 @@ config:
 
     ParserRegex: "^\\* (.*): (.*)$"
 
+    ContentUrlRegex:
+      - "### Page URL\n\n(.*)"
+
 issues:
 
   opened:
-    # New issue opened, add Not Triaged  
-    - labels-add: [":watch: Not Triaged"]
 
+    # Add links to related issues if it's a doc issue
+    - check:
+        - type: metadata-exists
+        - type: variable-exists
+          name: "document_version_independent_id"
+      pass:
+        - link-related-issues
 
-    # default for doc comment
+    # If it's an issue from docs feedback, add svc/subsvc and source labels.
     - check:
         - type: metadata-exists
       pass:
         - labels-add: ["Source - Docs.ms"]
+        - svc_subsvc_labels: true
 
-        # technology types
-        - check:
-            - type: metadata-comment
-              name: technology
-              value: "(?i)aspnetcore-blazor$"
-          pass:
-            - labels-add: ["Blazor"]
-            - projects-add: [35]
-            - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex"]
-        - check:
-            - type: metadata-comment
-              name: technology
-              value: "(?i)aspnetcore-grpc$"
-          pass:
-            - labels-add: ["gRPC"]
-        - check:
-            - type: metadata-comment
-              name: technology
-              value: "(?i)aspnetcore-signalr$"
-          pass:
-            - labels-add: ["SignalR"]
+projects_v2_item:
 
-        # Checks for specific files
-        - check:
-            - type: metadata-comment
-              name: content source
-              value: "(?i).*main\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/component-tag-helper.md"
-          pass:
-            - labels-add: ["Blazor"]
-            - projects-add: [35]
-            - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex"]
-        - check:
-            - type: metadata-comment
-              name: content source
-              value: "(?i).*main\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/persist-component-state.md"
-          pass:
-            - labels-add: ["Blazor"]
-            - projects-add: [35]
-            - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex"]
-        
-        # If the word appears anywhere in the file name path, add the label
-        - check:
-            - type: metadata-comment
-              name: content source
-              value: "(?i).*blazor.*"
-          pass:
-            - labels-add: ["Blazor"]
-            - projects-add: [35]
-            - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex"]
-        - check:
-            - type: metadata-comment
-              name: content source
-              value: "(?i).*grpc.*"
-          pass:
-            - labels-add: ["gRPC"]
-        - check:
-            - type: metadata-comment
-              name: content source
-              value: "(?i).*signalr.*"
-          pass:
-            - labels-add: ["SignalR"]
+  reordered:
+
+    - labels-add: ["mapQuest"]
+
+  edited:
+
+    - check:
+        - type: query
+          value: "EventPayload.changes.field_value.field_name == 'Priority' || EventPayload.changes.field_value.field_name == 'Size'"
+      pass:
+        - labels-add: ["mapQuest"]

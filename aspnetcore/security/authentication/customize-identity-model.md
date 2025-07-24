@@ -2,15 +2,16 @@
 title: Identity model customization in ASP.NET Core
 author: ajcvickers
 description: This article describes how to customize the underlying Entity Framework Core data model for ASP.NET Core Identity.
-ms.author: avickers
-ms.date: 07/01/2019
+ms.author: riande
+ms.date: 10/29/2024
 uid: security/authentication/customize_identity_model
 ---
+<!-- ms.sfi.ropc: t -->
 # Identity model customization in ASP.NET Core
 
 By [Arthur Vickers](https://github.com/ajcvickers)
 
-ASP.NET Core Identity provides a framework for managing and storing user accounts in ASP.NET Core apps. Identity is added to your project when **Individual User Accounts** is selected as the authentication mechanism. By default, Identity makes use of an Entity Framework (EF) Core data model. This article describes how to customize the Identity model.
+ASP.NET Core Identity provides a framework for managing and storing user accounts in ASP.NET Core apps. Identity is added to your project when **Individual Accounts** is selected as the authentication mechanism. By default, Identity makes use of an Entity Framework (EF) Core data model. This article describes how to customize the Identity model.
 
 ## Identity and EF Core Migrations
 
@@ -25,7 +26,7 @@ Before examining the model, it's useful to understand how Identity works with [E
 Use one of the following approaches to add and apply Migrations:
 
 * The **Package Manager Console** (PMC) window if using Visual Studio. For more information, see [EF Core PMC tools](/ef/core/miscellaneous/cli/powershell).
-* The .NET Core CLI if using the command line. For more information, see [EF Core .NET command line tools](/ef/core/miscellaneous/cli/dotnet).
+* The .NET CLI if using the command line. For more information, see [EF Core .NET command line tools](/ef/core/miscellaneous/cli/dotnet).
 * Clicking the **Apply Migrations** button on the error page when the app is run.
 
 ASP.NET Core has a development-time error page handler. The handler can apply migrations when the app is run. Production apps typically generate SQL scripts from the migrations and deploy database changes as part of a controlled app and database deployment.
@@ -369,7 +370,7 @@ services.AddIdentityCore<TUser>(o =>
 .AddDefaultTokenProviders();
 ```
 
-Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`. For more information, see:
+Identity is provided as a Razor class library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`. For more information, see:
 
 * [Scaffold Identity](xref:security/authentication/scaffold-identity)
 * [Add, download, and delete custom user data to Identity](xref:security/authentication/add-user-data)
@@ -380,8 +381,8 @@ A change to the PK column's data type after the database has been created is pro
 
 Follow these steps to change the PK type:
 
-1. If the database was created before the PK change, run `Drop-Database` (PMC) or `dotnet ef database drop` (.NET Core CLI) to delete it.
-2. After confirming deletion of the database, remove the initial migration with `Remove-Migration` (PMC) or `dotnet ef migrations remove` (.NET Core CLI).
+1. If the database was created before the PK change, run `Drop-Database` (PMC) or `dotnet ef database drop` (.NET CLI) to delete it.
+2. After confirming deletion of the database, remove the initial migration with `Remove-Migration` (PMC) or `dotnet ef migrations remove` (.NET CLI).
 3. Update the `ApplicationDbContext` class to derive from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%603>. Specify the new key type for `TKey`. For example, to use a `Guid` key type:
  
    ```csharp
@@ -430,7 +431,7 @@ Follow these steps to change the PK type:
 
    The primary key's data type is inferred by analyzing the <xref:Microsoft.EntityFrameworkCore.DbContext> object.
 
-   Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
+   Identity is provided as a Razor class library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
 
 5. If a custom `ApplicationRole` class is being used, update the class to inherit from `IdentityRole<TKey>`. For example:
 
@@ -446,7 +447,7 @@ Follow these steps to change the PK type:
 
    The primary key's data type is inferred by analyzing the <xref:Microsoft.EntityFrameworkCore.DbContext> object.
 
-   Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
+   Identity is provided as a Razor class library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
 
 ### Add navigation properties
 
@@ -886,6 +887,8 @@ services
 ```
 
 Refer to the preceding examples for guidance on adding navigation properties to the entity types.
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ## Additional resources
 

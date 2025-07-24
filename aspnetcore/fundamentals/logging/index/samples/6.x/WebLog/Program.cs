@@ -1,58 +1,76 @@
-#define APP3 // FIRST SECOND APP3
+#define SECOND // FIRST SECOND APP3 APP4
 #if NEVER
 #elif FIRST
-#region snippet1
+// <snippet1>
 var builder = WebApplication.CreateBuilder(args);
 
-var logger = LoggerFactory.Create(config =>
-{
-    config.AddConsole();
-}).CreateLogger("Program");
+builder.Logging.AddConsole();
 
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/Test", async context =>
+app.MapGet("/Test", async (ILogger<Program> logger, HttpResponse response) =>
 {
     logger.LogInformation("Testing logging in Program.cs");
-    await context.Response.WriteAsync("Testing");
+    await response.WriteAsync("Testing");
 });
 
 app.Run();
-#endregion
+// </snippet1>
 #elif SECOND
-#region snippet2
+// <snippet2>
 using Microsoft.Extensions.Logging.Console;
 
 var builder = WebApplication.CreateBuilder(args);
 
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder.AddSimpleConsole(i => i.ColorBehavior = LoggerColorBehavior.Disabled);
-});
-
-var logger = loggerFactory.CreateLogger<Program>();
+builder.Logging.AddSimpleConsole(i => i.ColorBehavior = LoggerColorBehavior.Disabled);
 
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/Test", async context =>
+app.MapGet("/Test", async (ILogger<Program> logger, HttpResponse response) =>
 {
     logger.LogInformation("Testing logging in Program.cs");
-    await context.Response.WriteAsync("Testing");
+    await response.WriteAsync("Testing");
 });
 
 app.Run();
-#endregion
+// </snippet2>
 #elif APP3
-#region snippet3
+// <snippet3>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 app.Logger.LogInformation("Adding Routes");
 app.MapGet("/", () => "Hello World!");
 app.Logger.LogInformation("Starting the app");
 app.Run();
-#endregion
+// </snippet3>
+#elif APP4
+// <snippet4>
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.AddSimpleConsole(options =>
+{
+    options.IncludeScopes = true;
+});
+
+builder.Logging.Configure(options =>
+{
+    options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
+                                       | ActivityTrackingOptions.TraceId
+                                       | ActivityTrackingOptions.ParentId
+                                       | ActivityTrackingOptions.Baggage
+                                       | ActivityTrackingOptions.Tags;
+});
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+// </snippet4>
+#elif APP5
+// <snippet5>
+// </snippet5>
 #endif

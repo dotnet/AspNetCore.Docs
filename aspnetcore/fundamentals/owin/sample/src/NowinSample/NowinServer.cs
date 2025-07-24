@@ -49,7 +49,7 @@ namespace NowinSample
                 application.DisposeContext(context, null);
             };
 
-            // Add the web socket adapter so we can turn OWIN websockets into ASP.NET Core compatible web sockets.
+            // Add the web socket adapter so we can turn OWIN WebSockets into ASP.NET Core compatible WebSockets.
             // The calling pattern is a bit different
             appFunc = OwinWebSocketAcceptAdapter.AdaptWebSockets(appFunc);
 

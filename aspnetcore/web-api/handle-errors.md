@@ -1,79 +1,35 @@
 ---
-title: Handle errors in ASP.NET Core web APIs
-author: rick-anderson
-description: Learn about error handling with ASP.NET Core web APIs.
+title: Handle errors in ASP.NET Core controller-based web APIs
+author: tdykstra
+description: Learn about error handling with ASP.NET Core controller-based web APIs.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/14/2022
+ms.date: 05/30/2024
 uid: web-api/handle-errors
 ---
-# Handle errors in ASP.NET Core web APIs
+# Handle errors in ASP.NET Core controller-based web APIs
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-7.0"
 
-This article describes how to handle errors and customize error handling with ASP.NET Core web APIs.
+This article describes how to handle errors and customize error handling in controller-based ASP.NET Core web APIs. For information about error handling in minimal APIs, see <xref:fundamentals/error-handling> and <xref:fundamentals/minimal-apis/handle-errors>.
 
 <a name="dep7"></a>
 
 ## Developer Exception Page
 
-The [Developer Exception Page](xref:fundamentals/error-handling) shows detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses. For example, consider the following controller action, which throws an exception:
+[!INCLUDE [](../includes/developer-exception-page.md)]
 
-:::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_Throw":::
+To see the Developer Exception Page:
 
-When the Developer Exception Page detects an unhandled exception, it generates a default plain-text response similar to the following example:
+* Add the following controller action to a controller-based API. The action throws an exception when the endpoint is requested.
 
-```console
-HTTP/1.1 500 Internal Server Error
-Content-Type: text/plain; charset=utf-8
-Server: Kestrel
-Transfer-Encoding: chunked
+  :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_Throw":::
 
-System.Exception: Sample exception.
-   at HandleErrorsSample.Controllers.ErrorsController.Get() in ...
-   at lambda_method1(Closure , Object , Object[] )
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
-
-...
-```
-
-If the client requests an HTML-formatted response, the Developer Exception Page generates a response similar to the following example:
-
-```console
-HTTP/1.1 500 Internal Server Error
-Content-Type: text/html; charset=utf-8
-Server: Kestrel
-Transfer-Encoding: chunked
-
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="utf-8" />
-        <title>Internal Server Error</title>
-        <style>
-            body {
-    font-family: 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
-    font-size: .813em;
-    color: #222;
-    background-color: #fff;
-}
-
-h1 {
-    color: #44525e;
-    margin: 15px 0 15px 0;
-}
-
-...
-```
-
-To request an HTML-formatted response, set the `Accept` HTTP request header to `text/html`.
-
-> [!WARNING]
-> Don't enable the Developer Exception Page **unless the app is running in the Development environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
+* Run the app in the [development environment](xref:fundamentals/environments).
+* Go to the endpoint defined by the controller action.
 
 ## Exception handler
 
@@ -160,7 +116,7 @@ Consider the following controller, which returns <xref:Microsoft.AspNetCore.Http
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1":::
 
-A problem details response is generated with the previous code when any of the following conditions apply:
+A problem details response is generated with the preceding code when any of the following conditions apply:
 
 * The `/api/values2/divide` endpoint is called with a zero denominator.
 * The `/api/values2/squareroot` endpoint is called with a radicand less than zero.
@@ -180,25 +136,17 @@ The default problem details response body has the following `type`, `title`, and
 
 ### Problem details service
 
-The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
+ASP.NET Core supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457) using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService>. For more information, see the [Problem details service](/aspnet/core/fundamentals/error-handling#problem-details).
 
-The following middleware generates problem details HTTP responses when [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) is called, except when not accepted by the client:
-
-* <xref:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>: Generates a problem details response when a custom handler is not defined.
-* <xref:Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware>: Generates a problem details response by default.
-* [DeveloperExceptionPageMiddleware](#dep7): Generates a problem details response in development when `text/html` is not accepted.
-
-The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have a body content yet***:
+The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have body content yet***:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,8-9,13":::
 
-In the [Generate problem details from Middleware](#gpdm7) section of this article, an example is provided where the response has started and the problem details response is not returned.
-
-Consider the API controller from the previous section, which returns <xref:Microsoft.AspNetCore.Http.HttpResults.BadRequest> when the input is invalid:
+Consider the API controller from the preceding section, which returns <xref:Microsoft.AspNetCore.Http.HttpResults.BadRequest> when the input is invalid:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1":::
 
-A problem details response is generated with the previous code when any of the following conditions apply:
+A problem details response is generated with the preceding code when any of the following conditions apply:
 
 * An invalid input is supplied.
 * The URI has no matching endpoint.
@@ -206,13 +154,11 @@ A problem details response is generated with the previous code when any of the f
 
 The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors%2A> property is set to `true`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_disable" highlight="4,9":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_disable" highlight="4-7":::
 
 Using the preceding code, when an API controller returns `BadRequest`, an [HTTP 400](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response status is returned with no response body. `SuppressMapClientErrors` prevents a `ProblemDetails` response from being created, even when calling `WriteAsync` for an API Controller endpoint. `WriteAsync` is explained later in this article.
 
-The next section shows how to customize the problem details response body to return a more helpful response.
-
-<a name="cpd7"></a>
+The next section shows how to customize the problem details response body, using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>, to return a more helpful response. For more customization options, see [Customizing problem details](/aspnet/core/fundamentals/error-handling#cpd7).
 
 #### Customize problem details with `CustomizeProblemDetails`
 
@@ -228,7 +174,7 @@ The following code contains the `MathErrorFeature` and `MathErrorType`, which ar
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/MathErrorFeature.cs" :::
 
-A problem details response is generated with the previous code when any of the following conditions apply:
+A problem details response is generated with the preceding code when any of the following conditions apply:
 
 * The `/divide` endpoint is called with a zero denominator.
 * The `/squareroot` endpoint is called with a radicand less than zero.
@@ -247,56 +193,6 @@ The problem details response body contains the following when either `squareroot
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/middleware/problem-details-service)
 
-<a name="gpdm7"></a>
-
-#### Generate problem details from Middleware
-
-An alternative approach to using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails> is to set the <xref:Microsoft.AspNetCore.Http.ProblemDetailsContext.ProblemDetails> in middleware. A problem details response can be written by calling [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_middleware" highlight="5,19-40":::
-
-In the preceding code, the minimal API endpoints `/divide` and `/squareroot` return the expected custom problem response on error input.
-
-The API controller endpoints return the default problem response on error input, not the custom problem response. The default problem response is returned because the API controller has written to the response stream, [Problem details for error status codes](/aspnet/core/web-api/#problem-details-for-error-status-codes-1), before [`IProblemDetailsService.WriteAsync`](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) is called and the response will not be written again.
-
-The preceding `ValuesController` returns <xref:Microsoft.AspNetCore.Mvc.BadRequestResult>, which writes to the response stream and therefore prevents the custom problem response from being returned.
-
-The following `Values3Controller` returns [`ControllerBase.Problem`](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.problem) so the expected custom problem result is returned:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet3"  highlight="16-21":::
-
-### Produce a ProblemDetails payload for exceptions
-
-Consider the following app:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,8":::
-
-In non-development environments, when an exception occurs, the following a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) is returned to the client:
-
-```json
-{
-"type":"https://tools.ietf.org/html/rfc7231#section-6.6.1",
-"title":"An error occurred while processing your request.",
-"status":500,"traceId":"00-b644<snip>-00"
-}
-```
-
-For most apps, the preceding code is all that for exceptions, however, the following section shows how get more detailed problem responses.
-
-An alternative to a [custom exception handler page](xref:fundamentals/error-handling#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. Using a lambda allows access to the error and writing a problem details response with [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_lambda" :::
-
-> [!WARNING]
-> Do **not** serve sensitive error information to clients. Serving errors is a security risk.
-
-[Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) is a 3rd party problem details middleware Nuget package.
-
-### Implement `IProblemDetailsWriter`
-
-An <xref:Microsoft.AspNetCore.Http.IProblemDetailsWriter> implementation can be created for advanced customizations:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/SampleProblemDetailsWriter.cs" :::
 
 ### Implement `ProblemDetailsFactory`
 
@@ -576,9 +472,7 @@ Date: Fri, 27 Sep 2019 16:55:37 GMT
 }
 ```
 
-The HTML-formatted response becomes useful when testing via tools like Postman. The following screen capture shows both the plain-text and the HTML-formatted responses in Postman:
-
-:::image source="handle-errors/_static/developer-exception-page-postman.gif" alt-text="Test the Developer Exception Page in Postman.":::
+The HTML-formatted response becomes useful when testing via tools like curl.
 
 > [!WARNING]
 > Enable the Developer Exception Page **only when the app is running in the Development environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
@@ -668,7 +562,7 @@ MVC uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory?dis
 
 * Client error responses
 * Validation failure error responses
-* <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A?displayProperty=nameWithType> >
+* <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A?displayProperty=nameWithType>
 
 To customize the problem details response, register a custom implementation of <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> in `Startup.ConfigureServices`:
 

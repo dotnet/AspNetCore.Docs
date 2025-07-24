@@ -1,8 +1,8 @@
 ---
 title: Mobile development with ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Find out about topics that pertain to mobile development with ASP.NET Core.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 10/14/2016
 uid: mobile/index
 ---

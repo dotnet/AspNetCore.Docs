@@ -23,11 +23,14 @@ public static class Program
         // </snippet_MiddlewareJsonV2>
 
         // <snippet_MiddlewareRoutePrefix>
-        app.UseSwaggerUI(options =>
+        if (builder.Environment.IsDevelopment())
         {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-            options.RoutePrefix = string.Empty;
-        });
+            app.UseSwaggerUI(options => // UseSwaggerUI is called only in Development.
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
+            });
+        }
         // </snippet_MiddlewareRoutePrefix>
     }
 
@@ -60,10 +63,13 @@ public static class Program
     private static void Snippet3(WebApplication app)
     {
         // <snippet_MiddlewareInjectStylesheet>
-        app.UseSwaggerUI(options =>
+        if (app.Environment.IsDevelopment())
         {
-            options.InjectStylesheet("/swagger-ui/custom.css");
-        });
+            app.UseSwaggerUI(options => // UseSwaggerUI is called only in Development.
+            {
+                options.InjectStylesheet("/swagger-ui/custom.css");
+            });
+        }
         // </snippet_MiddlewareInjectStylesheet>
 
         // <snippet_MiddlewareStaticFiles>

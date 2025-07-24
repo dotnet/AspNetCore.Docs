@@ -22,6 +22,6 @@ When the request includes the `Accept-Encoding` header and response compression 
 
 ## Use the sample
 
-1. Make a request using [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.getpostman.com/) to the application without an `Accept-Encoding` header and note the response payload, response size, and response headers.
+1. Make a request using [Fiddler](https://www.telerik.com/fiddler) or [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) to the application without an `Accept-Encoding` header and note the response payload, response size, and response headers.
 1. Add an `Accept-Encoding: br` or `Accept-Encoding: gzip` header and note the compressed response size and response headers. The response size drops, and the `Content-Encoding` response header is included by the middleware indicating that compression with either Gzip or Brotli occurred. When you look at the response body for the Lorem Ipsum or **testfile1kb.txt** response, you see that the text is compressed and unreadable.
 1. Add an `Accept-Encoding: mycustomcompression` header and note the response headers. The `CustomCompressionProvider` is an empty implementation that doesn't actually compress the response, but you can create a custom compression stream wrapper for the `CreateStream()` method.

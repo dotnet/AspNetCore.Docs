@@ -1,10 +1,10 @@
 ---
 title: "Tutorial: Handle concurrency - ASP.NET MVC with EF Core"
 description: "This tutorial shows how to handle conflicts when multiple users update the same entity at the same time."
-author: rick-anderson
-ms.author: riande
+author: tdykstra
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/27/2019
+ms.date: 07/09/2024
 ms.topic: tutorial
 uid: data/ef-mvc/concurrency
 ---
@@ -100,11 +100,11 @@ In `Models/Department.cs`, add a tracking property named RowVersion:
 
 The `Timestamp` attribute specifies that this column will be included in the Where clause of Update and Delete commands sent to the database. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` replaced it. The .NET type for `rowversion` is a byte array.
 
-If you prefer to use the fluent API, you can use the `IsConcurrencyToken` method (in `Data/SchoolContext.cs`) to specify the tracking property, as shown in the following example:
+If you prefer to use the fluent API, you can use the `IsRowVersion()` method (in `Data/SchoolContext.cs`) to specify the tracking property, as shown in the following example:
 
 ```csharp
 modelBuilder.Entity<Department>()
-    .Property(p => p.RowVersion).IsConcurrencyToken();
+    .Property(p => p.RowVersion).IsRowVersion();
 ```
 
 By adding a property you changed the database model, so you need to do another migration.

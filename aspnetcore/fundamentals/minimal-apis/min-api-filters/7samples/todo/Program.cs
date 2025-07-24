@@ -108,23 +108,23 @@ app.MapPut("/todoitems/{id}", async (Todo inputTodo, int id, TodoDb db) =>
     await db.SaveChangesAsync();
 
     return Results.NoContent();
-}).AddEndpointFilterFactory(async (filterFactoryContext, next) =>
+}).AddEndpointFilterFactory((filterFactoryContext, next) =>
 {
-    var parameters = context.MethodInfo.GetParameters();
+    var parameters = filterFactoryContext.MethodInfo.GetParameters();
     if (parameters.Length >= 1 && parameters[0].ParameterType == typeof(Todo))
     {
         return async invocationContext =>
         {
             var todoParam = invocationContext.GetArgument<Todo>(0);
 
-            var validationError = Utilities.IsValid(tdparam);
+            var validationError = Utilities.IsValid(todoParam);
 
             if (!string.IsNullOrEmpty(validationError))
             {
                 return Results.Problem(validationError);
             }
-            return await next(invocationContextContext);
-        }
+            return await next(invocationContext);
+        };
     }
     return invocationContext => next(invocationContext); 
 });
@@ -136,7 +136,7 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
     {
         db.Todos.Remove(todo);
         await db.SaveChangesAsync();
-        return Results.Ok(todo);
+        return Results.NoContent();
     }
 
     return Results.NotFound();

@@ -1,16 +1,16 @@
 ---
 title: Upload files in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 08/21/2020
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/) and [Rutger Storm](https://github.com/rutix)
+By [Rutger Storm](https://github.com/rutix)
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -20,7 +20,7 @@ ASP.NET Core supports uploading one or more files using buffered model binding f
 
 ## Security considerations
 
-Use caution when providing users with the ability to upload files to a server. Attackers may attempt to:
+Use caution when providing users with the ability to upload files to a server. Cyberattackers may attempt to:
 
 * Execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks.
 * Upload viruses or malware.
@@ -47,7 +47,7 @@ Security steps that reduce the likelihood of a successful attack are:
 > * Compromise user or system data.
 > * Apply graffiti to a public UI.
 >
-> For information on reducing the attack surface area when accepting files from users, see the following resources:
+> For information on reducing vulnerabilities when accepting files from users, see the following resources:
 >
 > * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
@@ -60,7 +60,7 @@ Common storage options for files include:
 
 * Database
 
-  * For small file uploads, a database is often faster than physical storage (file system or network share) options.
+  * For [small](#small5) file uploads, a database is often faster than physical storage (file system or network share) options.
   * A database is often more convenient than physical storage options because retrieval of a database record for user data can concurrently supply the file content (for example, an avatar image).
   * A database is potentially less expensive than using a cloud data storage service.
 
@@ -78,6 +78,22 @@ Common storage options for files include:
   * Services are potentially lower cost in large storage infrastructure scenarios.
 
   For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet).
+
+<a name="small5"></a>
+
+## Small and large files
+
+The definition of small and large files depend on the computing resources available. Apps should benchmark the storage approach used to ensure it can handle the expected sizes. Benchmark memory, CPU, disk, and database performance.
+
+While specific boundaries can't be provided on what is small versus large for your deployment, here are some of ASP.NET Core's related defaults for [`FormOptions`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs) ([API documentation](xref:Microsoft.AspNetCore.Http.Features.FormOptions)):
+
+* By default, [`HttpRequest.Form`](xref:Microsoft.AspNetCore.Http.HttpRequest.Form) doesn't buffer the entire request body (<xref:Microsoft.AspNetCore.Http.Features.FormOptions.BufferBody>), but it does buffer any multipart form files included.
+* <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> is the maximum size for buffered form files (default: 128 MB).
+* <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MemoryBufferThreshold> indicates the buffering threshold in memory before transitioning to a buffer file on disk (default: 64 KB). `MemoryBufferThreshold` acts as a boundary between small and large files, which is raised or lowered depending on the apps resources and scenarios.
+
+For more information on <xref:Microsoft.AspNetCore.Http.Features.FormOptions>, see the [`FormOptions` class](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs) in the ASP.NET Core reference source.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## File upload scenarios
 
@@ -117,7 +133,7 @@ The following example demonstrates the use of a Razor Pages form to upload a sin
             <label asp-for="FileUpload.FormFile"></label>
         </dt>
         <dd>
-            <input asp-for="FileUpload.FormFile" type="file">
+            <input asp-for="FileUpload.FormFile" type="file" />
             <span asp-validation-for="FileUpload.FormFile"></span>
         </dd>
     </dl>
@@ -201,7 +217,7 @@ In order to support file uploads, HTML forms must specify an encoding type (`enc
 For a `files` input element to support uploading multiple files provide the `multiple` attribute on the `<input>` element:
 
 ```cshtml
-<input asp-for="FileUpload.FormFiles" type="file" multiple>
+<input asp-for="FileUpload.FormFiles" type="file" multiple />
 ```
 
 The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
@@ -209,7 +225,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 <a name="filename"></a>
 
 > [!WARNING]
-> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename, including full paths or relative paths. Applications should:
+> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. A cyberattacker can provide a malicious filename, including full paths or relative paths. Applications should:
 >
 > * Remove the path from the user-supplied filename.
 > * Save the HTML-encoded, path-removed filename for UI or logging.
@@ -294,7 +310,7 @@ Files uploaded using the <xref:Microsoft.AspNetCore.Http.IFormFile> technique ar
 For another example that loops over multiple files for upload and uses safe file names, see `Pages/BufferedMultipleFileUploadPhysical.cshtml.cs` in the sample app.
 
 > [!WARNING]
-> [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) throws an <xref:System.IO.IOException> if more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following topics:
+> In .NET 7 or earlier versions, [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName%2A) throws an <xref:System.IO.IOException> when more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following articles:
 >
 > * [GetTempFileNameA function](/windows/desktop/api/fileapi/nf-fileapi-gettempfilenamea#remarks)
 > * <xref:System.IO.Path.GetTempFileName*>
@@ -399,6 +415,47 @@ The preceding example is similar to a scenario demonstrated in the sample app:
 
 ### Upload large files with streaming
 
+For scenarios where large file uploads are required, streaming uploads allow you to process incoming multipart form data directly without buffering the entire file in memory or on disk via model binding. This technique is especially important for files that could exceed server or framework buffering thresholds.
+
+The [sample application for 9.x](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/9.x/FileManagerSample) demonstrates how a server can receive a file and stream the data directly to disk, supporting robust cancellation via the HTTP request's cancellation token.
+
+<xref:Microsoft.AspNetCore.WebUtilities.MultipartReader> is an ASP.NET Core utility for reading files from incoming requests. The following snippet shows how to process a request and stream the file into an `outputStream` (such as a <xref:System.IO.FileStream>):
+
+```csharp
+// Read the boundary from the Content-Type header
+var boundary = HeaderUtilities.RemoveQuotes(
+    MediaTypeHeaderValue.Parse(request.ContentType).Boundary).Value;
+
+// Use MultipartReader to stream data to a destination
+var reader = new MultipartReader(boundary, Request.Body);
+MultipartSection? section;
+
+while ((section = await reader.ReadNextSectionAsync(cancellationToken)) != null)
+{
+    var contentDisposition = section.GetContentDispositionHeader();
+
+    if (contentDisposition != null && contentDisposition.IsFileDisposition())
+    {
+        await section.Body.CopyToAsync(outputStream, cancellationToken);
+    }
+}
+```
+
+<xref:Microsoft.AspNetCore.Http.Features.IFormFeature> is a wrapper around <xref:Microsoft.AspNetCore.WebUtilities.MultipartReader> that doesn't require you to write manual request body parsing code. You can use its <xref:Microsoft.AspNetCore.Http.Features.IFormFeature.ReadFormAsync%2A> method to populate the request's form data, then access uploaded files from the built-in collection:
+
+```csharp
+// Get the IFormFeature and read the form
+var formFeature = Request.HttpContext.Features.GetRequiredFeature<IFormFeature>();
+await formFeature.ReadFormAsync(cancellationToken);
+
+// Access the uploaded file (example: first file)
+var filePath = Request.Form.Files.First().FileName;
+
+return Results.Ok($"Saved file at {filePath}");
+```
+
+For advanced scenarios, manually parse the raw request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader%2A?displayProperty=nameWithType>, which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample app includes endpoint handlers that use `IPipeReader` in both minimal APIs and controllers.
+
 The [3.1 example](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/file-uploads/samples/3.x/SampleApp/Pages/StreamedSingleFileUploadDb.cshtml) demonstrates how to use JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, form model binding is disabled by another custom filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. After the multipart sections are read, the action performs its own model binding.
 
 The initial page response loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieAttribute` attribute). The attribute uses ASP.NET Core's built-in [antiforgery support](xref:security/anti-request-forgery) to set a cookie with a request token:
@@ -491,7 +548,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 }
 ```
 
-To obtain additional file signatures, see the [File Signatures Database](https://www.filesignatures.net/) and official file specifications.
+To obtain additional file signatures, use a [file signatures database (Google search result)](https://www.google.com/search?q=file+signatures+databases) and official file specifications. Consulting official file specifications may ensure that the selected signatures are valid.
 
 ### File name security
 
@@ -745,7 +802,7 @@ ASP.NET Core supports uploading one or more files using buffered model binding f
 
 ## Security considerations
 
-Use caution when providing users with the ability to upload files to a server. Attackers may attempt to:
+Use caution when providing users with the ability to upload files to a server. Cyberattackers may attempt to:
 
 * Execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks.
 * Upload viruses or malware.
@@ -772,7 +829,7 @@ Security steps that reduce the likelihood of a successful attack are:
 > * Compromise user or system data.
 > * Apply graffiti to a public UI.
 >
-> For information on reducing the attack surface area when accepting files from users, see the following resources:
+> For information on reducing vulnerabilities when accepting files from users, see the following resources:
 >
 > * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
@@ -933,7 +990,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 <a name="filename"></a>
 
 > [!WARNING]
-> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename, including full paths or relative paths. Applications should:
+> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. A cyberattacker can provide a malicious filename, including full paths or relative paths. Applications should:
 >
 > * Remove the path from the user-supplied filename.
 > * Save the HTML-encoded, path-removed filename for UI or logging.
@@ -1215,7 +1272,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 }
 ```
 
-To obtain additional file signatures, see the [File Signatures Database](https://www.filesignatures.net/) and official file specifications.
+To obtain additional file signatures, use a [file signatures database (Google search result)](https://www.google.com/search?q=file+signatures+databases) and official file specifications. Consulting official file specifications may ensure that the selected signatures are valid.
 
 ### File name security
 
@@ -1480,7 +1537,7 @@ ASP.NET Core supports uploading one or more files using buffered model binding f
 
 ## Security considerations
 
-Use caution when providing users with the ability to upload files to a server. Attackers may attempt to:
+Use caution when providing users with the ability to upload files to a server. Cyberattackers may attempt to:
 
 * Execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks.
 * Upload viruses or malware.
@@ -1507,7 +1564,7 @@ Security steps that reduce the likelihood of a successful attack are:
 > * Compromise user or system data.
 > * Apply graffiti to a public UI.
 >
-> For information on reducing the attack surface area when accepting files from users, see the following resources:
+> For information on reducing vulnerabilities when accepting files from users, see the following resources:
 >
 > * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
@@ -1668,7 +1725,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 <a name="filename2"></a>
 
 > [!WARNING]
-> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename, including full paths or relative paths. Applications should:
+> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. A cyberattacker can provide a malicious filename, including full paths or relative paths. Applications should:
 >
 > * Remove the path from the user-supplied filename.
 > * Save the HTML-encoded, path-removed filename for UI or logging.
@@ -1950,7 +2007,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 }
 ```
 
-To obtain additional file signatures, see the [File Signatures Database](https://www.filesignatures.net/) and official file specifications.
+To obtain additional file signatures, use a [file signatures database (Google search result)](https://www.google.com/search?q=file+signatures+databases) and official file specifications. Consulting official file specifications may ensure that the selected signatures are valid.
 
 ### File name security
 

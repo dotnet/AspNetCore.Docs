@@ -5,25 +5,26 @@ summary: Welcome to what's new in ASP.NET Core docs. Use this page to quickly fi
 metadata:
   title: ASP.NET Core documentation - What's new?
   description: Learn about new and updated content in ASP.NET Core docs.
-  ms.date: 10/03/2022
+  ms.author: riande
+  ms.date: 07/01/2024
   ms.topic: landing-page
 landingContent:
 - title: Find ASP.NET Core docs updates
   linkLists:
   - linkListType: whats-new
     links:
-    - text: September 2022
-      url: dotnet-AspNetCore.Docs-2022-09-01.md
-    - text: August 2022
-      url: dotnet-AspNetCore.Docs-2022-08-01.md
-    - text: July 2022
-      url: dotnet-AspNetCore.Docs-2022-07-01.md
-    - text: June 2022
-      url: dotnet-AspNetCore.Docs-2022-04-01.md
-    - text: March 2022
-      url: dotnet-AspNetCore.Docs-2022-03-01.md
-    - text: February 2022
-      url: dotnet-AspNetCore.Docs-2022-02-01.md
+    - text: June 2024
+      url: dotnet-AspNetCore.Docs-mod0.md
+    - text: May 2024
+      url: dotnet-AspNetCore.Docs-mod5.md
+    - text: April 2024
+      url: dotnet-AspNetCore.Docs-mod4.md
+    - text: March 2024
+      url: dotnet-AspNetCore.Docs-mod3.md
+    - text: February 2024
+      url: dotnet-AspNetCore.Docs-mod2.md
+    - text: January 2024
+      url: dotnet-AspNetCore.Docs-mod1.md
 - title: Get involved - contribute to ASP.NET Core docs
   linkLists:
   - linkListType: overview
@@ -50,8 +51,8 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
-    - text: Xamarin docs updates
-      url: /xamarin/whats-new/
+    - text: .NET Multi-platform App UI (.NET MAUI) docs updates
+      url: /dotnet/maui/whats-new/
     - text: .NET Core release notes
       url: https://github.com/dotnet/core/blob/main/release-notes/README.md
     - text: ASP.NET Core release notes

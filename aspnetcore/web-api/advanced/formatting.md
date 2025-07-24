@@ -1,9 +1,9 @@
 ---
 title: Format response data in ASP.NET Core Web API
-author: rick-anderson
+author: tdykstra
 description: Learn how to format response data in ASP.NET Core Web API.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: H1Hack27Feb2017
 ms.date: 04/08/2022
 uid: web-api/advanced/formatting
@@ -31,7 +31,7 @@ By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.Controller
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_Get":::
 
-The sample code returns a list of todo items. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/product/tools) with the previous code displays:
+The sample code returns a list of todo items. Using the F12 browser developer tools or [http-repl](xref:web-api/http-repl) with the previous code displays:
 
 * The response header containing **content-type:** `application/json; charset=utf-8`.
 * The request headers. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
@@ -46,7 +46,7 @@ For actions with multiple return types, return `IActionResult`. For example, whe
 
 ## Content negotiation
 
-Content negotiation occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
+Content negotiation occurs when the client specifies an [Accept header](https://www.rfc-editor.org/rfc/rfc9110#field.accept). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
 
 * Implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>.
 * Built into the status code-specific action results returned from the helper methods. The action results helper methods are based on `ObjectResult`.
@@ -63,7 +63,7 @@ By default, ASP.NET Core supports the following media types:
 * `text/json`
 * `text/plain`
 
-Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/product/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
+Tools such as [Fiddler](https://www.telerik.com/fiddler) or curl can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
@@ -232,7 +232,7 @@ The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok%2A> 
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_get":::
 
-The sample download returns the list of authors. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/product/tools) with the previous code:
+The sample download returns the list of authors. Using the F12 browser developer tools or [http-repl](xref:web-api/http-repl) with the previous code:
 
 * The response header containing **content-type:** `application/json; charset=utf-8` is displayed.
 * The request headers are displayed. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
@@ -249,7 +249,7 @@ For actions with multiple return types, return `IActionResult`. For example, ret
 
 ## Content negotiation
 
-Content negotiation occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
+Content negotiation occurs when the client specifies an [Accept header](https://www.rfc-editor.org/rfc/rfc9110#field.accept). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
 
 * Implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>.
 * Built into the status code-specific action results returned from the helper methods. The action results helper methods are based on `ObjectResult`.
@@ -260,7 +260,7 @@ The following action method uses the `Ok` and `NotFound` helper methods:
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_search":::
 
-By default, ASP.NET Core supports `application/json`, `text/json`, and `text/plain` media types. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/product/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
+By default, ASP.NET Core supports `application/json`, `text/json`, and `text/plain` media types. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [http-repl](xref:web-api/http-repl) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
@@ -463,7 +463,7 @@ By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.Controller
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_Get":::
 
-The sample code returns a list of todo items. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/product/tools) with the previous code displays:
+The sample code returns a list of todo items. Using the F12 browser developer tools or [http-repl](xref:web-api/http-repl) with the previous code displays:
 
 * The response header containing **content-type:** `application/json; charset=utf-8`.
 * The request headers. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
@@ -478,7 +478,7 @@ For actions with multiple return types, return `IActionResult`. For example, whe
 
 ## Content negotiation
 
-Content negotiation occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
+Content negotiation occurs when the client specifies an [Accept header](https://www.rfc-editor.org/rfc/rfc9110#field.accept). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
 
 * Implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>.
 * Built into the status code-specific action results returned from the helper methods. The action results helper methods are based on `ObjectResult`.
@@ -495,7 +495,7 @@ By default, ASP.NET Core supports the following media types:
 * `text/json`
 * `text/plain`
 
-Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/product/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
+Tools such as [Fiddler](https://www.telerik.com/fiddler) or [http-repl](xref:web-api/http-repl) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 

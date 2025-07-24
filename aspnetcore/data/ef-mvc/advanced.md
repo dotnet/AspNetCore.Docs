@@ -1,8 +1,8 @@
 ---
 title: "Tutorial: Learn about advanced scenarios - ASP.NET MVC with EF Core"
 description: "This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core."
-author: rick-anderson
-ms.author: riande
+author: tdykstra
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
@@ -255,6 +255,8 @@ For more information about EF Core, see the [Entity Framework Core documentation
 For information on how to deploy a web app, see <xref:host-and-deploy/index>.
 
 For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see <xref:index>.
+
+[!INCLUDE[](~/includes/reliableWAP.md)]
 
 ## Next steps
 

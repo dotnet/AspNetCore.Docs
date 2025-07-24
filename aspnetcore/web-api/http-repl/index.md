@@ -1,11 +1,11 @@
 ---
 title: Test web APIs with the HttpRepl
-author: rick-anderson
+author: tdykstra
 description: Learn how to use the HttpRepl .NET Core Global Tool to browse and test an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: scaddie
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/12/2020
+ms.date: 04/17/2023
 uid: web-api/http-repl
 ---
 # Test web APIs with the HttpRepl
@@ -41,6 +41,14 @@ dotnet tool install -g Microsoft.dotnet-httprepl
 ```
 
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl) NuGet package.
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
+On macOS, update the path:
+
+```bash
+export PATH="$HOME/.dotnet/tools:$PATH"
+```
 
 ## Usage
 
@@ -379,12 +387,12 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 By default, the HttpRepl has a set of relative paths that it uses to find the OpenAPI description when executing the `connect` command without the `--openapi` option. These relative paths are combined with the root and base paths specified in the `connect` command. The default relative paths are:
 
-- `swagger.json`
-- `swagger/v1/swagger.json`
-- `/swagger.json`
-- `/swagger/v1/swagger.json`
-- `openapi.json`
-- `/openapi.json`
+* `swagger.json`
+* `swagger/v1/swagger.json`
+* `/swagger.json`
+* `/swagger/v1/swagger.json`
+* `openapi.json`
+* `/openapi.json`
 
 To use a different set of search paths in your environment, set the `swagger.searchPaths` preference. The value must be a pipe-delimited list of relative paths. For example:
 
@@ -1109,4 +1117,3 @@ https://localhost:5001/>
 * [HttpRepl GitHub repository](https://github.com/dotnet/HttpRepl)
 * [Configure Visual Studio to launch HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-for-windows-to-launch-httprepl-on-f5)
 * [Configure Visual Studio Code to launch HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-code-to-launch-httprepl-on-debug)
-* [Configure Visual Studio for Mac to launch HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-for-mac-to-launch-httprepl-as-a-custom-tool)

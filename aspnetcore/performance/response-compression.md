@@ -1,9 +1,9 @@
 ---
 title: Response compression in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn about response compression and how to use Response Compression Middleware in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 3/17/2022
 uid: performance/response-compression
@@ -32,7 +32,7 @@ Use Response Compression Middleware when the app is:
 * Unable to use the following server-based compression technologies:
   * [IIS Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression)
   * [Apache mod_deflate module](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
-  * [Nginx Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
+  * [Nginx Compression and Decompression](https://docs.nginx.com/nginx/admin-guide/web-server/compression/)
 * Hosting directly on:
   * [HTTP.sys server](xref:fundamentals/servers/httpsys)
   * [Kestrel server](xref:fundamentals/servers/kestrel)
@@ -57,7 +57,7 @@ For more information, see the [IANA Official Content Coding List](https://www.ia
 
 The response compression middleware allows adding additional compression providers for custom `Accept-Encoding` header values. For more information, see [Custom Providers](#custom-providers) in this article.
 
-The response compression middleware is capable of reacting to quality value (qvalue, `q`) weighting when sent by the client to prioritize compression schemes. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
+The response compression middleware is capable of reacting to quality value (qvalue, `q`) weighting when sent by the client to prioritize compression schemes. For more information, see [RFC 9110: Accept-Encoding](https://www.rfc-editor.org/rfc/rfc9110#field.accept-encoding).
 
 Compression algorithms are subject to a tradeoff between compression speed and the effectiveness of the compression. *Effectiveness* in this context refers to the size of the output after compression. The smallest size is achieved by the optimal compression.
 
@@ -88,9 +88,9 @@ Notes:
 
 * Setting `EnableForHttps` to `true` is a security risk. See [Compression with HTTPS](#risk) in this article for more information.
 * [`app.UseResponseCompression`](xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A) must be called ***before*** any middleware that compresses responses. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
-* Use a tool such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.getpostman.com/) to set the `Accept-Encoding` request header and examine the response headers, size, and body.
+* Use a tool such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) to set the `Accept-Encoding` request header and examine the response headers, size, and body.
 
-Submit a request to the [sample app](https://responsecompression.azurewebsites.net/) without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` header isn't in the Response Headers collection.
+Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` header isn't in the Response Headers collection.
 
 For example, in Firefox Developer:
 
@@ -99,7 +99,7 @@ For example, in Firefox Developer:
 * Change `Accept-Encoding:` from  `gzip, deflate, br` to `none`.
 * Select **Send**.
 
-Submit a request to the [sample app](https://responsecompression.azurewebsites.net/) with a browser using the developer tools and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
+Submit a request to the sample app with a browser using the developer tools and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
 
 ## Providers
 
@@ -125,11 +125,7 @@ The following code:
 
 Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> and <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>. The Brotli and Gzip compression providers default to the fastest compression level, [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel), which might not produce the most efficient compression. If the most efficient compression is desired, configure the response compression middleware for optimal compression.
 
-| Compression Level | Description |
-| ----------------- | ----------- |
-| [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | Compression should complete as quickly as possible, even if the resulting output isn't optimally compressed. |
-| [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | No compression should be performed. |
-| [CompressionLevel.Optimal](xref:System.IO.Compression.CompressionLevel) | Responses should be optimally compressed, even if the compression takes more time to complete. |
+See [CompressionLevel Enum](/dotnet/api/system.io.compression.compressionlevel) for values that indicate whether a compression operation emphasizes speed or compression size.
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
 
@@ -137,7 +133,7 @@ Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.Br
 
 Create custom compression implementations with <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider>. The <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName*> represents the content encoding that this `ICompressionProvider` produces. The response compression middleware uses this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
 
-Requests to the [sample app](https://responsecompression.azurewebsites.net/) with
+Requests to the sample app with
  the `Accept-Encoding: mycustomcompression` header return a response with a `Content-Encoding: mycustomcompression` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_cust&highlight=9)]
@@ -152,7 +148,7 @@ The response compression middleware specifies a default set of MIME types for co
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-Replace or append MIME types with [`ResponseCompressionOptions.MimeTypes`](xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.MimeTypes). Note that wildcard MIME types, such as `text/*` aren't supported. The [sample app](https://responsecompression.azurewebsites.net/) adds a MIME type for `image/svg+xml` and compresses and serves the ASP.NET Core banner image *banner.svg*.
+Replace or append MIME types with [`ResponseCompressionOptions.MimeTypes`](xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.MimeTypes). Note that wildcard MIME types, such as `text/*` aren't supported. The sample app adds a MIME type for `image/svg+xml` and compresses and serves the ASP.NET Core banner image *banner.svg*.
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_mime&highlight=12-14)]
 
@@ -164,7 +160,7 @@ When compressing responses based on the [`Accept-Encoding` request header](https
 
 ## Middleware issue when behind an Nginx reverse proxy
 
-When a request is proxied by Nginx, the `Accept-Encoding` header is removed. Removal of the `Accept-Encoding` header prevents The response compression middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (dotnet/aspnetcore#5989)](https://github.com/dotnet/aspnetcore/issues/5989).
+When a request is proxied by Nginx, the `Accept-Encoding` header is removed. Removal of the `Accept-Encoding` header prevents the response compression middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (dotnet/aspnetcore#5989)](https://github.com/dotnet/aspnetcore/issues/5989).
 
 ## Disabling IIS dynamic compression
 
@@ -172,7 +168,7 @@ To disable IIS Dynamic Compression Module configured at the server level, see [D
 
 ## Troubleshoot response compression
 
-Use a tool like [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.getpostman.com/), which allows setting the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
+Use a tool like [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), which allows setting the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
 
 * The `Accept-Encoding` header is present with a value of `br`, `gzip`, `*`, or custom encoding that matches a custom compression provider. The value must not be `identity` or have a quality value (qvalue, `q`) setting of 0 (zero).
 * The MIME type (`Content-Type`) must be set and must match a MIME type configured on the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions>.
@@ -181,7 +177,7 @@ Use a tool like [Firefox Browser Developer](https://www.mozilla.org/firefox/deve
 
 ## Azure deployed sample
 
-The [sample app](https://responsecompression.azurewebsites.net/) depolyed to Azure has the following `Program.cs` file:
+The sample app deployed to Azure has the following `Program.cs` file:
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_opt)]
 
@@ -193,8 +189,8 @@ The [sample app](https://responsecompression.azurewebsites.net/) depolyed to Azu
 * [Response compression middleware source](https://github.com/dotnet/aspnetcore/tree/main/src/Middleware/ResponseCompression/src)
 * <xref:fundamentals/middleware/index>
 * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
-* [RFC 7231 Section 3.1.2.1: Content Codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
-* [RFC 7230 Section 4.2.3: Gzip Coding](https://tools.ietf.org/html/rfc7230#section-4.2.3)
+* [RFC 9110 Section 8.4.1: Content Codings](https://www.rfc-editor.org/rfc/rfc9110#name-content-codings)
+* [RFC 9110 Section 8.4.1.3: Gzip Coding](https://www.rfc-editor.org/rfc/rfc9110#gzip.coding)
 * [GZIP file format specification version 4.3](https://www.ietf.org/rfc/rfc1952.txt)
 
 :::moniker-end
@@ -207,7 +203,7 @@ Network bandwidth is a limited resource. Reducing the size of the response usual
 
 ## When to use Response Compression Middleware
 
-Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the middleware probably won't match that of the server modules. [HTTP.sys server](xref:fundamentals/servers/httpsys) server and [Kestrel](xref:fundamentals/servers/kestrel) server don't currently offer built-in compression support.
+Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the middleware probably won't match that of the server modules. [HTTP.sys](xref:fundamentals/servers/httpsys) server and [Kestrel](xref:fundamentals/servers/kestrel) server don't currently offer built-in compression support.
 
 Use Response Compression Middleware when you're:
 
@@ -239,7 +235,7 @@ For more information, see the [IANA Official Content Coding List](https://www.ia
 
 The middleware allows you to add additional compression providers for custom `Accept-Encoding` header values. For more information, see [Custom Providers](#custom-providers) below.
 
-The middleware is capable of reacting to quality value (qvalue, `q`) weighting when sent by the client to prioritize compression schemes. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
+The middleware is capable of reacting to quality value (qvalue, `q`) weighting when sent by the client to prioritize compression schemes. For more information, see [RFC 9110: Accept-Encoding](https://www.rfc-editor.org/rfc/rfc9110#field.accept-encoding).
 
 Compression algorithms are subject to a tradeoff between compression speed and the effectiveness of the compression. *Effectiveness* in this context refers to the size of the output after compression. The smallest size is achieved by the most *optimal* compression.
 
@@ -281,7 +277,7 @@ public class Startup
 Notes:
 
 * `app.UseResponseCompression` must be called before any middleware that compresses responses. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
-* Use a tool such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.getpostman.com/) to set the `Accept-Encoding` request header and study the response headers, size, and body.
+* Use a tool such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) to set the `Accept-Encoding` request header and study the response headers, size, and body.
 
 Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` and `Vary` headers aren't present on the response.
 
@@ -425,7 +421,7 @@ If you have an active IIS Dynamic Compression Module configured at the server le
 
 ## Troubleshooting
 
-Use a tool like [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.getpostman.com/), which allow you to set the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
+Use a tool like [Fiddler](https://www.telerik.com/fiddler) or [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), which allow you to set the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
 
 * The `Accept-Encoding` header is present with a value of `br`, `gzip`, `*`, or custom encoding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality value (qvalue, `q`) setting of 0 (zero).
 * The MIME type (`Content-Type`) must be set and must match a MIME type configured on the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions>.
@@ -437,8 +433,8 @@ Use a tool like [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Dev
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
 * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
-* [RFC 7231 Section 3.1.2.1: Content Codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
-* [RFC 7230 Section 4.2.3: Gzip Coding](https://tools.ietf.org/html/rfc7230#section-4.2.3)
+* [RFC 9110 Section 8.4.1: Content Codings](https://www.rfc-editor.org/rfc/rfc9110#name-content-codings)
+* [RFC 9110 Section 8.4.1.3: Gzip Coding](https://www.rfc-editor.org/rfc/rfc9110#gzip.coding)
 * [GZIP file format specification version 4.3](https://www.ietf.org/rfc/rfc1952.txt)
 
 :::moniker-end

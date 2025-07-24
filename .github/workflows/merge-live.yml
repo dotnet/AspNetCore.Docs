@@ -9,9 +9,14 @@ permissions:
 env:
   DOTNET_DOCS_HEAD: main
   DOTNET_DOCS_BASE: live
+# Prevent merging merging at the same time
+concurrency: 
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
 jobs:
   default:
     runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
     steps:
       - uses: actions/checkout@v2
       - run: |

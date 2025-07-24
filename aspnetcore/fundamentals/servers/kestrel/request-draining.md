@@ -1,15 +1,17 @@
 ---
 title: Request draining with ASP.NET Core Kestrel web server
-author: rick-anderson
+author: tdykstra
 description: Learn about request draining with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/04/2020
 uid: fundamentals/servers/kestrel/request-draining
 ---
 
 # Request draining with ASP.NET Core Kestrel web server
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 Opening HTTP connections is time consuming. For HTTPS, it's also resource intensive. Therefore, Kestrel tries to reuse connections per the HTTP/1.1 protocol. A request body must be fully consumed to allow the connection to be reused. The app doesn't always consume the request body, such as HTTP POST requests where the server returns a redirect or 404 response. In the HTTP POST redirect case:
 

@@ -9,6 +9,8 @@ uid: fundamentals/middleware/request-decompression
 ---
 # Request decompression in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [David Acker](https://github.com/david-acker)
 
 Request decompression middleware:
@@ -26,14 +28,14 @@ Requests that don't include a `Content-Encoding` header are ignored by the reque
 
 Decompression:
 
-* Occurs when the body of the request is being read. That is, decompression occurs at the endpoint on model binding. The request body is not decompressed eagerly.
-* When attempting to read the decompressed request body, if the compressed data is invalid for the specified `Content-Encoding`, an exception is thrown.
+* Occurs when the body of the request is read. That is, decompression occurs at the endpoint on model binding. The request body isn't decompressed eagerly.
+* When attempting to read the decompressed request body with invalid compressed data for the specified `Content-Encoding`, an exception is thrown. Brotli can throw <xref:System.InvalidOperationException?displayProperty=fullName>: :::no-loc text="Decoder ran into invalid data."::: Deflate and GZip can throw <xref:System.IO.InvalidDataException?displayProperty=fullName>: :::no-loc text="The archive entry was compressed using an unsupported compression method.":::
 
-If the middleware encounters a request with compressed content but is unable to decompress it, the request is passed to the next delegate in the pipeline. For example, a request with an unsupported `Content-Encoding` header value or multiple `Content-Encoding` header values, is passed to the next delegate in the pipeline. For example, Brotli can throw `System.InvalidOperationException`: Decoder ran into invalid data, Deflate and GZip can throw `System.IO.InvalidDataException`: The archive entry was compressed using an unsupported compression method.
+If the middleware encounters a request with compressed content but is unable to decompress it, the request is passed to the next delegate in the pipeline. For example, a request with an unsupported `Content-Encoding` header value or multiple `Content-Encoding` header values is passed to the next delegate in the pipeline.
 
 ## Configuration
 
-The following code shows how to enable request decompression for the [default](#default) `Content-Encoding` types:
+The following code uses <xref:Microsoft.Extensions.DependencyInjection.RequestDecompressionServiceExtensions.AddRequestDecompression(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.AspNetCore.Builder.RequestDecompressionBuilderExtensions.UseRequestDecompression%2A> to enable request decompression for the [default](#default) `Content-Encoding` types:
 
 [!code-csharp[](samples/request-decompression/7.x/Program.cs?name=snippet_WithDefaultProviders&highlight=3,7)]
 
@@ -61,7 +63,7 @@ Custom decompression providers are registered with <xref:Microsoft.AspNetCore.Re
 
 ## Request size limits
 
-In order to guard against [zip bombs or decompression bombs](https://en.wikipedia.org/wiki/Zip_bomb):
+In order to protect against [zip bombs or decompression bombs](https://en.wikipedia.org/wiki/Zip_bomb):
 
 * The maximum size of the decompressed request body is limited to the request body size limit enforced by the endpoint or server.
 * If the number of bytes read from the decompressed request body stream exceeds the limit, an [InvalidOperationException](xref:System.InvalidOperationException) is thrown to prevent additional bytes from being read from the stream.

@@ -5,7 +5,7 @@ description: Learn how to set up two-factor authentication (2FA) with an ASP.NET
 monikerRange: '< aspnetcore-2.0'
 ms.author: riande
 ms.date: 09/22/2018
-ms.custom: "mvc, seodec18"
+ms.custom: mvc
 uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS in ASP.NET Core
@@ -13,19 +13,19 @@ uid: security/authentication/2fa
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
 >[!WARNING]
-> Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. For more information, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
+> Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. For more information, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 or later.
 
-This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm) before starting this tutorial.
+This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and ASPSMS (`https://www.aspsms.com/asp.net/identity/core/testcredits/`), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm) before starting this tutorial.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/2fa/sample/Web2FA). [How to download](xref:index#how-to-download-a-sample).
 
 ## Create a new ASP.NET Core project
 
-Create a new ASP.NET Core web app named `Web2FA` with individual user accounts. Follow the instructions in <xref:security/enforcing-ssl> to set up and require HTTPS.
+Create a new ASP.NET Core web app named `Web2FA` with individual accounts. Follow the instructions in <xref:security/enforcing-ssl> to set up and require HTTPS.
 
 ### Create an SMS account
 
-Create an SMS account, for example, from [twilio](https://www.twilio.com/) or [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/). Record the authentication credentials (for twilio: accountSid and authToken, for ASPSMS: Userkey and Password).
+Create an SMS account, for example, from [twilio](https://www.twilio.com/) or ASPSMS (`https://www.aspsms.com/asp.net/identity/core/testcredits/`). Record the authentication credentials (for twilio: accountSid and authToken, for ASPSMS: Userkey and Password).
 
 #### Figuring out SMS Provider credentials
 
@@ -126,7 +126,7 @@ If you don't get a text message, see twilio log page.
 
 * Log in.
 
-* The user account has enabled two-factor authentication, so you have to provide the second factor of authentication . In this tutorial you have enabled phone verification. The built in templates also allow you to set up email as the second factor. You can set up additional second factors for authentication such as QR codes. Tap **Submit**.
+* The user account has enabled two-factor authentication, so you have to provide the second factor of authentication. In this tutorial you have enabled phone verification. The built in templates also allow you to set up email as the second factor. You can set up additional second factors for authentication such as QR codes. Tap **Submit**.
 
 ![Send Verification Code view](2fa/_static/login2fa7.png)
 

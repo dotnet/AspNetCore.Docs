@@ -3,11 +3,13 @@ title: Reliable gRPC services with deadlines and cancellation
 author: jamesnk
 description: Learn how to create reliable gRPC services with deadlines and cancellation in .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 09/07/2020
 uid: grpc/deadlines-cancellation
 ---
 # Reliable gRPC services with deadlines and cancellation
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -57,7 +59,7 @@ The call context provides the deadline with `ServerCallContext.Deadline`:
 Manually propagating deadlines can be cumbersome. The deadline needs to be passed to every call, and it's easy to accidentally miss. An automatic solution is available with gRPC client factory. Specifying `EnableCallContextPropagation`:
 
 * Automatically propagates the deadline and cancellation token to child calls.
-* Doesn't propagate the deadline if the child call specifies a smaller deadline. For example, a propogated deadline of 10 seconds isn't used if a child call specifies a new deadline of 5 seconds using `CallOptions.Deadline`. When multiple deadlines are available, the smallest deadline is used.
+* Doesn't propagate the deadline if the child call specifies a smaller deadline. For example, a propagated deadline of 10 seconds isn't used if a child call specifies a new deadline of 5 seconds using `CallOptions.Deadline`. When multiple deadlines are available, the smallest deadline is used.
 * Is an excellent way of ensuring that complex, nested gRPC scenarios always propagate the deadline and cancellation.
 
 [!code-csharp[](~/grpc/deadlines-cancellation/clientfactory-propagate.cs?highlight=6)]

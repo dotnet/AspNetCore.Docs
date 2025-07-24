@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core SignalR connection troubleshooting
-author: bradygaster
+author: wadepickett
 description: ASP.NET Core SignalR connection troubleshooting.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 04/08/2020
 uid: signalr/troubleshoot
@@ -92,3 +92,7 @@ This is often caused by having an access token that is over 4k.
 ### Transient network failures
 
 Transient network failures may close the SignalR connection. The server may interpret the closed connection as a graceful client disconnect. To get more info on why a client disconnected in those cases [gather logs from the client and server](xref:signalr/diagnostics).
+
+## Additional resources
+
+* [SignalR Hub Protocol](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md)

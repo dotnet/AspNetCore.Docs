@@ -3,14 +3,14 @@ title: Client IP safelist for ASP.NET Core
 author: damienbod
 description: Learn how to write middleware or action filters to validate remote IP addresses against a list of approved IP addresses.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/12/2020
 uid: security/ip-safelist
 ---
 # Client IP safelist for ASP.NET Core
 
-By [Damien Bowden](https://twitter.com/damien_bod) and [Tom Dykstra](https://github.com/tdykstra)
+By [Damien Bowden](https://github.com/damienbod) and [Tom Dykstra](https://github.com/tdykstra)
  
 This article shows three ways to implement an IP address safelist (also known as an allow list) in an ASP.NET Core app. An accompanying sample app demonstrates all three approaches. You can use:
 

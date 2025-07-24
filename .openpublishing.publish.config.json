@@ -47,8 +47,8 @@
       "branch_mapping": {}
     },
     {
-      "path_to_root": "xamarin-forms-samples",
-      "url": "https://github.com/xamarin/xamarin-forms-samples",
+      "path_to_root": "maui-samples",
+      "url": "https://github.com/dotnet/maui-samples",
       "branch": "main",
       "branch_mapping": {}
     },
@@ -62,6 +62,13 @@
       "path_to_root": "AspNetCore.Docs.Samples",
       "url": "https://github.com/dotnet/AspNetCore.Docs.Samples",
       "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "_razor",
+      "url": "https://github.com/dotnet/razor",
+      "branch": "main",
+      "include_in_build": true,
       "branch_mapping": {}
     }
   ],

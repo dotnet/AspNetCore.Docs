@@ -1,14 +1,16 @@
 ---
 title: Request and Response operations in ASP.NET Core
-author: jkotalik
+author: tdykstra
 description: Learn how to read the request body and write the response body in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jukotali
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 5/29/2019
+ms.date: 04/24/2025
 uid: fundamentals/middleware/request-response
 ---
 # Request and response operations in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Justin Kotalik](https://github.com/jkotalik)
 
@@ -23,7 +25,10 @@ There are two abstractions for the request and response bodies: <xref:System.IO.
 * `TextWriter`
 * `HttpResponse.WriteAsync`
 
-Streams aren't being removed from the framework. Streams continue to be used throughout .NET, and many stream types don't have pipe equivalents, such as `FileStreams` and `ResponseCompression`.
+Streams aren't being removed from the framework. Streams continue to be used throughout .NET:
+
+* Many stream types don't have pipe equivalents, such as `FileStreams` and `ResponseCompression`.
+* It's straightforward adding compression to a stream.
 
 ## Stream examples
 
@@ -68,7 +73,7 @@ These issues are fixable, but the code is becoming progressively more complicate
 
 ## Pipelines
 
-The following example shows how the same scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
+The following example shows how the preceding stream scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
 
@@ -77,6 +82,13 @@ This example fixes many issues that the streams implementations had:
 * There's no need for a string buffer because the `PipeReader` handles bytes that haven't been used.
 * Encoded strings are directly added to the list of returned strings.
 * Other than the `ToArray` call, and the memory used by the string, string creation is allocation free.
+
+When writing directly to `HttpResponse.BodyWriter`, call `PipeWriter.FlushAsync` manually to ensure the data is flushed to the underlying response response body. Here's why:
+
+* `HttpResponse.BodyWriter` is a `PipeWriter` that buffers data until a flush operation is triggered.
+* Calling `FlushAsync` writes the buffered data to the underlying response body.
+
+It's up to the developer to decide when to call `FlushAsync`, balancing factors such as buffer size, network write overhead, and whether the data should be sent in discrete chunks. For more information, see [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines).
 
 ## Adapters
 
@@ -91,4 +103,4 @@ The `Body`, `BodyReader`, and `BodyWriter` properties are available for `HttpReq
 * [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines)
 * <xref:fundamentals/middleware/write>
 
-<!-- Test with Postman or other tool. See image in static directory. -->
+<!-- Test with Fiddler, .http files for Visual Studio, dotnet httprepl for CLI or other tool. See image in static directory. -->

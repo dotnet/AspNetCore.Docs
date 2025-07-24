@@ -15,7 +15,7 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 This sample shows how to enable users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
 
 > [!NOTE]
-> The Microsoft.AspNetCore.Authentication.Twitter package described below uses the OAuth 1a APIs provided by Twitter. Twitter has since added OAuth 2 APIs with a different set of functionality. The [AspNet.Security.OAuth.Twitter](https://www.nuget.org/packages/AspNet.Security.OAuth.Twitter/) package is a community implementation that uses the new OAuth 2 APIs.
+> The Microsoft.AspNetCore.Authentication.Twitter package described below uses the OAuth 1.0 APIs provided by Twitter. Twitter has since added OAuth 2.0 APIs with a different set of functionality. The [OpenIddict](https://documentation.openiddict.com/integrations/web-providers) and [AspNet.Security.OAuth.Twitter](https://www.nuget.org/packages/AspNet.Security.OAuth.Twitter/) packages are community implementations that use the new OAuth 2.0 APIs.
 
 ## Create the app in Twitter
 
@@ -72,10 +72,7 @@ Add the Authentication service to the `Startup.ConfigureServices`:
 
 :::moniker-end
 
-
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
-
-[!INCLUDE[](includes/chain-auth-providers.md)]
 
 For more information on configuration options supported by Twitter authentication, see the <xref:Microsoft.AspNetCore.Builder.TwitterOptions> API reference. This can be used to request different information about the user.
 
@@ -109,3 +106,7 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 * Once you publish your web site to Azure web app, you should reset the `ConsumerSecret` in the Twitter developer portal.
 
 * Set the `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
+
+## Additional resources
+
+[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)

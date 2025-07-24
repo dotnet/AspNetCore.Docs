@@ -4,9 +4,10 @@ author: ardalis
 description: Learn how to configure custom storage providers for ASP.NET Core Identity.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/23/2019
+ms.date: 10/29/2024
 uid: security/authentication/identity-custom-storage-providers
 ---
+<!-- ms.sfi.ropc: t -->
 # Custom storage providers for ASP.NET Core Identity
 
 By [Steve Smith](https://ardalis.com/)
@@ -23,9 +24,9 @@ By default, the ASP.NET Core Identity system stores user information in a SQL Se
 
 In each of these cases, you can write a customized provider for your storage mechanism and plug that provider into your app.
 
-ASP.NET Core Identity is included in project templates in Visual Studio with the "Individual User Accounts" option.
+ASP.NET Core Identity is included in project templates in Visual Studio with the "Individual Accounts" option.
 
-When using the .NET Core CLI, add `-au Individual`:
+When using the .NET CLI, add `-au Individual`:
 
 ```dotnetcli
 dotnet new mvc -au Individual
@@ -206,6 +207,8 @@ Once you have implemented a storage provider, you configure your app to use it. 
 1. Change the `AddIdentity` method to use the custom types. You can create your own extension methods for this purpose. See [IdentityServiceCollectionExtensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) for an example.
 1. If you are using Roles, update the `RoleManager` to use your `RoleStore` class.
 1. Update the connection string and credentials to your app's configuration.
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 Example:
 

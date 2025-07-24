@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using TodoApi.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace TodoApi
 {
@@ -23,20 +24,24 @@ namespace TodoApi
         }
         // </snippet_ConfigureServices>
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
-            // <snippet_UseSwaggerUI>
-            app.UseSwaggerUI(c =>
+            if (env.IsDevelopment())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
-            });
-            // </snippet_UseSwaggerUI>
+                // Enable middleware to serve generated Swagger as a JSON endpoint, only in a development environment.
+                app.UseSwagger();
+
+                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+                // specifying the Swagger JSON endpoint.
+                // <snippet_UseSwaggerUI>
+                // // UseSwaggerUI Protected by if (env.IsDevelopment())
+                app.UseSwaggerUI(c => // UseSwaggerUI Protected by if (env.IsDevelopment())
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                    c.RoutePrefix = string.Empty;
+                });
+                // </snippet_UseSwaggerUI>
+            }
 
             app.UseMvc();
         }

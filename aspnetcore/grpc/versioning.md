@@ -3,11 +3,13 @@ title: Versioning gRPC services
 author: jamesnk
 description: Learn how to version gRPC services.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 01/09/2020
 uid: grpc/versioning
 ---
 # Versioning gRPC services
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -33,7 +35,7 @@ These changes are non-breaking at a gRPC protocol level and .NET binary level.
 * **Adding a new service**
 * **Adding a new method to a service**
 * **Adding a field to a request message** - Fields added to a request message are deserialized with the [default value](https://developers.google.com/protocol-buffers/docs/proto3#default) on the server when not set. To be a non-breaking change, the service must succeed when the new field isn't set by older clients.
-* **Adding a field to a response message** - Fields added to a response message are deserialized into the message's [unknown fields](https://developers.google.com/protocol-buffers/docs/proto3#unknowns) collection on the client.
+* **Adding a field to a response message** - If an older client hasn't been updated with the new field, the value is deserialized into the response message's [unknown fields](https://developers.google.com/protocol-buffers/docs/proto3#unknowns) collection.
 * **Adding a value to an enum** - Enums are serialized as a numeric value. New enum values are deserialized on the client to the enum value without an enum name. To be a non-breaking change, older clients must run correctly when receiving the new enum value.
 
 ### Binary breaking changes

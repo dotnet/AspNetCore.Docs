@@ -13,7 +13,7 @@
     "repoIndexFolder": "aspnetcore/whats-new"
   },
   "inclusionCriteria": {
-    "minAdditionsToFile": 50
+    "minAdditionsToFile": 3
   },
   "areas": [
     {

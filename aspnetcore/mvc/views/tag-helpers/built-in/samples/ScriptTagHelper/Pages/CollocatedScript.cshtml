@@ -1,0 +1,34 @@
+﻿@page
+@model CollocatedScriptModel
+@{
+    ViewData["Title"] = "Collocated JS script";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>This page consists of 3 files:</p>
+
+<ol>
+    <li>CollocatedScript.cshtml</li>
+    <li>CollocatedScript.cshtml.cs</li>
+    <li>CollocatedScript.cshtml.js</li>
+</ol>
+
+<p>JavaScript code can be added to "Collocated.cshtml.js". This file is included in the page by a ScriptTagHelper in "/Pages/Shared/_Layout.cshtml":</p>
+
+<code>
+    <pre>
+    &lt;!-- in /Pages/Shared/_Layout.cshtml --&gt;
+    &lt;script asp-src-include="@@(ViewContext.View.Path).js"&gt;&lt;/script&gt;
+    </pre>
+</code>
+
+<p>The <code>asp-src-include</code> attribute is used to dynamically include collocated JS files. When a page has a matching JS file, a script tag is rendered.</p>
+
+<code>
+    <pre>
+    &lt;!-- Rendered markup --&gt;
+    &lt;script src="/Pages/CollocatedScript.cshtml.js"&gt;&lt;/script&gt;
+    </pre>
+</code>
+
+<p>On the other hand, if there is no matching JS file, the script tag is removed.</p>

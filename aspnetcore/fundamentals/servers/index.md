@@ -1,14 +1,16 @@
 ---
 title: Web server implementations in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 05/28/2025
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com/), [Stephen Halter](https://twitter.com/halter73), and [Chris Ross](https://github.com/Tratcher)
 
@@ -20,7 +22,7 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ASP.NET Core ships with the following:
 
-* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](#korh) in the next section.
+* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index?tabs=windows#korh) in the Windows tab.
 * IIS HTTP Server is an [in-process server](#hosting-models) for IIS.
 * [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
 
@@ -41,7 +43,7 @@ Kestrel has the following advantages over HTTP.sys:
   * Cross platform
   * Agility, it's developed and patched independent of the OS.
   * Programmatic port and TLS configuration
-  * Extensibility that allows for protocols like [PPv2](https://github.com/aspnet/AspLabs/blob/main/src/ProxyProtocol/ProxyProtocol.Sample/ProxyProtocol.cs) and alternate transports.
+  * Extensibility that allows for protocols like [PPv2](https://www.haproxy.org/download/3.1/doc/proxy-protocol.txt) and alternate transports.
 
 Http.Sys operates as a shared kernel mode component with the following features that kestrel does not have:
 
@@ -53,12 +55,19 @@ Http.Sys operates as a shared kernel mode component with the following features 
 
 ## Hosting models
 
-Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+Several hosting models are available:
 
-Using out-of-process hosting, ASP.NET Core apps run in a process separate from the IIS worker process, and the module handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it shuts down or crashes. This is essentially the same behavior as seen with apps that run in-process that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was). Using a separate process also enables hosting more than one app from the same app pool.
+* Kestrel self-hosting: The Kestrel web server runs without requiring any other external web server such as IIS or HTTP.sys.
 
-For more information and configuration guidance, see the following topics:
+* HTTP.sys self-hosting is an alternative to Kestrel. Kestrel is recommended over HTTP.sys unless the app requires features not available in Kestrel.
+  
+* IIS in-process hosting: An ASP.NET Core app runs in the same process as its IIS worker process. IIS in-process hosting provides improved performance over IIS out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
+* IIS out-of-process hosting: ASP.NET Core apps run in a process separate from the IIS worker process, and the module handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it shuts down or crashes. This is essentially the same behavior as seen with apps that run in-process that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was). Using a separate process also enables hosting more than one app from the same app pool.
+
+For more information, see the following:
+
+* [Kestrel vs. HTTP.sys](#korh)
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/aspnet-core-module>
 
@@ -136,10 +145,6 @@ ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), whi
 
 For information on how to use Nginx on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-nginx>.
 
-### Apache with Kestrel
-
-For information on how to use Apache on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-apache>.
-
 ## HTTP.sys
 
 If ASP.NET Core apps are run on Windows, HTTP.sys is an alternative to Kestrel. Kestrel is recommended over HTTP.sys unless the app requires features not available in Kestrel. For more information, see <xref:fundamentals/servers/httpsys>.
@@ -168,7 +173,6 @@ The server is launched when the Integrated Development Environment (IDE) or edit
 
 * [Visual Studio](https://visualstudio.microsoft.com): Launch profiles can be used to start the app and server with either [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)/[ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) or the console.
 * [Visual Studio Code](https://code.visualstudio.com/): The app and server are started by [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), which activates the CoreCLR debugger.
-* [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/): The app and server are started by the [Mono Soft-Mode Debugger](https://www.mono-project.com/docs/advanced/runtime/docs/soft-debugger/).
 
 When launching the app from a command prompt in the project's folder, [dotnet run](/dotnet/core/tools/dotnet-run) launches the app and server (Kestrel and HTTP.sys only). The configuration is specified by the `-c|--configuration` option, which is set to either `Debug` (default) or `Release`.
 
@@ -178,7 +182,30 @@ A `launchSettings.json` file provides configuration when launching an app with `
 
 [HTTP/2](https://httpwg.org/specs/rfc7540.html) is supported with ASP.NET Core in the following deployment scenarios:
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-8.0"
+
+* [Kestrel](xref:fundamentals/servers/kestrel/http2)
+  * Operating system
+    * Windows Server 2016/Windows 10 or later&dagger;
+    * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
+    * macOS 10.15 or later
+  * Target framework: .NET Core 2.2 or later
+* [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
+  * Windows Server 2016/Windows 10 or later
+  * Target framework: Not applicable to HTTP.sys deployments.
+* [IIS (in-process)](xref:host-and-deploy/iis/index#http2-support)
+  * Windows Server 2016/Windows 10 or later; IIS 10 or later
+  * Target framework: .NET Core 2.2 or later
+* [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
+  * Windows Server 2016/Windows 10 or later; IIS 10 or later
+  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
+  * Target framework: Not applicable to IIS out-of-process deployments.
+
+&dagger;Kestrel has limited support for HTTP/2 on Windows Server 2012 R2 and Windows 8.1. Support is limited because the list of supported TLS cipher suites available on these operating systems is limited. A certificate generated using an Elliptic Curve Digital Signature Algorithm (ECDSA) may be required to secure TLS connections.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 * [Kestrel](xref:fundamentals/servers/kestrel/http2)
   * Operating system
@@ -238,6 +265,8 @@ A `launchSettings.json` file provides configuration when launching an app with `
 
 An HTTP/2 connection must use [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) and TLS 1.2 or later. For more information, see the topics that pertain to your server deployment scenarios.
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 ## Additional resources
 
 * <xref:fundamentals/servers/kestrel>
@@ -245,5 +274,4 @@ An HTTP/2 connection must use [Application-Layer Protocol Negotiation (ALPN)](ht
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:fundamentals/servers/httpsys>

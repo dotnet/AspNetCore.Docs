@@ -2,17 +2,16 @@
 title: Hosting ASP.NET Core image in container using docker compose with HTTPS
 author: ravipal
 description: Learn how to host ASP.NET Core Images with Docker Compose over HTTPS
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/28/2020
+ms.date: 09/07/2024
 uid: security/docker-compose-https
 ---
 # Hosting ASP.NET Core images with Docker Compose over HTTPS
 
-<!-- This topic drops loc for "Let's Encrypt" -->
+:::moniker range=">= aspnetcore-8.0"
 
-ASP.NET Core uses [HTTPS by default](./enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
+ASP.NET Core uses [HTTPS by default](~/security/enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
 
 This document explains how to run pre-built container images with HTTPS.
 
@@ -49,12 +48,19 @@ Use the following instructions for your operating system configuration.
 
 Generate certificate and configure local machine:
 
-```dotnetcli
-dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
+```powershell
+dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```
 
-In the preceding commands, replace `{ password here }` with a password.
+The previous command using the .NET CLI:
+
+```dotnetcli
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
+dotnet dev-certs https --trust
+```
+
+In the preceding commands, replace `$CREDENTIAL_PLACEHOLDER$` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
@@ -63,14 +69,14 @@ version: '3.4'
 
 services:
   webapp:
-    image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
+    image: mcr.microsoft.com/dotnet/samples:aspnetapp
     ports:
       - 80
       - 443
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=-\0pw-
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     volumes:
       - ~/.aspnet/https:/https:ro
@@ -88,13 +94,13 @@ docker-compose -f "docker-compose.debug.yml" up -d
 Generate certificate and configure local machine:
 
 ```dotnetcli
-dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }
+dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```
 
-`dotnet dev-certs https --trust` is only supported on macOS and Windows. You need to trust certificates on Linux in the way that is supported by your distribution. It is likely that you need to trust the certificate in your browser.
+On Linux, `dotnet dev-certs https --trust` requires .NET 9 or later SDK. For Linux on .NET 8.0.401 or earlier SDK, see your Linux distribution's documentation for trusting a certificate.
 
-In the preceding commands, replace `{ password here }` with a password.
+In the preceding commands, replace `$CREDENTIAL_PLACEHOLDER$` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
@@ -103,14 +109,14 @@ version: '3.4'
 
 services:
   webapp:
-    image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
+    image: mcr.microsoft.com/dotnet/samples:aspnetapp
     ports:
       - 80
       - 443
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=-\0pw-
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     volumes:
       - ~/.aspnet/https:/https:ro
@@ -128,11 +134,11 @@ docker-compose -f "docker-compose.debug.yml" up -d
 Generate certificate and configure local machine:
 
 ```dotnetcli
-dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```
 
-In the preceding commands, replace `{ password here }` with a password.
+In the preceding commands, replace `$CREDENTIAL_PLACEHOLDER$` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
@@ -141,14 +147,14 @@ version: '3.4'
 
 services:
   webapp:
-    image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
+    image: mcr.microsoft.com/dotnet/samples:aspnetapp
     ports:
       - 80
       - 443
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=-\0pw-
       - ASPNETCORE_Kestrel__Certificates__Default__Path=C:\https\aspnetapp.pfx
     volumes:
       - ${USERPROFILE}\.aspnet\https:C:\https:ro
@@ -164,3 +170,7 @@ docker-compose -f "docker-compose.debug.yml" up -d
 ## See also
 
 * [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)
+
+:::moniker-end
+
+[!INCLUDE[](~/security/includes/docker-compose-https7.md)]

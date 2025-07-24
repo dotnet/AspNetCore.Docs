@@ -31,7 +31,7 @@ The user likely believes that their first attempt to log in failed and that thei
 
 ![Open Redirection Attack Process](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
-In addition to login pages, some sites provide redirect pages or endpoints. Imagine your app has a page with an open redirect, `/Home/Redirect`. An attacker could create, for example, a link in an email that goes to `[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login`. A typical user will look at the URL and see it begins with your site name. Trusting that, they will click the link. The open redirect would then send the user to the phishing site, which looks identical to yours, and the user would likely login to what they believe is your site.
+In addition to login pages, some sites provide redirect pages or endpoints. Imagine your app has a page with an open redirect, `/Home/Redirect`. A cyberattacker could create, for example, a link in an email that goes to `[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login`. A typical user will look at the URL and see it begins with your site name. Trusting that, they will click the link. The open redirect would then send the user to the phishing site, which looks identical to yours, and the user would likely login to what they believe is your site.
 
 ## Protecting against open redirect attacks
 
@@ -50,7 +50,7 @@ public IActionResult SomeAction(string redirectUrl)
 
 `LocalRedirect` will throw an exception if a non-local URL is specified. Otherwise, it behaves just like the `Redirect` method.
 
-### IsLocalUrl
+### IUrlHelper.IsLocalUrl
 
 Use the <xref:Microsoft.AspNetCore.Mvc.IUrlHelper.IsLocalUrl%2A> method to test URLs before redirecting:
 
@@ -70,4 +70,25 @@ private IActionResult RedirectToLocal(string returnUrl)
 }
 ```
 
-The `IsLocalUrl` method protects users from being inadvertently redirected to a malicious site. You can log the details of the URL that was provided when a non-local URL is supplied in a situation where you expected a local URL. Logging redirect URLs may help in diagnosing redirection attacks.
+The `IUrlHelper.IsLocalUrl` method protects users from being inadvertently redirected to a malicious site. You can log the details of the URL that was provided when a non-local URL is supplied in a situation where you expected a local URL. Logging redirect URLs may help in diagnosing redirection attacks.
+
+:::moniker range=">= aspnetcore-10.0"
+
+### Detect if URL is local using `RedirectHttpResult.IsLocalUrl`
+
+The [`RedirectHttpResult.IsLocalUrl(url)`](https://source.dot.net/#Microsoft.AspNetCore.Http.Results/RedirectHttpResult.cs,c0ece2e6266cb369) helper method detects if a URL is local. A URL is considered local if the following are true:
+
+* It doesn't have the [host](https://developer.mozilla.org/docs/Web/API/URL/host) or [authority](https://developer.mozilla.org/docs/Web/URI/Authority) section.
+* It has an [absolute path](https://developer.mozilla.org/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL#absolute_urls_vs._relative_urls).
+
+URLs using [virtual paths](/previous-versions/aspnet/ms178116(v=vs.100)) `"~/"` are also local.
+
+`IsLocalUrl` is useful for validating URLs before redirecting to them to prevent [open redirection attacks](https://brightsec.com/blog/open-redirect-vulnerabilities/).
+
+```csharp
+if (RedirectHttpResult.IsLocalUrl(url))
+{
+    return Results.LocalRedirect(url);
+}
+
+:::moniker-end

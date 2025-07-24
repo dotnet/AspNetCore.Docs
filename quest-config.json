@@ -1,0 +1,55 @@
+{
+    "AzureDevOps": {
+        "Org": "msft-skilling",
+        "Project": "Content",
+        "AreaPath": "Production\\Core AI\\DotNet and more\\ASP.NET"
+    },
+    "ImportTriggerLabel": "reQUEST",
+    "ImportedLabel": "seQUESTered",
+    "ParentNodes": [
+        {
+            "Label": "okr-freshness",
+            "Semester": "Selenium",
+            "ParentNodeId": 286034
+        },
+        {
+            "Label": "okr-curation",
+            "Semester": "Selenium",
+            "ParentNodeId": 286038
+        },
+        {
+            "Label": "user-feedback",
+            "Semester": "Selenium",
+            "ParentNodeId": 286039
+        },
+        {
+            "Label": "okr-health",
+            "Semester": "Selenium",
+            "ParentNodeId": 286038
+        },
+        {
+            "Label": "doc-bug",
+            "Semester": "Selenium",
+            "ParentNodeId": 286039
+        },
+        {
+            "Semester": "Selenium",
+            "ParentNodeId": 308205
+        },
+        {
+            "Semester": "Bromine",
+            "ParentNodeId": 403735
+        }
+    ],
+    "DefaultParentNode": 403735,
+    "WorkItemTags": [
+        {
+            "Label": "9.0",
+            "Tag": "new feature"
+        },
+        {
+            "Label": "okr-curation",
+            "Tag": "content-curation"
+        }
+    ]
+}

@@ -32,7 +32,7 @@ namespace ContosoUniversity.Controllers
             return View(await schoolContext.ToListAsync());
         }
 #elif RevisedIndexMethod
-        #region snippet_RevisedIndexMethod
+// <snippet_RevisedIndexMethod>
         public async Task<IActionResult> Index()
         {
             var courses = _context.Courses
@@ -40,10 +40,10 @@ namespace ContosoUniversity.Controllers
                 .AsNoTracking();
             return View(await courses.ToListAsync());
         }
-        #endregion
+// </snippet_RevisedIndexMethod>
 #endif
         // GET: Courses/Details/5
-        #region snippet_Details
+// <snippet_Details>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -62,18 +62,18 @@ namespace ContosoUniversity.Controllers
 
             return View(course);
         }
-        #endregion
+// </snippet_Details>
 
         // GET: Courses/Create
-        #region snippet_CreateGet
+// <snippet_CreateGet>
         public IActionResult Create()
         {
             PopulateDepartmentsDropDownList();
             return View();
         }
-        #endregion
+// </snippet_CreateGet>
         // POST: Courses/Create
-        #region snippet_CreatePost
+// <snippet_CreatePost>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourseID,Credits,DepartmentID,Title")] Course course)
@@ -87,10 +87,10 @@ namespace ContosoUniversity.Controllers
             PopulateDepartmentsDropDownList(course.DepartmentID);
             return View(course);
         }
-        #endregion
+// </snippet_CreatePost>
 
         // GET: Courses/Edit/5
-        #region snippet_EditGet
+// <snippet_EditGet>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -108,11 +108,11 @@ namespace ContosoUniversity.Controllers
             PopulateDepartmentsDropDownList(course.DepartmentID);
             return View(course);
         }
-        #endregion
+// </snippet_EditGet>
 
 
         // POST: Courses/Edit/5
-        #region snippet_EditPost
+// <snippet_EditPost>
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int? id)
@@ -145,9 +145,9 @@ namespace ContosoUniversity.Controllers
             PopulateDepartmentsDropDownList(courseToUpdate.DepartmentID);
             return View(courseToUpdate);
         }
-        #endregion
+// </snippet_EditPost>
 
-        #region snippet_Departments
+// <snippet_Departments>
         private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
         {
             var departmentsQuery = from d in _context.Departments
@@ -155,10 +155,10 @@ namespace ContosoUniversity.Controllers
                                    select d;
             ViewBag.DepartmentID = new SelectList(departmentsQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
         }
-        #endregion
+// </snippet_Departments>
 
         // GET: Courses/Delete/5
-        #region snippet_DeleteGet
+// <snippet_DeleteGet>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -177,7 +177,7 @@ namespace ContosoUniversity.Controllers
 
             return View(course);
         }
-        #endregion
+// </snippet_DeleteGet>
 
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -194,14 +194,14 @@ namespace ContosoUniversity.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        #region snippet_UpdateGet
+// <snippet_UpdateGet>
         public IActionResult UpdateCourseCredits()
         {
             return View();
         }
-        #endregion
+// </snippet_UpdateGet>
 
-        #region snippet_UpdatePost
+// <snippet_UpdatePost>
         [HttpPost]
         public async Task<IActionResult> UpdateCourseCredits(int? multiplier)
         {
@@ -214,6 +214,6 @@ namespace ContosoUniversity.Controllers
             }
             return View();
         }
-        #endregion
+// </snippet_UpdatePost>
     }
 }

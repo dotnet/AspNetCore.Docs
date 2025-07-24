@@ -10,6 +10,8 @@ uid: fundamentals/middleware/extensibility
 ---
 # Factory-based middleware activation in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation that offers the following benefits:

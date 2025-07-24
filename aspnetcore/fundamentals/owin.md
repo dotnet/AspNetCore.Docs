@@ -4,7 +4,7 @@ author: ardalis
 description: Discover how ASP.NET Core supports the Open Web Interface for .NET (OWIN), which allows web apps to be decoupled from web servers.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 2/8/2021
+ms.date: 04/24/2025
 uid: fundamentals/owin
 ---
 # Open Web Interface for .NET (OWIN) with ASP.NET Core
@@ -34,7 +34,7 @@ This allows ASP.NET Core to be hosted on top of an OWIN compatible server/host o
 
 ASP.NET Core's OWIN support is deployed as part of the `Microsoft.AspNetCore.Owin` package. You can import OWIN support into your project by installing this package.
 
-OWIN middleware conforms to the [OWIN specification](https://owin.org/spec/spec/owin-1.0.0.html), which requires a `Func<IDictionary<string, object>, Task>` interface, and specific keys be set (such as `owin.ResponseBody`). The following simple OWIN middleware displays "Hello World":
+OWIN middleware conforms to the [OWIN specification](http://owin.org/spec/spec/owin-1.0.0.html), which requires a `Func<IDictionary<string, object>, Task>` interface, and specific keys be set (such as `owin.ResponseBody`). The following simple OWIN middleware displays "Hello World":
 
 ```csharp
 public Task OwinHello(IDictionary<string, object> environment)
@@ -42,7 +42,7 @@ public Task OwinHello(IDictionary<string, object> environment)
     string responseText = "Hello World via OWIN";
     byte[] responseBytes = Encoding.UTF8.GetBytes(responseText);
 
-    // OWIN Environment Keys: https://owin.org/spec/spec/owin-1.0.0.html
+    // OWIN Environment Keys: http://owin.org/spec/spec/owin-1.0.0.html
     var responseStream = (Stream)environment["owin.ResponseBody"];
     var responseHeaders = (IDictionary<string, string[]>)environment["owin.ResponseHeaders"];
 
@@ -90,58 +90,6 @@ app.UseOwin(pipeline =>
 });
 ```
 
-<a name="hosting-on-owin"></a>
-
-## Run ASP.NET Core on an OWIN-based server and use its WebSockets support
-
-Another example of how OWIN-based servers' features can be leveraged by ASP.NET Core is access to features like WebSockets. The .NET OWIN web server used in the previous example has support for Web Sockets built in, which can be leveraged by an ASP.NET Core application. The example below shows a simple web app that supports Web Sockets and echoes back everything sent to the server through WebSockets.
-
-```csharp
-public class Startup
-{
-    public void Configure(IApplicationBuilder app)
-    {
-        app.Use(async (context, next) =>
-        {
-            if (context.WebSockets.IsWebSocketRequest)
-            {
-                WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
-                await EchoWebSocket(webSocket);
-            }
-            else
-            {
-                await next();
-            }
-        });
-
-        app.Run(context =>
-        {
-            return context.Response.WriteAsync("Hello World");
-        });
-    }
-
-    private async Task EchoWebSocket(WebSocket webSocket)
-    {
-        byte[] buffer = new byte[1024];
-        WebSocketReceiveResult received = await webSocket.ReceiveAsync(
-            new ArraySegment<byte>(buffer), CancellationToken.None);
-
-        while (!webSocket.CloseStatus.HasValue)
-        {
-            // Echo anything we receive
-            await webSocket.SendAsync(new ArraySegment<byte>(buffer, 0, received.Count), 
-                received.MessageType, received.EndOfMessage, CancellationToken.None);
-
-            received = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), 
-                CancellationToken.None);
-        }
-
-        await webSocket.CloseAsync(webSocket.CloseStatus.Value, 
-            webSocket.CloseStatusDescription, CancellationToken.None);
-    }
-}
-```
-
 ## OWIN environment
 
 You can construct an OWIN environment using the `HttpContext`.
@@ -154,7 +102,7 @@ You can construct an OWIN environment using the `HttpContext`.
 
 ## OWIN keys
 
-OWIN depends on an `IDictionary<string,object>` object to communicate information throughout an HTTP Request/Response exchange. ASP.NET Core implements the keys listed below. See the [primary specification, extensions](https://owin.org/#spec), and [OWIN Key Guidelines and Common Keys](https://owin.org/spec/spec/CommonKeys.html).
+OWIN depends on an `IDictionary<string,object>` object to communicate information throughout an HTTP Request/Response exchange. ASP.NET Core implements the keys listed below. See the [primary specification, extensions](http://owin.org/#spec), and [OWIN Key Guidelines and Common Keys](http://owin.org/spec/spec/CommonKeys.html).
 
 ### Request data (OWIN v1.0.0)
 
@@ -207,14 +155,14 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
-| sendfile.SendAsync | See [delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) | Per Request |
+| sendfile.SendAsync | See [delegate signature](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) | Per Request |
 
 ### Opaque v0.3.0
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
 | opaque.Version | `String` |  |
-| opaque.Upgrade | `OpaqueUpgrade` | See [delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
+| opaque.Upgrade | `OpaqueUpgrade` | See [delegate signature](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
 | opaque.Stream | `Stream` |  |
 | opaque.CallCancelled | `CancellationToken` |  |
 
@@ -223,17 +171,18 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
 | websocket.Version | `String` |  |
-| websocket.Accept | `WebSocketAccept` | See [delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
+| websocket.Accept | `WebSocketAccept` | See [delegate signature](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
 | websocket.AcceptAlt |  | Non-spec |
 | websocket.SubProtocol | `String` | See [RFC6455 Section 4.2.2](https://tools.ietf.org/html/rfc6455#section-4.2.2) Step 5.5 |
-| websocket.SendAsync | `WebSocketSendAsync` | See [delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
-| websocket.ReceiveAsync | `WebSocketReceiveAsync` | See [delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
-| websocket.CloseAsync | `WebSocketCloseAsync` | See [delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
+| websocket.SendAsync | `WebSocketSendAsync` | See [delegate signature](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
+| websocket.ReceiveAsync | `WebSocketReceiveAsync` | See [delegate signature](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
+| websocket.CloseAsync | `WebSocketCloseAsync` | See [delegate signature](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
 | websocket.CallCancelled | `CancellationToken` |  |
 | websocket.ClientCloseStatus | `int` | Optional |
 | websocket.ClientCloseDescription | `String` | Optional |
 
 ## Additional resources
 
+* See the [source on GitHub](https://github.com/aspnet/HttpAbstractions/blob/524a0227e5b7945b9520855d37881dabf7e5da32/src/Microsoft.AspNetCore.Owin/OwinFeatureCollection.cs) for OWIN keys supported in the translation layer.
 * [Middleware](xref:fundamentals/middleware/index)
 * [Servers](xref:fundamentals/servers/index)

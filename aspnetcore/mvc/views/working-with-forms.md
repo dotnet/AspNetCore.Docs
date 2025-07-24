@@ -50,7 +50,7 @@ The `asp-route` Tag Helper attribute can also generate markup for the HTML `acti
 
 [!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
 
-Many of the views in the *Views/Account* folder (generated when you create a new web app with *Individual User Accounts*) contain the [asp-route-returnurl](xref:mvc/views/working-with-forms) attribute:
+Many of the views in the *Views/Account* folder (generated when you create a new web app with *Individual Accounts*) contain the [asp-route-returnurl](xref:mvc/views/working-with-forms) attribute:
 
 ```cshtml
 <form asp-controller="Account" asp-action="Login"
@@ -173,7 +173,7 @@ The Input Tag Helper:
 
 * Generates [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5)  validation attributes from [data annotation](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes applied to model properties
 
-* Has an HTML Helper feature overlap with `Html.TextBoxFor` and `Html.EditorFor`. See the **HTML Helper alternatives to Input Tag Helper** section for details.
+* Has an HTML Helper feature overlap with `Html.TextBoxFor` and `Html.EditorFor`. See the [HTML Helper alternatives to Input Tag Helper](#html-helper-alternatives-to-input-tag-helper) section for details.
 
 * Provides strong typing. If the name of the property changes and you don't update the Tag Helper you'll get an error similar to the following:
 
@@ -220,19 +220,19 @@ Sample:
 The code above generates the following HTML:
 
 ```html
-  <form method="post" action="/Demo/RegisterInput">
-      Email:
-      <input type="email" data-val="true"
-             data-val-email="The Email Address field is not a valid email address."
-             data-val-required="The Email Address field is required."
-             id="Email" name="Email" value=""><br>
-      Password:
-      <input type="password" data-val="true"
-             data-val-required="The Password field is required."
-             id="Password" name="Password"><br>
-      <button type="submit">Register</button>
-      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
-   </form>
+<form method="post" action="/Demo/RegisterInput">
+    Email:
+    <input type="email" data-val="true"
+            data-val-email="The Email Address field is not a valid email address."
+            data-val-required="The Email Address field is required."
+            id="Email" name="Email" value=""><br>
+    Password:
+    <input type="password" data-val="true"
+            data-val-required="The Password field is required."
+            id="Password" name="Password"><br>
+    <button type="submit">Register</button>
+    <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
+</form>
 ```
 
 The data annotations applied to the `Email` and `Password` properties generate metadata on the model. The Input Tag Helper consumes the model metadata and produces [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` attributes (see [Model Validation](../models/validation.md)). These attributes describe the validators to attach to the input fields. This provides unobtrusive HTML5 and [jQuery](https://jquery.com/) validation. The unobtrusive attributes have the format `data-val-rule="Error Message"`, where rule is the name of the validation rule (such as `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.) If an error message is provided in the attribute, it's displayed as the value for the `data-val-rule` attribute. There are also attributes of the form `data-val-ruleName-argumentName="argumentValue"` that provide additional details about the rule, for example, `data-val-maxlength-max="1024"` .
@@ -451,7 +451,7 @@ There are two Validation Tag Helpers. The `Validation Message Tag Helper` (which
 
 * HTML Helper alternative: `Html.ValidationMessageFor`
 
-The `Validation Message Tag Helper`  is used with the `asp-validation-for` attribute on a HTML [span](https://developer.mozilla.org/docs/Web/HTML/Element/span) element.
+The `Validation Message Tag Helper`  is used with the `asp-validation-for` attribute on an HTML [span](https://developer.mozilla.org/docs/Web/HTML/Element/span) element.
 
 ```cshtml
 <span asp-validation-for="Email"></span>
@@ -505,16 +505,14 @@ The generated HTML (when the model is valid):
 
 ```html
 <form action="/DemoReg/Register" method="post">
-  <div class="validation-summary-valid" data-valmsg-summary="true">
-  <ul><li style="display:none"></li></ul></div>
-  Email:  <input name="Email" id="Email" type="email" value=""
+  <label>Email: <input name="Email" id="Email" type="email" value=""
    data-val-required="The Email field is required."
    data-val-email="The Email field is not a valid email address."
-   data-val="true"><br>
+   data-val="true"></label><br>
   <span class="field-validation-valid" data-valmsg-replace="true"
    data-valmsg-for="Email"></span><br>
-  Password: <input name="Password" id="Password" type="password"
-   data-val-required="The Password field is required." data-val="true"><br>
+  <label>Password: <input name="Password" id="Password" type="password"
+   data-val-required="The Password field is required." data-val="true"></label><br>
   <span class="field-validation-valid" data-valmsg-replace="true"
    data-valmsg-for="Password"></span><br>
   <button type="submit">Register</button>
@@ -575,7 +573,7 @@ It's often convenient to use `<select>` with an `enum` property and generate the
 
 Sample:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnumViewModel.cs?range=3-7)]
+[!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnumViewModel.cs?range=3-6)]
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnum.cs)]
 
@@ -585,24 +583,24 @@ The `GetEnumSelectList` method generates a `SelectList` object for an enum.
 
 You can mark your enumerator list with the `Display` attribute to get a richer UI:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnum.cs?highlight=5,7)]
+[!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnum.cs?highlight=7,9)]
 
 The following HTML is generated:
 
 ```html
-  <form method="post" action="/Home/IndexEnum">
-         <select data-val="true" data-val-required="The EnumCountry field is required."
-                 id="EnumCountry" name="EnumCountry">
-             <option value="0">United Mexican States</option>
-             <option value="1">United States of America</option>
-             <option value="2">Canada</option>
-             <option value="3">France</option>
-             <option value="4">Germany</option>
-             <option selected="selected" value="5">Spain</option>
-         </select>
-         <br /><button type="submit">Register</button>
-         <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
-    </form>
+<form method="post" action="/Home/IndexEnum">
+    <select data-val="true" data-val-required="The EnumCountry field is required."
+            id="EnumCountry" name="EnumCountry">
+        <option value="0">United Mexican States</option>
+        <option value="1">United States of America</option>
+        <option value="2">Canada</option>
+        <option value="3">France</option>
+        <option value="4">Germany</option>
+        <option selected="selected" value="5">Spain</option>
+    </select>
+    <br /><button type="submit">Register</button>
+    <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
+</form>
 ```
 
 ### Option Group
@@ -642,7 +640,7 @@ The generated HTML:
 
 The Select Tag Helper  will automatically generate the [multiple = "multiple"](https://w3c.github.io/html-reference/select.html)  attribute if the property specified in the `asp-for` attribute is an `IEnumerable`. For example, given the following model:
 
-[!code-csharp[](../../mvc/views/working-with-forms/sample/final/ViewModels/CountryViewModelIEnumerable.cs?highlight=6)]
+[!code-csharp[](../../mvc/views/working-with-forms/sample/final/ViewModels/CountryViewModelIEnumerable.cs?highlight=8)]
 
 With the following view:
 
@@ -670,7 +668,7 @@ Generates the following HTML:
 
 If you find yourself using the "not specified" option in multiple pages, you can create a template to eliminate repeating the HTML:
 
-[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=4)]
 
 The `Views/Shared/EditorTemplates/CountryViewModel.cshtml` template:
 

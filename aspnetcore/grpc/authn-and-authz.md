@@ -3,11 +3,13 @@ title: Authentication and authorization in gRPC for ASP.NET Core
 author: jamesnk
 description: Learn how to use authentication and authorization in gRPC for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 04/13/2022
+ms.author: wpickett
+ms.date: 07/16/2024
 uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 :::moniker range=">= aspnetcore-6.0"
@@ -26,16 +28,13 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGrpcService<GreeterService>();
-});
+app.MapGrpcService<GreeterService>();
 ```
 
 > [!NOTE]
 > The order in which you register the ASP.NET Core authentication middleware matters. Always call `UseAuthentication` and `UseAuthorization` after `UseRouting` and before `UseEndpoints`.
 
-The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Program.cs` and will be different depending upon the authentication mechanism your app uses. For examples of how to secure ASP.NET Core apps, see [Authentication samples](xref:security/authentication/samples).
+The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Program.cs` and will be different depending upon the authentication mechanism your app uses.
 
 Once authentication has been setup, the user can be accessed in a gRPC service methods via the `ServerCallContext`.
 
@@ -72,7 +71,14 @@ public bool DoAuthenticatedCall(
 }
 ```
 
-Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`. `CallCredentials` is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself.
+#### Set the bearer token with `CallCredentials`
+
+Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`.
+
+Benefits of using `CallCredentials`:
+
+* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to the gRPC call.
+* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Asynchronous methods inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
 
 > [!NOTE]
 > `CallCredentials` are only applied if the channel is secured with TLS. Sending authentication headers over an insecure connection has security implications and shouldn't be done in production environments. An app can configure a channel to ignore this behavior and always use `CallCredentials` by setting `UnsafeUseInsecureChannelCallCredentials` on a channel.
@@ -80,15 +86,12 @@ Configuring `ChannelCredentials` on a channel is an alternative way to send the 
 The credential in the following example configures the channel to send the token with every gRPC call:
 
 ```csharp
-private static GrpcChannel CreateAuthenticatedChannel(string address)
+private static GrpcChannel CreateAuthenticatedChannel(ITokenProvder tokenProvider)
 {
-    var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+    var credentials = CallCredentials.FromInterceptor(async (context, metadata) =>
     {
-        if (!string.IsNullOrEmpty(_token))
-        {
-            metadata.Add("Authorization", $"Bearer {_token}");
-        }
-        return Task.CompletedTask;
+        var token = await tokenProvider.GetTokenAsync(context.CancellationToken);
+        metadata.Add("Authorization", $"Bearer {token}");
     });
 
     var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
@@ -132,14 +135,14 @@ Consider an app that has:
 ```csharp
 public interface ITokenProvider
 {
-    Task<string> GetTokenAsync();
+    Task<string> GetTokenAsync(CancellationToken cancellationToken);
 }
 
 public class AppTokenProvider : ITokenProvider
 {
     private string _token;
 
-    public async Task<string> GetTokenAsync()
+    public async Task<string> GetTokenAsync(CancellationToken cancellationToken)
     {
         if (_token == null)
         {
@@ -162,7 +165,7 @@ builder.Services
     .AddCallCredentials(async (context, metadata, serviceProvider) =>
     {
         var provider = serviceProvider.GetRequiredService<ITokenProvider>();
-        var token = await provider.GetTokenAsync();
+        var token = await provider.GetTokenAsync(context.CancellationToken);
         metadata.Add("Authorization", $"Bearer {token}");
     }));
 ```
@@ -206,7 +209,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 Many ASP.NET Core supported authentication mechanisms work with gRPC:
 
-* Azure Active Directory
+* Microsoft Entra ID
 * Client Certificate
 * IdentityServer
 * JWT Token
@@ -300,7 +303,7 @@ public void Configure(IApplicationBuilder app)
 > [!NOTE]
 > The order in which you register the ASP.NET Core authentication middleware matters. Always call `UseAuthentication` and `UseAuthorization` after `UseRouting` and before `UseEndpoints`.
 
-The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Startup.ConfigureServices` and will be different depending upon the authentication mechanism your app uses. For examples of how to secure ASP.NET Core apps, see [Authentication samples](xref:security/authentication/samples).
+The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Startup.ConfigureServices` and will be different depending upon the authentication mechanism your app uses.
 
 Once authentication has been setup, the user can be accessed in a gRPC service methods via the `ServerCallContext`.
 
@@ -337,26 +340,29 @@ public bool DoAuthenticatedCall(
 }
 ```
 
+#### Set the bearer token with `CallCredentials`
+
 Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`.
 
-`CallCredentials` is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself. Note that `CallCredentials` are only applied if the channel is secured with TLS. `CallCredentials` aren't applied on unsecured non-TLS channels.
+Benefits of using `CallCredentials`:
+
+* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to the gRPC call.
+* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Asynchronous methods inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
+
+> [!NOTE]
+> `CallCredentials` are only applied if the channel is secured with TLS. Sending authentication headers over an insecure connection has security implications and shouldn't be done in production environments. An app can configure a channel to ignore this behavior and always use `CallCredentials` by setting `UnsafeUseInsecureChannelCallCredentials` on a channel.
 
 The credential in the following example configures the channel to send the token with every gRPC call:
 
 ```csharp
-private static GrpcChannel CreateAuthenticatedChannel(string address)
+private static GrpcChannel CreateAuthenticatedChannel(ITokenProvder tokenProvider)
 {
-    var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+    var credentials = CallCredentials.FromInterceptor(async (context, metadata) =>
     {
-        if (!string.IsNullOrEmpty(_token))
-        {
-            metadata.Add("Authorization", $"Bearer {_token}");
-        }
-        return Task.CompletedTask;
+        var token = await tokenProvider.GetTokenAsync(context.CancellationToken);
+        metadata.Add("Authorization", $"Bearer {token}");
     });
 
-    // SslCredentials is used here because this channel is using TLS.
-    // CallCredentials can't be used with ChannelCredentials.Insecure on non-TLS channels.
     var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
     {
         Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
@@ -398,14 +404,14 @@ Consider an app that has:
 ```csharp
 public interface ITokenProvider
 {
-    Task<string> GetTokenAsync();
+    Task<string> GetTokenAsync(CancellationToken cancellationToken);
 }
 
 public class AppTokenProvider : ITokenProvider
 {
     private string _token;
 
-    public async Task<string> GetTokenAsync()
+    public async Task<string> GetTokenAsync(CancellationToken cancellationToken)
     {
         if (_token == null)
         {
@@ -428,7 +434,7 @@ services
     .AddCallCredentials(async (context, metadata, serviceProvider) =>
     {
         var provider = serviceProvider.GetRequiredService<ITokenProvider>();
-        var token = await provider.GetTokenAsync();
+        var token = await provider.GetTokenAsync(context.CancellationToken);
         metadata.Add("Authorization", $"Bearer {token}");
     }));
 ```
@@ -472,7 +478,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 Many ASP.NET Core supported authentication mechanisms work with gRPC:
 
-* Azure Active Directory
+* Microsoft Entra ID
 * Client Certificate
 * IdentityServer
 * JWT Token
@@ -529,6 +535,19 @@ public class TicketerService : Ticketer.TicketerBase
         // ... refund tickets (something only Administrators can do) ..
     }
 }
+```
+
+### Authorization extension methods
+
+Authorizaton can also be controlled using standard ASP.NET Core authorization extension methods, such as [`AllowAnonymous`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.allowanonymous) and [`RequireAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.requireauthorization).
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddGrpc();
+
+var app = builder.Build();
+app.MapGrpcService<TicketerService>().RequireAuthorization("Administrators");
+app.Run();
 ```
 
 ## Additional resources

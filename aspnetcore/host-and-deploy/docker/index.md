@@ -1,13 +1,15 @@
 ---
 title: Host ASP.NET Core in Docker containers
-author: rick-anderson
+author: wadepickett
 description: Discover links to resources for learning how to host ASP.NET Core apps in Docker containers.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 01/08/2018
 uid: host-and-deploy/docker/index
 ---
 # Host ASP.NET Core in Docker containers
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 The following articles are available for learning about hosting ASP.NET Core apps in Docker:
 
@@ -40,3 +42,5 @@ Additional configuration might be required for apps hosted behind proxy servers 
 
 [GC using Docker and small containers](xref:performance/memory#sc)
 Discusses GC selection with small containers.
+
+[!INCLUDE[](~/includes/128.md)]

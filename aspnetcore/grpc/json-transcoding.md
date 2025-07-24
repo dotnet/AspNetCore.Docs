@@ -3,17 +3,22 @@ title: gRPC JSON transcoding in ASP.NET Core gRPC apps
 author: jamesnk
 description: Learn how to create JSON HTTP APIs for gRPC services using gRPC JSON transcoding.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: jamesnk
-ms.date: 09/20/2022
+ms.author: wpickett
+ms.date: 05/10/2023
 uid: grpc/json-transcoding
+ms.custom: engagement-fy23
 ---
-# gRPC JSON transcoding in ASP.NET Core gRPC apps
+# gRPC JSON transcoding in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
+:::moniker range=">= aspnetcore-8.0"
+
 [gRPC](https://grpc.io) is a high-performance Remote Procedure Call (RPC) framework. gRPC uses HTTP/2, streaming, Protobuf, and message contracts to create high-performance, real-time services.
 
-One limitation with gRPC is not every platform can use it. Browsers don't fully support HTTP/2, making [REST APIs](https://www.redhat.com/topics/api/what-is-a-rest-api) and JSON the primary way to get data into browser apps. Despite the benefits that gRPC brings, REST APIs and JSON have an important place in modern apps. Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.
+One limitation with gRPC is that not every platform can use it. Browsers don't fully support HTTP/2, making [REST APIs](https://www.redhat.com/topics/api/what-is-a-rest-api) and JSON the primary way to get data into browser apps. Despite the benefits that gRPC brings, REST APIs and JSON have an important place in modern apps. Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.
 
 This document discusses how to create JSON Web APIs using gRPC services.
 
@@ -33,11 +38,14 @@ gRPC can still be used to call services.
 ## Usage
 
 1. Add a package reference to [`Microsoft.AspNetCore.Grpc.JsonTranscoding`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.JsonTranscoding).
-1. Register transcoding in server startup code by adding `AddJsonTranscoding`. For example, `services.AddGrpc().AddJsonTranscoding()`.
-1. Add [`google/api/http.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/http.proto) and [`google/api/annotations.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/annotations.proto) files to the project.
+1. Register transcoding in server startup code by adding `AddJsonTranscoding`: In the `Program.cs` file, change `builder.Services.AddGrpc();` to `builder.Services.AddGrpc().AddJsonTranscoding();`.
+1. Add `<IncludeHttpRuleProtos>true</IncludeHttpRuleProtos>` to the property group in the project file (`.csproj`):
+
+   [!code-json[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/GrpcServiceTranscoding.csproj?highlight=8&range=1-9)]
+
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
-[!code-protobuf[](~/grpc/json-transcoding/greet.proto?highlight=3,9-11)]
+   [!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/protos/greet.proto?highlight=4,11-13)]
 
 The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 
@@ -46,7 +54,7 @@ The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 
 If the server is configured to write logs for each request, server logs show that a gRPC service executes the HTTP call. Transcoding maps the incoming HTTP request to a gRPC message and converts the response message to JSON.
 
-```
+```text
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
       Request starting HTTP/1.1 GET https://localhost:5001/v1/greeter/world
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
@@ -63,7 +71,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 gRPC methods must be annotated with an HTTP rule before they support transcoding. The HTTP rule includes information about how to call the gRPC method, such as the HTTP method and route.
 
-[!code-protobuf[](~/grpc/json-transcoding/httprule.proto?highlight=3-5)]
+[!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/protos/greet.proto?highlight=3-5&range=9-15)]
 
 The proceeding example:
 
@@ -102,6 +110,8 @@ The client receives three line-delimited JSON objects:
 ```
 
 Note that the `WriteIndented` JSON setting doesn't apply to server streaming methods. Pretty printing adds new lines and whitespace to JSON, which can't be used with line-delimited JSON.
+
+View or download [an ASP.NET Core gPRC transcoding and streaming app sample](https://github.com/grpc/grpc-dotnet/tree/master/examples/Transcoder).
 
 ## HTTP protocol
 
@@ -163,3 +173,7 @@ For installation and usage of grpc-gateway, see the [grpc-gateway README](https:
 * <xref:grpc/json-transcoding-openapi>
 * <xref:grpc/browser>
 * <xref:grpc/grpcweb>
+
+:::moniker-end
+
+[!INCLUDE[](~/grpc/json-transcoding/includes/json-transcoding7.md)]

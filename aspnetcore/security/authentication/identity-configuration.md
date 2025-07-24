@@ -5,12 +5,13 @@ description: Understand ASP.NET Core Identity default values and learn how to co
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 2/15/2020
+ms.date: 3/09/2024
 uid: security/authentication/identity-configuration
 ---
 # Configure ASP.NET Core Identity
 
 :::moniker range=">= aspnetcore-6.0"
+
 
 ASP.NET Core Identity uses default values for settings such as password policy, lockout, and cookie configuration. These settings can be overridden at application startup.
 
@@ -114,6 +115,8 @@ The following code sets `SignIn` settings (to default values):
 | <xref:Microsoft.AspNetCore.Identity.UserOptions.AllowedUserNameCharacters%2A> | Allowed characters in the username. | abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-.\_@+ |
 | <xref:Microsoft.AspNetCore.Identity.UserOptions.RequireUniqueEmail%2A> | Requires each user to have a unique email. | `false` |
 
+<a name="cs6"></a>
+
 ### Cookie settings
 
 Configure the app's cookie in `Program.cs`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentity` or `AddDefaultIdentity`.
@@ -129,7 +132,7 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.Cookies.Cook
 | Option | Description |
 |--|--|
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | The compatibility mode used when hashing new passwords. Defaults to <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. The first byte of a hashed password, called a *format marker*, specifies the version of the hashing algorithm used to hash the password. When verifying a password against a hash, the <xref:Microsoft.AspNetCore.Identity.PasswordHasher%601.VerifyHashedPassword%2A> method selects the correct algorithm based on the first byte. A client is able to authenticate regardless of which version of the algorithm was used to hash the password. Setting the compatibility mode affects the hashing of *new passwords*. |
-| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | The number of iterations used when hashing passwords using PBKDF2. This value is only used when the <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> is set to <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. The value must be a positive integer and defaults to `10000`. |
+| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | The number of iterations used when hashing passwords using PBKDF2. This value is only used when the <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> is set to <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. The value must be a positive integer and defaults to `100000`. |
 
 In the following example, the <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> is set to `12000` in `Program.cs`:
 
@@ -145,6 +148,16 @@ builder.Services.Configure<PasswordHasherOptions>(option =>
 ## Globally require all users to be authenticated
 
 [!INCLUDE[](~/includes/requireAuth.md)]
+
+<a name="iss6"></a>
+
+## ISecurityStampValidator and SignOut everywhere
+
+Apps need to react to events involving security sensitive actions by regenerating the users <xref:System.Security.Claims.ClaimsPrincipal>. For example, the `ClaimsPrincipal` should be regenerated when joining a role, changing the password, or other security sensitive events. Identity uses the <xref:Microsoft.AspNetCore.Identity.ISecurityStampValidator> interface to regenerate the `ClaimsPrincipal`.  The default implementation of Identity registers a [SecurityStampValidator](/dotnet/api/microsoft.aspnetcore.identity.securitystampvalidator) with the main [application cookie](#cs6) and the two-factor cookie. The validator hooks into the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal> event of each cookie to call into Identity to verify that the user's security stamp claim is unchanged from what's stored in the cookie. The validator calls in at regular intervals. The call interval is a tradeoff between hitting the datastore too frequently and not often enough. Checking with a long interval results in stale claims. Call `userManager.UpdateSecurityStampAsync(user)`to force existing cookies to be invalided the next time they are checked. Most of the Identity UI account and manage pages call `userManager.UpdateSecurityStampAsync(user)` after changing the password or adding a login. Apps can call `userManager.UpdateSecurityStampAsync(user)` to implement a sign out everywhere action.
+
+Changing the validation interval is shown in the following highlighted code:
+
+:::code language="csharp" source="~/security/authentication/identity-configuration/Program.cs" highlight="17-19":::
 
 :::moniker-end
 

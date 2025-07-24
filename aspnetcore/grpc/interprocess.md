@@ -3,127 +3,146 @@ title: Inter-process communication with gRPC
 author: jamesnk
 description: Learn how to use gRPC for inter-process communication.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: jamesnk
-ms.date: 08/08/2022
+ms.author: wpickett
+ms.date: 11/08/2023
 uid: grpc/interprocess
 ---
 # Inter-process communication with gRPC
 
-By [James Newton-King](https://twitter.com/jamesnk)
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
-Apps on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication). Popular examples of IPC technologies are named pipes and Unix domain sockets.
+:::moniker range=">= aspnetcore-8.0"
+
+Processes running on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication). Popular examples of IPC technologies are Unix domain sockets and Named pipes.
 
 .NET provides support for inter-process communication using gRPC.
 
-## Get started with gRPC
+Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later.
 
-gRPC calls are sent from a client to a server. To communicate between apps on a machine with gRPC, at least one app must host an ASP.NET Core gRPC server.
+## Get started
 
-ASP.NET Core and gRPC can be hosted in any app using .NET Core 3.1 or later by adding the `Microsoft.AspNetCore.App` framework to the project.
+IPC calls are sent from a client to a server. To communicate between apps on a machine with gRPC, at least one app must host an ASP.NET Core gRPC server.
 
-[!code-xml[](~/grpc/interprocess/Server.csproj?highlight=4-6)]
+An ASP.NET Core gRPC server is usually created from the gRPC template. The project file created by the template uses `Microsoft.NET.SDK.Web` as the SDK:
 
-The preceding project file:
+[!code-xml[](~/grpc/interprocess/Server-web.csproj?highlight=1)]
 
-* Adds a framework reference to `Microsoft.AspNetCore.App`. The framework reference allows non-ASP.NET Core apps, such as Windows Services, WPF apps, or WinForms apps to use ASP.NET Core and host an ASP.NET Core server.
-* Adds a NuGet package reference to [`Grpc.AspNetCore`](https://www.nuget.org/packages/Grpc.AspNetCore).
-* Adds a `.proto` file.
+The `Microsoft.NET.SDK.Web` SDK value automatically adds a reference to the ASP.NET Core framework. The reference allows the app to use ASP.NET Core types required to host a server.
 
-## Configure Unix domain sockets
+It's also possible to add a server to existing non-ASP.NET Core projects, such as Windows Services, WPF apps, or WinForms apps. See [Host gRPC in non-ASP.NET Core projects](xref:grpc/aspnetcore#host-grpc-in-non-aspnet-core-projects) for more information.
 
-gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP was designed for communicating across a network. [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) are a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine. .NET provides built-in support for UDS in client and server apps.
+## Inter-process communication (IPC) transports
 
-Requirements:
+gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP is a good choice for communicating across a network or the Internet. However, IPC transports offer advantages when communicating between processes on the same machine:
 
-* .NET 5 or later
-* Linux, macOS, or [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/)
+* Less overhead and faster transfer speeds.
+* Integration with OS security features.
+* Doesn't use TCP ports, which are a limited resource.
 
-### Server configuration
+.NET supports multiple IPC transports:
 
-Unix domain sockets (UDS) are supported by [Kestrel](xref:fundamentals/servers/kestrel), which is configured in `Program.cs`:
+* [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology. UDS is the best choice for building cross-platform apps, and it's usable on Linux, macOS, and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
+* [Named pipes](https://wikipedia.org/wiki/Named_pipe) are supported by all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights), which can control client access to the pipe.
+* Additional IPC transports by implementing <xref:Microsoft.AspNetCore.Connections.IConnectionListenerFactory> and registering the implementation at app startup.
 
-```csharp
-public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
-
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-            webBuilder.ConfigureKestrel(options =>
-            {
-                if (File.Exists(SocketPath))
-                {
-                    File.Delete(SocketPath);
-                }
-                options.ListenUnixSocket(SocketPath, listenOptions =>
-                {
-                    listenOptions.Protocols = HttpProtocols.Http2;
-                });
-            });
-        });
-```
-
-The preceding example:
-
-* Configures Kestrel's endpoints in `ConfigureKestrel`.
-* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> to listen to a UDS with the specified path.
-* Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
-
-### Client configuration
-
-`GrpcChannel` supports making gRPC calls over custom transports. When a channel is created, it can be configured with a `SocketsHttpHandler` that has a custom `ConnectCallback`. The callback allows the client to make connections over custom transports and then send HTTP requests over that transport.
-
-Unix domain sockets connection factory example:
+Depending on the OS, cross-platform apps may choose different IPC transports. An app can check the OS on startup and choose the desired transport for that platform:
 
 ```csharp
-public class UnixDomainSocketConnectionFactory
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    private readonly EndPoint _endPoint;
-
-    public UnixDomainSocketConnectionFactory(EndPoint endPoint)
+    if (OperatingSystem.IsWindows())
     {
-        _endPoint = endPoint;
+        serverOptions.ListenNamedPipe("MyPipeName");
+    }
+    else
+    {
+        var socketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
+        serverOptions.ListenUnixSocket(socketPath);
     }
 
-    public async ValueTask<Stream> ConnectAsync(SocketsHttpConnectionContext _,
-        CancellationToken cancellationToken = default)
+    serverOptions.ConfigureEndpointDefaults(listenOptions =>
     {
-        var socket = new Socket(AddressFamily.Unix, SocketType.Stream, ProtocolType.Unspecified);
-
-        try
-        {
-            await socket.ConnectAsync(_endPoint, cancellationToken).ConfigureAwait(false);
-            return new NetworkStream(socket, true);
-        }
-        catch
-        {
-            socket.Dispose();
-            throw;
-        }
-    }
-}
-```
-
-Using the custom connection factory to create a channel:
-
-```csharp
-public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
-
-public static GrpcChannel CreateChannel()
-{
-    var udsEndPoint = new UnixDomainSocketEndPoint(SocketPath);
-    var connectionFactory = new UnixDomainSocketConnectionFactory(udsEndPoint);
-    var socketsHttpHandler = new SocketsHttpHandler
-    {
-        ConnectCallback = connectionFactory.ConnectAsync
-    };
-
-    return GrpcChannel.ForAddress("http://localhost", new GrpcChannelOptions
-    {
-        HttpHandler = socketsHttpHandler
+        listenOptions.Protocols = HttpProtocols.Http2;
     });
+});
+```
+
+## Security considerations
+
+IPC apps send and receive RPC calls. External communication is a potential attack vector for IPC apps and must be properly secured.
+
+### Secure IPC server app against unexpected callers
+
+The IPC server app hosts RPC services for other apps to call. Incoming callers should be authenticated to prevent untrusted clients from making RPC calls to the server.
+
+Transport security is one option for securing a server. IPC transports, such as Unix domain sockets and named pipes, support limiting access based on operating system permissions:
+
+* Named pipes supports securing a pipe with the [Windows access control model](/windows/win32/ipc/named-pipe-security-and-access-rights). Access rights can be configured in .NET when a server is started using the <xref:System.IO.Pipes.PipeSecurity> class.
+* Unix domain sockets support securing a socket with file permissions.
+
+Another option for securing an IPC server is to use authentication and authorization built into ASP.NET Core. For example, the server could be configured to require [certificate authentication](xref:security/authentication/certauth). RPC calls made by client apps without the required certificate fail with an unauthorized response.
+
+### Validate the server in the IPC client app
+
+It's important for the client app to validate the identity of the server it is calling. Validation is necessary to protect against a malicious actor from stopping the trusted server, running their own, and accepting incoming data from clients.
+
+Named pipes provides support for getting the account that a server is running under. A client can validate the server was launched by the expected account:
+
+```cs
+internal static bool CheckPipeConnectionOwnership(
+    NamedPipeClientStream pipeStream, SecurityIdentifier expectedOwner)
+{
+    var remotePipeSecurity = pipeStream.GetAccessControl();
+    var remoteOwner = remotePipeSecurity.GetOwner(typeof(SecurityIdentifier));
+    return expectedOwner.Equals(remoteOwner);
 }
 ```
 
-Channels created using the preceding code send gRPC calls over Unix domain sockets. Support for other IPC technologies can be implemented using the extensibility in Kestrel and `SocketsHttpHandler`.
+Another option for validating the server is to [secure its endpoints with HTTPS](/aspnet/core/fundamentals/servers/kestrel/endpoints#configure-https) inside ASP.NET Core. The client can configure `SocketsHttpHandler` to validate the server is using the expected certificate when the connection is established.
+
+```cs
+var socketsHttpHandler = new SocketsHttpHandler()
+{
+    SslOptions = new SslOptions()
+    {
+        RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) =>
+        {
+            if (sslPolicyErrors != SslPolicyErrors.None)
+            {
+                return false;
+            }
+
+            // Validate server cert thumbprint matches the expected thumbprint.
+        }
+    }
+};
+```
+
+### Protect against named pipe privilege escalation
+
+Named pipes supports a feature called [impersonation](/windows/win32/ipc/impersonating-a-named-pipe-client). Using impersonation, the named pipes server can execute code with the privileges of the client user. This is a powerful feature but can allow a low-privilege server to impersonate a high-privilege caller and then run malicious code.
+
+Client's can protect against this attack by not allowing impersonation when connecting to a server. Unless required by a server, a <xref:System.Security.Principal.TokenImpersonationLevel> value of `None` or `Anonymous` should be used when creating a client connection:
+
+```cs
+using var pipeClient = new NamedPipeClientStream(
+    serverName: ".", pipeName: "testpipe", PipeDirection.In, PipeOptions.None, TokenImpersonationLevel.None);
+await pipeClient.ConnectAsync();
+```
+
+`TokenImpersonationLevel.None` is the default value in `NamedPipeClientStream` constructors that don't have an `impersonationLevel` parameter.
+
+## Configure client and server
+
+The client and server must be configured to use an inter-process communication (IPC) transport. For more information about configuring Kestrel and <xref:System.Net.Http.SocketsHttpHandler> to use IPC:
+
+* [Inter-process communication with gRPC and Unix domain sockets](xref:grpc/interprocess-uds)
+* [Inter-process communication with gRPC and Named pipes](xref:grpc/interprocess-namedpipes)
+
+> [!NOTE]
+> Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later.
+
+:::moniker-end
+
+[!INCLUDE[](~/grpc/interprocess/includes/interprocess5-7.md)]

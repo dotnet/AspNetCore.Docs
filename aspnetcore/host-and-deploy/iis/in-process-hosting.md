@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/in-process-hosting
 ---
 # In-process hosting with IIS and ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 In-process hosting runs an ASP.NET Core app in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine.
@@ -85,6 +87,16 @@ The following characteristics apply when hosting in-process:
 [!code-csharp[](~/host-and-deploy/iis/in-process-hosting/6.0samples/Program.cs?highlight=22-23)]
   
 * [Web Package (single-file) deployments](/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages) aren't supported.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+<a name="ihsrtf8"></a>
+
+## Get timing information
+
+See [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
 :::moniker-end
 

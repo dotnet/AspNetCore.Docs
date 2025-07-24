@@ -46,7 +46,8 @@ namespace LargeFilesSample.Controllers
                 return new UnsupportedMediaTypeResult();
             }
 
-            var reader = new MultipartReader(mediaTypeHeader.Boundary.Value, request.Body);
+            var boundary = HeaderUtilities.RemoveQuotes(mediaTypeHeader.Boundary.Value).Value;
+            var reader = new MultipartReader(boundary, request.Body);
             var section = await reader.ReadNextSectionAsync();
 
             // This sample try to get the first file from request and save it

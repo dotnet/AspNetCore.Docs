@@ -1,10 +1,10 @@
 ---
 title: Part 5, Razor Pages with EF Core in ASP.NET Core - Data Model
-author: rick-anderson
+author: tdykstra
 description: Part 5 of Razor Pages and Entity Framework tutorial series.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 3/3/2021
+ms.date: 04/10/2025
 uid: data/ef-rp/complex-data-model
 ---
 
@@ -417,7 +417,7 @@ An enrollment record is for one course taken by one student.
 
 ![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
 
-Update `Models/Enrollment.cs` with the following code:
+Review `Models/Enrollment.cs`:
 
 [!code-csharp[](intro/samples/cu30/Models/Enrollment.cs?highlight=1-2,16)]
 

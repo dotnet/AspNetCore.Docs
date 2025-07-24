@@ -3,11 +3,13 @@ title: Use OpenAPI with gRPC JSON transcoding ASP.NET Core apps
 author: jamesnk
 description: Learn how to configure gRPC JSON transcoding to generate OpenAPI.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: jamesnk
-ms.date: 09/20/2022
+ms.author: wpickett
+ms.date: 02/19/2025
 uid: grpc/json-transcoding-openapi
 ---
 # gRPC JSON transcoding documentation with Swagger / OpenAPI
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -20,10 +22,11 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 To enable OpenAPI with gRPC JSON transcoding:
 
-1. Add a package reference to [`Microsoft.AspNetCore.Grpc.Swagger`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger). The version must be 0.3.0-xxx or later.
-2. Configure Swashbuckle in startup. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC endpoints.
+1. Setup gRPC JSON transcoding by following the [getting started instructions](xref:grpc/json-transcoding#usage).
+2. Add a package reference to [`Microsoft.AspNetCore.Grpc.Swagger`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger). The version must be 0.3.0-xxx or later.
+3. Configure Swashbuckle in startup. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC endpoints.
 
-[!code-csharp[](~/grpc/json-transcoding-openapi/Program.cs?name=snippet_1&highlight=3-8,11-15)]
+[!code-csharp[](~/grpc/json-transcoding-openapi/Program.cs?name=snippet_1&highlight=3-8,11-16)]
 
 [!INCLUDE[](~/includes/package-reference.md)]
 

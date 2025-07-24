@@ -1,6 +1,6 @@
-﻿#define FIRST
+#define FIRST
 #if FIRST
-#region snippet1
+// <snippet1>
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,10 +29,10 @@ namespace ContosoUniversity.Models
         public ICollection<Course> Courses { get; set; }
     }
 }
-#endregion
+// </snippet1>
 #else
 #if SQLiteVersion
-#region snippetSL
+// <snippetSL>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -65,9 +65,9 @@ namespace ContosoUniversity.Models
         public ICollection<Course> Courses { get; set; }
     }
 }
-#endregion
+// </snippetSL>
 #else   // SQL Server version with concurrency token
-#region snippet3
+// <snippet3>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -101,6 +101,6 @@ namespace ContosoUniversity.Models
         public ICollection<Course> Courses { get; set; }
     }
 }
-#endregion
+// </snippet3>
 #endif
 #endif

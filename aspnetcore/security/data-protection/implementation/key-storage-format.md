@@ -21,7 +21,7 @@ Keys exist as top-level objects in the key repository. By convention keys have t
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<key id="80732141-ec8f-4b80-af9c-c4d2d1ff8901" version="1">
+<key id="aaaaaaaa-0b0b-1c1c-2d2d-333333333333" version="1">
   <creationDate>2015-03-19T23:32:02.3949887Z</creationDate>
   <activationDate>2015-03-19T23:32:02.3839429Z</activationDate>
   <expirationDate>2015-06-17T23:32:02.3839429Z</expirationDate>
@@ -50,7 +50,7 @@ The \<key> element contains the following attributes and child elements:
 
 * A \<descriptor> element, which contains information on the authenticated encryption implementation contained within this key.
 
-In the above example, the key's id is {80732141-ec8f-4b80-af9c-c4d2d1ff8901}, it was created and activated on March 19, 2015, and it has a lifetime of 90 days. (Occasionally the activation date might be slightly before the creation date as in this example. This is due to a nit in how the APIs work and is harmless in practice.)
+In the above example, the key's id is {aaaaaaaa-0b0b-1c1c-2d2d-333333333333}, it was created and activated on March 19, 2015, and it has a lifetime of 90 days. (Occasionally the activation date might be slightly before the creation date as in this example. This is due to a nit in how the APIs work and is harmless in practice.)
 
 ## The \<descriptor> element
 
@@ -74,7 +74,7 @@ For revocations of individual keys, the file contents will be as below.
 <?xml version="1.0" encoding="utf-8"?>
 <revocation version="1">
   <revocationDate>2015-03-20T22:45:30.2616742Z</revocationDate>
-  <key id="eb4fc299-8808-409d-8a34-23fc83d026c9" />
+  <key id="bbbbbbbb-1c1c-2d2d-3e3e-444444444444" />
   <reason>human-readable reason</reason>
 </revocation>
 ```

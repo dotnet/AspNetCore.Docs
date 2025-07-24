@@ -1,0 +1,45 @@
+﻿@page
+@model WebAPI.IndexModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+
+<div class="text-center">
+    <h1 class="display-4">CORS Test 1</h1>
+    @{
+        var host3 = Configuration["host3"];
+
+        var theHost = HttpContext.Request.Host.Value;
+
+
+        if (!host3.Contains(theHost) && !theHost.Contains("localhost"))
+        {
+            <text>Test from <a href="@host3">@host3</a>  or
+            <a href="https://localhost:5001">https://localhost:5001</a>
+            </text>
+        }
+    }
+</div>
+
+<div>
+    <span id='result'></span>
+</div>
+
+<ul>
+    <li>
+        <input type="button" value="Values"
+               onclick="MyTestCors3( '@Model.Host','/api/values', 'GET')" />
+    </li>
+
+    <li>
+        <input type="button" value="PUT test"
+               onclick="MyTestCors3( '@Model.Host', '/api/values/5', 'PUT')" />
+    </li>
+
+    <li>
+        <input type="button" value="GetValues2 [DisableCors]"
+               onclick="MyTestCors3( '@Model.Host','/api/values/GetValues2', 'GET')" />
+    </li>
+</ul>
+
+<script src="~/js/MyJS.js"></script>
+

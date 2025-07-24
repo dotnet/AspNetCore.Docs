@@ -1,9 +1,9 @@
 ---
 title: Authentication and authorization in ASP.NET Core SignalR
-author: bradygaster
+author: wadepickett
 description: Learn how to use authentication and authorization in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 2/05/2022
 uid: signalr/authn-and-authz
@@ -162,7 +162,7 @@ public class ChatHub : Hub
 
 SignalR provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of <xref:Microsoft.AspNetCore.SignalR.HubInvocationContext>. The `HubInvocationContext` includes the <xref:Microsoft.AspNetCore.SignalR.HubCallerContext>, the name of the hub method being invoked, and the arguments to the hub method.
 
-Consider the example of a chat room allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization should be able to ban users or view users' chat histories. Furthermore, we might want to restrict some functionality from specific users. Note how the `DomainRestrictedRequirement` serves as a custom <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>. Now that the `HubInvocationContext` resource parameter is being passed in, the internal logic can inspect the context in which the Hub is being called and make decisions on allowing the user to execute individual Hub methods:
+Consider the example of a chat room allowing multiple organization sign-in via Microsoft Entra ID. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization should be able to ban users or view users' chat histories. Furthermore, we might want to restrict some functionality from specific users. Note how the `DomainRestrictedRequirement` serves as a custom <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>. Now that the `HubInvocationContext` resource parameter is being passed in, the internal logic can inspect the context in which the Hub is being called and make decisions on allowing the user to execute individual Hub methods:
 
 ```csharp
 [Authorize]
@@ -418,7 +418,7 @@ public class ChatHub : Hub
 
 SignalR provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the `HubCallerContext`, the name of the hub method being invoked, and the arguments to the hub method.
 
-Consider the example of a chat room allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization should be able to ban users or view users' chat histories. Furthermore, we might want to restrict certain functionality from certain users. Using the updated features in ASP.NET Core 3.0, this is entirely possible. Note how the `DomainRestrictedRequirement` serves as a custom `IAuthorizationRequirement`. Now that the `HubInvocationContext` resource parameter is being passed in, the internal logic can inspect the context in which the Hub is being called and make decisions on allowing the user to execute individual Hub methods.
+Consider the example of a chat room allowing multiple organization sign-in via Microsoft Entra ID. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization should be able to ban users or view users' chat histories. Furthermore, we might want to restrict certain functionality from certain users. Using the updated features in ASP.NET Core 3.0, this is entirely possible. Note how the `DomainRestrictedRequirement` serves as a custom `IAuthorizationRequirement`. Now that the `HubInvocationContext` resource parameter is being passed in, the internal logic can inspect the context in which the Hub is being called and make decisions on allowing the user to execute individual Hub methods.
 
 ```csharp
 [Authorize]

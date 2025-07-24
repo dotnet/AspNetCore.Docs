@@ -3,38 +3,47 @@ title: Host and deploy ASP.NET Core Blazor
 author: guardrex
 description: Discover how to host and deploy Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 01/13/2022
+ms.date: 11/12/2024
 uid: blazor/host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core Blazor
 
-This article explains how to host and deploy Blazor apps.
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-6.0"
+This article explains how to host and deploy Blazor apps.
 
 ## Publish the app
 
 Apps are published for deployment in Release configuration.
 
+:::moniker range="< aspnetcore-8.0"
+
 > [!NOTE]
 > Publish a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) from the **:::no-loc text="Server":::** project.
+
+:::moniker-end
 
 # [Visual Studio](#tab/visual-studio)
 
 1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
-1. Select the *publish target*. To publish locally, select **Folder**.
-1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
+1. Select the *publish target*. To publish locally, select **Folder**. Select **Next**.
+1. When publishing locally, accept the default folder location or specify a different location. Select **Finish** to save the profile. Select **Close**.
+1. To clean the target's publish folder prior to publishing the app, select **Show all settings**. Select **Settings** > **File Publish Options** > **Delete all existing files prior to publish**. Select **Save**.
+1. Select the **Publish** button.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code and .NET CLI](#tab/visual-studio-code-dotnet-cli)
 
-1. Select the **Publish to Folder** command from the **Build** menu.
-1. Confirm the folder to receive the published assets and select **`Publish`**.
+Open a command shell to the project's root directory.
 
-# [.NET Core CLI](#tab/netcore-cli)
+Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app:
 
-Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app with a Release configuration:
+```dotnetcli
+dotnet publish
+```
+
+Prior to .NET 8, the default publish configuration is `Debug`. When publishing an app that targets .NET 7 or earlier, pass the `-c|--configuration` option to the command with "`Release`" to publish in `Release` configuration:
 
 ```dotnetcli
 dotnet publish -c Release
@@ -44,14 +53,35 @@ dotnet publish -c Release
 
 Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
 
-Publish locations:
+## Empty the target publish folder
 
+When using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command in a command shell to publish an app, the command generates the necessary files for deployment based on the current state of the project and places the files into the specified output folder. The command doesn't automatically clean the target folder before publishing the app.
+
+To empty the target folder automatically before the app is published, add the following MSBuild target to the app's project file (`.csproj`) under the root `<Project>` element:
+
+```xml
+<Target Name="_RemovePublishDirBeforePublishing" BeforeTargets="BeforePublish">
+  <RemoveDir Directories="$(PublishDir)" Condition="'$(PublishDir)' != ''" />
+</Target>
+```
+
+## Default publish locations
+
+:::moniker range=">= aspnetcore-8.0"
+
+* Blazor Web App: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework. Deploy the contents of the `publish` folder to the host.
+* Standalone Blazor WebAssembly: The app is published into the `bin/Release/{TARGET FRAMEWORK}/publish` or `bin/Release/{TARGET FRAMEWORK}/browser-wasm/publish` folder. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.. Deploy the contents of the `publish` folder to the host.
 * Blazor WebAssembly
-  * Standalone: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
-  * Hosted: The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the server app. Deploy the contents of the `publish` folder to the host.
-* Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
+  * Standalone: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` or `bin/Release/{TARGET FRAMEWORK}/browser-wasm/publish` folder. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
+  * Hosted: The server ASP.NET Core app and client Blazor WebAssembly app are published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder of the server app, along with any static web assets of the client app. Deploy the contents of the `publish` folder to the host.
 
-The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
+:::moniker-end
 
 ## IIS
 
@@ -60,161 +90,59 @@ To host a Blazor app in IIS, see the following resources:
 * IIS hosting
   * <xref:tutorials/publish-to-iis>
   * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
-* <xref:blazor/host-and-deploy/webassembly>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
+* <xref:blazor/host-and-deploy/server/index>: Blazor Web Apps (.NET 8 or later) and Blazor Server apps (.NET 7 or earlier) running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
+* <xref:blazor/host-and-deploy/webassembly/iis>: Standalone Blazor WebAssembly apps (all .NET releases) and hosted Blazor WebAssembly apps (.NET 7 or earlier).
 * IIS sub-application hosting
-  * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
+  * Follow the [app base path guidance](xref:blazor/host-and-deploy/app-base-path) prior to publishing the app. The examples use an app base path of `/CoolApp` and show how to [obtain the base path from app settings or other configuration providers](xref:blazor/host-and-deploy/app-base-path#obtain-the-app-base-path-from-configuration).
   * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
 
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
+
+:::moniker range="< aspnetcore-8.0"
 
 One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios.
 
 For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
 
-## App base path
+:::moniker-end
 
-The *app base path* is the app's root URL path. Consider the following ASP.NET Core app and Blazor sub-app:
+:::moniker range=">= aspnetcore-10.0"
 
-* The ASP.NET Core app is named `MyApp`:
-  * The app physically resides at `d:/MyApp`.
-  * Requests are received at `https://www.contoso.com/{MYAPP RESOURCE}`.
-* A Blazor app named `CoolApp` is a sub-app of `MyApp`:
-  * The sub-app physically resides at `d:/MyApp/CoolApp`.
-  * Requests are received at `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
+## JavaScript bundler support
 
-Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`. This scenario also applies in various hosting and reverse proxy scenarios when an app isn't hosted at a root URL path.
+The Blazor runtime relies on JavaScript (JS) files, the .NET runtime compiled into WebAssembly code, and managed assemblies packed as WebAssembly files. When a Blazor app is built, the Blazor runtime depends on these files from different build locations. Due to this constraint, Blazor's build output isn't compatible with JS bundlers, such as [Gulp](https://gulpjs.com), [Webpack](https://webpack.js.org), and [Rollup](https://rollupjs.org/). 
 
-To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the relative root path.
+To produce build output compatible with JS bundlers *during publish*, set the `WasmBundlerFriendlyBootConfig` MSBuild property to `true` in the app's project file:
 
-By configuring the relative URL path for an app, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The Blazor router handles the internal navigation.
+```xml
+<WasmBundlerFriendlyBootConfig>true</WasmBundlerFriendlyBootConfig>
+```
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following:
+> [!IMPORTANT]
+> This feature only produces the bundler-friendly output when publishing the app.
 
-* Blazor WebAssembly: `/` configured as `<base href="/" />`.
-* Blazor Server: `~/` configured as `<base href="~/" />`.
+The output isn't directly runnable in the browser, but it can be consumed by JS tools to bundle JS files with the rest of the developer-supplied scripts.
 
-For the location of `<head>` content in Blazor apps, see <xref:blazor/project-structure#location-of-head-content>.
-
-In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
-
-* Standalone Blazor WebAssembly:
-
-  `wwwroot/index.html`:
-
-  ```html
-  <base href="/CoolApp/">
-  ```
-
-  **The trailing slash is required.**
-
-* Hosted Blazor WebAssembly:
-
-  In the **:::no-loc text="Client":::** project, `wwwroot/index.html`:
-
-  ```html
-  <base href="/CoolApp/">
-  ```
-
-  **The trailing slash is required.**
-
-  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
-
-  ```csharp
-  app.UsePathBase("/CoolApp");
-  ```
-
-* In a Blazor Server app, use ***either*** of the following approaches:
-
-  * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)):
-
-    ```html
-    <base href="/CoolApp/">
-    ```
-
-    **The trailing slash is required.**
-
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
-
-    ```csharp
-    app.UsePathBase("/CoolApp");
-    ```
-
-    Calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> is recommended when you also wish to run the Blazor Server app locally. For example, supply the launch URL in `Properties/launchSettings.json`:
-  
-    ```xml
-    "launchUrl": "https://localhost:{PORT}/CoolApp",
-    ```
-
-    The `{PORT}` placeholder in the preceding example is the port that matches the secure port in the `applicationUrl` configuration path. The following example shows the full launch profile for an app at port 7279:
-  
-    ```xml
-    "BlazorSample": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7279;http://localhost:5279",
-      "launchUrl": "https://localhost:7279/CoolApp",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-    }
-    ```
-    
-    For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
+When `WasmBundlerFriendlyBootConfig` is enabled, the produced JS contains `import` directives for all of the assets in the app, which makes the dependencies visible for the bundler. Many of the assets aren't loadable by the browser, but bundlers usually can be configured to recognize the assets by their file type to handle loading. For details on how to configure your bundler, refer to the bundler's documentation. 
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by `UsePathBase` as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
+> Bundling build output should be possible by mapping imports to individual file locations using a JS bundler custom plugin. We don't provide such a plugin at the moment.
 
-Do ***not*** prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
+> [!NOTE]
+> Replacing the `files` plugin with `url`, all of the app's JS files, including the Blazor-WebAssembly runtime (base64 encoded in the JS), are bundled into the output. The size of the file is significantly larger (for example, 300% larger) than when the files are curated with the `files` plugin, so we don't recommend using the `url` plugin as a general practice when producing bundler-friendly output for JS bundler processing.
 
-* ❌ Incorrect: `<a href="/account">`
-* ✔️ Correct: `<a href="account">`
-* ✔️ Correct: `<a href="./account">`
+The following sample apps are based on [Rollup](https://rollupjs.org/). Similar concepts apply when using other JS bundlers.
 
-In [Blazor WebAssembly web API requests with the `HttpClient` service](xref:blazor/call-web-api?pivots=webassembly), confirm that JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions>) do ***not*** prefix URLs with a forward slash (`/`):
+Demonstration sample apps:
 
-* ❌ Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
-* ✔️ Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
+* [Blazor WASM in a React application (`maraf/blazor-wasm-react` GitHub repository)](https://github.com/maraf/blazor-wasm-react)
+* [.NET on WASM in a React component sample (`maraf/dotnet-wasm-react` GitHub repository)](https://github.com/maraf/dotnet-wasm-react)
 
-Do ***not*** prefix [Navigation Manager](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
-
-* ❌ Incorrect: `Navigation.NavigateTo("/other");`
-* ✔️ Correct: `Navigation.NavigateTo("other");`
-* ✔️ Correct: `Navigation.NavigateTo("./other");`
-
-In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required to serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). For more information, see <xref:blazor/fundamentals/static-files>.
-
-For a Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. **Don't include a trailing slash.** To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
-
-```dotnetcli
-dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
-```
-
-For a Blazor WebAssembly app with a relative URL path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
-
-```dotnetcli
-dotnet run --pathbase=/CoolApp
-```
-
-If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `commandLineArgs` property in `Properties/launchSettings.json`. The following also configures the launch URL (`launchUrl`):
-
-```json
-"commandLineArgs": "--pathbase=/{RELATIVE URL PATH (no trailing slash)}",
-"launchUrl": "{RELATIVE URL PATH (no trailing slash)}",
-```
-
-Using `CoolApp` as the example:
-
-```json
-"commandLineArgs": "--pathbase=/CoolApp",
-"launchUrl": "CoolApp",
-```
-
-Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
-
-For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
+:::moniker-end
 
 ## Blazor Server `MapFallbackToPage` configuration
+
+*This section only applies to Blazor Server apps. <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> isn't supported in Blazor Web Apps and Blazor WebAssembly apps.*
 
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
@@ -239,464 +167,3 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
   app.Run();
   ```
-
-## Host multiple Blazor WebAssembly apps
-
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
-
-## Deployment
-
-For deployment guidance, see the following topics:
-
-* <xref:blazor/host-and-deploy/webassembly>
-* <xref:blazor/host-and-deploy/server>
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-## Publish the app
-
-Apps are published for deployment in Release configuration.
-
-# [Visual Studio](#tab/visual-studio)
-
-1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
-1. Select the *publish target*. To publish locally, select **Folder**.
-1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. Select the **Publish to Folder** command from the **Build** menu.
-1. Confirm the folder to receive the published assets and select **`Publish`**.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app with a Release configuration:
-
-```dotnetcli
-dotnet publish -c Release
-```
-
----
-
-Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
-
-Publish locations:
-
-* Blazor WebAssembly
-  * Standalone: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
-  * Hosted: The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the server app. Deploy the contents of the `publish` folder to the host.
-* Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
-
-The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
-
-## IIS
-
-To host a Blazor app in IIS, see the following resources:
-
-* IIS hosting
-  * <xref:tutorials/publish-to-iis>
-  * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
-* <xref:blazor/host-and-deploy/webassembly>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
-* IIS sub-application hosting
-  * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
-  * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
-
-Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
-
-One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios.
-
-For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
-
-## App base path
-
-The *app base path* is the app's root URL path. Consider the following ASP.NET Core app and Blazor sub-app:
-
-* The ASP.NET Core app is named `MyApp`:
-  * The app physically resides at `d:/MyApp`.
-  * Requests are received at `https://www.contoso.com/{MYAPP RESOURCE}`.
-* A Blazor app named `CoolApp` is a sub-app of `MyApp`:
-  * The sub-app physically resides at `d:/MyApp/CoolApp`.
-  * Requests are received at `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
-
-Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`. This scenario also applies in various hosting and reverse proxy scenarios when an app isn't hosted at a root URL path.
-
-To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the relative root path.
-
-By configuring the relative URL path for an app, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The Blazor router handles the internal navigation.
-
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following:
-
-* Blazor WebAssembly: `/` configured as `<base href="/" />` in `wwwroot/index.html`.
-* Blazor Server: `~/` configured as `<base href="~/" />` in `Pages/_Host.cshtml`.
-
-In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
-
-* Standalone Blazor WebAssembly:
-
-  `wwwroot/index.html`:
-
-  ```html
-  <base href="/CoolApp/">
-  ```
-
-  **The trailing slash is required.**
-
-* Hosted Blazor WebAssembly:
-
-  In the **:::no-loc text="Client":::** project, `wwwroot/index.html`:
-
-  ```html
-  <base href="/CoolApp/">
-  ```
-
-  **The trailing slash is required.**
-
-  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
-
-  ```csharp
-  app.UsePathBase("/CoolApp");
-  ```
-
-* In a Blazor Server app, use ***either*** of the following approaches:
-
-  * Option 1: Use the `<base>` tag in `Pages/_Host.cshtml` to set the app's base path:
-
-    ```html
-    <base href="/CoolApp/">
-    ```
-
-    **The trailing slash is required.**
-
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
-
-    ```csharp
-    app.UsePathBase("/CoolApp");
-    ```
-
-    Calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> is recommended when you also wish to run the Blazor Server app locally. For example, supply the launch URL in `Properties/launchSettings.json`:
-  
-    ```xml
-    "launchUrl": "https://localhost:{PORT}/CoolApp",
-    ```
-
-    The `{PORT}` placeholder in the preceding example is the port that matches the secure port in the `applicationUrl` configuration path. The following example shows the full launch profile for an app at port 7279:
-  
-    ```xml
-    "BlazorSample": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7279;http://localhost:5279",
-      "launchUrl": "https://localhost:7279/CoolApp",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-    }
-    ```
-    
-    For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
-
-For a Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. **Don't include a trailing slash.** To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
-
-```dotnetcli
-dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
-```
-
-For a Blazor WebAssembly app with a relative URL path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
-
-```dotnetcli
-dotnet run --pathbase=/CoolApp
-```
-
-If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `commandLineArgs` property in `Properties/launchSettings.json`. The following also configures the launch URL (`launchUrl`):
-
-```json
-"commandLineArgs": "--pathbase=/{RELATIVE URL PATH (no trailing slash)}",
-"launchUrl": "{RELATIVE URL PATH (no trailing slash)}",
-```
-
-Using `CoolApp` as the example:
-
-```json
-"commandLineArgs": "--pathbase=/CoolApp",
-"launchUrl": "CoolApp",
-```
-
-Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
-
-For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
-
-For additional third-party host support:
-
-* <xref:blazor/host-and-deploy/server> and <xref:signalr/scale>
-* <xref:blazor/host-and-deploy/webassembly>
-* Consult the host provider's documentation.
-* Consult developers on non-Microsoft support forums:
-  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
-  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
-
-### Blazor Server `MapFallbackToPage` configuration
-
-In scenarios where an app requires a separate area with custom resources and Razor components:
-
-* Create a folder within the app's `Pages` folder to hold the resources. For example, an administrator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
-* Create a root page (`_Host.cshtml`) for the area. For example, create a `Pages/Admin/_Host.cshtml` file from the app's main root page (`Pages/_Host.cshtml`). Don't provide an `@page` directive in the Admin `_Host` page.
-* Add a layout to the area's folder (for example, `Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder (for example, `<base href="/Admin/" />`). For demonstration purposes, add `~/` to the static resources in the page. For example:
-  * `~/css/bootstrap/bootstrap.min.css`
-  * `~/css/site.css`
-  * `~/BlazorSample.styles.css` (the example app's namespace is `BlazorSample`)
-  * `~/_framework/blazor.server.js` (Blazor script)
-* If the area should have its own static asset folder, add the folder and specify its location to Static File Middleware in `Program.cs` (for example, `app.UseStaticFiles("/Admin/wwwroot")`).
-* Razor components are added to the area's folder. At a minimum, add an `Index` component to the area folder with the correct `@page` directive for the area. For example, add a `Pages/Admin/Index.razor` file based on the app's default `Pages/Index.razor` file. Indicate the Admin area as the route template at the top of the file (`@page "/admin"`). Add additional components as needed. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
-* In `Startup.Configure`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path immediately before the fallback root page path to the `_Host` page:
-
-  ```csharp
-  ...
-  app.UseRouting();
-
-  app.MapBlazorHub();
-  app.MapFallbackToPage("~/Admin/{*clientroutes:nonfile}", "/Admin/_Host");
-  app.MapFallbackToPage("/_Host");
-
-  app.Run();
-  ```
-
-### Host multiple Blazor WebAssembly apps
-
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
-
-## Deployment
-
-For deployment guidance, see the following topics:
-
-* <xref:blazor/host-and-deploy/webassembly>
-* <xref:blazor/host-and-deploy/server>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-## Publish the app
-
-Apps are published for deployment in Release configuration.
-
-# [Visual Studio](#tab/visual-studio)
-
-1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
-1. Select the *publish target*. To publish locally, select **Folder**.
-1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. Select the **Publish to Folder** command from the **Build** menu.
-1. Confirm the folder to receive the published assets and select **`Publish`**.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-Use the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command to publish the app with a Release configuration:
-
-```dotnetcli
-dotnet publish -c Release
-```
-
----
-
-Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
-
-Publish locations:
-
-* Blazor WebAssembly
-  * Standalone: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
-  * Hosted: The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the server app. Deploy the contents of the `publish` folder to the host.
-* Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
-
-The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
-
-## IIS
-
-To host a Blazor app in IIS, see the following resources:
-
-* IIS hosting
-  * <xref:tutorials/publish-to-iis>
-  * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
-* <xref:blazor/host-and-deploy/webassembly>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
-* IIS sub-application hosting
-  * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
-  * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
-
-Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
-
-One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios.
-
-For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
-
-## App base path
-
-The *app base path* is the app's root URL path. Consider the following ASP.NET Core app and Blazor sub-app:
-
-* The ASP.NET Core app is named `MyApp`:
-  * The app physically resides at `d:/MyApp`.
-  * Requests are received at `https://www.contoso.com/{MYAPP RESOURCE}`.
-* A Blazor app named `CoolApp` is a sub-app of `MyApp`:
-  * The sub-app physically resides at `d:/MyApp/CoolApp`.
-  * Requests are received at `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
-
-Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`. This scenario also applies in various hosting and reverse proxy scenarios when an app isn't hosted at a root URL path.
-
-To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the relative root path.
-
-By configuring the relative URL path for an app, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The Blazor router handles the internal navigation.
-
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following:
-
-* Blazor WebAssembly: `/` configured as `<base href="/" />` in `wwwroot/index.html`.
-* Blazor Server: `~/` configured as `<base href="~/" />` in `Pages/_Host.cshtml`.
-
-In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
-
-* Standalone Blazor WebAssembly:
-
-  `wwwroot/index.html`:
-
-  ```html
-  <base href="/CoolApp/">
-  ```
-
-  **The trailing slash is required.**
-
-* Hosted Blazor WebAssembly:
-
-  In the **:::no-loc text="Client":::** project, `wwwroot/index.html`:
-
-  ```html
-  <base href="/CoolApp/">
-  ```
-
-  **The trailing slash is required.**
-
-  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
-
-  ```csharp
-  app.UsePathBase("/CoolApp");
-  ```
-
-* In a Blazor Server app, use ***either*** of the following approaches:
-
-  * Option 1: Use the `<base>` tag in `Pages/_Host.cshtml` to set the app's base path:
-
-    ```html
-    <base href="/CoolApp/">
-    ```
-
-    **The trailing slash is required.**
-
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
-
-    ```csharp
-    app.UsePathBase("/CoolApp");
-    ```
-
-    Calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> is recommended when you also wish to run the Blazor Server app locally. For example, supply the launch URL in `Properties/launchSettings.json`:
-  
-    ```xml
-    "launchUrl": "https://localhost:{PORT}/CoolApp",
-    ```
-
-    The `{PORT}` placeholder in the preceding example is the port that matches the secure port in the `applicationUrl` configuration path. The following example shows the full launch profile for an app at port 7279:
-  
-    ```xml
-    "BlazorSample": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7279;http://localhost:5279",
-      "launchUrl": "https://localhost:7279/CoolApp",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-    }
-    ```
-    
-    For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
-
-For a Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. **Don't include a trailing slash.** To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
-
-```dotnetcli
-dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
-```
-
-For a Blazor WebAssembly app with a relative URL path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
-
-```dotnetcli
-dotnet run --pathbase=/CoolApp
-```
-
-If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `commandLineArgs` property in `Properties/launchSettings.json`. The following also configures the launch URL (`launchUrl`):
-
-```json
-"commandLineArgs": "--pathbase=/{RELATIVE URL PATH (no trailing slash)}",
-"launchUrl": "{RELATIVE URL PATH (no trailing slash)}",
-```
-
-Using `CoolApp` as the example:
-
-```json
-"commandLineArgs": "--pathbase=/CoolApp",
-"launchUrl": "CoolApp",
-```
-
-Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
-
-For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
-
-For additional third-party host support:
-
-* <xref:blazor/host-and-deploy/server> and <xref:signalr/scale>
-* <xref:blazor/host-and-deploy/webassembly>
-* Consult the host provider's documentation.
-* Consult developers on non-Microsoft support forums:
-  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
-  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
-
-### Blazor Server `MapFallbackToPage` configuration
-
-In scenarios where an app requires a separate area with custom resources and Razor components:
-
-* Create a folder within the app's `Pages` folder to hold the resources. For example, an administrator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
-* Create a root page (`_Host.cshtml`) for the area. For example, create a `Pages/Admin/_Host.cshtml` file from the app's main root page (`Pages/_Host.cshtml`). Don't provide an `@page` directive in the Admin `_Host` page.
-* Add a layout to the area's folder (for example, `Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder (for example, `<base href="/Admin/" />`). For demonstration purposes, add `~/` to the static resources in the page. For example:
-  * `~/css/bootstrap/bootstrap.min.css`
-  * `~/css/site.css`
-  * `~/BlazorSample.styles.css` (the example app's namespace is `BlazorSample`)
-  * `~/_framework/blazor.server.js` (Blazor script)
-* If the area should have its own static asset folder, add the folder and specify its location to Static File Middleware in `Program.cs` (for example, `app.UseStaticFiles("/Admin/wwwroot")`).
-* Razor components are added to the area's folder. At a minimum, add an `Index` component to the area folder with the correct `@page` directive for the area. For example, add a `Pages/Admin/Index.razor` file based on the app's default `Pages/Index.razor` file. Indicate the Admin area as the route template at the top of the file (`@page "/admin"`). Add additional components as needed. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
-* In `Startup.Configure.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path immediately before the fallback root page path to the `_Host` page:
-
-  ```csharp
-  ...
-  app.UseRouting();
-
-  app.MapBlazorHub();
-  app.MapFallbackToPage("~/Admin/{*clientroutes:nonfile}", "/Admin/_Host");
-  app.MapFallbackToPage("/_Host");
-
-  app.Run();
-  ```
-
-### Host multiple Blazor WebAssembly apps
-
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
-
-## Deployment
-
-For deployment guidance, see the following topics:
-
-* <xref:blazor/host-and-deploy/webassembly>
-* <xref:blazor/host-and-deploy/server>
-
-:::moniker-end

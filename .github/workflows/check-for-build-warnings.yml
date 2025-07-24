@@ -8,7 +8,14 @@ jobs:
   status_checker_job:
     name: Look for build warnings
     runs-on: ubuntu-latest
+    permissions:
+        statuses: write
+        issues: write
+        pull-requests: write
     steps:
+    - uses: actions/checkout@v3
     - uses: dotnet/docs-actions/actions/status-checker@main
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        docs_path: "aspnetcore"
+        url_base_path: "aspnet/core"

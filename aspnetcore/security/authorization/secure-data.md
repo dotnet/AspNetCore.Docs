@@ -4,7 +4,8 @@ author: rick-anderson
 description: Learn how to create an ASP.NET Core web app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
 ms.author: riande
 ms.date: 12/5/2021
-ms.custom: "mvc, seodec18"
+ms.custom: mvc
+ms.sfi.ropc: t
 uid: security/authorization/secure-data
 ---
 
@@ -40,7 +41,7 @@ In the following image, `admin@contoso.com` is signed in and in the administrato
 
 ![Screenshot showing admin@contoso.com signed in](secure-data/_static/admin.png)
 
-The administrator has all privileges. She can read/edit/delete any contact and change the status of contacts.
+The administrator has all privileges. She can read, edit, or delete any contact and change the status of contacts.
 
 The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-movie-pages) the following `Contact` model:
 
@@ -65,6 +66,16 @@ This tutorial is advanced. You should be familiar with:
 ## The starter and completed app
 
 [Download](xref:index#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
+
+> [!TIP]
+> Use [`git sparse-checkout`](https://git-scm.com/docs/git-sparse-checkout) to only download the sample subfolder.
+For example:
+```
+git clone --depth 1 --filter=blob:none https://github.com/dotnet/AspNetCore.Docs.git --sparse
+cd AspNetCore.Docs
+git sparse-checkout init --cone
+git sparse-checkout set aspnetcore/security/authorization/secure-data/samples
+```
 
 ### The starter app
 
@@ -137,7 +148,7 @@ The `SeedData` class creates two accounts: administrator and manager. Use the [S
 dotnet user-secrets set SeedUserPW <PW>
 ```
 
-If a strong password is not specified, an exception is thrown when `SeedData.Initialize` is called.
+If a weak password is specified, an exception is thrown when `SeedData.Initialize` is called.
 
 Update the app to use the test password:
 
@@ -288,9 +299,17 @@ In the preceding code:
 
 ## Test the completed app
 
+> [!WARNING]
+> This article uses the [Secret Manager tool](xref:security/app-secrets) to store the password for the seeded user accounts. The Secret Manager tool is used to store sensitive data during local development. For information on authentication procedures that can be used when an app is deployed to a test or production environment, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
+
 If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](xref:security/app-secrets#secret-manager) to set a password:
 
-* Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol. For example, `Passw0rd!` meets the strong password requirements.
+* Choose a [strong password](https://support.microsoft.com/windows/create-and-use-strong-passwords-c5cebb49-8c53-4f5e-2bc4-fe357ca048eb):
+  * At least 12 characters long but 14 or more is better.
+  * A combination of uppercase letters, lowercase letters, numbers, and symbols.
+  * Not a word that can be found in a dictionary or the name of a person, character, product, or organization.
+  * Significantly different from your previous passwords.
+  * Easy for you to remember but difficult for others to guess. Consider using a memorable phrase like "6MonkeysRLooking^".
 * Execute the following command from the project's folder, where `<PW>` is the password:
 
   ```dotnetcli
@@ -320,7 +339,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 ## Create the starter app
 
 * Create a Razor Pages app named "ContactManager"
-  * Create the app with **Individual User Accounts**.
+  * Create the app with **Individual Accounts**.
   * Name it "ContactManager" so the namespace matches the namespace used in the sample.
   * `-uld` specifies LocalDB instead of SQLite
 
@@ -338,11 +357,13 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet tool install -g dotnet-aspnet-codegenerator
-dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
+dotnet-aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
 dotnet ef database drop -f
 dotnet ef migrations add initial
 dotnet ef database update
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 * Update the **ContactManager** anchor in the `Pages/Shared/_Layout.cshtml` file:
 
@@ -679,7 +700,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 ## Create the starter app
 
 * Create a Razor Pages app named "ContactManager"
-  * Create the app with **Individual User Accounts**.
+  * Create the app with **Individual Accounts**.
   * Name it "ContactManager" so the namespace matches the namespace used in the sample.
   * `-uld` specifies LocalDB instead of SQLite
 
@@ -702,6 +723,8 @@ dotnet ef database drop -f
 dotnet ef migrations add initial
 dotnet ef database update
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 If you experience a bug with the `dotnet aspnet-codegenerator razorpage` command, see [this GitHub issue](https://github.com/aspnet/Scaffolding/issues/984).
 

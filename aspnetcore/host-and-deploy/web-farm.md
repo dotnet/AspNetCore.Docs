@@ -1,14 +1,16 @@
 ---
 title: Host ASP.NET Core in a web farm
-author: rick-anderson
+author: tdykstra
 description: Learn how to host multiple instances of an ASP.NET Core app with shared resources in a web farm environment.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 01/13/2020
 uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Chris Ross](https://github.com/Tratcher)
 
@@ -58,7 +60,7 @@ The following scenarios don't require additional configuration, but they depend 
 | Identity | Authentication and database configuration.<br><br>For more information, see <xref:security/authentication/identity>. |
 | Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and state management: Session state](xref:fundamentals/app-state#session-state). |
 | TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and state management: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and state management: TempData](xref:fundamentals/app-state#tempdata). |
-| Anti-forgery | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/anti-request-forgery>. |
+| Antiforgery | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/anti-request-forgery>. |
 
 ## Troubleshoot
 
@@ -75,7 +77,7 @@ When any of the following symptoms occur **intermittently**, the problem is usua
 * Session state loses data.
 * Cached items disappear.
 * TempData fails.
-* POSTs fail: The anti-forgery check fails.
+* POSTs fail: The antiforgery check fails.
 
 For more information on Data Protection configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>. For more information on caching configuration for web farm deployments, see <xref:performance/caching/distributed>.
 

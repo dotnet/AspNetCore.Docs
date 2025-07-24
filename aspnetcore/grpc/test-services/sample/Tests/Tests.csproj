@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,7 +9,7 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
 
-    <PackageReference Include="Grpc.Net.Client" Version="2.41.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.52.0" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="6.0.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
 

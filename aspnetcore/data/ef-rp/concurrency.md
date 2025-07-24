@@ -1,10 +1,10 @@
 ---
 title: Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency
-author: rick-anderson
+author: tdykstra
 description: Part 8 of Razor Pages and Entity Framework tutorial series.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 07/22/2019
+ms.date: 01/29/2025
 uid: data/ef-rp/concurrency
 ---
 # Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency
@@ -417,7 +417,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 Update `Pages/Departments/Delete.cshtml` with the following code:
 
-[!code-cshtml[](intro/samples/cu50/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
+[!code-cshtml[](intro/samples/cu50/Pages/Departments/Delete.cshtml?highlight=1,10,39,45,51)]
 
 The preceding code makes the following changes:
 
@@ -444,6 +444,8 @@ Change the budget in the first browser tab and click **Save**.
 The browser shows the Index page with the changed value and updated `ConcurrencyToken`indicator. Note the updated `ConcurrencyToken`indicator, it's displayed on the second postback in the other tab.
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `ConcurrencyToken` has been updated.
+
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
 ## Additional resources
 
@@ -800,6 +802,8 @@ The browser shows the Index page with the changed value and updated rowVersion i
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
 
+[!INCLUDE[](~/includes/reliableWAP.md)]
+
 ## Additional resources
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
@@ -1100,7 +1104,9 @@ Delete the test department from the second tab. A concurrency error is display w
 
 See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
-### Additional resources
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
+## Additional resources
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)

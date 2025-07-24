@@ -3,7 +3,7 @@ title: Facebook external login setup in ASP.NET Core
 author: rick-anderson
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
-ms.custom: "seoapril2019, mvc, seodec18"
+ms.custom: mvc
 ms.date: 12/08/2021
 monikerRange: '>= aspnetcore-3.0'
 uid: security/authentication/facebook-logins
@@ -134,9 +134,7 @@ We recommend the `AccessDeniedPath` page contains the following information:
 <!-- End of React  -->
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
-[!INCLUDE[](includes/chain-auth-providers.md)]
-
- For more information on configuration options supported by Facebook authentication, see the <xref:Microsoft.AspNetCore.Builder.FacebookOptions> API reference. Configuration options can be used to:
+For more information on configuration options supported by Facebook authentication, see the <xref:Microsoft.AspNetCore.Builder.FacebookOptions> API reference. Configuration options can be used to:
 
 * Request different information about the user.
 * Add query string arguments to customize the login experience.
@@ -153,3 +151,7 @@ We recommend the `AccessDeniedPath` page contains the following information:
 * Once you publish your web site to Azure web app, you should reset the `AppSecret` in the Facebook developer portal.
 
 * Set the `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
+
+## Additional resources
+
+[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)

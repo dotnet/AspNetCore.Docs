@@ -132,7 +132,7 @@ namespace FormsTagHelper.Controllers
         public IActionResult IndexNone()
         {
             var model = new CountryViewModel();
-            model.Insert(0, new SelectListItem("<none>", ""));
+            model.Countries.Insert(0, new SelectListItem("<none>", ""));
             return View(model);
         }
         # endregion

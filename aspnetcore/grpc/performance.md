@@ -3,11 +3,13 @@ title: Performance best practices with gRPC
 author: jamesnk
 description: Learn the best practices for building high-performance gRPC services.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 08/23/2020
+ms.author: wpickett
+ms.date: 05/16/2025
 uid: grpc/performance
 ---
 # Performance best practices with gRPC
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -42,7 +44,7 @@ A gRPC channel uses a single HTTP/2 connection, and concurrent calls are multipl
 
 :::moniker range=">= aspnetcore-5.0"
 
-.NET 5 introduces the `SocketsHttpHandler.EnableMultipleHttp2Connections` property. When set to `true`, additional HTTP/2 connections are created by a channel when the concurrent stream limit is reached. When a `GrpcChannel` is created its internal `SocketsHttpHandler` is automatically configured to create additional HTTP/2 connections. If an app configures its own handler, consider setting `EnableMultipleHttp2Connections` to `true`:
+.NET 5 introduces the <xref:System.Net.Http.SocketsHttpHandler.EnableMultipleHttp2Connections?displayProperty=nameWithType> property. When set to `true`, additional HTTP/2 connections are created by a channel when the concurrent stream limit is reached. When a `GrpcChannel` is created its internal `SocketsHttpHandler` is automatically configured to create additional HTTP/2 connections. If an app configures its own handler, consider setting `EnableMultipleHttp2Connections` to `true`:
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
@@ -55,6 +57,8 @@ var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
     }
 });
 ```
+
+.NET Framework apps that make gRPC calls [must be configured to use `WinHttpHandler`](xref:grpc/netstandard#net-framework). .NET Framework apps can set the <xref:System.Net.Http.WinHttpHandler.EnableMultipleHttp2Connections?displayProperty=nameWithType> property to `true` to create additional connections.
 
 :::moniker-end
 
@@ -90,6 +94,27 @@ For more information about garbage collection, see [Workstation and server garba
 > [!NOTE]
 > ASP.NET Core apps use server GC by default. Enabling `<ServerGarbageCollection>` is only useful in non-server gRPC client apps, for example in a gRPC client console app.
 
+## Asynchronous calls in client apps
+
+Prefer using [asynchronous programming with async and await](/dotnet/csharp/asynchronous-programming/) when calling gRPC methods. Making gRPC calls with blocking, such as using `Task.Result` or `Task.Wait()`, prevents other tasks from using a thread. This can lead to thread pool starvation, poor performance, and the app to hang with a deadlock.
+
+All gRPC method types generate asynchronous APIs on gRPC clients. The exception is unary methods, which generate both async _and_ blocking methods.
+
+Consider the following gRPC service defined in a *.proto* file:
+
+```protobuf
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+}
+```
+
+Its generated `GreeterClient` type has two .NET methods for calling `SayHello`:
+
+* `GreeterClient.SayHelloAsync` - calls the `Greeter.SayHello` service asynchronously. Can be awaited.
+* `GreeterClient.SayHello` - calls the `Greeter.SayHello` service and blocks until complete.
+
+The blocking `GreeterClient.SayHello` method shouldn't be used in asynchronous code. It can cause performance and reliability issues.
+
 ## Load balancing
 
 Some load balancers don't work effectively with gRPC. L4 (transport) load balancers operate at a connection level, by distributing TCP connections across endpoints. This approach works well for loading balancing API calls made with HTTP/1.1. Concurrent calls made with HTTP/1.1 are sent on different connections, allowing calls to be load balanced across endpoints.
@@ -114,13 +139,13 @@ For more information, see <xref:grpc/loadbalancing>.
 
 ### Proxy load balancing
 
-An L7 (application) proxy works at a higher level than an L4 (transport) proxy. L7 proxies understand HTTP/2, and are able to distribute gRPC calls multiplexed to the proxy on one HTTP/2 connection across multiple endpoints. Using a proxy is simpler than client-side load balancing, but can add extra latency to gRPC calls.
+An L7 (application) proxy works at a higher level than an L4 (transport) proxy. L7 proxies understand HTTP/2. The proxy receives gRPC calls multiplexed on one HTTP/2 connection and distributes them across multiple backend endpoints. Using a proxy is simpler than client-side load balancing, but adds extra latency to gRPC calls.
 
 There are many L7 proxies available. Some options are:
 
 * [Envoy](https://www.envoyproxy.io/) - A popular open source proxy.
 * [Linkerd](https://linkerd.io/) - Service mesh for Kubernetes.
-* [YARP: Yet Another Reverse Proxy](https://microsoft.github.io/reverse-proxy/) - An open source proxy written in .NET.
+* [YARP: Yet Another Reverse Proxy](https://dotnet.github.io/yarp/) - An open source proxy written in .NET.
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -131,6 +156,9 @@ gRPC calls between a client and service are usually sent over TCP sockets. TCP i
 Consider using a transport like Unix domain sockets or named pipes for gRPC calls between processes on the same machine. For more information, see <xref:grpc/interprocess>.
 
 ## Keep alive pings
+
+> [!IMPORTANT]
+> Keep alive pings require the cooperation of the server. Do not enable keep alive pings in the client without verifying that the server supports them. A server which does not support keep alive pings will usually ignore the first few pings, and will then send a `GOAWAY` message, closing the active HTTP/2 connection.
 
 Keep alive pings can be used to keep HTTP/2 connections alive during periods of inactivity. Having an existing HTTP/2 connection ready when an app resumes activity allows for the initial gRPC calls to be made quickly, without a delay caused by the connection being reestablished.
 
@@ -153,6 +181,9 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOp
 
 The preceding code configures a channel that sends a keep alive ping to the server every 60 seconds during periods of inactivity. The ping ensures the server and any proxies in use won't close the connection because of inactivity.
 
+> [!NOTE]
+> Keep alive pings only help keep the connection alive. Long-running gRPC calls on the connection may still be terminated by the server or intermediary proxies for inactivity.
+
 :::moniker-end
 
 ## Flow control
@@ -171,14 +202,14 @@ Flow control performance issues can be fixed by increasing buffer window size. I
 builder.WebHost.ConfigureKestrel(options =>
 {
     var http2 = options.Limits.Http2;
-    http2.InitialConnectionWindowSize = 2 * 1024 * 1024 * 2; // 2 MB
+    http2.InitialConnectionWindowSize = 1024 * 1024 * 2; // 2 MB
     http2.InitialStreamWindowSize = 1024 * 1024; // 1 MB
 });
 ```
 
 Recommendations:
 
-* If a gRPC service often receives messages larger than 96 KB, Kestrel's default stream window size, then consider increasing the connection and stream window size.
+* If a gRPC service often receives messages larger than 768 KB, Kestrel's default stream window size, then consider increasing the connection and stream window size.
 * The connection window size should always be equal to or greater than the stream window size. A stream is part of the connection, and the sender is limited by both.
 
 For more information about how flow control works, see [HTTP/2 Flow Control (blog post)](https://medium.com/coderscorner/http-2-flow-control-77e54f7fd518).
@@ -186,7 +217,39 @@ For more information about how flow control works, see [HTTP/2 Flow Control (blo
 > [!IMPORTANT]
 > Increasing Kestrel's window size allows Kestrel to buffer more data on behalf of the app, which possibly increases memory usage. Avoid configuring an unnecessarily large window size.
 
-## Streaming
+## Gracefully complete streaming calls
+
+Try to complete streaming calls gracefully. Gracefully completing calls avoids unnecessary errors and allow servers to reuse internal data structures between requests.
+
+A call is completed gracefully when the client and server have finished sending messages and the peer has read all the messages.
+
+Client request stream:
+
+1. The client has finished writing messages to the request stream and completes the stream with `call.RequestStream.CompleteAsync()`.
+2. The server has read all messages from the request stream. Depending on how you're reading messages, either `requestStream.MoveNext()` returns `false` or `requestStream.ReadAllAsync()` has finished.
+
+Server response stream:
+
+1. The server has finished writing messages to the response stream and the server method has exited.
+2. The client has read all messages from the response stream. Depending on how you're reading messages, either `call.ResponseStream.MoveNext()` returns `false` or `call.ResponseStream.ReadAllAsync()` has finished.
+
+For an example of gracefully completing a bi-direction streaming call, see [making a bi-directional streaming call](xref:grpc/client#bi-directional-streaming-call).
+
+Server streaming calls don't have a request stream. This means that the only way a client can communicate to the server that the stream should stop is by canceling it. If the overhead from canceled calls is impacting the app then consider changing the server streaming call to a bi-directional streaming call. In a bi-directional streaming call the client completing the request stream can be a signal to the server to end the call.
+
+## Dispose streaming calls
+
+Always dispose streaming calls once they're no longer needed. The type returned when starting streaming calls implements `IDisposable`. Disposing a call once it is no longer needed ensures it is stopped and all resources are cleaned up.
+
+In the following example, the [using declaration](/dotnet/csharp/language-reference/proposals/csharp-8.0/using#using-declaration) on the `AccumulateCount()` call ensures it's always disposed if an unexpected error occurs.
+
+[!code-csharp[](~/grpc/performance/dispose-streaming-call.cs?highlight=2)]
+
+Ideally streaming calls should be [completed gracefully](#gracefully-complete-streaming-calls). Disposing the call ensures the HTTP request between the client and the server is canceled if an unexpected error occurs. Streaming calls that are accidentally left running don't just leak memory and resources on the client, but are left running on the server as well. Many leaked streaming calls could impact the stability of the app.
+
+Disposing of a streaming call that has already completed gracefully doesn't have any negative impact.
+
+## Replace unary calls with streaming
 
 gRPC bidirectional streaming can be used to replace unary gRPC calls in high-performance scenarios. Once a bidirectional stream has started, streaming messages back and forth is faster than sending messages with multiple unary gRPC calls. Streamed messages are sent as data on an existing HTTP/2 request and eliminates the overhead of creating a new HTTP/2 request for each unary call.
 

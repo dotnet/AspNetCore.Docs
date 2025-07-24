@@ -62,8 +62,11 @@ namespace TodoApi.Controllers
         public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
         {
             TodoItem todoItem;
-
-            using (_logger.BeginScope("using block message"))
+            var transactionId = Guid.NewGuid().ToString();
+            using (_logger.BeginScope(new List<KeyValuePair<string, object>>
+                {
+                    new KeyValuePair<string, object>("TransactionId", transactionId),
+                }))
             {
                 _logger.LogInformation(MyLogEvents.GetItem, "Getting item {Id}", id);
 

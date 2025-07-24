@@ -3,13 +3,17 @@ title: gRPC-Web in ASP.NET Core gRPC apps
 author: jamesnk
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 06/30/2020
+ms.author: wpickett
+ms.date: 07/10/2025
 uid: grpc/grpcweb
 ---
 # gRPC-Web in ASP.NET Core gRPC apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
+
+:::moniker range=">= aspnetcore-8.0"
 
 Learn how to configure an existing ASP.NET Core gRPC service to be callable from browser apps, using the [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) protocol. gRPC-Web allows browser JavaScript and Blazor apps to call gRPC services. It's not possible to call an HTTP/2 gRPC service from a browser-based app. gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC.
 
@@ -28,14 +32,14 @@ There are pros and cons to each approach. If an app's environment is already usi
 
 ## Configure gRPC-Web in ASP.NET Core
 
-gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC. gRPC-Web doesn't require any changes to services. The only modification is startup configuration.
+gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC. gRPC-Web doesn't require any changes to services. The only modification is in setting the middleware in `Program.cs`.
 
 To enable gRPC-Web with an ASP.NET Core gRPC service:
 
 * Add a reference to the [`Grpc.AspNetCore.Web`](https://www.nuget.org/packages/Grpc.AspNetCore.Web) package.
-* Configure the app to use gRPC-Web by adding `UseGrpcWeb` and `EnableGrpcWeb` to `Startup.cs`:
+* Configure the app to use gRPC-Web by adding `UseGrpcWeb` and `EnableGrpcWeb` to `Program.cs`:
 
-[!code-csharp[](~/grpc/grpcweb/sample/Startup.cs?name=snippet_1&highlight=10,14)]
+:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeter/Program.cs" id="snippet_WebEnable" highlight="9,11":::
 
 The preceding code:
 
@@ -44,7 +48,7 @@ The preceding code:
 
 Alternatively, the gRPC-Web middleware can be configured so that all services support gRPC-Web by default and `EnableGrpcWeb` isn't required. Specify `new GrpcWebOptions { DefaultEnabled = true }` when the middleware is added.
 
-[!code-csharp[](~/grpc/grpcweb/sample/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=12)]
+:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeter/Program.cs" id="snippet_WebEnableAllServices" highlight="9":::
 
 > [!NOTE]
 > There is a known issue that causes gRPC-Web to fail when [hosted by HTTP.sys](xref:fundamentals/servers/httpsys) in .NET Core 3.x.
@@ -57,7 +61,7 @@ Browser security prevents a web page from making requests to a different domain 
 
 To allow a browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders%2A>.
 
-[!code-csharp[](~/grpc/grpcweb/sample/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
+:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeter/Program.cs" id="snippet_WebEnableCORS" highlight="7-13,18,21":::
 
 The preceding code:
 
@@ -117,7 +121,7 @@ To use gRPC-Web:
 * Ensure the reference to [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) package is version 2.29.0 or later.
 * Configure the channel to use the `GrpcWebHandler`:
 
-[!code-csharp[](~/grpc/grpcweb/sample/Handler.cs?name=snippet_1)]
+:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeterClient/Program.cs" id="snippet_Handler":::
 
 The preceding code:
 
@@ -128,9 +132,10 @@ The preceding code:
 
 * `InnerHandler`: The underlying <xref:System.Net.Http.HttpMessageHandler> that makes the gRPC HTTP request, for example, `HttpClientHandler`.
 * `GrpcWebMode`: An enumeration type that specifies whether the gRPC HTTP request `Content-Type` is `application/grpc-web` or `application/grpc-web-text`.
-    * `GrpcWebMode.GrpcWeb` configures sending content without encoding. Default value.
-    * `GrpcWebMode.GrpcWebText` configures base64-encoded content. Required for server streaming calls in browsers.
-* `HttpVersion`: HTTP protocol `Version` used to set <xref:System.Net.Http.HttpRequestMessage.Version?displayProperty=nameWithType> on the underlying gRPC HTTP request. gRPC-Web doesn't require a specific version and doesn't override the default unless specified.
+  * `GrpcWebMode.GrpcWeb` configures sending content without encoding. Default value.
+  * `GrpcWebMode.GrpcWebText` configures base64-encoded content. Required for server streaming calls in browsers.
+
+`GrpcChannelOptions.HttpVersion` and `GrpcChannelOptions.HttpVersionPolicy` can be used to configure the HTTP protocol version.
 
 > [!IMPORTANT]
 > Generated gRPC clients have synchronous and asynchronous methods for calling unary methods. For example, `SayHello` is synchronous, and `SayHelloAsync` is asynchronous. Asynchronous methods are always required in Blazor WebAssembly. Calling a synchronous method in a Blazor WebAssembly app causes the app to become unresponsive.
@@ -162,3 +167,9 @@ For more information, see <xref:grpc/clientfactory>.
 * [gRPC for Web Clients GitHub project](https://github.com/grpc/grpc-web)
 * <xref:security/cors>
 * <xref:grpc/json-transcoding>
+
+:::moniker-end
+
+[!INCLUDE[](~/grpc/grpcweb/includes/grpcweb6-7.md)]
+
+[!INCLUDE[](~/grpc/grpcweb/includes/grpcweb3-5.md)]

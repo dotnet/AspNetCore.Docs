@@ -1,7 +1,7 @@
-﻿#define Final // or Intro
+#define Final // or Intro
 
 #if Intro
-#region snippet_Intro
+// <snippet_Intro>
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,10 +17,10 @@ namespace ContosoUniversity.Models
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
-#endregion
+// </snippet_Intro>
 
 #elif Final
-#region snippet_Final
+// <snippet_Final>
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -46,5 +46,5 @@ namespace ContosoUniversity.Models
         public ICollection<CourseAssignment> CourseAssignments { get; set; }
     }
 }
-#endregion
+// </snippet_Final>
 #endif

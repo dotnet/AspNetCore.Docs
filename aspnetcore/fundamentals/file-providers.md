@@ -10,6 +10,8 @@ uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Steve Smith](https://ardalis.com/)
 
 :::moniker range=">= aspnetcore-3.0"

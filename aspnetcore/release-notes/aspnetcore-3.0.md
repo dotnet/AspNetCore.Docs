@@ -15,7 +15,7 @@ This article highlights the most significant changes in ASP.NET Core 3.0 with li
 
 Blazor is a new framework in ASP.NET Core for building interactive client-side web UI with .NET:
 
-* Create rich interactive UIs using C# instead of JavaScript.
+* Create rich interactive UIs using C#.
 * Share server-side and client-side app logic written in .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
 
@@ -126,7 +126,7 @@ connection.onreconnected((connectionId) => {
 });
 ```
 
-SignalR 3.0 and later provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the:
+SignalR 3.0 or later provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the:
 
 * `HubCallerContext`
 * Name of the hub method being invoked.
@@ -324,7 +324,7 @@ IdentityServer4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core 3.
 * Access control for APIs
 * Federation Gateway
 
-For more information, see [the IdentityServer4 documentation](http://docs.identityserver.io/en/latest/index.html) or [Authentication and authorization for SPAs](xref:security/authentication/identity/spa).
+For more information, see [the IdentityServer4 documentation](https://identityserver4.readthedocs.io/en/latest/) or [Authentication and authorization for SPAs](xref:security/authentication/identity/spa).
 
 ## Certificate and Kerberos authentication
 

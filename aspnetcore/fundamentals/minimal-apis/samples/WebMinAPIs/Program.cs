@@ -386,20 +386,6 @@ app.MapGet("/", (LinkGenerator linker) =>
 app.Run();
 #endregion
 
-#elif NR2
-#region snippet_nr2
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-string Hi() => "Hello there";
-app.MapGet("/hello", Hi);
-
-app.MapGet("/", (LinkGenerator linker) => 
-        $"The link to the hello route is {linker.GetPathByName("Hi", values: null)}");
-
-app.Run();
-#endregion
-
 #elif RP
 #region snippet_rp
 var builder = WebApplication.CreateBuilder(args);
@@ -657,7 +643,7 @@ var app = builder.Build();
 var proxyClient = new HttpClient();
 app.MapGet("/pokemon", async () => 
 {
-    var stream = await proxyClient.GetStreamAsync("http://consoto/pokedex.json");
+    var stream = await proxyClient.GetStreamAsync("http://contoso/pokedex.json");
     // Proxy the response as JSON
     return Results.Stream(stream, "application/json");
 });
@@ -780,7 +766,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(); // UseSwaggerUI Protected by if (env.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
                                     $"{builder.Environment.ApplicationName} v1"));
 }
@@ -801,7 +787,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(); // UseSwaggerUI Protected by if (env.IsDevelopment())
 }
 
 app.MapGet("/swag", () => "Hello Swagger!");

@@ -1,6 +1,6 @@
 ASP.NET Core Identity adds user interface (UI) login functionality to ASP.NET Core web apps. To secure web APIs and SPAs, use one of the following:
 
-* [Azure Active Directory](/azure/api-management/api-management-howto-protect-backend-with-aad)
+* [Microsoft Entra ID](/azure/api-management/api-management-howto-protect-backend-with-aad)
 * [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-custom-rest-api-netfw) (Azure AD B2C)
 * [Duende Identity Server](https://docs.duendesoftware.com)
 

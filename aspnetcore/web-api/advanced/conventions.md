@@ -1,9 +1,9 @@
 ---
 title: Use web API conventions
-author: pranavkm
+author: tdykstra
 description: Learn about web API conventions in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: scaddie
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: web-api/advanced/conventions
@@ -46,7 +46,7 @@ Conventions don't compose; each action may be associated with exactly one conven
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     ```
 
-    For more information on `[ProducesDefaultResponseType]`, see [Default Response](https://swagger.io/docs/specification/describing-responses/#default).
+    For more information on `[ProducesDefaultResponseType]`, see [Default Response](https://swagger.io/docs/specification/describing-responses/#default-response).
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to a controller &mdash; Applies the specified convention type to all actions on the controller. A convention method is marked with hints that determine the actions to which the convention method applies. For more information on hints, see [Create web API conventions](#create-web-api-conventions)).
 

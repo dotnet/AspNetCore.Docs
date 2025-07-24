@@ -1,26 +1,28 @@
 ---
 title: Overview of ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Get an overview of ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/02/2022
+ms.date: 06/21/2025
 uid: index
 ---
-# Overview to ASP.NET Core
+# Overview of ASP.NET Core
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://mvp.microsoft.com/en-us/PublicProfile/5001182)
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps.
+ASP.NET Core is a cross-platform, high-performance framework for building modern web applications. This [open-source](https://github.com/dotnet/aspnetcore) framework allows developers to create web applications, services, and APIs that can run on Windows, macOS, and Linux. It is built for large-scale app development and can handle any size workload, making it a robust choice for enterprise-level applications.
 
 With ASP.NET Core, you can:
 
-* Build web apps and services, [Internet of Things (IoT)](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
+* Build web apps and services, [Azure IoT (Internet of Things)](https://azure.microsoft.com/solutions/iot) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
 * Deploy to the cloud or on-premises.
-* Run on [.NET Core](/dotnet/core/introduction).
+* Run on [.NET](/dotnet/core/introduction).
 
 ## Why choose ASP.NET Core?
 
@@ -30,9 +32,10 @@ Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to creat
 
 ## Build web APIs and web UI using ASP.NET Core MVC
 
-ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-api) and [web apps](xref:tutorials/razor-pages/index):
+ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-api) and [web apps](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro):
 
 * The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps testable.
+* [Blazor](xref:blazor/index), a component-based web UI framework based on C# that supports both server-side rendering and client-side rendering via WebAssembly.
 * [Razor Pages](xref:razor-pages/index) is a page-based programming model that makes building web UI easier and more productive.
 * [Razor markup](xref:mvc/views/razor) provides a productive syntax for [Razor Pages](xref:razor-pages/index) and [MVC views](xref:mvc/views/overview).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
@@ -42,15 +45,15 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-
 
 ## Client-side development
 
-ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Blazor](xref:blazor/index), [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](https://getbootstrap.com/). For more information, see <xref:blazor/index> and related topics under *Client-side development*.
+ASP.NET Core includes [Blazor](xref:blazor/index) for building richly interactive web UI, and also integrates with other popular frontend JavaScript frameworks like [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/). For more information, see <xref:blazor/index> and related topics under *Client-side development*.
 
 <a name="target-framework"></a>
 
 ## ASP.NET Core target frameworks
 
-ASP.NET Core 3.x or later can only target .NET Core. Generally, ASP.NET Core is composed of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
+ASP.NET Core 3.x or later can only target .NET.
 
-There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
+There are several advantages to targeting .NET, and these advantages increase with each release. Some advantages of .NET over .NET Framework include:
 
 * Cross-platform. Runs on Windows, macOS, and Linux.
 * Improved performance
@@ -66,9 +69,9 @@ We recommend the following sequence of tutorials for an introduction to developi
 
    |App type  |Scenario  |Tutorial  |
    |----------|----------|----------|
+   |Web app                   | Client-side web UI development |[Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) |
    |Web app                   | New server-side web UI development |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
    |Web app                   | Maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |Web app                   | Client-side web UI development |[Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) |
    |Web API                   | RESTful HTTP services |[Create a web API](xref:tutorials/first-web-api)&dagger; |
    |Remote Procedure Call app | Contract-first services using Protocol Buffers |[Get started with a gRPC service](xref:tutorials/grpc/grpc-start) |
    |Real-time app             | Bidirectional communication between servers and connected clients |[Get started with SignalR](xref:tutorials/signalr) |
@@ -77,6 +80,7 @@ We recommend the following sequence of tutorials for an introduction to developi
 
    |Scenario  |Tutorial  |
    |----------|----------|
+   |New development        |[Blazor with Entity Framework Core](xref:blazor/tutorials/movie-database-app/index) |
    |New development        |[Razor Pages with Entity Framework Core](xref:data/ef-rp/intro) |
    |Maintaining an MVC app |[MVC with Entity Framework Core](xref:data/ef-mvc/intro) |
 
@@ -88,7 +92,7 @@ We recommend the following sequence of tutorials for an introduction to developi
 
 ## Migrate from .NET Framework
 
-For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:migration/proper-to-2x/index>.
+For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:migration/fx-to-core/index>.
 
 :::moniker-end
 
@@ -96,7 +100,7 @@ For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:m
 
 ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps. With ASP.NET Core, you can:
 
-* Build web apps and services, [Internet of Things (IoT)](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
+* Build web apps and services, [Azure IoT (Internet of Things)](https://azure.microsoft.com/solutions/iot) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
 * Deploy to the cloud or on-premises.
 * Run on [.NET Core or .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
@@ -121,7 +125,7 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-
 
 ## Client-side development
 
-ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Blazor](xref:blazor/index), [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](https://getbootstrap.com/). For more information, see <xref:blazor/index> and related topics under *Client-side development*.
+ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Blazor](xref:blazor/index), [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/). For more information, see <xref:blazor/index> and related topics under *Client-side development*.
 
 <a name="target-framework"></a>
 
@@ -174,7 +178,7 @@ We recommend the following sequence of tutorials and articles for an introductio
 
 ## Migrate from .NET Framework
 
-For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migration/proper-to-2x/index>.
+For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migration/fx-to-core/index>.
 
 :::moniker-end
 
@@ -204,7 +208,7 @@ To change the sample to run the `ExpandDefault` scenario, define the `ExpandDefa
 
 For more information on using [C# preprocessor directives](/dotnet/csharp/language-reference/preprocessor-directives/) to selectively compile sections of code, see [#define (C# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define) and [#if (C# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if).
 
-### Regions in sample code
+<!-- ### Regions in sample code
 
 Some sample apps contain sections of code surrounded by [#region](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) and [#endregion](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endregion) C# directives. The documentation build system injects these regions into the rendered documentation topics.  
 
@@ -228,7 +232,7 @@ The preceding C# code snippet is referenced in the topic's markdown file with th
 
 You may safely ignore (or remove) the `#region` and `#endregion` directives that surround the code. Don't alter the code within these directives if you plan to run the sample scenarios described in the topic. Feel free to alter the code when experimenting with other scenarios.
 
-For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md#code-snippets).
+For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md#code-snippets). -->
 
 ## Breaking changes and security advisories
 
@@ -238,7 +242,8 @@ For more information, see [Contribute to the ASP.NET documentation: Code snippet
 
 For more information, see the following resources:
 
-* <xref:getting-started>
+* [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
+* <xref:get-started>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.

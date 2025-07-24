@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/hosting-bundle
 ---
 # The .NET Core Hosting Bundle
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The bundle allows ASP.NET Core apps to run with IIS.
 
 ## Install the .NET Core Hosting Bundle
@@ -21,11 +23,12 @@ The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the [
 
 [!INCLUDE[](~/includes/announcements.md)]
 
-## Direct download (current version)
+## Direct download
 
-Download the installer using the following link:
+Download the installer using the following links:
 
-[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+* Current version:[.NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+* [Previous and pre-release versions](https://dotnet.microsoft.com/en-us/download/dotnet)
 
 ## Visual C++ Redistributable Requirement
 
@@ -45,6 +48,8 @@ To obtain an earlier version of the installer:
 
 > [!WARNING]
 > Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
+>
+> The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 ## Options
 

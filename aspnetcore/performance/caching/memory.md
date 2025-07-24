@@ -1,12 +1,14 @@
 ---
 title: Cache in-memory in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to cache data in memory in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 11/07/2023
+content_well_notification: AI-contribution
 uid: performance/caching/memory
+ai-usage: ai-assisted
 ---
 # Cache in-memory in ASP.NET Core
 
@@ -16,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.c
 
 Caching can significantly improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently **and** is expensive to generate. Caching makes a copy of data that can be returned much faster than from the source. Apps should be written and tested to **never** depend on cached data.
 
-ASP.NET Core supports several different caches. The simplest cache is based on the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. `IMemoryCache` represents a cache stored in the memory of the web server. Apps running on a server farm (multiple servers) should ensure sessions are sticky when using the in-memory cache. Sticky sessions ensure that requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) to route all requests to the same server.
+ASP.NET Core supports several different caches. The simplest cache is based on the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. `IMemoryCache` represents a cache stored in the memory of the web server. Apps running on a server farm (multiple servers) should ensure sessions are sticky when using the in-memory cache. Sticky sessions ensure that requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) (ARR) to route all requests to the same server.
 
 Non-sticky sessions in a web farm require a [distributed cache](xref:performance/caching/distributed) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
 
@@ -158,7 +160,7 @@ Using a <xref:System.Threading.CancellationTokenSource> allows multiple cache en
 
 ## Additional notes
 
-* Expiration doesn't happen in the background. There's no timer that actively scans the cache for expired items. Any activity on the cache (`Get`, `Set`, `Remove`) can trigger a background scan for expired items. A timer on the `CancellationTokenSource` (<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>) also removes the entry and triggers a scan for expired items. The following example uses <xref:System.Threading.CancellationTokenSource.%23ctor(System.TimeSpan)> for the registered token. When this token fires, it removes the entry immediately and fires the eviction callbacks:
+* Expiration doesn't happen in the background. There's no timer that actively scans the cache for expired items. Any activity on the cache (`Get`, `TryGetValue`, `Set`, `Remove`) can trigger a background scan for expired items. A timer on the `CancellationTokenSource` (<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>) also removes the entry and triggers a scan for expired items. The following example uses <xref:System.Threading.CancellationTokenSource.%23ctor(System.TimeSpan)> for the registered token. When this token fires, it removes the entry immediately and fires the eviction callbacks:
 
   :::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGeCacheExpirationToken":::
 
@@ -193,7 +195,7 @@ Use a [background service](xref:fundamentals/host/hosted-services) such as <xref
 
 Caching can significantly improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently **and** is expensive to generate. Caching makes a copy of data that can be returned much faster than from the source. Apps should be written and tested to **never** depend on cached data.
 
-ASP.NET Core supports several different caches. The simplest cache is based on the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. `IMemoryCache` represents a cache stored in the memory of the web server. Apps running on a server farm (multiple servers) should ensure sessions are sticky when using the in-memory cache. Sticky sessions ensure that subsequent requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) to route all subsequent requests to the same server.
+ASP.NET Core supports several different caches. The simplest cache is based on the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. `IMemoryCache` represents a cache stored in the memory of the web server. Apps running on a server farm (multiple servers) should ensure sessions are sticky when using the in-memory cache. Sticky sessions ensure that subsequent requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) (ARR) to route all subsequent requests to the same server.
 
 Non-sticky sessions in a web farm require a [distributed cache](xref:performance/caching/distributed) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
 
@@ -346,7 +348,7 @@ Using a <xref:System.Threading.CancellationTokenSource> allows multiple cache en
   * Multiple requests can find the cached key value empty because the callback hasn't completed.
   * This can result in several threads repopulating the cached item.
 * When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child isn't expired by manual removal or updating of the parent entry.
-* Use <xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> to set the callbacks that will be fired after the cache entry is evicted from the cache.
+* Use <xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> to set the callbacks that will be fired after the cache entry is evicted from the cache. In the example code, <xref:System.Threading.CancellationTokenSource.Dispose?displayProperty=nameWithType> is called to release the unmanaged resources used by the `CancellationTokenSource`. However, the `CancellationTokenSource` is not disposed immediately because it is still being used by the cache entry. The `CancellationToken` is passed to `MemoryCacheEntryOptions` to create a cache entry that expires after a certain time. So `Dispose` should not be called until the cache entry is removed or expired. The example code calls the <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.RegisterPostEvictionCallback%2A> method to register a callback that will be invoked when the cache entry is evicted, and it disposes the `CancellationTokenSource` in that callback.
 * For most apps, `IMemoryCache` is enabled. For example, calling `AddMvc`, `AddControllersWithViews`, `AddRazorPages`, `AddMvcCore().AddRazorViewEngine`, and many other `Add{Service}` methods in `ConfigureServices`, enables `IMemoryCache`. For apps that are not calling one of the preceding `Add{Service}` methods, it may be necessary to call <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache%2A> in `ConfigureServices`.
 
 ## Background cache update

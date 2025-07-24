@@ -4,11 +4,13 @@ author: rick-anderson
 description: Learn about configuration for apps hosted behind proxy servers and load balancers, which often obscure important request information.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, linux-related-content
 ms.date: 1/07/2022
 uid: host-and-deploy/proxy-load-balancer
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Chris Ross](https://github.com/Tratcher)
 
@@ -21,6 +23,8 @@ In the recommended configuration for ASP.NET Core, the app is hosted using <xref
 
 This information may be important in request processing, for example in redirects, authentication, link generation, policy evaluation, and client geolocation.
 
+Apps intended to run on web farm should read <xref:host-and-deploy/web-farm>.
+
 ## Forwarded headers
 
 By convention, proxies forward information in HTTP headers.
@@ -30,14 +34,16 @@ By convention, proxies forward information in HTTP headers.
 | [`X-Forwarded-For`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For) (XFF) | Holds information about the client that initiated the request and subsequent proxies in a chain of proxies. This parameter may contain IP addresses and, optionally, port numbers. In a chain of proxy servers, the first parameter indicates the client where the request was first made. Subsequent proxy identifiers follow. The last proxy in the chain isn't in the list of parameters. The last proxy's IP address, and optionally a port number, are available as the remote IP address at the transport layer. |
 | [`X-Forwarded-Proto`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto) (XFP)| The value of the originating scheme, HTTP or HTTPS. The value may also be a list of schemes if the request has traversed multiple proxies. |
 | [`X-Forwarded-Host`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host) (XFH) | The original value of the Host header field. Usually, proxies don't modify the Host header. See [Microsoft Security Advisory CVE-2018-0787](https://github.com/aspnet/Announcements/issues/295) for information on an elevation-of-privileges vulnerability that affects systems where the proxy doesn't validate or restrict Host headers to known good values. |
+| `X-Forwarded-Prefix` | The original base path requested by the client. This header can be useful for applications to correctly generate URLs, redirects, or links back to the client. |
 
 The [Forwarded Headers Middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HttpOverrides/src/ForwardedHeadersOptions.cs), <xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersMiddleware>, reads these headers and fills in the associated fields on <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
 The middleware updates:
 
-* [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress): Set using the `X-Forwarded-For` header value. Additional settings influence how the middleware sets `RemoteIpAddress`. For details, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options).
-* [HttpContext.Request.Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme): Set using the [`X-Forwarded-Proto`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto) header value.
-* [HttpContext.Request.Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host): Set using the `X-Forwarded-Host` header value.
+* [`HttpContext.Connection.RemoteIpAddress`](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress): Set using the `X-Forwarded-For` header value. Additional settings influence how the middleware sets `RemoteIpAddress`. For details, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options). The consumed values are removed from `X-Forwarded-For`, and the old value of [`HttpContext.Connection.RemoteIpAddress`](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) is persisted in `X-Original-For`. Note: This process may be repeated several times if there are multiple values in `X-Forwarded-For/Proto/Host/Prefix`, resulting in several values moved to `X-Original-*`, including the original `RemoteIpAddress/Host/Scheme/PathBase`.
+* [`HttpContext.Request.Scheme`](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme): Set using the [`X-Forwarded-Proto`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto) header value. The consumed value is removed from `X-Forwarded-Proto`, and the old value of [`HttpContext.Request.Scheme`](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) is persisted in `X-Original-Proto`.
+* [`HttpContext.Request.Host`](xref:Microsoft.AspNetCore.Http.HttpRequest.Host): Set using the `X-Forwarded-Host` header value. The consumed value is removed from `X-Forwarded-Host`, and the old value of [`HttpContext.Request.Host`](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) is persisted in `X-Original-Host`.
+* [`HttpContext.Request.PathBase`](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase): Set using the `X-Forwarded-Prefix` header value. The consumed value is removed from `X-Forwarded-Prefix`, and the old value of [`HttpContext.Request.PathBase`](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) is persisted in `X-Original-Prefix`.
 
 For more information on the preceding, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21615).
 
@@ -45,7 +51,7 @@ Forwarded Headers Middleware [default settings](#forwarded-headers-middleware-op
 
 * There is only ***one proxy*** between the app and the source of the requests.
 * Only loopback addresses are configured for known proxies and known networks.
-* The forwarded headers are named [`X-Forwarded-For`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For) and [`X-Forwarded-Proto`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto).
+* The forwarded headers are named [`X-Forwarded-For`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For), [`X-Forwarded-Proto`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), [`X-Forwarded-Host`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host) and `X-Forwarded-Prefix`.
 * The  `ForwardedHeaders` value is `ForwardedHeaders.None`, the desired forwarders must be set here to enable the middleware.
 
 Not all network appliances add the `X-Forwarded-For` and `X-Forwarded-Proto` headers without additional configuration. Consult your appliance manufacturer's guidance if proxied requests don't contain these headers when they reach the app. If the appliance uses different header names than `X-Forwarded-For` and `X-Forwarded-Proto`, set the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> and <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedProtoHeaderName> options to match the header names used by the appliance. For more information, see [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) and [Configuration for a proxy that uses different header names](#configuration-for-a-proxy-that-uses-different-header-names).
@@ -81,7 +87,7 @@ To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host
 
 ## Apache configuration
 
-`X-Forwarded-For` is added automatically. For more information, see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers). For information on how to forward the `X-Forwarded-Proto` header, see <xref:host-and-deploy/linux-apache#configure-apache>.
+`X-Forwarded-For` is added automatically. For more information, see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers).
 
 ## Forwarded Headers Middleware options
 
@@ -95,13 +101,13 @@ To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host
 
 | Option | Description |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> | Restricts hosts by the `X-Forwarded-Host` header to the values provided.<ul><li>Values are compared using ordinal-ignore-case.</li><li>Port numbers must be excluded.</li><li>If the list is empty, all hosts are allowed.</li><li>A top-level wildcard `*` allows all non-empty hosts.</li><li>Subdomain wildcards are permitted but don't match the root domain. For example, `*.contoso.com` matches the subdomain `foo.contoso.com` but not the root domain `contoso.com`.</li><li>Unicode host names are allowed but are converted to [Punycode](https://tools.ietf.org/html/rfc3492) for matching.</li><li>[IPv6 addresses](https://tools.ietf.org/html/rfc4291) must include bounding brackets and be in [conventional form](https://tools.ietf.org/html/rfc4291#section-2.2) (for example, `[ABCD:EF01:2345:6789:ABCD:EF01:2345:6789]`). IPv6 addresses aren't special-cased to check for logical equality between different formats, and no canonicalization is performed.</li><li>Failure to restrict the allowed hosts may allow an attacker to spoof links generated by the service.</li></ul>The default value is an empty `IList<string>`. |
+| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> | Restricts hosts by the `X-Forwarded-Host` header to the values provided.<ul><li>Values are compared using ordinal-ignore-case.</li><li>Port numbers must be excluded.</li><li>If the list is empty, all hosts are allowed.</li><li>A top-level wildcard `*` allows all non-empty hosts.</li><li>Subdomain wildcards are permitted but don't match the root domain. For example, `*.contoso.com` matches the subdomain `foo.contoso.com` but not the root domain `contoso.com`.</li><li>Unicode host names are allowed but are converted to [Punycode](https://tools.ietf.org/html/rfc3492) for matching.</li><li>[IPv6 addresses](https://tools.ietf.org/html/rfc4291) must include bounding brackets and be in [conventional form](https://tools.ietf.org/html/rfc4291#section-2.2) (for example, `[ABCD:EF01:2345:6789:ABCD:EF01:2345:6789]`). IPv6 addresses aren't special-cased to check for logical equality between different formats, and no canonicalization is performed.</li><li>Failure to restrict the allowed hosts may allow a cyberattacker to spoof links generated by the service.</li></ul>The default value is an empty `IList<string>`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XForwardedForHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedForHeaderName). This option is used when the proxy/forwarder doesn't use the `X-Forwarded-For` header but uses some other header to forward the information.<br><br>The default is `X-Forwarded-For`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders> | Identifies which forwarders should be processed. See the [ForwardedHeaders Enum](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders) for the list of fields that apply. Typical values assigned to this property are `ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto`.<br><br>The default value is [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders). |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHostHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XForwardedHostHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedHostHeaderName). This option is used when the proxy/forwarder doesn't use the `X-Forwarded-Host` header but uses some other header to forward the information.<br><br>The default is `X-Forwarded-Host`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedProtoHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XForwardedProtoHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedProtoHeaderName). This option is used when the proxy/forwarder doesn't use the `X-Forwarded-Proto` header but uses some other header to forward the information.<br><br>The default is `X-Forwarded-Proto`. |
-| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardLimit> | Limits the number of entries in the headers that are processed. Set to `null` to disable the limit, but this should only be done if `KnownProxies` or `KnownNetworks` are configured. Setting a non-`null` value is a precaution (but not a guarantee) to guard against misconfigured proxies and malicious requests arriving from side-channels on the network.<br><br>Forwarded Headers Middleware processes headers in reverse order from right to left. If the default value (`1`) is used, only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.<br><br>The default is `1`. |
-| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks> | Address ranges of known networks to accept forwarded headers from. Provide IP ranges using Classless Interdomain Routing (CIDR) notation.<br><br>If the server is using dual-mode sockets, IPv4 addresses are supplied in an IPv6 format (for example, `10.0.0.1` in IPv4 represented in IPv6 as `::ffff:10.0.0.1`). See [IPAddress.MapToIPv6](xref:System.Net.IPAddress.MapToIPv6*). Determine if this format is required by looking at the [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress*).<br><br>The default is an `IList`\<<xref:Microsoft.AspNetCore.HttpOverrides.IPNetwork>> containing a single entry for `IPAddress.Loopback`. |
+| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardLimit> | Limits the number of entries in the headers that are processed. Set to `null` to disable the limit, but this should only be done if `KnownProxies` or `KnownNetworks` are configured. Setting a non-`null` value is a precaution (but not a guarantee) to protect against misconfigured proxies and malicious requests arriving from side-channels on the network.<br><br>Forwarded Headers Middleware processes headers in reverse order from right to left. If the default value (`1`) is used, only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.<br><br>The default is `1`. |
+| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks> | Address ranges of known networks to accept forwarded headers from. Provide IP ranges using Classless Interdomain Routing (CIDR) notation.<br><br>If the server is using dual-mode sockets, IPv4 addresses are supplied in an IPv6 format (for example, `10.0.0.1` in IPv4 represented in IPv6 as `::ffff:10.0.0.1`). See [IPAddress.MapToIPv6](xref:System.Net.IPAddress.MapToIPv6*). Determine if this format is required by looking at the [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress*).<br><br>The default is an `IList`\<<xref:Microsoft.AspNetCore.HttpOverrides.IPNetwork>> containing a single entry for `new IPNetwork(IPAddress.Loopback, 8)`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies> | Addresses of known proxies to accept forwarded headers from. Use `KnownProxies` to specify exact IP address matches.<br><br>If the server is using dual-mode sockets, IPv4 addresses are supplied in an IPv6 format (for example, `10.0.0.1` in IPv4 represented in IPv6 as `::ffff:10.0.0.1`). See [IPAddress.MapToIPv6](xref:System.Net.IPAddress.MapToIPv6*). Determine if this format is required by looking at the [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress*).<br><br>The default is an `IList`\<<xref:System.Net.IPAddress>> containing a single entry for `IPAddress.IPv6Loopback`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.OriginalForHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XOriginalForHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XOriginalForHeaderName).<br><br>The default is `X-Original-For`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.OriginalHostHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XOriginalHostHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XOriginalHostHeaderName).<br><br>The default is `X-Original-Host`. |
@@ -214,7 +220,7 @@ END of COMMENTED OUT -->
 
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_trb22&highlight=8-11,21-31)]
 
-When processed, `X-Forwarded-{For|Proto|Host}` values are moved to `X-Original-{For|Proto|Host}`. If there are multiple values in a given header, Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is `1` (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
+If there are multiple values in a given header, Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is `1` (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
 
 The request's original remote IP must match an entry in the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks> lists before forwarded headers are processed. This limits header spoofing by not accepting forwarders from untrusted proxies. When an unknown proxy is detected, logging indicates the address of the proxy:
 
@@ -237,7 +243,7 @@ To display the logs, add `"Microsoft.AspNetCore.HttpLogging": "Information"` to 
 
 * <xref:host-and-deploy/web-farm>
 * [Microsoft Security Advisory CVE-2018-0787: ASP.NET Core Elevation Of Privilege Vulnerability](https://github.com/aspnet/Announcements/issues/295)
-* [YARP: Yet Another Reverse Proxy](https://microsoft.github.io/reverse-proxy/index.html)
+* [YARP: Yet Another Reverse Proxy](https://dotnet.github.io/yarp/)
 
 :::moniker-end
 
@@ -264,7 +270,7 @@ The Forwarded Headers Middleware (<xref:Microsoft.AspNetCore.HttpOverrides.Forwa
 
 The middleware updates:
 
-* [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress): Set using the `X-Forwarded-For` header value. Additional settings influence how the middleware sets `RemoteIpAddress`. For details, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options).
+* [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress): Set using the `X-Forwarded-For` header value. Additional settings influence how the middleware sets `RemoteIpAddress`. For details, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options). The consumed values are removed from `X-Forwarded-For`, and the old values are persisted in `X-Original-For`. The same pattern is applied to the other headers, `Host` and `Proto`.
 * [HttpContext.Request.Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme): Set using the `X-Forwarded-Proto` header value.
 * [HttpContext.Request.Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host): Set using the `X-Forwarded-Host` header value.
 
@@ -310,7 +316,7 @@ To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host
 
 ## Apache configuration
 
-`X-Forwarded-For` is added automatically (see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers)). For information on how to forward the `X-Forwarded-Proto` header, see <xref:host-and-deploy/linux-apache#configure-apache>.
+`X-Forwarded-For` is added automatically (see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers)).
 
 ## Forwarded Headers Middleware options
 
@@ -331,17 +337,19 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 | Option | Description |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> | Restricts hosts by the `X-Forwarded-Host` header to the values provided.<ul><li>Values are compared using ordinal-ignore-case.</li><li>Port numbers must be excluded.</li><li>If the list is empty, all hosts are allowed.</li><li>A top-level wildcard `*` allows all non-empty hosts.</li><li>Subdomain wildcards are permitted but don't match the root domain. For example, `*.contoso.com` matches the subdomain `foo.contoso.com` but not the root domain `contoso.com`.</li><li>Unicode host names are allowed but are converted to [Punycode](https://tools.ietf.org/html/rfc3492) for matching.</li><li>[IPv6 addresses](https://tools.ietf.org/html/rfc4291) must include bounding brackets and be in [conventional form](https://tools.ietf.org/html/rfc4291#section-2.2) (for example, `[ABCD:EF01:2345:6789:ABCD:EF01:2345:6789]`). IPv6 addresses aren't special-cased to check for logical equality between different formats, and no canonicalization is performed.</li><li>Failure to restrict the allowed hosts may allow an attacker to spoof links generated by the service.</li></ul>The default value is an empty `IList<string>`. |
-| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XForwardedForHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedForHeaderName). This option is used when the proxy/forwarder doesn't use the `X-Forwarded-For` header but uses some other header to forward the information.<br><br>The default is `X-Forwarded-For`. |
+| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> | Restricts hosts by the `X-Forwarded-Host` header to the values provided.<ul><li>Values are compared using ordinal-ignore-case.</li><li>Port numbers must be excluded.</li><li>If the list is empty, all hosts are allowed.</li><li>A top-level wildcard `*` allows all non-empty hosts.</li><li>Subdomain wildcards are permitted but don't match the root domain. For example, `*.contoso.com` matches the subdomain `foo.contoso.com` but not the root domain `contoso.com`.</li><li>Unicode host names are allowed but are converted to [Punycode](https://tools.ietf.org/html/rfc3492) for matching.</li><li>[IPv6 addresses](https://tools.ietf.org/html/rfc4291) must include bounding brackets and be in [conventional form](https://tools.ietf.org/html/rfc4291#section-2.2) (for example, `[ABCD:EF01:2345:6789:ABCD:EF01:2345:6789]`). IPv6 addresses aren't special-cased to check for logical equality between different formats, and no canonicalization is performed.</li><li>Failure to restrict the allowed hosts may allow a cyberattacker to spoof links generated by the service.</li></ul>The default value is an empty `IList<string>`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders> | Identifies which forwarders should be processed. See the [ForwardedHeaders Enum](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders) for the list of fields that apply. Typical values assigned to this property are `ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto`.<br><br>The default value is [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders). |
+| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XForwardedForHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedForHeaderName). This option is used when the proxy/forwarder doesn't use the `X-Forwarded-For` header but uses some other header to forward the information.<br><br>The default is `X-Forwarded-For`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHostHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XForwardedHostHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedHostHeaderName). This option is used when the proxy/forwarder doesn't use the `X-Forwarded-Host` header but uses some other header to forward the information.<br><br>The default is `X-Forwarded-Host`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedProtoHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XForwardedProtoHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedProtoHeaderName). This option is used when the proxy/forwarder doesn't use the `X-Forwarded-Proto` header but uses some other header to forward the information.<br><br>The default is `X-Forwarded-Proto`. |
-| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardLimit> | Limits the number of entries in the headers that are processed. Set to `null` to disable the limit, but this should only be done if `KnownProxies` or `KnownNetworks` are configured. Setting a non-`null` value is a precaution (but not a guarantee) to guard against misconfigured proxies and malicious requests arriving from side-channels on the network.<br><br>Forwarded Headers Middleware processes headers in reverse order from right to left. If the default value (`1`) is used, only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.<br><br>The default is `1`. |
-| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks> | Address ranges of known networks to accept forwarded headers from. Provide IP ranges using Classless Interdomain Routing (CIDR) notation.<br><br>If the server is using dual-mode sockets, IPv4 addresses are supplied in an IPv6 format (for example, `10.0.0.1` in IPv4 represented in IPv6 as `::ffff:10.0.0.1`). See [IPAddress.MapToIPv6](xref:System.Net.IPAddress.MapToIPv6*). Determine if this format is required by looking at the [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress*).<br><br>The default is an `IList`\<<xref:Microsoft.AspNetCore.HttpOverrides.IPNetwork>> containing a single entry for `IPAddress.Loopback`. |
+| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedPrefixHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XForwardedPrefixHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedPrefixHeaderName). This option is used when the proxy/forwarder doesn't use the `X-Forwarded-Prefix` header but uses some other header to forward the information.<br><br>The default is `X-Forwarded-Prefix`. |
+| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardLimit> | Limits the number of entries in the headers that are processed. Set to `null` to disable the limit, but this should only be done if `KnownProxies` or `KnownNetworks` are configured. Setting a non-`null` value is a precaution (but not a guarantee) to protect against misconfigured proxies and malicious requests arriving from side-channels on the network.<br><br>Forwarded Headers Middleware processes headers in reverse order from right to left. If the default value (`1`) is used, only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.<br><br>The default is `1`. |
+| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks> | Address ranges of known networks to accept forwarded headers from. Provide IP ranges using Classless Interdomain Routing (CIDR) notation.<br><br>If the server is using dual-mode sockets, IPv4 addresses are supplied in an IPv6 format (for example, `10.0.0.1` in IPv4 represented in IPv6 as `::ffff:10.0.0.1`). See [IPAddress.MapToIPv6](xref:System.Net.IPAddress.MapToIPv6*). Determine if this format is required by looking at the [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress*).<br><br>The default is an `IList`\<<xref:Microsoft.AspNetCore.HttpOverrides.IPNetwork>> containing a single entry for `new IPNetwork(IPAddress.Loopback, 8)`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies> | Addresses of known proxies to accept forwarded headers from. Use `KnownProxies` to specify exact IP address matches.<br><br>If the server is using dual-mode sockets, IPv4 addresses are supplied in an IPv6 format (for example, `10.0.0.1` in IPv4 represented in IPv6 as `::ffff:10.0.0.1`). See [IPAddress.MapToIPv6](xref:System.Net.IPAddress.MapToIPv6*). Determine if this format is required by looking at the [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress*).<br><br>The default is an `IList`\<<xref:System.Net.IPAddress>> containing a single entry for `IPAddress.IPv6Loopback`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.OriginalForHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XOriginalForHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XOriginalForHeaderName).<br><br>The default is `X-Original-For`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.OriginalHostHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XOriginalHostHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XOriginalHostHeaderName).<br><br>The default is `X-Original-Host`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.OriginalProtoHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XOriginalProtoHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XOriginalProtoHeaderName).<br><br>The default is `X-Original-Proto`. |
+| <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.OriginalPrefixHeaderName> | Use the header specified by this property instead of the one specified by [ForwardedHeadersDefaults.XOriginalPrefixHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XOriginalPrefixHeaderName).<br><br>The default is `X-Original-Prefix`. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.RequireHeaderSymmetry> | Require the number of header values to be in sync between the [ForwardedHeadersOptions.ForwardedHeaders](xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders) being processed.<br><br>The default in ASP.NET Core 1.x is `true`. The default in ASP.NET Core 2.0 or later is `false`. |
 
 ## Scenarios and use cases
@@ -418,15 +426,15 @@ To forward the scheme from the proxy in non-IIS scenarios, add and configure For
 // using Microsoft.AspNetCore.HttpOverrides;
 
 if (string.Equals(
-    Environment.GetEnvironmentVariable("ASPNETCORE_FORWARDEDHEADERS_ENABLED"), 
+    Environment.GetEnvironmentVariable("ASPNETCORE_FORWARDEDHEADERS_ENABLED"),
     "true", StringComparison.OrdinalIgnoreCase))
 {
     services.Configure<ForwardedHeadersOptions>(options =>
     {
-        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | 
+        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor |
             ForwardedHeaders.XForwardedProto;
         // Only loopback proxies are allowed by default.
-        // Clear that restriction because forwarders are enabled by explicit 
+        // Clear that restriction because forwarders are enabled by explicit
         // configuration.
         options.KnownNetworks.Clear();
         options.KnownProxies.Clear();
@@ -434,7 +442,7 @@ if (string.Equals(
 }
 ```
 
-## Certificate forwarding 
+## Certificate forwarding
 
 ### Azure
 
@@ -475,9 +483,9 @@ If the proxy isn't base64-encoding the certificate (as is the case with Nginx), 
 services.AddCertificateForwarding(options =>
 {
     options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME";
-    options.HeaderConverter = (headerValue) => 
+    options.HeaderConverter = (headerValue) =>
     {
-        var clientCertificate = 
+        var clientCertificate =
            /* some conversion logic to create an X509Certificate2 */
         return clientCertificate;
     }
@@ -486,7 +494,7 @@ services.AddCertificateForwarding(options =>
 
 ## Troubleshoot
 
-When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers. 
+When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers.
 
 To write the headers to the app's response, place the following terminal inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`:
 
@@ -530,10 +538,11 @@ To write logs rather than to the response body:
 ```csharp
 app.Use(async (context, next) =>
 {
-    // Request method, scheme, and path
+    // Request method, scheme, path, and base path
     _logger.LogDebug("Request Method: {Method}", context.Request.Method);
     _logger.LogDebug("Request Scheme: {Scheme}", context.Request.Scheme);
     _logger.LogDebug("Request Path: {Path}", context.Request.Path);
+    _logger.LogDebug("Request Path Base: {PathBase}", context.Request.PathBase);
 
     // Headers
     foreach (var header in context.Request.Headers)
@@ -542,14 +551,14 @@ app.Use(async (context, next) =>
     }
 
     // Connection: RemoteIp
-    _logger.LogDebug("Request RemoteIp: {RemoteIpAddress}", 
+    _logger.LogDebug("Request RemoteIp: {RemoteIpAddress}",
         context.Connection.RemoteIpAddress);
 
     await next();
 });
 ```
 
-When processed, `X-Forwarded-{For|Proto|Host}` values are moved to `X-Original-{For|Proto|Host}`. If there are multiple values in a given header, Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is `1` (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
+When processed, `X-Forwarded-{For|Proto|Host|Prefix}` values are moved to `X-Original-{For|Proto|Host|Prefix}`. If there are multiple values in a given header, Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is `1` (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
 
 The request's original remote IP must match an entry in the `KnownProxies` or `KnownNetworks` lists before forwarded headers are processed. This limits header spoofing by not accepting forwarders from untrusted proxies. When an unknown proxy is detected, logging indicates the address of the proxy:
 
@@ -573,6 +582,6 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 * <xref:host-and-deploy/web-farm>
 * [Microsoft Security Advisory CVE-2018-0787: ASP.NET Core Elevation Of Privilege Vulnerability](https://github.com/aspnet/Announcements/issues/295)
-* [YARP: Yet Another Reverse Proxy](https://microsoft.github.io/reverse-proxy/index.html)
+* [YARP: Yet Another Reverse Proxy](https://dotnet.github.io/yarp/)
 
 :::moniker-end

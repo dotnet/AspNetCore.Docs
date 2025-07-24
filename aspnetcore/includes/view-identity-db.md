@@ -7,7 +7,7 @@
 
 ![Contextual menu on AspNetUsers table in SQL Server Object Explorer](~/security/authentication/accconfirm/_static/ssox.png)
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 There are many third party tools you can download to manage and view a SQLite database, for example [DB Browser for SQLite](https://sqlitebrowser.org/).
 

@@ -1,7 +1,7 @@
-﻿#define AfterInheritance // or BeforeInheritance
+#define AfterInheritance // or BeforeInheritance
 
 #if BeforeInheritance
-#region snippet_BeforeInheritance
+// <snippet_BeforeInheritance>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,9 +39,9 @@ namespace ContosoUniversity.Models
         public OfficeAssignment OfficeAssignment { get; set; }
     }
 }
-#endregion
+// </snippet_BeforeInheritance>
 #elif AfterInheritance
-#region snippet_AfterInheritance
+// <snippet_AfterInheritance>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -60,5 +60,5 @@ namespace ContosoUniversity.Models
         public OfficeAssignment OfficeAssignment { get; set; }
     }
 }
-#endregion
+// </snippet_AfterInheritance>
 #endif

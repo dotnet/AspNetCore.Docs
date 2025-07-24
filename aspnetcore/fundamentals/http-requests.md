@@ -3,12 +3,14 @@ title: Make HTTP requests using IHttpClientFactory in ASP.NET Core
 author: stevejgordon
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: scaddie
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 11/09/2021
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1533,7 +1535,7 @@ In the following example:
 
 Header propagation is a community supported middleware to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests. To use header propagation:
 
-* Reference the community supported port of the package [HeaderPropagation](https://www.nuget.org/packages/HeaderPropagation). ASP.NET Core 3.1 and later supports [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation).
+* Reference the community supported port of the package [HeaderPropagation](https://www.nuget.org/packages/HeaderPropagation). ASP.NET Core 3.1 or later supports [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation).
 
 * Configure the middleware and `HttpClient` in `Startup`:
 

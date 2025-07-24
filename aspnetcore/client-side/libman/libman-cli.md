@@ -1,49 +1,39 @@
 ---
 title: Use the LibMan CLI with ASP.NET Core
-author: rick-anderson
+author: wadepickett
 description: Learn how to use the LibMan CLI in an ASP.NET Core project.
-ms.author: scaddie
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 01/11/2024
 uid: client-side/libman/libman-cli
 ---
 # Use the LibMan CLI with ASP.NET Core
 
-By [Scott Addie](https://twitter.com/Scott_Addie)
-
-The [LibMan](xref:client-side/libman/index) CLI is a cross-platform tool that's supported everywhere .NET Core is supported.
+Library Manager (LibMan) is a lightweight, client-side library acquisition tool. LibMan downloads popular libraries and frameworks from the file system or from a [content delivery network (CDN)](https://wikipedia.org/wiki/Content_delivery_network). The supported CDNs include [CDNJS](https://cdnjs.com/), [jsDelivr](https://www.jsdelivr.com/), and [unpkg](https://unpkg.com/#/). The selected library files are fetched and placed in the appropriate location within the ASP.NET Core project.
 
 ## Prerequisites
 
-* [!INCLUDE [2.1-SDK](../../includes/2.1-SDK.md)]
+* [latest .NET SDK](https://dotnet.microsoft.com/download/dotnet)
 
 ## Installation
 
-To install the LibMan CLI:
+The following command installs LibMan:
 
 ```dotnetcli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.Web.LibraryManager.Cli](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Cli/) NuGet package.
 
-To install the LibMan CLI from a specific NuGet package source:
-
-```dotnetcli
-dotnet tool install -g Microsoft.Web.LibraryManager.Cli --version 1.0.94-g606058a278 --add-source C:\Temp\
-```
-
-In the preceding example, a .NET Core Global Tool is installed from the local Windows machine's *C:\Temp\Microsoft.Web.LibraryManager.Cli.1.0.94-g606058a278.nupkg* file.
-
 ## Usage
-
-After successful installation of the CLI, the following command can be used:
 
 ```console
 libman
 ```
 
-To view the installed CLI version:
+To view the installed LibMan version:
 
 ```console
 libman --version
@@ -162,6 +152,8 @@ The following options are available for the `libman install` command:
 * `-d|--destination <PATH>`
 
   The location to install the library. If not specified, the default location is used. If no `defaultDestination` property is specified in `libman.json`, this option is required.
+
+   ***Note:*** There are limitations to the destination path. For example, when the package source has a full project structure and not just the distribution folder, you can't specify moving a folder. For more information, see [Issue #407](https://github.com/aspnet/LibraryManager/issues/407) and [Issue #702](https://github.com/aspnet/LibraryManager/issues/702)
 
 * `--files <FILE>`
 

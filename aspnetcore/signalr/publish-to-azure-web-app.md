@@ -1,9 +1,9 @@
 ---
 title: Publish an ASP.NET Core SignalR app to Azure App Service
-author: bradygaster
+author: wadepickett
 description: Learn how to publish an ASP.NET Core SignalR app to Azure App Service.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/02/2020
 uid: signalr/publish-to-azure-web-app
@@ -60,21 +60,21 @@ If an HTTP *502.2 - Bad Gateway* error occurs when deploying an app that targets
 > [!NOTE]
 > *This section only applies to apps not using the Azure SignalR Service.*
 >
-> If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section. Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.
+> If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of WebSockets and session affinity, also called Application Request Routing (ARR) affinity, described in this section. Clients connect their WebSockets to the Azure SignalR Service, not directly to the app.
 
 For apps hosted without the Azure SignalR Service, enable:
 
-* [ARR Affinity](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) to route requests from a user back to the same App Service instance. The default setting is **On**.
-* [Web Sockets](xref:fundamentals/websockets) to allow the Web Sockets transport to function. The default setting is **Off**.
+* [WebSockets](xref:fundamentals/websockets) to allow the WebSockets transport to function. The default setting is **Off**.
+* [Session affinity (ARR affinity)](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) to route requests from a user back to the same App Service instance. The default setting is **On**.
 
 1. In the Azure portal, navigate to the web app in **App Services**.
-1. Open **Configuration** > **General settings**.
+1. Open **Settings** > **Configuration**.
 1. Set **Web sockets** to **On**.
-1. Verify that **ARR affinity** is set to **On**.
+1. Verify that **Session affinity** is set to **On**.
 
 ## App Service Plan limits
 
-Web Sockets and other transports are limited based on the App Service Plan selected. For more information, see the *Azure Cloud Services limits* and *App Service limits* sections of the [Azure subscription and service limits, quotas, and constraints](/azure/azure-subscription-service-limits#app-service-limits) article.
+WebSockets and other transports are limited based on the App Service Plan selected. For more information, see the *Azure Cloud Services limits* and *App Service limits* sections of the [Azure subscription and service limits, quotas, and constraints](/azure/azure-subscription-service-limits#app-service-limits) article.
 
 ## Additional resources
 

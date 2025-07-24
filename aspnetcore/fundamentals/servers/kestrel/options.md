@@ -1,14 +1,16 @@
 ---
 title: Configure options for the ASP.NET Core Kestrel web server
-author: rick-anderson
+author: tdykstra
 description: Learn about configuring options for Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/20/2022
+ms.date: 01/26/2023
 uid: fundamentals/servers/kestrel/options
 ---
 # Configure options for the ASP.NET Core Kestrel web server
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -18,32 +20,15 @@ The Kestrel web server has constraint configuration options that are especially 
 
 Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits%2A?displayProperty=nameWithType> property. This property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
-
-```json
-{
-  "Kestrel": {
-    "Limits": {
-      "MaxConcurrentConnections": 100,
-      "MaxConcurrentUpgradedConnections": 100
-    },
-    "DisableStringReuse": true
-  }
-}
-```
-
-By default, Kestrel configuration is loaded from the `Kestrel` section using a preconfigured set of configuration providers. For more information on the default set of configuration providers, see [Default configuration](xref:fundamentals/configuration/index#default-configuration).
-
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) are configurable from configuration providers. Set other Kestrel configuration in C# code.
-
 ## General limits
 
 ### Keep-alive timeout
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.KeepAliveTimeout> gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc7230#section-6.5):
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.KeepAliveTimeout> gets or sets the [keep-alive timeout](https://www.rfc-editor.org/rfc/rfc9112.html#name-keep-alive-connections):
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelLimitsKeepAliveTimeout" highlight="3":::
+
+This timeout is not enforced when a debugger is attached to the Kestrel process.
 
 ### Maximum client connections
 
@@ -100,6 +85,8 @@ Server-wide rate limits configured via <xref:Microsoft.AspNetCore.Server.Kestrel
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> gets or sets the maximum amount of time the server spends receiving request headers:
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelLimitsRequestHeadersTimeout" highlight="3":::
+
+This timeout is not enforced when a debugger is attached to the Kestrel process.
 
 ## HTTP/2 limits
 
@@ -180,6 +167,10 @@ For information about other Kestrel options and limits, see:
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>
     
+## Behavior with debugger attached
+
+Certain timeouts and rate limits aren't enforced when a debugger is attached to a Kestrel process. For more information, see [Behavior with debugger attached](xref:fundamentals/servers/kestrel#behavior-with-debugger-attached).
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -209,76 +200,8 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
-
-```json
-{
-  "Kestrel": {
-    "Limits": {
-      "MaxConcurrentConnections": 100,
-      "MaxConcurrentUpgradedConnections": 100
-    },
-    "DisableStringReuse": true
-  }
-}
-```
-
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
-
-Use **one** of the following approaches:
-
-* Configure Kestrel in `Startup.ConfigureServices`:
-
-  1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
-  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
-
-     ```csharp
-     using Microsoft.Extensions.Configuration
-     
-     public class Startup
-     {
-         public Startup(IConfiguration configuration)
-         {
-             Configuration = configuration;
-         }
-
-         public IConfiguration Configuration { get; }
-
-         public void ConfigureServices(IServiceCollection services)
-         {
-             services.Configure<KestrelServerOptions>(
-                 Configuration.GetSection("Kestrel"));
-         }
-
-         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-         {
-             ...
-         }
-     }
-     ```
-
-* Configure Kestrel when building the host:
-
-  In `Program.cs`, load the `Kestrel` section of configuration into Kestrel's configuration:
-
-  ```csharp
-  // using Microsoft.Extensions.DependencyInjection;
-
-  public static IHostBuilder CreateHostBuilder(string[] args) =>
-      Host.CreateDefaultBuilder(args)
-          .ConfigureServices((context, services) =>
-          {
-              services.Configure<KestrelServerOptions>(
-                  context.Configuration.GetSection("Kestrel"));
-          })
-          .ConfigureWebHostDefaults(webBuilder =>
-          {
-              webBuilder.UseStartup<Startup>();
-          });
-  ```
-
-Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
 ## General limits
 
@@ -286,7 +209,7 @@ Both of the preceding approaches work with any [configuration provider](xref:fun
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.KeepAliveTimeout>
 
-Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc7230#section-6.5). Defaults to 2 minutes.
+Gets or sets the [keep-alive timeout](https://www.rfc-editor.org/rfc/rfc9112.html#name-keep-alive-connections). Defaults to 2 minutes.
 
 :::code language="csharp" source="samples/5.x/KestrelSample/Program.cs" id="snippet_Limits" highlight="19-20":::
 

@@ -1,11 +1,11 @@
 ---
 title: SignalR HubContext
-author: bradygaster
+author: wadepickett
 description: Learn how to use the ASP.NET Core SignalR HubContext service for sending notifications to clients from outside a hub.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 02/20/2023
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
@@ -20,9 +20,6 @@ The SignalR hub is the core abstraction for sending messages to clients connecte
 ## Get an instance of `IHubContext`
 
 In ASP.NET Core SignalR, you can access an instance of `IHubContext` via dependency injection. You can inject an instance of `IHubContext` into a controller, middleware, or other DI service. Use the instance to send messages to clients.
-
-> [!NOTE]
-> This differs from ASP.NET 4.x SignalR which used GlobalHost to provide access to the `IHubContext`. ASP.NET Core has a dependency injection framework that removes the need for this global singleton.
 
 ### Inject an instance of `IHubContext` in a controller
 
@@ -54,6 +51,14 @@ app.Use(async (context, next) =>
 
 > [!NOTE]
 > When client methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
+>
+> Apps that need to map a user to the connection ID and persist that mapping can do one of the following:
+>
+> * Persist mapping of single or multiple connections as groups. See [Groups in SignalR](xref:signalr/groups#groups-in-signalr) for more information.
+> * Retain connection and user information through a singleton service. See [Inject services into a hub](xref:signalr/hubs#inject-services-into-a-hub) for more information. The singleton service can use any storage method, such as:
+>   * In-memory storage in a dictionary.
+>   * Permanent external storage.  For example, a database or Azure Table storage using the [Azure.Data.Tables NuGet package](https://www.nuget.org/packages/Azure.Data.Tables/).
+> * Pass the connection ID between clients.
 
 ### Get an instance of `IHubContext` from IHost
 
@@ -133,6 +138,7 @@ async Task CommonHubContextMethod(IHubContext context)
 ```
 
 This is useful when:
+
 * Writing libraries that don't have a reference to the specific `Hub` type the app is using.
 * Writing code that is generic and can apply to multiple different `Hub` implementations
 
@@ -140,6 +146,7 @@ This is useful when:
 
 ## Additional resources
 
+* [SignalR assemblies in shared framework](xref:migration/22-to-30#signalr-assemblies-in-shared-framework)
 * <xref:tutorials/signalr>
 * <xref:signalr/hubs>
 * <xref:signalr/publish-to-azure-web-app>

@@ -3,7 +3,7 @@ title: Use hub filters in ASP.NET Core SignalR
 author: brecon
 description: Learn how to use hub filters in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: brecon
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 05/22/2020
 uid: signalr/hub-filters
@@ -13,7 +13,7 @@ uid: signalr/hub-filters
 
 Hub filters:
 
-* Are available in ASP.NET Core 5.0 or later.
+* Are available in .NET 5 or later.
 * Allow logic to run before and after hub methods are invoked by clients.
 
 This article provides guidance for writing and using hub filters.

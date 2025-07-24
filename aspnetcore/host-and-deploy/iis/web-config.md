@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/web-config
 ---
 # `web.config` file
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 The `web.config` is a file that is read by IIS and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to configure an app hosted with IIS.
 
 ## `web.config` file location

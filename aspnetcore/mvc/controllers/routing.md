@@ -1,14 +1,16 @@
 ---
 title: Routing to controller actions in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how ASP.NET Core MVC uses Routing Middleware to match URLs of incoming requests and map them to actions.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 04/08/2022
 uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
 
 By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/serpent5), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -302,7 +304,7 @@ Using `page` as a route parameter with attribute routing is a common error. Doin
 
 The special parameter names are used by the URL generation to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
-* The following keywords are reserved in the context of a Razor view or a Razor Page:
+The following keywords are reserved in the context of a Razor view or a Razor Page:
 
 * `page`
 * `using`
@@ -349,16 +351,16 @@ Consider the following controller:
 In the preceding code:
 
 * Each action contains the `[HttpGet]` attribute, which constrains matching to HTTP GET requests only.
-* The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/"{id}""`. Therefore this action only matches GET requests for the form `/api/test2/xyz`,`/api/test2/123`,`/api/test2/{any string}`, etc.
+* The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/{id}"`. Therefore this action only matches GET requests for the form `/api/test2/xyz`,`/api/test2/123`,`/api/test2/{any string}`, etc.
   [!code-csharp[](routing/samples/6.x/main/Controllers/Test2Controller.cs?name=snippet2)]
-* The `GetIntProduct` action contains the `"int/{id:int}")` template. The `:int` portion of the template constrains the `id` route values to strings that can be converted to an integer. A GET request to `/api/test2/int/abc`:
+* The `GetIntProduct` action contains the `"int/{id:int}"` template. The `:int` portion of the template constrains the `id` route values to strings that can be converted to an integer. A GET request to `/api/test2/int/abc`:
   * Doesn't match this action.
   * Returns a [404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404) error.
     [!code-csharp[](routing/samples/6.x/main/Controllers/Test2Controller.cs?name=snippet3)]
 * The `GetInt2Product` action contains `{id}` in the template, but doesn't constrain `id` to values that can be converted to an integer. A GET request to `/api/test2/int2/abc`:
   * Matches this route.
   * Model binding fails to convert `abc` to an integer. The `id` parameter of the method is integer.
-  * Returns a [400 Bad Request](https://developer.mozilla.org/docs/Web/HTTP/Status/400) because model binding failed to convert`abc` to an integer.
+  * Returns a [400 Bad Request](https://developer.mozilla.org/docs/Web/HTTP/Status/400) because model binding failed to convert `abc` to an integer.
       [!code-csharp[](routing/samples/6.x/main/Controllers/Test2Controller.cs?name=snippet4)]
 
 Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>, and <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of the [HTTP verb](#verb6) attributes accept a route template. The following example shows two actions that match the same route template:
@@ -639,6 +641,8 @@ Actions are either conventionally routed or attribute routed. Placing a route on
 
 Attribute routing and conventional routing use the same routing engine.
 
+[!INCLUDE[](~/includes/routeSlash.md)]
+
 <a name="routing-url-gen-ref-label"></a>
 <a name="ambient"></a>
 
@@ -657,7 +661,7 @@ If the app is using the default conventional route, the value of the `url` varia
 * The route values from the current request, which are called **ambient values**.
 * The values passed to `Url.Action` and substituting those values into the route template:
 
-``` text
+```text
 ambient values: { controller = "UrlGeneration", action = "Source" }
 values passed to Url.Action: { controller = "UrlGeneration", action = "Destination" }
 route template: {controller}/{action}/{id?}
@@ -981,7 +985,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 
 * Automatically assign an **order** value to their endpoints based on the order they are invoked.
 
-Endpoint routing in ASP.NET Core 3.0 and later:
+Endpoint routing in ASP.NET Core 3.0 or later:
 
 * Doesn't have a concept of routes.
 * Doesn't provide ordering guarantees for the execution of extensibility,  all endpoints are processed at once.
@@ -1018,7 +1022,7 @@ The preceding example:
 * Is an example of [Slug](https://developer.mozilla.org/docs/Glossary/Slug) style routing where it's typical to have an article name as part of the URL.
 
 > [!WARNING]
-> In ASP.NET Core 3.0 and later, routing doesn't:
+> In ASP.NET Core 3.0 or later, routing doesn't:
 > * Define a concept called a *route*. `UseRouting` adds route matching to the middleware pipeline. The `UseRouting` middleware looks at the set of endpoints defined in the app, and selects the best endpoint match based on the request.
 > * Provide guarantees about the execution order of extensibility like <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> or <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
 >
@@ -1142,16 +1146,17 @@ Using `page` as a route parameter with attribute routing is a common error. Doin
 
 The special parameter names are used by the URL generation to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
-* The following keywords are reserved in the context of a Razor view or a Razor Page:
-   * `page`
-   * `using`
-   * `namespace`
-   * `inject`
-   * `section`
-   * `inherits`
-   * `model`
-   * `addTagHelper`
-   * `removeTagHelper`
+The following keywords are reserved in the context of a Razor view or a Razor Page:
+
+* `page`
+* `using`
+* `namespace`
+* `inject`
+* `section`
+* `inherits`
+* `model`
+* `addTagHelper`
+* `removeTagHelper`
 
 These keywords shouldn't be used for link generations, model bound parameters, or top level properties.
 
@@ -1188,16 +1193,16 @@ Consider the following controller:
 In the preceding code:
 
 * Each action contains the `[HttpGet]` attribute, which constrains matching to HTTP GET requests only.
-* The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/"{id}""`. Therefore this action only matches GET requests for the form `/api/test2/xyz`,`/api/test2/123`,`/api/test2/{any string}`, etc.
+* The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/{id}"`. Therefore this action only matches GET requests for the form `/api/test2/xyz`,`/api/test2/123`,`/api/test2/{any string}`, etc.
   [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet2)]
-* The `GetIntProduct` action contains the `"int/{id:int}")` template. The `:int` portion of the template constrains the `id` route values to strings that can be converted to an integer. A GET request to `/api/test2/int/abc`:
+* The `GetIntProduct` action contains the `"int/{id:int}"` template. The `:int` portion of the template constrains the `id` route values to strings that can be converted to an integer. A GET request to `/api/test2/int/abc`:
   * Doesn't match this action.
   * Returns a [404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404) error.
     [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet3)]
 * The `GetInt2Product` action contains `{id}` in the template, but doesn't constrain `id` to values that can be converted to an integer. A GET request to `/api/test2/int2/abc`:
   * Matches this route.
   * Model binding fails to convert `abc` to an integer. The `id` parameter of the method is integer.
-  * Returns a [400 Bad Request](https://developer.mozilla.org/docs/Web/HTTP/Status/400) because model binding failed to convert`abc` to an integer.
+  * Returns a [400 Bad Request](https://developer.mozilla.org/docs/Web/HTTP/Status/400) because model binding failed to convert `abc` to an integer.
       [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet4)]
 
 Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>, and <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of the [HTTP verb](#verb) attributes accept a route template. The following example shows two actions that match the same route template:
@@ -1496,7 +1501,7 @@ If the app is using the default conventional route, the value of the `url` varia
 * The route values from the current request, which are called **ambient values**.
 * The values passed to `Url.Action` and substituting those values into the route template:
 
-``` text
+```text
 ambient values: { controller = "UrlGeneration", action = "Source" }
 values passed to Url.Action: { controller = "UrlGeneration", action = "Destination" }
 route template: {controller}/{action}/{id?}

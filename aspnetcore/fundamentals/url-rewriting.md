@@ -10,6 +10,8 @@ uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT) 
 
 :::moniker range=">= aspnetcore-6.0"
@@ -44,7 +46,7 @@ When redirecting requests to a different URL, indicate whether the redirect is p
 
 * The [`302 - Found`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302) status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
 
-For more information on status codes, see [RFC 2616: Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+For more information on status codes, see [RFC 9110: Status Code Definitions](https://www.rfc-editor.org/rfc/rfc9110#name-status-codes).
 
 A *URL rewrite* is a server-side operation that provides a resource from a different resource address than the client requested. Rewriting a URL doesn't require a round trip to the server. The rewritten URL isn't returned to the client and doesn't appear in the browser's address bar.
 
@@ -56,7 +58,7 @@ Although the client might be able to retrieve the resource at the rewritten URL,
 
 ## URL rewriting sample app
 
-Explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios. The [sample app, deployed to Azure](https://redirect6.azurewebsites.net), can be used for testing.
+Explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
 
 ## When to use URL rewriting middleware
 
@@ -99,7 +101,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=13)]
 
-In a browser with developer tools enabled, make a request to the sample app with the path [`/redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/redirect-rule/1234/5678). The regular expression matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a *302 - Found* status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL:
+In a browser with developer tools enabled, make a request to the sample app with the path `/redirect-rule/1234/5678`. The regular expression matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a *302 - Found* status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL:
 
 * The second request receives a *200 - OK* response from the app.
 * The body of the response shows the redirect URL.
@@ -113,7 +115,7 @@ The part of the expression contained within parentheses is called a [capture gro
 
 In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in the regular expression. There's only one captured group in the redirect rule regular expression in `redirect-rule/(.*)`, so there's only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes `/redirected/1234/5678`.
 
-Try [`/redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/redirect-rule/1234/5678) with the browser tools on the network tab.
+Try `/redirect-rule/1234/5678` with the browser tools on the network tab.
 
 ### URL redirect to a secure endpoint
 
@@ -135,12 +137,12 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 > [!NOTE]
 > When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl#require-https).
 
-The sample app demonstrates how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Make an [insecure HTTP request to the app](http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz). When testing HTTP to HTTPS redirection with localhost:
+The sample app demonstrates how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Make an insecure HTTP request to the app at `http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz`. When testing HTTP to HTTPS redirection with localhost:
 
 * Use the HTTP URL, which has a different port than the HTTPS URL. The HTTP URL is in the `Properties/launchSettings.json` file.
 * Removing the `s` from `https://localhost/{port}` fails because localhost doesn't respond on HTTP to the HTTPS port.
 
-The following image shows the F12 browser tools image of a request to [http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz](http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz) using the preceding code:
+The following image shows the F12 browser tools image of a request to `http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz`  using the preceding code:
 
 ![Browser window with developer tools tracking the requests and responses: Add redirect to HTTPS](url-rewriting/_static/add_redirect_to_https6.png)
 
@@ -150,7 +152,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to 
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=15-16)]
 
-Try the request to https://redirect6.azurewebsites.net/rewrite-rule/1234/5678
+Try the request to `https://redirect6.azurewebsites.net/rewrite-rule/1234/5678`
 
 The caret (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
 
@@ -158,19 +160,19 @@ In the earlier example with the redirect rule, `redirect-rule/(.*)`, there's no 
 
 | Path                               | Match |
 | ---------------------------------- | :---: |
-| [`/redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/redirect-rule/1234/5678)         | Yes   |
-| [`/my-cool-redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/my-cool-redirect-rule/1234/5678) | Yes   |
-| [`/anotherredirect-rule/1234/5678`](https://redirect6.azurewebsites.net/anotherredirect-rule/1234/5678)  | Yes   |
+| `/redirect-rule/1234/5678`         | Yes   |
+| `/my-cool-redirect-rule/1234/5678` | Yes   |
+| `/anotherredirect-rule/1234/5678` | Yes   |
 
 The rewrite rule, `^rewrite-rule/(\d+)/(\d+)`, only matches paths if they start with `rewrite-rule/`. In the following table, note the difference in matching.
 
 | Path                              | Match |
 | --------------------------------- | :---: |
-| [`/rewrite-rule/1234/5678`](https://redirect6.azurewebsites.net/rewrite-rule/1234/5678)         | Yes   |
-| [`/my-cool-rewrite-rule/1234/5678`](https://redirect6.azurewebsites.net/my-cool-rewrite-rule/1234/5678) | No    |
-| [`/anotherrewrite-rule/1234/5678`](https://redirect6.azurewebsites.net/anotherrewrite-rule/1234/5678)  | No    |
+| `/rewrite-rule/1234/5678`        | Yes   |
+| `/my-cool-rewrite-rule/1234/5678` | No    |
+| `/anotherrewrite-rule/1234/5678` | No    |
 
-Following the `^rewrite-rule/` portion of the expression, there are two capture groups, `(\d+)/(\d+)`. The `\d` signifies *match a digit (number)*. The plus sign (`+`) means *match one or more of the preceding character*. Therefore, the URL must contain a number followed by a forward-slash followed by another number. These capture groups are injected into the rewritten URL as `$1` and `$2`. The rewrite rule replacement string places the captured groups into the query string. The requested path [`/rewrite-rule/1234/5678`](https://redirect6.azurewebsites.net/rewrite-rule/1234/5678) is rewritten to return the resource at `/rewritten?var1=1234&var2=5678`. If a query string is present on the original request, it's preserved when the URL is rewritten.
+Following the `^rewrite-rule/` portion of the expression, there are two capture groups, `(\d+)/(\d+)`. The `\d` signifies *match a digit (number)*. The plus sign (`+`) means *match one or more of the preceding character*. Therefore, the URL must contain a number followed by a forward-slash followed by another number. These capture groups are injected into the rewritten URL as `$1` and `$2`. The rewrite rule replacement string places the captured groups into the query string. The requested path `/rewrite-rule/1234/5678` is rewritten to return the resource at `/rewritten?var1=1234&var2=5678`. If a query string is present on the original request, it's preserved when the URL is rewritten.
 
 There's no round trip to the server to return the resource. If the resource exists, it's fetched and returned to the client with a *200 - OK* status code. Because the client isn't redirected, the URL in the browser's address bar doesn't change. Clients can't detect that a URL rewrite operation occurred on the server.
 
@@ -182,7 +184,7 @@ For the fastest response:
 * Use `skipRemainingRules: true` whenever possible because matching rules is computationally expensive and increases app response time. Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
 
 > [!WARNING]
-> A malicious user can provide expensive to process input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.us-cert.gov/ncas/tips/ST04-015). ASP.NET Core framework APIs that use `RegularExpressions` pass a timeout. For example, the [RedirectRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RedirectRule.cs#L15) and [RewriteRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RewriteRule.cs#L14) classes both pass in a one second timeout.
+> A malicious user can provide expensive to process input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.cisa.gov/news-events/news/understanding-denial-service-attacks). ASP.NET Core framework APIs that use `RegularExpressions` pass a timeout. For example, the [RedirectRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RedirectRule.cs#L15) and [RewriteRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RewriteRule.cs#L14) classes both pass in a one second timeout.
 
 ### Apache mod_rewrite
 
@@ -196,7 +198,7 @@ The sample app redirects requests from `/apache-mod-rules-redirect/(.\*)` to `/r
 
 [!code[](url-rewriting/samples/6.x/SampleApp/ApacheModRewrite.txt)]
 
-Try the request to https://redirect6.azurewebsites.net/apache-mod-rules-redirect/1234
+Try the request to `https://redirect6.azurewebsites.net/apache-mod-rules-redirect/1234`
 
 The [Apache middleware](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/ApacheModRewrite/ServerVariables.cs) supports the following Apache mod_rewrite server variables:
 
@@ -242,7 +244,7 @@ The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?i
 
 [!code-xml[](url-rewriting/samples/6.x/SampleApp/IISUrlRewrite.xml)]
 
-Try the request to https://redirect6.azurewebsites.net/iis-rules-rewrite/xyz 
+Try the request to `https://redirect6.azurewebsites.net/iis-rules-rewrite/xyz` 
 
 Apps that have an active IIS Rewrite Module with server-level rules configured that impacts the app in undesirable ways:
 
@@ -297,7 +299,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to impleme
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=19)]
 
-The sample app demonstrates a method that redirects requests for paths that end with `.xml`. When a request is made for [`/file.xml`](https://redirect6.azurewebsites.net/file.xml):
+The sample app demonstrates a method that redirects requests for paths that end with `.xml`. When a request is made for `/file.xml`:
 
 * The request is redirected to `/xmlfiles/file.xml`
 * The status code is set to `301 - Moved Permanently`. When the browser makes a new request for `/xmlfiles/file.xml`, Static File Middleware serves the file to the client from the *wwwroot/xmlfiles* folder. For a redirect, explicitly set the status code of the response. Otherwise, a *200 - OK* status code is returned, and the redirect doesn't occur on the client.
@@ -328,8 +330,8 @@ The values of the parameters in the sample app for the `extension` and the `newP
 
 Try:
 
-* PNG request: https://redirect6.azurewebsites.net/image.png
-* JPG request: https://redirect6.azurewebsites.net/image.jpg
+* PNG request: `https://redirect6.azurewebsites.net/image.png`
+* JPG request: `https://redirect6.azurewebsites.net/image.jpg`
 
 <a name="regex6"></a>
 
@@ -337,12 +339,12 @@ Try:
 
 | Goal | Regex String &<br>Match Example | Replacement String &<br>Output Example |
 | ---- | ------------------------------- | -------------------------------------- |
-| Rewrite path into querystring | `^path/(.*)/(.*)`<br>[`/path/abc/123`](https://redirect6.azurewebsites.net/path/abc/123) | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
-| Strip trailing slash | `^path2/(.*)/$`<br>[`/path2/xyz/`](https://redirect6.azurewebsites.net/path2/xyz/) | `$1`<br>`/path2/xyz` |
-| Enforce trailing slash | `^path3/(.*[^/])$`<br>[`/path3/xyz`](https://redirect6.azurewebsites.net/path3/xyz) | `$1/`<br>`/path3/xyz/` |
-| Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or <br> `^(?!.*\.axd$)(.*)$`<br>Yes: [`/path4/resource.htm`](https://redirect6.azurewebsites.net/path4/resource.htm)<br>No: [`/path4/resource.axd`](https://redirect6.azurewebsites.net/path4/resource.axd) | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
-| Rearrange URL segments | `path5/(.*)/(.*)/(.*)`<br>[`path5/1/2/3`](https://redirect6.azurewebsites.net/path5/1/2/3) | `path5/$3/$2/$1`<br>`path5/3/2/1` |
-| Replace a URL segment | `^path6/(.*)/segment2/(.*)`<br>[`^path6/segment1/segment2/segment3`](https://redirect6.azurewebsites.net/path6/segment1/segment2/segment3) | `path6/$1/replaced/$2`<br>`/path6/segment1/replaced/segment3` |
+| Rewrite path into querystring | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
+| Strip trailing slash | `^path2/(.*)/$`<br>`/path2/xyz/` | `$1`<br>`/path2/xyz` |
+| Enforce trailing slash | `^path3/(.*[^/])$`<br>`/path3/xyz` | `$1/`<br>`/path3/xyz/` |
+| Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or <br> `^(?!.*\.axd$)(.*)$`<br>Yes: `/path4/resource.htm`<br>No: `/path4/resource.axd` | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
+| Rearrange URL segments | `path5/(.*)/(.*)/(.*)`<br>`path5/1/2/3` | `path5/$3/$2/$1`<br>`path5/3/2/1` |
+| Replace a URL segment | `^path6/(.*)/segment2/(.*)`<br>`^path6/segment1/segment2/segment3` | `path6/$1/replaced/$2`<br>`/path6/segment1/replaced/segment3` |
 
 The links in the preceding table use the following code deployed to Azure:
 
@@ -387,7 +389,7 @@ When redirecting requests to a different URL, indicate whether the redirect is p
 
 * The *302 - Found* status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
 
-For more information on status codes, see [RFC 2616: Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+For more information on status codes, see [RFC 9110: Status Code Definitions](https://www.rfc-editor.org/rfc/rfc9110#name-status-codes).
 
 A *URL rewrite* is a server-side operation that provides a resource from a different resource address than the client requested. Rewriting a URL doesn't require a round trip to the server. The rewritten URL isn't returned to the client and doesn't appear in the browser's address bar.
 
@@ -741,7 +743,7 @@ When redirecting requests to a different URL, indicate whether the redirect is p
 
 * The *302 - Found* status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
 
-For more information on status codes, see [RFC 2616: Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+For more information on status codes, see [RFC 9110: Status Code Definitions](https://www.rfc-editor.org/rfc/rfc9110#name-status-codes).
 
 A *URL rewrite* is a server-side operation that provides a resource from a different resource address than the client requested. Rewriting a URL doesn't require a round trip to the server. The rewritten URL isn't returned to the client and doesn't appear in the browser's address bar.
 
@@ -1071,7 +1073,6 @@ Original Request: `/image.jpg`
 * [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/)
 * [Using Url Rewrite Module 2.0 (for IIS)](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20)
 * [URL Rewrite Module Configuration Reference](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference)
-* [IIS URL Rewrite Module Forum](https://forums.iis.net/1152.aspx)
 * [Keep a simple URL structure](https://support.google.com/webmasters/answer/76329?hl=en)
 * [10 URL Rewriting Tips and Tricks](https://ruslany.net/2009/04/10-url-rewriting-tips-and-tricks/)
 * [To slash or not to slash](https://webmasters.googleblog.com/2010/04/to-slash-or-not-to-slash.html)

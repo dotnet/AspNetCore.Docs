@@ -1,13 +1,15 @@
 ---
 title: ASP.NET Core and Entity Framework 6
-author: rick-anderson
-description: Entity Framework 6.3 and later works with ASP.NET Core 3.1 and later.
-ms.author: riande
+author: tdykstra
+description: Entity Framework 6.3 or later works with ASP.NET Core 3.1 or later.
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 7/14/2020
+ms.date: 11/06/2023
 uid: data/entity-framework-6
 ---
 # ASP.NET Core and Entity Framework 6
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-3.0"
 

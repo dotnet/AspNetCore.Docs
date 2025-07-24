@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using TodoApi.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting; 
 
 namespace TodoApi
 {
@@ -50,19 +52,22 @@ namespace TodoApi
         // </snippet_ConfigureServices>
 
         // <snippet_Configure>
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseStaticFiles();
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
+            if (env.IsDevelopment())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+                // Enable middleware to serve generated Swagger as a JSON endpoint.
+                app.UseSwagger();
+
+                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+                // specifying the Swagger JSON endpoint.
+                app.UseSwaggerUI(c => // UseSwaggerUI Protected by if (env.IsDevelopment())
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                });
+            }
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>

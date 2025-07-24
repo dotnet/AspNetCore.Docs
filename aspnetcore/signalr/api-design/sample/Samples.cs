@@ -1,12 +1,12 @@
 #region ParameterBasedOldVersion
-public async Task<string> GetTotalLength(string param1)
+public int GetTotalLength(string param1)
 {
     return param1.Length;
 }
 #endregion
 
 #region ParameterBasedNewVersion
-public async Task<string> GetTotalLength(string param1, string param2)
+public int GetTotalLength(string param1, string param2)
 {
     return param1.Length + param2.Length;
 }
@@ -18,7 +18,7 @@ public class TotalLengthRequest
     public string Param1 { get; set; }
 }
 
-public async Task GetTotalLength(TotalLengthRequest req)
+public int GetTotalLength(TotalLengthRequest req)
 {
     return req.Param1.Length;
 }
@@ -31,7 +31,7 @@ public class TotalLengthRequest
     public string Param2 { get; set; }
 }
 
-public async Task GetTotalLength(TotalLengthRequest req)
+public int GetTotalLength(TotalLengthRequest req)
 {
     var length = req.Param1.Length;
     if (req.Param2 != null)

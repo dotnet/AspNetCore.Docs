@@ -1,13 +1,15 @@
 ---
 title: Microsoft.AspNetCore.App metapackage for ASP.NET Core
-author: Rick-Anderson
+author: wadepickett
 description: The Microsoft.AspNetCore.App shared framework
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: wpickett
 ms.date: 09/24/2019
 uid: fundamentals/metapackage-app
 ---
 # Microsoft.AspNetCore.App for ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-3.0"
 

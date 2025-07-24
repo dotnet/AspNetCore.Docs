@@ -1,10 +1,10 @@
 ---
 title: Choose between ASP.NET 4.x and ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Explains ASP.NET Core vs. ASP.NET 4.x and how to choose between them.
-ms.author: riande
-ms.custom: "mvc, seodec18"
-ms.date: 02/12/2020
+ms.author: tdykstra
+ms.custom: mvc
+ms.date: 05/28/2025
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
 # Choose between ASP.NET 4.x and ASP.NET Core
@@ -30,7 +30,7 @@ The following table compares ASP.NET Core to ASP.NET 4.x.
 |Build for Windows, macOS, or Linux|Build for Windows|
 |[Razor Pages](xref:razor-pages/index) is the recommended approach to create a Web UI as of ASP.NET Core 2.x. See also [MVC](xref:mvc/overview), [Web API](xref:tutorials/first-web-api), and [SignalR](xref:signalr/introduction).|Use [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [Web API](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/), or [Web Pages](/aspnet/web-pages)|
 |Multiple versions per machine|One version per machine|
-|Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/), [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/), or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#|Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/) using C#, VB, or F#|
+|Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#|Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/) using C#, VB, or F#|
 |Higher performance than ASP.NET 4.x|Good performance|
 |[Use .NET Core runtime](/dotnet/standard/choosing-core-framework-server)|Use .NET Framework runtime|
 

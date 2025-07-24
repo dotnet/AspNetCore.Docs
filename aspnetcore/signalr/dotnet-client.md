@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core SignalR .NET Client
-author: bradygaster
+author: wadepickett
 description: Information about the ASP.NET Core SignalR .NET Client
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 01/14/2020
 uid: signalr/dotnet-client
@@ -29,7 +29,7 @@ To install the client library, run the following command in the **Package Manage
 Install-Package Microsoft.AspNetCore.SignalR.Client
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 To install the client library, run the following command in a command shell:
 
@@ -139,7 +139,7 @@ connection.Closed += error =>
 In order to configure a custom number of reconnect attempts before disconnecting or change the reconnect timing, `WithAutomaticReconnect` accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt.
 
 ```csharp
-HubConnection connection= new HubConnectionBuilder()
+HubConnection connection = new HubConnectionBuilder()
     .WithUrl(new Uri("http://127.0.0.1:5000/chathub"))
     .WithAutomaticReconnect(new[] { TimeSpan.Zero, TimeSpan.Zero, TimeSpan.FromSeconds(10) })
     .Build();
@@ -231,7 +231,7 @@ The `InvokeAsync` method returns a `Task` which completes when the server method
 The `SendAsync` method returns a `Task` which completes when the message has been sent to the server. No return value is provided since this `Task` doesn't wait until the server method completes. Any exceptions thrown on the client while sending the message produce a faulted `Task`. Use `await` and `try...catch` syntax to handle send errors.
 
 > [!NOTE]
-> Calling hub methods from a client is only supported when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
+> Calling hub methods from a client is only supported when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions](/azure/azure-signalr/signalr-resource-faq).
 
 ## Call client methods from hub
 

@@ -1,14 +1,16 @@
 ---
 title: ASP.NET Core Web Host
-author: rick-anderson
+author: tdykstra
 description: Learn about Web Host in ASP.NET Core, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/22/2022
+ms.date: 09/06/2024
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -215,7 +217,7 @@ WebHost.CreateDefaultBuilder(args)
 
 ### HTTPS Port
 
-Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
+Set the HTTPS port to redirect to if you get a non-HTTPS connection. Used in [enforcing HTTPS](xref:security/enforcing-ssl). This setting doesn't cause the server to listen on the specified port. That is, it's possible to accidentally redirect requests to an unused port.
 
 **Key**: https_port  
 **Type**: *string*  
@@ -226,6 +228,36 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 ```csharp
 WebHost.CreateDefaultBuilder(args)
     .UseSetting("https_port", "8080")
+```
+
+### HTTPS Ports
+
+Set the ports to listen on for HTTPS connections.
+
+**Key**: https_ports
+**Type**: *string*  
+**Default**: A default value isn't set.  
+**Set using**: `UseSetting`  
+**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseSetting("https_ports", "8080")
+```
+
+### HTTP Ports
+
+Set the ports to listen on for HTTP connections.
+
+**Key**: http_ports
+**Type**: *string*  
+**Default**: A default value isn't set.  
+**Set using**: `UseSetting`  
+**Environment variable**: `ASPNETCORE_HTTP_PORTS`
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseSetting("http_ports", "8080")
 ```
 
 ### Hosting Startup Exclude Assemblies
@@ -249,13 +281,13 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
-**Default**: true  
+**Default**: false  
 **Set using**: `PreferHostingUrls`  
 **Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .PreferHostingUrls(false)
+    .PreferHostingUrls(true)
 ```
 
 ### Prevent Hosting Startup
@@ -760,7 +792,6 @@ WebHost.CreateDefaultBuilder(args)
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/windows-service>
 
 :::moniker-end
@@ -978,7 +1009,7 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1006,13 +1037,13 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
-**Default**: true  
+**Default**: false  
 **Set using**: `PreferHostingUrls`  
 **Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .PreferHostingUrls(false)
+    .PreferHostingUrls(true)
 ```
 
 ### Prevent Hosting Startup
@@ -1517,7 +1548,6 @@ WebHost.CreateDefaultBuilder(args)
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/windows-service>
 
 :::moniker-end
@@ -1735,7 +1765,7 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1763,13 +1793,13 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
-**Default**: true  
+**Default**: false  
 **Set using**: `PreferHostingUrls`  
 **Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .PreferHostingUrls(false)
+    .PreferHostingUrls(true)
 ```
 
 ### Prevent Hosting Startup
@@ -2274,7 +2304,6 @@ WebHost.CreateDefaultBuilder(args)
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/windows-service>
 
 :::moniker-end

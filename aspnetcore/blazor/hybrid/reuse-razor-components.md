@@ -3,12 +3,14 @@ title: Reuse Razor components in ASP.NET Core Blazor Hybrid apps
 author: guardrex
 description: Learn how to author and organize Razor components for the web and Web Views in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: "mvc"
-ms.date: 06/09/2022
+ms.date: 11/12/2024
 uid: blazor/hybrid/reuse-razor-components
 ---
 # Reuse Razor components in ASP.NET Core Blazor Hybrid
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to author and organize Razor components for the web and :::no-loc text="Web Views"::: in Blazor Hybrid apps.
 
@@ -24,7 +26,7 @@ In order to author Razor components that can seamlessly work across hosting mode
 
 * Place shared UI code in Razor class libraries (RCLs), which are containers designed to maintain reusable pieces of UI for use across different hosting models and platforms.
 * Implementations of unique features shouldn't exist in RCLs. Instead, the RCL should define abstractions (interfaces and base classes) that hosting models and platforms implement.
-* Only opt-in to unique features by hosting model or platform. For example, Blazor WebAssembly supports the use of <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> in a component as an optimization, but only use them with conditional casts and fallback implementations that rely on the universal <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> abstractions that all hosting models and platforms support. For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>. For more information on <xref:Microsoft.JSInterop.IJSInProcessObjectReference>, see <xref:blazor/js-interop/call-dotnet-from-javascript#synchronous-js-interop-in-blazor-webassembly-apps>.
+* Only opt-in to unique features by hosting model or platform. For example, Blazor WebAssembly supports the use of <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> in a component as an optimization, but only use them with conditional casts and fallback implementations that rely on the universal <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> abstractions that all hosting models and platforms support. For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-client-side-components>. For more information on <xref:Microsoft.JSInterop.IJSInProcessObjectReference>, see <xref:blazor/js-interop/call-dotnet-from-javascript#synchronous-js-interop-in-client-side-components>.
 * As a general rule, use CSS for HTML styling in components. The most common case is for consistency in the look and feel of an app. In places where UI styles must differ across hosting models or platforms, use CSS to style the differences.
 * If some part of the UI requires additional or different content for a target hosting model or platform, the content can be encapsulated inside a component and rendered inside the RCL using [`DynamicComponent`](xref:blazor/components/dynamiccomponent). Additional UI can also be provided to components via <xref:Microsoft.AspNetCore.Components.RenderFragment> instances. For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see [Child content render fragments](xref:blazor/components/index#child-content-render-fragments) and [Render fragments for reusable rendering logic](xref:blazor/components/index#render-fragments-for-reusable-rendering-logic).
 
@@ -60,15 +62,21 @@ Where you want to pack platform-specific features into a class library that can 
 
 The following example demonstrates the concepts for images in an app that organizes photographs:
 
-* A .NET MAUI Blazor app uses `InputPhoto` from an RCL that it references.
+* A .NET MAUI Blazor Hybrid app uses `InputPhoto` from an RCL that it references.
 * The .NET MAUI app also references a .NET MAUI class library.
 * `InputPhoto` in the RCL injects an `ICameraService` interface, which is defined in the RCL.
 * `CameraService` partial class implementations for `ICameraService` are in the .NET MAUI class library (`CameraService.Windows.cs`, `CameraService.iOS.cs`, `CameraService.Android.cs`), which references the RCL.
 
-![A .NET MAUI Blazor app uses InputPhoto from a Razor class library (RCL) that it references. The .NET MAUI app also references a .NET MAUI class library. InputPhoto in the RCL injects an ICameraService interface defined in the RCL. CameraService partial class implementations for ICameraService are in the .NET MAUI class library (CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs), which references the RCL.](~/blazor/hybrid/reuse-razor-components/_static/diagram4.png)
+![A .NET MAUI Blazor Hybrid app uses InputPhoto from a Razor class library (RCL) that it references. The .NET MAUI app also references a .NET MAUI class library. InputPhoto in the RCL injects an ICameraService interface defined in the RCL. CameraService partial class implementations for ICameraService are in the .NET MAUI class library (CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs), which references the RCL.](~/blazor/hybrid/reuse-razor-components/_static/diagram4.png)
+
+:::moniker range=">= aspnetcore-8.0"
+
+For an example, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app#using-interfaces-to-support-different-device-implementations>.
+
+:::moniker-end
 
 ## Additional resources
 
-* .NET MAUI Blazor podcast sample app
-  * [Source code (`microsoft/dotnet-podcasts` GitHub repository)](https://github.com/microsoft/dotnet-podcasts)
-  * [Live app](https://dotnetpodcasts.azurewebsites.net/)
+* eShop Reference Application (AdventureWorks): The .NET MAUI Blazor Hybrid app is in the `src/HybridApp` folder.
+  * For Azure hosting: [`Azure-Samples/eShopOnAzure` GitHub repository](https://github.com/Azure-Samples/eShopOnAzure)
+  * For general non-Azure hosting: [`dotnet/eShop` GitHub repository](https://github.com/dotnet/eShop). 

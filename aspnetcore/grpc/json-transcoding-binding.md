@@ -3,11 +3,13 @@ title: Configure HTTP and JSON for gRPC JSON transcoding ASP.NET Core apps
 author: jamesnk
 description: Learn how to configure HTTP and JSON for gRPC JSON transcoding apps.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 09/20/2022
 uid: grpc/json-transcoding-binding
 ---
 # Configure HTTP and JSON for gRPC JSON transcoding
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -51,7 +53,12 @@ To bind a field on a nested message, specify the path to the field. In the follo
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/route.proto?highlight=4,11)]
 
-Route constraints, default values, and optional parameters aren't supported by transcoding.
+Transcoding routes and [ASP.NET Core routes](xref:fundamentals/routing) have a similar syntax and feature set. However, some ASP.NET Core routing features aren't supported by transcoding. These include:
+
+* [Route constraints](xref:fundamentals/routing#route-constraints)
+* [Default values](xref:fundamentals/routing#route-templates)
+* [Optional parameters](xref:fundamentals/routing#route-templates)
+* [Complex segments](xref:fundamentals/routing#complex-segments)
 
 ### Request body
 

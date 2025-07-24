@@ -1,0 +1,18 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>
+        Tunnel URL: 
+        @Environment.GetEnvironmentVariable("VS_TUNNEL_URL")
+    </p>
+    <p>
+        API project tunnel URL:
+        @Environment.GetEnvironmentVariable("VS_TUNNEL_URL_MyWebApi")
+    </p>
+</div>

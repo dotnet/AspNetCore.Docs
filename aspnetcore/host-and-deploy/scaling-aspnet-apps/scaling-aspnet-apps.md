@@ -9,6 +9,8 @@ ms.date: 7/25/2025
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Apps deployed to Azure that experience intermittent high demand benefit from scalability to meet demand. Scalable apps can scale out to ensure capacity during workload peaks and then scale down automatically when the peak drops, which can lower costs. Horizontal scaling (scaling out) adds new instances of a resource, such as VMs or database replicas. This article demonstrates how to deploy a horizontally scalable ASP.NET Core app to [Azure container apps](/azure/container-apps/overview) by completing the following tasks:
 
 1. [Set up the sample project](#set-up-the-sample-project)
@@ -40,7 +42,7 @@ git clone "https://github.com/dotnet/AspNetCore.Docs.Samples.git"
 
 Navigate to the `/tutorials/scalable-razor-apps/start` folder and open the `ScalableRazor.csproj`.
 
-The sample app uses a search form to browse GitHub repositories by name. The form relies on the built-in ASP.NET Core data protection services to handle anti-forgery concerns. By default, when the app scales horizontally on Container Apps, the data protection service throws an exception. 
+The sample app uses a search form to browse GitHub repositories by name. The form relies on the built-in ASP.NET Core data protection services to handle antiforgery concerns. By default, when the app scales horizontally on Container Apps, the data protection service throws an exception. 
 
 #### Test the app
 
@@ -256,12 +258,13 @@ The necessary Azure resources have been created. In this section the app code is
 The preceding changes allow the app to manage data protection using a centralized, scalable architecture. `DefaultAzureCredential` discovers the managed identity configurations enabled earlier when the app is redeployed.
 
 > [!NOTE]
-> The preceding example uses [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential) to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative such as [ManagedIdentityCredential](/dotnet/api/azure.identity.managedidentitycredential) may be more appropriate. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+> The preceding example uses [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential) to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative such as <xref:Azure.Identity.ManagedIdentityCredential> may be more appropriate. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 Update the placeholders in `AzureURIs` section of the `appsettings.json` file to include the following:
 
-1. Replace the `<storage-account-name>` placeholder with the name of the `scalablerazorstorageXXXX` account created.
-1. Replace the `<key-vault-name>` placeholder with the name of the `scalablerazorvaultXXXX` key vault created.
+1. Replace the `<storage-account-name>` placeholder with the name of the `scalablerazorstorageXXXX` storage account.
+1. Replace the `<container-name>` placeholder with the name of the `scalablerazorkeys` storage container.
+1. Replace the `<key-vault-name>` placeholder with the name of the `scalablerazorvaultXXXX` key vault.
 1. Replace the `<key-name>` placeholder in the key vault URI with the `razorkey` name created previously.
 
     :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/end/appsettings.json" highlight="9-12":::
@@ -280,6 +283,9 @@ Test the app again by searching for *Microsoft* in the search field. The page sh
 ## Configure roles for local development
 
 The existing code and configuration of the app can also work while running locally during development. The `DefaultAzureCredential` class configured previously is able to pick up local environment credentials to authenticate to Azure Services. You'll need to assign the same roles to your own account that were assigned to your app's managed identity in order for the authentication to work. This should be the same account you use to log into Visual Studio or the Azure CLI.
+
+> [!NOTE]
+> <xref:Azure.Identity.DefaultAzureCredential> simplifies authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 #### Sign-in to your local development environment
 
@@ -330,3 +336,8 @@ Repeat the previous steps to assign a role to your account so that it can access
 You may need to wait again for this role assignment to propagate.
 
 You can then return to Visual Studio and run the app locally. The code should continue to function as expected. `DefaultAzureCredential` uses your existing credentials from Visual Studio or the Azure CLI.
+
+> [!NOTE]
+> <xref:Azure.Identity.DefaultAzureCredential> simplifies authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]

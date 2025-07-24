@@ -5,10 +5,12 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/7/2020
+ms.date: 04/26/2024
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -29,11 +31,13 @@ Apps published for 32-bit (x86) or 64-bit (x64) deployment are supported. Deploy
 
 ## Install the ASP.NET Core Module/Hosting Bundle
 
-Download the installer using the following link:
+Download the latest installer using the following link:
 
 [Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 For more details instructions on how to install the ASP.NET Core Module, or installing different versions, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle).
+
+To download previous versions of the hosting bundle, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/28642).
 
 ## Get started
 
@@ -360,7 +364,7 @@ net start w3svc
 
 ## Install Web Deploy when publishing with Visual Studio
 
-When deploying apps to servers with [Web Deploy](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), install the latest version of Web Deploy on the server. To install Web Deploy, use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or obtain an installer directly from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=43717). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
+When deploying apps to servers with [Web Deploy](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), install the latest version of Web Deploy on the server. To install Web Deploy, use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or see [IIS Downloads: Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
 
 ## Create the IIS site
 
@@ -373,7 +377,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
    ![Supply the Site name, physical path, and Host name in the Add Website step.](index/_static/add-website-ws2016.png)
 
    > [!WARNING]
-   > Top-level wildcard bindings (`http://*:80/` and `http://+:80`) should **not** be used. Top-level wildcard bindings can open up your app to security vulnerabilities. This applies to both strong and weak wildcards. Use explicit host names rather than wildcards. Subdomain wildcard binding (for example, `*.mysub.com`) doesn't have this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
+   > Top-level wildcard bindings (`http://*:80/` and `http://+:80`) should **not** be used. Top-level wildcard bindings can open up your app to security vulnerabilities. This applies to both strong and weak wildcards. Use explicit host names rather than wildcards. Subdomain wildcard binding (for example, `*.mysub.com`) doesn't have this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host) for more information.
 
 1. Under the server's node, select **Application Pools**.
 
@@ -929,7 +933,7 @@ ASP.NET Core adopts roll-forward behavior for patch releases of shared framework
 
 ## Install Web Deploy when publishing with Visual Studio
 
-When deploying apps to servers with [Web Deploy](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), install the latest version of Web Deploy on the server. To install Web Deploy, use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or obtain an installer directly from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=43717). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
+When deploying apps to servers with [Web Deploy](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), install the latest version of Web Deploy on the server. To install Web Deploy, use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or [IIS Downloads: Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
 
 ## Create the IIS site
 
@@ -942,7 +946,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
    ![Supply the Site name, physical path, and Host name in the Add Website step.](index/_static/add-website-ws2016.png)
 
    > [!WARNING]
-   > Top-level wildcard bindings (`http://*:80/` and `http://+:80`) should **not** be used. Top-level wildcard bindings can open up your app to security vulnerabilities. This applies to both strong and weak wildcards. Use explicit host names rather than wildcards. Subdomain wildcard binding (for example, `*.mysub.com`) doesn't have this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
+   > Top-level wildcard bindings (`http://*:80/` and `http://+:80`) should **not** be used. Top-level wildcard bindings can open up your app to security vulnerabilities. This applies to both strong and weak wildcards. Use explicit host names rather than wildcards. Subdomain wildcard binding (for example, `*.mysub.com`) doesn't have this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host) for more information.
 
 1. Under the server's node, select **Application Pools**.
 
@@ -1212,6 +1216,7 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 
 ## Additional resources
 
+* <xref:tutorials/publish-to-iis>
 * <xref:test/troubleshoot>
 * <xref:index>
 * [The Official Microsoft IIS Site](https://www.iis.net/)

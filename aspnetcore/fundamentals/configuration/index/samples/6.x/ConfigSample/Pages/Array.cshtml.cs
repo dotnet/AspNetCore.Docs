@@ -1,11 +1,11 @@
-﻿using ConfigSample.Options;
+using ConfigSample.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
 namespace ConfigSample
 {
-    #region snippet
+// <snippet>
     public class ArrayModel : PageModel
     {
         private readonly IConfiguration Config;
@@ -33,5 +33,5 @@ namespace ConfigSample
             return Content(s);
         }
     }
-    #endregion
+// </snippet>
 }

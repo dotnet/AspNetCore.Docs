@@ -3,11 +3,13 @@ title: gRPC client-side load balancing
 author: jamesnk
 description: Learn how to make scalable, high-performance gRPC apps with client-side load balancing in .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 06/23/2022
+ms.author: wpickett
+ms.date: 05/11/2023
 uid: grpc/loadbalancing
 ---
 # gRPC client-side load balancing
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -29,6 +31,11 @@ Built-in implementations of resolvers and load balancers are included in [`Grpc.
 
 Addresses, connections and other load balancing state is stored in a `GrpcChannel` instance. A channel must be reused when making gRPC calls for load balancing to work correctly.
 
+> [!NOTE]
+> Some load balancing configuration uses dependency injection (DI). Apps that don't use DI can create a <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> instance.
+>
+> If an app already has DI setup, like an ASP.NET Core website, then types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an <xref:System.IServiceProvider> from DI.
+
 ## Configure resolver
 
 The resolver is configured using the address a channel is created with. The [URI scheme](https://wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax) of the address specifies the resolver.
@@ -43,8 +50,8 @@ A channel doesn't directly call a URI that matches a resolver. Instead, a matchi
 For example, using `GrpcChannel.ForAddress("dns:///my-example-host", new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure })`:
 
 * The `dns` scheme maps to `DnsResolverFactory`. A new instance of a DNS resolver is created for the channel.
-* The resolver makes a DNS query for `my-example-host` and gets two results: `localhost:80` and `localhost:81`.
-* The load balancer uses `localhost:80` and `localhost:81` to create connections and make gRPC calls.
+* The resolver makes a DNS query for `my-example-host` and gets two results: `127.0.0.100` and `127.0.0.101`.
+* The load balancer uses `127.0.0.100:80` and `127.0.0.101:80` to create connections and make gRPC calls.
 
 #### DnsResolverFactory
 
@@ -61,7 +68,10 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 
 The preceding code:
 
-* Configures the created channel with the address `dns:///my-example-host`. The `dns` scheme maps to `DnsResolverFactory`.
+* Configures the created channel with the address `dns:///my-example-host`.
+  * The `dns` scheme maps to `DnsResolverFactory`.
+  * `my-example-host` is the hostname to resolve.
+  * No port is specified in the address, so gRPC calls are sent to port 80. This is the default port for unsecured channels. A port can optionally be specified after the hostname. For example, `dns:///my-example-host:8080` configures gRPC calls to be sent to port 8080.
 * Doesn't specify a load balancer. The channel defaults to a pick first load balancer.
 * Starts the gRPC call `SayHello`:
   * DNS resolver gets addresses for the hostname `my-example-host`.
@@ -172,6 +182,32 @@ var client = new Greet.GreeterClient(channel);
 var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 ```
 
+## Use load balancing with gRPC client factory
+
+[gRPC client factory](xref:grpc/clientfactory) can be configured to use load balancing:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("dns:///my-example-host");
+    })
+    .ConfigureChannel(o => o.Credentials = ChannelCredentials.Insecure);
+
+builder.Services.AddSingleton<ResolverFactory>(
+    sp => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
+
+var app = builder.Build();
+```
+
+The preceding code:
+
+* Configures the client with a load-balancing address.
+* Specifies channel credentials.
+* Registers DI types with the app's <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>.
+
 ## Write custom resolvers and load balancers
 
 Client-side load balancing is extensible:
@@ -196,7 +232,7 @@ public class FileResolver : PollingResolver
     private readonly Uri _address;
     private readonly int _port;
 
-    public ExampleResolver(Uri address, int defaultPort, ILoggerFactory loggerFactory)
+    public FileResolver(Uri address, int defaultPort, ILoggerFactory loggerFactory)
         : base(loggerFactory)
     {
         _address = address;
@@ -285,7 +321,7 @@ public class RandomBalancerFactory : LoadBalancerFactory
     // Create a RandomBalancer when the name is 'random'.
     public override string Name => "random";
 
-    public override LoadBalancer Create(LoadBalancerOptions option)
+    public override LoadBalancer Create(LoadBalancerOptions options)
     {
         return new RandomBalancer(options.Controller, options.LoggerFactory);
     }

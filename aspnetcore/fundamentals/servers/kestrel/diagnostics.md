@@ -3,12 +3,14 @@ title: Logging and diagnostics in Kestrel
 author: shirhatti
 description: Learn how to gather diagnostics from Kestrel.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
-ms.date: 07/01/2021
+ms.author: tdykstra
+ms.date: 01/26/2023
 uid: fundamentals/servers/kestrel/diagnostics
 ---
 
 # Diagnostics in Kestrel
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
@@ -113,3 +115,7 @@ using var badRequestListener = new BadRequestEventListener(diagnosticSource, (ba
 app.MapGet("/", () => "Hello world");
 app.Run();
 ```
+
+## Behavior with debugger attached
+
+Certain timeouts and rate limits aren't enforced when a debugger is attached to a Kestrel process. For more information, see [Behavior with debugger attached](xref:fundamentals/servers/kestrel#behavior-with-debugger-attached).

@@ -106,7 +106,7 @@ var httpClient = new HttpClient();
 app.MapPost("/books/{bookId}", async (int bookId, HttpContext context) =>
 {
     var stream = await httpClient.GetStreamAsync(
-        $"http://consoto/books/{bookId}.json", context.RequestAborted);
+        $"http://contoso/books/{bookId}.json", context.RequestAborted);
 
     // Proxy the response as JSON
     return Results.Stream(stream, "application/json");
@@ -153,13 +153,14 @@ var app = builder.Build();
 
 app.MapGet("/long-running-stream", async (HttpContext context) =>
 {
-    var feature = httpContext.Features.Get<IHttpMinRequestBodyDataRateFeature>();
+    var feature = context.Features.Get<IHttpMinRequestBodyDataRateFeature>();
     if (feature != null)
     {
         feature.MinDataRate = null;
     }
 
-    // Read long-running stream from request body.
+    // await and read long-running stream from request body.
+    await Task.Yield();
 });
 
 app.Run();

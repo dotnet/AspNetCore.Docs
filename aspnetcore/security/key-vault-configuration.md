@@ -1,13 +1,14 @@
 ---
 title: Azure Key Vault configuration provider in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to use the Azure Key Vault configuration provider to configure an app using name-value pairs loaded at runtime.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc, devx-track-azurecli, contperf-fy21q3
-ms.date: 01/07/2022
+ms.author: tdykstra
+ms.custom: mvc, devx-track-azurecli
+ms.date: 10/29/2024
 uid: security/key-vault-configuration
 ---
+<!-- ms.sfi.ropc: t -->
 # Azure Key Vault configuration provider in ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
@@ -26,10 +27,10 @@ Add package references for the following packages:
 
 ## Sample app
 
-The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) runs in either of two modes determined by the `#define` preprocessor directive at the top of `Program.cs`:
+The sample app runs in either of two modes determined by the `#define` preprocessor directive at the top of `Program.cs`:
 
 * `Certificate`: Demonstrates using an Azure Key Vault Client ID and X.509 certificate to access secrets stored in Azure Key Vault. This sample can be run from any location, whether deployed to Azure App Service or any host that can serve an ASP.NET Core app.
-* `Managed`: Demonstrates how to use [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). The managed identity authenticates the app to Azure Key Vault with Azure Active Directory (AD) authentication without storing credentials in the app's code or configuration. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
+* `Managed`: Demonstrates how to use [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). The managed identity authenticates the app to Azure Key Vault with Managed identities for Azure resources without storing credentials in the app's code or configuration. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
 
 For more information configuring a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
 
@@ -84,17 +85,17 @@ Complete the following steps to create an Azure Key Vault and store the sample a
    az group create --name "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
-1. Create a key vault in the resource group with the following command, where `{KEY VAULT NAME}` is the new key vault's name and `{LOCATION}` is the Azure region:
+1. Create a Key Vault in the resource group with the following command, where `{KEY VAULT NAME}` is the new vault's name and `{LOCATION}` is the Azure region:
 
    ```azurecli
    az keyvault create --name {KEY VAULT NAME} --resource-group "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
-1. Create secrets in the key vault as name-value pairs.
+1. Create secrets in the vault as name-value pairs.
 
-   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in key vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). The two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
+   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in Key Vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). The two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
 
-   The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the Development environment from Secret Manager. Replace `{KEY VAULT NAME}` with the name of the key vault you created in the prior step:
+   The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the Development environment from Secret Manager. Replace `{KEY VAULT NAME}` with the name of the Key Vault you created in the prior step:
 
    ```azurecli
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "SecretName" --value "secret_value_1_prod"
@@ -103,7 +104,7 @@ Complete the following steps to create an Azure Key Vault and store the sample a
 
 ## Use Application ID and X.509 certificate for non-Azure-hosted apps
 
-Configure Azure AD, Azure Key Vault, and the app to use an Azure AD Application ID and X.509 certificate to authenticate to a key vault **when the app is hosted outside of Azure**. For more information, see [About keys, secrets, and certificates](/azure/key-vault/about-keys-secrets-and-certificates).
+Configure Azure Key Vault and the app to use an Microsoft Entra ID Application ID and X.509 certificate to authenticate to a vault **when the app is hosted outside of Azure**. For more information, see [About keys, secrets, and certificates](/azure/key-vault/about-keys-secrets-and-certificates).
 
 > [!NOTE]
 > Although using an Application ID and X.509 certificate is supported for apps hosted in Azure, it's not recommended. Instead, use [Managed identities for Azure resources](#use-managed-identities-for-azure-resources) when hosting an app in Azure. Managed identities don't require storing a certificate in the app or in the development environment.
@@ -113,14 +114,14 @@ The sample app uses an Application ID and X.509 certificate when the `#define` p
 1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [New-SelfSignedCertificate on Windows](/powershell/module/pki/new-selfsignedcertificate) and [OpenSSL](https://www.openssl.org/).
 1. Install the certificate into the current user's personal certificate store. Marking the key as exportable is optional. Note the certificate's thumbprint, which is used later in this process.
 1. Export the PKCS#12 archive (*.pfx*) certificate as a DER-encoded certificate (*.cer*).
-1. Register the app with Azure AD (**App registrations**).
-1. Upload the DER-encoded certificate (*.cer*) to Azure AD:
-   1. Select the app in Azure AD.
+1. Register the app with Microsoft Entra ID (**App registrations**).
+1. Upload the DER-encoded certificate (*.cer*) to Microsoft Entra ID:
+   1. Select the app in Microsoft Entra ID.
    1. Navigate to **Certificates & secrets**.
    1. Select **Upload certificate** to upload the certificate, which contains the public key. A *.cer*, *.pem*, or *.crt* certificate is acceptable.
-1. Store the key vault name, Application ID, and certificate thumbprint in the app's `appsettings.json` file.
-1. Navigate to **Key vaults** in the Azure portal.
-1. Select the key vault you created in the [Secret storage in the Production environment with Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) section.
+1. Store the Key Vault name, Application ID, and certificate thumbprint in the app's `appsettings.json` file.
+1. Navigate to **Key Vaults** in the Azure portal.
+1. Select the Key Vault you created in the [Secret storage in the Production environment with Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) section.
 1. Select **Access policies**.
 1. Select **Add Access Policy**.
 1. Open **Secret permissions** and provide the app with **Get** and **List** permissions.
@@ -142,8 +143,8 @@ The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extens
 
 Example values:
 
-* Key vault name: `contosovault`
-* Application ID: `627e911e-43cc-61d4-992e-12db9c81b413`
+* Key Vault name: `contosovault`
+* Application ID: `00001111-aaaa-2222-bbbb-3333cccc4444`
 * Certificate thumbprint: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
 `appsettings.json`:
@@ -154,7 +155,7 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 ## Use managed identities for Azure resources
 
-**An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). A managed identity allows the app to authenticate with Azure Key Vault using Azure AD authentication without storing credentials in the app's code or configuration.
+**An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). A managed identity allows the app to authenticate with Azure Key Vault using Microsoft Entra ID authentication without storing credentials in the app's code or configuration.
 
 The sample app uses a system-assigned managed identity when the `#define` preprocessor directive at the top of `Program.cs` is set to `Managed`. To create a managed identity for an Azure App Service app, see [How to use managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity). Once the managed identity has been created, note the app's Object ID shown in the Azure portal on the **Identity** panel of the App Service.
 
@@ -162,7 +163,7 @@ Enter the vault name into the app's `appsettings.json` file. The sample app does
 
 Deploy the sample app to Azure App Service.
 
-Using Azure CLI and the app's Object ID, provide the app with `list` and `get` permissions to access the key vault:
+Using Azure CLI and the app's Object ID, provide the app with `list` and `get` permissions to access the vault:
 
 ```azurecli
 az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-permissions get list
@@ -174,7 +175,10 @@ The sample app creates an instance of the <xref:Azure.Identity.DefaultAzureCrede
 
 :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Program.cs" id="snippet_Managed":::
 
-Key vault name example value: `contosovault`
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
+Key Vault name example value: `contosovault`
 
 `appsettings.json`:
 
@@ -193,7 +197,7 @@ For apps that use a user-assigned managed identity, configure the managed identi
 
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values have the `_dev` suffix because they're provided by Secret Manager. In the Production environment, the values load with the `_prod` suffix because they're provided by Azure Key Vault.
 
-If you receive an `Access denied` error, confirm that the app is registered with Azure AD and provided access to the key vault. Confirm that you've restarted the service in Azure.
+If you receive an `Access denied` error, confirm that the app is registered with Microsoft Entra ID and provided access to the vault. Confirm that you've restarted the service in Azure.
 
 For information on using the provider with a managed identity and Azure Pipelines, see [Create an Azure Resource Manager service connection to a VM with a managed service identity](/azure/devops/pipelines/library/connect-to-azure#create-an-azure-resource-manager-service-connection-to-a-vm-with-a-managed-service-identity).
 
@@ -208,21 +212,21 @@ The `AzureKeyVaultConfigurationOptions` object contains the following properties
 | Property                                                                                                    | Description                                                                                                                           |
 |-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager%2A>        | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | `TimeSpan` to wait between attempts at polling the vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
 
-`AddAzureKeyVault` provides an overload that accepts an implementation of <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This technique allows you, for example, to load secrets based on the version of the app.
+`AddAzureKeyVault` provides an overload that accepts an implementation of <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager>, which allows you to control how Key Vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This technique allows you, for example, to load secrets based on the version of the app.
 
 > [!WARNING]
-> Don't use prefixes on key vault secrets to:
+> Don't use prefixes on Key Vault secrets to:
 >
 > * Place secrets for multiple apps into the same vault.
 > * Place environmental secrets (for example, *development* versus *production* secrets) into the same vault.
 > 
-> Different apps and development/production environments should use separate key vaults to isolate app environments for the highest level of security.
+> Different apps and development/production environments should use separate Key Vaults to isolate app environments for the highest level of security.
 
-In the following example, a secret is established in the key vault (and using Secret Manager for the Development environment) for `5000-AppSecret` (periods aren't allowed in key vault secret names). This secret represents an app secret for version 5.0.0.0 of the app. For another version of the app, 5.1.0.0, a secret is added to the key vault (and using Secret Manager) for `5100-AppSecret`. Each app version loads its versioned secret value into its configuration as `AppSecret`, removing the version as it loads the secret.
+In the following example, a secret is established in Key Vault (and using Secret Manager for the Development environment) for `5000-AppSecret` (periods aren't allowed in Key Vault secret names). This secret represents an app secret for version 5.0.0.0 of the app. For another version of the app, 5.1.0.0, a secret is added to the vault (and using Secret Manager) for `5100-AppSecret`. Each app version loads its versioned secret value into its configuration as `AppSecret`, removing the version as it loads the secret.
 
 `AddAzureKeyVault` is called with a custom `KeyVaultSecretManager` implementation:
 
@@ -271,7 +275,7 @@ When this approach is implemented:
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "5100-AppSecret" --value "5.1.0.0_secret_value_prod"
    ```
 
-1. When the app is run, the key vault secrets are loaded. The string secret for `5000-AppSecret` is matched to the app's version specified in the app's project file (`5.0.0.0`).
+1. When the app is run, the Key Vault secrets are loaded. The string secret for `5000-AppSecret` is matched to the app's version specified in the app's project file (`5.0.0.0`).
 
 1. The version, `5000` (with the dash), is stripped from the key name. Throughout the app, reading configuration with the key `AppSecret` loads the secret value.
 
@@ -324,7 +328,7 @@ The configuration shown in the preceding JSON file is stored in Azure Key Vault 
 
 ## Reload secrets
 
-By default, secrets are cached by the configuration provider for the app's lifetime. Secrets that have been updated, disabled, or have expired in the key vault are ignored by the app.
+By default, secrets are cached by the configuration provider for the app's lifetime. Secrets that have been subsequently disabled or updated in the vault are ignored by the app.
 
 To reload secrets, call <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType>:
 
@@ -336,15 +340,13 @@ To reload secrets periodically, at a specified interval, set the <xref:Azure.Ext
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets are included by default in the configuration provider. To exclude values for these secrets in app configuration, update the disabled or expired secret or provide the configuration using a custom configuration provider:
+Expired secrets are included by default in the configuration provider. To exclude values for these secrets in app configuration, update the expired secret or provide the configuration using a custom configuration provider:
 
 ```csharp
 class SampleKeyVaultSecretManager : KeyVaultSecretManager
 {
   public override bool Load(SecretProperties properties) =>
-    properties.Enabled.HasValue &&
-    properties.Enabled.Value &&
-    properties.ExpiresOn.Hasvalue &&
+    properties.ExpiresOn.HasValue &&
     properties.ExpiresOn.Value > DateTimeOffset.Now;
 }
 ```
@@ -360,16 +362,22 @@ builder.Configuration.AddAzureKeyVault(
     new SampleKeyVaultSecretManager());
 ```
 
+Disabled secrets cannot be retrieved from Key Vault and are never included.
+
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
 ## Troubleshoot
 
 When the app fails to load configuration using the provider, an error message is written to the [ASP.NET Core Logging infrastructure](xref:fundamentals/logging/index). The following conditions will prevent configuration from loading:
 
-* The app or certificate isn't configured correctly in Azure AD.
-* The key vault doesn't exist in Azure Key Vault.
-* The app isn't authorized to access the key vault.
+* The app or certificate isn't configured correctly in Microsoft Entra ID.
+* The vault doesn't exist in Azure Key Vault.
+* The app isn't authorized to access the vault.
 * The access policy doesn't include `Get` and `List` permissions.
-* The app has the wrong key vault name (`KeyVaultName`), Azure AD Application ID (`AzureADApplicationId`), or Azure AD certificate thumbprint (`AzureADCertThumbprint`), or Azure AD Directory ID (`AzureADDirectoryId`).
-* When adding the key vault access policy for the app, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
+* In the vault, the configuration data (name-value pair) is incorrectly named, missing, or disabled.
+* The app has the wrong Key Vault name (`KeyVaultName`), Microsoft Entra ID Application ID (`AzureADApplicationId`), or Microsoft Entra ID certificate thumbprint (`AzureADCertThumbprint`), or Microsoft Entra ID Directory ID (`AzureADDirectoryId`).
+* When adding the Key Vault access policy for the app, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
 
 ## Additional resources
 
@@ -384,12 +392,10 @@ When the app fails to load configuration using the provider, an error message is
 
 :::moniker range="< aspnetcore-6.0"
 
-This article explains how to use the [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps safeguard cryptographic keys and secrets used by apps and services. Common scenarios for using Azure Key Vault with ASP.NET Core apps include:
+This article explains how to use the [Azure Key Vault](/azure/key-vault/) configuration provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps safeguard cryptographic keys and secrets used by apps and services. Common scenarios for using Azure Key Vault with ASP.NET Core apps include:
 
 * Controlling access to sensitive configuration data.
 * Meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSMs) when storing configuration data.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Packages
 
@@ -403,9 +409,11 @@ Add package references for the following packages:
 The sample app runs in either of two modes determined by the `#define` preprocessor directive at the top of `Program.cs`:
 
 * `Certificate`: Demonstrates using an Azure Key Vault Client ID and X.509 certificate to access secrets stored in Azure Key Vault. This sample can be run from any location, whether deployed to Azure App Service or any host that can serve an ASP.NET Core app.
-* `Managed`: Demonstrates how to use [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). The managed identity authenticates the app to Azure Key Vault with Azure Active Directory (AD) authentication without credentials stored in the app's code or configuration. When using managed identities to authenticate, an Azure AD Application ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
+* `Managed`: Demonstrates how to use [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). The managed identity authenticates the app to Azure Key Vault with Managed identities for Azure resources without credentials stored in the app's code or configuration. When using managed identities to authenticate, a Managed identities for Azure resources app ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
 
 For more information configuring a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Secret storage in the Development environment
 
@@ -456,17 +464,17 @@ Complete the following steps to create an Azure Key Vault and store the sample a
    az group create --name "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
-1. Create a key vault in the resource group with the following command, where `{KEY VAULT NAME}` is the new key vault's name and `{LOCATION}` is the Azure region:
+1. Create a Key Vault in the resource group with the following command, where `{KEY VAULT NAME}` is the new vault's name and `{LOCATION}` is the Azure region:
 
    ```azurecli
    az keyvault create --name {KEY VAULT NAME} --resource-group "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
-1. Create secrets in the key vault as name-value pairs.
+1. Create secrets in the vault as name-value pairs.
 
-   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in key vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). The two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
+   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in Key Vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). The two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
 
-   The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the Development environment from Secret Manager. Replace `{KEY VAULT NAME}` with the name of the key vault you created in the prior step:
+   The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the Development environment from Secret Manager. Replace `{KEY VAULT NAME}` with the name of the Key Vault you created in the prior step:
 
    ```azurecli
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "SecretName" --value "secret_value_1_prod"
@@ -475,7 +483,7 @@ Complete the following steps to create an Azure Key Vault and store the sample a
 
 ## Use Application ID and X.509 certificate for non-Azure-hosted apps
 
-Configure Azure AD, Azure Key Vault, and the app to use an Azure AD Application ID and X.509 certificate to authenticate to a key vault **when the app is hosted outside of Azure**. For more information, see [About keys, secrets, and certificates](/azure/key-vault/about-keys-secrets-and-certificates).
+Configure Azure Key Vault and the app to use an Microsoft Entra ID Application ID and X.509 certificate to authenticate to a vault **when the app is hosted outside of Azure**. For more information, see [About keys, secrets, and certificates](/azure/key-vault/about-keys-secrets-and-certificates).
 
 > [!NOTE]
 > Although using an Application ID and X.509 certificate is supported for apps hosted in Azure, it's not recommended. Instead, use [Managed identities for Azure resources](#use-managed-identities-for-azure-resources) when hosting an app in Azure. Managed identities don't require storing a certificate in the app or in the development environment.
@@ -485,14 +493,14 @@ The sample app uses an Application ID and X.509 certificate when the `#define` p
 1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [New-SelfSignedCertificate on Windows](/powershell/module/pki/new-selfsignedcertificate) and [OpenSSL](https://www.openssl.org/).
 1. Install the certificate into the current user's personal certificate store. Marking the key as exportable is optional. Note the certificate's thumbprint, which is used later in this process.
 1. Export the PKCS#12 archive (*.pfx*) certificate as a DER-encoded certificate (*.cer*).
-1. Register the app with Azure AD (**App registrations**).
-1. Upload the DER-encoded certificate (*.cer*) to Azure AD:
-   1. Select the app in Azure AD.
+1. Register the app with Microsoft Entra ID (**App registrations**).
+1. Upload the DER-encoded certificate (*.cer*) to Microsoft Entra ID:
+   1. Select the app in Microsoft Entra ID.
    1. Navigate to **Certificates & secrets**.
    1. Select **Upload certificate** to upload the certificate, which contains the public key. A *.cer*, *.pem*, or *.crt* certificate is acceptable.
-1. Store the key vault name, Application ID, and certificate thumbprint in the app's `appsettings.json` file.
-1. Navigate to **Key vaults** in the Azure portal.
-1. Select the key vault you created in the [Secret storage in the Production environment with Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) section.
+1. Store the Key Vault name, Application ID, and certificate thumbprint in the app's `appsettings.json` file.
+1. Navigate to **Key Vaults** in the Azure portal.
+1. Select the Key Vault you created in the [Secret storage in the Production environment with Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) section.
 1. Select **Access policies**.
 1. Select **Add Access Policy**.
 1. Open **Secret permissions** and provide the app with **Get** and **List** permissions.
@@ -514,8 +522,8 @@ The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extens
 
 Example values:
 
-* Key vault name: `contosovault`
-* Application ID: `627e911e-43cc-61d4-992e-12db9c81b413`
+* Key Vault name: `contosovault`
+* Application ID: `00001111-aaaa-2222-bbbb-3333cccc4444`
 * Certificate thumbprint: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
 `appsettings.json`:
@@ -526,7 +534,7 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 ## Use managed identities for Azure resources
 
-**An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). A managed identity allows the app to authenticate with Azure Key Vault using Azure AD authentication without credentials (Application ID and Password/Client Secret) stored in the app.
+**An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). A managed identity allows the app to authenticate with Azure Key Vault using Microsoft Entra ID authentication without credentials (Application ID and Password/Client Secret) stored in the app.
 
 The sample app uses managed identities for Azure resources when the `#define` preprocessor directive at the top of `Program.cs` is set to `Managed`.
 
@@ -534,9 +542,9 @@ Enter the vault name into the app's `appsettings.json` file. The sample app does
 
 Deploy the sample app to Azure App Service.
 
-An app deployed to Azure App Service is automatically registered with Azure AD when the service is created. Obtain the Object ID from the deployment for use in the following command. The Object ID is shown in the Azure portal on the **Identity** panel of the App Service.
+An app deployed to Azure App Service is automatically registered with Microsoft Entra ID when the service is created. Obtain the Object ID from the deployment for use in the following command. The Object ID is shown in the Azure portal on the **Identity** panel of the App Service.
 
-Using Azure CLI and the app's Object ID, provide the app with `list` and `get` permissions to access the key vault:
+Using Azure CLI and the app's Object ID, provide the app with `list` and `get` permissions to access the vault:
 
 ```azurecli
 az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-permissions get list
@@ -552,7 +560,10 @@ The sample app:
 
 :::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet2" highlight="12-14":::
 
-Key vault name example value: `contosovault`
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
+Key Vault name example value: `contosovault`
 
 `appsettings.json`:
 
@@ -564,7 +575,7 @@ Key vault name example value: `contosovault`
 
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values have the `_dev` suffix because they're provided by Secret Manager. In the Production environment, the values load with the `_prod` suffix because they're provided by Azure Key Vault.
 
-If you receive an `Access denied` error, confirm that the app is registered with Azure AD and provided access to the key vault. Confirm that you've restarted the service in Azure.
+If you receive an `Access denied` error, confirm that the app is registered with Microsoft Entra ID and provided access to the vault. Confirm that you've restarted the service in Azure.
 
 For information on using the provider with a managed identity and Azure Pipelines, see [Create an Azure Resource Manager service connection to a VM with a managed service identity](/azure/devops/pipelines/library/connect-to-azure#create-an-azure-resource-manager-service-connection-to-a-vm-with-a-managed-service-identity).
 
@@ -576,33 +587,36 @@ For information on using the provider with a managed identity and Azure Pipeline
 config.AddAzureKeyVault(
     new SecretClient(
         new Uri("Your Key Vault Endpoint"),
-        new DefaultAzureCredential()),
+        new DefaultAzureCredential(),
         new AzureKeyVaultConfigurationOptions())
     {
         ...
     });
 ```
 
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
 The `AzureKeyVaultConfigurationOptions` object contains the following properties.
 
 | Property                                                                                                    | Description                                                                                                                           |
 |-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager%2A>        | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | `TimeSpan` to wait between attempts at polling the vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
 
-`AddAzureKeyVault` provides an overload that accepts an implementation of <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This technique allows you, for example, to load secrets based on the version of the app.
+`AddAzureKeyVault` provides an overload that accepts an implementation of <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager>, which allows you to control how Key Vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This technique allows you, for example, to load secrets based on the version of the app.
 
 > [!WARNING]
-> Don't use prefixes on key vault secrets to:
+> Don't use prefixes on Key Vault secrets to:
 >
 > * Place secrets for multiple apps into the same vault.
 > * Place environmental secrets (for example, *development* versus *production* secrets) into the same vault.
 > 
-> Different apps and development/production environments should use separate key vaults to isolate app environments for the highest level of security.
+> Different apps and development/production environments should use separate Key Vaults to isolate app environments for the highest level of security.
 
-In the following example, a secret is established in the key vault (and using Secret Manager for the Development environment) for `5000-AppSecret` (periods aren't allowed in key vault secret names). This secret represents an app secret for version 5.0.0.0 of the app. For another version of the app, 5.1.0.0, a secret is added to the key vault (and using Secret Manager) for `5100-AppSecret`. Each app version loads its versioned secret value into its configuration as `AppSecret`, removing the version as it loads the secret.
+In the following example, a secret is established in Key Vault (and using Secret Manager for the Development environment) for `5000-AppSecret` (periods aren't allowed in Key Vault secret names). This secret represents an app secret for version 5.0.0.0 of the app. For another version of the app, 5.1.0.0, a secret is added to the vault (and using Secret Manager) for `5100-AppSecret`. Each app version loads its versioned secret value into its configuration as `AppSecret`, removing the version as it loads the secret.
 
 `AddAzureKeyVault` is called with a custom `KeyVaultSecretManager` implementation:
 
@@ -651,7 +665,7 @@ When this approach is implemented:
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "5100-AppSecret" --value "5.1.0.0_secret_value_prod"
    ```
 
-1. When the app is run, the key vault secrets are loaded. The string secret for `5000-AppSecret` is matched to the app's version specified in the app's project file (`5.0.0.0`).
+1. When the app is run, the Key Vault secrets are loaded. The string secret for `5000-AppSecret` is matched to the app's version specified in the app's project file (`5.0.0.0`).
 
 1. The version, `5000` (with the dash), is stripped from the key name. Throughout the app, reading configuration with the key `AppSecret` loads the secret value.
 
@@ -704,7 +718,7 @@ The configuration shown in the preceding JSON file is stored in Azure Key Vault 
 
 ## Reload secrets
 
-Secrets are cached until <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> is called. Expired, disabled, and updated secrets in the key vault aren't respected by the app until `Reload` is executed.
+Secrets are cached until <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> is called. Subsequently disabled or updated secrets in the vault aren't respected by the app until `Reload` is executed.
 
 ```csharp
 Configuration.Reload();
@@ -712,23 +726,48 @@ Configuration.Reload();
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets throw a <xref:Azure.RequestFailedException>. To prevent the app from throwing, provide the configuration using a different configuration provider or update the disabled or expired secret.
+Expired secrets are included by default in the configuration provider. To exclude values for these secrets in app configuration, update the expired secret or provide the configuration using a custom configuration provider:
+
+```csharp
+class SampleKeyVaultSecretManager : KeyVaultSecretManager
+{
+  public override bool Load(SecretProperties properties) =>
+    properties.ExpiresOn.HasValue &&
+    properties.ExpiresOn.Value > DateTimeOffset.Now;
+}
+```
+
+Pass this custom `KeyVaultSecretManager` to `AddAzureKeyVault`:
+
+```csharp
+// using Azure.Extensions.AspNetCore.Configuration.Secrets;
+
+config.AddAzureKeyVault(
+    new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
+    new DefaultAzureCredential(),
+    new SampleKeyVaultSecretManager());
+```
+
+Disabled secrets cannot be retrieved from Key Vault and are never included.
+
+> [!NOTE]
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 ## Troubleshoot
 
 When the app fails to load configuration using the provider, an error message is written to the [ASP.NET Core Logging infrastructure](xref:fundamentals/logging/index). The following conditions will prevent configuration from loading:
 
-* The app or certificate isn't configured correctly in Azure AD.
-* The key vault doesn't exist in Azure Key Vault.
-* The app isn't authorized to access the key vault.
+* The app or certificate isn't configured correctly in Microsoft Entra ID.
+* The vault doesn't exist in Azure Key Vault.
+* The app isn't authorized to access the vault.
 * The access policy doesn't include `Get` and `List` permissions.
-* In the key vault, the configuration data (name-value pair) is incorrectly named, missing, disabled, or expired.
-* The app has the wrong key vault name (`KeyVaultName`), Azure AD Application ID (`AzureADApplicationId`), or Azure AD certificate thumbprint (`AzureADCertThumbprint`), or Azure AD Directory ID (`AzureADDirectoryId`).
-* The configuration key (name) is incorrect in the app for the value you're trying to load.
-* When adding the key vault access policy for the app, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
+* In the vault, the configuration data (name-value pair) is incorrectly named, missing, or disabled.
+* The app has the wrong Key Vault name (`KeyVaultName`), Microsoft Entra ID Application ID (`AzureADApplicationId`), or Microsoft Entra ID certificate thumbprint (`AzureADCertThumbprint`), or Microsoft Entra ID Directory ID (`AzureADDirectoryId`).
+* When adding the Key Vault access policy for the app, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
 
 ## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault Documentation](/azure/key-vault/)
 * [How to generate and transfer HSM-protected keys for Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)

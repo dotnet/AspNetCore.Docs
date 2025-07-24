@@ -6,10 +6,8 @@ groups:
   pivots:
     - id: windows
       title: Windows
-    - id: linux
-      title: Linux
-    - id: macos
-      title: macOS
+    - id: linux-macos
+      title: Linux / macOS
 - id: blazor-hosting-models
   title: Blazor Hosting Model
   prompt: Choose a Blazor hosting model
@@ -40,3 +38,91 @@ groups:
       title: WPF
     - id: winforms
       title: Windows Forms
+- id: blazor-graph-api
+  title: Approach
+  prompt: Choose an approach for interacting with Microsoft Graph
+  pivots:
+    - id: graph-sdk-4
+      title: Graph SDK v4
+    - id: graph-sdk-5
+      title: Graph SDK v5
+    - id: named-client-graph-api
+      title: Named HttpClient with Graph API
+- id: blazor-multiple-hosted-wasm-apps
+  title: Hosting approach
+  prompt: Choose a hosting approach for the client apps
+  pivots:
+    - id: port-domain
+      title: Port/domain hosting
+    - id: route-subpath
+      title: Route subpath hosting
+- id: blazor-render-modes
+  title: Blazor Render Mode
+  prompt: Choose a Blazor render mode
+  pivots:
+    - id: server
+      title: Server
+    - id: webassembly
+      title: WebAssembly
+- id: blazor-app-models
+  title: Blazor App Model
+  prompt: Choose a Blazor app model
+  pivots:
+    - id: server
+      title: Server
+    - id: webassembly
+      title: Blazor WebAssembly
+- id: blazor-groups-and-roles
+  title: Approach
+  prompt: Choose the Microsoft Graph SDK version
+  pivots:
+    - id: graph-sdk-4
+      title: Graph SDK v4
+    - id: graph-sdk-5
+      title: Graph SDK v5
+- id: blazor-web-app-oidc-specification
+  title: Specification
+  prompt: Choose the app specification
+  pivots:
+    - id: non-bff-pattern
+      title: Non-BFF pattern (Interactive Auto)
+    - id: non-bff-pattern-server
+      title: Non-BFF pattern (Interactive Server)
+    - id: bff-pattern
+      title: BFF pattern (Interactive Auto)
+- id: tooling
+  title: Tooling
+  prompt: Select your tooling
+  pivots:
+    - id: vs
+      title: Visual Studio
+    - id: vsc
+      title: Visual Studio Code
+    - id: cli
+      title: .NET CLI
+- id: blazor-web-app-entra-specification
+  title: Specification
+  prompt: Choose the app specification
+  pivots:
+    - id: non-bff-pattern
+      title: Non-BFF pattern
+    - id: bff-pattern
+      title: BFF pattern
+- id: unit-testing-framework
+  title: Unit testing framework
+  prompt: Choose a unit testing framework
+  pivots:
+    - id: xunit
+      title: xUnit
+    - id: mstest
+      title: MSTest
+    - id: nunit
+      title: NUnit
+- id: migration-remote-app-setup
+  title: Remote app setup
+  prompt: Choose how to configure remote app
+  pivots:
+    - id: manual
+      title: Manually
+    - id: aspire
+      title: Aspire

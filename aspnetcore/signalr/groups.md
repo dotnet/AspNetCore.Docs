@@ -1,11 +1,11 @@
 ---
 title: Manage users and groups in SignalR
-author: bradygaster
+author: wadepickett
 description: Overview of ASP.NET Core SignalR User and Group management.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/17/2020
+ms.date: 04/04/2024
 uid: signalr/groups
 ---
 
@@ -13,7 +13,7 @@ uid: signalr/groups
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
 
-SignalR allows messages to be sent to all connections associated with a specific user, as well as to named groups of connections.
+SignalR allows messages to be sent to all connections associated with a specific user and to named groups of connections.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/groups/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
@@ -32,13 +32,21 @@ Send a message to a specific user by passing the user identifier to the `User` f
 
 ## Groups in SignalR
 
-A group is a collection of connections associated with a name. Messages can be sent to all connections in a group. Groups are the recommended way to send to a connection or multiple connections because the groups are managed by the application. A connection can be a member of multiple groups. Groups are ideal for something like a chat application, where each room can be represented as a group. Connections are added to or removed from groups via the `AddToGroupAsync` and `RemoveFromGroupAsync` methods.
+A group is a collection of connections associated with a name. Messages can be sent to all connections in a group. Groups are the recommended way to send to a connection or multiple connections because the groups are managed by the application. A connection can be a member of multiple groups. Groups are ideal for something like a chat application, where each room can be represented as a group. 
+
+### Add or remove connections from a group
+
+Connections are added to or removed from groups via the `AddToGroupAsync` and `RemoveFromGroupAsync` methods:
 
 [!code-csharp[Hub methods](groups/sample/Hubs/ChatHub.cs?range=15-27)]
 
-Group membership isn't preserved when a connection reconnects. The connection needs to rejoin the group when it's re-established. It's not possible to count the members of a group, since this information is not available if the application is scaled to multiple servers.
+It's safe to add a user to a group multiple times, no exception is thrown in the case that the user already exists in the group.
 
-To protect access to resources while using groups, use [authentication and authorization](xref:signalr/authn-and-authz) functionality in ASP.NET Core. If a user is added to a group only when the credentials are valid for that group, messages sent to that group will only go to authorized users. However, groups are not a security feature. Authentication claims have features that groups do not, such as expiry and revocation. If a user's permission to access the group is revoked, the app must remove the user from the group explicitly.
+Group membership isn't preserved when a connection reconnects. The connection needs to rejoin the group when it's re-established. It's not possible to count the members of a group, since this information isn't available if the application is scaled to multiple servers. 
+
+Groups are kept in memory, so they won't persist through a server restart. Consider the Azure SignalR service for scenarios requiring group membership to be persisted. For more information, see [Azure SignalR](/azure/azure-signalr/signalr-overview)
+
+To protect access to resources while using groups, use [authentication and authorization](xref:signalr/authn-and-authz) functionality in ASP.NET Core. If a user is added to a group only when the credentials are valid for that group, messages sent to that group will only go to authorized users. However, groups are not a security feature. Authentication claims have features that groups don't, such as expiry and revocation. If a user's permission to access the group is revoked, the app must remove the user from the group explicitly.
 
 > [!NOTE]
 > Group names are case-sensitive.

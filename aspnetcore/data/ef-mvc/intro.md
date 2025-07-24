@@ -1,10 +1,10 @@
 ---
 title: "Tutorial: Get started with EF Core in an ASP.NET MVC web app"
 description: "This page is the first in a series of tutorials that explain how to build the Contoso University sample EF/MVC app"
-author: rick-anderson
-ms.author: riande
+author: tdykstra
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/06/2020
+ms.date: 05/28/2025
 ms.topic: tutorial
 uid: data/ef-mvc/intro
 ---
@@ -16,7 +16,6 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
-This tutorial has not been updated for ASP.NET Core 6. The ASP.NET Core 6 web templates use the new [minimal hosting model](xref:migration/50-to-60#new-hosting-model), which unifies `Startup.cs` and `Program.cs` into a single `Program.cs` file. Until this tutorial is updated, see <xref:data/ef-rp/intro> and <xref:tutorials/first-mvc-app/adding-model> on how to use EF with the new minimal hosting model. Updating the tutorial for ASP.NET Core 6 is tracked in [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
 
 The Contoso University sample web app demonstrates how to create an ASP.NET Core MVC web app using Entity Framework (EF) Core and Visual Studio.
 
@@ -26,7 +25,13 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 * If you're new to ASP.NET Core MVC, go through the [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc) tutorial series before starting this one.
 
-[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-5.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
+
+This tutorial has not been updated for ASP.NET Core in .NET 6 or later. The tutorial's instructions will not work correctly if you create a project that targets ASP.NET Core in .NET 6 or later. For example, the ASP.NET Core in .NET 6 or later web templates use the [minimal hosting model](xref:migration/50-to-60#new-hosting-model), which unifies `Startup.cs` and `Program.cs` into a single `Program.cs` file.
+
+Another difference introduced in .NET 6 is the NRT [(nullable reference types)](/ef/core/miscellaneous/nullable-reference-types ) feature. The project templates enable this feature by default. Problems can happen where EF considers a property to be required in .NET 6 which is nullable in .NET 5. For example, the Create Student page will fail silently unless the `Enrollments` property is made nullable or the `asp-validation-summary` helper tag is changed from `ModelOnly` to `All`.
+
+We recommend that you install and use the .NET 5 SDK for this tutorial. Until this tutorial is updated, see <xref:data/ef-rp/intro> on how to use Entity Framework with ASP.NET Core in .NET 6 or later.
 
 ## Database engines
 
@@ -383,9 +388,9 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 2.2 MVC web applications using Entity Framework (EF) Core 2.2 and Visual Studio 2017 or 2019.
+The Contoso University sample web application demonstrates how to create ASP.NET Core 2.2 MVC web applications using Entity Framework (EF) Core 2.2 and Visual Studio 2019.
 
-This tutorial has not been updated for ASP.NET Core 3.1. It has been updated for [ASP.NET Core 5.0](xref:data/ef-mvc/intro?view=aspnetcore-5.0&preserve-view=true).
+This tutorial has not been updated for ASP.NET Core 3.1. It has been updated for [ASP.NET Core in .NET 5](xref:data/ef-mvc/intro?view=aspnetcore-5.0&preserve-view=true).
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.
 

@@ -4,11 +4,7 @@ description: "Learn how to add Swashbuckle to your ASP.NET Core web API project 
 languages:
 - csharp
 products:
-- dotnet-core
 - aspnet-core
-- vs
-- vs-code
-- vs-mac
 urlFragment: getstarted-swashbuckle-aspnetcore
 ---
 # Get started with Swashbuckle and ASP.NET Core
@@ -37,17 +33,20 @@ public void ConfigureServices(IServiceCollection services)
 In the `Startup.Configure` method, enable the middleware for serving the generated JSON document and the Swagger UI:
 
 ```csharp
-public void Configure(IApplicationBuilder app)
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
-    // Enable middleware to serve generated Swagger as a JSON endpoint.
-    app.UseSwagger();
-
-    // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-    // specifying the Swagger JSON endpoint.
-    app.UseSwaggerUI(c =>
+    // Enable middleware to serve generated Swagger as a JSON endpoint, only in a development environment.
+    if (env.IsDevelopment())
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); 
-    });
+        app.UseSwagger();
+    
+        // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+        // specifying the Swagger JSON endpoint.
+        app.UseSwaggerUI(c => // UseSwaggerUI Protected by if (env.IsDevelopment())
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); 
+        });
+    }
 
     app.UseRouting();
     app.UseEndpoints(endpoints =>
@@ -57,22 +56,25 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-The preceding `UseSwaggerUI` method call enables the [Static File Middleware](https://learn.microsoft.com/aspnet/core/fundamentals/static-files). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
+The preceding `UseSwaggerUI` method call enables an embedded version of the Swagger UI tool. It depends on the [Static File Middleware](https://learn.microsoft.com/aspnet/core/fundamentals/static-files). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
 
 Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [Swagger specification (swagger.json)](https://learn.microsoft.com/aspnet/core/tutorials/web-api-help-pages-using-swagger#swagger-specification-swaggerjson).
 
 The Swagger UI can be found at `http://localhost:<port>/swagger`. Explore the API via Swagger UI and incorporate it in other programs.
 
-> [!TIP]
-> To serve the Swagger UI at the app's root (`http://localhost:<port>/`), set the `RoutePrefix` property to an empty string:
->
-> ```csharp
->app.UseSwaggerUI(c =>
->{
->    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
->    c.RoutePrefix = string.Empty;
->});
->```
+**TIP:** 
+To server the Swagger UI at the app's root (`http://localhost:<port>/`), set the `RoutePrefix` property to an empty string:
+
+ ```csharp
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = string.Empty;
+    });
+}
+```
 
 If using directories with IIS or a reverse proxy, set the Swagger endpoint to a relative path using the `./` prefix. For example, `./swagger/v1/swagger.json`. Using `/swagger/v1/swagger.json` instructs the app to look for the JSON file at the true root of the URL (plus the route prefix, if used). For example, use `http://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` instead of `http://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
 
@@ -136,18 +138,6 @@ XML comments can be enabled with the following approaches:
 </PropertyGroup>
 ```
 
-#### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
-* Manually add the highlighted lines to the `.csproj` file:
-
-```xml
-<PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);1591</NoWarn>
-</PropertyGroup>
-```
-
 #### [Visual Studio Code](#tab/visual-studio-code)
 
 Manually add the highlighted lines to the `.csproj` file:
@@ -193,7 +183,7 @@ namespace TodoApi
 }
 ```
 
-Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a `TodoApi.XML` file is valid on Windows but not CentOS.
+Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a `TodoApi.XML` file is valid on Windows but not Ubuntu.
 
 ```csharp
 /// NOTE LAST 3 LINES IN THIS SNIPPET
