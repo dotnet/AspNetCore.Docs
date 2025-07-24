@@ -185,7 +185,7 @@ The following sample can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  |  |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
 ## .NET Core support for the sameSite attribute
 
