@@ -43,7 +43,7 @@ Many applications have cross-cutting concerns that span multiple layers and need
 Supporting libraries often have complex dependency relationships that require careful upgrade ordering:
 
 * **Dependency tree complexity** - Libraries must be upgraded in postorder depth-first search ordering
-* **Multi-targeting requirements** - Libraries need to support all targeted framework versions.
+* **Multi-targeting requirements** - Libraries need to support all framework versions targeted by the app.
 * **API compatibility** - Ensuring libraries work with both framework versions during the migration period
 * **Testing complexity** - Each library upgrade requires thorough testing to ensure compatibility
 
