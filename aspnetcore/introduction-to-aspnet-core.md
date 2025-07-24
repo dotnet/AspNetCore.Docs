@@ -11,7 +11,7 @@ uid: index
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern web apps. It is built for large-scale app development and can handle any size workload, making it a robust choice for enterprise-level apps.
+ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern web apps. The framework is built for large-scale app development and can handle any size workload, making it a robust choice for enterprise-level apps.
 
 [!INCLUDE[](~/includes/benefits.md)]
 
@@ -49,11 +49,11 @@ There are several advantages to targeting .NET, and these advantages increase wi
 
 * Cross-platform on Windows, macOS, and Linux
 * Improved performance
-* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level)
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#choose-net)
 * New APIs
 * Open source
 
-ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform and only run on Windows. Generally, ASP.NET Core 2.x is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
+ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform and only run on Windows. Generally, ASP.NET Core 2.x is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard?tabs=net-standard-2-0#net-standard-versions).
 
 ASP.NET Core 2.x is supported on .NET Framework versions that implement .NET Standard 2.0:
 
@@ -62,22 +62,27 @@ ASP.NET Core 2.x is supported on .NET Framework versions that implement .NET Sta
 
 To help close the API gap from .NET Framework to .NET Core 2.x, the [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available. These APIs weren't available in .NET Core 1.x.
 
-## Recommended learning path
+## Recommended learning path (TABLES LAYOUT OPTION)
 
-We recommend the following sequence of tutorials for an introduction to developing ASP.NET Core apps, or select the appropriate tutorial for the type of app that you know you want to develop.
+<!-- AUTHOR NOTE: This is the original layout using tables. -->
 
-Our tutorial for new developers and developers new to .NET is <xref:getting-started>.
+We recommend the following sequence of tutorials for an introduction to developing ASP.NET Core apps, or select the appropriate tutorial for a particular type of app that you want to build.
+
+Our tutorial for new developers and developers new to .NET is <xref:get-started>.
 
 :::moniker range=">= aspnetcore-6.0"
 
+<!-- AUTHOR NOTE: I demoted RP/MVC to the bottom of the 
+                  table for >=6.0 coverage . -->
+
 App type | Scenario | Tutorial
 -------- | -------- | --------
-Web app | New server and client web development with Blazor - ***Recommended*** | [Build your first web app with ASP.NET Core using Blazor (Interactive Online Learn Module)](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) or [Build your first web app with Blazor (Visual Studio or Visual Studio Code)](/training/modules/build-your-first-blazor-web-app/)
-Web app | New server-side web development with Razor Pages | <xref:tutorials/razor-pages/razor-pages-start>
-Web app | New server-side web development with MVC | <xref:tutorials/first-mvc-app/start-mvc>
-Web API | Server-based data processing with Minimal APIs - ***Recommended*** | <xref:tutorials/min-web-api> and [Build a web API with minimal API, ASP.NET Core, and .NET (.NET SDK)](/training/modules/build-web-api-minimal-api/)
+Web app | New server and client web development with Blazor &ndash; ***Recommended*** | [Build your first web app with ASP.NET Core using Blazor (Interactive Online Learn Module)](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) or [Build your first web app with Blazor (Visual Studio or Visual Studio Code)](/training/modules/build-your-first-blazor-web-app/)
+Web API | Server-based data processing with Minimal APIs &ndash; ***Recommended*** | <xref:tutorials/min-web-api> and [Build a web API with minimal API, ASP.NET Core, and .NET (.NET SDK)](/training/modules/build-web-api-minimal-api/)
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
 Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
+Web app | New server-side web development with Razor Pages | <xref:tutorials/razor-pages/razor-pages-start>
+Web app | New server-side web development with MVC | <xref:tutorials/first-mvc-app/start-mvc>
 
 :::moniker-end
 
@@ -130,6 +135,108 @@ See the [ASP.NET Core fundamentals articles](xref:fundamentals/index), which app
 
 Browse the table of contents for other topics of interest.
 
+## Recommended learning path (SUBHEADING LAYOUT OPTION)
+
+<!-- AUTHOR NOTE: This probably streamlines (and certainly 
+                  simplifies the display). -->
+
+We recommend the following sequence of tutorials for an introduction to developing ASP.NET Core apps, or select the appropriate tutorial for a particular type of app that you want to build.
+
+Our tutorial for new developers and developers moving to .NET from other app development frameworks is <xref:get-started>.
+
+:::moniker range=">= aspnetcore-6.0"
+
+### Web apps
+
+* Interactive Online Learn Module: [Build your first web app with ASP.NET Core using Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
+* Using [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/): [Build your first web app with Blazor](/training/modules/build-your-first-blazor-web-app/)
+
+### Web API apps
+
+* Using Visual Studio or Visual Studio Code: <xref:tutorials/min-web-api>
+* Using the .NET SDK: [Build a web API with minimal API, ASP.NET Core, and .NET](/training/modules/build-web-api-minimal-api/)
+
+### Remote Procedure Call (RPC) apps
+
+<xref:tutorials/grpc/grpc-start>
+
+### Real-time, server/client bidirectional communication apps
+
+<xref:tutorials/signalr>
+
+### Additional scenarios
+
+* <xref:tutorials/razor-pages/razor-pages-start>
+* <xref:tutorials/first-mvc-app/start-mvc>
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+
+### Web apps
+
+* Interactive Online Learn Module: [Build your first web app with ASP.NET Core using Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
+* Using Visual Studio or Visual Studio Code: [Build your first web app with Blazor](/training/modules/build-your-first-blazor-web-app/)
+
+### Web API apps
+
+* Using Visual Studio or Visual Studio Code: <xref:tutorials/first-web-api>
+* Using the .NET SDK: [Create a web API with ASP.NET Core controllers](/training/modules/build-web-api-aspnet-core/)
+
+### Remote Procedure Call (RPC) apps
+
+<xref:tutorials/grpc/grpc-start>
+
+### Real-time, server/client bidirectional communication apps
+
+<xref:tutorials/signalr>
+
+### Additional scenarios
+
+* <xref:tutorials/razor-pages/razor-pages-start>
+* <xref:tutorials/first-mvc-app/start-mvc>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-3.0"
+
+### Web apps
+
+* <xref:tutorials/razor-pages/razor-pages-start>
+* <xref:tutorials/first-mvc-app/start-mvc>
+
+### Web API apps
+
+* Using Visual Studio or Visual Studio Code: <xref:tutorials/first-web-api>
+* Using the .NET SDK: [Create a web API with ASP.NET Core controllers](/training/modules/build-web-api-aspnet-core/)
+
+### Real-time, server/client bidirectional communication apps
+
+<xref:tutorials/signalr>
+
+:::moniker-end
+
+### Data access concepts
+
+:::moniker range=">= aspnetcore-3.0"
+
+* <xref:blazor/tutorials/movie-database-app/index>
+* <xref:data/ef-rp/intro>
+* <xref:data/ef-mvc/intro>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-3.0"
+
+* <xref:data/ef-rp/intro>
+* <xref:data/ef-mvc/intro>
+
+:::moniker-end
+
+See the [ASP.NET Core fundamentals articles](xref:fundamentals/index), which apply to all app types.
+
+Browse the table of contents for other topics of interest.
+
 ## Migrate from .NET Framework
 
 For a reference guide on migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:migration/fx-to-core/index>.
@@ -138,6 +245,9 @@ For a reference guide on migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:m
 
 [!INCLUDE[](~/includes/announcements.md)]
 
-## .NET Live TV
+## Additional resources
 
-[.NET Live TV](https://dotnet.microsoft.com/live) covers the .NET team's progress and plans. It features new blogs and third-party software.
+* [Download .NET](https://dotnet.microsoft.com/download)
+* [Visual Studio](https://visualstudio.microsoft.com/)
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [.NET Live TV](https://dotnet.microsoft.com/live)
