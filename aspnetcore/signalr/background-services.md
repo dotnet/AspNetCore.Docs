@@ -15,7 +15,7 @@ By [Dave Pringle](https://github.com/UncleDave) and [Brady Gaster](https://twitt
 This article provides guidance for:
 
 * Hosting SignalR Hubs using a background worker process hosted with ASP.NET Core.
-* Sending messages to connected clients from within a .NET [BackgroundService](xref:Microsoft.Extensions.Hosting.BackgroundService).
+* Sending messages to connected clients from within a .NET <xref:Microsoft.Extensions.Hosting.BackgroundService>.
 
 :::moniker range=">= aspnetcore-6.0"
 
