@@ -21,7 +21,7 @@ highlightedContent:
     # Card
     - title: "Create an ASP.NET Core app on any platform in 5 minutes"
       itemType: get-started
-      url: getting-started/index.md
+      url: get-started.md
     # Card
     - title: "Create your first web UI"
       itemType: get-started

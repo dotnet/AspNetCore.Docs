@@ -1,9 +1,9 @@
 ---
 title: Publish an ASP.NET Core app to IIS
-author: rick-anderson
+author: wadepickett
 description: Learn how to host an ASP.NET Core app on an IIS server.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 10/03/2019
 uid: tutorials/publish-to-iis
@@ -60,9 +60,12 @@ Download the installer using the following link:
 
    If the default identity of the app pool (**Process Model** > **Identity**) is changed from `ApplicationPoolIdentity` to another identity, verify that the new identity has the required permissions to access the app's folder, database, and other required resources. For example, the app pool requires read and write access to folders where the app reads and writes files.
 
-## Create an ASP.NET Core Razor Pages app
+## Create an ASP.NET Core app
 
-Follow the <xref:getting-started> tutorial to create a Razor Pages app.
+Create any type of ASP.NET Core server-based app.
+
+> [!NOTE]
+> This tutorial is based on hosting a server-side ASP.NET Core app with IIS, including a Blazor Web App. For guidance on hosting and deploying a *standalone Blazor WebAssembly app* with IIS, see <xref:blazor/host-and-deploy/webassembly/iis>.
 
 ## Publish and deploy the app
 
