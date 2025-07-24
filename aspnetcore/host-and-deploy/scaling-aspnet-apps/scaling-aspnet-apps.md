@@ -5,7 +5,7 @@ description: Learn how to horizontally scale ASP.NET Core apps on Azure and addr
 ms.author: alexwolf
 ms.custom: mvc
 uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
-ms.date: 8/31/2022
+ms.date: 7/25/2025
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
 
@@ -254,6 +254,9 @@ The necessary Azure resources have been created. In this section the app code is
     :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/end/Program.cs" id="snippet_ProgramConfigurations" highlight="1-4,6-7,13-19":::
 
 The preceding changes allow the app to manage data protection using a centralized, scalable architecture. `DefaultAzureCredential` discovers the managed identity configurations enabled earlier when the app is redeployed.
+
+> [!NOTE]
+> The preceding example uses [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential) to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative such as [ManagedIdentityCredential](/dotnet/api/azure.identity.managedidentitycredential) may be more appropriate. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 Update the placeholders in `AzureURIs` section of the `appsettings.json` file to include the following:
 
