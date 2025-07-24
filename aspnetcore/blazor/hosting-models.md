@@ -148,7 +148,7 @@ WebAssembly-rendered Razor components can use [native dependencies](xref:blazor/
 
 :::moniker range="< aspnetcore-6.0"
 
-Blazor WebAssembly includes support for trimming unused code from .NET framework libraries. For more information, see <xref:blazor/globalization-localization>.
+Blazor WebAssembly includes support for trimming unused code from .NET libraries. For more information, see <xref:blazor/globalization-localization>.
 
 :::moniker-end
 
