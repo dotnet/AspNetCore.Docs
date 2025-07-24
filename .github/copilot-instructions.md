@@ -75,6 +75,7 @@ This document contains comprehensive instructions for GitHub Copilot to follow w
   - **[In documentation]** Use code blocks with syntax highlighting for all code examples
   - **[To reviewer]** Highlight areas needing subject matter expert review with: <!-- SME Review: [specific question] -->
   - **[In documentation]** For new features, explicitly note where example code is based on preview builds
+  - **[In documentation]** Ensure the ms.date is set to the date of the draft, not the final review date using this format: `ms.date: 07-23-2025`
 
 - **Handling Technical Feedback:**
   - **[To reviewer]** Acknowledge all technical feedback with specific references
@@ -252,7 +253,6 @@ ALWAYS flag these scenarios for human review rather than guessing:
 
 - **Inclusive Language:**
   - **[In documentation]** Use person-first language when discussing accessibility features
-  - **[In documentation]** Avoid ableist terminology or metaphors (e.g., "see below" or "heard from users")
   - **[In documentation]** Reference assistive technologies accurately and by their current names
   - **[In documentation]** When discussing keyboard navigation, use standard key naming conventions
 
