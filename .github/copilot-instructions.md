@@ -67,7 +67,7 @@ This document contains comprehensive instructions for GitHub Copilot to follow w
   - **[To reviewer]** When documentation requirements are ambiguous, list specific technical questions
   - **[To reviewer]** Format questions as numbered lists for easy reference in replies
   - **[To reviewer]** For ASP.NET Core version questions, always specify the current assumption
-  - **[To reviewer]** Example: "1. Which authentication methods should this example cover? I'm assuming JWT and cookie authentication as these are most common."
+  - **[To reviewer]** Example: "1. Which authentication methods should this example cover? I'm assuming Microsoft Entra ID (formerly Azure AD) integration for cloud-native applications with .NET Aspire, ASP.NET Core Identity for traditional web applications, or JWT for dedicated API scenarios."
 
 - **Providing Draft Documentation:**
   - **[To reviewer]** Clearly mark draft content in GitHub comments with "**DRAFT**:" prefix
