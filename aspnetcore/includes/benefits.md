@@ -2,11 +2,12 @@ ASP.NET Core provides the following benefits:
 
 :::moniker range=">= aspnetcore-6.0"
 
-<!-- AUTHOR NOTE: >=6.0 content includes Blazor and Minimal APIs -->
+<!-- AUTHOR NOTE: >=6.0 content showcases Blazor and 
+                  Minimal APIs, demotes RP/MVC -->
 
 * A unified story for building web apps, web APIs, Azure IoT (Internet of Things) apps, and mobile backends.
 * Architected for testability.
-* [Blazor](xref:blazor/index) lets you create rich interactive client-side UIs using [.NET](/dotnet/standard/tour)/[C#](/dotnet/csharp/) with wide browser support based on HTML/JavaScript, including mobile browsers. You can also build hybrid desktop and mobile apps with .NET and Blazor.
+* [Blazor](xref:blazor/index) lets you create rich interactive client-side UIs using [.NET](/dotnet/standard/tour) and [C#](/dotnet/csharp/) with wide browser support based on HTML/JavaScript, including mobile browsers. You can also build hybrid desktop and mobile apps with .NET and Blazor.
 * [Minimal APIs](xref:fundamentals/minimal-apis) are a simplified approach for building fast web APIs with minimal code and configuration by fluently declaring API routes and actions.
 * Supports [Razor Pages](xref:razor-pages/index) and [Model-View-Controller (MVC)](xref:mvc/overview) app development.
 * Ability to develop and run on Windows, macOS, and Linux.
@@ -18,18 +19,21 @@ ASP.NET Core provides the following benefits:
 * A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
 * Ability to host in the cloud or on-premises with the following:
   * [Kestrel](xref:fundamentals/servers/kestrel)
+  * [Azure App Service](https://azure.microsoft.com/products/app-service)
   * [IIS](xref:host-and-deploy/iis/index)
   * [HTTP.sys](xref:fundamentals/servers/httpsys)
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Docker](xref:host-and-deploy/docker/index)
-* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level).
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#choose-net).
 * Tooling that simplifies modern web development.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
-<!-- AUTHOR NOTE: >=3.0 <6.0 content includes Blazor -->
+<!-- AUTHOR NOTE: >=3.0 <6.0 content showcases Blazor, 
+                  demotes RP/MVC, doesn't mention  
+                  Minimal APIs -->
 
 * A unified story for building web apps, web APIs, Azure IoT (Internet of Things) apps, and mobile backends.
 * Architected for testability.
@@ -44,20 +48,23 @@ ASP.NET Core provides the following benefits:
 * A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
 * Ability to host in the cloud or on-premises with the following:
   * [Kestrel](xref:fundamentals/servers/kestrel)
+  * [Azure App Service](https://azure.microsoft.com/products/app-service)
   * [IIS](xref:host-and-deploy/iis/index)
   * [HTTP.sys](xref:fundamentals/servers/httpsys)
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Docker](xref:host-and-deploy/docker/index)
-* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level).
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#choose-net).
 * Tooling that simplifies modern web development.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
 
+<!-- AUTHOR NOTE: >=3.0 <6.0 content focuses on RP/MVC, no Blazor, no Minimal APIs -->
+
 * A unified story for building web apps, web APIs, Azure IoT (Internet of Things) apps, and mobile backends.
 * Architected for testability.
-* Supports [Razor Pages](xref:razor-pages/index) and [Model-View-Controller (MVC)](xref:mvc/overview) app development.
+* Develop apps and APIs using [Razor Pages](xref:razor-pages/index) and [Model-View-Controller (MVC)](xref:mvc/overview) frameworks.
 * Ability to develop and run on Windows, macOS, and Linux.
 * Open-source and [community-focused](https://live.asp.net/).
 * Integrate seamlessly with popular client-side frameworks and libraries, including [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/). 
@@ -67,11 +74,12 @@ ASP.NET Core provides the following benefits:
 * A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
 * Ability to host in the cloud or on-premises with the following:
   * [Kestrel](xref:fundamentals/servers/kestrel)
+  * [Azure App Service](https://azure.microsoft.com/products/app-service)
   * [IIS](xref:host-and-deploy/iis/index)
   * [HTTP.sys](xref:fundamentals/servers/httpsys)
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Docker](xref:host-and-deploy/docker/index)
-* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level).
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#choose-net).
 * Tooling that simplifies modern web development.
 
 :::moniker-end
