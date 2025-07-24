@@ -90,9 +90,7 @@ The `dotnet publish` command produces a variation of the following output:
 ```console
 C:\Webs\Web1>dotnet publish
 Restore complete (0.4s)
-  Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\Web1.dll
-  Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\Web1.Views.dll
-  Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\publish\
+  Web1 succeeded (9.2s) → bin\Release\net9.0\publish\
 ```
 
 The default publish folder format is `bin\Debug\{TARGET FRAMEWORK MONIKER}`. For example, `bin\Release\net9.0\`
