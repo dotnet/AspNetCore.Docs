@@ -27,7 +27,7 @@ The .NET Hosting bundle is an installer for the .NET Runtime and the [ASP.NET Co
 
 Download the installer using the following links:
 
-* Current version:[.NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+* Current version: [.NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 * [Previous and pre-release versions](https://dotnet.microsoft.com/en-us/download/dotnet)
 
 ## Visual C++ Redistributable Requirement
