@@ -28,7 +28,7 @@ Key features:
 * [Blazor](xref:blazor/index): Create rich interactive web UI components using [C#](/dotnet/csharp/)&mdash;no JavaScript required.
 * Integrate seamlessly with popular client-side frameworks and libraries, including [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/).
 * [SignalR](xref:signalr/index): Add real-time web functionality.
-* [gRPC](xref:grpc/introduction): High performance Remote Procedure Call (RPC) services.
+* [gRPC](xref:grpc/index): High performance Remote Procedure Call (RPC) services.
 * Security: Built-in security features for [authentication](xref:security/authentication/index), [authorization](xref:security/authorization/introduction), and [data protection](xref:security/data-protection/introduction).
 * Testing: Easily create unit and integration tests.
 * Tooling: Maximize your development productivity with [Visual Studio](https://visualstudio.microsoft.com/) and [Visual Studio Code](https://code.visualstudio.com/).
@@ -45,7 +45,7 @@ Key features:
 * Develop apps and APIs using [Razor Pages](xref:razor-pages/index) and [Model-View-Controller (MVC)](xref:mvc/overview) frameworks.
 * Integrate seamlessly with popular client-side frameworks and libraries, including [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/).
 * [SignalR](xref:signalr/index): Add real-time web functionality.
-* [gRPC](xref:grpc/introduction): High performance Remote Procedure Call (RPC) services.
+* [gRPC](xref:grpc/index): High performance Remote Procedure Call (RPC) services.
 * Security: Built-in security features for [authentication](xref:security/authentication/index), [authorization](xref:security/authorization/introduction), and [data protection](xref:security/data-protection/introduction).
 * Testing: Easily create unit and integration tests.
 * Tooling: Maximize your development productivity with [Visual Studio](https://visualstudio.microsoft.com/) and [Visual Studio Code](https://code.visualstudio.com/).
