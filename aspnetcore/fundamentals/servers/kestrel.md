@@ -14,7 +14,7 @@ uid: fundamentals/servers/kestrel
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the recommended server for ASP.NET Core, and it's configured by default in ASP.NET Core project templates.
 
@@ -33,6 +33,7 @@ Kestrel's features include:
   * Building a reverse proxy with [YARP](https://github.com/microsoft/reverse-proxy).
 * **Extensibility:** Customize Kestrel through configuration, middleware, and custom transports.
 * **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics.
+* **Memory management:** Kestrel includes features for efficient memory management, such as automatic eviction from memory pool.
 
 ## Get started
 
@@ -57,6 +58,9 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IConnectionTimeoutFeature>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature>
+
+
+[!INCLUDE[](includes/memory-eviction2.md)]
 
 ## Additional resources
 

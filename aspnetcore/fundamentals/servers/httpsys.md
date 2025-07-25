@@ -32,6 +32,7 @@ HTTP.sys supports the following features:
 * Response caching
 * WebSockets (Windows 8 or later)
 * Customizable security descriptors
+* Automatic memory pool eviction
 
 Supported Windows versions:
 
@@ -339,6 +340,8 @@ Requirements to run gRPC with HTTP.sys:
 ## Tracing
 
 For information about how to get traces from HTTP.sys, see [HTTP.sys Manageability Scenarios](/windows/win32/http/http-sys-manageability-scenarios).
+
+[!INCLUDE[](includes/memory-eviction2.md)]
 
 ## Additional resources
 
