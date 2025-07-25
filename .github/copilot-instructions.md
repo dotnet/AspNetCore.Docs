@@ -1,79 +1,21 @@
 ---
 author: wadepickett
 ms.author: wpickett
-ms.date: 07-24-2025
+ms.date: 07-25-2025
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
 
 ## Introduction
 
-This document contains instructions for GitHub Copilot when assisting with the `dotnet/AspNetCore.Docs` repository. **Unless otherwise specified, all ".NET" references refer to modern .NET, not .NET Framework.**
+This document contains repository-specific instructions for GitHub Copilot when assisting with the `dotnet/AspNetCore.Docs` repository. **Unless otherwise specified, all ".NET" references refer to modern .NET, not .NET Framework.**
 
-## General Writing Guidelines
+## Repository-Specific Guidelines
 
-- **Follow the [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/).**
-- Additionally for this repository:
+- Follow the [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
+- **Repository Exceptions**:
   - Number ordered lists as "1." for every item (don't use sequential numbers)
   - Use `code style` specifically for file names, folders, custom types, and code that should never be localized
-
-## Collaboration Guidelines
-
-### Status Updates and Technical Clarification
-- Begin responses with a concise summary of your understanding
-- Use headers to organize complex responses
-- Provide clear status updates for multi-step tasks
-- Format: "**Status**: [Working on/Completed/Need input] - [Brief description]"
-- List specific technical questions in numbered format when seeking clarification
-- For ASP.NET Core version questions, always specify current assumptions
-
-### Draft Documentation
-- Mark draft content with "**DRAFT**:" prefix
-- For complex concepts, provide simplified explanations first
-- Use code blocks with syntax highlighting
-- Highlight areas needing expert review with comments
-- Ensure ms.date is set to the current date
-
-### Handling Feedback and Handoffs
-- Acknowledge technical feedback with specific references
-- For conflicting guidance, summarize approaches and request clarification
-- When transitioning documentation:
-  - Provide structure and scope summary
-  - List unresolved questions
-  - Reference related documentation
-  - Include version-specific considerations
-
-## Verification Protocols
-
-When uncertain about content:
-
-### API References
-- Never guess API documentation IDs
-- State when verification is needed
-- Provide likely namespace and class/method name
-- Add TODO comments when creating PRs
-
-### Version Compatibility
-- Check if feature was introduced after .NET Core 3.1
-- Default to most compatible syntax when uncertain
-- Add version information for new APIs
-- Include reviewer comments when verification is needed
-
-### Breaking Changes
-Use this checklist:
-- Changes default behavior of existing API
-- Removes or renames public API elements
-- Changes method signatures or return types
-- Modifies serialization format
-- Alters dependency requirements
-- Changes configuration schema
-
-### Always Flag for Human Review
-- Security implications
-- Licensing considerations
-- Product roadmap questions
-- Comparisons with competing technologies
-- Political or controversial technical decisions
 
 ## Version Targeting
 
@@ -84,65 +26,24 @@ Use this checklist:
 4. **Repository Branch Context** - Consider branch where PR will be merged
 5. **Directory Structure** - Check for version-specific directories
 
-### Content Patterns
-- State version range in first paragraph of version-specific content
-- Use conditional content for significant version differences
-- Use version tables for subtle differences across versions
-- For code examples with version ranges, use conditional compilation or separate files
-- Begin with clear version support statements
-- Use consistent labels for version-specific content
-
 ### Common Range Patterns
 - Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
 - Open Upper Bound: `>= aspnetcore-7.0`
 - Open Lower Bound: `<= aspnetcore-9.0`
 - Specific Version: `== aspnetcore-9.0`
 
-## Localization Guidelines
+## API References and Verification
 
-- Keep sentences short and direct
-- Use articles consistently
-- Avoid ambiguous pronouns
-- Establish and maintain a clear glossary of terms
-- Always surround code elements with backticks (`)
-- Explain acronyms on first use
-- Avoid culturally-specific metaphors or examples
-- Use international date formats (YYYY-MM-DD) in code
-- Add sufficient comments in code to explain logic
-- Describe UI elements by function rather than appearance
-- Minimize text embedded in images
-- Use standard document structures that work across languages
-
-## Issue and PR Collaboration
-
-### Issue Classification
-- **Documentation Bug:** Incorrect or outdated technical information
-- **Content Enhancement:** Request to expand existing documentation
-- **New Feature Documentation:** Documentation for newly implemented features
-- **Localization Issue:** Problems with translated content
-- **Accessibility Issue:** Content that doesn't meet accessibility standards
-
-### Priority Levels
-- **P0 (Critical):** Incorrect information that could cause serious problems
-- **P1 (High):** Missing key information or incorrect examples
-- **P2 (Medium):** Improvements to existing documentation or minor inaccuracies
-- **P3 (Low):** Style improvements, typos, or enhancement requests
-
-### PR Comments
-- Always include specific file paths and line numbers in comments
-- Clearly indicate which file each suggestion applies to
-- For multi-file issues, list all affected files
-- Format feedback with clear section headers (Style/Format, Technical Accuracy)
-- For technical questions, reference specific implementation concerns
-- When suggesting changes, distinguish between required changes and optional improvements
-
-### Human-Copilot Handoff
-Scenarios requiring human intervention:
-- Inconsistent or conflicting technical information
-- Political or controversial topics
-- Legal or licensing questions
-- Security vulnerabilities
-- Complex architectural decisions
+- Never guess API documentation IDs
+- Check if features were introduced after .NET Core 3.1
+- Default to most compatible syntax when uncertain
+- For breaking changes, check:
+  - Changes to default behavior of existing APIs
+  - Removed or renamed public API elements
+  - Modified method signatures or return types
+  - Changed serialization formats
+  - Altered dependency requirements
+  - Changes to configuration schema
 
 ## Links and References
 
@@ -169,39 +70,11 @@ Scenarios requiring human intervention:
     ```
     :::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoGroup/TodoDb.cs":::
     ```
-
 - For longer snippets, highlight specific lines:
-- 
+  ```
+  :::code language="csharp" source="~/path/to/file.cs" range="5-10" highlight="2-3":::
+  ```
 - Use modern C# coding patterns in all examples
-
-## File Naming and PRs
-
-- Name Markdown files in **lowercase with hyphens** (no spaces or underscores)
-- **Omit** filler words like "the" or "a" from file names
-- When reviewing PRs, check for:
-- Technical accuracy
-- Code consistency with latest practices
-- Style guide adherence
-- Valid links
-- Proper file structure
-- Inclusive language
-
-## Issue Handling
-
-When creating a PR for an issue:
-
-1. **Read the full issue and all linked references**
- - Pay special attention to linked PRs with implementation details
-
-2. **Understand the specific ASP.NET Core technology**
- - For pre-release features, study code samples from linked PRs
- - Consider version context
- - Examine test cases to understand intended behavior
-
-3. **Special handling for labeled issues:**
- - **breaking-change:** Include breaking change guidance
- - **new-feature:** State which version introduced the feature
- - **bug:** Focus on correcting technical inaccuracies
 
 ## ASP.NET Core Specific Guidelines
 
@@ -210,3 +83,13 @@ When creating a PR for an issue:
 - Include differences between minimal API and controller-based approaches when relevant
 - For middleware, lead with the middleware class approach
 - For Blazor, clearly distinguish between Server and WebAssembly hosting models
+
+## Issue Handling
+
+When creating a PR for an issue:
+1. Read the full issue and all linked references
+2. Study code samples from linked PRs for pre-release features
+3. For labeled issues:
+ - **breaking-change:** Include breaking change guidance
+ - **new-feature:** State which version introduced the feature
+ - **bug:** Focus on correcting technical inaccuracies
