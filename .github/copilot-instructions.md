@@ -53,6 +53,10 @@ This document contains repository-specific instructions for GitHub Copilot when 
 - Get doc ID from the relevant XML doc in dotnet-api-docs
 - Omit first two characters of the doc ID
 
+## Markdown File Naming and Organization
+
+- If you're adding a new Markdown file, it should be named in all lowercase with hyphens separating words. Also, omit any filler words such as "the" or "a" from the file name.
+  
 ## Code Snippets
 
 - For snippets **longer than 6 lines**:
