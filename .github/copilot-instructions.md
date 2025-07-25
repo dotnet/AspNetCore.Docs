@@ -93,3 +93,4 @@ When creating a PR for an issue:
  - **breaking-change:** Include breaking change guidance
  - **new-feature:** State which version introduced the feature
  - **bug:** Focus on correcting technical inaccuracies
+4. When you're assigned an issue, after you've completed your work and the workflows (status checks) have run, check to make sure there are no build warnings under the OpenPublishing.Build status check. If there are, open the build report (under View Details) and resolve any build warnings you introduced.
