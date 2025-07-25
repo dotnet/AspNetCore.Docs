@@ -21,7 +21,7 @@ Use ASP.NET Core to build web apps with:
 
 :::moniker range=">= aspnetcore-6.0"
 
-* [Blazor](xref:blazor/index), a component-based web UI framework based on C# that supports both server-side rendering via the .NET runtime and client-side rendering via WebAssembly.
+* [Blazor](xref:blazor/index), a component-based web UI framework based on C# that supports both server-side rendering and client-side rendering via WebAssembly.
 * [Minimal APIs](xref:fundamentals/minimal-apis), a simplified approach for building fast web APIs with minimal code and configuration by fluently declaring API routes and actions.
 
 :::moniker-end
@@ -62,7 +62,7 @@ ASP.NET Core 2.x is supported on .NET Framework versions that implement .NET Sta
 
 To help close the API gap from .NET Framework to .NET Core 2.x, the [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available. These APIs weren't available in .NET Core 1.x.
 
-## Recommended learning path (TABLES LAYOUT OPTION)
+## Tutorials to get started
 
 <!-- AUTHOR NOTE: This is the original layout using tables. -->
 
@@ -81,8 +81,6 @@ Web app | New server and client web development with Blazor &ndash; ***Recommend
 Web API | Server-based data processing with Minimal APIs &ndash; ***Recommended*** | <xref:tutorials/min-web-api> and [Build a web API with minimal API, ASP.NET Core, and .NET (.NET SDK)](/training/modules/build-web-api-minimal-api/)
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
 Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
-Web app | New server-side web development with Razor Pages | <xref:tutorials/razor-pages/razor-pages-start>
-Web app | New server-side web development with MVC | <xref:tutorials/first-mvc-app/start-mvc>
 
 :::moniker-end
 
@@ -117,8 +115,6 @@ The tutorials in the following table teach data access concepts.
 Scenario | Tutorial
 -------- | --------
 New development with Blazor | <xref:blazor/tutorials/movie-database-app/index>
-New development with Razor Pages | <xref:data/ef-rp/intro>
-New development with MVC | <xref:data/ef-mvc/intro>
 
 :::moniker-end
 
@@ -237,13 +233,6 @@ See the [ASP.NET Core fundamentals articles](xref:fundamentals/index), which app
 
 Browse the table of contents for other topics of interest.
 
-## Migrate from .NET Framework
-
-For a reference guide on migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:migration/fx-to-core/index>.
-
-## Breaking changes and security advisories
-
-[!INCLUDE[](~/includes/announcements.md)]
 
 ## Additional resources
 
