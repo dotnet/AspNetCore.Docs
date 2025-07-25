@@ -3,7 +3,7 @@ title: Configure Windows Authentication in ASP.NET Core
 author: rick-anderson
 description: Learn how to configure Windows Authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wadepickett
 ms.custom: mvc
 ms.date: 11/15/2021
 uid: security/authentication/windowsauth

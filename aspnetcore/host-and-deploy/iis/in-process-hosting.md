@@ -3,7 +3,7 @@ title: In-process hosting with IIS and ASP.NET Core
 author: rick-anderson
 description: Learn about in-Process hosting with IIS and the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 4/4/2022
 uid: host-and-deploy/iis/in-process-hosting

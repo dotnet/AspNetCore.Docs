@@ -2,7 +2,7 @@
 title: Remote app setup
 description: Remote app setup
 author: rick-anderson
-ms.author: riande
+ms.author: wadepickett
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025
 ms.topic: article

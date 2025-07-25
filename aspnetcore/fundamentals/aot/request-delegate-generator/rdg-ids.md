@@ -2,7 +2,7 @@
 title: ASP.NET Core Request Delegate Generator (RDG) diagnostics
 description: Provides a list of diagnostic emitted by the ASP.NET Core Request Delegate Generator (RDG) for Native AOT
 author: rick-anderson
-ms.author: riande
+ms.author: tdykstra
 monikerRange: '>= aspnetcore-8.0'
 content_well_notification: AI-contribution
 ms.date: 9/23/2023

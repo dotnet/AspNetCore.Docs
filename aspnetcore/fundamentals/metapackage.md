@@ -3,7 +3,7 @@ title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 author: Rick-Anderson
 description: The Microsoft.AspNetCore.All metapackage is not recommended for ASP.NET Core 2.1 or later.
 monikerRange: '>= aspnetcore-2.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 10/25/2018
 uid: fundamentals/metapackage

@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/timeouts
 title: YARP Request Timeouts
 description: YARP Request Timeouts
-author: samsp-msft
-ms.author: samsp
+author: wpickett
+ms.author: wadepickett
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution

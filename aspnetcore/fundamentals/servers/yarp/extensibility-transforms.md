@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/transform-extensibility
 title: YARP Extensibility - Request and Response Transforms
 description: YARP Extensibility - Request and Response Transforms
-author: samsp-msft
-ms.author: samsp
+author: tdykstra
+ms.author: tdykstra
 ms.date: 2/14/2025
 ms.topic: article
 content_well_notification: AI-contribution

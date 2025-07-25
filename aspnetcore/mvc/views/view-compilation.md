@@ -3,7 +3,7 @@ title: Razor file compilation in ASP.NET Core
 author: rick-anderson
 description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/20/2023
 uid: mvc/views/view-compilation

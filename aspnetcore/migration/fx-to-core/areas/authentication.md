@@ -1,8 +1,8 @@
 ---
 title: ASP.NET Framework to Core Authentication Migration
 description: ASP.NET Framework to Core Authentication Migration
-author: rick-anderson
-ms.author: riande
+author: tdykstra
+ms.author: tdykstra
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025
 ms.topic: article

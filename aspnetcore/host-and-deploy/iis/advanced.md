@@ -3,7 +3,7 @@ title: Advanced configuration
 author: rick-anderson
 description: Advanced configuration with the ASP.NET Core Module and Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/07/2025
 uid: host-and-deploy/iis/advanced
