@@ -74,7 +74,6 @@ Use this checklist:
 - Product roadmap questions
 - Comparisons with competing technologies
 - Political or controversial technical decisions
-- Performance claims without benchmarks
 
 ## Version Targeting
 
@@ -98,20 +97,6 @@ Use this checklist:
 - Open Upper Bound: `>= aspnetcore-7.0`
 - Open Lower Bound: `<= aspnetcore-9.0`
 - Specific Version: `== aspnetcore-9.0`
-
-## Accessibility Guidelines
-
-- Use proper heading hierarchy without skipping levels
-- Create descriptive headings that convey section content
-- Use HTML tables with proper header cells and scope attributes
-- Include keyboard navigation instructions for UI components
-- Provide text explanations before code blocks
-- Use descriptive variable names in code samples
-- Use descriptive link text that makes sense out of context
-- Include alt text for images that conveys purpose and content
-- Use person-first language when discussing accessibility features
-- Document ARIA roles, states, and properties for components
-- Include accessibility testing guidance
 
 ## Localization Guidelines
 
