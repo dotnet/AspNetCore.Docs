@@ -15,7 +15,7 @@ ASP.NET Core is a redesign of ASP.NET 4.x. This article lists the differences be
 
 ASP.NET Core is an open-source, cross-platform framework for building modern, cloud-based web apps on Windows, macOS, or Linux.
 
-[!INCLUDE[](~/includes/benefits.md)]
+[!INCLUDE[](~/includes/key-features.md)]
 
 ## ASP.NET 4.x
 

@@ -4,7 +4,7 @@ author: tdykstra
 description: Get an overview of ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 07/23/2025
+ms.date: 07/25/2025
 uid: index
 ---
 # Overview of ASP.NET Core
@@ -13,67 +13,66 @@ uid: index
 
 ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern web apps. The framework is built for large-scale app development and can handle any size workload, making it a robust choice for enterprise-level apps.
 
-[!INCLUDE[](~/includes/benefits.md)]
+[!INCLUDE[](~/includes/key-features.md)]
 
-## Build web apps and web APIs
+## Why choose ASP.NET Core? (OPTION 1: COLLAPSED BULLET LIST)
 
-Use ASP.NET Core to build web apps with:
+* **Unified framework**: ASP.NET Core is a complete and fully integrated web framework with built-in production-ready components to handle all of your web development needs.
+* **Full stack productivity**: Build more apps faster by enabling your team to work full stack, from the frontend to the backend, using a single development framework.
+* **Secure by design**: ASP.NET Core is built with security as a top concern and includes built-in support for authentication, authorization, and data protection.
+* **Cloud-ready**: Whether you're deploying to your own data centers or to the cloud, ASP.NET Core simplifies deployment, monitoring, and configuration.
+* **Performance & scalability**: Handle the most demanding workloads with ASP.NET Core's industry leading performance.
+* **Trusted and mature**: ASP.NET Core is used and proven at hyperscale by some of the largest services in the world, including Bing, Xbox, Microsoft 365, and Azure.
 
-:::moniker range=">= aspnetcore-6.0"
+## Why choose ASP.NET Core? (OPTION 2: SPACED BULLET LIST)
 
-* [Blazor](xref:blazor/index), a component-based web UI framework based on C# that supports both server-side rendering and client-side rendering via WebAssembly.
-* [Minimal APIs](xref:fundamentals/minimal-apis), a simplified approach for building fast web APIs with minimal code and configuration by fluently declaring API routes and actions.
+* **Unified framework**: ASP.NET Core is a complete and fully integrated web framework with built-in production-ready components to handle all of your web development needs.
 
-:::moniker-end
+* **Full stack productivity**: Build more apps faster by enabling your team to work full stack, from the frontend to the backend, using a single development framework.
 
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+* **Secure by design**: ASP.NET Core is built with security as a top concern and includes built-in support for authentication, authorization, and data protection.
 
-* [Blazor](xref:blazor/index), a component-based web UI framework based on C# that supports both server-side rendering via the .NET runtime and client-side rendering via WebAssembly.
-* [Razor Pages](xref:razor-pages/index), a page-based programming model that makes building web UI easier and more productive.
-* [Model-View-Controller (MVC)](xref:mvc/overview), a traditional framework for building web apps and web APIs using the [Model-View-Controller design pattern](https://developer.mozilla.org/docs/Glossary/MVC).
+* **Cloud-ready**: Whether you're deploying to your own data centers or to the cloud, ASP.NET Core simplifies deployment, monitoring, and configuration.
 
-:::moniker-end
+* **Performance & scalability**: Handle the most demanding workloads with ASP.NET Core's industry leading performance.
 
-:::moniker range="< aspnetcore-3.0"
+* **Trusted and mature**: ASP.NET Core is used and proven at hyperscale by some of the largest services in the world, including Bing, Xbox, Microsoft 365, and Azure.
 
-* [Razor Pages](xref:razor-pages/index), a page-based programming model that makes building web UI easier and more productive.
-* [Model-View-Controller (MVC)](xref:mvc/overview), a traditional framework for building web apps and web APIs using the [Model-View-Controller design pattern](https://developer.mozilla.org/docs/Glossary/MVC).
+## Why choose ASP.NET Core? (OPTION 3: UNBULLETED LIST WITH ADDL SPACING)
 
-:::moniker-end
+**Unified framework**
 
-## ASP.NET Core target frameworks
+ASP.NET Core is a complete and fully integrated web framework with built-in production-ready components to handle all of your web development needs.
 
-ASP.NET Core 3.x or later can only target .NET.
+**Full stack productivity**
 
-There are several advantages to targeting .NET, and these advantages increase with each release. Some advantages of .NET over .NET Framework include:
+Build more apps faster by enabling your team to work full stack, from the frontend to the backend, using a single development framework.
 
-* Cross-platform on Windows, macOS, and Linux
-* Improved performance
-* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#choose-net)
-* New APIs
-* Open source
+**Secure by design**
 
-ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform and only run on Windows. Generally, ASP.NET Core 2.x is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard?tabs=net-standard-2-0#net-standard-versions).
+ASP.NET Core is built with security as a top concern and includes built-in support for authentication, authorization, and data protection.
 
-ASP.NET Core 2.x is supported on .NET Framework versions that implement .NET Standard 2.0:
+**Cloud-ready**
 
-* .NET Framework latest version is recommended.
-* .NET Framework 4.6.1 or later.
+Whether you're deploying to your own data centers or to the cloud, ASP.NET Core simplifies deployment, monitoring, and configuration.
 
-To help close the API gap from .NET Framework to .NET Core 2.x, the [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available. These APIs weren't available in .NET Core 1.x.
+**Performance & scalability**
+
+Handle the most demanding workloads with ASP.NET Core's industry leading performance.
+
+**Trusted and mature**
+
+ASP.NET Core is used and proven at hyperscale by some of the largest services in the world, including Bing, Xbox, Microsoft 365, and Azure.
 
 ## Tutorials to get started
 
-<!-- AUTHOR NOTE: This is the original layout using tables. -->
-
-We recommend the following sequence of tutorials for an introduction to developing ASP.NET Core apps, or select the appropriate tutorial for a particular type of app that you want to build.
-
 Our tutorial for new developers and developers new to .NET is <xref:get-started>.
 
-:::moniker range=">= aspnetcore-6.0"
+Once you've completed the *Get started* tutorial, we recommend reading the [ASP.NET Core fundamentals](xref:fundamentals/index) article, which covers the basics of ASP.NET Core.
 
-<!-- AUTHOR NOTE: I demoted RP/MVC to the bottom of the 
-                  table for >=6.0 coverage . -->
+Next, experience ASP.NET Core in action with our other tutorials. You can use each tutorial in the order shown, or you can select a specific tutorial if you know in advance the type of app that you plan to build.
+
+:::moniker range=">= aspnetcore-6.0"
 
 App type | Scenario | Tutorial
 -------- | -------- | --------
@@ -89,8 +88,6 @@ Real-time app | Server/client bidirectional communication | <xref:tutorials/sign
 App type | Scenario | Tutorial
 -------- | -------- | --------
 Web app | New server and client web development with Blazor - ***Recommended*** | [Build your first web app with ASP.NET Core using Blazor (Interactive Online Learn Module)](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) or [Build your first web app with Blazor (Visual Studio or Visual Studio Code)](/training/modules/build-your-first-blazor-web-app/)
-Web app | New server-side web development with Razor Pages | <xref:tutorials/razor-pages/razor-pages-start>
-Web app | New server-side web development with MVC | <xref:tutorials/first-mvc-app/start-mvc>
 Web API | Server-based data processing | <xref:tutorials/first-web-api> and [Create a web API with ASP.NET Core controllers (.NET SDK)](/training/modules/build-web-api-aspnet-core/)
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
 Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
@@ -108,17 +105,15 @@ Real-time app | Server/client bidirectional communication | <xref:tutorials/sign
 
 :::moniker-end
 
-The tutorials in the following table teach data access concepts.
-
 :::moniker range=">= aspnetcore-3.0"
 
-Scenario | Tutorial
--------- | --------
-New development with Blazor | <xref:blazor/tutorials/movie-database-app/index>
+To learn about data access concepts, see <xref:blazor/tutorials/movie-database-app/index>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
+
+The tutorials in the following table teach data access concepts.
 
 Scenario | Tutorial
 -------- | --------
@@ -127,116 +122,10 @@ New development with MVC | <xref:data/ef-mvc/intro>
 
 :::moniker-end
 
-See the [ASP.NET Core fundamentals articles](xref:fundamentals/index), which apply to all app types.
-
-Browse the table of contents for other topics of interest.
-
-## Recommended learning path (SUBHEADING LAYOUT OPTION)
-
-<!-- AUTHOR NOTE: This probably streamlines (and certainly 
-                  simplifies the display). -->
-
-We recommend the following sequence of tutorials for an introduction to developing ASP.NET Core apps, or select the appropriate tutorial for a particular type of app that you want to build.
-
-Our tutorial for new developers and developers moving to .NET from other app development frameworks is <xref:get-started>.
-
-:::moniker range=">= aspnetcore-6.0"
-
-### Web apps
-
-* Interactive Online Learn Module: [Build your first web app with ASP.NET Core using Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
-* Using [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/): [Build your first web app with Blazor](/training/modules/build-your-first-blazor-web-app/)
-
-### Web API apps
-
-* Using Visual Studio or Visual Studio Code: <xref:tutorials/min-web-api>
-* Using the .NET SDK: [Build a web API with minimal API, ASP.NET Core, and .NET](/training/modules/build-web-api-minimal-api/)
-
-### Remote Procedure Call (RPC) apps
-
-<xref:tutorials/grpc/grpc-start>
-
-### Real-time, server/client bidirectional communication apps
-
-<xref:tutorials/signalr>
-
-### Additional scenarios
-
-* <xref:tutorials/razor-pages/razor-pages-start>
-* <xref:tutorials/first-mvc-app/start-mvc>
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
-
-### Web apps
-
-* Interactive Online Learn Module: [Build your first web app with ASP.NET Core using Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
-* Using Visual Studio or Visual Studio Code: [Build your first web app with Blazor](/training/modules/build-your-first-blazor-web-app/)
-
-### Web API apps
-
-* Using Visual Studio or Visual Studio Code: <xref:tutorials/first-web-api>
-* Using the .NET SDK: [Create a web API with ASP.NET Core controllers](/training/modules/build-web-api-aspnet-core/)
-
-### Remote Procedure Call (RPC) apps
-
-<xref:tutorials/grpc/grpc-start>
-
-### Real-time, server/client bidirectional communication apps
-
-<xref:tutorials/signalr>
-
-### Additional scenarios
-
-* <xref:tutorials/razor-pages/razor-pages-start>
-* <xref:tutorials/first-mvc-app/start-mvc>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-3.0"
-
-### Web apps
-
-* <xref:tutorials/razor-pages/razor-pages-start>
-* <xref:tutorials/first-mvc-app/start-mvc>
-
-### Web API apps
-
-* Using Visual Studio or Visual Studio Code: <xref:tutorials/first-web-api>
-* Using the .NET SDK: [Create a web API with ASP.NET Core controllers](/training/modules/build-web-api-aspnet-core/)
-
-### Real-time, server/client bidirectional communication apps
-
-<xref:tutorials/signalr>
-
-:::moniker-end
-
-### Data access concepts
-
-:::moniker range=">= aspnetcore-3.0"
-
-* <xref:blazor/tutorials/movie-database-app/index>
-* <xref:data/ef-rp/intro>
-* <xref:data/ef-mvc/intro>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-3.0"
-
-* <xref:data/ef-rp/intro>
-* <xref:data/ef-mvc/intro>
-
-:::moniker-end
-
-See the [ASP.NET Core fundamentals articles](xref:fundamentals/index), which apply to all app types.
-
-Browse the table of contents for other topics of interest.
-
-
 ## Additional resources
 
 * [Download .NET](https://dotnet.microsoft.com/download)
 * [Visual Studio](https://visualstudio.microsoft.com/)
 * [Visual Studio Code](https://code.visualstudio.com/)
-* [.NET Live TV](https://dotnet.microsoft.com/live)
+* [.NET Developer Community](https://dotnet.microsoft.com/platform/community)
+* [.NET Live TV](https://live.dot.net)
