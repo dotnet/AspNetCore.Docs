@@ -14,7 +14,7 @@ uid: fundamentals/servers/kestrel
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the recommended server for ASP.NET Core, and it's configured by default in ASP.NET Core project templates.
 
