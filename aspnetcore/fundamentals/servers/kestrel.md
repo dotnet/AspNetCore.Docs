@@ -33,6 +33,7 @@ Kestrel's features include:
   * Building a reverse proxy with [YARP](https://github.com/microsoft/reverse-proxy).
 * **Extensibility:** Customize Kestrel through configuration, middleware, and custom transports.
 * **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics.
+* **Memory management:** Kestrel includes features for efficient memory management, such as automatic memory pool eviction.
 
 ## Get started
 
@@ -57,6 +58,9 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IConnectionTimeoutFeature>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature>
+
+
+[!INCLUDE[](includes/memory-eviction2.md)]
 
 ## Additional resources
 
