@@ -1,4 +1,4 @@
-## Automatic eviction from memory poools
+## Automatic eviction from memory pool
 
 The memory pools used by Kestrel, IIS, and HTTP.sys automatically evict memory blocks when the application is idle or under less load. The feature runs automatically and doesn't need to be enabled or configured manually.
 

@@ -33,7 +33,7 @@ Kestrel's features include:
   * Building a reverse proxy with [YARP](https://github.com/microsoft/reverse-proxy).
 * **Extensibility:** Customize Kestrel through configuration, middleware, and custom transports.
 * **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics.
-* **Memory management:** Kestrel includes features for efficient memory management, such as automatic memory pool eviction.
+* **Memory management:** Kestrel includes features for efficient memory management, such as automatic eviction from memory pool.
 
 ## Get started
 
