@@ -40,7 +40,7 @@ In the preceding example, the IPv4 addresses of `127.0.0.1` and `192.168.1.5` an
 
 ## Middleware
 
-The `Startup.Configure` method adds the custom `AdminSafeListMiddleware` middleware type to the app's request pipeline. The safelist is retrieved with the .NET Core configuration provider and is passed as a constructor parameter.
+The `Startup.Configure` method adds the custom `AdminSafeListMiddleware` middleware type to the app's request pipeline. The safelist is retrieved with the .NET configuration provider and is passed as a constructor parameter.
 
 [!code-csharp[](ip-safelist/samples/3.x/ClientIpAspNetCore/Startup.cs?name=snippet_ConfigureAddMiddleware)]
 

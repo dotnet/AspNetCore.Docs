@@ -11,7 +11,7 @@ Kestrel supports the following scenarios:
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
 
-Kestrel is supported on all platforms and versions that .NET Core supports.
+Kestrel is supported on all platforms and versions that .NET supports.
 
 ## Get started
 
@@ -74,7 +74,7 @@ Kestrel supports the following scenarios:
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
 
-Kestrel is supported on all platforms and versions that .NET Core supports.
+Kestrel is supported on all platforms and versions that .NET supports.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/kestrel/samples/5.x) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -126,7 +126,7 @@ Kestrel supports the following scenarios:
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
 
-Kestrel is supported on all platforms and versions that .NET Core supports.
+Kestrel is supported on all platforms and versions that .NET supports.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/kestrel/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -489,7 +489,7 @@ For more information on these approaches, see [Server URLs](xref:fundamentals/ho
 
 A development certificate is created:
 
-* When the [.NET Core SDK](/dotnet/core/sdk) is installed.
+* When the [.NET SDK](/dotnet/core/sdk) is installed.
 * The [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs) is used to create a certificate.
 
 Some browsers require granting explicit permission to trust the local development certificate.

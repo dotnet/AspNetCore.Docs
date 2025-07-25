@@ -12,7 +12,7 @@ uid: fundamentals/openapi/openapi-tools
 <!-- TODO: Expand this section to be a more general topic on OpenAPI tooling that includes other popular tools.
 If tools other than for working with OpenAPI are included, a new section will be needed, not under the OpenAPI heading.  -->
 
-[Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Core Global Tool](/dotnet/core/tools/global-tools) for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
+[Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Global Tool](/dotnet/core/tools/global-tools) for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
 
 ## Installation
 

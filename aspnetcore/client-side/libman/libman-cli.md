@@ -25,7 +25,7 @@ dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
-A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.Web.LibraryManager.Cli](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Cli/) NuGet package.
+A [.NET Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [`Microsoft.Web.LibraryManager.Cli`](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Cli/) NuGet package.
 
 ## Usage
 

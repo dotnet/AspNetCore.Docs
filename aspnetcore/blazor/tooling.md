@@ -567,7 +567,7 @@ To include sample pages and a layout based on Bootstrap styling, use the **Inclu
 ### Additional guidance on template options
 
 * <xref:blazor/components/render-modes>
-* The *.NET default templates for dotnet new* article in the .NET Core documentation:
+* The *.NET default templates for dotnet new* article in the .NET documentation:
   * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
@@ -580,7 +580,7 @@ To include sample pages and a layout based on Bootstrap styling, use the **Inclu
 
 For more information on template options, see the following resources:
 
-* The *.NET default templates for dotnet new* article in the .NET Core documentation:
+* The *.NET default templates for dotnet new* article in the .NET documentation:
   * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver) (includes `blazorserver-empty` options)
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) (includes `blazorwasm-empty` options)
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
@@ -595,7 +595,7 @@ For more information on template options, see the following resources:
 
 For more information on template options, see the following resources:
 
-* The *.NET default templates for dotnet new* article in the .NET Core documentation:
+* The *.NET default templates for dotnet new* article in the .NET documentation:
   * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver)
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:

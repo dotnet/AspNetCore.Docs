@@ -21,7 +21,7 @@ Migrating from ASP.NET Framework to ASP.NET Core involves several complex challe
 Production applications often have accumulated technical debt over years of development:
 
 * **System.Web dependencies** - The pervasive use of <xref:System.Web.HttpContext> and associated types throughout a code base.
-* **Outdated package dependencies** that may not have .NET Core equivalents
+* **Outdated package dependencies** that may not have modern compatible equivalents
 * **Legacy build tools and project configurations** that aren't compatible with modern .NET
 * **Deprecated API usage** that needs to be replaced with modern alternatives
 * **Compiler warnings and code quality issues** that complicate migration
@@ -43,7 +43,7 @@ Many applications have cross-cutting concerns that span multiple layers and need
 Supporting libraries often have complex dependency relationships that require careful upgrade ordering:
 
 * **Dependency tree complexity** - Libraries must be upgraded in postorder depth-first search ordering
-* **Multi-targeting requirements** - Libraries need to support both .NET Framework and .NET Core/.NET Standard
+* **Multi-targeting requirements** - Libraries need to support all framework versions targeted by the app.
 * **API compatibility** - Ensuring libraries work with both framework versions during the migration period
 * **Testing complexity** - Each library upgrade requires thorough testing to ensure compatibility
 

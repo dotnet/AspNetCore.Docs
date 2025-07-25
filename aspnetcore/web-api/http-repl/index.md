@@ -1,7 +1,7 @@
 ---
 title: Test web APIs with the HttpRepl
 author: tdykstra
-description: Learn how to use the HttpRepl .NET Core Global Tool to browse and test an ASP.NET Core web API.
+description: Learn how to use the HttpRepl .NET Global Tool to browse and test an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
@@ -12,7 +12,7 @@ uid: web-api/http-repl
 
 The HTTP Read-Eval-Print Loop (REPL) is:
 
-* A lightweight, cross-platform command-line tool that's supported everywhere .NET Core is supported.
+* A lightweight, cross-platform command-line tool that's supported everywhere .NET is supported.
 * Used for making HTTP requests to test ASP.NET Core web APIs (and non-ASP.NET Core web APIs) and view their results.
 * Capable of testing web APIs hosted in any environment, including localhost and Azure App Service.
 
@@ -40,7 +40,7 @@ To install the HttpRepl, run the following command:
 dotnet tool install -g Microsoft.dotnet-httprepl
 ```
 
-A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl) NuGet package.
+A [.NET Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl) NuGet package.
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 

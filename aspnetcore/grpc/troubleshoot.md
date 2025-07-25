@@ -34,7 +34,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 ```
 
-The .NET Core client must use `https` in the server address to make calls with a secured connection:
+The .NET client must use `https` in the server address to make calls with a secured connection:
 
 [!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_StandardHTTPS)]
 
@@ -60,14 +60,14 @@ The [gRPC client factory](xref:grpc/clientfactory) allows calls without a truste
 > [!WARNING]
 > Untrusted certificates should only be used during app development. Production apps should always use valid certificates.
 
-## Call insecure gRPC services with .NET Core client
+## Call insecure gRPC services with .NET client
 
 The .NET gRPC client can call insecure gRPC services by specifing `http` in the server address. For example, `GrpcChannel.ForAddress("http://localhost:5000")`.
 
 There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
 * .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
-* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`. For more information see [Asp.Net Core 3.x: Call insecure gRPC services with the .NET client](xref:grpc/troubleshoot?view=aspnetcore-3.1#call-insecure-grpc-services-with-net-core-client-2):
+* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`. For more information see [Asp.Net Core 3.x: Call insecure gRPC services with the .NET client](xref:grpc/troubleshoot?view=aspnetcore-3.1#call-insecure-grpc-services-with-net-client-2):
 
 > [!IMPORTANT]
 > Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
@@ -113,7 +113,7 @@ WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that
 
 You can workaround this issue by:
 
-1. Create a new .NET Core class library project.
+1. Create a new .NET class library project.
 2. In the new project, add references to enable [C# code generation from `.proto` files](xref:grpc/basics#generated-c-assets):
     * Add the following package references:
         * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
