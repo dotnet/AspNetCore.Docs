@@ -171,3 +171,42 @@ Scenarios requiring human intervention:
     ```
 
 - For longer snippets, highlight specific lines:
+- 
+- Use modern C# coding patterns in all examples
+
+## File Naming and PRs
+
+- Name Markdown files in **lowercase with hyphens** (no spaces or underscores)
+- **Omit** filler words like "the" or "a" from file names
+- When reviewing PRs, check for:
+- Technical accuracy
+- Code consistency with latest practices
+- Style guide adherence
+- Valid links
+- Proper file structure
+- Inclusive language
+
+## Issue Handling
+
+When creating a PR for an issue:
+
+1. **Read the full issue and all linked references**
+ - Pay special attention to linked PRs with implementation details
+
+2. **Understand the specific ASP.NET Core technology**
+ - For pre-release features, study code samples from linked PRs
+ - Consider version context
+ - Examine test cases to understand intended behavior
+
+3. **Special handling for labeled issues:**
+ - **breaking-change:** Include breaking change guidance
+ - **new-feature:** State which version introduced the feature
+ - **bug:** Focus on correcting technical inaccuracies
+
+## ASP.NET Core Specific Guidelines
+
+- Use the latest supported version for examples unless otherwise specified
+- Lead with Microsoft recommended approaches
+- Include differences between minimal API and controller-based approaches when relevant
+- For middleware, lead with the middleware class approach
+- For Blazor, clearly distinguish between Server and WebAssembly hosting models
