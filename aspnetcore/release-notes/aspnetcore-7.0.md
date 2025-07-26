@@ -1,8 +1,8 @@
 ---
 title: What's new in ASP.NET Core in .NET 7
-author: rick-anderson
+author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 7.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/07/2022
 uid: aspnetcore-7

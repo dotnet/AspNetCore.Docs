@@ -1,9 +1,9 @@
 ---
 title: Hosting Bundle
-author: rick-anderson
+author: tdykstra
 description: Learn how to configure the .NET Hosting Bundle.  
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/iis/hosting-bundle

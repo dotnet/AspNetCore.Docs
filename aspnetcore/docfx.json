@@ -51,10 +51,10 @@
     },
     "fileMetadata": {
       "author": {
-        "whats-new/**/**.md": "rick-anderson"
+        "whats-new/**/**.md": "tdykstra"
       },
       "ms.author": {
-        "whats-new/**/**.md": "riande"
+        "whats-new/**/**.md": "tdykstra"
       },
       "ms.subservice": {
         "introduction-to-aspnet-core.md": "index-page",

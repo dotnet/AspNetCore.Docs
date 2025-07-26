@@ -1,8 +1,8 @@
 ---
 title: What's new in ASP.NET Core 3.1
-author: rick-anderson
+author: tdykstra
 description: Learn about the new features in ASP.NET Core 3.1.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 02/12/2020
 uid: aspnetcore-3.1
