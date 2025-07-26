@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/https-tls
 title: YARP HTTPS & TLS
 description: YARP HTTPS & TLS
-author: wpickett
-ms.author: wadepickett
+author: wadepickett
+ms.author: wpickett
 ms.date: 02/14/2025
 ms.topic: article
 content_well_notification: AI-contribution

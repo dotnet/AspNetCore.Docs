@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/grpc
 title: YARP Proxying gRPC
 description: YARP Proxying gRPC
-author: wpickett
-ms.author: wadepickett
+author: wadepickett
+ms.author: wpickett
 ms.date: 04/12/2025
 ms.topic: article
 content_well_notification: AI-contribution

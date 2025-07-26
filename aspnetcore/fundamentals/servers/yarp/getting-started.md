@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/getting-started
 title: YARP Getting Started with YARP
 description: YARP Getting Started with YARP
-author: wpickett
-ms.author: wadepickett
+author: wadepickett
+ms.author: wpickett
 ms.date: 3/6/2025
 ms.topic: article
 content_well_notification: AI-contribution

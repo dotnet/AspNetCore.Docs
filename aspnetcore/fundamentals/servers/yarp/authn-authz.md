@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/authn-authz
 title: YARP Authentication and Authorization
 description: YARP Authentication and Authorization
-author: wpickett
-ms.author: wadepickett
+author: wadepickett
+ms.author: wpickett
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution

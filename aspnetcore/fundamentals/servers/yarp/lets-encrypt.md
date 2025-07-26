@@ -2,9 +2,9 @@
 uid: fundamentals/servers/yarp/lets-encrypt
 title: YARP Lets Encrypt
 description: YARP Lets Encrypt
-author: wpickett
+author: wadepickett
 monikerRange: '<= aspnetcore-7.0'
-ms.author: wadepickett
+ms.author: wpickett
 ms.date: 06/14/2025
 ms.topic: article
 content_well_notification: AI-contribution

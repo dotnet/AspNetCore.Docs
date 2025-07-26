@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/config-filters
 title: YARP Configuration Filters
 description: YARP Configuration Filters
-author: wpickett
-ms.author: wadepickett
+author: wadepickett
+ms.author: wpickett
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution
