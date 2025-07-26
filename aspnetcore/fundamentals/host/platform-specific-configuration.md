@@ -126,7 +126,7 @@ The app's Index page reads and renders the configuration values for the two keys
 
 ### Console app without an entry point
 
-*This approach is only available for .NET Core apps, not .NET Framework.*
+*This approach is only available for .NET apps, not .NET Framework.*
 
 A dynamic hosting startup enhancement that doesn't require a compile-time reference for activation can be provided in a console app without an entry point that contains a `HostingStartup` attribute. Publishing the console app produces a hosting startup assembly that can be consumed from the runtime store.
 
@@ -526,7 +526,7 @@ The app's Index page reads and renders the configuration values for the two keys
 
 ### Console app without an entry point
 
-*This approach is only available for .NET Core apps, not .NET Framework.*
+*This approach is only available for .NET apps, not .NET Framework.*
 
 A dynamic hosting startup enhancement that doesn't require a compile-time reference for activation can be provided in a console app without an entry point that contains a `HostingStartup` attribute. Publishing the console app produces a hosting startup assembly that can be consumed from the runtime store.
 

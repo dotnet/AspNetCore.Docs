@@ -180,7 +180,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 
 :::moniker-end
 
-For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Guide.
 
 # [.NET CLI](#tab/net-cli/)
 
@@ -219,7 +219,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 
 For more information:
 
-* See the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+* See the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Guide.
 * Execute the help command for the template in a command shell:
 
   ```dotnetcli

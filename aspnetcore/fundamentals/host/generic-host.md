@@ -1,7 +1,7 @@
 ---
 title: .NET Generic Host in ASP.NET Core
 author: tdykstra
-description: Use .NET Core Generic Host in ASP.NET Core apps.  Generic Host is responsible for app startup and lifetime management.
+description: Use .NET Generic Host in ASP.NET Core apps. Generic Host is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
@@ -434,7 +434,7 @@ The difference between `Run*` and `Start*` methods is that `Run*` methods wait f
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+The ASP.NET Core templates create a .NET Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
 
 This article provides information on using .NET Generic Host in ASP.NET Core. For information on using .NET Generic Host in console apps, see [.NET Generic Host](/dotnet/core/extensions/generic-host).
 
@@ -952,7 +952,7 @@ public class Program
 
 :::moniker range="< aspnetcore-5.0"
 
-The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+The ASP.NET Core templates create a .NET Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
 
 This article provides information on using .NET Generic Host in ASP.NET Core. For information on using .NET Generic Host in console apps, see [.NET Generic Host](/dotnet/core/extensions/generic-host).
 

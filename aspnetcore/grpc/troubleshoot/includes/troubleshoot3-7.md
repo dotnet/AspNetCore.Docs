@@ -20,7 +20,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 ```
 
-The .NET Core client must use `https` in the server address to make calls with a secured connection:
+The .NET client must use `https` in the server address to make calls with a secured connection:
 
 ```csharp
 static async Task Main(string[] args)
@@ -75,7 +75,7 @@ builder.Services
 > [!WARNING]
 > Untrusted certificates should only be used during app development. Production apps should always use valid certificates.
 
-## Call insecure gRPC services with .NET Core client
+## Call insecure gRPC services with .NET client
 
 The .NET gRPC client can call insecure gRPC services by specifing `http` in the server address. For example, `GrpcChannel.ForAddress("http://localhost:5000")`.
 
@@ -124,7 +124,7 @@ builder.WebHost.ConfigureKestrel(options =>
 
 When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
 
-The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET Core client](#call-insecure-grpc-services-with-net-core-client).
+The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
 > [!WARNING]
 > HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
@@ -162,7 +162,7 @@ WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that
 
 You can workaround this issue by:
 
-1. Create a new .NET Core class library project.
+1. Create a new .NET class library project.
 2. In the new project, add references to enable [C# code generation from `.proto` files](xref:grpc/basics#generated-c-assets):
     * Add the following package references:
         * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
@@ -360,7 +360,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 ```
 
-The .NET Core client must use `https` in the server address to make calls with a secured connection:
+The .NET client must use `https` in the server address to make calls with a secured connection:
 
 ```csharp
 static async Task Main(string[] args)
@@ -415,7 +415,7 @@ services
 > [!WARNING]
 > Untrusted certificates should only be used during app development. Production apps should always use valid certificates.
 
-## Call insecure gRPC services with .NET Core client
+## Call insecure gRPC services with .NET client
 
 The .NET gRPC client can call insecure gRPC services by specifing `http` in the server address. For example, `GrpcChannel.ForAddress("http://localhost:5000")`.
 
@@ -466,7 +466,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
 
-The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET Core client](#call-insecure-grpc-services-with-net-core-client).
+The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
 > [!WARNING]
 > HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
@@ -504,7 +504,7 @@ WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that
 
 You can workaround this issue by:
 
-1. Create a new .NET Core class library project.
+1. Create a new .NET class library project.
 2. In the new project, add references to enable [C# code generation from `.proto` files](xref:grpc/basics#generated-c-assets):
     * Add the following package references:
         * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
@@ -609,7 +609,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 ```
 
-The .NET Core client must use `https` in the server address to make calls with a secured connection:
+The .NET client must use `https` in the server address to make calls with a secured connection:
 
 ```csharp
 static async Task Main(string[] args)
@@ -664,7 +664,7 @@ services
 > [!WARNING]
 > Untrusted certificates should only be used during app development. Production apps should always use valid certificates.
 
-## Call insecure gRPC services with .NET Core client
+## Call insecure gRPC services with .NET client
 
 The .NET gRPC client can call insecure gRPC services by specifing `http` in the server address. For example, `GrpcChannel.ForAddress("http://localhost:5000")`.
 
@@ -715,7 +715,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
 
-The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET Core client](#call-insecure-grpc-services-with-net-core-client).
+The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
 > [!WARNING]
 > HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
@@ -753,7 +753,7 @@ WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that
 
 You can workaround this issue by:
 
-1. Create a new .NET Core class library project.
+1. Create a new .NET class library project.
 2. In the new project, add references to enable [C# code generation from `.proto` files](xref:grpc/basics#generated-c-assets):
     * Add the following package references:
         * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)

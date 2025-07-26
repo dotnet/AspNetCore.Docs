@@ -499,7 +499,7 @@ Stop the app using the following approach:
 EF Core documentation:
 
 * [Entity Framework Core](/ef/core/)
-* [Entity Framework Core tools reference - .NET Core CLI](/ef/core/cli/dotnet)
+* [Entity Framework Core tools reference - .NET CLI](/ef/core/cli/dotnet)
 * [Data Types](/ef/core/modeling/relational/data-types)
 * <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>: The API document includes basic information on how entities are saved and change detection.
 * [Environment-based `Startup` class and methods](xref:fundamentals/environments#environment-based-startup-class-and-methods)

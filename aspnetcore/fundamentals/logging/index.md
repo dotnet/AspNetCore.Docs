@@ -1,5 +1,5 @@
 ---
-title: Logging in .NET Core and ASP.NET Core
+title: Logging in .NET and ASP.NET Core
 author: tdykstra
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 09/18/2024
 uid: fundamentals/logging/index
 ---
 
-# Logging in .NET Core and ASP.NET Core
+# Logging in .NET and ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -494,14 +494,14 @@ The `EventSource` provider writes to a cross-platform event source with the name
 
 #### dotnet-trace tooling
 
-The [`dotnet-trace`](/dotnet/core/diagnostics/dotnet-trace) tool is a cross-platform CLI global tool that enables the collection of .NET Core traces of a running process. The tool collects <xref:Microsoft.Extensions.Logging.EventSource> provider data using a <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>.
+The [`dotnet-trace`](/dotnet/core/diagnostics/dotnet-trace) tool is a cross-platform CLI global tool that enables the collection of .NET traces of a running process. The tool collects <xref:Microsoft.Extensions.Logging.EventSource> provider data using a <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>.
 
 For installation instructions, see [`dotnet-trace`](/dotnet/core/diagnostics/dotnet-trace).
 
 Use the `dotnet-trace` tooling to collect a trace from an app:
 
 1. Run the app with the `dotnet run` command.
-1. Determine the process identifier (PID) of the .NET Core app:
+1. Determine the process identifier (PID) of the .NET app:
 
     ```dotnetcli
     dotnet-trace ps
@@ -648,7 +648,7 @@ If the app doesn't build the host with <xref:Microsoft.AspNetCore.Builder.WebApp
 
 For more information, see:
 
-* [Trace for performance analysis utility (`dotnet-trace`)](/dotnet/core/diagnostics/dotnet-trace) (.NET Core documentation)
+* [Trace for performance analysis utility (`dotnet-trace`)](/dotnet/core/diagnostics/dotnet-trace) (.NET documentation)
 * [Trace for performance analysis utility (`dotnet-trace`)](https://github.com/dotnet/diagnostics/blob/main/documentation/dotnet-trace-instructions.md) (dotnet/diagnostics GitHub repository documentation)
 * <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>
 * <xref:System.Diagnostics.Tracing.EventLevel>
@@ -735,7 +735,7 @@ For more information, see the following resources:
 
 * [Application Insights overview](/azure/application-insights/app-insights-overview)
 * [Application Insights for ASP.NET Core applications](/azure/azure-monitor/app/asp-net-core): Start here if you want to implement the full range of Application Insights telemetry along with logging.
-* [ApplicationInsightsLoggerProvider for .NET Core ILogger logs](/azure/azure-monitor/app/ilogger): Start here if you want to implement the logging provider without the rest of Application Insights telemetry.
+* [ApplicationInsightsLoggerProvider for .NET ILogger logs](/azure/azure-monitor/app/ilogger): Start here if you want to implement the logging provider without the rest of Application Insights telemetry.
 * [Application Insights logging adapters](/azure/azure-monitor/app/asp-net-trace-logs)
 * [Install, configure, and initialize the Application Insights SDK](/training/modules/instrument-web-app-code-with-application-insights) interactive tutorial.
 
@@ -775,7 +775,7 @@ The Logging API doesn't include a scenario to change log levels while an app is 
 
 ## ILogger and ILoggerFactory
 
-The <xref:Microsoft.Extensions.Logging.ILogger%601> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET Core SDK. They are also available in the following NuGet packages:  
+The <xref:Microsoft.Extensions.Logging.ILogger%601> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET SDK. They are also available in the following NuGet packages:  
 
 * The interfaces are in [`Microsoft.Extensions.Logging.Abstractions`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/).
 * The default implementations are in [`Microsoft.Extensions.Logging`](https://www.nuget.org/packages/microsoft.extensions.logging/).

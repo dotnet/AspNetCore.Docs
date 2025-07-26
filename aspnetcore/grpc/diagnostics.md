@@ -16,13 +16,13 @@ By [James Newton-King](https://twitter.com/jamesnk)
 :::moniker range=">= aspnetcore-6.0"
 This article provides guidance for gathering diagnostics from a gRPC app to help troubleshoot issues. Topics covered include:
 
-* **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
+* **Logging** - Structured logs written to [.NET logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
 * **Tracing** - Events related to an operation written using `DiaganosticSource` and `Activity`. Traces from diagnostic source are commonly used to collect app telemetry by libraries such as [Application Insights](/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
 * **Metrics** - Representation of data measures over intervals of time, for example, requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) command-line tool or with [Application Insights](/azure/azure-monitor/app/eventcounters).
 
 ## Logging
 
-gRPC services and the gRPC client write logs using [.NET Core logging](xref:fundamentals/logging/index). Logs are a good place to start when debugging unexpected behavior in service and client apps.
+gRPC services and the gRPC client write logs using [.NET logging](xref:fundamentals/logging/index). Logs are a good place to start when debugging unexpected behavior in service and client apps.
 
 ### gRPC services logging
 
@@ -240,13 +240,13 @@ Specify the gRPC counters for Application Insight to collect in `Startup.cs`:
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 This article provides guidance for gathering diagnostics from a gRPC app to help troubleshoot issues. Topics covered include:
 
-* **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
+* **Logging** - Structured logs written to [.NET logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
 * **Tracing** - Events related to an operation written using `DiaganosticSource` and `Activity`. Traces from diagnostic source are commonly used to collect app telemetry by libraries such as [Application Insights](/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
 * **Metrics** - Representation of data measures over intervals of time, for example, requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) command line tool or with [Application Insights](/azure/azure-monitor/app/eventcounters).
 
 ## Logging
 
-gRPC services and the gRPC client write logs using [.NET Core logging](xref:fundamentals/logging/index). Logs are a good place to start when debugging unexpected behavior in service and client apps.
+gRPC services and the gRPC client write logs using [.NET logging](xref:fundamentals/logging/index). Logs are a good place to start when debugging unexpected behavior in service and client apps.
 
 ### gRPC services logging
 

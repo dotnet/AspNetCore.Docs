@@ -36,7 +36,7 @@ Check the .NET target framework(s) being used, and include the version number(s)
 * [ ] .NET Framework
 * [ ] .NET Standard
 
-If using the .NET Core SDK, include `dotnet --info` output. If using .NET Framework without the .NET Core SDK, include info from Visual Studio's **Help** > **About Microsoft Visual Studio** dialog.
+If using the .NET SDK, include `dotnet --info` output. If using .NET Framework without the .NET SDK, include info from Visual Studio's **Help** > **About Microsoft Visual Studio** dialog.
 
 <details>
 <summary><strong>dotnet --info output</strong> or <strong>About VS info</strong></summary>

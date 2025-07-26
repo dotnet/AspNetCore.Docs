@@ -1,5 +1,5 @@
 ---
-title: Create a .NET Core gRPC client and server in ASP.NET Core
+title: Create a .NET gRPC client and server in ASP.NET Core
 author: jamesnk
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 monikerRange: '>= aspnetcore-3.0'
@@ -10,7 +10,7 @@ uid: tutorials/grpc/grpc-start
 # Tutorial: Create a gRPC client and server in ASP.NET Core
 
 :::moniker range=">= aspnetcore-9.0"
-This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server. At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
+This tutorial shows how to create a .NET [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server. At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
 In this tutorial, you:
 
@@ -119,7 +119,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 The gRPC client project requires the following NuGet packages:
 
-* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET Core client.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET client.
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
 * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/), which contain C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 

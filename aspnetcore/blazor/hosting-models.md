@@ -65,8 +65,8 @@ On the client, the Blazor script establishes the SignalR connection with the ser
 The Blazor Server hosting model offers several benefits:
 
 * Download size is significantly smaller than when the Blazor WebAssembly hosting model is used, and the app loads much faster.
-* The app takes full advantage of server capabilities, including the use of .NET Core APIs.
-* .NET Core on the server is used to run the app, so existing .NET tooling, such as debugging, works as expected.
+* The app takes full advantage of server capabilities, including the use of .NET APIs.
+* .NET on the server is used to run the app, so existing .NET tooling, such as debugging, works as expected.
 * Thin clients are supported. For example, Blazor Server works with browsers that don't support WebAssembly and on resource-constrained devices.
 * The app's .NET/C# code base, including the app's component code, isn't served to clients.
 
@@ -148,7 +148,7 @@ WebAssembly-rendered Razor components can use [native dependencies](xref:blazor/
 
 :::moniker range="< aspnetcore-6.0"
 
-Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries. For more information, see <xref:blazor/globalization-localization>.
+Blazor WebAssembly includes support for trimming unused code from .NET libraries. For more information, see <xref:blazor/globalization-localization>.
 
 :::moniker-end
 

@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 YARP is designed as a library that provides the core proxy functionality, which you can customize by adding or replacing modules. YARP is currently provided as a NuGet package and code samples. We plan on providing a project template and prebuilt executable (`.exe`) in the future.
 
-YARP is implemented on top of .NET Core infrastructure and is usable on Windows, Linux or MacOS. Development can be done with the SDK and your favorite editor, [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/).
+YARP is implemented on top of .NET infrastructure and is usable on Windows, Linux or MacOS. Develop apps with the SDK and your favorite editor, [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/).
 
 YARP 2.3.0 supports .NET 8 or later.
 

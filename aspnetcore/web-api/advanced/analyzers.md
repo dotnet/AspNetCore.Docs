@@ -21,7 +21,7 @@ The analyzers package notifies you of any controller action that:
 
 ## Reference the analyzer package
 
-The analyzers are included in the .NET Core SDK. To enable the analyzer in your project, include the `IncludeOpenAPIAnalyzers` property in the project file:
+The analyzers are included in the .NET SDK. To enable the analyzer in your project, include the `IncludeOpenAPIAnalyzers` property in the project file:
 
 ```xml
 <PropertyGroup>

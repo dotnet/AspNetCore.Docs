@@ -12,7 +12,7 @@ urlFragment: create-grpc-client
 
 # Create a gRPC client and server in ASP.NET Core of .NET 7
 
-This sample demonstrates a .NET Core [gRPC](https://grpc.io/docs/guides/) client and an ASP.NET Core gRPC Server.
+This sample demonstrates a .NET [gRPC](https://grpc.io/docs/guides/) client and an ASP.NET Core gRPC Server.
 
 For a tutorial on this sample see [Tutorial: Create a gRPC client and server in ASP.NET Core](https://learn.microsoft.com/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-7.0)
 

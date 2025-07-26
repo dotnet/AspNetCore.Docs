@@ -225,7 +225,7 @@ dotnet build
 type obj\{ProjectName}.json
 ```
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET CLI](#tab/netcore-cli) 
 
 ```cli
 dotnet build

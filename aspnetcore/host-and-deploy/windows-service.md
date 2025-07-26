@@ -25,7 +25,7 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 
 The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. To use the template as a basis for a Windows Service app:
 
-1. Create a Worker Service app from the .NET Core template.
+1. Create a Worker Service app from the .NET template.
 1. Install the NuGet package [Microsoft.Extensions.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices).
 1. Follow the guidance in the [App configuration](#app-configuration) section to update the Worker Service app so that it can run as a Windows Service.
 
@@ -60,7 +60,7 @@ For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration
 
 ## Deployment type
 
-For information and advice on deployment scenarios, see [.NET Core application deployment](/dotnet/core/deploying/).
+For information and advice on deployment scenarios, see [.NET application deployment](/dotnet/core/deploying/).
 
 ### SDK
 
@@ -78,7 +78,7 @@ If the service only executes background tasks (for example, [hosted services](xr
 
 ### Framework-dependent deployment (FDD)
 
-Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET Core on the target system. When the FDD scenario is adopted following the guidance in this article, the SDK produces an executable (*.exe*), called a *framework-dependent executable*.
+Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET on the target system. When the FDD scenario is adopted following the guidance in this article, the SDK produces an executable (*.exe*), called a *framework-dependent executable*.
 
 If using the [Web SDK](#sdk), a *web.config* file, which is normally produced when publishing an ASP.NET Core app, is unnecessary for a Windows Services app. To disable the creation of the *web.config* file, add the `<IsTransformWebConfigDisabled>` property set to `true`.
 
@@ -104,7 +104,7 @@ To publish for multiple RIDs:
 * Provide the RIDs in a semicolon-delimited list.
 * Use the property name [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
-For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
+For more information, see [.NET RID Catalog](/dotnet/core/rid-catalog).
 
 ## Service user account
 
@@ -280,7 +280,7 @@ Many startup errors don't produce useful information in the event logs. You can 
 
 ### Clear package caches
 
-A functioning app may fail immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
+A functioning app may fail immediately after upgrading either the .NET SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
 1. Delete the *bin* and *obj* folders.
 1. Clear the package caches by executing [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) from a command shell.
@@ -349,7 +349,7 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 
 The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. To use the template as a basis for a Windows Service app:
 
-1. Create a Worker Service app from the .NET Core template.
+1. Create a Worker Service app from the .NET template.
 1. Follow the guidance in the [App configuration](#app-configuration) section to update the Worker Service app so that it can run as a Windows Service.
 
 [!INCLUDE[](~/includes/worker-template-instructions.md)]
@@ -384,7 +384,7 @@ For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration
 
 ## Deployment type
 
-For information and advice on deployment scenarios, see [.NET Core application deployment](/dotnet/core/deploying/).
+For information and advice on deployment scenarios, see [.NET application deployment](/dotnet/core/deploying/).
 
 ### SDK
 
@@ -402,7 +402,7 @@ If the service only executes background tasks (for example, [hosted services](xr
 
 ### Framework-dependent deployment (FDD)
 
-Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET Core on the target system. When the FDD scenario is adopted following the guidance in this article, the SDK produces an executable (*.exe*), called a *framework-dependent executable*.
+Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET on the target system. When the FDD scenario is adopted following the guidance in this article, the SDK produces an executable (*.exe*), called a *framework-dependent executable*.
 
 If using the [Web SDK](#sdk), a *web.config* file, which is normally produced when publishing an ASP.NET Core app, is unnecessary for a Windows Services app. To disable the creation of the *web.config* file, add the `<IsTransformWebConfigDisabled>` property set to `true`.
 
@@ -428,7 +428,7 @@ To publish for multiple RIDs:
 * Provide the RIDs in a semicolon-delimited list.
 * Use the property name [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
-For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
+For more information, see [.NET RID Catalog](/dotnet/core/rid-catalog).
 
 ## Service user account
 
@@ -604,7 +604,7 @@ Many startup errors don't produce useful information in the event logs. You can 
 
 ### Clear package caches
 
-A functioning app may fail immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
+A functioning app may fail immediately after upgrading either the .NET SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
 1. Delete the *bin* and *obj* folders.
 1. Clear the package caches by executing [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) from a command shell.
@@ -672,7 +672,7 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 
 The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. To use the template as a basis for a Windows Service app:
 
-1. Create a Worker Service app from the .NET Core template.
+1. Create a Worker Service app from the .NET template.
 1. Follow the guidance in the [App configuration](#app-configuration) section to update the Worker Service app so that it can run as a Windows Service.
 
 [!INCLUDE[](~/includes/worker-template-instructions.md)]
@@ -708,7 +708,7 @@ For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration
 
 ## Deployment type
 
-For information and advice on deployment scenarios, see [.NET Core application deployment](/dotnet/core/deploying/).
+For information and advice on deployment scenarios, see [.NET application deployment](/dotnet/core/deploying/).
 
 ### SDK
 
@@ -726,7 +726,7 @@ If the service only executes background tasks (for example, [hosted services](xr
 
 ### Framework-dependent deployment (FDD)
 
-Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET Core on the target system. When the FDD scenario is adopted following the guidance in this article, the SDK produces an executable (*.exe*), called a *framework-dependent executable*.
+Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET on the target system. When the FDD scenario is adopted following the guidance in this article, the SDK produces an executable (*.exe*), called a *framework-dependent executable*.
 
 If using the [Web SDK](#sdk), a *web.config* file, which is normally produced when publishing an ASP.NET Core app, is unnecessary for a Windows Services app. To disable the creation of the *web.config* file, add the `<IsTransformWebConfigDisabled>` property set to `true`.
 
@@ -752,7 +752,7 @@ To publish for multiple RIDs:
 * Provide the RIDs in a semicolon-delimited list.
 * Use the property name [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
-For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
+For more information, see [.NET RID Catalog](/dotnet/core/rid-catalog).
 
 ## Service user account
 
@@ -927,7 +927,7 @@ Many startup errors don't produce useful information in the event logs. You can 
 
 ### Clear package caches
 
-A functioning app may fail immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
+A functioning app may fail immediately after upgrading either the .NET SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
 1. Delete the *bin* and *obj* folders.
 1. Clear the package caches by executing [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) from a command shell.
@@ -995,7 +995,7 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 
 The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. To use the template as a basis for a Windows Service app:
 
-1. Create a Worker Service app from the .NET Core template.
+1. Create a Worker Service app from the .NET template.
 1. Follow the guidance in the [App configuration](#app-configuration) section to update the Worker Service app so that it can run as a Windows Service.
 
 [!INCLUDE[](~/includes/worker-template-instructions.md)]
@@ -1031,7 +1031,7 @@ For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration
 
 ## Deployment type
 
-For information and advice on deployment scenarios, see [.NET Core application deployment](/dotnet/core/deploying/).
+For information and advice on deployment scenarios, see [.NET application deployment](/dotnet/core/deploying/).
 
 ### SDK
 
@@ -1049,7 +1049,7 @@ If the service only executes background tasks (for example, [hosted services](xr
 
 ### Framework-dependent deployment (FDD)
 
-Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET Core on the target system. When the FDD scenario is adopted following the guidance in this article, the SDK produces an executable (*.exe*), called a *framework-dependent executable*.
+Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET on the target system. When the FDD scenario is adopted following the guidance in this article, the SDK produces an executable (*.exe*), called a *framework-dependent executable*.
 
 If using the [Web SDK](#sdk), a *web.config* file, which is normally produced when publishing an ASP.NET Core app, is unnecessary for a Windows Services app. To disable the creation of the *web.config* file, add the `<IsTransformWebConfigDisabled>` property set to `true`.
 
@@ -1075,7 +1075,7 @@ To publish for multiple RIDs:
 * Provide the RIDs in a semicolon-delimited list.
 * Use the property name [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
-For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
+For more information, see [.NET RID Catalog](/dotnet/core/rid-catalog).
 
 ## Service user account
 
@@ -1250,7 +1250,7 @@ Many startup errors don't produce useful information in the event logs. You can 
 
 ### Clear package caches
 
-A functioning app may fail immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
+A functioning app may fail immediately after upgrading either the .NET SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
 1. Delete the *bin* and *obj* folders.
 1. Clear the package caches by executing [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) from a command shell.

@@ -11,7 +11,7 @@ uid: host-and-deploy/docker/visual-studio-tools-for-docker
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Visual Studio 2017 or later versions support building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
+Visual Studio 2017 or later versions support building, debugging, and running containerized ASP.NET Core apps. Both Windows and Linux containers are supported.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -33,8 +33,6 @@ For Docker installation, first review the information at [Docker for Windows: Wh
 
 ## Add a project to a Docker container
 
-To containerize an ASP.NET Core project, the project must target .NET Core. Both Linux and Windows containers are supported.
-
 When adding Docker support to a project, choose either a Windows or a Linux container. The Docker host must be running the same container type. To change the container type in the running Docker instance, right-click the System Tray's Docker icon and choose **Switch to Windows containers...** or **Switch to Linux containers...**.
 
 ### New app
@@ -43,11 +41,11 @@ When creating a new app with the **ASP.NET Core Web Application** project templa
 
 ![Enable Docker Support checkbox](visual-studio-tools-for-docker/_static/enable-docker-support-check-box.png)
 
-If the target framework is .NET Core, the **OS** drop-down allows for the selection of a container type.
+The **OS** drop-down allows for the selection of a container type.
 
 ### Existing app
 
-For ASP.NET Core projects targeting .NET Core, there are two options for adding Docker support via the tooling. Open the project in Visual Studio, and choose one of the following options:
+There are two options for adding Docker support to an existing project via the tooling. Open the project in Visual Studio, and choose one of the following options:
 
 * Select **Docker Support** from the **Project** menu.
 * Right-click the project in **Solution Explorer** and select **Add** > **Docker Support**.
@@ -139,7 +137,7 @@ Select **Docker** from the debug drop-down in the toolbar, and start debugging t
 
 :::moniker range=">= aspnetcore-2.1"
 
-* The *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* runtime image is acquired (if not already in the cache). The image installs the ASP.NET Core and .NET Core runtimes and associated libraries. It's optimized for running ASP.NET Core apps in production.
+* The *2.1-aspnetcore-runtime* tag of the *microsoft/dotnet* runtime image is acquired (if not already in the cache). The image installs the ASP.NET Core and .NET runtimes and associated libraries. It's optimized for running ASP.NET Core apps in production.
 * The `ASPNETCORE_ENVIRONMENT` environment variable is set to `Development` within the container.
 * Two dynamically assigned ports are exposed: one for HTTP and one for HTTPS. The port assigned to localhost can be queried with the `docker ps` command.
 * The app is copied to the container.

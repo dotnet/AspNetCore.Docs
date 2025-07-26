@@ -96,7 +96,7 @@ Razor's language version is tightly integrated with the version of the runtime t
 
 ## Additional resources
 
-* [Additions to the csproj format for .NET Core](/dotnet/core/tools/csproj)
+* [MSBuild reference for .NET SDK projects](/dotnet/core/tools/csproj)
 * [Common MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items)
 
 :::moniker-end
@@ -190,7 +190,7 @@ Razor's language version is tightly integrated with the version of the runtime t
 
 ## Additional resources
 
-* [Additions to the csproj format for .NET Core](/dotnet/core/tools/csproj)
+* [MSBuild reference for .NET SDK projects](/dotnet/core/tools/csproj)
 * [Common MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items)
 
 :::moniker-end
@@ -307,7 +307,7 @@ Razor's language version is tightly integrated with the version of the runtime t
 
 ## Additional resources
 
-* [Additions to the csproj format for .NET Core](/dotnet/core/tools/csproj)
+* [MSBuild reference for .NET SDK projects](/dotnet/core/tools/csproj)
 * [Common MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items)
 
 :::moniker-end

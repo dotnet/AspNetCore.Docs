@@ -25,7 +25,7 @@ dotnet tool install -g dotnet-aspnet-codegenerator
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
-If the tool is already installed, the following command updates the tool to the latest stable version available from the installed .NET Core SDKs:
+If the tool is already installed, the following command updates the tool to the latest stable version available from the installed .NET SDKs:
 
 ```dotnetcli
 dotnet tool update -g dotnet-aspnet-codegenerator
