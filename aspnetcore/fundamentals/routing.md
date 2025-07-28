@@ -521,8 +521,8 @@ The following table demonstrates the default route constraints and their expecte
 | `alpha`             | `{name:alpha}`                              | `Rick`                                 | String must consist of one or more alphabetical characters, `a`-`z` and case-insensitive                                        |
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789`                          | String must match the regular expression. See tips about defining a regular expression                                          |
 | `required`          | `{name:required}`                           | `Rick`                                 | Used to enforce that a non-parameter value is present during URL generation                                                     |
-| `file`              | `{filename:file}`                           | `myfile.txt`                           | String can contain path segments, but its last segment must have a dot `.` and be followed by one or more non-`.` characters    |
-| `nonfile`           | `{page:nonfile }`                           | `PageName`                             | String must not have a dot in its last path segment that is followed by one or more non-`.` characters                          |
+| `file`              | `{filename:file}`                           | `myfile.txt`                           | String can contain path segments, but its last segment must have a dot (`.`) and be followed by one or more non-dot characters    |
+| `nonfile`           | `{page:nonfile }`                           | `PageName`                             | String must not have a dot in its last path segment that is followed by one or more non-dot (`.`) characters                          |
 
 [!INCLUDE[](~/includes/regex.md)]
 
