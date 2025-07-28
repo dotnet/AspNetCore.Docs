@@ -1,7 +1,7 @@
 ---
 author: wadepickett
 ms.author: wpickett
-ms.date: 07-25-2025
+ms.date: 07-28-2025
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
@@ -16,7 +16,10 @@ This document contains repository-specific instructions for GitHub Copilot when 
 - **Repository Exceptions**:
   - Number ordered lists as "1." for every item (don't use sequential numbers)
   - Use `code style` specifically for file names, folders, custom types, and code that should never be localized
-
+  - For any new .md file added to the repository or any updated .md file ensure the standaerd frontmatter (meta data) specified by the Style Guide is included.
+  - For any new .md file added to the repository or any updated .md file ensure the following frontmatter (meta data) is included.
+    - Metadata `ai-usage: ai-assisted` if any AI assistance was used
+    - Metadata `ms.date: <today's date>` with a format of DD-MM-YYYY in the frontmatter.  If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters have changed in the file.
 ## Version Targeting
 
 ### Detection Priority Order
@@ -98,4 +101,4 @@ When creating a PR for an issue:
  - **new-feature:** State which version introduced the feature
  - **bug:** Focus on correcting technical inaccuracies
 4. When you're assigned an issue, after you've completed your work and the workflows (status checks) have run, check to make sure there are no build warnings under the OpenPublishing.Build status check. If there are, open the build report (under View Details) and resolve any build warnings you introduced.
-5. If the metadata and value `ai-usage: ai-assisted` does not already exist in any .md files edited or created, then add it in.
+
