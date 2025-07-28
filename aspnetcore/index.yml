@@ -337,11 +337,11 @@ additionalContent:
       # Card
       - title: Migration
         links:
-          - url: migration/80-to-90.md
+          - url: migration/80-90.md
             text: "ASP.NET Core 8.0 to 9.0"
-          - url: migration/70-to-80.md
+          - url: migration/70-80.md
             text: "ASP.NET Core 7.0 to 8.0"
-          - url: migration/60-to-70.md
+          - url: migration/60-70.md
             text: "ASP.NET Core 6.0 to 7.0"
           - url: migration/50-to-60.md
             text: "ASP.NET Core 5.0 to 6.0"
