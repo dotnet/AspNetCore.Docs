@@ -110,7 +110,7 @@ For more control over caching behavior, explore other caching features of ASP.NE
 
 ## Troubleshooting
 
-The [Response Caching Middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) uses <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>, which has a limited capacity. When the capacity is exceeded, the [memory cache is compacted](https://github.com/dotnet/runtime/blob/v6.0.1/src/libraries/Microsoft.Extensions.Caching.Memory/src/MemoryCache.cs#L359-L365). <!-- and the debug level log `Overcapacity compaction triggered` is written. -->
+The [Response Caching Middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) uses <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>, which has a limited capacity. When the capacity is exceeded, the memory cache is compacted.
 
 If caching behavior isn't as expected, confirm that responses are cacheable and capable of being served from the cache. Examine the request's incoming headers and the response's outgoing headers. Enable [logging](xref:fundamentals/logging/index) to help with debugging.
 
