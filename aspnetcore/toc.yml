@@ -2,7 +2,7 @@ items:
   - name: ASP.NET Core documentation
     href: index.yml
   - name: About ASP.NET Core
-        uid: index
+    uid: index
   - name: Get started
     uid: get-started
   - name: What's new
