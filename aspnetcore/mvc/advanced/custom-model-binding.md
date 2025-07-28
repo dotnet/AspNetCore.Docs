@@ -1,8 +1,8 @@
 ---
 title: Custom Model Binding in ASP.NET Core
-author: ardalis
+author: tdykstra
 description: Learn how model binding allows controller actions to work directly with model types in ASP.NET Core.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 04/03/2024
 uid: mvc/advanced/custom-model-binding
 ---
