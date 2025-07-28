@@ -20,6 +20,7 @@ This document contains repository-specific instructions for GitHub Copilot when 
   - For any new .md file added to the repository or any updated .md file ensure the following frontmatter (meta data) is included.
     - Metadata `ai-usage: ai-assisted` if any AI assistance was used
     - Metadata `ms.date: <today's date>` with a format of DD-MM-YYYY.  If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters have changed in the file.
+    
 ## Version Targeting
 
 ### Detection Priority Order
