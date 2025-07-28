@@ -263,8 +263,4 @@ You may safely ignore or remove the `#region` and `#endregion` directives that s
 
 For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md#code-snippets).
 
-## Additional resources
-
-[WebApplicationBuilder source code](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/DefaultBuilder/src/WebApplicationBuilder.cs)
-
 :::moniker-end
