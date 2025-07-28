@@ -252,3 +252,11 @@ To learn more about ASP.NET Core, see the following:
 
 > [!div class="nextstepaction"]
 > <xref:index>
+
+## Additional resources
+
+* [Introduction to .NET](/dotnet/core/introduction)
+* [Visual Studio](https://visualstudio.microsoft.com/)
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [.NET Developer Community](https://dotnet.microsoft.com/platform/community)
+* [.NET Live TV](https://live.dot.net)
