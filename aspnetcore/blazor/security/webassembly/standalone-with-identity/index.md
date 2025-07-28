@@ -150,7 +150,17 @@ A [Cross-Origin Resource Sharing (CORS)](xref:security/cors) policy is establish
 * `Backend` app (`BackendUrl`): `https://localhost:5001`
 * `BlazorWasmAuth` app (`FrontendUrl`): `https://localhost:5002`
 
+:::moniker range=">= aspnetcore-9.0"
+
+The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 Services and endpoints for [Swagger/OpenAPI](xref:tutorials/web-api-help-pages-using-swagger) are included for web API documentation and development testing. For more information on NSwag, see <xref:tutorials/get-started-with-nswag>.
+
+:::moniker-end
 
 User role claims are sent from a [Minimal API](xref:fundamentals/minimal-apis/overview) at the `/roles` endpoint.
 

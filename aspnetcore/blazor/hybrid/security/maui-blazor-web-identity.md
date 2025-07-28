@@ -41,7 +41,7 @@ The sample app is a starter solution that contains a native, cross-platform MAUI
 1. Open the solution in Visual Studio (2022 or later) or VS Code with the .NET MAUI extension installed.
 1. Set the `MauiBlazorWeb` MAUI project as the startup project. In Visual Studio, right-click the project and select **Set as Startup Project**.
 1. Start the `MauiBlazorWeb.Web` project without debugging. In Visual Studio, right-click on the project and select **Debug** > **Start without Debugging**.
-1. Inspect the Identity endpoints by navigating to `https://localhost:7157/swagger` in a browser.
+1. Inspect the Identity endpoints via [OpenAPI documentation](xref:fundamentals/openapi/overview). You can add a third-party OpenAPI-compliant visual UI/endpoint tester.
 1. Navigate to `https://localhost:7157/account/register` to register a user in the Blazor Web App. Immediately after the user is registered, use the **Click here to confirm your account** link in the UI to confirm the user's email address because a real email sender isn't registered for account confirmation.
 1. Start (`F5`) the `MauiBlazorWeb` MAUI project. You can set the debug target to either **Windows** or an Android emulator.
 1. Notice you can only see the `Home` and `Login` pages.
