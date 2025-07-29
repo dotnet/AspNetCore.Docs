@@ -266,24 +266,13 @@ Real-time app | Server/client bidirectional communication | <xref:tutorials/sign
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 App type | Scenario | Tutorial
 -------- | -------- | --------
 Web app | New server and client web development with Blazor | [Build your first web app with ASP.NET Core using Blazor (Interactive Online Learn Module)](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) or [Build your first web app with Blazor (Visual Studio or Visual Studio Code)](/training/modules/build-your-first-blazor-web-app/)
 Web API | Server-based data processing | <xref:tutorials/first-web-api> and [Create a web API with ASP.NET Core controllers (.NET SDK)](/training/modules/build-web-api-aspnet-core/)
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
-Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-3.0"
-
-App type | Scenario | Tutorial
--------- | -------- | --------
-Web app | New web development | <xref:tutorials/razor-pages/razor-pages-start>
-Web app | New server-side web development with MVC | <xref:tutorials/first-mvc-app/start-mvc>
-Web API | Server-based data processing | <xref:tutorials/first-web-api> and [Create a web API with ASP.NET Core controllers (.NET SDK)](/training/modules/build-web-api-aspnet-core/)
 Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
 
 :::moniker-end
