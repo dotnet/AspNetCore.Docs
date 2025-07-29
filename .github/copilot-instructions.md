@@ -38,7 +38,7 @@ This document contains repository-specific instructions for GitHub Copilot when 
 
 ## API References and Verification
 
-- Never guess API documentation IDs, always verify.  If unable to verfy, say so.
+- Never guess API documentation IDs, always verify. If unable to verfy, say so.
 - Check if features were introduced after .NET Core 3.1
 - Default to most compatible syntax when uncertain
 - For breaking changes, check:
