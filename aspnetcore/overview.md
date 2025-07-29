@@ -11,7 +11,7 @@ uid: index
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern web apps using .NET. The framework is built for large-scale app development and can handle any size workload, making it a robust choice for enterprise-level apps.
+ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern web apps using [.NET](/dotnet/core/introduction). The framework is built for large-scale app development and can handle any size workload, making it a robust choice for enterprise-level apps.
 
 Key features:
 
