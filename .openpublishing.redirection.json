@@ -762,7 +762,7 @@
         },
         {
             "source_path": "aspnetcore/choose-aspnet-framework.md",
-            "redirect_url": "/aspnet/core/introduction-to-aspnet-core",
+            "redirect_url": "/aspnet/core/overview",
             "redirect_document_id": false
         },
         {
@@ -1575,7 +1575,12 @@
         },
         {
             "source_path": "aspnetcore/fundamentals/choose-aspnet-framework.md",
-            "redirect_url": "/aspnet/core/introduction-to-aspnet-core",
+            "redirect_url": "/aspnet/core/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/introduction-to-aspnet-core.md",
+            "redirect_url": "/aspnet/core/overview",
             "redirect_document_id": false
         }
     ]
