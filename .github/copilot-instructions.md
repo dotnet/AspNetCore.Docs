@@ -15,11 +15,13 @@ This document contains repository-specific instructions for GitHub Copilot when 
 - Follow the [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
 - **Repository Exceptions**:
   - Number ordered lists as "1." for every item (don't use sequential numbers)
-  - Use `code style` specifically for file names, folders, custom types, and code that should never be localized
+  - Use backticks, also called backquotes or graves, around content specifically for file names (`file.txt`), folders (`folder`), file paths (`folder/file.txt`), custom types (`myVariable`, `MyClass`), raw URLs in the text (`https://www.contoso.com`), URL segments (`/product/id/199`), file extensions (`.razor`), NuGet packages (`Microsoft.AspNetCore.SignalR.Client`), and code that should never be localized
+  - For Blazor's Razor components mentioned in article text, use backticks around the name of the component (example: `Counter` component)
   - For any new .md file added to the repository or any updated .md file ensure the standaerd frontmatter (meta data) specified by the Style Guide is included.
   - For any new .md file added to the repository or any updated .md file ensure the following frontmatter (meta data) is included.
     - Metadata `ai-usage: ai-assisted` if any AI assistance was used
-    - Metadata `ms.date: <today's date>` with a format of DD-MM-YYYY.  If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters have changed in the file.
+    - The correct order of metadata lines is to place the title (`title`) first and the rest of the metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
+    - Metadata `ms.date: <today's date>` with a format of MM-DD-YYYY.  If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
     
 ## Version Targeting
 
@@ -83,14 +85,33 @@ This document contains repository-specific instructions for GitHub Copilot when 
   ```
   :::code language="csharp" source="~/path/to/file.cs" range="5-10" highlight="2-3":::
   ```
-- Use modern C# coding patterns in all examples
+- Use the latest, non-preview C# coding patterns in non-preview code examples
+- Use the latest preview C# coding patterns in preview code examples
+
+The following table indicates the code language to use for markdown code blocks or the `language` attribute of a code snippet and the amount of indentation to use.
+
+Content of the snippet | Code language | Indentation in spaces
+:---: | :---: | :---:
+C# | csharp | 4
+HTML | html | 4
+CSS | css | 4
+JavaScript | javascript | 2 (4 spaces for line continuation)
+XML | xml | 2
+JSON | json | 2
+Console | console | 2
+Text | - | 2
 
 ## ASP.NET Core Specific Guidelines
 
 - Use the latest supported version for examples unless otherwise specified
+- Title and section header casing is sentence case (capitalize the first word and any proper nouns)
+- For parts of a title or section header that normally use code style in article text (backticks around the content), also use code style in the title or section header (example H1 header: "# Modify the `Program.cs` file")
+- Use code style for any words that shouldn't be localized
+- For bullet lists, use an asterisk as the bullet marker
+- Bullet lists should have two or more entries at the same level in the list. If there is only one item under a bullet, remove its bullet marker and roll that item into its parent bullet.
 - Lead with Microsoft recommended approaches
-- Include differences between minimal API and controller-based approaches when relevant
-- For middleware, lead with the middleware class approach
+- Include differences between Minimal API and controller-based approaches when relevant
+- For middleware content and examples, use the middleware class approach
 - For Blazor, clearly distinguish between Server and WebAssembly hosting models
 
 ## Issue Handling
