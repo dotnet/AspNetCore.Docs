@@ -18,7 +18,7 @@ This document contains repository-specific instructions for GitHub Copilot when 
   - Use backticks, also called backquotes or graves, around content specifically for file names (`file.txt`), folders (`folder`), file paths (`folder/file.txt`), custom types (`myVariable`, `MyClass`), raw URLs in the text (`https://www.contoso.com`), URL segments (`/product/id/199`), file extensions (`.razor`), NuGet packages (`Microsoft.AspNetCore.SignalR.Client`), and code that should never be localized
   - For Blazor's Razor components mentioned in article text, use backticks around the name of the component (example: `Counter` component)
   - For any new or updated .md file, ensure the standard frontmatter (metadata) is included as specified in [Metadata for Microsoft Learn documentation.](https://learn.microsoft.com/en-us/contribute/content/metadata)
-  - For any new .md file added to the repository or any updated .md file ensure the following frontmatter (meta data) is included.
+  - For any new or updated .md file added to the repository, ensure the following frontmatter (metadata) is included:
     - Metadata `ai-usage: ai-assisted` if any AI assistance was used
     - The correct order of metadata lines is to place the title (`title`) first and the rest of the metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
     - Metadata `ms.date: <today's date>` with a format of MM-DD-YYYY.  If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
