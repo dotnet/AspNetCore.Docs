@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Linker when bui
 monikerRange: '= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 07/29/2025
 uid: blazor/host-and-deploy/configure-linker
 ---
 # Configure the Linker for ASP.NET Core Blazor
@@ -25,7 +25,7 @@ Linking for Blazor apps can be configured using these MSBuild features:
 
 ## Control linking with an MSBuild property
 
-Linking is enabled when an app is built in `Release` configuration. To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:
+By default, linking is enabled when an app is built in `Release` configuration. To disable linking, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:
 
 ```xml
 <PropertyGroup>
@@ -119,4 +119,6 @@ For more information, see [I18N: Pnetlib Internationalization Framework Library 
 
 ## Additional resources
 
-<xref:blazor/performance/app-download-size#intermediate-language-il-linking>
+* <xref:blazor/performance/app-download-size#intermediate-language-il-linking>
+* [IL trimmer concepts and related tools (`dotnet/runtime` GitHub repository)](https://github.com/dotnet/runtime/tree/main/docs/tools/illink)
+* [Trim self-contained deployments and executables (server-side Blazor apps only](/dotnet/core/deploying/trimming/trim-self-contained)
