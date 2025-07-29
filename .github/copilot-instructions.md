@@ -7,7 +7,7 @@ ms.date: 07-29-2025
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
 
 ## Introduction
-This document contains repository-specific instructions for GitHub Copilot when assisting with the `dotnet/AspNetCore.Docs` repository. **Unless otherwise specified, all ".NET" references refer to modern .NET, not .NET Framework.**
+This document contains general and repository-specific instructions for GitHub Copilot when assisting with the `dotnet/AspNetCore.Docs` repository. **Unless otherwise specified, all ".NET" references refer to modern .NET, not .NET Framework.**
 
 ## General Guidelines
 
@@ -54,12 +54,15 @@ When creating a PR for an issue:
 - Specific Version: `== aspnetcore-9.0`
 
 ### Code Snippets
-- For snippets **longer than 6 lines**:
-  - Place in separate `.cs` file in a `snippets` folder next to the Markdown file
-  - Create a subfolder named after the document
-  - For version-specific code, include a version folder
-  - Add a simple `.csproj` file targeting the appropriate .NET version
-
+- For code snippets longer than 6 lines:
+  1. Create a subfolder named after the document the snippet supports.
+  1. Create a `snippets` folder inside that subfolder.
+  1. For the code file:
+     - If the snippet is not version-specific, place the code in a file with the appropriate extension (for example, `.cs` for C#) in the `snippets` folder.
+     - If the snippet is version-specific:
+        1. Create a subfolder inside the `snippets` folder named for the version (for example, `9.0` for .NET 9 or ASP.NET Core 9).
+        1. Place the code in a file with the correct extension inside the version subfolder.
+        1. Add a project file (`.csproj`) to the version subfolder targeting the matching .NET version, if necessary to run or build the snippet.
 - Reference snippets using triple-colon syntax:
   - **Use file-relative paths** for snippets specific to a single doc file:
     ```
