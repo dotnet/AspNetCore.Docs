@@ -62,7 +62,7 @@ The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> meth
 
 ```diff
 - m => m.Title!.Contains(TitleFilter ?? string.Empty)
-+ m => m.Title!.ToLower().Contains((TitleFilter ?? string.Empty).ToLower());
++ m => m.Title!.ToLower().Contains((TitleFilter ?? string.Empty).ToLower())
 ```
 
 For information on the best practices to adopt case insensitive SQLite queries, see the [Additional resources](#additional-resources) section of this article.
