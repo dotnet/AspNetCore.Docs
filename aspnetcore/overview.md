@@ -78,7 +78,7 @@ Key features:
 
 ## Get started
 
-Are ready to start your ASP.NET Core learning journey? It's time to build your first web app with ASP.NET Core!
+Are you ready to start your ASP.NET Core learning journey? It's time to build your first web app with ASP.NET Core!
 
 > [!div class="nextstepaction"]
 > <xref:get-started>

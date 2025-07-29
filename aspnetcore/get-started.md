@@ -248,7 +248,7 @@ In this tutorial, you learned how to:
 
 :::moniker-end
 
-To learn more the fundamentals of ASP.NET Core, see the following:
+To learn more about the fundamentals of ASP.NET Core, see the following:
 
 > [!div class="nextstepaction"]
 > <xref:fundamentals/index>
