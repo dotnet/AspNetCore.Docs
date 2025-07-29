@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 5.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/29/2020
+ms.date: 07/29/2025
 uid: aspnetcore-5.0
 ---
 # What's new in ASP.NET Core in .NET 5

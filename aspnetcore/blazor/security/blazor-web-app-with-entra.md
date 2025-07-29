@@ -14,7 +14,6 @@ zone_pivot_groups: blazor-web-app-entra-specification
 <!-- UPDATE 10.0 Activate after release and INCLUDE is updated
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
 -->
 
 This article describes how to secure a Blazor Web App with [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) using a sample app.
