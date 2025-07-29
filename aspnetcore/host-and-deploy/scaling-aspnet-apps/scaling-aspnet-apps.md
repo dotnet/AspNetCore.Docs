@@ -258,7 +258,7 @@ The necessary Azure resources have been created. In this section the app code is
 The preceding changes allow the app to manage data protection using a centralized, scalable architecture. `DefaultAzureCredential` discovers the managed identity configurations enabled earlier when the app is redeployed.
 
 > [!NOTE]
-> The preceding example uses [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential) to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative such as <xref:Azure.Identity.ManagedIdentityCredential> may be more appropriate. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+> The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative such as <xref:Azure.Identity.ManagedIdentityCredential> may be more appropriate. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 Update the placeholders in `AzureURIs` section of the `appsettings.json` file to include the following:
 
