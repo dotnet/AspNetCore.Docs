@@ -259,7 +259,7 @@ To learn more the fundamentals of ASP.NET Core, see the following:
 
 App type | Scenario | Tutorial
 -------- | -------- | --------
-Web app | New server and client web development with Blazor | [Build your first web app with ASP.NET Core using Blazor (Interactive Online Learn Module)](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) or [Build your first web app with Blazor (Visual Studio or Visual Studio Code)](/training/modules/build-your-first-blazor-web-app/)
+Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
 Web API | Server-based data processing with Minimal APIs | <xref:tutorials/min-web-api> and [Build a web API with minimal API, ASP.NET Core, and .NET (.NET SDK)](/training/modules/build-web-api-minimal-api/)
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
 Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
@@ -270,7 +270,7 @@ Real-time app | Server/client bidirectional communication | <xref:tutorials/sign
 
 App type | Scenario | Tutorial
 -------- | -------- | --------
-Web app | New server and client web development with Blazor | [Build your first web app with ASP.NET Core using Blazor (Interactive Online Learn Module)](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) or [Build your first web app with Blazor (Visual Studio or Visual Studio Code)](/training/modules/build-your-first-blazor-web-app/)
+Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
 Web API | Server-based data processing | <xref:tutorials/first-web-api> and [Create a web API with ASP.NET Core controllers (.NET SDK)](/training/modules/build-web-api-aspnet-core/)
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
 Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
