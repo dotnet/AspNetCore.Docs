@@ -349,19 +349,8 @@ additionalContent:
           - url: migration/50-to-60-samples.md
             text: "ASP.NET Core 5.0 code samples to 6.0 minimal hosting model"
           - url: migration/31-to-50.md
-            text: "ASP.NET Core 3.1 to 5.0"
-          - url: migration/30-to-31.md
-            text: "ASP.NET Core 3.0 to 3.1"
-          - url: migration/22-to-30.md
-            text: "ASP.NET Core 2.2 to 3.0"
-          - url: migration/21-to-22.md
-            text: "ASP.NET Core 2.1 to 2.2"
-          - url: migration/20_21.md
-            text: "ASP.NET Core 2.0 to 2.1"
-          - url: migration/1x-to-2x/index.md
-            text: "ASP.NET Core 1.x to 2.0"
-          - url: migration/fx-to-core/index.md
-            text: "ASP.NET to ASP.NET Core"
+          - url: /aspnet/core/migration/
+            text: "Earlier versions"
       # Card
       - title: Architecture
         links:
