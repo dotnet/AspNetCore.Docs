@@ -111,7 +111,6 @@ Text | - | 2
 - Lead with Microsoft recommended approaches
 - Include differences between Minimal API and controller-based approaches when relevant
 - For middleware content and examples, use the middleware class approach
-- For Blazor, clearly distinguish between Server and WebAssembly hosting models
 
 ## Issue Handling
 
