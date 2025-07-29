@@ -257,8 +257,8 @@ To learn more the fundamentals of ASP.NET Core, see the following:
 
 :::moniker range=">= aspnetcore-6.0"
 
-App type | Scenario | Tutorial
--------- | -------- | --------
+App type | Scenario | Tutorials
+-------- | -------- | ---------
 Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
 Web API | Server-based data processing with Minimal APIs | <xref:tutorials/min-web-api>
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
@@ -268,8 +268,8 @@ Real-time app | Server/client bidirectional communication | <xref:tutorials/sign
 
 :::moniker range="< aspnetcore-6.0"
 
-App type | Scenario | Tutorial
--------- | -------- | --------
+App type | Scenario | Tutorials
+-------- | -------- | ---------
 Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
 Web API | Server-based data processing | <xref:tutorials/first-web-api>
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
