@@ -53,7 +53,7 @@ This document contains repository-specific instructions for GitHub Copilot when 
 
 - Use relative links for files within this repo
 - When adding external links into a document, strip out the language/culture segment of the URL if present (example: remove the `en-us` or `en` part of links to English versions of webpages)
-- For learn.microsoft.com links, **remove** `https://learn.microsoft.com/en-us` from URLs
+- For learn.microsoft.com links, remove `https://learn.microsoft.com/en-us` from URLs
 - Use cross-references for APIs: `<xref:api-doc-ID>`
 - Get doc ID from the relevant XML doc in dotnet-api-docs
 - Omit first two characters of the doc ID
