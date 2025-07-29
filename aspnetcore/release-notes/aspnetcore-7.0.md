@@ -611,7 +611,9 @@ Apps using <!--keep--> [EventSource](/dotnet/api/system.diagnostics.tracing.even
 
 ### New ServerReady event for measuring startup time
 
-The [`ServerReady`](https://github.com/dotnet/aspnetcore/blob/v7.0.0-preview.5.22303.8/src/Hosting/Hosting/src/Internal/HostingEventSource.cs#L75-L79) event has been added to measure [startup time](https://github.com/dotnet/aspnetcore/blob/v7.0.0-preview.5.22303.8/src/Hosting/Hosting/src/GenericHost/GenericWebHostService.cs#L138) of ASP.NET Core apps.
+The [`ServerReady`](https://github.com/dotnet/aspnetcore/blob/main/src/Hosting/Hosting/src/Internal/HostingEventSource.cs#L76-L79) event has been added to measure [startup time](https://github.com/dotnet/aspnetcore/blob/main/src/Hosting/Hosting/src/GenericHost/GenericWebHostService.cs#L162) of ASP.NET Core apps.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## IIS
 
