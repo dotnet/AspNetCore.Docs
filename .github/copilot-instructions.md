@@ -119,7 +119,6 @@ When creating a PR for an issue:
 1. Read the full issue and all linked references
 2. Study code samples from linked PRs for pre-release features
 3. For labeled issues:
- - **breaking-change:** For general .NET breaking changes, reference [Breaking changes in .NET](../dotnet/core/compatibility/breaking-changes). For ASP.NET Core-specific breaking changes, add details to the "What's new" release notes file for the corresponding .NET version in this repo (using includes if appropriate), and cross-link to the main .NET breaking changes page. If no content is needed for a given release, ensure the release notes still link to the main breaking changes resource.
  - **new-feature:** State which version introduced the feature
  - **bug:** Focus on correcting technical inaccuracies
 4. When you're assigned an issue, after you've completed your work and the workflows (status checks) have run, check to make sure there are no build warnings under the OpenPublishing.Build status check. If there are, open the build report (under View Details) and resolve any build warnings you introduced.
