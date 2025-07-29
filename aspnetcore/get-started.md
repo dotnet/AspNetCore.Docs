@@ -248,7 +248,39 @@ In this tutorial, you learned how to:
 
 :::moniker-end
 
-To learn more about ASP.NET Core, see the following:
+To learn more about the fundamentals of ASP.NET Core, see the following:
 
 > [!div class="nextstepaction"]
-> <xref:index>
+> <xref:fundamentals/index>
+
+## Additional tutorials
+
+:::moniker range=">= aspnetcore-6.0"
+
+App type | Scenario | Tutorials
+-------- | -------- | ---------
+Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
+Web API | Server-based data processing with Minimal APIs | <xref:tutorials/min-web-api>
+Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
+Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+App type | Scenario | Tutorials
+-------- | -------- | ---------
+Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
+Web API | Server-based data processing | <xref:tutorials/first-web-api>
+Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
+Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
+
+:::moniker-end
+
+## Additional resources
+
+* [Introduction to .NET](/dotnet/core/introduction)
+* [Visual Studio](https://visualstudio.microsoft.com/)
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [.NET Developer Community](https://dotnet.microsoft.com/platform/community)
+* [.NET Live TV](https://live.dot.net)
