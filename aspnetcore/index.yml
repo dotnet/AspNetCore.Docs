@@ -348,7 +348,6 @@ additionalContent:
             text: "ASP.NET Core 5.0 to 6.0"
           - url: migration/50-to-60-samples.md
             text: "ASP.NET Core 5.0 code samples to 6.0 minimal hosting model"
-          - url: migration/31-to-50.md
           - url: /aspnet/core/migration/
             text: "Earlier versions"
       # Card
