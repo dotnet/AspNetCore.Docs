@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.date: 03/28/2025
 uid: tutorials/first-mvc-app/adding-model
+ms.custom: sfi-ropc-nochange
 ---
 
 # Part 4, add a model to an ASP.NET Core MVC app

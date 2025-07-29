@@ -7,6 +7,7 @@ ms.author: tdykstra
 ms.date: 05/22/2025
 uid: performance/caching/hybrid
 ms.ai: assisted
+ms.custom: sfi-ropc-nochange
 ---
 # HybridCache library in ASP.NET Core
 

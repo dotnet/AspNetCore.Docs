@@ -28,6 +28,7 @@ Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. N
 
 ---
 
+  ms.custom: sfi-ropc-nochange
 Update the `Models/Movie.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=First)]

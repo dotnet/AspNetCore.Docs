@@ -27,6 +27,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 ## SQL Server Express LocalDB
 
 LocalDB:
+ms.custom: sfi-ropc-nochange
 
 * Is a lightweight version of the SQL Server Express Database Engine, installed by default with Visual Studio.
 * Starts on demand by using a connection string.

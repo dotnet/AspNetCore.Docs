@@ -4,9 +4,11 @@ author: chlowell
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 01/16/2019
 uid: security/authentication/ws-federation
+ms.custom:
+  - mvc
+  - sfi-image-nochange
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
 

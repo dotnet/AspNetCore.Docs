@@ -6,6 +6,7 @@ ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 2/9/2022
 uid: security/authentication/accconfirm
+ms.custom: sfi-image-nochange
 ---
 # Account confirmation and password recovery in ASP.NET Core
 

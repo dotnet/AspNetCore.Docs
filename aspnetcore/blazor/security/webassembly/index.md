@@ -4,9 +4,11 @@ author: guardrex
 description: Learn how to secure Blazor WebAssembly apps as single-page applications (SPAs).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/12/2024
 uid: blazor/security/webassembly/index
+ms.custom:
+  - mvc
+  - sfi-ropc-nochange
 ---
 # Secure ASP.NET Core Blazor WebAssembly
 

@@ -4,9 +4,11 @@ author: guardrex
 description: Learn how to invoke JavaScript functions from .NET methods in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 4/10/2024
 uid: blazor/js-interop/call-javascript-from-dotnet
+ms.custom:
+  - mvc
+  - sfi-ropc-nochange
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 

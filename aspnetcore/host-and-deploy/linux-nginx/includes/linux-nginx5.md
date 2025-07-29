@@ -1,5 +1,7 @@
 ---
-ms.custom: linux-related-content
+  ms.custom:
+    - linux-related-content
+    - sfi-ropc-nochange
 ---
 :::moniker range="= aspnetcore-5.0"
 This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.

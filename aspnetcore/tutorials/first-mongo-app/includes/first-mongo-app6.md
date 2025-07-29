@@ -30,6 +30,7 @@ In this tutorial, you learn how to:
 
 ---
 
+  ms.custom: sfi-ropc-nochange
 ## Configure MongoDB
 
 Enable MongoDB and Mongo DB Shell access from anywhere on the development machine:

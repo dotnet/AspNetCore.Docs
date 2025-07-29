@@ -4,9 +4,11 @@ author: rick-anderson
 description: Advanced configuration with the ASP.NET Core Module and Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
-ms.custom: mvc
 ms.date: 03/07/2025
 uid: host-and-deploy/iis/advanced
+ms.custom:
+  - mvc
+  - sfi-image-nochange
 ---
 # Advanced configuration of the ASP.NET Core Module and IIS
 
