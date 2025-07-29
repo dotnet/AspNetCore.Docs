@@ -7,9 +7,9 @@ ms.author: wpickett
 ms.date: 02/03/2023
 uid: tutorials/publish-to-azure-webapp-using-vs
 ms.custom:
-  - "devx-track-csharp
+  - devx-track-csharp
   - mvc
-  - engagement-fy23"
+  - engagement-fy23
   - sfi-image-nochange
 ---
 # Publish an ASP.NET Core app to Azure with Visual Studio

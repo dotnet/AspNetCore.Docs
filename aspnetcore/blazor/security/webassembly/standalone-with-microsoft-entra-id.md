@@ -7,8 +7,8 @@ ms.author: wpickett
 ms.date: 04/07/2025
 uid: blazor/security/webassembly/standalone-with-microsoft-entra-id
 ms.custom:
-  - "devx-track-csharp
-  - mvc"
+  - devx-track-csharp
+  - mvc
   - sfi-ropc-nochange
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID
