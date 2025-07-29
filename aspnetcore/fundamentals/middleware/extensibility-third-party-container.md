@@ -1,9 +1,9 @@
 ---
 title: Middleware activation with a third-party container in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to use strongly-typed middleware with factory-based activation and a third-party container in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 09/22/2019
 uid: fundamentals/middleware/extensibility-third-party-container

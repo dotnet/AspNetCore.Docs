@@ -5,7 +5,7 @@ summary: Welcome to what's new in ASP.NET Core docs. Use this page to quickly fi
 metadata:
   title: ASP.NET Core documentation - What's new?
   description: Learn about new and updated content in ASP.NET Core docs.
-  ms.author: riande
+  ms.author: wpickett
   ms.date: 07/01/2024
   ms.topic: landing-page
 landingContent:

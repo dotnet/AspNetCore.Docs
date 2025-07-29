@@ -1,8 +1,8 @@
 ---
 title: System.Web adapters
 description: System.Web adapters
-author: rick-anderson
-ms.author: riande
+author: tdykstra
+ms.author: tdykstra
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025
 ms.topic: article
