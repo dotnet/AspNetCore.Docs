@@ -1,5 +1,6 @@
 ---
 title: Push notifications for ASP.NET Core Blazor Progressive Web Applications (PWAs)
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to issue push notifications in Blazor Progressive Web Applications (PWAs).
 monikerRange: '>= aspnetcore-3.1'
@@ -37,14 +38,13 @@ Placeholders used in this article's example code:
 
 For this article's C# examples, update the `someone@example.com` email address to match the address used when creating the custom key pair.
 
-> [!IMPORTANT]
-> When implementing push notifications, ensure that cryptographic keys are managed securely:
-> 
-> * **Key generation**: Use a trusted library or tool to generate the public and private keys. Avoid using weak or outdated algorithms.
-> * **Key storage**: Store private keys securely on the server, using a secure storage mechanism such as a hardware security module (HSM) or encrypted storage. Never expose private keys to the client.
-> * **Key usage**: Use the private key only for signing push notification payloads. Ensure that the public key is distributed securely to clients.
-> 
-> For more information on cryptographic best practices, see [Cryptographic Services](/dotnet/standard/security/cryptographic-services).
+When implementing push notifications, ensure that cryptographic keys are managed securely:
+
+* **Key generation**: Use a trusted library or tool to generate the public and private keys. Avoid using weak or outdated algorithms.
+* **Key storage**: Store private keys securely on the server, using a secure storage mechanism such as a hardware security module (HSM) or encrypted storage. Never expose private keys to the client.
+* **Key usage**: Use the private key only for signing push notification payloads. Ensure that the public key is distributed securely to clients.
+
+For more information on cryptographic best practices, see [Cryptographic Services](/dotnet/standard/security/cryptographic-services).
 
 ## Create a subscription
 
