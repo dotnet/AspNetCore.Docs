@@ -529,6 +529,8 @@ For guidance on general state management outside of ASP.NET Core Identity, see <
 
 ### Additional security abstractions
 
+<!-- UPDATE 10.0 - Confirm location of API in ref source at GA. -->
+
 Two additional abstractions participate in managing authentication state:
 
 * <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/DependencyInjection/ServerAuthenticationStateProvider.cs)): An <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> used by the Blazor framework to obtain authentication state from the server.
