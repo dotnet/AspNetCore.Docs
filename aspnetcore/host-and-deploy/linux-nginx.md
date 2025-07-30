@@ -1,9 +1,9 @@
 ---
 title: Host ASP.NET Core on Linux with Nginx
-author: rick-anderson
+author: tdykstra
 description: Learn how to set up Nginx as a reverse proxy on Ubuntu, RHEL and SUSE to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc, engagement-fy23, linux-related-content
 ms.date: 5/8/2023
 uid: host-and-deploy/linux-nginx
@@ -17,7 +17,7 @@ By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 :::moniker range=">= aspnetcore-6.0"
 This guide explains setting up a production-ready ASP.NET Core environment for Ubuntu, Red Hat Enterprise (RHEL), and SUSE Linux Enterprise Server.
 
-For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
+For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites).
 
 This guide:
 
@@ -81,7 +81,7 @@ Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development env
 dotnet publish --configuration Release
 ```
 
-The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET Core runtime on the server.
+The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET runtime on the server.
 
 Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, `SCP`, `SFTP`). It's common to locate web apps under the `var` directory (for example, `var/www/helloapp`).
 
@@ -545,7 +545,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 ## Additional resources
 
-* [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
+* [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
 * <xref:test/troubleshoot>
 * <xref:host-and-deploy/proxy-load-balancer>

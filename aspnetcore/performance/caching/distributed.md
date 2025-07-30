@@ -128,9 +128,9 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 
 ### Distributed NCache Cache
 
-[NCache](https://github.com/Alachisoft/NCache) is an open source in-memory distributed cache developed natively in .NET and .NET Core. NCache works both locally and configured as a distributed cache cluster for an ASP.NET Core app running in Azure or on other hosting platforms.
+[NCache](https://github.com/Alachisoft/NCache) is an open source in-memory distributed cache developed natively in .NET. NCache works both locally and configured as a distributed cache cluster for an ASP.NET Core app running in Azure or on other hosting platforms.
 
-To install and configure NCache on your local machine, see [Getting Started Guide for Windows (.NET and .NET Core)](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-windows/).
+To install and configure NCache on your local machine, see [Getting Started Guide for Windows & Linux](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-windows/).
 
 To configure NCache:
 

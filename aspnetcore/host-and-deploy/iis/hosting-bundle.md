@@ -1,25 +1,24 @@
 ---
 title: Hosting Bundle
-author: rick-anderson
-description: Learn how to configure the .NET Core Hosting Bundle.  
+author: tdykstra
+description: Learn how to configure the .NET Hosting Bundle.  
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
+ms.author: tdykstra
+ms.date: 07/29/2025
 uid: host-and-deploy/iis/hosting-bundle
 ---
-# The .NET Core Hosting Bundle
+# The .NET Hosting Bundle
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The bundle allows ASP.NET Core apps to run with IIS.
+The .NET Hosting bundle is an installer for the .NET Runtime and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The bundle allows ASP.NET Core apps to run with IIS.
 
-## Install the .NET Core Hosting Bundle
+## Install the .NET Hosting Bundle
 
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
 >
-> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET Core, SDKs might appear to be missing ([No .NET Core SDKs were detected](xref:test/troubleshoot#no-net-core-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
+> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](xref:test/troubleshoot#no-net-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-hosting-bundle>.
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -27,23 +26,23 @@ The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the [
 
 Download the installer using the following links:
 
-* Current version:[.NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+* Current version: [.NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 * [Previous and pre-release versions](https://dotnet.microsoft.com/en-us/download/dotnet)
 
 ## Visual C++ Redistributable Requirement
 
 On older versions of Windows, for example Windows Server 2012 R2, install the Visual Studio C++ 2015, 2017, 2019 Redistributable. Otherwise, a confusing error message in the Windows Event Log reports that `The data is the error.`
 
-[Current x64 VS C++ redistributable](https://aka.ms/vs/16/release/vc_redist.x64.exe)
-[Current x86 VS C++ redistributable](https://aka.ms/vs/16/release/vc_redist.x86.exe)
+[Current x64 VS C++ redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+[Current x86 VS C++ redistributable](https://aka.ms/vs/17/release/vc_redist.x86.exe)
 
 ## Earlier versions of the installer
 
 To obtain an earlier version of the installer:
 
-1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
-1. Select the desired .NET Core version.
-1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
+1. Navigate to the [Download .NET](https://dotnet.microsoft.com/download/dotnet-core) page.
+1. Select the desired .NET version.
+1. In the **Run apps - Runtime** column, find the row of the .NET runtime version desired.
 1. Download the installer using the **Hosting Bundle** link.
 
 > [!WARNING]
@@ -56,7 +55,7 @@ To obtain an earlier version of the installer:
 1. The following parameters are available when running the installer from an administrator command shell:
 
    * `OPT_NO_ANCM=1`: Skip installing the ASP.NET Core Module.
-   * `OPT_NO_RUNTIME=1`: Skip installing the .NET Core runtime. Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_RUNTIME=1`: Skip installing the .NET runtime. Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
    * `OPT_NO_SHAREDFX=1`: Skip installing the ASP.NET Shared Framework (ASP.NET runtime). Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
    * `OPT_NO_X86=1`: Skip installing x86 runtimes. Use this parameter when you know that you won't be hosting 32-bit apps. If there's any chance that you will host both 32-bit and 64-bit apps in the future, don't use this parameter and install both runtimes.
    * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disable the check for using an IIS Shared Configuration when the shared configuration (`applicationHost.config`) is on the same machine as the IIS installation. *Only available for ASP.NET Core 2.2 or later Hosting Bundler installers.* For more information, see <xref:host-and-deploy/iis/advanced#aspnet-core-module-with-an-iis-shared-configuration>.

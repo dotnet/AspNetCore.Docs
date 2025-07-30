@@ -1,8 +1,8 @@
 ---
 title: Get started with incremental ASP.NET to ASP.NET Core migration
 description: Get started with incremental ASP.NET to ASP.NET Core migration
-author: rick-anderson
-ms.author: riande
+author: wadepickett
+ms.author: wpickett
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025
 ms.topic: article
@@ -154,7 +154,6 @@ The [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md) can 
 1. Remove reference to `System.Web` in the project file
 2. Add the `Microsoft.AspNetCore.SystemWebAdapters` package
 3. Enable multi-targeting and add a .NET 8 target or later, or convert the project to .NET Standard 2.0.
-4. Ensure the target framework supports .NET Core. Multi-targeting can be used if .NET Standard 2.0 is not sufficient
 
 This step may require a number of projects to change depending on your solution structure and which routes you're migrating. Upgrade Assistant can help you identify which ones need to change and automate a number of steps in the process.
 

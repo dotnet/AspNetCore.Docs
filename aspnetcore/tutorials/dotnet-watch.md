@@ -43,7 +43,7 @@ Navigate to the product API (`http://localhost:<port number>/api/math/product?a=
 
 ## Add `dotnet watch` to a project
 
-The `dotnet watch` file watcher tool is included with version 2.1.300 of the .NET Core SDK. The following steps are required when using an earlier version of the .NET Core SDK.
+The `dotnet watch` file watcher tool is included with version 2.1.300 of the .NET SDK. The following steps are required when using an earlier version of the .NET SDK.
 
 1. Add a `Microsoft.DotNet.Watcher.Tools` package reference to the `.csproj` file:
 

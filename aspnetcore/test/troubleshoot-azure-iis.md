@@ -1,9 +1,9 @@
 ---
 title: Troubleshoot ASP.NET Core on Azure App Service and IIS
-author: rick-anderson
+author: tdykstra
 description: Learn how to diagnose problems with Azure App Service and Internet Information Services (IIS) deployments of ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 7/23/2024
 uid: test/troubleshoot-azure-iis
@@ -64,7 +64,7 @@ The app starts, but an error prevents the server from fulfilling the request.
 
 This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. Run the app at a command prompt on the server or enable the ASP.NET Core Module stdout log to troubleshoot the problem.
 
-This error also may occur when the .NET Core Hosting Bundle isn't installed or is corrupted. Installing or repairing the installation of the .NET Core Hosting Bundle (for IIS) or Visual Studio (for IIS Express) may fix the problem.
+This error also may occur when the .NET Hosting Bundle isn't installed or is corrupted. Installing or repairing the installation of the .NET Hosting Bundle (for IIS) or Visual Studio (for IIS Express) may fix the problem.
 
 ### 500.0 In-Process Handler Load Failure
 
@@ -80,7 +80,7 @@ An unknown error occurred loading [ASP.NET Core Module](xref:host-and-deploy/asp
 
 The worker process fails. The app doesn't start.
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
+The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the .NET CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
 
 Common failure conditions:
 
@@ -91,7 +91,7 @@ Common failure conditions:
 
 The worker process fails. The app doesn't start.
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the .NET Core runtime in-process, but it fails to start. The most common cause of this startup failure is when the `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App` runtime isn't installed. If the app is deployed to target ASP.NET Core 3.0 and that version doesn't exist on the machine, this error occurs. An example error message follows:
+The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the .NET runtime in-process, but it fails to start. The most common cause of this startup failure is when the `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App` runtime isn't installed. If the app is deployed to target ASP.NET Core 3.0 and that version doesn't exist on the machine, this error occurs. An example error message follows:
 
 ```
 The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
@@ -103,10 +103,10 @@ The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
       3.0.0-preview6-27723-08 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
 ```
 
-The error message lists all the installed .NET Core versions and the version requested by the app. To fix this error, either:
+The error message lists all the installed .NET versions and the version requested by the app. To fix this error, either:
 
-* Install the appropriate version of .NET Core on the machine.
-* Change the app to target a version of .NET Core that's present on the machine.
+* Install the appropriate version of .NET on the machine.
+* Change the app to target a version of .NET that's present on the machine.
 * Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd).
 
 When running in development (the `ASPNETCORE_ENVIRONMENT` environment variable is set to `Development`), the specific error is written to the HTTP response. The cause of a process startup failure is also found in the Application Event Log.
@@ -146,7 +146,7 @@ To fix this error, run apps in separate IIS application pools.
 
 The out-of-process request handler, *aspnetcorev2_outofprocess.dll*, isn't next to the *aspnetcorev2.dll* file. This indicates a corrupted installation of the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
 
-To fix this error, repair the installation of the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) (for IIS) or Visual Studio (for IIS Express).
+To fix this error, repair the installation of the [.NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle) (for IIS) or Visual Studio (for IIS Express).
 
 ### 500.37 ANCM Failed to Start Within Startup Time Limit
 
@@ -158,7 +158,7 @@ This error can occur when starting a large number of apps on the same machine. C
 
 ANCM failed to locate the application DLL, which should be next to the executable.
 
-This error occurs when hosting an app packaged as a [single-file executable](/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) using the in-process hosting model. The in-process model requires that the ANCM load the .NET Core app into the existing IIS process. This scenario isn't supported by the single-file deployment model. Use **one** of the following approaches in the app's project file to fix this error:
+This error occurs when hosting an app packaged as a [single-file executable](/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) using the in-process hosting model. The in-process model requires that the ANCM load the .NET app into the existing IIS process. This scenario isn't supported by the single-file deployment model. Use **one** of the following approaches in the app's project file to fix this error:
 
 1. Disable single-file publishing by setting the `PublishSingleFile` MSBuild property to `false`.
 1. Switch to the out-of-process hosting model by setting the `AspNetCoreHostingModel` MSBuild property to `OutOfProcess`.
@@ -570,7 +570,7 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 ## Clear package caches
 
-A functioning app may fail immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
+A functioning app may fail immediately after upgrading either the .NET SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
 1. Delete the *bin* and *obj* folders.
 1. Clear the package caches by executing [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) from a command shell.

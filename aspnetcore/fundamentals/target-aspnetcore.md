@@ -15,7 +15,7 @@ This document provides guidance for using ASP.NET Core APIs in a class library. 
 
 ## Determine which ASP.NET Core versions to support
 
-ASP.NET Core adheres to the [.NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). Consult the support policy when determining which ASP.NET Core versions to support in a library. A library should:
+ASP.NET Core adheres to the [.NET and .NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). Consult the support policy when determining which ASP.NET Core versions to support in a library. A library should:
 
 * Make an effort to support all ASP.NET Core versions classified as *Long-Term Support* (LTS).
 * Not feel obligated to support ASP.NET Core versions classified as *End of Life* (EOL).
@@ -24,7 +24,7 @@ As preview releases of ASP.NET Core are made available, breaking changes are pos
 
 ## Use the ASP.NET Core shared framework
 
-With the release of .NET Core 3.0, many ASP.NET Core assemblies are no longer published to NuGet as packages. Instead, the assemblies are included in the `Microsoft.AspNetCore.App` shared framework, which is installed with the .NET Core SDK and runtime installers. For a list of packages no longer being published, see [Remove obsolete package references](xref:migration/22-to-30#remove-obsolete-package-references).
+With the release of .NET Core 3.0, many ASP.NET Core assemblies are no longer published to NuGet as packages. Instead, the assemblies are included in the `Microsoft.AspNetCore.App` shared framework, which is installed with the .NET SDK and runtime installers. For a list of packages no longer being published, see [Remove obsolete package references](xref:migration/22-to-30#remove-obsolete-package-references).
 
 As of .NET Core 3.0, projects using the `Microsoft.NET.Sdk.Web` MSBuild SDK implicitly reference the shared framework. Projects using the `Microsoft.NET.Sdk` or `Microsoft.NET.Sdk.Razor` SDK must reference ASP.NET Core to use ASP.NET Core APIs in the shared framework.
 

@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/service-fabric-int
 title: YARP Service Fabric Integration
 description: YARP Service Fabric Integration
-author: samsp-msft
-ms.author: samsp
+author: wadepickett
+ms.author: wpickett
 ms.date: 04/03/2025
 ms.topic: article
 content_well_notification: AI-contribution

@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/header-routing
 title: YARP Header Based Routing
 description: YARP Header Based Routing
-author: samsp-msft
-ms.author: samsp
+author: wadepickett
+ms.author: wpickett
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution

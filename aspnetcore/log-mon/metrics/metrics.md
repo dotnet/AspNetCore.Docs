@@ -1,8 +1,8 @@
 ---
 title: ASP.NET Core metrics
 description: Metrics for ASP.NET Core apps
-author: rick-anderson
-ms.author: riande
+author: tdykstra
+ms.author: tdykstra
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/18/2023
 ms.topic: article
@@ -55,7 +55,7 @@ Replace the contents of `Program.cs` with the following code:
 
 ## View metrics with dotnet-counters
 
-[dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a command-line tool that can view live metrics for .NET Core apps on demand. It doesn't require setup, making it useful for ad-hoc investigations or verifying that metric instrumentation is working. It works with both <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> based APIs and [EventCounters](/dotnet/core/diagnostics/event-counters).
+[dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a command-line tool that can view live metrics for .NET apps on demand. It doesn't require setup, making it useful for ad-hoc investigations or verifying that metric instrumentation is working. It works with both <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> based APIs and [EventCounters](/dotnet/core/diagnostics/event-counters).
 
 If the [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) tool isn't installed, run the following command:
 
