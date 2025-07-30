@@ -172,16 +172,6 @@ private IQueryable<Movie> FilteredMovies =>
     context.Movie.Where(m => m.Title!.Contains(titleFilter));
 ```
 
-> [!NOTE]
-> If your database collation is case sensitive (for example, when using a SQLite database), you can lowercase the movie's title and `titleFilter` as a workaround:
->
-> ```diff
-> - m => m.Title!.Contains(titleFilter)
-> + m => m.Title!.ToLower().Contains(titleFilter.ToLower())
-> ```
->
-> For information on the best practices to adopt case insensitive SQLite queries, see the [Additional resources](#additional-resources) section of this article.
-
 Next, the component should bind the `titleFilter` field to an `<input>` element, so user input is stored in the `titleFilter` variable. Binding is achieved in Blazor with the `@bind` directive attribute.
 
 Remove the HTML form from the component:
@@ -305,11 +295,3 @@ In the documentation website's sidebar navigation, articles are organized by sub
 
 > [!div class="step-by-step"]
 > [Previous: Add a new field](xref:blazor/tutorials/movie-database-app/part-7)
-
-## Additional resources
-
-Information and best practices to adopt case insensitive SQLite queries:
-
-* [How to use case-insensitive query with Sqlite provider? (`dotnet/efcore` #11414)](https://github.com/dotnet/efcore/issues/11414)
-* [How to make a SQLite column case insensitive (`dotnet/AspNetCore.Docs` #22314)](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
-* [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
