@@ -24,7 +24,7 @@ When creating a PR for an issue:
 - If you're adding a new Markdown file, it should be named in all lowercase with hyphens separating words. Also, omit any filler words such as "the" or "a" from the file name.
 
 ### API References and Verification
-- Never guess API documentation IDs, always verify. If unable to verfy, say so.
+- Never guess API documentation IDs, always verify. If unable to verify, say so.
 - Check if features were introduced after .NET Core 3.1
 - Default to most compatible syntax when uncertain
 
