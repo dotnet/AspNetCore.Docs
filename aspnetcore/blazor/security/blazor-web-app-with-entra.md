@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
-ms.date: 06/11/2025
+ms.date: 07/29/2025
 uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ms.custom:
@@ -16,7 +16,6 @@ ms.custom:
 <!-- UPDATE 10.0 Activate after release and INCLUDE is updated
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
 -->
 
 This article describes how to secure a Blazor Web App with [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) using a sample app.
@@ -79,7 +78,7 @@ The `MinimalApiJwt` project is a backend web API for multiple frontend projects.
 
 The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the Development environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
 
 A secure weather forecast data endpoint is in the project's `Program` file:
 
@@ -291,7 +290,7 @@ The `MinimalApiJwt` project is a backend web API for multiple frontend projects.
 
 The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the Development environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
 
 A secure weather forecast data endpoint is in the project's `Program` file:
 
@@ -563,13 +562,9 @@ msIdentityOptions.ClientSecret = AzureHelper.GetKeyVaultSecret("{VAULT URI}",
 
 Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
 
-:::moniker range=">= aspnetcore-9.0"
-
 ## Only serialize the name and role claims
 
 In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> to `true`. If you only want the name and role claims serialized for CSR, remove the option or set it to `false`.
-
-:::moniker-end
 
 ## Supply configuration with the JSON configuration provider (app settings)
 

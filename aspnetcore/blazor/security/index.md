@@ -535,13 +535,13 @@ Two additional abstractions participate in managing authentication state:
 
 * <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs)): A base class for <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> services used by the Blazor framework to receive an authentication state from the host environment and revalidate it at regular intervals.
 
-  The default 30 minute revalidation interval can be adjusted in [`RevalidatingIdentityAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/v7.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorServerWeb-CSharp/Areas/Identity/RevalidatingIdentityAuthenticationStateProvider.cs#L26). The following example shortens the interval to 20 minutes:
-
-  ```csharp
-  protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(20);
-  ```
-
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+In apps generated from the Blazor project template for .NET 8 or later, adjust the default 30 minute revalidation interval in `IdentityRevalidatingAuthenticationStateProvider`. Earlier than .NET 8, adjust the interval in `RevalidatingIdentityAuthenticationStateProvider`. The following example shortens the interval to 20 minutes:
+
+```csharp
+protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(20);
+```
 
 ### Authentication state management at sign out
 

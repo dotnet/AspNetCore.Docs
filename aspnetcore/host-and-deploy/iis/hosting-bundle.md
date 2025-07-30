@@ -1,11 +1,10 @@
 ---
 title: Hosting Bundle
-author: rick-anderson
+author: tdykstra
 description: Learn how to configure the .NET Hosting Bundle.  
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
+ms.author: tdykstra
+ms.date: 07/29/2025
 uid: host-and-deploy/iis/hosting-bundle
 ---
 # The .NET Hosting Bundle
@@ -34,8 +33,8 @@ Download the installer using the following links:
 
 On older versions of Windows, for example Windows Server 2012 R2, install the Visual Studio C++ 2015, 2017, 2019 Redistributable. Otherwise, a confusing error message in the Windows Event Log reports that `The data is the error.`
 
-[Current x64 VS C++ redistributable](https://aka.ms/vs/16/release/vc_redist.x64.exe)
-[Current x86 VS C++ redistributable](https://aka.ms/vs/16/release/vc_redist.x86.exe)
+[Current x64 VS C++ redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+[Current x86 VS C++ redistributable](https://aka.ms/vs/17/release/vc_redist.x86.exe)
 
 ## Earlier versions of the installer
 

@@ -1,10 +1,10 @@
 ---
 title: What's new in ASP.NET Core in .NET 5
-author: rick-anderson
+author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 5.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/29/2020
+ms.date: 07/29/2025
 uid: aspnetcore-5.0
 ---
 # What's new in ASP.NET Core in .NET 5
@@ -357,7 +357,9 @@ The `AllowAnonymous` extension method allows anonymous access to an endpoint:
 
 ### Custom handling of authorization failures
 
-Custom handling of authorization failures is now easier with the new [IAuthorizationMiddlewareResultHandler](https://github.com/dotnet/aspnetcore/blob/v5.0.0-rc.1.20451.17/src/Security/Authorization/Policy/src/IAuthorizationMiddlewareResultHandler.cs) interface that is invoked by the [authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) [Middleware](xref:fundamentals/middleware/index). The default implementation remains the same, but a custom handler can be registered in [Dependency injection, which allows custom HTTP responses based on why authorization failed. See [this sample](https://github.com/dotnet/aspnetcore/blob/main/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) that demonstrates usage of the `IAuthorizationMiddlewareResultHandler`.
+Custom handling of authorization failures is now easier with the new <xref:Microsoft.AspNetCore.Authorization.IAuthorizationMiddlewareResultHandler> interface that is invoked by the [Authorization Middleware (`UseAuthorization`)](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A). The default implementation remains the same, but a custom handler can be registered with dependency injection, which allows custom HTTP responses based on an authorization failure. See [`SampleAuthorizationMiddlewareResultHandler.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) for a demonstration of `IAuthorizationMiddlewareResultHandler`.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### Authorization when using endpoint routing
 
