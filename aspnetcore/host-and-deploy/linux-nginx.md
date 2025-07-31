@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to set up Nginx as a reverse proxy on Ubuntu, RHEL and SUSE to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc, engagement-fy23, linux-related-content
+ms.custom: mvc, engagement-fy23, linux-related-content, sfi-ropc-nochange
 ms.date: 5/8/2023
 uid: host-and-deploy/linux-nginx
 ---

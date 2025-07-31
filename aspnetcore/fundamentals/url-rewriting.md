@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about URL rewriting and redirecting with URL Rewriting Middleware in ASP.NET Core applications.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, sfi-image-nochange
 ms.date: 3/3/2022
 uid: fundamentals/url-rewriting
 ---
