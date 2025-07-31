@@ -64,7 +64,7 @@ When creating a PR for an issue:
         1. Place the code in a file with the correct extension inside the version subfolder.
         1. Add a project file (`.csproj`) to the version subfolder targeting the matching .NET version, if necessary to run or build the snippet.
 - Reference snippets using triple-colon syntax:
-  - **Use file-relative paths** for snippets specific to a single doc file:
+  - **Use file-relative paths** for snippets located in the same file as the articles that refer to it.
     ```
     :::code language="csharp" source="../snippets/my-doc/Program.cs":::
     ```
