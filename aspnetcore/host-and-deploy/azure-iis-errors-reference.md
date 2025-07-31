@@ -1,9 +1,9 @@
 ---
 title: Common error troubleshooting for Azure App Service and IIS with ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Provides troubleshooting advice for the most common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 7/23/2024
 uid: host-and-deploy/azure-iis-errors-reference
 ---

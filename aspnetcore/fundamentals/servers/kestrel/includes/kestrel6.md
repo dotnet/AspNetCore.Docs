@@ -41,7 +41,6 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 
 <a name="endpoint-configuration"></a>
 * <xref:fundamentals/servers/kestrel/endpoints>
-* Source for [`WebApplication.CreateBuilder` method call to `UseKestrel`](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/DefaultBuilder/src/WebHost.cs#L224)
 <a name="kestrel-options"></a>
 * <xref:fundamentals/servers/kestrel/options>
 <a name="http2-support"></a>

@@ -1,10 +1,14 @@
 ---
 title: Host ASP.NET Core on Linux with Nginx
-author: rick-anderson
+author: tdykstra
 description: Learn how to set up Nginx as a reverse proxy on Ubuntu, RHEL and SUSE to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-3.1'
+<<<<<<< HEAD
 ms.author: riande
 ms.custom: mvc, engagement-fy23, linux-related-content, sfi-ropc-nochange
+=======
+ms.author: tdykstra
+>>>>>>> a361174c58c342a73bc90b2e68bb61a2bd48039a
 ms.date: 5/8/2023
 uid: host-and-deploy/linux-nginx
 ---

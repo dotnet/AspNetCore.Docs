@@ -1,8 +1,8 @@
 ---
 title: Make an ASP.NET Core app's content localizable
-author: rick-anderson
+author: wadepickett
 description: Learn how to make an ASP.NET Core app's content localizable to prepare the app for localizing content into different languages and cultures.
-ms.author: riande
+ms.author: wpickett
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 06/20/2025
 uid: fundamentals/localization/make-content-localizable

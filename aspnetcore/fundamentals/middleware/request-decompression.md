@@ -1,9 +1,9 @@
 ---
 title: Request decompression in ASP.NET Core
-author: david-acker
+author: tdykstra
 description: Learn how to use the request decompression middleware in ASP.NET Core
 monikerRange: '>= aspnetcore-7.0'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 8/17/2022
 uid: fundamentals/middleware/request-decompression
 ---
