@@ -25,15 +25,21 @@ When creating a PR for an issue:
 
 ### API References and Verification
 - Never guess API documentation IDs, always verify. If unable to verify, say so.
-- Check if features were introduced after .NET Core 3.1
-- Default to most compatible syntax when uncertain
+- Use `<xref:api-doc-ID>` for API cross-references. The documentation ID must be verified and sourced from the official XML documentation in dotnet-api-docs.
 
 ### Links and References
-- Use relative links for files within this repo
-- When adding external links into a document, strip out the language/culture segment of the URL if present (example: remove the `en-us` or `en` part of links to English versions of webpages)
-- For learn.microsoft.com links, remove `https://learn.microsoft.com/en-us` from URLs
-- Use cross-references for APIs: `<xref:api-doc-ID>`
-- Get doc ID from the relevant XML doc in dotnet-api-docs, and omit the first two characters of the doc ID
+- Use relative links (for example, `../folder/file.md` or `./file.md`) when referencing files within this repository. Do not use absolute URLs or GitHub web links for internal content.
+- For external links, always remove any language or culture segment from the URL path (such as `/en-us/`, `/fr-fr/`, `/en/`, etc.).
+  - Example (Microsoft Learn):
+    - Original: `https://learn.microsoft.com/en-us/aspnet/core/blazor/`
+    - Correct: `https://learn.microsoft.com/aspnet/core/blazor/`
+  - Example (Wikipedia):  
+    - Original: `https://en.wikipedia.org/wiki/ASP.NET_Core`
+    - Correct: `https://wikipedia.org/wiki/ASP.NET_Core`
+- For Microsoft Learn links, also strip the base domain (`https://learn.microsoft.com/en-us`) so only the path remains.
+  - Example:  
+    - Original: `https://learn.microsoft.com/en-us/aspnet/core/blazor/`
+    - Correct: `/aspnet/core/blazor/`
 
 ## Repository-Specific Guidelines
 - Follow the [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
@@ -78,9 +84,9 @@ When creating a PR for an issue:
   ```
 - Use the latest, non-preview C# coding patterns in non-preview code examples
 - Use the latest preview C# coding patterns in preview code examples
-- Use the following code language and indentation standards for markdown code blocks or the `language` attribute of code snippets:
+- Use the following language code and indentation standards for markdown code blocks or the `language` attribute of code snippets:
 
-  Content of the snippet | Code language | Indentation in spaces
+  Content of the snippet | Language code | Indentation in spaces
   :---: | :---: | :---:
   C# | csharp | 4
   HTML | html | 4
