@@ -718,4 +718,4 @@ The following `ExampleTabSet` component uses the `TabSet` component, which conta
 ## Additional resources
 
 * [Generic type support: Explicit generic types based on ancestor components](xref:blazor/components/generic-type-support#explicit-generic-types-based-on-ancestor-components)
-* [State management: Browser storage: Factor out state preservation to a common provider](xref:blazor/state-management/broswer-storage#factor-out-state-preservation-to-a-common-provider)
+* [State management: Browser storage: Factor out state preservation to a common provider](xref:blazor/state-management/browser-storage#factor-out-state-preservation-to-a-common-provider)
