@@ -422,6 +422,6 @@ Prerendering guidance is organized in the Blazor documentation by subject matter
     * [Secure a SignalR hub](xref:blazor/security/webassembly/additional-scenarios#secure-a-signalr-hub)
   * [Interactive server-side rendering: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
 
-* [State management: Browser storage: Handle prerendering](xref:blazor/state-/browser-storage#handle-prerendering): Besides the *Handle prerendering* section, several article sections in the [State management node](xref:blazor/state-/browser-storage/index) include remarks on prerendering.
+* [State management: Browser storage: Handle prerendering](xref:blazor/state-management/browser-storage#handle-prerendering): Besides the *Handle prerendering* section, several article sections in the [State management node](xref:blazor/state-management/browser-storage/index) include remarks on prerendering.
 
 For .NET 7 or earlier, see [Blazor WebAssembly security additional scenarios: Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#prerendering-with-authentication). After viewing the content in this section, reset the documentation article version selector dropdown to the latest .NET release version to ensure that documentation pages load for the latest release on subsequent visits.
