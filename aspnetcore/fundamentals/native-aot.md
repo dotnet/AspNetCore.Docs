@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core support for Native AOT
 author: rick-anderson
-ms.author: riande
+ms.author: tdykstra
 description: Learn about ASP.NET Core support for Native AOT
 content_well_notification: AI-contribution
 ms.custom: mvc, engagement-fy23
