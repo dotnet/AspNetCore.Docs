@@ -4,12 +4,8 @@ author: guardrex
 description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
-<<<<<<< HEAD
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 06/11/2025
-=======
 ms.date: 07/29/2025
->>>>>>> a361174c58c342a73bc90b2e68bb61a2bd48039a
 uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
