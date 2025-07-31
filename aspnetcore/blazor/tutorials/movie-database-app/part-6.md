@@ -195,9 +195,6 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 * [LINQ documentation](/dotnet/csharp/programming-guide/concepts/linq/)
 * [Write C# LINQ queries to query data (C# documentation)](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq)
 * [Lambda Expression (C# documentation](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions)
-* `NOCASE` and case sensitivity for SQLite:
-  * [Datatypes In SQLite: Collating Sequences](https://sqlite.org/datatype3.html#collating_sequences)
-  * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
 
 ## Legal
 
