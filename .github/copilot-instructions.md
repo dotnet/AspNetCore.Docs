@@ -14,11 +14,11 @@ This document contains general and repository-specific instructions for GitHub C
 ### Issue Handling
 When creating a PR for an issue:
 1. Read the full issue and all linked references
-2. Study code samples from linked PRs that demonstrate features in the latest .NET pre-release version (e.g., .NET 10 Preview) to ensure guidance and documentation reflect the latest upcoming changes and best practices.
+2. Study code samples from linked PRs that demonstrate features in the latest .NET pre-release version (e.g., .NET 10 Preview) to ensure that guidance and documentation reflect the latest upcoming changes and best practices.
 3. For labeled issues that have the following labels, follow these guidelines:
  - **new-feature:** State which version introduced the feature
  - **bug:** Focus on correcting technical inaccuracies
-4. When you're assigned an issue, after you've completed your work and the workflows (status checks) have run, check to make sure there are no build warnings under the OpenPublishing.Build status check. If there are, open the build report (under View Details) and resolve any build warnings you introduced.
+4. When you're assigned an issue, after you've completed your work and the workflows (status checks) have run, ensure there are no build warnings under the OpenPublishing.Build status check. If there are, open the build report (under View Details) and resolve any build warnings you introduced.
 5. Provide an overview of the project you're working on, including its purpose, goals, and any relevant background information.
 6. Include the folder structure of the repository, including any important directories or files that are relevant to the project.
 
@@ -53,7 +53,7 @@ When creating a PR for an issue:
   - For any new or updated .md file, ensure the standard frontmatter (metadata) is included as specified in [Metadata for Microsoft Learn documentation.](https://learn.microsoft.com/en-us/contribute/content/metadata)
   - For any new or updated .md file added to the repository, ensure the following frontmatter (metadata) is included:
     - Metadata `ai-usage: ai-assisted` if any AI assistance was used
-    - The correct order of metadata lines is to place the title (`title`) first and the rest of the metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
+    - Place the title metadata first, followed by the remaining metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
     - Metadata `ms.date: <today's date>` with a format of MM-DD-YYYY.  If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
     
 ### Version Targeting Common Range Patterns
@@ -94,7 +94,7 @@ When creating a PR for an issue:
   C# | csharp | 4
   HTML | html | 4
   CSS | css | 4
-  JavaScript | javascript | 2 (4 spaces for line continuation)
+  JavaScript | javascript | 2 spaces (use 4 spaces for line continuation)
   XML | xml | 2
   JSON | json | 2
   Console | console | 2
@@ -107,6 +107,6 @@ When creating a PR for an issue:
 - Use code style for any words that shouldn't be localized
 - For bullet lists, use an asterisk as the bullet marker
 - Bullet lists should have two or more entries at the same level in the list. If there is only one item under a bullet, remove its bullet marker and roll that item into its parent bullet.
-- Lead with Microsoft recommended approaches
+- Lead with Microsoft-recommended approaches
 - Include differences between Minimal API and controller-based approaches when relevant
 - For middleware content and examples, use the middleware class approach
