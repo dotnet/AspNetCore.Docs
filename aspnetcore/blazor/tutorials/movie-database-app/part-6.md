@@ -60,7 +60,7 @@ The `movie => movie.Title!.Contains(...)` code is a *lambda expression*. Lambdas
 
 The <xref:System.Linq.Queryable.Where%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains%2A> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case-sensitive and case-insensitive filtering, depending on the query. The remainder of this tutorial assumes case-insensitive database collation.
 
-To adopt case-insensitive collation when using SQLite (<xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> is called in `Program.cs`), open the `Data/BlazorWebAppMoviesContext.cs` file. Inside the `BlazorWebAppMoviesContext` class, add the following code, which adds [`NOCASE` column collation](/ef/core/miscellaneous/collations-and-case-sensitivity#column-collation):
+To adopt case-insensitive collation when using SQLite (<xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> is called in `Program.cs`), open the `Data/BlazorWebAppMoviesContext.cs` file. Inside the `BlazorWebAppMoviesContext` class, add the following code, which adds [`NOCASE` column collation](/ef/core/miscellaneous/collations-and-case-sensitivity#column-collation) to the `Title` column:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
