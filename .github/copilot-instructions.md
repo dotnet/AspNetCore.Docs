@@ -19,6 +19,8 @@ When creating a PR for an issue:
  - **new-feature:** State which version introduced the feature
  - **bug:** Focus on correcting technical inaccuracies
 4. When you're assigned an issue, after you've completed your work and the workflows (status checks) have run, check to make sure there are no build warnings under the OpenPublishing.Build status check. If there are, open the build report (under View Details) and resolve any build warnings you introduced.
+5. Provide an overview of the project you're working on, including its purpose, goals, and any relevant background information.
+6. Include the folder structure of the repository, including any important directories or files that are relevant to the project.
 
 ### Markdown File Naming and Organization
 - If you're adding a new Markdown file, it should be named in all lowercase with hyphens separating words. Also, omit any filler words such as "the" or "a" from the file name.
