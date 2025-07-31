@@ -14,8 +14,8 @@ This document contains general and repository-specific instructions for GitHub C
 ### Issue Handling
 When creating a PR for an issue:
 1. Read the full issue and all linked references
-2. Study code samples from linked PRs for pre-release features
-3. For labeled issues:
+2. Study code samples from linked PRs that demonstrate features in the latest .NET pre-release version (e.g., .NET 10 Preview) to ensure guidance and documentation reflect the latest upcoming changes and best practices.
+3. For labeled issues that have the following labels, follow these guidelines:
  - **new-feature:** State which version introduced the feature
  - **bug:** Focus on correcting technical inaccuracies
 4. When you're assigned an issue, after you've completed your work and the workflows (status checks) have run, check to make sure there are no build warnings under the OpenPublishing.Build status check. If there are, open the build report (under View Details) and resolve any build warnings you introduced.
