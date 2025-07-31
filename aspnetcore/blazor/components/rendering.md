@@ -341,7 +341,7 @@ For approaches to manage state, see the following resources:
 
 * [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
 * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
-* [Server-side in-memory state container service](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([client-side equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-wasm)) section of the *State management* article.
+* [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service) section of the *State management* overview.
 
 For the state manager approach, C# events are outside the Blazor rendering pipeline. Call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to rerender in response to the state manager's events.
 

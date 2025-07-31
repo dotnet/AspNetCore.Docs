@@ -525,7 +525,7 @@ In spite of the word "state" in the name, <xref:Microsoft.AspNetCore.Components.
 
 Authentication uses the same ASP.NET Core Identity authentication as Razor Pages and MVC apps. The user state stored for ASP.NET Core Identity flows to Blazor without adding additional code to the app. Follow the guidance in the ASP.NET Core Identity articles and tutorials for the Identity features to take effect in the Blazor parts of the app.
 
-For guidance on general state management outside of ASP.NET Core Identity, see <xref:blazor/state-management?pivots=server>.
+For guidance on general state management outside of ASP.NET Core Identity, see <xref:blazor/state-management/index>.
 
 ### Additional security abstractions
 

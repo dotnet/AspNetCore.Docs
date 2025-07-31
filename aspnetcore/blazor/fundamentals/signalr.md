@@ -517,7 +517,7 @@ If reconnection fails, the user is instructed to retry or reload the page:
 
 :::moniker-end
 
-If reconnection succeeds, user state is often lost. Custom code can be added to any component to save and reload user state across connection failures. For more information, see <xref:blazor/state-management>.
+If reconnection succeeds, user state is often lost. Custom code can be added to any component to save and reload user state across connection failures. For more information, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
 
 :::moniker range=">= aspnetcore-10.0"
 

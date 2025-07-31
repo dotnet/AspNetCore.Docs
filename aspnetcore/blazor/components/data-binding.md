@@ -1043,7 +1043,7 @@ Prior to the release of .NET 7, two-way binding across components uses `get`/`se
 
 :::moniker-end
 
-For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management>.
+For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management/index>.
 
 ## Bound field or property expression tree
 

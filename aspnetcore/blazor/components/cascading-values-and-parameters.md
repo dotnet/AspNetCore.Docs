@@ -290,7 +290,7 @@ Add a navigation link to the `DaleksMain` component in `NavMenu.razor`:
 </div>
 ```
 
-Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management) before adopting it in a production app with constrained processing and memory resources.
+Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management/index) before adopting it in a production app with constrained processing and memory resources.
 
 Any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state they use. **Avoid creating a single large class representing the entire global application state.** Instead, create granular classes and cascade them separately with specific subscriptions to cascading parameters, ensuring that only components subscribed to a specific portion of the application state are affected by changes.
 
@@ -718,4 +718,4 @@ The following `ExampleTabSet` component uses the `TabSet` component, which conta
 ## Additional resources
 
 * [Generic type support: Explicit generic types based on ancestor components](xref:blazor/components/generic-type-support#explicit-generic-types-based-on-ancestor-components)
-* [State management: Factor out state preservation to a common provider](xref:blazor/state-management?pivots=server#factor-out-state-preservation-to-a-common-provider)
+* [State management: Browser storage: Factor out state preservation to a common provider](xref:blazor/state-management/broswer-storage#factor-out-state-preservation-to-a-common-provider)
