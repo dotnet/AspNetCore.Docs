@@ -58,14 +58,14 @@ Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGr
 
 The `movie => movie.Title!.Contains(...)` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the <xref:System.Linq.Queryable.Where%2A> or <xref:System.String.Contains%2A> methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as <xref:System.Linq.Queryable.Where%2A>, <xref:System.String.Contains%2A>, or <xref:System.Linq.Queryable.OrderBy%2A>. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
 
-The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains%2A> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case-sensitive and case-insensitive filtering, depending on the query. The remainder of this tutorial assumes case-insensitive database collation.
+The <xref:System.Linq.Queryable.Where%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains%2A> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case-sensitive and case-insensitive filtering, depending on the query. The remainder of this tutorial assumes case-insensitive database collation.
 
-To adopt case-insensitive collation when using SQLite (<xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> is called in `Program.cs`), open the `Data/BlazorWebAppMoviesContext.cs` file. Inside the `BlazorWebAppMoviesContext` class, add the following code:
+To adopt case-insensitive collation when using SQLite (<xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> is called in `Program.cs`), open the `Data/BlazorWebAppMoviesContext.cs` file. Inside the `BlazorWebAppMoviesContext` class, add the following code, which adds [`NOCASE` column collation](/ef/core/miscellaneous/collations-and-case-sensitivity#column-collation):
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
-    modelBuilder.UseCollation("SQL_Latin1_General_CP1_CS_AS");
+    modelBuilder.Entity<Movie>().Property(c => c.Title).UseCollation("NOCASE");
 }
 ```
 
@@ -152,7 +152,9 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 * [LINQ documentation](/dotnet/csharp/programming-guide/concepts/linq/)
 * [Write C# LINQ queries to query data (C# documentation)](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq)
 * [Lambda Expression (C# documentation](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions)
-* [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
+* `NOCASE` and case sensitivity for SQLite:
+  * [Datatypes In SQLite: Collating Sequences](https://sqlite.org/datatype3.html#collating_sequences)
+  * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
 
 ## Legal
 
