@@ -1,6 +1,6 @@
 ---
 title: Log creation and redirection with the ASP.NET Core Module
-author: rick-anderson
+author: tdykstra
 description: Configure IIS and the ASP.NET Core Module to capture logs and diagnostic information.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra

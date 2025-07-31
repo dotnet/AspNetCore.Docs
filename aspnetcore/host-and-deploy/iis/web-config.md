@@ -1,6 +1,6 @@
 ---
 title: web.config file
-author: rick-anderson
+author: tdykstra
 description: Discover what is inside of the web.config file and how to configure different ASP.NET Core Module options.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra

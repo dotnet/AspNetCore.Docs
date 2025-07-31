@@ -1,6 +1,6 @@
 ---
 title: IIS modules with ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
