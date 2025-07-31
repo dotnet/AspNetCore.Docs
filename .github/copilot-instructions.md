@@ -1,7 +1,7 @@
 ---
 author: wadepickett
 ms.author: wpickett
-ms.date: 07-29-2025
+ms.date: 07-31-2025
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
@@ -24,8 +24,9 @@ When creating a PR for an issue:
 - If you're adding a new Markdown file, it should be named in all lowercase with hyphens separating words. Also, omit any filler words such as "the" or "a" from the file name.
 
 ### API References and Verification
-- Never guess API documentation IDs, always verify. If unable to verify, say so.
-- Use `<xref:api-doc-ID>` for API cross-references. The documentation ID must be verified and sourced from the official XML documentation in dotnet-api-docs.
+  - Use `<xref:api-doc-ID>` for API cross-references. 
+  - The API documentation ID must be verified and sourced from the official XML documentation in dotnet-api-docs, never just infer API documentation IDs by looking for similar patterns.
+  - If you cannot verify, state that explicitly in your output.
 
 ### Links and References
 - Use relative links (for example, `../folder/file.md` or `./file.md`) when referencing files within this repository. Do not use absolute URLs or GitHub web links for internal content.
