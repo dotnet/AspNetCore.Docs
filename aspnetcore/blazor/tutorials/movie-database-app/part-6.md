@@ -58,24 +58,35 @@ Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGr
 
 The `movie => movie.Title!.Contains(...)` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the <xref:System.Linq.Queryable.Where%2A> or <xref:System.String.Contains%2A> methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as <xref:System.Linq.Queryable.Where%2A>, <xref:System.String.Contains%2A>, or <xref:System.Linq.Queryable.OrderBy%2A>. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
 
-The <xref:System.Linq.Queryable.Where%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains%2A> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case-sensitive and case-insensitive filtering, depending on the query. The remainder of this tutorial assumes case-insensitive database collation.
-
-To adopt case-insensitive collation when using SQLite (<xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> is called in `Program.cs`), open the `Data/BlazorWebAppMoviesContext.cs` file. Inside the `BlazorWebAppMoviesContext` class, add the following code, which adds [`NOCASE` column collation](/ef/core/miscellaneous/collations-and-case-sensitivity#column-collation) to the `Title` column:
-
-```csharp
-protected override void OnModelCreating(ModelBuilder modelBuilder)
-{
-    modelBuilder.Entity<Movie>().Property(c => c.Title).UseCollation("NOCASE");
-}
-```
+The <xref:System.Linq.Queryable.Where%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains%2A> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case-sensitive and case-insensitive filtering, depending on the query.
 
 Run the app and navigate to the movies `Index` page at `/movies`. The movies in the database load:
 
 ![Mad Max movies before filtering in the movies Index page](~/blazor/tutorials/movie-database-app/part-6/_static/before-filtering.png)
 
+:::zone pivot="vs"
+
 Append a query string to the URL in the address bar: `?titleFilter=road+warrior`. For example, the full URL appears as `https://localhost:7073/movies?titleFilter=road+warrior`, assuming the port number is `7073`. The filtered movie is displayed:
 
 !['The Road Warrior' Mad Max movie filtered using a query string in the browser's address bar](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result.png)
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Append a query string to the URL in the address bar: `?titleFilter=Road+Warrior`. For example, the full URL appears as `https://localhost:7073/movies?titleFilter=Road+Warrior`, assuming the port number is `7073`. The filtered movie is displayed:
+
+!['The Road Warrior' Mad Max movie filtered using a query string in the browser's address bar](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result-sqlite.png)
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Append a query string to the URL in the address bar: `?titleFilter=Road+Warrior`. For example, the full URL appears as `https://localhost:7073/movies?titleFilter=Road+Warrior`, assuming the port number is `7073`. The filtered movie is displayed:
+
+!['The Road Warrior' Mad Max movie filtered using a query string in the browser's address bar](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result-sqlite.png)
+
+:::zone-end
 
 Next, give users a way to provide the `titleFilter` filter string via the component's UI. Add the following HTML under the H1 heading (`<h1>Index</h1>`). The following HTML reloads the page with the contents of the textbox as a query string value:
 
@@ -108,6 +119,8 @@ Because the app is currently running with `dotnet watch`, saved changes are dete
 
 :::zone-end
 
+:::zone pivot="vs"
+
 Type "`road warrior`" into the search box and select the **:::no-loc text="Search":::** button to filter the movies:
 
 ![Mad Max movies before filtering in the movies Index page. The search field has the value 'road warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter.png)
@@ -117,6 +130,36 @@ The result after searching on `road warrior`:
 !['The Road Warrior' Mad Max movie filtered using a GET request via an HTML form action](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result.png)
 
 Notice that the search box loses the search value ("`road warrior`") when the movies are filtered. If you want to preserve the searched value, add the `data-permanent` attribute:
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Type "`Road Warrior`" into the search box and select the **:::no-loc text="Search":::** button to filter the movies:
+
+![Mad Max movies before filtering in the movies Index page. The search field has the value 'Road Warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-sqlite.png)
+
+The result after searching on `Road Warrior`:
+
+!['The Road Warrior' Mad Max movie filtered using a GET request via an HTML form action](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result-sqlite.png)
+
+Notice that the search box loses the search value ("`Road Warrior`") when the movies are filtered. If you want to preserve the searched value, add the `data-permanent` attribute:
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Type "`Road Warrior`" into the search box and select the **:::no-loc text="Search":::** button to filter the movies:
+
+![Mad Max movies before filtering in the movies Index page. The search field has the value 'Road Warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-sqlite.png)
+
+The result after searching on `Road Warrior`:
+
+!['The Road Warrior' Mad Max movie filtered using a GET request via an HTML form action](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result-sqlite.png)
+
+Notice that the search box loses the search value ("`Road Warrior`") when the movies are filtered. If you want to preserve the searched value, add the `data-permanent` attribute:
+
+:::zone-end
 
 ```diff
 - <form action="/movies" data-enhance>
