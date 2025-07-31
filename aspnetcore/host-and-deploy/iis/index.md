@@ -4,11 +4,9 @@ author: rick-anderson
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
+ms.custom: mvc, sfi-ropc-nochange
 ms.date: 04/26/2024
 uid: host-and-deploy/iis/index
-ms.custom:
-  - mvc
-  - sfi-ropc-nochange
 ---
 # Host ASP.NET Core on Windows with IIS
 

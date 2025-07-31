@@ -3,11 +3,9 @@ title: ASP.NET Core security topics
 author: tdykstra
 description: Provides links to articles on authentication, authorization, and security in ASP.NET Core.
 ms.author: tdykstra
+ms.custom: mvc, sfi-ropc-nochange
 ms.date: 3/9/2022
 uid: security/index
-ms.custom:
-  - mvc
-  - sfi-ropc-nochange
 ---
 # ASP.NET Core security topics
 
