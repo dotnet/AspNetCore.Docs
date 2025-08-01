@@ -517,7 +517,7 @@ Cascading parameters don't pass data across render mode boundaries:
 
 * State crossing the boundary between static and interactive rendering must be serializable. Components are arbitrary objects that reference a vast chain of other objects, including the renderer, the DI container, and every DI service instance. You must explicitly cause state to be serialized from static SSR to make it available in subsequent interactively-rendered components. Two approaches are adopted:
   * Via the Blazor framework, parameters passed across a static SSR to interactive rendering boundary are serialized automatically if they're JSON-serializable, or an error is thrown.
-  * State stored in [`PersistentComponentState`](xref:blazor/components/prerender#persist-prerendered-state) is serialized and recovered automatically if it's JSON-serializable, or an error is thrown.
+  * State stored in [`PersistentComponentState`](xref:blazor/state-management/persistent-component-state) is serialized and recovered automatically if it's JSON-serializable, or an error is thrown.
 
 Cascading parameters aren't JSON-serializable because the typical usage patterns for cascading parameters are somewhat like DI services. There are often platform-specific variants of cascading parameters, so it would be unhelpful to developers if the framework stopped developers from having server-interactive-specific versions or WebAssembly-specific versions. Also, many cascading parameter values in general aren't serializable, so it would be impractical to update existing apps if you had to stop using all nonserializable cascading parameter values.
 

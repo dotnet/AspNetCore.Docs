@@ -145,7 +145,7 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 
 :::moniker range=">= aspnetcore-8.0"
 
-If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see <xref:blazor/components/prerender>.
+If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see <xref:blazor/state-management/persistent-component-state>.
 
 :::moniker-end
 
@@ -730,7 +730,7 @@ When the custom reconnect modal appears, it renders the following content with a
 
 :::moniker range=">= aspnetcore-8.0"
 
-By default, components are prerendered on the server before the client connection to the server is established. For more information, see <xref:blazor/components/prerender>.
+By default, components are prerendered on the server before the client connection to the server is established. For more information, see <xref:blazor/state-management/persistent-component-state>.
 
 :::moniker-end
 

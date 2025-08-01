@@ -1361,7 +1361,7 @@ To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](x
 :::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
-> Prerendering is enabled by default in Blazor Web Apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+> Prerendering is enabled by default in Blazor Web Apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see <xref:blazor/state-management/persistent-component-state>.
 
 :::moniker-end
 

@@ -640,6 +640,8 @@ items:
             items:
               - name: Overview
                 uid: blazor/state-management/index
+              - name: Persistent component state
+                uid: blazor/state-management/persistent-component-state
               - name: Server
                 uid: blazor/state-management/server
               - name: WebAssembly
