@@ -1594,7 +1594,7 @@ Common storage options for files include:
   * Services usually offer improved scalability and resiliency over on-premises solutions that are usually subject to single points of failure.
   * Services are potentially lower cost in large storage infrastructure scenarios.
 
-  For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet). The topic demonstrates <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync%2A>, but <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync%2A> can be used to save a <xref:System.IO.FileStream> to blob storage when working with a <xref:System.IO.Stream>.
+  For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet). The topic demonstrates [`UploadFromFileAsync`](/dotnet/api/microsoft.azure.storage.file.cloudfile.uploadfromfileasync), but [`UploadFromStreamAsync`](/dotnet/api/microsoft.azure.storage.file.cloudfile.uploadfromstreamasync) can be used to save a <xref:System.IO.FileStream> to blob storage when working with a <xref:System.IO.Stream>.
 
 ## File upload scenarios
 
