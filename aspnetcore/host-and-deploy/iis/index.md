@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.custom: mvc
+ms.custom: mvc, sfi-ropc-nochange
 ms.date: 04/26/2024
 uid: host-and-deploy/iis/index
 ---

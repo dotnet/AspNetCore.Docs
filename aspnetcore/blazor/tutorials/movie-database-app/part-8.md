@@ -191,9 +191,29 @@ In its place, add the following Razor markup:
 
 `@bind:event="oninput"` performs binding for the HTML's `oninput` event, which fires when the `<input>` element's value is changed as a direct result of a user typing in the search box. The QuickGrid is bound to `FilteredMovies`. As `titleFilter` changes with the value of the search box, rerendering the QuickGrid bound to the `FilteredMovies` method filters movie entities based on the updated value of `titleFilter`.
 
+:::zone pivot="vs"
+
 Run the app, type "`road warrior`" into the search field and notice how the QuickGrid is filtered for each character entered until *The Road Warrior* movie is left when the search field reaches "`road `" (&quot;:::no-loc text="road":::&quot; followed by a space).
 
 ![Movie list filtered to 'The Road Warrior' movie when the search box reaches 'road ' ('road' followed by a space).](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Run the app, type "`Road Warrior`" into the search field and notice how the QuickGrid is filtered for each character entered until *The Road Warrior* movie is left when the search field reaches "`Road `" (&quot;:::no-loc text="Road":::&quot; followed by a space).
+
+![Movie list filtered to 'The Road Warrior' movie when the search box reaches 'Road ' ('Road' followed by a space).](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior-sqlite.png)
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Run the app, type "`Road Warrior`" into the search field and notice how the QuickGrid is filtered for each character entered until *The Road Warrior* movie is left when the search field reaches "`Road `" (&quot;:::no-loc text="Road":::&quot; followed by a space).
+
+![Movie list filtered to 'The Road Warrior' movie when the search box reaches 'Road ' ('Road' followed by a space).](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior-sqlite.png)
+
+:::zone-end
 
 Filtering database records is performed on the server, and the server interactively sends back the HTML to display over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
 

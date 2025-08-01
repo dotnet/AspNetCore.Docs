@@ -1,11 +1,12 @@
 ---
 title: Push notifications for ASP.NET Core Blazor Progressive Web Applications (PWAs)
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to issue push notifications in Blazor Progressive Web Applications (PWAs).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/07/2025
+ms.date: 07/30/2025
 uid: blazor/progressive-web-app/push-notifications
 ---
 # Push notifications for ASP.NET Core Blazor Progressive Web Applications (PWAs)
@@ -30,23 +31,20 @@ The example in this article uses push notifications to provide order status upda
 
 Generate the cryptographic public and private keys for securing push notifications either locally, for example with PowerShell or IIS, or using an online tool. 
 
-> [!CAUTION]
-> This article's use of a unencrypted, insecure private key in the app's code ***is for demonstration purposes and local testing only.*** We recommend using a secure approach for supplying a private key to an ASP.NET Core app at all stages of development. When working locally in the Development environment, a private key can be provided to the app using the [Secret Manager](xref:security/app-secrets#secret-manager) tool. In Development, Staging, and Production environments, [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) can be used, noting in passing that to obtain a certificate's private key from a key vault that the certificate must have an exportable private key.
-
-<!-- We'll expand this article to include explicit guidance on key management with AKV. A 
-     Google search with 'get certificate private key from azure key vault for use in c# code'
-     generates a decent code sample. I didn't see such a good starting point in AKV Learn 
-     articles, so we'll use the AI-generated code as a starting point.
-
-     The preceding CAUTION statement also appears in the 'Send a notification' section.
--->
-
 Placeholders used in this article's example code:
 
 * `{PUBLIC KEY}`: The public key.
 * `{PRIVATE KEY}`: The private key.
 
 For this article's C# examples, update the `someone@example.com` email address to match the address used when creating the custom key pair.
+
+When implementing push notifications, ensure that cryptographic keys are managed securely:
+
+* **Key generation**: Use a trusted library or tool to generate the public and private keys. Avoid using weak or outdated algorithms.
+* **Key storage**: Store private keys securely on the server, using a secure storage mechanism such as a hardware security module (HSM) or encrypted storage. Never expose private keys to the client.
+* **Key usage**: Use the private key only for signing push notification payloads. Ensure that the public key is distributed securely to clients.
+
+For more information on cryptographic best practices, see [Cryptographic Services](/dotnet/standard/security/cryptographic-services).
 
 ## Create a subscription
 
@@ -258,7 +256,7 @@ Sending a notification involves performing some complex cryptographic operations
 The `SendNotificationAsync` method dispatches order notifications using the captured subscription. The following code makes uses of `WebPush` APIs for dispatching the notification. The payload of the notification is JSON serialized and includes a message and a URL. The message is displayed to the user, and the URL allows the user to reach the pizza order associated with the notification. Additional parameters can be serialized as required for other notification scenarios.
 
 > [!CAUTION]
-> This article's use of a unencrypted, insecure private key in the app's code ***is for demonstration purposes and local testing only.*** We recommend using a secure approach for supplying a private key to an ASP.NET Core app at all stages of development. When working locally in the Development environment, a private key can be provided to the app using the [Secret Manager](xref:security/app-secrets#secret-manager) tool. In Development, Staging, and Production environments, [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) can be used, noting in passing that to obtain a certificate's private key from a key vault that the certificate must have an exportable private key.
+> In the following example, we recommend using a secure approach for supplying the private key. When working locally in the Development environment, a private key can be provided to the app using the [Secret Manager](xref:security/app-secrets#secret-manager) tool. In Development, Staging, and Production environments, [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) can be used, noting in passing that to obtain a certificate's private key from a key vault that the certificate must have an exportable private key.
 
 ```csharp
 private static async Task SendNotificationAsync(Order order, 

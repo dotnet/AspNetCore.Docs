@@ -58,15 +58,35 @@ Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGr
 
 The `movie => movie.Title!.Contains(...)` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the <xref:System.Linq.Queryable.Where%2A> or <xref:System.String.Contains%2A> methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as <xref:System.Linq.Queryable.Where%2A>, <xref:System.String.Contains%2A>, or <xref:System.Linq.Queryable.OrderBy%2A>. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
 
-The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains%2A> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case sensitive and case insensitive filtering, depending on the query. For information on making case insensitive SQLite queries, see the [Additional resources](#additional-resources) section of this article.
+The <xref:System.Linq.Queryable.Where%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains%2A> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case-sensitive and case-insensitive filtering, depending on the query.
 
 Run the app and navigate to the movies `Index` page at `/movies`. The movies in the database load:
 
 ![Mad Max movies before filtering in the movies Index page](~/blazor/tutorials/movie-database-app/part-6/_static/before-filtering.png)
 
+:::zone pivot="vs"
+
 Append a query string to the URL in the address bar: `?titleFilter=road+warrior`. For example, the full URL appears as `https://localhost:7073/movies?titleFilter=road+warrior`, assuming the port number is `7073`. The filtered movie is displayed:
 
 !['The Road Warrior' Mad Max movie filtered using a query string in the browser's address bar](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result.png)
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Append a query string to the URL in the address bar: `?titleFilter=Road+Warrior`. For example, the full URL appears as `https://localhost:7073/movies?titleFilter=Road+Warrior`, assuming the port number is `7073`. The filtered movie is displayed:
+
+!['The Road Warrior' Mad Max movie filtered using a query string in the browser's address bar](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result-sqlite.png)
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Append a query string to the URL in the address bar: `?titleFilter=Road+Warrior`. For example, the full URL appears as `https://localhost:7073/movies?titleFilter=Road+Warrior`, assuming the port number is `7073`. The filtered movie is displayed:
+
+!['The Road Warrior' Mad Max movie filtered using a query string in the browser's address bar](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result-sqlite.png)
+
+:::zone-end
 
 Next, give users a way to provide the `titleFilter` filter string via the component's UI. Add the following HTML under the H1 heading (`<h1>Index</h1>`). The following HTML reloads the page with the contents of the textbox as a query string value:
 
@@ -99,6 +119,8 @@ Because the app is currently running with `dotnet watch`, saved changes are dete
 
 :::zone-end
 
+:::zone pivot="vs"
+
 Type "`road warrior`" into the search box and select the **:::no-loc text="Search":::** button to filter the movies:
 
 ![Mad Max movies before filtering in the movies Index page. The search field has the value 'road warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter.png)
@@ -108,6 +130,36 @@ The result after searching on `road warrior`:
 !['The Road Warrior' Mad Max movie filtered using a GET request via an HTML form action](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result.png)
 
 Notice that the search box loses the search value ("`road warrior`") when the movies are filtered. If you want to preserve the searched value, add the `data-permanent` attribute:
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Type "`Road Warrior`" into the search box and select the **:::no-loc text="Search":::** button to filter the movies:
+
+![Mad Max movies before filtering in the movies Index page. The search field has the value 'Road Warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-sqlite.png)
+
+The result after searching on `Road Warrior`:
+
+!['The Road Warrior' Mad Max movie filtered using a GET request via an HTML form action](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result-sqlite.png)
+
+Notice that the search box loses the search value ("`Road Warrior`") when the movies are filtered. If you want to preserve the searched value, add the `data-permanent` attribute:
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Type "`Road Warrior`" into the search box and select the **:::no-loc text="Search":::** button to filter the movies:
+
+![Mad Max movies before filtering in the movies Index page. The search field has the value 'Road Warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-sqlite.png)
+
+The result after searching on `Road Warrior`:
+
+!['The Road Warrior' Mad Max movie filtered using a GET request via an HTML form action](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result-sqlite.png)
+
+Notice that the search box loses the search value ("`Road Warrior`") when the movies are filtered. If you want to preserve the searched value, add the `data-permanent` attribute:
+
+:::zone-end
 
 ```diff
 - <form action="/movies" data-enhance>
@@ -143,10 +195,6 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 * [LINQ documentation](/dotnet/csharp/programming-guide/concepts/linq/)
 * [Write C# LINQ queries to query data (C# documentation)](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq)
 * [Lambda Expression (C# documentation](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions)
-* Case insensitive SQLite queries
-  * [How to use case-insensitive query with Sqlite provider? (`dotnet/efcore` #11414)](https://github.com/dotnet/efcore/issues/11414)
-  * [How to make a SQLite column case insensitive (`dotnet/AspNetCore.Docs` #22314)](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
-  * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
 
 ## Legal
 
