@@ -1,7 +1,7 @@
 ---
 title: Rate limiting middleware samples
-author: rick-anderson
-ms.author: riande
+author: wadepickett
+ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
 description: Samples for using ASP.NET rate limitng middleware
 ms.custom: mvc

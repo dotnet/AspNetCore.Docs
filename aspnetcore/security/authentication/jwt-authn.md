@@ -1,9 +1,9 @@
 ---
 title: Generate tokens with dotnet user-jwts
-author: rick-anderson
+author: tdykstra
 description: Learn how to set up manage JSON Web Tokens in development with dotnet user-jwts
 monikerRange: '>= aspnetcore-7.0'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 09/22/2018
 ms.custom: mvc
 uid: security/authentication/jwt

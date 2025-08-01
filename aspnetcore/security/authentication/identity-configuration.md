@@ -2,7 +2,7 @@
 title: Configure ASP.NET Core Identity
 author: AdrienTorris
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
-ms.author: riande
+ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 3/09/2024

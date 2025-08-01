@@ -1,8 +1,8 @@
 ---
 title: Create an ASP.NET Core app with user data protected by authorization
-author: rick-anderson
+author: tdykstra
 description: Learn how to create an ASP.NET Core web app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc, sfi-image-nochange
 ms.date: 12/5/2021
 ms.sfi.ropc: t
