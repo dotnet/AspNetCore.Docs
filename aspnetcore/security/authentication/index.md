@@ -2,7 +2,7 @@
 title: Overview of ASP.NET Core Authentication
 author: mjrousos
 description: Learn about authentication in ASP.NET Core.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 10/18/2022
 uid: security/authentication/index

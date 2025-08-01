@@ -1,8 +1,8 @@
 ---
 title: Miscellaneous ASP.NET Core Data Protection APIs
-author: rick-anderson
+author: wadepickett
 description: Learn about the ASP.NET Core Data Protection ISecret interface.
-ms.author: riande
+ms.author: wpickett
 ms.date: 10/14/2016
 uid: security/data-protection/extensibility/misc-apis
 ---

@@ -1,8 +1,8 @@
 ---
 title: Key encryption at rest in Windows and Azure using ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn implementation details of ASP.NET Core Data Protection key encryption at rest.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 06/06/2025
 uid: security/data-protection/implementation/key-encryption-at-rest
 ---

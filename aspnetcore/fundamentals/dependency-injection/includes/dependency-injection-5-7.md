@@ -1,6 +1,6 @@
 ---
-author: rick-anderson
-ms.author: riande
+author: wadepickett
+ms.author: wpickett
 ms.date: 04/01/2025
 ---
 :::moniker range=">= aspnetcore-6.0 <= aspnetcore-7.0"

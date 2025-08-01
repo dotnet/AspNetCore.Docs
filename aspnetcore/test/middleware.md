@@ -3,7 +3,7 @@ title: Test ASP.NET Core middleware
 author: tratcher
 description: Learn how to test ASP.NET Core middleware with TestServer.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/18/2022
 uid: test/middleware

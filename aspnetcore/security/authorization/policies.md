@@ -1,9 +1,9 @@
 ---
 title: Policy-based authorization in ASP.NET Core
-author: rick-anderson
+author: wadepickett
 description: Learn how to create and use authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 1/5/2023
 uid: security/authorization/policies
