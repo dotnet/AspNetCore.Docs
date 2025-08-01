@@ -110,7 +110,7 @@ builder.WebHost.UseNamedPipes(options =>
     {
         var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndpoint.PipeName);
 
-        return NamedPipeServerStreamAcl.Create(context.NamedPipeEndPoint.PipeName, PipeDirection.InOut,
+        return NamedPipeServerStreamAcl.Create(context.NamedPipeEndpoint.PipeName, PipeDirection.InOut,
             NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Byte,
             context.PipeOptions, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
     };
