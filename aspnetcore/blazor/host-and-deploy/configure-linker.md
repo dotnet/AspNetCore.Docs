@@ -121,4 +121,4 @@ For more information, see [I18N: Pnetlib Internationalization Framework Library 
 
 * <xref:blazor/performance/app-download-size#intermediate-language-il-linking>
 * [IL trimmer concepts and related tools (`dotnet/runtime` GitHub repository)](https://github.com/dotnet/runtime/tree/main/docs/tools/illink)
-* [Trim self-contained deployments and executables (server-side Blazor apps only](/dotnet/core/deploying/trimming/trim-self-contained)
+* [Trim self-contained deployments and executables (server-side Blazor apps only)](/dotnet/core/deploying/trimming/trim-self-contained)
