@@ -642,10 +642,10 @@ items:
                 uid: blazor/state-management/index
               - name: Server
                 uid: blazor/state-management/server
-              - name: Server: Browser storage
-                uid: blazor/state-management/browser-storage
               - name: WebAssembly
                 uid: blazor/state-management/webassembly
+              - name: Browser storage
+                uid: blazor/state-management/browser-storage
           - name: Debug
             uid: blazor/debug
           - name: Lazy load assemblies with WebAssembly

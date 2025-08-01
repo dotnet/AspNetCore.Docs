@@ -5,12 +5,13 @@ description: Learn how to persist user data (state) in Blazor apps using browser
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/31/2025
+ms.date: 08/01/2025
 uid: blazor/state-management/browser-storage
+zone_pivot_groups: blazor-app-models
 ---
-# ASP.NET Core server-side Blazor state management using browser storage
+# ASP.NET Core Blazor state management using browser storage
 
-*This article applies to server-side Blazor apps, Blazor Web Apps and Blazor Server apps. For guidance on Blazor WebAssembly apps, see <xref:blazor/state-management/webassembly#browser-storage>.*
+:::zone pivot="server"
 
 For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:
 
@@ -499,3 +500,27 @@ In general, the *state provider parent component* pattern is recommended:
 * If there's just one top-level state object to persist.
 
 To persist many different state objects and consume different subsets of objects in different places, it's better to avoid persisting state globally.
+
+:::zone-end
+
+:::zone pivot="webassembly"
+
+For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:
+
+* `localStorage` is scoped to the browser's instance. If the user reloads the page or closes and reopens the browser, the state persists. If the user opens multiple browser tabs, the state is shared across the tabs. Data persists in `localStorage` until explicitly cleared. The `localStorage` data for a document loaded in a "private browsing" or "incognito" session is cleared when the last "private" tab is closed.
+* `sessionStorage` is scoped to the browser tab. If the user reloads the tab, the state persists. If the user closes the tab or the browser, the state is lost. If the user opens multiple browser tabs, each tab has its own independent version of the data.
+
+> [!NOTE]
+> `localStorage` and `sessionStorage` can be used in Blazor WebAssembly apps but only by writing custom code or using a third-party package.
+
+Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:
+
+* Bugs in state storage across tabs.
+* Confusing behavior when a tab overwrites the state of other tabs.
+
+`localStorage` is the better choice if the app must persist state across closing and reopening the browser.
+
+> [!WARNING]
+> Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.
+
+:::zone-end

@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/31/2025
+ms.date: 08/01/2025
 uid: blazor/state-management/webassembly
 ---
 # ASP.NET Core Blazor WebAssembly state management
@@ -42,19 +42,6 @@ Data persistence is typically only required for high-value state that users expe
 * Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.
 
 An app can only persist *app state*. UIs can't be persisted, such as component instances and their render trees. Components and render trees aren't generally serializable. To persist UI state, such as the expanded nodes of a tree view control, the app must use custom code to model the behavior of the UI state as serializable app state.
-
-## Where to persist state
-
-Common locations exist for persisting state:
-
-* [Server-side storage](#server-side-storage)
-* [URL](#url)
-* [Browser storage](#browser-storage)
-
-Additional locations available for both server-side Blazor apps and Blazor WebAssembly apps (covered in the overview):
-
-* [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
-* [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
 
 ## Server-side storage
 
@@ -93,26 +80,12 @@ For information on defining URL patterns with the [`@page`](xref:mvc/views/razor
 
 ## Browser storage
 
-For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:
-
-* `localStorage` is scoped to the browser's instance. If the user reloads the page or closes and reopens the browser, the state persists. If the user opens multiple browser tabs, the state is shared across the tabs. Data persists in `localStorage` until explicitly cleared. The `localStorage` data for a document loaded in a "private browsing" or "incognito" session is cleared when the last "private" tab is closed.
-* `sessionStorage` is scoped to the browser tab. If the user reloads the tab, the state persists. If the user closes the tab or the browser, the state is lost. If the user opens multiple browser tabs, each tab has its own independent version of the data.
-
-> [!NOTE]
-> `localStorage` and `sessionStorage` can be used in Blazor WebAssembly apps but only by writing custom code or using a third-party package.
-
-Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:
-
-* Bugs in state storage across tabs.
-* Confusing behavior when a tab overwrites the state of other tabs.
-
-`localStorage` is the better choice if the app must persist state across closing and reopening the browser.
-
-> [!WARNING]
-> Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.
+For more information, see <xref:blazor/state-management/browser-storage?pivots=webassembly>.
 
 ## Additional resources
 
+* [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
+* [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
 * [Save app state before an authentication operation (Blazor WebAssembly)](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
 * Managing state via an external server API
   * <xref:blazor/call-web-api>

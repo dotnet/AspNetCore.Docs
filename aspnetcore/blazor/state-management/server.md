@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/31/2025
+ms.date: 08/01/2025
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -34,6 +34,152 @@ If a user experiences a temporary network connection loss, Blazor attempts to re
 
 When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state. This is equivalent to closing and reopening a desktop app.
 
+:::moniker range=">= aspnetcore-10.0"
+
+## Circuit state (and prerendering state) preservation
+
+Generally, maintain state across circuits where users are actively creating data, not simply reading data that already exists.
+
+State persistence isn't automatic. You must take steps when developing the app to implement stateful data persistence.
+
+Data persistence is typically only required for high-value state that users expended effort to create. Persisting state either saves time or aids in commercial activities:
+
+* Multi-step web forms: It's time-consuming for a user to re-enter data for several completed steps of a multi-step web form if their state is lost. A user loses state in this scenario if they navigate away from the form and return later.
+* Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.
+
+An app can only persist *app state*. UIs can't be persisted, such as component instances and their render trees. Components and render trees aren't generally serializable. To persist UI state, such as the expanded nodes of a tree view control, the app must use custom code to model the behavior of the UI state as serializable app state.
+
+During server-side rendering, Blazor Web Apps can persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:
+
+* Browser tab throttling
+* Mobile device users switching apps
+* Network interruptions
+* Proactive resource management (pausing inactive circuits)
+
+<!-- UPDATE 10.0 - Future updates (Pre7?)
+
+                   `[SupplyParameterFromPersistentComponentState]` will be renamed to `[PersistentState]`.
+                   `Blazor.pauseCircuit` will be renamed to `Blazor.pause`.
+                   `Blazor.resumeCircuit` will be renamed to `Blazor.resume`.
+
+                   API review for support persistent component state on enhanced navigation
+                   https://github.com/dotnet/aspnetcore/issues/62773 
+                   -->
+
+*[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*
+
+Persisting state requires fewer server resources than persisting circuits:
+
+* Even if disconnected, a circuit might continue to perform work and consume CPU, memory, and other resources. Persisted state only consumes a fixed amount of memory that the developer controls.
+* Persisted state represents a subset of the memory consumed by the app, so the server isn't required to keep track of the app's components and other server-side objects.
+
+State is persisted for two scenarios:
+
+* Component state: State that components use for Interactive Server rendering, for example, a list of items retrieved from the database or a form that the user is filling out.
+* Scoped services: State held inside of a server-side service, for example, the current user.
+
+Conditions:
+
+* The feature is only effective for Interactive Server rendering.
+* If the user refreshes the page (app), the persisted state is lost.
+* The state must be JSON serializable. Cyclic references or ORM entities may not serialize correctly.
+* Use `@key` for uniqueness when rendering components in a loop to avoid key conflicts.
+* Persist only necessary state. Storing excessive data may impact performance.
+* No automatic hibernation. You must opt-in and configure state persistence explicitly.
+* No guarantee of recovery. If state persistence fails, the app falls back to the default disconnected experience.
+
+State persistence is enabled by default when <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> is called on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> in the `Program` file. <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is the default storage implementation for single app instances and stores up to 1,000 persisted circuits for two hours, which are configurable.
+
+Use the following options to change the default values of the in-memory provider:
+
+* `PersistedCircuitInMemoryMaxRetained` (`{CIRCUIT COUNT}` placeholder): The maximum number of circuits to retain. The default is 1,000 circuits. For example, use `2000` to retain state for up to 2,000 circuits.
+* `PersistedCircuitInMemoryRetentionPeriod` (`{RETENTION PERIOD}` placeholder): The maximum retention period as a <xref:System.TimeSpan>. The default is two hours. For example, use `TimeSpan.FromHours(3)` for a three-hour retention period.
+
+```csharp
+services.Configure<CircuitOptions>(options =>
+{
+    options.PersistedCircuitInMemoryMaxRetained = {CIRCUIT COUNT};
+    options.PersistedCircuitInMemoryRetentionPeriod = {RETENTION PERIOD};
+});
+```
+
+Persisting component state across circuits is built on top of the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> API, which continues to persist state for prerendered components that adopt an interactive render mode.
+
+> [NOTE]
+> Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
+
+Annotate component properties with `[SupplyParameterFromPersistentComponentState]` to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
+
+```razor
+@foreach (var item in Items)
+{
+    <ItemDisplay @key="@($"unique-prefix-{item.Id}")" Item="item" />
+}
+
+@code {
+    [SupplyParameterFromPersistentComponentState]
+    public List<Item> Items { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Items ??= await LoadItemsAsync();
+    }
+}
+```
+
+To persist State for scoped services, annotate service properties with `[SupplyParameterFromPersistentComponentState]`, add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
+
+```csharp
+public class CustomUserService
+{
+    [SupplyParameterFromPersistentComponentState]
+    public string UserData { get; set; }
+}
+
+services.AddScoped<CustomUserService>();
+
+services.AddRazorComponents()
+  .AddInteractiveServerComponents()
+  .RegisterPersistentService<CustomUserService>(RenderMode.InteractiveAuto);
+```
+
+> [NOTE]
+> The preceding example persists `UserData` state when the service is used in component prerendering for both Interactive Server and Interactive WebAssembly rendering because `RenderMode.InteractiveAuto` is specified to `RegisterPersistentService`. However, circuit state persistence is only available for the **Interactive Server** render mode.
+
+For more information, see <xref:blazor/components/prerender>.
+
+To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (`PersistedCircuitDistributedRetentionPeriod`, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
+
+In the following example, a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> is implemented with the [Redis](https://redis.io/) storage provider:
+
+```csharp
+services.AddHybridCache()
+    .AddRedis("{CONNECTION STRING}");
+
+services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+```
+
+In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](xref:security/app-secrets#secret-manager) tool in the Development environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
+
+To proactively pause and resume circuits in custom resource management scenarios, call `Blazor.pauseCircuit` and `Blazor.resumeCircuit` from a JavaScript event handler. In the following example, changes in the the visibility of the app either pause or resume the user's circuit:
+
+```javascript
+window.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    Blazor.pauseCircuit();
+  } else if (document.visibilityState === 'visible') {
+    Blazor.resumeCircuit();
+  }
+});
+```
+
+## Declarative model for persisting state using a DI service
+
+Establish declarative state in a dependency injection service for use around the app by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+
+:::moniker-end
+
 :::moniker range="< aspnetcore-10.0"
 
 ## Persist state across circuits
@@ -48,50 +194,6 @@ Data persistence is typically only required for high-value state that users expe
 * Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.
 
 An app can only persist *app state*. UIs can't be persisted, such as component instances and their render trees. Components and render trees aren't generally serializable. To persist UI state, such as the expanded nodes of a tree view control, the app must use custom code to model the behavior of the UI state as serializable app state.
-
-:::moniker-end
-
-## Where to persist state
-
-This article covers common locations for persisting state:
-
-:::moniker range=">= aspnetcore-10.0"
-
-* [Circuit state (and prerendering state) preservation](#circuit-state-and-prerendering-state-preservation)
-* [Declarative model for persistent state](#declarative-model-for-persisting-state)
-* [Server-side storage](#server-side-storage)
-* [URL](#url)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-10.0"
-
-* [Server-side storage](#server-side-storage)
-* [URL](#url)
-
-:::moniker-end
-
-For guidance on using browser storage in server-side Blazor apps, see <xref:blazor/state-management/browser-storage>.
-
-Additional locations available for both server-side Blazor apps and Blazor WebAssembly apps (covered in the overview):
-
-* [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
-* [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
-
-:::moniker range=">= aspnetcore-10.0"
-
-## Circuit state (and prerendering state) preservation
-
-
-
-
-
-
-
-
-## Declarative model for persisting state
-
-Establish declarative state in a dependency injection service for use around the app by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
 :::moniker-end
 
@@ -125,8 +227,12 @@ The contents of the browser's address bar are retained:
 
 For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.
 
+## Browser storage
 
+For more information, see <xref:blazor/state-management/browser-storage?pivots=server>.
 
 ## Additional resources
 
-[Managing state via an external server API](xref:blazor/call-web-api)
+* [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
+* [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
+* [Managing state via an external server API](xref:blazor/call-web-api)

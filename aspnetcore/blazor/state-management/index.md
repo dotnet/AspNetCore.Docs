@@ -5,19 +5,16 @@ description: Learn how to persist user data (state) in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/31/2025
+ms.date: 08/01/2025
 uid: blazor/state-management/index
 ---
 # ASP.NET Core Blazor state management overview
 
-This article and the other articles in this node describe common approaches for maintaining a user's data (state) while they use an app and across browser sessions, including during prerendering on the server.
+This article and the other articles in this node describe common approaches for maintaining a user's data (state) while they use an app and across browser sessions, including during server prerendering.
 
-Guidance specific to server-side Blazor apps, Blazor Web Apps and Blazor Server apps, is provided in the following articles:
+Guidance on using browser storage is provided in <blazor/state-management/browser-storage>.
 
-* <xref:blazor/state-management/server>
-* <blazor/state-management/browser-storage>
-
-Guidance for Blazor WebAssembly apps is covered in <xref:blazor/state-management/webassembly>.
+For guidance specific to server-side Blazor apps, see <xref:blazor/state-management/server>. For Blazor WebAssembly apps, see <xref:blazor/state-management/webassembly>.
 
 The remainder of this article discusses general state management strategies for any type of Blazor app.
 
