@@ -5,7 +5,7 @@ description: Learn how to use gRPC for inter-process communication with Named pi
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ai-usage: ai-assisted
-ms.date: 07/01/2025
+ms.date: 08/01/2025
 uid: grpc/interprocess-namedpipes
 ---
 # Inter-process communication with gRPC and Named pipes
@@ -88,6 +88,35 @@ The preceding example:
 * Uses `UseNamedPipes` to access and configure <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions>.
 * Sets the <xref:System.IO.Pipes.PipeSecurity> property to control which users or groups can connect to the named pipe.
 * Grants read/write access to the `Users` group. Additional security rules can be added as needed for the scenario.
+
+### Customize Kestrel named pipe endpoints
+Kestrel's named pipe support enables advanced customization, allowing you to configure different security settings for each endpoint using the <xref:System.IO.Pipes.NamedPipeServerStream.CreateNamedPipeServerStream> option. This approach is ideal for scenarios where multiple named pipe endpoints require unique access controls. The ability to customize pipes per endpoint is available starting with .NET 9.
+
+An example of where this is useful is a Kestrel app that requires two pipe endpoints with different access security. The <xref:System.IO.Pipes.NamedPipeServerStream.CreateNamedPipeServerStream> option can be used to create pipes with custom security settings, depending on the pipe name.
+
+```csharp
+
+var builder = WebApplication.CreateBuilder();
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenNamedPipe("pipe1");
+    options.ListenNamedPipe("pipe2");
+});
+
+builder.WebHost.UseNamedPipes(options =>
+{
+    options.CreateNamedPipeServerStream = (context) =>
+    {
+        var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndpoint.PipeName);
+
+        return NamedPipeServerStreamAcl.Create(context.NamedPipeEndPoint.PipeName, PipeDirection.InOut,
+            NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Byte,
+            context.PipeOptions, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
+    };
+});
+
+```
 
 ## Client configuration
 
