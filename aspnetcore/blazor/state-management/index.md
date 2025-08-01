@@ -157,7 +157,7 @@ Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.Cascadi
 
 :::moniker-end
 
-## Troubleshoot
+## Support state modifications from outside Blazor's synchronization context
 
 When using a custom state management service where you want to support state modifications from outside Blazor's synchronization context (for example from a timer or a background service), all consuming components must wrap the <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> call in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>. This ensures the change notification is handled on the renderer's synchronization context.
 

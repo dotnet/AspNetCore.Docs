@@ -1064,7 +1064,6 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 ## Additional Blazor WebAssembly resources
 
-* [State management: Browser storage: Handle prerendering](xref:blazor/state-management/browser-storage#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
