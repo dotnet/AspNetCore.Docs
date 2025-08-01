@@ -549,7 +549,7 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 ## Additional Blazor WebAssembly resources
 
-* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
+* [State management: Browser storage](xref:blazor/state-management/browser-storage?pivots=webassembly)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
@@ -1064,7 +1064,6 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 ## Additional Blazor WebAssembly resources
 
-* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
@@ -1322,7 +1321,7 @@ Additional work might be required depending on the static resources that compone
 
 ## Additional Blazor WebAssembly resources
 
-* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
+* [State management: Browser storage](xref:blazor/state-management/browser-storage?pivots=webassembly)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)

@@ -49,7 +49,7 @@ In `Pages/Shared/_Layout.cshtml` for embedded components that are either WebAsse
 
 Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
 
-For more information and examples, see <xref:blazor/components/prerender#persist-prerendered-state>.
+For more information and examples, see <xref:blazor/state-management/persistent-component-state>.
 
 :::moniker-end
 

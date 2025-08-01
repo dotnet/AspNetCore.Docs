@@ -637,7 +637,17 @@ items:
               - name: Server-side and Blazor Web App additional scenarios
                 uid: blazor/security/additional-scenarios
           - name: State management
-            uid: blazor/state-management
+            items:
+              - name: Overview
+                uid: blazor/state-management/index
+              - name: Persistent component state
+                uid: blazor/state-management/persistent-component-state
+              - name: Server
+                uid: blazor/state-management/server
+              - name: WebAssembly
+                uid: blazor/state-management/webassembly
+              - name: Browser storage
+                uid: blazor/state-management/browser-storage
           - name: Debug
             uid: blazor/debug
           - name: Lazy load assemblies with WebAssembly

@@ -74,7 +74,7 @@ Welcome to what's new in the ASP.NET Core docs for January 2024. This article li
 * <xref:blazor/project-structure> - Terminology updates
 * <xref:blazor/progressive-web-app/index> - Update PWA guidance
 * <xref:blazor/components/virtualization> - Clarify 'content items' (placeholder content)
-* <xref:blazor/state-management> - Cascading values updates
+* <xref:blazor/state-management/index> - Cascading values updates
 * <xref:blazor/components/index>
   - Calling base class methods
   - Account conf and PW recovery article

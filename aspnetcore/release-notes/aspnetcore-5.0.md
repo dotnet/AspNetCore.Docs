@@ -176,7 +176,7 @@ Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](htt
 
 ### Protected Browser Storage for Blazor Server
 
-Blazor Server apps can now use built-in support for storing app state in the browser that has been protected from tampering using ASP.NET Core data protection. Data can be stored in either local browser storage or session storage. For more information, see <xref:blazor/state-management>.
+Blazor Server apps can now use built-in support for storing app state in the browser that has been protected from tampering using ASP.NET Core data protection. Data can be stored in either local browser storage or session storage. For more information, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
 
 ### Blazor WebAssembly prerendering
 

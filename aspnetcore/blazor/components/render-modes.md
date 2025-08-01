@@ -219,10 +219,14 @@ When using a Blazor Web App, most of the Blazor documentation example components
 
 Prerendering is enabled by default for interactive components.
 
-Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests, including for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing), [Interactive routing and prerendering](xref:blazor/components/prerender#interactive-routing-and-prerendering), and [Enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
+Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests, including for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing), [Interactive routing and prerendering](xref:blazor/state-management/persistent-component-state#interactive-routing-and-prerendering), and [Enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
 
-<!-- UPDATE 11.0 Tracking https://github.com/dotnet/aspnetcore/issues/55635
-                 for .NET 11 work in this area. -->
+<!-- UPDATE 11.0 Tracking ...
+
+                 "prerender: false" is ignored in child components
+                 https://github.com/dotnet/aspnetcore/issues/55635
+
+                 ... for .NET 11 work in the following area. -->
 
 Disabling prerendering using the following techniques only takes effect for top-level render modes. If a parent component specifies a render mode, the prerendering settings of its children are ignored.
 

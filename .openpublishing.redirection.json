@@ -1582,6 +1582,11 @@
             "source_path": "aspnetcore/introduction-to-aspnet-core.md",
             "redirect_url": "/aspnet/core/overview",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/state-management.md",
+            "redirect_url": "/aspnet/core/state-management/",
+            "redirect_document_id": false
         }
     ]
 }
