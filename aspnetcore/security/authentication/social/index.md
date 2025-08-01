@@ -1,8 +1,8 @@
 ---
 title: Using external login providers with Identity in ASP.NET Core
-author: rick-anderson
+author: wadepickett
 description: Create an ASP.NET Core app using Identity with external authentication providers such as Facebook, Twitter, Google, and Microsoft.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc, sfi-image-nochange
 ms.date: 07/09/2025
 uid: security/authentication/social/index

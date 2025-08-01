@@ -1,8 +1,8 @@
 ---
 title: Simple authorization in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to use the Authorize attribute to restrict access to ASP.NET Core controllers and actions.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 05/01/2024
 uid: security/authorization/simple
 ---
