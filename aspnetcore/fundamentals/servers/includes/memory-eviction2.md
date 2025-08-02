@@ -18,6 +18,8 @@ The following code example shows a simple background service that uses the built
 
 :::code language="csharp" source="~/fundamentals/servers/snippets/10.x/my-background-service.cs":::
 
-To use your own memory pool factory, make a class that implements `IMemoryPoolFactory` and register it with dependency injection, as the following example does. Memory pools created this way also benefit from the automatic eviction feature:
+To use a custom memory pool factory, make a class that implements `IMemoryPoolFactory` and register it with dependency injection, as the following example does. Memory pools created this way also benefit from the automatic eviction feature:
 
 :::code language="csharp" source="~/fundamentals/servers/snippets/10.x/memory-pool-factory.cs":::
+
+When you're using a memory pool, check the pool's [MaxBufferSize](https://github.com/dotnet/api/system.buffers.memorypool-1.maxbuffersize?view=net-9.0#system-buffers-memorypool-1-maxbuffersize) property.
