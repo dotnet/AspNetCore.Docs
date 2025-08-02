@@ -50,7 +50,7 @@ The preceding example:
 
 ### Configuring PipeSecurity for Named Pipes
 
-To customize the security of the named pipe, for example, to control which users or groups can connect, use the [`NamedPipeTransportOptions`](xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions) class. This allows a custom [`PipeSecurity`](xref:System.IO.Pipes.PipeSecurity) object to be specified.
+To control which users or groups can connect, use the [`NamedPipeTransportOptions`](xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions) class. This allows a custom [`PipeSecurity`](xref:System.IO.Pipes.PipeSecurity) object to be specified.
 
 Example:
 
