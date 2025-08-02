@@ -22,4 +22,4 @@ To use a custom memory pool factory, make a class that implements `IMemoryPoolFa
 
 :::code language="csharp" source="~/fundamentals/servers/snippets/10.x/memory-pool-factory.cs":::
 
-When you're using a memory pool, check the pool's [MaxBufferSize](https://github.com/dotnet/api/system.buffers.memorypool-1.maxbuffersize?view=net-9.0#system-buffers-memorypool-1-maxbuffersize) property.
+When you're using a memory pool, be aware of the pool's [MaxBufferSize](https://github.com/dotnet/api/system.buffers.memorypool-1.maxbuffersize?view=net-9.0#system-buffers-memorypool-1-maxbuffersize).
