@@ -6,7 +6,6 @@ builder.Services.AddHttpLogging(logging =>
 {
     logging.LoggingFields = HttpLoggingFields.Duration;
 });
-builder.Services.AddHttpLoggingInterceptor<SampleHttpLoggingInterceptor>();
 // </snippet4>
 builder.Services.AddRedaction();
 builder.Services.AddHttpLoggingRedaction(op => { });
