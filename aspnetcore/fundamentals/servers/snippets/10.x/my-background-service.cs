@@ -15,6 +15,7 @@ public class MyBackgroundService : BackgroundService
             {
                 await Task.Delay(20, stoppingToken);
                 // do work that needs memory
+                // consider checking _memoryPool.MaxBufferSize
                 var rented = _memoryPool.Rent(100);
                 rented.Dispose();
             }
