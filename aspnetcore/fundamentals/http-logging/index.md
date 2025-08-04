@@ -212,7 +212,7 @@ The following list shows the order of precedence for logging configuration:
 
 Http logging with redaction can be enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction%2A>:
 
-[!code-csharp[](~/fundamentals/http-logging/samples-snapshot/9.x/Program.cs?name=snippet7&highlight=9)]
+[!code-csharp[](~/fundamentals/http-logging/samples-snapshot/9.x/Program.cs?name=snippet7&highlight=10)]
 
 For more information about .NET's data redaction library, see [Data redaction in .NET](/dotnet/core/extensions/data-redaction).
 
