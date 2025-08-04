@@ -98,7 +98,6 @@ An example of where this is useful is a Kestrel app that requires two pipe endpo
 ```csharp
 
 var builder = WebApplication.CreateBuilder();
-
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenNamedPipe("pipe1");
@@ -116,7 +115,6 @@ builder.WebHost.UseNamedPipes(options =>
             context.PipeOptions, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
     };
 });
-
 ```
 
 ## Client configuration
