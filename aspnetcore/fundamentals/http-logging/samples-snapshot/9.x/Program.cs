@@ -6,6 +6,7 @@ builder.Services.AddHttpLogging(logging =>
 {
     logging.LoggingFields = HttpLoggingFields.Duration;
 });
+
 // </snippet4>
 builder.Services.AddRedaction();
 builder.Services.AddHttpLoggingRedaction(op => { });
