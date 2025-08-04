@@ -35,7 +35,9 @@ State can be stored using several approaches. Each approach is described later i
 
 [SignalR](xref:signalr/introduction) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](xref:signalr/hubs). For more information and alternative state management approaches for Blazor Server apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
 
-<!-- UPDATE 10.0 - These links were left here. See why they're here.
+<!-- UPDATE 10.0 - These links were left here for some reason. 
+                   I'll investigate and see why they're here
+                   before 10.0 GA.
 
 https://github.com/aspnet/SignalR/issues/2139
 https://github.com/dotnet/AspNetCore.Docs/issues/27956

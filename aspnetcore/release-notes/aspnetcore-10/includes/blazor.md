@@ -414,7 +414,7 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `Not
 
 * **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#route-templates)) to render Not Found content.
 
-* **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
+* **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
 Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
 
@@ -452,7 +452,7 @@ For more information, see <xref:blazor/host-and-deploy/index?view=aspnetcore-10.
 
 We replaced `<link>` headers with a `LinkPreload` component (`<LinkPreload />`) for preloading WebAssembly assets in Blazor Web Apps. This permits the app base path configuration (`<base href="..." />`) to correctly identify the app's root.
 
-Removing the component disables the feature if the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup#load-client-side-boot-resources) to modify URLs.
+Removing the component disables the feature if the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup?view=aspnetcore-10.0#load-client-side-boot-resources) to modify URLs.
 
 The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `LinkPreload` component after the base URL tag (`<base>`) in the `App` component's head content (`App.razor`):
 
@@ -573,4 +573,4 @@ During server-side rendering, Blazor Web Apps can now persist a user's session (
 
 *[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*
 
-For more information, see <xref:blazor/state-management/server#circuit-state-and-prerendering-state-preservation>.
+For more information, see <xref:blazor/state-management/server?view=aspnetcore-10.0#circuit-state-and-prerendering-state-preservation>.

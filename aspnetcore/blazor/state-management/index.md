@@ -12,7 +12,7 @@ uid: blazor/state-management/index
 
 This article and the other articles in this node describe common approaches for maintaining a user's data (state) while they use an app and across browser sessions, including during server prerendering.
 
-Guidance on using browser storage is provided in <blazor/state-management/browser-storage>.
+Guidance on using browser storage is provided in <xref:blazor/state-management/browser-storage>.
 
 For guidance specific to server-side Blazor apps, see <xref:blazor/state-management/server>. For Blazor WebAssembly apps, see <xref:blazor/state-management/webassembly>.
 
@@ -63,7 +63,7 @@ Server-side apps (`Program` file, ASP.NET Core in .NET 6 or later):
 builder.Services.AddScoped<StateContainer>();
 ```
 
-Server-side apps (`Startup.ConfigureServices` of `Startup.cs` in .NET 6 or earlier):
+Server-side apps (`Startup.ConfigureServices` of `Startup.cs`, typically in .NET 6 or earlier):
 
 ```csharp
 services.AddScoped<StateContainer>();

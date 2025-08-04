@@ -623,17 +623,21 @@ For more information, see [Client-side services fail to resolve during prerender
 
 When prerendering, components render twice: first statically, then interactively. State doesn't automatically flow from the prerendered component to the interactive one. If a component performs asynchronous initialization operations and renders different content for different states during initialization, such as a "Loading..." progress indicator, you may see a flicker when the component renders twice.
 
-<!-- UPDATE 10.0 The status of the enhanced nav fix is scheduled for .NET 10. 
+You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. However, the API doesn't currently work with enhanced navigation, which you can work around by disabling enhanced navigation on links to the page (`data-enhanced-nav=false`). For more information, see the following resources:
+
+<!-- UPDATE 10.0 The enhanced nav update is in for Preview 7. 
+                 The preceding paragraph will be updated/
+                 versioned on the upcoming docs Preview 7 PR. 
+                 I'll go ahead and remove the PU issue 
+                 cross-link on PR #35873.
+            
                  Note that the README of the "weather" call web API
                  sample has a cross-link and remark on this, and the
                  sample app disabled enhanced nav on the weather
                  component link. -->
 
-You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. However, the API doesn't currently work with enhanced navigation, which you can work around by disabling enhanced navigation on links to the page (`data-enhanced-nav=false`). For more information, see the following resources:
-
 * <xref:blazor/state-management/persistent-component-state>
 * <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>
-* [Support persistent component state across enhanced page navigations (`dotnet/aspnetcore` #51584)](https://github.com/dotnet/aspnetcore/issues/51584)
 
 :::moniker-end
 

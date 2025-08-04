@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/01/2025
+ms.date: 08/04/2025
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -45,7 +45,7 @@ State persistence isn't automatic. You must take steps when developing the app t
 Data persistence is typically only required for high-value state that users expended effort to create. Persisting state either saves time or aids in commercial activities:
 
 * Multi-step web forms: It's time-consuming for a user to re-enter data for several completed steps of a multi-step web form if their state is lost. A user loses state in this scenario if they navigate away from the form and return later.
-* Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.
+* Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the website later.
 
 An app can only persist *app state*. UIs can't be persisted, such as component instances and their render trees. Components and render trees aren't generally serializable. To persist UI state, such as the expanded nodes of a tree view control, the app must use custom code to model the behavior of the UI state as serializable app state.
 
@@ -56,14 +56,17 @@ During server-side rendering, Blazor Web Apps can persist a user's session (circ
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
 
-<!-- UPDATE 10.0 - Future updates (Pre7?)
+<!-- UPDATE 10.0 - Arriving for Preview 7 ...
 
                    `[SupplyParameterFromPersistentComponentState]` will be renamed to `[PersistentState]`.
                    `Blazor.pauseCircuit` will be renamed to `Blazor.pause`.
                    `Blazor.resumeCircuit` will be renamed to `Blazor.resume`.
 
+                   Guidance changes for persistent component state with enhanced nav
+                   will be on the upcoming docs PR for Preview 7.
+
                    API review for support persistent component state on enhanced navigation
-                   https://github.com/dotnet/aspnetcore/issues/62773 
+                   https://github.com/dotnet/aspnetcore/issues/62773
                    -->
 
 *[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*

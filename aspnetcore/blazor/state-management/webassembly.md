@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/01/2025
+ms.date: 08/04/2025
 uid: blazor/state-management/webassembly
 ---
 # ASP.NET Core Blazor WebAssembly state management
