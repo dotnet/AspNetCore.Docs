@@ -90,6 +90,7 @@ The preceding example:
 * Grants read/write access to the `Users` group. Additional security rules can be added as needed for the scenario.
 
 ### Customize Kestrel named pipe endpoints
+
 Kestrel's named pipe support enables advanced customization, allowing you to configure different security settings for each endpoint using the `CreateNamedPipeServerStream` option. This approach is ideal for scenarios where multiple named pipe endpoints require unique access controls. The ability to customize pipes per endpoint is available starting with .NET 9.
 
 An example of where this is useful is a Kestrel app that requires two pipe endpoints with different access security. The `CreateNamedPipeServerStream` option can be used to create pipes with custom security settings, depending on the pipe name.
