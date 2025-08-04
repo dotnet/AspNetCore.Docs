@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/02/2023
+ms.date: 08/04/2023
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server in ASP.NET Core
