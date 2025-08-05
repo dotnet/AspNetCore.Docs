@@ -106,7 +106,7 @@ services.Configure<CircuitOptions>(options =>
 });
 ```
 
-Persisting component state across circuits is built on top of the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> API, which continues to persist state for prerendered components that adopt an interactive render mode. For more information, see <xref:blazor/state-management/persistent-component-state>.
+Persisting component state across circuits is built on top of the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> API, which continues to persist state for prerendered components that adopt an interactive render mode. For more information, see <xref:blazor/state-management/prerendered-state-persistence>.
 
 > [NOTE]
 > Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
@@ -175,10 +175,6 @@ window.addEventListener('visibilitychange', () => {
 });
 ```
 
-## Declarative model for persisting state using a DI service
-
-Establish declarative state in a dependency injection service for use around the app by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) with a custom service type and render mode. For more information, see <xref:blazor/state-management/persistent-component-state>.
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-10.0"
@@ -214,26 +210,13 @@ For more information on Azure data storage options, see the following:
 * [Azure Databases](https://azure.microsoft.com/product-categories/databases/)
 * [Azure Storage Documentation](/azure/storage/)
 
-## URL
-
-For transient data representing navigation state, model the data as a part of the URL. Examples of user state modeled in the URL include:
-
-* The ID of a viewed entity.
-* The current page number in a paged grid.
-
-The contents of the browser's address bar are retained:
-
-* If the user manually reloads the page.
-* If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.
-
-For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.
-
 ## Browser storage
 
-For more information, see <xref:blazor/state-management/browser-storage?pivots=server>.
+For more information, see <xref:blazor/state-management/protected-browser-storage>.
 
 ## Additional resources
 
+* [State management using the URL](xref:blazor/state-management/index#url)
 * [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
 * [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
 * [Managing state via an external server API](xref:blazor/call-web-api)

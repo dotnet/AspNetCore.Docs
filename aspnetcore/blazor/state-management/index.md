@@ -12,11 +12,25 @@ uid: blazor/state-management/index
 
 This article and the other articles in this node describe common approaches for maintaining a user's data (state) while they use an app and across browser sessions, including during server prerendering.
 
-Guidance on using browser storage is provided in <xref:blazor/state-management/browser-storage>.
+Guidance on using browser storage is provided in <xref:blazor/state-management/protected-browser-storage>.
 
 For guidance specific to server-side Blazor apps, see <xref:blazor/state-management/server>. For Blazor WebAssembly apps, see <xref:blazor/state-management/webassembly>.
 
 The remainder of this article discusses general state management strategies for any type of Blazor app.
+
+## State management using the URL
+
+For transient data representing navigation state, model the data as a part of the URL. Examples of user state modeled in the URL include:
+
+* The ID of a viewed entity.
+* The current page number in a paged grid.
+
+The contents of the browser's address bar are retained:
+
+* If the user manually reloads the page.
+* *Server-side scenarios only*: If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.
+
+For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.
 
 ## In-memory state container service
 

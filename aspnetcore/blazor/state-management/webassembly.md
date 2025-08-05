@@ -28,7 +28,7 @@ Examples of user state held in browser memory include:
 When a user closes and reopens their browser or reloads the page, user state held in the browser's memory is lost.
 
 > [!NOTE]
-> [Protected Browser Storage](xref:blazor/state-management/browser-storage#aspnet-core-protected-browser-storage) (<xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName> namespace) relies on ASP.NET Core Data Protection and is only supported for server-side Blazor apps.
+> [Protected Browser Storage](xref:blazor/state-management/protected-browser-storage#aspnet-core-protected-browser-storage) (<xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName> namespace) relies on ASP.NET Core Data Protection and is only supported for server-side Blazor apps.
 
 ## Persist state across browser sessions
 
@@ -67,23 +67,9 @@ For more information on Azure data storage options, see the following:
 * [Azure Databases](https://azure.microsoft.com/product-categories/databases/)
 * [Azure Storage Documentation](/azure/storage/)
 
-## URL
-
-For transient data representing navigation state, model the data as a part of the URL. Examples of user state modeled in the URL include:
-
-* The ID of a viewed entity.
-* The current page number in a paged grid.
-
-The contents of the browser's address bar are retained if the user manually reloads the page.
-
-For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.
-
-## Browser storage
-
-For more information, see <xref:blazor/state-management/browser-storage?pivots=webassembly>.
-
 ## Additional resources
 
+* [State management using the URL](xref:blazor/state-management/index#url)
 * [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
 * [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
 * [Save app state before an authentication operation (Blazor WebAssembly)](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)

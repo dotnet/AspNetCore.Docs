@@ -10,7 +10,7 @@
                    -->
 
 > [!NOTE]
-> Internal navigation for [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) in Blazor Web Apps doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. If the app adopts interactive routing, perform a full page reload for component examples that demonstrate prerendering behavior. For more information, see <xref:blazor/state-management/persistent-component-state#interactive-routing-and-prerendering>.
+> Internal navigation for [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) in Blazor Web Apps doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. If the app adopts interactive routing, perform a full page reload for component examples that demonstrate prerendering behavior. For more information, see <xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering>.
 
 :::moniker-end
 

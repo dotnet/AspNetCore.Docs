@@ -636,7 +636,7 @@ You can address this by flowing prerendered state using the Persistent Component
                  sample app disabled enhanced nav on the weather
                  component link. -->
 
-* <xref:blazor/state-management/persistent-component-state>
+* <xref:blazor/state-management/prerendered-state-persistence>
 * <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>
 
 :::moniker-end

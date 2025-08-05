@@ -640,14 +640,14 @@ items:
             items:
               - name: Overview
                 uid: blazor/state-management/index
-              - name: Persistent component state
-                uid: blazor/state-management/persistent-component-state
+              - name: Prerendered state persistence
+                uid: blazor/state-management/prerendered-state-persistence
               - name: Server
                 uid: blazor/state-management/server
               - name: WebAssembly
                 uid: blazor/state-management/webassembly
-              - name: Browser storage
-                uid: blazor/state-management/browser-storage
+              - name: Protected browser storage
+                uid: blazor/state-management/protected-browser-storage
           - name: Debug
             uid: blazor/debug
           - name: Lazy load assemblies with WebAssembly

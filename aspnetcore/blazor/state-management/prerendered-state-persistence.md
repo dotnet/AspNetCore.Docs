@@ -1,12 +1,12 @@
 ---
-title: ASP.NET Core Blazor persistent component state
+title: ASP.NET Core Blazor prerendered state persistence
 author: guardrex
 description: Learn how to persist user data (state) in Blazor apps using Blazor's Persistent Component State service.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 08/04/2025
-uid: blazor/state-management/persistent-component-state
+uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
 
@@ -38,7 +38,7 @@ To retain the initial value of the counter during prerendering, Blazor supports 
 
 To preserve prerendered state, use the `[SupplyParameterFromPersistentComponentState]` attribute to persist state in properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
 
-By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
+By default for client-side prerendering in a Blazor Web App, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 The following counter component persists counter state during prerendering and retrieves the state to initialize the component:
 
