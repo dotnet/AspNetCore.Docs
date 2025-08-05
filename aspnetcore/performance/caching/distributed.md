@@ -300,7 +300,7 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 
 * [Redis Cache on Azure](/azure/azure-cache-for-redis/)
 * [SQL Database on Azure](/azure/sql-database/)
-* [Postgres Database on Azure](/azure/postgres/)
+* [Postgres Database on Azure](/azure/postgresql/)
 * [ASP.NET Core IDistributedCache Provider for NCache in Web Farms](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache))
 * [Repository README file for Microsoft.Extensions.Caching.Cosmos](https://github.com/Azure/Microsoft.Extensions.Caching.Cosmos/blob/master/README.md)
 * <xref:performance/caching/memory>

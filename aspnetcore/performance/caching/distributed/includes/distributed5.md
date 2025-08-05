@@ -41,7 +41,7 @@ Register an implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDi
 * [Distributed Memory Cache](#distributed-memory-cache)
 * [Distributed SQL Server cache](#distributed-sql-server-cache)
 * [Distributed Redis cache](#distributed-redis-cache)
-* [Distributed Postgres cache](#distributed-Postgres-cache)
+* [Distributed Postgres cache](#distributed-postgres-cache)
 * [Distributed NCache cache](#distributed-ncache-cache)
 
 ### Distributed Memory Cache
