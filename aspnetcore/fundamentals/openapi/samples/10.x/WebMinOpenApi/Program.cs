@@ -10,6 +10,7 @@
 //#define SWAGGERUI
 //#define MULTIDOC_OPERATIONtransformer1
 //#define OPERATIONtransformer1
+//#define IOPENAPIDOCUMENTPROVIDER
 
 #if DEFAULT
 // <snippet_default>
@@ -541,4 +542,96 @@ internal class SchemaTransformer2 : IOpenApiSchemaTransformer
     public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken) => Task.CompletedTask;
 }
 
+#endif
+
+#if IOPENAPIDOCUMENTPROVIDER
+// <snippet_iopenapidocumentprovider>
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.AspNetCore.OpenApi.Services;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddOpenApi();
+
+// Register the background service that uses IOpenApiDocumentProvider
+builder.Services.AddHostedService<OpenApiDocumentBackgroundService>();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+app.UseHttpsRedirection();
+
+var summaries = new[]
+{
+    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+};
+
+app.MapGet("/weatherforecast", () =>
+{
+    var forecast = Enumerable.Range(1, 5).Select(index =>
+        new WeatherForecast
+        (
+            DateTime.Now.AddDays(index),
+            Random.Shared.Next(-20, 55),
+            summaries[Random.Shared.Next(summaries.Length)]
+        ))
+        .ToArray();
+    return forecast;
+})
+.WithName("GetWeatherForecast")
+.WithOpenApi();
+
+app.Run();
+
+// Background service that demonstrates injecting IOpenApiDocumentProvider
+public class OpenApiDocumentBackgroundService : BackgroundService
+{
+    private readonly IOpenApiDocumentProvider _documentProvider;
+    private readonly ILogger<OpenApiDocumentBackgroundService> _logger;
+
+    public OpenApiDocumentBackgroundService(
+        IOpenApiDocumentProvider documentProvider,
+        ILogger<OpenApiDocumentBackgroundService> logger)
+    {
+        _documentProvider = documentProvider;
+        _logger = logger;
+    }
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        // Wait for the application to be fully started
+        await Task.Delay(1000, stoppingToken);
+
+        try
+        {
+            // Get the OpenAPI document for the "v1" document
+            var openApiDocument = await _documentProvider.GetOpenApiDocumentAsync("v1", stoppingToken);
+            
+            _logger.LogInformation("Retrieved OpenAPI document with title: {Title}", 
+                openApiDocument?.Info?.Title ?? "Unknown");
+            
+            // Example: Save the document to a file
+            var openApiJson = openApiDocument?.SerializeAsJson();
+            if (!string.IsNullOrEmpty(openApiJson))
+            {
+                await File.WriteAllTextAsync("openapi-v1.json", openApiJson, stoppingToken);
+                _logger.LogInformation("OpenAPI document saved to openapi-v1.json");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving OpenAPI document");
+        }
+    }
+}
+
+internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
+{
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}
+// </snippet_iopenapidocumentprovider>
 #endif

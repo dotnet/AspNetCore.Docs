@@ -100,11 +100,28 @@ The output shows any issues with the OpenAPI document. For example:
 ✖ 5 problems (0 errors, 5 warnings, 0 infos, 0 hints)
 ```
 
-## Support for injecting IOpenApiDocumentProvider
+## Support for injecting `IOpenApiDocumentProvider`
 
 You can inject <xref:Microsoft.AspNetCore.OpenApi.Services.IOpenApiDocumentProvider> into your app through the dependency injection (DI) container to access the OpenAPI document, even outside the context of HTTP requests. This enables advanced scenarios, such as using OpenAPI documents in background services or custom middleware.
 
 This capability streamlines tasks that previously required workarounds, such as using `HostFactoryResolver` with a no-op `IServer` implementation to run application startup logic without launching an HTTP server. The API is inspired by Aspire's `IDistributedApplicationPublisher`, part of the Aspire framework for distributed application hosting and publishing.
+
+The following example demonstrates how to inject and use `IOpenApiDocumentProvider` in a background service:
+
+[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_iopenapidocumentprovider)]
+
+In this example:
+
+* `IOpenApiDocumentProvider` is injected into the background service constructor.
+* The `GetOpenApiDocumentAsync` method is called to retrieve the OpenAPI document for a specific document name (in this case, "v1").
+* The document can then be processed, saved, or used for other purposes outside of HTTP request processing.
+
+This is particularly useful for scenarios such as:
+
+* Generating client SDKs during application startup
+* Validating API contracts in background processes  
+* Exporting OpenAPI documents to external systems
+* Creating documentation or reports from the API specification
 
 Support for injecting `IOpenApiDocumentProvider` was introduced in ASP.NET Core in .NET 10. For more information, see [dotnet/aspnetcore #61463](https://github.com/dotnet/aspnetcore/pull/61463).
 :::moniker-end
