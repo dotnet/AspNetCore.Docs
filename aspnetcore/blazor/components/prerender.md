@@ -5,7 +5,7 @@ description: Learn about Razor component prerendering in ASP.NET Core Blazor app
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 08/05/2025
 uid: blazor/components/prerender
 ---
 # Prerender ASP.NET Core Razor components
@@ -17,9 +17,17 @@ uid: blazor/components/prerender
     at the ends of lines to generate a bare return in block quote output.
 -->
 
-This article explains Razor component prerendering scenarios for server-rendered components in Blazor Web Apps.
+This article explains Razor component prerendering scenarios for server-rendered components in Blazor Web Apps and Blazor Server apps.
 
-*Prerendering* is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank.
+*Prerendering* is the process of statically rendering page content from the server to deliver HTML to the browser as quickly as possible. After the prerendered content is quickly displayed to the user, interactive content with active event handlers are rendered, replacing any content that was rendered previously. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank.
+
+:::moniker range=">= aspnetcore-8.0"
+
+Interactive render modes prerender by default, but you can [disable prerendering](xref:blazor/components/render-modes#prerendering) if needed.
+
+:::moniker-end
+
+[`OnAfterRender{Async}` component lifecycle events](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) aren't called when prerendering, only after the component renders interactively.
 
 ## Persist prerendered state
 

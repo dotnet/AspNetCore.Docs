@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in Blazor apps using browser
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/04/2025
+ms.date: 08/05/2025
 uid: blazor/state-management/protected-browser-storage
 ---
 # ASP.NET Core Blazor protected browser storage

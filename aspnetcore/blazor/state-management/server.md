@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/04/2025
+ms.date: 08/05/2025
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -34,13 +34,11 @@ If a user experiences a temporary network connection loss, Blazor attempts to re
 
 When a user can't be reconnected to their original circuit, the user receives a new circuit with newly initialized state. This is equivalent to closing and reopening a desktop app.
 
-:::moniker range=">= aspnetcore-10.0"
-
-## Circuit state persistence
-
-Generally, maintain state across circuits where users are actively creating data, not simply reading data that already exists.
+## When to persist user state
 
 State persistence isn't automatic. You must take steps when developing the app to implement stateful data persistence.
+
+Generally, maintain state across circuits where users are actively creating data, not simply reading data that already exists.
 
 Data persistence is typically only required for high-value state that users expended effort to create. Persisting state either saves time or aids in commercial activities:
 
@@ -48,6 +46,10 @@ Data persistence is typically only required for high-value state that users expe
 * Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the website later.
 
 An app can only persist *app state*. UIs can't be persisted, such as component instances and their render trees. Components and render trees aren't generally serializable. To persist UI state, such as the expanded nodes of a tree view control, the app must use custom code to model the behavior of the UI state as serializable app state.
+
+:::moniker range=">= aspnetcore-10.0"
+
+## Circuit state persistence
 
 During server-side rendering, Blazor Web Apps can persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:
 
@@ -163,7 +165,18 @@ services.AddRazorComponents()
 
 In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](xref:security/app-secrets#secret-manager) tool in the Development environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
 
-To proactively pause and resume circuits in custom resource management scenarios, call `Blazor.pauseCircuit` and `Blazor.resumeCircuit` from a JavaScript event handler. In the following example, changes in the the visibility of the app either pause or resume the user's circuit:
+## Pause and resume circuits
+
+Pause and resume circuits to implement custom policies that improve the scalability of an app.
+
+Pausing a circuit stores details about the circuit in client-side browser storage and evicts the circuit, which frees server resources. Resuming the circuit establishes a new circuit and initializes it using the persisted state.
+
+From a JavaScript event handler:
+
+* Call `Blazor.pauseCircuit` to pause a circuit.
+* Call `Blazor.resumeCircuit` to resume a circuit.
+
+The following example assumes that a circuit isn't required for an app that isn't visible:
 
 ```javascript
 window.addEventListener('visibilitychange', () => {

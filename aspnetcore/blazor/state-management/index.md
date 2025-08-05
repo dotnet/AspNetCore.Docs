@@ -5,16 +5,24 @@ description: Learn how to persist user data (state) in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/01/2025
+ms.date: 08/05/2025
 uid: blazor/state-management/index
 ---
 # ASP.NET Core Blazor state management overview
 
 This article and the other articles in this node describe common approaches for maintaining a user's data (state) while they use an app and across browser sessions, including during server prerendering.
 
-Guidance on using browser storage is provided in <xref:blazor/state-management/protected-browser-storage>.
+A typical requirement during Blazor app development is sharing state across components:
 
-For guidance specific to server-side Blazor apps, see <xref:blazor/state-management/server>. For Blazor WebAssembly apps, see <xref:blazor/state-management/webassembly>.
+* Parent to child: A parent component passes state to a child component using parameters.
+* Child to parent: A child component enables data binding to its state or provides state through callbacks.
+* Parent to descendants: A parent shares state with all of its descendants using cascading values.
+* App-wide: State is shared across the entire app using configured app state services.
+* Per circuit: State is shared for a specific circuit using scoped app state services.
+
+Persisted state may need to survive pages refreshes, resumed circuits, and prerendering. State often requires central management, tracking, and testing. The locations and techniques for persisting state are highly variable.
+
+Blazor doesn't provide comprehensive, opinionated state management. Third-party state container products and services that work seamlessly with Blazor, such as Flux, Redux, and MobX, satisfy virtually any app requirement.
 
 The remainder of this article discusses general state management strategies for any type of Blazor app.
 
