@@ -61,7 +61,7 @@ Register an implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDi
 * [Distributed SQL Server cache](#distributed-sql-server-cache)
 * [Distributed Postgres cache](#distributed-postgres-cache)
 * [Distributed NCache cache](#distributed-ncache-cache)
-* [Distributed Azure Cosmos DB cache](#distributed-azure-cosmosdb-cache)
+* [Distributed Azure Cosmos DB cache](#distributed-azure-cosmos-db-cache)
 
 ### Distributed Redis Cache
 
@@ -132,6 +132,86 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 ### Distributed Postgres Cache
 
 The Distributed Postgres Cache implementation (<xref:Microsoft.Extensions.Caching.Postgres*>) allows the distributed cache to use a Postgres database as its backing store.
+
+After installing the [Microsoft.Extensions.Caching.Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres) NuGet package, configure an Azure Postgres distributed cache as follows:
+
+1. Add the following configuration sections to your appsettings.json file. It's also recommended to configure your connection string to use connection pooling:
+
+```json
+  "ConnectionStrings": {
+    "PostgresCache": "Host=localhost;Port=5432;Username=postgres;Password=yourpassword;Database=yourdatabase;Pooling=true;MinPoolSize=0;MaxPoolSize=100;Timeout=15;"
+  },
+  "PostgresCache": {
+    "SchemaName": "public",
+    "TableName": "cache",
+    "CreateIfNotExists": true,
+    "UseWAL": false,
+    "ExpiredItemsDeletionInterval": "00:30:00",
+    "DefaultSlidingExpiration": "00:20:00"
+  }
+```
+2. Register the Service
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Register Postgres distributed cache
+builder.Services.AddDistributedPostgresCache(options => {
+    options.ConnectionString = builder.Configuration.GetConnectionString("PostgresCache");
+    options.SchemaName = builder.Configuration.GetValue<string>("PostgresCache:SchemaName", "public");
+    options.TableName = builder.Configuration.GetValue<string>("PostgresCache:TableName", "cache");
+    options.CreateIfNotExists = builder.Configuration.GetValue<bool>("PostgresCache:CreateIfNotExists", true);
+    options.UseWAL = builder.Configuration.GetValue<bool>("PostgresCache:UseWAL", false);
+    
+    // Optional: Configure expiration settings
+
+    var expirationInterval = builder.Configuration.GetValue<string>("PostgresCache:ExpiredItemsDeletionInterval");
+    if (!string.IsNullOrEmpty(expirationInterval) && TimeSpan.TryParse(expirationInterval, out var interval)) {
+        options.ExpiredItemsDeletionInterval = interval;
+    }
+    
+    var slidingExpiration = builder.Configuration.GetValue<string>("PostgresCache:DefaultSlidingExpiration");
+    if (!string.IsNullOrEmpty(slidingExpiration) && TimeSpan.TryParse(slidingExpiration, out var sliding)) {
+        options.DefaultSlidingExpiration = sliding;
+    }
+});
+
+var app = builder.Build();
+```
+
+3. Use the Cache
+
+```csharp
+public class MyService {
+    private readonly IDistributedCache _cache; 
+
+    public MyService(IDistributedCache cache) {
+        _cache = cache;
+    }
+
+    public async Task<string> GetDataAsync(string key) {
+        var cachedData = await _cache.GetStringAsync(key);
+        
+        if (cachedData == null) {
+            // Fetch data from source
+            var data = await FetchDataFromSource();
+            
+            // Cache the data with options
+            var options = new DistributedCacheEntryOptions {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30),
+                SlidingExpiration = TimeSpan.FromMinutes(5)
+            };
+            
+            await _cache.SetStringAsync(key, data, options);
+            return data;
+        }
+        
+        return cachedData;
+    }
+}
+```
 
 ### Distributed NCache Cache
 
