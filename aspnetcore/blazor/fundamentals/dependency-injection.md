@@ -191,7 +191,7 @@ Blazor Web Apps normally prerender client-side WebAssembly components. If an app
 Use ***either*** of the following approaches to resolve this problem:
 
 * Register the service in the main project to make it available during component prerendering.
-* If prerendering isn't required for the component, disable prerendering by following the guidance in <xref:blazor/components/render-modes#prerendering>. If you adopt this approach, you don't need to register the service in the main project.
+* If prerendering isn't required for the component, disable prerendering by following the guidance in <xref:blazor/components/prerender>. If you adopt this approach, you don't need to register the service in the main project.
 
 For more information, see [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering).
 

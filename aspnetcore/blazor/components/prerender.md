@@ -23,7 +23,46 @@ This article explains Razor component prerendering scenarios for server-rendered
 
 :::moniker range=">= aspnetcore-8.0"
 
-Interactive render modes prerender by default, but you can [disable prerendering](xref:blazor/components/render-modes#prerendering) if needed.
+Prerendering is enabled by default for interactive components.
+
+Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests, including for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing), [Interactive routing and prerendering](xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering), and [Enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
+
+<!-- UPDATE 11.0 Tracking ...
+
+                 "prerender: false" is ignored in child components
+                 https://github.com/dotnet/aspnetcore/issues/55635
+
+                 ... for .NET 11 work in the following area. -->
+
+Disabling prerendering using the following techniques only takes effect for top-level render modes. If a parent component specifies a render mode, the prerendering settings of its children are ignored.
+
+To disable prerendering for a *component instance*, pass the `prerender` flag with a value of `false` to the render mode:
+
+* `<... @rendermode="new InteractiveServerRenderMode(prerender: false)" />`
+* `<... @rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)" />`
+* `<... @rendermode="new InteractiveAutoRenderMode(prerender: false)" />`
+
+To disable prerendering in a *component definition*:
+
+* `@rendermode @(new InteractiveServerRenderMode(prerender: false))`
+* `@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))`
+* `@rendermode @(new InteractiveAutoRenderMode(prerender: false))`
+
+To disable prerendering for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
+
+For apps based on the Blazor Web App project template, a render mode assigned to the entire app is specified where the `Routes` component is used in the `App` component (`Components/App.razor`). The following example sets the app's render mode to Interactive Server with prerendering disabled:
+
+```razor
+<Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
+```
+
+Also, disable prerendering for the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component) in the `App` component:
+
+```razor
+<HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
+```
+
+Making a root component, such as the `App` component, interactive with the `@rendermode` directive at the top of the root component's definition file (`.razor`) isn't supported. Therefore, prerendering can't be disabled directly by the `App` component.
 
 :::moniker-end
 
@@ -55,7 +94,6 @@ Prerendering guidance is organized in the Blazor documentation by subject matter
 * Components
   * [Control `<head>` content during prerendering](xref:blazor/components/control-head-content#control-head-content-during-prerendering)
   * Render modes
-    * [Prerendering](xref:blazor/components/render-modes#prerendering)
     * [Detect rendering location, interactivity, and assigned render mode at runtime](xref:blazor/components/render-modes#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime)
     * [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering)
     * [Custom shorthand render modes](xref:blazor/components/render-modes#custom-shorthand-render-modes)

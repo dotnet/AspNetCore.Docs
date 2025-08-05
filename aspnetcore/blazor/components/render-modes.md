@@ -215,48 +215,7 @@ When using a Blazor Web App, most of the Blazor documentation example components
 
 ## Prerendering
 
-*Prerendering* is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank.
-
-Prerendering is enabled by default for interactive components.
-
-Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests, including for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing), [Interactive routing and prerendering](xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering), and [Enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
-
-<!-- UPDATE 11.0 Tracking ...
-
-                 "prerender: false" is ignored in child components
-                 https://github.com/dotnet/aspnetcore/issues/55635
-
-                 ... for .NET 11 work in the following area. -->
-
-Disabling prerendering using the following techniques only takes effect for top-level render modes. If a parent component specifies a render mode, the prerendering settings of its children are ignored.
-
-To disable prerendering for a *component instance*, pass the `prerender` flag with a value of `false` to the render mode:
-
-* `<... @rendermode="new InteractiveServerRenderMode(prerender: false)" />`
-* `<... @rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)" />`
-* `<... @rendermode="new InteractiveAutoRenderMode(prerender: false)" />`
-
-To disable prerendering in a *component definition*:
-
-* `@rendermode @(new InteractiveServerRenderMode(prerender: false))`
-* `@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))`
-* `@rendermode @(new InteractiveAutoRenderMode(prerender: false))`
-
-To disable prerendering for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
-
-For apps based on the Blazor Web App project template, a render mode assigned to the entire app is specified where the `Routes` component is used in the `App` component (`Components/App.razor`). The following example sets the app's render mode to Interactive Server with prerendering disabled:
-
-```razor
-<Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
-```
-
-Also, disable prerendering for the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component) in the `App` component:
-
-```razor
-<HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
-```
-
-Making a root component, such as the `App` component, interactive with the `@rendermode` directive at the top of the root component's definition file (`.razor`) isn't supported. Therefore, prerendering can't be disabled directly by the `App` component.
+Interactive render modes (Interactive Server, Interactive WebAssembly, Interactive Auto) support prerendering by default, which initially renders the page content statically from the server to improve the initial load experience. For more information, see <xref:blazor/components/prerender>.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -903,7 +862,7 @@ If the app doesn't require the value during prerendering, this problem can be so
 
 However, the preceding approach isn't useful if your logic requires a value during prerendering.
 
-You can also avoid the problem if you [disable prerendering](#prerendering) for the component, but that's an extreme measure to take in many cases that may not meet your component's specifications.
+You can also avoid the problem if you [disable prerendering](xref:blazor/components/prerender) for the component, but that's an extreme measure to take in many cases that may not meet your component's specifications.
 
 There are a three approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
 
@@ -927,7 +886,7 @@ Additional assemblies must be disclosed to the Blazor framework to discover rout
 
 The `@rendermode` directive takes a single parameter that's a static instance of type <xref:Microsoft.AspNetCore.Components.IComponentRenderMode>. The `@rendermode` directive attribute can take any render mode instance, static or not. The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Web.RenderMode> static class with some predefined render modes for convenience, but you can create your own.
 
-Normally, a component uses the following `@rendermode` directive to [disable prerendering](#prerendering):
+Normally, a component uses the following `@rendermode` directive to [disable prerendering](xref:blazor/components/prerender):
 
 ```razor
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
@@ -965,7 +924,7 @@ At the moment, the shorthand render mode approach is probably only useful for re
 
 *This section only applies to Blazor Web Apps.*
 
-A top-level imports file in the `Components` folder (`Components/_Imports.razor`) injects its references into all of the components in the folder hierarchy, which includes the `App` component (`App.razor`). The `App` component is always rendered statically even if [prerendering](#prerendering) of a page component is disabled. Therefore, injecting services via the top-level imports file results in resolving *two instances* of the service in page components.
+A top-level imports file in the `Components` folder (`Components/_Imports.razor`) injects its references into all of the components in the folder hierarchy, which includes the `App` component (`App.razor`). The `App` component is always rendered statically even if [prerendering](xref:blazor/components/prerender) of a page component is disabled. Therefore, injecting services via the top-level imports file results in resolving *two instances* of the service in page components.
 
 To address this scenario, inject the service in a new imports file placed in the `Pages` folder (`Components/Pages/_Imports.razor`). From that location, the service is only resolved once in page components.
 

@@ -202,7 +202,7 @@ Also, disable prerendering for the `HeadOutlet` component:
 <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
 ```
 
-For more information, see <xref:blazor/components/render-modes#prerendering>.
+For more information, see <xref:blazor/components/prerender>.
 
 :::moniker-end
 
