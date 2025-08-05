@@ -123,7 +123,7 @@ This is particularly useful for scenarios such as:
 * Exporting OpenAPI documents to external systems
 * Creating documentation or reports from the API specification
 
-Support for injecting `IOpenApiDocumentProvider` was introduced in ASP.NET Core in .NET 10. For more information, see [dotnet/aspnetcore #61463](https://github.com/dotnet/aspnetcore/pull/61463).
+Support for injecting `IOpenApiDocumentProvider` was introduced in ASP.NET Core in .NET 10. For more information, see [dotnet/aspnetcore#61463](/dotnet/aspnetcore/pull/61463).
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/using-openapi-documents-6-8.md)]
