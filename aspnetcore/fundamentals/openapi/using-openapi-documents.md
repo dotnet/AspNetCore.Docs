@@ -102,26 +102,32 @@ The output shows any issues with the OpenAPI document. For example:
 
 ## Support for injecting `IOpenApiDocumentProvider`
 
-You can inject <xref:Microsoft.AspNetCore.OpenApi.Services.IOpenApiDocumentProvider> into your app through the dependency injection (DI) container to access the OpenAPI document, even outside the context of HTTP requests. This enables advanced scenarios, such as using OpenAPI documents in background services or custom middleware.
+You can inject <xref:Microsoft.AspNetCore.OpenApi.Services.IOpenApiDocumentProvider> into your services through dependency injection to access OpenAPI documents programmatically, even outside HTTP request contexts.
 
-This capability streamlines tasks that previously required workarounds, such as using `HostFactoryResolver` with a no-op `IServer` implementation to run application startup logic without launching an HTTP server. The API is inspired by Aspire's `IDistributedApplicationPublisher`, part of the Aspire framework for distributed application hosting and publishing.
+```csharp
+public class DocumentService
+{
+    private readonly IOpenApiDocumentProvider _documentProvider;
 
-The following example demonstrates how to inject and use `IOpenApiDocumentProvider` in a background service:
+    public DocumentService(IOpenApiDocumentProvider documentProvider)
+    {
+        _documentProvider = documentProvider;
+    }
 
-[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_iopenapidocumentprovider)]
+    public async Task<OpenApiDocument> GetApiDocumentAsync()
+    {
+        return await _documentProvider.GetOpenApiDocumentAsync("v1");
+    }
+}
+```
 
-In this example:
+Register the service in your DI container:
 
-* `IOpenApiDocumentProvider` is injected into the background service constructor.
-* The `GetOpenApiDocumentAsync` method is called to retrieve the OpenAPI document for a specific document name (in this case, "v1").
-* The document can then be processed, saved, or used for other purposes outside of HTTP request processing.
+```csharp
+builder.Services.AddScoped<DocumentService>();
+```
 
-This is particularly useful for scenarios such as:
-
-* Generating client SDKs during application startup
-* Validating API contracts in background processes
-* Exporting OpenAPI documents to external systems
-* Creating documentation or reports from the API specification
+This enables scenarios such as generating client SDKs, validating API contracts in background processes, or exporting documents to external systems.
 
 Support for injecting `IOpenApiDocumentProvider` was introduced in ASP.NET Core in .NET 10. For more information, see [dotnet/aspnetcore #61463](https://github.com/dotnet/aspnetcore/pull/61463).
 :::moniker-end
