@@ -5,7 +5,7 @@ description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 05/09/2025
+ms.date: 08/04/2025
 uid: fundamentals/openapi/using-openapi-documents
 ---
 # Use openAPI documents
@@ -14,7 +14,7 @@ uid: fundamentals/openapi/using-openapi-documents
 
 ## Use Swagger UI for local ad-hoc testing
 
-By default, the `Microsoft.AspNetCore.OpenApi` package doesn't ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for visualizing or interacting with the OpenAPI document include [Swagger UI](https://swagger.io/tools/swaggerhub/) and [ReDoc](https://github.com/Redocly/redoc). Swagger UI and ReDoc can be integrated in an app in several ways. Editors such as Visual Studio and VS Code offer extensions and built-in experiences for testing against an OpenAPI document.
+By default, the `Microsoft.AspNetCore.OpenApi` package doesn't ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for visualizing or interacting with the OpenAPI document include [Swagger UI](https://swagger.io/tools/swaggerhub/) and [ReDoc](https://github.com/Redocly/redoc). Swagger UI and ReDoc can be integrated in an app in several ways. Editors such as Visual Studio and Visual Studio Code offer extensions and built-in experiences for testing against an OpenAPI document.
 
 The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in apps. This package can be used to render a UI for the generated document. To configure this:
 
@@ -59,7 +59,7 @@ To automatically launch the app at the Scalar UI URL using the `https` profile o
 
 [Spectral](https://stoplight.io/open-source/spectral) is an open-source OpenAPI document linter. Spectral can be incorporated into an app build to verify the quality of generated OpenAPI documents. Install Spectral according to the [package installation directions](https://github.com/stoplightio/spectral#-installation).
 
-To take advantage of Spectral, install the `Microsoft.Extensions.ApiDescription.Server` package to enable build-time OpenAPI document generation.
+To take advantage of Spectral for linting OpenAPI documents at build time, first install the `Microsoft.Extensions.ApiDescription.Server` package to enable build-time OpenAPI document generation.
 
 Enable document generation at build time by setting the following properties in the app's `.csproj` file":
 
@@ -99,6 +99,14 @@ The output shows any issues with the OpenAPI document. For example:
 
 ✖ 5 problems (0 errors, 5 warnings, 0 infos, 0 hints)
 ```
+
+## Support for injecting IOpenApiDocumentProvider
+
+You can inject <xref:Microsoft.AspNetCore.OpenApi.Services.IOpenApiDocumentProvider> into your app through the dependency injection (DI) container to access the OpenAPI document, even outside the context of HTTP requests. This enables advanced scenarios, such as using OpenAPI documents in background services or custom middleware.
+
+This capability streamlines tasks that previously required workarounds, such as using `HostFactoryResolver` with a no-op `IServer` implementation to run application startup logic without launching an HTTP server. The API is inspired by Aspire's `IDistributedApplicationPublisher`, part of the Aspire framework for distributed application hosting and publishing.
+
+Support for injecting `IOpenApiDocumentProvider` was introduced in ASP.NET Core in .NET 10. For more information, see [dotnet/aspnetcore #61463](https://github.com/dotnet/aspnetcore/pull/61463).
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/using-openapi-documents-6-8.md)]
