@@ -32,11 +32,11 @@ If a user experiences a temporary network connection loss, Blazor attempts to re
 * In multi-server, load-balanced deployment environments, individual servers may fail or be automatically removed when no longer required to handle the overall volume of requests. The original server processing requests for a user may become unavailable when the user attempts to reconnect.
 * The user might close and reopen their browser or reload the page, which removes any state held in the browser's memory. For example, JavaScript variable values set through JavaScript interop calls are lost.
 
-When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state. This is equivalent to closing and reopening a desktop app.
+When a user can't be reconnected to their original circuit, the user receives a new circuit with newly initialized state. This is equivalent to closing and reopening a desktop app.
 
 :::moniker range=">= aspnetcore-10.0"
 
-## Circuit state (and prerendering state) preservation
+## Circuit state persistence
 
 Generally, maintain state across circuits where users are actively creating data, not simply reading data that already exists.
 
@@ -130,7 +130,7 @@ Annotate component properties with `[SupplyParameterFromPersistentComponentState
 }
 ```
 
-To persist State for scoped services, annotate service properties with `[SupplyParameterFromPersistentComponentState]`, add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
+To persist state for scoped services, annotate service properties with `[SupplyParameterFromPersistentComponentState]`, add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
 
 ```csharp
 public class CustomUserService

@@ -8,11 +8,11 @@ ms.custom: mvc
 ms.date: 08/04/2025
 uid: blazor/state-management/persistent-component-state
 ---
-# ASP.NET Core Blazor persistent component state
+# ASP.NET Core Blazor prerendered state persistence
 
 Without persisting component state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is created asynchronously, the UI may flicker as the prerendered UI is replaced when the component is rerendered.
 
-Consider the following `PrerenderedCounter1` counter component. The component sets an initial random counter value during prerendering in [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). After the SignalR connection to the client is established, the component rerenders, and the initial count value is replaced when `OnInitialized` executes a second time.
+Consider the following `PrerenderedCounter1` counter component. The component sets an initial random counter value during prerendering in [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). When the component then renders interactively, the initial count value is replaced when `OnInitialized` executes a second time.
 
 `PrerenderedCounter1.razor`:
 
@@ -142,7 +142,7 @@ When the component executes, `CurrentCount` is only set once during prerendering
 
 In the following example that serializes state for multiple components of the same type:
 
-* Properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are serialized and deserialized during prerendering.
+* Properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are serialized during prerendering.
 * The [`@key` directive attribute](xref:blazor/components/key#use-of-the-key-directive-attribute) is used to ensure that the state is correctly associated with the component instance.
 * The `Element` property is initialized in the [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) to avoid null reference exceptions, similarly to how null references are avoided for query parameters and form data.
 

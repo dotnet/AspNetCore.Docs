@@ -9,7 +9,7 @@ ms.date: 08/04/2025
 uid: blazor/state-management/browser-storage
 zone_pivot_groups: blazor-app-models
 ---
-# ASP.NET Core Blazor state management using browser storage
+# ASP.NET Core Blazor protected browser storage
 
 :::zone pivot="server"
 
