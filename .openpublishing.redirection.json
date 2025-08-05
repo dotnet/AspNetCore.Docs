@@ -1628,6 +1628,11 @@
             "source_path": "aspnetcore/blazor/state-management.md",
             "redirect_url": "/aspnet/core/state-management/",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/map-static-files.md",
+            "redirect_url": "/aspnet/core/fundamentals/static-files",
+            "redirect_document_id": false
         }
     ]
 }
