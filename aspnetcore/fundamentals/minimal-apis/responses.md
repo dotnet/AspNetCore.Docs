@@ -12,6 +12,8 @@ uid: fundamentals/minimal-apis/responses
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+This article explains how to create responses for minimal API endpoints in ASP.NET Core. Minimal APIs provide several ways to return data and HTTP status codes.
+
 [!INCLUDE[](~/includes/api-endpoint-auth.md)]
 
 :::moniker range=">= aspnetcore-10.0"
