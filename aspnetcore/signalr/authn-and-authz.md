@@ -15,7 +15,9 @@ uid: signalr/authn-and-authz
 
 ## Authenticate users connecting to a SignalR hub
 
+:::moniker range=">= aspnetcore-10.0"
 [!INCLUDE[](~/includes/api-endpoint-auth.md)]
+:::moniker-end
 
 SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
 
