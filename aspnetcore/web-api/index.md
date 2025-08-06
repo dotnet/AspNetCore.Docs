@@ -16,7 +16,9 @@ ASP.NET Core supports creating web APIs using controllers or using minimal APIs.
 
 This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see <xref:tutorials/min-web-api>.
 
+:::moniker range=">= aspnetcore-10.0"
 [!INCLUDE[](~/includes/api-endpoint-auth.md)]
+:::moniker-end
 
 ## ControllerBase class
 
