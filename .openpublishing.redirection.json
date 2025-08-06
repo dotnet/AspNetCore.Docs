@@ -1386,27 +1386,33 @@
         },
         {
             "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-03-01.md",
-            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod5"
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-04-01.md",
-            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod0"
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-07-01.md",
-            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod1"
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-08-01.md",
-            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod2"
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-09-01.md",
-            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod3"
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-10-01.md",
-            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod4"
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/blazor/security/webassembly/hosted-with-azure-active-directory.md",
