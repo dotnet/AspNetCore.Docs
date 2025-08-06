@@ -51,13 +51,13 @@ Start the solution from the ***`Aspire/Aspire.AppHost` project***.
 
 Sample solution features:
 
-* Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
+* Automatic non-interactive token refresh with the help of [Duende Access Token Management](https://docs.duendesoftware.com/accesstokenmanagement/).
 
 * Weather data is handled by a Minimal API endpoint (`/weather-forecast`) in the `Program` file (`Program.cs`) of the `MinimalApiJwt` project. The endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>. For any controllers that you add to the project, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action. For more information on requiring authorization across the app via an [authorization policy](xref:security/authorization/policies) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](xref:security/authentication/configure-oidc-web-authentication#force-authorization).
 
 * The app securely calls a web API for weather data:
 
-  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` on the server to obtain weather data from the web API in the `MinimalApiJwt` project using a <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) that attaches the access token from  the <xref:Microsoft.AspNetCore.Http.HttpContext> to the request.
+  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` on the server to obtain weather data from the web API in the `MinimalApiJwt` project using a <xref:System.Net.Http.DelegatingHandler> (registered by calling `AddUserAccessTokenHandler()` on the named <xref:System.Net.Http.HttpClient>) attaches the user's access token from the <xref:Microsoft.AspNetCore.Http.HttpContext> to the request.
   * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make the web API call from the server project's `ServerWeatherForecaster`.
 
 :::moniker range=">= aspnetcore-9.0"
@@ -184,42 +184,22 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 
 The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 
-A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see <xref:blazor/components/httpcontext> and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
+A <xref:System.Net.Http.DelegatingHandler> attaches the user's access token from the <xref:Microsoft.AspNetCore.Http.HttpContext> to outgoing requests. The handler only executes during static server-side rendering (static SSR), so the underlying implementation can safely use <xref:Microsoft.AspNetCore.Http.HttpContext> in this scenario. For more information, see <xref:blazor/components/httpcontext> and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
 
-`TokenHandler.cs`:
-
-```csharp
-public class TokenHandler(IHttpContextAccessor httpContextAccessor) : 
-    DelegatingHandler
-{
-    protected override async Task<HttpResponseMessage> SendAsync(
-        HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        if (httpContextAccessor.HttpContext is null)
-        {
-            throw new Exception("HttpContext not available");
-        }
-
-        var accessToken = await httpContextAccessor.HttpContext
-            .GetTokenAsync("access_token");
-
-        request.Headers.Authorization =
-            new AuthenticationHeaderValue("Bearer", accessToken);
-
-        return await base.SendAsync(request, cancellationToken);
-    }
-}
-```
-
-In the project's `Program` file, the token handler (`TokenHandler`) is registered as a service and specified as the message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> for making secure requests to the backend `MinimalApiJwt` web API using a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) ("`ExternalApi`").
+In the project's `Program` file, a message handler is registered as a service and added to a named <xref:System.Net.Http.HttpClient> by calling [`AddUserAccessTokenHandler()`](https://docs.duendesoftware.com/accesstokenmanagement/web-apps/#automatic-via-http-client-factory). This [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) ("`ExternalApi`") makes secure requests to the backend `MinimalApiJwt` web API.
 
 ```csharp
-builder.Services.AddScoped<TokenHandler>();
+// Add Duende Access Token Management
+builder.Services.AddOpenIdConnectAccessTokenManagement();
 
+// Registers HTTP client that uses the managed user access token. It fetches
+// a new access token when the current one expires, and reissue a cookie with the
+// new access token saved inside.OIDC connect options are set for saving tokens and
+// the offline access scope.
 builder.Services.AddHttpClient("ExternalApi",
-      client => client.BaseAddress = new Uri(builder.Configuration["ExternalApiUri"] ?? 
+      client => client.BaseAddress = new Uri(builder.Configuration["ExternalApiUri"] ??
           throw new Exception("Missing base address!")))
-      .AddHttpMessageHandler<TokenHandler>();
+    .AddUserAccessTokenHandler();
 ```
 
 In the project's `appsettings.json` file, configure the external API URI:
@@ -395,7 +375,7 @@ The following specification is adopted:
 
 * The Blazor Web App uses [the Server render mode with global interactivity](xref:blazor/components/render-modes).
 * This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can be used with Entra, Microsoft Identity Web, and hosted in Azure.
-* Automatic non-interactive token refresh.
+* Automatic non-interactive token refresh with the help of [Duende Access Token Management](https://docs.duendesoftware.com/accesstokenmanagement/).
 * A separate web API project demonstrates a secure web API call for weather data.
 
 For an alternative experience using [Microsoft Authentication Library for .NET](/entra/msal/dotnet/), [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/), and [Microsoft Entra ID](https://www.microsoft.com/security/business/identity-access/microsoft-entra-id), see <xref:blazor/security/blazor-web-app-entra>.
@@ -519,44 +499,24 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 
 ## `BlazorWebAppOidcServer` project
 
-Automatic non-interactive token refresh is managed by a custom cookie refresher (`CookieOidcRefresher.cs`).
+Automatic non-interactive token refresh is managed by the [Duende Access Token Management](https://docs.duendesoftware.com/accesstokenmanagement/) library.
 
-A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see <xref:blazor/components/httpcontext> and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
+A <xref:System.Net.Http.DelegatingHandler> attaches the user's access token from the <xref:Microsoft.AspNetCore.Http.HttpContext> to outgoing requests. The handler only executes during static server-side rendering (static SSR), so the underlying implementation can safely use <xref:Microsoft.AspNetCore.Http.HttpContext> in this scenario. For more information, see <xref:blazor/components/httpcontext> and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
 
-`TokenHandler.cs`:
-
-```csharp
-public class TokenHandler(IHttpContextAccessor httpContextAccessor) : 
-    DelegatingHandler
-{
-    protected override async Task<HttpResponseMessage> SendAsync(
-        HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        if (httpContextAccessor.HttpContext is null)
-        {
-            throw new Exception("HttpContext not available");
-        }
-
-        var accessToken = await httpContextAccessor.HttpContext
-            .GetTokenAsync("access_token");
-
-        request.Headers.Authorization =
-            new AuthenticationHeaderValue("Bearer", accessToken);
-
-        return await base.SendAsync(request, cancellationToken);
-    }
-}
-```
-
-In the project's `Program` file, the token handler (`TokenHandler`) is registered as a service and specified as the message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> for making secure requests to the backend `MinimalApiJwt` web API using a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) ("`ExternalApi`").
+In the project's `Program` file, a message handler is registered as a service and added to a named <xref:System.Net.Http.HttpClient> by calling [`AddUserAccessTokenHandler()`](https://docs.duendesoftware.com/accesstokenmanagement/web-apps/#automatic-via-http-client-factory). This [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) ("`ExternalApi`") makes secure requests to the backend `MinimalApiJwt` web API.
 
 ```csharp
-builder.Services.AddScoped<TokenHandler>();
+// Add Duende Access Token Management
+builder.Services.AddOpenIdConnectAccessTokenManagement();
 
+// Registers HTTP client that uses the managed user access token. It fetches
+// a new access token when the current one expires, and reissue a cookie with the
+// new access token saved inside.OIDC connect options are set for saving tokens and
+// the offline access scope.
 builder.Services.AddHttpClient("ExternalApi",
-      client => client.BaseAddress = new Uri(builder.Configuration["ExternalApiUri"] ?? 
+      client => client.BaseAddress = new Uri(builder.Configuration["ExternalApiUri"] ??
           throw new Exception("Missing base address!")))
-      .AddHttpMessageHandler<TokenHandler>();
+    .AddUserAccessTokenHandler();
 ```
 
 The `Weather` component uses the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to prevent unauthorized access. For more information on requiring authorization across the app via an [authorization policy](xref:security/authorization/policies) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](xref:security/authentication/configure-oidc-web-authentication#force-authorization).
@@ -779,7 +739,7 @@ The `PersistingAuthenticationStateProvider` class (`PersistingAuthenticationStat
 
 This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can be used with Entra, Microsoft Identity Web, and hosted in Azure.
 
-Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
+Automatic non-interactive token refresh with the help of [Duende Access Token Management](https://docs.duendesoftware.com/accesstokenmanagement/).
 
 The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) is adopted using [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) for service discovery and [YARP](https://dotnet.github.io/yarp/) for proxying requests to a weather forecast endpoint on the backend app.
 
@@ -1254,22 +1214,9 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
 <!-- UPDATE 10.0 - Check the PU issue for 10.0 work to resolve both issues.
                    The docs issue is https://github.com/dotnet/AspNetCore.Docs/issues/34235. -->
 
-The custom cookie refresher (`CookieOidcRefresher.cs`) implementation updates the user's claims automatically when they expire. The current implementation expects to receive an ID token from the token endpoint in exchange for the refresh token. The claims in this ID token are then used to overwrite the user's claims.
-
-The sample implementation doesn't include code for requesting claims from the [UserInfo endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) on token refresh. For more information, see [`BlazorWebAppOidc AddOpenIdConnect with GetClaimsFromUserInfoEndpoint = true doesn't propogate [sic] role claims to client` (`dotnet/aspnetcore` #58826)](https://github.com/dotnet/aspnetcore/issues/58826#issuecomment-2492738142).
-
-> [!NOTE]
-> Some identity providers [only return an access token when using a refresh token](https://openid.net/specs/openid-connect-core-1_0.html#RefreshTokenResponse). The `CookieOidcRefresher` can be updated with additional logic to continue to use the prior set of claims stored in the authentication cookie or use the access token to request claims from the UserInfo endpoint.
+The user's access token and claims are automatically refreshed when they expire, using [Duende Access Token Management](https://docs.duendesoftware.com/accesstokenmanagement/).
 
 :::moniker-end
-
-## Cryptographic nonce
-
-A *nonce* is a string value that associates a client's session with an ID token to mitigate [replay attacks](https://developer.mozilla.org/docs/Glossary/Replay_attack).
-
-If you receive a nonce error during authentication development and testing, use a new InPrivate/incognito browser session for each test run, no matter how small the change made to the app or test user because stale cookie data can lead to a nonce error. For more information, see the [Cookies and site data](#cookies-and-site-data) section.
-
-A nonce isn't required or used when a refresh token is exchanged for a new access token. In the sample app, the `CookieOidcRefresher` (`CookieOidcRefresher.cs`) deliberately sets <xref:Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectProtocolValidator.RequireNonce?displayProperty=nameWithType> to `false`.
 
 ## Application roles for apps not registered with Microsoft Entra (ME-ID)
 
@@ -1444,3 +1391,4 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 * [Refresh token during http request in Blazor Interactive Server with OIDC (`dotnet/aspnetcore` #55213)](https://github.com/dotnet/aspnetcore/issues/55213)
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 * [How to access an `AuthenticationStateProvider` from a `DelegatingHandler`](xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware)
+* [Duende Access Token Management](https://docs.duendesoftware.com/accesstokenmanagement/)
