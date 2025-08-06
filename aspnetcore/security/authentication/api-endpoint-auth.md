@@ -13,7 +13,7 @@ uid: security/authentication/api-endpoint-auth
 
 :::moniker range=">= aspnetcore-10.0"
 
-Starting with ASP.NET Core 10, the framework introduces a significant improvement in how authentication failures are handled for API endpoints when using cookie authentication. This change addresses the common issue where API endpoints would redirect unauthenticated requests to login pages, which is inappropriate for programmatic API access.
+When using cookie authentication, API endpoints return the appropriate HTTP status codes (such as 401 or 403) for authentication failures instead of redirecting unauthenticated requests to login pages. This behavior, which is more suitable for programmatic API access, was introduced in ASP.NET Core in .NET 10.
 
 ## The problem
 
