@@ -86,6 +86,9 @@ var client = new Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 ```
 
+> [!NOTE]
+> The gRPC client on .NET Framework is slower than on modern .NET versions. For improved gRPC performance, apps should be updated to use modern .NET.
+
 ## gRPC C# core-library
 
 An alternative option for .NET Framework has been to use [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/) to make gRPC calls. gRPC C# core-library is:

@@ -1,8 +1,8 @@
 ---
 title: Microsoft Account external login setup with ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: This sample demonstrates the integration of Microsoft account user authentication into an existing ASP.NET Core app.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/01/2025
 monikerRange: '>= aspnetcore-3.1'
@@ -57,7 +57,7 @@ For more information about configuration options supported by Microsoft Account 
 
 You're now logged in using your Microsoft credentials.
 
-[!INCLUDE[](includes/chain-auth-providers.md)]
+To use multiple authentication providers, see <xref:security/authentication/social/index#multiple-authentication-providers>.
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
@@ -124,8 +124,6 @@ Tap **Yes** and you'll be redirected back to the web site where you can set your
 
 You're now logged in using your Microsoft credentials.
 
-[!INCLUDE[](includes/chain-auth-providers.md)]
-
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## Troubleshooting
@@ -143,3 +141,7 @@ You're now logged in using your Microsoft credentials.
 * Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in Microsoft Entra admin center. The configuration system is set up to read keys from environment variables.
 
 :::moniker-end
+
+## Additional resources
+
+[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)

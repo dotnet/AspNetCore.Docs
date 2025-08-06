@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about the telemetry collected by the dotnet-scaffold CLI tool.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 11/06/2024
+ms.date: 11/12/2024
 uid: fundamentals/dotnet-scaffold-telemetry
 ---
 # dotnet-scaffold telemetry
@@ -66,5 +66,5 @@ The telemetry feature collects the following data.
 
 ## Additional resources
 
-* [.NET Core SDK telemetry](/dotnet/core/tools/telemetry)
+* [.NET SDK telemetry](/dotnet/core/tools/telemetry)
 * [.NET CLI telemetry data](https://dotnet.microsoft.com/platform/telemetry)

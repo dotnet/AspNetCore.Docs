@@ -4,7 +4,8 @@ author: tdykstra
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 6/20/2023
+ms.date: 07/19/2025
+ai-usage: ai-assisted
 uid: mvc/models/model-binding
 ---
 
@@ -264,10 +265,12 @@ The following controller action uses the `DateRangeTP` class to bind a date rang
 
 A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor.
 
-For each property of the complex type, [model binding looks through the sources for the name pattern](https://github.com/dotnet/aspnetcore/blob/v6.0.3/src/Mvc/Mvc.Core/src/ModelBinding/ParameterBinder.cs#L157-L172) *prefix.property_name*. If nothing is found, it looks for just *property_name* without the prefix. The decision to use the prefix isn't made per property. For example, with a query containing `?Instructor.Id=100&Name=foo`, bound to method `OnGet(Instructor instructor)`, the resulting object of type `Instructor` contains:
+For each property of the complex type, [model binding looks through the sources for the name pattern](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.Core/src/ModelBinding/ParameterBinder.cs#L115-L130) *prefix.property_name*. If nothing is found, it looks for just *property_name* without the prefix. The decision to use the prefix isn't made per property. For example, with a query containing `?Instructor.Id=100&Name=foo`, bound to method `OnGet(Instructor instructor)`, the resulting object of type `Instructor` contains:
 
 * `Id` set to `100`.
 * `Name` set to `null`. Model binding expects `Instructor.Name` because `Instructor.Id` was used in the preceding query parameter.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 For binding to a parameter, the prefix is the parameter name. For binding to a `PageModel` public property, the prefix is the public property name. Some attributes have a `Prefix` property that lets you override the default usage of parameter or property name.
 
@@ -631,7 +634,17 @@ Used to retrieve all the values from posted form data.
 
 ## Input formatters
 
-Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes JSON based input formatters for handling JSON data. You can add other formatters for other content types.
+Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes JSON based input formatters for handling JSON data using [`System.Text.Json`](/dotnet/standard/serialization/system-text-json-overview). You can add other formatters for other content types.
+
+The default JSON input formatter can be configured using the `AddJsonOptions` method:
+
+:::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_AddJsonOptions":::
+
+Common configuration options include:
+
+* **Property naming policy** - Configure camelCase or other naming conventions
+* **Enum converters** - Handle enum serialization as strings
+* **Custom converters** - Add type-specific serialization logic
 
 ASP.NET Core selects input formatters based on the [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute. If no attribute is present, it uses the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 

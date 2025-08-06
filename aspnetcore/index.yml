@@ -11,7 +11,8 @@ metadata:
   ms.topic: hub-page
   author: wadepickett
   ms.author: wpickett
-  ms.date: 02/23/2024
+  ai-usage: ai-assisted
+  ms.date: 07/28/2025
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -21,11 +22,7 @@ highlightedContent:
     # Card
     - title: "Create an ASP.NET Core app on any platform in 5 minutes"
       itemType: get-started
-      url: getting-started/index.md
-    # Card
-    - title: "Create your first web UI"
-      itemType: get-started
-      url: tutorials/razor-pages/razor-pages-start.md
+      url: get-started.md
     # Card
     - title: "ASP.NET Core overview"
       itemType: overview
@@ -55,7 +52,7 @@ conceptualContent:
       links:
         - url: fundamentals/apis.md
           itemType: overview
-          text: "Overview"
+          text: "Choose between controller-based APIs and minimal APIs"
         - url: tutorials/min-web-api.md
           itemType: get-started
           text: "Create a minimal web API with ASP.NET Core"
@@ -208,7 +205,7 @@ additionalContent:
       # Card
       - title: API reference for ASP.NET Core
         links:
-          - url: /dotnet/api/?view=aspnetcore-6.0
+          - url: /dotnet/api/?view=aspnetcore-9.0
             text: ".NET API browser"
       # Card
       - title: Servers
@@ -341,24 +338,18 @@ additionalContent:
       # Card
       - title: Migration
         links:
+          - url: migration/80-90.md
+            text: "ASP.NET Core 8.0 to 9.0"
+          - url: migration/70-80.md
+            text: "ASP.NET Core 7.0 to 8.0"
+          - url: migration/60-70.md
+            text: "ASP.NET Core 6.0 to 7.0"
           - url: migration/50-to-60.md
             text: "ASP.NET Core 5.0 to 6.0"
           - url: migration/50-to-60-samples.md
             text: "ASP.NET Core 5.0 code samples to 6.0 minimal hosting model"
-          - url: migration/31-to-50.md
-            text: "ASP.NET Core 3.1 to 5.0"
-          - url: migration/30-to-31.md
-            text: "ASP.NET Core 3.0 to 3.1"
-          - url: migration/22-to-30.md
-            text: "ASP.NET Core 2.2 to 3.0"
-          - url: migration/21-to-22.md
-            text: "ASP.NET Core 2.1 to 2.2"
-          - url: migration/20_21.md
-            text: "ASP.NET Core 2.0 to 2.1"
-          - url: migration/1x-to-2x/index.md
-            text: "ASP.NET Core 1.x to 2.0"
-          - url: migration/fx-to-core/index.md
-            text: "ASP.NET to ASP.NET Core"
+          - url: /aspnet/core/migration/
+            text: "Earlier versions"
       # Card
       - title: Architecture
         links:

@@ -1,11 +1,11 @@
 ---
 title: Map static files in ASP.NET Core
-author: rick-anderson
+author: guardrex
 description: Learn how to serve and secure mapped static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 monikerRange: '>= aspnetcore-9.0'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 3/18/2025
+ms.date: 07/23/2025
 uid: fundamentals/map-static-files
 ---
 # Map static files in ASP.NET Core
@@ -16,40 +16,21 @@ uid: fundamentals/map-static-files
 
 -->
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET Core app serves directly to clients by default.
 
 For Blazor static files guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/static-files>.
-
-## Serve static files
-
-Static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method. For more information, see [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root).
-
-The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A> method sets the content root to the current directory:
-
-[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=1,15)]
-
-Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project templates contain several folders within the `wwwroot` folder:
-
-* `wwwroot`
-  * `css`
-  * `js`
-  * `lib`
-
-Consider an app with the `wwwroot/images/MyImage.jpg` file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
 
 ### Map Static Assets routing endpoint conventions (`MapStaticAssets`)
 
 Creating performant web apps requires optimizing asset delivery to the browser. Possible optimizations with <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> include:
 
-* Serve a given asset once until the file changes or the browser clears its cache. Set the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
-* Prevent the browser from using old or stale assets after an app is updated. Set the [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header.
-* Set up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
+* Serve a given asset once until the file changes or the browser clears its cache. Set the [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
+* Prevent the browser from using old or stale assets after an app is updated. Set the [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header.
+* Set appropriate [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) on the response.
 * Use [Caching Middleware](xref:performance/caching/middleware).
 * Serve [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible. This optimization doesn't include minification.
 * Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
-* [Fingerprinting assets](https://en.wikipedia.org/wiki/Fingerprint_(computing)) to prevent reusing old versions of files.
+* [Fingerprinting assets](https://wikipedia.org/wiki/Fingerprint_(computing)) to prevent reusing old versions of files.
 
 `MapStaticAssets`:
 
@@ -85,31 +66,40 @@ The following features are supported with `UseStaticFiles` but not with `MapStat
 * [Serve default documents](xref:fundamentals/static-files#serve-default-documents)
 * [`FileExtensionContentTypeProvider`](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
 * [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
-* [Serving files from disk or embedded resources, or other locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
-* [Serve files outside of web root](xref:fundamentals/static-files#serve-files-outside-of-web-root)
-* [Set HTTP response headers](xref:fundamentals/static-files#set-http-response-headers)
-* [Directory browsing](xref:fundamentals/static-files#directory-browsing)
-* [Serve default documents](xref:fundamentals/static-files#serve-default-documents)
-* [`FileExtensionContentTypeProvider`](xref:fundamentals/static-files#fileextensioncontenttypeprovider)
-* [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations)
 
 ### Serve files in web root
 
-The default web app templates call the <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> method in `Program.cs`, which enables static files to be served:
+In the app's `Program` file, <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> sets the [content root](xref:fundamentals/index#content-root) to the current directory. Call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> method to enable serving static files. The parameterless overload results in serving the files from the app's [web root](xref:fundamentals/index#web-root). The default web root directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the content root.
 
-[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=15)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
 
-The parameterless `MapStaticAssets` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references `wwwroot/images/MyImage.jpg`:
+...
 
-```html
-<img src="~/images/MyImage.jpg" class="img" alt="My image" />
+app.MapStaticAssets();
 ```
 
-In the preceding markup, the tilde character `~` points to the [web root](xref:fundamentals/index#web-root).
+You can change the web root with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method. For more information, see the [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) sections of the *ASP.NET Core fundamentals overview* article.
+
+Static files are accessible via a path relative to the web root. For example, the Blazor Web App project template contains the `lib` folder within the `wwwroot` folder, which contains Bootstrap static assets.
+
+If an app placed its images in an `images` folder in `wwwroot`, the following markup references `wwwroot/images/favicon.png`:
+
+```html
+<link rel="icon" type="image/png" href="images/favicon.png" />
+```
+
+In Razor Pages and MVC apps (but not Blazor apps), the tilde character `~` points to the web root. In the following example, `~/images/icon.jpg` loads the icon image (`icon.jpg`) from the app's `wwwroot/images` folder:
+
+```cshtml
+<img src="~/images/icon.jpg" alt="Icon image" />
+```
+
+The URL format for the preceding example is `https://{HOST}/images/{FILE NAME}`. The `{HOST}` placeholder is the host, and the `{FILE NAME}` placeholder is the file name. For the preceding example running at the app's localhost address on port 5001, the absolute URL is `https://localhost:5001/images/icon.jpg`.
 
 ### Serve files outside of web root
 
-Consider a directory hierarchy in which the static files to be served reside outside of the [web root](xref:fundamentals/index#web-root):
+Consider the following directory hierarchy with static files residing outside of the app's [web root](xref:fundamentals/index#web-root) in a folder named `MyStaticFiles`:
 
 * `wwwroot`
   * `css`
@@ -121,19 +111,19 @@ Consider a directory hierarchy in which the static files to be served reside out
 
 A request can access the `red-rose.jpg` file by configuring the Static File Middleware as follows:
 
-[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_rr&highlight=1,18-23)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_rr&highlight=1,18-24)]
 
-In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the `red-rose.jpg` file.
+In the preceding code, the `MyStaticFiles` directory hierarchy is exposed publicly via the `StaticFiles` URL segment. A request to `https://{HOST}/StaticFiles/images/red-rose.jpg`, where the `{HOST}` placeholder is the host, serves the `red-rose.jpg` file.
 
 The following markup references `MyStaticFiles/images/red-rose.jpg`:
-<!-- zz test via /Home2/MyStaticFilesRR -->
+
 [!code-html[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
 
 To serve files from multiple locations, see [Serve files from multiple locations](xref:fundamentals/static-files#serve-files-from-multiple-locations).
 
 ### Set HTTP response headers
 
-A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the [Cache-Control](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) header:
+A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring the middleware to serve static files from the [web root](xref:fundamentals/index#web-root), the following code sets the [`Cache-Control`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) header:
 
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=16-24)]
 
@@ -143,9 +133,9 @@ The preceding code makes static files publicly available in the local cache for 
 
 The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When `MapStaticAssets` is called before the authorization middleware:
 
-  * No authorization checks are performed on the static files.
-  * Static files served by the Static File Middleware, such as those under `wwwroot`, are publicly accessible.
-  
+* No authorization checks are performed on the static files.
+* Static files served by the Static File Middleware, such as those under `wwwroot`, are publicly accessible.
+
 To serve static files based on authorization, see [Static file authorization](xref:fundamentals/static-files#static-file-authorization).
 
 ## Serve files from multiple locations
@@ -161,7 +151,7 @@ Consider the following Razor page which displays the `/MyStaticFiles/image3.png`
 Using the preceding code:
 
 * The `/MyStaticFiles/image3.png` file is displayed.
-* The [Image Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper) <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion> is not applied because the Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>. `WebRootFileProvider` has not been updated to include the `MyStaticFiles` folder.
+* [Image Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper) (<xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion>) aren't applied because Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>. `WebRootFileProvider` hasn't been updated to include the `MyStaticFiles` folder.
 
 The following code updates the `WebRootFileProvider`, which enables the Image Tag Helper to provide a version:
 
@@ -170,7 +160,7 @@ The following code updates the `WebRootFileProvider`, which enables the Image Ta
 > [!NOTE]
 > The preceding approach applies to Razor Pages and MVC apps. For guidance that applies to Blazor Web Apps, see <xref:blazor/fundamentals/static-files#serve-files-from-multiple-locations>.
 
-## Serve files outside wwwroot by updating IWebHostEnvironment.WebRootPath
+## Serve files outside wwwroot by updating `IWebHostEnvironment.WebRootPath`
 
 When <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A?displayProperty=nameWithType> is set to a folder other than `wwwroot`:
 
@@ -186,8 +176,8 @@ Consider a web app created with the empty web template:
 
 In the preceding code, requests to `/`:
 
-* In the development environment return `wwwroot/Index.html`
-* In any environment other than development return `wwwroot-custom/Index.html`
+* In the development environment, return `wwwroot/Index.html`.
+* In any environment other than development, return `wwwroot-custom/Index.html`.
 
 To ensure assets from `wwwroot-custom` are returned, use one of the following approaches:
 
@@ -202,14 +192,15 @@ To ensure assets from `wwwroot-custom` are returned, use one of the following ap
   </ItemGroup>
   ```
 
-The following code updates `IWebHostEnvironment.WebRootPath` to a non development value, guaranteeing duplicate content is returned from `wwwroot-custom` rather than `wwwroot`:
+The following code updates `IWebHostEnvironment.WebRootPath` to a non-Development value (Staging), guaranteeing duplicate content is returned from `wwwroot-custom` rather than `wwwroot`:
 
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/WebRoot/Program.cs?name=snippet2&highlight=5)]
+
+When developing a server-side Blazor app and testing locally, see <xref:blazor/fundamentals/static-files#static-files-in-non-development-environments>.
 
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:index#how-to-download-a-sample))
-* [Middleware](xref:fundamentals/middleware/index)
-* [Introduction to ASP.NET Core](xref:index)
+* <xref:fundamentals/middleware/index>
 * <xref:blazor/file-uploads>
 * <xref:blazor/file-downloads>

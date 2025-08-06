@@ -5,7 +5,7 @@ description: Learn about Web Host in ASP.NET Core, which is responsible for app 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/29/2024
+ms.date: 09/06/2024
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
@@ -243,6 +243,21 @@ Set the ports to listen on for HTTPS connections.
 ```csharp
 WebHost.CreateDefaultBuilder(args)
     .UseSetting("https_ports", "8080")
+```
+
+### HTTP Ports
+
+Set the ports to listen on for HTTP connections.
+
+**Key**: http_ports
+**Type**: *string*  
+**Default**: A default value isn't set.  
+**Set using**: `UseSetting`  
+**Environment variable**: `ASPNETCORE_HTTP_PORTS`
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseSetting("http_ports", "8080")
 ```
 
 ### Hosting Startup Exclude Assemblies

@@ -5,7 +5,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 3/18/2025
+ms.date: 07/09/2025
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -86,7 +86,7 @@ The OpenAPI document can be generated in either JSON or YAML format. By default,
 app.MapOpenApi("/openapi/{documentName}.yaml");
 ```
 
-Generating penAPI documents in YAML format at build time is currently not supported, but planned in a future preview.
+Generating OpenAPI documents in YAML format at build time is currently not supported, but planned in a future preview.
 
 ### Customize the OpenAPI document name
 
@@ -225,7 +225,7 @@ dotnet build
 type obj\{ProjectName}.json
 ```
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET CLI](#tab/netcore-cli) 
 
 ```cli
 dotnet build

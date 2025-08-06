@@ -1,8 +1,8 @@
 ---
 title: Twitter external sign-in setup with ASP.NET Core
-author: rick-anderson
+author: wadepickett
 description: This tutorial demonstrates the integration of Twitter account user authentication into an existing ASP.NET Core app.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 12/08/2021
 monikerRange: '>= aspnetcore-3.0'
@@ -72,10 +72,7 @@ Add the Authentication service to the `Startup.ConfigureServices`:
 
 :::moniker-end
 
-
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
-
-[!INCLUDE[](includes/chain-auth-providers.md)]
 
 For more information on configuration options supported by Twitter authentication, see the <xref:Microsoft.AspNetCore.Builder.TwitterOptions> API reference. This can be used to request different information about the user.
 
@@ -109,3 +106,7 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 * Once you publish your web site to Azure web app, you should reset the `ConsumerSecret` in the Twitter developer portal.
 
 * Set the `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
+
+## Additional resources
+
+[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)

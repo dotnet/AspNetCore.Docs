@@ -2,9 +2,9 @@
 uid: fundamentals/servers/yarp/middleware
 title: YARP Middleware
 description: YARP Middleware
-author: samsp-msft
-ms.author: samsp
-ms.date: 2/6/2025
+author: wadepickett
+ms.author: wpickett
+ms.date: 04/04/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted

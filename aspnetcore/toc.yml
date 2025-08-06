@@ -2,15 +2,9 @@ items:
   - name: ASP.NET Core documentation
     href: index.yml
   - name: Overview
-    items:
-      - name: About ASP.NET Core
-        uid: index
-      - name: Compare ASP.NET Core and ASP.NET
-        uid: fundamentals/choose-between-aspnet-and-aspnetcore
-      - name: Compare .NET and .NET Framework
-        href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+    uid: index
   - name: Get started
-    uid: getting-started
+    uid: get-started
   - name: What's new
     items:
       - name: What's new in 10
@@ -660,6 +654,8 @@ items:
                 uid: blazor/performance/app-download-size
               - name: JavaScript interop
                 uid: blazor/performance/js-interop
+              - name: WebAssembly runtime performance
+                uid: blazor/performance/webassembly-runtime-performance
               - name: WebAssembly browser developer tools diagnostics
                 uid: blazor/performance/webassembly-browser-developer-tools
               - name: WebAssembly Event Pipe diagnostics
@@ -667,7 +663,11 @@ items:
           - name: Test components
             uid: blazor/test
           - name: Progressive Web Applications
-            uid: blazor/progressive-web-app
+            items:
+              - name: Overview
+                uid: blazor/progressive-web-app/index
+              - name: Push notifications
+                uid: blazor/progressive-web-app/push-notifications
           - name: Host and deploy
             items:
               - name: Overview
@@ -2098,43 +2098,21 @@ items:
         items:
           - name: Overview
             uid: migration/fx-to-core/index
+          - name: Get started
+            uid: migration/fx-to-core/start
+          - name: Tooling
+            uid: migration/fx-to-core/tooling
           - name: Incremental migration
             displayName: migrate, migration
             items:
-            - name: Overview
-              uid: migration/fx-to-core/inc/overview
-            - name: Get started
-              uid: migration/fx-to-core/inc/start
             - name: System.Web adapters
               uid: migration/fx-to-core/systemweb-adapters
             - name: Remote app setup
               uid: migration/fx-to-core/inc/remote-app-setup
-            - name: Usage Guidance
-              uid: migration/fx-to-core/inc/usage_guidance
-            - name: Wrapped session state
-              uid: migration/fx-to-core/inc/wrapped
-            - name: Session state migration
-              uid: migration/fx-to-core/inc/session
-            - name: Remote app session state
-              uid: migration/fx-to-core/inc/remote-session
-            - name: Remote Authentication
-              uid: migration/fx-to-core/inc/remote-authentication
-            - name: Unit testing
-              uid: migration/fx-to-core/inc/unit-testing
             - name: A/B Testing endpoints
               uid: migration/fx-to-core/inc/ab-testing
             - name: Blazor support with YARP
               uid: migration/fx-to-core/inc/blazor
-          - name: Tooling
-            uid: migration/fx-to-core/tooling
-          - name: Example Migration
-            items:
-            - name: Overview
-              uid: migration/fx-to-core/examples/overview
-            - name: Configuration
-              uid: migration/fx-to-core/examples/configuration
-            - name: Identity
-              uid: migration/fx-to-core/examples/identity
           - name: Technology Areas
             items:
             - name: Overview            
@@ -2145,12 +2123,26 @@ items:
               uid: migration/fx-to-core/areas/http-modules
             - name: HTTP Handlers
               uid: migration/fx-to-core/areas/http-handlers
+            - name: Session
+              uid: migration/fx-to-core/areas/session
+            - name: Authentication
+              uid: migration/fx-to-core/areas/authentication
             - name: Membership
               uid: migration/fx-to-core/areas/membership
             - name: Web API
               uid: migration/fx-to-core/areas/webapi
             - name: ClaimsPrincipal.Current
               uid: migration/fx-to-core/areas/claimsprincipal-current
+            - name: Miscellaneous
+              uid: migration/fx-to-core/areas/misc
+          - name: Example Migration
+            items:
+            - name: Overview
+              uid: migration/fx-to-core/examples/overview
+            - name: Configuration
+              uid: migration/fx-to-core/examples/configuration
+            - name: Identity
+              uid: migration/fx-to-core/examples/identity
   - name: API reference
     href: /dotnet/api/
   - name: Contribute

@@ -1,9 +1,9 @@
 ---
 title: File Providers in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how ASP.NET Core abstracts file system access through the use of File Providers.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 04/06/2020
 uid: fundamentals/file-providers
@@ -21,7 +21,7 @@ ASP.NET Core abstracts file system access through the use of File Providers. Fil
 * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.
 * [Static File Middleware](xref:fundamentals/static-files) uses File Providers to locate static files.
 * [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
-* .NET Core tooling uses File Providers and glob patterns to specify which files should be published.
+* .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -172,7 +172,7 @@ ASP.NET Core abstracts file system access through the use of File Providers. Fil
 * <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.
 * [Static File Middleware](xref:fundamentals/static-files) uses File Providers to locate static files.
 * [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
-* .NET Core tooling uses File Providers and glob patterns to specify which files should be published.
+* .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:index#how-to-download-a-sample))
 

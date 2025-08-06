@@ -2,9 +2,9 @@
 uid: fundamentals/servers/yarp/transforms-response
 title: YARP Response and Response Trailer Transforms
 description: YARP Response and Response Trailer Transforms
-author: samsp-msft
-ms.author: samsp
-ms.date: 2/6/2025
+author: tdykstra
+ms.author: tdykstra
+ms.date: 04/04/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted

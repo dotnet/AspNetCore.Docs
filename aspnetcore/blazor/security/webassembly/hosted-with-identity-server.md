@@ -69,7 +69,7 @@ The output location specified with the optional `-o|--output` option creates a p
 
 Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier. Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration, and dashes aren't permitted in an OIDC app identifier. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives.
 
-For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Guide.
 
 ---
 

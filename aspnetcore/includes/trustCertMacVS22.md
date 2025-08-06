@@ -1,12 +1,12 @@
 Visual Studio for Mac displays the following popup:
 
-![HTTPS Development certificate was not found. Do you want to install and trust the certificate?](~/getting-started/_static/trustCertMacVS22.png)
+![HTTPS Development certificate was not found. Do you want to install and trust the certificate?](~/static/trustCertMacVS22.png)
 
 * Select **Install and Trust** if you trust the development certificate.
 
 The following dialog is displayed:
 
-![Security warning dialog](~/getting-started/_static/certMacVS22.png)
+![Security warning dialog](~/static/certMacVS22.png)
 
 * Enter your password and select **Update Settings**.
 

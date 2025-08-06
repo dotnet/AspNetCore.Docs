@@ -1,10 +1,10 @@
 ---
 title: Scaffold a data model with dotnet scaffold in a Razor Pages project
 description: Scaffold a data model with dotnet scaffold in a Razor Pages project
-author: rick-anderson
-ms.author: riande
+author: wadepickett
+ms.author: wpickett
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 3/15/2025
+ms.date: 04/24/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted

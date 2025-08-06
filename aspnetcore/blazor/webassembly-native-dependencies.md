@@ -52,7 +52,7 @@ int fact(int n)
 }
 ```
 
-Add a `NativeFileReference` MS Build item for `Test.c` in the app's project file (`.csproj`):
+Add a `NativeFileReference` MSBuild item for `Test.c` in the app's project file (`.csproj`):
 
 ```xml
 <ItemGroup>

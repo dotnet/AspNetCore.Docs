@@ -117,7 +117,7 @@ For more information on server-side authentication, see <xref:blazor/security/in
 In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code or configuration files. Outside of local development testing, we recommend avoiding the use of environment variables to store sensitive data, as environment variables aren't the most secure approach. For local development testing, the [Secret Manager tool](xref:security/app-secrets) is recommended for securing sensitive data. For more information, see the following resources:
 
 * [Secure authentication flows (ASP.NET Core documentation)](xref:security/index#secure-authentication-flows)
-* [Managed identities for Microsoft Azure services (Blazor documentation)](xref:blazor/security/index#managed-identities-for-microsoft-azure-services)
+* [Managed identities for Microsoft Azure services (Blazor documentation)](#managed-identities-for-microsoft-azure-services)
 
 For client-side and server-side local development and testing, use the [Secret Manager tool](xref:security/app-secrets) to secure sensitive credentials.
 
@@ -180,7 +180,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 
 :::moniker-end
 
-For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Guide.
 
 # [.NET CLI](#tab/net-cli/)
 
@@ -219,7 +219,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 
 For more information:
 
-* See the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+* See the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Guide.
 * Execute the help command for the template in a command shell:
 
   ```dotnetcli
@@ -535,13 +535,13 @@ Two additional abstractions participate in managing authentication state:
 
 * <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs)): A base class for <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> services used by the Blazor framework to receive an authentication state from the host environment and revalidate it at regular intervals.
 
-  The default 30 minute revalidation interval can be adjusted in [`RevalidatingIdentityAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/v7.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorServerWeb-CSharp/Areas/Identity/RevalidatingIdentityAuthenticationStateProvider.cs#L26). The following example shortens the interval to 20 minutes:
-
-  ```csharp
-  protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(20);
-  ```
-
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+In apps generated from the Blazor project template for .NET 8 or later, adjust the default 30 minute revalidation interval in `IdentityRevalidatingAuthenticationStateProvider`. Earlier than .NET 8, adjust the interval in `RevalidatingIdentityAuthenticationStateProvider`. The following example shortens the interval to 20 minutes:
+
+```csharp
+protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(20);
+```
 
 ### Authentication state management at sign out
 

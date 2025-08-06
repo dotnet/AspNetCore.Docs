@@ -1,10 +1,10 @@
 ---
 title: URL Rewriting Middleware in ASP.NET Core
-author: rick-anderson
+author: wadepickett
 description: Learn about URL rewriting and redirecting with URL Rewriting Middleware in ASP.NET Core applications.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
+ms.author: wpickett
+ms.custom: mvc, sfi-image-nochange
 ms.date: 3/3/2022
 uid: fundamentals/url-rewriting
 ---
@@ -184,7 +184,9 @@ For the fastest response:
 * Use `skipRemainingRules: true` whenever possible because matching rules is computationally expensive and increases app response time. Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
 
 > [!WARNING]
-> A malicious user can provide expensive to process input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.cisa.gov/news-events/news/understanding-denial-service-attacks). ASP.NET Core framework APIs that use `RegularExpressions` pass a timeout. For example, the [RedirectRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RedirectRule.cs#L15) and [RewriteRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RewriteRule.cs#L14) classes both pass in a one second timeout.
+> A malicious user can provide expensive-to-process input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.cisa.gov/news-events/news/understanding-denial-service-attacks). ASP.NET Core framework APIs that use `RegularExpressions` institute a timeout. For example, the Regex timeout (`_regexTimeout`) of the [`RedirectRule` class](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Rewrite/src/RedirectRule.cs) and [`RewriteRule` class](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Rewrite/src/RewriteRule.cs) classes both pass in a one second timeout.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### Apache mod_rewrite
 
@@ -200,7 +202,7 @@ The sample app redirects requests from `/apache-mod-rules-redirect/(.\*)` to `/r
 
 Try the request to `https://redirect6.azurewebsites.net/apache-mod-rules-redirect/1234`
 
-The [Apache middleware](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/ApacheModRewrite/ServerVariables.cs) supports the following Apache mod_rewrite server variables:
+The [Apache middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Rewrite/src/ApacheModRewrite/ServerVariables.cs) supports the following Apache mod_rewrite server variables:
 
 * CONN_REMOTE_ADDR
 * HTTP_ACCEPT
@@ -232,6 +234,8 @@ The [Apache middleware](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Mid
 * TIME_WDAY
 * TIME_YEAR
 
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ### IIS URL Rewrite Module rules
 
 To use the same rule set that applies to the IIS URL Rewrite Module, use <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Make sure that the rules file is deployed with the app. Don't direct the middleware to use the app's *web.config* file when running on Windows Server IIS. With IIS, these rules should be stored outside of the app's *web.config* file in order to avoid conflicts with the IIS Rewrite module. For more information and examples of IIS URL Rewrite Module rules, see [Using Url Rewrite Module 2.0](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) and [URL Rewrite Module Configuration Reference](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
@@ -262,7 +266,7 @@ The middleware doesn't support the following IIS URL Rewrite Module features:
 
 #### Supported server variables
 
-The [middleware](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/IISUrlRewrite/ServerVariables.cs) supports the following IIS URL Rewrite Module server variables:
+The [middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Rewrite/src/IISUrlRewrite/ServerVariables.cs) supports the following IIS URL Rewrite Module server variables:
 
 * CONTENT_LENGTH
 * CONTENT_TYPE
@@ -280,6 +284,8 @@ The [middleware](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware
 * REMOTE_PORT
 * REQUEST_FILENAME
 * REQUEST_URI
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 <xref:Microsoft.Extensions.FileProviders.IFileProvider> can be obtained via a <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider>. This approach may provide greater flexibility for the location of rewrite rules files. Make sure that the rewrite rules files are deployed to the server at the path provided.
 
@@ -1065,7 +1071,7 @@ Original Request: `/image.jpg`
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:index#how-to-download-a-sample))
-* [RewriteMiddleware source on GitHub](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RewriteMiddleware.cs)
+* [`RewriteMiddleware` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Rewrite/src/RewriteMiddleware.cs)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
 * [Regular expressions in .NET](/dotnet/articles/standard/base-types/regular-expressions)

@@ -1,10 +1,10 @@
 ---
 title: Advanced configuration
-author: rick-anderson
+author: tdykstra
 description: Advanced configuration with the ASP.NET Core Module and Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
-ms.custom: mvc
+ms.author: tdykstra
+ms.custom: mvc, sfi-image-nochange
 ms.date: 03/07/2025
 uid: host-and-deploy/iis/advanced
 ---
@@ -205,7 +205,7 @@ If a static asset's `src` attribute is set to an absolute path (for example, `sr
 
 To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
-1. Establish an app pool for the sub-app. Set the **.NET CLR Version** to **No Managed Code** because the Core Common Language Runtime (CoreCLR) for .NET Core is booted to host the app in the worker process, not the desktop CLR (.NET CLR).
+1. Establish an app pool for the sub-app. Set the **.NET CLR Version** to **No Managed Code** because the Core Common Language Runtime (CoreCLR) for .NET is booted to host the app in the worker process, not the desktop CLR (.NET CLR).
 
 1. Add the root site in IIS Manager with the sub-app in a folder under the root site.
 
@@ -436,7 +436,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
 
    ![Set No Managed Code for the .NET CLR version.](index/_static/edit-apppool-ws2016.png)
 
-    ASP.NET Core runs in a separate process and manages the runtime. ASP.NET Core doesn't rely on loading the desktop CLR (.NET CLR). The Core Common Language Runtime (CoreCLR) for .NET Core is booted to host the app in the worker process. Setting the **.NET CLR version** to **No Managed Code** is optional but recommended.
+    ASP.NET Core runs in a separate process and manages the runtime. ASP.NET Core doesn't rely on loading the desktop CLR (.NET CLR). The Core Common Language Runtime (CoreCLR) for .NET is booted to host the app in the worker process. Setting the **.NET CLR version** to **No Managed Code** is optional but recommended.
 
    * For a 32-bit (x86) [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) published with a 32-bit SDK that uses the in-process hosting model, enable the Application Pool for 32-bit. In IIS Manager, navigate to **Application Pools** in the **Connections** sidebar. Select the app's Application Pool. In the **Actions** sidebar, select **Advanced Settings**. Set **Enable 32-Bit Applications** to `True`. 
 

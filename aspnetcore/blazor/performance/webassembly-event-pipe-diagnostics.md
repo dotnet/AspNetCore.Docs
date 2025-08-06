@@ -5,7 +5,7 @@ description: Learn about Event Pipe diagnostics and how to get a Garbage Collect
 monikerRange: '>= aspnetcore-10.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/02/2025
+ms.date: 06/04/2025
 uid: blazor/performance/webassembly-event-pipe
 ---
 # ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
@@ -16,9 +16,9 @@ uid: blazor/performance/webassembly-event-pipe
 
 -->
 
-This article describes Event Pipe diagnostic tools, counters, and how to get a Garbage Collector heap dump in Blazor WebAssembly apps.
+This article describes diagnostic tools and how to use them in Blazor WebAssembly apps.
 
-## Prerequisite
+## Prerequisite for all scenarios
 
 Install the [.NET WebAssembly build tools](xref:blazor/tooling/webassembly#net-webassembly-build-tools):
 
@@ -26,29 +26,120 @@ Install the [.NET WebAssembly build tools](xref:blazor/tooling/webassembly#net-w
 dotnet workload install wasm-tools
 ```
 
-## .NET Core Diagnostics Client Library example
+## How a WebAssembly app uses memory and how to troubleshoot memory leaks
 
-Parse and validate NetTrace (`.nettrace`) messages using the .NET Core Diagnostics Client Library:
+In the app's project file (`.csproj`), add following properties for the duration of the investigation:
 
-* [`dotnet/diagnostics` GitHub repository](https://github.com/dotnet/diagnostics)
-* [`Microsoft.Diagnostics.NETCore.Client` NuGet package](https://www.nuget.org/packages/Microsoft.Diagnostics.NETCore.Client)
+```xml
+<!-- do not enable diagnostics in production, as it has a negative performance impact -->
+<PropertyGroup>
+  <EnableDiagnostics>true</EnableDiagnostics>
+</PropertyGroup>
+```
 
-For more information, see the [.NET Core diagnostics documentation](/dotnet/core/diagnostics/) and the [`IpcMessage` API (reference source)](https://github.com/dotnet/diagnostics/blob/main/src/Microsoft.Diagnostics.NETCore.Client/DiagnosticsIpc/IpcMessage.cs).
+> [!WARNING]
+> Don't enable diagnostics in production because it has a negative performance impact. 
 
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+Build your app with the `wasm-tools` workload.
 
-The MSBuild properties in the following table enable profiler integration.
+Open the app in a browser and navigate to problematic pages or components.
+
+Take a managed memory dump by calling `collectGcDump` JavaScript API:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectGcDump();
+```
+
+Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
+
+A `.nettrace` file is downloaded from the browser into a local folder.
+
+Convert the dump to `.gcdump` format using the `dotnet-gcdump` tool. To view the converted `.gcdump` file, use Visual Studio or PrefView.
+
+For more information, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
+
+## How a WebAssembly app uses CPU and how to find slow or hot methods
+
+In the app's project file (`.csproj`), add following properties for the duration of the investigation:
+
+```xml
+<!-- do not enable diagnostics in production, as it has a negative performance impact -->
+<PropertyGroup>
+  <EnableDiagnostics>true</EnableDiagnostics>
+  <!-- disable debugger -->
+  <WasmDebugLevel>0</WasmDebugLevel>
+  <!-- sampling in all methods, see below for filtering options -->
+  <WasmPerformanceInstrumentation>all</WasmPerformanceInstrumentation>
+</PropertyGroup>
+```
+
+> [!WARNING]
+> Don't enable diagnostics in production because it has a negative performance impact.
+
+Build the app with the `wasm-tools` workload.
+
+Open the app in a browser and navigate to problematic pages or components.
+
+Start colllecting CPU samples for 60 seconds by calling the `collectCpuSamples` JavaScript API:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
+```
+
+Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
+
+Start using the app to run problematic code.
+
+After the predefined period, the browser downloads a `.nettrace` file into a local folder. To view the `.nettrace` file, use Visual Studio or PrefView.
+
+For more information, see [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics/eventpipe#use-eventpipe-to-trace-your-net-application).
+
+The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
+
+## How to observe metrics emmited by a WebAssembly app
+
+In the app's project file (`.csproj`), add following properties for the duration of the investigation:
+
+```xml
+<!-- do not enable diagnostics in production, as it has a negative performance impact -->
+<PropertyGroup>
+  <EnableDiagnostics>true</EnableDiagnostics>
+  <MetricsSupport>true</MetricsSupport>
+  <EventSourceSupport>true</EventSourceSupport>
+</PropertyGroup>
+```
+
+> [!WARNING]
+> Don't enable diagnostics in production because it has a negative performance impact.
+
+Build the app with the `wasm-tools` workload.
+
+Open the app in a browser and navigate to problematic pages or components.
+
+Start colllecting metrics for 60 seconds by calling the `collectMetrics` JavaScript API:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectMetrics({durationSeconds: 60});
+```
+
+Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
+
+After the predefined period, the browser downloads a `.nettrace` file into a local folder. To view the `.nettrace` file, use Visual Studio or PrefView.
+
+For more information, see [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics/eventpipe#use-eventpipe-to-trace-your-net-application).
+
+## MSBuild properties that enable diagnostic integration
 
 Property | Default | Set value to&hellip; | Description
 --- | :---: | :---: | ---
-`<WasmPerfTracing>` | `false` | `true` | Enables support for WebAssembly performance tracing.
-`<WasmPerfInstrumentation>` | No value | See table&dagger; | Enables instrumentation necessary for the sampling profiler. The property follows the :::no-loc text="callspec"::: syntax. &dagger;For permissible values, see the following table.
+`<EnableDiagnostics>` | `false` | `true` | Enables support for WebAssembly performance tracing.
+`<WasmPerformanceInstrumentation>` | No value | See table&dagger; | Enables instrumentation necessary for the sampling profiler. The property follows the :::no-loc text="callspec"::: syntax. &dagger;For permissible values, see the following table.
 `<MetricsSupport>` | `false` | `true` | Enables `System.Diagnostics.Metrics` support. For more information, see the [`System.Diagnostics.Metrics` namespace](/dotnet/api/system.diagnostics.metrics).
 `<EventSourceSupport>` | `false`| `true` | Enables `EventPipe` support. For more information, see [Diagnostics and instrumentation: Observability and telemetry](/dotnet/core/deploying/native-aot/diagnostics#observability-and-telemetry).
 
-The following table describes permissable `<WasmPerfInstrumentation>` values.
+The following table describes permissable `<WasmPerformanceInstrumentation>` values.
 
-`<WasmPerfInstrumentation>` value | Description
+`<WasmPerformanceInstrumentation>` value | Description
 --- | ---
 `all` | All assemblies
 `program` | Entry point assembly
@@ -59,73 +150,14 @@ The following table describes permissable `<WasmPerfInstrumentation>` values.
 `+EXPR` | Includes expression
 `-EXPR` | Excludes expression
 
-Enabling profilers has negative size and performance impacts, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
+Your code should yield to main browser loop often to allow the trace to be collected. When executing long running loops, the internal diagnostic buffers could overflow.
 
-In the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup Condition="'$(BlazorSampleProfilingEnabled)' == 'true'">
-  <WasmPerfTracing>true</WasmPerfTracing>
-  <MetricsSupport>true</MetricsSupport>
-  <EventSourceSupport>true</EventSourceSupport>
-</PropertyGroup>
-```
-
-Alternatively, enable features when the app is built with the .NET CLI. The following options passed to the `dotnet build` command mirror the preceding MS Build property configuration:
-
-```dotnetcli
-/p:WasmPerfTracing=true /p:WasmPerfInstrumentation=all /p:MetricsSupport=true /p:EventSourceSupport=true
-```
-
-The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
-
-## EventPipe profiler
-
-[EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
-
-Use the `<WasmPerfInstrumentation>` property to enable CPU sampling instrumentation for diagnostic server. This setting isn't necessary for memory dump or counters. **Makes the app execute slower. Only enable this for performance profiling.**
-
-Enabling profilers has negative size and performance impact, so don't publish an app for production with profilers enabled. In the following example, a condition is set on a property group section that only enables profiling when the app is built with `/p:BlazorSampleProfilingEnabled=true` (.NET CLI) or `<BlazorSampleProfilingEnabled>true</BlazorSampleProfilingEnabled>` in a Visual Studio publish profile, where "`BlazorSampleProfilingEnabled`" is a custom symbol name that you choose and doesn't conflict with other symbol names.
-
-```xml
-<PropertyGroup Condition="'$(BlazorSampleProfilingEnabled)' == 'true'">
-  <WasmPerfInstrumentation>all</WasmPerfInstrumentation>
-</PropertyGroup>
-```
-
-Collect CPU counters for 60 seconds with `collectCpuSamples(durationSeconds)`:
-
-```javascript
-globalThis.getDotnetRuntime(0).collectCpuSamples({durationSeconds: 60});
-```
-
-To view the trace, see [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics/eventpipe#use-eventpipe-to-trace-your-net-application).
-
-## GC (Garbage Collector) dumps
-
-The [`dotnet-gcdump` (`collect`/convert` options)](/dotnet/core/diagnostics/dotnet-gcdump) global tool collects GC (Garbage Collector) dumps of live .NET processes using [EventPipe](/dotnet/core/diagnostics/eventpipe).
-
-Collect a GC (Garbage Collector) dump of the live .NET process with `collectGcDump`:
-
-```javascript
-globalThis.getDotnetRuntime(0).collectGcDump();
-```
-
-To view the captured GC dump, see [View the GC dump captured from dotnet-gcdump](/dotnet/core/diagnostics/dotnet-gcdump#view-the-gc-dump-captured-from-dotnet-gcdump).
-
-## Counters trace
-
-[`dotnet-counters collect`](/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation.
-
-Collect diagnostic counters for 60 seconds with `collectPerfCounters(durationSeconds)`:
-
-```javascript
-globalThis.getDotnetRuntime(0).collectPerfCounters({durationSeconds: 60});
-```
-
-To view the trace, see [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics/eventpipe#use-eventpipe-to-trace-your-net-application).
+**Enabling profilers and diagnostic tools has negative size and performance impacts, so don't publish an app for production with profilers enabled.**
 
 ## Additional resources
 
+* [EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
 * [What diagnostic tools are available in .NET Core?](/dotnet/core/diagnostics/)
 * [.NET diagnostic tools](/dotnet/core/diagnostics/tools-overview)
+* [`dotnet/diagnostics` GitHub repository](https://github.com/dotnet/diagnostics)
+* [`Microsoft.Diagnostics.NETCore.Client` NuGet package](https://www.nuget.org/packages/Microsoft.Diagnostics.NETCore.Client)

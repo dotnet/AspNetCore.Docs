@@ -5,12 +5,12 @@ description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 09/04/2024
+ms.date: 05/09/2025
 uid: fundamentals/openapi/using-openapi-documents
 ---
 # Use openAPI documents
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-10.0"
 
 ## Use Swagger UI for local ad-hoc testing
 
@@ -102,3 +102,4 @@ The output shows any issues with the OpenAPI document. For example:
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/using-openapi-documents-6-8.md)]
+[!INCLUDE[](~/fundamentals/openapi/includes/using-openapi-documents-9.md)]

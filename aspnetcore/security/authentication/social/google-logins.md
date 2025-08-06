@@ -1,8 +1,8 @@
 ---
 title: Google external login setup in ASP.NET Core
-author: rick-anderson
+author: wadepickett
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 06/18/2025
 uid: security/authentication/google-logins
@@ -117,3 +117,7 @@ The user is now logged in using Google credentials.
 * This article demonstrates authentication with Google. For information on authenticating with other external providers, see <xref:security/authentication/social/index>.
 * After the app is deployed to Azure, reset the `ClientSecret` in the Google API console.
 * Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as app settings in the Azure portal. The configuration system is set up to read keys from the environment variables.
+
+## Additional resources
+
+[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)

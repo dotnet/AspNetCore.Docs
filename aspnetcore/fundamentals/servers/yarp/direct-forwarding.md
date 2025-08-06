@@ -2,14 +2,13 @@
 uid: fundamentals/servers/yarp/direct-forwarding
 title: YARP Direct Forwarding
 description: YARP Direct Forwarding
-author: samsp-msft
-ms.author: samsp
+author: tdykstra
+ms.author: tdykstra
 ms.date: 2/6/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
-
 # YARP Direct Forwarding
 
 Some applications only need the ability to take a specific request and forward it to a specific destination. These applications do not need, or have addressed in other ways, the other features of the proxy like configuration discovery, routing, load balancing, etc..
@@ -37,11 +36,11 @@ It does not include:
 
 See [ReverseProxy.Direct.Sample](https://github.com/microsoft/reverse-proxy/tree/release/latest/samples/ReverseProxy.Direct.Sample) as a pre-built sample, or use the steps below.
 
-### Create a new project
+### Add the YARP Reverse Proxy NuGet package
 
-Follow the [Getting Started](xref:getting-started) guide to create a project and add the Yarp.ReverseProxy nuget dependency.
+Add the [`Yarp.ReverseProxy` NuGet package](https://www.nuget.org/packages/Yarp.ReverseProxy) to the project.
 
-### Update Program.cs
+### Update `Program.cs`
 
 In this example the IHttpForwarder is registered in DI, injected into the endpoint method, and used to forward requests from a specific route to `https://localhost:10000/prefix/`.
 

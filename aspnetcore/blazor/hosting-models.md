@@ -65,8 +65,8 @@ On the client, the Blazor script establishes the SignalR connection with the ser
 The Blazor Server hosting model offers several benefits:
 
 * Download size is significantly smaller than when the Blazor WebAssembly hosting model is used, and the app loads much faster.
-* The app takes full advantage of server capabilities, including the use of .NET Core APIs.
-* .NET Core on the server is used to run the app, so existing .NET tooling, such as debugging, works as expected.
+* The app takes full advantage of server capabilities, including the use of .NET APIs.
+* .NET on the server is used to run the app, so existing .NET tooling, such as debugging, works as expected.
 * Thin clients are supported. For example, Blazor Server works with browsers that don't support WebAssembly and on resource-constrained devices.
 * The app's .NET/C# code base, including the app's component code, isn't served to clients.
 
@@ -101,7 +101,7 @@ When a standalone Blazor WebAssembly app uses a backend ASP.NET Core app to serv
 
 :::moniker range=">= aspnetcore-6.0"
 
-A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/progressive-web-app) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
+A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
 
 :::moniker-end
 
@@ -148,7 +148,7 @@ WebAssembly-rendered Razor components can use [native dependencies](xref:blazor/
 
 :::moniker range="< aspnetcore-6.0"
 
-Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries. For more information, see <xref:blazor/globalization-localization>.
+Blazor WebAssembly includes support for trimming unused code from .NET libraries. For more information, see <xref:blazor/globalization-localization>.
 
 :::moniker-end
 

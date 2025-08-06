@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 content_well_notification: AI-contribution
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 6/14/2023
+ms.date: 09/18/2024
 uid: fundamentals/routing
 ai-usage: ai-assisted
 ---
@@ -499,28 +499,30 @@ Route constraints execute when a match has occurred to the incoming URL and the 
 > [!WARNING]
 > Don't use constraints for input validation. If constraints are used for input validation, invalid input results in a `404` Not Found response. Invalid input should produce a `400` Bad Request with an appropriate error message. Route constraints are used to disambiguate similar routes, not to validate the inputs for a particular route.
 
-The following table demonstrates example route constraints and their expected behavior:
+The following table demonstrates the default route constraints and their expected behavior:
 
-| constraint          | Example                                     | Example Matches                        | Notes                                                                                     |
-|---------------------|---------------------------------------------|----------------------------------------|-------------------------------------------------------------------------------------------|
-| `int`               | `{id:int}`                                  | `123456789`, `-123456789`              | Matches any integer                                                                       |
-| `bool`              | `{active:bool}`                             | `true`, `FALSE`                        | Matches `true` or `false`. Case-insensitive                                               |
-| `datetime`          | `{dob:datetime}`                            | `2016-12-31`, `2016-12-31 7:32pm`      | Matches a valid `DateTime` value in the invariant culture. See preceding warning.         |
-| `decimal`           | `{price:decimal}`                           | `49.99`, `-1,000.01`                   | Matches a valid `decimal` value in the invariant culture. See preceding warning.          |
-| `double`            | `{weight:double}`                           | `1.234`, `-1,001.01e8`                 | Matches a valid `double` value in the invariant culture. See preceding warning.           |
-| `float`             | `{weight:float}`                            | `1.234`, `-1,001.01e8`                 | Matches a valid `float` value in the invariant culture. See preceding warning.            |
-| `guid`              | `{id:guid}`                                 | `CD2C1638-1638-72D5-1638-DEADBEEF1638` | Matches a valid `Guid` value                                                              |
-| `long`              | `{ticks:long}`                              | `123456789`, `-123456789`              | Matches a valid `long` value                                                              |
-| `minlength(value)`  | `{username:minlength(4)}`                   | `Rick`                                 | String must be at least 4 characters                                                      |
-| `maxlength(value)`  | `{filename:maxlength(8)}`                   | `MyFile`                               | String must be no more than 8 characters                                                  |
-| `length(length)`    | `{filename:length(12)}`                     | `somefile.txt`                         | String must be exactly 12 characters long                                                 |
-| `length(min,max)`   | `{filename:length(8,16)}`                   | `somefile.txt`                         | String must be at least 8 and no more than 16 characters long                             |
-| `min(value)`        | `{age:min(18)}`                             | `19`                                   | Integer value must be at least 18                                                         |
-| `max(value)`        | `{age:max(120)}`                            | `91`                                   | Integer value must be no more than 120                                                    |
-| `range(min,max)`    | `{age:range(18,120)}`                       | `91`                                   | Integer value must be at least 18 but no more than 120                                    |
-| `alpha`             | `{name:alpha}`                              | `Rick`                                 | String must consist of one or more alphabetical characters, `a`-`z` and case-insensitive. |
-| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789`                          | String must match the regular expression. See tips about defining a regular expression.   |
-| `required`          | `{name:required}`                           | `Rick`                                 | Used to enforce that a non-parameter value is present during URL generation               |
+| constraint          | Example                                     | Example Matches                        | Notes                                                                                                                           |
+|---------------------|---------------------------------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| `int`               | `{id:int}`                                  | `123456789`, `-123456789`              | Matches any integer                                                                                                             |
+| `bool`              | `{active:bool}`                             | `true`, `FALSE`                        | Matches `true` or `false`. Case-insensitive                                                                                     |
+| `datetime`          | `{dob:datetime}`                            | `2016-12-31`, `2016-12-31 7:32pm`      | Matches a valid `DateTime` value in the invariant culture. See preceding warning                                                |
+| `decimal`           | `{price:decimal}`                           | `49.99`, `-1,000.01`                   | Matches a valid `decimal` value in the invariant culture. See preceding warning                                                 |
+| `double`            | `{weight:double}`                           | `1.234`, `-1,001.01e8`                 | Matches a valid `double` value in the invariant culture. See preceding warning                                                  |
+| `float`             | `{weight:float}`                            | `1.234`, `-1,001.01e8`                 | Matches a valid `float` value in the invariant culture. See preceding warning                                                   |
+| `guid`              | `{id:guid}`                                 | `CD2C1638-1638-72D5-1638-DEADBEEF1638` | Matches a valid `Guid` value                                                                                                    |
+| `long`              | `{ticks:long}`                              | `123456789`, `-123456789`              | Matches a valid `long` value                                                                                                    |
+| `minlength(value)`  | `{username:minlength(4)}`                   | `Rick`                                 | String must be at least 4 characters                                                                                            |
+| `maxlength(value)`  | `{filename:maxlength(8)}`                   | `MyFile`                               | String must be no more than 8 characters                                                                                        |
+| `length(length)`    | `{filename:length(12)}`                     | `somefile.txt`                         | String must be exactly 12 characters long                                                                                       |
+| `length(min,max)`   | `{filename:length(8,16)}`                   | `somefile.txt`                         | String must be at least 8 and no more than 16 characters long                                                                   |
+| `min(value)`        | `{age:min(18)}`                             | `19`                                   | Integer value must be at least 18                                                                                               |
+| `max(value)`        | `{age:max(120)}`                            | `91`                                   | Integer value must be no more than 120                                                                                          |
+| `range(min,max)`    | `{age:range(18,120)}`                       | `91`                                   | Integer value must be at least 18 but no more than 120                                                                          |
+| `alpha`             | `{name:alpha}`                              | `Rick`                                 | String must consist of one or more alphabetical characters, `a`-`z` and case-insensitive                                        |
+| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789`                          | String must match the regular expression. See tips about defining a regular expression                                          |
+| `required`          | `{name:required}`                           | `Rick`                                 | Used to enforce that a non-parameter value is present during URL generation                                                     |
+| `file`              | `{filename:file}`                           | `myfile.txt`                           | String can contain path segments, but its last segment must have a dot (`.`) and be followed by one or more non-dot characters    |
+| `nonfile`           | `{page:nonfile}`                           | `PageName`                             | String must not have a dot in its last path segment that is followed by one or more non-dot (`.`) characters                          |
 
 [!INCLUDE[](~/includes/regex.md)]
 

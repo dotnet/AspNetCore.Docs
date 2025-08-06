@@ -3,8 +3,8 @@ title: Safe storage of app secrets in development in ASP.NET Core
 author: tdykstra
 description: Learn how to store and retrieve sensitive information during the development of an ASP.NET Core app.
 ms.author: tdykstra
+ms.custom: mvc, sfi-ropc-nochange
 monikerRange: '>= aspnetcore-3.0'
-ms.custom: mvc
 ms.date: 10/30/2024
 uid: security/app-secrets
 ---
@@ -80,7 +80,7 @@ dotnet user-secrets init
 
 The preceding command adds a `UserSecretsId` element within a `PropertyGroup` of the project file. By default, the inner text of `UserSecretsId` is a GUID. The inner text is arbitrary, but is unique to the project.
 
-![The UserSecretsId MS Build property configuration in the app's project file.](~/security/app-secrets/_static/UserSecretsId.png)
+![The UserSecretsId MSBuild property configuration in the app's project file.](~/security/app-secrets/_static/UserSecretsId.png)
 
 ### Use Visual Studio
 

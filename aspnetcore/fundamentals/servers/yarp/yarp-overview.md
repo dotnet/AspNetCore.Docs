@@ -2,9 +2,9 @@
 uid: fundamentals/servers/yarp/overview
 title: Overview of YARP
 description: Overview of YARP
-author: samsp-msft
-ms.author: samsp
-ms.date: 2/18/2025
+author: wadepickett
+ms.author: wpickett
+ms.date: 04/03/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted

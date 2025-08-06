@@ -1,8 +1,8 @@
 ---
 title: External OAuth authentication providers
-author: rick-anderson
+author: tdykstra
 description: Discover External OAuth authentication providers that work with ASP.NET Core apps.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 11/11/2018
 uid: security/authentication/otherlogins
@@ -44,6 +44,6 @@ The following list includes common external OAuth authentication providers that 
 
 * [VK](https://vk.com/apps?act=manage) ([Instructions](https://vk.com/pages?oid=-17680044&p=Authorizing_Sites))
 
-[!INCLUDE[Multiple authentication providers](includes/chain-auth-providers.md)]
+To use multiple authentication providers, see <xref:security/authentication/social/index#multiple-authentication-providers>.
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]

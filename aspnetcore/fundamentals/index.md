@@ -5,7 +5,7 @@ description: Learn the fundamental concepts for building ASP.NET Core apps, incl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/01/2024
+ms.date: 07/23/2025
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals overview
@@ -137,7 +137,7 @@ ASP.NET Core provides a [configuration](xref:fundamentals/configuration/index) f
 
 By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from `appsettings.json`, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from `appsettings.json`.
 
-For managing confidential configuration data such as passwords in the development environment, .NET Core provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
+For managing confidential configuration data such as passwords in the development environment, .NET provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
 
 For more information, see <xref:fundamentals/configuration/index>.
 
@@ -210,9 +210,9 @@ The content root is the base path for:
   * Razor files (`.cshtml`, `.razor`)
   * Configuration files (`.json`, `.xml`)
   * Data files (`.db`)
-* The [Web root](#web-root), typically the *wwwroot* folder.
+* The [Web root](#web-root), typically the `wwwroot` folder.
 
-During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [Web root](#web-root). Specify a different content root by setting its path when [building the host](#host). For more information, see [Content root](xref:fundamentals/host/generic-host#contentroot).
+During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [web root](#web-root). Specify a different content root by setting its path when [building the host](#host). For more information, see [Content root](xref:fundamentals/host/generic-host#contentroot).
 
 ## Web root
 
@@ -222,9 +222,9 @@ The web root is the base path for public, static resource files, such as:
 * JavaScript (`.js`)
 * Images (`.png`, `.jpg`)
 
-By default, static files are served only from the web root directory and its sub-directories. The web root path defaults to *{content root}/wwwroot*. Specify a different web root by setting its path when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/generic-host#webroot).
+By default, static files are served only from the web root directory and its sub-directories. The web root path defaults to `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the content root. Specify a different web root by setting its path when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/generic-host#webroot).
 
-Prevent publishing files in *wwwroot* with the [\<Content> project item](/visualstudio/msbuild/common-msbuild-project-items#content) in the project file. The following example prevents publishing content in *wwwroot/local* and its sub-directories:
+Prevent publishing files in `wwwroot` with the [`<Content>` project item](/visualstudio/msbuild/common-msbuild-project-items#content) in the project file. The following example prevents publishing content in `wwwroot/local` and its sub-directories:
 
 ```xml
 <ItemGroup>
@@ -235,6 +235,58 @@ Prevent publishing files in *wwwroot* with the [\<Content> project item](/visual
 In Razor `.cshtml` files, `~/` points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
 For more information, see <xref:fundamentals/static-files>.
+
+## How to download a sample
+
+Many of the articles and tutorials include links to sample code.
+
+1. [Download the ASP.NET repository zip file](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/main).
+1. Unzip the `AspNetCore.Docs-main.zip` file.
+1. To access an article's sample app in the unzipped repository, use the URL in the article's sample link to help you navigate to the sample's folder. Usually, an article's sample link appears at the top of the article with the link text *View or download sample code*. 
+
+### Preprocessor directives in sample code
+
+To demonstrate multiple scenarios, sample apps use the `#define` and `#if-#else/#elif-#endif` preprocessor directives to selectively compile and run different sections of sample code. For those samples that make use of this approach, set the `#define` directive at the top of the C# files to define the symbol associated with the scenario that you want to run. Some samples require defining the symbol at the top of multiple files in order to run a scenario.
+
+For example, the following `#define` symbol list indicates that four scenarios are available (one scenario per symbol). The current sample configuration runs the `TemplateCode` scenario:
+
+```csharp
+#define TemplateCode // or LogFromMain or ExpandDefault or FilterInCode
+```
+
+To change the sample to run the `ExpandDefault` scenario, define the `ExpandDefault` symbol and leave the remaining symbols commented-out:
+
+```csharp
+#define ExpandDefault // TemplateCode or LogFromMain or FilterInCode
+```
+
+For more information on using [C# preprocessor directives](/dotnet/csharp/language-reference/preprocessor-directives/) to selectively compile sections of code, see [#define (C# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define) and [#if (C# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if).
+
+### Regions in sample code
+
+Some sample apps contain sections of code surrounded by [#region](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) and [#endregion](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endregion) C# directives. The documentation build system injects these regions into the rendered documentation topics.  
+
+Region names usually contain the word "snippet." The following example shows a region named `snippet_WebHostDefaults`:
+
+```csharp
+#region snippet_WebHostDefaults
+Host.CreateDefaultBuilder(args)
+    .ConfigureWebHostDefaults(webBuilder =>
+    {
+        webBuilder.UseStartup<Startup>();
+    });
+#endregion
+```
+
+The preceding C# code snippet is referenced in the topic's markdown file with the following line:
+
+```md
+[!code-csharp[](sample/SampleApp/Program.cs?name=snippet_WebHostDefaults)]
+```
+
+You may safely ignore or remove the `#region` and `#endregion` directives that surround the code. Don't alter the code within these directives if you plan to run the sample scenarios described in the topic.
+
+For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md#code-snippets).
 
 ## Additional resources
 
