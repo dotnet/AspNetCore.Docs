@@ -1582,6 +1582,41 @@
             "source_path": "aspnetcore/introduction-to-aspnet-core.md",
             "redirect_url": "/aspnet/core/overview",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/whats-new/index.yml",
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-mod0.md",
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-mod1.md",
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-mod2.md",
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-mod3.md",
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-mod4.md",
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-mod5.md",
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-9.0",
+            "redirect_document_id": false
         }
     ]
 }
