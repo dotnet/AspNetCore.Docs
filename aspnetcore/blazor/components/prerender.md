@@ -27,6 +27,8 @@ Prerendering is enabled by default for interactive components.
 
 Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests, including for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing), [Interactive routing and prerendering](xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering), and [Enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
 
+## Disable prerendering
+
 <!-- UPDATE 11.0 Tracking ...
 
                  "prerender: false" is ignored in child components
@@ -72,6 +74,77 @@ Making a root component, such as the `App` component, interactive with the `@ren
 
 Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is created asynchronously, the UI may flicker as the prerendered UI is replaced when the component is rerendered. For guidance on how to persist state during prerendering, see <xref:blazor/state-management/prerendered-state-persistence>.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Client-side services fail to resolve during prerendering
+
+Assuming that prerendering isn't disabled for a component or for the app, a component in the `.Client` project is prerendered on the server. Because the server doesn't have access to registered client-side Blazor services, it isn't possible to inject these services into a component without receiving an error that the service can't be found during prerendering.
+
+For example, consider the following `Home` component in the `.Client` project in a Blazor Web App with [global Interactive WebAssembly or Interactive Auto rendering](#apply-a-render-mode-to-the-entire-app). The component attempts to inject <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> to obtain the environment's name.
+
+```razor
+@page "/"
+@inject IWebAssemblyHostEnvironment Environment
+
+<PageTitle>Home</PageTitle>
+
+<h1>Home</h1>
+
+<p>
+    Environment: @Environment.Environment
+</p>
+```
+
+No compile time error occurs, but a runtime error occurs during prerendering:
+
+> :::no-loc text="Cannot provide a value for property 'Environment' on type 'BlazorSample.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
+
+This error occurs because the component must compile and execute on the server during prerendering, but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service on the server.
+
+If the app doesn't require the value during prerendering, this problem can be solved by injecting <xref:System.IServiceProvider> to obtain the service instead of the service type itself:
+
+```razor
+@page "/"
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IServiceProvider Services
+
+<PageTitle>Home</PageTitle>
+
+<h1>Home</h1>
+
+<p>
+    <b>Environment:</b> @environmentName
+</p>
+
+@code {
+    private string? environmentName;
+
+    protected override void OnInitialized()
+    {
+        if (Services.GetService<IWebAssemblyHostEnvironment>() is { } env)
+        {
+            environmentName = env.Environment;
+        }
+    }
+}
+```
+
+However, the preceding approach isn't useful if your logic requires a value during prerendering.
+
+You can also avoid the problem if you [disable prerendering](#disable-prerendering) for the component, but that's an extreme measure to take in many cases that may not meet your component's specifications.
+
+There are a three approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
+
+* *Recommended* for shared framework services: For shared framework services that merely aren't registered server-side in the main project, register the services in the main project, which makes them available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in <xref:blazor/call-web-api?pivots=webassembly#client-side-services-for-httpclient-fail-during-prerendering>.
+
+* *Recommended* for services outside of the shared framework: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
+
+* Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service in the component.
+
+* You might be able to add a `.Client` project package reference to a server-side package and fall back to using the server-side API when prerendering on the server.
+
+:::moniker-end
+
 ## Prerendering guidance
 
 Prerendering guidance is organized in the Blazor documentation by subject matter. The following links cover all of the prerendering guidance throughout the documentation set by subject:
@@ -95,7 +168,7 @@ Prerendering guidance is organized in the Blazor documentation by subject matter
   * [Control `<head>` content during prerendering](xref:blazor/components/control-head-content#control-head-content-during-prerendering)
   * Render modes
     * [Detect rendering location, interactivity, and assigned render mode at runtime](xref:blazor/components/render-modes#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime)
-    * [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering)
+    * [Client-side services fail to resolve during prerendering](xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering)
     * [Custom shorthand render modes](xref:blazor/components/render-modes#custom-shorthand-render-modes)
   * Razor component lifecycle subjects that pertain to prerendering
     * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
