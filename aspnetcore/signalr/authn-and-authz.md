@@ -15,12 +15,6 @@ uid: signalr/authn-and-authz
 
 ## Authenticate users connecting to a SignalR hub
 
-:::moniker-end
-:::moniker range=">= aspnetcore-10.0"
-[!INCLUDE[](~/includes/api-endpoint-auth.md)]
-:::moniker-end
-:::moniker range=">= aspnetcore-6.0"
-
 SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
 
 The following code is an example that uses SignalR and ASP.NET Core authentication:
@@ -35,6 +29,12 @@ The following code is an example that uses SignalR and ASP.NET Core authenticati
 In a browser-based app, cookie authentication allows existing user credentials to automatically flow to SignalR connections. When using the browser client, no extra configuration is needed. If the user is logged in to an app, the SignalR connection automatically inherits this authentication.
 
 Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](xref:signalr/dotnet-client), the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
+
+:::moniker-end
+:::moniker range=">= aspnetcore-10.0"
+[!INCLUDE[](~/includes/api-endpoint-auth.md)]
+:::moniker-end
+:::moniker range=">= aspnetcore-6.0"
 
 ### Bearer token authentication
 
