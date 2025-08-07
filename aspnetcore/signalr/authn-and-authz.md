@@ -17,7 +17,6 @@ uid: signalr/authn-and-authz
 
 :::moniker-end
 :::moniker range=">= aspnetcore-10.0"
-:::moniker range=">= aspnetcore-10.0"
 [!INCLUDE[](~/includes/api-endpoint-auth.md)]
 :::moniker-end
 :::moniker range=">= aspnetcore-6.0"
