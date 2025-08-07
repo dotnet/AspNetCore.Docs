@@ -110,9 +110,9 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/19542) 
 
 ### Distributed Postgres Cache
 
-The Distributed Postgres Cache implementation (<xref:Microsoft.Extensions.Caching.Postgres*>) allows the distributed cache to use a Postgres database as its backing store.
+[Azure Database for PostgreSQL](/azure/postgresql) can be used as a distributed cache backing store via the `IDistributedCache` interface. Azure Database for PostgreSQL is a fully managed, AI-ready Database-as-a-Service (DBaaS) offering built on the open-source PostgreSQL engine, designed to support mission-critical workloads with predictable performance, robust security, high availability, and seamless scalability. 
 
-After installing the [Microsoft.Extensions.Caching.Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres) NuGet package, configure an Azure Postgres distributed cache as follows:
+After installing the [Microsoft.Extensions.Caching.Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres) NuGet package, configure your distributed cache as follows:
 
 1. Add the following configuration sections to your appsettings.json file. It's also recommended to configure your connection string to use connection pooling:
 
