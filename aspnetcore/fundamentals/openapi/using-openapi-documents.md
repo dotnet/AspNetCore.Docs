@@ -102,7 +102,7 @@ The output shows any issues with the OpenAPI document. For example:
 
 ## Support for injecting `IOpenApiDocumentProvider`
 
-You can inject <xref:Microsoft.AspNetCore.OpenApi.Services.IOpenApiDocumentProvider> into your services through dependency injection to access OpenAPI documents programmatically, even outside HTTP request contexts.
+You can inject `Microsoft.AspNetCore.OpenApi.Services.IOpenApiDocumentProvider` into your services through dependency injection to access OpenAPI documents programmatically, even outside HTTP request contexts.
 
 ```csharp
 public class DocumentService
