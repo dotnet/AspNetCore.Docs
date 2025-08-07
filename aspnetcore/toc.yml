@@ -31,8 +31,6 @@ items:
         uid: aspnetcore-2.0
       - name: What's new in 1.1
         uid: aspnetcore-1.1
-      - name: What's new in docs
-        href: whats-new/index.yml
   - name: Tutorials
     displayName: tutorial
     items:

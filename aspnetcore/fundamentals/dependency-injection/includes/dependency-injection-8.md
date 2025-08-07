@@ -1,6 +1,6 @@
 ---
-author: rick-anderson
-ms.author: riande
+author: wadepickett
+ms.author: wpickett
 ms.date: 8/17/2024
 ---
 

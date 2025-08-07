@@ -4,6 +4,7 @@ author: wadepickett
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
 ms.date: 03/02/2025
+ms.custom: sfi-ropc-nochange
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/working-with-sql
 ---

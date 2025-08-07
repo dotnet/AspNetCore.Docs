@@ -1,9 +1,9 @@
 ---
 title: Use cookie authentication without ASP.NET Core Identity
-author: rick-anderson
+author: wadepickett
 description: Learn how to use cookie authentication without ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.date: 1/1/2022
 uid: security/authentication/cookie
 ---

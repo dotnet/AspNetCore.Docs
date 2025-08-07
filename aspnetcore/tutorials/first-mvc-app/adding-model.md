@@ -4,6 +4,7 @@ author: wadepickett
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
+ms.custom: sfi-ropc-nochange
 ms.date: 03/28/2025
 uid: tutorials/first-mvc-app/adding-model
 ---
