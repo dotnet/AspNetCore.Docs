@@ -117,22 +117,7 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 
 After installing the [Microsoft.Extensions.Caching.Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres) NuGet package, configure your distributed cache as follows:
 
-1. Add the following configuration sections to your appsettings.json file. It's also recommended to configure your connection string to use connection pooling:
-
-```json
-  "ConnectionStrings": {
-    "PostgresCache": "Host=localhost;Port=5432;Username=postgres;Password=yourpassword;Database=yourdatabase;Pooling=true;MinPoolSize=0;MaxPoolSize=100;Timeout=15;"
-  },
-  "PostgresCache": {
-    "SchemaName": "public",
-    "TableName": "cache",
-    "CreateIfNotExists": true,
-    "UseWAL": false,
-    "ExpiredItemsDeletionInterval": "00:30:00",
-    "DefaultSlidingExpiration": "00:20:00"
-  }
-```
-2. Register the Service
+1. Register the Service
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
