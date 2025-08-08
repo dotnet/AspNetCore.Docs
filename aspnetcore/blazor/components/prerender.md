@@ -161,7 +161,7 @@ You can also avoid the problem if you [disable prerendering](#disable-prerenderi
 
 There are a three approaches that you can take to address this scenario for prerendering. The following are listed from most recommended to least recommended:
 
-* *Recommended* for shared framework services: For shared framework services that merely aren't registered server-side in the main project, register the services in the main project, which makes them available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in the [Client-side services fail to resolve during prerendering](#client-side-services-for-httpclient-fail-during-prerendering) section.
+* *Recommended* for shared framework services: For shared framework services that merely aren't registered server-side in the main project, register the services in the main project, which makes them available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in the [Blazor Web App external web APIs](xref:blazor/call-web-api#blazor-web-app-external-web-apis) section of the *Call web API* article.
 
 * *Recommended* for services outside of the shared framework: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see the example earlier in this section.
 
