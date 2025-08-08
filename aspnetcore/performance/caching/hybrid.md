@@ -165,7 +165,7 @@ The following example configures the service to use a general-purpose protobuf s
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal2/Program.cs" id="snippet_withserializerfactory" highlight="14":::
 
-The secondary cache requires a data store, such as Redis, Sql Server, or Postgres. To use [Azure Cache for Redis](https://azure.microsoft.com/products/cache), for example:
+The secondary cache requires a data store, such as Redis, SQL Server, or Postgres. To use [Azure Cache for Redis](https://azure.microsoft.com/products/cache), for example:
 
 * Install the `Microsoft.Extensions.Caching.StackExchangeRedis` package.
 * Create an instance of Azure Cache for Redis.
