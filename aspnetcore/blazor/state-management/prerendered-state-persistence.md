@@ -18,10 +18,10 @@ Consider the following `PrerenderedCounter1` counter component. The component se
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PrerenderedCounter1.razor":::
 
-Run the app and inspect logging from the component. The following is example output.
-
 > [!NOTE]
 > If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter1` component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
+
+Run the app and inspect logging from the component. The following is example output.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter1[0]":::  
 > :::no-loc text="      currentCount set to 41":::  
@@ -38,7 +38,7 @@ To retain the initial value of the counter during prerendering, Blazor supports 
 
 To preserve prerendered state, use the `[SupplyParameterFromPersistentComponentState]` attribute to persist state in properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
 
-By default for client-side prerendering in a Blazor Web App, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
+By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings and persisted in the prerendered HTML. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 The following counter component persists counter state during prerendering and retrieves the state to initialize the component:
 

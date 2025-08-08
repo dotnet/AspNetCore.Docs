@@ -141,7 +141,6 @@ There are a three approaches that you can take to address this scenario. The fol
 
 * Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service in the component.
 
-* You might be able to add a `.Client` project package reference to a server-side package and fall back to using the server-side API when prerendering on the server.
 
 :::moniker-end
 

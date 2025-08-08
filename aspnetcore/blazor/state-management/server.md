@@ -73,7 +73,7 @@ During server-side rendering, Blazor Web Apps can persist a user's session (circ
 
 *[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*
 
-Persisting state requires fewer server resources than persisting circuits:
+Server resources can be freed up if the circuit state can be persisted and then resumed later:
 
 * Even if disconnected, a circuit might continue to perform work and consume CPU, memory, and other resources. Persisted state only consumes a fixed amount of memory that the developer controls.
 * Persisted state represents a subset of the memory consumed by the app, so the server isn't required to keep track of the app's components and other server-side objects.
