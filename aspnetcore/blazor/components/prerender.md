@@ -164,7 +164,7 @@ There are a three approaches that you can take to address this scenario for prer
 
 * *Recommended* for services outside of the shared framework: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
 
-* Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service in the component.
+* Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service abstraction in the component.
 
 :::moniker-end
 
