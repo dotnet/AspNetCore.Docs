@@ -31,8 +31,6 @@ items:
         uid: aspnetcore-2.0
       - name: What's new in 1.1
         uid: aspnetcore-1.1
-      - name: What's new in docs
-        href: whats-new/index.yml
   - name: Tutorials
     displayName: tutorial
     items:
@@ -637,7 +635,17 @@ items:
               - name: Server-side and Blazor Web App additional scenarios
                 uid: blazor/security/additional-scenarios
           - name: State management
-            uid: blazor/state-management
+            items:
+              - name: Overview
+                uid: blazor/state-management/index
+              - name: Prerendered state persistence
+                uid: blazor/state-management/prerendered-state-persistence
+              - name: Server
+                uid: blazor/state-management/server
+              - name: WebAssembly
+                uid: blazor/state-management/webassembly
+              - name: Protected browser storage
+                uid: blazor/state-management/protected-browser-storage
           - name: Debug
             uid: blazor/debug
           - name: Lazy load assemblies with WebAssembly

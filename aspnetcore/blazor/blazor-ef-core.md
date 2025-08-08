@@ -229,17 +229,20 @@ public void Dispose() => Context?.Dispose();
 
 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other [Personally Identifiable Information (PII)](xref:blazor/security/index#personally-identifiable-information-pii) when it logs SQL statements executed against the database.
 
-We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> for development and testing:
+We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> for local development and testing:
 
 ```csharp
-#if DEBUG
+if (builder.Environment.IsDevelopment())
+{
     services.AddDbContextFactory<ContactContext>(opt =>
         opt.UseSqlite($"Data Source={nameof(ContactContext.ContactsDb)}.db")
         .EnableSensitiveDataLogging());
-#else
+}
+else
+{
     services.AddDbContextFactory<ContactContext>(opt =>
         opt.UseSqlite($"Data Source={nameof(ContactContext.ContactsDb)}.db"));
-#endif
+}
 ```
 
 ## Additional resources

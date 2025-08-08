@@ -5,7 +5,7 @@ description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Bui
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/13/2025
+ms.date: 08/04/2025
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -32,6 +32,7 @@ HTTP.sys supports the following features:
 * Response caching
 * WebSockets (Windows 8 or later)
 * Customizable security descriptors
+* Automatic memory pool eviction
 
 Supported Windows versions:
 
@@ -339,6 +340,8 @@ Requirements to run gRPC with HTTP.sys:
 ## Tracing
 
 For information about how to get traces from HTTP.sys, see [HTTP.sys Manageability Scenarios](/windows/win32/http/http-sys-manageability-scenarios).
+
+[!INCLUDE[](includes/memory-eviction2.md)]
 
 ## Additional resources
 

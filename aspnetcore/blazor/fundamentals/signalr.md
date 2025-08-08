@@ -145,7 +145,7 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 
 :::moniker range=">= aspnetcore-8.0"
 
-If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see <xref:blazor/components/prerender>.
+If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see <xref:blazor/state-management/prerendered-state-persistence>.
 
 :::moniker-end
 
@@ -517,7 +517,7 @@ If reconnection fails, the user is instructed to retry or reload the page:
 
 :::moniker-end
 
-If reconnection succeeds, user state is often lost. Custom code can be added to any component to save and reload user state across connection failures. For more information, see <xref:blazor/state-management>.
+If reconnection succeeds, user state is often lost. Custom code can be added to any component to save and reload user state across connection failures. For more information, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -730,7 +730,7 @@ When the custom reconnect modal appears, it renders the following content with a
 
 :::moniker range=">= aspnetcore-8.0"
 
-By default, components are prerendered on the server before the client connection to the server is established. For more information, see <xref:blazor/components/prerender>.
+By default, components are prerendered on the server before the client connection to the server is established. For more information, see <xref:blazor/state-management/prerendered-state-persistence>.
 
 :::moniker-end
 

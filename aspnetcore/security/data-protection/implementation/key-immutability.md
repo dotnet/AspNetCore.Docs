@@ -1,8 +1,8 @@
 ---
 title: Key immutability and key settings in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn the implementation details of the ASP.NET Core Data Protection key immutability APIs.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 10/14/2016
 uid: security/data-protection/implementation/key-immutability
 ---

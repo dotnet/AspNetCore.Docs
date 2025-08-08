@@ -290,7 +290,7 @@ Add a navigation link to the `DaleksMain` component in `NavMenu.razor`:
 </div>
 ```
 
-Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management) before adopting it in a production app with constrained processing and memory resources.
+Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management/index) before adopting it in a production app with constrained processing and memory resources.
 
 Any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state they use. **Avoid creating a single large class representing the entire global application state.** Instead, create granular classes and cascade them separately with specific subscriptions to cascading parameters, ensuring that only components subscribed to a specific portion of the application state are affected by changes.
 
@@ -517,7 +517,7 @@ Cascading parameters don't pass data across render mode boundaries:
 
 * State crossing the boundary between static and interactive rendering must be serializable. Components are arbitrary objects that reference a vast chain of other objects, including the renderer, the DI container, and every DI service instance. You must explicitly cause state to be serialized from static SSR to make it available in subsequent interactively-rendered components. Two approaches are adopted:
   * Via the Blazor framework, parameters passed across a static SSR to interactive rendering boundary are serialized automatically if they're JSON-serializable, or an error is thrown.
-  * State stored in [`PersistentComponentState`](xref:blazor/components/prerender#persist-prerendered-state) is serialized and recovered automatically if it's JSON-serializable, or an error is thrown.
+  * State stored in [Persistent Component State](xref:blazor/state-management/prerendered-state-persistence) is serialized and recovered automatically if it's JSON-serializable, or an error is thrown.
 
 Cascading parameters aren't JSON-serializable because the typical usage patterns for cascading parameters are somewhat like DI services. There are often platform-specific variants of cascading parameters, so it would be unhelpful to developers if the framework stopped developers from having server-interactive-specific versions or WebAssembly-specific versions. Also, many cascading parameter values in general aren't serializable, so it would be impractical to update existing apps if you had to stop using all nonserializable cascading parameter values.
 
@@ -718,4 +718,4 @@ The following `ExampleTabSet` component uses the `TabSet` component, which conta
 ## Additional resources
 
 * [Generic type support: Explicit generic types based on ancestor components](xref:blazor/components/generic-type-support#explicit-generic-types-based-on-ancestor-components)
-* [State management: Factor out state preservation to a common provider](xref:blazor/state-management?pivots=server#factor-out-state-preservation-to-a-common-provider)
+* [State management: Protected browser storage: Factor out state preservation to a common provider](xref:blazor/state-management/protected-browser-storage#factor-out-state-preservation-to-a-common-provider)

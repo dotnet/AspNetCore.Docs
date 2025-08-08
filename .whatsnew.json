@@ -8,9 +8,9 @@
   "navigationOptions": {
     "maximumNumberOfArticles": 6,
     "tocParentNode": "What's new",
-    "repoTocFolder": "aspnetcore/whats-new",
+    "repoTocFolder": "/dev/null",
     "indexParentNode": "Find ASP.NET Core docs updates",
-    "repoIndexFolder": "aspnetcore/whats-new"
+    "repoIndexFolder": "/dev/null"
   },
   "inclusionCriteria": {
     "minAdditionsToFile": 3

@@ -4,7 +4,8 @@ author: jamesnk
 description: Learn how to use gRPC for inter-process communication with Named pipes.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 01/18/2023
+ai-usage: ai-assisted
+ms.date: 08/01/2025
 uid: grpc/interprocess-namedpipes
 ---
 # Inter-process communication with gRPC and Named pipes
@@ -46,6 +47,75 @@ The preceding example:
 * Configures Kestrel's endpoints in <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A>.
 * Calls `ListenNamedPipe` to listen to a named pipe with the specified name.
 * Creates a named pipe endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+
+### Configuring PipeSecurity for Named Pipes
+
+To control which users or groups can connect, use the [`NamedPipeTransportOptions`](xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions) class. This allows a custom [`PipeSecurity`](xref:System.IO.Pipes.PipeSecurity) object to be specified.
+
+Example:
+
+```csharp
+using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
+using System.IO.Pipes;
+using System.Security.AccessControl;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenNamedPipe("MyPipeName", listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http2;
+
+        // Configure PipeSecurity
+        listenOptions.UseNamedPipes(options =>
+        {
+            var pipeSecurity = new PipeSecurity();
+            // Grant read/write access to the Users group
+            pipeSecurity.AddAccessRule(new PipeAccessRule(
+                "Users",
+                PipeAccessRights.ReadWrite,
+                AccessControlType.Allow));
+            // Add additional rules as needed
+
+            options.PipeSecurity = pipeSecurity;
+        });
+    });
+});
+```
+
+The preceding example:
+
+* Uses `UseNamedPipes` to access and configure <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions>.
+* Sets the <xref:System.IO.Pipes.PipeSecurity> property to control which users or groups can connect to the named pipe.
+* Grants read/write access to the `Users` group. Additional security rules can be added as needed for the scenario.
+
+### Customize Kestrel named pipe endpoints
+
+Kestrel's named pipe support enables advanced customization, allowing you to configure different security settings for each endpoint using the `CreateNamedPipeServerStream` option. This approach is ideal for scenarios where multiple named pipe endpoints require unique access controls. The ability to customize pipes per endpoint is available starting with .NET 9.
+
+An example of where this is useful is a Kestrel app that requires two pipe endpoints with different access security. The `CreateNamedPipeServerStream` option can be used to create pipes with custom security settings, depending on the pipe name.
+
+```csharp
+
+var builder = WebApplication.CreateBuilder();
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenNamedPipe("pipe1");
+    options.ListenNamedPipe("pipe2");
+});
+
+builder.WebHost.UseNamedPipes(options =>
+{
+    options.CreateNamedPipeServerStream = (context) =>
+    {
+        var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndpoint.PipeName);
+
+        return NamedPipeServerStreamAcl.Create(context.NamedPipeEndpoint.PipeName, PipeDirection.InOut,
+            NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Byte,
+            context.PipeOptions, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
+    };
+});
+```
 
 ## Client configuration
 

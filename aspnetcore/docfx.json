@@ -51,10 +51,8 @@
     },
     "fileMetadata": {
       "author": {
-        "whats-new/**/**.md": "wadepickett"
       },
       "ms.author": {
-        "whats-new/**/**.md": "wpickett"
       },
       "ms.subservice": {
         "introduction-to-aspnet-core.md": "index-page",
@@ -75,7 +73,6 @@
         "**/test/**/**.md": "testing",
         "**/tutorials/**/**.md": "tutorials",
         "**/web-api/**/**.md": "web-api",
-        "whats-new/**/**.md": "whats-new",
         "**/blazor/**/**.md": "blazor",
         "**/blazor/hybrid/**/**.md": "blazor-hybrid",
         "**/client-side/dotnet-interop/index.md": "blazor",

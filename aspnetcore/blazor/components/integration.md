@@ -635,7 +635,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Additional Blazor Server resources
 
-* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
+* [State management: Protected browser storage: Handle prerendering](xref:blazor/state-management/protected-browser-storage#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
@@ -1154,7 +1154,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Additional Blazor Server resources
 
-* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
+* [State management: Protected browser storage: Handle prerendering](xref:blazor/state-management/protected-browser-storage#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
@@ -1586,7 +1586,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Additional Blazor Server resources
 
-* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
+* [State management: Protected browser storage: Handle prerendering](xref:blazor/state-management/protected-browser-storage#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
@@ -2016,7 +2016,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Additional Blazor Server resources
 
-* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
+* [State management: Protected browser storage: Handle prerendering](xref:blazor/state-management/protected-browser-storage#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
