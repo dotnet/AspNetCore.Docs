@@ -310,7 +310,7 @@ When the component is rerendered just a second or two later, after the Blazor bu
 
 The preceding example demonstrates why we recommend setting the server environment to match the client environment for development, testing, and production deployments.
 
-For more information, see the [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering) section of the *Render modes* article, which appears later in the Blazor documentation.
+For more information, see the [Client-side services fail to resolve during prerendering](xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering) section of the *Prerendering* article, which appears later in the Blazor documentation.
 
 :::moniker-end
 

@@ -567,7 +567,7 @@ In the Blazor Web App server project, add <xref:System.Net.Http.IHttpClientFacto
 builder.Services.AddHttpClient();
 ```
 
-The <xref:System.Net.Http.HttpClient> services must be added to the server project because the client-side component is prerendered on the server. If you [disable prerendering for the following component](xref:blazor/components/render-modes#prerendering), you aren't required to provide the <xref:System.Net.Http.HttpClient> services in the server project and don't need to add the preceding line to the server project.
+The <xref:System.Net.Http.HttpClient> services must be added to the server project because the client-side component is prerendered on the server. If you [disable prerendering for the following component](xref:blazor/components/prerender#disable-prerendering), you aren't required to provide the <xref:System.Net.Http.HttpClient> services in the server project and don't need to add the preceding line to the server project.
 
 For more information on adding <xref:System.Net.Http.HttpClient> services to an ASP.NET Core app, see <xref:fundamentals/http-requests>.
 

@@ -1623,6 +1623,11 @@
             "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-mod5.md",
             "redirect_url": "/aspnet/core/release-notes/aspnetcore-10.0",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/state-management.md",
+            "redirect_url": "/aspnet/core/state-management/",
+            "redirect_document_id": false
         }
     ]
 }
