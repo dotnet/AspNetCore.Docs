@@ -155,7 +155,6 @@ public Home(IHostEnvironment? serverEnvironment = null,
 }
 ```
 
-However, the preceding approaches aren't useful if your logic requires a value during prerendering.
 
 You can also avoid the problem if you [disable prerendering](#disable-prerendering) for the component, but that's an extreme measure to take in many cases that may not meet your component's specifications.
 
