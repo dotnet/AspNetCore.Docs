@@ -193,7 +193,7 @@ Use ***either*** of the following approaches to resolve this problem:
 * Register the service in the main project to make it available during component prerendering.
 * If prerendering isn't required for the component, disable prerendering by following the guidance in <xref:blazor/components/prerender#disable-prerendering>. If you adopt this approach, you don't need to register the service in the main project.
 
-For more information, see [Client-side services fail to resolve during prerendering](xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering).
+For more information, see the [Client-side services fail to resolve during prerendering](xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering) section of the *Prerendering* article, which appears later in the Blazor documentation.
 
 :::moniker-end
 

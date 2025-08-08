@@ -3,10 +3,10 @@
 *This section applies to server-side apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerender>.*
 
 <!-- UPDATE 10.0 - Persistent component state across enhanced nav
-                   is arriving for Preview 7. 
+                   is arriving for RC1. 
                    
                    The following remarks will be updated/versioned
-                   on the upcoming docs Preview 7 PR.
+                   on the upcoming docs RC1 PR.
                    -->
 
 > [!NOTE]

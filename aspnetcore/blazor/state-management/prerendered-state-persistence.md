@@ -341,9 +341,9 @@ For components embedded into a page or view of a Razor Pages or MVC app, you mus
 When the `Routes` component doesn't define a render mode, the app is using per-page/component interactivity and navigation. Using per-page/component navigation, internal navigation is handled by [enhanced routing](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) after the app becomes interactive. "Internal navigation" in this context means that the URL destination of the navigation event is a Blazor endpoint inside the app.
 
 <!-- UPDATE 10.0 - Persistent component state across enhanced nav
-                   is arriving for Preview 7. The remarks in this
+                   is arriving for RC1. The remarks in this
                    section will be updated/versioned on the upcoming 
-                   docs Preview 7 PR. I'll go ahead and remove the 
+                   docs RC1 PR. I'll go ahead and remove the 
                    PU issue cross-link on PR #35873. -->
 
 The <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service only works on the initial page load and not across internal enhanced page navigation events.
