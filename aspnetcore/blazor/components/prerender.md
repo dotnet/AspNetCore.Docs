@@ -159,7 +159,7 @@ However, the preceding approaches aren't useful if your logic requires a value d
 
 You can also avoid the problem if you [disable prerendering](#disable-prerendering) for the component, but that's an extreme measure to take in many cases that may not meet your component's specifications.
 
-There are a three approaches that you can take to address this scenario for prerendering scenarios. The following are listed from most recommended to least recommended:
+There are a three approaches that you can take to address this scenario for prerendering. The following are listed from most recommended to least recommended:
 
 * *Recommended* for shared framework services: For shared framework services that merely aren't registered server-side in the main project, register the services in the main project, which makes them available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in the [Client-side services fail to resolve during prerendering](#client-side-services-for-httpclient-fail-during-prerendering) section.
 
