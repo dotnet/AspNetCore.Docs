@@ -1754,6 +1754,8 @@ items:
                     href: /azure/active-directory-b2c/enable-authentication-web-api
           - name: Configure cookie authentication
             uid: security/authentication/cookie
+          - name: API endpoint authentication behavior
+            uid: security/authentication/api-endpoint-auth
           - name: Configure OIDC web authentication
             uid: security/authentication/configure-oidc-web-authentication
           - name: Configure JWT bearer authentication

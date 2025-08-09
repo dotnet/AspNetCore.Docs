@@ -13,7 +13,7 @@ uid: security/authentication/api-endpoint-auth
 
 :::moniker range=">= aspnetcore-10.0"
 
-When using cookie authentication, API endpoints return appropriate HTTP status codes—such as 401 (Unauthorized) or 403 (Forbidden)—when authentication fails. This approach avoids redirecting unauthenticated requests login pages, which is more suitable for programmatic access scenarios like API clients. This behavior was introduced starting with ASP.NET Core in .NET 10.
+When using cookie authentication, API endpoints return the appropriate HTTP status codes (such as 401 or 403) for authentication failures instead of redirecting unauthenticated requests to login pages. This behavior, which is more suitable for programmatic API access, was introduced in ASP.NET Core in .NET 10.
 
 ## How ASP.NET Core identifies API endpoints
 
