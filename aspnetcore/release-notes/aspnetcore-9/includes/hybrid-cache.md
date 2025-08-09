@@ -126,7 +126,7 @@ By reusing instances, `HybridCache` can reduce the overhead of CPU and object al
 Like `IDistributedCache`, `HybridCache` supports removal by key with a `RemoveKeyAsync` method.
 
 `HybridCache` also provides optional APIs for `IDistributedCache` implementations, to avoid `byte[]` allocations. This feature is implemented
-by the preview versions of the `Microsoft.Extensions.Caching.StackExchangeRedis` and `Microsoft.Extensions.Caching.SqlServer` packages.
+by the preview versions of the `Microsoft.Extensions.Caching.StackExchangeRedis`,  `Microsoft.Extensions.Caching.SqlServer`, and `Microsoft.Extensions.Caching.Postgres` packages.
 
 Serialization is configured as part of registering the service, with support for type-specific and generalized serializers via the
 `WithSerializer` and `.WithSerializerFactory` methods, chained from the `AddHybridCache` call. By default, the library
