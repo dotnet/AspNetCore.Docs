@@ -19,6 +19,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 For demonstration purposes in the sample app, the user account for the hypothetical user, Maria Rodriguez, is hardcoded into the app. Use the **Email** address `maria.rodriguez@contoso.com` and any password to sign in the user. The user is authenticated in the `AuthenticateUser` method in the `Pages/Account/Login.cshtml.cs` file. In a real-world example, the user would be authenticated against a datastore.
 
+:::moniker-end
+:::moniker range=">= aspnetcore-10.0"
+[!INCLUDE[](~/includes/api-endpoint-auth.md)]
+:::moniker-end
+:::moniker range=">= aspnetcore-6.0"
 ## Add cookie authentication
 
 * Add the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A> methods.
