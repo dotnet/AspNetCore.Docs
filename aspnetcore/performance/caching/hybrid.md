@@ -165,7 +165,7 @@ The following example configures the service to use a general-purpose protobuf s
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal2/Program.cs" id="snippet_withserializerfactory" highlight="14":::
 
-The secondary cache requires a data store, such as Redis or SqlServer. To use [Azure Cache for Redis](https://azure.microsoft.com/products/cache), for example:
+The secondary cache requires a data store, such as Redis, SQL Server, or Postgres. To use [Azure Cache for Redis](https://azure.microsoft.com/products/cache), for example:
 
 * Install the `Microsoft.Extensions.Caching.StackExchangeRedis` package.
 * Create an instance of Azure Cache for Redis.
@@ -217,7 +217,7 @@ In such cases, inform `HybridCache` that it's safe to reuse instances by making 
 
 ### Avoid `byte[]` allocations
 
-`HybridCache` also provides optional APIs for `IDistributedCache` implementations, to avoid `byte[]` allocations. This feature is implemented by the preview versions of the `Microsoft.Extensions.Caching.StackExchangeRedis` and `Microsoft.Extensions.Caching.SqlServer` packages. For more information, see <xref:Microsoft.Extensions.Caching.Distributed.IBufferDistributedCache>.
+`HybridCache` also provides optional APIs for `IDistributedCache` implementations, to avoid `byte[]` allocations. This feature is implemented by the preview versions of the `Microsoft.Extensions.Caching.StackExchangeRedis`,  `Microsoft.Extensions.Caching.SqlServer`, and `Microsoft.Extensions.Caching.Postgres` packages. For more information, see <xref:Microsoft.Extensions.Caching.Distributed.IBufferDistributedCache>.
 Here are the .NET CLI commands to install the packages:
 
 ```dotnetcli
@@ -226,6 +226,10 @@ dotnet add package Microsoft.Extensions.Caching.StackExchangeRedis
 
 ```dotnetcli
 dotnet add package Microsoft.Extensions.Caching.SqlServer
+```
+
+```dotnetcli
+dotnet add package Microsoft.Extensions.Caching.Postgres
 ```
 
 ## Custom HybridCache implementations
