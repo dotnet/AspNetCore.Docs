@@ -390,7 +390,9 @@ AppContext.SetSwitch(
 
 ### Blazor router has a `NotFoundPage` parameter
 
-Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` (described in the next section) is invoked by passing a page type to the `Router` component using the `NotFoundPage` parameter. This approach is recommended over using the [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A) (`<NotFound>...</NotFound>`), as it supports routing, works across code Status Code Pages Re-execution Middleware, and is compatible even with non-Blazor scenarios. If both a `NotFound` render fragment and `NotFoundPage` are defined, the page specified by `NotFoundPage` takes priority.
+Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` (described in the next section) is invoked by passing a page type to the `Router` component using the `NotFoundPage` parameter. The feature supports routing, works across code Status Code Pages Re-execution Middleware, and is compatible even with non-Blazor scenarios.
+
+The [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A) (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -416,25 +418,69 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `Not
 
 * **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
-Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
-Streaming `NavigationManager.NotFound` content rendering uses (in order):
+The Not Found render fragment (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
 
-* A `NotFoundPage` passed to the `Router` component, if present.
+`NavigationManager.NotFound` content rendering uses the following, regardless if the response has started or not (in order):
+
+* If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> is set, render the contents of the assigned page.
+* If `Router.NotFoundPage` is set, render the assigned page.
 * A Status Code Pages Re-execution Middleware page, if configured.
-* No action if neither of the preceding approaches is adopted.
-
-Non-streaming `NavigationManager.NotFound` content rendering uses (in order):
-
-* A `NotFoundPage` passed to the `Router` component, if present.
-* Not Found render fragment content, if present. *Not recommended in .NET 10 or later.*
-* `DefaultNotFound` 404 content ("`Not found`" plain text).
+* No action if none of the preceding approaches are adopted.
 
 [Status Code Pages Re-execution Middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
 You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
 
 For more information and examples, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
+
+### Support for Not Found responses in apps without Blazor's router
+
+Apps that implement a custom router can use `NavigationManager.NotFound`. The custom router can render Not Found content from two sources, depending on the state of the response:
+
+* Regardless of the response state, the re-execution path to the page can used by passing it to <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>:
+
+  ```csharp
+  app.UseStatusCodePagesWithReExecute(
+      "/not-found", createScopeForStatusCodePages: true);
+  ```
+
+* When the response has started, the <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> can be used by subscribing to the `OnNotFoundEvent` in the router:
+
+  ```razor
+  @code {
+      [CascadingParameter]
+      public HttpContext? HttpContext { get; set; }
+
+      private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
+      {
+          // Only execute the logic if HTTP response has started,
+          // because setting NotFoundEventArgs.Path blocks re-execution
+          if (HttpContext?.Response.HasStarted == false)
+          {
+              return;
+          }
+
+          var type = typeof(CustomNotFoundPage);
+          var routeAttributes = type.GetCustomAttributes(typeof(RouteAttribute), 
+              inherit: true);
+
+          if (routeAttributes.Length == 0)
+          {
+              throw new InvalidOperationException($"The type {type.FullName} " +
+                  $"doesn't have a {typeof(RouteAttribute).FullName} applied.");
+          }
+
+          var routeAttribute = (RouteAttribute)routeAttributes[0];
+
+          if (routeAttribute.Template != null)
+          {
+              e.Path = routeAttribute.Template;
+          }
+      }
+  }
+  ```
 
 ### Metrics and tracing
 

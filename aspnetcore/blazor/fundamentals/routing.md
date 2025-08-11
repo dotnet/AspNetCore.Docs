@@ -136,6 +136,8 @@ When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigat
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-10.0"
+
 ## Provide custom content when content isn't found
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
@@ -153,14 +155,14 @@ Set custom content for the <xref:Microsoft.AspNetCore.Components.Routing.Router>
 
 Arbitrary items are supported as content of the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
-:::moniker range=">= aspnetcore-8.0"
+Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter (`<NotFound>...</NotFound>` markup), but the parameter is supported&dagger; for backward compatibility in .NET 8/9 to avoid a breaking change in the framework. The server-side ASP.NET Core middleware pipeline processes requests on the server. Use server-side techniques to handle bad requests.
 
-> [!IMPORTANT]
-> Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter (`<NotFound>...</NotFound>` markup), but the parameter is supported&dagger; for backward compatibility to avoid a breaking change in the framework. The server-side ASP.NET Core middleware pipeline processes requests on the server. Use server-side techniques to handle bad requests.
->
-> &dagger;*Supported* in this context means that placing `<NotFound>...</NotFound>` markup doesn't result in an exception, but using the markup isn't effective either.
->
-> For more information, including a recommended approach for handling bad requests, see <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>.
+&dagger;*Supported* in this context means that placing `<NotFound>...</NotFound>` markup doesn't result in an exception, but using the markup isn't effective either.
+
+For more information, see the following resources:
+
+* <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>
+* [](#not-found-responses-using-navigationmanager-for-static-ssr-and-global-interactive-rendering) <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
 
 :::moniker-end
 
@@ -714,24 +716,22 @@ For more information on component disposal, see <xref:blazor/components/componen
 
 * **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
 
-* **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
+* **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
 > [!NOTE]
 > The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's `NotFoundPage` parameter. The parameter works in concert with `NavigationManager.NotFound` and is described in more detail later in this section.
 
-Streaming rendering can only render components that have a route, such as a Not Found page assignment with the `Router` component's `NotFoundPage` parameter or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
-Streaming `NavigationManager.NotFound` content rendering uses (in order):
+> [!NOTE]
+> The Not Found render fragment (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
 
-* A `NotFoundPage` passed to the `Router` component, if present.
+`NavigationManager.NotFound` content rendering uses the following, regardless if the response has started or not (in order):
+
+* If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> is set, render the contents of the assigned page.
+* If `Router.NotFoundPage` is set, render the assigned page.
 * A Status Code Pages Re-execution Middleware page, if configured.
-* No action if neither of the preceding approaches is adopted.
-
-Non-streaming `NavigationManager.NotFound` content rendering uses (in order):
-
-* A `NotFoundPage` passed to the `Router` component, if present.
-* Not Found render fragment content, if present. *Not recommended in .NET 10 or later.*
-* `DefaultNotFound` 404 content ("`Not found`" plain text).
+* No action if none of the preceding approaches are adopted.
 
 [Status Code Pages Re-execution Middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
@@ -796,9 +796,53 @@ When a component is rendered with a global interactive render mode, calling `Not
 
 You can use the `OnNotFound` event for notifications when `NotFound` is invoked. The event is only fired when `NotFound` is called, not for any 404 response. For example, setting `HttpContextAccessor.HttpContext.Response.StatusCode` to `404` doesn't trigger `NotFound`/`OnNotFound`.
 
-<!-- UPDATE 10.0 - For Pre5, the following can be expanded to 
-                   cover CSR with an added bit of coverage for 
-                   Re-execution Middleware. -->
+Apps that implement a custom router can also use `NavigationManager.NotFound`. The custom router can render Not Found content from two sources, depending on the state of the response:
+
+* Regardless of the response state, the re-execution path to the page can used by passing it to <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>:
+
+  ```csharp
+  app.UseStatusCodePagesWithReExecute(
+      "/not-found", createScopeForStatusCodePages: true);
+  ```
+
+* When the response has started, the <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> can be used by subscribing to the `OnNotFoundEvent` in the router:
+
+  ```razor
+  @code {
+      [CascadingParameter]
+      public HttpContext? HttpContext { get; set; }
+
+      private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
+      {
+          // Only execute the logic if HTTP response has started,
+          // because setting NotFoundEventArgs.Path blocks re-execution
+          if (HttpContext?.Response.HasStarted == false)
+          {
+              return;
+          }
+
+          var type = typeof(CustomNotFoundPage);
+          var routeAttributes = type.GetCustomAttributes(typeof(RouteAttribute), 
+              inherit: true);
+
+          if (routeAttributes.Length == 0)
+          {
+              throw new InvalidOperationException($"The type {type.FullName} " +
+                  $"doesn't have a {typeof(RouteAttribute).FullName} applied.");
+          }
+
+          var routeAttribute = (RouteAttribute)routeAttributes[0];
+
+          if (routeAttribute.Template != null)
+          {
+              e.Path = routeAttribute.Template;
+          }
+      }
+  }
+  ```
+
+<!-- UPDATE 10.0 - Thus far, it looks like we're removing
+                   the following scenario.
 
 In the following example for components that adopt [interactive server-side rendering (interactive SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), custom content is rendered depending on where `OnNotFound` is called. If the event is triggered by the following `Movie` component when a movie isn't found on component initialization, a custom message states that the requested movie isn't found. If the event is triggered by the `User` component, a different message states that the user isn't found.
 
@@ -850,6 +894,8 @@ The `Routes` component (`Routes.razor`):
     </NotFound>
 </Router>
 ```
+
+-->
 
 In the following example components:
 

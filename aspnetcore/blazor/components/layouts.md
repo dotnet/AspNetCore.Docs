@@ -304,30 +304,16 @@ Specifying the layout as a default layout in the <xref:Microsoft.AspNetCore.Comp
 
 ### Apply a layout to arbitrary content (`LayoutView` component)
 
-To set a layout for arbitrary Razor template content, specify the layout with a <xref:Microsoft.AspNetCore.Components.LayoutView> component. You can use a <xref:Microsoft.AspNetCore.Components.LayoutView> in any Razor component. The following example sets a layout component named `ErrorLayout` for the `MainLayout` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`).
+To set a layout for arbitrary Razor template content, specify the layout with a <xref:Microsoft.AspNetCore.Components.LayoutView> component. You can use a <xref:Microsoft.AspNetCore.Components.LayoutView> in any Razor component. The following example sets a layout component named `ErrorLayout` for the component that includes the following Razor markup.
 
 ```razor
-<Router ...>
-    <Found ...>
-        ...
-    </Found>
-    <NotFound>
-        <LayoutView Layout="typeof(ErrorLayout)">
-            <h1>Page not found</h1>
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+<LayoutView Layout="typeof(ErrorLayout)">
+    <h1>Page not found</h1>
+    <p>Sorry, there's nothing at this address.</p>
+</LayoutView>
 ```
 
 You may need to identity the layout's namespace depending on the .NET version and type of Blazor app. For more information, see the [Make the layout namespace available](#make-the-layout-namespace-available) section.
-
-:::moniker range=">= aspnetcore-8.0"
-
-> [!IMPORTANT]
-> Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter (`<NotFound>...</NotFound>` markup), but the parameter is supported for backward compatibility to avoid a breaking change in the framework. The server-side ASP.NET Core middleware pipeline processes requests on the server. Use server-side techniques to handle bad requests. For more information, see <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>.
-
-:::moniker-end
 
 :::moniker range="= aspnetcore-5.0"
 
