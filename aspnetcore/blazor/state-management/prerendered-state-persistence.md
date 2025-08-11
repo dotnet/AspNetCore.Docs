@@ -42,59 +42,10 @@ By default, properties are serialized using the <xref:System.Text.Json?displayPr
 
 The following counter component persists counter state during prerendering and retrieves the state to initialize the component:
 
-* The `[PersistentState]` attribute is applied to the `CounterState` type (`State`).
+* The `[PersistentState]` attribute is applied to the nullable `int` type (`CurrentCount`).
 * The counter's state is assigned when `null` in `OnInitialized` and restored automatically when the component renders interactively.
 
 `PrerenderedCounter2.razor`:
-
-```razor
-@page "/prerendered-counter-2"
-@inject ILogger<PrerenderedCounter2> Logger
-
-<PageTitle>Prerendered Counter 2</PageTitle>
-
-<h1>Prerendered Counter 2</h1>
-
-<p role="status">Current count: @State?.CurrentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    [PersistentState]
-    public CounterState? State { get; set; }
-
-    protected override void OnInitialized()
-    {
-        if (State is null)
-        {
-            State = new() { CurrentCount = Random.Shared.Next(100) };
-            Logger.LogInformation("CurrentCount set to {Count}", 
-                State.CurrentCount);
-        }
-        else
-        {
-            Logger.LogInformation("CurrentCount restored to {Count}", 
-                State.CurrentCount);
-        }
-    }
-
-    private void IncrementCount()
-    {
-        if (State is not null)
-        {
-            State.CurrentCount++;
-        }
-    }
-
-    public class CounterState
-    {
-        public int CurrentCount { get; set; }
-    }
-}
-```
-
-<!-- UPDATE 10.0 - HOLD https://github.com/dotnet/aspnetcore/issues/61456 
-     was resolved for Preview 7
 
 ```razor
 @page "/prerendered-counter-2"
@@ -128,7 +79,6 @@ The following counter component persists counter state during prerendering and r
     private void IncrementCount() => CurrentCount++;
 }
 ```
--->
 
 When the component executes, `CurrentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
 
