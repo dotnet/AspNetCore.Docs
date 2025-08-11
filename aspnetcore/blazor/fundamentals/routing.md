@@ -162,7 +162,7 @@ Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Rout
 For more information, see the following resources:
 
 * <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>
-* [](#not-found-responses-using-navigationmanager-for-static-ssr-and-global-interactive-rendering) <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
+* [Not Found responses](#not-found-responses) section
 
 :::moniker-end
 
@@ -721,7 +721,7 @@ For more information on component disposal, see <xref:blazor/components/componen
 > [!NOTE]
 > The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's `NotFoundPage` parameter. The parameter works in concert with `NavigationManager.NotFound` and is described in more detail later in this section.
 
-Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a `NotFoundPage` assignment (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
 > [!NOTE]
 > The Not Found render fragment (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
