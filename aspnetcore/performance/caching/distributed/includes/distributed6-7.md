@@ -148,7 +148,7 @@ builder.Services.AddDistributedPostgresCache(options => {
 var app = builder.Build();
 ```
 
-3. Use the Cache
+2. Use the Cache
 
 ```csharp
 public class MyService {
