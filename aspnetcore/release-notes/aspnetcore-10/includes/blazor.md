@@ -420,8 +420,6 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `Not
 
 Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
-The Not Found render fragment (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
-
 `NavigationManager.NotFound` content rendering uses the following, regardless if the response has started or not (in order):
 
 * If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> is set, render the contents of the assigned page.
