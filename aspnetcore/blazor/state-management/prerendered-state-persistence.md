@@ -272,6 +272,30 @@ By initializing components with the same state used during prerendering, any exp
 
 The persisted prerendered state is transferred to the client, where it's used to restore the component state. During client-side rendering (CSR, `InteractiveWebAssembly`), the data is exposed to the browser and must not contain sensitive, private information. During interactive server-side rendering (interactive SSR, `InteractiveServer`), [ASP.NET Core Data Protection](xref:security/data-protection/introduction) ensures that the data is transferred securely. The `InteractiveAuto` render mode combines WebAssembly and Server interactivity, so it's necessary to consider data exposure to the browser, as in the CSR case.
 
+:::moniker range=">= aspnetcore-10.0"
+
+## Serialization extensibility for persistent component state
+
+<!-- UPDATE 10.0 - API doc cross-links -->
+
+Implement a custom serializer with the `IPersistentComponentStateSerializer` interface. Without a registered custom serializer, serialization falls back to the existing JSON serialization.
+
+The custom serializer is registered in the app's `Program` file. In the following example, the `CustomUserSerializer` is registered for the `User` type:
+
+```csharp
+builder.Services.AddSingleton<IPersistentComponentStateSerializer<User>, 
+    CustomUserSerializer>();
+```
+
+The type is automatically persisted and restored with the custom serializer:
+
+```razor
+[PersistentState] 
+public User? CurrentUser { get; set; } = new();
+```
+
+:::moniker-end
+
 ## Components embedded into pages and views (Razor Pages/MVC)
 
 For components embedded into a page or view of a Razor Pages or MVC app, you must add the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) with the `<persist-component-state />` HTML tag inside the closing `</body>` tag of the app's layout. **This is only required for Razor Pages and MVC apps.** For more information, see <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>.
