@@ -427,6 +427,18 @@ dotnet serve -d:bin/$(Configuration)/{TARGET FRAMEWORK}/publish
 
 In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
 
+:::moniker range=">= aspnetcore-10.0"
+
+To enable [Hot Reload](xref:test/hot-reload) for WebAssembly, set the `WasmEnableHotReload` MSBuild property to `true` in the app's project file:
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>true</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+:::moniker-end
+
 ### Node.js console app
 
 You can create a console app with the `wasmconsole` template, which creates an app that runs under :::no-loc text="WASM"::: as a [Node.js](https://nodejs.org/) or [V8](https://developers.google.com/apps-script/guides/v8-runtime) console app:
