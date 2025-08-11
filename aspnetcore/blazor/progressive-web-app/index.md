@@ -147,13 +147,35 @@ In the app's `wwwroot/index.html` file:
 
 :::moniker-end
 
-* Add the following `<script>` tag inside the closing `</body>` tag immediately after the `blazor.webassembly.js` script tag:
+:::moniker range=">= aspnetcore-10.0"
+
+* Add the following JavaScript inside the closing `</body>` tag immediately after the `blazor.webassembly.js` script tag:
 
   ```html
-      ...
-      <script>navigator.serviceWorker.register('service-worker.js');</script>
-  </body>
+  <script>
+    navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });
+  </script>
   ```
+
+  The [`updateViaCache: 'none'` option](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) ensures that:
+
+  * The browser doesn't use cached versions of the service worker script.
+  * Service worker updates are applied reliably without being blocked by HTTP caching.
+  * PWA applications can update their service workers more predictably.
+
+  This addresses caching issues that can prevent service worker updates from being applied correctly, which is particularly important for PWAs that rely on service workers for offline functionality.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+* Add the following JavaScript inside the closing `</body>` tag immediately after the `blazor.webassembly.js` script tag:
+
+  ```html
+  <script>navigator.serviceWorker.register('service-worker.js');</script>
+  ```
+
+:::moniker-end
 
 ## Installation and app manifest
 

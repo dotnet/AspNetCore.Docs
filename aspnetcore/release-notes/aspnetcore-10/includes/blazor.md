@@ -632,3 +632,20 @@ Explicitly set the value to `true` in the app's project file to enable WebAssemb
   <WasmEnableHotReload>true</WasmEnableHotReload>
 </PropertyGroup>
 ```
+
+### Updated PWA service worker registration to prevent caching issues
+
+The service worker registration in the [Blazor Progressive Web Application (PWA)](blazor/progressive-web-app/index) project template now includes the [`updateViaCache: 'none'` option](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache), which prevents caching issues during service worker updates.
+
+```diff
+- navigator.serviceWorker.register('service-worker.js');
++ navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });
+```
+
+The option ensures that:
+
+* The browser doesn't use cached versions of the service worker script.
+* Service worker updates are applied reliably without being blocked by HTTP caching.
+* PWA applications can update their service workers more predictably.
+
+This addresses caching issues that can prevent service worker updates from being applied correctly, which is particularly important for PWAs that rely on service workers for offline functionality.
