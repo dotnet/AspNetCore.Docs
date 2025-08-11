@@ -17,7 +17,7 @@ The following OpenAPI response and description are generated:
             "content": {
 ```
 
-This functionality is supported in both [API controllers](/aspnet/core/web-api#apicontroller-attribute) and [Minimal APIs](/aspnet/core/fundamentals/minimal-apis). For Minimal APIs, the `Description` property is correctly set even when the attribute’s type and the inferred return type aren't an exact match.
+This functionality is supported in both [API controllers](~/web-api.md#apicontroller-attribute.md#apicontroller-attribute) and [Minimal APIs](~/fundamentals/minimal-apis.md). For Minimal APIs, the `Description` property is correctly set even when the attribute’s type and the inferred return type aren't an exact match.
 
 
 [Community contribution](https://github.com/dotnet/aspnetcore/pull/58193) by [Sander ten Brinke](https://github.com/sander1095) 🙏
