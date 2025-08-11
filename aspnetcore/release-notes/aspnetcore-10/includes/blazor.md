@@ -450,17 +450,17 @@ For more information, see <xref:blazor/host-and-deploy/index?view=aspnetcore-10.
 
 ### Blazor WebAssembly static asset preloading in Blazor Web Apps
 
-We replaced `<link>` headers with a `LinkPreload` component (`<LinkPreload />`) for preloading WebAssembly assets in Blazor Web Apps. This permits the app base path configuration (`<base href="..." />`) to correctly identify the app's root.
+We replaced `<link>` headers with a `ResourcePreloader` component (`<ResourcePreloader />`) for preloading WebAssembly assets in Blazor Web Apps. This permits the app base path configuration (`<base href="..." />`) to correctly identify the app's root.
 
 Removing the component disables the feature if the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup?view=aspnetcore-10.0#load-client-side-boot-resources) to modify URLs.
 
-The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `LinkPreload` component after the base URL tag (`<base>`) in the `App` component's head content (`App.razor`):
+The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `ResourcePreloader` component after the base URL tag (`<base>`) in the `App` component's head content (`App.razor`):
 
 ```diff
 <head>
     ...
     <base href="/" />
-+   <LinkPreload />
++   <ResourcePreloader />
     ...
 </head>
 ```
