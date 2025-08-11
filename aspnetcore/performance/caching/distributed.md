@@ -27,7 +27,7 @@ When cached data is distributed, the data:
 * Survives server restarts and app deployments.
 * Doesn't use local memory.
 
-Distributed cache configuration is implementation specific. This article describes how to configure SQL Server and Redis distributed caches. Third party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache)). Regardless of which implementation is selected, the app interacts with the cache using the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface.
+Distributed cache configuration is implementation specific. This article describes how to configure SQL Server, Redis, or Postgres distributed caches. Third party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache)), Cosmos DB, and Postgres. Regardless of which implementation is selected, the app interacts with the cache using the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/distributed/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -39,6 +39,8 @@ Add a package reference for the distributed cache provider used:
 
 * For a Redis distributed cache, [Microsoft.Extensions.Caching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis).
 * For SQL Server, [Microsoft.Extensions.Caching.SqlServer](https://www.nuget.org/packages/Microsoft.Extensions.Caching.SqlServer).
+* For Postgres, [Microsoft.Extensions.Caching.Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres).
+* For Cosmos DB, [Microsoft.Extensions.Caching.Cosmos](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Cosmos).
 * For the NCache distributed cache, [NCache.Microsoft.Extensions.Caching.OpenSource](https://www.nuget.org/packages/NCache.Microsoft.Extensions.Caching.OpenSource).
 
 ## IDistributedCache interface
@@ -57,8 +59,9 @@ Register an implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDi
 * [Distributed Redis cache](#distributed-redis-cache)
 * [Distributed Memory Cache](#distributed-memory-cache)
 * [Distributed SQL Server cache](#distributed-sql-server-cache)
+* [Distributed Postgres cache](#distributed-postgres-cache)
 * [Distributed NCache cache](#distributed-ncache-cache)
-* [Distributed Azure CosmosDB cache](#distributed-azure-cosmosdb-cache)
+* [Distributed Azure Cosmos DB cache](#distributed-azure-cosmos-db-cache)
 
 ### Distributed Redis Cache
 
@@ -126,6 +129,75 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 > [!NOTE]
 > A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*>) are typically stored outside of source control (for example, stored by the [Secret Manager](xref:security/app-secrets) or in `appsettings.json`/`appsettings.{Environment}.json` files). The connection string may contain credentials that should be kept out of source control systems.
 
+### Distributed Postgres Cache
+
+[Azure Database for PostgreSQL](/azure/postgresql) can be used as a distributed cache backing store via the `IDistributedCache` interface. Azure Database for PostgreSQL is a fully managed, AI-ready Database-as-a-Service (DBaaS) offering built on the open-source PostgreSQL engine, designed to support mission-critical workloads with predictable performance, robust security, high availability, and seamless scalability. 
+
+After installing the [Microsoft.Extensions.Caching.Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres) NuGet package, configure your distributed cache as follows:
+
+1. Register the Service
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Register Postgres distributed cache
+builder.Services.AddDistributedPostgresCache(options => {
+    options.ConnectionString = builder.Configuration.GetConnectionString("PostgresCache");
+    options.SchemaName = builder.Configuration.GetValue<string>("PostgresCache:SchemaName", "public");
+    options.TableName = builder.Configuration.GetValue<string>("PostgresCache:TableName", "cache");
+    options.CreateIfNotExists = builder.Configuration.GetValue<bool>("PostgresCache:CreateIfNotExists", true);
+    options.UseWAL = builder.Configuration.GetValue<bool>("PostgresCache:UseWAL", false);
+    
+    // Optional: Configure expiration settings
+
+    var expirationInterval = builder.Configuration.GetValue<string>("PostgresCache:ExpiredItemsDeletionInterval");
+    if (!string.IsNullOrEmpty(expirationInterval) && TimeSpan.TryParse(expirationInterval, out var interval)) {
+        options.ExpiredItemsDeletionInterval = interval;
+    }
+    
+    var slidingExpiration = builder.Configuration.GetValue<string>("PostgresCache:DefaultSlidingExpiration");
+    if (!string.IsNullOrEmpty(slidingExpiration) && TimeSpan.TryParse(slidingExpiration, out var sliding)) {
+        options.DefaultSlidingExpiration = sliding;
+    }
+});
+
+var app = builder.Build();
+```
+
+2. Use the Cache
+
+```csharp
+public class MyService {
+    private readonly IDistributedCache _cache; 
+
+    public MyService(IDistributedCache cache) {
+        _cache = cache;
+    }
+
+    public async Task<string> GetDataAsync(string key) {
+        var cachedData = await _cache.GetStringAsync(key);
+        
+        if (cachedData == null) {
+            // Fetch data from source
+            var data = await FetchDataFromSource();
+            
+            // Cache the data with options
+            var options = new DistributedCacheEntryOptions {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30),
+                SlidingExpiration = TimeSpan.FromMinutes(5)
+            };
+            
+            await _cache.SetStringAsync(key, data, options);
+            return data;
+        }
+        
+        return cachedData;
+    }
+}
+```
+
 ### Distributed NCache Cache
 
 [NCache](https://github.com/Alachisoft/NCache) is an open source in-memory distributed cache developed natively in .NET. NCache works both locally and configured as a distributed cache cluster for an ASP.NET Core app running in Azure or on other hosting platforms.
@@ -140,7 +212,7 @@ To configure NCache:
 
 [!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddNCache_Cache)]
 
-### Distributed Azure CosmosDB Cache
+### Distributed Azure Cosmos DB Cache
 
 [Azure Cosmos DB](/azure/cosmos-db/introduction) can be used in ASP.NET Core as a session state provider by using the `IDistributedCache` interface. Azure Cosmos DB is a fully managed NoSQL and relational database for modern app development that offers high availability, scalability, and low-latency access to data for mission-critical applications.
 
@@ -213,6 +285,7 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 
 * [Redis Cache on Azure](/azure/azure-cache-for-redis/)
 * [SQL Database on Azure](/azure/sql-database/)
+* [Azure Database for PostgreSQL](/azure/postgresql/)
 * [ASP.NET Core IDistributedCache Provider for NCache in Web Farms](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache))
 * [Repository README file for Microsoft.Extensions.Caching.Cosmos](https://github.com/Azure/Microsoft.Extensions.Caching.Cosmos/blob/master/README.md)
 * <xref:performance/caching/memory>
