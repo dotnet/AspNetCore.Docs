@@ -36,13 +36,13 @@ To retain the initial value of the counter during prerendering, Blazor supports 
 
 <!-- UPDATE 10.0 - API cross-links -->
 
-To preserve prerendered state, use the `[SupplyParameterFromPersistentComponentState]` attribute to persist state in properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
+To preserve prerendered state, use the `[PersistentState]` attribute to persist state in properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
 
 By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings and persisted in the prerendered HTML. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 The following counter component persists counter state during prerendering and retrieves the state to initialize the component:
 
-* The `[SupplyParameterFromPersistentComponentState]` attribute is applied to the `CounterState` type (`State`).
+* The `[PersistentState]` attribute is applied to the `CounterState` type (`State`).
 * The counter's state is assigned when `null` in `OnInitialized` and restored automatically when the component renders interactively.
 
 `PrerenderedCounter2.razor`:
@@ -60,7 +60,7 @@ The following counter component persists counter state during prerendering and r
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public CounterState? State { get; set; }
 
     protected override void OnInitialized()
@@ -109,7 +109,7 @@ The following counter component persists counter state during prerendering and r
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public int? CurrentCount { get; set; }
 
     protected override void OnInitialized()
@@ -142,7 +142,7 @@ When the component executes, `CurrentCount` is only set once during prerendering
 
 In the following example that serializes state for multiple components of the same type:
 
-* Properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are serialized during prerendering.
+* Properties annotated with the `[PersistentState]` attribute are serialized during prerendering.
 * The [`@key` directive attribute](xref:blazor/components/key#use-of-the-key-directive-attribute) is used to ensure that the state is correctly associated with the component instance.
 * The `Element` property is initialized in the [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) to avoid null reference exceptions, similarly to how null references are avoided for query parameters and form data.
 
@@ -155,7 +155,7 @@ In the following example that serializes state for multiple components of the sa
 </div>
 
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public State Element { get; set; }
 
     protected override void OnInitialized()
@@ -188,12 +188,12 @@ In the following example that serializes state for multiple components of the sa
 
 In the following example that serializes state for a dependency injection service:
 
-* Properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are serialized during prerendering and deserialized when the app becomes interactive.
+* Properties annotated with the `[PersistentState]` attribute are serialized during prerendering and deserialized when the app becomes interactive.
 * The <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method is used to register the service for persistence. The render mode is required because the render mode can't be inferred from the service type. Use any of the following values:
   * `RenderMode.Server`: The service is available for the Interactive Server render mode.
   * `RenderMode.Webassembly`: The service is available for the Interactive Webassembly render mode.
   * `RenderMode.InteractiveAuto`: The service is available for both the Interactive Server and Interactive Webassembly render modes if a component renders in either of those modes.
-* The service is resolved during the initialization of an interactive render mode, and the properties annotated with the `[SupplyParameterFromPersistentComponentState]` attribute are deserialized.
+* The service is resolved during the initialization of an interactive render mode, and the properties annotated with the `[PersistentState]` attribute are deserialized.
 
 > [!NOTE]
 > Only persisting scoped services is supported.
@@ -205,7 +205,7 @@ In the following example that serializes state for a dependency injection servic
 ```csharp
 public class CounterService
 {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public int CurrentCount { get; set; }
 
     public void IncrementCount()
@@ -229,7 +229,7 @@ Serialized properties are identified from the actual service instance:
 * Supports shared code in different assemblies.
 * Results in each instance exposing the same properties.
 
-As an alternative to using the declarative model for persisting state with the `[SupplyParameterFromPersistentComponentState]` attribute, you can use the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service directly, which offers greater flexibility for complex state persistence scenarios. Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> to register a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
+As an alternative to using the declarative model for persisting state with the `[PersistentState]` attribute, you can use the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service directly, which offers greater flexibility for complex state persistence scenarios. Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> to register a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 The following counter component example persists counter state during prerendering and retrieves the state to initialize the component.
 

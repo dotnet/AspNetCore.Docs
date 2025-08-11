@@ -218,7 +218,7 @@ Currently, there's no documented replacement strategy for the preceding approach
 
 ### Declarative model for persisting state from components and services
 
-You can now declaratively specify state to persist from components and services using the `[SupplyParameterFromPersistentComponentState]` attribute. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
+You can now declaratively specify state to persist from components and services using the `[PersistentState]` attribute. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
 
 In previous Blazor releases, persisting component state during prerendering using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service involved a significant amount of code, as the following example demonstrates:
 
@@ -284,7 +284,7 @@ else
 }
 
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public List<Movie>? MoviesList { get; set; }
 
     protected override async Task OnInitializedAsync()

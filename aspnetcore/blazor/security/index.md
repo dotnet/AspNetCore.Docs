@@ -676,7 +676,7 @@ else
 }
 
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public IEnumerable<WeatherForecast>? Forecasts { get; set; }
 
     protected override async Task OnInitializedAsync()
