@@ -671,3 +671,30 @@ public User? CurrentUser { get; set; } = new();
 ### `OwningComponentBase` now implements `IAsyncDisposable`
 
 [`OwningComponentBase`](xref:fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope) now includes support for asynchronous disposal, improving resource management. There are new `DisposeAsync` and `DisposeAsyncCore` methods with an updated `Dispose` method to handle both synchronous and asynchronous disposal of the service scope.
+
+### New `InputHidden` component to handle hidden input fields in forms
+
+The new `InputHidden` component provides a hidden input field for storing string values.
+
+In the following example, a hidden input field is created for the form's `Parameter` property. When the form is submitted, the value of the hidden field is displayed:
+
+```razor
+<EditForm Model="Parameter" OnValidSubmit="Submit" FormName="InputHidden Example">
+    <InputHidden id="hidden" @bind-Value="Parameter" />
+    <button type="submit">Submit</button>
+</EditForm>
+
+@if (submitted)
+{
+    <p>Hello @Parameter!</p>
+}
+
+@code {
+    private bool submitted;
+
+    [SupplyParameterFromForm] 
+    public string Parameter { get; set; } = "stranger";
+
+    private void Submit() => submitted = true;
+}
+```
