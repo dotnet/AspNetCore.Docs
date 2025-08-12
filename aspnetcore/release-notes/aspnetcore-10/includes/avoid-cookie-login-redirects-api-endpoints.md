@@ -1,6 +1,6 @@
 ### Avoid cookie login redirects for known API endpoints
 
-Starting in .NET 10, unauthenticated and unauthorized requests to known API endpoints protected by cookie authentication now return HTTP 401 (Unauthorized) or 403 (Forbidden) responses, rather than redirecting to a login or access denied URI.
+By default, unauthenticated and unauthorized requests to known API endpoints protected by cookie authentication now return HTTP 401 (Unauthorized) or 403 (Forbidden) responses, rather than redirecting to a login or access denied URI.
 
 This change was [highly requested](https://github.com/dotnet/aspnetcore/issues/9039), because redirecting unauthenticated API requests to a login page is typically inappropriate for APIs. API clients expect authentication and authorization failures to be communicated using HTTP status codes, not HTML redirects.
 
