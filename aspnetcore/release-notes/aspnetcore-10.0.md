@@ -92,7 +92,7 @@ This section describes miscellaneous new features in .NET 10.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/top-level-domain.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-10/includespipe-reader/.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/pipe-reader.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/memory-eviction.md)]
 
