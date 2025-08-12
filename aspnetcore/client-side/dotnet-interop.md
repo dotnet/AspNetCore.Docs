@@ -427,18 +427,6 @@ dotnet serve -d:bin/$(Configuration)/{TARGET FRAMEWORK}/publish
 
 In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
 
-:::moniker range=">= aspnetcore-10.0"
-
-To enable [Hot Reload](xref:test/hot-reload) for WebAssembly, set the `WasmEnableHotReload` MSBuild property to `true` in the app's project file:
-
-```xml
-<PropertyGroup>
-  <WasmEnableHotReload>true</WasmEnableHotReload>
-</PropertyGroup>
-```
-
-:::moniker-end
-
 ### Node.js console app
 
 You can create a console app with the `wasmconsole` template, which creates an app that runs under :::no-loc text="WASM"::: as a [Node.js](https://nodejs.org/) or [V8](https://developers.google.com/apps-script/guides/v8-runtime) console app:
@@ -468,6 +456,30 @@ node bin/$(Configuration)/{TARGET FRAMEWORK}/{PATH}/main.mjs
 ```
 
 In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks), and the `{PATH}` placeholder is the path to the `main.mjs` file.
+
+:::moniker range=">= aspnetcore-10.0"
+
+## Control Hot Reload
+
+The `WasmEnableHotReload` MSBuild property enables [Hot Reload](xref:test/hot-reload) and is set to `true` by default when building in the `Debug` configuration. Hot Reload isn't enabled (set to `false`) when building in any other configuration.
+
+To use a custom configuration name when debugging, for example, `DebugWebAssembly`, set the property to `true` to enable Hot Reload:
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>true</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+To disable Hot Reload for the `Debug` configuration, set the value to `false`:
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>false</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+:::moniker-end
 
 ## Additional resources
 

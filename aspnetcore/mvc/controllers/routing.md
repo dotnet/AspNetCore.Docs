@@ -389,7 +389,7 @@ The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allo
 
  See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
-For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index##apicontroller-attribute).
+For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index#apicontroller-attribute).
 
 ## Route name
 
@@ -1231,7 +1231,7 @@ The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allo
 
  See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
-For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index##apicontroller-attribute).
+For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index#apicontroller-attribute).
 
 ## Route name
 

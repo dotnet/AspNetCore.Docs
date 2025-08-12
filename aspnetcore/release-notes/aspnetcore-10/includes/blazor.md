@@ -619,15 +619,23 @@ During server-side rendering, Blazor Web Apps can now persist a user's session (
 
 For more information, see <xref:blazor/state-management/server?view=aspnetcore-10.0#circuit-state-and-prerendering-state-preservation>.
 
-### Hot Reload for WebAssembly
+### Hot Reload for Blazor WebAssembly and .NET on WebAssembly
 
-The SDK migrated to a general purpose [Hot Reload](xref:test/hot-reload) for WebAssembly. There's a new MSBuild property `WasmEnableHotReload` that's `true` by default for the `Debug` configuration (`Configuration == "Debug"`).
+The SDK migrated to a general purpose [Hot Reload](xref:test/hot-reload) for WebAssembly scenarios. There's a new MSBuild property `WasmEnableHotReload` that's `true` by default for the `Debug` configuration (`Configuration == "Debug"`) that enables Hot Reload.
 
-Explicitly set the value to `true` in the app's project file to enable WebAssembly Hot Reload for other configurations, such as when [running .NET from JavaScript with an app created from the `wasmbrowser` template](xref:client-side/dotnet-interop?view=aspnetcore-10.0#browser-app):
+For other configurations with custom configuration names, set the value to `true` in the app's project file to enable Hot Reload:
 
 ```xml
 <PropertyGroup>
   <WasmEnableHotReload>true</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+To disable Hot Reload for the `Debug` configuration, set the value to `false`:
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>false</WasmEnableHotReload>
 </PropertyGroup>
 ```
 
@@ -647,6 +655,8 @@ The option ensures that:
 * PWA applications can update their service workers more predictably.
 
 This addresses caching issues that can prevent service worker updates from being applied correctly, which is particularly important for PWAs that rely on service workers for offline functionality.
+
+We recommend using the option set to `none` in all PWAs, including those that target .NET 9 or earlier.
 
 ### Serialization extensibility for persistent component state
 
