@@ -92,7 +92,7 @@ The following image shows an example of the Authenticated request duration metri
 
 For more information, see <xref:log-mon/metrics/built-in#microsoftaspnetcoreauthorization>.
 
-[!INCLUDE[](~/release-notes/aspnetcore-10/includes/avoid-cookie-login-redirects-api-endpoints.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/avoid-cookie-login-redirects.md)]
 
 ## Miscellaneous
 
