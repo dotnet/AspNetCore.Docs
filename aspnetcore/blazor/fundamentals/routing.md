@@ -822,13 +822,12 @@ Apps that implement a custom router can also use `NavigationManager.NotFound`. T
           }
 
           var type = typeof(CustomNotFoundPage);
-          var routeAttributes = type.GetCustomAttributes(typeof(RouteAttribute), 
-              inherit: true);
+          var routeAttributes = type.GetCustomAttributes<RouteAttribute>(inherit: true);
 
           if (routeAttributes.Length == 0)
           {
               throw new InvalidOperationException($"The type {type.FullName} " +
-                  $"doesn't have a {typeof(RouteAttribute).FullName} applied.");
+                  $"doesn't have a {nameof(RouteAttribute)} applied.");
           }
 
           var routeAttribute = (RouteAttribute)routeAttributes[0];

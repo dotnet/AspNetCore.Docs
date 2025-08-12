@@ -461,8 +461,7 @@ Apps that implement a custom router can use `NavigationManager.NotFound`. The cu
           }
 
           var type = typeof(CustomNotFoundPage);
-          var routeAttributes = type.GetCustomAttributes(typeof(RouteAttribute), 
-              inherit: true);
+          var routeAttributes = type.GetCustomAttributes<RouteAttribute>(inherit: true);
 
           if (routeAttributes.Length == 0)
           {
