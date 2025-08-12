@@ -27,7 +27,7 @@ This configuration is done with directives in the project build file. The follow
 </Target>
 ```
 
-We expect to include XML comments from a selected set of assemblies in the shared framework in future previews, to avoid the need for this configuration in most cases.
+We expect to include XML comments from a selected set of assemblies in the shared framework in future previews to avoid the need for this configuration in most cases.
 
 #### Unified handling of documentation IDs in OpenAPI XML comment generator
 
