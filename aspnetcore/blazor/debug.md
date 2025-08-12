@@ -516,3 +516,27 @@ VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorT
 ```
 
 The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For example, one minute is assigned as `60000`.
+
+:::moniker range=">= aspnetcore-10.0"
+
+## Control Hot Reload
+
+The `WasmEnableHotReload` MSBuild property enables [Hot Reload](xref:test/hot-reload) and is set to `true` by default when building in the `Debug` configuration. Hot Reload isn't enabled (set to `false`) when building in any other configuration.
+
+To use a custom configuration name when debugging, for example, `DebugWebAssembly`, set the property to `true` to enable Hot Reload:
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>true</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+To disable Hot Reload for the `Debug` configuration, set the value to `false`:
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>false</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+:::moniker-end

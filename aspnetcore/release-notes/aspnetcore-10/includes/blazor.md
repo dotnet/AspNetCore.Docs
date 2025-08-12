@@ -218,7 +218,7 @@ Currently, there's no documented replacement strategy for the preceding approach
 
 ### Declarative model for persisting state from components and services
 
-You can now declaratively specify state to persist from components and services using the `[SupplyParameterFromPersistentComponentState]` attribute. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
+You can now declaratively specify state to persist from components and services using the `[PersistentState]` attribute. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
 
 In previous Blazor releases, persisting component state during prerendering using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service involved a significant amount of code, as the following example demonstrates:
 
@@ -284,7 +284,7 @@ else
 }
 
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public List<Movie>? MoviesList { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -390,7 +390,9 @@ AppContext.SetSwitch(
 
 ### Blazor router has a `NotFoundPage` parameter
 
-Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` (described in the next section) is invoked by passing a page type to the `Router` component using the `NotFoundPage` parameter. This approach is recommended over using the [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A) (`<NotFound>...</NotFound>`), as it supports routing, works across code Status Code Pages Re-execution Middleware, and is compatible even with non-Blazor scenarios. If both a `NotFound` render fragment and `NotFoundPage` are defined, the page specified by `NotFoundPage` takes priority.
+Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` (described in the next section) is invoked by passing a page type to the `Router` component using the `NotFoundPage` parameter. The feature supports routing, works across code Status Code Pages Re-execution Middleware, and is compatible even with non-Blazor scenarios.
+
+The [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A) (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -416,25 +418,66 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `Not
 
 * **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
-Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
-Streaming `NavigationManager.NotFound` content rendering uses (in order):
+`NavigationManager.NotFound` content rendering uses the following, regardless if the response has started or not (in order):
 
-* A `NotFoundPage` passed to the `Router` component, if present.
+* If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> is set, render the contents of the assigned page.
+* If `Router.NotFoundPage` is set, render the assigned page.
 * A Status Code Pages Re-execution Middleware page, if configured.
-* No action if neither of the preceding approaches is adopted.
-
-Non-streaming `NavigationManager.NotFound` content rendering uses (in order):
-
-* A `NotFoundPage` passed to the `Router` component, if present.
-* Not Found render fragment content, if present. *Not recommended in .NET 10 or later.*
-* `DefaultNotFound` 404 content ("`Not found`" plain text).
+* No action if none of the preceding approaches are adopted.
 
 [Status Code Pages Re-execution Middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
 You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
 
 For more information and examples, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
+
+### Support for Not Found responses in apps without Blazor's router
+
+Apps that implement a custom router can use `NavigationManager.NotFound`. The custom router can render Not Found content from two sources, depending on the state of the response:
+
+* Regardless of the response state, the re-execution path to the page can used by passing it to <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>:
+
+  ```csharp
+  app.UseStatusCodePagesWithReExecute(
+      "/not-found", createScopeForStatusCodePages: true);
+  ```
+
+* When the response has started, the <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> can be used by subscribing to the `OnNotFoundEvent` in the router:
+
+  ```razor
+  @code {
+      [CascadingParameter]
+      public HttpContext? HttpContext { get; set; }
+
+      private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
+      {
+          // Only execute the logic if HTTP response has started,
+          // because setting NotFoundEventArgs.Path blocks re-execution
+          if (HttpContext?.Response.HasStarted == false)
+          {
+              return;
+          }
+
+          var type = typeof(CustomNotFoundPage);
+          var routeAttributes = type.GetCustomAttributes<RouteAttribute>(inherit: true);
+
+          if (routeAttributes.Length == 0)
+          {
+              throw new InvalidOperationException($"The type {type.FullName} " +
+                  $"doesn't have a {typeof(RouteAttribute).FullName} applied.");
+          }
+
+          var routeAttribute = (RouteAttribute)routeAttributes[0];
+
+          if (routeAttribute.Template != null)
+          {
+              e.Path = routeAttribute.Template;
+          }
+      }
+  }
+  ```
 
 ### Metrics and tracing
 
@@ -450,17 +493,17 @@ For more information, see <xref:blazor/host-and-deploy/index?view=aspnetcore-10.
 
 ### Blazor WebAssembly static asset preloading in Blazor Web Apps
 
-We replaced `<link>` headers with a `LinkPreload` component (`<LinkPreload />`) for preloading WebAssembly assets in Blazor Web Apps. This permits the app base path configuration (`<base href="..." />`) to correctly identify the app's root.
+We replaced `<link>` headers with a `ResourcePreloader` component (`<ResourcePreloader />`) for preloading WebAssembly assets in Blazor Web Apps. This permits the app base path configuration (`<base href="..." />`) to correctly identify the app's root.
 
 Removing the component disables the feature if the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup?view=aspnetcore-10.0#load-client-side-boot-resources) to modify URLs.
 
-The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `LinkPreload` component after the base URL tag (`<base>`) in the `App` component's head content (`App.razor`):
+The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `ResourcePreloader` component after the base URL tag (`<base>`) in the `App` component's head content (`App.razor`):
 
 ```diff
 <head>
     ...
     <base href="/" />
-+   <LinkPreload />
++   <ResourcePreloader />
     ...
 </head>
 ```
@@ -558,9 +601,13 @@ For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-cachin
 
 [Web Authentication (WebAuthn) API](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) support, known widely as *passkeys*, is a modern, phishing-resistant authentication method that improves security and user experience by leveraging public key cryptography and device-based authentication. ASP.NET Core Identity now supports passkey authentication based on WebAuthn and FIDO2 standards. This feature allows users to sign in without passwords, using secure, device-based authentication methods, such as biometrics or security keys.
 
-The Preview 6 Blazor Web App project template provides out-of-the-box passkey management and login functionality.
+The Preview 7 Blazor Web App project template provides out-of-the-box passkey management and login functionality:
 
-Migration guidance for existing apps will be published for the upcoming release of Preview 7, which is scheduled for mid-August.
+```dotnetcli
+dotnet new blazor -au Individual -o BlazorWebAppPasskeySample
+```
+
+We plan to publish migration guidance for existing apps by Friday, August 15.
 
 ### Circuit state persistence
 
@@ -571,6 +618,94 @@ During server-side rendering, Blazor Web Apps can now persist a user's session (
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
 
-*[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*
+*[Enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*
 
 For more information, see <xref:blazor/state-management/server?view=aspnetcore-10.0#circuit-state-and-prerendering-state-preservation>.
+
+### Hot Reload for Blazor WebAssembly and .NET on WebAssembly
+
+The SDK migrated to a general purpose [Hot Reload](xref:test/hot-reload) for WebAssembly scenarios. There's a new MSBuild property `WasmEnableHotReload` that's `true` by default for the `Debug` configuration (`Configuration == "Debug"`) that enables Hot Reload.
+
+For other configurations with custom configuration names, set the value to `true` in the app's project file to enable Hot Reload:
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>true</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+To disable Hot Reload for the `Debug` configuration, set the value to `false`:
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>false</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+### Updated PWA service worker registration to prevent caching issues
+
+The service worker registration in the [Blazor Progressive Web Application (PWA)](xref:blazor/progressive-web-app/index) project template now includes the [`updateViaCache: 'none'` option](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache), which prevents caching issues during service worker updates.
+
+```diff
+- navigator.serviceWorker.register('service-worker.js');
++ navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });
+```
+
+The option ensures that:
+
+* The browser doesn't use cached versions of the service worker script.
+* Service worker updates are applied reliably without being blocked by HTTP caching.
+* PWA applications can update their service workers more predictably.
+
+This addresses caching issues that can prevent service worker updates from being applied correctly, which is particularly important for PWAs that rely on service workers for offline functionality.
+
+We recommend using the option set to `none` in all PWAs, including those that target .NET 9 or earlier.
+
+### Serialization extensibility for persistent component state
+
+Implement a custom serializer with the `IPersistentComponentStateSerializer` interface. Without a registered custom serializer, serialization falls back to the existing JSON serialization.
+
+The custom serializer is registered in the app's `Program` file. In the following example, the `CustomUserSerializer` is registered for the `User` type:
+
+```csharp
+builder.Services.AddSingleton<IPersistentComponentStateSerializer<User>, 
+    CustomUserSerializer>();
+```
+
+The type is automatically persisted and restored with the custom serializer:
+
+```razor
+[PersistentState] 
+public User? CurrentUser { get; set; } = new();
+```
+
+### `OwningComponentBase` now implements `IAsyncDisposable`
+
+[`OwningComponentBase`](xref:fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope) now includes support for asynchronous disposal, improving resource management. There are new `DisposeAsync` and `DisposeAsyncCore` methods with an updated `Dispose` method to handle both synchronous and asynchronous disposal of the service scope.
+
+### New `InputHidden` component to handle hidden input fields in forms
+
+The new `InputHidden` component provides a hidden input field for storing string values.
+
+In the following example, a hidden input field is created for the form's `Parameter` property. When the form is submitted, the value of the hidden field is displayed:
+
+```razor
+<EditForm Model="Parameter" OnValidSubmit="Submit" FormName="InputHidden Example">
+    <InputHidden id="hidden" @bind-Value="Parameter" />
+    <button type="submit">Submit</button>
+</EditForm>
+
+@if (submitted)
+{
+    <p>Hello @Parameter!</p>
+}
+
+@code {
+    private bool submitted;
+
+    [SupplyParameterFromForm] 
+    public string Parameter { get; set; } = "stranger";
+
+    private void Submit() => submitted = true;
+}
+```

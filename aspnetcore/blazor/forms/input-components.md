@@ -556,3 +556,36 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 > The ProductionDate field has an incorrect date value.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+## `InputHidden` component to handle hidden input fields in forms
+
+<!-- UPDATE 10.0 - API doc cross-link -->
+
+The `InputHidden` component provides a hidden input field for storing string values.
+
+In the following example, a hidden input field is created for the form's `Parameter` property. When the form is submitted, the value of the hidden field is displayed:
+
+```razor
+<EditForm Model="Parameter" OnValidSubmit="Submit" FormName="InputHidden Example">
+    <InputHidden id="hidden" @bind-Value="Parameter" />
+    <button type="submit">Submit</button>
+</EditForm>
+
+@if (submitted)
+{
+    <p>Hello @Parameter!</p>
+}
+
+@code {
+    private bool submitted;
+
+    [SupplyParameterFromForm] 
+    public string Parameter { get; set; } = "stranger";
+
+    private void Submit() => submitted = true;
+}
+```
+
+:::moniker-end

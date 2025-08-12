@@ -636,7 +636,7 @@ else
 }
 
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public string? Data { get; set; }
 
     protected override async Task OnInitializedAsync()
