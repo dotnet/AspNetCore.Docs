@@ -49,7 +49,7 @@ If you need to override the automatic detection for specific endpoints, use the 
 
 ## Migration considerations
 
-This change is designed to be non-breaking for existing applications:
+This behavior change introduced in .NET 10 is designed to be non-breaking for existing applications:
 
 - **Web applications**: Continue to work as before with login page redirects
 - **Mixed applications**: API endpoints get proper status codes while web pages get redirects
