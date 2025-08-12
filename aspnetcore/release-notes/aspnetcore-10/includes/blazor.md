@@ -602,7 +602,11 @@ For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-cachin
 
 [Web Authentication (WebAuthn) API](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) support, known widely as *passkeys*, is a modern, phishing-resistant authentication method that improves security and user experience by leveraging public key cryptography and device-based authentication. ASP.NET Core Identity now supports passkey authentication based on WebAuthn and FIDO2 standards. This feature allows users to sign in without passwords, using secure, device-based authentication methods, such as biometrics or security keys.
 
-The Preview 7 Blazor Web App project template provides out-of-the-box passkey management and login functionality.
+The Preview 7 Blazor Web App project template provides out-of-the-box passkey management and login functionality:
+
+```dotnetcli
+dotnet new blazor -au Individual -o BlazorWebAppPasskeySample
+```
 
 We plan to publish migration guidance for existing apps by Friday, August 15.
 
