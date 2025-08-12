@@ -1,8 +1,5 @@
 ### Json+PipeReader deserialization support in MVC and Minimal
 
-- [ ] Edit for the What's New   - Assigned to: tdykstra
-- [ ] Update in the docs, tracking:    - Assigned to: tdykstra
-
 PR: https://github.com/dotnet/aspnetcore/pull/62895
 
 See https://github.com/dotnet/core/blob/dotnet10-p7-libraries/release-notes/10.0/preview/preview7/libraries.md#pipereader-support-for-json-serializer
