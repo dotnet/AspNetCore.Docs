@@ -56,13 +56,14 @@ For more information on the following performance meters, see <xref:log-mon/metr
 
 `Microsoft.AspNetCore.Components` meter:
 
-* `aspnetcore.components.navigation`: Tracks the total number of route changes in the app.
-* `aspnetcore.components.event_handler`: Measures the duration of processing browser events, including business logic.
+* `aspnetcore.components.navigate`: Tracks the total number of route changes in the app.
+* `aspnetcore.components.handle_event.duration`: Measures the duration of processing browser events, including business logic.
 
 `Microsoft.AspNetCore.Components.Lifecycle` meter:
 
-* `aspnetcore.components.update_parameters`: Measures the duration of processing component parameters, including business logic.
-* `aspnetcore.components.render_diff`: Tracks the duration of rendering batches.
+* `aspnetcore.components.update_parameters.duration`: Measures the duration of processing component parameters, including business logic.
+* `aspnetcore.components.render_diff.duration`: Tracks the duration of rendering batches.
+* `aspnetcore.components.render_diff.size`: Tracks the size of rendering batches.
 
 `Microsoft.AspNetCore.Components.Server.Circuits` meter:
 
@@ -80,7 +81,7 @@ The new activity tracing capabilities use the `Microsoft.AspNetCore.Components` 
 
 Circuit lifecycle tracing:
 
-`Microsoft.AspNetCore.Components.CircuitStart`: Traces circuit initialization with the format `Circuit {circuitId}`.
+`Microsoft.AspNetCore.Components.StartCircuit`: Traces circuit initialization with the format `Circuit {circuitId}`.
 
 Tags:
 
@@ -96,7 +97,7 @@ Usage: Links other Blazor traces of the same session/circuit to HTTP and SignalR
 
 Navigation tracing:
 
-`Microsoft.AspNetCore.Components.RouteChange`: Tracks route changes with the format `Route {route} -> {componentType}`.
+`Microsoft.AspNetCore.Components.Navigate`: Tracks route changes with the format `Route {route} -> {componentType}`.
 
 Tags:
 
@@ -119,14 +120,12 @@ Event handling tracing:
 Tags:
 
 * `aspnetcore.components.attribute.name`: Name of the HTML attribute that triggers the event (example: `onClick`).
-* `aspnetcore.components.method`: C# method name of the handler.
+* `code.function.name`: C# method name of the handler.
 * `aspnetcore.components.type`: Full name of target C# component that receives the event.
 * `error.type`: Exception type full name (optional).
 
 Links:
 
-* HTTP trace
-* SignalR trace
 * Circuit trace
 * Route trace
 
