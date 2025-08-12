@@ -45,6 +45,8 @@ This section describes new features for minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/validation-package-move.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/enhance-validation-classes-records.md)]
+
 ## OpenAPI
 
 This section describes new features for OpenAPI.
@@ -61,11 +63,15 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/xml-comment-generator.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/formdata-enum-parameters.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiNetUpdatePrev.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/upgrade-microsoft-openapi-2.md)]
 
-## Authentication and authorization metrics
+## Authentication and authorization
+
+### Authentication and authorization metrics
 
 Metrics have been added for certain authentication and authorization events in ASP.NET Core. With this change, you can now obtain metrics for the following events:
 
@@ -83,6 +89,8 @@ The following image shows an example of the Authenticated request duration metri
 ![Authenticated request duration in the Aspire dashboard](https://github.com/user-attachments/assets/170615e9-ef25-48a1-a482-4933e2e03f03)
 
 For more information, see <xref:log-mon/metrics/built-in#microsoftaspnetcoreauthorization>.
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/avoid-cookie-login-redirects.md)]
 
 ## Miscellaneous
 
