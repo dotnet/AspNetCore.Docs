@@ -58,14 +58,10 @@ During server-side rendering, Blazor Web Apps can persist a user's session (circ
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
 
-<!-- UPDATE 10.0 - Arriving for Preview 7 ...
-
-                   `[SupplyParameterFromPersistentComponentState]` will be renamed to `[PersistentState]`.
-                   `Blazor.pauseCircuit` will be renamed to `Blazor.pause`.
-                   `Blazor.resumeCircuit` will be renamed to `Blazor.resume`.
+<!-- UPDATE 10.0 - Arriving for RC1 ...
 
                    Guidance changes for persistent component state with enhanced nav
-                   will be on the upcoming docs PR for Preview 7.
+                   will be on the upcoming docs PR for RC1.
 
                    API review for support persistent component state on enhanced navigation
                    https://github.com/dotnet/aspnetcore/issues/62773
@@ -113,7 +109,7 @@ Persisting component state across circuits is built on top of the existing <xref
 > [NOTE]
 > Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
 
-Annotate component properties with `[SupplyParameterFromPersistentComponentState]` to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
+Annotate component properties with `[PersistentState]` to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
 
 ```razor
 @foreach (var item in Items)
@@ -122,7 +118,7 @@ Annotate component properties with `[SupplyParameterFromPersistentComponentState
 }
 
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public List<Item> Items { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -132,12 +128,12 @@ Annotate component properties with `[SupplyParameterFromPersistentComponentState
 }
 ```
 
-To persist state for scoped services, annotate service properties with `[SupplyParameterFromPersistentComponentState]`, add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
+To persist state for scoped services, annotate service properties with `[PersistentState]`, add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
 
 ```csharp
 public class CustomUserService
 {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public string UserData { get; set; }
 }
 
@@ -173,17 +169,17 @@ Pausing a circuit stores details about the circuit in client-side browser storag
 
 From a JavaScript event handler:
 
-* Call `Blazor.pauseCircuit` to pause a circuit.
-* Call `Blazor.resumeCircuit` to resume a circuit.
+* Call `Blazor.pause` to pause a circuit.
+* Call `Blazor.resume` to resume a circuit.
 
 The following example assumes that a circuit isn't required for an app that isn't visible:
 
 ```javascript
 window.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
-    Blazor.pauseCircuit();
+    Blazor.pause();
   } else if (document.visibilityState === 'visible') {
-    Blazor.resumeCircuit();
+    Blazor.resume();
   }
 });
 ```

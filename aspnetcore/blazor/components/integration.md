@@ -408,13 +408,13 @@ In `Pages/_Host.cshtml` of Blazor apps that are `ServerPrerendered` in a Blazor 
 
 <!-- UPDATE 10.0 - API cross-link -->
 
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The `[SupplyParameterFromPersistentComponentState]` attribute applied to a property registers a callback to persist the state during prerendering and loads it when the component renders interactively or the service is instantiated.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The `[PersistentState]` attribute applied to a property registers a callback to persist the state during prerendering and loads it when the component renders interactively or the service is instantiated.
 
 In the following example, the `{TYPE}` placeholder represents the type of data to persist (for example, `WeatherForecast[]`).
 
 ```razor
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public {TYPE} Data { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -469,7 +469,7 @@ else
 }
 
 @code {
-    [SupplyParameterFromPersistentComponentState]
+    [PersistentState]
     public WeatherForecast[]? Forecasts { get; set; }
 
     protected override async Task OnInitializedAsync()
