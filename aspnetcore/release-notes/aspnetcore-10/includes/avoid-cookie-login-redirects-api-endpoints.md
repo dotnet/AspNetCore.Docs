@@ -15,7 +15,7 @@ When `IApiEndpointMetadata` is present, the cookie authentication handler return
 
 #### Restoring previous redirect behavior
 
-To prevent this new behavior, and always redirect to the login and access denied URIs for unauthenticated or unauthorized requests regardless of the target endpoint, you can override the `RedirectToLogin` and `RedirectToAccessDenied` as follows:
+To prevent this new behavior, and always redirect to the login and access denied URIs for unauthenticated or unauthorized requests regardless of the target endpoint, you can override the `RedirectToLogin` and `RedirectToAccessDenied` events as follows:
 
 ```csharp
 builder.Services.AddAuthentication()
