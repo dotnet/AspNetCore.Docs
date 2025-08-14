@@ -9,7 +9,12 @@ uid: blazor/security/passkeys
 ---
 # Enable Web Authentication API (WebAuthn) passkeys in an ASP.NET Core Blazor Web App
 
+<!-- UPDATE 11.0 - Activate the not-latest-version file.
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+
+-->
 
 <!-- UPDATE 10.0 - API doc cross-links throughout article -->
 
