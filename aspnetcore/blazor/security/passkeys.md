@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys with ASP.NET Core Blazor Web App authentication.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 08/14/2024
+ms.date: 08/14/2025
 uid: blazor/security/passkeys
 ---
 # Enable Web Authentication API (WebAuthn) passkeys in an ASP.NET Core Blazor Web App
