@@ -628,6 +628,10 @@ items:
                 uid: blazor/security/account-confirmation-and-password-recovery
               - name: QR codes with TOTP
                 uid: blazor/security/qrcodes-for-authenticator-apps
+              - name: Passkeys
+                uid: blazor/security/passkeys
+              - name: Implement passkeys in an existing Blazor Web App
+                uid: migration/blazor-web-app/passkeys
               - name: Content Security Policy
                 uid: blazor/security/content-security-policy
               - name: EU General Data Protection Regulation (GDPR) support
@@ -2151,6 +2155,10 @@ items:
               uid: migration/fx-to-core/examples/configuration
             - name: Identity
               uid: migration/fx-to-core/examples/identity
+      - name: Implement passkeys in an existing Blazor Web App
+        uid: migration/blazor-web-app/passkeys
+      - name: Implement passkeys in an existing Razor Pages or MVC app
+        uid: migration/aspnetcore-app/passkeys
   - name: API reference
     href: /dotnet/api/
   - name: Contribute
