@@ -1,14 +1,15 @@
 ---
-title: Handle errors in minimal APIs
+title: Handle errors in ASP.NET Core APIs
 author: brunolins16
-description: Learn about error handling in minimal APIs in ASP.NET Core.
+description: Learn about error handling in Minimal APIs and controller-based APIs in ASP.NET Core.
+ai-usage: ai-assisted
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 05/30/2024
+ms.date: 01/16/2025
 uid: fundamentals/minimal-apis/handle-errors
 ---
 
-# How to handle errors in Minimal API apps
+# Handle errors in ASP.NET Core APIs
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -16,9 +17,11 @@ With contributions by [David Acker](https://github.com/david-acker)
 
  :::moniker range=">= aspnetcore-8.0"
 
-This article describes how to handle errors in Minimal API apps. For information about error handling in controller-based APIs, see <xref:fundamentals/error-handling> and <xref:web-api/handle-errors>.
+This article describes how to handle errors in ASP.NET Core APIs, with a focus on **Minimal APIs** (the recommended approach for new projects). For controller-specific error handling scenarios, see <xref:web-api/handle-errors>.
 
-## Exceptions
+## Error handling in Minimal APIs
+
+### Exceptions
 
 In a Minimal API app, there are two different built-in centralized mechanisms to handle unhandled exceptions:
 
@@ -29,7 +32,7 @@ This section refers to the following sample app to demonstrate ways to handle ex
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/sample8/Program.cs" id="snippet_ThrowExceptions" highlight="4-7":::
 
-### Developer Exception Page
+#### Developer Exception Page
 
 [!INCLUDE [](~/includes/developer-exception-page.md)]
 
@@ -38,7 +41,7 @@ To see the Developer Exception Page:
 * Run the sample app in the [Development environment](xref:fundamentals/environments).
 * Go to the `/exception` endpoint.
 
-### Exception handler
+#### Exception handler
 
 In non-development environments, use the [Exception Handler Middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `Exception Handler Middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>.
 
@@ -46,7 +49,7 @@ For example, the following code changes the app to respond with an [RFC 7807](ht
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/sample8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="4-7":::
 
-## Client and Server error responses
+### Client and Server error responses
 
 Consider the following Minimal API app.
 
@@ -87,6 +90,37 @@ The preceding code:
 The following sample is similar to the preceding except that it calls the [`Status Code Pages middleware`](xref:fundamentals/error-handling#usestatuscodepages).
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithStatusCodePageFallback" highlight="15":::
+
+## Error handling in controller-based APIs
+
+While this article focuses on Minimal APIs, ASP.NET Core also supports controller-based APIs for error handling. If you're using controller-based APIs, they provide additional error handling features:
+
+### Key differences for controllers
+
+* **Automatic model validation**: Controllers automatically validate model state and return `400 Bad Request` responses for validation failures
+* **Exception filters**: Use action filters and exception filters for centralized error handling
+* **Built-in problem details**: Configure `ApiBehaviorOptions` for standardized error responses
+* **Custom error responses**: Override `InvalidModelStateResponseFactory` for custom validation error formatting
+
+### When to use controller-based error handling
+
+Consider controller-based APIs if you need:
+
+* Complex model validation scenarios
+* Centralized exception handling across multiple controllers
+* Fine-grained control over error response formatting
+* Integration with MVC features like filters and conventions
+
+For detailed information about controller-based error handling, including validation errors, problem details customization, and exception filters, see <xref:web-api/handle-errors>.
+
+### Migration from controllers to Minimal APIs
+
+If you're migrating from controller-based APIs to Minimal APIs:
+
+1. **Replace action filters** with endpoint filters or middleware
+2. **Replace model validation** with manual validation or custom binding
+3. **Replace exception filters** with exception handling middleware
+4. **Configure problem details** using `AddProblemDetails()` for consistent error responses
 
 :::moniker-end
 

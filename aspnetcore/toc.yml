@@ -850,6 +850,52 @@ items:
     items:
       - name: Overview
         uid: fundamentals/apis
+      - name: "Tutorial: Create a minimal API"
+        uid: tutorials/min-web-api
+      - name: Minimal APIs quick reference
+        uid: fundamentals/minimal-apis
+      - name: WebApplication and WebApplicationBuilder
+        uid: fundamentals/minimal-apis/webapplication
+      - name: Route Handlers
+        uid: fundamentals/minimal-apis/route-handlers
+      - name: Parameter binding
+        uid: fundamentals/minimal-apis/parameter-binding
+      - name: Create responses
+        uid: fundamentals/minimal-apis/responses
+      - name: Filters
+        uid: fundamentals/minimal-apis/min-api-filters
+      - name: Unit and integration tests
+        uid: fundamentals/minimal-apis/test-min-api
+      - name: Middleware
+        uid: fundamentals/minimal-apis/middleware
+      - name: Handle errors
+        uid: fundamentals/minimal-apis/handle-errors
+      - name: Authentication and authorization
+        uid: fundamentals/minimal-apis/security
+      - name: OpenAPI
+        items:
+          - name: Overview
+            uid: fundamentals/openapi/overview
+          - name: Generate OpenAPI documents
+            uid: fundamentals/openapi/aspnetcore-openapi
+          - name: Include OpenAPI metadata
+            uid: fundamentals/openapi/include-metadata
+          - name: XML doc comment support 
+            uid: fundamentals/openapi/aspnet-openapi-xml
+          - name: Customize OpenAPI documents
+            uid: fundamentals/openapi/customize-openapi
+          - name: Use OpenAPI documents
+            uid: fundamentals/openapi/using-openapi-documents
+          - name: OpenAPI tools
+            uid: fundamentals/openapi/openapi-tools
+          - name: Swagger / NSwag
+            items:
+              - name: Overview
+                uid: tutorials/web-api-help-pages-using-swagger
+              - name: Get started with Swashbuckle
+                uid: tutorials/get-started-with-swashbuckle
+              - name: Get started with NSwag
+                uid: tutorials/get-started-with-nswag
       - name: Controller-based APIs
         items:
         - name: Overview
@@ -880,56 +926,6 @@ items:
               uid: web-api/http-repl
             - name: Telemetry
               uid: web-api/http-repl/telemetry
-      - name: Minimal APIs
-        items:
-        - name: Overview
-          uid: fundamentals/minimal-apis/overview
-        - name: "Tutorial: Create a minimal API"
-          uid: tutorials/min-web-api
-        - name: Minimal APIs quick reference
-          uid: fundamentals/minimal-apis
-        - name: WebApplication and WebApplicationBuilder
-          uid: fundamentals/minimal-apis/webapplication
-        - name: Route Handlers
-          uid: fundamentals/minimal-apis/route-handlers
-        - name: Parameter binding
-          uid: fundamentals/minimal-apis/parameter-binding
-        - name: Create responses
-          uid: fundamentals/minimal-apis/responses
-        - name: Filters
-          uid: fundamentals/minimal-apis/min-api-filters
-        - name: Unit and integration tests
-          uid: fundamentals/minimal-apis/test-min-api
-        - name: Middleware
-          uid: fundamentals/minimal-apis/middleware
-        - name: Handle errors
-          uid: fundamentals/minimal-apis/handle-errors
-        - name: Authentication and authorization
-          uid: fundamentals/minimal-apis/security
-      - name: OpenAPI
-        items:
-          - name: Overview
-            uid: fundamentals/openapi/overview
-          - name: Generate OpenAPI documents
-            uid: fundamentals/openapi/aspnetcore-openapi
-          - name: Include OpenAPI metadata
-            uid: fundamentals/openapi/include-metadata
-          - name: XML doc comment support 
-            uid: fundamentals/openapi/aspnet-openapi-xml
-          - name: Customize OpenAPI documents
-            uid: fundamentals/openapi/customize-openapi
-          - name: Use OpenAPI documents
-            uid: fundamentals/openapi/using-openapi-documents
-          - name: OpenAPI tools
-            uid: fundamentals/openapi/openapi-tools
-          - name: Swagger / NSwag
-            items:
-              - name: Overview
-                uid: tutorials/web-api-help-pages-using-swagger
-              - name: Get started with Swashbuckle
-                uid: tutorials/get-started-with-swashbuckle
-              - name: Get started with NSwag
-                uid: tutorials/get-started-with-nswag
   - name: Real-time apps
     displayName: signalr
     items:
