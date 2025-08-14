@@ -6,9 +6,9 @@ See https://github.com/dotnet/core/blob/dotnet10-p7-libraries/release-notes/10.0
 
 MVC, Minimal APIs, and the `HttpRequestJsonExtensions.ReadFromJsonAsync` methods have all been updated to use the new Json+PipeReader support without requiring any code changes from applications.
 
-For most applications, the addition of this support has no effect on their behavior. However, if the application is using a custom `JsonConverter`, there's a chance that the converter doesn't handle [Utf8JsonReader.HasValueSequence](https://learn.microsoft.com/dotnet/api/system.text.json.utf8jsonreader.hasvaluesequence) correctly. This can result in missing data and errors like `ArgumentOutOfRangeException` when deserializing.
+For most applications, the addition of this support has no effect on their behavior. However, if the application is using a custom <xref:System.Text.Json.Serialization.JsonConverter>, there's a chance that the converter doesn't handle <xref:System.Text.Json.Utf8JsonReader.HasValueSequence%2A?displayProperty=nameWithType> correctly. This can result in missing data and errors, such as <xref:System.ArgumentOutOfRangeException>, when deserializing.
 
-The quick workaround (especially if you don't own the custom `JsonConverter` being used) is to set the `"Microsoft.AspNetCore.UseStreamBasedJsonParsing"` [AppContext](https://learn.microsoft.com/dotnet/api/system.appcontext?view=net-9.0) switch to `"true"`. This should be a temporary workaround and the `JsonConverter` should be updated to support `HasValueSequence`.
+The quick workaround (especially if you don't own the custom `JsonConverter` being used) is to set the `"Microsoft.AspNetCore.UseStreamBasedJsonParsing"` <xref:System.AppContext> switch to `"true"`. This should be a temporary workaround, and the `JsonConverter` should be updated to support <xref:System.Text.Json.Utf8JsonReader.HasValueSequence%2A>.
 
 To fix `JsonConverter` implementations, there's a quick fix that allocates an array from the `ReadOnlySequence` and would look like the following example:
 
