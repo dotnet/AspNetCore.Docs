@@ -352,6 +352,8 @@ accountGroup.MapPost("/PasskeyRequestOptions", async (
 
 Replace the existing `Login` component with the following component. The passkey-specific additions are described by Razor comments (`@* ... *@`) in the file.
 
+Replace the `{NAMESPACE}` placeholder in the following example with the app's namespace. For example, `Contoso` for `Contoso.Data` in the following examples.
+
 `Components/Account/Pages/Login.razor`:
 
 ```razor
@@ -360,7 +362,7 @@ Replace the existing `Login` component with the following component. The passkey
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Authentication
 @using Microsoft.AspNetCore.Identity
-@using YourApp.Data
+@using {NAMESPACE}.Data
 
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
@@ -535,12 +537,14 @@ Replace the existing `Login` component with the following component. The passkey
 
 Add the following `Passkeys` component for managing passkeys.
 
+Replace the `{NAMESPACE}` placeholder in the following examples with the app's namespace. For example, `Contoso` for `Contoso.Data` in the following examples.
+
 `Components/Account/Pages/Manage/Passkeys.razor`:
 
 ```razor
 @page "/Account/Manage/Passkeys"
 
-@using YourApp.Data
+@using {NAMESPACE}.Data
 @using Microsoft.AspNetCore.Identity
 @using System.Buffers.Text
 
@@ -707,12 +711,14 @@ else
 
 Add the following component for renaming passkeys.
 
+
+
 `Components/Account/Pages/Manage/RenamePasskey.razor`:
 
 ```razor
 @page "/Account/Manage/RenamePasskey/{Id}"
 
-@using YourApp.Data
+@using {NAMESPACE}.Data
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Identity
 @using System.Buffers.Text
