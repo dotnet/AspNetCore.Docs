@@ -9,15 +9,13 @@ uid: blazor/security/passkeys
 ---
 # Enable Web Authentication API (WebAuthn) passkeys in an ASP.NET Core Blazor Web App
 
-<!-- [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)] -->
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 <!-- UPDATE 10.0 - API doc cross-links throughout article -->
 
 Passkeys provide a modern, phishing-resistant authentication method based on the [Web Authentication API (WebAuthn)](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) and [FIDO2](https://www.microsoft.com/en-us/security/business/security-101/what-is-fido2) standards. They are a secure alternative to passwords, using public key cryptography and device-based authentication. This article explains how to configure an ASP.NET Core Blazor Web App to use passkeys to authenticate users.
 
-The guidance in this article relies upon creating a .NET 10 or later Blazor Web App with **Individual Accounts** for the app's **Authentication type** or [scaffolding Identity](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project) into an existing .NET 10 or later Blazor Web App. For migration guidance from prior versions of .NET, see <xref:migration/blazor-web-app/passkeys>.
+The guidance in this article relies upon creating a .NET 10 or later Blazor Web App with **Individual Accounts** for the app's **Authentication type** or [scaffolding Identity](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project) into an existing .NET 10 or later Blazor Web App. For migration guidance from prior versions of .NET, see <xref:blazor/security/passkeys-migration>.
 
 ## What are passkeys?
 
@@ -142,7 +140,7 @@ The Blazor Web App template enforces these limits by default.
 
 ## Create or migrate a Blazor Web App
 
-For migration guidance to update an existing Blazor Web App to use passkeys, see <xref:migration/blazor-web-app/passkeys>.
+For migration guidance to update an existing Blazor Web App to use passkeys, see <xref:blazor/security/passkeys-migration>.
 
 Use the following guidance to create a new Blazor Web App with passkeys support.
 

@@ -5,7 +5,7 @@ description: Learn how to implement passkeys authentication in an ASP.NET Core B
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 8/14/2025
-uid: migration/blazor-web-app/passkeys
+uid: blazor/security/passkeys-migration
 ---
 # Implement passkeys in an existing Blazor Web App
 

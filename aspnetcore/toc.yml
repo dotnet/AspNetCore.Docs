@@ -631,7 +631,7 @@ items:
               - name: Passkeys
                 uid: blazor/security/passkeys
               - name: Implement passkeys in an existing Blazor Web App
-                uid: migration/blazor-web-app/passkeys
+                uid: blazor/security/passkeys-migration
               - name: Content Security Policy
                 uid: blazor/security/content-security-policy
               - name: EU General Data Protection Regulation (GDPR) support
@@ -1718,6 +1718,8 @@ items:
                 uid: security/authentication/identity-enable-qrcodes
               - name: Two-factor authentication with SMS
                 uid: security/authentication/2fa
+              - name: Implement passkeys in an existing Razor Pages or MVC app
+                uid: security/authentication/passkeys-migration
               - name: External authentication providers
                 items:
                   - name: Overview
@@ -2155,10 +2157,6 @@ items:
               uid: migration/fx-to-core/examples/configuration
             - name: Identity
               uid: migration/fx-to-core/examples/identity
-      - name: Implement passkeys in an existing Blazor Web App
-        uid: migration/blazor-web-app/passkeys
-      - name: Implement passkeys in an existing Razor Pages or MVC app
-        uid: migration/aspnetcore-app/passkeys
   - name: API reference
     href: /dotnet/api/
   - name: Contribute

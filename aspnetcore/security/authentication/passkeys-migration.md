@@ -5,7 +5,7 @@ description: Learn how to implement passkeys authentication in an ASP.NET Core R
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 8/14/2025
-uid: migration/aspnetcore-app/passkeys
+uid: security/authentication/passkeys-migration
 ---
 # Implement passkeys in an existing Razor Pages or MVC app
 
