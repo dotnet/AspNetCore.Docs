@@ -11,7 +11,7 @@ uid: aspnetcore-10
 
 This article highlights the most significant changes in ASP.NET Core in .NET 10 with links to relevant documentation.
 
-This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes).
+This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/10.0#aspnet-core).
 
 ## Blazor
 

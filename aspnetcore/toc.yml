@@ -7,18 +7,42 @@ items:
     uid: get-started
   - name: What's new
     items:
-      - name: What's new in 10
-        uid: aspnetcore-10
-      - name: What's new in 9
-        uid: aspnetcore-9
-      - name: What's new in 8
-        uid: aspnetcore-8
-      - name: What's new in 7
-        uid: aspnetcore-7
-      - name: What's new in 6
-        uid: aspnetcore-6.0
-      - name: What's new in 5
-        uid: aspnetcore-5.0
+      - name: ASP.NET Core 10
+        items:
+          - name: What's new in 10
+            uid: aspnetcore-10
+          - name: Breaking changes
+            href: /dotnet/core/compatibility/10.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+      - name: ASP.NET Core 9
+        items:
+          - name: What's new in 9
+            uid: aspnetcore-9
+          - name: Breaking changes
+            href: /dotnet/core/compatibility/9.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+      - name: ASP.NET Core 8
+        items:
+          - name: What's new in 8
+            uid: aspnetcore-8
+          - name: Breaking changes
+            href: /dotnet/core/compatibility/8.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+      - name: ASP.NET Core 7
+        items:
+          - name: What's new in 7
+            uid: aspnetcore-7
+          - name: Breaking changes
+            href: /dotnet/core/compatibility/7.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+      - name: ASP.NET Core 6
+        items:
+          - name: What's new in 6
+            uid: aspnetcore-6
+          - name: Breaking changes
+            href: /dotnet/core/compatibility/6.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+      - name: ASP.NET Core 5
+        items:
+          - name: What's new in 5
+            uid: aspnetcore-5
+          - name: Breaking changes
+            href: /dotnet/core/compatibility/5.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: What's new in 3.1
         uid: aspnetcore-3.1
       - name: What's new in 3.0
@@ -289,7 +313,7 @@ items:
         uid: fundamentals/error-handling
       - name: Make HTTP requests
         displayName: httpclient, httpclientfactory
-        uid: fundamentals/http-requests        
+        uid: fundamentals/http-requests
       - name: Map Static files
         uid: fundamentals/map-static-files
       - name: Static files
@@ -914,7 +938,7 @@ items:
             uid: fundamentals/openapi/aspnetcore-openapi
           - name: Include OpenAPI metadata
             uid: fundamentals/openapi/include-metadata
-          - name: XML doc comment support 
+          - name: XML doc comment support
             uid: fundamentals/openapi/aspnet-openapi-xml
           - name: Customize OpenAPI documents
             uid: fundamentals/openapi/customize-openapi
@@ -1154,7 +1178,7 @@ items:
         uid: fundamentals/servers/index
       - name: HTTP.sys
         displayName: deploy, publish, server, httpsys
-        uid: fundamentals/servers/httpsys        
+        uid: fundamentals/servers/httpsys
       - name: Kestrel
         items:
           - name: Overview
@@ -1324,7 +1348,7 @@ items:
                 displayName: yarp
                 uid: fundamentals/servers/yarp/websockets
           - name: Extensibility
-            items:            
+            items:
             - name: Overview
               displayName: yarp
               uid: fundamentals/servers/yarp/extensibility
@@ -1347,7 +1371,7 @@ items:
               uid: fundamentals/servers/yarp/httpsys-delegation
             - name: Service Fabric Integration
               displayName: yarp
-              uid: fundamentals/servers/yarp/service-fabric-int              
+              uid: fundamentals/servers/yarp/service-fabric-int
             - name: YARP Kubernetes Ingress Controller
               displayName: yarp
               uid: fundamentals/servers/yarp/kubernetes-ingress
@@ -1566,7 +1590,7 @@ items:
               - name: Inheritance
                 uid: data/ef-mvc/inheritance
               - name: Advanced topics
-                uid: data/ef-mvc/advanced                
+                uid: data/ef-mvc/advanced
       - name: Scaffold a data model with dotnet scaffold in RP
         uid: data/dotnet-scaffold-rp
       - name: EF 6 with ASP.NET Core
@@ -2125,7 +2149,7 @@ items:
               uid: migration/fx-to-core/inc/blazor
           - name: Technology Areas
             items:
-            - name: Overview            
+            - name: Overview
               uid: migration/fx-to-core/areas
             - name: HttpContext
               uid: migration/fx-to-core/areas/http-context
