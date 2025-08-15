@@ -462,8 +462,8 @@ IJSRuntime JS { get; set; }
 
 Create an instance of a JS object using a constructor function and get the <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference> .NET handle for referencing the instance with the following API:
 
-* `InvokeNewAsync` (asynchronous)
-* `InvokeNew` (synchronous)
+* `InvokeConstructorAsync` (asynchronous)
+* `InvokeConstructor` (synchronous)
 
 Examples in this section demonstrate the API calls with the following `TestClass` with a constructor function (`constructor(text)`):
 
@@ -479,25 +479,25 @@ window.TestClass = class {
 }
 ```
 
-### Asynchronous `InvokeNewAsync`
+### Asynchronous `InvokeConstructorAsync`
 
-Use `InvokeNewAsync(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> to invoke the specified JS constructor function asynchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
+Use `InvokeConstructorAsync(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> to invoke the specified JS constructor function asynchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 ```csharp
-var classRef = await JSRuntime.InvokeNewAsync("TestClass", "Blazor!");
+var classRef = await JSRuntime.InvokeConstructorAsync("TestClass", "Blazor!");
 var text = await classRef.GetValueAsync<string>("text");
 var textLength = await classRef.InvokeAsync<int>("getTextLength");
 ```
 
 An overload is available that takes a <xref:System.Threading.CancellationToken> argument or <xref:System.TimeSpan> timeout argument.
 
-### Synchronous `InvokeNew`
+### Synchronous `InvokeConstructor`
 
-Use `InvokeNew(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> to invoke the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>:
+Use `InvokeConstructor(string identifier, object?[]? args)` on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> to invoke the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>:
 
 ```csharp
 var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
-var classRef = inProcRuntime.InvokeNew("TestClass", "Blazor!");
+var classRef = inProcRuntime.InvokeConstructor("TestClass", "Blazor!");
 var text = classRef.GetValue<string>("text");
 var textLength = classRef.Invoke<int>("getTextLength");
 ```
@@ -630,7 +630,7 @@ In server-side scenarios, JS interop calls can't be issued after Blazor's Signal
   * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
-  * `InvokeNewAsync`
+  * `InvokeConstructorAsync`
   * `GetValueAsync`
   * `SetValueAsync`
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
