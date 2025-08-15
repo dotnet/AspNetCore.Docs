@@ -12,37 +12,37 @@ items:
           - name: What's new in 10
             uid: aspnetcore-10
           - name: Breaking changes
-            href: /dotnet/core/compatibility/10.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+            href: /dotnet/core/compatibility/10.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
       - name: ASP.NET Core 9
         items:
           - name: What's new in 9
             uid: aspnetcore-9
           - name: Breaking changes
-            href: /dotnet/core/compatibility/9.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+            href: /dotnet/core/compatibility/9.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
       - name: ASP.NET Core 8
         items:
           - name: What's new in 8
             uid: aspnetcore-8
           - name: Breaking changes
-            href: /dotnet/core/compatibility/8.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+            href: /dotnet/core/compatibility/8.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
       - name: ASP.NET Core 7
         items:
           - name: What's new in 7
             uid: aspnetcore-7
           - name: Breaking changes
-            href: /dotnet/core/compatibility/7.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+            href: /dotnet/core/compatibility/7.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
       - name: ASP.NET Core 6
         items:
           - name: What's new in 6
             uid: aspnetcore-6.0
           - name: Breaking changes
-            href: /dotnet/core/compatibility/6.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+            href: /dotnet/core/compatibility/6.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
       - name: ASP.NET Core 5
         items:
           - name: What's new in 5
             uid: aspnetcore-5.0
           - name: Breaking changes
-            href: /dotnet/core/compatibility/5.0#aspnet-core?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+            href: /dotnet/core/compatibility/5.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
       - name: What's new in 3.1
         uid: aspnetcore-3.1
       - name: What's new in 3.0
