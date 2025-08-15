@@ -17,4 +17,4 @@ uid: fundamentals/minimal-apis/middleware
 
 For more information about middleware see [ASP.NET Core Middleware](xref:fundamentals/middleware/index), and the [list of built-in middleware](xref:fundamentals/middleware/index#built-in-middleware) that can be added to applications.
 
-For more information about Minimal APIs see [`Minimal APIs overview`](xref:fundamentals/minimal-apis/overview).
+For more information about Minimal APIs see [APIs overview](xref:fundamentals/apis).
