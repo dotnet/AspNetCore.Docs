@@ -6,7 +6,7 @@ ai-usage: ai-assisted
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 08/15/2025
-uid: fundamentals/handle-errors, web-api/handle-errors
+uid: fundamentals/handle-errors
 ---
 
 # Handle errors in ASP.NET Core APIs

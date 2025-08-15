@@ -642,7 +642,7 @@ If you run into a problem you can't resolve, compare your code to the completed 
 ## Next steps
 
 * [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
-* Handle errors and exceptions: The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:web-api/handle-errors).
+* Handle errors and exceptions: The [developer exception page](xref:fundamentals/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:fundamentals/handle-errors).
 * For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
 * [OpenAPI support in minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi).
 * [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).

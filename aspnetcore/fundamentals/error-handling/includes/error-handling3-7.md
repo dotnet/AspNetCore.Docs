@@ -2,7 +2,7 @@
 
 By [Tom Dykstra](https://github.com/tdykstra/)
 
-This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:web-api/handle-errors> and <xref:fundamentals/handle-errors>.
+This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:fundamentals/handle-errors>.
 
 ## Developer exception page
 
@@ -321,7 +321,7 @@ An alternative approach to generate problem details is to use the third-party Nu
 
 By [Tom Dykstra](https://github.com/tdykstra/)
 
-This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:web-api/handle-errors> for web APIs.
+This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:fundamentals/handle-errors> for web APIs.
 
 ## Developer exception page
 
@@ -528,7 +528,7 @@ For information about how to handle model state errors, see [Model binding](xref
 
 By [Kirk Larkin](https://twitter.com/serpent5), [Tom Dykstra](https://github.com/tdykstra/), and [Steve Smith](https://ardalis.com/)
 
-This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:web-api/handle-errors> for web APIs.
+This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:fundamentals/handle-errors> for web APIs.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples). ([How to download](xref:index#how-to-download-a-sample).) The network tab on the F12 browser developer tools is useful when testing the sample app.
 
@@ -785,7 +785,7 @@ For information about how to handle model state errors, see [Model binding](xref
 
 By  [Tom Dykstra](https://github.com/tdykstra/), and [Steve Smith](https://ardalis.com/)
 
-This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:web-api/handle-errors> for web APIs.
+This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:fundamentals/handle-errors> for web APIs.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples). ([How to download](xref:index#how-to-download-a-sample).)
 
