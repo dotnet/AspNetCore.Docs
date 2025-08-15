@@ -669,8 +669,6 @@ With Visual Studio, select the new **Do not use top-level statements** checkbox 
 
 ![checkbox](https://user-images.githubusercontent.com/3605364/180587645-90f7cce5-d9f8-49d2-88cf-2258960394e1.png)
 
-Verify that **Use the .dev.localhost TLD in the application URL** is unchecked.
-
 ### Updated Angular and React templates
 
 The Angular project template has been updated to Angular 14. The React project template has been updated to React 18.2.

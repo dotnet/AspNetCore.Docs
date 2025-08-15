@@ -44,7 +44,6 @@ This tutorial creates the following API:
 * In the **Additional information** dialog:
   * Select **.NET 8.0 (Long Term Support)**
   * Uncheck **Do not use top-level statements**
-  * Uncheck **Use the .dev.localhost TLD in the application URL**
   * Select **Create**
 
   ![Additional information](~/tutorials/min-web-api/_static/8.x/add-info-vs17.9.0.png)
