@@ -33,7 +33,7 @@ By default, ASP.NET Core applies cookie authentication logic based on the endpoi
 
 ## Configuring the behavior
 
-While the default behavior works for most scenarios, it can be customize if needed:
+While the default behavior works for most scenarios, it can be customized if needed:
 
 ```csharp
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
