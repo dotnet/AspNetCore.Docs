@@ -30,6 +30,12 @@ In a browser-based app, cookie authentication allows existing user credentials t
 
 Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](xref:signalr/dotnet-client), the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
 
+:::moniker-end
+:::moniker range=">= aspnetcore-10.0"
+[!INCLUDE[](~/includes/api-endpoint-auth.md)]
+:::moniker-end
+:::moniker range=">= aspnetcore-6.0"
+
 ### Bearer token authentication
 
 The client can provide an access token instead of using a cookie. The server validates the token and uses it to identify the user. This validation is done only when the connection is established. During the life of the connection, the server doesn't automatically revalidate to check for token revocation.

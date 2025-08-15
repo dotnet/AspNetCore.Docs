@@ -74,9 +74,15 @@ Sample solution features:
 
 For more information on (web) API calls using a service abstractions in Blazor Web Apps, see <xref:blazor/call-web-api#service-abstractions-for-web-api-calls>.
 
+## OIDC provider terminology and guidance
+
+Although you aren't required to adopt [Microsoft Entra (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra) as the OIDC provider to use the sample app and the guidance in this article, this article describes settings for ME-ID using names that are found in Microsoft documentation and the Azure/Entra portals. OIDC settings have similar naming across OIDC providers. When using a third-party OIDC provider, use the provider's documentation in conjunction with the guidance in this article for app and web API registrations.
+
 ## Microsoft Entra ID app registrations
 
 We recommend using separate registrations for apps and web APIs, even when the apps and web APIs are in the same solution. The following guidance is for the `BlazorWebAppOidc` app and `MinimalApiJwt` web API of the sample solution, but the same guidance applies generally to any Entra-based registrations for apps and web APIs.
+
+For app and web API registration guidance, see [Register an application in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app).
 
 Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app. The web API's tenant ID and client ID are used to configure the web API in its `Program` file. After registering the web API, expose the web API in **App registrations** > **Expose an API** with a scope name of `Weather.Get`. Record the App ID URI for use in the app's configuration.
 
