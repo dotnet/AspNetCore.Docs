@@ -44,6 +44,7 @@ This tutorial creates the following API:
 * In the **Additional information** dialog:
   * Select **.NET 7.0**
   * Uncheck **Do not use top-level statements**
+  * Uncheck **Use the .dev.localhost TLD in the application URL**
   * Select **Create**
 
   ![Additional information](~/tutorials/min-web-api/_static/add-info7.png)
@@ -499,6 +500,7 @@ This tutorial creates the following API:
 * In the **Additional information** dialog:
   * Select **.NET 6.0**
   * Uncheck **Do not use top-level statements**
+  * Uncheck **Use the .dev.localhost TLD in the application URL**
   * Select **Create**
 
 # [Visual Studio Code](#tab/visual-studio-code)

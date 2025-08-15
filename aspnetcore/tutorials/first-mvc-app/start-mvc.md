@@ -59,6 +59,7 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
 * In the **Additional information** dialog:
   * Select **.NET 9.0 (Standard Term Support)**.
   * Verify that **Do not use top-level statements** is unchecked.
+  * Verify that **Use the .dev.localhost TLD in the application URL** is unchecked.
 * Select **Create**.
 
 ![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/9/additional-info-VS22-17.11.0.png)
