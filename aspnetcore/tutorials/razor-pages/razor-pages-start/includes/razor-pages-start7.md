@@ -37,7 +37,6 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 * In the **Additional information** dialog:
   * Select **.NET 7.0 (Standard Term Support)**.
   * Verify: **Do not use top-level statements** is unchecked.
-  * Verify: **Use the .dev.localhost TLD in the application URL** is unchecked.
 * Select **Create**.
 
    ![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/7/additional_info.png)
@@ -79,7 +78,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * Verify: **Target framework** is set to **.NET 7.0** (or later).
   * Verify: **Authentication** is set to **No Authentication**.
   * Verify: **Do not use top-level statements** is unchecked.
-  * Verify: **Use the .dev.localhost TLD in the application URL** is unchecked.
   * Select **Continue**.
 
 * In the **Configure your new Web Application** dialog:

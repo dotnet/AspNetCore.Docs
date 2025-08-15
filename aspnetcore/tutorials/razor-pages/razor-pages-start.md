@@ -49,7 +49,6 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 * In the **Additional information** dialog:
   * Select **.NET 9.0**.
   * Verify: **Do not use top-level statements** is unchecked.
-  * Verify: **Use the .dev.localhost TLD in the application URL** is unchecked.
 * Select **Create**.
 
    ![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/9/net9-additional-info.png)

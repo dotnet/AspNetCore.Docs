@@ -48,7 +48,6 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
 * In the **Additional information** dialog:
   * Select **.NET 7.0**.
   * Verify that **Do not use top-level statements** is unchecked.
-  * Verify that **Use the .dev.localhost TLD in the application URL** is unchecked.
 * Select **Create**.
 
 ![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/net7-additional-info.png)
@@ -86,7 +85,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 * In the **Configure your new Web Application (Model-View-Controller)** dialog:
   * Select **.NET 7.0** for the **Target Framework**.
   * Verify that **Do not use top-level statements** is unchecked.
-  * Verify that **Use the .dev.localhost TLD in the application URL** is unchecked.
 * Select **Continue**.
 * Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
 * The **Location** for the project can be set to anywhere.
