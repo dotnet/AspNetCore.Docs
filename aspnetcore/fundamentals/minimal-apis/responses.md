@@ -12,6 +12,8 @@ uid: fundamentals/minimal-apis/responses
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+This article explains how to create responses for minimal API endpoints in ASP.NET Core. Minimal APIs provide several ways to return data and HTTP status codes.
+
 :::moniker range=">= aspnetcore-10.0"
 
 Minimal endpoints support the following types of return values:
@@ -19,6 +21,8 @@ Minimal endpoints support the following types of return values:
 1. `string` - This includes `Task<string>` and `ValueTask<string>`.
 1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`.
 1. `IResult` based - This includes `Task<IResult>` and `ValueTask<IResult>`.
+
+[!INCLUDE[](~/includes/api-endpoint-auth.md)]
 
 ## `string` return values
 
