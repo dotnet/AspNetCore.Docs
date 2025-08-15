@@ -869,7 +869,7 @@ items:
       - name: Middleware
         uid: fundamentals/minimal-apis/middleware
       - name: Handle errors
-        uid: fundamentals/minimal-apis/handle-errors
+        uid: fundamentals/handle-errors
       - name: Authentication and authorization
         uid: fundamentals/minimal-apis/security
       - name: OpenAPI
@@ -919,7 +919,7 @@ items:
         - name: Conventions
           uid: web-api/advanced/conventions
         - name: Handle errors
-          uid: web-api/handle-errors
+          uid: fundamentals/handle-errors
         - name: Test with HttpRepl
           items:
             - name: Overview

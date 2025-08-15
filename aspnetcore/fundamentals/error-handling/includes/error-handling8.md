@@ -3,7 +3,7 @@
 
 By [Tom Dykstra](https://github.com/tdykstra/)
 
-This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:web-api/handle-errors> and <xref:fundamentals/minimal-apis/handle-errors>.
+This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:web-api/handle-errors> and <xref:fundamentals/handle-errors>.
 
 ## Developer exception page
 
@@ -342,6 +342,6 @@ An alternative approach to generate problem details is to use the third-party Nu
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * <xref:web-api/handle-errors>
-* <xref:fundamentals/minimal-apis/handle-errors>.
+* <xref:fundamentals/handle-errors>.
 
 :::moniker-end

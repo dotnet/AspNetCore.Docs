@@ -255,7 +255,7 @@ The following code disables `ValidateScopes` and `ValidateOnBuild` in `Developme
 * <xref:fundamentals/openapi/aspnetcore-openapi>
 * <xref:fundamentals/minimal-apis/responses>
 * <xref:fundamentals/minimal-apis/min-api-filters>
-* <xref:fundamentals/minimal-apis/handle-errors>
+* <xref:fundamentals/handle-errors>
 * <xref:fundamentals/minimal-apis/security>
 * <xref:fundamentals/minimal-apis/test-min-api>
 * [Short-circuit routing](https://andrewlock.net/exploring-the-dotnet-8-preview-short-circuit-routing/)

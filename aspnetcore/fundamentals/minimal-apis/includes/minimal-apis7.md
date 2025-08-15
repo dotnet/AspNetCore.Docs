@@ -224,7 +224,7 @@ Moved to uid: tutorials/min-web-api
 * <xref:fundamentals/openapi/aspnetcore-openapi>
 * <xref:fundamentals/minimal-apis/responses>
 * <xref:fundamentals/minimal-apis/min-api-filters>
-* <xref:fundamentals/minimal-apis/handle-errors>
+* <xref:fundamentals/handle-errors>
 * <xref:fundamentals/minimal-apis/security>
 * <xref:fundamentals/minimal-apis/test-min-api>
 
