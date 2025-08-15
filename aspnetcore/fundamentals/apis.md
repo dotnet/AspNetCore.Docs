@@ -4,7 +4,7 @@ author: JeremyLikness
 description: Learn how to build fast HTTP APIs with ASP.NET Core using Minimal APIs, the recommended approach for new projects.
 ai-usage: ai-assisted
 ms.author: jeliknes
-ms.date: 01/16/2025
+ms.date: 08/15/2025
 monikerRange: '>= aspnetcore-6.0'
 uid: fundamentals/apis
 ---
