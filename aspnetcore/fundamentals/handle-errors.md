@@ -208,7 +208,7 @@ Consider controller-based APIs if you need:
 * Fine-grained control over error response formatting
 * Integration with MVC features like filters and conventions
 
-For detailed information about controller-based error handling, including validation errors, problem details customization, and exception filters, see the [Controllers](#tab/controllers) tab sections.
+For detailed information about controller-based error handling, including validation errors, problem details customization, and exception filters, see the [Controllers](?tabs=controllers) tab sections.
 
 #### [Controllers](#tab/controllers)
 
