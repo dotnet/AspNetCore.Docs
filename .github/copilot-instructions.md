@@ -63,7 +63,7 @@ When creating a PR for an issue:
 - Specific Version: `== aspnetcore-9.0`
 
 ### Handling File Redirections
-- When a Markdown (.md) file is deleted in a PR, create a redirection entry
+- When a Markdown (.md) article file (this does not apply to includes) is deleted in a PR, create a redirection entry.
 - Redirections ensure users following existing links aren't left with broken links
 - To add a redirection:
   1. Update the `.openpublishing.redirection.json` file at the repository root
@@ -75,9 +75,9 @@ When creating a PR for an issue:
          "redirect_document_id": false
      }
      ```
-  3. Use relative URLs for redirection to other files within the Microsoft Learn documentation
+  3. Use relative URLs for redirection to pages in the `learn.microsoft.com` domain
      - Example: `/aspnet/core/path/to/target-file`
-  4. For external URLs, use absolute URLs including the domain
+  4. For URLs in a different domain, use absolute URLs including the domain.
      - Example: `https://learn.microsoft.com/dotnet/core/introduction`
   5. Set `redirect_document_id` to `false` unless specifically instructed otherwise
   6. Maintain alphabetical order of the `source_path` entries for better organization
