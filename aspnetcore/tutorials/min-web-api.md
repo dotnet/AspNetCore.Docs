@@ -94,7 +94,7 @@ The `Program.cs` file contains the following code:
 The preceding code:
 
 * Creates a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and a <xref:Microsoft.AspNetCore.Builder.WebApplication> with preconfigured defaults.
-* Creates an HTTP GET endpoint `/` that returns `Hello World!`:
+* Creates an HTTP GET endpoint `/` that returns `Hello World!`.
 
 ### Run the app
 
