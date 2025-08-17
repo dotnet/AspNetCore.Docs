@@ -66,7 +66,7 @@ When creating a PR for an issue:
 - When a Markdown (.md) file is deleted in a PR, create a redirection entry
 - Redirections ensure users following existing links aren't left with broken links
 - To add a redirection:
-  1. Update the `@dotnet/AspNetCore.Docs/.openpublishing.redirection.json` file
+  1. Update the `.openpublishing.redirection.json` file at the repository root
   2. Follow this format for new entries:
      ```json
      {
