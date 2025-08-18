@@ -290,8 +290,7 @@ For more information, see [Contribute to the ASP.NET documentation: Code snippet
 
 ## Additional resources
 
-* <xref:blazor/fundamentals/index>
-* [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes)
+<xref:blazor/fundamentals/index>
 
 :::moniker-end
 
