@@ -236,6 +236,10 @@ In Razor `.cshtml` files, `~/` points to the web root. A path beginning with `~/
 
 For more information, see <xref:fundamentals/static-files>.
 
+## Breaking changes
+
+[Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes)
+
 ## How to download a sample
 
 Many of the articles and tutorials include links to sample code.
