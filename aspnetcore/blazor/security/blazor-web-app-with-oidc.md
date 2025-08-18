@@ -1475,7 +1475,7 @@ In the sample app, a custom cookie refresher (`CookieOidcRefresher.cs`) implemen
 
 Duende Access Token Management provides automatic access token management features for .NET worker and ASP.NET Core web apps, including Blazor, without the need to add a custom cookie refresher.
 
-Once the package is installed, access token management for the user that is currently logged in can be added in `Program.cs`:
+After the package is installed, add access token management for the currently logged-in user in the `Program` file:
 
 ```csharp
 // Adds services for token management
