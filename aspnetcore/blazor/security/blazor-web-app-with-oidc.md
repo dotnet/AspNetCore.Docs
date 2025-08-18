@@ -1491,7 +1491,7 @@ builder.Services.AddHttpClient<InvoiceClient>(client =>
 
 The [typed HTTP client](xref:blazor/call-web-api#typed-httpclient) (or [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), if implemented) has automatic access token lifetime management on behalf of the currently logged-in user, including transparent refresh token management.
 
-For more information, refer to the [Duende Access Token Management documentation for Blazor](https://docs.duendesoftware.com/accesstokenmanagement/blazor-server/).
+For more information, see the [Duende Access Token Management documentation for Blazor](https://docs.duendesoftware.com/accesstokenmanagement/blazor-server/).
 
 ## Additional resources
 
