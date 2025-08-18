@@ -1469,6 +1469,30 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
 
+## Alternative: Duende Access Token Management
+
+In the sample, a custom cookie refresher (`CookieOidcRefresher.cs`) implementation is used to perform automatic non-interactive token refresh. An alternative solution can be found in the open source [Duende.AccessTokenManagement.OpenIdConnect](https://docs.duendesoftware.com/accesstokenmanagement/web-apps/) package.
+
+Duende Access Token Management provides automatic access token management features for .NET worker and ASP.NET Core web applications, including Blazor, without the need to add a custom cookie refresher or similar.
+
+Once the package is installed, access token management for the user that is currently logged in can be added in `Program.cs`:
+
+```csharp
+// Adds services for token management
+builder.Services.AddOpenIdConnectAccessTokenManagement();
+
+// Registers a typed HTTP client with token management support
+builder.Services.AddHttpClient<InvoiceClient>(client =>
+    {
+        client.BaseAddress = new Uri("https://api.example.com/invoices/");
+    })
+    .AddUserAccessTokenHandler();
+```
+
+The typed HTTP client (or named HTTP client if you prefer) will have automatic access token lifetime management on behalf of the currently logged-in user, including transparent refresh token management.
+
+For more information, refer to the [Duende Access Token Management documentation for Blazor](https://docs.duendesoftware.com/accesstokenmanagement/blazor-server/).
+
 ## Additional resources
 
 <!-- UPDATE 10.0 The PU has scheduled dotnet/aspnetcore #55213
