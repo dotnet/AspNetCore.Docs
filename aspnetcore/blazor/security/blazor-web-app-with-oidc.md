@@ -1465,17 +1465,13 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 * Security groups appear in `groups` claims, one claim per group. The security group GUIDs appear in the Azure portal when you create a security group and are listed when selecting **Identity** > **Overview** > **Groups** > **View**.
 * Built-in ME-ID administrator roles appear in `wids` claims, one claim per role. The `wids` claim with a value of `b79fbf4d-3ef9-4689-8143-76b194e85509` is always sent by ME-ID for non-guest accounts of the tenant and doesn't refer to an administrator role. Administrator role GUIDs (*role template IDs*) appear in the Azure portal when selecting **Roles & admins**, followed by the ellipsis (**&hellip;**) > **Description** for the listed role. The role template IDs are also listed in [Microsoft Entra built-in roles (Entra documentation)](/entra/identity/role-based-access-control/permissions-reference).
 
-## Troubleshoot
-
-[!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
-
 ## Alternative: Duende Access Token Management
 
 In the sample app, a custom cookie refresher (`CookieOidcRefresher.cs`) implementation is used to perform automatic non-interactive token refresh. An alternative solution can be found in the open source [`Duende.AccessTokenManagement.OpenIdConnect` package](https://docs.duendesoftware.com/accesstokenmanagement/web-apps/).
 
 Duende Access Token Management provides automatic access token management features for .NET worker and ASP.NET Core web apps, including Blazor, without the need to add a custom cookie refresher.
 
-After the package is installed, add access token management for the currently logged-in user in the `Program` file:
+After the package is installed, remove the `CookieOidcRefresher` and add access token management for the currently logged-in user in the `Program` file:
 
 ```csharp
 // Add services for token management
@@ -1492,6 +1488,10 @@ builder.Services.AddHttpClient<InvoiceClient>(client =>
 The [typed HTTP client](xref:blazor/call-web-api#typed-httpclient) (or [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), if implemented) has automatic access token lifetime management on behalf of the currently logged-in user, including transparent refresh token management.
 
 For more information, see the [Duende Access Token Management documentation for Blazor](https://docs.duendesoftware.com/accesstokenmanagement/blazor-server/).
+
+## Troubleshoot
+
+[!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
 
 ## Additional resources
 
