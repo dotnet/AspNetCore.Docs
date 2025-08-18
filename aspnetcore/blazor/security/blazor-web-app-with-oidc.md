@@ -1471,7 +1471,7 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 
 ## Alternative: Duende Access Token Management
 
-In the sample, a custom cookie refresher (`CookieOidcRefresher.cs`) implementation is used to perform automatic non-interactive token refresh. An alternative solution can be found in the open source [Duende.AccessTokenManagement.OpenIdConnect](https://docs.duendesoftware.com/accesstokenmanagement/web-apps/) package.
+In the sample app, a custom cookie refresher (`CookieOidcRefresher.cs`) implementation is used to perform automatic non-interactive token refresh. An alternative solution can be found in the open source [`Duende.AccessTokenManagement.OpenIdConnect` package](https://docs.duendesoftware.com/accesstokenmanagement/web-apps/).
 
 Duende Access Token Management provides automatic access token management features for .NET worker and ASP.NET Core web applications, including Blazor, without the need to add a custom cookie refresher or similar.
 
