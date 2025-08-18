@@ -1481,7 +1481,7 @@ After the package is installed, add access token management for the currently lo
 // Add services for token management
 builder.Services.AddOpenIdConnectAccessTokenManagement();
 
-// Registers a typed HTTP client with token management support
+// Register a typed HTTP client with token management support
 builder.Services.AddHttpClient<InvoiceClient>(client =>
     {
         client.BaseAddress = new Uri("https://api.example.com/invoices/");
