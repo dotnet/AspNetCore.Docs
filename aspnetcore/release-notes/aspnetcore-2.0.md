@@ -149,7 +149,11 @@ For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0
 * [Migrate from ASP.NET Core 1.x to ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
 * [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
 
-## Additional Information
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
+
+## Additional resources
 
 For the complete list of changes, see the [ASP.NET Core 2.0 Release Notes](https://github.com/dotnet/aspnetcore/releases/tag/2.0.0).
 
