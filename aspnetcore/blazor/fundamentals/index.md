@@ -245,7 +245,7 @@ The ASP.NET Core repository's Basic Test App is also a helpful set of samples fo
 
 ## Breaking changes
 
-[Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes)
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
 ## Support requests
 
