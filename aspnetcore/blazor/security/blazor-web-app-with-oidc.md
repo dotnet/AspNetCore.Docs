@@ -1478,7 +1478,7 @@ Duende Access Token Management provides automatic access token management featur
 After the package is installed, add access token management for the currently logged-in user in the `Program` file:
 
 ```csharp
-// Adds services for token management
+// Add services for token management
 builder.Services.AddOpenIdConnectAccessTokenManagement();
 
 // Registers a typed HTTP client with token management support
