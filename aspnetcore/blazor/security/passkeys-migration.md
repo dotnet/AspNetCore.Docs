@@ -164,7 +164,7 @@ Add the following `PasskeySubmit` component to handle passkey operations.
 
     protected override void OnInitialized()
     {
-        tokens = Services.GetRequiredService<IAntiforgery>()?.GetTokens(HttpContext);
+        tokens = Services.GetService<IAntiforgery>()?.GetTokens(HttpContext);
     }
 }
 ```
@@ -838,9 +838,12 @@ In `Components/App.razor`:
 ## Step 11: Test the implementation
 
 * Run the app and navigate to the login page.
-* Test logging in with a passkey using the **Log in with a passkey** button.
+* Log in with a username and password.
+* Register a passkey.
+* Sign out of the app.
+* Sign back into the app with a passkey using the **Log in with a passkey** button.
 * Navigate to `Account/Manage/Passkeys` to add, rename, or delete passkeys.
-* Test the passkey autofill feature by selecting the email input field when you have saved passkeys.
+* If the passkey supports autofill, test the autofill feature by selecting the email input field when you have saved passkeys.
 
 ## Additional resources
 

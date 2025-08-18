@@ -608,8 +608,6 @@ For more information, see the following articles:
 * <xref:blazor/security/passkeys>
 * <xref:blazor/security/passkeys-migration>
 
-Partial implementation guidance for existing Razor Pages and MVC apps is available in <xref:security/authentication/passkeys-migration>.
-
 ### Circuit state persistence
 
 During server-side rendering, Blazor Web Apps can now persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:

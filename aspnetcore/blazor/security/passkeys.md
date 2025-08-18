@@ -651,7 +651,10 @@ The `PasskeySignInAsync` method internally calls `PerformPasskeyAssertionAsync` 
 
 If all checks pass, the method signs in the user and returns a `SignInResult` indicating success.
 
-For scenarios requiring more control, you can use `PerformPasskeyAssertionAsync` directly to validate the assertion without immediately signing in the user. This returns a `PasskeyAssertionResult<TUser>` containing the authenticated user and updated passkey information.
+For scenarios requiring more control, you can use `PerformPasskeyAssertionAsync` directly to validate the assertion without immediately signing in the user:
+
+* `PerformPasskeyAssertionAsync` returns a `PasskeyAssertionResult<TUser>` containing the authenticated user and updated passkey information.
+* Because the passkey's sign-in count and authenticator flags may have changed since the last assertion and the updated passkey isn't automatically stored when calling `PerformPasskeyAssertionAsync`, call `userManager.AddOrUpdatePasskeyAsync` with the returned `PasskeyAssertionResult<TUser>`.
 
 ### Step 8: Session establishment
 

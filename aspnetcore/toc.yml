@@ -1718,8 +1718,6 @@ items:
                 uid: security/authentication/identity-enable-qrcodes
               - name: Two-factor authentication with SMS
                 uid: security/authentication/2fa
-              - name: Implement passkeys in an existing Razor Pages or MVC app
-                uid: security/authentication/passkeys-migration
               - name: External authentication providers
                 items:
                   - name: Overview
