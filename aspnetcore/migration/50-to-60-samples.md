@@ -7,7 +7,6 @@ ms.author: wpickett
 ms.date: 10/22/2021
 uid: migration/50-to-60-samples
 ---
-
 # Code samples migrated to the new minimal hosting model in ASP.NET Core in .NET 6
 
 <!-- 
