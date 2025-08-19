@@ -109,6 +109,10 @@ In ASP.NET Core 2.2, the performance of `SocketsHttpHandler` was improved by red
 
 For more information, see [the pull request that made this improvement](https://github.com/dotnet/corefx/pull/32568).
 
-## Additional information
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
+
+## Additional resources
 
 For the complete list of changes, see the [ASP.NET Core 2.2 Release Notes](https://github.com/dotnet/aspnetcore/releases/tag/2.2.0).

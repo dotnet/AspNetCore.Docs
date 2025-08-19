@@ -700,3 +700,7 @@ The new [Request decompression middleware](xref:fundamentals/middleware/request-
 * Eliminates the need to write code to handle compressed requests.
 
 For more information, see [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true).
+
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
