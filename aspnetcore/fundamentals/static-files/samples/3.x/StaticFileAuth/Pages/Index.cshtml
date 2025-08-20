@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<ul>
+    <li>/images</li>
+    <ul>
+        <li><a href="/images/1.png">1.png</a>      </li>
+        <li><a href="/images/2.png">2.png</a>      </li>
+    </ul>
+    <li>/img isn't served until added to the Static File Middleware</li>
+    <ul>
+        <li><a href="../img/1.png">1.png</a>      </li>
+        <li><a href="../img/2.png">2.png</a>      </li>
+    </ul>
+    <li><a href="/StaticFiles/images/red-rose.jpg">/StaticFiles/images/red-rose.jpg</a>      </li>
+
+</ul>

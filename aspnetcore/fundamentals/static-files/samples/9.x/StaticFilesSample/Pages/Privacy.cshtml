@@ -1,0 +1,26 @@
+@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "RP Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>RP: Use this page to detail your site's privacy policy.</p>
+
+<p>The following image doesn't display with <code>app.UseStaticFiles(new StaticFileOptions ...)</code>.</p>
+
+<img src="~/images/MyImage.jpg" class="img" alt="My image" asp-append-version="true" />
+
+<p> The following image requires:</p>
+
+<pre><code>
+app.UseStaticFiles(new StaticFileOptions //
+{
+  FileProvider = new PhysicalFileProvider(
+      Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
+  RequestPath = "/StaticFiles"
+});
+</code></pre>
+
+<img src="~/StaticFiles/images/red-rose.jpg" class="img" alt="A red rose"
+     asp-append-version="true" />

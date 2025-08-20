@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\default.html" />
+    <Content Remove="wwwroot\index.html" />
+    <Content Remove="wwwroot\mydefault.html" />
+    <Content Remove="wwwroot\myIndex.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\myIndex.html" />
+    <None Include="wwwroot\mydefault.html" />
+    <None Include="wwwroot\default.html" />
+    <None Include="wwwroot\images\image1.png" />
+    <None Include="wwwroot\index.html" />
+  </ItemGroup>
+
+</Project>
