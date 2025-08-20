@@ -1,7 +1,7 @@
 ---
 author: wadepickett
 ms.author: wpickett
-ms.date: 07-31-2025
+ms.date: 08-17-2025
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
@@ -62,6 +62,29 @@ When creating a PR for an issue:
 - Open Lower Bound: `<= aspnetcore-9.0`
 - Specific Version: `== aspnetcore-9.0`
 
+### Handling File Redirections
+- When a Markdown (.md) article file (this does not apply to includes) is deleted in a PR, create a redirection entry.
+- Redirections ensure users following existing links aren't left with broken links
+- To add a redirection:
+  1. Update the `.openpublishing.redirection.json` file at the repository root
+  2. Follow this format for new entries:
+     ```json
+     {
+         "source_path": "aspnetcore/path/to/deleted-file.md",
+         "redirect_url": "/aspnet/core/path/to/target-file",
+         "redirect_document_id": false
+     }
+     ```
+  3. Use relative URLs for redirection to pages in the `learn.microsoft.com` domain
+     - Example: `/aspnet/core/path/to/target-file`
+  4. For URLs in a different domain, use absolute URLs including the domain.
+     - Example: `https://learn.microsoft.com/dotnet/core/introduction`
+  5. Set `redirect_document_id` to `false` unless specifically instructed otherwise
+  6. Maintain alphabetical order of the `source_path` entries for better organization
+  7. Ensure proper JSON formatting with correct commas between entries
+- When selecting a redirect target, choose the most relevant existing content that would serve the user's original intent
+- If no direct replacement exists, redirect to a parent category page or related topic
+    
 ### Code Snippets
 - For code snippets longer than 6 lines:
   1. Create a subfolder named after the document the snippet supports.

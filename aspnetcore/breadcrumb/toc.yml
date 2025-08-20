@@ -1,3 +1,4 @@
+items:
 - name: Docs
   tocHref: /
   topicHref: /
@@ -16,6 +17,9 @@
     items:
       - name: ASP.NET Core
         tocHref: /dotnet/core/
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /dotnet/core/compatibility
         topicHref: /aspnet/core/index
       - name: ASP.NET Core
         tocHref: /dotnet/standard/
