@@ -5,7 +5,7 @@ description: Learn how to serve and secure static files and configure Static Fil
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/06/2025
+ms.date: 08/20/2025
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
