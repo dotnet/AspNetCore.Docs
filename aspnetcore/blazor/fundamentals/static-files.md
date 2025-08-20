@@ -16,7 +16,7 @@ This article describes Blazor app configuration for serving static files.
 
 :::moniker range=">= aspnetcore-9.0"
 
-For general information on serving static files with Map Static Assets routing endpoint conventions, see <xref:fundamentals/map-static-files> before reading this article.
+For general information on serving static files with Map Static Assets routing endpoint conventions, see <xref:fundamentals/static-files> before reading this article.
 
 :::moniker-end
 
@@ -272,7 +272,7 @@ Any script in `index.html` with the fingerprint marker is fingerprinted by the f
 
 ## Fingerprint client-side static assets in Blazor Web Apps
 
-For client-side rendering (CSR) in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files), [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`). For more information, see <xref:fundamentals/map-static-files>.
+For client-side rendering (CSR) in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/static-files), [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`). For more information, see <xref:fundamentals/static-files>.
 
 To fingerprint additional JavaScript modules for CSR, use the `<StaticWebAssetFingerprintPattern>` item in the app's project file (`.csproj`). In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
 
