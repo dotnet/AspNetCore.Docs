@@ -134,6 +134,47 @@ In Razor Pages and MVC apps, the tilde character `~` points to the web root. In 
 <link rel="icon" type="image/png" href="~/images/favicon.png" />
 ```
 
+:::moniker range=">= aspnetcore-9.0"
+
+## Short-circuit the middleware pipeline
+
+To avoid running the entire middleware pipeline after a static asset is served, which matches the behavior of <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, call <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> on <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>. Calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> immediately executes the endpoint and returns the response, preventing other middleware from executing for static asset requests:
+
+```csharp
+app.MapStaticAssets().ShortCircuit();
+```
+
+## Authorization fallback policy
+
+Allow anonymous access to static files by applying <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder for static files:
+
+```csharp
+app.MapStaticAssets().Add(endpointBuilder => 
+    endpointBuilder.Metadata.Add(new AllowAnonymousAttribute()));
+```
+
+Configure the authorization fallback policy:
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = 
+        new Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+```
+
+With the preceding code, static files are served to anonymous users.
+
+## Control static file caching
+
+During development, the framework overrides cache headers to prevent browsers from caching static files. This helps ensure that the latest version of files are used when files change, avoiding issues with stale content. In production, the correct cache headers are set, allowing browsers to cache static assets as expected.
+
+To disable this behavior, set `EnableStaticAssetsDevelopmentCaching` to `false` in the Development environment's app setting file (`appsettings.Development.json`).
+
+:::moniker-end
+
 ### Serve files outside of the web root directory
 
 Consider the following directory hierarchy with static files residing outside of the app's [web root](xref:fundamentals/index#web-root) in a folder named `ExtraStaticFiles`:
@@ -430,7 +471,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 });
 ```
 
-By default, requests to `/`:
+By default, for requests to `/`:
 
 * In the development environment, `wwwroot/Index.html` is returned.
 * In any environment other than development, `wwwroot-custom/Index.html` is returned.
