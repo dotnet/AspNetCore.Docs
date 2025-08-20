@@ -16,7 +16,7 @@ uid: fundamentals/error-handling
 
 By [Tom Dykstra](https://github.com/tdykstra/)
 
-This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:fundamentals/handle-errors>.
+This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:fundamentals/error-handling-api>.
 
 For Blazor error handling guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/handle-errors>.
 
@@ -344,7 +344,7 @@ An alternative approach to generate problem details is to use the third-party Nu
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
-* <xref:fundamentals/handle-errors>
+* <xref:fundamentals/error-handling-api>
 
 :::moniker-end
 

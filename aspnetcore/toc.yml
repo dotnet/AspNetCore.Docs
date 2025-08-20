@@ -869,7 +869,7 @@ items:
       - name: Middleware
         uid: fundamentals/minimal-apis/middleware
       - name: Handle errors
-        uid: fundamentals/handle-errors
+        uid: fundamentals/error-handling-api
       - name: Authentication and authorization
         uid: fundamentals/minimal-apis/security
       - name: OpenAPI

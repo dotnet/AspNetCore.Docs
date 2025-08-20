@@ -364,7 +364,7 @@ Examine the `Index.cshtml` view and the `Index` method in the Movies controller.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/MoviesController.cs?name=snippet_FirstIndexNoSearch)]
 
-The code returns [problem details](xref:fundamentals/handle-errors#problem-details-service) if the `Movie` property of the data context is null.
+The code returns [problem details](xref:fundamentals/error-handling-api#problem-details-service) if the `Movie` property of the data context is null.
 
 When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 

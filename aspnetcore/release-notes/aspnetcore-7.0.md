@@ -195,7 +195,7 @@ The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttr
 
 The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
 
-For more information, see [Problem details service](xref:fundamentals/handle-errors#pds7).
+For more information, see [Problem details service](xref:fundamentals/error-handling-api#pds7).
 
 ### Route groups
 

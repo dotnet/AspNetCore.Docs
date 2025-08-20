@@ -1636,7 +1636,7 @@
         },
         {
             "source_path": "aspnetcore/fundamentals/minimal-apis/handle-errors.md",
-            "redirect_url": "/aspnet/core/fundamentals/handle-errors",
+            "redirect_url": "/aspnet/core/fundamentals/error-handling-api",
             "redirect_document_id": false
         },
         {
@@ -1646,7 +1646,12 @@
         },
         {
             "source_path": "aspnetcore/web-api/handle-errors.md",
-            "redirect_url": "/aspnet/core/fundamentals/handle-errors",
+            "redirect_url": "/aspnet/core/fundamentals/error-handling-api",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/handle-errors.md",
+            "redirect_url": "/aspnet/core/fundamentals/error-handling-api",
             "redirect_document_id": false
         }
     ]

@@ -1062,7 +1062,7 @@ In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
 
-For more information, see [IProblemDetailsService fallback](xref:fundamentals/handle-errors#iproblemdetailsservice-fallback)
+For more information, see [IProblemDetailsService fallback](xref:fundamentals/error-handling-api#iproblemdetailsservice-fallback)
 
 <!--
 ## API controllers

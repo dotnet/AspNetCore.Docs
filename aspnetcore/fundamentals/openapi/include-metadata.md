@@ -379,7 +379,7 @@ When setting the response type for endpoints that may return a ProblemDetails re
 * <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A> extension method.
 * <xref:Microsoft.AspNetCore.Http.TypedResults> with a status code in the (400-499) range.
 
-For more information on how to configure a Minimal API app to return ProblemDetails responses, see <xref:fundamentals/handle-errors>.
+For more information on how to configure a Minimal API app to return ProblemDetails responses, see <xref:fundamentals/error-handling-api>.
 
 ##### Multiple response types
 

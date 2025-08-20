@@ -597,7 +597,7 @@ app.MapDefaultControllerRoute();
 For more information on controller routing and validation failure error responses, see the following resources:
 
 * <xref:mvc/controllers/routing>
-* <xref:fundamentals/handle-errors#validation-failure-error-response>
+* <xref:fundamentals/error-handling-api#validation-failure-error-response>
 
 In the `.Client` project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Update the namespace to match the app (for example, `namespace BlazorSample.Client`).
 
