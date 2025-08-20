@@ -918,8 +918,6 @@ items:
           uid: web-api/advanced/analyzers
         - name: Conventions
           uid: web-api/advanced/conventions
-        - name: Handle errors
-          uid: fundamentals/handle-errors
         - name: Test with HttpRepl
           items:
             - name: Overview

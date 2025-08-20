@@ -345,7 +345,6 @@ An alternative approach to generate problem details is to use the third-party Nu
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * <xref:fundamentals/handle-errors>
-* <xref:fundamentals/handle-errors>.
 
 :::moniker-end
 
