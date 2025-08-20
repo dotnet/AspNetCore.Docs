@@ -54,7 +54,7 @@ When creating a PR for an issue:
   - For any new or updated .md file added to the repository, ensure the following frontmatter (metadata) is included:
     - Metadata `ai-usage: ai-assisted` if any AI assistance was used
     - Place the title metadata first, followed by the remaining metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
-    - Metadata `ms.date: <today's date>` with a format of MM-DD-YYYY.  If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
+    - Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
     
 ### Version Targeting Common Range Patterns
 - Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
