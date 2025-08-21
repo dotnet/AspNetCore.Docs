@@ -228,7 +228,7 @@ Components support two-way data binding by defining a pair of `@bind` attributes
 
 The `:get` and `:set` modifiers are always used together.
 
-With `:get`/`:set` binding, you can react to a value change before it's applied to the DOM, and you can change the applied value, if necessary. Whereas with `@bind:event="{EVENT}"` attribute binding, where the `{EVENT}` placeholder is a DOM event, you receive the notification after the DOM is updated, and there's no capacity to modify the applied value while binding.
+With `:get`/`:set` binding, you can react to a value change before it's applied to the DOM, and you can change the applied value, if necessary. Whereas with `@on{DOM EVENT}="{DELEGATE}"`, where the `{DOM EVENT}` placeholder is a DOM event and the `{DELEGATE}` placeholder is the delegate, you receive the notification after the DOM is updated, and there's no way to modify the applied value while binding.
 
 `BindGetSet.razor`:
 
