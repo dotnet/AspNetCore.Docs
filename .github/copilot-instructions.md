@@ -33,12 +33,12 @@ When creating a PR for an issue:
 ### Links and References
 - For cross-references to other articles within the AspNetCore.Docs repository:
   - Use the xref syntax: `<xref:target-uid>`
-  - The target-uid values can be found in the UID property in the YAML front matter of markdown files
-  - Example UIDs: `aspnetcore/mvc/overview`, `blazor/index`
-  - Example: Use `<xref:blazor/index>` instead of linking to the .md file
-  - Example: Use `<xref:aspnetcore/mvc/overview>` instead of linking to the physical path
+  - The "target-uid" of the xref syntax is obtained from the `uid` property value in the YAML front matter of the article's markdown file
+  - Examples
+    - For a target article `uid` value of `aspnetcore/mvc/overview`, the xref cross-link is `<xref:aspnetcore/mvc/overview>`
+    - For a target article `uid` value of `blazor/index`, the xref cross-link is `<xref:blazor/index>`
 
-- For non-documentation files within this repository (like PowerShell scripts, code files):
+- For non-markdown files (files that don't have the `.md` file extension) within this repository, such as PowerShell scripts and code files:
   - Use relative links with the appropriate file extension
   - Example: `../build-tools/build.ps1` or `./sample.json`
 
@@ -59,14 +59,14 @@ When creating a PR for an issue:
     - Example: `https://gitlab.com/username/repo-name`
 
 - For links to Microsoft Learn content in other repositories:
-  - Use the site-relative URL format starting with a forward slash
-  - Do not include the domain or locale
-  - Example: `/dotnet/core/introduction`
+  - Use the relative URL starting with a forward slash
+  - Don't include the scheme and the host (example: `https://learn.microsoft.com`) and don't include the locale (example: `en-us`)
+  - Example: For the target Learn website URL `https://learn.microsoft.com/en-us/dotnet/core/introduction`, use the relative URL `/dotnet/core/introduction` for the link destination
 
 - Never use physical .md file paths in published content
   - Wrong: `../blazor/index.md` or `/aspnet/core/blazor/index.md`
-  - Correct: `<xref:blazor/index>` or `<xref:aspnetcore/blazor/index>`
-  - Exception: GitHub-only content (like README files, contributing guidelines, or other repository documentation not published to docs.microsoft.com) may use direct .md links
+  - Correct: `<xref:blazor/index>`
+  - Exception: GitHub-only content (such as README files, contributing guidelines, and other repository documentation that isn't published to learn.microsoft.com) should use an absolute URL to the markdown file (`.md` file extension)
 
 ## Repository-Specific Guidelines
 - Follow the [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
