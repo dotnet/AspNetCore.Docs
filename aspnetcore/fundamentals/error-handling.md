@@ -14,8 +14,6 @@ uid: fundamentals/error-handling
 
 :::moniker range=">= aspnetcore-9.0"
 
-By [Tom Dykstra](https://github.com/tdykstra/)
-
 This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:fundamentals/error-handling-api>.
 
 For Blazor error handling guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/handle-errors>.

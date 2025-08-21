@@ -13,8 +13,6 @@ uid: fundamentals/error-handling-api
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-With contributions by [David Acker](https://github.com/david-acker) and [Tom Dykstra](https://github.com/tdykstra/)
-
 #### [Minimal APIs](#tab/minimal-apis)
 
 This article describes how to handle errors in ASP.NET Core APIs. Documentation for Minimal APIs is selected. To see documentation for controller-based APIs, select the **Controllers** tab. For Blazor error handling guidance, see <xref:blazor/fundamentals/handle-errors>.
