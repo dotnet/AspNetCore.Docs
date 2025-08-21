@@ -50,11 +50,9 @@ When creating a PR for an issue:
     - Correct: `https://developer.mozilla.org/docs/Web/API/Element/click_event`
 
 - For links to GitHub repositories:
-  - For repositories under dotnet organization, use the full URL path without the domain
-    - Original: `https://github.com/dotnet/blazor-samples`
-    - Correct: `/dotnet/blazor-samples`
-  - For repositories outside the dotnet organization, use the full URL
-    - Example: `https://github.com/maraf/blazor-wasm-react`
+  - Use the full URL path
+    - Example: `https://github.com/maraf/blazor-wasm-react/blob/main/blazor/Counter.razor`
+    - Example: `https://github.com/dotnet/blazor-samples/10.0/BlazorWebAssemblyReact/blazor/Counter.razor`
   - For other Git hosting services or non-Microsoft domains, use the full URL
     - Example: `https://gitlab.com/username/repo-name`
 
