@@ -31,18 +31,40 @@ When creating a PR for an issue:
   - If you cannot verify, state that explicitly in your output.
 
 ### Links and References
-- Use relative links (for example, `../folder/file.md` or `./file.md`) when referencing files within this repository. Do not use absolute URLs or GitHub web links for internal content.
-- For external links, always remove any language or culture segment from the URL path (such as `/en-us/`, `/fr-fr/`, `/en/`, etc.).
-  - Example (Microsoft Learn):
-    - Original: `https://learn.microsoft.com/en-us/aspnet/core/blazor/`
-    - Correct: `https://learn.microsoft.com/aspnet/core/blazor/`
-  - Example (Wikipedia):  
-    - Original: `https://en.wikipedia.org/wiki/ASP.NET_Core`
-    - Correct: `https://wikipedia.org/wiki/ASP.NET_Core`
-- For Microsoft Learn links, also strip the base domain (`https://learn.microsoft.com/en-us`) so only the path remains.
-  - Example:  
-    - Original: `https://learn.microsoft.com/en-us/aspnet/core/blazor/`
-    - Correct: `/aspnet/core/blazor/`
+- For cross-references to other articles within the AspNetCore.Docs repository:
+  - Use the xref syntax: `<xref:target-uid>`
+  - The "target-uid" of the xref syntax is obtained from the `uid` property value in the YAML front matter of the article's markdown file
+  - Examples
+    - For a target article `uid` value of `aspnetcore/mvc/overview`, the xref cross-link is `<xref:aspnetcore/mvc/overview>`
+    - For a target article `uid` value of `blazor/index`, the xref cross-link is `<xref:blazor/index>`
+
+- For non-markdown files (files that don't have the `.md` file extension) within this repository, such as PowerShell scripts and code files:
+  - Use relative links with the appropriate file extension
+  - Example: `../build-tools/build.ps1` or `./sample.json`
+
+- For external links to non-Microsoft sites (MDN, W3C, etc.):
+  - Use absolute URLs
+  - Remove any language or culture segment from the URL path (such as `/en-us/`, `/fr-fr/`, `/en/`, etc.)
+  - Example (MDN):  
+    - Original: `https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event`
+    - Correct: `https://developer.mozilla.org/docs/Web/API/Element/click_event`
+
+- For links to GitHub repositories:
+  - Use the full URL path
+    - Example: `https://github.com/maraf/blazor-wasm-react/blob/main/blazor/Counter.razor`
+    - Example: `https://github.com/dotnet/blazor-samples/10.0/BlazorWebAssemblyReact/blazor/Counter.razor`
+  - For other Git hosting services or non-Microsoft domains, use the full URL
+    - Example: `https://gitlab.com/username/repo-name`
+
+- For links to Microsoft Learn content in other repositories:
+  - Use the relative URL starting with a forward slash
+  - Don't include the scheme and the host (example: `https://learn.microsoft.com`) and don't include the locale (example: `en-us`)
+  - Example: For the target Learn website URL `https://learn.microsoft.com/en-us/dotnet/core/introduction`, use the relative URL `/dotnet/core/introduction` for the link destination
+
+- Never use physical .md file paths in published content
+  - Wrong: `../blazor/index.md` or `/aspnet/core/blazor/index.md`
+  - Correct: `<xref:blazor/index>`
+  - Exception: GitHub-only content (such as README files, contributing guidelines, and other repository documentation that isn't published to learn.microsoft.com) should use an absolute URL to the markdown file (`.md` file extension)
 
 ## Repository-Specific Guidelines
 - Follow the [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
