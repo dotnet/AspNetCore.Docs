@@ -31,7 +31,6 @@ When creating a PR for an issue:
   - If you cannot verify, state that explicitly in your output.
 
 ### Links and References
-
 - For cross-references to other articles within the AspNetCore.Docs repository:
   - Use the xref syntax: `<xref:target-uid>`
   - The target-uid values can be found in the UID property in the YAML front matter of markdown files
