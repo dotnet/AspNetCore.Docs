@@ -112,7 +112,7 @@ app.MapPost("/products",
         => TypedResults.Ok(productId))
     .DisableValidation();
 ```
-### Minimal API Validation integration with `IProblemDetailsService`
+### Customize validation error responses using IProblemDetailsService
 
 Customize error responses from minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. This feature was introduced in ASP.NET Core in .NET 10.
 
@@ -122,7 +122,7 @@ To implement custom validation error responses:
 * Register the service in the DI container
 * The validation system automatically uses the registered service to format validation error responses
 
-For information on customizing validation error responses with IProblemDetailsService, see <xref:fundamentals/minimal-apis/responses#iproblemdetailsservice-for-validation-errors>.
+For more information on customizing validation error responses with IProblemDetailsService, see <xref:fundamentals/minimal-apis/responses#iproblemdetailsservice-for-validation-errors>.
 
 ## Responses
 
