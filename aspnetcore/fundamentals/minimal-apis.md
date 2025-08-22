@@ -94,18 +94,6 @@ Developers customize the behavior of the validation system by:
 
 If validation fails, the runtime returns a 400 Bad Request response with details of the validation errors.
 
-### Minimal API Validation integration with `IProblemDetailsService`
-
-Customize error responses from minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. This feature was introduced in ASP.NET Core in .NET 10.
-
-To implement custom validation error responses:
-
-* Implement <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> or use the default implementation
-* Register the service in the DI container
-* The validation system automatically uses the registered service to format validation error responses
-
-For information on customizing validation error responses with IProblemDetailsService, see <xref:fundamentals/minimal-apis/responses#iproblemdetailsservice-for-validation-errors>.
-
 ### Enable built-in validation support for minimal APIs
 
 Enable the built-in validation support for minimal APIs by calling the `AddValidation` extension method to register the required services in the service container for your application:
@@ -124,6 +112,17 @@ app.MapPost("/products",
         => TypedResults.Ok(productId))
     .DisableValidation();
 ```
+### Minimal API Validation integration with `IProblemDetailsService`
+
+Customize error responses from minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. This feature was introduced in ASP.NET Core in .NET 10.
+
+To implement custom validation error responses:
+
+* Implement <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> or use the default implementation
+* Register the service in the DI container
+* The validation system automatically uses the registered service to format validation error responses
+
+For information on customizing validation error responses with IProblemDetailsService, see <xref:fundamentals/minimal-apis/responses#iproblemdetailsservice-for-validation-errors>.
 
 ## Responses
 
