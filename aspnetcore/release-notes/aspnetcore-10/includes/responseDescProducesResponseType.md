@@ -19,6 +19,6 @@ Generated OpenAPI data:
     "content": {
 ```
 
-This functionality is supported in both [API controllers](xref:web-api/index#apicontroller-attribute) and [Minimal APIs](xref:fundamentals/minimal-apis/overview). For Minimal APIs, the `Description` property is correctly set even when the attribute's type and the inferred return type aren't an exact match.
+This functionality is supported in both [API controllers](xref:web-api/index#apicontroller-attribute) and [Minimal APIs](xref:fundamentals/apis). For Minimal APIs, the `Description` property is correctly set even when the attribute's type and the inferred return type aren't an exact match.
 
 [Community contribution (`dotnet/aspnetcore` #58193)](https://github.com/dotnet/aspnetcore/pull/58193) by [Sander ten Brinke](https://github.com/sander1095).
