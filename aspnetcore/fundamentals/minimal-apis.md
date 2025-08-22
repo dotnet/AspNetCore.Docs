@@ -5,7 +5,7 @@ description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 08/18/2025
+ms.date: 08/22/2025
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
@@ -103,6 +103,8 @@ To implement custom validation error responses:
 * Implement <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> or use the default implementation
 * Register the service in the DI container
 * The validation system automatically uses the registered service to format validation error responses
+
+For information on customizing validation error responses with IProblemDetailsService, see <xref:fundamentals/minimal-apis/responses#iproblemdetailsservice-for-validation-errors>.
 
 ### Enable built-in validation support for minimal APIs
 
