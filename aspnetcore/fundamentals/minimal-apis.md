@@ -5,7 +5,7 @@ description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 05/20/2025
+ms.date: 08/18/2025
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
@@ -56,7 +56,7 @@ The following sections cover request handling: routing, parameter binding, and r
 
 ## Routing
 
-A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put` or `Delete`:
+A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put`, or `Delete`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
 
@@ -93,6 +93,16 @@ Developers customize the behavior of the validation system by:
 * Implementing the [`IValidatableObject`](xref:System.ComponentModel.DataAnnotations.IValidatableObject) interface for complex validation logic.
 
 If validation fails, the runtime returns a 400 Bad Request response with details of the validation errors.
+
+### Minimal API Validation integration with `IProblemDetailsService`
+
+Customize error responses from minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. This feature was introduced in ASP.NET Core in .NET 10.
+
+To implement custom validation error responses:
+
+* Implement <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> or use the default implementation
+* Register the service in the DI container
+* The validation system automatically uses the registered service to format validation error responses
 
 ### Enable built-in validation support for minimal APIs
 

@@ -1,0 +1,31 @@
+### Test the home endpoint
+GET https://localhost:7134/
+
+### Test products endpoint with valid data
+POST https://localhost:7134/products
+Content-Type: application/json
+
+{
+  "name": "Test Product",
+  "price": 50
+}
+
+### Test products endpoint with invalid data (missing name)
+POST https://localhost:7134/products
+Content-Type: application/json
+
+{
+  "price": 50
+}
+
+### Test products endpoint with invalid data (price out of range)
+POST https://localhost:7134/products
+Content-Type: application/json
+
+{
+  "name": "Test Product",
+  "price": 200
+}
+
+### Test explicit validation error endpoint
+GET https://localhost:7134/products/test-validation-error

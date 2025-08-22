@@ -4,7 +4,7 @@ author: brunolins16
 description: Learn how to create responses for minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 05/09/2025
+ms.date: 08/18/2025
 uid: fundamentals/minimal-apis/responses
 ---
 
@@ -153,6 +153,23 @@ The preceding example returns a 500 status code.
 #### Problem and ValidationProblem
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_12":::
+
+#### IProblemDetailsService for validation errors
+
+Minimal API Validation integration with IProblemDetailsService
+Customize error responses from minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. This feature was introduced in ASP.NET Core in .NET 10.
+
+To implement custom validation error responses:
+
+* Implement <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> or use the default implementation
+* Register the service in the DI container
+* The validation system automatically uses the registered service to format validation error responses
+
+The following example shows how to register and configure the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> to customize validation error responses:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/IProblemDetailsServiceValidationErrors/Program.cs" id="snippet_register_IProblemDetailsService_implementation" :::
+
+When a validation error occurs, the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> will be used to generate the error response, including any customizations added in the `CustomizeProblemDetails` callback.
 
 #### Text
 
