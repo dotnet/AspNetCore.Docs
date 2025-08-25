@@ -1,8 +1,10 @@
+@HostAddress = https://localhost:7134
+
 ### Test the home endpoint
-GET https://localhost:7134/
+GET {{HostAddress}}
 
 ### Test products endpoint with valid data
-POST https://localhost:7134/products
+POST {{HostAddress}}/products
 Content-Type: application/json
 
 {
@@ -11,7 +13,7 @@ Content-Type: application/json
 }
 
 ### Test products endpoint with invalid data (missing name)
-POST https://localhost:7134/products
+POST {{HostAddress}}/products
 Content-Type: application/json
 
 {
@@ -19,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Test products endpoint with invalid data (price out of range)
-POST https://localhost:7134/products
+POST {{HostAddress}}/products
 Content-Type: application/json
 
 {
@@ -28,4 +30,4 @@ Content-Type: application/json
 }
 
 ### Test explicit validation error endpoint
-GET https://localhost:7134/products/test-validation-error
+GET {{HostAddress}}/products/test-validation-error

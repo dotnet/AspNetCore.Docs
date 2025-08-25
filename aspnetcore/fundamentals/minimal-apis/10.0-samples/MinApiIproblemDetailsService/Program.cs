@@ -28,17 +28,14 @@ app.MapGet("/", () => "Hello! Use /products endpoint to test validation with IPr
 app.MapPost("/products", (Product product) => 
 {
     // If validation passes (handled automatically based on DataAnnotations)
-    return Results.Ok(product);
-})
-.Accepts<Product>("application/json")
-.Produces<Product>(200)
-.ProducesProblem(400);
+    return TypedResults.Ok(product);
+});
 
 // Explicitly trigger validation failure for testing
 app.MapGet("/products/test-validation-error", () => 
 {
     // Manually create an invalid product to see the validation error
-    return Results.ValidationProblem(new Dictionary<string, string[]>
+    return TypedResults.ValidationProblem(new Dictionary<string, string[]>
     {
         { "Name", new[] { "The Name field is required." } },
         { "Price", new[] { "The field Price must be between 1 and 100." } }
