@@ -6,6 +6,7 @@ ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 08/22/2025
 uid: fundamentals/minimal-apis/responses
+ai-usage: ai-assisted
 ---
 
 # How to create responses in Minimal API apps
