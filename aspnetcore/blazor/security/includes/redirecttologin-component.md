@@ -15,14 +15,13 @@ Add the following directives at the top of the `RedirectToLogin` component:
 
 ```razor
 @using Microsoft.Extensions.Options
-@inject IOptionsSnapshot<RemoteAuthenticationOptions<ApiAuthorizationProviderOptions>> Options
+@inject IOptionsSnapshot<RemoteAuthenticationOptions<ApiAuthorizationProviderOptions>> RemoteOptions
 ```
 
 Modify the component's redirect in the `OnInitialized` method:
 
 ```diff
 - Navigation.NavigateToLogin("authentication/login");
-+ Navigation.NavigateToLogin(
-+     Options.Get(Microsoft.Extensions.Options.Options.DefaultName)
++ Navigation.NavigateToLogin(RemoteOptions.Get(Options.DefaultName)
 +     .AuthenticationPaths.LogInPath);
 ```
