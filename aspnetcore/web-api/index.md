@@ -305,7 +305,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
 * <xref:web-api/action-return-types>
-* <xref:web-api/handle-errors>
+* <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -584,7 +584,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
 * <xref:web-api/action-return-types>
-* <xref:web-api/handle-errors>
+* <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -874,7 +874,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 ## Additional resources
 
 * <xref:web-api/action-return-types>
-* <xref:web-api/handle-errors>
+* <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -1110,7 +1110,7 @@ In the preceding code, `ConsumesController` is configured to handle requests sen
 The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. 
 ## Additional resources
 * <xref:web-api/action-return-types>
-* <xref:web-api/handle-errors>
+* <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>

@@ -195,7 +195,7 @@ The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttr
 
 The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
 
-For more information, see [Problem details service](xref:web-api/handle-errors#pds7).
+For more information, see [Problem details service](xref:fundamentals/error-handling-api#pds7).
 
 ### Route groups
 
@@ -700,3 +700,7 @@ The new [Request decompression middleware](xref:fundamentals/middleware/request-
 * Eliminates the need to write code to handle compressed requests.
 
 For more information, see [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true).
+
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.

@@ -85,6 +85,9 @@
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
       },
+      "ms.update-cycle": {
+        "**/**.{md,yml}": "365-days"
+      },
       "no-loc": {
         "**/**.md": [ "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "Kestrel", ".NET Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
       },

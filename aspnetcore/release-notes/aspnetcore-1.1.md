@@ -26,7 +26,11 @@ ASP.NET Core 1.1 includes the following new features:
 
 ASP.NET Core 1.1 has more features than ASP.NET Core 1.0. In general, we recommend you use the latest version.
 
-## Additional Information
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
+
+## Additional resources
 
 * [ASP.NET Core 1.1.0 Release Notes](https://github.com/dotnet/aspnetcore/releases/tag/1.1.0)
 * To connect with the ASP.NET Core development team's progress and plans, tune in to the [ASP.NET Community Standup](https://live.asp.net/).
