@@ -9,7 +9,7 @@ title: Support for the .localhost Top-Level Domain
 uid: test/.localhost-tld
 ---
 
-# Support for the .localhost Top-Level Domain
+# Support for the .localhost top-level domain
 
 The `.localhost` top-level domain (TLD) is defined in [RFC2606](https://www.rfc-editor.org/rfc/rfc2606) and [RFC6761](https://www.rfc-editor.org/rfc/rfc6761) as being reserved for testing purposes and available for users to use locally as they would any other domain name. This means using a name like `myapp.localhost` locally that resolves to the IP loopback address is allowed and expected according to these RFCs. 
 
