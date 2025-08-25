@@ -17,6 +17,8 @@ builder.Services.AddProblemDetails(options =>
 });
 // </snippet_register_IProblemDetailsService_implementation>
 
+builder.Services.AddValidation();
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
