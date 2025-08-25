@@ -33,7 +33,7 @@ The certificate lists the `*.dev.localhost` name as a Subject Alternative Name (
 
 ## Project template integration
 
-The project templates for *ASP.NET Core Empty* (`web`) and *Blazor Web App* (`blazor`) have been updated with a new option that, when specified, configures the created project to use the `.dev.localhost` domain name suffix. The option combines the domain suffix with the project name to allow the app to be browsed at an address like `https://myapp.dev.localhost:5036`:
+The project templates for *ASP.NET Core Empty* (`web`) and *Blazor Web App* (`blazor`) have an option that configures the created project to use the `.dev.localhost` domain name suffix. The option combines the domain suffix with the project name to allow the app to be browsed at an address like `https://myapp.dev.localhost:5036`:
 
 ```console
 $ dotnet new web -n MyApp --localhost-tld
