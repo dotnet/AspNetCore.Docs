@@ -158,7 +158,7 @@ The preceding example returns a 500 status code.
 #### Customize validation error responses using IProblemDetailsService
 
 Minimal API Validation integration with IProblemDetailsService
-Customize error responses from minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. This feature was introduced in ASP.NET Core in .NET 10.
+Customize error responses from minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. Support for minimal API validation was introduced in ASP.NET Core in .NET 10.
 
 To implement custom validation error responses:
 
