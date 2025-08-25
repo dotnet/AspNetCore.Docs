@@ -363,6 +363,39 @@ app.UseStaticFiles(new StaticFileOptions
 });
 ```
 
+## Large collection of assets
+
+When dealing with large collections of assets, which is considered to be around 1,000 or more assets, we recommend using a bundler to reduce the final number of assets served by the app or to combine <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> with <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>.
+
+<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> eagerly loads the precomputed metadata captured during the build process for the resources in order to support compression, caching, and fingerprinting. These features come at the cost of greater memory usage by the app. For assets that are frequently accessed, it's usually worth the costs. For assets that aren't frequently accessed, the trade-off might not be worth the costs.
+
+If you don't use bundling, we recommend that you combine <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> with <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>. The following example demonstrates the approach.
+
+In the project file (`.csproj`), the `StaticWebAssetEndpointExclusionPattern` MSBuild property is used to filter endpoints from the final manifest for <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>. Excluded files are served by <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> and don't benefit from compression, caching, and fingerprinting.
+
+When setting the value of `StaticWebAssetEndpointExclusionPattern`, retain `$(StaticWebAssetEndpointExclusionPattern)` to keep the framework's default exclusion pattern. Add additional patterns in a semicolon-separated list.
+
+In the following example, the exclusion patten adds the static files in the `lib/icons` folder, which represents a hypothetical batch of icons:
+
+```xml
+<StaticWebAssetEndpointExclusionPattern>
+  $(StaticWebAssetEndpointExclusionPattern);lib/icons/**
+</StaticWebAssetEndpointExclusionPattern>
+```
+
+After HTTPS Redirection Middleware (`app.UseHttpsRedirection();`) processing in the `Program` file:
+
+* Call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> to handle the excluded files (`lib/icons/**`) and any other files not covered by <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>.
+* Call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> after <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> to handle critical application files (CSS, JS, images).
+
+```csharp
+app.UseStaticFiles();
+
+app.UseAuthorization();
+
+app.MapStaticAssets();
+```
+
 ## Static file authorization
 
 :::moniker range=">= aspnetcore-9.0"
@@ -1013,6 +1046,57 @@ If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEn
 > If the IIS static file handler is enabled **and** the ASP.NET Core Module is configured incorrectly, static files are served. This happens, for example, if the `web.config` file isn't deployed.
 
 * Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
+
+## MSBuild properties
+
+The following tables show the static files MSBuild properties and metadata descriptions.
+
+Property | Description
+--- | ---
+`EnableDefaultCompressedItems` | Enables default compression include/exclude patterns.
+`CompressionIncludePatterns` | Semicolon-separated list of file patterns to include for compression.
+`CompressionExcludePatterns` | Semicolon-separated list of file patterns to exclude from compression.
+`EnableDefaultCompressionFormats` | Enables default compression formats (Gzip and Brotli).
+`BuildCompressionFormats` | Compression formats to use during build.
+`PublishCompressionFormats` | Compression formats to use during publish.
+`DisableBuildCompression` | Disables compression during build.
+`CompressDiscoveredAssetsDuringBuild` | Compresses discovered assets during build.
+`BrotliCompressionLevel` | Compression level for the Brotli algorithm.
+`LinkAlternativeRepresentationsToOriginalResource` | How to link compressed assets to original resources.
+`StaticWebAssetBuildCompressAllAssets` | Compresses all assets during build, not just assets discovered or computed during a build.
+`StaticWebAssetPublishCompressAllAssets` | Compresses all assets during publish, not just assets discovered or computed during a build.
+
+Property | Description
+--- | ---
+`StaticWebAssetBasePath` | Base URL path for all the assets in a library.
+`StaticWebAssetsFingerprintContent` | Enables content fingerprinting for cache busting.
+`StaticWebAssetFingerprintingEnabled` | Enables fingerprinting feature for static web assets.
+`StaticWebAssetsCacheDefineStaticWebAssetsEnabled` | Enables caching for static web asset definitions.
+`StaticWebAssetBuildManifestPath` | Path to the build manifest JSON file.
+`StaticWebAssetsBuildManifestCacheFilePath` | Path to the build manifest cache file.
+`StaticWebAssetEndpointExclusionPattern` | Pattern for excluding endpoints.
+
+Item group | Description | Metadata
+--- | ---
+`StaticWebAssetContentTypeMapping` | Maps file patterns to content types and cache headers for endpoints. | Pattern, Cache
+`StaticWebAssetFingerprintPattern` | Defines patterns for applying fingerprints to static web assets for cache busting. | Pattern, Expression
+
+Metadata Descriptions:
+
+* **Pattern**: A glob pattern used to match files. For `StaticWebAssetContentTypeMapping`, it matches files to determine their content type (for example, `*.js` for JavaScript files). For `StaticWebAssetFingerprintPattern`, it identifies multi-extension files that require special fingerprinting treatment (for example, `*.lib.module.js`).
+
+* **Cache**: Specifies the `Cache-Control` header value for the matched content type. This controls browser caching behavior (for example, `max-age=3600, must-revalidate` for media files).
+
+* **Expression**: Defines how the fingerprint is inserted into the filename. The default is `#[.{fingerprint}]`, which inserts the fingerprint before the extension.
+
+The following table describes the runtime configuration options.
+
+Configuration key | Description
+--- | ---
+`ReloadStaticAssetsAtRuntime` | Enables dev-time hot reloading of static assets: serves modified web root (`wwwroot`) files (recomputes `ETag`, recompresses if required) instead of build-time manifest versions. Defaults to enabled only when serving a build manifest unless explicitly set.
+`DisableStaticAssetNotFoundRuntimeFallback` | When `true`, suppresses the fallback endpoint that serves newly added files not present in the build manifest. When `false` or absent, a file-exists-checked `{**path}` fallback (GET/HEAD) logs a warning and serves the file with a computed `ETag`.
+`EnableStaticAssetsDevelopmentCaching` | When `true`, preserves the original `Cache-Control` headers on asset descriptors. When `false` or absent, rewrites `Cache-Control` headers to `no-cache` to avoid aggressive client caching during development.
+`EnableStaticAssetsDevelopmentIntegrity` | When `true`, keeps integrity properties on asset descriptors. When `false` or absent, removes any integrity property to prevent mismatches when files change during development.
 
 ## Additional resources
 
