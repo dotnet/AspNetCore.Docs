@@ -5,7 +5,7 @@ monikerRange: '>= aspnetcore-10.0'
 ms.author: tdykstra
 ms.custom: 
 ms.date: 3/24/2025
-title: Support for the .localhost Top-Level Domain
+title: Support for the .localhost top-level domain
 uid: test/.localhost-tld
 ---
 
