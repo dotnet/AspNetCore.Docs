@@ -600,6 +600,12 @@ In a Blazor WebAssembly app, the Blazor script content is located in the `wwwroo
 <script src="_framework/blazor.webassembly.js"></script>
 ```
 
+For a Blazor Web App or a Blazor Server app, the project must contain at least one Razor component file (`.razor`) in order to automatically include the Blazor script when the app is published. If the project doesn't contain at least one Razor component, set the `RequiresAspNetWebAssets` MSBuild property `true` in the app's project file to include the Blazor script:
+
+```xml
+<RequiresAspNetWebAssets>true</RequiresAspNetWebAssets>
+```
+
 ## Location of `<head>` and `<body>` content
 
 :::moniker range=">= aspnetcore-8.0"
