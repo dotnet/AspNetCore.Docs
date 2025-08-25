@@ -1407,6 +1407,8 @@ items:
         uid: test/loadtests
       - name: Test middleware
         uid: test/middleware
+      - name: Support for the .localhost Top-Level Domain
+        uid: test/.localhost-tld
   - name: Debug
     items:
       - name: Debug with Visual Studio
