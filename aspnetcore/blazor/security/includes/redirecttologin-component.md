@@ -9,7 +9,7 @@ Inspect the `RedirectToLogin` component in [reference source](https://github.com
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-The project template uses a well-known login path (`authentication/login`). When the app relies on a login endpoint discovered from the OIDC discovery document (`/.well-known/openid-configuration`), <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationApplicationPathsOptions.LogInPath%2A?displayProperty=nameWithType> contains the login path. Change the login redirect in the `RedirectToLogin` component to use the configured path, as the following code demonstrates.
+The project template uses a well-known login path (`authentication/login`). When the app relies on a login endpoint from the OIDC discovery document (`/.well-known/openid-configuration`), <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationApplicationPathsOptions.LogInPath%2A?displayProperty=nameWithType> contains the login path. Change the login redirect in the `RedirectToLogin` component to use the configured path, as the following code demonstrates.
 
 Add the following directives at the top of the `RedirectToLogin` component:
 
