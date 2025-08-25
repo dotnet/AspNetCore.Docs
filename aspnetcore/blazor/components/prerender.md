@@ -165,13 +165,70 @@ There are a four approaches that you can take to address this scenario for prere
 
 * Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service abstraction in the component.
 
-* For services outside of the shared framework, create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
+* For services outside of the shared framework, create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see the [Custom service implementation on the server](#custom-service-implementation-on-the-server) section.
+
+## Custom service implementation on the server
+
+In some cases, you can implement and inject a custom service on the server for an interface that's normally only implemented with a client-side service. For example, this approach works well for obtaining the environment during prerendering of an interactive WebAssembly or Auto component that resides in the `.Client` project of a Blazor Web App.
+
+Because the server doesn't have a registered <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service, it isn't possible to inject the service and use the service implementation's host environment extension methods and properties during server prerendering. Injecting the service into an interactive WebAssembly or Auto component results in the following runtime error:
+
+> :::no-loc text="There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
+
+To address this, create a custom service implementation for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> on the server. Add the following class to the server project.
+
+`ServerHostEnvironment.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Components;
+
+public class ServerHostEnvironment(IWebHostEnvironment env, NavigationManager nav) : 
+    IWebAssemblyHostEnvironment
+{
+    public string Environment => env.EnvironmentName;
+    public string BaseAddress => nav.BaseUri;
+}
+```
+
+In the server project's `Program` file, register the service:
+
+```csharp
+builder.Services.TryAddScoped<IWebAssemblyHostEnvironment, ServerHostEnvironment>();
+```
+
+At this point, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service can be injected into an interactive WebAssembly or Auto component and used as shown in the [Read the environment in a Blazor WebAssembly app](xref:blazor/fundamentals/environments#read-the-environment-in-a-blazor-webassembly-app) section of the *Environments* article.
+
+The preceding example can demonstrate that it's possible to have a different server environment than client environment, which isn't recommended and may lead to arbitrary results. When setting the environment in a Blazor Web App, it's best to match server and `.Client` project environments. Consider the following scenario in a test app:
+
+* Implement the client-side (`webassembly`) environment property with the `Staging` environment via `Blazor.start`. See the [Set the client-side environment via startup configuration](xref:blazor/fundamentals/environments#set-the-client-side-environment-via-blazor-startup-configuration) section of the *Environments* article for an example.
+* Don't change the server-side `Properties/launchSettings.json` file. Leave the `environmentVariables` section with the `ASPNETCORE_ENVIRONMENT` environment variable set to `Development`.
+
+You can see the value of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment?displayProperty=nameWithType> property change in the UI.
+
+When prerendering occurs on the server, the component is rendered in the `Development` environment:
+
+> **:::no-loc text="Environment:":::** :::no-loc text="Development":::
+
+When the component is rerendered just a second or two later, after the Blazor bundle is downloaded and the .NET WebAssembly runtime activates, the value changes to reflect that the client is operating in the `Staging` environment on the client:
+
+> **:::no-loc text="Environment:":::** :::no-loc text="Staging":::
+
+The preceding example demonstrates why we recommend setting the server environment to match the client environment for development, testing, and production deployments.
 
 :::moniker-end
 
-## Prerendering guidance
+## Prerendering guidance by feature
 
-Prerendering guidance is organized in the Blazor documentation by subject matter. The following links cover all of the prerendering guidance throughout the documentation set by subject:
+<!-- The next bit on using a filtered search is drafted for discussion, 
+     possibly leading to dropping the index in favor of the filtered 
+     search engine link.
+     
+     Note that the approach won't work in Bing, only Google. -->
+
+Prerendering guidance is organized by feature. Use the following index to find specific guidance on prerendering. Alternatively, use a search engine with a filter to the Blazor documentation node. To obtain English-US results, search with `site:learn.microsoft.com/en-us/aspnet/core/ "prerendering"`. Change the locale segment (`en-us`) for a different language/region.
+
+[Google filtered search results for "prerendering" (English-US articles)](https://www.google.com/search?q=site:learn.microsoft.com/en-us/aspnet/core/+%22prerendering%22)
 
 * Fundamentals
   * [Overview: Client and server rendering concepts](xref:blazor/fundamentals/index#client-and-server-rendering-concepts)
@@ -182,7 +239,6 @@ Prerendering guidance is organized in the Blazor documentation by subject matter
   * Startup
     * [Control headers in C# code](xref:blazor/fundamentals/startup#control-headers-in-c-code)
     * [Client-side loading indicators](xref:blazor/fundamentals/startup#client-side-loading-indicators)
-  * [Environments: Read the environment client-side in a Blazor Web App](xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app)
   * [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
   * SignalR
     * [Client-side rendering](xref:blazor/fundamentals/signalr#client-side-rendering)
