@@ -122,7 +122,7 @@ To implement custom validation error responses:
 * Register the service in the DI container
 * The validation system automatically uses the registered service to format validation error responses
 
-For more information on customizing validation error responses with IProblemDetailsService, see <xref:fundamentals/minimal-apis/responses#iproblemdetailsservice-for-validation-errors>.
+For more information on customizing validation error responses with IProblemDetailsService, see <xref:fundamentals/minimal-apis/responses#customize-validation-error-responses-using-iproblemdetailsservice>.
 
 ## Responses
 

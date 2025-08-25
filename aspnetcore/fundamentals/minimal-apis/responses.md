@@ -167,11 +167,11 @@ To implement custom validation error responses:
 
 The following example shows how to register and configure the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> to customize validation error responses:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/IProblemDetailsServiceValidationErrors/Program.cs" id="snippet_register_IProblemDetailsService_implementation" :::
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/MinApiIproblemDetailsService/Program.cs" id="snippet_register_IProblemDetailsService_implementation" :::
 
 When a validation error occurs, the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> will be used to generate the error response, including any customizations added in the `CustomizeProblemDetails` callback.
 
-For a complete app example, see the [Minimal API sample app](/aspnetcore/fundamentals/minimal-apis/10.0-samples/MinApiIproblemDetailsService/Program.cs) demonstrating how to customize validation error responses using the `IProblemDetailsService` in ASP.NET Core Minimal APIs.
+For a complete app example, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/MinApiIproblemDetailsService/Program.cs) demonstrating how to customize validation error responses using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> in ASP.NET Core Minimal APIs.
 
 #### Text
 
