@@ -1,11 +1,12 @@
 ---
 title: ASP.NET Core OpenAPI XML documentation comment support in ASP.NET Core
 author: captainsafia
+ai-usage: ai-assisted
 description: Learn how to integrate XML documentation comments on types by OpenAPI document generation in ASP.NET Core.
-ms.author: safia
 monikerRange: '>= aspnetcore-10.0'
+ms.author: safia
 ms.custom: mvc
-ms.date: 04/15/2025
+ms.date: 01/03/2025
 uid: fundamentals/openapi/aspnet-openapi-xml
 ---
 <!-- backup author: rick-anderson -->
@@ -106,6 +107,29 @@ To include XML documentation files from referenced assemblies, add them as `Addi
 </ItemGroup>
 ```
 
+#### Accessing XML comments from other assemblies
+
+XML doc comment processing can be configured to access XML comments in other assemblies. This is useful for generating documentation for types that are defined outside the current assembly, such as the `ProblemDetails` type in the `Microsoft.AspNetCore.Http` namespace.
+
+This configuration is done with directives in the project build file. The following example shows how to configure the XML comment generator to access XML comments for types in the `Microsoft.AspNetCore.Http` assembly, which includes the `ProblemDetails` class:
+
+```xml
+<Target Name="AddOpenApiDependencies" AfterTargets="ResolveReferences">
+  <ItemGroup>
+  <!-- Include XML documentation from Microsoft.AspNetCore.Http.Abstractions
+    to get metadata for ProblemDetails -->
+    <AdditionalFiles
+          Include="@(ReferencePath->'
+            %(RootDir)%(Directory)%(Filename).xml')"
+          Condition="'%(ReferencePath.Filename)' ==
+           'Microsoft.AspNetCore.Http.Abstractions'"
+          KeepMetadata="Identity;HintPath" />
+  </ItemGroup>
+</Target>
+```
+
+We expect to include XML comments from a selected set of assemblies in the shared framework in future previews to avoid the need for this configuration in most cases.
+
 #### Disabling XML documentation support
 
 To turn off XML documentation integration, remove the source generator from the `Analyzers` item group. Removing the source generator prevents it from being used during compilation.
@@ -129,6 +153,12 @@ XML comments are parsed into structured `XmlComment` objects with:
 * Parameter documentation with name, description, examples.
 * Response documentation with status codes and descriptions.
 * Support for examples and deprecated markers.
+
+### .NET 10 improvements
+
+XML comment generation handles complex types in .NET 10 better than earlier versions of .NET. It produces accurate and complete XML comments for a wider range of types, handles more complex scenarios, and gracefully bypasses processing for complex types that cause build errors in earlier versions. These improvements change the failure mode for certain scenarios from build errors to missing metadata.
+
+XML documentation comments from referenced assemblies are correctly merged even when their documentation IDs include return type suffixes. As a result, all valid XML comments are reliably included in generated OpenAPI documentation, improving documentation accuracy and completeness for APIs using referenced assemblies.
 
 ### `<inheritdoc/>`
 
