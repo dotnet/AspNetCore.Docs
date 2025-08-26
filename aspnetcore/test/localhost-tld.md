@@ -15,7 +15,7 @@ The `.localhost` top-level domain (TLD) is defined in [RFC2606](https://www.rfc-
 
 Modern evergreen browsers already automatically resolve any `*.localhost` name to the IP loopback address (`127.0.0.1`/`::1`), effectively making them an alias for any service already being hosted at `localhost` on the local machine. Any service responding to `http://localhost:6789` will also respond to `http://anything-here.localhost:6789`, assuming no further specific hostname verification or enforcement is being performed by the service.
 
-ASP.NET Core in .NET 10 has been updated to better support the `.localhost` TLD, making it easy to use when creating and running ASP.NET Core applications in your local development environment. Having different apps running locally be resolvable via different names allows for better separation of some domain-name-associated website assets (for example, cookies) and makes it easier to identify which app you're browsing via the name displayed in the browser address bar.
+Having different apps running locally be resolvable via different names allows for better separation of some domain-name-associated website assets (for example, cookies) and makes it easier to identify which app you're browsing via the name displayed in the browser address bar. Support for the .localhost TLD was introduced in ASP.NET Core in .NET 10. 
 
 ## Kestrel support for .localhost
 
