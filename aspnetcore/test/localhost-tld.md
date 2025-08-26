@@ -6,7 +6,7 @@ ms.author: tdykstra
 ms.custom: 
 ms.date: 08/26/2025
 title: Support for the .localhost top-level domain
-uid: test/.localhost-tld
+uid: test/localhost-tld
 ---
 
 # Support for the .localhost top-level domain
