@@ -90,3 +90,7 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/trust_dev_cert_linux.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/updated-versions.md)]
+
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.

@@ -803,13 +803,13 @@ The preceding markup makes the following changes:
 
 * Added a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) for more about this razor syntax.
 
-* Added code that dynamically adds `class="success"` to the `tr` element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.
+* Added code that dynamically adds `class="table-success"` to the `tr` element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.
 
   ```html
   string selectedRow = "";
   if (item.CourseID == Model.CourseID)
   {
-      selectedRow = "success";
+      selectedRow = "table-success";
   }
   <tr class="@selectedRow">
   ```

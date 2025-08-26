@@ -702,6 +702,10 @@ In such scenarios, enable shadow copying by customizing the ASP.NET Core module 
 
 Shadow copying in IIS is an experimental feature that is not guaranteed to be part of ASP.NET Core. Please leave feedback on IIS Shadow copying in [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/23733).
 
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
+
 ## Additional resources
 
 * <xref:migration/50-to-60-samples>

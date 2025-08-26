@@ -1628,6 +1628,31 @@
             "source_path": "aspnetcore/blazor/state-management.md",
             "redirect_url": "/aspnet/core/state-management/",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/includes/apis6.md",
+            "redirect_url": "/aspnet/core/fundamentals/apis",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/minimal-apis/handle-errors.md",
+            "redirect_url": "/aspnet/core/fundamentals/error-handling-api",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/minimal-apis/overview.md",
+            "redirect_url": "/aspnet/core/fundamentals/apis",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/web-api/handle-errors.md",
+            "redirect_url": "/aspnet/core/fundamentals/error-handling-api",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/handle-errors.md",
+            "redirect_url": "/aspnet/core/fundamentals/error-handling-api",
+            "redirect_document_id": false
         }
     ]
 }

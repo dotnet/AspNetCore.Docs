@@ -337,7 +337,7 @@ JavaScript (JS) interop calls can't be issued after Blazor's SignalR circuit is 
   * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
-  * `InvokeNewAsync`
+  * `InvokeConstructorAsync`
   * `GetValueAsync`
   * `SetValueAsync`
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.

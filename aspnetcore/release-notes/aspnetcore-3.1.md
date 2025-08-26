@@ -84,3 +84,7 @@ When a Blazor app isn't functioning properly during development, receiving detai
 * In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.
 
 For more information, see <xref:blazor/fundamentals/handle-errors>.
+
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.

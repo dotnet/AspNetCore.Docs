@@ -4,14 +4,14 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 10.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 8/11/2025
+ms.date: 08/14/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10
 
 This article highlights the most significant changes in ASP.NET Core in .NET 10 with links to relevant documentation.
 
-This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes).
+This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/10.0#aspnet-core).
 
 ## Blazor
 
@@ -130,6 +130,6 @@ if (RedirectHttpResult.IsLocalUrl(url))
 
 Thank you [@martincostello](https://github.com/martincostello) for this contribution!
 
-## Related content
+## Breaking changes
 
-<xref:fundamentals/servers/httpsys>
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.

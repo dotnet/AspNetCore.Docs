@@ -1062,13 +1062,17 @@ In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
 
-For more information, see [IProblemDetailsService fallback](xref:fundamentals/minimal-apis/handle-errors#iproblemdetailsservice-fallback)
+For more information, see [IProblemDetailsService fallback](xref:fundamentals/error-handling-api#iproblemdetailsservice-fallback)
 
 <!--
 ## API controllers
 
 ## gRPC
 -->
+
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
 ## Additional resources
 
