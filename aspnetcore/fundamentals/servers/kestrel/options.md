@@ -169,7 +169,7 @@ For information about other Kestrel options and limits, see:
     
 ## Behavior with debugger attached
 
-The following timeouts and rate limits aren't enforced when a debugger is attached to a Kestrel process:
+The following timeout and rate limit options aren't enforced when a debugger is attached to a Kestrel process:
 
 * <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.KeepAliveTimeout?displayProperty=nameWithType>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.RequestHeadersTimeout?displayProperty=nameWithType>
