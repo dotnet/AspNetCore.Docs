@@ -121,7 +121,6 @@ XML doc comment processing can be configured to access XML comments in other ass
 </Target>
 ```
 
-We expect to include XML comments from a selected set of assemblies in the shared framework in future previews to avoid the need for this configuration in most cases.
 
 #### Disabling XML documentation support
 
