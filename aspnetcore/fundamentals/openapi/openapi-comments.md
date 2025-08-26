@@ -9,7 +9,6 @@ ms.custom: mvc
 ms.date: 08/25/2025
 uid: fundamentals/openapi/aspnet-openapi-xml
 ---
-<!-- backup author: rick-anderson -->
 # OpenAPI XML documentation comment support in ASP.NET Core
 
 ASP.NET Core XML documentation processing extracts code comments automatically to populate API documentation, ensuring the code and documentation remain synchronized. Metadata from XML documentation comments is included in the generated OpenAPI document without requiring changes to the app code, as long as the project is configured to generate the XML documentation file. XML documentation comments are automatically detected in the application assembly and referenced assemblies with XML documentation enabled.
