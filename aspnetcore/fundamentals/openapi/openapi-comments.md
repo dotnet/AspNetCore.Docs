@@ -111,8 +111,6 @@ XML doc comment processing can be configured to access XML comments in other ass
 ```xml
 <Target Name="AddOpenApiDependencies" AfterTargets="ResolveReferences">
   <ItemGroup>
-  <!-- Include XML documentation from Microsoft.AspNetCore.Http.Abstractions
-    to get metadata for ProblemDetails -->
     <AdditionalFiles
           Include="@(ReferencePath->'
             %(RootDir)%(Directory)%(Filename).xml')"
