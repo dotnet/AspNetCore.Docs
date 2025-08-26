@@ -133,7 +133,7 @@ When `WasmBundlerFriendlyBootConfig` is enabled, the produced JS contains `impor
 
 The following sample apps are based on [Rollup](https://rollupjs.org/). Similar concepts apply when using other JS bundlers.
 
-Demonstration sample apps for Blazor WebAssembly in a React app (`BlazorWebAssemblyReact`) and .NET on WASM in a React app (`DotNetWasmReact`) for .NET 10 or later are available in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples).
+Demonstration sample apps for Blazor WebAssembly in a React app (`BlazorWebAssemblyReact`) and .NET on WebAssembly in a React app (`DotNetWebAssemblyReact`) for .NET 10 or later are available in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples).
 
 :::moniker-end
 
