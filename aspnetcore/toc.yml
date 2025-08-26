@@ -1408,7 +1408,7 @@ items:
       - name: Test middleware
         uid: test/middleware
       - name: .localhost top-level domain
-        uid: test/.localhost-tld
+        uid: test/localhost-tld
   - name: Debug
     items:
       - name: Debug with Visual Studio
