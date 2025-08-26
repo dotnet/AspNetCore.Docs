@@ -121,7 +121,6 @@ XML doc comment processing can be configured to access XML comments in other ass
 </Target>
 ```
 
-
 #### Disabling XML documentation support
 
 To turn off XML documentation integration, remove the source generator from the `Analyzers` item group. Removing the source generator prevents it from being used during compilation.
