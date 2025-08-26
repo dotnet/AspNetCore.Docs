@@ -147,9 +147,11 @@ XML comments are parsed into structured `XmlComment` objects with:
 * Response documentation with status codes and descriptions.
 * Support for examples and deprecated markers.
 
-XML comment generation handles complex types better than earlier versions of .NET and produces accurate and complete XML comments for a wider range of types. The generator handles more complex scenarios and gracefully bypasses processing for complex types that cause build errors in earlier versions, changing the failure mode for certain scenarios from build errors to missing metadata. This improved complex type handling became available with .NET 10.
+### .NET 10 improvements
 
-XML documentation comments from referenced assemblies are correctly merged even when their documentation IDs include return type suffixes. As a result, all valid XML comments are reliably included in generated OpenAPI documentation, improving documentation accuracy and completeness for APIs using referenced assemblies. This unified handling of documentation IDs for referenced assemblies became available with .NET 10.
+XML comment generation handles complex types in .NET 10 better than earlier versions of .NET. It produces accurate and complete XML comments for a wider range of types, handles more complex scenarios, and gracefully bypasses processing for complex types that cause build errors in earlier versions. These improvements change the failure mode for certain scenarios from build errors to missing metadata.
+
+XML documentation comments from referenced assemblies are correctly merged even when their documentation IDs include return type suffixes. As a result, all valid XML comments are reliably included in generated OpenAPI documentation, improving documentation accuracy and completeness for APIs using referenced assemblies.
 
 ### `<inheritdoc/>`
 
