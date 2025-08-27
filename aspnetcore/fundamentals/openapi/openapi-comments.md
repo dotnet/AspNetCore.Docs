@@ -147,9 +147,9 @@ XML comments are parsed into structured `XmlComment` objects with:
 
 ### Handling of complex types
 
-XML comment generation in .NET 10 handles complex types more effectively than in previous versions. It produces accurate and complete XML comments for a wider range of types and supports more complex scenarios. In cases where complex types caused build errors in earlier versions, the process now bypasses those types gracefully.
+XML comment processing produces accurate and complete OpenApi descriptions for a wide range of types and supports complex scenarios. But if an error is encountered when processing a complex types, the process bypasses the type gracefully.
 
-With these improvements, scenarios that previously resulted in build errors now simply result in missing metadata, helping to avoid build failures.
+In this way, scenarios that might have resulted in build errors now simply result in missing metadata, helping to avoid build failures.
 
 XML documentation comments from referenced assemblies are correctly merged even when their documentation IDs include return type suffixes. As a result, all valid XML comments are reliably included in generated OpenAPI documentation, improving documentation accuracy and completeness for APIs using referenced assemblies.
 
