@@ -247,7 +247,7 @@ By implementing the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601
 
 The following is an example implementation of a custom parameter that binds from an HTTP header:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/8.0-samples/CustomBindingExample/CustomBoundParameter.cs":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/8.0-samples/CustomBindingExample/CustomBoundParameters.cs":::
 
 You can also implement validation within your custom binding logic:
 
