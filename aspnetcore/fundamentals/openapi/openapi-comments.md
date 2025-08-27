@@ -145,7 +145,7 @@ XML comments are parsed into structured `XmlComment` objects with:
 * Response documentation with status codes and descriptions.
 * Support for examples and deprecated markers.
 
-### .NET 10 improvements
+### Handling of complex types
 
 XML comment generation in .NET 10 handles complex types more effectively than in previous versions. It produces accurate and complete XML comments for a wider range of types and supports more complex scenarios. In cases where complex types caused build errors in earlier versions, the process now bypasses those types gracefully.
 
