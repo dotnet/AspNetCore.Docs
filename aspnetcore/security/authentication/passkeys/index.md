@@ -507,11 +507,13 @@ After the authenticator creates the signed assertion, the browser serializes it 
 async function requestCredential(email, mediation, headers, signal) {
   // Step 6: The assertion is returned from navigator.credentials.get()
   // and is serialized to JSON for submission to the server
-  const optionsResponse = await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, {
-    method: 'POST',
-    headers,
-    signal,
-  });
+  const optionsResponse = 
+    await fetchWithErrorHandling(
+      `/Account/PasskeyRequestOptions?username=${email}`, {
+      method: 'POST',
+      headers,
+      signal,
+    });
   const optionsJson = await optionsResponse.json();
   const options = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJson);
   return await navigator.credentials.get({ publicKey: options, mediation, signal });

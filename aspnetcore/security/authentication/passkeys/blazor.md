@@ -126,16 +126,14 @@ The following guidance relies upon an app that was created with **Individual Acc
 
 -->
 
-* An existing Blazor Web App with ASP.NET Core Identity
+* An existing Blazor Web App (.NET 10 or later) with ASP.NET Core Identity
 * [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
+
+For migration guidance, see <xref:migration/index>.
 
 ## Reference source guidance
 
 The links in this article to .NET reference source load the repository's default branch, which represents the current development for the next release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list. For more information, see [How to select a version tag of ASP.NET Core source code (dotnet/AspNetCore.Docs #26205)](https://github.com/dotnet/AspNetCore.Docs/discussions/26205).
-
-## Update to .NET 10
-
-Update the app to .NET 10 or later. For more information, see <xref:migration/index>.
 
 ## Update Identity schema version
 
@@ -198,8 +196,8 @@ dotnet ef database update
 
 Add the following model classes to the project in the `Components/Account` folder with `BlazorWebCSharp._1.Components.Account` namespace updates for the app (for example: `Contoso.Components.Account`):
 
-* [`Components/Account/PasskeyInputModel.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/PasskeyInputModel.cs)
-* [`Components/Account/PasskeyOperation.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/PasskeyOperation.cs)
+* [`Components/Account/PasskeyInputModel.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/PasskeyInputModel.cs): Holds the JSON passkey credential for passkey sign-in operations (`Login` component) and adding passkeys (`Passkeys` component).
+* [`Components/Account/PasskeyOperation.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/PasskeyOperation.cs): Defines the authentication action to be performed (`PassKeySubmit` component), either registering a new passkey (`Create`/0) or authenticating with an existing passkey (`Request`/1).
 
 ## Create the `PasskeySubmit` component
 
