@@ -1,13 +1,13 @@
 ---
-title: Enable Web Authentication API (WebAuthn) passkeys in an ASP.NET Core Blazor Web App
+title: Enable Web Authentication API (WebAuthn) passkeys
 author: guardrex
-description: Discover how to enable Web Authentication API (WebAuthn) passkeys with ASP.NET Core Blazor Web App authentication.
+description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 08/14/2025
-uid: blazor/security/passkeys
+ms.date: 08/27/2025
+uid: security/authentication/passkeys/index
 ---
-# Enable Web Authentication API (WebAuthn) passkeys in an ASP.NET Core Blazor Web App
+# Enable Web Authentication API (WebAuthn) passkeys
 
 <!-- UPDATE 11.0 - Activate the not-latest-version file.
 
@@ -18,9 +18,9 @@ uid: blazor/security/passkeys
 
 <!-- UPDATE 10.0 - API doc cross-links throughout article -->
 
-Passkeys provide a modern, phishing-resistant authentication method based on the [Web Authentication API (WebAuthn)](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) and [FIDO2](https://www.microsoft.com/en-us/security/business/security-101/what-is-fido2) standards. They are a secure alternative to passwords, using public key cryptography and device-based authentication. This article explains how to configure an ASP.NET Core Blazor Web App to use passkeys to authenticate users.
+Passkeys provide a modern, phishing-resistant authentication method based on the [Web Authentication API (WebAuthn)](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) and [FIDO2](https://www.microsoft.com/security/business/security-101/what-is-fido2) standards. They are a secure alternative to passwords, using public key cryptography and device-based authentication. This article explains how to configure an ASP.NET Core app to use passkeys to authenticate users.
 
-The guidance in this article relies upon creating a .NET 10 or later Blazor Web App with **Individual Accounts** for the app's **Authentication type** or [scaffolding Identity](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project) into an existing .NET 10 or later Blazor Web App. For migration guidance from prior versions of .NET, see <xref:blazor/security/passkeys-migration>.
+For guidance specific to new and existing Blazor Web Apps, see <xref:security/authentication/passkeys/blazor> after reading this article.
 
 ## What are passkeys?
 
@@ -142,113 +142,6 @@ To prevent database exhaustion attacks, apps should enforce limits on passkey re
 * Maximum length for passkey display names.
 
 The Blazor Web App template enforces these limits by default.
-
-## Create or migrate a Blazor Web App
-
-For migration guidance to update an existing Blazor Web App to use passkeys, see <xref:blazor/security/passkeys-migration>.
-
-Use the following guidance to create a new Blazor Web App with passkeys support.
-
-# [Visual Studio](#tab/visual-studio)
-
-> [!NOTE]
-> Visual Studio 2022 or later and .NET 10 or later SDK are required.
-
-In Visual Studio:
-
-* Select **Create a new project** from the **Start Window** or select **File** > **New** > **Project** from the menu bar.
-* In the **Create a new project** dialog, select **Blazor Web App** from the list of project templates. Select the **Next** button.
-* In the **Configure your new project** dialog, name the project `BlazorWebAppPasskeys` in the **Project name** field, including matching the capitalization. Using this exact project name is important to ensure that the namespaces match for code that you copy from the article into the app that you're building.
-* Confirm that the **Location** for the app is suitable. Leave the **Place solution and project in the same directory** checkbox selected. Select the **Next** button.
-* In the **Additional information** dialog, set the **Authentication type** to **Individual Accounts**. Use the following settings for the other options:
-  * **Framework**: Latest framework release (.NET 10 or later)
-  * **Configure for HTTPS**: Selected
-  * **Interactive render mode**: **Server**
-  * **Interactivity location**: **Global**
-  * **Include sample pages**: Selected
-  * **Do not use top-level statements**: Not selected
-  * **Use the .dev.localhost TLD in the application URL**: Not selected
-  * Select **Create**.
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-This guidance assumes that you have familiarity with VS Code. If you're new to VS Code, see the [VS Code documentation](https://code.visualstudio.com/docs). The videos listed by the [Introductory Videos page](https://code.visualstudio.com/docs/getstarted/introvideos) are designed to give you an overview of VS Code's features.
-
-In VS Code:
-
-* Go to the **Explorer** view and select the **Create .NET Project** button. Alternatively, you can bring up the **Command Palette** using <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, and then type "`.NET`" and find and select the **.NET: New Project** command.
-
-* Select the **Blazor Web App** project template from the list.
-
-* In the **Project Location** dialog, create or select a folder for the project.
-
-* In the **Command Palette**, name the project `BlazorWebAppPasskeys`, including matching the capitalization. Using this exact project name is important to ensure that the namespaces match for code that you copy from the article into the app that you're building.
-
-* Select **Create project** from the **Command Palette**.
-
-# [.NET CLI](#tab/net-cli/)
-
-In a command shell:
-
-Change to the directory using the `cd` command to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
-
-Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named `BlazorWebAppPasskeys` at the current directory location.
-
-> [!IMPORTANT]
-> Name the project `BlazorWebAppPasskeys`, including matching the capitalization, so the namespaces match for code that you copy from the article to the app.
-
-```dotnetcli
-dotnet new blazor -au Individual -o BlazorWebAppPasskeys
-```
-
----
-
-The preceding instructions create a Blazor Web App with:
-
-* ASP.NET Core Identity configured for user authentication using the [`-au|--authentication` option](/dotnet/core/tools/dotnet-new-sdk-templates#blazor).
-* Entity Framework Core with SQLite for data storage.
-* Passkey registration and authentication endpoints.
-* UI components for managing passkeys.
-
-> [!NOTE]
-> Currently, only the Blazor Web App project template includes built-in passkey support.
-
-## Run the application
-
-# [Visual Studio](#tab/visual-studio)
-
-Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
-
-# [.NET CLI](#tab/net-cli/)
-
-In a command shell opened to the root folder of the server `BlazorWebAppPasskeys` project, execute the following command:
-
-```dotnetcli
-dotnet watch
-```
-
-## Register a passkey
-
-To test passkey functionality:
-
-1. Register a new account or sign in with an existing account.
-2. Navigate to **Manage your account** (select the username in the navigation menu).
-3. Select **Passkeys** from the navigation menu.
-4. Select **Add a new passkey**.
-5. Follow the browser's prompts to create a passkey using your device's authenticator.
-
-## Sign in with a passkey
-
-After a passkey is registered:
-
-1. Sign out of the app.
-2. On the login page, enter your email address.
-3. Select **Log in with a passkey**.
-4. Follow the browser's prompts to authenticate with your passkey.
 
 ## Configure passkey options
 

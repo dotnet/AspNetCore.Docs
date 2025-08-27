@@ -605,8 +605,8 @@ The Blazor Web App project template provides out-of-the-box passkey management a
 
 For more information, see the following articles:
 
-* <xref:blazor/security/passkeys>
-* <xref:blazor/security/passkeys-migration>
+* <xref:security/authentication/passkeys/index>
+* <xref:security/authentication/passkeys/blazor>
 
 ### Circuit state persistence
 
