@@ -229,7 +229,7 @@ public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder)
     builder.Metadata.Add(new ProducesAttribute(MediaTypeNames.Text.Html));
 }
 ```
-## Custom parameter binding with IBindableFromHttpContext
+## Custom parameter binding with `IBindableFromHttpContext`
 
 ASP.NET Core provides support for custom parameter binding in Minimal APIs using the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface. This interface, introduced with C# 11's static abstract members, allows you to create types that can be bound from an HTTP context directly in route handler parameters.
 
@@ -243,7 +243,15 @@ public interface IBindableFromHttpContext<TSelf>
 
 By implementing the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601>, you can create custom types that handle their own binding logic from the HttpContext. When a route handler includes a parameter of this type, the framework automatically calls the static BindAsync method to create the instance:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/8.0-samples/CustomBindingExample/Program.cs" id="snippet_IBindableFromHttpContext":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/CustomBindingExample/Program.cs" id="snippet_IBindableFromHttpContext":::
+
+The following is an example implementation of a custom parameter that binds from an HTTP header:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/CustomBindingExample/CustomBoundParameter.cs":::
+
+You can also implement validation within your custom binding logic:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/8.0-samples/CustomBindingExample/Program.cs" id="snippet_Validation":::
 
 [View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/8.0-samples/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
 
