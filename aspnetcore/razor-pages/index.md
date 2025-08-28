@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn the architecture, concepts, and patterns of Razor Pages in ASP.NET Core for building page-focused web applications.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 01/24/2025
+ms.date: 08/27/2025
 uid: razor-pages/index
 ---
 
