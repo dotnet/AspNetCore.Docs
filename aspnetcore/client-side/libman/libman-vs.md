@@ -18,7 +18,7 @@ Visual Studio has built-in support for [LibMan](xref:client-side/libman/index) i
 * Search dialog for finding libraries and adding the files to a project.
 * Editing support for `libman.json`&mdash;the LibMan manifest file.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/client-side/libman/samples/) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/client-side/libman/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 ## Prerequisites
 

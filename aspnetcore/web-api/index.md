@@ -303,7 +303,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 * <xref:web-api/action-return-types>
 * <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
@@ -582,7 +582,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 * <xref:web-api/action-return-types>
 * <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
@@ -598,7 +598,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## ControllerBase class
 

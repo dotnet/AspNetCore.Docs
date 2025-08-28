@@ -24,7 +24,7 @@ If you're writing custom filters and routes, unit test them in isolation, not as
 
 To demonstrate controller unit tests, review the following controller in the sample app. 
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 The Home controller displays a list of brainstorming sessions and allows the creation of new brainstorming sessions with a POST request:
 
@@ -179,7 +179,7 @@ For a valid session `id`, the final test confirms that:
 
 [Controllers](xref:mvc/controllers/actions) play a central role in any ASP.NET Core MVC app. As such, you should have confidence that controllers behave as intended. Automated tests can detect errors before the app is deployed to a production environment.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Unit tests of controller logic
 

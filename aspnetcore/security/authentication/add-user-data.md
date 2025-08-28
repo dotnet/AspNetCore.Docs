@@ -18,7 +18,7 @@ This article shows how to:
 
 The project sample is created from a Razor Pages web app, but the instructions are similar for an ASP.NET Core MVC web app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Prerequisites
 

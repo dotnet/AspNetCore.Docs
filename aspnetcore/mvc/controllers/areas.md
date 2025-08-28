@@ -222,7 +222,7 @@ In Solution Explorer, right click the project and select **ADD > New Scaffolded 
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 * [!INCLUDE[](~/includes/MyDisplayRouteInfoBoth.md)]
 
 :::moniker-end
@@ -243,7 +243,7 @@ Consider using Areas in a project when:
 * The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
 If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-pages) in this document.
 
@@ -450,7 +450,7 @@ Consider using Areas in a project when:
 * The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
 If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-pages) in this document.
 

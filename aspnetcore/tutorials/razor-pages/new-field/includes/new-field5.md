@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-5.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 

@@ -34,7 +34,7 @@ The sample app runs in either of two modes determined by the `#define` preproces
 
 For more information configuring a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Secret storage in the Development environment
 
@@ -381,7 +381,7 @@ When the app fails to load configuration using the provider, an error message is
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault Documentation](/azure/key-vault/)
 * [How to generate and transfer HSM-protected keys for Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
@@ -413,7 +413,7 @@ The sample app runs in either of two modes determined by the `#define` preproces
 
 For more information configuring a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Secret storage in the Development environment
 
@@ -767,7 +767,7 @@ When the app fails to load configuration using the provider, an error message is
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault Documentation](/azure/key-vault/)
 * [How to generate and transfer HSM-protected keys for Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)

@@ -15,7 +15,7 @@ uid: fundamentals/change-tokens
 
 A *change token* is a general-purpose, low-level building block used to track state changes.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## IChangeToken interface
 
@@ -213,7 +213,7 @@ var compositeChangeToken =
 
 A *change token* is a general-purpose, low-level building block used to track state changes.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## IChangeToken interface
 

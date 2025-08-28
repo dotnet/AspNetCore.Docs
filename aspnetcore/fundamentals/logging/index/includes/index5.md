@@ -4,7 +4,7 @@ By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.
 
 This topic describes logging in .NET as it applies to ASP.NET Core apps. For detailed information on logging in .NET, see [Logging in .NET](/dotnet/core/extensions/logging). For more information on logging in Blazor apps, see <xref:blazor/fundamentals/logging>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/logging/index/samples/3.x) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/logging/index/samples/3.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 <a name="lp"></a>
 
