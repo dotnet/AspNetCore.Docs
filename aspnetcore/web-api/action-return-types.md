@@ -14,7 +14,7 @@ uid: web-api/action-return-types
 
 :::moniker range=">= aspnetcore-8.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ASP.NET Core provides the following options for web API controller action return types:
 

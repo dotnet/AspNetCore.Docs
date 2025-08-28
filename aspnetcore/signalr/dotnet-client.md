@@ -13,7 +13,7 @@ uid: signalr/dotnet-client
 
 The ASP.NET Core SignalR .NET client library lets you communicate with SignalR hubs from .NET apps.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/dotnet-client/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/dotnet-client/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 The code sample in this article is a WPF app that uses the ASP.NET Core SignalR .NET client.
 

@@ -200,7 +200,7 @@ When developing a server-side Blazor app and testing locally, see <xref:blazor/f
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:fundamentals/middleware/index>
 * <xref:blazor/file-uploads>
 * <xref:blazor/file-downloads>

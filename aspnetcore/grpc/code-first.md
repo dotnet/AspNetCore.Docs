@@ -103,7 +103,7 @@ The preceding gRPC client `Program.cs` code:
 
 A code-first gRPC client is created from a channel. Just like a regular client, a code-first client uses its [channel configuration](xref:grpc/configuration#configure-client-options).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/samples/6.x) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/samples/6.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Additional resources
 
@@ -187,7 +187,7 @@ The preceding code:
 
 A code-first gRPC client is created from a channel. Just like a regular client, a code-first client uses its [channel configuration](xref:grpc/configuration#configure-client-options).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/samples/5.x) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/samples/5.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Additional resources
 

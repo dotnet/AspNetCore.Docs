@@ -23,7 +23,7 @@ ASP.NET Core abstracts file system access through the use of File Providers. Fil
 * [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
 * .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## File Provider interfaces
 
@@ -174,7 +174,7 @@ ASP.NET Core abstracts file system access through the use of File Providers. Fil
 * [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
 * .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## File Provider interfaces
 
