@@ -3,7 +3,7 @@ title: Part 8, add validation
 author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 06/23/2024
+ms.date: 08/28/2025
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages

@@ -1,3 +1,10 @@
+---
+title: .NET 10 validation package information
+ai-usage: ai-assisted
+ms.author: wpickett
+ms.date: 08/28/2025
+---
+
 <!-- USED in validation docs for .NET 10 -->
 
 ## Validation in .NET 10
@@ -16,6 +23,6 @@ To use the `Microsoft.Extensions.Validation` APIs:
 
 * Register validation services with dependency injection:
 
-```csharp
-builder.Services.AddValidation();
-```
+    ```csharp
+    builder.Services.AddValidation();
+    ```
