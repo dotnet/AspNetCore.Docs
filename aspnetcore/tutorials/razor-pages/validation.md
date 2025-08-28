@@ -28,6 +28,10 @@ The validation support provided by Razor Pages and Entity Framework is a good ex
 * Validation rules are declaratively specified in one place, in the model class.
 * Rules are enforced everywhere in the app.
 
+:::moniker range=">= aspnetcore-10.0"
+[!INCLUDE[](~/includes/validation-package-net10.md)]
+:::moniker-end
+
 ## Add validation rules to the movie model
 
 The <xref:System.ComponentModel.DataAnnotations> namespace provides:

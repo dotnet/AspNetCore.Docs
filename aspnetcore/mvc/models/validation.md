@@ -16,6 +16,10 @@ This article explains how to validate user input in an ASP.NET Core MVC or Razor
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
+:::moniker range=">= aspnetcore-10.0"
+[!INCLUDE[](~/includes/validation-package-net10.md)]
+:::moniker-end
+
 ## Model state
 
 Model state represents errors that come from two subsystems: model binding and model validation. Errors that originate from [model binding](xref:mvc/models/model-binding) are generally data conversion errors. For example, an "x" is entered in an integer field. Model validation occurs after model binding and reports errors where data doesn't conform to business rules. For example, a 0 is entered in a field that expects a rating between 1 and 5.
