@@ -290,7 +290,7 @@ For more information, see [Contribute to the ASP.NET documentation: Code snippet
 
 ## Additional resources
 
-* <xref:blazor/fundamentals/index>
+<xref:blazor/fundamentals/index>
 
 :::moniker-end
 

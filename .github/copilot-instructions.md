@@ -1,7 +1,7 @@
 ---
 author: wadepickett
 ms.author: wpickett
-ms.date: 07-31-2025
+ms.date: 08-17-2025
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
@@ -31,18 +31,40 @@ When creating a PR for an issue:
   - If you cannot verify, state that explicitly in your output.
 
 ### Links and References
-- Use relative links (for example, `../folder/file.md` or `./file.md`) when referencing files within this repository. Do not use absolute URLs or GitHub web links for internal content.
-- For external links, always remove any language or culture segment from the URL path (such as `/en-us/`, `/fr-fr/`, `/en/`, etc.).
-  - Example (Microsoft Learn):
-    - Original: `https://learn.microsoft.com/en-us/aspnet/core/blazor/`
-    - Correct: `https://learn.microsoft.com/aspnet/core/blazor/`
-  - Example (Wikipedia):  
-    - Original: `https://en.wikipedia.org/wiki/ASP.NET_Core`
-    - Correct: `https://wikipedia.org/wiki/ASP.NET_Core`
-- For Microsoft Learn links, also strip the base domain (`https://learn.microsoft.com/en-us`) so only the path remains.
-  - Example:  
-    - Original: `https://learn.microsoft.com/en-us/aspnet/core/blazor/`
-    - Correct: `/aspnet/core/blazor/`
+- For cross-references to other articles within the AspNetCore.Docs repository:
+  - Use the xref syntax: `<xref:target-uid>`
+  - The "target-uid" of the xref syntax is obtained from the `uid` property value in the YAML front matter of the article's markdown file
+  - Examples
+    - For a target article `uid` value of `aspnetcore/mvc/overview`, the xref cross-link is `<xref:aspnetcore/mvc/overview>`
+    - For a target article `uid` value of `blazor/index`, the xref cross-link is `<xref:blazor/index>`
+
+- For non-markdown files (files that don't have the `.md` file extension) within this repository, such as PowerShell scripts and code files:
+  - Use relative links with the appropriate file extension
+  - Example: `../build-tools/build.ps1` or `./sample.json`
+
+- For external links to non-Microsoft sites (MDN, W3C, etc.):
+  - Use absolute URLs
+  - Remove any language or culture segment from the URL path (such as `/en-us/`, `/fr-fr/`, `/en/`, etc.)
+  - Example (MDN):  
+    - Original: `https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event`
+    - Correct: `https://developer.mozilla.org/docs/Web/API/Element/click_event`
+
+- For links to GitHub repositories:
+  - Use the full URL path
+    - Example: `https://github.com/maraf/blazor-wasm-react/blob/main/blazor/Counter.razor`
+    - Example: `https://github.com/dotnet/blazor-samples/blob/main/10.0/BlazorWebAssemblyReact/blazor/Counter.razor`
+  - For other Git hosting services or non-Microsoft domains, use the full URL
+    - Example: `https://gitlab.com/username/repo-name`
+
+- For links to Microsoft Learn content in other repositories:
+  - Use the relative URL starting with a forward slash
+  - Don't include the scheme and the host (example: `https://learn.microsoft.com`) and don't include the locale (example: `en-us`)
+  - Example: For the target Learn website URL `https://learn.microsoft.com/en-us/dotnet/core/introduction`, use the relative URL `/dotnet/core/introduction` for the link destination
+
+- Never use physical .md file paths in published content
+  - Wrong: `../blazor/index.md` or `/aspnet/core/blazor/index.md`
+  - Correct: `<xref:blazor/index>`
+  - Exception: GitHub-only content (such as README files, contributing guidelines, and other repository documentation that isn't published to learn.microsoft.com) should use an absolute URL to the markdown file (`.md` file extension)
 
 ## Repository-Specific Guidelines
 - Follow the [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
@@ -54,7 +76,7 @@ When creating a PR for an issue:
   - For any new or updated .md file added to the repository, ensure the following frontmatter (metadata) is included:
     - Metadata `ai-usage: ai-assisted` if any AI assistance was used
     - Place the title metadata first, followed by the remaining metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
-    - Metadata `ms.date: <today's date>` with a format of MM-DD-YYYY.  If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
+    - Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
     
 ### Version Targeting Common Range Patterns
 - Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
@@ -62,6 +84,29 @@ When creating a PR for an issue:
 - Open Lower Bound: `<= aspnetcore-9.0`
 - Specific Version: `== aspnetcore-9.0`
 
+### Handling File Redirections
+- When a Markdown (.md) article file (this does not apply to includes) is deleted in a PR, create a redirection entry.
+- Redirections ensure users following existing links aren't left with broken links
+- To add a redirection:
+  1. Update the `.openpublishing.redirection.json` file at the repository root
+  2. Follow this format for new entries:
+     ```json
+     {
+         "source_path": "aspnetcore/path/to/deleted-file.md",
+         "redirect_url": "/aspnet/core/path/to/target-file",
+         "redirect_document_id": false
+     }
+     ```
+  3. Use relative URLs for redirection to pages in the `learn.microsoft.com` domain
+     - Example: `/aspnet/core/path/to/target-file`
+  4. For URLs in a different domain, use absolute URLs including the domain.
+     - Example: `https://learn.microsoft.com/dotnet/core/introduction`
+  5. Set `redirect_document_id` to `false` unless specifically instructed otherwise
+  6. Maintain alphabetical order of the `source_path` entries for better organization
+  7. Ensure proper JSON formatting with correct commas between entries
+- When selecting a redirect target, choose the most relevant existing content that would serve the user's original intent
+- If no direct replacement exists, redirect to a parent category page or related topic
+    
 ### Code Snippets
 - For code snippets longer than 6 lines:
   1. Create a subfolder named after the document the snippet supports.
@@ -90,15 +135,15 @@ When creating a PR for an issue:
 - Use the following language code and indentation standards for markdown code blocks or the `language` attribute of code snippets:
 
   Content of the snippet | Language code | Indentation in spaces
-  :---: | :---: | :---:
-  C# | csharp | 4
-  HTML | html | 4
-  CSS | css | 4
-  JavaScript | javascript | 2 spaces (use 4 spaces for line continuation)
-  XML | xml | 2
-  JSON | json | 2
-  Console | console | 2
-  Text | - | 2
+  :--------------------: | :-----------: | :-------------------:
+  C#                     | csharp        | 4
+  HTML                   | html          | 4
+  CSS                    | css           | 4
+  JavaScript             | javascript    | 2 spaces (use 4 spaces for line continuation)
+  XML                    | xml           | 2
+  JSON                   | json          | 2
+  Console                | console       | 2
+  Text                   | -             | 2
 
 ### ASP.NET Core Specific Guidelines
 - Use the latest supported version for examples unless otherwise specified
