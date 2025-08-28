@@ -1,0 +1,24 @@
+@host = https://localhost:7176
+
+### Test the root endpoint
+GET {{host}}/
+Accept: text/plain
+
+### Test the custom binding endpoint
+GET {{host}}/custom-binding
+X-Custom-Header: TestHeaderValue
+Accept: text/plain
+
+### Test the combined parameter endpoint
+GET {{host}}/combined/42
+X-Custom-Header: TestHeaderValue
+Accept: text/plain
+
+### Test the validated parameter endpoint - valid case
+GET {{host}}/validated
+X-Custom-Header: ValidValue
+Accept: text/plain
+
+### Test the validated parameter endpoint - invalid case
+GET {{host}}/validated
+Accept: text/plain
