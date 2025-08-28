@@ -1,14 +1,14 @@
 ---
-title: Introduction to Razor Pages in ASP.NET Core
+title: Razor Pages architecture and concepts in ASP.NET Core
 author: tdykstra
-description: Explains how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
+description: Learn the architecture, concepts, and patterns of Razor Pages in ASP.NET Core for building page-focused web applications.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 8/28/2023
+ms.date: 01/24/2025
 uid: razor-pages/index
 ---
 
-# Introduction to Razor Pages in ASP.NET Core
+# Razor Pages architecture and concepts in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Dave Brock](https://twitter.com/daveabrock), and [Kirk Larkin](https://twitter.com/serpent5)
 
@@ -19,7 +19,7 @@ Razor Pages can make coding page-focused scenarios easier and more productive th
 
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
-This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections too advanced, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).
+This article covers the architecture, concepts, and patterns that make Razor Pages effective for building page-focused web applications. It explains how Razor Pages work, their key components, and best practices for implementation. If you prefer hands-on learning with step-by-step instructions, see [Tutorial: Create a Razor Pages web app with ASP.NET Core](xref:tutorials/razor-pages/index). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).
 
 ## Prerequisites
 

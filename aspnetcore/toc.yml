@@ -326,7 +326,7 @@ items:
         uid: tutorials/choose-web-ui
       - name: Razor Pages
         items:
-          - name: Introduction
+          - name: Architecture and concepts
             uid: razor-pages/index
           - name: Tutorial
             items:
