@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 ms.author: wpickett
 ms.date: 08/28/2025
 ---
-
 <!-- USED in validation docs for .NET 10 -->
 
 ## Validation in .NET 10
