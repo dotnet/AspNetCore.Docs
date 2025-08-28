@@ -1,3 +1,5 @@
+<!-- USED in validation docs for .NET 10 -->
+
 ## Validation in .NET 10
 
 In .NET 10, the unified validation APIs have been moved to the `Microsoft.Extensions.Validation` NuGet package. This change makes the validation APIs available outside of ASP.NET Core HTTP scenarios.
