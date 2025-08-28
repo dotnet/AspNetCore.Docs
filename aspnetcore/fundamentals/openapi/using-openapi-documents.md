@@ -43,7 +43,7 @@ To automatically launch the app at the Swagger UI URL using the `https` profile 
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_openapiwithscalar)]
 
-Launch the app and navigate to `https://localhost:<port>/scalar/` to view the Scalar UI.
+Launch the app and navigate to `https://localhost:<port>/scalar` to view the Scalar UI.
 
 To automatically launch the app at the Scalar UI URL using the `https` profile of `Properties/launchSettings.json`:
 
