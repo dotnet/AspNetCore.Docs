@@ -696,7 +696,7 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
 
@@ -1331,7 +1331,7 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
 
@@ -1341,7 +1341,7 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 This article explains what model binding is, how it works, and how to customize its behavior.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## What is Model binding
 

@@ -4,7 +4,7 @@ This tutorial shows how to create a .NET [gRPC](xref:grpc/index) client and an A
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 In this tutorial, you:
 

@@ -309,7 +309,7 @@ public void Validate(JsonPatchDocument<T> patch)
 
 ## Get the code
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 To test the sample, run the app and send HTTP requests with the following settings:
 

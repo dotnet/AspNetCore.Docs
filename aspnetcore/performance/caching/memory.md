@@ -177,7 +177,7 @@ Use a [background service](xref:fundamentals/host/hosted-services) such as <xref
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/memory/samples/) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/memory/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>
 * <xref:performance/caching/response>
@@ -189,7 +189,7 @@ Use a [background service](xref:fundamentals/host/hosted-services) such as <xref
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/memory/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/memory/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Caching basics
 

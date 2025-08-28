@@ -14,7 +14,7 @@ uid: tutorials/get-started-with-nswag
 
 By [Rico Suter](https://rsuter.com) and [Dave Brock](https://twitter.com/daveabrock)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/7.x/NSwagSample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/7.x/NSwagSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 NSwag offers the following capabilities:
 
@@ -233,7 +233,7 @@ Run the application and navigate to `http://localhost:<port>/redoc` to view the 
 
 By [Rico Suter](https://rsuter.com) and [Dave Brock](https://twitter.com/daveabrock)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 NSwag offers the following capabilities:
 

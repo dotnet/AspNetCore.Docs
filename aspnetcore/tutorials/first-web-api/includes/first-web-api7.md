@@ -512,7 +512,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 ## Additional resources
 
-[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
+[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:fundamentals/index#how-to-download-a-sample).
 
 For more information, see the following resources:
 

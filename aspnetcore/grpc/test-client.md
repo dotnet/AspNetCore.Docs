@@ -20,7 +20,7 @@ Testing is an important aspect of building stable and maintainable software. Par
 
 To demonstrate client app tests, review the following type in the sample app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 The `Worker` is a [BackgroundService](xref:Microsoft.Extensions.Hosting.BackgroundService) that makes calls to a gRPC server.
 

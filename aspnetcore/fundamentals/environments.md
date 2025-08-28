@@ -295,7 +295,7 @@ The highlighted code checks the current environment while building the request p
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:fundamentals/startup>
 * <xref:fundamentals/configuration/index>
 * <xref:blazor/fundamentals/environments>
@@ -593,7 +593,7 @@ Use the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExte
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:fundamentals/startup>
 * <xref:fundamentals/configuration/index>
 * <xref:blazor/fundamentals/environments>
