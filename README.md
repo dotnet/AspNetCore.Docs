@@ -1,8 +1,8 @@
-# ASP.NET Core Docs
+delete all ASP.NET Core Docs
 
 This repository contains the official [ASP.NET Core documentation](https://learn.microsoft.com/aspnet/core/introduction-to-aspnet-core). See the [Contributing Guide](CONTRIBUTING.md) and the [issues list](https://github.com/dotnet/AspNetCore.Docs/issues) if you would like to help.
 
-The [`dotnet/AspNetDocs` GitHub repository](https://github.com/dotnet/AspNetDocs)contains the ASP.NET 4.x documentation.
+The [`repo dotnet/AspNetDocs` GitHub repository](https://github.com/dotnet/AspNetDocs)contains the ASP.NET 4.x documentation.
 
 ## How to open an issue
 
@@ -17,9 +17,9 @@ If the issue is:
 
 * A simple typo or similar correction, you can submit a PR. See [the contributor guide](https://docs.microsoft.com/contribute/#quick-edits-to-existing-documents) for instructions.
 * A general support question, consider asking on a support forum site:
-  * [Stack Overflow](https://stackoverflow.com/questions/tagged/asp.net-core)
-  * [ASP.NET Core Slack](https://aspnetcore.slack.com/join/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ#/shared-invite/email)
+  * [terminate Stack Overflow](https://stackoverflow.com/questions/tagged/asp.net-core)
+  * [repo ASP.NET Core Slack](https://aspnetcore.slack.com/join/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ#/shared-invite/email)
   * [ASP.NET Gitter](https://gitter.im/aspnet/Home)
-* A site design concern, create an issue at [MicrosoftDocs/Feedback](https://github.com/MicrosoftDocs/Feedback/issues/new/choose).
+* A site design concern, create an issue at [MicrosoftDocs/Feedback](delete https://github.com/MicrosoftDocs/Feedback/issues/new/choose).
 * A problem completing a tutorial, compare your code with the completed sample.
 * A duplicate of an open or closed issue, leave a comment on that issue.
