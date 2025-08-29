@@ -1,28 +1,28 @@
 ---
-title: Control app behavior across multiple environments in ASP.NET Core apps
+title: ASP.NET Core runtime environments
 author: tdykstra
-description: Learn how to control app behavior across multiple environments in ASP.NET Core apps.
+description: Learn how to set and control app behavior across runtime environments in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/28/2025
+ms.date: 08/29/2025
 uid: fundamentals/environments
 ---
-# Control app behavior across multiple environments in ASP.NET Core apps
+# ASP.NET Core runtime environments
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-ASP.NET Core configures app behavior based on the runtime *environment*, which usually reflects where the app is running. The environment is used by the .NET framework, tooling, and developer code.
+ASP.NET Core configures app behavior based on the runtime *environment*, which usually reflects where the app is running. The app's code execution is tailored to the environment in which the app is running.
 
-An organization app's usually run in the *Development* environment locally on developer's machines with one set of configured behaviors and in the *Production* environment when deployed to a server with a different set of configured behaviors.
+App's usually run in the *Development* environment during local development and testing on a developer's machine with one set of configured behaviors and in the *Production* environment when deployed to a server with a different set of configured behaviors. Any number of additional environments can be used, such as the *Staging* environment provided by the framework for staging an app prior to live deployment or other environments that developers create.
 
-This article describes app runtime environments, how to set the environment, and how the environment controls app behavior.
+This article describes app runtime environments, how to set the environment, and how to use the environment to control app behavior.
 
 For Blazor environments guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/environments>.
 
-## Environment values
+## Environments
 
-Although the environment can be any string value, the following environment values are provided by the framework and are typically used by ASP.NET Core apps:
+Although the environment can be any string value, the following environment values are provided by the framework:
 
 * <xref:Microsoft.Extensions.Hosting.Environments.Development>
 * <xref:Microsoft.Extensions.Hosting.Environments.Staging>
@@ -40,7 +40,7 @@ The last environment setting read by the app determines the app's environment. T
 
 On Windows and macOS, environment variables and values aren't case-sensitive. Linux environment variables and values are case-sensitive by default.
 
-## How the runtime environment is indicated
+## Logging
 
 Output in the command shell of a running app at startup indicates the app's environment. In the following example, the app is running in the Staging environment:
 
@@ -49,9 +49,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Staging
 ```
 
-Within the app, the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> provides general information about the app's hosting environment, and the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName?displayProperty=nameWithType> property indicates the app's current environment.
-
-## How the runtime environment is determined
+## Environment variables that determine the runtime environment
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -66,7 +64,7 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 
 To determine the runtime environment, ASP.NET Core reads from the following environment variables:
 
-1. [DOTNET_ENVIRONMENT](xref:fundamentals/configuration/index#default-host-configuration)
+1. [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
 1. `ASPNETCORE_ENVIRONMENT` when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method is called. The default ASP.NET Core web app templates call `WebApplication.CreateBuilder`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
 
 :::moniker-end
@@ -75,14 +73,14 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 
 To determine the runtime environment, ASP.NET Core reads from the following environment variables:
 
-1. [DOTNET_ENVIRONMENT](xref:fundamentals/configuration/index#default-host-configuration)
+1. [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
 1. `ASPNETCORE_ENVIRONMENT` when <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> is called. The default ASP.NET Core web app templates call `ConfigureWebHostDefaults`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
 
 :::moniker-end
 
-The Production environment is the default environment if the `DOTNET_ENVIRONMENT` and `ASPNETCORE_ENVIRONMENT` environment variables aren't set.
+If the `DOTNET_ENVIRONMENT` and `ASPNETCORE_ENVIRONMENT` environment variables aren't set, the Production environment is the default environment.
 
-## Control code execution during request processing
+## Control code execution by environment
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -136,7 +134,9 @@ The preceding example checks the current environment while building the request 
 
 :::moniker-end
 
-## Control rendered content in Razor Pages pages and MVC views
+Within the app, the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> provides general information about the app's hosting environment, and the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName?displayProperty=nameWithType> property indicates the app's current environment.
+
+## Control rendered content in Razor Pages and MVC
 
 In Razor Pages and MVC apps, the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName?displayProperty=nameWithType> to include or exclude markup in the Tag Helper's element:
 
