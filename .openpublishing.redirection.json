@@ -961,11 +961,6 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/migration/index.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/",
-            "redirect_document_id": false
-        },
-        {
             "source_path": "aspnetcore/migration/proper-to-2x/index.md",
             "redirect_url": "/aspnet/core/migration/fx-to-core/",
             "redirect_document_id": false

@@ -1,5 +1,5 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "language": "en",
   "words": [
     "antiforgery",
@@ -13,6 +13,7 @@
     "blazorserver",
     "blazorwasm",
     "componentized",
+    "Contoso",
     "cryptosystem",
     "cyberattacker",
     "cyberattackers",
@@ -39,10 +40,10 @@
     "rerender",
     "rerendering",
     "rerenders",
-    "riande",
     "routable",
     "Routable",
     "signalr",
+    "tdykstra",
     "typeof",
     "wadepickett",
     "wasm",
@@ -51,6 +52,7 @@
     "webforms",
     "websocket",
     "websockets",
+    "wpickett",
     "wwwroot"
   ],
   "flagWords": [
