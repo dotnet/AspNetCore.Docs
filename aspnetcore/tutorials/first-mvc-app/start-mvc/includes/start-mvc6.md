@@ -12,7 +12,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 > * Work with a database.
 > * Add search and validation.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## Prerequisites
 

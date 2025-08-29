@@ -129,14 +129,14 @@ Usage:
 * How many sessions processed?
 * How long do users keep the session/tab open?
 
+:::moniker-end
+
 ## `Microsoft.AspNetCore.Hosting`
 
 The `Microsoft.AspNetCore.Hosting` metrics report high-level information about HTTP requests received by ASP.NET Core:
 
 * [`http.server.request.duration`](#metric-httpserverrequestduration)
 * [`http.server.active_requests`](#metric-httpserveractive_requests)
-
-:::moniker-end
 
 ### Metric: `http.server.request.duration`
 

@@ -16,7 +16,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 
 **Note:** Orchard Core isn't a Microsoft product. Microsoft provides no support for this feature.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/6.x/POLocalization) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/6.x/POLocalization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## What is a PO file?
 
@@ -232,7 +232,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 
 **Note:** Orchard Core isn't a Microsoft product. Consequently, Microsoft provides no support for this feature.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/5.x/POLocalization) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/5.x/POLocalization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## What is a PO file?
 
@@ -444,7 +444,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 
 **Note:** Orchard Core isn't a Microsoft product. Consequently, Microsoft provides no support for this feature.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/POLocalization) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/POLocalization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## What is a PO file?
 

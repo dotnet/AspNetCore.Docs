@@ -19,7 +19,7 @@ This article provides guidance for:
 
 :::moniker range=">= aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/background-service/samples/6.0) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/background-service/samples/6.0) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 ## Enable SignalR at app startup
 
@@ -83,7 +83,7 @@ During the `IHostedService.StopAsync` method, the `HubConnection` is disposed of
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/background-service/samples/3.x) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/background-service/samples/3.x) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 ## Enable SignalR in startup
 
@@ -146,7 +146,7 @@ During the `IHostedService.StopAsync` method, the `HubConnection` is disposed of
 
 :::moniker range="<= aspnetcore-2.2"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/background-service/samples/2.2) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/background-service/samples/2.2) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 ## Enable SignalR in startup
 

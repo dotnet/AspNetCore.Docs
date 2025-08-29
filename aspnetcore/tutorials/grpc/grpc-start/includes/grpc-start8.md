@@ -260,7 +260,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 ### Next steps
 
-* View or download [the completed sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
+* View or download [the completed sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 * <xref:grpc/index>
 * <xref:grpc/basics>
 * <xref:grpc/migration>

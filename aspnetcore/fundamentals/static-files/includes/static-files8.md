@@ -291,7 +291,7 @@ The following code updates `IWebHostEnvironment.WebRootPath` to a non developmen
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * [Middleware](xref:fundamentals/middleware/index)
 * [Introduction to ASP.NET Core](xref:index)
 

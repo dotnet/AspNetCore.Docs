@@ -535,7 +535,7 @@ When passing an *instance* of a filter into `Add`, instead of its `Type`, the fi
 
 ## Additional resources
 
-* [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:index#how-to-download-a-sample)).
+* [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 * <xref:razor-pages/filter>
 
 :::moniker-end
@@ -558,7 +558,7 @@ This document applies to Razor Pages, API controllers, and controllers with view
 * The component is embedded in a page or view.
 * The page or controller and view uses the filter.
 
-[View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## How filters work
 

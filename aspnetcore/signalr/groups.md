@@ -15,7 +15,7 @@ By [Brennan Conroy](https://github.com/BrennanConroy)
 
 SignalR allows messages to be sent to all connections associated with a specific user and to named groups of connections.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/groups/sample/) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/groups/sample/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 ## Users in SignalR
 

@@ -52,7 +52,7 @@ When creating a PR for an issue:
 - For links to GitHub repositories:
   - Use the full URL path
     - Example: `https://github.com/maraf/blazor-wasm-react/blob/main/blazor/Counter.razor`
-    - Example: `https://github.com/dotnet/blazor-samples/10.0/BlazorWebAssemblyReact/blazor/Counter.razor`
+    - Example: `https://github.com/dotnet/blazor-samples/blob/main/10.0/BlazorWebAssemblyReact/blazor/Counter.razor`
   - For other Git hosting services or non-Microsoft domains, use the full URL
     - Example: `https://gitlab.com/username/repo-name`
 
@@ -135,15 +135,15 @@ When creating a PR for an issue:
 - Use the following language code and indentation standards for markdown code blocks or the `language` attribute of code snippets:
 
   Content of the snippet | Language code | Indentation in spaces
-  :---: | :---: | :---:
-  C# | csharp | 4
-  HTML | html | 4
-  CSS | css | 4
-  JavaScript | javascript | 2 spaces (use 4 spaces for line continuation)
-  XML | xml | 2
-  JSON | json | 2
-  Console | console | 2
-  Text | - | 2
+  :--------------------: | :-----------: | :-------------------:
+  C#                     | csharp        | 4
+  HTML                   | html          | 4
+  CSS                    | css           | 4
+  JavaScript             | javascript    | 2 spaces (use 4 spaces for line continuation)
+  XML                    | xml           | 2
+  JSON                   | json          | 2
+  Console                | console       | 2
+  Text                   | -             | 2
 
 ### ASP.NET Core Specific Guidelines
 - Use the latest supported version for examples unless otherwise specified

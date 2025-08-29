@@ -24,7 +24,7 @@ ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -273,7 +273,7 @@ In this topic, you learn how to use Identity to register, log in, and log out a 
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 <a name="adi"></a>
 

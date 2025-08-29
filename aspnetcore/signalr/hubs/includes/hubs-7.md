@@ -273,7 +273,7 @@ If an exceptional condition must be propagated to the client, use the <xref:Micr
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/signalr/hubs/samples/) [(how to download)](xref:index#how-to-download-a-sample)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/signalr/hubs/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 * <xref:signalr/introduction>
 * <xref:signalr/javascript-client>
 * <xref:signalr/publish-to-azure-web-app>

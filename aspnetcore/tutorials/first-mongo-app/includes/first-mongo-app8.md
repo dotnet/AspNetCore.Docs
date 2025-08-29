@@ -311,7 +311,7 @@ To satisfy the preceding requirements, make the following changes:
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/8.x/BookStoreApi) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/8.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
