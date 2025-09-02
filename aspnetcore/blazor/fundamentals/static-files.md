@@ -5,7 +5,7 @@ description: Learn how to configure and manage static files for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 09/02/2025
 uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
@@ -344,22 +344,6 @@ Changing the value (`Default`) of `<StaticWebAssetProjectMode>` or removing the 
 
 :::moniker-end
 
-## Static files in non-`Development` environments
-
-*This section applies to server-side static files.*
-
-When running an app locally, static web assets are only enabled in the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment. To enable static files for environments other than <xref:Microsoft.Extensions.Hosting.Environments.Development> during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> in the `Program` file.
-
-> [!WARNING]
-> Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> for the ***exact environment*** to prevent activating the feature in production, as it serves files from separate locations on disk *other than from the project* if called in a production environment. The example in this section checks for the <xref:Microsoft.Extensions.Hosting.Environments.Staging> environment by calling <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsStaging%2A>.
-
-```csharp
-if (builder.Environment.IsStaging())
-{
-    builder.WebHost.UseStaticWebAssets();
-}
-```
-
 :::moniker range=">= aspnetcore-8.0"
 
 ## Prefix for Blazor WebAssembly assets
@@ -462,40 +446,11 @@ In the preceding examples, the `{TFM}` placeholder is the [Target Framework Moni
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 ## File mappings and static file options
 
 *This section applies to server-side static files.*
-
-:::moniker range=">= aspnetcore-8.0"
-
-To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type. The namespace for the following API is <xref:Microsoft.AspNetCore.StaticFiles>.
-
-* Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in the `Program` file using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:
-
-  ```csharp
-  var provider = new FileExtensionContentTypeProvider();
-  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
-
-  builder.Services.Configure<StaticFileOptions>(options =>
-  {
-      options.ContentTypeProvider = provider;
-  });
-
-  app.UseStaticFiles();
-  ```
-
-* Pass the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> directly to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the `Program` file:
-
-  ```csharp
-  var provider = new FileExtensionContentTypeProvider();
-  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
-
-  app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
-  ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
 
 To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.
 
