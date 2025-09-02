@@ -238,7 +238,7 @@ The following features covered in this article are supported with <xref:Microsof
 * [Directory browsing](#directory-browsing)
 * [Serve default documents](#serve-default-documents)
 * [Combine static files, default documents, and directory browsing](#combine-static-files-default-documents-and-directory-browsing)
-* [Mapping between file extensions and MIME types](#mapping-between-file-extensions-and-mime-types)
+* [Map file extensions to MIME types](#map-file-extensions-to-mime-types)
 * [Serving non-standard content types](#non-standard-content-types)
 
 :::moniker-end
