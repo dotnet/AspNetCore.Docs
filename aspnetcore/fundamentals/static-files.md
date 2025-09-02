@@ -25,9 +25,7 @@ For Blazor static files guidance, which adds to or supersedes the guidance in th
 * An asset is served once until the file changes or the browser clears its cache. The [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers are set.
 * The browser is prevented from using stale assets after an app is updated. The [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header is set.
 * The appropriate [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) are set on the response.
-* [Caching Middleware](xref:performance/caching/middleware) is used.
 * [Compressed](/aspnet/core/performance/response-compression) versions of the assets are served when possible. This optimization doesn't include minification.
-* A [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) can be used to serve the assets closer to the user.
 * Assets are [fingerprinted](https://wikipedia.org/wiki/Fingerprint_(computing)) to prevent reuse of old files.
 
 <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>:
@@ -157,11 +155,11 @@ To avoid running the entire middleware pipeline after a static asset is served, 
 app.MapStaticAssets().ShortCircuit();
 ```
 
-## Control static file caching
+## Control static file caching during development
 
-During development, the framework overrides cache headers to prevent browsers from caching static files. This helps ensure that the latest version of files are used when files change, avoiding issues with stale content. In production, the correct cache headers are set, allowing browsers to cache static assets as expected.
+When running in the Development environment, the framework overrides cache headers to prevent browsers from caching static files. This helps ensure that the latest version of files are used when files change, avoiding issues with stale content. In production, the correct cache headers are set, allowing browsers to cache static assets as expected.
 
-To disable this behavior, set `EnableStaticAssetsDevelopmentCaching` to `false` in the Development environment's app setting file (`appsettings.Development.json`).
+To disable this behavior, set `EnableStaticAssetsDevelopmentCaching` to `true` in the Development environment's app setting file (`appsettings.Development.json`).
 
 :::moniker-end
 
