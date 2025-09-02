@@ -114,7 +114,7 @@ Because a lot of `HybridCache` usage will be adapted from existing `IDistributed
 * If the types being cached are immutable.
 * If the code doesn't modify them.
 
-In such cases, inform `HybridCache` that it's safe to reuse instances by:
+In such cases, inform `HybridCache` that it's safe to reuse instances by making both of the following changes:
 
 * Marking the type as `sealed`. The `sealed` keyword in C# means that the class can't be inherited.
 * Applying the `[ImmutableObject(true)]` attribute to it. The `[ImmutableObject(true)]` attribute indicates that the object's state can't be changed after it's created.
