@@ -1,18 +1,4 @@
----
-title: Handle errors in ASP.NET Core
-author: tdykstra
-description: Discover how to handle errors in ASP.NET Core apps.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
-ms.custom: mvc
-ms.date: 01/15/2025
-uid: fundamentals/error-handling
----
-# Handle errors in ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:fundamentals/error-handling-api>.
 
@@ -20,7 +6,7 @@ For Blazor error handling guidance, which adds to or supersedes the guidance in 
 
 ## Developer exception page
 
-[!INCLUDE [](../includes/developer-exception-page.md)]
+[!INCLUDE [](../../includes/developer-exception-page.md)]
 
 ## Exception handler page
 
@@ -62,40 +48,6 @@ Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to acce
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
 
-### Configure exception handler diagnostics
-
-The exception handler middleware can be configured to control when exception diagnostics (logs, metrics, and telemetry) are recorded. Use `ExceptionHandlerOptions.SuppressDiagnosticsCallback` to specify a function that determines whether diagnostics should be suppressed for a given exception.
-
-This is particularly useful when working with `IExceptionHandler` implementations. In .NET 10 and later, the default behavior is to suppress diagnostics when `IExceptionHandler.TryHandleAsync` returns `true`, indicating the exception has been handled.
-
-The following example shows how to configure custom logic for suppressing diagnostics:
-
-```csharp
-app.UseExceptionHandler(new ExceptionHandlerOptions
-{
-    ExceptionHandlingPath = "/Error",
-    SuppressDiagnosticsCallback = context =>
-    {
-        // Don't suppress diagnostics for critical exceptions
-        if (context.Exception is OutOfMemoryException or StackOverflowException)
-            return false;
-            
-        // Suppress diagnostics for handled exceptions from our custom handlers
-        return context.Exception.Data.Contains("HandledByCustomHandler");
-    }
-});
-```
-
-To restore the .NET 9 behavior where all exceptions record diagnostics regardless of whether they're handled by `IExceptionHandler`:
-
-```csharp
-app.UseExceptionHandler(new ExceptionHandlerOptions
-{
-    ExceptionHandlingPath = "/Error",
-    SuppressDiagnosticsCallback = context => false
-});
-```
-
 ## Exception handler lambda
 
 An alternative to a [custom exception handler page](#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. Using a lambda allows access to the error before returning the response.
@@ -136,36 +88,6 @@ In other environments:
 
 * The `CustomExceptionHandler` is called first to handle an exception.
 * After logging the exception, the `TryHandleAsync` method returns `false`, so the [`/Error` page](#exception-handler-page) is shown.
-
-### Configure suppressing exception handler diagnostics
-
-By default in .NET 10 and later, when `IExceptionHandler.TryHandleAsync` returns `true`, the exception handling middleware no longer records exception diagnostics. This change was made based on user feedback that logging handled exceptions at the error level was often undesirable.
-
-The `ExceptionHandlerOptions.SuppressDiagnosticsCallback` setting provides fine-grained control over when exception diagnostics are suppressed. The callback is passed context about the request and exception, allowing you to add logic that determines whether the middleware should write exception logs and other telemetry.
-
-This setting is useful when you know an exception is transient or has been handled by the exception handler middleware, and you don't want error logs written to your observability platform.
-
-To revert to the previous behavior where handled exceptions always record diagnostics, configure `SuppressDiagnosticsCallback` to return `false`:
-
-```csharp
-app.UseExceptionHandler(new ExceptionHandlerOptions
-{
-    SuppressDiagnosticsCallback = context => false
-});
-```
-
-You can also implement more sophisticated logic based on the exception type or other context:
-
-```csharp
-app.UseExceptionHandler(new ExceptionHandlerOptions
-{
-    SuppressDiagnosticsCallback = context => 
-    {
-        // Suppress diagnostics for transient exceptions but record others
-        return context.Exception is TimeoutException or TaskCanceledException;
-    }
-});
-```
 
 <!-- links to this in other docs require sestatuscodepages -->
 <a name="sestatuscodepages"></a>
@@ -407,10 +329,5 @@ An alternative approach to generate problem details is to use the third-party Nu
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * <xref:fundamentals/error-handling-api>
-* [Breaking change: Exception diagnostics are suppressed when `IExceptionHandler.TryHandleAsync` returns true](https://github.com/aspnet/Announcements/issues/524)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling9.md)]
-[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling8.md)]
-[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling3-7.md)]
