@@ -422,7 +422,6 @@ You can also implement validation within your custom binding logic:
 
 [View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
 
-
 ### Configure JSON deserialization options for body binding
 
 The body binding source uses <xref:System.Text.Json?displayProperty=fullName> for deserialization. It is ***not*** possible to change this default, but JSON serialization and deserialization options can be configured.
