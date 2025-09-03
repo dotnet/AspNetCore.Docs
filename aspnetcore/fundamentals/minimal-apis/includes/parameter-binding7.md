@@ -322,6 +322,33 @@ The rules for determining a binding source from a parameter:
 1. If the parameter type is a service provided by dependency injection, it uses that service as the source.
 1. The parameter is from the body.
 
+### Custom parameter binding with `IBindableFromHttpContext`
+
+ASP.NET Core provides support for custom parameter binding in Minimal APIs using the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface. This interface, introduced with C# 11's static abstract members, allows you to create types that can be bound from an HTTP context directly in route handler parameters.
+
+```csharp
+public interface IBindableFromHttpContext<TSelf>
+    where TSelf : class, IBindableFromHttpContext<TSelf>
+{
+    static abstract ValueTask<TSelf?> BindAsync(HttpContext context, ParameterInfo parameter);
+}
+```
+
+By implementing the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601>, you can create custom types that handle their own binding logic from the HttpContext. When a route handler includes a parameter of this type, the framework automatically calls the static BindAsync method to create the instance:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/CustomBindingExample/Program.cs" id="snippet_IBindableFromHttpContext":::
+
+The following is an example implementation of a custom parameter that binds from an HTTP header:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/CustomBindingExample/CustomBoundParameter.cs":::
+
+You can also implement validation within your custom binding logic:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/CustomBindingExample/Program.cs" id="snippet_Validation":::
+
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/7.0-samples/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
+
+
 ### Configure JSON deserialization options for body binding
 
 The body binding source uses <xref:System.Text.Json?displayProperty=fullName> for deserialization. It is ***not*** possible to change this default, but JSON serialization and deserialization options can be configured.

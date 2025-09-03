@@ -4,7 +4,7 @@ author: brunolins16
 description: Learn how to create responses for minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 08/26/2025
+ms.date: 08/22/2025
 uid: fundamentals/minimal-apis/responses
 ai-usage: ai-assisted
 ---
@@ -267,32 +267,6 @@ The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Ht
 An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The following code changes the `PopulateMetadata` method to use `ProducesAttribute`.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_11":::
-
-## Custom parameter binding with `IBindableFromHttpContext`
-
-ASP.NET Core provides support for custom parameter binding in Minimal APIs using the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface. This interface, introduced with C# 11's static abstract members, allows you to create types that can be bound from an HTTP context directly in route handler parameters.
-
-```csharp
-public interface IBindableFromHttpContext<TSelf>
-    where TSelf : class, IBindableFromHttpContext<TSelf>
-{
-    static abstract ValueTask<TSelf?> BindAsync(HttpContext context, ParameterInfo parameter);
-}
-```
-
-By implementing the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601>, you can create custom types that handle their own binding logic from the HttpContext. When a route handler includes a parameter of this type, the framework automatically calls the static BindAsync method to create the instance:
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/CustomBindingExample/Program.cs" id="snippet_IBindableFromHttpContext":::
-
-The following is an example implementation of a custom parameter that binds from an HTTP header:
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/CustomBindingExample/CustomBoundParameters.cs":::
-
-You can also implement validation within your custom binding logic:
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/CustomBindingExample/Program.cs" id="snippet_Validation":::
-
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Configure JSON serialization options
 
