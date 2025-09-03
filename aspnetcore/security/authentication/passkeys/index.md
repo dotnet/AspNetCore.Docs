@@ -162,15 +162,7 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 });
 ```
 
-<!-- UPDATE 10.0 - For now, we'll point to the API. At GA, 
-                   point this to the API docs and drop the 
-                   ref source links NOTE ...
-
 For a complete list of configuration options, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions%2A>.
-
--->
-
-For a complete list of configuration options during the .NET 10 preview release period, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions>.
 
 > [!NOTE]
 > The browser defaults mentioned in the API documentation were valid as of August, 2025. See the [W3C WebAuthn specification](https://www.w3.org/TR/webauthn-3/) for the most up-to-date defaults.
