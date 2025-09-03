@@ -14,9 +14,9 @@ uid: fundamentals/environments
 
 ASP.NET Core configures app behavior based on the runtime *environment*, which usually reflects where the app is running.
 
-App's usually run in the *Development* environment during local development and testing on a developer's machine with one set of configured behaviors and in the *Production* environment when deployed to a server with a different set of configured behaviors. Any number of additional environments can be used, such as the *Staging* environment provided by the framework for staging an app prior to live deployment or other environments that developers create.
+Apps usually run in the *Development* environment during local development and testing on a developer's machine with one set of configured behaviors. In contrast, they run in the *Production* environment when deployed to a server with a different set of configured behaviors. Any number of additional environments can be used, such as the *Staging* environment provided by the framework for staging an app prior to live deployment or other environments that developers create.
 
-This article describes app runtime environments, how to use the environment to control app behavior, how to set the environment.
+This article describes app runtime environments, how to use the environment to control app behavior, and how to set the environment.
 
 For Blazor environments guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/environments>.
 
@@ -231,9 +231,9 @@ Set the app's environment using any of the approaches in this section.
 
 #### Set environment variable for a process
 
-To set the `ASPNETCORE_ENVIRONMENT` environment variable for the current session (command shell) when the app is started using [`dotnet run`](/dotnet/core/tools/dotnet-run), use the following commands. First, the environment variable is set. Next, the app is started without a launch profile using the [`--no-launch-profile`](/dotnet/core/tools/dotnet-run#options) option.
+To set the `ASPNETCORE_ENVIRONMENT` environment variable for the current session (command shell) when the app is started using [`dotnet run`](/dotnet/core/tools/dotnet-run), use the following commands. After the environment variable is set, the app is started without a launch profile using the [`--no-launch-profile`](/dotnet/core/tools/dotnet-run#options) option.
 
-Command shell: The following commands are shown separately because not all command shells execute multiple commands when pasted at once. Use the [`set` command](/windows-server/administration/windows-commands/set) to set the environment variable:
+Command shell:
 
 ```dotnetcli
 set ASPNETCORE_ENVIRONMENT=Staging
@@ -243,7 +243,7 @@ set ASPNETCORE_ENVIRONMENT=Staging
 dotnet run --no-launch-profile
 ```
 
-PowerShell: PowerShell is capable of executing multiple commands at once when pasted together at a command prompt.
+PowerShell:
 
 ```powershell
 $Env:ASPNETCORE_ENVIRONMENT = "Staging"
