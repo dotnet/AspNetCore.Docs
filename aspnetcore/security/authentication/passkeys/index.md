@@ -145,7 +145,7 @@ The Blazor Web App template enforces these limits by default.
 
 ## Configure passkey options
 
-ASP.NET Core Identity provides various options to configure passkey behavior through the `IdentityPasskeyOptions` class, which include:
+ASP.NET Core Identity provides various options to configure passkey behavior through the <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> class, which include:
 
 * `AuthenticatorTimeout`: Gets or sets the time that the browser should wait for the authenticator to provide a passkey as a <xref:System.TimeSpan>. This option applies to both creating a new passkey and requesting an existing passkey. This option is treated as a hint to the browser, and the browser may ignore the option. The default value is 5 minutes.
 * `ChallengeSize`: Gets or sets the size of the challenge in bytes sent to the client during attestation and assertion. This option applies to both creating a new passkey and requesting an existing passkey. The default value is 32 bytes.
@@ -170,10 +170,7 @@ For a complete list of configuration options, see <xref:Microsoft.AspNetCore.Ide
 
 -->
 
-For a complete list of configuration options during the .NET 10 preview release period, see the [`IdentityPasskeyOptions` reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IdentityPasskeyOptions.cs).
-
-> [!NOTE]
-> Documentation links to .NET reference source usually load the repository's default branch, which represents the current development for the next preview release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list. For more information, see [How to select a version tag of ASP.NET Core source code (`dotnet/AspNetCore.Docs` #26205)](https://github.com/dotnet/AspNetCore.Docs/discussions/26205).
+For a complete list of configuration options during the .NET 10 preview release period, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions>.
 
 > [!NOTE]
 > The browser defaults mentioned in the API documentation were valid as of August, 2025. See the [W3C WebAuthn specification](https://www.w3.org/TR/webauthn-3/) for the most up-to-date defaults.
@@ -314,7 +311,7 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 });
 ```
 
-The `UserVerificationRequirement` option determines whether the authenticator must verify the user's identity (through biometric or PIN methods), while `ResidentKeyRequirement` indicates whether the credential should be discoverable, allowing authentication without first providing a username. For more information during the .NET 10 preview release period, see the [`IdentityPasskeyOptions` reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IdentityPasskeyOptions.cs).
+The `UserVerificationRequirement` option determines whether the authenticator must verify the user's identity (through biometric or PIN methods), while `ResidentKeyRequirement` indicates whether the credential should be discoverable, allowing authentication without first providing a username. For more information during the .NET 10 preview release period, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions>.
 
 <!-- UPDATE 10.0 - Be sure to swap the last line out for the API doc cross-link 
 
