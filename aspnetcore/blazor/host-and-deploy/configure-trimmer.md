@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Trimmer when bu
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 09/04/2025
 uid: blazor/host-and-deploy/configure-trimmer
 ---
 # Configure the Trimmer for ASP.NET Core Blazor

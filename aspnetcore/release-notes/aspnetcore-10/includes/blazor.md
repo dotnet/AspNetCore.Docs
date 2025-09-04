@@ -708,3 +708,10 @@ In the following example, a hidden input field is created for the form's `Parame
     private void Submit() => submitted = true;
 }
 ```
+
+### Preservation of types used by a published app
+
+We remain committed to our recommendation on using custom types for JS interop, JSON serialization/deserialization, and other operations that rely on [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/). However, using framework types that ordinarily are trimmed when publishing an app remains supported with the following approaches:
+
+* [Preserve the type as a dynamic dependency](xref:blazor/host-and-deploy/configure-trimmer#preserve-the-type-as-a-dynamic-dependency): Supported since .NET 5.
+* [Use a Root Descriptor](xref:blazor/host-and-deploy/configure-trimmer#use-a-root-descriptor): *A new approach for apps targeting .NET 10 or later.*
