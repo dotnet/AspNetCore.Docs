@@ -6,7 +6,7 @@ For Blazor error handling guidance, which adds to or supersedes the guidance in 
 
 ## Developer exception page
 
-[!INCLUDE [](../../includes/developer-exception-page.md)]
+[!INCLUDE [](../../../includes/developer-exception-page.md)]
 
 ## Exception handler page
 
