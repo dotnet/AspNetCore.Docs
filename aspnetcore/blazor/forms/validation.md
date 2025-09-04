@@ -365,6 +365,13 @@ When validation messages are set in the component, they're added to the validato
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-10.0"
+
+> [!NOTE]
+> The approach in this section relies on an MVC controller for validation on the server. Although the approach is supported for all current and future versions of .NET, we plan to improve the approach by adopting [Minimal APIs](xref:fundamentals/minimal-apis) for server-side validation. The work is tracked by [Server validation with a validator component upgrade (`dotnet/AspNetCore.Docs` #36051)](https://github.com/dotnet/AspNetCore.Docs/issues/36051).
+
+:::moniker-end
+
 Server validation is supported in addition to client validation:
 
 * Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
