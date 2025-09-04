@@ -50,7 +50,7 @@ Configure Azure Blob Storage to maintain data protection keys:
 
 * We recommend using Azure Managed Identity and role-based access control (RBAC) to access the key storage blob. ***You don't need to create a key file and upload it to the container of the storage account.*** The framework creates the file for you. To inspect the contents of a key file, use the context menu's **View/edit** command at the end of a key row in the portal.
   
-> ![NOTE]
+> [!NOTE]
 > If you plan to use a blob URI with a shared access signature (SAS) instead of a Managed Identity, use a text editor to create an XML key file on your local machine:
 >
 >  ```xml
