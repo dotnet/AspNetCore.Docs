@@ -587,6 +587,19 @@ In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Component
 
 The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the new validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
 
+Validation support now includes:
+
+* Placing validation attributes on classes and records.
+* The new `[SkipValidation]` attribute to omit selected properties, parameters, or types from validation. When applied to a property or a method parameter, the validator skips that value during validation. When applied to a type, the validator skips all properties and parameters of that type. This can be useful, in particular, when using the same model types in cases that require and don't require validation.
+
+The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component now has the same validation order and short-circuiting behavior as <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. The following rules are applied when validating an instance of type `T`:
+
+1. Member properties of `T` are validated, including recursively validating nested objects.
+1. Type-level attributes of `T` are validated.
+1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
+
+If one of the preceding steps produces a validation error, the remaining steps are skipped.
+
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 
 Now that all Blazor client-side files are fingerprinted and cached by the browser, Blazor's custom caching mechanism and the `BlazorCacheBootResources` MSBuild property have been removed from the framework. If the client-side project's project file contains the MSBuild property, remove the property, as it no longer has any effect:
@@ -711,7 +724,7 @@ In the following example, a hidden input field is created for the form's `Parame
 
 ### Preservation of types used by a published app
 
-We remain committed to our recommendation on using custom types for JS interop, JSON serialization/deserialization, and other operations that rely on [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/). However, using framework types that ordinarily are trimmed when publishing an app remains supported with the following approaches:
+We continue to recommend use of custom types for JS interop, JSON serialization/deserialization, and other operations that rely on [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/). However, using framework types that ordinarily are trimmed when publishing an app remains supported with the following approaches:
 
 * [Preserve the type as a dynamic dependency](xref:blazor/host-and-deploy/configure-trimmer#preserve-the-type-as-a-dynamic-dependency): Supported since .NET 5.
 * [Use a Root Descriptor](xref:blazor/host-and-deploy/configure-trimmer#use-a-root-descriptor): *A new approach for apps targeting .NET 10 or later.*

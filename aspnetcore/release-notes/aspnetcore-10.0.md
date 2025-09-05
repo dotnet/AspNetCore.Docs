@@ -130,6 +130,78 @@ if (RedirectHttpResult.IsLocalUrl(url))
 
 Thank you [@martincostello](https://github.com/martincostello) for this contribution!
 
+### Validation improvements for Blazor and Minimal APIs
+
+Several features and fixes have been added to the new validation API for Minimal APIs and Blazor, introducing feature parity and behavioral compatibility with the existing <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>.
+
+#### Type-level validation attributes
+
+Validation now supports attributes placed on classes and records.
+
+Consider the following attribute to validate a sum limit:
+
+```csharp
+class SumLimitAttribute(int Limit) : ValidationAttribute
+{
+    protected override ValidationResult? IsValid(object? value, ValidationContext _)
+    {
+        if (value is Point point && point.X + point.Y > Limit)
+        {
+            return new ValidationResult("The sum of X and Y is too high");
+        }
+
+        return ValidationResult.Success;
+    }
+}
+```
+
+The attribute can now be placed on a record:
+
+```csharp
+[SumLimit(42)]
+record Point(int X, int Y);
+```
+
+#### Skip validation
+
+Use the new `[SkipValidation]` attribute to omit selected properties, parameters, or types from validation. When applied to a property or a method parameter, the validator skips that value during validation. When applied to a type, the validator skips all properties and parameters of that type.
+
+This can be useful, in particular, when using the same model types in cases that require and don't require validation.
+
+In the following example, validation is skipped for `ContactAddress` by applying the `[SkipValidation]` attribute to its property in the `Order` class, in spite of `Address.Street` normally requiring a value:
+
+```csharp
+class Address
+{
+    [Required]
+    public string Street { get; set; }
+
+    // ...
+}
+
+class Order
+{
+    public Address PaymentAddress { get; set; }
+
+    [SkipValidation]
+    public Address ContactAddress { get; set; }
+
+    // ...
+}
+```
+
+Additionally, properties annotated with the [`[JsonIgnore]` attribute](xref:System.Text.Json.Serialization.JsonIgnoreAttribute) are now also omitted from validation to improve consistency between serialization and validation in the context of JSON models. Note that the `[SkipValidation]` attribute should be preferred in general cases.
+
+#### Backwards-compatible behavior
+
+Type validation logic has been updated to match the validation order and short-circuiting behavior of <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. This means that the following rules are applied when validating an instance of type `T`:
+
+1. Member properties of `T` are validated, including recursively validating nested objects.
+1. Type-level attributes of `T` are validated.
+1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
+
+If one of the preceding steps produces a validation error, the remaining steps are skipped.
+
 ## Breaking changes
 
 Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
