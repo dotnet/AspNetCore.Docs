@@ -1,18 +1,4 @@
----
-title: Handle errors in ASP.NET Core
-author: tdykstra
-description: Discover how to handle errors in ASP.NET Core apps.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
-ms.custom: mvc
-ms.date: 01/15/2025
-uid: fundamentals/error-handling
----
-# Handle errors in ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:fundamentals/error-handling-api>.
 
@@ -20,7 +6,7 @@ For Blazor error handling guidance, which adds to or supersedes the guidance in 
 
 ## Developer exception page
 
-[!INCLUDE [](../includes/developer-exception-page.md)]
+[!INCLUDE [](../../../includes/developer-exception-page.md)]
 
 ## Exception handler page
 
@@ -343,10 +329,5 @@ An alternative approach to generate problem details is to use the third-party Nu
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * <xref:fundamentals/error-handling-api>
-* [Breaking change: Exception diagnostics are suppressed when `IExceptionHandler.TryHandleAsync` returns true](https://github.com/aspnet/Announcements/issues/524)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling9.md)]
-[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling8.md)]
-[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling3-7.md)]

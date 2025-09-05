@@ -316,25 +316,43 @@ app.MapBlazorHub(options =>
 });
 ```
 
-<!-- UPDATE 10.0 The following is scheduled for a fix in .NET 10 -->
+<!-- UPDATE 10.0 - The following is scheduled for a fix in .NET 10.
+                   Tracked by: https://github.com/dotnet/aspnetcore/issues/63520 -->
 
-Configuring the hub used by <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> fails with an `AmbiguousMatchException`:
+Configuring the hub used by <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> fails with an <xref:System.Reflection.AmbiguousMatchException>:
 
 > :::no-loc text="Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints.":::
 
-To workaround the problem for apps targeting .NET 8, give the custom-configured Blazor hub higher precedence using the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithOrder%2A> method:
+To workaround the problem for apps targeting .NET 8/9, take the following approach.
+
+At the top of the `Program` file, add a `using` statement for <xref:Microsoft.AspNetCore.Http.Connections?displayProperty=fullName>:
 
 ```csharp
-app.MapBlazorHub(options =>
-{
-    options.CloseOnAuthenticationExpiration = true;
-}).WithOrder(-1);
+using Microsoft.AspNetCore.Http.Connections;
+```
+
+Where <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> is called, chain the following endpoint convention to the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder>:
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode()
+    .Add(e =>
+    {
+        var metadata = e.Metadata;
+        var dispatcherOptions = metadata.OfType<HttpConnectionDispatcherOptions>().FirstOrDefault();
+
+        if (dispatcherOptions != null)
+        {
+            dispatcherOptions.CloseOnAuthenticationExpiration = true;
+        }
+    });
 ```
 
 For more information, see the following resources:
 
 * [MapBlazorHub configuration in NET8 throws a The request matched multiple endpoints exception (`dotnet/aspnetcore` #51698)](https://github.com/dotnet/aspnetcore/issues/51698#issuecomment-1984340954)
 * [Attempts to map multiple blazor entry points with MapBlazorHub causes Ambiguous Route Error. This worked with net7 (`dotnet/aspnetcore` #52156)](https://github.com/dotnet/aspnetcore/issues/52156#issuecomment-1984503178)
+* [[Blazor] Provide access to the underlying SignalR HttpConnectionDispatcherOptions in AddInteractiveServerRenderMode (`dotnet/aspnetcore` #63520)](https://github.com/dotnet/aspnetcore/issues/63520)
 
 :::moniker-end
 
