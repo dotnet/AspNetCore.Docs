@@ -48,12 +48,15 @@ For a complete list of validation attributes, see the <xref:System.ComponentMode
 
 <!-- REVIEWER NOTE: I'd like to go with the preceding remark and cross-link
                     to the API doc because versioning for individual attributes
-                    is going to be painful over time. I'll hold the following here
-                    for a sec to see if everyone agrees on review.
+                    is painful. The INCLDUES versioning is terrible, leading to
+                    broken links all over the place and buggy content because
+                    INCLUDES files are routienely ignored for article bug fixes.
+                    I'll hold the following here for a sec to see if everyone 
+                    agrees on review.
 
 Here are some of the built-in validation attributes:
 
-:::moniker range=">= aspnetcore-10.0"
+REVIEWER NOTE: The following will go into this markdown file (for 10.0) ...
 
 UPDATE 10.0 - Add API link for the [SkipValidation] attibute
 
@@ -70,9 +73,7 @@ UPDATE 10.0 - Add API link for the [SkipValidation] attibute
 * [`[Url]`](xref:System.ComponentModel.DataAnnotations.UrlAttribute): Validates that the property has a URL format.
 * [`[Remote]`](xref:Microsoft.AspNetCore.Mvc.RemoteAttribute): Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-10.0"
+REVIEWER NOTE: The following will go into a (dreaded) INCLUDES file for 7.0 to 9.0 releases ...
 
 * [`[ValidateNever]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNeverAttribute): Indicates that a property or parameter should be excluded from validation.
 * [`[CreditCard]`](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js).
@@ -85,8 +86,6 @@ UPDATE 10.0 - Add API link for the [SkipValidation] attibute
 * [`[StringLength]`](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute): Validates that a string property value doesn't exceed a specified length limit.
 * [`[Url]`](xref:System.ComponentModel.DataAnnotations.UrlAttribute): Validates that the property has a URL format.
 * [`[Remote]`](xref:Microsoft.AspNetCore.Mvc.RemoteAttribute): Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
-
-:::moniker-end
 
 A complete list of validation attributes can be found in the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace.
 
