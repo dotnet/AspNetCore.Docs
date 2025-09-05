@@ -46,11 +46,84 @@ Trimming may have detrimental effects for a published app leading to runtime err
 
 The IL Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
 
-To address lost types, consider the following approaches.
+Consider the following example that performs JSON deserialization into a <xref:System.Tuple%602> collection (`List<Tuple<string, string>>`).
+
+`TrimExample.razor`:
+
+```razor
+@page "/trim-example"
+@using System.Diagnostics.CodeAnalysis
+@using System.Text.Json
+
+<h1>Trim Example</h1>
+
+<ul>
+    @foreach (var item in @items)
+    {
+        <li>@item.Item1, @item.Item2</li>
+    }
+</ul>
+
+@code {
+    private List<Tuple<string, string>> items = [];
+
+    [StringSyntax(StringSyntaxAttribute.Json)]
+    private const string data =
+        """[{"item1":"1:T1","item2":"1:T2"},{"item1":"2:T1","item2":"2:T2"}]""";
+
+    protected override void OnInitialized()
+    {
+        JsonSerializerOptions options = new() { PropertyNameCaseInsensitive = true };
+
+        items = JsonSerializer
+            .Deserialize<List<Tuple<string, string>>>(data, options)!;
+    }
+}
+```
+
+The preceding component executes normally when the app is run locally and produces the following rendered list:
+
+> • 1:T1, 1:T2
+> • 2:T2, 2:T2
+
+When the app is published, <xref:System.Tuple%602> is trimmed from the app, even in spite of setting the `<PublishTrimmed>` property to `false` in the project file. Accessing the component throws the following exception:
+
+> :::no-loc text="crit: Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]":::
+> :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::
+> :::no-loc text="System.NotSupportedException: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::
+
+To address lost types, consider adopting one of the following approaches.
 
 ### Custom types
 
 Custom types aren't trimmed by Blazor when an app is published, so we recommend using custom types for JS interop, JSON serialization/deserialization, and other operations that rely on reflection.
+
+The following modifications create a StringKeyValuePair type for use by the component.
+
+`StringTuple.cs`:
+
+```csharp
+[method: SetsRequiredMembers]
+public sealed class StringTuple(string item1, string item2)
+{
+    public required string Item1 { get; init; } = item1;
+    public required string Item2 { get; init; } = item2;
+}
+```
+
+The component is modified to use the StringKeyValuePair type:
+
+```diff
+- private List<Tuple<string, string>> items = [];
++ private List<StringTuple> items = [];
+```
+
+```diff
+- items = JsonSerializer.Deserialize<List<Tuple<string, string>>>(data, options)!;
++ items = JsonSerializer.Deserialize<List<StringTuple>>(data, options)!;
+```
+
+Because custom types are never trimmed by Blazor when an app is published, the component works as designed after the app is published.
 
 If you prefer to use framework types in spite of our recommendation, use either of the following approaches:
 
@@ -67,16 +140,12 @@ If not already present, add an `@using` directive for <xref:System.Diagnostics.C
 @using System.Diagnostics.CodeAnalysis
 ```
 
-<!-- REVIEW NOTE: We need a different type here than KeyValuePair that will continue to be trimmed away in 
-                  10.0 or later. What would be good as a replacement? Whatever you pick, I'll also 
-                  update the Root Descriptor section to use it.
--->
-
-Add a [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to preserve the <xref:System.Collections.Generic.KeyValuePair>:
+Add a [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to preserve the <xref:System.Tuple%602>:
 
 ```diff
-+ [DynamicDependency(DynamicallyAccessedMemberTypes.PublicConstructors, typeof(KeyValuePair<string, string>))]
-private List<KeyValuePair<string, string>> items = [];
++ [DynamicDependency(DynamicallyAccessedMemberTypes.PublicConstructors, 
++     typeof(Tuple<string, string>))]
+private List<Tuple<string, string>> items = [];
 ```
 
 :::moniker range=">= aspnetcore-10.0"
@@ -86,21 +155,18 @@ private List<KeyValuePair<string, string>> items = [];
 <!-- REVIEW NOTE: Per https://github.com/dotnet/aspnetcore/issues/52947#issuecomment-3165135697, 
                   we have coverage for the ILLink file. We also have [DynamicDependency] covered.
                   
-                  However, we don't have coverage on 'rd.xml'. Is that file something we need to cover here?
+                  However, we don't have coverage on 'rd.xml', and IDK what that even is. Is that 
+                  file something we need to cover here?
 -->
 
 A [Root Descriptor](/dotnet/core/deploying/trimming/trimming-options#root-descriptors) can preserve the type.
 
 Add an `ILLink.Descriptors.xml` file to the root of the app&dagger; with the type:
 
-<!-- NOTE TO SELF: Also update the KeyValuePair here. -->
-
 ```xml
 <linker>
-  <assembly fullname="System.Runtime">
-    <type fullname="System.Collections.Generic.KeyValuePair`2">
-      <method signature="System.Void .ctor(TKey,TValue)" />
-    </type>
+  <assembly fullname="System.Private.CoreLib">
+    <type fullname="System.Tuple`2" preserve="all" />
   </assembly>
 </linker>
 ```
