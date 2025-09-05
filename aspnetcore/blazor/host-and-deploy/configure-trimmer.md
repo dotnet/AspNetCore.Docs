@@ -98,7 +98,7 @@ To address lost types, consider adopting one of the following approaches.
 
 Custom types aren't trimmed by Blazor when an app is published, so we recommend using custom types for JS interop, JSON serialization/deserialization, and other operations that rely on reflection.
 
-The following modifications create a StringKeyValuePair type for use by the component.
+The following modifications create a `StringTuple` type for use by the component.
 
 `StringTuple.cs`:
 
@@ -111,7 +111,7 @@ public sealed class StringTuple(string item1, string item2)
 }
 ```
 
-The component is modified to use the StringKeyValuePair type:
+The component is modified to use the `StringTuple` type:
 
 ```diff
 - private List<Tuple<string, string>> items = [];
@@ -151,13 +151,6 @@ private List<Tuple<string, string>> items = [];
 :::moniker range=">= aspnetcore-10.0"
 
 ### Use a Root Descriptor
-
-<!-- REVIEW NOTE: Per https://github.com/dotnet/aspnetcore/issues/52947#issuecomment-3165135697, 
-                  we have coverage for the ILLink file. We also have [DynamicDependency] covered.
-                  
-                  However, we don't have coverage on 'rd.xml', and IDK what that even is. Is that 
-                  file something we need to cover here?
--->
 
 A [Root Descriptor](/dotnet/core/deploying/trimming/trimming-options#root-descriptors) can preserve the type.
 
