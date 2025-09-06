@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/03/2025
+ms.date: 09/04/2025
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
