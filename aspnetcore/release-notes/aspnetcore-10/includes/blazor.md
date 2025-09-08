@@ -728,3 +728,37 @@ We continue to recommend use of custom types for JS interop, JSON serialization/
 
 * [Preserve the type as a dynamic dependency](xref:blazor/host-and-deploy/configure-trimmer#preserve-the-type-as-a-dynamic-dependency): Supported since .NET 5.
 * [Use a Root Descriptor](xref:blazor/host-and-deploy/configure-trimmer#use-a-root-descriptor): *A new approach for apps targeting .NET 10 or later.*
+
+### Persistent component state support for enhanced navigation
+
+Blazor now supports handling persistent component state during [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
+
+By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events occur to the same page after the component is loaded.
+
+If the data is read-only and doesn't change frequently, you can opt-in to allow updates during enhanced navigation by setting `AllowUpdates = true` on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). This is useful for scenarios such as displaying cached data that's expensive to fetch but doesn't change often. The following example demonstrates the use of `AllowUpdates` for weather forecast data:
+
+```csharp
+[PersistentState(AllowUpdates = true)]
+public WeatherForecast[]? Forecasts { get; set; }
+
+protected override async Task OnInitializedAsync()
+{
+    Forecasts ??= await ForecastService.GetForecastAsync();
+}
+```
+
+To skip restoring state during prerendering, set `RestoreBehavior` to `SkipInitialValue`:
+
+```csharp
+[PersistentState(RestoreBehavior = RestoreBehavior.SkipInitialValue)]
+public string NoPrerenderedData { get; set; }
+```
+
+To skip restoring state during reconnection, set `RestoreBehavior` to `SkipLastSnapshot`. This can be useful if you want to ensure fresh data after reconnection:
+
+```csharp
+[PersistentState(RestoreBehavior = RestoreBehavior.SkipLastSnapshot)]
+public int CounterNotRestoredOnReconnect { get; set; }
+```
+
+Call `PersistentComponentState.RegisterOnRestoring` to register a callback for imperatively controlling how state is restored, similar to how <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> provides full control of how state is persisted.
