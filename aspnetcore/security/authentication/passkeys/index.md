@@ -186,7 +186,7 @@ For a complete list of configuration options during the .NET 10 preview release 
 
 ## Custom attestation statement validation
 
-By default, ASP.NET Core Identity doesn't validate attestation statements. This is suitable for most consumer authentication scenarios. If your app requires verification of authenticator properties (for example, in enterprise environments), you can implement custom attestation validation:
+By default, ASP.NET Core Identity doesn't validate attestation statements. This is suitable for most consumer authentication scenarios. If your app requires verification of authenticator properties or if you want to disallow specific authenticators from being used, for example, in enterprise environments that require a higher level of security, you can implement custom attestation validation:
 
 ```csharp
 builder.Services.Configure<IdentityPasskeyOptions>(options =>
