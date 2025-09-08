@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to implement passkeys authentication in ASP.NET Core Blazor Web Apps.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 8/27/2025
+ms.date: 09/08/2025
 uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---
@@ -277,7 +277,7 @@ After a passkey is registered:
 1. Select **Log in with a passkey**.
 4. Follow the browser's prompts to authenticate with your passkey.
 1. Navigate to `Account/Manage/Passkeys` to add, rename, or delete passkeys.
-1. If the passkey supports autofill, test the autofill feature by selecting the email input field when you have saved passkeys.
+1. If the passkey supports passkey autofill (conditional UI) for login, test the passkey autofill feature by selecting the email input field when you have saved passkeys.
 
 ## Additional resources
 

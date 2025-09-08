@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 08/27/2025
+ms.date: 09/08/2025
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
@@ -85,7 +85,7 @@ Two fundamental processes underpin passkey operations: attestation and assertion
 
 * [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 * A modern web browser that supports WebAuthn.
-* A device with a platform authenticator (such as Windows Hello or Apple secure enclave) or a security key.
+* A device with a platform authenticator, such as Windows Hello or Apple secure enclave, or a security key.
 
 ## Security considerations
 
@@ -107,7 +107,7 @@ For example:
 * If registered on `contoso.com`, it also works on `*.contoso.com`.
 * The browser enforces that passkeys can only be used on the domain (and subdomains) where they were registered.
 
-**Requirement**: Apps requiring strict domain control should explicitly set `ServerDomain` rather than relying on the host header. Don't serve untrusted content on any subdomain within the `ServerDomain` scope. If you can't guarantee this, implement custom origin validation to restrict passkey usage to specific origins.
+**Requirement**: Apps requiring strict domain control should explicitly set `ServerDomain` rather than relying on the host header. Don't serve untrusted content on any subdomain within the `ServerDomain` scope. If you can't guarantee this, implement [custom origin validation](https://www.w3.org/TR/webauthn-3/#sctn-validating-origin) to restrict passkey usage to specific origins.
 
 ### HTTPS requirement
 
@@ -132,7 +132,10 @@ For applications implementing passkey-only authentication, consider:
 
 When an authenticator model is discovered to have security vulnerabilities, you may need to revoke affected credentials. The implementation stores the complete attestation object with each credential, including the Authenticator Attestation GUID (AAGUID), which is a 128-bit identifier indicating the key type.
 
-**Implementation**: Extract AAGUIDs from stored attestation objects, compare against known-compromised models, and revoke affected credentials. AAGUID reliability depends on whether your app validates attestation statements.
+**Implementation**: Extract AAGUIDs from stored attestation objects, compare against known-compromised models, and revoke affected credentials. AAGUID reliability depends on whether your app validates attestation statements. To hook in custom attestation statement validation logic, see [Custom attestation statement validation](#custom-attestation-statement-validation). Third-party libraries are available for attestation validation, such as the [Passkeys - FIDO2 .NET Library (WebAuthn) (`passwordless-lib/fido2-net-lib` GitHub repository)](https://github.com/passwordless-lib/fido2-net-lib)&dagger;.
+
+> [!WARNING]
+> &dagger;Third-party libraries, including `passwordless-lib/fido2-net-lib`, aren't owned or maintained by Microsoft and aren't covered by any Microsoft Support Agreement or license. Use caution when adopting a third-party library, especially for security features. Confirm that the library follows official specifications and adopts security best practices. Keep the library's version current to obtain the latest bug fixes.
 
 ### Resource limits
 
@@ -141,7 +144,12 @@ To prevent database exhaustion attacks, apps should enforce limits on passkey re
 * Maximum number of passkeys per user account.
 * Maximum length for passkey display names.
 
-The Blazor Web App template enforces these limits by default.
+The Blazor Web App template enforces these limits by default at the application level. For examples, see the following Razor components in the Blazor Web App project template:
+
+* [`Components/Account/Pages/Manage/Passkeys.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/Pages/Manage/Passkeys.razor)
+* [`Components/Account/Pages/Manage/RenamePasskey.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/Pages/Manage/RenamePasskey.razor)
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Configure passkey options
 
@@ -254,11 +262,13 @@ From the browser's perspective, this step involves making an HTTP request to the
 ```javascript
 async function createCredential(headers, signal) {
   // Step 2: Request creation options from the server
-  const optionsResponse = await fetchWithErrorHandling('/Account/PasskeyCreationOptions', {
-    method: 'POST',
-    headers,
-    signal,
-  });
+  const optionsResponse = 
+    await fetchWithErrorHandling('/Account/PasskeyCreationOptions', 
+    {
+      method: 'POST',
+      headers,
+      signal,
+    });
   const optionsJson = await optionsResponse.json();
   const options = PublicKeyCredential.parseCreationOptionsFromJSON(optionsJson);
   return await navigator.credentials.create({ publicKey: options, signal });
@@ -326,11 +336,13 @@ With the creation options available, the client-side JavaScript passes the optio
 ```javascript
 async function createCredential(headers, signal) {
   // Step 4: Parse the options and request a new credential from the authenticator
-  const optionsResponse = await fetchWithErrorHandling('/Account/PasskeyCreationOptions', {
-    method: 'POST',
-    headers,
-    signal,
-  });
+  const optionsResponse = 
+    await fetchWithErrorHandling('/Account/PasskeyCreationOptions', 
+    {
+      method: 'POST',
+      headers,
+      signal,
+    });
   const optionsJson = await optionsResponse.json();
   const options = PublicKeyCredential.parseCreationOptionsFromJSON(optionsJson);
   return await navigator.credentials.create({ publicKey: options, signal });
@@ -351,11 +363,13 @@ After the authenticator creates the credential, the browser must send the creden
 async function createCredential(headers, signal) {
   // Step 6: The credential is returned from navigator.credentials.create()
   // and is serialized to JSON for submission to the server
-  const optionsResponse = await fetchWithErrorHandling('/Account/PasskeyCreationOptions', {
-    method: 'POST',
-    headers,
-    signal,
-  });
+  const optionsResponse = 
+    await fetchWithErrorHandling('/Account/PasskeyCreationOptions', 
+    {
+      method: 'POST',
+      headers,
+      signal,
+    });
   const optionsJson = await optionsResponse.json();
   const options = PublicKeyCredential.parseCreationOptionsFromJSON(optionsJson);
   return await navigator.credentials.create({ publicKey: options, signal });
@@ -380,14 +394,16 @@ If all checks pass, the method returns a `PasskeyAttestationResult` containing t
 After the attestation is verified, the app uses `AddOrUpdatePasskeyAsync` to store the passkey in the database:
 
 ```csharp
-var attestationResult = await signInManager.PerformPasskeyAttestationAsync(credentialJson);
+var attestationResult = 
+    await signInManager.PerformPasskeyAttestationAsync(credentialJson);
 
 if (!attestationResult.Succeeded)
 {
     return Results.BadRequest($"Error: {attestationResult.Failure.Message}");
 }
 
-var addResult = await userManager.AddOrUpdatePasskeyAsync(user, attestationResult.Passkey);
+var addResult = 
+    await userManager.AddOrUpdatePasskeyAsync(user, attestationResult.Passkey);
 
 if (!addResult.Succeeded)
 {
@@ -441,11 +457,13 @@ The browser requests authentication options from the server to begin the authent
 ```javascript
 async function requestCredential(email, mediation, headers, signal) {
   // Step 2: Request authentication options from the server
-  const optionsResponse = await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, {
-    method: 'POST',
-    headers,
-    signal,
-  });
+  const optionsResponse = 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
+    {
+      method: 'POST',
+      headers,
+      signal,
+    });
   const optionsJson = await optionsResponse.json();
   const options = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJson);
   return await navigator.credentials.get({ publicKey: options, mediation, signal });
@@ -480,11 +498,13 @@ The client-side JavaScript passes the authentication options to the WebAuthn API
 ```javascript
 async function requestCredential(email, mediation, headers, signal) {
   // Step 4: Parse the options and request an assertion from the authenticator
-  const optionsResponse = await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, {
-    method: 'POST',
-    headers,
-    signal,
-  });
+  const optionsResponse = 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
+    {
+      method: 'POST',
+      headers,
+      signal,
+    });
   const optionsJson = await optionsResponse.json();
   const options = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJson);
   return await navigator.credentials.get({ publicKey: options, mediation, signal });
@@ -506,8 +526,8 @@ async function requestCredential(email, mediation, headers, signal) {
   // Step 6: The assertion is returned from navigator.credentials.get()
   // and is serialized to JSON for submission to the server
   const optionsResponse = 
-    await fetchWithErrorHandling(
-      `/Account/PasskeyRequestOptions?username=${email}`, {
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
+    {
       method: 'POST',
       headers,
       signal,
