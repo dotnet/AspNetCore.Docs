@@ -193,6 +193,17 @@ In some scenarios, it's helpful to generate the OpenAPI document during the app'
 
 To add support for generating OpenAPI documents at build time, install the `Microsoft.Extensions.ApiDescription.Server` package:
 
+## Viewing build-time OpenAPI logs (Terminal Logger)
+
+When `Microsoft.Extensions.ApiDescription.Server` runs the **GetDocument** step during `dotnet build`, its progress messages may not appear with the .NET **Terminal Logger** at default verbosity (the default in .NET 8+).  
+To surface these messages while building:
+
+```powershell
+dotnet build -tlp:v=d   # Detailed terminal logger verbosity
+# or
+dotnet build --tl:off   # Disable terminal logger and use legacy-style logs
+```
+
 ### [Visual Studio](#tab/visual-studio)
 
 Run the following command from the **Package Manager Console**:
