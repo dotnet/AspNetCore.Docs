@@ -85,7 +85,7 @@ Two fundamental processes underpin passkey operations: attestation and assertion
 
 * [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 * A modern web browser that supports WebAuthn.
-* A device with a platform authenticator (such as Windows Hello, Touch ID, or Face ID) or a security key.
+* A device with a platform authenticator (such as Windows Hello or Apple secure enclave) or a security key.
 
 ## Security considerations
 
