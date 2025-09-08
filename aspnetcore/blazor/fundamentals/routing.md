@@ -5,7 +5,7 @@ description: Learn how to manage Blazor app request routing and how to use the N
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 09/08/2025
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing and navigation

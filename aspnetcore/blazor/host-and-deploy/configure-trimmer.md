@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Trimmer when bu
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/04/2025
+ms.date: 09/08/2025
 uid: blazor/host-and-deploy/configure-trimmer
 ---
 # Configure the Trimmer for ASP.NET Core Blazor
@@ -125,14 +125,24 @@ The component is modified to use the `StringTuple` type:
 
 Because custom types are never trimmed by Blazor when an app is published, the component works as designed after the app is published.
 
+:::moniker range=">= aspnetcore-10.0"
+
 If you prefer to use framework types in spite of our recommendation, use either of the following approaches:
 
 * [Preserve the type as a dynamic dependency](#preserve-the-type-as-a-dynamic-dependency)
 * [Use a Root Descriptor](#use-a-root-descriptor)
 
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+If you prefer to use framework types in spite of our recommendation, [preserve the type as a dynamic dependency](#preserve-the-type-as-a-dynamic-dependency).
+
+:::moniker-end
+
 ### Preserve the type as a dynamic dependency
 
-We recommend creating a dynamic dependency to preserve the type with the [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute).
+Create a dynamic dependency to preserve the type with the [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute).
 
 If not already present, add an `@using` directive for <xref:System.Diagnostics.CodeAnalysis?displayProperty=fullName>:
 

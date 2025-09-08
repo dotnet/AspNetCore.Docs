@@ -5,7 +5,7 @@ description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 09/08/2025
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -1664,7 +1664,7 @@ The requirement to declare the model types outside of Razor components (`.razor`
 ## Nested objects, collection types, and complex types
 
 > [!NOTE]
-> For apps targeting .NET 10 or later, we no longer recommend the use of the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package and approach described in this section. We recommend using the built-in validation features of the the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component, which received feature parity and behavioral compatibility updates with <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType> with the release of .NET 10. For more information, see <xref:aspnetcore-10#validation-improvements-for-blazor-and-minimal-apis>.
+> For apps targeting .NET 10 or later, we no longer recommend using the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package and approach described in this section. We recommend using the built-in validation features of the the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component, which received feature parity and behavioral compatibility updates with <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType> at the release of .NET 10. For more information, see <xref:aspnetcore-10#validation-improvements-for-blazor-and-minimal-apis>.
 
 Blazor provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> in .NET 9 or earlier only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.
 
