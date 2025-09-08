@@ -126,3 +126,11 @@ groups:
       title: Manually
     - id: aspire
       title: Aspire
+- id: implementation
+  title: Feature implementation
+  prompt: Choose how the feature will be implemented
+  pivots:
+    - id: new-development
+      title: New app created from the project template
+    - id: existing-app
+      title: Implemented in an existing app

@@ -1734,6 +1734,12 @@ items:
                 uid: security/authentication/identity-enable-qrcodes
               - name: Two-factor authentication with SMS
                 uid: security/authentication/2fa
+              - name: Passkeys (WebAuthn)
+                items:
+                  - name: Overview
+                    uid: security/authentication/passkeys/index
+                  - name: Blazor
+                    uid: security/authentication/passkeys/blazor
               - name: External authentication providers
                 items:
                   - name: Overview
@@ -2076,6 +2082,9 @@ items:
         uid: fundamentals/middleware/extensibility-third-party-container
   - name: Migration and updates
     items:
+      - name: Overview
+        displayName: migrate, migration
+        uid: migration/index
       - name: Version updates
         items:
           - name: 8 to 9
