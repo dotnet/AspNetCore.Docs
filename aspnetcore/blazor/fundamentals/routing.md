@@ -704,6 +704,35 @@ The following component:
 
 For more information on component disposal, see <xref:blazor/components/component-disposal>.
 
+:::moniker range=">= aspnetcore-9.0"
+
+## Navigation Manager redirect behavior during static server-side rendering (static SSR)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+In .NET 9 for a redirect during static server-side rendering (static SSR), <xref:Microsoft.AspNetCore.Components.NavigationManager> relied on throwing an exception that was captured by the framework, which converted the error into a redirect. Code that existed after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> abruptly stopped, which also didn't match the behavior during interactive rendering. When using Visual Studio, the debugger stopped on the exception, which required deselecting the checkbox for **Break when this exception type is user-handled** in the Visual Studio UI to avoid the debugger stopping for future redirects.
+
+In .NET 10 or later, the logic for redirects during static SSR no longer throws an exception, so the behavior for static SSR matches the behavior for interactive render modes. Visual Studio no longer breaks on an exception. To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException> in .NET 10 or later, set the following <xref:System.AppContext> switch in the `Program` file:
+
+```csharp
+AppContext.SetSwitch(
+    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException", 
+    isEnabled: false);
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
+
+For a redirect during static server-side rendering (static SSR), <xref:Microsoft.AspNetCore.Components.NavigationManager> relies on throwing an exception that gets captured by the framework, which converts the error into a redirect. Code that exists after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> isn't called. When using Visual Studio, the debugger breaks on the exception, requiring you to deselect the checkbox for **Break when this exception type is user-handled** in the VS UI to avoid the debugger stopping for future redirects.
+
+> [!NOTE]
+> The preceding behavior was updated at the release of .NET 10 to avoid throwing an exception. To take advantage of the new behavior, upgrade the app to .NET 10 or later.
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-10.0"
 
 ## Not Found responses
