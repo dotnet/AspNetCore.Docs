@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in Blazor apps using Blazor'
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/05/2025
+ms.date: 09/08/2025
 uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
@@ -312,13 +312,47 @@ For components embedded into a page or view of a Razor Pages or MVC app, you mus
 
 ## Interactive routing and prerendering
 
+<!-- UPDATE 10.0 - API cross-links -->
+
 When the `Routes` component doesn't define a render mode, the app is using per-page/component interactivity and navigation. Using per-page/component navigation, internal navigation is handled by [enhanced routing](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) after the app becomes interactive. "Internal navigation" in this context means that the URL destination of the navigation event is a Blazor endpoint inside the app.
 
-<!-- UPDATE 10.0 - Persistent component state across enhanced nav
-                   is arriving for RC1. The remarks in this
-                   section will be updated/versioned on the upcoming 
-                   docs RC1 PR. I'll go ahead and remove the 
-                   PU issue cross-link on PR #35873. -->
+:::moniker range=">= aspnetcore-10.0"
+
+Blazor supports handling persistent component state during [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
+
+By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events to the same page occur after the component is loaded.
+
+If the data is read-only and doesn't change frequently, opt-in to allow updates during enhanced navigation by setting `AllowUpdates = true` on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). This is useful for scenarios such as displaying cached data that's expensive to fetch but doesn't change often. The following example demonstrates the use of `AllowUpdates` for weather forecast data:
+
+```csharp
+[PersistentState(AllowUpdates = true)]
+public WeatherForecast[]? Forecasts { get; set; }
+
+protected override async Task OnInitializedAsync()
+{
+    Forecasts ??= await ForecastService.GetForecastAsync();
+}
+```
+
+To skip restoring state during prerendering, set `RestoreBehavior` to `SkipInitialValue`:
+
+```csharp
+[PersistentState(RestoreBehavior = RestoreBehavior.SkipInitialValue)]
+public string NoPrerenderedData { get; set; }
+```
+
+To skip restoring state during reconnection, set `RestoreBehavior` to `SkipLastSnapshot`. This can be useful to ensure fresh data after reconnection:
+
+```csharp
+[PersistentState(RestoreBehavior = RestoreBehavior.SkipLastSnapshot)]
+public int CounterNotRestoredOnReconnect { get; set; }
+```
+
+Call `PersistentComponentState.RegisterOnRestoring` to register a callback for imperatively controlling how state is restored, similar to how <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> provides full control of how state is persisted.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
 
 The <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service only works on the initial page load and not across internal enhanced page navigation events.
 
@@ -326,4 +360,6 @@ If the app performs a full (non-enhanced) navigation to a page utilizing persist
 
 If an interactive circuit has already been established and an enhanced navigation is performed to a page utilizing persistent component state, the state *isn't made available in the existing circuit for the component to use*. There's no prerendering for the internal page request, and the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware that an enhanced navigation has occurred. There's no mechanism to deliver state updates to components that are already running on an existing circuit. The reason for this is that Blazor only supports passing state from the server to the client at the time the runtime initializes, not after the runtime has started.
 
-Disabling enhanced navigation, which reduces performance but also avoids the problem of loading state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for internal page requests, is covered in <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+Disabling enhanced navigation, which reduces performance but also avoids the problem of loading state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for internal page requests, is covered in <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>. Alternatively, update the app to .NET 10 or later, where Blazor supports handling persistent component state when during enhanced navigation.
+
+:::moniker-end
