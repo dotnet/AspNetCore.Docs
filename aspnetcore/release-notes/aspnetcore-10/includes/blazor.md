@@ -591,8 +591,10 @@ The requirement to declare the model types outside of Razor components (`.razor`
 
 Validation support now includes:
 
-* Placing validation attributes on classes and records.
-* The new `[SkipValidation]` attribute to omit selected properties, parameters, or types from validation. When applied to a property or a method parameter, the validator skips that value during validation. When applied to a type, the validator skips all properties and parameters of that type. This can be useful, in particular, when using the same model types in cases that require and don't require validation.
+* Validation of nested complex objects and collections is now supported.
+  * This includes validation rules defined by property attributes, class attributes, and the <xref:System.ComponentModel.DataAnnotations.IValidatableObject> implementation.
+  * The new `[SkipValidation]` attribute was added to solve a problem that previously didn't exist (nested objects weren't validated in any case).
+* Validation now uses a source generator-based implementation instead of reflection-based implementation for improved performance and compatibility with ahead-of-time (AOT) compilation.
 
 The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component now has the same validation order and short-circuiting behavior as <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. The following rules are applied when validating an instance of type `T`:
 

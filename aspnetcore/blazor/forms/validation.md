@@ -136,13 +136,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 
 :::moniker range=">= aspnetcore-10.0"
 
-The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component has the same validation order and short-circuiting behavior as <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. The following rules are applied when validating an instance of type `T`:
-
-1. Member properties of `T` are validated, including recursively validating nested objects.
-1. Type-level attributes of `T` are validated.
-1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
-
-If one of the preceding steps produces a validation error, the remaining steps are skipped.
+For details on validation behavior, see the [`DataAnnotationsValidator` validation behavior](#dataannotationsvalidator-validation-behavior) section.
 
 :::moniker-end
 
@@ -1657,7 +1651,7 @@ The requirement to declare the model types outside of Razor components (`.razor`
 ## Nested objects, collection types, and complex types
 
 > [!NOTE]
-> For apps targeting .NET 10 or later, we no longer recommend using the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package and approach described in this section. We recommend using the built-in validation features of the the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component, which received feature parity and behavioral compatibility updates with <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType> at the release of .NET 10. For more information, see <xref:aspnetcore-10#validation-improvements-for-blazor-and-minimal-apis>.
+> For apps targeting .NET 10 or later, we no longer recommend using the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package and approach described in this section. We recommend using the built-in validation features of the the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
 
 Blazor provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> in .NET 9 or earlier only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.
 
@@ -1835,3 +1829,17 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
     }
 }
 ```
+
+:::moniker range=">= aspnetcore-10.0"
+
+## `DataAnnotationsValidator` validation behavior
+
+The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component has the same validation order and short-circuiting behavior as <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. The following rules are applied when validating an instance of type `T`:
+
+1. Member properties of `T` are validated, including recursively validating nested objects.
+1. Type-level attributes of `T` are validated.
+1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
+
+If one of the preceding steps produces a validation error, the remaining steps are skipped.
+
+:::moniker-end
