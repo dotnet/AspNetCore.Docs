@@ -4,9 +4,11 @@ Complete migration coverage for Blazor apps is scheduled for September and Octob
 
 For guidance, see <xref:security/authentication/passkeys/blazor?pivots=existing-app>.
 
-### Update the `IdentityRedirectManager` in apps based on the Blazor Web App template with Individual Accounts
+### When navigation errors are disabled in a Blazor Web App with Individual Accounts
 
-The `IdentityRedirectManager` previously threw an <xref:System.InvalidOperationException> in the `RedirectTo` method to ensure the method wasn't called from an interactive render mode and all the redirection methods were marked with the [`[DoesNotReturn]` attribute](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute). For more information, see <xref:aspnetcore-10#navigationmanagernavigateto-no-longer-throws-a-navigationexception>.
+*This section applies to Blazor Web Apps that set the `<BlazorDisableThrowNavigationException>` MSBuild property to `true` in order to avoid throwing an navigation exception during static server-side rendering (static SSR).*
+
+The `IdentityRedirectManager` threw an <xref:System.InvalidOperationException> in the `RedirectTo` method to ensure the method wasn't called from an interactive render mode and all the redirection methods were marked with the [`[DoesNotReturn]` attribute](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute). The .NET 10 or later Blazor Web App project template sets the `<BlazorDisableThrowNavigationException>` MSBuild property to `true` in the app's project file in order to avoid throwing the exception during static SSR. If an app based on the project template from a prior release of .NET is updated to .NET 10 or later and includes the `<BlazorDisableThrowNavigationException>` MSBuild property set to `true`, make the following changes. For more information, see <xref:aspnetcore-10#opt-in-to-avoiding-a-navigationexception-during-static-server-side-rendering-with-navigationmanagernavigateto>.
 
 In `Components/Account/IdentityRedirectManager.cs`:
 
@@ -22,11 +24,3 @@ In `Components/Account/IdentityRedirectManager.cs`:
   ```diff
   - [DoesNotReturn]
   ```
-
-Alternatively, to revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>, set the following <xref:System.AppContext> switch in the `Program` file:
-
-```csharp
-AppContext.SetSwitch(
-    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException", 
-    isEnabled: false);
-```

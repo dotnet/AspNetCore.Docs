@@ -708,28 +708,24 @@ For more information on component disposal, see <xref:blazor/components/componen
 
 ## Navigation Manager redirect behavior during static server-side rendering (static SSR)
 
+For a redirect during static server-side rendering (static SSR), <xref:Microsoft.AspNetCore.Components.NavigationManager> relies on throwing a <xref:Microsoft.AspNetCore.Components.NavigationException> that gets captured by the framework, which converts the error into a redirect. Code that exists after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> isn't called. When using Visual Studio, the debugger breaks on the exception, requiring you to deselect the checkbox for **Break when this exception type is user-handled** in the Visual Studio UI to avoid the debugger stopping for future redirects.
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0"
 
-In .NET 9 for a redirect during static server-side rendering (static SSR), <xref:Microsoft.AspNetCore.Components.NavigationManager> relied on throwing an exception that was captured by the framework, which converted the error into a redirect. Code that existed after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> abruptly stopped, which also didn't match the behavior during interactive rendering. When using Visual Studio, the debugger stopped on the exception, which required deselecting the checkbox for **Break when this exception type is user-handled** in the Visual Studio UI to avoid the debugger stopping for future redirects.
+You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set to `true` in the app's project file to opt-in to no longer throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>. This behavior is enabled by default in the .NET 10 or later Blazor Web App project template:
 
-In .NET 10 or later, the logic for redirects during static SSR no longer throws an exception, so the behavior for static SSR matches the behavior for interactive render modes. Visual Studio no longer breaks on an exception. To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException> in .NET 10 or later, set the following <xref:System.AppContext> switch in the `Program` file:
-
-```csharp
-AppContext.SetSwitch(
-    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException", 
-    isEnabled: false);
+```xml
+<BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
 ```
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
 
-For a redirect during static server-side rendering (static SSR), <xref:Microsoft.AspNetCore.Components.NavigationManager> relies on throwing an exception that gets captured by the framework, which converts the error into a redirect. Code that exists after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> isn't called. When using Visual Studio, the debugger breaks on the exception, requiring you to deselect the checkbox for **Break when this exception type is user-handled** in the VS UI to avoid the debugger stopping for future redirects.
-
 > [!NOTE]
-> The preceding behavior was updated at the release of .NET 10 to avoid throwing an exception. To take advantage of the new behavior, upgrade the app to .NET 10 or later.
+> In .NET 10 or later, you can opt-in to not throwing a <xref:Microsoft.AspNetCore.Components.NavigationException> by setting the `<BlazorDisableThrowNavigationException>` MSBuild property to `true` in the app's project file. To take advantage of the new MSBuild property and behavior, upgrade the app to .NET 10 or later.
 
 :::moniker-end
 

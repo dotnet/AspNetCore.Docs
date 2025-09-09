@@ -372,21 +372,23 @@ In Blazor Web Apps, framework static assets are automatically preloaded using [`
 
 For more information, see <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets>.
 
-### `NavigationManager.NavigateTo` no longer throws a `NavigationException`
+### Opt-in to avoiding a `NavigationException` during static server-side rendering with `NavigationManager.NavigateTo`
 
-Previously, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static server-side rendering (static SSR) would throw a <xref:Microsoft.AspNetCore.Components.NavigationException>, interrupting execution before being converted to a redirection response. This caused confusion during debugging and was inconsistent with interactive rendering, where code after <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> continues to execute normally.
+Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static server-side rendering (static SSR) throws a <xref:Microsoft.AspNetCore.Components.NavigationException>, interrupting execution before being converted to a redirection response. This can cause confusion during debugging and is inconsistent with interactive rendering behavior, where code after <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> continues to execute normally.
 
-Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static SSR no longer throws a <xref:Microsoft.AspNetCore.Components.NavigationException>. Instead, it behaves consistently with interactive rendering by performing the navigation without throwing an exception.
+In .NET 10, you can set the `<BlazorDisableThrowNavigationException>` MSBuild property to `true` in the app's project file in order to avoid throwing the exception during static SSR:
 
-Code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. For example, in the default Blazor Identity UI, the `IdentityRedirectManager` previously threw an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure it wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed.
-
-To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>, set the following <xref:System.AppContext> switch in the `Program` file:
-
-```csharp
-AppContext.SetSwitch(
-    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException", 
-    isEnabled: false);
+```xml
+<PropertyGroup>
+  <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+</PropertyGroup>
 ```
+
+With the MSBuild property set, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static SSR no longer throws a <xref:Microsoft.AspNetCore.Components.NavigationException>. Instead, it behaves consistently with interactive rendering by performing the navigation without throwing an exception. Code after <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> executes before the redirection occurs.
+
+The .NET 10 Blazor Web App project template sets the MSBuild property to `true` by default. We recommend that apps updating to .NET 10 use the new MSBuild property and avoid the prior behavior.
+
+If the MSBuild property is used, code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. In the default Blazor Identity UI of the Blazor Web App project template before the release of .NET 10, the `IdentityRedirectManager` throws an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure that the method wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed when the MSBuild property is used. For more information, see <xref:migration/90-to-100#when-navigation-errors-are-disabled-in-a-blazor-web-app-with-individual-accounts>.
 
 ### Blazor router has a `NotFoundPage` parameter
 
@@ -721,13 +723,6 @@ In the following example, a hidden input field is created for the form's `Parame
     private void Submit() => submitted = true;
 }
 ```
-
-### Preservation of types used by a published app
-
-We continue to recommend use of custom types for JS interop, JSON serialization/deserialization, and other operations that rely on [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/). However, using framework types that ordinarily are trimmed when publishing an app remains supported with the following approaches:
-
-* [Preserve the type as a dynamic dependency](xref:blazor/host-and-deploy/configure-trimmer#preserve-the-type-as-a-dynamic-dependency): Supported since .NET 5.
-* [Use a Root Descriptor](xref:blazor/host-and-deploy/configure-trimmer#use-a-root-descriptor): *A new approach for apps targeting .NET 10 or later.*
 
 ### Persistent component state support for enhanced navigation
 
