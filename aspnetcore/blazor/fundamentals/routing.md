@@ -714,7 +714,7 @@ For a redirect during static server-side rendering (static SSR), <xref:Microsoft
 
 :::moniker range=">= aspnetcore-10.0"
 
-You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set to `true` in the app's project file to opt-in to no longer throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>. This behavior is enabled by default in the .NET 10 or later Blazor Web App project template:
+You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set to `true` in the app's project file to opt-in to no longer throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>. Also, code after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> executes when it wouldn't have run before. This behavior is enabled by default in the .NET 10 or later Blazor Web App project template:
 
 ```xml
 <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>

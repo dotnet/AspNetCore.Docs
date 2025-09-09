@@ -1548,12 +1548,19 @@ Using `CustomFieldClassProvider3`:
 
 [Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) is supported for Blazor form models. <xref:System.ComponentModel.DataAnnotations.IValidatableObject> validation only executes when the form is submitted and only if all other validation succeeds.
 
+:::moniker range="< aspnetcore-10.0"
+
 ## Blazor data annotations validation package
+
+> [!NOTE]
+> The `Microsoft.AspNetCore.Components.DataAnnotations.Validation` package is no longer recommended for apps that target .NET 10 or later. For more information, see the [Nested objects, collection types, and complex types](#nested-objects-collection-types-and-complex-types) section.
 
 The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) is a package that fills validation experience gaps using the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The package is currently *experimental*.
 
 > [!WARNING]
 > The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package has a latest version of *release candidate* at [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Continue to use the *experimental* release candidate package at this time. Experimental features are provided for the purpose of exploring feature viability and may not ship in a stable version. Watch the [Announcements GitHub repository](https://github.com/aspnet/Announcements), the [`dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore), or this topic section for further updates.
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
