@@ -203,7 +203,7 @@ Detailed Terminal Logger verbosity with the `-tlp` option set with `v=d` (verbos
 dotnet build -tlp:v=d
 ```
 
-Disable the Terminal Logger and use legacy-style logs with the [`-tl` option](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build#options) set to `off`):
+Disable the Terminal Logger and use legacy-style logs with the [`-tl` option](/dotnet/core/tools/dotnet-build#options) set to `off`:
 
 ```dotnetcli
 dotnet build --tl:off
