@@ -19,7 +19,7 @@ In `Components/Account/IdentityRedirectManager.cs`:
   -     $"{nameof(IdentityRedirectManager)} can only be used during static rendering.");
   ```
 
-* Remove five instances of the the `[DoesNotReturn]` attribute from the file:
+* Remove five instances of the `[DoesNotReturn]` attribute from the file:
 
   ```diff
   - [DoesNotReturn]

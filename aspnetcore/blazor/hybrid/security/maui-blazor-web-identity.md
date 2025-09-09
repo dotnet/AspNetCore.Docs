@@ -117,7 +117,7 @@ app.MapAdditionalIdentityEndpoints();
 ```
 
 > [!IMPORTANT]
-> ASP.NET Core Identity pages and the implementation of the <xref:Microsoft.AspNetCore.Identity.SignInManager%601> framework class to manage logins and users is generated automatically when you create a a project from the Blazor Web App project template with **Individual Accounts**.
+> ASP.NET Core Identity pages and the implementation of the <xref:Microsoft.AspNetCore.Identity.SignInManager%601> framework class to manage logins and users is generated automatically when you create a project from the Blazor Web App project template with **Individual Accounts**.
 >
 > This article focuses on using the provided sample app; but when creating a new project from the Blazor Web App template, you must remove the generated call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>. The call isn't necessary when implementing API such as `MapAdditionalIdentityEndpoints` in the sample app and results in an error if left in the app.
 
