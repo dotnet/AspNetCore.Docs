@@ -1,11 +1,11 @@
 ---
 title: Minimal APIs quick reference
 author: wadepickett
-description: Provides an overview of minimal APIs in ASP.NET Core
+description: Provides an overview of Minimal APIs in ASP.NET Core
 ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 08/22/2025
+ms.date: 09/08/2025
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
@@ -20,19 +20,19 @@ ai-usage: ai-assisted
 
 This document:
 
-* Provides a quick reference for minimal APIs.
+* Provides a quick reference for Minimal APIs.
 * Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>.
 
-The minimal APIs consist of:
+The Minimal APIs consist of:
 
-* [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
+* [`WebApplication` and `WebApplicationBuilder`](xref:fundamentals/minimal-apis/webapplication)
 * [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
 
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication10.md)]
 
 ## ASP.NET Core Middleware
 
-The following table lists some of the middleware frequently used with minimal APIs.
+The following table lists some of the middleware frequently used with Minimal APIs.
 
 | Middleware | Description | API |
 |--|--|--|
@@ -72,7 +72,7 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 ## Validation support in Minimal APIs
 
-Support for validation in Minimal APIs is now available. This feature allows you to request validation of data sent to your API endpoints. Enabling validation allows the ASP.NET Core runtime to perform any validations defined on the:
+Enabling validation allows the ASP.NET Core runtime to perform validations defined on the:
 
 * Query
 * Header
@@ -89,20 +89,20 @@ public record Product(
 ```
 Developers customize the behavior of the validation system by:
 
-* Creating custom [`[Validation]`](xref:System.ComponentModel.DataAnnotations.ValidationAttribute) attribute implementations.
+* Creating custom [`[Validation]` attribute](xref:System.ComponentModel.DataAnnotations.ValidationAttribute) implementations.
 * Implementing the [`IValidatableObject`](xref:System.ComponentModel.DataAnnotations.IValidatableObject) interface for complex validation logic.
 
-If validation fails, the runtime returns a 400 Bad Request response with details of the validation errors.
+If validation fails, the runtime returns a *400 - Bad Request* response with details of the validation errors.
 
-### Enable built-in validation support for minimal APIs
+### Enable built-in validation support for Minimal APIs
 
-Enable the built-in validation support for minimal APIs by calling the `AddValidation` extension method to register the required services in the service container for your application:
+Enable the built-in validation support for Minimal APIs by calling the `AddValidation` extension method to register the required services in the service container for your application:
 
 ```csharp
 builder.Services.AddValidation();
 ```
 
-The implementation automatically discovers types that are defined in minimal API handlers or as base types of types defined in minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
+The implementation automatically discovers types that are defined in Minimal API handlers or as base types of types defined in Minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
 
 Validation can be disabled for specific endpoints by using the `DisableValidation` extension method, as in the following example:
 
@@ -114,7 +114,7 @@ app.MapPost("/products",
 ```
 ### Customize validation error responses using IProblemDetailsService
 
-Customize error responses from minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. Support for minimal API validation was introduced in ASP.NET Core in .NET 10.
+Customize error responses from Minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. Support for Minimal API validation was introduced in ASP.NET Core in .NET 10.
 
 To implement custom validation error responses:
 
@@ -253,7 +253,7 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 ### Typed results
 
-The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
+The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from Minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
 
 The types implementing `IResult` are public, allowing for type assertions when testing. For example:
 
@@ -333,7 +333,7 @@ The following code disables `ValidateScopes` and `ValidateOnBuild` in `Developme
 * [Short-circuit routing](https://andrewlock.net/exploring-the-dotnet-8-preview-short-circuit-routing/)
 * [Identity API endpoints](https://andrewlock.net/exploring-the-dotnet-8-preview-introducing-the-identity-api-endpoints/)
 * [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
-* [A look behind the scenes of minimal API endpoints](https://andrewlock.net/behind-the-scenes-of-minimal-apis-1-a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
+* [A look behind the scenes of Minimal API endpoints](https://andrewlock.net/behind-the-scenes-of-minimal-apis-1-a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
 * [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html)
 * [Fluent validation discussion on GitHub](https://github.com/dotnet/aspnetcore/issues/51834#issuecomment-1837180853)
 

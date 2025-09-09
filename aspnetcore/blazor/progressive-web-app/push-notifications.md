@@ -291,7 +291,7 @@ private static async Task SendNotificationAsync(Order order,
 
 The preceding example enables the server to send notifications, but the browser doesn't react to notifications without additional logic. Displaying notifications is covered in the [Display notifications](#display-notifications) section.
 
-The browser's developer tools console indicates the arrival of notifications ten seconds after orders are placed in the Blazing Pizza app. On the **Application** tab, open the **Push Messaging** section. Select the the circle to **Start recording**:
+The browser's developer tools console indicates the arrival of notifications ten seconds after orders are placed in the Blazing Pizza app. On the **Application** tab, open the **Push Messaging** section. Select the circle to **Start recording**:
 
 ![Browser developer tools console on the "Application" tab with "Push Messaging" open showing three push notifications to the app with their timestamps.](~/blazor/progressive-web-app/push-notifications/_static/developer-tools-console-notifications.png)
 
