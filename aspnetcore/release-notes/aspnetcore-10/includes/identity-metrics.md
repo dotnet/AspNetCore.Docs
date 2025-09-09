@@ -1,11 +1,11 @@
 ### ASP.NET Core Identity metrics
 
-[ASP.NET Core Identity](xref:security/authentication/identity) observability has been improved in .NET 10 with metrics. Metrics are counters, histograms and gauges that provide time-series measurements of system or application behavior.
+[ASP.NET Core Identity](xref:security/authentication/identity) observability has been improved in .NET 10 with metrics. Metrics are counters, histograms, and gauges that provide time-series measurements of system or application behavior.
 
-For example, you can use the new ASP.NET Core Identity metrics to observe:
+For example, use the new ASP.NET Core Identity metrics to observe:
 
 * **User management**: New user creations, password changes, and role assignments.
-* **Login/session handling**: Login attempts, sign ins and sign outs, and users using two factor authentication.
+* **Login/session handling**: Login attempts, sign ins, sign outs, and users using two factor authentication.
 
 The new metrics are in the `Microsoft.AspNetCore.Identity` meter:
 
