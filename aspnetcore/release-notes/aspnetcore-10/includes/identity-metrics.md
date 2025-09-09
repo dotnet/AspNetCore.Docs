@@ -4,8 +4,8 @@
 
 For example, you can use the new ASP.NET Core Identity metrics to observe:
 
-* **User management**: New user creations, password changes, and role assignments
-* **Login/session handling**: Login attempts, sign ins and sign outs, and users using two factor authentication
+* **User management**: New user creations, password changes, and role assignments.
+* **Login/session handling**: Login attempts, sign ins and sign outs, and users using two factor authentication.
 
 The new metrics are in the `Microsoft.AspNetCore.Identity` meter:
 
