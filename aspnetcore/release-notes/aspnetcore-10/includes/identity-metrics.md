@@ -1,6 +1,6 @@
 ### ASP.NET Core Identity metrics
 
-<xref:security/authentication/identity> observability has been improved in .NET 10 with metrics. Metrics are counters, histograms and gauges that provide time-series measurements of system or application behavior.
+[ASP.NET Core Identity](xref:security/authentication/identity) observability has been improved in .NET 10 with metrics. Metrics are counters, histograms and gauges that provide time-series measurements of system or application behavior.
 
 For example, you can use the new ASP.NET Core Identity metrics to observe:
 
