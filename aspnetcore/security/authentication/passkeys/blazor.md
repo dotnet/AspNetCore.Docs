@@ -238,23 +238,26 @@ Add the following `RenamePasskey` component for renaming passkeys and update the
 
 Add a link to the passkey management page in the app's `ManageNavMenu` component.
 
-In `Components/Account/Shared/ManageNavMenu.razor`:
+In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) for the `Passkeys` component:
 
-```diff
-+ <li class="nav-item">
-+     <NavLink class="nav-link" href="Account/Manage/Passkeys">Passkeys</NavLink>
-+ </li>
+```razor
+<li class="nav-item">
+    <NavLink class="nav-link" href="Account/Manage/Passkeys">Passkeys</NavLink>
+</li>
 ```
 
 ## Include the JavaScript file
 
-In the `App` component, add a reference to the `PasskeySubmit` JavaScript file after the Blazor script.
+In the `App` component (`Components/App.razor`), locate the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) tag:
 
-In `Components/App.razor`:
-
-```diff
+```razor
 <script src="_framework/blazor.web.js"></script>
-+ <script src="Components/Account/Shared/PasskeySubmit.razor.js" type="module"></script>
+```
+
+Immediately after the Blazor script tag, add a reference to the `PasskeySubmit` JavaScript module:
+
+```razor
+<script src="Components/Account/Shared/PasskeySubmit.razor.js" type="module"></script>
 ```
 
 :::zone-end
