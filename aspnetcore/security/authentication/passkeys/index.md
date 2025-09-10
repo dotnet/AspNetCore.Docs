@@ -4,7 +4,8 @@ author: guardrex
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 09/08/2025
+ms.custom: mvc
+ms.date: 09/10/2025
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
@@ -572,6 +573,93 @@ For scenarios requiring more control, you can use `PerformPasskeyAssertionAsync`
 ### Step 8: Session establishment
 
 Upon successful authentication, ASP.NET Core Identity establishes an authenticated session for the user. The `PasskeySignInAsync` method handles this automatically, creating the necessary authentication cookies and claims. The app then redirects the user to protected resources or display personalized content.
+
+## Mitigate `PublicKeyCredential.toJSON` error (`TypeError: Illegal invocation`)
+
+The [`PublicKeyCredential.toJSON` method](https://developer.mozilla.org/docs/Web/API/PublicKeyCredential/toJSON) returns a JSON representation of a [`PublicKeyCredential`](https://developer.mozilla.org/docs/Web/API/PublicKeyCredential). The method is invoked by the password manager when the app attempts to serialize a `PublicKeyCredential` by calling [`JSON.stringify`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) while registering or authenticating a user.
+
+Some password managers don't implement the `PublicKeyCredential.toJSON` method correctly, which is required for `JSON.stringify` to work when serializing passkey credentials. When registering or authenticating a user with an app based on the Blazor Web App project template, the following error is thrown by some password managers when attempting to add a passkey:
+
+> :::no-loc text="Error: Could not add a passkey: Illegal invocation":::
+
+Until your selected password manager is updated to implement the `PublicKeyCredential.toJSON` method correctly, make the following changes to the app. The following code manually JSON serializes the `PublicKeyCredential`.
+
+In the `Components/Account/Shared/PasskeySubmit.razor.js` file, locate the `passkey-submit` custom element definition code block:
+
+```javascript
+customElements.define('passkey-submit', class extends HTMLElement {
+  ...
+});
+```
+
+Add the following `convertToBase64` function to the code block:
+
+```javascript
+convertToBase64(o) {
+  if (!o) {
+    return undefined;
+  }
+
+  // Normalize Array to Uint8Array
+  if (Array.isArray(o)) {
+    o = Uint8Array.from(o);
+  }
+
+  // Normalize ArrayBuffer to Uint8Array
+  if (o instanceof ArrayBuffer) {
+    o = new Uint8Array(o);
+  }
+
+  // Convert Uint8Array to base64
+  if (o instanceof Uint8Array) {
+    let str = '';
+    for (let i = 0; i < o.byteLength; i++) {
+      str += String.fromCharCode(o[i]);
+    }
+    o = window.btoa(str);
+  }
+
+  if (typeof o !== 'string') {
+    throw new Error("Could not convert to base64 string");
+  }
+
+  // Convert base64 to base64url
+  o = o.replace(/\+/g, "-").replace(/\//g, "_").replace(/=*$/g, "");
+
+  return o;
+}
+```
+
+In the `obtainAndSubmitCredential` function of the code block, locate the line that calls `JSON.stringify` with the user's credential and remove the line:
+
+```diff
+- const credentialJson = JSON.stringify(credential);
+```
+
+Replace the preceding line with the following code:
+
+```javascript
+const credentialJson = JSON.stringify({
+  authenticatorAttachment: credential.authenticatorAttachment,
+  clientExtensionResults: credential.getClientExtensionResults(),
+  id: credential.id,
+  rawId: this.convertToBase64(credential.rawId),
+  response: {
+    attestationObject: this.convertToBase64(credential.response.attestationObject),
+    authenticatorData: this.convertToBase64(credential.response.authenticatorData ?? 
+      credential.response.getAuthenticatorData?.() ?? undefined),
+    clientDataJSON: this.convertToBase64(credential.response.clientDataJSON),
+    publicKey: this.convertToBase64(credential.response.getPublicKey?.() ?? undefined),
+    publicKeyAlgorithm: credential.response.getPublicKeyAlgorithm?.() ?? undefined,
+    transports: credential.response.getTransports?.() ?? undefined,
+    signature: this.convertToBase64(credential.response.signature),
+    userHandle: this.convertToBase64(credential.response.userHandle),
+  },
+  type: credential.type,
+});
+```
+
+The preceding workaround is only required until the password manager is updated to implement the `PublicKeyCredential.toJSON` method correctly. We recommend tracking your password manager's release notes and reverting the preceding changes after the password manager is updated.
 
 ## Additional resources
 
