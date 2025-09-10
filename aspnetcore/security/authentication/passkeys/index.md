@@ -584,51 +584,53 @@ Some password managers don't implement the `PublicKeyCredential.toJSON` method c
 
 Until your selected password manager is updated to implement the `PublicKeyCredential.toJSON` method correctly, make the following changes to the app. The following code manually JSON serializes the `PublicKeyCredential`.
 
-In the `Components/Account/Shared/PasskeySubmit.razor.js` file, add the following `convertToBase64` function to the `passkey-submit` custom element definition code block:
+In the `Components/Account/Shared/PasskeySubmit.razor.js` file, locate the `passkey-submit` custom element definition code block:
 
-```diff
+```javascript
 customElements.define('passkey-submit', class extends HTMLElement {
-
-... existing code ...
-
-+ convertToBase64(o) {
-+   if (!o) {
-+     return undefined;
-+   }
-+ 
-+   // Normalize Array to Uint8Array
-+   if (Array.isArray(o)) {
-+     o = Uint8Array.from(o);
-+   }
-+ 
-+   // Normalize ArrayBuffer to Uint8Array
-+   if (o instanceof ArrayBuffer) {
-+     o = new Uint8Array(o);
-+   }
-+ 
-+   // Convert Uint8Array to base64
-+   if (o instanceof Uint8Array) {
-+     let str = '';
-+     for (let i = 0; i < o.byteLength; i++) {
-+       str += String.fromCharCode(o[i]);
-+     }
-+     o = window.btoa(str);
-+   }
-+ 
-+   if (typeof o !== 'string') {
-+     throw new Error("Could not convert to base64 string");
-+   }
-+ 
-+   // Convert base64 to base64url
-+   o = o.replace(/\+/g, "-").replace(/\//g, "_").replace(/=*$/g, "");
-+ 
-+   return o;
-+ }
-
+  ...
 });
 ```
 
-In the `obtainAndSubmitCredential` function of the `passkey-submit` custom element code block (`customElements.define('passkey-submit', ...)`), locate the line that calls `JSON.stringify` with the user's credential and remove the line:
+Add the following `convertToBase64` function to the code block:
+
+```javascript
+convertToBase64(o) {
+  if (!o) {
+    return undefined;
+  }
+
+  // Normalize Array to Uint8Array
+  if (Array.isArray(o)) {
+    o = Uint8Array.from(o);
+  }
+
+  // Normalize ArrayBuffer to Uint8Array
+  if (o instanceof ArrayBuffer) {
+    o = new Uint8Array(o);
+  }
+
+  // Convert Uint8Array to base64
+  if (o instanceof Uint8Array) {
+    let str = '';
+    for (let i = 0; i < o.byteLength; i++) {
+      str += String.fromCharCode(o[i]);
+    }
+    o = window.btoa(str);
+  }
+
+  if (typeof o !== 'string') {
+    throw new Error("Could not convert to base64 string");
+  }
+
+  // Convert base64 to base64url
+  o = o.replace(/\+/g, "-").replace(/\//g, "_").replace(/=*$/g, "");
+
+  return o;
+}
+```
+
+In the `obtainAndSubmitCredential` function of the code block, locate the line that calls `JSON.stringify` with the user's credential and remove the line:
 
 ```diff
 - const credentialJson = JSON.stringify(credential);
