@@ -3,8 +3,9 @@ title: Implement passkeys in ASP.NET Core Blazor Web Apps
 author: guardrex
 description: Learn how to implement passkeys authentication in ASP.NET Core Blazor Web Apps.
 ms.author: wpickett
+monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
-ms.date: 09/08/2025
+ms.date: 09/10/2025
 uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---
@@ -278,6 +279,14 @@ After a passkey is registered:
 4. Follow the browser's prompts to authenticate with your passkey.
 1. Navigate to `Account/Manage/Passkeys` to add, rename, or delete passkeys.
 1. If the passkey supports passkey autofill (conditional UI) for login, test the passkey autofill feature by selecting the email input field when you have saved passkeys.
+
+## Mitigate `PublicKeyCredential.toJSON` error (`TypeError: Illegal invocation`)
+
+Some password managers don't implement the [`PublicKeyCredential.toJSON` method](https://developer.mozilla.org/docs/Web/API/PublicKeyCredential/toJSON) method correctly, which is required for [`JSON.stringify`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) to work when serializing passkey credentials. When registering or authenticating a user with an app based on the Blazor Web App project template, the following error is thrown when attempting to add a passkey:
+
+> :::no-loc text="Error: Could not add a passkey: Illegal invocation":::
+
+For guidance on mitigating this error, see <xref:security/authentication/passkeys/index#mitigate-publickeycredentialtojson-error-typeerror-illegal-invocation>.
 
 ## Additional resources
 
