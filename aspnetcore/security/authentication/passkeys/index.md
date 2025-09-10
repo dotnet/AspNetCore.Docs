@@ -639,33 +639,24 @@ In the `obtainAndSubmitCredential` function of the code block, locate the line t
 Replace the preceding line with the following code:
 
 ```javascript
-let credentialJson = "";
-try {
-  credentialJson = JSON.stringify(credential);
-} catch (error) {
-  // Check for 'TypeError' instead of relying on the exact error message
-  if (error.name !== 'TypeError') {
-    throw error;
-  }
-
-  credentialJson = JSON.stringify({
-    authenticatorAttachment: credential.authenticatorAttachment,
-    clientExtensionResults: credential.getClientExtensionResults(),
-    id: credential.id,
-    rawId: this.convertToBase64(credential.rawId),
-    response: {
-      attestationObject: this.convertToBase64(credential.response.attestationObject),
-      authenticatorData: this.convertToBase64(credential.response.authenticatorData ?? credential.response.getAuthenticatorData?.() ?? undefined),
-      clientDataJSON: this.convertToBase64(credential.response.clientDataJSON),
-      publicKey: this.convertToBase64(credential.response.getPublicKey?.() ?? undefined),
-      publicKeyAlgorithm: credential.response.getPublicKeyAlgorithm?.() ?? undefined,
-      transports: credential.response.getTransports?.() ?? undefined,
-      signature: this.convertToBase64(credential.response.signature),
-      userHandle: this.convertToBase64(credential.response.userHandle),
-    },
-    type: credential.type,
-  });
-}
+const credentialJson = JSON.stringify({
+  authenticatorAttachment: credential.authenticatorAttachment,
+  clientExtensionResults: credential.getClientExtensionResults(),
+  id: credential.id,
+  rawId: this.convertToBase64(credential.rawId),
+  response: {
+    attestationObject: this.convertToBase64(credential.response.attestationObject),
+    authenticatorData: this.convertToBase64(credential.response.authenticatorData ?? 
+      credential.response.getAuthenticatorData?.() ?? undefined),
+    clientDataJSON: this.convertToBase64(credential.response.clientDataJSON),
+    publicKey: this.convertToBase64(credential.response.getPublicKey?.() ?? undefined),
+    publicKeyAlgorithm: credential.response.getPublicKeyAlgorithm?.() ?? undefined,
+    transports: credential.response.getTransports?.() ?? undefined,
+    signature: this.convertToBase64(credential.response.signature),
+    userHandle: this.convertToBase64(credential.response.userHandle),
+  },
+  type: credential.type,
+});
 ```
 
 The preceding workaround is only required until the password manager is updated to implement the `PublicKeyCredential.toJSON` method correctly. We recommend tracking your password manager's release notes and reverting the preceding changes after the password manager is updated.
