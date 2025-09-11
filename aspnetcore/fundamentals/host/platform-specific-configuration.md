@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/26/2019
+ms.date: 09/04/2025
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
@@ -335,6 +335,9 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnosti
 ```
 
 For runtime to discover the runtime store location, the additional dependencies file location is added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
+
+> [!NOTE]
+> The `DOTNET_ADDITIONAL_DEPS` environment variable only works with framework-dependent applications. This environment variable is ignored for self-contained applications.
 
 In the sample app (*RuntimeStore* project), building the runtime store and generating the additional dependencies file is accomplished using a [PowerShell](/powershell/scripting/overview) script.
 
@@ -721,6 +724,9 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnosti
 ```
 
 For runtime to discover the runtime store location, the additional dependencies file location is added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
+
+> [!NOTE]
+> The `DOTNET_ADDITIONAL_DEPS` environment variable only works with framework-dependent applications. This environment variable is ignored for self-contained applications.
 
 In the sample app (*RuntimeStore* project), building the runtime store and generating the additional dependencies file is accomplished using a [PowerShell](/powershell/scripting/overview) script.
 
