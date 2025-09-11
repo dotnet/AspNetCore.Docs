@@ -224,13 +224,17 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 
 ## Static File Middleware
 
-Static File Middleware, which is used in specific static files scenarios, enables static file serving and is used by an app when <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> is called in the app's request processing pipeline. Files are served from the path specified in <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>, which defaults to the web root folder, typically `wwwroot`. <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> is available in ASP.NET Core in .NET 9 or later. <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> must be used in versions prior to .NET 9.
+Static File Middleware enables static file serving in specific static files scenarios, usually in addition to Map Static Assets endpoint routing conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>).
 
-<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> serves static files, but it doesn't provide the same level of optimization as <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>. <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> is optimized for serving assets that the app has knowledge of at runtime. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
+Static File Middleware is included in request processing when <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> is called in the app's request processing pipeline, typically after Map Static Assets endpoint conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) are added.
 
-The build-time compression and fingerprinting features of Map Static Assets endpoint routing conventions aren't available when only relying on Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>).
+Map Static Assets endpoint conventions are used in apps that target .NET 9 or later. Static File Middleware must be used in apps that target versions of .NET prior to .NET 9.
 
-The following features covered in this article are supported with <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> but not with <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>:
+Static File Middleware serves static files, but it doesn't provide the same level of optimization as Map Static Assets endpoint conventions. The build-time compression and fingerprinting features of Map Static Assets endpoint conventions aren't available when only relying on Static File Middleware.
+
+The endpoint conventions are optimized for serving assets that the app has knowledge of at runtime. If the app serves assets from other locations, such as disk or embedded resources, Static File Middleware should be used.
+
+The following features covered in this article are supported with Static File Middleware but not with Map Static Assets endpoint conventions:
 
 * [Serve files outside of the web root directory](#serve-files-outside-of-the-web-root-directory-via-usestaticfiles)
 * [Set HTTP response headers](#set-http-response-headers)
