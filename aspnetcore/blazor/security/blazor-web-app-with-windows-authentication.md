@@ -88,7 +88,7 @@ The authorization policy is enforced by the `LocalAccountOnly` component.
 </p>
 ```
 
-The `UserClaims` component lists the user's claims, which includes the user's Windows security identifiers (SIDs), and SID translations.
+The `UserClaims` component lists the user's claims and roles, including the user's Windows security identifiers (SIDs) with SID translations.
 
 `Components/Pages/UserClaims.razor`:
 
