@@ -38,6 +38,7 @@ namespace CookieSample
             app.UseStaticFiles();
             app.UseRouting();
 
+            // <snippet_policy>
             // Configure cookie policy options
             var cookiePolicyOptions = new CookiePolicyOptions
             {
@@ -46,6 +47,7 @@ namespace CookieSample
 
             // Add Cookie Policy Middleware
             app.UseCookiePolicy(cookiePolicyOptions);
+            // </snippet_policy>
 
             app.UseAuthentication();
             app.UseAuthorization();

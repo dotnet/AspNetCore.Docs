@@ -26,6 +26,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// <snippet_policy>
 // Configure cookie policy options
 var cookiePolicyOptions = new CookiePolicyOptions
 {
@@ -34,6 +35,7 @@ var cookiePolicyOptions = new CookiePolicyOptions
 
 // Add Cookie Policy Middleware
 app.UseCookiePolicy(cookiePolicyOptions);
+// </snippet_policy>
 
 app.UseAuthentication();
 app.UseAuthorization();
