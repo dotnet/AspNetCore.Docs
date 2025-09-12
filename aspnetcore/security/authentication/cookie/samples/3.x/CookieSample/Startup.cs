@@ -24,7 +24,7 @@ namespace CookieSample
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
-        #region snippet_policy
+        // <snippet_policy>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -59,6 +59,6 @@ namespace CookieSample
                 endpoints.MapRazorPages();
             });
         }
-        #endregion
+        // </snippet_policy>
     }
 }

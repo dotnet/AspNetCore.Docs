@@ -72,7 +72,7 @@ app.MapDefaultControllerRoute();
 app.Run();
 #endregion
 #elif POLICY
-#region snippet_policy
+// <snippet_policy>
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -117,7 +117,7 @@ app.MapRazorPages();
 app.MapDefaultControllerRoute();
 
 app.Run();
-#endregion
+// </snippet_policy>
 #elif CC
 #region snippet_cc
 using Microsoft.AspNetCore.Authentication.Cookies;
