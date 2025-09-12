@@ -1,4 +1,4 @@
-#define FIRST // FIRST SECOND CC
+#define FIRST // FIRST SECOND POLICY CC
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -62,6 +62,53 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapRazorPages();
+app.MapDefaultControllerRoute();
+
+app.Run();
+#endregion
+#elif POLICY
+#region snippet_policy
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/Forbidden/";
+    });
+
+builder.Services.AddHttpContextAccessor();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+// Configure cookie policy options
+var cookiePolicyOptions = new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Strict,
+};
+
+// Add Cookie Policy Middleware
+app.UseCookiePolicy(cookiePolicyOptions);
 
 app.UseAuthentication();
 app.UseAuthorization();
