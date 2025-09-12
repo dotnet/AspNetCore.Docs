@@ -5,7 +5,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 07/09/2025
+ms.date: 09/08/2025
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -192,6 +192,22 @@ In some scenarios, it's helpful to generate the OpenAPI document during the app'
 * Generating OpenAPI documentation that is served statically from the web server.
 
 To add support for generating OpenAPI documents at build time, install the `Microsoft.Extensions.ApiDescription.Server` package:
+
+## View build-time OpenAPI logs (Terminal Logger)
+
+When `Microsoft.Extensions.ApiDescription.Server` runs the **:::no-loc text="GetDocument":::** step during `dotnet build`, progress messages may not appear with the .NET Terminal Logger at default verbosity in .NET 8 or later. To surface these messages while building, use ***either*** of the following options with the `dotnet build` command.
+
+Detailed Terminal Logger verbosity with the `-tlp` option set with `v=d` (verbosity = detailed):
+
+```dotnetcli
+dotnet build -tlp:v=d
+```
+
+Disable the Terminal Logger and use legacy-style logs with the [`--tl` option](/dotnet/core/tools/dotnet-build#options) set to `off`:
+
+```dotnetcli
+dotnet build --tl:off
+```
 
 ### [Visual Studio](#tab/visual-studio)
 
