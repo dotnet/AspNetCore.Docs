@@ -1,7 +1,7 @@
 #define FIRST // FIRST SECOND POLICY CC
 #if NEVER
 #elif FIRST
-#region snippet1
+// <snippet1>
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,9 +32,9 @@ app.MapRazorPages();
 app.MapDefaultControllerRoute();
 
 app.Run();
-#endregion
+// </snippet1>
 #elif SECOND
-#region snippet2
+// <snippet2>
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -70,7 +70,7 @@ app.MapRazorPages();
 app.MapDefaultControllerRoute();
 
 app.Run();
-#endregion
+// </snippet2>
 #elif POLICY
 // <snippet_policy>
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -101,13 +101,11 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// Configure cookie policy options
 var cookiePolicyOptions = new CookiePolicyOptions
 {
     MinimumSameSitePolicy = SameSiteMode.Strict,
 };
 
-// Add Cookie Policy Middleware
 app.UseCookiePolicy(cookiePolicyOptions);
 
 app.UseAuthentication();
@@ -119,7 +117,7 @@ app.MapDefaultControllerRoute();
 app.Run();
 // </snippet_policy>
 #elif CC
-#region snippet_cc
+// <snippet_cc>
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -153,5 +151,5 @@ app.MapRazorPages();
 app.MapDefaultControllerRoute();
 
 app.Run();
-#endregion
+// </snippet_cc>
 #endif

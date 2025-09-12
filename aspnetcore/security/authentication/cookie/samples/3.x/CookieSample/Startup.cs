@@ -16,10 +16,10 @@ namespace CookieSample
                 options.Conventions.AuthorizePage("/Contact");
             });
 
-            #region snippet1
+            // <snippet1>
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
-            #endregion
+            // </snippet1>
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
@@ -41,13 +41,11 @@ namespace CookieSample
             app.UseStaticFiles();
             app.UseRouting();
 
-            // Configure cookie policy options
             var cookiePolicyOptions = new CookiePolicyOptions
             {
                 MinimumSameSitePolicy = SameSiteMode.Strict,
             };
 
-            // Add Cookie Policy Middleware
             app.UseCookiePolicy(cookiePolicyOptions);
 
             app.UseAuthentication();

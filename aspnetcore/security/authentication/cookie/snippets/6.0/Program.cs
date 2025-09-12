@@ -27,13 +27,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 // <snippet_policy>
-// Configure cookie policy options
 var cookiePolicyOptions = new CookiePolicyOptions
 {
     MinimumSameSitePolicy = SameSiteMode.Strict,
 };
 
-// Add Cookie Policy Middleware
 app.UseCookiePolicy(cookiePolicyOptions);
 // </snippet_policy>
 
