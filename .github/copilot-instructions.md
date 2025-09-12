@@ -145,6 +145,93 @@ When creating a PR for an issue:
   Console                | console       | 2
   Text                   | -             | 2
 
+## Copilot PR Success Checklist
+
+**Use this checklist for every PR to ensure first-commit success and avoid common mistakes:**
+
+### 1. PR Description Requirements
+- [ ] **ALWAYS** include "Fixes #[issue-number]" in the PR description to link back to the original issue
+- [ ] Include a clear summary of changes made
+- [ ] List all files that were modified with brief descriptions
+
+### 2. Metadata and Date Requirements  
+- [ ] **CRITICAL**: Set `ms.date` to the actual current date in MM/DD/YYYY format (GitHub Copilot often uses incorrect future dates)
+- [ ] Add `ai-usage: ai-assisted` metadata if any AI assistance was used
+- [ ] Place `title` metadata first, followed by remaining metadata in alphabetical order
+- [ ] Update `ms.date` if more than 50 characters are changed in existing files
+
+### 3. Code Snippets - Triple-Colon Syntax Requirements
+- [ ] **NEVER** use `[!code-csharp[]]` syntax - this is incorrect and will cause build errors
+- [ ] **ALWAYS** use triple-colon syntax: `:::code language="csharp" source="path" id="snippet_name" highlight="lines":::`
+- [ ] **NEVER** use `name="snippet_name"` attribute - this is unsupported and causes build errors  
+- [ ] **ALWAYS** use `id="snippet_name"` to reference named snippets
+- [ ] Use `highlight="3-5,9"` for line highlighting (relative to snippet content, not absolute file line numbers)
+- [ ] Example of correct syntax:
+  ```markdown
+  :::code language="csharp" source="~/path/to/file.cs" id="snippet_policy" highlight="3-5,9":::
+  ```
+
+### 4. Code Snippet Folder Structure Requirements
+- [ ] For code snippets longer than 6 lines, create proper folder structure:
+  - `article-name/snippets/version/filename.cs` (e.g., `cookie/snippets/6.0/Program.cs`)
+- [ ] Create version-specific subfolders: `3.x`, `6.0`, `8.0`, `9.0`, etc.
+- [ ] Use file-relative paths for snippets in same article folder
+- [ ] Use repository root-relative paths (`~/`) for shared snippets
+
+### 5. Code Snippet Markers in .cs Files - CRITICAL
+- [ ] **NEVER** use `#region snippet_name` and `#endregion` syntax in .cs files
+- [ ] **ALWAYS** use `// <snippet_name>` and `// </snippet_name>` format (all lowercase)
+- [ ] Examples of correct .cs file snippet markers:
+  ```csharp
+  // <snippet_policy>
+  var cookiePolicyOptions = new CookiePolicyOptions
+  {
+      MinimumSameSitePolicy = SameSiteMode.Strict,
+  };
+  app.UseCookiePolicy(cookiePolicyOptions);
+  // </snippet_policy>
+  ```
+- [ ] **INCORRECT** format to avoid:
+  ```csharp
+  #region snippet_policy
+  // code here
+  #endregion
+  ```
+
+### 6. Code Comments and Localization
+- [ ] **NEVER** add explanatory code comments like `// Configure cookie policy options` in .cs snippet files
+- [ ] **NEVER** add comments like `// Add Cookie Policy Middleware` - these prevent proper localization
+- [ ] Rely on markdown prose before/after code snippets for explanations instead of inline comments
+- [ ] Only keep comments that are essential to the code's functionality
+
+### 7. Build Validation Requirements
+- [ ] **ALWAYS** validate code snippet syntax by checking build logs for errors
+- [ ] Watch for "unexpected attribute" errors indicating incorrect syntax usage
+- [ ] Test that snippet references resolve correctly (no broken id references)
+- [ ] Verify that highlight line numbers are relative to snippet content, not absolute file lines
+
+### 8. Common Syntax Errors to Avoid
+- [ ] Using `range="5-10"` instead of `id="snippet_name"` 
+- [ ] Using `name="snippet_name"` instead of `id="snippet_name"`
+- [ ] Mixing old `[!code-csharp[]]` syntax with new triple-colon syntax
+- [ ] Using absolute line numbers in `highlight=""` instead of relative to snippet
+- [ ] Using `#region`/`#endregion` in .cs files instead of `// <snippet_name>` format
+
+### 9. Version-Specific Considerations
+- [ ] Create separate snippet files for different .NET versions (3.x, 6.0, 8.0, 9.0+)
+- [ ] Ensure examples use appropriate syntax for the target version
+- [ ] Reference the correct version-specific snippet file in markdown
+
+### 10. Final Validation Checklist
+- [ ] Verify all triple-colon code references use correct `id=""` syntax
+- [ ] Confirm all .cs files use `// <snippet_name>` markers (never #region)
+- [ ] Check that no explanatory comments were added to .cs files
+- [ ] Validate `ms.date` is set to actual current date (not a future date)
+- [ ] Ensure "Fixes #[issue-number]" is in PR description
+- [ ] Test build passes without warnings related to your changes
+
+**Note**: These issues frequently recur due to GitHub Copilot's tendency to use outdated or incorrect syntax patterns. Following this checklist systematically will prevent the iterative correction cycles seen in issue #35782.
+
 ### ASP.NET Core Specific Guidelines
 - Use the latest supported version for examples unless otherwise specified
 - Title and section header casing is sentence case (capitalize the first word and any proper nouns)
