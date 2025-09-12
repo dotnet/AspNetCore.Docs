@@ -5,7 +5,7 @@
 
 The Single Page Application (SPA) templates for [Angular](https://angular.dev/) and [React](https://reactjs.org/) offer the ability to develop Angular and React apps that are hosted inside a .NET backend server.
 
-At publish time, the files of the Angular and React app are copied to the `wwwroot` folder and are served via the [static files middleware](xref:fundamentals/static-files).
+At publish time, the files of the Angular and React app are copied to the `wwwroot` folder and are served via the [Static File Middleware](xref:fundamentals/static-files).
 
 Rather than returning HTTP 404 (Not Found), a fallback route handles unknown requests to the backend and serves the `index.html` for the SPA.
 
