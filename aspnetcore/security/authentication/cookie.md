@@ -55,7 +55,7 @@ The default <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSi
 
 The following example shows how to configure cookie authentication with Cookie Policy Middleware:
 
-:::code language="csharp" source="cookie/snippets/6.0/Program.cs" range="29-38" highlight="31-33,37":::
+:::code language="csharp" source="cookie/snippets/6.0/Program.cs" id="snippet_policy" highlight="3-5,9":::
 
 The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect the setting of `Cookie.SameSite` in `CookieAuthenticationOptions` settings according to the matrix below.
 
@@ -225,7 +225,7 @@ The default <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSi
 
 The following example shows how to configure cookie authentication with Cookie Policy Middleware:
 
-:::code language="csharp" source="cookie/snippets/3.x/Startup.cs" range="41-50" highlight="43-45,49":::
+:::code language="csharp" source="cookie/snippets/3.x/Startup.cs" id="snippet_policy" highlight="3-5,9":::
 
 The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect the setting of `Cookie.SameSite` in `CookieAuthenticationOptions` settings according to the matrix below.
 
