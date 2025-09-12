@@ -427,4 +427,8 @@ The preceding code:
 * Accesses the request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader?displayProperty=nameWithType>.
 * Copies the request body to a local file.
 
+## JsonPipeReader deserialization in minimal APIs
+
+[!INCLUDE [](~/includes/net10pipereader.md)]
+
 :::moniker-end

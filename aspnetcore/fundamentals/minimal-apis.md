@@ -68,7 +68,11 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 ## Parameter binding
 
-[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding10.md)]
+[!INCLUDE [](~/includes/parameter-binding10.md)]
+
+## Json+PipeReader deserialization in minimal APIs
+
+[!INCLUDE [](~/includes/net10pipereader.md)]
 
 ## Validation support in Minimal APIs
 
