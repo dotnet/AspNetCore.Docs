@@ -730,6 +730,7 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 [!INCLUDE [](~/includes/net10pipereader.md)]
 
+:::moniker-end
 :::moniker range=">= aspnetcore-8.0"
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
