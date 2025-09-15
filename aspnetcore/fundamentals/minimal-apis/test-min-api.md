@@ -20,15 +20,17 @@ The [sample code on GitHub](https://github.com/dotnet/AspNetCore.Docs.Samples/tr
 
 <a name="iit7"></a>
 
-## IResult implementation types
+## Unit test IResult implementation types
+
+The following example shows how to unit test minimal route handlers that return <xref:Microsoft.AspNetCore.Http.IResult> using the [xUnit](https://github.com/xunit/xunit/) testing framework. The external database is replaced with an in-memory database during testing, the implementation of the `MockDb` can be found in the [sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/Helpers/MockDb.cs).
 
 Public <xref:Microsoft.AspNetCore.Http.IResult> implementation types in the <xref:Microsoft.AspNetCore.Http.HttpResults?displayProperty=fullName> namespace can be used to unit test minimal route handlers when using named methods instead of lambdas.
 
-The following code uses the [`NotFound<TValue>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.notfound-1) class:
+The following code uses the <xref:Microsoft.AspNetCore.Http.HttpResults.NotFound%601> class:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_" highlight="8":::
 
-The following code uses the [`Ok<TValue>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.ok-1) class:
+The following code uses the <xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601> class:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_1" highlight="18":::
 
