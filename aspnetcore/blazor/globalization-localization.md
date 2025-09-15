@@ -514,7 +514,7 @@ await host.RunAsync();
 :::moniker range="< aspnetcore-10.0"
 
 > [!NOTE]
-> In .NET 9 or earlier, standalone Blazor WebAssembly load UI internationalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. To set the default UI culture using <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in a standalone Blazor WebAssembly app, [upgrade the app to .NET 10 or later](xref:migration/index).
+> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI internationalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. To set the default UI culture using <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in a standalone Blazor WebAssembly app, [upgrade the app to .NET 10 or later](xref:migration/index).
 
 :::moniker-end
 
