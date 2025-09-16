@@ -1093,6 +1093,8 @@ If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEn
 
 * Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
 
+:::moniker range=">= aspnetcore-9.0"
+
 ## MSBuild properties
 
 The following tables show the static files MSBuild properties and metadata descriptions.
@@ -1132,6 +1134,8 @@ Metadata Descriptions:
 
 * **Expression**: Defines how the fingerprint is inserted into the filename. The default is `#[.{fingerprint}]`, which inserts the fingerprint before the extension.
 
+## Runtime configuration options
+
 The following table describes the runtime configuration options.
 
 Configuration key | Description
@@ -1140,6 +1144,8 @@ Configuration key | Description
 `DisableStaticAssetNotFoundRuntimeFallback` | When `true`, suppresses the fallback endpoint that serves newly added files not present in the build manifest. When `false` or absent, a file-exists-checked `{**path}` fallback (GET/HEAD) logs a warning and serves the file with a computed `ETag`.
 `EnableStaticAssetsDevelopmentCaching` | When `true`, preserves the original `Cache-Control` headers on asset descriptors. When `false` or absent, rewrites `Cache-Control` headers to `no-cache` to avoid aggressive client caching during development.
 `EnableStaticAssetsDevelopmentIntegrity` | When `true`, keeps integrity properties on asset descriptors. When `false` or absent, removes any integrity property to prevent mismatches when files change during development.
+
+:::moniker-end
 
 ## Additional resources
 
