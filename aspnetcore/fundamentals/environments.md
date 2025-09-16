@@ -54,7 +54,9 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 :::moniker range=">= aspnetcore-7.0"
 
 * [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
-* `ASPNETCORE_ENVIRONMENT` when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method is called. The ASP.NET Core web app project templates call `WebApplication.CreateBuilder`. The `DOTNET_ENVIRONMENT` value overrides `ASPNETCORE_ENVIRONMENT` when <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is used. For other hosts, such as <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> and <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A?displayProperty=nameWithType>, `ASPNETCORE_ENVIRONMENT` has higher precedence.
+* `ASPNETCORE_ENVIRONMENT`
+
+When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.Builder.WebHost>, `ASPNETCORE_ENVIRONMENT` takes precedence.
 
 :::moniker-end
 
@@ -84,7 +86,7 @@ Use <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment?display
 
 The following code in the app's `Program` file:
 
-* Uses <xref:Microsoft.AspNetCore.Builder.WebApplication.Environment?displayProperty=nameWithType> to distinguish the environment, specifically when the value of `ASPNETCORE_ENVIRONMENT` is anything other than `Development`. This approach is useful when the app only requires adjusting the `Program` file for a few environments with minimal code differences per environment. When many code differences exist per environment, consider using one of the [environment-based `Startup` class approaches](#environment-based-startup-class-and-methods), which is covered later in this article.
+* Uses <xref:Microsoft.AspNetCore.Builder.WebApplication.Environment?displayProperty=nameWithType> to distinguish the environment.
 * Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>, which adds [Exception Handler Middleware](xref:fundamentals/error-handling) to the request processing pipeline to handle exceptions.
 * Calls <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>, which adds [HSTS Middleware](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) to apply the [`Strict-Transport-Security` header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security).
 
@@ -193,7 +195,7 @@ Profiles can be selected in the Visual Studio UI next to the Start button (►).
 
 When a solution contains multiple projects, only set the environment for the startup project.
 
-Alternatively, use the [`dotnet run`](/dotnet/core/tools/dotnet-run) command with the [`-lp|--launch-profile` option](/dotnet/core/tools/dotnet-run#options) set to the profile's name. *This approach only supports Kestrel profiles.*
+Alternatively, use the [`dotnet run`](/dotnet/core/tools/dotnet-run) command with the [`-lp|--launch-profile` option](/dotnet/core/tools/dotnet-run#options) set to the profile's name. *This approach only supports launch profiles based on the `Project` command.*
 
 ```dotnetcli
 dotnet run -lp "https"
@@ -398,30 +400,14 @@ Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironm
 
 To load configuration by environment, see <xref:fundamentals/configuration/index#json-configuration-provider>.
 
-## Environment-based `Startup` class and methods
+## Access the environment from a `Startup` class
 
 Since the release of .NET 6, the ASP.NET Core project templates place startup code for service configuration and request pipeline processing in the `Program` file. Use of a `Startup` class (`Startup.cs`) with [`Configure`](xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A) and [`ConfigureServices`](xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A) methods was required before the release of .NET 6 but remains supported in ASP.NET Core. You can use the guidance in this section to control code execution by environment using a `Startup` class in any release of ASP.NET Core when a large number of code changes are required for each environment in use by an app.
 
-Except for the [`Startup` class conventions](#startup-class-conventions) approach, the `Program` class uses the following general approach to identify the `Startup` class, where the `Startup` class is the type for the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A?displayProperty=nameWithType> method:
 
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-}
 ```
 
-### Inject `IWebHostEnvironment` into the `Startup` class
 
 Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into the `Startup` constructor to control code execution. This approach is useful when the app requires configuring startup code for only a few environments with minimal code differences per environment.
 
@@ -506,11 +492,11 @@ public class Startup(IWebHostEnvironment env)
 }
 ```
 
-### `Startup` class conventions
+## Environment-specific `Startup` class
 
 An app can define multiple `Startup` classes for different environments with the naming convention `Startup{EnvironmentName}` class, where the `{ENVIRONMENT NAME}` placeholder is the environment name.
 
-The class whose name suffix matches the current environment is prioritized. If a matching `Startup{EnvironmentName}` class isn't found, the `Startup` class is used. This approach is useful when the app requires configuring startup for several environments with many code differences per environment.
+The class whose name suffix matches the current environment is prioritized. If a matching `Startup{EnvironmentName}` class isn't found, the `Startup` class is used.
 
 To implement environment-based `Startup` classes, create as many `Startup{EnvironmentName}` classes as needed and a fallback `Startup` class:
 
@@ -546,9 +532,9 @@ public static IHostBuilder CreateHostBuilder(string[] args)
 }
 ```
 
-### `Startup` class method conventions
+## Environment-specific `Startup` class methods
 
-The `Configure` and `ConfigureServices` methods support environment-specific versions of the form `Configure{ENVIRONMENT NAME}` and `Configure{ENVIRONMENT NAME}Services`, where the `{ENVIRONMENT NAME}` placeholder is the environment name. If a matching environment name isn't found for the named methods, the `ConfigureServices` or `Configure` method is used, respectively. This approach is useful when the app requires configuring startup for several environments with many code differences per environment:
+The `Configure` and `ConfigureServices` methods support environment-specific versions of the form `Configure{ENVIRONMENT NAME}` and `Configure{ENVIRONMENT NAME}Services`, where the `{ENVIRONMENT NAME}` placeholder is the environment name. If a matching environment name isn't found for the named methods, the `ConfigureServices` or `Configure` method is used, respectively.
 
 ```csharp
 public void ConfigureDevelopmentServices(IServiceCollection services)
