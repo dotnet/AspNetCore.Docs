@@ -4,7 +4,7 @@ description: Remote app setup
 author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/17/2025
+ms.date: 09/16/2025
 ms.topic: article
 uid: migration/fx-to-core/inc/remote-app-setup
 zone_pivot_groups: migration-remote-app-setup
@@ -136,7 +136,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
     // Configure your other middleware here (authentication, routing, etc.)
     
     // Map the fallback route
-    app.MapForwarder("/{**catch-all}", app.ServiceProvider.GetRequiredService<IOptions<RemoteAppClientOptions>>().Value.RemoteAppUrl.OriginalString)
+    app.MapForwarder("/{**catch-all}", app.Services.GetRequiredService<IOptions<RemoteAppClientOptions>>().Value.RemoteAppUrl.OriginalString)
     
         // Ensures this route has the lowest priority (runs last)
         .WithOrder(int.MaxValue)
