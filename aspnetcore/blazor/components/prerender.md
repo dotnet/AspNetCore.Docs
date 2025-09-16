@@ -191,6 +191,6 @@ In the server project's `Program` file, register the service:
 builder.Services.TryAddScoped<IWebAssemblyHostEnvironment, ServerHostEnvironment>();
 ```
 
-At this point, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service can be injected into an interactive WebAssembly or Auto component that is also prerendered from the server.
+At this point, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service can be [injected into an interactive WebAssembly or Auto component that is also prerendered from the server](xref:blazor/fundamentals/environments#read-the-environment-in-a-blazor-webassembly-app).
 
 :::moniker-end
