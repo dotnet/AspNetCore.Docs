@@ -136,7 +136,7 @@ In Razor Pages and MVC apps, the tilde character `~` points to the web root. In 
 
 ## Short-circuit the middleware pipeline
 
-To avoid running the entire middleware pipeline after a static asset is served, which matches the behavior of <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, call <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> on <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>. Calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> immediately executes the endpoint and returns the response, preventing other middleware from executing for static asset requests:
+To avoid running the entire middleware pipeline after a static asset is matched, which is the behavior of <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, call <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> on <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>. Calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> immediately executes the endpoint and returns the response, preventing other middleware from executing for static asset requests:
 
 ```csharp
 app.MapStaticAssets().ShortCircuit();
@@ -1108,7 +1108,6 @@ Property | Description
 `DisableBuildCompression` | Disables compression during build.
 `CompressDiscoveredAssetsDuringBuild` | Compresses discovered assets during build.
 `BrotliCompressionLevel` | Compression level for the Brotli algorithm.
-`LinkAlternativeRepresentationsToOriginalResource` | How to link compressed assets to original resources.
 `StaticWebAssetBuildCompressAllAssets` | Compresses all assets during build, not just assets discovered or computed during a build.
 `StaticWebAssetPublishCompressAllAssets` | Compresses all assets during publish, not just assets discovered or computed during a build.
 
@@ -1118,8 +1117,6 @@ Property | Description
 `StaticWebAssetsFingerprintContent` | Enables content fingerprinting for cache busting.
 `StaticWebAssetFingerprintingEnabled` | Enables fingerprinting feature for static web assets.
 `StaticWebAssetsCacheDefineStaticWebAssetsEnabled` | Enables caching for static web asset definitions.
-`StaticWebAssetBuildManifestPath` | Path to the build manifest JSON file.
-`StaticWebAssetsBuildManifestCacheFilePath` | Path to the build manifest cache file.
 `StaticWebAssetEndpointExclusionPattern` | Pattern for excluding endpoints.
 
 Item group | Description | Metadata
