@@ -1,11 +1,12 @@
 ---
 title: Use .http files in Visual Studio 2022
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use .http files in Visual Studio 2022 to test ASPNET Core apps.
 monikerRange: '>= aspnetcore-8.0'
-ms.topic: how-to
 ms.author: tdykstra
-ms.date: 01/19/2024
+ms.date: 09/16/2025
+ms.topic: how-to
 uid: test/http-files
 ---
 # Use .http files in Visual Studio 2022
@@ -129,6 +130,69 @@ Variables can be defined using values of other variables that were defined earli
 @host={{hostname}}:{{port}}
 GET https://{{host}}/api/search/tool
 ```
+
+### Handling null values
+
+When working with variables in `.http` files, you might need to handle `null` values in requests or responses. Here's how to work with null values:
+
+#### Setting a variable to null
+
+To explicitly set a variable to `null` in your request body:
+
+```http
+@nullValue=null
+
+POST https://api.example.com/data
+Content-Type: application/json
+
+{
+  "propertyWithNull": {{nullValue}}
+}
+
+###
+```
+
+#### Handling null values from responses
+
+When extracting values from API responses that might contain `null`, the variable will contain the actual `null` value. This `null` value can then be used in subsequent requests:
+
+```http
+# @name getUserData
+
+GET https://api.example.com/user/123
+
+###
+
+# Use the extracted value, which might be null
+POST https://api.example.com/profile
+Content-Type: application/json
+
+{
+  "middleName": {{getUserData.response.body.$.middleName}}
+}
+
+###
+```
+
+#### Working with fallback values
+
+If you need to provide fallback values when a variable might be `null`, you can define conditional variables or use multiple requests with different variable assignments:
+
+```http
+@defaultValue=defaultName
+@extractedValue={{getUserData.response.body.$.name}}
+
+POST https://api.example.com/update
+Content-Type: application/json
+
+{
+  "name": "{{extractedValue}}"
+}
+
+###
+```
+
+When a variable contains `null`, it's rendered as the literal text `null` in the request body, which is valid JSON for null values.
 
 ## Environment files
 
