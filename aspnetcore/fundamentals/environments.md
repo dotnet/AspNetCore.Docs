@@ -28,13 +28,12 @@ Although the environment can be any string value, the following environment valu
 * <xref:Microsoft.Extensions.Hosting.Environments.Staging>
 * <xref:Microsoft.Extensions.Hosting.Environments.Production>
 
-The Production environment is configured to maximize security, performance, and app reliability. Some common settings that differ from the Development environment include:
+The Production environment is configured to maximize security, performance, and app reliability. Common developer settings and configuration that differ from the Development environment include:
 
-* [Caching](xref:performance/caching/memory) is enabled.
-* Client-side resources are bundled, minified, and potentially served from a CDN.
-* Diagnostic error pages are disabled.
-* Friendly error pages are enabled.
-* Production logging and monitoring are enabled. For example, logging is enabled for [Azure Application Insights](/azure/application-insights/app-insights-asp-net-core).
+* Enabling [caching](xref:performance/caching/memory).
+* Bundling and minifying client-side resources, along with potentially serving them from a CDN.
+* Disabling diagnostic error pages and enabling friendly error pages.
+* Enabling production logging and monitoring. For example, logging is enabled for [Azure Application Insights](/azure/application-insights/app-insights-asp-net-core).
 
 The last environment setting read by the app determines the app's environment. The app's environment can't be changed while the app is running.
 
@@ -56,7 +55,7 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 * [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
 * `ASPNETCORE_ENVIRONMENT`
 
-When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.Builder.WebHost>, `ASPNETCORE_ENVIRONMENT` takes precedence.
+When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost>, `ASPNETCORE_ENVIRONMENT` takes precedence.
 
 :::moniker-end
 
@@ -108,7 +107,7 @@ Use <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> or <xref:Microsoft.A
 
 The following code in `Startup.Configure`:
 
-* Injects <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure` to tailor the code to the environment. This approach is useful when the app only requires adjusting `Startup.Configure` for a few environments with minimal code differences per environment. When many code differences exist per environment, consider using one of the [environment-based `Startup` class approaches](#environment-based-startup-class-and-methods), which is covered later in this article.
+* Injects <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure` to tailor the code to the environment. This approach is useful when the app only requires adjusting `Startup.Configure` for a few environments with minimal code differences per environment. When many code differences exist per environment, consider using [accessing the environment from a `Startup` class](#access-the-environment-from-a-startup-class), which is covered later in this article.
 * Calls <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> when `ASPNETCORE_ENVIRONMENT` is set to `Development`. The call adds middleware that captures exceptions and generates HTML error responses.
 * Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> when the value of `ASPNETCORE_ENVIRONMENT` is set to `Production`, `Staging`, or `Testing`. The call adds [Exception Handler Middleware](xref:fundamentals/error-handling) to the pipeline to handle exceptions.
 
@@ -201,7 +200,9 @@ Alternatively, use the [`dotnet run`](/dotnet/core/tools/dotnet-run) command wit
 dotnet run -lp "https"
 ```
 
-When using [Visual Studio Code](https://code.visualstudio.com/), set the `ASPNETCORE_ENVIRONMENT` environment variable in the `.vscode/launch.json` in the `env` section, along with any other environment variables set in the section:
+When using [Visual Studio Code](https://code.visualstudio.com/) with the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) ([Getting Started with C# in VS Code](https://code.visualstudio.com/docs/csharp/get-started)), launch profiles are picked up from the app's `launchSettings.json` file.
+
+If the C# Dev Kit isn't used, set the `ASPNETCORE_ENVIRONMENT` environment variable in the `.vscode/launch.json` in the `env` section, along with any other environment variables set in the section:
 
 ```json
 "env": {
@@ -227,62 +228,32 @@ To set the `ASPNETCORE_ENVIRONMENT` environment variable, see the following reso
 
 Azure App Service automatically restarts the app after an app setting is added, changed, or deleted.
 
-### Windows
-
-Set the app's environment using any of the approaches in this section.
-
-#### Set environment variable for a process
+### Set environment variable for a process
 
 To set the `ASPNETCORE_ENVIRONMENT` environment variable for the current session (command shell) when the app is started using [`dotnet run`](/dotnet/core/tools/dotnet-run), use the following commands. After the environment variable is set, the app is started without a launch profile using the [`--no-launch-profile`](/dotnet/core/tools/dotnet-run#options) option.
 
-Command shell:
+1. In the command shell, set the environment variable using the appropriate approach for your operating system.
 
-```dotnetcli
-set ASPNETCORE_ENVIRONMENT=Staging
-```
+1. Execute the `dotnet run` command without using a launch profile:
 
-```dotnetcli
-dotnet run --no-launch-profile
-```
+   ```dotnetcli
+   dotnet run --no-launch-profile
+   ```
 
-PowerShell:
+When using PowerShell, the preceding steps can be combined in the following two commands. The following example sets the Staging environment:
 
 ```powershell
 $Env:ASPNETCORE_ENVIRONMENT = "Staging"
 dotnet run --no-launch-profile
 ```
 
-#### Set environment variable globally
+### Set environment variable globally
 
-To set the environment variable globally, use ***either*** of the following approaches:
-
-* Open the **Control Panel** > **System** > **Advanced system settings** and add or edit the `ASPNETCORE_ENVIRONMENT` value:
-
-  :::image source="environments/_static/systemsetting_environment.png" alt-text="System Advanced Properties":::
-
-  :::image source="environments/_static/windows_aspnetcore_environment.png" alt-text="ASPNET Core Environment Variable":::
-
-* Set the `ASPNETCORE_ENVIRONMENT` environment variable at the system level using ***either*** of the following approaches:
-
-  * Open an administrative command prompt and use the [`setx` command](/windows-server/administration/windows-commands/setx):
-  
-    ```console
-    setx ASPNETCORE_ENVIRONMENT Staging /M
-    ```
-
-    The `/M` switch sets the environment variable at the system level. If the `/M` switch isn't used, the environment variable is set for the user account.
-
-  * Alternatively, open an administrative PowerShell command prompt and use the [`[Environment]::SetEnvironmentVariable` command](/powershell/module/microsoft.powershell.core/about/about_environment_variables#use-the-systemenvironment-methods):
-  
-    ```powershell
-    [Environment]::SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Staging", "Machine")
-    ```
-
-    The `Machine` option sets the environment variable at the system level. If the option value is changed to `User`, the environment variable is set for the user account.
+Use the appropriate guidance for your operating system to set the `ASPNETCORE_ENVIRONMENT` environment variable.
 
 When the `ASPNETCORE_ENVIRONMENT` environment variable is set globally, it takes effect for the [`dotnet run`](/dotnet/core/tools/dotnet-run) command in any command shell opened after the value is set. Environment values set by [launch profiles in the `launchSettings.json` file](#set-the-environment-with-the-launch-settings-file-launchsettingsjson) override values set for the system environment.
 
-#### Set the environment for apps deployed to IIS
+### Set the environment for apps deployed to IIS
 
 To set the `ASPNETCORE_ENVIRONMENT` environment variable with the `web.config` file, see <xref:host-and-deploy/iis/web-config#set-environment-variables>.
 
@@ -300,22 +271,6 @@ When hosting an app in IIS and adding or changing the `ASPNETCORE_ENVIRONMENT` e
 
 * Execute `net stop was /y` followed by `net start w3svc` in a command shell.
 * Restart the server.
-
-### macOS and Linux
-
-Setting the current environment for macOS can be performed in-line when running the app in a Terminal shell:
-
-```dotnetcli
-ASPNETCORE_ENVIRONMENT=Staging dotnet run
-```
-
-Alternatively, set the environment with the [`export`](https://man7.org/linux/man-pages/man1/export.1p.html) command prior to running the app:
-
-```dotnetcli
-export ASPNETCORE_ENVIRONMENT=Staging
-```
-
-Environment variables set with `export` only exist for the lifetime of the current shell. To persist the setting across multiple sessions or system reboots, add the `export` command to a shell startup file (`.bashrc` or `.bash_profile`).
 
 ### Docker
 
@@ -402,12 +357,7 @@ To load configuration by environment, see <xref:fundamentals/configuration/index
 
 ## Access the environment from a `Startup` class
 
-Since the release of .NET 6, the ASP.NET Core project templates place startup code for service configuration and request pipeline processing in the `Program` file. Use of a `Startup` class (`Startup.cs`) with [`Configure`](xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A) and [`ConfigureServices`](xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A) methods was required before the release of .NET 6 but remains supported in ASP.NET Core. You can use the guidance in this section to control code execution by environment using a `Startup` class in any release of ASP.NET Core when a large number of code changes are required for each environment in use by an app.
-
-
-
-```
-
+Use of a `Startup` class (`Startup.cs`) with [`Configure`](xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A) and [`ConfigureServices`](xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A) methods was required before the release of .NET 6 and remains supported.
 
 Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into the `Startup` constructor to control code execution. This approach is useful when the app requires configuring startup code for only a few environments with minimal code differences per environment.
 
@@ -442,43 +392,6 @@ public class Startup
     public void Configure(IApplicationBuilder app)
     {
         if (_env.IsDevelopment())
-        {
-            ...
-        }
-        else
-        {
-            ...
-        }
-
-        ...
-    }
-}
-```
-
-The preceding example is simplified with the use of [primary constructors](/dotnet/csharp/whats-new/tutorials/primary-constructors) in C# 12 (.NET 8) or later:
-
-```csharp
-public class Startup(IWebHostEnvironment env)
-{
-    public void ConfigureServices(IServiceCollection services)
-    {
-        if (env.IsDevelopment())
-        {
-            ...
-        }
-        else if (env.IsStaging())
-        {
-            ...
-        }
-        else
-        {
-            ...
-        }
-    }
-
-    public void Configure(IApplicationBuilder app)
-    {
-        if (env.IsDevelopment())
         {
             ...
         }
