@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a controller-based web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 02/17/2025
+ms.date: 09/15/2025
 uid: tutorials/first-web-api
 ---
 
@@ -320,7 +320,15 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update `Program.cs` with the following highlighted code:
 
+# [Visual Studio](#tab/visual-studio)
+
 :::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs" highlight="1-2,8-9":::
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+:::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi_SwaggerVersion/Program.cs" highlight="1-2,8-9":::
+
+---
 
 The preceding code:
 
