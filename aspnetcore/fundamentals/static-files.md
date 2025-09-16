@@ -12,7 +12,7 @@ uid: fundamentals/static-files
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Static files, also called static assets, are files an ASP.NET Core app that aren't dynamically generated and served directly to clients on request, such as HTML, CSS, image, and JavaScript files.
+Static files, also called static assets, are files an ASP.NET Core app that aren't dynamically generated. Instead, they're served directly to clients on request, such as HTML, CSS, image, and JavaScript files.
 
 For Blazor static files guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/static-files>.
 
@@ -24,7 +24,7 @@ By default, static files are stored within the project's [web root](xref:fundame
 
 Only files with specific file extensions mapped to supported media types are treated as static web assets.
 
-Static web assets are discovered at build time and optimized using content-based [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) to prevent the reuse of old file and [compressed](/aspnet/core/performance/response-compression) to reduce asset delivery time. [The optimizations don't include minification.]
+Static web assets are discovered at build time and optimized using content-based [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) to prevent the reuse of old files. Assets are also [compressed](/aspnet/core/performance/response-compression) to reduce asset delivery time.
 
 At runtime, the discovered static web assets are exposed as endpoints with HTTP headers applied, such as [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) and content type headers. An asset is served once until the file changes or the browser clears its cache. The [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag), [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified), and [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) headers are set. The browser is prevented from using stale assets after an app is updated.
 
@@ -32,7 +32,7 @@ Delivery of static assets is based on [endpoint routing](xref:fundamentals/routi
 
 Map Static Assets provides the following benefits:
 
-* Build-time compression for all the assets in the app, including JavaScript (JS) and stylesheets but excluding image and font assets that are already compressed. [Gzip](https://tools.ietf.org/html/rfc1952) (`Content-Encoding: gz`) compression is used during development. Gzip with [Brotli](https://tools.ietf.org/html/rfc7932) (`Content-Encoding: br`) compression is used during publish.
+* Build-time compression for all the assets in the app, including JavaScript (JS) and stylesheets but excluding image and font assets that are already compressed. [Gzip](https://tools.ietf.org/html/rfc1952) (`Content-Encoding: gz`) compression is used during development. Gzip and [Brotli](https://tools.ietf.org/html/rfc7932) (`Content-Encoding: br`) compression are both used during publish.
 * [Fingerprinting](https://developer.mozilla.org/docs/Glossary/Fingerprinting) for all assets at build time with a [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded string of the [SHA-256](xref:System.Security.Cryptography.SHA256) hash of each file's content. This prevents reusing an old version of a file, even if the old file is cached. Fingerprinted assets are cached using the [`immutable` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives), which results in the browser never requesting the asset again until it changes. For browsers that don't support the `immutable` directive, a [`max-age` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives) is added.
   * Even if an asset isn't fingerprinted, content based `ETags` are generated for each static asset using the fingerprint hash of the file as the `ETag` value. This ensures that the browser only downloads a file if its content changes (or the file is being downloaded for the first time).
   * Internally, the framework maps physical assets to their fingerprints, which allows the app to:
