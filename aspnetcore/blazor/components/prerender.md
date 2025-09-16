@@ -25,7 +25,7 @@ This article explains Razor component prerendering scenarios for server-rendered
 
 Prerendering is enabled by default for interactive components.
 
-Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests, including for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing), [Interactive routing and prerendering](xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering), and [Enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
+Internal navigation with interactive routing doesn't use prerendering because the page is already interactive. For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and [Interactive routing and prerendering](xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering).
 
 [`OnAfterRender{Async}` component lifecycle events](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) aren't called when prerendering, only after the component renders interactively.
 
@@ -103,7 +103,53 @@ No compile time error occurs, but a runtime error occurs during prerendering:
 
 This error occurs because the component must compile and execute on the server during prerendering, but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service on the server.
 
-If the app doesn't require the value during prerendering, this problem can be solved by injecting <xref:System.IServiceProvider> to obtain the service instead of the service type itself:
+Consider any of the following approaches to address this scenario:
+
+* [Register the service on the server in addition to the client](#register-the-service-on-the-server-in-addition-to-the-client)
+* [Inject a service that the app can use during prerendering](#inject-a-service-that-the-app-can-use-during-prerendering)
+* [Make the service optional](#make-the-service-optional)
+* [Create a service abstraction](#create-a-service-abstraction)
+* [Disable prerendering for the component](#disable-prerendering-for-the-component)
+
+### Register the service on the server in addition to the client
+
+If the service supports server execution, register the service on the server in addition to the client so that it's available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in the [Blazor Web App external web APIs](xref:blazor/call-web-api#blazor-web-app-external-web-apis) section of the *Call web API* article.
+
+### Inject a service that the app can use during prerendering
+
+In some cases, the app can use a service on the server during prerendering and a different service on the client.
+
+For example, the following code obtains the app's environment whether the code is running on the server or on the client by injecting <xref:Microsoft.Extensions.Hosting.IHostEnvironment> from the [`Microsoft.Extensions.Hosting.Abstractions` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.Abstractions):
+
+```csharp
+private string? environmentName;
+
+public Home(IHostEnvironment? serverEnvironment = null, 
+    IWebAssemblyHostEnvironment? wasmEnvironment = null)
+{
+    environmentName = serverEnvironment?.EnvironmentName;
+    environmentName ??= wasmEnvironment?.Environment;
+}
+```
+
+However, this approach adds an additional dependency to the client project that isn't needed.
+
+### Make the service optional
+
+Make the service optional if it isn't required during prerendering using either of the following approaches.
+
+The following example uses constructor injection of <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment>:
+
+```csharp
+private string? environmentName;
+
+public Home(IWebAssemblyHostEnvironment? env = null)
+{
+    environmentName = env?.Environment;
+}
+```
+
+Alternatively, inject <xref:System.IServiceProvider> to optionally obtain the service if it's available:
 
 ```razor
 @page "/"
@@ -131,95 +177,36 @@ If the app doesn't require the value during prerendering, this problem can be so
 }
 ```
 
-If you merely want to make the service injection optional, you can use constructor injection:
+### Create a service abstraction
+
+If a different service implementation is needed on the server, create a service abstraction and create implementations for the service in the server and client projects. Register the services in each project. Inject the custom service abstraction into components where needed. The component then depends solely on the custom service abstraction.
+
+In the case of <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment>, we can reuse the existing interface instead of creating a new one:
+
+`ServerHostEnvironment.cs`:
 
 ```csharp
-private string? environmentName;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Components;
 
-public Home(IWebAssemblyHostEnvironment? env = null)
+public class ServerHostEnvironment(IWebHostEnvironment env, NavigationManager nav) : 
+    IWebAssemblyHostEnvironment
 {
-    environmentName = env?.Environment;
+    public string Environment => env.EnvironmentName;
+    public string BaseAddress => nav.BaseUri;
 }
 ```
 
-Another option for obtaining the environment whether the code is running on the server or on the client is to inject <xref:Microsoft.Extensions.Hosting.IHostEnvironment> from the [`Microsoft.Extensions.Hosting.Abstractions` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.Abstractions). Add a package reference to the app and use the following approach:
+In the server project's `Program` file, register the service:
 
 ```csharp
-private string? environmentName;
-
-public Home(IHostEnvironment? serverEnvironment = null, 
-    IWebAssemblyHostEnvironment? wasmEnvironment = null)
-{
-    environmentName = serverEnvironment?.EnvironmentName;
-    environmentName ??= wasmEnvironment?.Environment;
-}
+builder.Services.TryAddScoped<IWebAssemblyHostEnvironment, ServerHostEnvironment>();
 ```
 
-You can also avoid the problem if you [disable prerendering](#disable-prerendering) for the component, but that's an extreme measure to take in many cases that may not meet your component's specifications.
+At this point, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service can be [injected into an interactive WebAssembly or Auto component that is also prerendered from the server](xref:blazor/fundamentals/environments#read-the-environment-in-a-blazor-webassembly-app).
 
-There are a four approaches that you can take to address this scenario for prerendering. The following are listed from most recommended to least recommended:
+### Disable prerendering for the component
 
-* For shared framework services that merely aren't registered server-side in the main project, register the services in the main project, which makes them available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in the [Blazor Web App external web APIs](xref:blazor/call-web-api#blazor-web-app-external-web-apis) section of the *Call web API* article.
-
-* Make the service optional if it isn't always needed. See the first two examples in this section.
-
-* Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service abstraction in the component.
-
-* For services outside of the shared framework, create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
+Disable prerendering for the component or for the entire app. For more information, see the [Disable prerendering](#disable-prerendering) section.
 
 :::moniker-end
-
-## Prerendering guidance
-
-Prerendering guidance is organized in the Blazor documentation by subject matter. The following links cover all of the prerendering guidance throughout the documentation set by subject:
-
-* Fundamentals
-  * [Overview: Client and server rendering concepts](xref:blazor/fundamentals/index#client-and-server-rendering-concepts)
-  * Routing
-    * [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing)
-    * [Route to components from multiple assemblies: Interactive routing](xref:blazor/fundamentals/routing#interactive-routing)
-    * <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
-  * Startup
-    * [Control headers in C# code](xref:blazor/fundamentals/startup#control-headers-in-c-code)
-    * [Client-side loading indicators](xref:blazor/fundamentals/startup#client-side-loading-indicators)
-  * [Environments: Read the environment client-side in a Blazor Web App](xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app)
-  * [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
-  * SignalR
-    * [Client-side rendering](xref:blazor/fundamentals/signalr#client-side-rendering)
-    * [Prerendered state size and SignalR message size limit](xref:blazor/fundamentals/signalr#prerendered-state-size-and-signalr-message-size-limit)
-
-* Components
-  * [Control `<head>` content during prerendering](xref:blazor/components/control-head-content#control-head-content-during-prerendering)
-  * Render modes
-    * [Detect rendering location, interactivity, and assigned render mode at runtime](xref:blazor/components/render-modes#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime)
-    * [Custom shorthand render modes](xref:blazor/components/render-modes#custom-shorthand-render-modes)
-  * Razor component lifecycle subjects that pertain to prerendering
-    * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
-    * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
-    * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
-    * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop): This section also appears in the two JS interop articles on calling JavaScript from .NET and calling .NET from JavaScript.
-    * [Handle incomplete asynchronous actions at render](xref:blazor/components/lifecycle#handle-incomplete-asynchronous-actions-at-render): Guidance for delayed rendering due to long-running lifecycle tasks during prerendering on the server.
-  * [`QuickGrid` component sample app](xref:blazor/components/quickgrid#sample-app): The [**QuickGrid for Blazor** sample app](https://aspnet.github.io/quickgridsamples/) is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
-  * [Prerendering when integrating components into Razor Pages and MVC apps](xref:blazor/components/integration)
-
-* [Call a web API: Prerendered data](xref:blazor/call-web-api#prerendered-data)
-
-* [File uploads: Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr)
-
-* [Globalization and localization: Location override using "Sensors" pane in developer tools](xref:blazor/globalization-localization#location-override-using-sensors-pane-in-developer-tools)
-
-* Authentication and authorization
-  * [Server-side threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
-  * Blazor server-side security overview
-    * [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
-    * [Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](xref:blazor/security/index#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
-  * [Blazor server-side additional scenarios: Reading tokens from `HttpContext`](xref:blazor/security/additional-scenarios#reading-tokens-from-httpcontext)
-  * [Blazor WebAssembly overview: Prerendering support](xref:blazor/security/webassembly/index#prerendering-support)
-  * Blazor WebAssembly additional scenarios
-    * [Rendered component authentication with prerendering](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
-    * [Secure a SignalR hub](xref:blazor/security/webassembly/additional-scenarios#secure-a-signalr-hub)
-  * [Interactive server-side rendering: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
-
-* [State management: Protected browser storage: Handle prerendering](xref:blazor/state-management/protected-browser-storage#handle-prerendering): Besides the *Handle prerendering* section, several article sections in the [State management node](xref:blazor/state-management/index) include remarks on prerendering.
-
-For .NET 7 or earlier, see [Blazor WebAssembly security additional scenarios: Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#prerendering-with-authentication). After viewing the content in this section, reset the documentation article version selector dropdown to the latest .NET release version to ensure that documentation pages load for the latest release on subsequent visits.
