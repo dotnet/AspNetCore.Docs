@@ -103,17 +103,42 @@ No compile time error occurs, but a runtime error occurs during prerendering:
 
 This error occurs because the component must compile and execute on the server during prerendering, but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service on the server.
 
-There are several approaches that you can take to address this scenario:
+Consider any of the following approaches to address this scenario:
 
-* If the service supports server execution, register the service on the server in addition to the client so that it's available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in the [Blazor Web App external web APIs](xref:blazor/call-web-api#blazor-web-app-external-web-apis) section of the *Call web API* article.
+* [Register the service on the server in addition to the client](#register-the-service-on-the-server-in-addition-to-the-client)
+* [Inject a service that the app can use during prerendering](#inject-a-service-that-the-app-can-use-during-prerendering)
+* [Make the service optional](#make-the-service-optional)
+* [Create a service abstraction](#create-a-service-abstraction)
+* [Disable prerendering for the component](#disable-prerendering-for-the-component)
 
-* Make the service optional if it isn't always needed during prerendering.
+### Register the service on the server in addition to the client
 
-* If a different service implementation is needed on the server, create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service abstraction in the component.
+If the service supports server execution, register the service on the server in addition to the client so that it's available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in the [Blazor Web App external web APIs](xref:blazor/call-web-api#blazor-web-app-external-web-apis) section of the *Call web API* article.
 
-* Disable prerendering for the component or for the entire app.
+### Inject a service that the app can use during prerendering
 
-To optionally inject the service into the component, use constructor injection:
+In some cases, the app can use a service on the server during prerendering and a different service on the client.
+
+For example, the following code obtains the app's environment whether the code is running on the server or on the client by injecting <xref:Microsoft.Extensions.Hosting.IHostEnvironment> from the [`Microsoft.Extensions.Hosting.Abstractions` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.Abstractions):
+
+```csharp
+private string? environmentName;
+
+public Home(IHostEnvironment? serverEnvironment = null, 
+    IWebAssemblyHostEnvironment? wasmEnvironment = null)
+{
+    environmentName = serverEnvironment?.EnvironmentName;
+    environmentName ??= wasmEnvironment?.Environment;
+}
+```
+
+However, this approach adds an additional dependency to the client project that isn't needed.
+
+### Make the service optional
+
+Make the service optional if it isn't required during prerendering using either of the following approaches.
+
+The following example uses constructor injection of <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment>:
 
 ```csharp
 private string? environmentName;
@@ -152,24 +177,11 @@ Alternatively, inject <xref:System.IServiceProvider> to optionally obtain the se
 }
 ```
 
-To obtain the environment whether the code is running on the server or on the client, you could optionally inject <xref:Microsoft.Extensions.Hosting.IHostEnvironment> from the [`Microsoft.Extensions.Hosting.Abstractions` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.Abstractions):
+### Create a service abstraction
 
-```csharp
-private string? environmentName;
+If a different service implementation is needed on the server, create a service abstraction and create implementations for the service in the server and client projects. Register the services in each project. Inject the custom service abstraction into components where needed. The component then depends solely on the custom service abstraction.
 
-public Home(IHostEnvironment? serverEnvironment = null, 
-    IWebAssemblyHostEnvironment? wasmEnvironment = null)
-{
-    environmentName = serverEnvironment?.EnvironmentName;
-    environmentName ??= wasmEnvironment?.Environment;
-}
-```
-
-However, this approach adds an additional dependency to the client project that isn't needed.
-
-A better approach is to create a custom service abstraction and implementations for the server and client. Implement the service interface in the server and client projects and register the implementations in each project. The component then depends solely on the custom service abstraction.
-
-In the case of `IWebAssemblyHostEnvironment`, we can reuse the existing interface instead of creating a new one:
+In the case of <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment>, we can reuse the existing interface instead of creating a new one:
 
 `ServerHostEnvironment.cs`:
 
@@ -192,5 +204,9 @@ builder.Services.TryAddScoped<IWebAssemblyHostEnvironment, ServerHostEnvironment
 ```
 
 At this point, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service can be [injected into an interactive WebAssembly or Auto component that is also prerendered from the server](xref:blazor/fundamentals/environments#read-the-environment-in-a-blazor-webassembly-app).
+
+### Disable prerendering for the component
+
+Disable prerendering for the component or for the entire app. For more information, see the [Disable prerendering](#disable-prerendering) section.
 
 :::moniker-end
