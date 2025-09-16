@@ -136,7 +136,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
     // Configure your other middleware here (authentication, routing, etc.)
     
     // Map the fallback route
-    app.MapForwarder("/{**catch-all}", app.ServiceProvider.GetRequiredService<IOptions<RemoteAppClientOptions>>().Value.RemoteAppUrl.OriginalString)
+    app.MapForwarder("/{**catch-all}", app.Services.GetRequiredService<IOptions<RemoteAppClientOptions>>().Value.RemoteAppUrl.OriginalString)
     
         // Ensures this route has the lowest priority (runs last)
         .WithOrder(int.MaxValue)
