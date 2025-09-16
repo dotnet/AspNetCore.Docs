@@ -5,7 +5,7 @@ description: Learn how to set and control app behavior across runtime environmen
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/03/2025
+ms.date: 09/16/2025
 uid: fundamentals/environments
 ---
 # ASP.NET Core runtime environments
@@ -134,21 +134,30 @@ The preceding example checks the current environment while building the request 
 
 Within the app, the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> provides general information about the app's hosting environment, and the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName?displayProperty=nameWithType> property indicates the app's current environment.
 
-## Control rendered content in Razor Pages and MVC
+## Control rendered content
 
-In Razor Pages and MVC apps, the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName?displayProperty=nameWithType> to include or exclude markup in the Tag Helper's `<environment>` element:
+Inject <xref:Microsoft.Extensions.Hosting.IHostEnvironment> into a server-rendered Razor component and use the service's extension methods and <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName%2A> property to determine the environment for rendering content:
 
-```cshtml
-<environment include="Development">
+```razor
+@inject IHostEnvironment Env
+
+@if (Env.IsDevelopment())
+{
     <div>The environment is Development.</div>
-</environment>
-<environment exclude="Development">
+}
+
+@if (!Env.IsDevelopment())
+{
     <div>The environment isn't Development.</div>
-</environment>
-<environment include="Staging,Development,Testing">
-    <div>The environment is any of: Staging, Development, or Testing.</div>
-</environment>
+}
+
+@if (Env.IsStaging() || Env.EnvironmentName == "Testing")
+{
+    <div>The environment is either Staging or Testing.</div>
+}
 ```
+
+For Blazor Web Apps that require the environment to control client-side rendering, see <xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering>.
 
 ## Set the environment in a command shell when the app is run (`dotnet run`)
 
