@@ -274,9 +274,21 @@ To satisfy the preceding requirements, make the following changes:
 
 1. In `Program.cs`, chain the following highlighted code on to the `AddControllers` method call:
 
-   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-11":::
+   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-13":::
 
    With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author` instead of `author`.
+
+   Additionally, .NET 9.0 requires source generation setup for JSON serialization of collections. The `TypeInfoResolverChain.Insert` call registers the custom `JsonSerializerContext` for proper serialization of `List<Book>` collections.
+
+1. Add the following using directive to the top of `Program.cs`:
+
+   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Program.cs" id="snippet_UsingJsonSerialization":::
+
+1. Add the following `JsonSerializerContext` class at the end of `Program.cs`:
+
+   :::code language="csharp" source="first-mongo-app/samples/9.x/BookStoreApi/Program.cs" id="snippet_JsonSerializerContext":::
+
+   The `BookStoreJsonSerializerContext` class enables source generation for JSON serialization. The `[JsonSerializable]` attributes specify the types that need to be serialized, including both the `Book` type and `List<Book>` collections.
 
 1. In `Models/Book.cs`, annotate the `BookName` property with the [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute:
 

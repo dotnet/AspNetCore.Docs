@@ -4,6 +4,9 @@ using BookStoreApi.Models;
 // <snippet_UsingServices>
 using BookStoreApi.Services;
 // </snippet_UsingServices>
+// <snippet_UsingJsonSerialization>
+using System.Text.Json.Serialization;
+// </snippet_UsingJsonSerialization>
 
 // <snippet_AddControllers>
 // <snippet_BooksService>
@@ -19,8 +22,11 @@ builder.Services.AddSingleton<BooksService>();
 // </snippet_BooksService>
 
 builder.Services.AddControllers()
-    .AddJsonOptions(
-        options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+        options.JsonSerializerOptions.TypeInfoResolverChain.Insert(0, BookStoreJsonSerializerContext.Default);
+    });
 // </snippet_AddControllers>
 
 builder.Services.AddOpenApi();
@@ -45,3 +51,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// <snippet_JsonSerializerContext>
+[JsonSerializable(typeof(List<Book>))]
+[JsonSerializable(typeof(Book))]
+internal partial class BookStoreJsonSerializerContext : JsonSerializerContext
+{
+}
+// </snippet_JsonSerializerContext>
