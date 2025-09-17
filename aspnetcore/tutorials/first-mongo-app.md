@@ -17,6 +17,9 @@ By [Pratik Khandelwal](https://twitter.com/K2Prk) and [Scott Addie](https://twit
 
 :::moniker range=">= aspnetcore-9.0"
 
+> [!IMPORTANT]
+> **Version Compatibility Warning**: This tutorial is designed for .NET 9.0. If you're using .NET 8.0, please select **ASP.NET Core 8.0** from the version dropdown above to follow the .NET 8-specific instructions. Using .NET 8 with this tutorial may result in JSON serialization errors such as `JsonTypeInfo metadata for type 'System.Collections.Generic.List' was not provided by TypeInfoResolver`.
+
 This tutorial creates a web API that runs Create, Read, Update, and Delete (CRUD) operations on a [MongoDB](https://www.mongodb.com/what-is-mongodb) NoSQL database.
 
 In this tutorial, you learn how to:
@@ -148,6 +151,10 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Name the project *BookStoreApi*, and select **Next**.
 1. In the **Additional information** dialog:
   * Confirm the **Framework** is **.NET 9.0 (Standard Term Support)**.
+
+   > [!NOTE]
+   > Ensure you select **.NET 9.0** for this tutorial. If you're using .NET 8.0, switch to the .NET 8 version of this tutorial using the version dropdown at the top of the page.
+
   * Confirm the checkbox for **Use controllers** is checked.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
   * Select **Create**.
@@ -520,6 +527,44 @@ The OpenAPI specification is a document in JSON format that describes the struct
  
 1. The response should have a status code of 204 (No Content), indicating that the book was successfully deleted. 
 ---
+
+## Troubleshooting
+
+### JSON serialization error when using .NET 8
+
+If you encounter the following error when using .NET 8:
+
+```
+System.NotSupportedException: JsonTypeInfo metadata for type 'System.Collections.Generic.List`1[BookStore.Models.BookModel]' was not provided by TypeInfoResolver
+```
+
+This error occurs when following the .NET 9 tutorial while using .NET 8. To resolve this issue:
+
+1. **Ensure you're following the correct version** of the tutorial:
+   - For .NET 8: Select **ASP.NET Core 8.0** from the version dropdown at the top of this page
+   - For .NET 9: Select **ASP.NET Core 9.0** from the version dropdown
+
+2. **If you must use .NET 8 with this tutorial**, ensure your `Program.cs` includes the JSON options configuration:
+
+   ```csharp
+   builder.Services.AddControllers()
+       .AddJsonOptions(options => 
+       {
+           options.JsonSerializerOptions.PropertyNamingPolicy = null;
+       });
+   ```
+
+3. **Verify your Book model** includes the proper JSON serialization attributes:
+
+   ```csharp
+   using System.Text.Json.Serialization;
+   
+   [BsonElement("Name")]
+   [JsonPropertyName("Name")]
+   public string BookName { get; set; } = null!;
+   ```
+
+For more information about .NET version compatibility and JSON serialization, see <xref:migration/80-90> and <xref:fundamentals/minimal-apis/responses#configure-json-serialization-options>.
 
 ## Add authentication support to a web API
 

@@ -1,5 +1,8 @@
 :::moniker range="= aspnetcore-8.0"
 
+> [!IMPORTANT]
+> **Version Compatibility**: This tutorial is specifically for .NET 8.0. If you're using .NET 9.0, please select **ASP.NET Core 9.0** from the version dropdown above. Mixing .NET versions with tutorial instructions can result in JSON serialization errors.
+
 This tutorial creates a web API that runs Create, Read, Update, and Delete (CRUD) operations on a [MongoDB](https://www.mongodb.com/what-is-mongodb) NoSQL database.
 
 In this tutorial, you learn how to:
@@ -129,6 +132,10 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Select the **ASP.NET Core Web API** project type, and select **Next**.
 1. Name the project *BookStoreApi*, and select **Next**.
 1. Select the **.NET 8.0 (Long Term support)** framework and select **Create**.
+
+   > [!NOTE]
+   > Ensure you select **.NET 8.0** and not .NET 9.0 for this tutorial. Selecting the wrong version can cause JSON serialization issues when following these instructions.
+
 1. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
    ```powershell
@@ -304,6 +311,35 @@ To satisfy the preceding requirements, make the following changes:
    :::code language="csharp" source="~/tutorials/first-mongo-app/samples/8.x/BookStoreApi/Models/Book.cs" id="snippet_UsingSystemTextJsonSerialization":::
 
 1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
+
+## Troubleshooting
+
+### JSON serialization error
+
+If you encounter a `System.NotSupportedException` related to `JsonTypeInfo metadata for type`, ensure that:
+
+1. **You're using the correct .NET version** for this tutorial (.NET 8.0).
+2. **Your `Program.cs` includes** the JSON options configuration as shown in this tutorial:
+
+   ```csharp
+   builder.Services.AddControllers()
+       .AddJsonOptions(options => 
+           options.JsonSerializerOptions.PropertyNamingPolicy = null);
+   ```
+
+3. **Your Book model includes** the `[JsonPropertyName]` attribute:
+
+   ```csharp
+   using System.Text.Json.Serialization;
+   
+   [BsonElement("Name")]
+   [JsonPropertyName("Name")]
+   public string BookName { get; set; } = null!;
+   ```
+
+4. **If you followed the .NET 9 tutorial by mistake**, switch to the .NET 8 version using the version dropdown at the top of the page.
+
+For more information about JSON serialization in .NET 8, see <xref:fundamentals/minimal-apis/responses#configure-json-serialization-options>.
 
 ## Add authentication support to a web API
 
