@@ -6,7 +6,7 @@ description: This tutorial demonstrates how to create an ASP.NET Core web API us
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 04/09/2025
+ms.date: 09/17/2025
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -16,9 +16,6 @@ uid: tutorials/first-mongo-app
 By [Pratik Khandelwal](https://twitter.com/K2Prk) and [Scott Addie](https://twitter.com/Scott_Addie)
 
 :::moniker range=">= aspnetcore-9.0"
-
-> [!IMPORTANT]
-> **Version Compatibility Warning**: This tutorial is designed for .NET 9.0. If you're using .NET 8.0, please select **ASP.NET Core 8.0** from the version dropdown above to follow the .NET 8-specific instructions. Using .NET 8 with this tutorial may result in JSON serialization errors such as `JsonTypeInfo metadata for type 'System.Collections.Generic.List' was not provided by TypeInfoResolver`.
 
 This tutorial creates a web API that runs Create, Read, Update, and Delete (CRUD) operations on a [MongoDB](https://www.mongodb.com/what-is-mongodb) NoSQL database.
 
@@ -151,10 +148,6 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Name the project *BookStoreApi*, and select **Next**.
 1. In the **Additional information** dialog:
   * Confirm the **Framework** is **.NET 9.0 (Standard Term Support)**.
-
-   > [!NOTE]
-   > Ensure you select **.NET 9.0** for this tutorial. If you're using .NET 8.0, switch to the .NET 8 version of this tutorial using the version dropdown at the top of the page.
-
   * Confirm the checkbox for **Use controllers** is checked.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
   * Select **Create**.
@@ -527,65 +520,6 @@ The OpenAPI specification is a document in JSON format that describes the struct
  
 1. The response should have a status code of 204 (No Content), indicating that the book was successfully deleted. 
 ---
-
-## Troubleshooting
-
-### JSON serialization error when using .NET 8
-
-If you encounter the following error when using .NET 8:
-
-```
-System.NotSupportedException: JsonTypeInfo metadata for type 'System.Collections.Generic.List`1[BookStore.Models.BookModel]' was not provided by TypeInfoResolver
-```
-
-This error typically occurs when following the .NET 9 tutorial while using .NET 8, or when the JSON serialization options are not properly configured. To resolve this issue:
-
-1. **Ensure you're following the correct version** of the tutorial:
-   - For .NET 8: Select **ASP.NET Core 8.0** from the version dropdown at the top of this page
-   - For .NET 9: Select **ASP.NET Core 9.0** from the version dropdown
-
-2. **Verify your `Program.cs` includes the complete JSON options configuration**:
-
-   ```csharp
-   builder.Services.AddControllers()
-       .AddJsonOptions(options => 
-       {
-           options.JsonSerializerOptions.PropertyNamingPolicy = null;
-       });
-   ```
-
-3. **Check your Book model** includes the proper System.Text.Json serialization attributes:
-
-   ```csharp
-   using System.Text.Json.Serialization;
-   using MongoDB.Bson;
-   using MongoDB.Bson.Serialization.Attributes;
-   
-   public class Book
-   {
-       [BsonId]
-       [BsonRepresentation(BsonType.ObjectId)]
-       public string? Id { get; set; }
-
-       [BsonElement("Name")]
-       [JsonPropertyName("Name")]
-       public string BookName { get; set; } = null!;
-       
-       // ... other properties
-   }
-   ```
-
-4. **If you created a Web API project without controllers**, ensure you:
-   - Added `builder.Services.AddControllers()` to your `Program.cs`
-   - Added `app.MapControllers()` to your request pipeline
-   - Removed the default minimal API code (weatherforecast endpoint)
-
-5. **For MongoDB-specific issues**, ensure you have:
-   - Installed the correct MongoDB.Driver package version for .NET 8
-   - Properly configured the MongoDB connection and services
-   - Used the correct BSON serialization attributes
-
-For more information about .NET version compatibility and JSON serialization, see <xref:migration/80-90> and <xref:fundamentals/minimal-apis/responses#configure-json-serialization-options>.
 
 ## Add authentication support to a web API
 
