@@ -316,10 +316,17 @@ To satisfy the preceding requirements, make the following changes:
 
 ### JSON serialization error
 
-If you encounter a `System.NotSupportedException` related to `JsonTypeInfo metadata for type`, ensure that:
+If you encounter a `System.NotSupportedException` related to `JsonTypeInfo metadata for type`, this typically indicates a JSON serialization configuration issue. Ensure that:
 
 1. **You're using the correct .NET version** for this tutorial (.NET 8.0).
-2. **Your `Program.cs` includes** the JSON options configuration as shown in this tutorial:
+
+2. **Your project was created with controller support**:
+   ```dotnetcli
+   dotnet new webapi -o BookStoreApi --use-controllers
+   ```
+   Or if using Visual Studio, ensure "Use controllers" was checked.
+
+3. **Your `Program.cs` includes** the complete JSON options configuration as shown in this tutorial:
 
    ```csharp
    builder.Services.AddControllers()
@@ -327,17 +334,28 @@ If you encounter a `System.NotSupportedException` related to `JsonTypeInfo metad
            options.JsonSerializerOptions.PropertyNamingPolicy = null);
    ```
 
-3. **Your Book model includes** the `[JsonPropertyName]` attribute:
+4. **Your Book model includes** the proper attributes:
 
    ```csharp
    using System.Text.Json.Serialization;
+   using MongoDB.Bson;
+   using MongoDB.Bson.Serialization.Attributes;
    
-   [BsonElement("Name")]
-   [JsonPropertyName("Name")]
-   public string BookName { get; set; } = null!;
+   public class Book
+   {
+       [BsonId]
+       [BsonRepresentation(BsonType.ObjectId)]
+       public string? Id { get; set; }
+
+       [BsonElement("Name")]
+       [JsonPropertyName("Name")]
+       public string BookName { get; set; } = null!;
+       
+       // ... other properties
+   }
    ```
 
-4. **If you followed the .NET 9 tutorial by mistake**, switch to the .NET 8 version using the version dropdown at the top of the page.
+5. **If you accidentally followed the .NET 9 tutorial**, switch to the .NET 8 version using the version dropdown at the top of the page.
 
 For more information about JSON serialization in .NET 8, see <xref:fundamentals/minimal-apis/responses#configure-json-serialization-options>.
 
