@@ -26,6 +26,13 @@ In this section:
 One of the design tenets of MVC is [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("Don't Repeat Yourself"). ASP.NET Core MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
 
 The validation support provided by MVC and Entity Framework Core is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+[!INCLUDE[](~/includes/validation-package-net10.md)]
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
 
 ## Delete the previously edited data
 
