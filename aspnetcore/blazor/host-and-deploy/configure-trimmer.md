@@ -83,13 +83,13 @@ Consider the following example that performs JSON deserialization into a <xref:S
 
 The preceding component executes normally when the app is run locally and produces the following rendered list:
 
-> • 1:T1, 1:T2
+> • 1:T1, 1:T2  
 > • 2:T2, 2:T2
 
 When the app is published, <xref:System.Tuple%602> is trimmed from the app, even in spite of setting the `<PublishTrimmed>` property to `false` in the project file. Accessing the component throws the following exception:
 
-> :::no-loc text="crit: Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]":::
-> :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::
+> :::no-loc text="crit: Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]":::  
+> :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::  
 > :::no-loc text="System.NotSupportedException: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::
 
 To address lost types, consider adopting one of the following approaches.
