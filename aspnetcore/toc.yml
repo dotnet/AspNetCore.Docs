@@ -314,8 +314,6 @@ items:
       - name: Make HTTP requests
         displayName: httpclient, httpclientfactory
         uid: fundamentals/http-requests
-      - name: Map Static files
-        uid: fundamentals/map-static-files
       - name: Static files
         uid: fundamentals/static-files
       - name: dotnet-scaffold telemetry
@@ -326,7 +324,7 @@ items:
         uid: tutorials/choose-web-ui
       - name: Razor Pages
         items:
-          - name: Introduction
+          - name: Architecture and concepts
             uid: razor-pages/index
           - name: Tutorial
             items:
@@ -1734,6 +1732,12 @@ items:
                 uid: security/authentication/identity-enable-qrcodes
               - name: Two-factor authentication with SMS
                 uid: security/authentication/2fa
+              - name: Passkeys (WebAuthn)
+                items:
+                  - name: Overview
+                    uid: security/authentication/passkeys/index
+                  - name: Blazor
+                    uid: security/authentication/passkeys/blazor
               - name: External authentication providers
                 items:
                   - name: Overview
@@ -2076,6 +2080,9 @@ items:
         uid: fundamentals/middleware/extensibility-third-party-container
   - name: Migration and updates
     items:
+      - name: Overview
+        displayName: migrate, migration
+        uid: migration/index
       - name: Version updates
         items:
           - name: 8 to 9

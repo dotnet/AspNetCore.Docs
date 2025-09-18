@@ -36,7 +36,7 @@ For prerequisites and preliminary steps, see <xref:blazor/hybrid/tutorials/maui>
 
 The sample app is a starter solution that contains a native, cross-platform MAUI Blazor Hybrid app, a Blazor Web App, and a Razor class library (RCL) that contains the shared UI (Razor components) used by the native and web apps.
 
-1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](xref:index#how-to-download-a-sample).
+1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](xref:fundamentals/index#how-to-download-a-sample).
 1. Make sure you have [.NET 9 and the MAUI workload installed (.NET MAUI documentation)](/dotnet/maui/get-started/installation).
 1. Open the solution in Visual Studio (2022 or later) or VS Code with the .NET MAUI extension installed.
 1. Set the `MauiBlazorWeb` MAUI project as the startup project. In Visual Studio, right-click the project and select **Set as Startup Project**.
@@ -117,7 +117,7 @@ app.MapAdditionalIdentityEndpoints();
 ```
 
 > [!IMPORTANT]
-> ASP.NET Core Identity pages and the implementation of the <xref:Microsoft.AspNetCore.Identity.SignInManager%601> framework class to manage logins and users is generated automatically when you create a a project from the Blazor Web App project template with **Individual Accounts**.
+> ASP.NET Core Identity pages and the implementation of the <xref:Microsoft.AspNetCore.Identity.SignInManager%601> framework class to manage logins and users is generated automatically when you create a project from the Blazor Web App project template with **Individual Accounts**.
 >
 > This article focuses on using the provided sample app; but when creating a new project from the Blazor Web App template, you must remove the generated call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>. The call isn't necessary when implementing API such as `MapAdditionalIdentityEndpoints` in the sample app and results in an error if left in the app.
 

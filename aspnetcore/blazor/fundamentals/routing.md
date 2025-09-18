@@ -5,7 +5,7 @@ description: Learn how to manage Blazor app request routing and how to use the N
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 09/08/2025
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing and navigation
@@ -703,6 +703,31 @@ The following component:
 :::moniker-end
 
 For more information on component disposal, see <xref:blazor/components/component-disposal>.
+
+:::moniker range=">= aspnetcore-9.0"
+
+## Navigation Manager redirect behavior during static server-side rendering (static SSR)
+
+For a redirect during static server-side rendering (static SSR), <xref:Microsoft.AspNetCore.Components.NavigationManager> relies on throwing a <xref:Microsoft.AspNetCore.Components.NavigationException> that gets captured by the framework, which converts the error into a redirect. Code that exists after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> isn't called. When using Visual Studio, the debugger breaks on the exception, requiring you to deselect the checkbox for **Break when this exception type is user-handled** in the Visual Studio UI to avoid the debugger stopping for future redirects.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set to `true` in the app's project file to opt-in to no longer throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>. Also, code after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> executes when it wouldn't have run before. This behavior is enabled by default in the .NET 10 or later Blazor Web App project template:
+
+```xml
+<BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
+
+> [!NOTE]
+> In .NET 10 or later, you can opt-in to not throwing a <xref:Microsoft.AspNetCore.Components.NavigationException> by setting the `<BlazorDisableThrowNavigationException>` MSBuild property to `true` in the app's project file. To take advantage of the new MSBuild property and behavior, upgrade the app to .NET 10 or later.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-10.0"
 

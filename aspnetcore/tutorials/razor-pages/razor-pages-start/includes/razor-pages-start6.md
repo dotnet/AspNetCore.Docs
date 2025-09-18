@@ -192,7 +192,7 @@ The following code enables various [Middleware](xref:fundamentals/middleware/ind
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60) ([how to download](xref:index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## Next steps
 

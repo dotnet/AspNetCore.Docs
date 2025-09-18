@@ -5,7 +5,7 @@ description: Learn how to configure and manage static files for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 09/02/2025
 uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
@@ -16,7 +16,7 @@ This article describes Blazor app configuration for serving static files.
 
 :::moniker range=">= aspnetcore-9.0"
 
-For general information on serving static files with Map Static Assets routing endpoint conventions, see <xref:fundamentals/map-static-files> before reading this article.
+For general information on serving static files with Map Static Assets routing endpoint conventions, see <xref:fundamentals/static-files> before reading this article.
 
 :::moniker-end
 
@@ -53,7 +53,7 @@ Serving static assets is managed by either routing endpoint conventions or a mid
 Feature | API | .NET Version | Description
 --- | --- | :---: | ---
 Map Static Assets routing endpoint conventions | <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> | .NET 9 or later | Optimizes the delivery of static assets to clients.
-Static Files Middleware | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> | All .NET versions | Serves static assets to clients without the optimizations of Map Static Assets but useful for some tasks that Map Static Assets isn't capable of managing.
+Static File Middleware | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> | All .NET versions | Serves static assets to clients without the optimizations of Map Static Assets but useful for some tasks that Map Static Assets isn't capable of managing.
 
 Map Static Assets can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, Map Static Assets is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
 
@@ -272,7 +272,7 @@ Any script in `index.html` with the fingerprint marker is fingerprinted by the f
 
 ## Fingerprint client-side static assets in Blazor Web Apps
 
-For client-side rendering (CSR) in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files), [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`). For more information, see <xref:fundamentals/map-static-files>.
+For client-side rendering (CSR) in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/static-files), [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`). For more information, see <xref:fundamentals/static-files>.
 
 To fingerprint additional JavaScript modules for CSR, use the `<StaticWebAssetFingerprintPattern>` item in the app's project file (`.csproj`). In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
 
@@ -343,22 +343,6 @@ The required `<StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>` se
 Changing the value (`Default`) of `<StaticWebAssetProjectMode>` or removing the property from the `.Client` project isn't supported.
 
 :::moniker-end
-
-## Static files in non-`Development` environments
-
-*This section applies to server-side static files.*
-
-When running an app locally, static web assets are only enabled in the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment. To enable static files for environments other than <xref:Microsoft.Extensions.Hosting.Environments.Development> during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> in the `Program` file.
-
-> [!WARNING]
-> Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> for the ***exact environment*** to prevent activating the feature in production, as it serves files from separate locations on disk *other than from the project* if called in a production environment. The example in this section checks for the <xref:Microsoft.Extensions.Hosting.Environments.Staging> environment by calling <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsStaging%2A>.
-
-```csharp
-if (builder.Environment.IsStaging())
-{
-    builder.WebHost.UseStaticWebAssets();
-}
-```
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -462,40 +446,11 @@ In the preceding examples, the `{TFM}` placeholder is the [Target Framework Moni
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 ## File mappings and static file options
 
 *This section applies to server-side static files.*
-
-:::moniker range=">= aspnetcore-8.0"
-
-To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type. The namespace for the following API is <xref:Microsoft.AspNetCore.StaticFiles>.
-
-* Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in the `Program` file using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:
-
-  ```csharp
-  var provider = new FileExtensionContentTypeProvider();
-  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
-
-  builder.Services.Configure<StaticFileOptions>(options =>
-  {
-      options.ContentTypeProvider = provider;
-  });
-
-  app.UseStaticFiles();
-  ```
-
-* Pass the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> directly to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the `Program` file:
-
-  ```csharp
-  var provider = new FileExtensionContentTypeProvider();
-  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
-
-  app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
-  ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
 
 To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.
 

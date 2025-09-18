@@ -12,7 +12,7 @@ uid: fundamentals/error-handling
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-10.0"
 
 This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:fundamentals/error-handling-api>.
 
@@ -339,12 +339,14 @@ An alternative approach to generate problem details is to use the third-party Nu
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * <xref:fundamentals/error-handling-api>
+* [Breaking change: Exception diagnostics are suppressed when `IExceptionHandler.TryHandleAsync` returns true](https://github.com/aspnet/Announcements/issues/524)
 
 :::moniker-end
 
+[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling9.md)]
 [!INCLUDE[](~/fundamentals/error-handling/includes/error-handling8.md)]
 [!INCLUDE[](~/fundamentals/error-handling/includes/error-handling3-7.md)]

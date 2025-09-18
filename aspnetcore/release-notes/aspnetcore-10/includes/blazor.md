@@ -133,7 +133,7 @@ For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API 
 
 ### Client-side fingerprinting
 
-Last year, the release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/map-static-files), the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript modules. For .NET 10, you can opt-into client-side fingerprinting of JavaScript modules for standalone Blazor WebAssembly apps.
+The release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/static-files), the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript modules. For .NET 10, you can opt-into client-side fingerprinting of JavaScript modules for standalone Blazor WebAssembly apps.
 
 In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
 
@@ -372,21 +372,23 @@ In Blazor Web Apps, framework static assets are automatically preloaded using [`
 
 For more information, see <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets>.
 
-### `NavigationManager.NavigateTo` no longer throws a `NavigationException`
+### Opt-in to avoiding a `NavigationException` during static server-side rendering with `NavigationManager.NavigateTo`
 
-Previously, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static server-side rendering (SSR) would throw a <xref:Microsoft.AspNetCore.Components.NavigationException>, interrupting execution before being converted to a redirection response. This caused confusion during debugging and was inconsistent with interactive rendering, where code after <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> continues to execute normally.
+Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static server-side rendering (static SSR) throws a <xref:Microsoft.AspNetCore.Components.NavigationException>, interrupting execution before being converted to a redirection response. This can cause confusion during debugging and is inconsistent with interactive rendering behavior, where code after <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> continues to execute normally.
 
-Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static SSR no longer throws a <xref:Microsoft.AspNetCore.Components.NavigationException>. Instead, it behaves consistently with interactive rendering by performing the navigation without throwing an exception.
+In .NET 10, you can set the `<BlazorDisableThrowNavigationException>` MSBuild property to `true` in the app's project file in order to avoid throwing the exception during static SSR:
 
-Code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. For example, in the default Blazor Identity UI, the `IdentityRedirectManager` previously threw an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure it wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed.
-
-To revert to the previous behavior of throwing a <xref:Microsoft.AspNetCore.Components.NavigationException>, set the following <xref:System.AppContext> switch:
-
-```csharp
-AppContext.SetSwitch(
-    "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException", 
-    isEnabled: false);
+```xml
+<PropertyGroup>
+  <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+</PropertyGroup>
 ```
+
+With the MSBuild property set, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> during static SSR no longer throws a <xref:Microsoft.AspNetCore.Components.NavigationException>. Instead, it behaves consistently with interactive rendering by performing the navigation without throwing an exception. Code after <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> executes before the redirection occurs.
+
+The .NET 10 Blazor Web App project template sets the MSBuild property to `true` by default. We recommend that apps updating to .NET 10 use the new MSBuild property and avoid the prior behavior.
+
+If the MSBuild property is used, code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. In the default Blazor Identity UI of the Blazor Web App project template before the release of .NET 10, the `IdentityRedirectManager` throws an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure that the method wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed when the MSBuild property is used. For more information, see <xref:migration/90-to-100#when-navigation-errors-are-disabled-in-a-blazor-web-app-with-individual-accounts>.
 
 ### Blazor router has a `NotFoundPage` parameter
 
@@ -587,6 +589,21 @@ In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Component
 
 The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the new validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
 
+Validation support now includes:
+
+* Validation of nested complex objects and collections is now supported.
+  * This includes validation rules defined by property attributes, class attributes, and the <xref:System.ComponentModel.DataAnnotations.IValidatableObject> implementation.
+  * The `[SkipValidation]` attribute can exclude properties or types from validation.
+* Validation now uses a source generator-based implementation instead of reflection-based implementation for improved performance and compatibility with ahead-of-time (AOT) compilation.
+
+The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component now has the same validation order and short-circuiting behavior as <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. The following rules are applied when validating an instance of type `T`:
+
+1. Member properties of `T` are validated, including recursively validating nested objects.
+1. Type-level attributes of `T` are validated.
+1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
+
+If one of the preceding steps produces a validation error, the remaining steps are skipped.
+
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 
 Now that all Blazor client-side files are fingerprinted and cached by the browser, Blazor's custom caching mechanism and the `BlazorCacheBootResources` MSBuild property have been removed from the framework. If the client-side project's project file contains the MSBuild property, remove the property, as it no longer has any effect:
@@ -601,13 +618,12 @@ For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-cachin
 
 [Web Authentication (WebAuthn) API](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) support, known widely as *passkeys*, is a modern, phishing-resistant authentication method that improves security and user experience by leveraging public key cryptography and device-based authentication. ASP.NET Core Identity now supports passkey authentication based on WebAuthn and FIDO2 standards. This feature allows users to sign in without passwords, using secure, device-based authentication methods, such as biometrics or security keys.
 
-The Preview 7 Blazor Web App project template provides out-of-the-box passkey management and login functionality:
+The Blazor Web App project template provides out-of-the-box passkey management and login functionality.
 
-```dotnetcli
-dotnet new blazor -au Individual -o BlazorWebAppPasskeySample
-```
+For more information, see the following articles:
 
-We plan to publish migration guidance for existing apps by Friday, August 15.
+* <xref:security/authentication/passkeys/index>
+* <xref:security/authentication/passkeys/blazor>
 
 ### Circuit state persistence
 
@@ -709,3 +725,37 @@ In the following example, a hidden input field is created for the form's `Parame
     private void Submit() => submitted = true;
 }
 ```
+
+### Persistent component state support for enhanced navigation
+
+Blazor now supports handling persistent component state during [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
+
+By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events to the same page occur after the component is loaded.
+
+If the data is read-only and doesn't change frequently, opt-in to allow updates during enhanced navigation by setting `AllowUpdates = true` on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). This is useful for scenarios such as displaying cached data that's expensive to fetch but doesn't change often. The following example demonstrates the use of `AllowUpdates` for weather forecast data:
+
+```csharp
+[PersistentState(AllowUpdates = true)]
+public WeatherForecast[]? Forecasts { get; set; }
+
+protected override async Task OnInitializedAsync()
+{
+    Forecasts ??= await ForecastService.GetForecastAsync();
+}
+```
+
+To skip restoring state during prerendering, set `RestoreBehavior` to `SkipInitialValue`:
+
+```csharp
+[PersistentState(RestoreBehavior = RestoreBehavior.SkipInitialValue)]
+public string NoPrerenderedData { get; set; }
+```
+
+To skip restoring state during reconnection, set `RestoreBehavior` to `SkipLastSnapshot`. This can be useful to ensure fresh data after reconnection:
+
+```csharp
+[PersistentState(RestoreBehavior = RestoreBehavior.SkipLastSnapshot)]
+public int CounterNotRestoredOnReconnect { get; set; }
+```
+
+Call `PersistentComponentState.RegisterOnRestoring` to register a callback for imperatively controlling how state is restored, similar to how <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> provides full control of how state is persisted.

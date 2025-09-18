@@ -317,7 +317,7 @@ For the preceding code example:
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * [JavaScript API reference](/javascript/api/@microsoft/signalr)
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
@@ -336,7 +336,7 @@ By [Rachel Appel](https://twitter.com/rachelappel)
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side hub code.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Install the SignalR client package
 

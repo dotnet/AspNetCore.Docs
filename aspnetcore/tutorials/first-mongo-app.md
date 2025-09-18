@@ -6,7 +6,7 @@ description: This tutorial demonstrates how to create an ASP.NET Core web API us
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 04/09/2025
+ms.date: 09/17/2025
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -527,7 +527,7 @@ The OpenAPI specification is a document in JSON format that describes the struct
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/9.x/BookStoreApi) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/9.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)

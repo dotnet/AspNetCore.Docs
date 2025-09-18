@@ -163,7 +163,7 @@ When the app is published, the companion assets from all referenced projects and
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 * <xref:blazor/components/class-libraries>
 * <xref:blazor/components/css-isolation#razor-class-library-rcl-support>

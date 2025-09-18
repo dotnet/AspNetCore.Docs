@@ -84,7 +84,7 @@ For app's running locally in development, the app defaults to the `Development` 
 
 :::moniker range="< aspnetcore-5.0"
 
-For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/environments>. For server-side app configuration with static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:blazor/fundamentals/static-files#static-files-in-non-development-environments>.
+For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/environments>. For server-side app configuration with static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:fundamentals/static-files#static-files-in-non-development-environments>.
 
 :::moniker-end
 
@@ -114,7 +114,7 @@ Blazor Web App:
 **In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 > [!NOTE]
-> For Blazor Web Apps that set the `webAssembly` > `environment` property in `Blazor.start` configuration, it's wise to match the server-side environment to the environment set on the `environment` property. Otherwise, prerendering on the server will operate under a different environment than rendering on the client, which results in arbitrary effects. For general guidance on setting the environment for a Blazor Web App, see <xref:fundamentals/environments>.
+> For Blazor Web Apps that set the `webAssembly` > `environment` property in `Blazor.start` configuration, it's wise to match the server-side environment to the environment set on the `environment` property. Otherwise, prerendering on the server operates under a different environment than rendering on the client, which results in arbitrary effects. For general guidance on setting the environment for a Blazor Web App, see <xref:fundamentals/environments>.
 
 Standalone Blazor WebAssembly:
 
@@ -269,48 +269,7 @@ Assuming that prerendering isn't disabled for a component or the app, a componen
 
 > :::no-loc text="There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
 
-To address this, create a custom service implementation for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> on the server. Add the following class to the server project.
-
-`ServerHostEnvironment.cs`:
-
-```csharp
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.AspNetCore.Components;
-
-public class ServerHostEnvironment(IWebHostEnvironment env, NavigationManager nav) : 
-    IWebAssemblyHostEnvironment
-{
-    public string Environment => env.EnvironmentName;
-    public string BaseAddress => nav.BaseUri;
-}
-```
-
-In the server project's `Program` file, register the service:
-
-```csharp
-builder.Services.TryAddScoped<IWebAssemblyHostEnvironment, ServerHostEnvironment>();
-```
-
-At this point, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service can be injected into an interactive WebAssembly or interactive Auto component and used as shown in the [Read the environment in a Blazor WebAssembly app](#read-the-environment-in-a-blazor-webassembly-app) section.
-
-The preceding example can demonstrate that it's possible to have a different server environment than client environment, which isn't recommended and may lead to arbitrary results. When setting the environment in a Blazor Web App, it's best to match server and `.Client` project environments. Consider the following scenario in a test app:
-
-* Implement the client-side (`webassembly`) environment property with the `Staging` environment via `Blazor.start`. See the [Set the client-side environment via startup configuration](#set-the-client-side-environment-via-blazor-startup-configuration) section for an example.
-* Don't change the server-side `Properties/launchSettings.json` file. Leave the `environmentVariables` section with the `ASPNETCORE_ENVIRONMENT` environment variable set to `Development`.
-
-You can see the value of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment?displayProperty=nameWithType> property change in the UI.
-
-When prerendering occurs on the server, the component is rendered in the `Development` environment:
-
-> **:::no-loc text="Environment:":::** :::no-loc text="Development":::
-
-When the component is rerendered just a second or two later, after the Blazor bundle is downloaded and the .NET WebAssembly runtime activates, the values change to reflect that the client is operating in the `Staging` environment on the client:
-
-> **:::no-loc text="Environment:":::** :::no-loc text="Staging":::
-
-The preceding example demonstrates why we recommend setting the server environment to match the client environment for development, testing, and production deployments.
-
-For more information, see the [Client-side services fail to resolve during prerendering](xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering) section of the *Prerendering* article, which appears later in the Blazor documentation.
+To address this, create a custom service implementation for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> on the server. For more information and an example implementation, see the [Custom service implementation on the server](xref:blazor/components/prerender#custom-service-implementation-on-the-server) section of the *Prerendering* article, which appears later in the Blazor documentation.
 
 :::moniker-end
 
