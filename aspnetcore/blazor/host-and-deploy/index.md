@@ -141,7 +141,7 @@ Demonstration sample apps for Blazor WebAssembly in a React app (`BlazorWebAssem
 
 ## Aspects of Blazor WebAssembly caching apply to Blazor Web Apps
 
-Blazor bundle caching and HTTP caching guidance in the *Blazor WebAssembly* node focus on standalone Blazor WebAssembly apps, but several aspects of client-side caching in these articles also apply to Blazor Web Apps that adopt Interactive WebAssembly or Interactive Auto render modes. If a Blazor Web App that renders content client-side content encounters a static asset or bundle caching problem, see the guidance in these articles to troubleshoot the problem:
+Blazor bundle caching and HTTP caching guidance in the *Blazor WebAssembly* node focus on standalone Blazor WebAssembly apps, but several aspects of client-side caching in these articles also apply to Blazor Web Apps that adopt Interactive WebAssembly or Interactive Auto render modes. If a Blazor Web App that renders content client-side encounters a static asset or bundle caching problem, see the guidance in these articles to troubleshoot the problem:
 
 * <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures>
 * <xref:blazor/host-and-deploy/webassembly/http-caching-issues>
