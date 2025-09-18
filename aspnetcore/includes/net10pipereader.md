@@ -5,13 +5,13 @@ parameter-binding10.md
 model-binding.md
 -->
 
-Srtarting in .NET 10, the following functional areas of ASP.NET Core use overloads of `JsonSerializer.<xref:System.Text.Json.JsonSerializer.DeserializeAsync%2A?displayProperty=nameWithType>DeserializeAsync` based on PipeReader instead of Stream:
+Starting in .NET 10, the following functional areas of ASP.NET Core use overloads of `JsonSerializer.<xref:System.Text.Json.JsonSerializer.DeserializeAsync%2A?displayProperty=nameWithType>DeserializeAsync` based on PipeReader instead of Stream:
 
 * Minimal APIs (parameter binding, read request body)
 * MVC (input formatters, model)
 * The <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions?displayProperty=nameWithType> methods
 
-For most applications, a transition from Stream to PipeReader provides better performance without requiring changes in application code. But if your application has a custom converter, the converter might not handle <xref:System.Text.Json.Utf8JsonReader.HasValueSequence%2A?displayProperty=nameWithType> correctly. If it doesn't, the result could be errors such as <xref:System.ArgumentOutOfRangeException>with no warning, or missing data when deserializing. You have the following options for getting your converter to work without PipeReader-related errors:
+For most applications, a transition from Stream to PipeReader provides better performance without requiring changes in application code. But if your application has a custom converter, the converter might not handle <xref:System.Text.Json.Utf8JsonReader.HasValueSequence%2A?displayProperty=nameWithType> correctly. If it doesn't, the result could be errors such as <xref:System.ArgumentOutOfRangeException>with no warning, or missing data when deserializing. You have the following options for getting your converter to work without PipeReader-related errors:<xref:System.Text.Json.Utf8JsonReader.HasValueSequence?displayProperty=nameWithType>
 
 ## Option 1: Temporary workaround
 
