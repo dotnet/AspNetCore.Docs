@@ -137,6 +137,17 @@ Demonstration sample apps for Blazor WebAssembly in a React app (`BlazorWebAssem
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Aspects of Blazor WebAssembly caching apply to Blazor Web Apps
+
+Blazor bundle caching and HTTP caching guidance in the *Blazor WebAssembly* node focus on standalone Blazor WebAssembly apps, but several aspects of client-side caching in these articles also apply to Blazor Web Apps that adopt Interactive WebAssembly or Interactive Auto render modes. If a Blazor Web App that renders content client-side encounters a static asset or bundle caching problem, see the guidance in these articles to troubleshoot the problem:
+
+* <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures>
+* <xref:blazor/host-and-deploy/webassembly/http-caching-issues>
+
+:::moniker-end
+
 ## Blazor Server `MapFallbackToPage` configuration
 
 *This section only applies to Blazor Server apps. <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> isn't supported in Blazor Web Apps and Blazor WebAssembly apps.*
