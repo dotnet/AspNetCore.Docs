@@ -43,7 +43,7 @@ The format for an HTTP request is `HTTPMethod URL HTTPVersion`, all on one line,
   * [GET](https://developer.mozilla.org/docs/Web/HTTP/Methods/GET)
   * [HEAD](https://developer.mozilla.org/docs/Web/HTTP/Methods/HEAD)
   * [POST](https://developer.mozilla.org/docs/Web/HTTP/Methods/POST)
-  * [PUT](https://developer.mozilla.org/docs/Web/HTTP/Methods/put)
+  * [PUT](https://developer.mozilla.org/docs/Web/HTTP/Methods/PUT)
   * [PATCH](https://developer.mozilla.org/docs/Web/HTTP/Methods/PATCH)
   * [DELETE](https://developer.mozilla.org/docs/Web/HTTP/Methods/DELETE)
   * [TRACE](https://developer.mozilla.org/docs/Web/HTTP/Methods/TRACE)
