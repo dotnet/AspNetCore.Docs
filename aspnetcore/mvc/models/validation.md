@@ -15,10 +15,13 @@ uid: mvc/models/validation
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
+:::moniker-end
 
 :::moniker range=">= aspnetcore-10.0"
 [!INCLUDE[](~/includes/validation-package-net10.md)]
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 ## Model state
 
