@@ -78,13 +78,13 @@ When creating a PR for an issue:
     - [ ] Place the title metadata first, followed by the remaining metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
     - [ ] Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
     
-### 5. Version Targeting Common Range Patterns
+### 1. Version Targeting Common Range Patterns
 - [ ] Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
 - [ ] Open Upper Bound: `>= aspnetcore-7.0`
 - [ ] Open Lower Bound: `<= aspnetcore-9.0`
 - [ ] Specific Version: `== aspnetcore-9.0`
 
-### 6. Handling File Redirections
+### 2. Handling File Redirections
 - [ ] When a Markdown (.md) article file (this does not apply to includes) is deleted in a PR, create a redirection entry.
 - [ ] Redirections ensure users following existing links aren't left with broken links
 - [ ] To add a redirection:
@@ -107,7 +107,7 @@ When creating a PR for an issue:
 - [ ] When selecting a redirect target, choose the most relevant existing content that would serve the user's original intent
 - [ ] If no direct replacement exists, redirect to a parent category page or related topic
     
-### 7. Code Snippets
+### 3. Code Snippets
 - [ ] For code snippets longer than 6 lines:
   - [ ] Create a subfolder named after the document the snippet supports.
   - [ ] Create a `snippets` folder inside that subfolder.
@@ -145,7 +145,7 @@ When creating a PR for an issue:
   Console                | console       | 2
   Text                   | -             | 2
 
-### 8. ASP.NET Core Specific Guidelines
+### 4. ASP.NET Core Specific Guidelines
 - [ ] Use the latest supported version for examples unless otherwise specified
 - [ ] Title and section header casing is sentence case (capitalize the first word and any proper nouns)
 - [ ] For parts of a title or section header that normally use code style in article text (backticks around the content), also use code style in the title or section header (example H1 header: "# Modify the `Program.cs` file")
