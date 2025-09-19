@@ -759,3 +759,7 @@ public int CounterNotRestoredOnReconnect { get; set; }
 ```
 
 Call `PersistentComponentState.RegisterOnRestoring` to register a callback for imperatively controlling how state is restored, similar to how <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> provides full control of how state is persisted.
+
+### Blazor WebAssembly respects the current UI culture setting
+
+In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI internationalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. With the release of .NET 10, you can set the default UI culture using <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>. For general guidance, see <xref:blazor/globalization-localization>.
