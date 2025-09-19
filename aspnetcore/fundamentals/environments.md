@@ -5,7 +5,7 @@ description: Learn how to set and control app behavior across runtime environmen
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/16/2025
+ms.date: 09/19/2025
 uid: fundamentals/environments
 ---
 # ASP.NET Core runtime environments
