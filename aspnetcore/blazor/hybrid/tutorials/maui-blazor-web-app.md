@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 09/17/2025
 uid: blazor/hybrid/tutorials/maui-blazor-web-app
 ---
 # Build a .NET MAUI Blazor Hybrid app with a Blazor Web App
@@ -30,18 +30,24 @@ If you haven't already installed the .NET MAUI workload, install it now. The .NE
 dotnet workload install maui
 ```
 
-Create a solution from the project template with the following .NET CLI command:
+Create a solution from the project template with the following .NET CLI command, replacing the `{INTERACTIVITY}` placeholder with the Blazor render mode that you desire to use:
+
+* `Server`: Adopts the Interactive Server render mode and produces a single-project Blazor app.
+* `WebAssembly`: Adopts the Interactive WebAssembly render mode and produces two Blazor projects, a server project and a `.Client` project.
+* `Auto`: Adopts the Interactive Auto render mode and produces two Blazor projects, a server project and a `.Client` project.
+
+For more information on the preceding render modes and the projects produced, see <xref:blazor/components/render-modes#render-modes> and the [Use Blazor render modes](#use-blazor-render-modes) section later in this article.
 
 ```dotnetcli
-dotnet new maui-blazor-web -o MauiBlazorWeb -I Server
+dotnet new maui-blazor-web -o MauiBlazorWeb -I {INTERACTIVITY}
 ```
 
 In the preceding command:
 
 * The `-o|--output` option creates a new folder for the app named `MauiBlazorWeb`.
-* The `-I|--InteractivityPlatform` option sets the interactivity render mode to Interactive Server (`InteractiveServer`). All three interactive Blazor render modes (`Server`, `WebAssembly`, and `Auto`) are supported by the project template. For more information, see the [Use Blazor render modes](#use-blazor-render-modes) section.
+* The `-I|--InteractivityPlatform` option sets the interactivity render mode. The `{INTERACTIVITY}` placeholder is the interactive Blazor render mode. All three interactive Blazor render modes (`Server`, `WebAssembly`, and `Auto`) are supported by the project template. For more information, see <xref:blazor/components/render-modes#render-modes> and the [Use Blazor render modes](#use-blazor-render-modes) section.
 
-The app automatically adopts global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
+The preceding command produces a Blazor app that adopts global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
 :::moniker-end
 
