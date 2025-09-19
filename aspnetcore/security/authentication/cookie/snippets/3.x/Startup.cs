@@ -16,15 +16,12 @@ namespace CookieSample
                 options.Conventions.AuthorizePage("/Contact");
             });
 
-            // <snippet1>
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
-            // </snippet1>
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
-        // <snippet_policy>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -41,12 +38,14 @@ namespace CookieSample
             app.UseStaticFiles();
             app.UseRouting();
 
+            // <snippet_policy>
             var cookiePolicyOptions = new CookiePolicyOptions
             {
                 MinimumSameSitePolicy = SameSiteMode.Strict,
             };
 
             app.UseCookiePolicy(cookiePolicyOptions);
+            // </snippet_policy>
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -57,6 +56,5 @@ namespace CookieSample
                 endpoints.MapRazorPages();
             });
         }
-        // </snippet_policy>
     }
 }
