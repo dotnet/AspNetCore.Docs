@@ -168,8 +168,8 @@ public class CounterService
 In `Program.cs`:
 
 ```csharp
-builder.Services.RegisterPersistentService<CounterService>(
-    RenderMode.InteractiveAuto);
+builder.Services.AddRazorComponents()
+    .RegisterPersistentService<CounterService>(RenderMode.InteractiveAuto);
 ```
 
 Serialized properties are identified from the actual service instance:
