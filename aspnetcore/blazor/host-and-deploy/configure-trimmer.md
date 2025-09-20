@@ -18,6 +18,9 @@ Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/glossa
 
 ## Default trimmer granularity
 
+<!-- UPDATE 10.0 - HOLD until https://github.com/dotnet/aspnetcore/issues/49409
+                   is addressed.
+
 The default trimmer granularity for Blazor apps is `partial`. To trim all assemblies, change the granularity to `full` in the app's project file:
 
 ```xml
@@ -25,6 +28,10 @@ The default trimmer granularity for Blazor apps is `partial`. To trim all assemb
   <TrimMode>full</TrimMode>
 </PropertyGroup>
 ```
+
+-->
+
+The default trimmer granularity for Blazor apps is `partial`, which means that only core framework libraries and libraries that have explicitly enabled trimming support are trimmed. Full trimming isn't supported.
 
 For more information, see [Trimming options (.NET documentation)](/dotnet/core/deploying/trimming/trimming-options#trimming-granularity).
 
@@ -104,7 +111,7 @@ To address lost types, consider adopting one of the following approaches.
 
 ### Custom types
 
-Custom types aren't trimmed by Blazor when an app is published (and unless [explicitly opted in](#configuration) for class libraries), so we recommend using custom types for JS interop, JSON serialization/deserialization, and other operations that rely on reflection.
+To avoid issues with .NET trimming in scenarios that rely on reflection, such as JS interop and JSON serialization, use custom types defined in non-trimmable libraries or preserve the types via linker configuration.
 
 The following modifications create a `StringTuple` type for use by the component.
 
@@ -131,7 +138,7 @@ The component is modified to use the `StringTuple` type:
 + items = JsonSerializer.Deserialize<List<StringTuple>>(data, options)!;
 ```
 
-Because custom types aren't trimmed by Blazor when an app is published (and unless [explicitly opted in](#configuration) for class libraries), the component works as designed after the app is published.
+Because custom types defined in non-trimmable assemblies aren't trimmed by Blazor when an app is published, the component works as designed after the app is published.
 
 :::moniker range=">= aspnetcore-10.0"
 
