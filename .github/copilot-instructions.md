@@ -22,15 +22,23 @@ When creating a PR for an issue:
 - [ ] Provide an overview of the project you're working on, including its purpose, goals, and any relevant background information.
 - [ ] Include the folder structure of the repository, including any important directories or files that are relevant to the project.
 
-### 2. Markdown File Naming and Organization
+### 2. Issue Discussion Analysis
+When working on an issue:
+- [ ] **Read the complete issue discussion** - Don't rely solely on the initial issue description
+- [ ] **Prioritize maintainer guidance** - Comments from repository maintainers (especially those with "MEMBER" association) should take precedence over the original issue description
+- [ ] **Look for updated analysis** - Later comments may contain revised understanding, additional context, or modified resolution approaches
+- [ ] **Check for explicit instructions** - Look for phrases like "Action required by GitHub Copilot" or direct "@copilot" mentions that provide specific guidance
+- [ ] **Validate your understanding** - If the discussion seems to contradict the initial issue description, follow the most recent maintainer guidance
+
+### 3. Markdown File Naming and Organization
 - [ ] If you're adding a new Markdown file, it should be named in all lowercase with hyphens separating words. Also, omit any filler words such as "the" or "a" from the file name.
 
-### 3. API References and Verification
+### 4. API References and Verification
   - [ ] Use `<xref:api-doc-ID>` for API cross-references. 
   - [ ] The API documentation ID must be verified and sourced from the official XML documentation in dotnet-api-docs, never just infer API documentation IDs by looking for similar patterns.
   - [ ] If you cannot verify, state that explicitly in your output.
 
-### 4. Links and References
+### 5. Links and References
 - [ ] For cross-references to other articles within the AspNetCore.Docs repository:
   - [ ] Use the xref syntax: `<xref:target-uid>`
   - [ ] The "target-uid" of the xref syntax is obtained from the `uid` property value in the YAML front matter of the article's markdown file
