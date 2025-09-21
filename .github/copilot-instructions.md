@@ -168,6 +168,12 @@ When working on an issue:
     ```
     :::code language="csharp" source="~/path/to/file.cs" id="snippet_policy" highlight="3-5,9":::
     ```
+- [ ] Code Snippet Folder Structure Requirements:
+  - [ ] For code snippets longer than 6 lines, create proper folder structure: article-name/snippets/version/filename.cs (e.g., cookie/snippets/6.0/Program.cs)
+  - [ ] Create version-specific subfolders: 3.x, 6.0, 8.0, 9.0, etc.
+  - [ ] Use file-relative paths for snippets in same article folder
+  - [ ] Use repository root-relative paths (~/) for shared snippets
+  
 ### 5. ASP.NET Core Specific Guidelines
 - [ ] Use the latest supported version for examples unless otherwise specified
 - [ ] Title and section header casing is sentence case (capitalize the first word and any proper nouns)
