@@ -1,7 +1,6 @@
 <!--
 This include file is used in 
 minimal-apis.md
-parameter-binding10.md
 model-binding.md
 -->
 
