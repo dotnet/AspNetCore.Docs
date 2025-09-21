@@ -87,7 +87,7 @@ When working on an issue:
     - [ ] Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
 
 ### 1. Metadata and Date Requirements
-- [ ] CRITICAL: Set ms.date to the actual current date in MM/DD/YYYY format (GitHub Copilot often uses incorrect future dates)
+- [ ] CRITICAL: Set ms.date to the actual current date in MM/DD/YYYY format.  Do not infer the date based on existing dates in files.  Use today's date.
 - [ ] Add ai-usage: ai-assisted metadata if any AI assistance was used
 - [ ] Place title metadata first, followed by remaining metadata in alphabetical order
 - [ ] Update ms.date if more than 50 characters are changed in existing files
@@ -158,7 +158,16 @@ When working on an issue:
   JSON                   | json          | 2
   Console                | console       | 2
   Text                   | -             | 2
-
+- [ ] Triple-Colon Syntax Requirements:
+  - [ ] NEVER use [!code-csharp[]] syntax - this is incorrect and will cause build errors
+  - [ ] ALWAYS use triple-colon syntax: :::code language="csharp" source="path" id="snippet_name" highlight="lines":::
+  - [ ] NEVER use `name="snippet_name"` attribute - this is unsupported and causes build errors
+  - [ ] ALWAYS use `id="snippet_name"` to reference named snippets
+  - [ ] Use `highlight=` when needed and make sure the line numbers are relative to the snippet content, not absolute file line numbers.
+  - [ ] Example of correct  triple colon syntax with example highlight line number:
+    ```
+    :::code language="csharp" source="~/path/to/file.cs" id="snippet_policy" highlight="3-5,9":::
+    ```
 ### 5. ASP.NET Core Specific Guidelines
 - [ ] Use the latest supported version for examples unless otherwise specified
 - [ ] Title and section header casing is sentence case (capitalize the first word and any proper nouns)
