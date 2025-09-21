@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use .http files in Visual Studio 2022 to test ASPNET Core apps.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 09/16/2025
+ms.date: 09/18/2025
 ms.topic: how-to
 uid: test/http-files
 ---
@@ -43,7 +43,7 @@ The format for an HTTP request is `HTTPMethod URL HTTPVersion`, all on one line,
   * [GET](https://developer.mozilla.org/docs/Web/HTTP/Methods/GET)
   * [HEAD](https://developer.mozilla.org/docs/Web/HTTP/Methods/HEAD)
   * [POST](https://developer.mozilla.org/docs/Web/HTTP/Methods/POST)
-  * [PUT](https://developer.mozilla.org/docs/Web/HTTP/Methods/put)
+  * [PUT](https://developer.mozilla.org/docs/Web/HTTP/Methods/PUT)
   * [PATCH](https://developer.mozilla.org/docs/Web/HTTP/Methods/PATCH)
   * [DELETE](https://developer.mozilla.org/docs/Web/HTTP/Methods/DELETE)
   * [TRACE](https://developer.mozilla.org/docs/Web/HTTP/Methods/TRACE)
