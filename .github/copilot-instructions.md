@@ -85,14 +85,20 @@ When working on an issue:
     - [ ] Metadata `ai-usage: ai-assisted` if any AI assistance was used
     - [ ] Place the title metadata first, followed by the remaining metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
     - [ ] Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
+
+### 1. Metadata and Date Requirements
+- [ ] CRITICAL: Set ms.date to the actual current date in MM/DD/YYYY format (GitHub Copilot often uses incorrect future dates)
+- [ ] Add ai-usage: ai-assisted metadata if any AI assistance was used
+- [ ] Place title metadata first, followed by remaining metadata in alphabetical order
+- [ ] Update ms.date if more than 50 characters are changed in existing files
     
-### 1. Version Targeting Common Range Patterns
+### 2. Version Targeting Common Range Patterns
 - [ ] Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
 - [ ] Open Upper Bound: `>= aspnetcore-7.0`
 - [ ] Open Lower Bound: `<= aspnetcore-9.0`
 - [ ] Specific Version: `== aspnetcore-9.0`
 
-### 2. Handling File Redirections
+### 3. Handling File Redirections
 - [ ] When a Markdown (.md) article file (this does not apply to includes) is deleted in a PR, create a redirection entry.
 - [ ] Redirections ensure users following existing links aren't left with broken links
 - [ ] To add a redirection:
@@ -115,7 +121,7 @@ When working on an issue:
 - [ ] When selecting a redirect target, choose the most relevant existing content that would serve the user's original intent
 - [ ] If no direct replacement exists, redirect to a parent category page or related topic
     
-### 3. Code Snippets
+### 4. Code Snippets
 - [ ] For code snippets longer than 6 lines:
   - [ ] Create a subfolder named after the document the snippet supports.
   - [ ] Create a `snippets` folder inside that subfolder.
@@ -153,7 +159,7 @@ When working on an issue:
   Console                | console       | 2
   Text                   | -             | 2
 
-### 4. ASP.NET Core Specific Guidelines
+### 5. ASP.NET Core Specific Guidelines
 - [ ] Use the latest supported version for examples unless otherwise specified
 - [ ] Title and section header casing is sentence case (capitalize the first word and any proper nouns)
 - [ ] For parts of a title or section header that normally use code style in article text (backticks around the content), also use code style in the title or section header (example H1 header: "# Modify the `Program.cs` file")
@@ -164,7 +170,7 @@ When working on an issue:
 - [ ] Include differences between Minimal API and controller-based approaches when relevant
 - [ ] For middleware content and examples, use the middleware class approach
 
-### 5. PR Description Requirements
+### 6. PR Description Requirements
 - [ ] ALWAYS include "Fixes #[issue-number]" in the PR description, at the first line of the description to link back to the original issue
 - [ ] Include a clear summary of changes made
 - [ ] List all files that were modified with brief descriptions
