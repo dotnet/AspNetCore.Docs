@@ -173,7 +173,26 @@ When working on an issue:
   - [ ] Create version-specific subfolders: 3.x, 6.0, 8.0, 9.0, etc.
   - [ ] Use file-relative paths for snippets in same article folder
   - [ ] Use repository root-relative paths (~/) for shared snippets
-  
+- [ ] Code Snippet Markers in .cs Files - CRITICAL:
+  - [ ] NEVER use #region snippet_name and #endregion syntax in .cs files
+  - [ ] ALWAYS use // <snippet_name> and // </snippet_name> format (all lowercase)
+  - [ ] Examples of correct .cs file snippet markers:
+    ```csharp
+    // <snippet_policy>
+    var cookiePolicyOptions = new CookiePolicyOptions
+    {
+        MinimumSameSitePolicy = SameSiteMode.Strict,
+    };
+    app.UseCookiePolicy(cookiePolicyOptions);
+    // </snippet_policy>
+    ```
+  - [ ] INCORRECT format to avoid:
+    ```csharp
+    #region snippet_policy
+    // code here
+    #endregion
+    ```
+
 ### 5. ASP.NET Core Specific Guidelines
 - [ ] Use the latest supported version for examples unless otherwise specified
 - [ ] Title and section header casing is sentence case (capitalize the first word and any proper nouns)
