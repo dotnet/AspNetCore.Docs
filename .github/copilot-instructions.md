@@ -163,3 +163,9 @@ When working on an issue:
 - [ ] Lead with Microsoft-recommended approaches
 - [ ] Include differences between Minimal API and controller-based approaches when relevant
 - [ ] For middleware content and examples, use the middleware class approach
+
+### 5. PR Description Requirements
+- [ ] ALWAYS include "Fixes #[issue-number]" in the PR description, at the first line of the description to link back to the original issue
+- [ ] Include a clear summary of changes made
+- [ ] List all files that were modified with brief descriptions
+
