@@ -3,9 +3,9 @@ title: Use .http files in Visual Studio 2022
 author: tdykstra
 description: Learn how to use .http files in Visual Studio 2022 to test ASPNET Core apps.
 monikerRange: '>= aspnetcore-8.0'
-ms.topic: how-to
 ms.author: tdykstra
 ms.date: 09/18/2025
+ms.topic: how-to
 uid: test/http-files
 ---
 # Use .http files in Visual Studio 2022
@@ -112,6 +112,8 @@ Lines that start with either `#` or `//` are comments. These lines are ignored w
 ## Variables
 
 A line that starts with `@` defines a variable by using the syntax `@VariableName=Value`.
+The variable name is case-sensitive and can't contain any spaces.
+The value can contain any characters, including the value `null` to represent a null value.
 
 Variables can be referenced in requests that are defined later in the file. They're referenced by wrapping their names in double curly braces, `{{` and `}}`. The following example shows two variables defined and used in a request:
 
@@ -543,6 +545,7 @@ The Visual Studio 2022 `.http` file editor doesn't have all the features that th
 * Prompt variables
 * Customize response preview
 * Per-request settings
+* Null-handling variables, e.g. using null-conditional or nullish coalescing operators (this is also unsupported in Visual Studio Code)
 
 ## Create an `.http` file
 

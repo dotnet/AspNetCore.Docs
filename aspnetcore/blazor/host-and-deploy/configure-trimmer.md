@@ -83,20 +83,20 @@ Consider the following example that performs JSON deserialization into a <xref:S
 
 The preceding component executes normally when the app is run locally and produces the following rendered list:
 
-> • 1:T1, 1:T2
+> • 1:T1, 1:T2  
 > • 2:T2, 2:T2
 
 When the app is published, <xref:System.Tuple%602> is trimmed from the app, even in spite of setting the `<PublishTrimmed>` property to `false` in the project file. Accessing the component throws the following exception:
 
-> :::no-loc text="crit: Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]":::
-> :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::
+> :::no-loc text="crit: Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]":::  
+> :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::  
 > :::no-loc text="System.NotSupportedException: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::
 
 To address lost types, consider adopting one of the following approaches.
 
 ### Custom types
 
-Custom types aren't trimmed by Blazor when an app is published, so we recommend using custom types for JS interop, JSON serialization/deserialization, and other operations that rely on reflection.
+Custom types aren't trimmed by Blazor when an app is published (unless explicitly opted in), so we recommend using custom types for JS interop, JSON serialization/deserialization, and other operations that rely on reflection.
 
 The following modifications create a `StringTuple` type for use by the component.
 
@@ -123,7 +123,7 @@ The component is modified to use the `StringTuple` type:
 + items = JsonSerializer.Deserialize<List<StringTuple>>(data, options)!;
 ```
 
-Because custom types are never trimmed by Blazor when an app is published, the component works as designed after the app is published.
+Because custom types aren't trimmed by Blazor when an app is published (unless explicitly opted in), the component works as designed after the app is published.
 
 :::moniker range=">= aspnetcore-10.0"
 
