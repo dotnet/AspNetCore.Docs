@@ -722,7 +722,6 @@ If an instance of the type isn't registered in the dependency injection containe
 
 For nullable parameters, ensure that the parameter isn't `null` before accessing it.
 
-## Additional resources
 :::moniker-end
 :::moniker range=">= aspnetcore-10.0"
 
@@ -732,6 +731,8 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 :::moniker-end
 :::moniker range=">= aspnetcore-8.0"
+
+## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:mvc/models/validation>
