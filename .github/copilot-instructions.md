@@ -192,6 +192,21 @@ When working on an issue:
     // code here
     #endregion
     ```
+- [ ] Code Comments and Localization:
+  - [ ] NEVER add explanatory code comments like `// Configure cookie policy options` in .cs snippet files
+  - [ ] NEVER add comments like `// Add Cookie Policy Middleware` - these prevent proper localization
+  - [ ] Rely on markdown prose before/after code snippets for explanations instead of inline comments
+  - [ ] Only keep comments that are essential to the code's functionality
+- [ ] Common Syntax Errors to Avoid:
+  - [ ] Using `range="5-10"` instead of `id="snippet_name"`
+  - [ ] Using `name="snippet_name"` instead of `id="snippet_name"`
+  - [ ] Mixing old [!code-csharp[]] syntax with new triple-colon syntax
+  - [ ] Using absolute line numbers in highlight="" instead of relative to snippet
+  - [ ] Using #region/#endregion in .cs files instead of // <snippet_name> format
+- [ ] Version-Specific Considerations:
+  - [ ] Create separate snippet files for different .NET versions (3.x, 6.0, 8.0, 9.0+)
+  - [ ] Ensure examples use appropriate syntax for the target version
+  - [ ] Reference the correct version-specific snippet file in markdown
 
 ### 5. ASP.NET Core Specific Guidelines
 - [ ] Use the latest supported version for examples unless otherwise specified
