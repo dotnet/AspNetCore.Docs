@@ -94,7 +94,7 @@ When working on an issue:
 - [ ] Add ai-usage: ai-assisted metadata if any AI assistance was used
 - [ ] Place title metadata first, followed by remaining metadata in alphabetical order
 - [ ] Update ms.date if more than 50 characters are changed in existing files
-  - [ ] When updating ms.date always use <today's date> in the format MM/DD/YYYY.  Examples:
+  - [ ] When updating ms.date always use <today's date> in the format MM/DD/YYYY. Examples:
     - [ ] MM: Two digits, leading zero if needed (01-12)
     - [ ] DD: Two digits, leading zero if needed (01-31)
     - [ ] YYYY: Four digits (2025)   
