@@ -89,7 +89,7 @@ Example:
 </cache>
 ```
 
-Defaults to 30 seconds if `expires_after` and `expires_on` aren't defined.
+Defaults to 30 seconds if [`expires_after`](#expires-after) and [`expires_on`](#expires-on) aren't defined.
 
 ### `priority`
 
