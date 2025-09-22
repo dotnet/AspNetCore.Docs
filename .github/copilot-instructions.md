@@ -97,7 +97,7 @@ When working on an issue:
   - [ ] When updating ms.date always use <today's date> in the format MM/DD/YYYY. Examples:
     - [ ] MM: Two digits, leading zero if needed (01-12)
     - [ ] DD: Two digits, leading zero if needed (01-31)
-    - [ ] YYYY: Four digits (2025)   
+    - [ ] YYYY: Four digits (2025)
     - [ ] Example: `ms.date: 08/07/2025`
 ### 2. Version Targeting Common Range Patterns
 - [ ] Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
