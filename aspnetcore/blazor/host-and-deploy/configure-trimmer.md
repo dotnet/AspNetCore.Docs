@@ -47,7 +47,7 @@ To configure the IL Trimmer, see the [Trimming options](/dotnet/core/deploying/t
 * Control symbol trimming and debugger support.
 * Set IL Trimmer features for trimming framework library features.
 
-When the [trimmer granularity](#default-trimmer-granularity) is `partial`, which is the default value, the IL Trimmer trims the base class library and any other assemblies of the app. To opt into trimming in any of the app's class library projects, set the `<IsTrimmable>` MSBuild property to `true` in those projects:
+When the [trimmer granularity](#default-trimmer-granularity) is `partial`, which is the default value, the IL Trimmer trims the base class library and any other assemblies marked as trimmable. To opt into trimming in any of the app's class library projects, set the `<IsTrimmable>` MSBuild property to `true` in those projects:
 
 ```xml
 <PropertyGroup>
