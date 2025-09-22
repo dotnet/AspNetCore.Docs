@@ -1,7 +1,7 @@
 ---
 author: wadepickett
 ms.author: wpickett
-ms.date: 08-17-2025
+ms.date: 09-21-2025
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
@@ -85,13 +85,18 @@ When working on an issue:
     - [ ] Metadata `ai-usage: ai-assisted` if any AI assistance was used
     - [ ] Place the title metadata first, followed by the remaining metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
     - [ ] Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
+      
 
 ### 1. Metadata and Date Requirements
 - [ ] CRITICAL: Set ms.date to the actual current date in MM/DD/YYYY format.  Do not infer the date based on existing dates in files.  Use today's date.
 - [ ] Add ai-usage: ai-assisted metadata if any AI assistance was used
 - [ ] Place title metadata first, followed by remaining metadata in alphabetical order
 - [ ] Update ms.date if more than 50 characters are changed in existing files
-    
+  - [ ] When updating ms.date always use <today's date> in the format MM/DD/YYYY.  Examples:
+    - [ ] MM: Two digits, leading zero if needed (01-12)
+    - [ ] DD: Two digits, leading zero if needed (01-31)
+    - [ ] YYYY: Four digits (2025)   
+    - [ ] Example: `ms.date: 08/07/2025`
 ### 2. Version Targeting Common Range Patterns
 - [ ] Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
 - [ ] Open Upper Bound: `>= aspnetcore-7.0`
@@ -219,7 +224,14 @@ When working on an issue:
 - [ ] Include differences between Minimal API and controller-based approaches when relevant
 - [ ] For middleware content and examples, use the middleware class approach
 
-### 6. PR Description Requirements
+### 6. Content Writing Guidelines
+- [ ] Introductory paragraph:
+  - [ ] When drafting the first paragraph of any new article, or when significantly updating an existing article:
+  - [ ] Explain why and when the topic matters in practical ASP.NET Core development scenarios.
+  - [ ] Give a concise summary of what the article covers or enables, so readers know what to expect.
+  - [ ] When significantly updating, revise the introductory paragraph to match the new scope and content.
+
+### 7. PR Description Requirements
 - [ ] ALWAYS include "Fixes #[issue-number]" in the PR description, at the first line of the description to link back to the original issue
 - [ ] Include a clear summary of changes made
 - [ ] List all files that were modified with brief descriptions
