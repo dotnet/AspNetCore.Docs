@@ -9,6 +9,8 @@ ms.date: 09-21-2025
 ## Introduction
 This document contains general and repository-specific instructions for GitHub Copilot when assisting with the `dotnet/AspNetCore.Docs` repository. **Unless otherwise specified, all ".NET" references refer to modern .NET, not .NET Framework.**
 
+For code-specific guidelines, including code snippets, version targeting, and language standards, please refer to the [copilot-code-instructions.md](./copilot-code-instructions.md) file.
+
 ## General Guidelines
 
 ### 1. Issue Handling
@@ -124,96 +126,9 @@ When working on an issue:
      - [ ] Maintain alphabetical order of the `source_path` entries for better organization
      - [ ] Ensure proper JSON formatting with correct commas between entries
 - [ ] When selecting a redirect target, choose the most relevant existing content that would serve the user's original intent
-- [ ] If no direct replacement exists, redirect to a parent category page or related topic
-    
-### 4. Code Snippets
-- [ ] For code snippets longer than 6 lines:
-  - [ ] Create a subfolder named after the document the snippet supports.
-  - [ ] Create a `snippets` folder inside that subfolder.
-  - [ ] For the code file:
-     - [ ] If the snippet is not version-specific, place the code in a file with the appropriate extension (for example, `.cs` for C#) in the `snippets` folder.
-     - [ ] If the snippet is version-specific:
-        - [ ] Create a subfolder inside the `snippets` folder named for the version (for example, `9.0` for .NET 9 or ASP.NET Core 9).
-        - [ ] Place the code in a file with the correct extension inside the version subfolder.
-        - [ ] Add a project file (`.csproj`) to the version subfolder targeting the matching .NET version, if necessary to run or build the snippet.
-- [ ] Reference snippets using triple-colon syntax:
-  - [ ] **Use file-relative paths** for snippets located in the same file as the articles that refer to it.
-    ```
-    :::code language="csharp" source="../snippets/my-doc/Program.cs":::
-    ```
-  - [ ] **Use repository root-relative paths** for shared snippets:
-    ```
-    :::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoGroup/TodoDb.cs":::
-    ```
-- [ ] For longer snippets, highlight specific lines:
-  ```
-  :::code language="csharp" source="~/path/to/file.cs" range="5-10" highlight="2-3":::
-  ```
-- [ ] Use the latest, non-preview C# coding patterns in non-preview code examples
-- [ ] Use the latest preview C# coding patterns in preview code examples
-- [ ] Use the following language code and indentation standards for markdown code blocks or the `language` attribute of code snippets:
+- [ ] If no direct replacement exists, redirect to a parent category page or related topic  
 
-  Content of the snippet | Language code | Indentation in spaces
-  :--------------------: | :-----------: | :-------------------:
-  C#                     | csharp        | 4
-  HTML                   | html          | 4
-  CSS                    | css           | 4
-  JavaScript             | javascript    | 2 spaces (use 4 spaces for line continuation)
-  XML                    | xml           | 2
-  JSON                   | json          | 2
-  Console                | console       | 2
-  Text                   | -             | 2
-- [ ] Triple-Colon Syntax Requirements:
-  - [ ] NEVER use [!code-csharp[]] syntax - this is incorrect and will cause build errors
-  - [ ] ALWAYS use triple-colon syntax: :::code language="csharp" source="path" id="snippet_name" highlight="lines":::
-  - [ ] NEVER use `name="snippet_name"` attribute - this is unsupported and causes build errors
-  - [ ] ALWAYS use `id="snippet_name"` to reference named snippets
-  - [ ] Use `highlight=` when needed and make sure the line numbers are relative to the snippet content, not absolute file line numbers.
-  - [ ] Example of correct  triple colon syntax with example highlight line number:
-    ```
-    :::code language="csharp" source="~/path/to/file.cs" id="snippet_policy" highlight="3-5,9":::
-    ```
-- [ ] Code Snippet Folder Structure Requirements:
-  - [ ] For code snippets longer than 6 lines, create proper folder structure: article-name/snippets/version/filename.cs (e.g., cookie/snippets/6.0/Program.cs)
-  - [ ] Create version-specific subfolders: 3.x, 6.0, 8.0, 9.0, etc.
-  - [ ] Use file-relative paths for snippets in same article folder
-  - [ ] Use repository root-relative paths (~/) for shared snippets
-- [ ] Code Snippet Markers in .cs Files - CRITICAL:
-  - [ ] NEVER use #region snippet_name and #endregion syntax in .cs files
-  - [ ] ALWAYS use // <snippet_name> and // </snippet_name> format (all lowercase)
-  - [ ] Examples of correct .cs file snippet markers:
-    ```csharp
-    // <snippet_policy>
-    var cookiePolicyOptions = new CookiePolicyOptions
-    {
-        MinimumSameSitePolicy = SameSiteMode.Strict,
-    };
-    app.UseCookiePolicy(cookiePolicyOptions);
-    // </snippet_policy>
-    ```
-  - [ ] INCORRECT format to avoid:
-    ```csharp
-    #region snippet_policy
-    // code here
-    #endregion
-    ```
-- [ ] Code Comments and Localization:
-  - [ ] NEVER add explanatory code comments like `// Configure cookie policy options` in .cs snippet files
-  - [ ] NEVER add comments like `// Add Cookie Policy Middleware` - these prevent proper localization
-  - [ ] Rely on markdown prose before/after code snippets for explanations instead of inline comments
-  - [ ] Only keep comments that are essential to the code's functionality
-- [ ] Common Syntax Errors to Avoid:
-  - [ ] Using `range="5-10"` instead of `id="snippet_name"`
-  - [ ] Using `name="snippet_name"` instead of `id="snippet_name"`
-  - [ ] Mixing old [!code-csharp[]] syntax with new triple-colon syntax
-  - [ ] Using absolute line numbers in highlight="" instead of relative to snippet
-  - [ ] Using #region/#endregion in .cs files instead of // <snippet_name> format
-- [ ] Version-Specific Considerations:
-  - [ ] Create separate snippet files for different .NET versions (3.x, 6.0, 8.0, 9.0+)
-  - [ ] Ensure examples use appropriate syntax for the target version
-  - [ ] Reference the correct version-specific snippet file in markdown
-
-### 5. ASP.NET Core Specific Guidelines
+### 4. ASP.NET Core Specific Guidelines
 - [ ] Use the latest supported version for examples unless otherwise specified
 - [ ] Title and section header casing is sentence case (capitalize the first word and any proper nouns)
 - [ ] For parts of a title or section header that normally use code style in article text (backticks around the content), also use code style in the title or section header (example H1 header: "# Modify the `Program.cs` file")
@@ -224,14 +139,14 @@ When working on an issue:
 - [ ] Include differences between Minimal API and controller-based approaches when relevant
 - [ ] For middleware content and examples, use the middleware class approach
 
-### 6. Content Writing Guidelines
+### 5. Content Writing Guidelines
 - [ ] Introductory paragraph:
   - [ ] When drafting the first paragraph of any new article, or when significantly updating an existing article:
   - [ ] Explain why and when the topic matters in practical ASP.NET Core development scenarios.
   - [ ] Give a concise summary of what the article covers or enables, so readers know what to expect.
   - [ ] When significantly updating, revise the introductory paragraph to match the new scope and content.
 
-### 7. PR Description Requirements
+### 6. PR Description Requirements
 - [ ] ALWAYS include "Fixes #[issue-number]" in the PR description, at the first line of the description to link back to the original issue
 - [ ] Include a clear summary of changes made
 - [ ] List all files that were modified with brief descriptions
