@@ -293,6 +293,18 @@ In components derived from a base class, the [`@inject`](xref:mvc/views/razor#in
 @inherits CustomComponentBase
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Service injection via a top-level imports file (`_Imports.razor`)
+
+*This section only applies to Blazor Web Apps.*
+
+A top-level imports file in the `Components` folder (`Components/_Imports.razor`) injects its references into all of the components in the folder hierarchy, which includes the `App` component (`App.razor`). The `App` component is always rendered statically even if [prerendering of a page component is disabled](xref:blazor/components/prerender#disable-prerendering). Therefore, injecting services via the top-level imports file results in resolving *two instances* of the service in page components.
+
+To address this scenario, inject the service in a new imports file placed in the `Pages` folder (`Components/Pages/_Imports.razor`). From that location, the service is only resolved once in page components.
+
+:::moniker-end
+
 ## Use DI in services
 
 Complex services might require additional services. In the following example, `DataAccess` requires the <xref:System.Net.Http.HttpClient> default service. [`@inject`](xref:mvc/views/razor#inject) (or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute)) isn't available for use in services. *Constructor injection* must be used instead. Required services are added by adding parameters to the service's constructor. When DI creates the service, it recognizes the services it requires in the constructor and provides them accordingly. In the following example, the constructor receives an <xref:System.Net.Http.HttpClient> via DI. <xref:System.Net.Http.HttpClient> is a default service.
@@ -777,7 +789,6 @@ services.AddScoped<BlazorServiceAccessor>();
 
 :::moniker range=">= aspnetcore-8.0"
 
-* [Service injection via a top-level imports file (`_Imports.razor`) in Blazor Web Apps](xref:blazor/components/render-modes#service-injection-via-a-top-level-imports-file-_importsrazor)
 * <xref:fundamentals/dependency-injection>
 * [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
