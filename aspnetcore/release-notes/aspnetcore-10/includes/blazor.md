@@ -762,4 +762,4 @@ Call `PersistentComponentState.RegisterOnRestoring` to register a callback for i
 
 ### Blazor WebAssembly respects the current UI culture setting
 
-In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI internationalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. With the release of .NET 10, you can set the default UI culture using <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>. For general guidance, see <xref:blazor/globalization-localization>.
+In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](xref:migration/index).
