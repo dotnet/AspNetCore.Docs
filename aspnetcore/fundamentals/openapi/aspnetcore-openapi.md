@@ -195,7 +195,7 @@ To add support for generating OpenAPI documents at build time, install the `Micr
 
 ## View build-time OpenAPI logs (Terminal Logger)
 
-When `Microsoft.Extensions.ApiDescription.Server` runs the **:::no-loc text="GetDocument":::** step during `dotnet build`, progress messages may not appear with the .NET Terminal Logger at default verbosity in .NET 8 or later. To surface these messages while building, use either of the following options with the `dotnet build` command.
+When `Microsoft.Extensions.ApiDescription.Server` runs the **:::no-loc text="GetDocument":::** step during `dotnet build`, progress messages aren't visible with the .NET Terminal Logger at default verbosity in .NET 8 or later. To surface these messages while building, use either of the following options with the `dotnet build` command.
 
 Set the Terminal Logger's verbosity with the `-tlp` option set to `v=d` (verbosity = detailed):
 
