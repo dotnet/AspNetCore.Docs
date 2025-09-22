@@ -89,7 +89,7 @@ Example:
 </cache>
 ```
 
-Defaults to 30 seconds if [`expires_after`](#expires-after) and [`expires_on`](#expires-on) aren't defined.
+Defaults to 30 seconds if [`expires-after`](#expires-after) and [`expires-on`](#expires-on) aren't defined.
 
 ### `priority`
 
@@ -236,7 +236,7 @@ routes.MapRoute(
 
 | Attribute type  | Examples        | Default |
 | --------------- | --------------- | :-----: |
-| Boolean         | `true`, `false` | `false` |
+| Boolean         | `true`, `false` | `true`  |
 
 `vary-by-user` specifies whether or not the cache resets when the signed-in user (or Context Principal) changes. The current user is also known as the Request Context Principal and can be viewed in a Razor view by referencing `@User.Identity.Name`.
 
