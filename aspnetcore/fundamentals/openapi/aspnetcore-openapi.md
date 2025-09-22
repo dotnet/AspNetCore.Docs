@@ -193,22 +193,6 @@ In some scenarios, it's helpful to generate the OpenAPI document during the app'
 
 To add support for generating OpenAPI documents at build time, install the `Microsoft.Extensions.ApiDescription.Server` package:
 
-## View build-time OpenAPI logs (Terminal Logger)
-
-When `Microsoft.Extensions.ApiDescription.Server` runs the **:::no-loc text="GetDocument":::** step during `dotnet build`, progress messages aren't visible with the .NET Terminal Logger at default verbosity in .NET 8 or later. To surface these messages while building, use either of the following options with the `dotnet build` command.
-
-Set the Terminal Logger's verbosity with the `-tlp` option set to `v=d` (verbosity = detailed):
-
-```dotnetcli
-dotnet build -tlp:v=d
-```
-
-Disable the Terminal Logger and use legacy-style logs with the [`--tl` option](/dotnet/core/tools/dotnet-build#options) set to `off`:
-
-```dotnetcli
-dotnet build --tl:off
-```
-
 ### [Visual Studio](#tab/visual-studio)
 
 Run the following command from the **Package Manager Console**:
@@ -249,6 +233,22 @@ cat obj/{ProjectName}.json
 ```
 
 ---
+
+### View build-time OpenAPI logs (Terminal Logger)
+
+When `Microsoft.Extensions.ApiDescription.Server` runs the **:::no-loc text="GetDocument":::** step during `dotnet build`, progress messages aren't visible with the .NET Terminal Logger at default verbosity in .NET 8 or later. To surface these messages while building, use either of the following options with the `dotnet build` command.
+
+Set the Terminal Logger's verbosity with the `-tlp` option set to `v=d` (verbosity = detailed):
+
+```dotnetcli
+dotnet build -tlp:v=d
+```
+
+Disable the Terminal Logger and use legacy-style logs with the [`--tl` option](/dotnet/core/tools/dotnet-build#options) set to `off`:
+
+```dotnetcli
+dotnet build --tl:off
+```
 
 ### Customizing build-time document generation
 
