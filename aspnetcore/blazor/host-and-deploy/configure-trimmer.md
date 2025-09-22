@@ -55,6 +55,8 @@ When the [trimmer granularity](#default-trimmer-granularity) is `partial`, which
 </PropertyGroup>
 ```
 
+For guidance that pertains to .NET libraries, see [Prepare .NET libraries for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming).
+
 ## Failure to preserve types used by a published app
 
 Trimming may have detrimental effects for a published app leading to runtime errors, even in spite of setting the [`<PublishTrimmed>` property](#configuration) to `false` in the project file. In apps that use [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), the IL Trimmer often can't determine the required types for runtime reflection and trims them away or trims away parameter names from methods. This can happen with complex framework types used for JS interop, JSON serialization/deserialization, and other operations.
@@ -220,4 +222,5 @@ As a workaround in .NET 8, you can add the `_ExtraTrimmerArgs` MSBuild property 
 ## Additional resources
 
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained)
+* [Prepare .NET libraries for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming)
 * <xref:blazor/performance/app-download-size#intermediate-language-il-trimming>
