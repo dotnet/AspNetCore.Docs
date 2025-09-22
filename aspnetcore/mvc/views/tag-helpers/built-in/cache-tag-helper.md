@@ -236,16 +236,14 @@ routes.MapRoute(
 
 | Attribute type  | Examples        | Default |
 | --------------- | --------------- | :-----: |
-| Boolean         | `true`, `false` | `true`  |
+| Boolean         | `true`, `false` | `false`  |
 
 `vary-by-user` specifies whether or not the cache resets when the signed-in user (or Context Principal) changes. The current user is also known as the Request Context Principal and can be viewed in a Razor view by referencing `@User.Identity.Name`.
 
-This attribute defaults to `true` to ensure cache isolation between different users.
-
-The following example disables varying the response by user:
+The following example monitors the current logged in user to trigger a cache refresh:
 
 ```cshtml
-<cache vary-by-user="false">
+<cache vary-by-user="true">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </cache>
 ```
