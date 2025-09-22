@@ -90,7 +90,7 @@ When working on an issue:
       
 
 ### 1. Metadata and Date Requirements
-- [ ] CRITICAL: Set ms.date to the actual current date in MM/DD/YYYY format.  Do not infer the date based on existing dates in files.  Use today's date.
+- [ ] CRITICAL: Set ms.date to the actual current date in MM/DD/YYYY format. Do not infer the date based on existing dates in files.  Use today's date.
 - [ ] Add ai-usage: ai-assisted metadata if any AI assistance was used
 - [ ] Place title metadata first, followed by remaining metadata in alphabetical order
 - [ ] Update ms.date if more than 50 characters are changed in existing files
