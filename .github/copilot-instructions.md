@@ -1,13 +1,15 @@
 ---
-author: wadepickett
+author: tdykstra
 ms.author: wpickett
-ms.date: 08-17-2025
+ms.date: 09-21-2025
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
 
 ## Introduction
 This document contains general and repository-specific instructions for GitHub Copilot when assisting with the `dotnet/AspNetCore.Docs` repository. **Unless otherwise specified, all ".NET" references refer to modern .NET, not .NET Framework.**
+
+For code-specific guidelines, including code snippets, version targeting, and language standards, please refer to the [copilot-code-instructions.md](./copilot-code-instructions.md) file.
 
 ## General Guidelines
 
@@ -22,15 +24,23 @@ When creating a PR for an issue:
 - [ ] Provide an overview of the project you're working on, including its purpose, goals, and any relevant background information.
 - [ ] Include the folder structure of the repository, including any important directories or files that are relevant to the project.
 
-### 2. Markdown File Naming and Organization
+### 2. Issue Discussion Analysis
+When working on an issue:
+- [ ] **Read the complete issue discussion** - Don't rely solely on the initial issue description
+- [ ] **Prioritize maintainer guidance** - Comments from repository maintainers (especially those with "MEMBER" association) should take precedence over the original issue description
+- [ ] **Look for updated analysis** - Later comments may contain revised understanding, additional context, or modified resolution approaches
+- [ ] **Check for explicit instructions** - Look for phrases like "Action required by GitHub Copilot" or direct "@copilot" mentions that provide specific guidance
+- [ ] **Validate your understanding** - If the discussion seems to contradict the initial issue description, follow the most recent maintainer guidance
+
+### 3. Markdown File Naming and Organization
 - [ ] If you're adding a new Markdown file, it should be named in all lowercase with hyphens separating words. Also, omit any filler words such as "the" or "a" from the file name.
 
-### 3. API References and Verification
+### 4. API References and Verification
   - [ ] Use `<xref:api-doc-ID>` for API cross-references. 
   - [ ] The API documentation ID must be verified and sourced from the official XML documentation in dotnet-api-docs, never just infer API documentation IDs by looking for similar patterns.
   - [ ] If you cannot verify, state that explicitly in your output.
 
-### 4. Links and References
+### 5. Links and References
 - [ ] For cross-references to other articles within the AspNetCore.Docs repository:
   - [ ] Use the xref syntax: `<xref:target-uid>`
   - [ ] The "target-uid" of the xref syntax is obtained from the `uid` property value in the YAML front matter of the article's markdown file
@@ -77,14 +87,25 @@ When creating a PR for an issue:
     - [ ] Metadata `ai-usage: ai-assisted` if any AI assistance was used
     - [ ] Place the title metadata first, followed by the remaining metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
     - [ ] Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
-    
-### 1. Version Targeting Common Range Patterns
+      
+
+### 1. Metadata and Date Requirements
+- [ ] CRITICAL: Set ms.date to the actual current date in MM/DD/YYYY format. Do not infer the date based on existing dates in files.  Use today's date.
+- [ ] Add ai-usage: ai-assisted metadata if any AI assistance was used
+- [ ] Place title metadata first, followed by remaining metadata in alphabetical order
+- [ ] Update ms.date if more than 50 characters are changed in existing files
+  - [ ] When updating ms.date always use <today's date> in the format MM/DD/YYYY. Examples:
+    - [ ] MM: Two digits, leading zero if needed (01-12)
+    - [ ] DD: Two digits, leading zero if needed (01-31)
+    - [ ] YYYY: Four digits (2025)
+    - [ ] Example: `ms.date: 08/07/2025`
+### 2. Version Targeting Common Range Patterns
 - [ ] Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
 - [ ] Open Upper Bound: `>= aspnetcore-7.0`
 - [ ] Open Lower Bound: `<= aspnetcore-9.0`
 - [ ] Specific Version: `== aspnetcore-9.0`
 
-### 2. Handling File Redirections
+### 3. Handling File Redirections
 - [ ] When a Markdown (.md) article file (this does not apply to includes) is deleted in a PR, create a redirection entry.
 - [ ] Redirections ensure users following existing links aren't left with broken links
 - [ ] To add a redirection:
@@ -105,45 +126,7 @@ When creating a PR for an issue:
      - [ ] Maintain alphabetical order of the `source_path` entries for better organization
      - [ ] Ensure proper JSON formatting with correct commas between entries
 - [ ] When selecting a redirect target, choose the most relevant existing content that would serve the user's original intent
-- [ ] If no direct replacement exists, redirect to a parent category page or related topic
-    
-### 3. Code Snippets
-- [ ] For code snippets longer than 6 lines:
-  - [ ] Create a subfolder named after the document the snippet supports.
-  - [ ] Create a `snippets` folder inside that subfolder.
-  - [ ] For the code file:
-     - [ ] If the snippet is not version-specific, place the code in a file with the appropriate extension (for example, `.cs` for C#) in the `snippets` folder.
-     - [ ] If the snippet is version-specific:
-        - [ ] Create a subfolder inside the `snippets` folder named for the version (for example, `9.0` for .NET 9 or ASP.NET Core 9).
-        - [ ] Place the code in a file with the correct extension inside the version subfolder.
-        - [ ] Add a project file (`.csproj`) to the version subfolder targeting the matching .NET version, if necessary to run or build the snippet.
-- [ ] Reference snippets using triple-colon syntax:
-  - [ ] **Use file-relative paths** for snippets located in the same file as the articles that refer to it.
-    ```
-    :::code language="csharp" source="../snippets/my-doc/Program.cs":::
-    ```
-  - [ ] **Use repository root-relative paths** for shared snippets:
-    ```
-    :::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoGroup/TodoDb.cs":::
-    ```
-- [ ] For longer snippets, highlight specific lines:
-  ```
-  :::code language="csharp" source="~/path/to/file.cs" range="5-10" highlight="2-3":::
-  ```
-- [ ] Use the latest, non-preview C# coding patterns in non-preview code examples
-- [ ] Use the latest preview C# coding patterns in preview code examples
-- [ ] Use the following language code and indentation standards for markdown code blocks or the `language` attribute of code snippets:
-
-  Content of the snippet | Language code | Indentation in spaces
-  :--------------------: | :-----------: | :-------------------:
-  C#                     | csharp        | 4
-  HTML                   | html          | 4
-  CSS                    | css           | 4
-  JavaScript             | javascript    | 2 spaces (use 4 spaces for line continuation)
-  XML                    | xml           | 2
-  JSON                   | json          | 2
-  Console                | console       | 2
-  Text                   | -             | 2
+- [ ] If no direct replacement exists, redirect to a parent category page or related topic  
 
 ### 4. ASP.NET Core Specific Guidelines
 - [ ] Use the latest supported version for examples unless otherwise specified
@@ -155,3 +138,16 @@ When creating a PR for an issue:
 - [ ] Lead with Microsoft-recommended approaches
 - [ ] Include differences between Minimal API and controller-based approaches when relevant
 - [ ] For middleware content and examples, use the middleware class approach
+
+### 5. Content Writing Guidelines
+- [ ] Introductory paragraph:
+  - [ ] When drafting the first paragraph of any new article, or when significantly updating an existing article:
+  - [ ] Explain why and when the topic matters in practical ASP.NET Core development scenarios.
+  - [ ] Give a concise summary of what the article covers or enables, so readers know what to expect.
+  - [ ] When significantly updating, revise the introductory paragraph to match the new scope and content.
+
+### 6. PR Description Requirements
+- [ ] ALWAYS include "Fixes #[issue-number]" in the PR description, at the first line of the description to link back to the original issue
+- [ ] Include a clear summary of changes made
+- [ ] List all files that were modified with brief descriptions
+
