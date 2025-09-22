@@ -240,15 +240,17 @@ routes.MapRoute(
 
 `vary-by-user` specifies whether or not the cache resets when the signed-in user (or Context Principal) changes. The current user is also known as the Request Context Principal and can be viewed in a Razor view by referencing `@User.Identity.Name`.
 
-The following example monitors the current logged in user to trigger a cache refresh:
+This attribute defaults to `true` to ensure cache isolation between different users.
+
+The following example disables varying the response by user:
 
 ```cshtml
-<cache vary-by-user="true">
+<cache vary-by-user="false">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </cache>
 ```
 
-Using this attribute maintains the contents in cache through a sign-in and sign-out cycle. When the value is set to `true`, an authentication cycle invalidates the cache for the authenticated user. The cache is invalidated because a new unique cookie value is generated when a user is authenticated. Cache is maintained for the anonymous state when no cookie is present or the cookie has expired. If the user is **not** authenticated, the cache is maintained.
+Using this attribute maintains the contents in cache through a sign-in and sign-out cycle. When the value is `true`, an authentication cycle invalidates the cache for the authenticated user. The cache is invalidated because a new unique cookie value is generated when a user is authenticated. Cache is maintained for the anonymous state when no cookie is present or the cookie has expired. If the user is **not** authenticated, the cache is maintained.
 
 ## Additional resources
 
