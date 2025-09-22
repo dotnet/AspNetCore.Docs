@@ -57,17 +57,7 @@ During server-side rendering, Blazor Web Apps can persist a user's session (circ
 * Mobile device users switching apps
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
-
-<!-- UPDATE 10.0 - Arriving for RC1 ...
-
-                   Guidance changes for persistent component state with enhanced nav
-                   will be on the upcoming docs PR for RC1.
-
-                   API review for support persistent component state on enhanced navigation
-                   https://github.com/dotnet/aspnetcore/issues/62773
-                   -->
-
-*[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*
+* [Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling)
 
 Server resources can be freed up if the circuit state can be persisted and then resumed later:
 
