@@ -37,7 +37,7 @@ When generating the OpenAPI document at build time, the OpenAPI version can be s
 ```xml
 <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document -->
 <OpenApiGenerateDocumentsOptions>
-  --openapi-version 
+  --openapi-version OpenApi3_1
 </OpenApiGenerateDocumentsOptions>
 ```
 
