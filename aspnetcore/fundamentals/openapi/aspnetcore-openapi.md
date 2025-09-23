@@ -1,11 +1,11 @@
 ---
 title: Generate OpenAPI documents
 author: captainsafia
-description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app
+description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 09/22/2025
+ms.date: 09/23/2025
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -14,23 +14,20 @@ uid: fundamentals/openapi/aspnetcore-openapi
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
-* Support for generating [OpenAPI version 3.1] documents.
-* Support for [JSON Schema draft 2020-12].
+* Support for generating [OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html) documents.
+* Support for [JSON Schema draft 2020-12](https://json-schema.org/specification-links#2020-12).
 * Support for generating OpenAPI documents at run time and accessing them via an endpoint on the app.
 * Support for "transformer" APIs that allow modifying the generated document.
 * Support for generating multiple OpenAPI documents from a single app.
-* Takes advantage of JSON schema support provided by [`System.Text.Json`](/dotnet/api/system.text.json).
-* Is compatible with native AoT.
+* Takes advantage of JSON schema support provided by <xref:System.Text.Json?displayProperty=fullName>.
+* Compatible with native AoT.
 
-[OpenAPI version 3.1]: https://spec.openapis.org/oas/v3.1.1.html
-[JSON Schema draft 2020-12]: https://json-schema.org/specification-links#2020-12
-
-The default OpenAPI version for generated documents is`3.1`. The version can be changed by explicitly setting the [OpenApiVersion](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions.openapiversion) property of the [OpenApiOptions](/dotnet/api/microsoft.aspnetcore.openapi.openapioptions) in the `configureOptions` delegate parameter of [AddOpenApi](/dotnet/api/microsoft.extensions.dependencyinjection.openapiservicecollectionextensions.addopenapi):
+The default OpenAPI version for generated documents is 3.1. The version can be changed by explicitly setting the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion%2A> property of the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> in the `configureOptions` delegate parameter of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
 {
-    // Specify the OpenAPI version to use.
+    // Specify the OpenAPI version to use
     options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
 });
 ```
@@ -38,29 +35,32 @@ builder.Services.AddOpenApi(options =>
 When generating the OpenAPI document at build time, the OpenAPI version can be selected by setting the `--openapi-version` in the `OpenApiGenerateDocumentsOptions` MSBuild item.
 
 ```xml
-    <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document. -->
-    <OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
+<!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document -->
+<OpenApiGenerateDocumentsOptions>
+  --openapi-version 
+</OpenApiGenerateDocumentsOptions>
 ```
 
 ## Package installation
 
-Install the `Microsoft.AspNetCore.OpenApi` package:
+Install the [`Microsoft.AspNetCore.OpenApi` package](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi):
 
-### [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 Run the following command from the **Package Manager Console**:
 
- ```powershell
- Install-Package Microsoft.AspNetCore.OpenApi
+```powershell
+Install-Package Microsoft.AspNetCore.OpenApi
 ```
 
-### [.NET CLI](#tab/net-cli)
+# [.NET CLI](#tab/net-cli)
 
-Run the following command:
+Run the following command in a command shell opened to the directory that contains the app's project file:
 
 ```dotnetcli
 dotnet add package Microsoft.AspNetCore.OpenApi
 ```
+
 ---
 
 ## Configure OpenAPI document generation
@@ -72,7 +72,7 @@ The following code:
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_first&highlight=3,9)]
 
-Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document.
+Launch the app and navigate to `https://localhost:{port}/openapi/v1.json` to view the generated OpenAPI document, where the `{port}` placeholder is the port.
 
 ## Options to Customize OpenAPI document generation
 
@@ -80,23 +80,23 @@ The following sections demonstrate how to customize OpenAPI document generation.
 
 ### Generate OpenAPI document in YAML format
 
-The OpenAPI document can be generated in either JSON or YAML format. By default, the OpenAPI document is generated in JSON format. To generate the OpenAPI document in YAML format, specify the endpoint in the MapOpenApi call with a ".yaml" or ".yml" suffix, as shown in the following example:
+The OpenAPI document can be generated in either JSON or YAML format. By default, the OpenAPI document is generated in JSON format. To generate the OpenAPI document in YAML format, specify the endpoint in the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A> call with a "`.yaml`" or "`.yml`" suffix, as shown in the following example, where the `{documentName}` placeholder is the document name:
 
 ```csharp
 app.MapOpenApi("/openapi/{documentName}.yaml");
 ```
 
-Generating OpenAPI documents in YAML format at build time is currently not supported, but planned in a future preview.
+Generating OpenAPI documents in YAML format at build time isn't supported but planned for a future preview.
 
 ### Customize the OpenAPI document name
 
-Each OpenAPI document in an app has a unique name. The default document name that is registered is `v1`.
+Each OpenAPI document in an app has a unique name. The default document name that is registered is `v1`:
 
 ```csharp
 builder.Services.AddOpenApi(); // Document name is v1
 ```
 
-The document name can be modified by passing the name as a parameter to the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> call.
+The document name can be modified by passing the name as a parameter to the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> call:
 
 ```csharp
 builder.Services.AddOpenApi("internal"); // Document name is internal
@@ -113,7 +113,7 @@ GET http://localhost:5000/openapi/internal.json
 
 ### Customize the OpenAPI version of a generated document
 
-By default, OpenAPI document generation creates a document that is compliant with [OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html). The following code demonstrates how to modify the default version of the OpenAPI document:
+By default, OpenAPI document generation creates a document that is compliant with the OpenAPI specification. The following code demonstrates how to modify the default version of the OpenAPI document:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -138,7 +138,7 @@ Because the OpenAPI document is served via a route handler endpoint, any customi
 
 #### Limit OpenAPI document access to authorized users
 
-The OpenAPI endpoint  doesn't enable any authorization checks by default. However, authorization checks can be applied to the OpenAPI document. In the following code, access to the OpenAPI document is limited to those with the `tester` role:
+The OpenAPI endpoint doesn't enable authorization checks by default. However, authorization checks can be applied to the OpenAPI document. In the following code, access to the OpenAPI document is limited to users with the `tester` role:
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithauth)]
 
@@ -163,47 +163,49 @@ builder.Services.AddOpenApi("v1");
 builder.Services.AddOpenApi("v2");
 ```
 
-Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> can specify its own set of options, so that you can choose to use the same or different customizations for each OpenAPI document.
+Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> can specify its own set of options, so you can choose to use the same or different customizations for each OpenAPI document.
 
 The framework uses the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> to determine which endpoints to include in each document.
 
 For each document, the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method is called for each endpoint in the app, passing the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object for the endpoint. The method returns a boolean value indicating whether the endpoint should be included in the document. The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> object:
 
-* contains information about the endpoint, such as the HTTP method, route, and response types
+* Contains information about the endpoint, such as the HTTP method, route, and response types.
 * Metadata attached to the endpoint via attributes or extension methods.
 
-The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>. The delegate is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName%2A> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute. `WithGroupName` or the `EndpointGroupName` attribute determines which endpoints to include in the document. Any endpoint that has not been assigned a group name is included all OpenAPI documents.
+The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>. The delegate is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName%2A> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute. `WithGroupName` or the `EndpointGroupName` attribute determines which endpoints to include in the document. Any endpoint that hasn't been assigned a group name is included all OpenAPI documents.
 
 ```csharp
-    // Include endpoints without a group name or with a group name that matches the document name
-    ShouldInclude = (description) => description.GroupName == null || description.GroupName == DocumentName;    
+// Include endpoints without a group name or with a group name
+// that matches the document name
+ShouldInclude = (description) => description.GroupName == null || 
+    description.GroupName == DocumentName;    
 ```
 
-You can customize the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method to include or exclude endpoints based on any criteria you choose.
+You can customize the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method to include or exclude endpoints based on any criteria.
 
-## Generate OpenAPI documents at build-time
+## Generate OpenAPI documents at build time
 
-In typical web apps, OpenAPI documents are generated at run-time and served via an HTTP request to the app server.
+In typical web apps, OpenAPI documents are generated at runtime and served via an HTTP request to the app server.
 
-In some scenarios, it's helpful to generate the OpenAPI document during the app's build step. These scenarios include:
+In some scenarios, it's helpful to generate the OpenAPI document during the app's build step. These scenarios include generating OpenAPI documentation that is:
 
-* Generating OpenAPI documentation that is committed into source control.
-* Generating OpenAPI documentation that is used for spec-based integration testing.
-* Generating OpenAPI documentation that is served statically from the web server.
+* Committed into source control.
+* Used for spec-based integration testing.
+* Served statically from the web server.
 
-To add support for generating OpenAPI documents at build time, install the `Microsoft.Extensions.ApiDescription.Server` package:
+To add support for generating OpenAPI documents at build time, install the [`Microsoft.Extensions.ApiDescription.Server` package](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server):
 
-### [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 Run the following command from the **Package Manager Console**:
 
- ```powershell
- Install-Package Microsoft.Extensions.ApiDescription.Server
+```powershell
+Install-Package Microsoft.Extensions.ApiDescription.Server
 ```
 
-### [.NET CLI](#tab/net-cli)
+# [.NET CLI](#tab/net-cli)
 
-Run the following command in the directory that contains the project file:
+Run the following command in a command shell opened to the directory that contains the app's project file:
 
 ```dotnetcli
 dotnet add package Microsoft.Extensions.ApiDescription.Server
@@ -216,7 +218,7 @@ Upon installation, this package:
 * Automatically generates the Open API document(s) associated with the app during build.
 * Populates the Open API documents in the app's output directory.
 
-If multiple documents are registered, ***and*** document name is ***not*** `v1`, it's post-fixed with the document name. E.g., `{ProjectName}_{DocumentName}.json`.
+If multiple documents are registered ***and*** the document name is ***not*** `v1`, the project name is post-fixed with the document name. Example: `{ProjectName}_{DocumentName}.json`. The `{ProjectName}` placeholder is the project name, and the `{DocumentName}` placeholder is the document name.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -250,11 +252,11 @@ Disable the Terminal Logger and use legacy-style logs with the [`--tl` option](/
 dotnet build --tl:off
 ```
 
-### Customizing build-time document generation
+### Customize build-time document generation
 
-#### Modifying the output directory of the generated Open API file
+#### Modify the output directory of the generated Open API file
 
-By default, the generated OpenAPI document will be emitted to the app's output directory. To modify the location of the emitted file, set the target path in the `OpenApiDocumentsDirectory` property.
+By default, the generated OpenAPI document is emitted to the app's output directory. To modify the location of the emitted file, set the target path in the `OpenApiDocumentsDirectory` property:
 
 ```xml
 <PropertyGroup>
@@ -262,52 +264,56 @@ By default, the generated OpenAPI document will be emitted to the app's output d
 </PropertyGroup>
 ```
 
-The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `.` value above will emit the OpenAPI document in the same directory as the project file.
+The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `.` value, as seen in the preceding example, emits the OpenAPI document in the same directory as the project file.
 
-#### Modifying the output file name
+#### Modify the output file name
 
-By default, the generated OpenAPI document will have the same name as the app's project file. To modify the name of the emitted file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property.
-
-```xml
-<PropertyGroup>
-  <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
-</PropertyGroup>
-```
-
-#### Selecting the OpenAPI document to generate
-
-Some apps may be configured to emit multiple OpenAPI documents. Multiple OpenAPI documents may be generated for different versions of an API or to distinguish between public and internal APIs. By default, the build-time document generator emits files for all documents that are configured in an app. To only emit for a single document name, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property.
+By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the emitted file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
 ```xml
 <PropertyGroup>
-  <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
+  <OpenApiGenerateDocumentsOptions>
+    --file-name my-open-api
+  </OpenApiGenerateDocumentsOptions>
 </PropertyGroup>
 ```
 
-### Customizing run-time behavior during build-time document generation
+#### Select the OpenAPI document to generate
 
-Build-time OpenAPI document generation functions by launching the apps entrypoint with a mock server implementation. A mock server is required to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the apps entrypoint is invoked, any logic in the apps startup is invoked. This includes code that injects services into the [DI container](xref:fundamentals/dependency-injection) or reads from configuration. In some scenarios, it's necessary to restrict the code paths that will run when the apps entry point is being invoked from build-time document generation. These scenarios include:
+Some apps may be configured to emit multiple OpenAPI documents. Multiple OpenAPI documents may be generated for different versions of an API or to distinguish between public and internal APIs. By default, the build-time document generator emits files for all documents that are configured in an app. To only emit for a single document name, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property:
+
+```xml
+<PropertyGroup>
+  <OpenApiGenerateDocumentsOptions>
+    --document-name v2
+  </OpenApiGenerateDocumentsOptions>
+</PropertyGroup>
+```
+
+### Customize runtime behavior during build-time document generation
+
+Build-time OpenAPI document generation functions by launching the apps entrypoint with a mock server implementation. A mock server is required to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the apps entrypoint is invoked, any logic in the apps startup is invoked. This includes code that injects services into the [DI container](xref:fundamentals/dependency-injection) or reads from configuration. In some scenarios, it's necessary to restrict the code paths when the app's entry point is invoked from build-time document generation. These scenarios include:
 
 * Not reading from certain configuration strings.
 * Not registering database-related services.
 
-In order to restrict these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
+In order to restrict invoking these code paths by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/AspireApp1/AspireApp1.Web/Program.cs" highlight="5-8":::
 
-[AddServiceDefaults](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references)<!--keep--> adds common .NET Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
+[`AddServiceDefaults`](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references)<!--keep--> adds common .NET Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
 
 ## Trimming and Native AOT
 
-OpenAPI in ASP.NET Core supports trimming and native AOT. The following steps create and publish an OpenAPI app with trimming and native AOT:
+OpenAPI in ASP.NET Core supports trimming and native AOT. The following steps create and publish an OpenAPI app with trimming and native AOT.
 
-Create a new ASP.NET Core Web API (Native AOT) project.
+Create a new ASP.NET Core Web API (Native AOT) project:
 
 ```console
 dotnet new webapiaot
 ```
 
-Publish the app.
+Publish the app:
 
 ```console
 dotnet publish
