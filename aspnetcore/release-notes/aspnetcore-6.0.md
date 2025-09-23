@@ -179,7 +179,7 @@ Blazor supports optimized byte array JS interop that avoids encoding and decodin
 
 ### Query string enhancements
 
-Support for working with query strings is improved. For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-6.0#query-strings>.
+Support for working with query strings is improved. For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-6.0#query-strings>.
 
 ### Binding to select multiple
 

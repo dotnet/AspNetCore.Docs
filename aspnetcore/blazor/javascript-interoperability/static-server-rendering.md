@@ -12,7 +12,7 @@ uid: blazor/js-interop/ssr
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-This article explains how to load JavaScript (JS) in a Blazor Web App with static server-side rendering (static SSR) and [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
+This article explains how to load JavaScript (JS) in a Blazor Web App with static server-side rendering (static SSR) and [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling).
 
 Some apps depend on JS to perform initialization tasks that are specific to each page. When using Blazor's enhanced navigation feature, which allows the user to avoid reloading the entire page, page-specific JS may not be executed again as expected each time an enhanced page navigation occurs.
 
