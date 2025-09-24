@@ -5,7 +5,7 @@ description: Learn about navigation in Blazor, including how to use the Navigati
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/23/2025
+ms.date: 09/24/2025
 uid: blazor/fundamentals/navigation
 ---
 # ASP.NET Core Blazor navigation
@@ -198,41 +198,30 @@ The following component:
 
 `Navigate.razor`:
 
-:::moniker range=">= aspnetcore-9.0"
+```razor
+@page "/navigate"
+@implements IDisposable
+@inject ILogger<Navigate> Logger
+@inject NavigationManager Navigation
 
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Navigate.razor":::
+<h1>Navigate Example</h1>
 
-:::moniker-end
+<button class="btn btn-primary" @onclick="NavigateToCounterComponent">
+    Navigate to the Counter component
+</button>
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+@code {
+    private void NavigateToCounterComponent() => Navigation.NavigateTo("counter");
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Navigate.razor":::
+    protected override void OnInitialized() => 
+        Navigation.LocationChanged += HandleLocationChanged;
 
-:::moniker-end
+    private void HandleLocationChanged(object? sender, LocationChangedEventArgs e) => 
+        Logger.LogInformation("URL of new location: {Location}", e.Location);
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/Navigate.razor":::
-
-:::moniker-end
+    public void Dispose() => Navigation.LocationChanged -= HandleLocationChanged;
+}
+```
 
 For more information on component disposal, see <xref:blazor/components/component-disposal>.
 

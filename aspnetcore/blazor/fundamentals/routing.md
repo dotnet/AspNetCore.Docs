@@ -1,18 +1,18 @@
 ---
 title: ASP.NET Core Blazor routing
 author: guardrex
-description: Learn about Blazor app request routing.
+description: Learn about Blazor app request routing with guidance on static versus interactive routing, endpoint routing integration, navigation events, and route templates and constraints for Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/23/2025
+ms.date: 09/24/2025
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains Blazor app request routing, including Static versus interactive routing, ASP.NET Core endpoint routing integration, 
+This article explains Blazor app request routing with guidance on static versus interactive routing, ASP.NET Core endpoint routing integration, navigation events, and route templates and constraints for Razor components.
 
 Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`](xref:mvc/views/razor#page) directive. When a Razor file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
 
@@ -20,43 +20,13 @@ The following `HelloWorld` component uses a route template of `/hello-world`, an
 
 `HelloWorld.razor`:
 
-:::moniker range=">= aspnetcore-9.0"
+```razor
+@page "/hello-world"
 
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/HelloWorld.razor":::
+<h1>Hello World!</h1>
+```
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/HelloWorld.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
-
-:::moniker-end
-
-The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation.
+The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation as a link.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -146,41 +116,17 @@ Components support multiple route templates using multiple [`@page` directives](
 
 `BlazorRoute.razor`:
 
-:::moniker range=">= aspnetcore-9.0"
+```razor
+@page "/blazor-route"
+@page "/different-blazor-route"
 
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/BlazorRoute.razor":::
+<h1>Routing Example</h1>
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/BlazorRoute.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor":::
-
-:::moniker-end
+<p>
+    This page is reached at either <code>/blazor-route</code> or 
+    <code>/different-blazor-route</code>.
+</p>
+```
 
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
@@ -360,41 +306,18 @@ The router uses route parameters to populate the corresponding [component parame
 
 `RouteParameter1.razor`:
 
-:::moniker range=">= aspnetcore-9.0"
+```razor
+@page "/route-parameter-1/{text}"
 
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter1.razor":::
+<h1>Route Parameter Example 1</h1>
 
-:::moniker-end
+<p>Blazor is @Text!</p>
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter1.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor":::
-
-:::moniker-end
+@code {
+    [Parameter]
+    public string? Text { get; set; }
+}
+```
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -410,41 +333,20 @@ Optional parameters aren't supported. In the following example, two [`@page` dir
 
 `RouteParameter2.razor`:
 
-:::moniker range=">= aspnetcore-9.0"
+```razor
+@page "/route-parameter-2/{text?}"
 
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter2.razor":::
+<h1>Route Parameter Example 2</h1>
 
-:::moniker-end
+<p>Blazor is @Text!</p>
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+@code {
+    [Parameter]
+    public string? Text { get; set; }
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter2.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor":::
-
-:::moniker-end
+    protected override void OnParametersSet() => Text = Text ?? "fantastic";
+}
+```
 
 When the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) is used instead of the [`OnParametersSet{Async}` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the default assignment of the `Text` property to `fantastic` doesn't occur if the user navigates within the same component. For example, this situation arises when the user navigates from `/route-parameter-2/amazing` to `/route-parameter-2`. As the component instance persists and accepts new parameters, the `OnInitialized` method isn't invoked again.
 
@@ -468,8 +370,6 @@ In the following example, the route to the `User` component only matches if:
 
 ```razor
 @page "/user/{Id:int}"
-
-<PageTitle>User</PageTitle>
 
 <h1>User Example</h1>
 
@@ -568,29 +468,18 @@ Consider the following `Example` component that can receive a route parameter fr
 
 `Example.razor`:
 
-:::moniker-end
+```razor
+@page "/example/{param?}"
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+<p>
+    Param: @Param
+</p>
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/routing/Example.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/routing/Example.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/routing/Example.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/routing/Example.razor":::
+@code {
+    [Parameter]
+    public string? Param { get; set; }
+}
+```
 
 :::moniker-end
 
@@ -648,39 +537,22 @@ Catch-all route parameters are:
 
 `CatchAll.razor`:
 
-:::moniker-end
+```razor
+@page "/catch-all/{*pageRoute}"
 
-:::moniker range=">= aspnetcore-9.0"
+<h1>Catch All Parameters Example</h1>
 
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Catchall.razor":::
+<p>Add some URI segments to the route and request the page again.</p>
 
-:::moniker-end
+<p>
+    PageRoute: @PageRoute
+</p>
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Catchall.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0"
+@code {
+    [Parameter]
+    public string? PageRoute { get; set; }
+}
+```
 
 For the URL `/catch-all/this/is/a/test` with a route template of `/catch-all/{*pageRoute}`, the value of `PageRoute` is set to `this/is/a/test`.
 
