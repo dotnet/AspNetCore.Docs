@@ -363,8 +363,12 @@ CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 ```
 
+:::moniker range="< aspnetcore-10.0"
+
 > [!NOTE]
-> Currently, Blazor WebAssembly apps only load resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture>. For more information, see [Blazor WASM only relies on the current culture (current UI culture isn't respected) (`dotnet/aspnetcore` #56824)](https://github.com/dotnet/aspnetcore/issues/56824).
+> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](xref:migration/index).
+
+:::moniker-end
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Costa Rican Spanish (`es-CR`) in the browser's language settings. Request the webpage again. When the requested language is Costa Rican Spanish, the app's culture remains United States English (`en-US`).
 
@@ -507,8 +511,12 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 await host.RunAsync();
 ```
 
+:::moniker range="< aspnetcore-10.0"
+
 > [!NOTE]
-> Currently, Blazor WebAssembly apps only load resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture>. For more information, see [Blazor WASM only relies on the current culture (current UI culture isn't respected) (`dotnet/aspnetcore` #56824)](https://github.com/dotnet/aspnetcore/issues/56824).
+> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](xref:migration/index).
+
+:::moniker-end
 
 The following `CultureSelector` component shows how to perform the following actions:
 
@@ -1004,8 +1012,16 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 await host.RunAsync();
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
 > [!NOTE]
-> Currently, Blazor WebAssembly apps only load resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture>. For more information, see [Blazor WASM only relies on the current culture (current UI culture isn't respected) (`dotnet/aspnetcore` #56824)](https://github.com/dotnet/aspnetcore/issues/56824).
+> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](xref:migration/index).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 Add the following `CultureSelector` component to the `.Client` project.
 
