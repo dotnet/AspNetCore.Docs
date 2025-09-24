@@ -57,7 +57,7 @@ Example:
 
 ## Distributed Cache Tag Helper `IDistributedCache` implementations
 
-There are two implementations of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> built in to ASP.NET Core. One is based on SQL Server, and the other is based on Redis. Third-party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html). Details of these implementations can be found at <xref:performance/caching/distributed>. Both implementations involve setting an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> in either the `Program` file or `Startup` class.
+There are two implementations of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> built in to ASP.NET Core. One is based on SQL Server, and the other is based on Redis. Third-party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html). Both implementations involve setting an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> in either the `Program` file or `Startup` class.
 
 There are no tag attributes specifically associated with using any implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache>.
 
