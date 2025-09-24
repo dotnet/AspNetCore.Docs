@@ -84,7 +84,7 @@ When working on an issue:
   - [ ] For Blazor's Razor components mentioned in article text, use backticks around the name of the component (example: `Counter` component)
   - [ ] Use placeholders with braces in the format `{PLACEHOLDER NAME}` when used in URIs, code examples, and other contexts where placeholders are used. Use uppercase letters with spaces between words for the placeholder name inside the braces.
     - [ ] Wrong: "Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document."
-    - [ ] Correct: "Launch the app and navigate to `https://localhost:{PORT}/openapi/v1.json` to view the generated OpenAPI document, where the `{port}` placeholder is the port."
+    - [ ] Correct: "Launch the app and navigate to `https://localhost:{PORT}/openapi/v1.json` to view the generated OpenAPI document, where the `{PORT}` placeholder is the port."
   - [ ] For any new or updated .md file, ensure the standard frontmatter (metadata) is included as specified in [Metadata for Microsoft Learn documentation.](https://learn.microsoft.com/en-us/contribute/content/metadata)
   - [ ] For any new or updated .md file added to the repository, ensure the following frontmatter (metadata) is included:
     - [ ] Metadata `ai-usage: ai-assisted` if any AI assistance was used
