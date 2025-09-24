@@ -11,7 +11,7 @@ uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
 
 By [Peter Kellner](https://peterkellner.net)
 
-The Distributed Cache Tag Helper provides the ability to dramatically improve the performance of your ASP.NET Core app by caching its content to a distributed cache source.
+The Distributed Cache Tag Helper provides the ability to dramatically improve the performance of your ASP.NET Core app by caching its content to a [distributed cache source](xref:performance/caching/distributed).
 
 For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
@@ -55,16 +55,17 @@ Example:
 </distributed-cache>
 ```
 
-## Distributed Cache Tag Helper IDistributedCache implementations
+## Distributed Cache Tag Helper `IDistributedCache` implementations
 
 There are two implementations of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> built in to ASP.NET Core. One is based on SQL Server, and the other is based on Redis. Third-party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html). Details of these implementations can be found at <xref:performance/caching/distributed>. Both implementations involve setting an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> in either the `Program` file or `Startup` class.
 
 There are no tag attributes specifically associated with using any implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache>.
 
+For more information, see <xref:performance/caching/distributed>.
+
 ## Additional resources
 
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:fundamentals/dependency-injection>
-* <xref:performance/caching/distributed>
 * <xref:performance/caching/memory>
 * <xref:security/authentication/identity>
