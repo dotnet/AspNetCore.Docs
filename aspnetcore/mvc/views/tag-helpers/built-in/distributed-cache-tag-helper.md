@@ -4,7 +4,7 @@ author: pkellner
 description: Learn how to use the Distributed Cache Tag Helper.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/24/2020
+ms.date: 09/24/2025
 uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
 ---
 # Distributed Cache Tag Helper in ASP.NET Core
@@ -17,7 +17,7 @@ For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 The Distributed Cache Tag Helper inherits from the same base class as the Cache Tag Helper. All of the [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper) attributes are available to the Distributed Tag Helper.
 
-The Distributed Cache Tag Helper uses [constructor injection](xref:fundamentals/dependency-injection#constructor-injection-behavior). The <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface is passed into the Distributed Cache Tag Helper's constructor. If no concrete implementation of `IDistributedCache` is created in `Startup.ConfigureServices` (`Startup.cs`), the Distributed Cache Tag Helper uses the same in-memory provider for storing cached data as the [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper).
+The Distributed Cache Tag Helper uses [constructor injection](xref:fundamentals/dependency-injection#constructor-injection-behavior). The <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface is passed into the Distributed Cache Tag Helper's constructor. If no concrete implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> is created in the `Program` file or  `Startup.ConfigureServices` (`Startup.cs`), the Distributed Cache Tag Helper uses the same in-memory provider for storing cached data as the [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper).
 
 ## Distributed Cache Tag Helper Attributes
 
@@ -27,13 +27,13 @@ The Distributed Cache Tag Helper uses [constructor injection](xref:fundamentals/
 * `expires-on`
 * `expires-after`
 * `expires-sliding`
+* `vary-by`
+* `vary-by-cookie`
+* `vary-by-culture`
 * `vary-by-header`
 * `vary-by-query`
 * `vary-by-route`
-* `vary-by-cookie`
 * `vary-by-user`
-* `vary-by`
-* `priority`
 
 The Distributed Cache Tag Helper inherits from the same class as Cache Tag Helper. For descriptions of these attributes, see the [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper).
 
@@ -55,9 +55,9 @@ Example:
 
 ## Distributed Cache Tag Helper IDistributedCache implementations
 
-There are two implementations of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> built in to ASP.NET Core. One is based on SQL Server, and the other is based on Redis. Third-party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html). Details of these implementations can be found at <xref:performance/caching/distributed>. Both implementations involve setting an instance of `IDistributedCache` in `Startup`.
+There are two implementations of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> built in to ASP.NET Core. One is based on SQL Server, and the other is based on Redis. Third-party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html). Details of these implementations can be found at <xref:performance/caching/distributed>. Both implementations involve setting an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> in either the `Program` file or `Startup` class.
 
-There are no tag attributes specifically associated with using any specific implementation of `IDistributedCache`.
+There are no tag attributes specifically associated with using any implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache>.
 
 ## Additional resources
 
