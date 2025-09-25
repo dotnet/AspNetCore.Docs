@@ -4,7 +4,7 @@ description: ASP.NET Framework to Core Authentication Migration
 author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/17/2025
+ms.date: 09/24/2025
 ms.topic: article
 uid: migration/fx-to-core/areas/authentication
 zone_pivot_groups: migration-remote-app-setup
@@ -344,8 +344,8 @@ Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Cor
 
 The following samples in the [System.Web adapters](https://github.com/dotnet/systemweb-adapters) GitHub repo demonstrates remote app authentication with shared cookie configuration enabling both apps to sign users in and out:
 
-* [ASP.NET app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/RemoteAuth/Identity/MvcApp)
-* [ASP.NET Core app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/RemoteAuth/Identity/MvcCoreApp)
+* [ASP.NET app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/AuthRemoteIdentity/AuthRemoteIdentityFramework)
+* [ASP.NET Core app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/AuthRemoteIdentity/AuthRemoteIdentityCore)
 
 ### When to choose shared cookie authentication
 
