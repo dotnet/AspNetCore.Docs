@@ -106,7 +106,7 @@ In other environments:
 * The `CustomExceptionHandler` is called first to handle an exception.
 * After logging the exception, the `TryHandleAsync` method returns `false`, so the [`/Error` page](#exception-handler-page) is shown.
 
-### Configure suppressing exception handler diagnostics
+### SuppressDiagnosticsCallback
 
 Starting in .NET 10, you can control whether the exception handling middleware writes diagnostics (logs and metrics) for handled exceptions using the `SuppressDiagnosticsCallback` property on `ExceptionHandlerOptions`. This callback receives the exception context and allows you to determine whether diagnostics should be suppressed based on the specific exception or request.
 
