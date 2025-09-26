@@ -238,7 +238,7 @@ Add the following `RenamePasskey` component for renaming passkeys and update the
 
 Add a link to the passkey management page in the app's `ManageNavMenu` component.
 
-In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) for the `Passkeys` component:
+In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) for the `Passkeys` component:
 
 ```razor
 <li class="nav-item">
