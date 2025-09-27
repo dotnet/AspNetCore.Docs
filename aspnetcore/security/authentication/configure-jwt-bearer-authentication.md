@@ -111,7 +111,7 @@ When an API uses JWT access tokens for authorization, the API only validates the
 OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for token acquisition. Token acquisition varies depending on the type of app. Due to the complexity of secure token acquisition, it's highly recommended to rely on these standards:
 
 * For apps acting on behalf of a user and an application: OIDC is the preferred choice, enabling delegated user access. In web apps, the confidential code flow with [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (PKCE) is recommended for enhanced security.
-  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), you can use the [SaveTokens](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.savetokens) option to store access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.gettokenasync).
+  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), you can use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property to store access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.gettokenasync).
 * If the app has no user: The OAuth 2.0 client credentials flow is suitable for obtaining application access tokens.
 
 ## Implementing JWT bearer token authentication
