@@ -108,7 +108,7 @@ In other environments:
 
 ### SuppressDiagnosticsCallback
 
-Starting in .NET 10, you can control whether the exception handling middleware writes diagnostics (logs and metrics) for handled exceptions using the `SuppressDiagnosticsCallback` property on `ExceptionHandlerOptions`. This callback receives the exception context and allows you to determine whether diagnostics should be suppressed based on the specific exception or request.
+Starting in .NET 10, you can control whether the exception handling middleware writes diagnostics for handled exceptions by configuring the `SuppressDiagnosticsCallback` property on `ExceptionHandlerOptions`. This callback receives the exception context and allows you to determine whether diagnostics should be suppressed based on the specific exception or request.
 
 To revert to the .NET 8 and 9 behavior where diagnostics are always emitted for handled exceptions, set the callback to always return `false`:
 
