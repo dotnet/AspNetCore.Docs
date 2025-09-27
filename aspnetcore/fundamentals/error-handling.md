@@ -370,7 +370,7 @@ An alternative approach to generate problem details is to use the third-party Nu
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * <xref:fundamentals/error-handling-api>
-* [SuppressDiagnosticsCallback](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.exceptionhandleroptions.suppressdiagnosticscallback?view=aspnetcore-10.0#microsoft-aspnetcore-builder-exceptionhandleroptions-suppressdiagnosticscallback)
+* <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerOptions.SuppressDiagnosticsCallback?displayProperty=nameWithType>
 * [Breaking change: Exception diagnostics are suppressed when `IExceptionHandler.TryHandleAsync` returns true](https://github.com/aspnet/Announcements/issues/524)
 
 :::moniker-end
