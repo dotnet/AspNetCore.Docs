@@ -84,7 +84,7 @@ Another way to use a lambda is to set the status code based on the exception typ
 
 `IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](/dotnet/api/microsoft.extensions.dependencyinjection.exceptionhandlerservicecollectionextensions.addexceptionhandler). The lifetime of an `IExceptionHandler` instance is singleton. Multiple implementations can be added, and they're called in the order registered.
 
-The built-in implementation works by iterating through the registered exception handlers in order until one returns `true` from `TryHandleAsync`, indicating that the exception has been handled. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
+The built-in implementation works by iterating through the registered exception handlers in order until one returns `true` from `TryHandleAsync`, indicating that the exception has been handled. If an exception handler handles an exception, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
 
 Starting in .NET 10, the default behavior is to suppress emission of diagnostics such as logs and metrics for handled exceptions (when `TryHandleAsync` returns `true`). This differs from earlier versions (.NET 8 and 9) where diagnostics were always emitted regardless of whether the exception was handled. The default behavior can be changed by setting [SuppressDiagnosticsCallback](#suppressdiagnosticscallback).
 
