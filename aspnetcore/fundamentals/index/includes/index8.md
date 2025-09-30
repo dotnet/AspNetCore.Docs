@@ -34,7 +34,7 @@ The following code adds Razor Pages, MVC controllers with views, and a custom <x
 
 Services are typically resolved from DI using constructor injection. The DI framework provides an instance of this service at runtime.
 
-The following code uses constructor injection to resolve the database context and logger from DI:
+The following code resolves the database context and logger from DI using constructor injection:
 
 [!code-csharp[](~/fundamentals/index/samples/6.0/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-10, 16-17)]
 
