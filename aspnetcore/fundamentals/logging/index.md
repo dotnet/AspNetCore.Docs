@@ -1,5 +1,6 @@
 ---
 title: Logging in .NET and ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use the ASP.NET Core logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 monikerRange: '>= aspnetcore-3.1'
@@ -484,7 +485,7 @@ For more information, see [Azure Apps: Override app configuration using the Azur
 
 When an <xref:Microsoft.Extensions.Logging.ILogger> object is created, a *category* is specified. The category is included with each log message created by that instance of the logger. The category string is arbitrary, but the convention is to use the fully qualified class name. The ASP.NET Core web apps use [`ILogger<T>`](xref:Microsoft.Extensions.Logging.ILogger) to create a logger instance that uses the fully qualified type name of `T` as the category.
 
-Log messages with a category name that begins with "Microsoft" are from .NET. Typically, log messages that begin with the app's assembly name are from the app. Packages outside of .NET usually have a category based on the assembly name from the package.
+Log messages with a category name that begins with "Microsoft" are from .NET. Typically, log messages that begin with the app's assembly name are from the app. Packages outside of .NET usually have a category based on the assembly name from the package. For a list of common log categories, see the [Common log categories](#common-log-categories) section.
 
 In a Razor component of a Blazor app, where the type `T` is `Counter` for a privacy page rendered by a `Counter` component (`Pages/Counter.razor`):
 
@@ -867,7 +868,7 @@ For information on `stdout` and debug logging with the ASP.NET Core Module, see 
 
 ### `Console`
 
-The `Console` provider logs output to the console. For more information on viewing `Console` logs in development, see [Logging output from dotnet run and Visual Studio](#logging-output-from-dotnet-run-and-visual-studio).
+The `Console` provider logs output to the console. For more information on viewing `Console` logs in development, see the [Logging output](#logging-output) section.
 
 ### `Debug`
 
@@ -1089,6 +1090,8 @@ builder.Logging.AddEventLog(eventLogSettings =>
 });
 ```
 
+When the app calls the <xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog%2A> overload with <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>, a new instance of <xref:Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider> is created with the provided settings. If there's already an <xref:Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider> instance registered, which is the case if the app doesn't call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances, the new settings don't replace the existing ones. If you want to ensure that the <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings> are used, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> before calling <xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog%2A>.
+
 ### Azure App Service
 
 The [`Microsoft.Extensions.Logging.AzureAppServices` provider NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) writes logs to text files in an Azure App Service app's file system and to [blob storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet#what-is-blob-storage) in an Azure Storage account. The provider only logs when the project runs in the Azure environment.
@@ -1271,7 +1274,7 @@ In the preceding example:
   * All categories starting with `"Microsoft"`.
   * Log level <xref:Microsoft.Extensions.Logging.LogLevel.Trace> and higher.
 
-:::moniker range=">= aspnetcore-5.0
+:::moniker range=">= aspnetcore-5.0"
 
 ## Specify the trace context for logging scopes
 
@@ -1286,6 +1289,8 @@ The logging libraries implicitly create a scope object with <xref:Microsoft.Exte
 * `ParentId`
 * `Baggage`
 * `Tags`
+
+`SpanId`, `TraceId`, `ParentId` are enabled by default.
 
 In the following example, only the `SpanId` and `TraceId` are specified:
 
@@ -1325,6 +1330,8 @@ The logging libraries implicitly create a scope object with <xref:Microsoft.Exte
 * `TraceId`
 * `ParentId`
 
+`SpanId`, `TraceId`, `ParentId` are enabled by default.
+
 In the following example, only the `SpanId` and `TraceId` are specified:
 
 ```csharp
@@ -1340,6 +1347,8 @@ var loggerFactory = LoggerFactory.Create(logging =>
     });
 });
 ```
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -1428,6 +1437,128 @@ The preceding code is a <xref:System.Func%602> that runs the first time the DI c
 ## Logging bug reports
 
 File a logging bug report in the [`dotnet/runtime` GitHub repository issues](https://github.com/dotnet/runtime/issues).
+
+## Common log categories
+
+<!-- Dan, I merely tossed this in from Rick's issue with minor editing ...
+
+     https://github.com/dotnet/AspNetCore.Docs/issues/33187
+     
+     I didn't want to spend time on it until I heard back from you 
+     if we're going to place this section at all or have feedback 
+     from you on how you want it covered if you'd prefer an 
+     alternative format and/or the entries Rick drafted. -->
+
+This section describes common log categories seen in ASP.NET Core app logs. The following isn't a comprehensive list.
+
+`Microsoft.AspNetCore`: Logs from the ASP.NET Core framework components, such as hosting, routing, and middleware.
+
+Authentication
+
+* `Microsoft.AspNetCore.Authentication`: Logs from the authentication middleware and services, including authentication scheme handling.
+* `Microsoft.AspNetCore.Authentication.Cookies`: Logs specific to cookie-based authentication.
+* `Microsoft.AspNetCore.Authentication.JwtBearer`: Logs related to JWT Bearer token authentication.
+* `Microsoft.AspNetCore.Authentication.OpenIdConnect`: Logs concerning OpenID Connect authentication processes.
+* `Microsoft.AspNetCore.Authentication.OAuth`: Logs related to OAuth authentication and authorization flows.
+
+Authorization
+
+* `Microsoft.AspNetCore.Authorization`: Logs related to authorization operations, including policy evaluation and decision making.
+* `Microsoft.AspNetCore.Authorization.DefaultAuthorizationService`: Logs about the default.
+
+Configuration
+
+* `Microsoft.Extensions.Configuration.Json`: Logs from classes that obtain configuration data from JSON files.
+* `Microsoft.Extensions.Configuration.UserSecrets`: Logs related to loading user secrets configuration data.
+
+CORS
+
+* `Microsoft.AspNetCore.Cors`: Logs related to Cross-Origin Resource Sharing (CORS) middleware and policy evaluation.
+* `Microsoft.AspNetCore.Cors.Infrastructure`: Logs concerning CORS policy configuration and enforcement.
+
+Data Protection:
+
+* `Microsoft.AspNetCore.DataProtection`: Logs from the data protection system, including key management, encryption operations, and which keys were considered, found, and used.
+* `Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager`: Logs specific to the XML key manager, including key storage and retrieval.
+
+Diagnostics
+
+* `Microsoft.AspNetCore.Diagnostics`: Logs about diagnostics and error handling middleware, including exception handling and status code pages.
+* `Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware`: Logs specific to developer exception page middleware processing.
+* `Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware`: Logs related to exception handling and error response generation.
+* `Microsoft.AspNetCore.Diagnostics.StatusCodePageMiddleware`: Logs related to status code page middleware and response handling.
+
+Host Filtering
+
+* `Microsoft.AspNetCore.HostFiltering`: Hosts allowed and denied by the host filtering middleware.
+* `Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware`: Logs related to the host filtering middleware, including allowed and denied hosts.
+* `Microsoft.AspNetCore.HostFiltering.HostFilteringOptions`: Logs concerning options for the HostFiltering middleware.
+
+Hosting
+
+* `Microsoft.AspNetCore.Hosting.Lifetime`: Logs related to the lifecycle of the web host, including starting and stopping events.
+* `Microsoft.AspNetCore.Hosting.Diagnostics`: Logs diagnostics information, such as application startup and shutdown.
+* `Microsoft.AspNetCore.Hosting.RequestDelegate`: Logs related to the handling of HTTP requests by the application pipeline.
+* `Microsoft.AspNetCore.Hosting.Internal.WebHost`: Internal logs from the web host, useful for debugging host-related issues.
+* `Microsoft.AspNetCore.Hosting.Internal.HostedServiceExecutor`: Logs concerning the execution of hosted services by the web host.
+
+HTTP
+
+* `Microsoft.AspNetCore.Http.ConnectionLogging`: Related to HTTP connections, including connection establishment and termination.
+* `Microsoft.AspNetCore.Http.DefaultHttpContext`: Logs related to the creation and usage of HttpContext instances.
+* `Microsoft.AspNetCore.Http.Endpoints.EndpointMiddleware`: Logs about endpoint routing and middleware execution.
+* `Microsoft.AspNetCore.Http.Response`: Logs related to HTTP response processing.
+
+HTTPS
+
+* `Microsoft.AspNetCore.HttpsPolicy`: Logs from HTTPS redirection middleware, policy enforcement and and HTTP Strict-Transport-Security (HSTS).
+* `Microsoft.AspNetCore.HttpsPolicy.HstsMiddleware`: Logs specific to HTTP Strict-Transport-Security (HSTS) middleware processing.
+* `Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware`: Logs related to HTTPS redirection middleware execution.
+* `Microsoft.AspNetCore.HttpsPolicy.HstsOptions`: Logs concerning HSTS policy configuration and enforcement.
+
+Identity
+
+* `Microsoft.AspNetCore.Identity`: Logs from the ASP.NET Core Identity framework, including user management and identity operations.
+* `Microsoft.AspNetCore.Identity.RoleManager`: Logs related to role management operations.
+* `Microsoft.AspNetCore.Identity.UserManager`: Logs concerning user management activities and lifecycle events.
+
+Kestrel
+
+* `Microsoft.AspNetCore.Server.Kestrel`: Logs from the Kestrel web server, covering connection handling and request processing.
+* `Microsoft.AspNetCore.Server.Kestrel.Core`: Logs related to core Kestrel operations, such as configuration and resource management.
+* `Microsoft.AspNetCore.Server.Kestrel.Transport`: Logs specific to network transport layers used by Kestrel.
+
+Logging
+
+* `Microsoft.Extensions.Logging`: Logs from the logging extensions API.
+* `Microsoft.Extensions.Logging.Console`: Logs specific to the Console logger.
+
+MVC
+
+* `Microsoft.AspNetCore.Mvc`: General logs from MVC framework components, including controller and action execution.
+* `Microsoft.AspNetCore.Mvc.Infrastructure`: Logs related to the infrastructure and support services for MVC, such as model binding and action filters.
+* `Microsoft.AspNetCore.Mvc.ModelBinding`: Logs concerning model binding operations and data validation.
+* `Microsoft.AspNetCore.Mvc.Filters`: Logs about the execution of action filters and filter pipelines.
+* `Microsoft.AspNetCore.Mvc.Razor`: Logs specific to Razor view rendering and compilation.
+* `Microsoft.AspNetCore.Mvc.ViewFeatures`: Logs concerning view rendering and related features like view components and tag helpers.
+
+Routing
+
+* `Microsoft.AspNetCore.Routing.EndpointMiddleware`: Logs related to the routing of HTTP requests to endpoints.
+* `Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware`: Logs about the endpoint routing middleware handling requests.
+* `Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher`: Logs concerning route matching and selection of endpoints.
+* `Microsoft.AspNetCore.Routing.Matching.DfaMatcher`: Logs specific to the DFA (Deterministic Finite Automaton) routing matcher.
+
+SignalR
+
+* `Microsoft.AspNetCore.SignalR`: Logs from the SignalR framework, including hub connections and message handling.
+* `Microsoft.AspNetCore.SignalR.Hub`: Logs specific to hub invocation and message dispatching.
+* `Microsoft.AspNetCore.SignalR.Transports`: Logs related to transport mechanisms used by SignalR.
+
+Static files
+
+* `Microsoft.AspNetCore.StaticFiles`: Logs from the static files middleware, including file serving and cache operations.
+* `Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware`: Logs related to static file middleware execution and file response handling.
 
 ## Additional resources
 
