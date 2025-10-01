@@ -76,7 +76,7 @@ In the preceding `StarshipPlainForm` component:
 > [!IMPORTANT]
 > Always use the [`@formname`](xref:mvc/views/razor#formname) directive attribute with a unique form name.
 
-Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 <!-- UPDATE 11.0 - Check the PU issue (backlogged as of 2/27/25 -->
 
@@ -124,7 +124,7 @@ In the preceding `Starship1` component:
 > [!IMPORTANT]
 > Always use the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName> property with a unique form name.
 
-Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 <!-- UPDATE 11.0 - Check the PU issue (backlogged as of 2/27/25 -->
 
@@ -337,7 +337,7 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 
 ## Enhanced form handling
 
-[Enhance navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
+[Enhance navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
 
 ```razor
 <EditForm ... Enhance ...>
@@ -380,7 +380,7 @@ In the following example, the content of the `<div>` element is updated dynamica
 
 To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
 
-For guidance on using the `enhancedload` event to listen for enhanced page updates, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+For guidance on using the `enhancedload` event to listen for enhanced page updates, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 

@@ -357,7 +357,7 @@ During static SSR, Razor component page requests are processed by server-side AS
 
 If the app exhibits root-level interactivity, server-side ASP.NET Core request processing isn't involved after the initial static SSR, which means that the preceding Blazor features work as expected.
 
-[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
+[Enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
 
 ## Interactive server-side rendering (interactive SSR)
 
