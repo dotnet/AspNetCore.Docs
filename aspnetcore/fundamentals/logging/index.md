@@ -6,7 +6,7 @@ description: Learn how to use the ASP.NET Core logging framework provided by the
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/30/2025
+ms.date: 10/01/2025
 uid: fundamentals/logging/index
 ---
 # Logging in .NET and ASP.NET Core
@@ -475,7 +475,7 @@ setx Logging__LogLevel__Microsoft Information /M
 > [!NOTE]
 > When configuring environment variables with names that contain `.` (periods) in macOS and Linux, consider the "Exporting a variable with a dot (.) in it" question on **Stack Exchange** and its corresponding [accepted answer](https://unix.stackexchange.com/a/93533).
 
-### Azure App Service
+### Configure Azure App Service
 
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), follow the guidance in [Configure an App Service app](/azure/app-service/configure-common?tabs=portal#configure-app-settings) to set logging environment variables.
 
@@ -644,6 +644,10 @@ Log at an appropriate level to control how much log output is written to a parti
   * We recommend the <xref:Microsoft.Extensions.Logging.LogLevel.Information> level (`"Default": "Information"`) for default logging and the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level for Microsoft ASP.NET Core assemblies (`"Microsoft.AspNetCore": "Warning"`).
   * Add <xref:Microsoft.Extensions.Logging.LogLevel.Trace> and <xref:Microsoft.Extensions.Logging.LogLevel.Debug>, or <xref:Microsoft.Extensions.Logging.LogLevel.Information> messages when troubleshooting. To limit output, only set these logging levels for the categories under investigation.
 
+## Change log levels in a running app
+
+The Logging API doesn't include support for changing log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> to update the app's logging configuration.
+
 ## How filtering rules are applied
 
 When an <xref:Microsoft.Extensions.Logging.ILogger%601> object is created, the <xref:Microsoft.Extensions.Logging.ILoggerFactory> object selects a single rule per provider to apply to that logger. All messages written by an <xref:Microsoft.Extensions.Logging.ILogger> instance are filtered based on the selected rules. The most specific rule for each provider and category pair is selected from the available rules.
@@ -693,6 +697,13 @@ When logging to Azure Table Storage:
 
 * Each Azure Table entity can have `ID` and `RequestTime` properties.
 * Tables with properties simplify queries on logged data. For example, a query can find all logs within a particular `RequestTime` range without having to parse the time out of the text message.
+
+## `ILogger` and `ILoggerFactory`
+
+The <xref:Microsoft.Extensions.Logging.ILogger%601> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET SDK. They are also available in the following NuGet packages:  
+
+* The interfaces are in the [`Microsoft.Extensions.Logging.Abstractions` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions).
+* The default implementations are in the [`Microsoft.Extensions.Logging` NuGet package](https://www.nuget.org/packages/microsoft.extensions.logging).
 
 ## Log exceptions
 
@@ -1092,7 +1103,7 @@ builder.Logging.AddEventLog(eventLogSettings =>
 
 When the app calls the <xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog%2A> overload with <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>, a new instance of <xref:Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider> is created with the provided settings. If there's already an <xref:Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider> instance registered, which is the case if the app doesn't call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances, the new settings don't replace the existing ones. If you want to ensure that the <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings> are used, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> before calling <xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog%2A>.
 
-### Azure App Service
+#### Azure App Service
 
 The [`Microsoft.Extensions.Logging.AzureAppServices` provider NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) writes logs to text files in an Azure App Service app's file system and to [blob storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet#what-is-blob-storage) in an Azure Storage account. The provider only logs when the project runs in the Azure environment.
 
@@ -1230,17 +1241,6 @@ For logging in a console app without the Generic Host, see [Logging in C# and .N
 ## No asynchronous logger methods
 
 Logging should be so fast that it isn't worth the performance cost of asynchronous code. If a logging data store is slow, don't write to it directly. Consider writing the log messages to a fast store initially, then move the logs to the slower data store later. For example, don't write log messages directly to a SQL Server data store in a `Log` method because `Log` methods are synchronous. Instead, synchronously add log messages to an in-memory queue and have a background worker pull the messages out of the queue to push the data to SQL Server asynchronously. For more information, see [Guidance on how to log to a message queue for slow data stores (dotnet/AspNetCore.Docs #11801)](https://github.com/dotnet/AspNetCore.Docs/issues/11801).
-
-## Change log levels in a running app
-
-The Logging API doesn't include support for changing log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> to update the app's logging configuration.
-
-## `ILogger` and `ILoggerFactory`
-
-The <xref:Microsoft.Extensions.Logging.ILogger%601> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET SDK. They are also available in the following NuGet packages:  
-
-* The interfaces are in the [`Microsoft.Extensions.Logging.Abstractions` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions).
-* The default implementations are in the [`Microsoft.Extensions.Logging` NuGet package](https://www.nuget.org/packages/microsoft.extensions.logging).
 
 ## Apply log filter rules in code
 
