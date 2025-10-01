@@ -532,8 +532,8 @@ You can write to logs instead of the response body. Writing to logs allows the s
 
 To write logs rather than to the response body:
 
-* Inject `ILogger<Startup>` into the `Startup` class as described in [Create logs in Startup](xref:fundamentals/logging/index#create-logs-in-startup).
-* Place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`.
+* Inject `ILogger<Startup>` into the `Startup` class as described in [Create log messages](xref:fundamentals/logging/index#create-log-messages).
+* Place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> in `Startup.Configure`.
 
 ```csharp
 app.Use(async (context, next) =>

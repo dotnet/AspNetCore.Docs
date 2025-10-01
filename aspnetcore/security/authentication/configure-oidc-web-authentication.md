@@ -362,7 +362,7 @@ IdentityModelEventSource.ShowPII = true;
 app.Run();
 ```
 
-For more information, see [Logging](xref:fundamentals/logging/index#configure-logging).
+For more information, see [Logging](xref:fundamentals/logging/index#configuration).
 
 > [!NOTE]
 > You may want to lower the configured log level to see all the required logs.
