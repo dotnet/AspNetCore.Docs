@@ -17,7 +17,9 @@ This article describes logging in ASP.NET Core apps. For general guidance on log
 
 ## Logging providers
 
-Logging providers store logs, except for the `Console` provider, which displays logs. For example, the Azure Application Insights logging provider stores logs in [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview). Multiple providers can be enabled in an app.
+ASP.NET Core supports high performance, structured logging via the <xref:Microsoft.Extensions.Logging.ILogger> API to help you monitor app behavior and diagnose problems. Logs are written to different destinations by configuring *logging providers*. A set of logging providers are built into the framework, and there are many third-party providers available. Multiple providers can be enabled in an app.
+
+Most logging providers write log messages to a data storage system. For example, the Azure Application Insights logging provider stores logs in [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview). One provider, the `Console` provider, only displays log messages. The `Console` provider is useful when running an app locally for monitoring and debugging in real time.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -97,7 +99,7 @@ Logs created by the [default logging providers](#logging-providers) are displaye
   * In the **ASP.NET Core Web Server** window.
 * In the command shell when the app is run with the [`dotnet run`](/dotnet/core/tools/dotnet-run) command.
 
-.NET and application code use the same [logging API and providers](/dotnet/core/extensions/logging).
+.NET in general and ASP.NET Core use the same logging API and providers. More information can be found in [Logging in C# and .NET](/dotnet/core/extensions/logging), which covers general logging scenarios for C# and .NET. This article focuses on ASP.NET Core app logging.
 
 ## Create log messages
 
@@ -106,9 +108,9 @@ To create log messages, use an <xref:Microsoft.Extensions.Logging.ILogger%601> o
 The following examples:
 
 * Create an <xref:Microsoft.Extensions.Logging.ILogger> that specifies a log *category* based on the fully qualified name of the type. The log category is a string that is associated with each log, which is useful for identifying, sorting, and filtering log messages. More information on [log categories](#log-category) is provided later in this article.
-* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Information> level. The Log *level* indicates the severity of the logged event. More information on [log levels](#log-level) is provided later in this article.
+* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Information> level. The log *level* indicates the severity of the logged event. More information on [log levels](#log-level) is provided later in this article.
 
-In a Blazor app's counter page (`Counter` Razor component, `Pages/Counter.razor`), an `ILogger<Counter>` is injected with the [`@inject` directive](xref:mvc/views/razor#inject). The logger (`Logger`) is used to log information when the `IncrementCount` method is called.
+In the following counter page (`Counter` Razor component) in a Blazor app, an `ILogger<Counter>` is injected with the [`@inject` directive](xref:mvc/views/razor#inject). The logger instance (`Logger`) is used to log information when the `IncrementCount` method is called.
 
 `Pages/Counter.razor`:
 
@@ -143,9 +145,13 @@ In a Blazor app's counter page (`Counter` Razor component, `Pages/Counter.razor`
 
 Log message:
 
-> :::no-loc text="BlazorSample.Components.Pages.Counter: Information: Someone incremented the counter!"::: 
+> :::no-loc text="BlazorSample.Components.Pages.Counter: Information: Someone incremented the counter!":::
 
-In a Razor Pages privacy page class file (`Pages/Privacy.cshtml.cs`), an `ILogger<PrivacyModel>` is injected into the class's constructor to log when the page is visited:
+The log category is `BlazorSample.Components.Pages.Counter`, and the log level (severity) is `Information`. The message is `Someone incremented the counter!`.
+
+In the following Razor Pages privacy page class file, an `ILogger<PrivacyModel>` is injected into the class's constructor to log when the page is visited. Note in this example that the message is a *template* that takes the current UTC date and time (`DateTime.UtcNow`) and writes it into the log message. Log message templates are covered in the [Log message template](#log-message-template) section later in this article.
+
+`Pages/Privacy.cshtml.cs`:
 
 ```csharp
 public class PrivacyModel(ILogger<PrivacyModel> logger) : PageModel
@@ -155,38 +161,46 @@ public class PrivacyModel(ILogger<PrivacyModel> logger) : PageModel
 }
 ```
 
-:::moniker range="< aspnetcore-6.0"
+## Log message template
 
-The following code logs in `Main` by obtaining an <xref:Microsoft.Extensions.Logging.ILogger> instance from DI after building the host:
+The log message template can contain placeholders for provided arguments. Use names for the placeholders, not numbers.
 
-```csharp
-public static void Main(string[] args)
-{
-    var host = CreateHostBuilder(args).Build();
-
-    var logger = host.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogInformation("Host created.");
-
-    host.Run();
-}
-```
-
-The following example shows how to inject an <xref:Microsoft.Extensions.Logging.ILogger> into `Startup.Configure`:
+In the following examples, `{Id}` is an identifier placeholder for an item ID, and `id` is the identifier parameter.
 
 ```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
-{
-    logger.LogInformation("Startup.Configure logging");
-
-    ...
-}
+Logger.LogInformation(LogEvent.GetItem, "Getting item {Id}", id);
 ```
 
-Logger injection into the `Startup` constructor or into the `Startup.ConfigureServices` method isn't supported because logging depends on DI and on configuration, which in turns depends on DI. The DI container isn't set up until `ConfigureServices` finishes executing.
+```csharp
+Logger.LogWarning(LogEvent.GetItemNotFound, "Get({Id}) NOT FOUND", id);
+```
 
-For information on configuring a service that depends on <xref:Microsoft.Extensions.Logging.ILogger> or why constructor injection of a logger into `Startup` worked in earlier versions, see the [Configure a service that depends on `ILogger`](#configure-a-service-that-depends-on-ilogger) section.
+The *order of the parameters*, not their placeholder names, determines which parameters are used to provide placeholder values in log messages. In the following code, the parameter names are out of sequence in the placeholders of the message template:
 
-:::moniker-end
+```csharp
+var apples = 1;
+var pears = 2;
+var bananas = 3;
+
+Logger.LogInformation("{Pears}, {Bananas}, {Apples}", apples, pears, bananas);
+```
+
+However, the parameters are assigned to the placeholders in the order: `apples`, `pears`, `bananas`. The log message reflects the *order of the parameters*:
+
+```text
+1, 2, 3
+```
+
+This approach allows logging providers to implement [semantic or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This enables logging providers to store the parameter values as fields. For example, consider the following logger method:
+
+```csharp
+Logger.LogInformation("Getting item {Id} at {RequestTime}", id, DateTime.Now);
+```
+
+When logging to Azure Table Storage:
+
+* Each Azure Table entity can have `ID` and `RequestTime` properties.
+* Tables with properties simplify queries on logged data. For example, a query can find all logs within a particular `RequestTime` range without having to parse the time out of the text message.
 
 ## Log at app startup
 
@@ -292,8 +306,6 @@ When an <xref:Microsoft.Extensions.Logging.ILogger> object is created, a *catego
 
 The log level determines the level of detail for log messages at a default level for the app as a whole and for specific app assemblies. The log level can be set by any of the [configuration providers](xref:fundamentals/configuration/index).
 
-This section describes how to configure log categories and levels.
-
 ### App settings
 
 Logging configuration is commonly provided by the `Logging` section of `appsettings.{ENVIRONMENT}.json` files, where the `{ENVIRONMENT}` placeholder is the [environment](xref:fundamentals/environments). The following `appsettings.Development.json` file is generated by the ASP.NET Core web app templates:
@@ -313,7 +325,7 @@ In the preceding JSON:
 
 * The `"Default"` and `"Microsoft.AspNetCore"` categories are specified.
 * The `"Microsoft.AspNetCore"` category applies to all categories that start with `"Microsoft.AspNetCore"`. For example, this setting applies to the `"Microsoft.AspNetCore.Routing.EndpointMiddleware"` category.
-* The `"Microsoft.AspNetCore"` category logs at log level `Warning` and higher.
+* The `"Microsoft.AspNetCore"` category logs at log level `Warning` and higher (more severe).
 * A specific log provider isn't specified, so `LogLevel` applies to all the enabled logging providers except for the [Windows `EventLog`](#windows-eventlog).
 
 The `Logging` property can have <xref:Microsoft.Extensions.Logging.LogLevel> and log provider properties. The `LogLevel` specifies the minimum [level](#log-level) to log for selected categories. In the preceding JSON, `Information` and `Warning` log levels are specified. `LogLevel`s indicate the severity of the log, which are shown in the following table with their corresponding `enum` values.
@@ -328,7 +340,7 @@ Log Level | Value
 `Critical` | 5
 `None` | 6
 
-When a `LogLevel` is specified, logging is enabled for messages at the specified level and higher. In the preceding JSON, the `Default` category is logged for `Information` and higher. For example, `Information`, `Warning`, `Error`, and `Critical` messages are logged. If no `LogLevel` is specified, logging defaults to the `Information` level. For more information, see [Log levels](#log-level).
+When a `LogLevel` is specified, logging is enabled for messages at the specified level and higher (more severe). In the preceding JSON, the `Default` category is logged for `Information` and higher. For example, `Information`, `Warning`, `Error`, and `Critical` messages are logged. If no `LogLevel` is specified, logging defaults to the `Information` level. For more information, see [Log levels](#log-level).
 
 A provider property can specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider, and overrides the non-provider log settings. Consider the following `appsettings.json` file:
 
@@ -362,8 +374,8 @@ The preceding setting specifies the `Information` log level for every `Logging:D
 
 The minimum log level can be specified for any of:
 
-* Specific providers: For example, `Logging:EventSource:LogLevel:Default:Information`
-* Specific categories: For example, `Logging:LogLevel:Microsoft:Warning`
+* Specific providers example: `Logging:EventSource:LogLevel:Default:Information`
+* Specific categories example: `Logging:LogLevel:Microsoft:Warning`
 * All providers and all categories: `Logging:LogLevel:Default:Warning`
 
 Any logs below the minimum level are ***not***:
@@ -449,7 +461,7 @@ Environment variables for logging configuration can be set via a command shell.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-Set an environment variable with the [`set`](/windows-server/administration/windows-commands/set) command on Windows for the current command shell. In the following example, the environment key `Logging:LogLevel:Microsoft` is set to a value of `Information`. You can test the setting with any app created from an ASP.NET Core web application project template. 
+Set an environment variable with the [`set`](/windows-server/administration/windows-commands/set) command on Windows for the current command shell. In the following example, the environment key `Logging:LogLevel:Microsoft` is set to a value of `Information`. You can test the setting with any app created from an ASP.NET Core web app project template. 
 
 ```dotnetcli
 set Logging__LogLevel__Microsoft=Information
@@ -472,6 +484,11 @@ Use the [`setx`](/windows-server/administration/windows-commands/setx) to persis
 setx Logging__LogLevel__Microsoft Information /M
 ```
 
+<!-- Dan, the following NOTE was already here. Are you OK with this?
+     Seems like WE should cover whatever WE want to say
+     on this subject, or we shouldn't cover this, leaving it up
+     to their platform docs to address. -->
+
 > [!NOTE]
 > When configuring environment variables with names that contain `.` (periods) in macOS and Linux, consider the "Exporting a variable with a dot (.) in it" question on **Stack Exchange** and its corresponding [accepted answer](https://unix.stackexchange.com/a/93533).
 
@@ -485,9 +502,9 @@ For more information, see [Azure Apps: Override app configuration using the Azur
 
 When an <xref:Microsoft.Extensions.Logging.ILogger> object is created, a *category* is specified. The category is included with each log message created by that instance of the logger. The category string is arbitrary, but the convention is to use the fully qualified class name. The ASP.NET Core web apps use [`ILogger<T>`](xref:Microsoft.Extensions.Logging.ILogger) to create a logger instance that uses the fully qualified type name of `T` as the category.
 
-Log messages with a category name that begins with "Microsoft" are from .NET. Typically, log messages that begin with the app's assembly name are from the app. Packages outside of .NET usually have a category based on the assembly name from the package. For a list of common log categories, see the [Common log categories](#common-log-categories) section.
+Log messages with a category name that begins with "Microsoft" are from .NET. Typically, log messages that begin with the app's assembly name are from the app. Packages outside of .NET usually have a category based on an assembly name from the package. For a list of common log categories, see the [Common log categories](#common-log-categories) section.
 
-In a Razor component of a Blazor app, where the type `T` is `Counter` for a privacy page rendered by a `Counter` component (`Pages/Counter.razor`):
+In a Razor component of a Blazor app, where the type `T` is `Counter` for a counter page rendered by a `Counter` component (`Pages/Counter.razor`):
 
 ```razor
 @inject ILogger<Counter> Logger
@@ -513,7 +530,8 @@ The following `Counter` component logs from the `IncrementByOne` method with the
 
 <p>Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="IncrementByOne">Click me (+1)</button>
+<button class="btn btn-primary" @onclick="IncrementByTen">Click me (+10)</button>
 
 @code {
     private int currentCount = 0;
@@ -544,6 +562,8 @@ Log messages:
 > :::no-loc text="BlazorSample.Components.Pages.Counter.IncrementByTen: Information: Someone incremented the counter!":::
 
 In a Razor Pages page class model that uses a custom category ("`CustomCategory`") for the entire page model:
+
+<!-- Dan, do you want to go with primary ctor for this next example? -->
 
 ```csharp
 public class PrivacyModel : PageModel
@@ -637,7 +657,7 @@ Log at an appropriate level to control how much log output is written to a parti
 
 * In production:
   * Logging at the <xref:Microsoft.Extensions.Logging.LogLevel.Trace>, <xref:Microsoft.Extensions.Logging.LogLevel.Debug>, or <xref:Microsoft.Extensions.Logging.LogLevel.Information> levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log at these levels to a high-volume, low-cost data store. Consider limiting these levels to specific categories.
-  * Logging at <xref:Microsoft.Extensions.Logging.LogLevel.Warning> through `Critical` levels usually produces few log messages.
+  * Logging at <xref:Microsoft.Extensions.Logging.LogLevel.Warning> through <xref:Microsoft.Extensions.Logging.LogLevel.Critical> levels usually produces few log messages.
     * Costs and storage limits usually aren't a concern.
     * Few logs allow more flexibility in data store choices.
 * In development:
@@ -656,47 +676,8 @@ The following algorithm is used for each provider when an <xref:Microsoft.Extens
 
 * Select all rules that match the provider or its alias. If no match is found, select all rules with an empty provider.
 * From the result of the preceding step, select rules with longest matching category prefix. If no match is found, select all rules that don't specify a category.
-* If multiple rules are selected, take the **last** one.
+* If multiple rules are selected, take the *last* one.
 * If no rules are selected, use `MinimumLevel`.
-
-## Log message template
-
-The log message template can contain placeholders provided arguments. Use names for the placeholders, not numbers.
-
-```csharp
-Logger.LogInformation(LogEvent.GetItem, "Getting item {Id}", id);
-```
-
-```csharp
-Logger.LogWarning(LogEvent.GetItemNotFound, "Get({Id}) NOT FOUND", id);
-```
-
-The *order of the parameters*, not their placeholder names, determines which parameters are used to provide placeholder values in log messages. In the following code, the parameter names are out of sequence in the placeholders of the message template:
-
-```csharp
-var apples = 1;
-var pears = 2;
-var bananas = 3;
-
-Logger.LogInformation("Parameters: {Pears}, {Bananas}, {Apples}", apples, pears, bananas);
-```
-
-However, the parameters are assigned to the placeholders in the order: `apples`, `pears`, `bananas`. The log message reflects the *order of the parameters*:
-
-```text
-Parameters: 1, 2, 3
-```
-
-This approach allows logging providers to implement [semantic or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This enables logging providers to store the parameter values as fields. For example, consider the following logger method:
-
-```csharp
-Logger.LogInformation("Getting item {Id} at {RequestTime}", id, DateTime.Now);
-```
-
-When logging to Azure Table Storage:
-
-* Each Azure Table entity can have `ID` and `RequestTime` properties.
-* Tables with properties simplify queries on logged data. For example, a query can find all logs within a particular `RequestTime` range without having to parse the time out of the text message.
 
 ## `ILogger` and `ILoggerFactory`
 
@@ -723,8 +704,10 @@ catch (Exception ex)
 }
 ```
 
-<!-- Dan, this next remark is in the article, but I'm not sure
-     what it means, and I'm inclined to delete it. -->
+<!-- Dan, I'm not sure what this next remark means, 
+     and I'm inclined to delete it. Do you want to 
+     flesh it out if you know what it's trying to
+     say, or should it get the AXE? -->
 
 Exception logging is provider-specific.
 
@@ -740,7 +723,7 @@ var builder = WebApplication.CreateBuilder();
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
 ```
 
-We recommend setting the minimum default log level in configuration and not in code.
+We recommend setting the minimum default log level in configuration, not in C# code.
 
 ### Filter function
 
@@ -995,7 +978,7 @@ Use the `dotnet-trace` tooling to collect a trace from an app:
 
    The following examples assume:
    
-   * An app is running and calling `logger.LogDebug("12345")`.
+   * An app is running and calling `Logger.LogDebug("12345")`.
    * The process ID (PID) is set via `set PID=12345`, where `12345` is the actual PID.
    
    Consider the following command:
@@ -1021,13 +1004,13 @@ Use the `dotnet-trace` tooling to collect a trace from an app:
    * Doesn't capture debug messages because the category level 5 is <xref:Microsoft.Extensions.Logging.LogLevel.Critical>.
    * Provides a `FilterSpecs`.
 
-   The following command captures debug messages because category level 1 specifies <xref:Microsoft.Extensions.Logging.LogLevel.Debug>.
+   The following command captures debug messages because category level 1 specifies <xref:Microsoft.Extensions.Logging.LogLevel.Debug>:
 
    ```dotnetcli
    dotnet-trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:1\"
    ```
 
-   The following command captures debug messages because category specifies <xref:Microsoft.Extensions.Logging.LogLevel.Debug>.
+   The following command captures debug messages because category specifies <xref:Microsoft.Extensions.Logging.LogLevel.Debug>:
 
    ```dotnetcli
    dotnet-trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:Debug\"
@@ -1057,10 +1040,10 @@ If the app doesn't build the host with <xref:Microsoft.AspNetCore.Builder.WebApp
 For more information, see:
 
 * [Trace for performance analysis utility (`dotnet-trace`)](/dotnet/core/diagnostics/dotnet-trace) (.NET documentation)
-* [Trace for performance analysis utility (`dotnet-trace`)](https://github.com/dotnet/diagnostics/blob/main/documentation/dotnet-trace-instructions.md) (dotnet/diagnostics GitHub repository documentation)
+* [Trace for performance analysis utility (`dotnet-trace`)](https://github.com/dotnet/diagnostics/blob/main/documentation/dotnet-trace-instructions.md) (`dotnet/diagnostics` GitHub repository documentation)
 * <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>
 * <xref:System.Diagnostics.Tracing.EventLevel>
-* [Perfview](#perfview): Useful for viewing `EventSource` traces.
+* [Perfview](#perfview) for viewing `EventSource` traces
 
 #### Perfview
 
@@ -1086,11 +1069,11 @@ To log events lower than <xref:Microsoft.Extensions.Logging.LogLevel.Warning?dis
 
 <xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog%2A> overloads can pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
 
-* `LogName`: "Application"
-* `SourceName`: ".NET Runtime"
+* `LogName`: "`Application`"
+* `SourceName`: "`.NET Runtime`"
 * `MachineName`: The local machine name is used.
 
-The following code changes the `SourceName` from the default value of `".NET Runtime"` to `CustomLogs`:
+The following code changes the `SourceName` from the default value of `".NET Runtime"` to "`CustomLogs`":
 
 ```csharp
 var builder = WebApplication.CreateBuilder();
@@ -1196,11 +1179,12 @@ Navigate to the **Log Stream** page to view logs. The logged messages are logged
 
 ### Azure Application Insights
 
-The [`Microsoft.Extensions.Logging.ApplicationInsights` provider NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) writes logs to [Azure Application Insights](/azure/azure-monitor/app/cloudservices). Application Insights is a service that monitors a web app and provides tools for querying and analyzing the telemetry data. If you use this provider, you can query and analyze your logs by using the Application Insights tools.
+Application Insights is a service that monitors a web app and provides tools for querying and analyzing the telemetry data. If you use this provider, you can query and analyze your logs by using the Application Insights tools.
 
-The logging provider is included as a dependency of the [`Microsoft.ApplicationInsights.AspNetCore` NuGet package](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore), which is the package that provides all available telemetry for ASP.NET Core. If you use this package, you aren't required to install the provider package.
+The [`Microsoft.Extensions.Logging.ApplicationInsights` provider NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) writes logs to [Azure Application Insights](/azure/azure-monitor/app/cloudservices). The logging provider is included as a dependency of the [`Microsoft.ApplicationInsights.AspNetCore` NuGet package](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore), which is the package that provides all available telemetry for ASP.NET Core. If you use the `Microsoft.ApplicationInsights.AspNetCore` NuGet package, you aren't required to install the `Microsoft.Extensions.Logging.ApplicationInsights` provider package.
 
-The [`Microsoft.ApplicationInsights.Web` NuGet package](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) is for ASP.NET 4.x, not ASP.NET Core, and shouldn't be used in an ASP.NET Core app.
+> [!NOTE]
+> The [`Microsoft.ApplicationInsights.Web` NuGet package](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) is for ASP.NET 4.x, not ASP.NET Core, and shouldn't be used in an ASP.NET Core app.
 
 For more information, see the following resources:
 
@@ -1263,15 +1247,15 @@ In the preceding example:
 
 * The first filter specifies:
   * Log filtering rules for all providers because a specific provider isn't configured.
-  * All categories starting with `"Microsoft"`.
+  * All categories starting with "`System`".
   * Log level <xref:Microsoft.Extensions.Logging.LogLevel.Debug> and higher. 
 
 * The [`Debug` provider](#debug) (<xref:Microsoft.Extensions.Logging.Debug.DebugLoggerProvider>) specifies:
-  * All categories starting with `"Microsoft"`.
+  * All categories starting with "`Microsoft`".
   * Log level <xref:Microsoft.Extensions.Logging.LogLevel.Information> and higher.
 
 * The [`Console` provider](#console) (<xref:Microsoft.Extensions.Logging.Console.ConsoleLoggerProvider>) specifies:
-  * All categories starting with `"Microsoft"`.
+  * All categories starting with "`Microsoft`".
   * Log level <xref:Microsoft.Extensions.Logging.LogLevel.Trace> and higher.
 
 :::moniker range=">= aspnetcore-5.0"
