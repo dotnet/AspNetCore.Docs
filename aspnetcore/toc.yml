@@ -776,6 +776,8 @@ items:
                 uid: client-side/dotnet-interop/index
               - name: JS interop (WebAssembly Browser App)
                 uid: client-side/dotnet-interop/wasm-browser-app
+          - name: .NET on Web Workers
+            uid: client-side/dotnet-on-webworkers
           - name: Grunt
             uid: client-side/using-grunt
           - name: Bundle and minify
