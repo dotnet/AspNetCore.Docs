@@ -89,7 +89,7 @@ By default, Blazor only loads globalization data for the app's culture. To load 
 
 Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. 
 
-In Wasm apps when the globalization invariant mode is switched off, the internalization data file is loaded. There are four basic types of these files:
+In WebAssembly (Wasm) apps, when globalization invariant mode is disabled, an ICU data file is loaded. There are four basic types of these files:
 
 * `icudt.dat`: Full data
 * `icudt_EFIGS.dat`: Data for locales: `en-*`, `fr-FR`, `es-ES`, `it-IT` and `de-DE`.
