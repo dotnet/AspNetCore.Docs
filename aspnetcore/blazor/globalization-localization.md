@@ -5,7 +5,7 @@ description: Learn how to render globalized and localized content to users in di
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 10/02/2025
 uid: blazor/globalization-localization
 ---
 # ASP.NET Core Blazor globalization and localization
@@ -75,15 +75,40 @@ The following field types have specific formatting requirements and aren't suppo
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
 
+By default, Blazor only loads globalization data for the app's culture. To load all globalization data, set `<BlazorWebAssemblyLoadAllGlobalizationData>` to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+</PropertyGroup>
+```
+
 ## .NET globalization and International Components for Unicode (ICU) support (Blazor WebAssembly)
 
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. 
 
-<!-- UPDATE 10.0 Tooling features for building custom ICU data file -->
+In Wasm apps when the globalization invariant mode is switched off, the internalization data file is loaded. There are four basic types of these files:
 
-To load a custom ICU data file to control the app's locales, see [WASM Globalization Icu](https://github.com/dotnet/runtime/blob/main/docs/design/features/globalization-icu-wasm.md). Currently, manually building the custom ICU data file is required. .NET tooling to ease the process of creating the file is planned for .NET 10 in November, 2025.
+* `icudt.dat`: Full data
+* `icudt_EFIGS.dat`: Data for locales: `en-*`, `fr-FR`, `es-ES`, `it-IT` and `de-DE`.
+* `icudt_CJK.dat`: Data for locales: `en`, `ja`, `ko`, and `zh`.
+* `icudt_no_CJK.dat`: Data for all locales from `icudt.dat`, excluding `ja`, `ko`, and `zh`.
+
+Specify one file to load with the `<BlazorIcuDataFileName>` MSBuild property in the app's project file (`.csproj`). The following example loads the `icudt_no_CJK.dat` file:
+
+```xml
+<PropertyGroup>
+  <BlazorIcuDataFileName>icudt_no_CJK.dat</BlazorIcuDataFileName>
+</PropertyGroup>
+```
+
+`<BlazorIcuDataFileName>` only accepts a single file. The file can be a custom file created by the developer. To create a custom ICU file, see [WASM Globalization Icu: Custom ICU](https://github.com/dotnet/runtime/blob/main/docs/design/features/globalization-icu-wasm.md#custom-icu).
+
+If a file isn't specified with `<BlazorIcuDataFileName>`, the app's culture is checked, and the corresponding ICU file is loaded for its culture. For example, the `en-US` culture results in loading the `icudt_EFIGS.dat` file. For `zh-CN`, the `icudt_CJK.dat` file is used.
+
+For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 :::moniker-end
 
