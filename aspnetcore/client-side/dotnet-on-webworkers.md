@@ -20,6 +20,10 @@ Modern web apps often require intensive computational tasks that can block the m
 
 This approach is particularly valuable when you need to perform complex calculations, data processing, or business logic without requiring direct DOM manipulation. Instead of rewriting algorithms in JS, you can maintain your existing .NET codebase and execute it efficiently in the background while your React.js frontend remains responsive.
 
+## Sample app
+
+Explore a complete working implementation in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples). The sample is available for .NET 10 or later and named `DotNetOnWebWorker`.
+
 ## Prerequisites and setup
 
 Before diving into the implementation, ensure the necessary tools are installed. The [.NET SDK 8.0 or later](https://dotnet.microsoft.com/download) is required and the WebAssembly workloads:
@@ -132,9 +136,9 @@ Build the WebAssembly project to generate the necessary files:
 dotnet build
 ```
 
-## Set up the React.js app
+## Set up the React app
 
-In the React app, create a Web Worker to host the .NET WebAssembly runtime. Use an npm script defined in the `package.json` to automate copying the WebAssembly build artifacts from the .NET project to the React directory. See the demo project for reference.
+In the React app, create a Web Worker to host the .NET WebAssembly runtime. Use an npm script defined in the `package.json` to automate copying the WebAssembly build artifacts from the .NET project to the React directory. See the [sample app](#sample-app) for reference.
 
 Create a Web Worker file `client.js` to receive messages from dotnet:
 
@@ -191,9 +195,9 @@ function sendRequestToWorker(request) {
 
 When working with .NET on Web Workers, consider these key optimization strategies:
 
-• **Minimize data transfer**: Serialize only essential data between the main thread and worker to reduce communication overhead.
-• **Batch operations**: Group multiple calculations together rather than sending individual requests.
-• **Memory management**: Be mindful of memory usage in the WebAssembly environment, especially for long-running workers.
-• **Startup cost**: WebAssembly initialization has overhead, so prefer persistent workers over frequent creation/destruction.
+* **Minimize data transfer**: Serialize only essential data between the main thread and worker to reduce communication overhead.
+* **Batch operations**: Group multiple calculations together rather than sending individual requests.
+* **Memory management**: Be mindful of memory usage in the WebAssembly environment, especially for long-running workers.
+* **Startup cost**: WebAssembly initialization has overhead, so prefer persistent workers over frequent creation/destruction.
 
-Explore a complete working implementation in the demo repository at [`ilonatommy/reactWithDotnetOnWebWorker`](https://github.com/ilonatommy/reactWithDotnetOnWebWorker), which showcases these concepts in a QR code generation app.
+See the [sample app](#sample-app) for a demonstration of the preceding concepts.
