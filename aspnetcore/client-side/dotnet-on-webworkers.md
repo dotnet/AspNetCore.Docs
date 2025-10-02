@@ -16,7 +16,7 @@ uid: client-side/dotnet-on-webworkers
 
 -->
 
-Modern web apps often require intensive computational tasks that can block the main UI thread, leading to poor user experience. [Web Workers](https://developer.mozilla.org/docs/Web/API/Web_Workers_API) provide a solution to this problem by enabling JavaScript (JS) to run on separate threads. With .NET WebAssembly (WASM), you can run C# code in Web Workers, combining the performance benefits of compiled code with the non-blocking execution model of background threads.
+Modern web apps often require intensive computational tasks that can block the main UI thread, leading to poor user experience. [Web Workers](https://developer.mozilla.org/docs/Web/API/Web_Workers_API) provide a solution to this problem by enabling JavaScript (JS) to run on separate threads. With .NET WebAssembly (Wasm), you can run C# code in Web Workers, combining the performance benefits of compiled code with the non-blocking execution model of background threads.
 
 This approach is particularly valuable when you need to perform complex calculations, data processing, or business logic without requiring direct DOM manipulation. Instead of rewriting algorithms in JS, you can maintain your existing .NET codebase and execute it efficiently in the background while your React.js frontend remains responsive.
 
@@ -134,7 +134,7 @@ dotnet build
 
 ## Set up the React.js app
 
-In the React app, create a Web Worker to host the .NET WebAssembly runtime. Use an npm script defined in the `package.json` to automate copying the WebAssembly build artifacts from the .NET project to the React directory.
+In the React app, create a Web Worker to host the .NET WebAssembly runtime. Use an npm script defined in the `package.json` to automate copying the WebAssembly build artifacts from the .NET project to the React directory. See the demo project for reference.
 
 Create a Web Worker file `client.js` to receive messages from dotnet:
 
