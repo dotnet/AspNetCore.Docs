@@ -75,7 +75,7 @@ The following field types have specific formatting requirements and aren't suppo
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
 
-By default, Blazor only loads globalization data for the app's culture. To load all globalization data, set `<BlazorWebAssemblyLoadAllGlobalizationData>` to `true` in the app's project file (`.csproj`):
+By default, Blazor loads a subset of globalization data that contains the app's culture. To load all globalization data, set `<BlazorWebAssemblyLoadAllGlobalizationData>` to `true` in the app's project file (`.csproj`):
 
 ```xml
 <PropertyGroup>
