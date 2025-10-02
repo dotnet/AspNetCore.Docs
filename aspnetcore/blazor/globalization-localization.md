@@ -92,9 +92,9 @@ Blazor WebAssembly uses a reduced globalization API and set of built-in Internat
 In WebAssembly (Wasm) apps, when globalization invariant mode is disabled, an ICU data file is loaded. There are four basic types of these files:
 
 * `icudt.dat`: Full data
-* `icudt_EFIGS.dat`: Data for locales: `en-*`, `fr-FR`, `es-ES`, `it-IT` and `de-DE`.
-* `icudt_CJK.dat`: Data for locales: `en`, `ja`, `ko`, and `zh`.
-* `icudt_no_CJK.dat`: Data for all locales from `icudt.dat`, excluding `ja`, `ko`, and `zh`.
+* `icudt_EFIGS.dat`: Data for locales: `en-*`, `fr-FR`, `es-ES`, `it-IT`, and `de-DE`.
+* `icudt_CJK.dat`: Data for locales: `en-*`, `ja`, `ko`, and `zh-*`.
+* `icudt_no_CJK.dat`: Data for all locales from `icudt.dat`, excluding `ja`, `ko`, and `zh-*`.
 
 Specify one file to load with the `<BlazorIcuDataFileName>` MSBuild property in the app's project file (`.csproj`). The following example loads the `icudt_no_CJK.dat` file:
 
