@@ -22,7 +22,7 @@ This approach is particularly valuable when you need to perform complex calculat
 
 ## Sample app
 
-Explore a complete working implementation in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples). The sample is available for .NET 10 or later and named `DotNetOnWebWorker`.
+Explore a complete working implementation in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples). The sample is available for .NET 10 or later and named `DotNetOnWebWorkers`.
 
 ## Prerequisites and setup
 
@@ -47,8 +47,8 @@ cd react-app
 Create a new WebAssembly browser project to serve as the Web Worker:
 
 ```bash
-dotnet new wasmbrowser -n DotNetWorker
-cd DotNetWorker
+dotnet new wasmbrowser -n DotNetOnWebWorkers
+cd DotNetOnWebWorkers
 ```
 
 Modify the `Program.cs` file to set up the Web Worker entry point and message handling:
