@@ -126,7 +126,7 @@ The following example `BundleBlazorAssets` class is a starting point for further
 
 * In the `Execute` method, the bundle is created from the following three file types:
   * JavaScript files (`dotnet.js`)
-  * WASM files (`dotnet.wasm`)
+  * WebAssembly (Wasm) files (`dotnet.wasm`)
   * App DLLs (`.dll`)
 * A `multipart/form-data` bundle is created. Each file is added to the bundle with its respective descriptions via the [Content-Disposition header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Disposition) and the [Content-Type header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Type).
 * After the bundle is created, the bundle is written to a file.
@@ -135,7 +135,7 @@ The following example `BundleBlazorAssets` class is a starting point for further
   * The URL path relative to the root of the Blazor WebAssembly app.
   * The name of the extension, which groups the files produced by a given extension.
 
-After accomplishing the preceding goals, the MSBuild task is created for customizing the Blazor publish output. Blazor takes care of gathering the extensions and making sure that the extensions are copied to the correct location in the publish output folder (for example, `bin\Release\net6.0\publish`). The same optimizations (for example, compression) are applied to the JavaScript, WASM, and DLL files as Blazor applies to other files.
+After accomplishing the preceding goals, the MSBuild task is created for customizing the Blazor publish output. Blazor takes care of gathering the extensions and making sure that the extensions are copied to the correct location in the publish output folder (for example, `bin\Release\net6.0\publish`). The same optimizations (for example, compression) are applied to the JavaScript, Wasm, and DLL files as Blazor applies to other files.
 
 `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle.Tasks/BundleBlazorAssets.cs`:
 

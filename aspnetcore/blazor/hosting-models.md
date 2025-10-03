@@ -32,13 +32,13 @@ This article explains Blazor hosting models and how to choose which one to use.
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
+Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor Wasm*). You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
+Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor Wasm*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
 :::moniker-end
 
@@ -203,7 +203,7 @@ Select the Blazor hosting model based on the app's feature requirements. The fol
 
 Blazor Hybrid apps include .NET MAUI, WPF, and Windows Forms framework apps.
 
-Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor Hybrid
+Feature | Blazor Server | Blazor WebAssembly (Wasm) | Blazor Hybrid
 --- | :---: | :---: | :---:
 [Complete .NET API compatibility](#complete-net-api-compatibility) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span>
 [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>&dagger; | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>&dagger;
@@ -223,7 +223,7 @@ Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor Hybrid
 
 :::moniker range="< aspnetcore-6.0"
 
-Feature | Blazor Server | Blazor WebAssembly (WASM)
+Feature | Blazor Server | Blazor WebAssembly (Wasm)
 --- | :---: | :---:
 [Complete .NET API compatibility](#complete-net-api-compatibility) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>
 [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>&dagger;

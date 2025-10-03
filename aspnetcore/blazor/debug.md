@@ -444,7 +444,7 @@ To break on unhandled exceptions:
 
 ## Browser source maps
 
-Browser source maps allow the browser to map compiled files back to their original source files and are commonly used for client-side debugging. However, Blazor doesn't currently map C# directly to JavaScript/WASM. Instead, Blazor does IL interpretation within the browser, so source maps aren't relevant.
+Browser source maps allow the browser to map compiled files back to their original source files and are commonly used for client-side debugging. However, Blazor doesn't currently map C# directly to JavaScript/Wasm. Instead, Blazor does IL interpretation within the browser, so source maps aren't relevant.
 
 ## Firewall configuration
 

@@ -20,7 +20,7 @@ This article provides guidance on Blazor WebAssembly runtime performance.
 
 ## Potentially reduced performance with Microsoft Edge enhanced security
 
-The Microsoft Edge browser's WebAssembly (WASM) interpreter running in [enhanced security mode](/DeployEdge/microsoft-edge-security-browse-safer) might not yield the same performance as when Blazor is running without enhanced security. If enhanced security mode is enabled and an app's performance is degraded, we recommend adding the site as an [exception](/DeployEdge/microsoft-edge-security-browse-safer#enhanced-security-sites) to opt out of enhanced security mode.
+The Microsoft Edge browser's WebAssembly (Wasm) interpreter running in [enhanced security mode](/DeployEdge/microsoft-edge-security-browse-safer) might not yield the same performance as when Blazor is running without enhanced security. If enhanced security mode is enabled and an app's performance is degraded, we recommend adding the site as an [exception](/DeployEdge/microsoft-edge-security-browse-safer#enhanced-security-sites) to opt out of enhanced security mode.
 
 :::moniker range=">= aspnetcore-8.0"
 
