@@ -2,10 +2,10 @@
 title: .NET on Web Workers
 author: guardrex
 description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance.
-monikerRange: '>= aspnetcore-10.0'
+monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/01/2025
+ms.date: 10/03/2025
 uid: client-side/dotnet-on-webworkers
 ---
 # .NET on Web Workers
