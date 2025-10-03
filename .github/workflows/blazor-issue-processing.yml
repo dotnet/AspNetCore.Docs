@@ -9,6 +9,7 @@ jobs:
       && !contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/hybrid'))
       || contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/client-side/dotnet-interop/index.md')
       || contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/client-side/dotnet-interop/wasm-browser-app.md')
+      || contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/client-side/dotnet-on-webworkers.md')
       || contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/views/tag-helpers/built-in/component-tag-helper.md')
       || contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/views/tag-helpers/built-in/persist-component-state.md')
     runs-on: ubuntu-latest
@@ -22,7 +23,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 🏖️🌞 **_Summertime!! Woot!!_** 🏐⛵
+              body: `### 🧟💀 *Happy Halloween!!_** 🎃🧛
 
             *Stand-by!* ... A green dinosaur 🦖 will be along shortly to assist.`
             })
