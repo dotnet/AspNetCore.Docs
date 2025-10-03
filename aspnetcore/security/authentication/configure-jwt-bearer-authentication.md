@@ -5,7 +5,7 @@ description: Learn how to set up JWT bearer authentication in an ASP.NET Core ap
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/7/2024
+ms.date: 09/29/2025
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
 # Configure JWT bearer authentication in ASP.NET Core
@@ -111,7 +111,7 @@ When an API uses JWT access tokens for authorization, the API only validates the
 OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for token acquisition. Token acquisition varies depending on the type of app. Due to the complexity of secure token acquisition, it's highly recommended to rely on these standards:
 
 * For apps acting on behalf of a user and an application: OIDC is the preferred choice, enabling delegated user access. In web apps, the confidential code flow with [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (PKCE) is recommended for enhanced security.
-  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), you can use the [SaveTokens](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.savetokens) option to store access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.gettokenasync).
+  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), you can use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property to store access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A).
 * If the app has no user: The OAuth 2.0 client credentials flow is suitable for obtaining application access tokens.
 
 ## Implementing JWT bearer token authentication
@@ -131,7 +131,7 @@ If any of these claims or values are incorrect, the API should return a 401 resp
 
 ### JWT bearer token basic validation
 
-A basic implementation of the [AddJwtBearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer) can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it hasn't been tampered with.
+A basic implementation of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it hasn't been tampered with.
 
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -144,7 +144,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 ### JWT bearer token explicit validation
 
-The [AddJwtBearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer) method provides multiple configurations. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences.
+The <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> method provides multiple configurations. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences.
 
 Explicitly defining the parameters is not required. The definitions depends on the access token claim values and the secure token server used to validate the access token. You should use the default values if possible. 
 
@@ -191,7 +191,7 @@ builder.Services.AddAuthorizationBuilder()
 	.SetDefaultPolicy(requireAuthPolicy);
 ```
 
-The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute can also be used to force the authentication. If multiple schemes are used, the bearer scheme generally needs to be set as the default authentication scheme or specified via `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute can also be used to force the authentication. If multiple schemes are used, the bearer scheme generally needs to be set as the default authentication scheme or specified via `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
 
 Authorization in controllers:
 
@@ -263,9 +263,9 @@ This is easy to implement but the client application has full application access
 
 ## Handling access tokens
 
-When using access tokens in a client application, the access tokens need to be rotated, persisted and stored somewhere on the server. In a web application, cookies are used to secure the session and can be used to store tokens via [SaveTokens](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.savetokens) option.
+When using access tokens in a client application, the access tokens must be rotated, persisted, and stored on the server. In a web app, cookies are used to secure the session and can be used to store tokens via the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property.
 
-`SaveTokens` will not currently refresh access tokens automatically, but this functionality is planned for .NET 10. Follow https://github.com/dotnet/aspnetcore/issues/8175 for updates. In the meantime, you can manually refresh the access token as [demonstrated in the Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-bff-pattern#token-refresh) or use a third-party NuGet package like [Duende.AccessTokenManagement.OpenIdConnect](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect) for handling and managing access tokens in the client app.  For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> doesn't refresh access tokens automatically, but this functionality is planned for a future release. In the meantime, you can manually refresh the access token as [demonstrated in the Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-bff-pattern#token-refresh) or use a third-party NuGet package, such as [`Duende.AccessTokenManagement.OpenIdConnect`](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect). For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
 
 > [!NOTE]
 > If deploying to production, the cache should work in a multi-instance deployment. A persistent cache is normally required.

@@ -34,6 +34,13 @@ The following code uses the <xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601> 
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_1" highlight="18":::
 
+In the previous examples, the result is cast to a concrete type because the endpoint under test can return multiple types (a <xref:Microsoft.AspNetCore.Http.HttpResults.NotFound%601> or <xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601>) result.
+However, if the endpoint returns a single <xref:Microsoft.AspNetCore.Http.TypedResults> type, then the result is automatically inferred to that type and no casting is required.
+
+The following code uses the <xref:Microsoft.AspNetCore.Http.TypedResults.Ok%2A> class, and the value's type is a collection of `Todo`:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11" highlight="26":::
+
 ## Additional Resources
 
 * [Basic authentication tests](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test) is not a .NET repository but was written by a member of the .NET team. It provides examples of basic authentication testing.
