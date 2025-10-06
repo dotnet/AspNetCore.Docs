@@ -51,6 +51,8 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 ## Circuit state persistence
 
+<!-- UPDATE 10.0 - API doc cross-links -->
+
 During server-side rendering, Blazor Web Apps can persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:
 
 * Browser tab throttling
