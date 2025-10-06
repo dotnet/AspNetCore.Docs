@@ -161,7 +161,7 @@ Serialized properties are identified from the actual service instance:
 * Supports shared code in different assemblies.
 * Results in each instance exposing the same properties.
 
-The following counter service, `CounterTracker`, marks its current count property, `CurrentCount` with the the `[PersistentState]` attribute. The property is serialized during prerendering and deserialized when the app becomes interactive wherever the service is injected.
+The following counter service, `CounterTracker`, marks its current count property, `CurrentCount` with the `[PersistentState]` attribute. The property is serialized during prerendering and deserialized when the app becomes interactive wherever the service is injected.
 
 `CounterTracker.cs`:
 
@@ -178,7 +178,7 @@ public class CounterTracker
 }
 ```
 
-In the `Program` file, register the scoped service and register the service for persistence with `RegisterPersistentService`. In the following example, the `CounterTracker` service is available for both the Interactive Server and Interactive Webassembly render modes if a component renders in either of those modes because it's registered with `RenderMode.InteractiveAuto`.
+In the `Program` file, register the scoped service and register the service for persistence with `RegisterPersistentService`. In the following example, the `CounterTracker` service is available for both the Interactive Server and Interactive WebAssembly render modes if a component renders in either of those modes because it's registered with `RenderMode.InteractiveAuto`.
 
 If the `Program` file doesn't already use the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace, add the following `using` statement to the top of the file:
 
