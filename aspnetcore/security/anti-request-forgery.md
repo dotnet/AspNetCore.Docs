@@ -786,7 +786,7 @@ Consider alternative CSRF protection patterns if this poses an issue.
 
 ## Configure antiforgery with `AntiforgeryOptions`
 
-Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in the apps' `Program` file:
+Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in the app's `Program` file:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryOptions":::
 
