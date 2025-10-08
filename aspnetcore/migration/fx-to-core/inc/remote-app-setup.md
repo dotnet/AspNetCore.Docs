@@ -4,7 +4,7 @@ description: Remote app setup
 author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 09/16/2025
+ms.date: 10/08/2025
 ms.topic: article
 uid: migration/fx-to-core/inc/remote-app-setup
 zone_pivot_groups: migration-remote-app-setup
@@ -61,12 +61,15 @@ To configure the application to be available to handle the requests from the ASP
     ```CSharp
     protected void Application_Start()
     {
-        SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
-            .AddRemoteAppServer(options =>
-            {
-                // ApiKey is a string representing a GUID
-                options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
-            });
+        HttpApplicationHost.RegisterHost(builder =>
+        {
+            builder.AddSystemWebAdapters()
+                .AddRemoteAppServer(options =>
+                {
+                    // ApiKey is a string representing a GUID
+                    options.ApiKey = System.Configuration.ConfigurationManager.AppSettings["RemoteAppApiKey"];
+                });
+        });
         
         // ...existing code...
     }
