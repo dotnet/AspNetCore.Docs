@@ -19,7 +19,7 @@ To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azu
 
 ## Prerequisites
 
-* An Azure subscription. Get a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
+* An Azure subscription. Get a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) if you don't have one.
 * [.NET SDK](https://dotnet.microsoft.com/download) (latest stable release).
 * [Visual Studio Code](https://code.visualstudio.com/Download).
   * [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).

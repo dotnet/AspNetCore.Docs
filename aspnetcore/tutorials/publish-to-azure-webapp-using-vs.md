@@ -16,7 +16,7 @@ To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azu
 
 ## Set up
 
-Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
+Open a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) if you don't have one.
 
 ## Create a web app
 
