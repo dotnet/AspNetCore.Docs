@@ -1,14 +1,14 @@
 ---
 title: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
-description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
-ms.author: tdykstra
 content_well_notification: AI-contribution
+description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 11/16/2023
 uid: security/anti-request-forgery
-ai-usage: ai-assisted
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
 
@@ -161,14 +161,13 @@ Calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExten
 
 Multiple tabs logged in as different users, or one logged in as anonymous, are not supported.
 
-
 ## Configure antiforgery with `AntiforgeryOptions`
 
-Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in `Program.cs`:
+Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in the app's `Program` file:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryOptions":::
 
-Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
+Set the antiforgery cookie properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
 
 | Option | Description |
 | --- | --- |
@@ -176,6 +175,20 @@ Set the antiforgery `Cookie` properties using the properties of the <xref:Micros
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName%2A> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName%2A> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader%2A> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+
+Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy%2A> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
+
+Optionally, you can secure the antiforgery cookie in non-Development environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Program` file:
+
+```csharp
+if (!builder.Environment.IsDevelopment())
+{
+    builder.Services.AddAntiforgery(o =>
+    {
+        o.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    });
+}
+```
 
 For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>.
 
@@ -481,15 +494,15 @@ With the Synchronizer Token Pattern, only the most recently loaded page contains
  * Only the most recently loaded tab contains a valid antiforgery token.
  * Requests made from previously loaded tabs fail with an error: `Antiforgery token validation failed. The antiforgery cookie token and request token do not match`
  
- Consider alternative CSRF protection patterns if this poses an issue.
+Consider alternative CSRF protection patterns if this poses an issue.
 
 ## Configure antiforgery with `AntiforgeryOptions`
 
-Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in `Program.cs`:
+Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in the app's `Program` file:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryOptions":::
 
-Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
+Set the antiforgery cookie properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
 
 | Option | Description |
 | --- | --- |
@@ -497,6 +510,20 @@ Set the antiforgery `Cookie` properties using the properties of the <xref:Micros
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName%2A> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName%2A> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader%2A> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+
+Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy%2A> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
+
+Optionally, you can secure the antiforgery cookie in non-Development environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Program` file:
+
+```csharp
+if (!builder.Environment.IsDevelopment())
+{
+    builder.Services.AddAntiforgery(o =>
+    {
+        o.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    });
+}
+```
 
 For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>.
 
@@ -742,7 +769,7 @@ ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working 
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
 * [IgnoreAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute)
 
-### Antiforgery with AddControllers
+## Antiforgery with `AddControllers`
 
 Calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> does ***not*** enable antiforgery tokens. <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> must be called to have built-in antiforgery token support.
 
@@ -753,15 +780,15 @@ With the Synchronizer Token Pattern, only the most recently loaded page contains
  * Only the most recently loaded tab contains a valid antiforgery token.
  * Requests made from previously loaded tabs fail with an error: `Antiforgery token validation failed. The antiforgery cookie token and request token do not match`
  
- Consider alternative CSRF protection patterns if this poses an issue.
+Consider alternative CSRF protection patterns if this poses an issue.
 
 ## Configure antiforgery with `AntiforgeryOptions`
 
-Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in `Program.cs`:
+Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in the app's `Program` file:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryOptions":::
 
-Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
+Set the antiforgery cookie properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
 
 | Option | Description |
 | --- | --- |
@@ -769,6 +796,20 @@ Set the antiforgery `Cookie` properties using the properties of the <xref:Micros
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName%2A> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName%2A> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader%2A> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+
+Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy%2A> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
+
+Optionally, you can secure the antiforgery cookie in non-Development environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Program` file:
+
+```csharp
+if (!builder.Environment.IsDevelopment())
+{
+    builder.Services.AddAntiforgery(o =>
+    {
+        o.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    });
+}
+```
 
 For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>.
 
@@ -1034,7 +1075,7 @@ services.AddAntiforgery(options =>
 });
 ```
 
-Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
+Set the antiforgery cookie properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
 
 | Option | Description |
 | --- | --- |
@@ -1042,6 +1083,42 @@ Set the antiforgery `Cookie` properties using the properties of the <xref:Micros
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName%2A> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName%2A> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader%2A> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+
+Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy%2A> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
+
+Optionally, you can secure the antiforgery cookie in non-Development environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Startup` class:
+
+```csharp
+public class Startup
+{
+    public Startup(IConfiguration configuration, IHostEnvironment environment)
+    {
+        Configuration = configuration;
+        Environment = environment;
+    }
+
+    public IConfiguration Configuration { get; }
+    public IHostEnvironment Environment { get; }
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // Other services are registered here
+
+        if (!Environment.IsDevelopment())
+        {
+            services.AddAntiforgery(o =>
+            {
+                o.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            });
+        }
+    }
+
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        // Request processing pipeline
+    }
+}
+```
 
 For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>.
 

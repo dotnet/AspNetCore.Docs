@@ -180,7 +180,7 @@ APIs often need to accommodate access tokens from various issuers. Supporting mu
 
 ### Forcing the bearer authentication
 
-<xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetDefaultPolicy%2A> can be used to require authentication for all requests even to endpoints without an `[Authorize]` attribute. <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetDefaultPolicy%2A> configures the policy used for endpoints with the `[Authorize]` attribute and already defaults to requiring authenticated users. See the [require authenticated users documentation](/aspnet/core/security/authorization/secure-data#require-authenticated-users) for more details.
+<xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetFallbackPolicy%2A> can be used to require authentication for all requests even to endpoints without an `[Authorize]` attribute. <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetDefaultPolicy%2A> configures the policy used for endpoints with the `[Authorize]` attribute and already defaults to requiring authenticated users. See the [require authenticated users documentation](/aspnet/core/security/authorization/secure-data#require-authenticated-users) for more details.
 
 ```csharp
 var requireAuthPolicy = new AuthorizationPolicyBuilder()
@@ -188,7 +188,7 @@ var requireAuthPolicy = new AuthorizationPolicyBuilder()
 	.Build();
 
 builder.Services.AddAuthorizationBuilder()
-	.SetDefaultPolicy(requireAuthPolicy);
+	.SetFallbackPolicy(requireAuthPolicy);
 ```
 
 The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute can also be used to force the authentication. If multiple schemes are used, the bearer scheme generally needs to be set as the default authentication scheme or specified via `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
