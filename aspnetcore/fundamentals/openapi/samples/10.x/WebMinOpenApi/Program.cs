@@ -10,6 +10,7 @@
 //#define SWAGGERUI
 //#define MULTIDOC_OPERATIONtransformer1
 //#define OPERATIONtransformer1
+//#define OPERATIONtransformer2
 
 #if DEFAULT
 // <snippet_default>
@@ -175,6 +176,37 @@ app.MapGet("/", () => "Hello world!");
 
 app.Run();
 // </snippet_operationtransformer1>
+#endif
+
+#if OPERATIONtransformer2
+// <snippet_operationtransformer2>
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+app.MapGet("/old", () => "This endpoint is old and should not be used anymore")
+.AddOpenApiOperationTransformer((operation, context, cancellationToken) =>
+{
+    operation.Deprecated = true;
+    return Task.CompletedTask;
+});
+
+app.MapGet("/new", () => "This endpoint replaces /old");
+
+app.Run();
+// </snippet_operationtransformer2>
 #endif
 
 #if MULTIDOC_OPERATIONtransformer1
