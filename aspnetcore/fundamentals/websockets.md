@@ -33,7 +33,7 @@ These supported features are available in Kestrel on all HTTP/2 enabled platform
 > HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating.
 > For more information, see [Add HTTP/2 WebSockets support for existing controllers](#add-http2-websockets-support-for-existing-controllers) in this article.
 >
-> Chrome, Edge, and Firefox have HTTP/2 WebSockets enabled by default. If you need to manually configure this setting in Firefox, it can be found in the `about:config` page with the `network.http.http2.websockets` flag.
+> Chrome, Edge, and Firefox (version 128 and later) have HTTP/2 WebSockets enabled by default. You can verify or change this setting in Firefox by opening `about:config` and locating the `network.http.http2.websockets` preference.
 
 WebSockets were originally designed for HTTP/1.1 but have since been adapted to work over HTTP/2. ([RFC 8441](https://www.rfc-editor.org/rfc/rfc8441))
 
