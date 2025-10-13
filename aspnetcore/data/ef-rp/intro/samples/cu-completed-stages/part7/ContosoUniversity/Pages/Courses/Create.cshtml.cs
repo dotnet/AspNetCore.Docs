@@ -43,7 +43,7 @@ namespace ContosoUniversity.Pages.Courses
                 return RedirectToPage("./Index");
             }
 
-            // Select DepartmentID if TryUpdateModelAsync fails.
+            // Repopulate departments dropdown. emptyCourse.DepartmentID determines the selected item.
             PopulateDepartmentsDropDownList(_context, emptyCourse.DepartmentID);
             return Page();
         }
