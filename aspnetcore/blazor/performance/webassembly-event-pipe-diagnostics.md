@@ -50,7 +50,7 @@ Take a managed memory dump by calling `collectGcDump` JavaScript API:
 globalThis.getDotnetRuntime(0).collectGcDump();
 ```
 
-Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
+Call the preceding API from either a browser developer tools console or JavaScript code of the app.
 
 A `.nettrace` file is downloaded from the browser into a local folder, usually the `Downloads` folder on Windows.
 
@@ -122,7 +122,7 @@ Start colllecting metrics for 60 seconds by calling the `collectMetrics` JavaScr
 globalThis.getDotnetRuntime(0).collectMetrics({durationSeconds: 60});
 ```
 
-Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
+Call the preceding API from either a browser developer tools console or JavaScript code of the app.
 
 After the predefined period, the browser downloads a `.nettrace` file into a local folder, usually the `Downloads` folder on Windows. To view the `.nettrace` file, use Visual Studio or PrefView.
 
