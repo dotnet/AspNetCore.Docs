@@ -5,7 +5,7 @@ description: Learn about Event Pipe diagnostics and how to get a Garbage Collect
 monikerRange: '>= aspnetcore-10.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/04/2025
+ms.date: 10/14/2025
 uid: blazor/performance/webassembly-event-pipe
 ---
 # ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
@@ -31,14 +31,14 @@ dotnet workload install wasm-tools
 In the app's project file (`.csproj`), add following properties for the duration of the investigation:
 
 ```xml
-<!-- do not enable diagnostics in production, as it has a negative performance impact -->
+<!-- Don't enable diagnostics in production, as it has a negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
 </PropertyGroup>
 ```
 
 > [!WARNING]
-> Don't enable diagnostics in production because it has a negative performance impact. 
+> Don't enable diagnostics in production because it has a negative performance impact.
 
 Build your app with the `wasm-tools` workload.
 
@@ -50,9 +50,9 @@ Take a managed memory dump by calling `collectGcDump` JavaScript API:
 globalThis.getDotnetRuntime(0).collectGcDump();
 ```
 
-Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
+Call the preceding API from either a browser developer tools console or JavaScript code of the app.
 
-A `.nettrace` file is downloaded from the browser into a local folder.
+A `.nettrace` file is downloaded from the browser into a local folder, usually the `Downloads` folder on Windows.
 
 Convert the dump to `.gcdump` format using the `dotnet-gcdump` tool. To view the converted `.gcdump` file, use Visual Studio or PrefView.
 
@@ -63,12 +63,12 @@ For more information, see [View the GC dump captured from dotnet-gcdump](/dotnet
 In the app's project file (`.csproj`), add following properties for the duration of the investigation:
 
 ```xml
-<!-- do not enable diagnostics in production, as it has a negative performance impact -->
+<!-- Don't enable diagnostics in production, as it has a negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
-  <!-- disable debugger -->
+  <!-- Disable debugger -->
   <WasmDebugLevel>0</WasmDebugLevel>
-  <!-- sampling in all methods, see below for filtering options -->
+  <!-- Sampling in all methods, see below for filtering options -->
   <WasmPerformanceInstrumentation>all</WasmPerformanceInstrumentation>
 </PropertyGroup>
 ```
@@ -90,7 +90,7 @@ Call the preceding API from either a browser devoloper tools console or JavaScri
 
 Start using the app to run problematic code.
 
-After the predefined period, the browser downloads a `.nettrace` file into a local folder. To view the `.nettrace` file, use Visual Studio or PrefView.
+After the predefined period, the browser downloads a `.nettrace` file into a local folder, usually the `Downloads` folder on Windows. To view the `.nettrace` file, use Visual Studio or PrefView.
 
 For more information, see [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics/eventpipe#use-eventpipe-to-trace-your-net-application).
 
@@ -101,7 +101,7 @@ The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/H
 In the app's project file (`.csproj`), add following properties for the duration of the investigation:
 
 ```xml
-<!-- do not enable diagnostics in production, as it has a negative performance impact -->
+<!-- Don't enable diagnostics in production, as it has a negative performance impact -->
 <PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
   <MetricsSupport>true</MetricsSupport>
@@ -122,9 +122,23 @@ Start colllecting metrics for 60 seconds by calling the `collectMetrics` JavaScr
 globalThis.getDotnetRuntime(0).collectMetrics({durationSeconds: 60});
 ```
 
-Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
+Call the preceding API from either a browser developer tools console or JavaScript code of the app.
 
-After the predefined period, the browser downloads a `.nettrace` file into a local folder. To view the `.nettrace` file, use Visual Studio or PrefView.
+After the predefined period, the browser downloads a `.nettrace` file into a local folder, usually the `Downloads` folder on Windows. To view the `.nettrace` file, use Visual Studio or PrefView.
+
+Only <xref:System.Runtime?displayProperty=fullName> metrics are collected by default. In the following example, lifecycle meter data (`Microsoft.AspNetCore.Components.Lifecycle`) is collected:
+
+```javascript
+globalThis.getDotnetRuntime(0).collectMetrics({ durationSeconds: 5,
+  extraProviders: [{
+    keywords: [0, 0],
+    logLevel: 4,
+    provider_name: "System.Diagnostics.Metrics",
+    arguments:
+      "SessionId=SHARED;Metrics=Microsoft.AspNetCore.Components.Lifecycle;RefreshInterval=1;MaxTimeSeries=1000;MaxHistograms=10;ClientId=1fd85813-1574-45f8-8432-e38d5ba7cf5b;",
+  }]
+});
+```
 
 For more information, see [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics/eventpipe#use-eventpipe-to-trace-your-net-application).
 
@@ -152,7 +166,8 @@ The following table describes permissable `<WasmPerformanceInstrumentation>` val
 
 Your code should yield to main browser loop often to allow the trace to be collected. When executing long running loops, the internal diagnostic buffers could overflow.
 
-**Enabling profilers and diagnostic tools has negative size and performance impacts, so don't publish an app for production with profilers enabled.**
+> [!CAUTION]
+> Enabling profilers and diagnostic tools has negative size and performance impacts, so don't publish an app for production with profilers enabled.
 
 ## Additional resources
 
