@@ -32,13 +32,13 @@ In the app's project file (`.csproj`), add following properties for the duration
 
 ```xml
 <!-- Don't enable diagnostics in production, as it has a negative performance impact -->
-<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+<PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
 </PropertyGroup>
 ```
 
 > [!WARNING]
-> Don't enable diagnostics in production because it has a negative performance impact. The preceding example uses an [MSBuild condition](/visualstudio/msbuild/msbuild-conditions) with the `Condition` attribute to only enable diagnostics for Debug builds.
+> Don't enable diagnostics in production because it has a negative performance impact.
 
 Build your app with the `wasm-tools` workload.
 
@@ -64,7 +64,7 @@ In the app's project file (`.csproj`), add following properties for the duration
 
 ```xml
 <!-- Don't enable diagnostics in production, as it has a negative performance impact -->
-<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+<PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
   <!-- Disable debugger -->
   <WasmDebugLevel>0</WasmDebugLevel>
@@ -74,7 +74,7 @@ In the app's project file (`.csproj`), add following properties for the duration
 ```
 
 > [!WARNING]
-> Don't enable diagnostics in production because it has a negative performance impact. The preceding example uses an [MSBuild condition](/visualstudio/msbuild/msbuild-conditions) with the `Condition` attribute to only enable diagnostics for Debug builds.
+> Don't enable diagnostics in production because it has a negative performance impact.
 
 Build the app with the `wasm-tools` workload.
 
@@ -102,7 +102,7 @@ In the app's project file (`.csproj`), add following properties for the duration
 
 ```xml
 <!-- Don't enable diagnostics in production, as it has a negative performance impact -->
-<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+<PropertyGroup>
   <EnableDiagnostics>true</EnableDiagnostics>
   <MetricsSupport>true</MetricsSupport>
   <EventSourceSupport>true</EventSourceSupport>
@@ -110,7 +110,7 @@ In the app's project file (`.csproj`), add following properties for the duration
 ```
 
 > [!WARNING]
-> Don't enable diagnostics in production because it has a negative performance impact. The preceding example uses an [MSBuild condition](/visualstudio/msbuild/msbuild-conditions) with the `Condition` attribute to only enable diagnostics for Debug builds.
+> Don't enable diagnostics in production because it has a negative performance impact.
 
 Build the app with the `wasm-tools` workload.
 
@@ -168,14 +168,6 @@ Your code should yield to main browser loop often to allow the trace to be colle
 
 > [!CAUTION]
 > Enabling profilers and diagnostic tools has negative size and performance impacts, so don't publish an app for production with profilers enabled.
->
-> Use an [MSBuild condition](/visualstudio/msbuild/msbuild-conditions) with the `Condition` attribute to only enable diagnostics for Debug builds:
->
-> ```xml
-> <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
->   ...
-> </PropertyGroup>
-> ```
 
 ## Additional resources
 
