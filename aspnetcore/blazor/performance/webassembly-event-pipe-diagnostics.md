@@ -52,7 +52,7 @@ globalThis.getDotnetRuntime(0).collectGcDump();
 
 Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
 
-A `.nettrace` file is downloaded from the browser into a local folder, usually the `Download` folder on Windows.
+A `.nettrace` file is downloaded from the browser into a local folder, usually the `Downloads` folder on Windows.
 
 Convert the dump to `.gcdump` format using the `dotnet-gcdump` tool. To view the converted `.gcdump` file, use Visual Studio or PrefView.
 
@@ -90,7 +90,7 @@ Call the preceding API from either a browser devoloper tools console or JavaScri
 
 Start using the app to run problematic code.
 
-After the predefined period, the browser downloads a `.nettrace` file into a local folder, usually the `Download` folder on Windows. To view the `.nettrace` file, use Visual Studio or PrefView.
+After the predefined period, the browser downloads a `.nettrace` file into a local folder, usually the `Downloads` folder on Windows. To view the `.nettrace` file, use Visual Studio or PrefView.
 
 For more information, see [Use EventPipe to trace your .NET application](/dotnet/core/diagnostics/eventpipe#use-eventpipe-to-trace-your-net-application).
 
@@ -124,7 +124,7 @@ globalThis.getDotnetRuntime(0).collectMetrics({durationSeconds: 60});
 
 Call the preceding API from either a browser devoloper tools console or JavaScript code of the app.
 
-After the predefined period, the browser downloads a `.nettrace` file into a local folder, usually the `Download` folder on Windows. To view the `.nettrace` file, use Visual Studio or PrefView.
+After the predefined period, the browser downloads a `.nettrace` file into a local folder, usually the `Downloads` folder on Windows. To view the `.nettrace` file, use Visual Studio or PrefView.
 
 Only <xref:System.Runtime?displayProperty=fullName> metrics are collected by default. In the following example, lifecycle meter data (`Microsoft.AspNetCore.Components.Lifecycle`) is collected:
 
