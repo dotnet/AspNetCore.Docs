@@ -279,7 +279,7 @@ public void ConfigureServices(IServiceCollection services)
 > When using Redis to persist data protection keys, be aware that Redis doesn't persist data by default when restarting. This can cause Data Protection to issue new keys, invalidating previously protected data.
 > 
 > You can configure Redis to enable data persistence to mitigate this: Redis documentation has information on [how to configure persistence](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/).
-> If you're using [Azure Managed Redis](azure/redis/how-to-persistence), ensure you have enabled data persistence. [Azure Cache for Redis](azure/azure-cache-for-redis/cache-how-to-premium-persistence?tabs=premium) needs a premium or higher tier to enable data persistence.
+> If you're using [Azure Managed Redis](/azure/redis/how-to-persistence), ensure you have enabled data persistence. [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-how-to-premium-persistence?tabs=premium) needs a premium or higher tier to enable data persistence.
 
 For more information, see the following topics:
 
