@@ -614,7 +614,7 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 
 ## Additional resources
 
-* [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component)
+* [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component)
 * <xref:blazor/components/layouts>
 * [Razor directives](xref:mvc/views/razor#directives) (Razor syntax article) / [Razor directives](xref:blazor/components/index#razor-syntax) (Blazor documentation)
 * <xref:blazor/components/quickgrid>
