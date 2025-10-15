@@ -29,7 +29,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 ## Quick start: Add two custom properties
 
-For a simple scenario where you want to add just a couple of custom properties (like `FirstName` and `LastName`) to your Identity user:
+For the common case of adding two custom properties such as `FirstName` and `LastName`:
 
 1. Create a new ASP.NET Core project with Individual Accounts authentication
 1. Scaffold Identity to override the Register and Manage/Index pages
