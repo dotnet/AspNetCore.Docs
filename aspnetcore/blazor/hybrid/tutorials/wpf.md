@@ -73,7 +73,7 @@ In the project file's existing `<TargetFramework>` property, add a Windows 10 ve
 ```
 
 > [!NOTE]
-> The preceding guidance on setting the project's target framework version to Windows 10 is a result of switching to the new `WebView2CompositionControl`.
+> The preceding guidance on setting the project's target framework version to target Windows 10 or higher is a result of switching to the new `WebView2CompositionControl`.
 
 :::moniker-end
 
