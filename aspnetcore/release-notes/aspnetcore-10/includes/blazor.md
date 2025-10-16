@@ -439,39 +439,52 @@ For more information and examples, see <xref:blazor/fundamentals/routing?view=as
 
 Apps that implement a custom router can use `NavigationManager.NotFound`. There are two ways to inform the renderer what page should be rendered when `NavigationManager.NotFound` is called:
 
-* The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. When `NavigationManager.NotFound` is called, the middleware renders the path passed to the method:
+The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. When `NavigationManager.NotFound` is called, the middleware renders the path passed to the method:
 
-  ```csharp
-  app.UseStatusCodePagesWithReExecute(
-      "/not-found", createScopeForStatusCodePages: true);
-  ```
+```csharp
+app.UseStatusCodePagesWithReExecute(
+    "/not-found", createScopeForStatusCodePages: true);
+```
 
-* If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support `NavigationManager.NotFound` for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render when `NavigationManager.NotFound` is called:
+If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support `NavigationManager.NotFound` for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render when `NavigationManager.NotFound` is called.
 
-  ```razor
-  @code {
-      [CascadingParameter]
-      public HttpContext? HttpContext { get; set; }
+`CustomRouter.razor`:
 
-      private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
-      {
-          // Only execute the logic if HTTP response has started,
-          // because setting NotFoundEventArgs.Path blocks re-execution
-          if (HttpContext?.Response.HasStarted == false)
-          {
-              return;
-          }
+```razor
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Http
+@implements IDisposable
+@inject NavigationManager NavigationManager
 
-          e.Path = GetNotFoundRoutePath();
-      }
+@code {
+    protected override void OnInitialized() =>
+        NavigationManager.OnNotFound += OnNotFoundEvent;
 
-      // Return the path of the Not Found page that you want to display
-      private string GetNotFoundRoutePath()
-      {
-          ...
-      } 
-  }
-  ```
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
+
+    private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
+    {
+        // Only execute the logic if HTTP response has started
+        // because setting NotFoundEventArgs.Path blocks re-execution
+        if (HttpContext?.Response.HasStarted == false)
+        {
+            return;
+        }
+
+        e.Path = GetNotFoundRoutePath();
+    }
+
+    // Return the path of the Not Found page that you want to display
+    private string GetNotFoundRoutePath()
+    {
+        ...
+    }
+
+    public void Dispose() => NavigationManager.OnNotFound -= OnNotFoundEvent;
+}
+```
 
 ### Metrics and tracing
 
