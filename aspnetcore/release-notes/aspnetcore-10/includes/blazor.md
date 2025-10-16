@@ -437,16 +437,16 @@ For more information and examples, see <xref:blazor/fundamentals/routing?view=as
 
 ### Support for Not Found responses in apps without Blazor's router
 
-Apps that implement a custom router can use `NavigationManager.NotFound`. There are two ways of informing the renderer what page should be rendered on `NavigationManager.NotFound` call:
+Apps that implement a custom router can use `NavigationManager.NotFound`. There are two ways to inform the renderer what page should be rendered when `NavigationManager.NotFound` is called:
 
-* The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. The path passed to the middleware method is rendered on `NavigationManager.NotFound` calls:
+* The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. When `NavigationManager.NotFound` is called, the middleware renders the path passed to the method:
 
   ```csharp
   app.UseStatusCodePagesWithReExecute(
       "/not-found", createScopeForStatusCodePages: true);
   ```
 
-* In case you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support `NavigationManager.NotFound` for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render on `NavigationManager.NotFound`:
+* If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support `NavigationManager.NotFound` for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render when `NavigationManager.NotFound` is called:
 
   ```razor
   @code {
@@ -465,7 +465,7 @@ Apps that implement a custom router can use `NavigationManager.NotFound`. There 
           e.Path = GetNotFoundRoutePath();
       }
 
-      // Return the route of the Not Found page that you want to display
+      // Return the path of the Not Found page that you want to display
       private string GetNotFoundRoutePath()
       {
           ...
