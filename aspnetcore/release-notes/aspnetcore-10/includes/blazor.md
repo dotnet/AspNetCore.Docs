@@ -437,16 +437,16 @@ For more information and examples, see <xref:blazor/fundamentals/routing?view=as
 
 ### Support for Not Found responses in apps without Blazor's router
 
-Apps that implement a custom router can use `NavigationManager.NotFound`. The custom router can render Not Found content from two sources, depending on the state of the response:
+Apps that implement a custom router can use `NavigationManager.NotFound`. There are two ways of informing the renderer what page should be rendered on `NavigationManager.NotFound` call:
 
-* Regardless of the response state, the re-execution path to the page can used by passing it to <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>:
+* The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. The path passed to the middleware method is rendered on `NavigationManager.NotFound` calls:
 
   ```csharp
   app.UseStatusCodePagesWithReExecute(
       "/not-found", createScopeForStatusCodePages: true);
   ```
 
-* When the response has started, the <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> can be used by subscribing to the `OnNotFoundEvent` in the router:
+* In case you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support `NavigationManager.NotFound` for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render on `NavigationManager.NotFound`:
 
   ```razor
   @code {
@@ -462,22 +462,14 @@ Apps that implement a custom router can use `NavigationManager.NotFound`. The cu
               return;
           }
 
-          var type = typeof(CustomNotFoundPage);
-          var routeAttributes = type.GetCustomAttributes<RouteAttribute>(inherit: true);
-
-          if (routeAttributes.Length == 0)
-          {
-              throw new InvalidOperationException($"The type {type.FullName} " +
-                  $"doesn't have a {typeof(RouteAttribute).FullName} applied.");
-          }
-
-          var routeAttribute = (RouteAttribute)routeAttributes[0];
-
-          if (routeAttribute.Template != null)
-          {
-              e.Path = routeAttribute.Template;
-          }
+          e.Path = GetNotFoundRoutePath();
       }
+
+      // Return the route of the Not Found page that you want to display
+      private string GetNotFoundRoutePath()
+      {
+          ...
+      } 
   }
   ```
 
