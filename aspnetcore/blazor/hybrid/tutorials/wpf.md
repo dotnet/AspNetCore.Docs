@@ -66,14 +66,14 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 
 :::moniker range=">= aspnetcore-10.0"
 
-In the project file's existing `<TargetFramework>` property, add a Windows 10 version number:
+In the project file's existing `<TargetFramework>` property, add a Windows 10 or later version number:
 
 ```xml
 <TargetFramework>net10.0-windows10.0.17763.0</TargetFramework>
 ```
 
 > [!NOTE]
-> The preceding guidance on setting the project's target framework version to target Windows 10 or higher is a result of switching to the new `WebView2CompositionControl`.
+> The preceding guidance on setting the project's target framework version to target Windows 10 or later is a result of switching to the `WebView2CompositionControl` with the release of .NET 10.
 
 :::moniker-end
 
