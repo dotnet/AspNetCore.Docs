@@ -532,7 +532,7 @@ The following `ProcessError` component example merely logs errors, but methods o
 ```razor
 @inject ILogger<ProcessError> Logger
 
-<CascadingValue Value="this">
+<CascadingValue Value="this" IsFixed="true">
     @ChildContent
 </CascadingValue>
 
@@ -648,7 +648,7 @@ The following `ProcessError` component passes itself as a [`CascadingValue`](xre
 @using Microsoft.Extensions.Logging
 @inject ILogger<ProcessError> Logger
 
-<CascadingValue Value="this">
+<CascadingValue Value="this" IsFixed="true">
     @ChildContent
 </CascadingValue>
 
