@@ -486,6 +486,7 @@ If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExten
 }
 ```
 
+If you use both approaches in your application, the not found path specified in the OnNotFoundEvent handler will take precedence over the path configured in the re-execution middleware.
 ### Metrics and tracing
 
 This release introduces comprehensive metrics and tracing capabilities for Blazor apps, providing detailed observability of the component lifecycle, navigation, event handling, and circuit management.
