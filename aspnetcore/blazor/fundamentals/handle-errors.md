@@ -555,6 +555,8 @@ The following `ProcessError` component example merely logs errors, but methods o
 
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+>
+> <xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> is used to indicate that a cascading parameter doesn't change after initialization.
 
 :::moniker-end
 
@@ -666,6 +668,8 @@ The following `ProcessError` component passes itself as a [`CascadingValue`](xre
 
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+>
+> <xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> is used to indicate that a cascading parameter doesn't change after initialization.
 
 In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component with the `ProcessError` component. This permits the `ProcessError` component to cascade down to any component of the app where the `ProcessError` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
