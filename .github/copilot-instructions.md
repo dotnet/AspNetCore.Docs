@@ -1,7 +1,7 @@
 ---
 author: tdykstra
 ms.author: wpickett
-ms.date: 09-21-2025
+ms.date: 10-16-2025
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
@@ -78,6 +78,7 @@ When working on an issue:
 
 ## Repository-Specific Guidelines
 - [ ] Follow the [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
+  - [ ] Use contractions following the guidance in [Use contractions](https://learn.microsoft.com/en-us/style-guide/word-choice/use-contractions)
 - [ ] **Repository Exceptions**:
   - [ ] Number ordered lists as "1." for every item (don't use sequential numbers)
   - [ ] Use backticks around content specifically for file names (`file.txt`), folders (`folder`), file paths (`folder/file.txt`), custom types (`myVariable`, `MyClass`), raw URLs in the text (`https://www.contoso.com`), URL segments (`/product/id/199`), file extensions (`.razor`), NuGet packages (`Microsoft.AspNetCore.SignalR.Client`), and code that should never be localized
