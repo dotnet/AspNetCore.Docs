@@ -64,6 +64,19 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 ```
 
+:::moniker range=">= aspnetcore-10.0"
+
+In the project file's existing `<TargetFramework>` property, add a Windows 10 or later version number:
+
+```xml
+<TargetFramework>net10.0-windows10.0.17763.0</TargetFramework>
+```
+
+> [!NOTE]
+> The preceding guidance on setting the project's target framework version to target Windows 10 or later is a result of switching to the `WebView2CompositionControl` with the release of .NET 10.
+
+:::moniker-end
+
 <!--
     The following is a workaround for https://github.com/dotnet/wpf/issues/5697 (fixes https://github.com/dotnet/maui/issues/3526).
     Additional open issue on it: https://github.com/dotnet/maui/issues/5861
