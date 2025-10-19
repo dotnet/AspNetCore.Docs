@@ -32,6 +32,17 @@ The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.or
 > dotnet workload install wasm-tools-net6
 > ```
 
+> [!NOTE]
+> .NET WebAssembly build tools for .NET 8 projects
+>
+> The `wasm-tools` workload installs the build tools for the latest release. However, the current version of the build tools are incompatible with existing projects built with .NET 8. Projects using the build tools that must support both .NET 8 and a later release must use multi-targeting.
+>
+> Use the `wasm-tools-net8` workload for .NET 8 projects when developing apps with the .NET 9 SDK. To install the `wasm-tools-net8` workload, execute the following command from an administrative command shell:
+>
+> ```dotnetcli
+> dotnet workload install wasm-tools-net8
+> ```
+
 ## Ahead-of-time (AOT) compilation
 
 Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size.
