@@ -5,7 +5,7 @@ description: Learn how to implement passkeys authentication in ASP.NET Core Blaz
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
-ms.date: 09/10/2025
+ms.date: 10/20/2025
 uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---
@@ -223,6 +223,18 @@ Update the `IdentityComponentsEndpointRouteBuilderExtensions.cs` file (or create
 Replace the existing `Login` component with the following component and update the `BlazorWebCSharp._1.Data` namespace to match the app (for example: `Contoso.Components.Account.Data`):
 
 [`Components/Account/Pages/Login.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/Pages/Login.razor)
+
+## Add a redirect method to the Identity Redirect Manager
+
+Add the following redirect for invalid users to `Components/Account/IdentityRedirectManager.cs`:
+
+```csharp
+public void RedirectToInvalidUser(
+    UserManager<ApplicationUser> userManager, HttpContext context) =>
+        RedirectToWithStatus("Account/InvalidUser",
+            $"Error: Unable to load user with ID '{userManager.GetUserId(context.User)}'.",
+            context);
+```
 
 ## Create passkey management pages for adding and renaming passkeys
 
