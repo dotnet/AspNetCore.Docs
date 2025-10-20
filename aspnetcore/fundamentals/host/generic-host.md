@@ -207,7 +207,7 @@ To set this value, use the environment variable or configure `HostOptions`. The 
 
 ### Disable app configuration reload on change
 
-By [default](xref:fundamentals/configuration/index#default), `appsettings.json` and `appsettings.{Environment}.json` are reloaded when the file changes. To disable this reload behavior in .NET 5 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.
+By [default](xref:fundamentals/configuration/index#default-app-configuration-sources), `appsettings.json` and `appsettings.{Environment}.json` are reloaded when the file changes. To disable this reload behavior in .NET 5 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.
 
 **Key**: `hostBuilder:reloadConfigOnChange`  
 **Type**: `bool` (`true` or `false`)  
@@ -675,7 +675,7 @@ To set this value, use the environment variable or configure `HostOptions`. The 
 
 ### Disable app configuration reload on change
 
-By [default](xref:fundamentals/configuration/index#default), `appsettings.json` and `appsettings.{Environment}.json` are reloaded when the file changes. To disable this reload behavior in .NET 5 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.
+By [default](xref:fundamentals/configuration/index#default-app-configuration-sources), `appsettings.json` and `appsettings.{Environment}.json` are reloaded when the file changes. To disable this reload behavior in .NET 5 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.
 
 **Key**: `hostBuilder:reloadConfigOnChange`  
 **Type**: `bool` (`true` or `false`)  

@@ -135,7 +135,7 @@ For more information, see <xref:fundamentals/servers/index>.
 
 ASP.NET Core provides a [configuration](xref:fundamentals/configuration/index) framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as `.json` files, `.xml` files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
 
-By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from `appsettings.json`, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from `appsettings.json`.
+By [default](xref:fundamentals/configuration/index#default-app-configuration-sources), ASP.NET Core apps are configured to read from `appsettings.json`, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from `appsettings.json`.
 
 For managing confidential configuration data such as passwords in the development environment, .NET provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
 
