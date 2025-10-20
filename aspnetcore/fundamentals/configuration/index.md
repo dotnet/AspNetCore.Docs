@@ -92,7 +92,7 @@ Host.CreateDefaultBuilder(args)
 Default app configuration is loaded in the following order, from highest to lowest priority:
 
 1. Command-line arguments using the [Command-line Configuration Provider](#command-line).
-1. Environment variables ***not*** prefixed by `ASPNETCORE_` or `DOTNET_` using the [Environment Variables Configuration Provider](#non-prefixed-environment-variables).
+1. Environment variables ***not*** prefixed by `ASPNETCORE_` or `DOTNET_` using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
 1. [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the [File Configuration Provider](#file-configuration-provider).
 1. [Environmental app settings file configuration](#app-settings-file-configuration-appsettingsjson-appsettingsenvironmentjson) via `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [environment](xref:fundamentals/environments), using the [JSON Configuration Provider](#json-configuration-provider). For example, `appsettings.Production.json` is used in production, and `appsettings.Development.json` is used during development.
 1. [General app settings file configuration](#app-settings-file-configuration-appsettingsjson-appsettingsenvironmentjson) via `appsettings.json` using the [JSON Configuration Provider](#json-configuration-provider).
@@ -323,7 +323,7 @@ AllowedHosts | AllowedHosts
 > [!NOTE]
 > In complex app configuration scenarios, we recommend grouping and reading related hierarchical configuration data using the [Options pattern](xref:fundamentals/configuration/options).
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection%2A> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A> methods are available to isolate sections and children of a section in the configuration data. These methods are described in the [`GetSection`, `GetChildren`, and `Exists`](#getsection-getchildren-and-exists) section later in this article.
+<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection%2A> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A> methods are available to isolate sections and children of a section in the configuration data. These methods are described where [`GetSection`, `GetChildren`, and `Exists` are covered](#work-with-sections-and-child--getsection-get-a-sections-children-getchildren-and-determine-if-a-section-exists-exists).
 
 When the element structure includes an array, the array index should be treated as an additional element name in the path. Consider the following hierarchical configuration data as an array.
 
@@ -381,7 +381,7 @@ A typical sequence of configuration providers is:
 1. General app settings via `appsettings.json`.
 1. Environmental app settings via `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's environment (examples: `Development`, `Production`).
 1. [User secrets](xref:security/app-secrets).
-1. Environment variables using the [Environment Variables Configuration Provider](#non-prefixed-environment-variables).
+1. Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
 1. Command-line arguments using the [Command-line Configuration Provider](#command-line).
 
 A common practice is to add the Command-line Configuration Provider last in a series of providers to allow command-line arguments to override configuration set by the other providers.
@@ -1097,7 +1097,7 @@ However, consider the Kestrel-specific endpoint configured as an environment var
 * Key: `Kestrel__Endpoints__Https__Url`
 * Value: `https://localhost:8888`
 
-In the preceding environment variable, "`Https`" is the name of the Kestrel-specific endpoint. The preceding app settings configuration also defines a Kestrel-specific endpoint named `Https`. Per the [default host configuration providers](#default-host-configuration), environment variables read by the [Environment Variables Configuration Provider](#non-prefixed-environment-variables) are read after `appsettings.{ENVIRONMENT}.json`. Therefore, the preceding environment variable (`Kestrel__Endpoints__Https__Url`) is used for the `Https` endpoint.
+In the preceding environment variable, "`Https`" is the name of the Kestrel-specific endpoint. The preceding app settings configuration also defines a Kestrel-specific endpoint named `Https`. Per the [default host configuration providers](#default-host-configuration-sources), environment variables read by the [Environment Variables Configuration Provider](#environment-variables-configuration-provider) are read after `appsettings.{ENVIRONMENT}.json`. Therefore, the preceding environment variable (`Kestrel__Endpoints__Https__Url`) is used for the `Https` endpoint.
 
 ## Extract a single value from configuration with type conversion (`GetValue`)
 
