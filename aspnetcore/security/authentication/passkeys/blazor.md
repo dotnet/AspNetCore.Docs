@@ -226,7 +226,7 @@ Replace the existing `Login` component with the following component and update t
 
 ## Add a redirect method to the Identity Redirect Manager
 
-Add the following redirect for invalid users to `Components/Account/IdentityRedirectManager.cs`:
+Add the following method to the `IdentityRedirectManager` class in `Components/Account/IdentityRedirectManager.cs`:
 
 ```csharp
 public void RedirectToInvalidUser(
