@@ -224,7 +224,7 @@ Replace the existing `Login` component with the following component and update t
 
 [`Components/Account/Pages/Login.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/Pages/Login.razor)
 
-## Add a redirect method to the Identity Redirect Manager
+## Add a redirect method to the `IdentityRedirectManager` class
 
 Add the following method to the `IdentityRedirectManager` class in `Components/Account/IdentityRedirectManager.cs`:
 
