@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure app settings in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/20/2025
+ms.date: 10/21/2025
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -42,10 +42,16 @@ This article provides information on configuration in ASP.NET Core. For informat
 
 For additional Blazor configuration guidance, which adds to or supersedes the guidance, see <xref:blazor/fundamentals/configuration>.
 
+This article only pertains to app configuration. Configuration sources not covered by this article include:
+
+* Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the Development environment. For more information, see <xref:fundamentals/environments#development>.
+* `web.config`, which is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see <xref:host-and-deploy/iis/index> and <xref:host-and-deploy/aspnet-core-module>.
+
+For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/fx-to-core/examples/configuration>.
+
 [!INCLUDE[](~/includes/managed-identities-conn-strings.md)]
 
-> [!NOTE]
-> Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
+Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
 
 ## Read configuration values
 
@@ -299,6 +305,9 @@ Configuration values are strings. Null values can't be stored in configuration o
 
 The Configuration API reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys, which are usually colons (`:`). Double underscores (`__`) are usually used with environment variable configuration for cross-platform support.
 
+> [!NOTE]
+> In complex app configuration scenarios, it's best to group and read related hierarchical configuration data using the [options pattern](xref:fundamentals/configuration/options).
+
 Consider the following hierarchical configuration data:
 
 * :::no-loc text="ConnectionStrings":::
@@ -357,6 +366,48 @@ Keys with underscore separators, which is recommended for cross-platform compati
 * :::no-loc text="MainObject__1__Object0":::
 * :::no-loc text="MainObject__1__Object1:SubObject0":::
 * :::no-loc text="MainObject__1__Object1:SubObject1":::
+
+Because configuration that comes from arrays is flattened and numbered sequentially for each configuration source that an app uses, values can be unexpectedly overwritten if care isn't taken when structuring and reading the data from multiple sources. Consider the following configuration key-value pairs:
+
+:::no-loc text="Modules"::: values (an array):
+
+* :::no-loc text="Module1":::
+* :::no-loc text="Module2":::
+* :::no-loc text="Module3":::
+
+The array is flattened and indexed sequentially yielding the configuration key-value pairs in the following table.
+
+Key | Value
+--- | ---
+`Modules:0` | `Module1`
+`Modules:1` | `Module2`
+`Modules:2` | `Module3`
+
+After the preceding configuration is established, another configuration source loads the following configuration:
+
+:::no-loc text="Modules"::: values (an array):
+
+* :::no-loc text="Module4":::
+* :::no-loc text="Module5":::
+
+This array is also flattened and indexed sequentially.
+
+Key | Value
+--- | ---
+`Modules:0` | `Module4`
+`Modules:1` | `Module5`
+
+Recalling that the last configuration source for a given key sets the value of that key, the final set of configuration key-value pairs are shown in the following table. 
+
+Key | Value
+--- | ---
+`Modules:0` | `Module4`
+`Modules:1` | `Module5`
+`Modules:2` | `Module3`
+
+This isn't a surprising result given how the framework flattens and indexes array data from configuration sources, but it should be kept in mind to avoid unexpected overwrites.
+
+To avoid such overwrites, structure array indexing to match across various configuration sources that provide the same array data. Alternatively, a workaround approach is to delimit array values in a string value of a single key-value pair, for example using a comma, semicolon, or pipe as the delimiter. Write custom code to split the string and assign the delimited values to your array.
 
 ## Configuration providers
 
@@ -504,47 +555,6 @@ public class AppSettingsPageModel(IConfiguration config) : PageModel
 }
 ```
 
-When the JSON object structure includes an array, the array index should be treated as an additional element name in the path.
-
-`appsettings.json`:
-
-```json
-{
-  "MainObject": [
-    {
-      "Object1": "...",
-      "Object2": {
-        "SubObject1": "...",
-        "SubObject2": "..."
-      }
-    },
-    {
-      "Object1": "...",
-      "Object2": {
-        "SubObject1": "...",
-        "SubObject2": "..."
-      }
-    }
-  ]
-}
-```
-
-To display the values in a Razor component:
-
-```razor
-@if (Config is not null)
-{
-    <ul>
-        <li>@Config["MainObject:0:Object1"]</li>
-        <li>@Config["MainObject:0:Object2:SubObject1"]</li>
-        <li>@Config["MainObject:0:Object2:SubObject2"]</li>
-        <li>@Config["MainObject:1:Object1"]</li>
-        <li>@Config["MainObject:1:Object2:SubObject1"]</li>
-        <li>@Config["MainObject:1:Object2:SubObject2"]</li>
-    </ul>
-}
-```
-
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> instances load configuration in the following order:
 
 1. `appsettings.json`
@@ -572,10 +582,6 @@ Comments in `appsettings.json` and `appsettings.{ENVIRONMENT}.json` files are su
 The preceding setting indicates to VS Code that app settings files, including environmental-based files, are associated with the [JSONC ("JSON with Comments") file format](https://jsonc.org/), which supports comments.
 
 For other IDEs, check the IDE's documentation and product support channels to determine how to silence errors or warnings about comments in JSON files.
-
-## Bind hierarchical configuration data using the options pattern
-
-In complex app configuration scenarios, it's best to group and read related hierarchical configuration data using the [options pattern](xref:fundamentals/configuration/options).
 
 ## Environment Variables Configuration Provider
 
@@ -1335,7 +1341,7 @@ public class ArrayModel : PageModel
 
         for (int j = 0; j < _array.Entries.Length; j++)
         {
-            s += $"Index: {j}  Value:  {_array.Entries[j]} \n";
+            s += $"Index: {j} Value: {_array.Entries[j]} \n";
         }
 
         return Content(s);
@@ -1346,11 +1352,11 @@ public class ArrayModel : PageModel
 The preceding code returns the following output:
 
 ```text
-Index: 0  Value: value0
-Index: 1  Value: value1
-Index: 2  Value: value2
-Index: 3  Value: value4
-Index: 4  Value: value5
+Index: 0 Value: value0
+Index: 1 Value: value1
+Index: 2 Value: value2
+Index: 3 Value: value4
+Index: 4 Value: value5
 ```
 
 Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indices.
@@ -1420,7 +1426,7 @@ public class ArrayModel : PageModel
 
         for (int j = 0; j < _array.Entries.Length; j++)
         {
-            s += $"Index: {j}  Value:  {_array.Entries[j]} \n";
+            s += $"Index: {j} Value: {_array.Entries[j]} \n";
         }
 
         return Content(s);
@@ -1431,12 +1437,12 @@ public class ArrayModel : PageModel
 The preceding code returns the following output:
 
 ```text
-Index: 0  Value: value0
-Index: 1  Value: value1
-Index: 2  Value: value2
-Index: 3  Value: value3
-Index: 4  Value: value4
-Index: 5  Value: value5
+Index: 0 Value: value0
+Index: 1 Value: value1
+Index: 2 Value: value2
+Index: 3 Value: value3
+Index: 4 Value: value4
+Index: 5 Value: value5
 ```
 
 Custom configuration providers aren't required to implement array binding.
@@ -1721,15 +1727,6 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 ::: moniker-end
 
 For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#convenience-methods).
-
-## Other configuration
-
-This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered by this article:
-
-* Launch settings files (`launch.json`/`launchSettings.json`) are tooling configuration files for the Development environment. For more information, see <xref:fundamentals/environments#development>.
-* `web.config` is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see <xref:host-and-deploy/iis/index> and <xref:host-and-deploy/aspnet-core-module>.
-
-For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/fx-to-core/examples/configuration>.
 
 ## Add configuration from an external assembly
 
