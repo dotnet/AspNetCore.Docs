@@ -77,7 +77,7 @@ The preceding packages must be explicitly referenced in the app's project file.
 App settings in the Azure Portal permit you to set environment variables for the app. For more information, see the following resources:
 
 * [Configure an App Service app (Azure documentation)](/azure/app-service/configure-common)
-* <xref:fundamentals/configuration/index#enviroment-variables-configuration-provider>
+* <xref:fundamentals/configuration/index#environment-variables-configuration-provider>
 
 ## Proxy server and load balancer scenarios
 
