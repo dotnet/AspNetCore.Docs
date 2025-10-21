@@ -27,8 +27,13 @@ To install the build tools as a .NET workload, use ***either*** of the following
   dotnet workload install wasm-tools
   ```
 
-To target a prior .NET release for a given .NET SDK, install the `wasm-tools-net{MAJOR VERSION}` workload, where the `{MAJOR VERSION}` placeholder is the major version of the release. When you install the `wasm-tools` workload into a given .NET SDK, other .NET SDKs on the system don't receive the workload. You must install the workload for each .NET version that you intend to target for a given .NET SDK. The following list shows which workload to install for each .NET SDK depending on the apps that you plan to target with the SDK. Although multiple rows contain the same workload, the workloads always differ slightly for each particular .NET SDK.
+To target a prior .NET release for a given .NET SDK, install the `wasm-tools-net{MAJOR VERSION}` workload.
 
+- The `{MAJOR VERSION}` placeholder should be replaced with the major version number of the .NET release you want to target (for example, `wasm-tools-net8` for .NET 8).
+- Workloads are installed per .NET SDK. Installing the `wasm-tools` workload for one SDK does not make it available to other SDKs on the system.
+- You must install the appropriate workload for each .NET SDK version you intend to target.
+
+The following list shows which workload to install for each .NET SDK, depending on the apps that you plan to target. Although multiple rows may contain the same workload name, the workloads always differ slightly for each particular .NET SDK.
 <!-- UPDATE 10.0 - Surface new content 
 
 * .NET 10 SDK
