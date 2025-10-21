@@ -42,9 +42,9 @@ This article provides information on configuration in ASP.NET Core. For informat
 
 For additional Blazor configuration guidance, which adds to or supersedes the guidance, see <xref:blazor/fundamentals/configuration>.
 
-This article only pertains to app configuration. Configuration sources not covered by this article include:
+This article only pertains to app configuration. Configuration sources not primarily covered by this article include:
 
-* Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the Development environment. For more information, see <xref:fundamentals/environments#development>.
+* Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the Development environment. For more information, see <xref:fundamentals/environments#development>. Some details on launch settings are covered by this article in the [Launch settings override environment variable settings](#launch-settings-override-environment-variable-settings) section.
 * `web.config`, which is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see <xref:host-and-deploy/iis/index> and <xref:host-and-deploy/aspnet-core-module>.
 
 For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/fx-to-core/examples/configuration>.
@@ -332,7 +332,7 @@ AllowedHosts | AllowedHosts
 > [!NOTE]
 > In complex app configuration scenarios, we recommend grouping and reading related hierarchical configuration data using the [Options pattern](xref:fundamentals/configuration/options).
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection%2A> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A> methods are available to isolate sections and children of a section in the configuration data. These methods are described where [`GetSection`, `GetChildren`, and `Exists` are covered](#work-with-sections-and-child--getsection-get-a-sections-children-getchildren-and-determine-if-a-section-exists-exists).
+<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection%2A> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A> methods are available to isolate sections and children of a section in the configuration data. These methods are described where [`GetSection`, `GetChildren`, and `Exists` are covered](#work-with-sections-get-a-sections-children-and-determine-if-a-section-exists).
 
 When the element structure includes an array, the array index should be treated as an additional element name in the path. Consider the following hierarchical configuration data as an array.
 
@@ -1118,7 +1118,7 @@ In the preceding code:
 * `Config` is an injected <xref:Microsoft.Extensions.Configuration.IConfiguration>.
 * If `NumberKey` isn't found in the configuration, the default value of `99` is used.
 
-## Work with sections and child  (`GetSection`), get a section's children (`GetChildren`), and determine if a section exists (`Exists`)
+## Work with sections, get a section's children, and determine if a section exists
 
 For the examples that follow, consider the following `subsection.json` file:
 
