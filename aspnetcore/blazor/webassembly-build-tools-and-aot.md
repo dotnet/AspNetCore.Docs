@@ -16,16 +16,18 @@ This article describes the build tools for standalone Blazor WebAssembly apps an
 
 ## .NET WebAssembly build tools
 
-The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the build tools as a .NET workload for given .NET SDK, use ***either*** of the following approaches:
+The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform.
 
-* For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components. When the workload is installed using the checkbox in Visual Studio, installer installs a build tools workload for each .NET SDK automatically.
+To install the build tools as a .NET workload, use ***either*** of the following approaches:
+
+* For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components. When the workload is installed using the checkbox in Visual Studio, the installer installs a build tools workload for each .NET SDK automatically.
 * Alternatively, execute the following command in an *administrative command shell* for the latest workload and latest .NET SDK installed on the system:
 
   ```dotnetcli
   dotnet workload install wasm-tools
   ```
 
-To target a prior release for a latter .NET SDK, install the `wasm-tools-net{MAJOR VERSION}` workload, where the `{MAJOR VERSION}` placeholder is the major version of the release. When you install the `wasm-tools` workload into a given .NET SDK, other .NET SDKs on the system don't receive the workload. You must install the workload for each .NET version that you intend to target for a given .NET SDK. The following table shows which workload to install for each .NET SDK depending on the apps that you plan to target with the SDK. Although multiple rows contain the same workload, the workloads always differ slightly for each particular .NET SDK.
+To target a prior .NET release for a given .NET SDK, install the `wasm-tools-net{MAJOR VERSION}` workload, where the `{MAJOR VERSION}` placeholder is the major version of the release. When you install the `wasm-tools` workload into a given .NET SDK, other .NET SDKs on the system don't receive the workload. You must install the workload for each .NET version that you intend to target for a given .NET SDK. The following list shows which workload to install for each .NET SDK depending on the apps that you plan to target with the SDK. Although multiple rows contain the same workload, the workloads always differ slightly for each particular .NET SDK.
 
 <!-- UPDATE 10.0 - Surface new content 
 
