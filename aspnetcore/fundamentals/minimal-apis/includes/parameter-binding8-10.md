@@ -1,4 +1,4 @@
-:::moniker range="= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 Parameter binding is the process of converting request data into strongly typed parameters that are expressed by route handlers. A binding source determines where parameters are bound from. Binding sources can be explicit or inferred based on HTTP method and parameter type.
 
@@ -369,17 +369,17 @@ public interface IBindableFromHttpContext<TSelf>
 
 By implementing the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601>, you can create custom types that handle their own binding logic from the HttpContext. When a route handler includes a parameter of this type, the framework automatically calls the static BindAsync method to create the instance:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/8.0-samples/CustomBindingExample/Program.cs" id="snippet_IBindableFromHttpContext":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/CustomBindingExample/Program.cs" id="snippet_IBindableFromHttpContext":::
 
 The following is an example implementation of a custom parameter that binds from an HTTP header:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/8.0-samples/CustomBindingExample/CustomBoundParameters.cs":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/CustomBindingExample/CustomBoundParameters.cs":::
 
 You can also implement validation within your custom binding logic:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/8.0-samples/CustomBindingExample/Program.cs" id="snippet_Validation":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/CustomBindingExample/Program.cs" id="snippet_Validation":::
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/8.0-samples/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
 
 ### Binding failures
 
