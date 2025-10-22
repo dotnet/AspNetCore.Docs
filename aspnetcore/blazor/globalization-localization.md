@@ -299,6 +299,28 @@ app.UseRequestLocalization(new RequestLocalizationOptions()
     .AddSupportedUICultures(new[] { "en-US", "es-CR" }));
 ```
 
+Supported cultures (<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedCultures%2A>) adds the set of the supported cultures for *globalization* (date, number, and currency formatting). Supported UI cultures (<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedUICultures%2A>) adds the set of the supported UI cultures *for localization* (translated UI strings for rendering content).
+
+In the preceding example, the same supported formatting cultures and UI cultures are specified in a narrow case where the app is only used in the United States and Costa Rica. Alternatively, an app can use a broader set of cultures for date, number, and currency formatting but only provide localized content for the United States and Costa Rica, as the following example demonstrates:
+
+```csharp
+var uiCultures = new[] { "en-US", "es-CR" };
+
+var formattingCultures = CultureInfo
+    .GetCultures(CultureTypes.SpecificCultures)
+    .Select(c => c.Name)
+    .ToArray();
+
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(uiCultures[0])
+    .AddSupportedCultures(formattingCultures )
+    .AddSupportedUICultures(uiCultures );
+
+app.UseRequestLocalization(localizationOptions);
+```
+
+In the preceding example, [`CultureTypes.SpecificCultures`](xref:System.Globalization.CultureTypes) specifies cultures that are specific to a country/region.
+
 For information on ordering the Localization Middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Costa Rican Spanish (`es-CR`) in the browser's language settings. Request the webpage again.
