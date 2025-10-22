@@ -1601,9 +1601,13 @@ public static class ServiceCollectionExtensions
 }
 ```
 
-In the Blazor Web App's server project, call the `.Client` project's service collection extension method (`AddValidationForTypesInClient`) and `AddValidation`:
+In the server project's `Program` file, add the namespace and call the `.Client` project's service collection extension method (`AddValidationForTypesInClient`) and `AddValidation`:
 
 ```csharp
+using BlazorSample.Client.Extensions;
+
+...
+
 builder.Services.AddValidationForTypesInClient();
 builder.Services.AddValidation();
 ```
