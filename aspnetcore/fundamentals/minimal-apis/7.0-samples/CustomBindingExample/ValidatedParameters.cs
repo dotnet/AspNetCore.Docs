@@ -14,7 +14,7 @@ public class ValidatedParameter : IBindableFromHttpContext<ValidatedParameter>
         // Perform some basic validation here
         if (string.IsNullOrEmpty(value))
         {
-            // Return an empty instance - the controller action will handle the validation failure
+            // Return an empty instance - the route handler will handle the validation failure
             return ValueTask.FromResult<ValidatedParameter?>(new ValidatedParameter
             {
                 Value = string.Empty
