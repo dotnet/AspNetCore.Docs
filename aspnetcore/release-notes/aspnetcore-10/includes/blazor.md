@@ -611,6 +611,13 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 
 If one of the preceding steps produces a validation error, the remaining steps are skipped.
 
+### Use validation models from a different assembly
+
+You can validate forms with models defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App, by creating a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
+* In the app, call both the method and `AddValidation`.
+
+For more information and an example, see <xref:blazor/forms/validation#use-validation-models-from-a-different-assembly?view=aspnetcore-10.0>.
+
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 
 Now that all Blazor client-side files are fingerprinted and cached by the browser, Blazor's custom caching mechanism and the `BlazorCacheBootResources` MSBuild property have been removed from the framework. If the client-side project's project file contains the MSBuild property, remove the property, as it no longer has any effect:
