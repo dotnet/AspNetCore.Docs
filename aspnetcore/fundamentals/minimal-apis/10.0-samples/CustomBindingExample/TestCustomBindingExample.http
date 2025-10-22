@@ -15,8 +15,7 @@ X-Custom-Header: TestHeaderValue
 Accept: text/plain
 
 ### Test the validated parameter endpoint - valid case
-GET {{host}}/validated
-X-Custom-Header: ValidValue
+GET {{host}}/validated?value=ValidValue
 Accept: text/plain
 
 ### Test the validated parameter endpoint - invalid case
