@@ -521,7 +521,7 @@ For more information, see <xref:blazor/host-and-deploy/server/index?view=aspnetc
 
 ### Improved form validation
 
-Blazor now has improved form validation capabilities, including support for validating properties of nested objects and collection items and using validation models defined in different assemblies, such as the `.Client` project of a Blazor Web App.
+Blazor now has improved form validation capabilities, including support for validating properties of nested objects and collection items.
 
 To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, just as before.
 
