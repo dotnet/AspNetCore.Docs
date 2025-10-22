@@ -521,7 +521,7 @@ For more information, see <xref:blazor/host-and-deploy/server/index?view=aspnetc
 
 ### Improved form validation
 
-Blazor now has improved form validation capabilities, including support for validating properties of nested objects and collection items.
+Blazor now has improved form validation capabilities, including support for validating properties of nested objects and collection items and using validation models defined in different assemblies, such as the `.Client` project of a Blazor Web App.
 
 To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, just as before.
 
@@ -610,6 +610,13 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
 
 If one of the preceding steps produces a validation error, the remaining steps are skipped.
+
+### Use validation models from a different assembly
+
+You can validate forms with models defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App by creating a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
+* In the app, call both the method and `AddValidation`.
+
+For more information and an example, see <xref:blazor/forms/validation#use-validation-models-from-a-different-assembly?view=aspnetcore-10.0>.
 
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 
