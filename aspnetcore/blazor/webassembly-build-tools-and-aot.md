@@ -39,17 +39,17 @@ The following list shows which workload to install for each .NET SDK, depending 
 
 <!-- UPDATE 10.0 - Surface new content 
 
-* .NET 10 SDK
+* Using the .NET 10 SDK
   * Targeting .NET 10 requires `wasm-tools`.
   * Targeting .NET 9 requires `wasm-tools-net9`.
   * Targeting .NET 8 requires `wasm-tools-net8`.
 
 -->
 
-* Using .NET 9 SDK
+* Using the .NET 9 SDK
   * Targeting .NET 9 requires `wasm-tools`.
   * Targeting .NET 8 requires `wasm-tools-net8`.
-* .NET 8 SDK: Targeting .NET 8 requires `wasm-tools`.
+* Using the .NET 8 SDK: Targeting .NET 8 requires `wasm-tools`.
 
 ## Ahead-of-time (AOT) compilation
 
