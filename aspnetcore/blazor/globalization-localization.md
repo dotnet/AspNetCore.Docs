@@ -314,7 +314,7 @@ var formattingCultures = CultureInfo
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(uiCultures[0])
     .AddSupportedCultures(formattingCultures )
-    .AddSupportedUICultures(uiCultures );
+    .AddSupportedUICultures(uiCultures);
 
 app.UseRequestLocalization(localizationOptions);
 ```
