@@ -1579,7 +1579,7 @@ The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work w
 For model validation defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App:
 
 * If the library is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the library for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation).
-* Create a method in the library or `.Client` project that receives an `IServiceCollection` instance as an argument and calls `AddValidation` on it.
+* Create a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
 * In the app, call both the method and `AddValidation`.
 
 The preceding approach results in validation of the types from both assemblies.
