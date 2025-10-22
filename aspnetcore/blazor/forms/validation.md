@@ -1593,7 +1593,8 @@ namespace BlazorSample.Client.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddValidationForTypesInClient(this IServiceCollection collection)
+    public static IServiceCollection AddValidationForTypesInClient(
+        this IServiceCollection collection)
     {
         return collection.AddValidation();
     }
