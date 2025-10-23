@@ -5,7 +5,7 @@ description: Learn how to render globalized and localized content to users in di
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/02/2025
+ms.date: 10/23/2025
 uid: blazor/globalization-localization
 ---
 # ASP.NET Core Blazor globalization and localization
@@ -289,7 +289,9 @@ In ***server-side development***, specify the app's supported cultures before an
 
 :::moniker range="< aspnetcore-8.0"
 
-In ***server-side development***, specify the app's supported cultures immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish:
+In ***server-side development***, specify the app's supported cultures immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish using the following API:
+
+* <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedCultures%2A> adds the set of the supported cultures for *globalization* (date, number, and currency formatting). Supported UI cultures * <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedUICultures%2A> adds the set of the supported UI cultures *for localization* (translated UI strings for rendering content).
 
 :::moniker-end
 
@@ -298,8 +300,6 @@ app.UseRequestLocalization(new RequestLocalizationOptions()
     .AddSupportedCultures(new[] { "en-US", "es-CR" })
     .AddSupportedUICultures(new[] { "en-US", "es-CR" }));
 ```
-
-Supported cultures (<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedCultures%2A>) adds the set of the supported cultures for *globalization* (date, number, and currency formatting). Supported UI cultures (<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedUICultures%2A>) adds the set of the supported UI cultures *for localization* (translated UI strings for rendering content).
 
 In the preceding example, the same supported formatting cultures and UI cultures are specified in a narrow case where the app is only used in the United States and Costa Rica. Alternatively, an app can use a broader set of cultures for date, number, and currency formatting but only provide localized content for the United States and Costa Rica, as the following example demonstrates:
 
