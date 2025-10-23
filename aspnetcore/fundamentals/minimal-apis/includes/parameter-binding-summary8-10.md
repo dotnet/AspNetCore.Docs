@@ -1,3 +1,10 @@
+---
+author: wadepickett
+ms.author: wpickett
+ms.date: 10/23/2025
+ai-usage: ai-assisted
+---
+
 :::moniker range=">= aspnetcore-8.0"
 
 Parameter binding is the process of converting request data into strongly typed parameters that are expressed by route handlers. A binding source determines where parameters are bound from. Binding sources can be explicit or inferred based on HTTP method and parameter type.
