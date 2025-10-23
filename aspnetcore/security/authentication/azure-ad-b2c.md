@@ -23,7 +23,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
 ## Prerequisites
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/dotnet).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * .NET SDK. [Install the latest .NET SDK](https://dotnet.microsoft.com/download/dotnet) for your platform.
 
 ## Preparation
