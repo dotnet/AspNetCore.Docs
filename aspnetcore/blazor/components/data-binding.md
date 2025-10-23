@@ -230,9 +230,9 @@ The `:get` and `:set` modifiers are always used together.
 
 With `:get`/`:set` binding, you can react to a value change before it's applied to the DOM, and you can change the applied value, if necessary. Whereas with `@bind:event="{EVENT}"` attribute binding, where the `{EVENT}` placeholder is a DOM event, you receive the notification after the DOM is updated, and there's no capacity to modify the applied value while binding.
 
-The reason to avoid directly modifying a component parameter is that it effectively mutates the parent's state from the child component. This can interfere with Blazor's change detection process and trigger extra render cycles because parameters are meant to be *inputs*, they're not meant to be mutable state. In chained scenarios where data is passed among components, directly writing to a component parameter can lead to unintended effects, such as infinite re-renders that hang the app.
+The reason to avoid directly modifying a component parameter is that it effectively mutates the parent's state from the child component. This can interfere with Blazor's change detection process and trigger extra render cycles because parameters are meant to be *inputs*, they're not meant to be mutable state. In chained scenarios where data is passed among components, directly writing to a component parameter can lead to unintended effects, such as infinite rerenders that hang the app.
 
-The `@bind:get`/`@bind:set` syntax allows you to:
+`@bind:get`/`@bind:set` syntax allows you to:
 
 * Avoid creating an extra "middle" property that only exists to forward values and callbacks across chained components.
 * Intercept and transform values before they're applied.
@@ -243,7 +243,7 @@ A useful analogy is [HTML's `<input>` element](https://developer.mozilla.org/doc
 * `defaultValue`: Like a component parameter received from the parent.
 * `value`: Like the current state inside the component.
 
-If you mutate `defaultValue` directly, you're breaking the contract. Instead, these states are kept separate and only the `value` is updated through controlled means after the initial render of the element. The same reasoning applies to component parameters, and using `@bind:get`/`@bind:set` syntax avoids the problems associated with writing directly to component parameters.
+If you mutate `defaultValue` directly, you're breaking the contract. Instead, these states are kept separate, and only the `value` is updated through controlled means after the initial render of the element. The same reasoning applies to component parameters, and using `@bind:get`/`@bind:set` syntax avoids potential unintended rendering effects associated with writing directly to component parameters.
 
 The following `BindGetSet` component demonstrates `@bind:get`/`@bind:set` syntax for `<input>` elements and the [`InputText` component](xref:blazor/forms/input-components) used by [Blazor forms](xref:blazor/forms/index) in synchronous (`Set`) and asynchronous (`SetAsync`) scenarios.
 
