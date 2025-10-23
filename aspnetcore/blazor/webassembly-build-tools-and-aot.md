@@ -22,7 +22,7 @@ To install the build tools as a .NET workload, use ***either*** of the following
 
 * For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components. The option ensures the following:
   * The workload is installed for the latest .NET SDK.
-  * When new version of Visual Studio is released and it contains a new .NET SDK, the option installs the workload for the new SDK.
+  * When a new version of Visual Studio is released and it contains a new .NET SDK, the option installs the workload for the new SDK.
 * Alternatively, execute the following command in an *administrative command shell* for the latest workload and latest .NET SDK installed on the system:
 
   ```dotnetcli
