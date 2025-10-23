@@ -33,6 +33,9 @@ The following GET route handler uses some of these parameter binding sources:
 * **Dependency injection**: Parameters are automatically bound from services registered in the DI container.
 * **Special types**: Automatic binding for `HttpContext`, `HttpRequest`, `HttpResponse`, `CancellationToken`, `ClaimsPrincipal`, `Stream`, and `PipeReader`.
 
-For detailed information on parameter binding including advanced scenarios, validation, binding precedence, and troubleshooting, see <xref:fundamentals/minimal-apis/parameter-binding>.
+---
+
+**Learn more:** For detailed information on parameter binding including advanced scenarios, validation, binding precedence, and troubleshooting, see <xref:fundamentals/minimal-apis/parameter-binding>.
+
 
 :::moniker-end
