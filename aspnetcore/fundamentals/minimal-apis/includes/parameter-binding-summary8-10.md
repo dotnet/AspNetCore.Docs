@@ -19,7 +19,7 @@ Supported binding sources:
 * Services provided by dependency injection
 * Custom
 
-The following example demonstrates parameter binding from various sources:
+The following GET route handler uses some of these parameter binding sources:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_pbg" highlight="8-11":::
 
