@@ -50,7 +50,7 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 ## Parameter binding
 
-[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding8-10.md)]
+[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding8-10-summary.md)]
 
 ## Responses
 
