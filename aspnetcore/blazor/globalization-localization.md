@@ -5,7 +5,7 @@ description: Learn how to render globalized and localized content to users in di
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/02/2025
+ms.date: 10/23/2025
 uid: blazor/globalization-localization
 ---
 # ASP.NET Core Blazor globalization and localization
@@ -289,7 +289,10 @@ In ***server-side development***, specify the app's supported cultures before an
 
 :::moniker range="< aspnetcore-8.0"
 
-In ***server-side development***, specify the app's supported cultures immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish:
+In ***server-side development***, specify the app's supported cultures immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish using the following API:
+
+* <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedCultures%2A> adds the set of the supported cultures for *globalization* (date, number, and currency formatting).
+* <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedUICultures%2A> adds the set of the supported UI cultures *for localization* (translated UI strings for rendering content).
 
 :::moniker-end
 
@@ -298,6 +301,26 @@ app.UseRequestLocalization(new RequestLocalizationOptions()
     .AddSupportedCultures(new[] { "en-US", "es-CR" })
     .AddSupportedUICultures(new[] { "en-US", "es-CR" }));
 ```
+
+In the preceding example, the same supported formatting cultures and UI cultures are specified in a narrow case where the app is only used in the United States and Costa Rica. Alternatively, an app can use a broader set of cultures for date, number, and currency formatting but only provide localized content for the United States and Costa Rica, as the following example demonstrates:
+
+```csharp
+var uiCultures = new[] { "en-US", "es-CR" };
+
+var formattingCultures = CultureInfo
+    .GetCultures(CultureTypes.SpecificCultures)
+    .Select(c => c.Name)
+    .ToArray();
+
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(uiCultures[0])
+    .AddSupportedCultures(formattingCultures)
+    .AddSupportedUICultures(uiCultures);
+
+app.UseRequestLocalization(localizationOptions);
+```
+
+In the preceding example, [`CultureTypes.SpecificCultures`](xref:System.Globalization.CultureTypes) returns only cultures that are specific to a country or region—such as `en-US` or `fr-FR`—which come with full, concrete globalization data (for dates, numbers, calendars, and other cultural UI) that .NET can use for accurate formatting and parsing. Neutral cultures, such as `en` or `fr`, may not have complete globalization data, so they aren't included in this list.
 
 For information on ordering the Localization Middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
 
