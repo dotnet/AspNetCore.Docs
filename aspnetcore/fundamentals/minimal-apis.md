@@ -10,7 +10,14 @@ uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
 
-<!-- When working on this file, open all the LATEST VERSION MD files in ~/fundamentals/minimal-apis/includes/ and search for the target text -->
+<!--
+Editorial note: This file is a quick reference summary:
+- When working on this file, open all the LATEST VERSION MD files in ~/fundamentals/minimal-apis/includes/ and search for the target text.
+- Only include brief overviews, essential lists, and basic examples in this file.
+- Do NOT add detailed explanations, advanced scenarios, or troubleshooting—move those to dedicated include files (for example: parameter-binding8-10.md) and link to them from here if needed.
+- All in-depth content should be placed in the appropriate in-depth include file for maintainability and clarity.
+- Use H3 (###) for section headings within this include.
+-->
 
 # Minimal APIs quick reference
 
