@@ -35,7 +35,7 @@ The parameters in the preceding examples are all bound from request data automat
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/Program.cs" id="snippet_ManualRequestBinding" highlight="3-5,12":::
 
-### Explicit Parameter Binding
+## Explicit Parameter Binding
 
 Attributes can be used to explicitly declare where parameters are bound from.
 
@@ -49,7 +49,7 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | `service`   | Provided by dependency injection |
 | `contentType` | header with the name `"Content-Type"` |
 
-#### Explicit binding from form values
+### Explicit binding from form values
 
 The [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute binds form values:
 
@@ -65,7 +65,7 @@ For more information, see the section on [AsParameters](#parameter-binding-for-a
 
 The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/IFormFile) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
-#### Secure binding from IFormFile and IFormFileCollection
+### Secure binding from IFormFile and IFormFileCollection
 
 Complex form binding is supported using <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> using the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute):
 
@@ -77,13 +77,13 @@ For more information, see [Form binding in minimal APIs](https://andrewlock.net/
 
 The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/FormBinding) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
-### Parameter binding with dependency injection
+## Parameter binding with dependency injection
 
 Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 :::code language="csharp" source="~/release-notes/aspnetcore-7/samples/ApiController/Program.cs" id="snippet_min" highlight="8-9":::
 
-### Optional parameters
+## Optional parameters
 
 Parameters declared in route handlers are treated as required:
 
@@ -127,7 +127,7 @@ The preceding code calls the method with a null product if no request body is se
 
 See the [Binding Failures](#bf) section for more information.
 
-### Special types
+## Special types
 
 The following types are bound without explicit attributes:
 
@@ -159,7 +159,7 @@ The following types are bound without explicit attributes:
 
 <a name="rbs"></a>
 
-#### Bind the request body as a `Stream` or `PipeReader`
+### Bind the request body as a `Stream` or `PipeReader`
 
 The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`PipeReader`](/dotnet/api/system.io.pipelines.pipereader) to efficiently support scenarios where the user has to process data and:
 
@@ -184,7 +184,7 @@ The following code shows the complete `Program.cs` file:
 * The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
 * The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
 
-#### File uploads using IFormFile and IFormFileCollection
+### File uploads using IFormFile and IFormFileCollection
 
 File uploads using `IFormFile` and `IFormFileCollection` in minimal APIs require `multipart/form-data` encoding. The parameter name in the route handler must match the form field name in the request. Minimal APIs don't support binding the entire request body directly to an `IFormFile` parameter without form encoding.
 
@@ -201,7 +201,7 @@ Authenticated file upload requests are supported using an [Authorization header]
 
 <a name="bind8"></a>
 
-#### Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
+### Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
 
 Binding from form-based parameters using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is supported. [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
 
@@ -219,7 +219,7 @@ For more information, see [Form binding in minimal APIs](https://andrewlock.net/
 
 <a name="bindcc"></a>
 
-### Bind to collections and complex types from forms
+## Bind to collections and complex types from forms
 
 Binding is supported for:
 
@@ -251,7 +251,7 @@ isCompleted: false
 
 <a name="bindar"></a>
 
-### Bind arrays and string values from headers and query strings
+## Bind arrays and string values from headers and query strings
 
 The following code demonstrates binding query strings to an array of primitive types, string arrays, and [StringValues](/dotnet/api/microsoft.extensions.primitives.stringvalues):
 
@@ -286,7 +286,7 @@ The following code binds to the header key `X-Todo-Id` and returns the `Todo` it
 
 <a name="asparam7"></a>
 
-### Parameter binding for argument lists with [AsParameters]
+## Parameter binding for argument lists with [AsParameters]
 
 <xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables simple parameter binding to types and not complex or recursive model binding.
 
@@ -326,7 +326,7 @@ Using a `struct` with `AsParameters` can be more performant than using a `record
 
 The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/arg-lists) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
-### Custom Binding
+## Custom Binding
 
 There are three ways to customize parameter binding:
 
@@ -334,7 +334,7 @@ There are three ways to customize parameter binding:
 1. Control the binding process by implementing a `BindAsync` method on a type.
 1. For advanced scenarios, implement the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface to provide custom binding logic directly from the `HttpContext`.
 
-#### TryParse
+### TryParse
 
 `TryParse` has two APIs:
 
@@ -347,7 +347,7 @@ The following code displays `Point: 12.3, 10.1` with the URI `/map?Point=12.3,10
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_cb":::
 
-#### BindAsync
+### BindAsync
 
 `BindAsync` has the following APIs:
 
@@ -362,7 +362,7 @@ The following code displays `SortBy:xyz, SortDirection:Desc, CurrentPage:99` wit
 
 <a name="bf"></a>
 
-#### Custom parameter binding with `IBindableFromHttpContext`
+### Custom parameter binding with `IBindableFromHttpContext`
 
 ASP.NET Core provides support for custom parameter binding in Minimal APIs using the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface. This interface, introduced with C# 11's static abstract members, allows you to create types that can be bound from an HTTP context directly in route handler parameters.
 
@@ -388,7 +388,7 @@ You can also implement validation within your custom binding logic:
 
 [View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
 
-### Binding failures
+## Binding failures
 
 When binding fails, the framework logs a debug message and returns various status codes to the client depending on the failure mode.
 
@@ -400,7 +400,7 @@ When binding fails, the framework logs a debug message and returns various statu
 | Failure to deserialize JSON body |doesn't matter|body|400|
 | Wrong content type (not `application/json`) |doesn't matter|body|415|
 
-### Binding Precedence
+## Binding Precedence
 
 The rules for determining a binding source from a parameter:
 
@@ -430,11 +430,11 @@ The rules for determining a binding source from a parameter:
 1. If the parameter type is a service provided by dependency injection, it uses that service as the source.
 1. The parameter is from the body.
 
-### Configure JSON deserialization options for body binding
+## Configure JSON deserialization options for body binding
 
 The body binding source uses <xref:System.Text.Json?displayProperty=fullName> for deserialization. It is ***not*** possible to change this default, but JSON serialization and deserialization options can be configured.
 
-#### Configure JSON deserialization options globally
+### Configure JSON deserialization options globally
 
 Options that apply globally for an app can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example includes public fields and formats JSON output.
 
@@ -442,7 +442,7 @@ Options that apply globally for an app can be configured by invoking <xref:Micro
 
 Since the sample code configures both serialization and deserialization, it can read `NameField` and include `NameField` in the output JSON.
 
-#### Configure JSON deserialization options for an endpoint
+### Configure JSON deserialization options for an endpoint
 
 <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync%2A> has overloads that accept a <xref:System.Text.Json.JsonSerializerOptions> object. The following example includes public fields and formats JSON output.
 
@@ -450,7 +450,7 @@ Since the sample code configures both serialization and deserialization, it can 
 
 Since the preceding code applies the customized options only to deserialization, the output JSON excludes `NameField`.
 
-### Read the request body
+## Read the request body
 
 Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
 
