@@ -554,15 +554,15 @@ Transient service registrations for <xref:System.Net.Http.IHttpClientFactory>/<x
 
 Other instances of <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> are also discovered. These instances can also be ignored.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
 The Blazor sample apps in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples/tree/main) ([how to download](xref:blazor/fundamentals/index#sample-apps)) demonstrate the code to detect transient disposables. However, the code is deactivated because the sample apps include <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers.
 
 To activate the demonstration code and witness its operation:
 
 * Uncomment the transient disposable lines in `Program.cs`.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
 
 * Remove the conditional check in `NavMenu.razor` that prevents the `TransientService` component from displaying in the app's navigation sidebar:
 
@@ -570,11 +570,13 @@ To activate the demonstration code and witness its operation:
   - && (c.Name != "TransientService")
   ```
 
+* Run the sample app and navigate to the `TransientService` component at `/transient-service`.
+
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-* Run the sample app and navigate to the `TransientService` component at `/transient-service`.
+The Blazor sample apps in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples/tree/main) ([how to download](xref:blazor/fundamentals/index#sample-apps)) demonstrate the code to detect transient disposables. Run the sample app and navigate to the `TransientService` component at `/transient-service`.
 
 :::moniker-end
 
