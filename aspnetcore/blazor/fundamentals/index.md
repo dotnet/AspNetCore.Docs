@@ -179,6 +179,8 @@ Documentation sample apps are available for inspection and download:
 
 Locate a sample app by first selecting the version folder that matches the version of .NET that you're working with.
 
+Sample apps only contain a subset of article examples for Blazor feature demonstrations. When a code example shown by an article isn't in one or more of the sample apps, you can usally place the example code into a local test app for a demonsration.
+
 :::moniker range=">= aspnetcore-9.0"
 
 Samples apps in the repository:
