@@ -186,6 +186,13 @@ The following code shows the complete `Program.cs` file:
 
 ### File uploads using IFormFile and IFormFileCollection
 
+File uploads using `IFormFile` and `IFormFileCollection` in minimal APIs require `multipart/form-data` encoding. The parameter name in the route handler must match the form field name in the request. Minimal APIs don't support binding the entire request body directly to an `IFormFile` parameter without form encoding.
+
+If you need to bind the entire request body, for example, when working with JSON, binary data, or other content types, see:
+
+- [Bind the request body as a Stream or PipeReader](#bind-the-request-body-as-a-stream-or-pipereader)
+- [Explicit Parameter Binding](#explicit-parameter-binding)
+
 The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/7.0-samples/MinimalApi/Program.cs" :::
