@@ -560,12 +560,19 @@ To activate the demonstration code and witness its operation:
 
 * Uncomment the transient disposable lines in `Program.cs`.
 
-* Remove the conditional check in `NavLink.razor` that prevents the `TransientService` component from displaying in the app's navigation sidebar:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+* Remove the conditional check in `NavMenu.razor` that prevents the `TransientService` component from displaying in the app's navigation sidebar:
 
   ```diff
-  - else if (name != "TransientService")
-  + else
+  - && (c.Name != "TransientService")
   ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 * Run the sample app and navigate to the `TransientService` component at `/transient-service`.
 
