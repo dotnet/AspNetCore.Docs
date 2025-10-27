@@ -5,7 +5,7 @@ description: Learn foundational concepts of the Blazor application framework.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 10/27/2025
 uid: blazor/fundamentals/index
 ---
 # ASP.NET Core Blazor fundamentals
@@ -178,6 +178,8 @@ Documentation sample apps are available for inspection and download:
 [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 Locate a sample app by first selecting the version folder that matches the version of .NET that you're working with.
+
+Sample apps only contain a subset of article examples for Blazor feature demonstrations. When a code example shown by an article isn't in one or more of the sample apps, you can usually place the example code into a local test app for a demonstration.
 
 :::moniker range=">= aspnetcore-9.0"
 
