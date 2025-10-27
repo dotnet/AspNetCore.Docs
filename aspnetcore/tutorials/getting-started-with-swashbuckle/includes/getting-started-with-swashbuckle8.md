@@ -2,7 +2,7 @@
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 > [!NOTE]
-> Starting with .NET 9, ASP.NET Core includes built-in OpenAPI support. Swashbuckle is no longer included by default, but it remains available as a community package that you can add manually to ASP.NET Core in .NET 9+ projects. For more information, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
+> Starting with .NET 9, ASP.NET Core includes built-in OpenAPI support. Swashbuckle is no longer included by default, but it remains available as a community package that you can add manually to .NET 9+ ASP.NET Core projects. For more information, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
 
 There are three main components to Swashbuckle:
 
