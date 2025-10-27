@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about the new features in ASP.NET Core in .NET 8.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/02/2024
+ms.date: 10/26/2025
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core in .NET 8
@@ -869,7 +869,7 @@ The following sections describe miscellaneous new features in ASP.NET Core in .N
 
 ### Visual Studio project templates for SPA apps with ASP.NET Core backend
 
-Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript frameworks [Angular](https://angular.dev/), [React](https://react.dev/), and [Vue](https://vuejs.org/). These templates:
+Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript technologies, such as [Angular](https://angular.dev/), [React](https://react.dev/), and [Vue](https://vuejs.org/). These templates:
 
 * Create a Visual Studio solution with a frontend project and a backend project.
 * Use the Visual Studio project type for JavaScript and TypeScript (*.esproj*) for the frontend.
