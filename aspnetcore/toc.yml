@@ -227,9 +227,6 @@ items:
           - name: Data access >>
             displayName: tutorial, ef, entity framework
             href: /training/modules/persist-data-ef-core/
-          - name: Web app security >>
-            displayName: tutorial, identity
-            href: /training/modules/secure-aspnet-core-identity/
   - name: Fundamentals
     items:
       - name: Overview
