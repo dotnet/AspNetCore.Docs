@@ -7,7 +7,7 @@
 > • To understand the built‑in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.  
 > • To add and use the Swagger UI provided by the `Swashbuckle.AspNetCore.SwaggerUI` package for interactive exploration or local ad‑hoc testing, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
 >
->The following explanations and instructions are provided in case you want to use Swashbuckle anyway.
+>The following instructions apply when using Swashbuckle with .NET versions earlier than 9.
 
 There are three main components to Swashbuckle:
 
