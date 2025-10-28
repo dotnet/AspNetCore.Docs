@@ -3,8 +3,9 @@
 
 > [!NOTE]
 > In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support. Swashbuckle is no longer included by default, but it remains available as a community package you can add manually to ASP.NET Core projects targeting .NET 9 or later.
+> 
 > • To understand the built‑in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.  
-> • To add and use the Swagger UI provided by the Swashbuckle.AspNetCore.SwaggerUI package for interactive exploration or local ad‑hoc testing, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+> • To add and use the Swagger UI provided by the `Swashbuckle.AspNetCore.SwaggerUI` package for interactive exploration or local ad‑hoc testing, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
 
 There are three main components to Swashbuckle:
 
