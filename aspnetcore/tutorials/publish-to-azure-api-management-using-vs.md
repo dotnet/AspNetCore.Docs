@@ -17,7 +17,7 @@ In this tutorial you'll learn how to create an ASP.NET Core web API project usin
 
 To complete the tutorial you'll need an Azure account.
 
-* Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
+* Open a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) if you don't have one.
 
 ## Create an ASP.NET Core web API
 
