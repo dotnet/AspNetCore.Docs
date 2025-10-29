@@ -100,7 +100,7 @@ Run the app and ensure that the QR code is scannable and that the code validates
 
 The `EnableAuthenticator` component can be inspected in reference source:
 
-[`EnableAuthenticator` component in reference source](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/Pages/Manage/EnableAuthenticator.razor)
+[Follow this link and search for `EnableAuthenticator.razor` (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

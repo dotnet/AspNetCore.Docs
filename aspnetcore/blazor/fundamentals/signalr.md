@@ -600,9 +600,11 @@ An element with an `id` of `components-seconds-to-next-attempt` displays the num
 
 The Blazor Web App project template includes a `ReconnectModal` component (`Layout/ReconnectModal.razor`) with collocated stylesheet and JavaScript files (`ReconnectModal.razor.css`, `ReconnectModal.razor.js`) that can be customized as needed. These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template. The component is added to the project when the project is created in Visual Studio with **Interactive render mode** set to **Server** or **Auto** or created with the .NET CLI with the option `--interactivity server` (default) or `--interactivity auto`.
 
-* [`ReconnectModal` component](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor)
-* [Stylesheet file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.css)
-* [JavaScript file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.js)
+In the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp), search for the following files in the server project:
+
+* `ReconnectModal.razor`
+* `ReconnectModal.razor.css`
+* `ReconnectModal.razor.js`
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
