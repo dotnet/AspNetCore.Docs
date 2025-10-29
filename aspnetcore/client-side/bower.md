@@ -117,3 +117,7 @@ In this section, you will create an HTML page to verify it can access the deploy
 * Run the app and navigate to `http://localhost:<port>/Index.html`. Alternatively, with *Index.html* opened, press `Ctrl+Shift+W`. Verify that the jumbotron styling is applied, the jQuery code responds when the button is clicked, and that the Bootstrap button changes state.
 
   ![jumbotron style applied](bower/_static/jumbotron.png)
+
+Test Comments
+
+Country
