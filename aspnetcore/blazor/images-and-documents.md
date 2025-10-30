@@ -5,7 +5,7 @@ description: Learn how to display images and documents in ASP.NET Core Blazor ap
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 10/30/2025
 uid: blazor/images-and-documents
 ---
 # Display images and documents in ASP.NET Core Blazor
