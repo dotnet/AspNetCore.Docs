@@ -5,7 +5,7 @@ description: Discover how to enable Web Authentication API (WebAuthn) passkeys i
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
-ms.date: 09/10/2025
+ms.date: 10/30/2025
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys

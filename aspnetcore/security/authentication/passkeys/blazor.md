@@ -5,7 +5,7 @@ description: Learn how to implement passkeys authentication in ASP.NET Core Blaz
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
-ms.date: 10/20/2025
+ms.date: 10/30/2025
 uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---

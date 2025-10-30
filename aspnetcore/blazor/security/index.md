@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/30/2025
+ms.date: 10/30/2025
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
