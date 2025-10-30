@@ -5,11 +5,15 @@ description: Learn how to implement passkeys authentication in ASP.NET Core Blaz
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
-ms.date: 10/20/2025
+ms.date: 10/30/2025
 uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---
 # Implement passkeys in ASP.NET Core Blazor Web Apps
+
+<!-- UPDATE 11.0 - Confirm that the 'BlazorWebCSharp.1' folder 
+                   locations for links in this article are
+                   still correct for release -->
 
 This guide explains how to implement [passkey support](xref:security/authentication/passkeys/index) for a new or existing Blazor Web App with ASP.NET Core Identity.
 
