@@ -159,7 +159,7 @@ For more information, see <xref:blazor/components/sections?view=aspnetcore-8.0&p
 
 Blazor Web Apps can define a custom error page for use with the [ASP.NET Core exception handling middleware](xref:fundamentals/error-handling#exception-handler-page). The Blazor Web App project template includes a default error page with similar content to the one used in MVC and Razor Pages apps. When the error page is rendered in response to a request from Exception Handling Middleware, the error page always renders as a static server component, even if interactivity is otherwise enabled.
 
-See the `Error` component (`Components/Pages/Error.razor`) in the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp).
+See the `Error` component (`Components/Pages/Error.razor`) of the server project in the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

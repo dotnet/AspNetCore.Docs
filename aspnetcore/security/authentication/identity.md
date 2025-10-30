@@ -75,11 +75,11 @@ dotnet new blazor -au Individual -uld -o BlazorApp1
 
 The generated project includes Identity Razor components. The components are found in the `Components/Account` folder of the server project. For example:
 
-* `/Components/Account/Pages/Register.razor`
-* `/Components/Account/Pages/Login.razor`
-* `/Components/Account/Pages/Manage/ChangePassword.razor`
+* `Components/Account/Pages/Register.razor`
+* `Components/Account/Pages/Login.razor`
+* `Components/Account/Pages/Manage/ChangePassword.razor`
 
-Identity Razor components are described individually in the documentation for specific use cases and are subject to change each release. When you generate a Blazor Web App with Individual Accounts, Identity Razor components are included in the generated project. The Identity Razor components can also be inspected in the [`Components/Account` folder of the Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp). 
+Identity Razor components are described individually in the documentation for specific use cases and are subject to change each release. When you generate a Blazor Web App with Individual Accounts, Identity Razor components are included in the generated project. The Identity Razor components can also be inspected in the `Components/Account` folder of the server project in the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp). 
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
