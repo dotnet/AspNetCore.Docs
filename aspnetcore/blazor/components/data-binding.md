@@ -960,11 +960,11 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 
 Prior to the release of .NET 7, two-way binding across components uses `get`/`set` accessors with a third property that discards the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in its setter. To see an example of this approach for .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of this section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
 
-The reason to avoid directly modifying a component parameter is that it effectively mutates the parent's state from the child component. This can interfere with Blazor's change detection process and trigger extra render cycles because parameters are meant to be *inputs*, they're not meant to be mutable state. In chained scenarios where data is passed among components, directly writing to a component parameter can lead to unintended effects, such as infinite rerenders that hang the app.
+The reason to avoid directly changing the value of a component parameter is that it effectively mutates the parent's state from the child component. This can interfere with Blazor's change detection process and trigger extra render cycles because parameters are meant to be *inputs*, they're not meant to be mutable state. In chained scenarios where data is passed among components, directly writing to a component parameter can lead to unintended effects, such as infinite rerenders that hang the app.
 
 `@bind:get`/`@bind:set` syntax allows you to:
 
-* Avoid creating an extra "middle" property that only exists to forward values and callbacks across chained components.
+* Avoid creating an extra property that only exists to forward values and callbacks across chained components, which was required prior to the release of .NET 7.
 * Intercept and transform values before they're applied.
 * Keep the parameter immutable in the child, while still supporting two-way binding.
 
