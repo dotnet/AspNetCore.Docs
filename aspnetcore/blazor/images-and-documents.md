@@ -5,7 +5,7 @@ description: Learn how to display images and documents in ASP.NET Core Blazor ap
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 10/30/2025
 uid: blazor/images-and-documents
 ---
 # Display images and documents in ASP.NET Core Blazor
@@ -187,6 +187,8 @@ The following `ShowFile` component loads either a text file (`files/quote.txt`) 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/images/ShowFile.razor":::
 
 :::moniker-end
+
+In the preceding example, the `using` statement for the `response` variable doesn't dispose of the <xref:System.Net.Http.HttpResponseMessage> instance until the scope of `ShowFileAsync` ends. The open stream is maintained long enough to transfer the file data to the `setSource` function via JavaScript interop. For general guidance on the importance of disposing of <xref:System.Net.Http.HttpResponseMessage> instances, see <xref:blazor/call-web-api#disposal-of-httprequestmessage-httpresponsemessage-and-httpclient>.
 
 ## Additional resources
 
