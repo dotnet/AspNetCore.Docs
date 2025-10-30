@@ -5,7 +5,7 @@ description: Learn about data binding features for Razor components and DOM elem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 11/12/2024
+ms.date: 10/30/2025
 uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
@@ -230,6 +230,8 @@ The `:get` and `:set` modifiers are always used together.
 
 With `:get`/`:set` binding, you can react to a value change before it's applied to the DOM, and you can change the applied value, if necessary. Whereas with `@bind:event="{EVENT}"` attribute binding, where the `{EVENT}` placeholder is a DOM event, you receive the notification after the DOM is updated, and there's no capacity to modify the applied value while binding.
 
+The following `BindGetSet` component demonstrates `@bind:get`/`@bind:set` syntax for `<input>` elements and the [`InputText` component](xref:blazor/forms/input-components) used by [Blazor forms](xref:blazor/forms/index) in synchronous (`Set`) and asynchronous (`SetAsync`) scenarios.
+
 `BindGetSet.razor`:
 
 ```razor
@@ -251,7 +253,7 @@ With `:get`/`:set` binding, you can react to a value change before it's applied 
 <InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
 @code {
-    private string text = "";
+    private string text = string.Empty;
 
     private void Set(string value)
     {
@@ -957,6 +959,21 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 * Updates `GrandchildMessage` when `ChildMessageChanged` executes with `@bind:set` syntax.
 
 Prior to the release of .NET 7, two-way binding across components uses `get`/`set` accessors with a third property that discards the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in its setter. To see an example of this approach for .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of this section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
+
+The reason to avoid directly changing the value of a component parameter is that it effectively mutates the parent's state from the child component. This can interfere with Blazor's change detection process and trigger extra render cycles because parameters are meant to be *inputs*, they're not meant to be mutable state. In chained scenarios where data is passed among components, directly writing to a component parameter can lead to unintended effects, such as infinite rerenders that hang the app.
+
+`@bind:get`/`@bind:set` syntax allows you to:
+
+* Avoid creating an extra property that only exists to forward values and callbacks across chained components, which was required prior to the release of .NET 7.
+* Intercept and transform values before they're applied.
+* Keep the parameter immutable in the child, while still supporting two-way binding.
+
+A useful analogy is [HTML's `<input>` element](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input) that tracks the following value states:
+
+* `defaultValue`: Like a component parameter received from the parent.
+* `value`: Like the current state inside the component.
+
+If you mutate `defaultValue` directly, you're breaking the contract. Instead, these states are kept separate, and only the `value` is updated through controlled means after the initial render of the element. The same reasoning applies to component parameters, and using `@bind:get`/`@bind:set` syntax avoids potential unintended rendering effects associated with writing directly to component parameters.
 
 :::moniker-end
 
