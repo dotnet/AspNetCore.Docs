@@ -951,7 +951,7 @@ app.MapPatch("/todoitems/{id}", async (long id, TodoContext db) =>
         return TypedResults.Ok(todo);
     }
 
-    return TypedResults.NoContent();
+    return TypedResults.NotFound();
 });
 ```
 
