@@ -269,7 +269,7 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
                 operation.Value.Security ??= [];
                 operation.Value.Security.Add(new OpenApiSecurityRequirement
                 {
-                    [new OpenApiSecuritySchemeReference("Bearer")] = []
+                    [new OpenApiSecuritySchemeReference("Bearer", document)] = []
                 });
             }
         }

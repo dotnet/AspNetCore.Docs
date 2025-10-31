@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about the new features in ASP.NET Core in .NET 8.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/02/2024
+ms.date: 10/30/2025
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core in .NET 8
@@ -157,9 +157,11 @@ For more information, see <xref:blazor/components/sections?view=aspnetcore-8.0&p
 
 ### Error page support
 
-Blazor Web Apps can define a custom error page for use with the [ASP.NET Core exception handling middleware](xref:fundamentals/error-handling#exception-handler-page). The Blazor Web App project template includes a default error page (`Components/Pages/Error.razor`) with similar content to the one used in MVC and Razor Pages apps. When the error page is rendered in response to a request from Exception Handling Middleware, the error page always renders as a static server component, even if interactivity is otherwise enabled.
+Blazor Web Apps can define a custom error page for use with the [ASP.NET Core exception handling middleware](xref:fundamentals/error-handling#exception-handler-page). The Blazor Web App project template includes a default error page with similar content to the one used in MVC and Razor Pages apps. When the error page is rendered in response to a request from Exception Handling Middleware, the error page always renders as a static server component, even if interactivity is otherwise enabled.
 
-[`Error.razor` in 8.0 reference source](https://github.com/dotnet/aspnetcore/blob/release/8.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Pages/Error.razor)
+See the `Error` component (`Components/Pages/Error.razor`) of the server project in the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### QuickGrid
 
@@ -869,7 +871,7 @@ The following sections describe miscellaneous new features in ASP.NET Core in .N
 
 ### Visual Studio project templates for SPA apps with ASP.NET Core backend
 
-Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript frameworks [Angular](https://angular.dev/), [React](https://react.dev/), and [Vue](https://vuejs.org/). These templates:
+Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript technologies, such as [Angular](https://angular.dev/), [React](https://react.dev/), and [Vue](https://vuejs.org/). These templates:
 
 * Create a Visual Studio solution with a frontend project and a backend project.
 * Use the Visual Studio project type for JavaScript and TypeScript (*.esproj*) for the frontend.

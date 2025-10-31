@@ -5,7 +5,7 @@ description: Learn how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 10/27/2025
 uid: blazor/fundamentals/dependency-injection
 ---
 # ASP.NET Core Blazor dependency injection
@@ -554,20 +554,29 @@ Transient service registrations for <xref:System.Net.Http.IHttpClientFactory>/<x
 
 Other instances of <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> are also discovered. These instances can also be ignored.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
 The Blazor sample apps in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples/tree/main) ([how to download](xref:blazor/fundamentals/index#sample-apps)) demonstrate the code to detect transient disposables. However, the code is deactivated because the sample apps include <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers.
 
 To activate the demonstration code and witness its operation:
 
 * Uncomment the transient disposable lines in `Program.cs`.
 
-* Remove the conditional check in `NavLink.razor` that prevents the `TransientService` component from displaying in the app's navigation sidebar:
+* Remove the conditional check in `NavMenu.razor` that prevents the `TransientService` component from displaying in the app's navigation sidebar:
 
   ```diff
-  - else if (name != "TransientService")
-  + else
+  - && (c.Name != "TransientService")
   ```
 
 * Run the sample app and navigate to the `TransientService` component at `/transient-service`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+The Blazor sample apps in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples/tree/main) ([how to download](xref:blazor/fundamentals/index#sample-apps)) demonstrate the code to detect transient disposables. Run the sample app and navigate to the `TransientService` component at `/transient-service`.
 
 :::moniker-end
 
