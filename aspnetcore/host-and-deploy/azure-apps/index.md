@@ -74,24 +74,10 @@ The preceding packages must be explicitly referenced in the app's project file.
 
 ## Override app configuration using the Azure Portal
 
-:::moniker range=">= aspnetcore-3.0"
+App settings in the Azure Portal permit you to set environment variables for the app. For more information, see the following resources:
 
-App settings in the Azure Portal permit you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables).
-
-When an app setting is created or modified in the Azure Portal and the **Save** button is selected, the Azure App is restarted. The environment variable is available to the app after the service restarts.
-
-Environment variables are loaded into the app's configuration when [CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder) is called to build the host. For more information, see the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables).
-
-:::moniker-end
-:::moniker range="< aspnetcore-3.0"
-
-App settings in the Azure Portal permit you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#evcp).
-
-When an app setting is created or modified in the Azure Portal and the **Save** button is selected, the Azure App is restarted. The environment variable is available to the app after the service restarts.
-
-When an app uses the [Web Host](xref:fundamentals/host/web-host), environment variables are loaded into the app's configuration when <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> is called to build the host. For more information, see <xref:fundamentals/host/web-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#evcp).
-
-:::moniker-end
+* [Configure an App Service app (Azure documentation)](/azure/app-service/configure-common)
+* <xref:fundamentals/configuration/index#environment-variables-configuration-provider>
 
 ## Proxy server and load balancer scenarios
 
