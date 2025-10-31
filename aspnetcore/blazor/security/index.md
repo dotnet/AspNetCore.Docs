@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/30/2025
+ms.date: 10/31/2025
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -138,7 +138,7 @@ After choosing the server-side app template and configuring the project, select 
 
 * **None** (default): No authentication.
 * **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
-* **Microsoft identity platform**: For more information, see the [Additional resources](#additional-resources) section.
+* **Microsoft identity platform**: For more information, see the links in the [Additional resources](#additional-resources) section.
 * **Windows**: Use Windows Authentication.
 
 :::moniker-end
