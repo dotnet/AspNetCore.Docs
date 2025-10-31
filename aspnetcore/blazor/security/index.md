@@ -106,8 +106,6 @@ Blazor differs from traditional server-rendered web apps that make new HTTP requ
 
 The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
 
-For more information on server-side authentication, see <xref:blazor/security/index>.
-
 ### Shared state
 
 [!INCLUDE[](~/blazor/security/includes/shared-state.md)]
@@ -140,7 +138,7 @@ After choosing the server-side app template and configuring the project, select 
 
 * **None** (default): No authentication.
 * **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
-* **Microsoft identity platform**: For more information, see <xref:blazor/security/index#additional-resources>.
+* **Microsoft identity platform**: For more information, see the [Additional resources](#additional-resources) section.
 * **Windows**: Use Windows Authentication.
 
 :::moniker-end
@@ -478,7 +476,7 @@ For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.
 
 ### Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`
 
-To avoid showing unauthorized content, for example content in an [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component), while prerendering with a [custom `AuthenticationStateProvider`](xref:blazor/security/authentication-state#implement-a-custom-authenticationstateprovider), adopt ***one*** of the following approaches:
+To avoid showing unauthorized content, for example content in an [`AuthorizeView` component](#authorizeview-component), while prerendering with a [custom `AuthenticationStateProvider`](xref:blazor/security/authentication-state#implement-a-custom-authenticationstateprovider), adopt ***one*** of the following approaches:
 
 * Implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> for the custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to support prerendering: For an example implementation of <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider>, see the Blazor framework's <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> implementation in [`ServerAuthenticationStateProvider.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/DependencyInjection/ServerAuthenticationStateProvider.cs).
 
