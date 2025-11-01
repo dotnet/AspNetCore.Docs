@@ -132,7 +132,10 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 ### Component (`.razor`) example (`InvokeVoidAsync`)
 
-`TickerChanged` calls the `handleTickerChanged1` method in the following component.
+The following component:
+
+* Invokes the `displayTickerAlert1` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> when selecting a button (**`Set Stock`**).
+* The JS function takes two strictly typed on the C# side parameters — a string and a decimal, and then displays a modal alert box with a specified message.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -222,7 +225,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 :::moniker-end
 
-`TickerChanged` calls the `handleTickerChanged1` method in the following component.
+`TickerChanged` calls the `displayTickerAlert1` method in the following component.
 
 :::moniker range=">= aspnetcore-9.0"
 
