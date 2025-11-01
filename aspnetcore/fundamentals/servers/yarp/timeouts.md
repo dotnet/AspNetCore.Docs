@@ -127,4 +127,4 @@ Specifying the value `disable` in a route's `TimeoutPolicy` parameter means the 
 
 ### WebSockets
 
-Request timeouts are disabled after the initial WebSocket handshake.
+Request timeouts are disabled after the initial WebSocket handshake. However, `ActivityTimeout` does apply to WebSocket requests. WebSocket keep-alives can be enabled by either the client or server talking to the proxy to keep the connection from becoming idle and triggering the `ActivityTimeout`.
