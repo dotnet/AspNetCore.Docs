@@ -4,7 +4,7 @@ title: YARP HTTP Client Configuration
 description: YARP HTTP Client Configuration
 author: wadepickett
 ms.author: wpickett
-ms.date: 2/6/2025
+ms.date: 11/01/2025
 ms.topic: article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
@@ -93,6 +93,9 @@ builder.WebHost.ConfigureKestrel(kestrel =>
   "UseDefaultCredentials": "false"
 }
 ```
+
+> [!NOTE]
+> The default `ForwarderHttpClientFactory` sets `UseProxy` to `false`. If you want to use the default system proxy instead of specifying a custom proxy address, you can set `UseProxy` back to `true` using the `ConfigureHttpClient` method. This is useful when debugging with tools like Fiddler. See the [Configuring the http client](#configuring-the-http-client) section for an example.
 
 ### HttpRequest
 HTTP request configuration is based on [ForwarderRequestConfig](xref:Yarp.ReverseProxy.Forwarder.ForwarderRequestConfig) and represented by the following configuration schema.
@@ -208,6 +211,20 @@ services.AddReverseProxy()
         handler.SslOptions.ClientCertificates.Add(clientCert);
     })
 ```
+
+### Using the default system proxy
+
+The default `ForwarderHttpClientFactory` sets `UseProxy` to `false` to avoid the overhead of proxy detection and configuration. If you need to use the default system proxy (for example, when debugging with Fiddler or other proxy tools), you can set `UseProxy` back to `true`:
+
+```csharp
+services.AddReverseProxy()
+    .ConfigureHttpClient((context, handler) =>
+    {
+        handler.UseProxy = true;
+    })
+```
+
+This configuration allows the `HttpClient` to use the system's default proxy settings without having to manually specify a proxy address in the `WebProxy` configuration.
 
 ## Custom IForwarderHttpClientFactory
 If direct control of HTTP client construction is necessary, the default [IForwarderHttpClientFactory](xref:Yarp.ReverseProxy.Forwarder.IForwarderHttpClientFactory) can be replaced with a custom one. For some customizations you can derive from the default [ForwarderHttpClientFactory](xref:Yarp.ReverseProxy.Forwarder.ForwarderHttpClientFactory) and override the methods that configure the client.
