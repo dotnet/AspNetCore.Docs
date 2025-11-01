@@ -209,7 +209,7 @@ services.AddReverseProxy()
     .ConfigureHttpClient((context, handler) =>
     {
         handler.SslOptions.ClientCertificates.Add(clientCert);
-    })
+    });
 ```
 
 ### Using the default system proxy
@@ -221,7 +221,7 @@ services.AddReverseProxy()
     .ConfigureHttpClient((context, handler) =>
     {
         handler.UseProxy = true;
-    })
+    });
 ```
 
 This configuration allows the `HttpClient` to use the system's default proxy settings without having to manually specify a proxy address in the `WebProxy` configuration.
