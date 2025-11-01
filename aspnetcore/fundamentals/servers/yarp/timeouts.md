@@ -23,7 +23,7 @@ Requests do not have any timeouts by default, other than the [ActivityTimeout](x
 
 Both route-level `Timeout` and cluster-level `ActivityTimeout` apply to proxied requests. Understanding how they interact is important for configuring appropriate timeouts:
 
-- **ActivityTimeout** is configured per cluster in the `HttpRequest` section and has a default value of **100 seconds**. This timeout resets whenever there's activity on the request, such as when response headers are received or when successfully reading or writing request, response, or streaming data (like gRPC or WebSockets). TCP keep-alives and HTTP/2 protocol pings do not reset the timeout, but WebSocket pings do.
+- **ActivityTimeout** is configured per cluster in the `HttpRequest` section and has a default value of **100 seconds**. This timeout resets whenever there's activity on the request. Activity includes receiving response headers or successfully reading or writing request, response, or streaming data (like gRPC or WebSockets). TCP keep-alives and HTTP/2 protocol pings do not reset the timeout, but WebSocket pings do.
 
 - **Timeout** is configured per route and specifies the total time allowed for a request to complete.
 
