@@ -296,7 +296,10 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 ### Component (`.razor`) example (`InvokeAsync`)
 
-`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following component.
+The following component:
+
+* Invokes the `displayTickerAlert2` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> when selecting a button (**`Set Stock`**).
+* The JS function takes two parameters strictly typed on the C# side — a string and a decimal. If the condition is met, it displays a modal alert box with a specified message and returns a string to the component for display (`text`).
 
 :::moniker range=">= aspnetcore-9.0"
 
