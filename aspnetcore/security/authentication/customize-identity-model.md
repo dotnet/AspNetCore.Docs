@@ -102,7 +102,20 @@ Repeat the preceding steps as changes are made to the model.
 > }
 > ```
 >
-> The context itself doesn't automatically know Identity options. Ensure any model-impacting Identity options are mirrored if your `ApplicationDbContext.OnModelCreating` depends on them indirectly.
+> The context itself doesn't automatically know Identity options. If you set model-impacting Identity options such as `options.Stores.MaxLengthForKeys`, you must manually configure the corresponding key lengths in your `ApplicationDbContext.OnModelCreating` method. For example, to set the maximum length for keys:
+> 
+> ```csharp
+> protected override void OnModelCreating(ModelBuilder builder)
+> {
+>     base.OnModelCreating(builder);
+>     builder.Entity<IdentityUser>(b =>
+>     {
+>         b.Property(u => u.Id).HasMaxLength(options.Stores.MaxLengthForKeys);
+>     });
+> }
+> ```
+> 
+> Replace `options.Stores.MaxLengthForKeys` with the value you have configured. For more details, see <xref:security/authentication/identity-configuration>.
 >
 > Always verify the resulting model snapshot reflects the intended key lengths or schema version after adding a migration.
 
