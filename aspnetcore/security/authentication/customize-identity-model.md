@@ -71,14 +71,12 @@ Repeat the preceding steps as changes are made to the model.
 >         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
 >             .UseSqlServer("{CONNECTION_STRING}");
 >
->         // Note: The context itself doesn't automatically know Identity options.
->         // Ensure any model-impacting Identity options are mirrored if your
->         // ApplicationDbContext.OnModelCreating depends on them indirectly.
->
 >         return new ApplicationDbContext(optionsBuilder.Options);
 >     }
 > }
 > ```
+>
+> The context itself doesn't automatically know Identity options. Ensure any model-impacting Identity options are mirrored if your `ApplicationDbContext.OnModelCreating` depends on them indirectly.
 >
 > Always verify the resulting model snapshot reflects the intended key lengths or schema version after adding a migration.
 
