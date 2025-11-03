@@ -40,6 +40,41 @@ When a new app using Identity is created, steps 1 and 2 above have already been 
 
 Repeat the preceding steps as changes are made to the model.
 
+> [!IMPORTANT]
+> When Identity options that affect the underlying EF Core model are configured (for example, `options.Stores.MaxLengthForKeys` or `options.Stores.SchemaVersion`), those option values must also be applied at design time for EF Core Migrations to generate the correct model shape. If the EF tooling runs without these options configured, generated migrations may omit the intended changes. For more information, see [efcore#36314](https://github.com/dotnet/efcore/issues/36314).
+To ensure Identity options are applied consistently during migration generation, use one of the following approaches:
+
+* **Set the startup project:** Run `dotnet ef` commands (or PMC commands) with the application project that calls `AddDefaultIdentity` or `AddIdentityCore` set as the startup project. For example, when running commands from a class library project, specify the startup project with `dotnet ef migrations add {MIGRATION_NAME} --startup-project {PATH_TO_APP_PROJECT}`, where the `{MIGRATION_NAME}` placeholder is the migration name and the `{PATH_TO_APP_PROJECT}` placeholder is the path to the app project.
+* **Implement `IDesignTimeDbContextFactory`:** Alternatively, implement an `IDesignTimeDbContextFactory<TContext>` that constructs the context and applies the equivalent Identity option configuration. For an Aspire-friendly solution, see [efcore#35285 (comment)](https://github.com/dotnet/efcore/issues/35285#issuecomment-3161145762).
+
+Example Identity configuration in `Program.cs`:
+
+```csharp
+builder.Services
+    .AddDefaultIdentity<ApplicationUser>(options =>
+    {
+        options.Stores.SchemaVersion = IdentitySchemaVersions.Version2;
+        options.Stores.MaxLengthForKeys = 256;
+    })
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+```
+
+Example design-time factory:
+
+```csharp
+public class DesignTimeApplicationDbContextFactory
+    : IDesignTimeDbContextFactory<ApplicationDbContext>
+{
+    public ApplicationDbContext CreateDbContext(string[] args)
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+            .UseSqlServer("{CONNECTION_STRING}");
+
+        return new ApplicationDbContext(optionsBuilder.Options);
+    }
+}
+```
+
 > [!NOTE]
 > You cannot access `options.Stores.MaxLengthForKeys` directly inside `OnModelCreating` because dependency injection isn’t available at design time. Instead, specify the configured value directly (such as `HasMaxLength(256)`), or use a design-time mechanism to pass settings if needed.
 > For more details, see <xref:security/authentication/identity-configuration>.
