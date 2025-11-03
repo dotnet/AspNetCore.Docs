@@ -392,7 +392,7 @@ The following component:
 
 :::moniker-end
 
-`TickerChanged` calls the `displayTickerChanged2` method and displays the returned string in the following component.
+`TickerChanged` calls the `displayTickerAlert2` method and displays the returned string in the following component.
 
 :::moniker range=">= aspnetcore-9.0"
 
