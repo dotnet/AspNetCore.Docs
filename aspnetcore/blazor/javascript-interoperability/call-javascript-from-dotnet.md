@@ -301,7 +301,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 The following component:
 
-* Invokes the `displayTickerAlert2` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> with two JSON-serializable parameters, a string in `stockSymbol` and a decimal in `price`, when selecting a button (**`Set Stock`**).
+* Invokes the `displayTickerAlert2` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> with two JSON-serializable parameters, a string in `stockSymbol` and a decimal in `price`, when selecting a button (**`Set Stock`**).
 * The JS function receives the two arguments in strictly-typed parameters and displays a modal alert box with a specified message.
 
 :::moniker range=">= aspnetcore-9.0"
