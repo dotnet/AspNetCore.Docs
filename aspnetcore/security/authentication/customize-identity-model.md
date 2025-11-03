@@ -46,8 +46,34 @@ Repeat the preceding steps as changes are made to the model.
 > To ensure Identity options are applied consistently during migration generation, use one of the following approaches:
 >
 > * **Set the startup project:** Run `dotnet ef` commands (or PMC commands) with the application project that calls `AddDefaultIdentity` or `AddIdentityCore` set as the startup project. For example, when running commands from a class library project, specify the startup project with `dotnet ef migrations add {MIGRATION_NAME} --startup-project {PATH_TO_APP_PROJECT}`, where the `{MIGRATION_NAME}` placeholder is the migration name and the `{PATH_TO_APP_PROJECT}` placeholder is the path to the app project.
-> * **Implement `IDesignTimeDbContextFactory`:** Alternatively, implement an `IDesignTimeDbContextFactory<TContext>` that constructs the context and applies the equivalent Identity option configuration. For an Aspire-friendly solution, see [efcore#35285 (comment)](https://github.com/dotnet/efcore/issues/35285#issuecomment-3161145762).
+> * **Implement `IDesignTimeDbContextFactory`:** Alternatively, implement an `IDesignTimeDbContextFactory<TContext>` that constructs the context and applies the equivalent Identity option configuration. This ensures that migrations are generated with the correct Identity model shape, even when running tooling outside the main application project.
 >
+>   Example implementation:
+>
+>   ```csharp
+>   public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
+>   {
+>       public ApplicationDbContext CreateDbContext(string[] args)
+>       {
+>           var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+>           optionsBuilder.UseSqlServer("YourConnectionString");
+>           
+>           var services = new ServiceCollection();
+>           services.AddDefaultIdentity<ApplicationUser>(options =>
+>           {
+>               options.Stores.SchemaVersion = IdentitySchemaVersions.Version2;
+>               options.Stores.MaxLengthForKeys = 256;
+>           })
+>           .AddEntityFrameworkStores<ApplicationDbContext>();
+>           
+>           var serviceProvider = services.BuildServiceProvider();
+>           
+>           return new ApplicationDbContext(optionsBuilder.Options);
+>       }
+>   }
+>   ```
+>
+>   For an Aspire-friendly solution, see [efcore#35285 (comment)](https://github.com/dotnet/efcore/issues/35285#issuecomment-3161145762).
 > Example Identity configuration in `Program.cs`:
 >
 > ```csharp
