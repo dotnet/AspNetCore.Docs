@@ -69,7 +69,7 @@ Repeat the preceding steps as changes are made to the model.
 >     public ApplicationDbContext CreateDbContext(string[] args)
 >     {
 >         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
->             .UseSqlServer("Your_Connection_String");
+>             .UseSqlServer("{CONNECTION_STRING}");
 >
 >         // Note: The context itself doesn't automatically know Identity options.
 >         // Ensure any model-impacting Identity options are mirrored if your
