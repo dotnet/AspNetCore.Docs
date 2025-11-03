@@ -386,7 +386,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 :::moniker-end
 
-`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following component.
+`TickerChanged` calls the `displayTickerAlert2` method and displays the returned string in the following component.
 
 :::moniker range=">= aspnetcore-9.0"
 
