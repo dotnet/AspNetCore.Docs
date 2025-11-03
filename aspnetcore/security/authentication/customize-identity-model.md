@@ -93,7 +93,8 @@ protected override void OnModelCreating(ModelBuilder builder)
 > You cannot access `options.Stores.MaxLengthForKeys` directly inside `OnModelCreating` because dependency injection isn’t available at design time. Instead, specify the configured value directly (such as `HasMaxLength(256)`), or use a design-time mechanism to pass settings if needed.
 > For more details, see <xref:security/authentication/identity-configuration>.
 
-Always verify the resulting model snapshot reflects the intended key lengths or schema version after adding a migration.
+> [!TIP]
+> Always verify the resulting model snapshot reflects the intended key lengths or schema version after adding a migration.
 
 ## The Identity model
 
