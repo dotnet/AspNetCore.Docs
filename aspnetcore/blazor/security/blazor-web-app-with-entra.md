@@ -385,6 +385,12 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDistributedTokenCaches();
 ```
 
+Provide the same downstream API scope to the request transformer:
+
+```csharp
+List<string> scopes = [ "{APP ID URI}/Weather.Get" ];
+```
+
 Placeholders in the preceding configuration:
 
 * `{CLIENT ID (BLAZOR APP)}`: The application (client) ID.
@@ -412,9 +418,16 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDownstreamApi("DownstreamApi", configOptions =>
     {
         configOptions.BaseUrl = "https://localhost:7277";
-        configOptions.Scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
+        configOptions.Scopes = 
+            [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
     })
     .AddDistributedTokenCaches();
+```
+
+Example:
+
+```csharp
+List<string> scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
 ```
 
 :::zone-end
@@ -640,6 +653,15 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 -   })
 +   .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
     .AddDistributedTokenCaches();
+```
+
+```diff
+- List<string> scopes = ["{APP ID URI}/Weather.Get"];
+- var accessToken = await tokenAcquisition.GetAccessTokenForUserAsync(scopes);
++ var configuration = transformContext.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
++ var scopes = configuration.GetSection("DownstreamApi:Scopes").Get<IEnumerable<string>>();
++ var accessToken = await tokenAcquisition.GetAccessTokenForUserAsync(scopes ??
++     throw new IOException("No downstream API scopes!"));
 ```
 
 > [!NOTE]
