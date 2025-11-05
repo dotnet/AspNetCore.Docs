@@ -1,6 +1,6 @@
 # Obsolete APIs in AspNetCore.Docs Repository
 
-**Generated:** November 5, 2025  
+**Generated:** November 5, 2024  
 **Repository:** dotnet/AspNetCore.Docs
 
 ## Overview
@@ -14,7 +14,7 @@ This report documents all API members that have the `[Obsolete]` attribute or ar
 - **Total C# files searched:** 5,883
 - **Total Markdown files with obsolete references:** 28
 - **`[Obsolete]` attributes in code samples:** 0
-- **Documented obsolete API groups:** 7
+- **Documented obsolete API groups:** 8
 
 ## Documented Obsolete APIs
 
