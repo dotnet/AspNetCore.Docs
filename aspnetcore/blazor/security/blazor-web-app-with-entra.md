@@ -661,7 +661,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 + var configuration = transformContext.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
 + var scopes = configuration.GetSection("DownstreamApi:Scopes").Get<IEnumerable<string>>();
 + var accessToken = await tokenAcquisition.GetAccessTokenForUserAsync(scopes ??
-+     throw new IOException("No downstream API scopes!"));
++     throw new InvalidOperationException("No downstream API scopes!"));
 ```
 
 > [!NOTE]
