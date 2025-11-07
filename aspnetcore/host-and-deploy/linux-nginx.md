@@ -1,11 +1,12 @@
 ---
 title: Host ASP.NET Core on Linux with Nginx
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to set up Nginx as a reverse proxy on Ubuntu, RHEL and SUSE to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc, engagement-fy23, linux-related-content, sfi-ropc-nochange
-ms.date: 5/8/2023
+ms.date: 01/07/2025
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -123,7 +124,7 @@ For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-Use `apt-get` to install Nginx. The installer creates a [`systemd`](https://systemd.io/) init script that runs Nginx as daemon on system startup. Follow the installation instructions for Ubuntu at [Nginx: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
+Use `apt-get` to install Nginx. The installer creates a [`systemd`](https://systemd.io/) init script that runs Nginx as daemon on system startup. Follow the installation instructions for Ubuntu at [Nginx: Linux packages - Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu).
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
@@ -546,7 +547,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 ## Additional resources
 
 * [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites)
-* [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
+* [Nginx: Linux packages - Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
 * <xref:test/troubleshoot>
 * <xref:host-and-deploy/proxy-load-balancer>
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
