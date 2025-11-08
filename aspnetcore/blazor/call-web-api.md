@@ -366,7 +366,7 @@ An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require expl
   using var request = new HttpRequestMessage(...);
   ```
   
-* [`using` block (all C# releases)](https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/using):
+* [`using` block (all C# releases)](/dotnet/csharp/language-reference/keywords/using):
 
   ```csharp
   using (var request = new HttpRequestMessage(...))
