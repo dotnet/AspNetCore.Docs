@@ -358,7 +358,24 @@ The solution includes a demonstration of obtaining weather data securely via an 
 
 ## Disposal of `HttpRequestMessage`, `HttpResponseMessage`, and `HttpClient`
 
-An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal with a `using` declaration (C# 8 or later, example: `using var request = new HttpRequestMessage(...);`) or a [`using` block (all C# releases, example: `using (var request = new HttpRequestMessage(...)) { ... }`)](/dotnet/csharp/language-reference/keywords/using), but we recommend disposing with every use for the following reasons:
+An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal. However, you can dispose of it with either of the following patterns:
+
+* `using` declaration (C# 8 or later):
+
+  ```csharp
+  using var request = new HttpRequestMessage(...);
+  ```
+  
+* [`using` block (all C# releases)](https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/using):
+
+  ```csharp
+  using (var request = new HttpRequestMessage(...))
+  {
+      ...
+  }
+  ```
+
+We recommend disposing of every <xref:System.Net.Http.HttpRequestMessage> with every use for the following reasons:
 
 * To gain a performance improvement by avoiding finalizers.
 * It hardens the code for the future in case a request body is ever added to an <xref:System.Net.Http.HttpRequestMessage> that didn't initially have one.
