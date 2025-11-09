@@ -107,7 +107,7 @@ The following example uses the `HideColumnOptionsAsync` method to close the colu
 }
 ```
 
-### Response streaming is opt-in and how to opt-out
+### HttpClient response streaming enabled by default
 
 In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClient> requests was opt-in. Now, response streaming is enabled by default.
 
