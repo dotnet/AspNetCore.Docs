@@ -1,0 +1,263 @@
+---
+title: .NET Generic Host in ASP.NET Framework
+description: How to take advantage of the .NET generic hosting pattern in ASP.NET Framework applications
+ai-usage: ai-assisted
+author: twsouthwick
+ms.author: tasou
+monikerRange: '>= aspnetcore-6.0'
+ms.date: 11/10/2025
+ms.topic: article
+uid: migration/fx-to-core/areas/hosting
+---
+
+# Generic Host Pattern
+
+The System.Web adapters library enables ASP.NET Framework applications to use the .NET generic host pattern, bringing modern application infrastructure capabilities to traditional ASP.NET Framework projects. This approach provides access to dependency injection, logging, configuration, and other services that are standard in modern .NET applications, while maintaining compatibility with existing ASP.NET Framework code.
+
+## Why use the generic host pattern
+
+Adopting the generic host pattern in ASP.NET Framework applications provides several key benefits:
+
+* **Dependency Injection**: Access to the built-in dependency injection container used in modern .NET, enabling better testability, maintainability, and separation of concerns
+* **Unified Logging**: Integration with `Microsoft.Extensions.Logging`, providing a consistent logging experience across your application and access to various logging providers
+* **Modern Configuration**: Use the configuration system from modern .NET, including support for JSON files, environment variables, user secrets, and other configuration sources
+* **Migration Path**: Prepare your codebase for migration to ASP.NET Core by adopting modern patterns incrementally while maintaining your existing ASP.NET Framework application
+* **Service Defaults**: Leverage service defaults and standardized application infrastructure patterns commonly used in modern .NET applications
+
+## Setting up the generic host
+
+To configure the generic host pattern in an ASP.NET Framework application, register the host in the `Application_Start` method of your `Global.asax.cs` file:
+
+```csharp
+using System.Web;
+using Microsoft.AspNetCore.SystemWebAdapters.Hosting;
+using Microsoft.Extensions.Hosting;
+
+namespace MvcApp
+{
+    public class MvcApplication : HttpApplication
+    {
+        protected void Application_Start()
+        {
+            HttpApplicationHost.RegisterHost(builder =>
+            {
+                builder.AddServiceDefaults();
+                builder.AddSystemWebDependencyInjection();
+                builder.AddSystemWebAdapters();
+            });
+
+            // Existing ASP.NET Framework configuration
+            AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+    }
+}
+```
+
+The `HttpApplicationHost.RegisterHost` method configures a generic host that runs alongside your ASP.NET Framework application. The host builder accepts configuration through extension methods that add various capabilities.
+
+## Dependency injection
+
+> [!NOTE]
+> This currently is in a preview version of the adapters. You must be using 2.2.0-preview1.25554.5 or greater to use this feature.
+
+The `AddSystemWebDependencyInjection` method enables dependency injection throughout your ASP.NET Framework application. Services registered with the generic host's service collection become available to controllers, handlers, and other components.
+
+This extension method is an internal method that will be source generated depending on what you have referenced. The following frameworks are supported:
+
+- WebForms and handlers using the <xref:System.Web.HttpRuntime.WebObjectActivator>
+- ASP.NET MVC4 using <xref:System.Web.Mvc.DependencyResolver>
+- ASP.NET WebApi 2 using <xref:System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver>
+
+### Registering services
+
+Register services with the dependency injection container by accessing the `Services` property on the host builder:
+
+```csharp
+HttpApplicationHost.RegisterHost(builder =>
+{    
+    builder.AddSystemWebDependencyInjection();
+    builder.AddSystemWebAdapters();
+
+    builder.Services.AddScoped<IMyService, MyService>();
+    builder.Services.AddSingleton<IDataRepository, DataRepository>();
+});
+```
+
+For details on how to customize the dependency injection system, including replacing the service container, see the full documentation: <xref:fundamentals/dependency-injection>.
+
+If you are currently overriding the dependency injection hooks in the ASP.NET Framework, you will need to update to the current pattern for your dependency injection and remove the existing integrations for WebForms/MVC4/WebAPI.
+
+### Consuming services
+
+Once registered, services can be injected into MVC controllers, Web API controllers, and other components that support dependency injection:
+
+```csharp
+public class HomeController : Controller
+{
+    private readonly IMyService _myService;
+    private readonly ILogger<HomeController> _logger;
+
+    public HomeController(IMyService myService, ILogger<HomeController> logger)
+    {
+        _myService = myService;
+        _logger = logger;
+    }
+
+    public ActionResult Index()
+    {
+        _logger.LogInformation("Loading home page");
+        var data = _myService.GetData();
+        return View(data);
+    }
+}
+```
+
+## Logging
+
+The generic host integrates `Microsoft.Extensions.Logging`, providing a modern logging infrastructure for your ASP.NET Framework application.
+
+### Using loggers
+
+Inject `ILogger<T>` into your classes to log messages:
+
+```csharp
+public class OrderService : IOrderService
+{
+    private readonly ILogger<OrderService> _logger;
+
+    public OrderService(ILogger<OrderService> logger)
+    {
+        _logger = logger;
+    }
+
+    public void ProcessOrder(int orderId)
+    {
+        _logger.LogInformation("Processing order {OrderId}", orderId);
+        
+        try
+        {
+            // Process order logic
+            _logger.LogDebug("Order {OrderId} processed successfully", orderId);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error processing order {OrderId}", orderId);
+            throw;
+        }
+    }
+}
+```
+
+For details on customizing and using logging, including integrating with your own providers, see <xref:fundamentals/logging/index>.
+
+## Configuration
+
+The generic host supports the modern .NET configuration system, including JSON files, environment variables, and other configuration sources. By default, the `HttpApplicationHost` uses standard configuration patterns (such as `appsettings.json` and `appsettings.{Environment}.json`), and automatically includes values from <xref:System.Configuration.ConfigurationManager.AppSettings> and <xref:System.Configuration.ConfigurationManager.ConnectionStrings> for compatibility with existing ASP.NET Framework applications.
+
+### Accessing configuration
+
+Inject `IConfiguration` to access configuration values:
+
+```csharp
+public class EmailService : IEmailService
+{
+    private readonly string _smtpServer;
+    private readonly ILogger<EmailService> _logger;
+
+    public EmailService(IConfiguration configuration, ILogger<EmailService> logger)
+    {
+        _smtpServer = configuration["Email:SmtpServer"];
+        _logger = logger;
+    }
+
+    public void SendEmail(string to, string subject, string body)
+    {
+        _logger.LogInformation("Sending email to {Recipient} via {SmtpServer}", to, _smtpServer);
+        // Email sending logic
+    }
+}
+```
+
+For code that can't use dependency injection, use the static `AppConfiguration` helper class to access configuration values:
+
+```csharp
+using Microsoft.AspNetCore.SystemWebAdapters;
+
+var configValue = AppConfiguration.GetSetting("SomeSettings");
+var connStr = AppConfiguration.GetConnectionString("connection-string-name");
+```
+
+### Using options pattern
+
+The options pattern provides strongly-typed access to configuration sections:
+
+```csharp
+public class EmailSettings
+{
+    public string SmtpServer { get; set; }
+    public int Port { get; set; }
+    public string Username { get; set; }
+}
+
+// Register options
+HttpApplicationHost.RegisterHost(builder =>
+{
+    builder.Services.Configure<EmailSettings>(
+        builder.Configuration.GetSection("Email"));
+
+    builder.AddSystemWebDependencyInjection();
+    builder.AddSystemWebAdapters();
+});
+
+// Consume options
+public class EmailService : IEmailService
+{
+    private readonly EmailSettings _settings;
+    private readonly ILogger<EmailService> _logger;
+
+    public EmailService(IOptions<EmailSettings> options, ILogger<EmailService> logger)
+    {
+        _settings = options.Value;
+        _logger = logger;
+    }
+}
+```
+
+For advanced configuration scenarios, including custom configuration sources and environment-specific settings, see <xref:fundamentals/configuration/index>.
+
+## Migration strategies
+
+Completely converting to the generic host pattern may not be needed for smaller projects, but can make migration much easier for larger projects. If you have successfully converted to using this, then you can swap the `HttpApplicationHost` usage for the `WebApplication` in ASP.NET Core.
+
+While migrating to this setup, small incremental changes will help ensure a successful conversion. A recommended order to use for migrating here would be the following:
+
+1. Add an initial host registration:
+    ```csharp
+    HttpApplicationHost.RegisterHost(builder =>
+    {
+    });
+    ```
+1. Update to use Microsoft Extensions dependency injection:
+    ```csharp
+    HttpApplicationHost.RegisterHost(builder =>
+    {
+        builder.AddSystemWebDependencyInjection();
+    });
+    ```
+
+    While doing this, you may need to adapt your current containers according to their own documentation for integrating in with the Microsoft Extensions dependency injection
+1. Identify your logging system and integrate it into the Microsoft Extension logging infrastructure. Decide if you want to continue using the logger types from your existing system or migrating to the `ILogger<>` types the HttpApplicationHost will provide.
+1. Replace all calls to <xref:System.Configuration.ConfigurationManager.AppSettings> and <xref:System.Configuration.ConfigurationManager.ConnectionString> with the new equivalent `AppConfiguration` call. You must be referencing `Microsoft.AspNetCore.SystemWebAdapters` in the project where you want to do this.
+1. Start using the options pattern to convert configuration into POCO that can be passed to consuming services using the integrated DI system
+1. Move your settings from `web.config` to `appsettings.json`
+
+## Additional resources
+
+* <xref:fundamentals/host/generic-host>
+* <xref:fundamentals/dependency-injection>
+* <xref:fundamentals/logging/index>
+* <xref:fundamentals/configuration/index>

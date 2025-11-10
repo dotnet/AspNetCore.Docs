@@ -3,13 +3,14 @@ title: Complex migration scenarios - Deep dive areas
 description: Detailed guidance for complex ASP.NET Framework to ASP.NET Core migration scenarios
 author: twsouthwick
 ms.author: tasou
-ms.date: 07/17/2025
+ms.date: 11/10/2025
 uid: migration/fx-to-core/areas
 ---
 # Technology specific guidance
 
 * [Authentication](authentication.md)
 * [ClaimsPrincipal.Current](claimsprincipal-current.md)
+* [HttpApplicationHost](hosting.md)
 * [HttpContext](http-context.md)
 * [HTTP Handlers](http-handlers.md)
 * [HTTP Modules](http-modules.md)
