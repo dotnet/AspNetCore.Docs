@@ -6,7 +6,7 @@ description: Learn how to set up Nginx as a reverse proxy on Ubuntu, RHEL and SU
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc, engagement-fy23, linux-related-content, sfi-ropc-nochange
-ms.date: 01/07/2025
+ms.date: 11/10/2025
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
