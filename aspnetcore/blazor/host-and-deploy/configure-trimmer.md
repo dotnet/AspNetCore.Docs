@@ -18,7 +18,7 @@ Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/glossa
 
 ## Default trimmer granularity
 
-<!-- UPDATE 10.0 - HOLD until https://github.com/dotnet/aspnetcore/issues/49409
+<!-- UPDATE 11.0 - HOLD until https://github.com/dotnet/aspnetcore/issues/49409
                    is addressed.
 
 The default trimmer granularity for Blazor apps is `partial`. To trim all assemblies, change the granularity to `full` in the app's project file:
