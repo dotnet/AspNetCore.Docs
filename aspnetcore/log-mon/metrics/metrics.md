@@ -1,10 +1,11 @@
 ---
 title: ASP.NET Core metrics
-description: Metrics for ASP.NET Core apps
+ai-usage: ai-assisted
 author: tdykstra
-ms.author: tdykstra
+description: Metrics for ASP.NET Core apps
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 10/18/2023
+ms.author: tdykstra
+ms.date: 11/10/2025
 ms.topic: article
 uid: log-mon/metrics/metrics
 ---
@@ -261,6 +262,47 @@ The proceeding test:
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
 * Makes an HTTP request to the web app.
 * Asserts the test using results from the metrics collector.
+
+:::moniker range=">= aspnetcore-10.0"
+
+## ASP.NET Core Identity metrics
+
+ASP.NET Core Identity observability has been improved in .NET 10 with metrics. These metrics help you monitor user management activities and authentication processes.
+
+The metrics are in the `Microsoft.AspNetCore.Identity` meter and include:
+
+### User management metrics
+
+* `aspnetcore.identity.user.create.duration` - Measures the duration of user creation operations
+* `aspnetcore.identity.user.update.duration` - Measures the duration of user update operations
+* `aspnetcore.identity.user.delete.duration` - Measures the duration of user deletion operations
+* `aspnetcore.identity.user.check_password_attempts` - Counts password verification attempts
+* `aspnetcore.identity.user.generated_tokens` - Counts tokens generated for users (like password reset tokens)
+* `aspnetcore.identity.user.verify_token_attempts` - Counts token verification attempts
+
+### Authentication metrics
+
+* `aspnetcore.identity.sign_in.authenticate.duration` - Measures the duration of authentication operations
+* `aspnetcore.identity.sign_in.check_password_attempts` - Counts password check attempts during sign-in
+* `aspnetcore.identity.sign_in.sign_ins` - Counts successful sign-ins
+* `aspnetcore.identity.sign_in.sign_outs` - Counts sign-outs
+* `aspnetcore.identity.sign_in.two_factor_clients_remembered` - Counts remembered two-factor clients
+* `aspnetcore.identity.sign_in.two_factor_clients_forgotten` - Counts forgotten two-factor clients
+
+These metrics can be used to:
+
+* Monitor user registration and management
+* Track authentication patterns and potential security issues
+* Measure performance of Identity operations
+* Observe two-factor authentication usage
+
+You can view these metrics using the techniques described earlier in this article, such as `dotnet-counters` or Prometheus with Grafana.
+
+```dotnetcli
+dotnet-counters monitor -n YourAppName --counters Microsoft.AspNetCore.Identity
+```
+
+:::moniker-end
 
 ## ASP.NET Core meters and counters
 

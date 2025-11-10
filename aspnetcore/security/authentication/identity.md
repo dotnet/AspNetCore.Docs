@@ -1,10 +1,11 @@
 ---
 title: Introduction to Identity on ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 10/30/2025
+ms.date: 11/10/2025
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -201,6 +202,16 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 The template-generated app doesn't use [authorization](xref:security/authorization/secure-data). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, and `UseAuthorization` must be called in the order shown in the preceding code.
 
 For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](xref:fundamentals/startup).
+
+:::moniker range=">= aspnetcore-10.0"
+
+## ASP.NET Core Identity metrics
+
+ASP.NET Core Identity metrics provide monitoring capabilities for user management and authentication processes. These metrics help you detect unusual sign-in patterns that might indicate security threats, track the performance of identity operations, and understand how users interact with authentication features such as two-factor authentication. This observability is particularly valuable for applications with strict security requirements or those experiencing high authentication traffic. The ASP.NET Core Identity metrics were introduced in .NET 10.
+
+For complete details on available metrics and how to use them, see <xref:log-mon/metrics/metrics#aspnet-core-identity-metrics>.
+
+:::moniker-end
 
 <!-- Start here for .NET 6 -->
 
