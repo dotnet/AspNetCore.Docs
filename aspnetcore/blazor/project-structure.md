@@ -608,7 +608,7 @@ In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml`
 
 :::moniker-end
 
-For a Blazor Web App or a Blazor Server app, the project must contain at least one Razor component file (`.razor`) in order to automatically include the Blazor script when the app is published. If the project doesn't contain at least one Razor component, set the `RequiresAspNetWebAssets` MSBuild property `true` in the app's project file to include the Blazor script:
+For a Blazor Web App or a Blazor Server app, the project must contain at least one Razor component file (`.razor`) in order to automatically include the Blazor script when the app is published. If the project doesn't contain at least one Razor component, set the `RequiresAspNetWebAssets` MSBuild property to `true` in the app's project file to include the Blazor script:
 
 ```xml
 <RequiresAspNetWebAssets>true</RequiresAspNetWebAssets>
@@ -621,6 +621,8 @@ In a Blazor WebAssembly app, the Blazor script content is located in the `wwwroo
 ```html
 <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
 ```
+
+When the app is published, the `{fingerprint}` placeholder is automatically replaced with a unique hash for cache busting.
 
 :::moniker-end
 
