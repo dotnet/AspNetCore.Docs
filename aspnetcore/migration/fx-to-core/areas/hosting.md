@@ -10,11 +10,11 @@ ms.topic: article
 uid: migration/fx-to-core/areas/hosting
 ---
 
-# Generic Host Pattern
+# ASP.NET Framework HttpApplicationHost
 
 The System.Web adapters library enables ASP.NET Framework applications to use the .NET generic host pattern, bringing modern application infrastructure capabilities to traditional ASP.NET Framework projects. This approach provides access to dependency injection, logging, configuration, and other services that are standard in modern .NET applications, while maintaining compatibility with existing ASP.NET Framework code.
 
-## Why use the generic host pattern
+## Why use the host pattern
 
 Adopting the generic host pattern in ASP.NET Framework applications provides several key benefits:
 
@@ -69,8 +69,8 @@ The `AddSystemWebDependencyInjection` method enables dependency injection throug
 This extension method is an internal method that will be source generated depending on what you have referenced. The following frameworks are supported:
 
 - WebForms and handlers using the <xref:System.Web.HttpRuntime.WebObjectActivator>
-- ASP.NET MVC4 using <xref:System.Web.Mvc.DependencyResolver>
-- ASP.NET WebApi 2 using <xref:System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver>
+- ASP.NET MVC using <xref:System.Web.Mvc.DependencyResolver>
+- ASP.NET WebApi using [DependencyResolver](https://learn.microsoft.com/en-us/previous-versions/aspnet/hh969140(v=vs.108))
 
 ### Registering services
 
@@ -251,7 +251,7 @@ While migrating to this setup, small incremental changes will help ensure a succ
 
     While doing this, you may need to adapt your current containers according to their own documentation for integrating in with the Microsoft Extensions dependency injection
 1. Identify your logging system and integrate it into the Microsoft Extension logging infrastructure. Decide if you want to continue using the logger types from your existing system or migrating to the `ILogger<>` types the HttpApplicationHost will provide.
-1. Replace all calls to <xref:System.Configuration.ConfigurationManager.AppSettings> and <xref:System.Configuration.ConfigurationManager.ConnectionString> with the new equivalent `AppConfiguration` call. You must be referencing `Microsoft.AspNetCore.SystemWebAdapters` in the project where you want to do this.
+1. Replace all calls to <xref:System.Configuration.ConfigurationManager.AppSettings> and <xref:System.Configuration.ConfigurationManager.ConnectionStrings> with the new equivalent `AppConfiguration` call. You must be referencing `Microsoft.AspNetCore.SystemWebAdapters` in the project where you want to do this.
 1. Start using the options pattern to convert configuration into POCO that can be passed to consuming services using the integrated DI system
 1. Move your settings from `web.config` to `appsettings.json`
 
