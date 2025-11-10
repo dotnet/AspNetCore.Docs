@@ -70,7 +70,7 @@ This extension method is an internal method that will be source generated depend
 
 - WebForms and handlers using the <xref:System.Web.HttpRuntime.WebObjectActivator>
 - ASP.NET MVC using <xref:System.Web.Mvc.DependencyResolver>
-- ASP.NET WebApi using [DependencyResolver](https://learn.microsoft.com/en-us/previous-versions/aspnet/hh969140(v=vs.108))
+- ASP.NET WebApi using [DependencyResolver](previous-versions/aspnet/hh969140)
 
 ### Registering services
 
@@ -115,6 +115,15 @@ public class HomeController : Controller
     }
 }
 ```
+
+Within a request, a scoped set of services may be retrieved by a special extension method:
+
+```csharp
+var myService = HttpContext.Current.GetRequestServices().GetService(typeof(ISomeType));
+```
+
+> [!WARNING]
+> <xref:System.Web.HttpContext> implements <xref:System.IServiceProvider> so you may see extension methods to get services from it. However, it is not implemented in a way to retrieve any useful services from a registered container. You will see an error if you attempt to use it and you should instead use the `GetRequestServices()` extension method first.
 
 ## Logging
 
@@ -190,6 +199,8 @@ using Microsoft.AspNetCore.SystemWebAdapters;
 var configValue = AppConfiguration.GetSetting("SomeSettings");
 var connStr = AppConfiguration.GetConnectionString("connection-string-name");
 ```
+
+This will work on both ASP.NET Core and ASP.NET Framework applications that are referencing `Microsoft.AspNetCore.SystemWebAdapters` and will provide access to the current `IConfiguration`.
 
 ### Using options pattern
 
