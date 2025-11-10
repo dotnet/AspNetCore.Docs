@@ -70,7 +70,7 @@ This extension method is an internal method that will be source generated depend
 
 - WebForms and handlers using the <xref:System.Web.HttpRuntime.WebObjectActivator>
 - ASP.NET MVC using <xref:System.Web.Mvc.DependencyResolver>
-- ASP.NET WebApi using [DependencyResolver](previous-versions/aspnet/hh969140)
+- ASP.NET WebApi using [DependencyResolver](previous-versions/aspnet/hh969140(v=vs.108))
 
 ### Registering services
 
