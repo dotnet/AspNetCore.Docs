@@ -107,9 +107,7 @@ Register OWIN authentication as an ASP.NET Core authentication handler:
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services
-    .AddSystemWebAdapters()
-    .AddAuthentication()
+builder.Services.AddAuthentication()
     .AddOwinAuthentication((owinApp, services) =>
     {
         owinApp.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -123,6 +121,8 @@ var app = builder.Build();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Additional middleware or endpoint mapping
 
 app.Run();
 ```
@@ -168,12 +168,15 @@ For more information about authentication schemes and how they work in ASP.NET C
 Continue using the OWIN `IAuthenticationManager` interface:
 
 ```csharp
-var owinContext = HttpContext.GetOwinContext();
-var authManager = owinContext.Authentication;
+var authManager = HttpContext.GetOwinContext().Authentication;
 
 authManager.SignIn(identity);
 authManager.SignOut();
 ```
+
+### <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>
+
+If code is expecting to use <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>, then see <xref:migration/fx-to-core/areas/claimsprincipal-current> for options to enable setting that property.
 
 ## Migrating ASP.NET Framework Identity
 
@@ -199,7 +202,7 @@ Set up OWIN authentication with Identity services:
 ```csharp
 builder.Services
     .AddAuthentication()
-    .AddOwinAuthentication("SharedCookie", (app, services) =>
+    .AddOwinAuthentication("AppAuthenticationScheme", (app, services) =>
     {
         app.CreatePerOwinContext(ApplicationDbContext.Create);
         app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
@@ -207,7 +210,7 @@ builder.Services
 
         var dataProtector = services.GetDataProtector(
             "Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware",
-            "SharedCookie",
+            "AppAuthenticationScheme",
             "v2");
 
         app.UseCookieAuthentication(new CookieAuthenticationOptions
