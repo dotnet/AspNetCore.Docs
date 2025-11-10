@@ -2084,6 +2084,9 @@ items:
         uid: migration/index
       - name: Version updates
         items:
+          - name: 9 to 10
+            displayName: migrate, migration
+            uid: migration/90-to-100
           - name: 8 to 9
             displayName: migrate, migration
             uid: migration/80-to-90
@@ -2121,7 +2124,7 @@ items:
                 uid: migration/logging-nonaspnetcore
               - name: 2.0 to 2.1
                 displayName: migrate, migration
-                uid: migration/20_21
+                uid: migration/20-to-21
               - name: 1.x to 2.0
                 displayName: migrate, migration
                 items:
