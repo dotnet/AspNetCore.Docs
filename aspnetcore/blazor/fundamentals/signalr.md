@@ -316,7 +316,7 @@ app.MapBlazorHub(options =>
 });
 ```
 
-<!-- UPDATE 10.0 - The following is scheduled for a fix in .NET 10.
+<!-- UPDATE 11.0 - The following is scheduled for a fix in .NET 11.
                    Tracked by: https://github.com/dotnet/aspnetcore/issues/63520 -->
 
 Configuring the hub used by <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> fails with an <xref:System.Reflection.AmbiguousMatchException>:

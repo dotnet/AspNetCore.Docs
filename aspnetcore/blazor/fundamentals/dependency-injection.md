@@ -355,8 +355,6 @@ public IMyService MyService { get; set; }
 
 ## Utility base component classes to manage a DI scope
 
-<!-- UPDATE 10.0 - PU design is under consideration for .NET 10. -->
-
 In non-Blazor ASP.NET Core apps, scoped and transient services are typically scoped to the current request. After the request completes, scoped and transient services are disposed by the DI system.
 
 In interactive server-side Blazor apps, the DI scope lasts for the duration of the circuit (the SignalR connection between the client and server), which can result in scoped and disposable transient services living much longer than the lifetime of a single component. Therefore, don't directly inject a scoped service into a component if you intend the service lifetime to match the lifetime of the component. Transient services injected into a component that don't implement <xref:System.IDisposable> are garbage collected when the component is disposed. However, injected transient services *that implement <xref:System.IDisposable>* are maintained by the DI container for the lifetime of the circuit, which prevents service garbage collection when the component is disposed and results in a memory leak. An alternative approach for scoped services based on the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type is described later in this section, and disposable transient services shouldn't be used at all. For more information, see [Design for solving transient disposables on Blazor Server (`dotnet/aspnetcore` #26676)](https://github.com/dotnet/aspnetcore/issues/26676).
