@@ -10,7 +10,7 @@ uid: blazor/performance/webassembly-browser-developer-tools
 ---
 # ASP.NET Core Blazor WebAssembly browser developer tools diagnostics
 
-<!-- UPDATE 10.0 - Activate ...
+<!-- UPDATE 11.0 - Activate ...
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 

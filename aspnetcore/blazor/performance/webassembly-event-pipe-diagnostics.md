@@ -10,7 +10,7 @@ uid: blazor/performance/webassembly-event-pipe
 ---
 # ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
 
-<!-- UPDATE 10.0 - Activate ...
+<!-- UPDATE 11.0 - Activate ...
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
