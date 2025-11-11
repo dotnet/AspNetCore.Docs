@@ -5,7 +5,7 @@ description: Learn how to host and deploy Blazor WebAssembly using Nginx.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, linux-related-content
-ms.date: 03/31/2025
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/nginx
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly with Nginx

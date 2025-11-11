@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/29/2025
+ms.date: 11/11/2025
 uid: blazor/hybrid/security/maui-blazor-web-identity
 ---
 # .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity

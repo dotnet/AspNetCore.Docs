@@ -5,7 +5,7 @@ description: Tips for reducing app download size in ASP.NET Core Blazor apps and
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/02/2025
+ms.date: 11/11/2025
 uid: blazor/performance/app-download-size
 ---
 # ASP.NET Core Blazor app download size performance best practices
