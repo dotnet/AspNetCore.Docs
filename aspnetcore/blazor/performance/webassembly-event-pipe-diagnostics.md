@@ -5,12 +5,12 @@ description: Learn about Event Pipe diagnostics and how to get a Garbage Collect
 monikerRange: '>= aspnetcore-10.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/21/2025
+ms.date: 11/11/2025
 uid: blazor/performance/webassembly-event-pipe
 ---
 # ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
 
-<!-- UPDATE 10.0 - Activate ...
+<!-- UPDATE 11.0 - Activate ...
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 

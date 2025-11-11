@@ -5,7 +5,7 @@ description: Learn how component authors can support static server-side renderin
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/class-libraries-with-static-ssr
 ---
 # ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)

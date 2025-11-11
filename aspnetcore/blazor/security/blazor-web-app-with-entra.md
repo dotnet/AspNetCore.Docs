@@ -5,13 +5,13 @@ description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 07/29/2025
+ms.date: 11/11/2025
 uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
 
-<!-- UPDATE 10.0 Activate after release and INCLUDE is updated
+<!-- UPDATE 11.0 - Activate ...
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->

@@ -5,7 +5,7 @@ description: Learn how to use a Content Security Policy (CSP) with ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/25/2025
+ms.date: 11/11/2025
 uid: blazor/security/content-security-policy
 ---
 # Enforce a Content Security Policy for ASP.NET Core Blazor

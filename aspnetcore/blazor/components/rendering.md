@@ -5,7 +5,7 @@ description: Learn about Razor component rendering in ASP.NET Core Blazor apps, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/rendering
 ---
 # ASP.NET Core Razor component rendering

@@ -5,7 +5,7 @@ description: Learn about Razor component integration scenarios for MVC or Razor 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/integration
 ---
 # Integrate ASP.NET Core Razor components with MVC or Razor Pages
