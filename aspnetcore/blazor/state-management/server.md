@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/05/2025
+ms.date: 11/11/2025
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -51,23 +51,15 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 ## Circuit state persistence
 
+<!-- UPDATE 10.0 - API doc cross-links -->
+
 During server-side rendering, Blazor Web Apps can persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:
 
 * Browser tab throttling
 * Mobile device users switching apps
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
-
-<!-- UPDATE 10.0 - Arriving for RC1 ...
-
-                   Guidance changes for persistent component state with enhanced nav
-                   will be on the upcoming docs PR for RC1.
-
-                   API review for support persistent component state on enhanced navigation
-                   https://github.com/dotnet/aspnetcore/issues/62773
-                   -->
-
-*[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with circuit state persistence isn't currently supported but planned for a future release.*
+* [Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling)
 
 Server resources can be freed up if the circuit state can be persisted and then resumed later:
 

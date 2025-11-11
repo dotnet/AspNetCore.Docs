@@ -5,7 +5,7 @@ description: Learn how to use forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/forms/index
 ---
 # ASP.NET Core Blazor forms overview
@@ -448,9 +448,9 @@ jQuery validation isn't supported in Razor components. We recommend any of the f
 * Use native HTML validation attributes (see [Client-side form validation](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
 * Adopt a third-party validation JavaScript library.
 
-<!-- UPDATE 10.0 - Remove if the feature is realized. -->
+<!-- UPDATE 11.0 - Remove if the feature is realized or dropped. -->
 
-For statically-rendered forms on the server, a new mechanism for client-side validation is under consideration for .NET 10 in late 2025. For more information, see [Create server rendered forms with client validation using Blazor without a circuit (`dotnet/aspnetcore` #51040)](https://github.com/dotnet/aspnetcore/issues/51040).
+For statically-rendered forms on the server, a new mechanism for client-side validation is under consideration. For more information, see [Create server rendered forms with client validation using Blazor without a circuit (`dotnet/aspnetcore` #51040)](https://github.com/dotnet/aspnetcore/issues/51040).
 
 ## Additional resources
 

@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in Blazor apps using Blazor'
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/08/2025
+ms.date: 11/11/2025
 uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
@@ -31,6 +31,10 @@ Run the app and inspect logging from the component. The following is example out
 The first logged count occurs during prerendering. The count is set again after prerendering when the component is rerendered. There's also a flicker in the UI when the count updates from 41 to 92.
 
 To retain the initial value of the counter during prerendering, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)).
+
+By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
+
+The persisted prerendered state is transferred to the client, where it's used to restore the component state. During client-side rendering (CSR, `InteractiveWebAssembly`), the data is exposed to the browser and must not contain sensitive, private information. During interactive server-side rendering (interactive SSR, `InteractiveServer`), [ASP.NET Core Data Protection](xref:security/data-protection/introduction) ensures that the data is transferred securely. The `InteractiveAuto` render mode combines WebAssembly and Server interactivity, so it's necessary to consider data exposure to the browser, as in the CSR case.
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -136,6 +140,8 @@ In the following example that serializes state for multiple components of the sa
 }
 ```
 
+## Serialize state for services
+
 In the following example that serializes state for a dependency injection service:
 
 * Properties annotated with the `[PersistentState]` attribute are serialized during prerendering and deserialized when the app becomes interactive.
@@ -148,12 +154,19 @@ In the following example that serializes state for a dependency injection servic
 > [!NOTE]
 > Only persisting scoped services is supported.
 
-<!-- UPDATE 10.0 - Flesh out with a fully-working example. -->
+Serialized properties are identified from the actual service instance:
 
-`CounterService.cs`:
+* This approach allows marking an abstraction as a persistent service.
+* Enables actual implementations to be internal or different types.
+* Supports shared code in different assemblies.
+* Results in each instance exposing the same properties.
+
+The following counter service, `CounterTracker`, marks its current count property, `CurrentCount` with the `[PersistentState]` attribute. The property is serialized during prerendering and deserialized when the app becomes interactive wherever the service is injected.
+
+`CounterTracker.cs`:
 
 ```csharp
-public class CounterService
+public class CounterTracker
 {
     [PersistentState]
     public int CurrentCount { get; set; }
@@ -165,19 +178,60 @@ public class CounterService
 }
 ```
 
-In `Program.cs`:
+In the `Program` file, register the scoped service and register the service for persistence with `RegisterPersistentService`. In the following example, the `CounterTracker` service is available for both the Interactive Server and Interactive WebAssembly render modes if a component renders in either of those modes because it's registered with `RenderMode.InteractiveAuto`.
+
+If the `Program` file doesn't already use the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace, add the following `using` statement to the top of the file:
 
 ```csharp
-builder.Services.RegisterPersistentService<CounterService>(
-    RenderMode.InteractiveAuto);
+using Microsoft.AspNetCore.Components.Web;
 ```
 
-Serialized properties are identified from the actual service instance:
+Where services are registered in the `Program` file:
 
-* This approach allows marking an abstraction as a persistent service.
-* Enables actual implementations to be internal or different types.
-* Supports shared code in different assemblies.
-* Results in each instance exposing the same properties.
+```csharp
+builder.Services.AddScoped<CounterTracker>();
+
+builder.Services.AddRazorComponents()
+    .RegisterPersistentService<CounterTracker>(RenderMode.InteractiveAuto);
+```
+
+Inject the `CounterTracker` service into a component and use it to increment a counter. For demonstration purposes in the following example, the value of the service's `CurrentCount` property is set to 10 only during prerendering.
+
+`Pages/Counter.razor`:
+
+```razor
+@page "/counter"
+@inject CounterTracker CounterTracker
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p>Rendering: @RendererInfo.Name</p>
+
+<p role="status">Current count: @CounterTracker.CurrentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (!RendererInfo.IsInteractive)
+        {
+            CounterTracker.CurrentCount = 10;
+        }
+    }
+
+    private void IncrementCount()
+    {
+        CounterTracker.IncrementCount();
+    }
+}
+```
+
+To use preceding component to demonstrate persisting the count of 10 in `CounterTracker.CurrentCount`, navigate to the component and refresh the browser, which triggers prerendering. When prerendering occurs, you briefly see <xref:Microsoft.AspNetCore.Components.RendererInfo.Name%2A?displayProperty=nameWithType> indicate "`Static`" before displaying "`Server`" after final rendering. The counter starts at 10.
+
+## Use the `PersistentComponentState` service directly instead of the declarative model
 
 As an alternative to using the declarative model for persisting state with the `[PersistentState]` attribute, you can use the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service directly, which offers greater flexibility for complex state persistence scenarios. Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> to register a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
@@ -267,10 +321,6 @@ When the component executes, `currentCount` is only set once during prerendering
 > :::no-loc text="      currentCount restored to 96":::
 
 :::moniker-end
-
-By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
-
-The persisted prerendered state is transferred to the client, where it's used to restore the component state. During client-side rendering (CSR, `InteractiveWebAssembly`), the data is exposed to the browser and must not contain sensitive, private information. During interactive server-side rendering (interactive SSR, `InteractiveServer`), [ASP.NET Core Data Protection](xref:security/data-protection/introduction) ensures that the data is transferred securely. The `InteractiveAuto` render mode combines WebAssembly and Server interactivity, so it's necessary to consider data exposure to the browser, as in the CSR case.
 
 :::moniker range=">= aspnetcore-10.0"
 

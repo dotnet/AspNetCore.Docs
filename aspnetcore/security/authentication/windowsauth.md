@@ -5,8 +5,9 @@ description: Learn how to configure Windows Authentication in ASP.NET Core for I
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/15/2021
+ms.date: 10/17/2025
 uid: security/authentication/windowsauth
+ms.ai: assisted
 ---
 # Configure Windows Authentication in ASP.NET Core
 
@@ -18,8 +19,49 @@ Windows Authentication (also known as Negotiate, Kerberos, or NTLM authenticatio
 
 Windows Authentication relies on the operating system to authenticate users of ASP.NET Core apps. Windows Authentication is used for servers that run on a corporate network using Active Directory domain identities or Windows accounts to identify users. Windows Authentication is best suited to intranet environments where users, client apps, and web servers belong to the same Windows domain.
 
+## When to use Windows Authentication
+
+Windows Authentication is suitable for web applications that operate within an organization's private internal network, accessible only to employees (and other authorized users) within the same network. The user management is done within Active Directory (AD), and users use their existing Windows domain account to authenticate.
+
+Windows Authentication provides several benefits for intranet applications:
+
+* **Seamless user experience** - Users are automatically authenticated based on their active Windows session, or are prompted to enter their Windows credentials via a standard browser dialog box.
+* **Integration with Active Directory** - Leverages existing Windows infrastructure and security policies, including user groups, account lockouts, and multi-factor authentication (MFA).
+* **Secure credential handling** - Authentication is handled through secure protocols like Kerberos, with no need to manage separate user credentials.
+* **Role-based authorization** - Applications can access user and group information from Active Directory, enabling role-based access control (RBAC) within the application.
+* **Reduced administrative overhead** - No need to maintain a separate user database or credential management system.
+
+This makes Windows Authentication ideal for organizations that want to make use of their existing Windows infrastructure, such as intranet portals.
+
 > [!NOTE]
-> Windows Authentication isn't supported with HTTP/2. Authentication challenges can be sent on HTTP/2 responses, but the client must downgrade to HTTP/1.1 before authenticating.
+> Windows Authentication isn't supported with HTTP/2. While authentication challenges can be sent over HTTP/2 responses, the client must downgrade to HTTP/1.1 to complete the authentication process. This is a protocol limitation, not a deprecation of Windows Authentication. Once authenticated, normal HTTP/2 communication can resume for subsequent requests.
+
+For public-facing applications Windows Authentication isn't recommended due to security and usability concerns.
+These reasons include:
+* Windows Authentication is best kept internal to protect Active Directory, exposing it outside an internal network introduces security risks.
+* External users don't have Windows domain accounts.
+* It's complex to configure the necessary network infrastructure securely, and firewalls or proxies may interfere with the authentication process.
+* It's not cross-platform and doesn't provide customization options for designs and user experiences.
+
+### Alternatives for different scenarios
+
+Depending on your application requirements, consider these alternatives:
+
+**For public-facing applications:**
+
+* [OpenID Connect](xref:security/how-to-choose-identity) with external identity providers
+* ASP.NET Core Identity with local user accounts (<xref:security/authentication/identity>)
+* Azure Active Directory (AAD) for Microsoft 365 environments
+
+**For mixed environments** with both intranet and external users:
+
+* Active Directory Federation Services (ADFS) with OpenID Connect
+* Azure Active Directory with hybrid configuration
+
+**For corporate environments using modern authentication:**
+
+* Azure Active Directory with single sign-on
+* SAML-based solutions with third-party identity providers
 
 ## Proxy and load balancer scenarios
 
@@ -126,7 +168,7 @@ Use **either** of the following approaches:
 
 ## Kestrel
 
-The [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) can be used with [Kestrel](xref:fundamentals/servers/kestrel) to support Windows Authentication using Negotiate and Kerberos on Windows, Linux, and macOS.
+The [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) can be used with [Kestrel](xref:fundamentals/servers/kestrel) to enable Windows Authentication using Negotiate and Kerberos on Windows, Linux, and macOS.
 
 > [!WARNING]
 > Credentials can be persisted across requests on a connection. *Negotiate authentication must not be used with proxies unless the proxy maintains a 1:1 connection affinity (a persistent connection) with Kestrel.*
@@ -134,15 +176,21 @@ The [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.
 > [!NOTE]
 > The Negotiate handler detects if the underlying server supports Windows Authentication natively and if it is enabled. If the server supports Windows Authentication but it is disabled, an error is thrown asking you to enable the server implementation. When Windows Authentication is enabled in the server, the Negotiate handler transparently forwards authentication requests to it.
 
-Authentication is enabled by the following highlighted code to `Program.cs`:
+Authentication and a fallback authorization policy are enabled by the following highlighted code in `Program.cs`:
 
-[!code-csharp[](windowsauth/6.0samples/WebRPwinAuth/Program.cs?name=snippet1&highlight=1,4-11,27-28)]
+[!code-csharp[](windowsauth/6.0samples/WebRPwinAuth/Program.cs?name=snippet1&highlight=1,5-6,8-11,26-27)]
 
-The preceding code was generated by the ASP.NET Core Razor Pages template with **Windows Authentication** specified. The following APIs are used in the preceding code:
+The preceding code was generated by the ASP.NET Core Razor Pages template with **Windows Authentication** specified.
 
-* <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>
-* <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate%2A> 
-* <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>
+Highlighted lines:
+
+* 5–6: <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> and <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate%2A> register and configure the Negotiate authentication handler.
+* 8–11: <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization%2A> with a fallback policy enforces authenticated users by default.
+* 26: <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> executes authentication handlers for each request and populates <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>.
+* 27: <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> evaluates authorization policies, including the fallback policy.
+
+> [!NOTE]
+> Calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> and <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate%2A> registers and configures the Negotiate handler; it does not run authentication per request. The Authentication middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) invokes the handler and populates <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>, and must appear before <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> for policy evaluation to work.
 
 <a name="rbac"></a>
 ### Kerberos authentication and role-based access control (RBAC)
@@ -267,8 +315,49 @@ Windows Authentication (also known as Negotiate, Kerberos, or NTLM authenticatio
 
 Windows Authentication relies on the operating system to authenticate users of ASP.NET Core apps. You can use Windows Authentication when your server runs on a corporate network using Active Directory domain identities or Windows accounts to identify users. Windows Authentication is best suited to intranet environments where users, client apps, and web servers belong to the same Windows domain.
 
+## When to use Windows Authentication
+
+Windows Authentication is suitable for web applications that operate within an organization's private internal network, accessible only to employees (and other authorized users) within the same network. The user management is done within Active Directory (AD), and users use their existing Windows domain account to authenticate.
+
+Windows Authentication provides several benefits for intranet applications:
+
+* **Seamless user experience** - Users are automatically authenticated based on their active Windows session, or are prompted to enter their Windows credentials via a standard browser dialog box.
+* **Integration with Active Directory** - Leverages existing Windows infrastructure and security policies, including user groups, account lockouts, and multi-factor authentication (MFA).
+* **Secure credential handling** - Authentication is handled through secure protocols like Kerberos, with no need to manage separate user credentials.
+* **Role-based authorization** - Applications can access user and group information from Active Directory, enabling role-based access control (RBAC) within the application.
+* **Reduced administrative overhead** - No need to maintain a separate user database or credential management system.
+
+This makes Windows Authentication ideal for organizations that want to make use of their existing Windows infrastructure, such as intranet portals.
+
 > [!NOTE]
-> Windows Authentication isn't supported with HTTP/2. Authentication challenges can be sent on HTTP/2 responses, but the client must downgrade to HTTP/1.1 before authenticating.
+> Windows Authentication isn't supported with HTTP/2. While authentication challenges can be sent over HTTP/2 responses, the client must downgrade to HTTP/1.1 to complete the authentication process. This is a protocol limitation, not a deprecation of Windows Authentication. Once authenticated, normal HTTP/2 communication can resume for subsequent requests.
+
+For public-facing applications Windows Authentication isn't recommended due to security and usability concerns.
+These reasons include:
+* Windows Authentication is best kept internal to protect Active Directory, exposing it outside an internal network introduces security risks.
+* External users don't have Windows domain accounts.
+* It's complex to configure the necessary network infrastructure securely, and firewalls or proxies may interfere with the authentication process.
+* It's not cross-platform and doesn't provide customization options for designs and user experiences.
+
+### Alternatives for different scenarios
+
+Depending on your application requirements, consider these alternatives:
+
+**For public-facing applications:**
+
+* [OpenID Connect](xref:security/how-to-choose-identity) with external identity providers
+* ASP.NET Core Identity with local user accounts (<xref:security/authentication/identity>)
+* Azure Active Directory (AAD) for Microsoft 365 environments
+
+**For mixed environments** with both intranet and external users:
+
+* Active Directory Federation Services (ADFS) with OpenID Connect
+* Azure Active Directory with hybrid configuration
+
+**For corporate environments using modern authentication:**
+
+* Azure Active Directory with single sign-on
+* SAML-based solutions with third-party identity providers
 
 ## Proxy and load balancer scenarios
 

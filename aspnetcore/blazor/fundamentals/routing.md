@@ -5,7 +5,7 @@ description: Learn how to manage Blazor app request routing and how to use the N
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/08/2025
+ms.date: 11/11/2025
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing and navigation
@@ -1072,7 +1072,7 @@ Enhanced navigation is available when:
 
 * The Blazor Web App script (`blazor.web.js`) is used, not the Blazor Server script (`blazor.server.js`) or Blazor WebAssembly script (`blazor.webassembly.js`).
 * The feature isn't [explicitly disabled](xref:blazor/fundamentals/startup#disable-enhanced-navigation-and-form-handling).
-* The destination URL is within the internal base URI space (the app's base path).
+* The destination URL is within the internal base URI space (the app's base path) and the link to the page doesn't have the `data-enhance-nav` attribute set to `false`.
 
 If server-side routing and enhanced navigation are enabled, [location changing handlers](#location-changes) are only invoked for programmatic navigation initiated from an interactive runtime. In future releases, additional types of navigation, such as following a link, may also invoke location changing handlers.
 

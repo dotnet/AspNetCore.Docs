@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssembly apps as single-page applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly
@@ -174,7 +174,7 @@ The following authentication scenarios are covered in the <xref:blazor/security/
 
 Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to each Razor component of the app using ***one*** of the following approaches:
 
-* In the app's Imports file, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
+* In the app's imports file, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
 
   `_Imports.razor`:
 

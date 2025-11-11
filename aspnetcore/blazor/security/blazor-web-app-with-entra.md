@@ -5,13 +5,13 @@ description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 07/29/2025
+ms.date: 11/11/2025
 uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
 
-<!-- UPDATE 10.0 Activate after release and INCLUDE is updated
+<!-- UPDATE 11.0 - Activate ...
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->
@@ -385,6 +385,12 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDistributedTokenCaches();
 ```
 
+Provide the same downstream API scope to the request transformer:
+
+```csharp
+List<string> scopes = [ "{APP ID URI}/Weather.Get" ];
+```
+
 Placeholders in the preceding configuration:
 
 * `{CLIENT ID (BLAZOR APP)}`: The application (client) ID.
@@ -412,9 +418,16 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDownstreamApi("DownstreamApi", configOptions =>
     {
         configOptions.BaseUrl = "https://localhost:7277";
-        configOptions.Scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
+        configOptions.Scopes = 
+            [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
     })
     .AddDistributedTokenCaches();
+```
+
+Example:
+
+```csharp
+List<string> scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
 ```
 
 :::zone-end
@@ -640,6 +653,15 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 -   })
 +   .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
     .AddDistributedTokenCaches();
+```
+
+```diff
+- List<string> scopes = ["{APP ID URI}/Weather.Get"];
+- var accessToken = await tokenAcquisition.GetAccessTokenForUserAsync(scopes);
++ var configuration = transformContext.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
++ var scopes = configuration.GetSection("DownstreamApi:Scopes").Get<IEnumerable<string>>();
++ var accessToken = await tokenAcquisition.GetAccessTokenForUserAsync(scopes ??
++     throw new InvalidOperationException("No downstream API scopes!"));
 ```
 
 > [!NOTE]

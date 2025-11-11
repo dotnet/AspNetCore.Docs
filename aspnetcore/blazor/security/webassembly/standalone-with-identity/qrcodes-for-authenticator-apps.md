@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure an ASP.NET Core Blazor WebAssembly app with Identity for QR code generation with TOTP authenticator apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 11/21/2024
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps
 ---
 # Enable QR code generation for TOTP authenticator apps in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity

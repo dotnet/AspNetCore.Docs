@@ -5,7 +5,7 @@ description: Learn about Blazor render modes and how to apply them in Blazor Web
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/render-modes
 ---
 # ASP.NET Core Blazor render modes
@@ -384,6 +384,8 @@ In the following example, the render mode is set interactive SSR by adding `@ren
 ```
 
 If using the preceding component in a Blazor Web App, place the component in the server project's `Components/Pages` folder. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
+
+[!INCLUDE[](~/blazor/includes/closure-of-circuits.md)]
 
 ## Client-side rendering (CSR)
 
@@ -817,14 +819,6 @@ In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the
 
 :::moniker-end
 
-## Discover components from additional assemblies
-
-Additional assemblies must be disclosed to the Blazor framework to discover routable Razor components in referenced projects. For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
-
-## Closure of circuits when there are no remaining Interactive Server components
-
-[!INCLUDE[](~/blazor/includes/closure-of-circuits.md)]
-
 ## Custom shorthand render modes
 
 The `@rendermode` directive takes a single parameter that's a static instance of type <xref:Microsoft.AspNetCore.Components.IComponentRenderMode>. The `@rendermode` directive attribute can take any render mode instance, static or not. The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Web.RenderMode> static class with some predefined render modes for convenience, but you can create your own.
@@ -863,13 +857,7 @@ Alternatively, a single component instance can define a custom render mode via a
 
 At the moment, the shorthand render mode approach is probably only useful for reducing the verbosity of specifying the `prerender` flag. The shorthand approach might be more useful in the future if additional flags become available for interactive rendering and you would like to create shorthand render modes with different combinations of flags.
 
-## Service injection via a top-level imports file (`_Imports.razor`)
 
-*This section only applies to Blazor Web Apps.*
-
-A top-level imports file in the `Components` folder (`Components/_Imports.razor`) injects its references into all of the components in the folder hierarchy, which includes the `App` component (`App.razor`). The `App` component is always rendered statically even if [prerendering of a page component is disabled](xref:blazor/components/prerender#disable-prerendering). Therefore, injecting services via the top-level imports file results in resolving *two instances* of the service in page components.
-
-To address this scenario, inject the service in a new imports file placed in the `Pages` folder (`Components/Pages/_Imports.razor`). From that location, the service is only resolved once in page components.
 
 ## Additional resources
 

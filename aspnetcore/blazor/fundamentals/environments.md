@@ -5,7 +5,7 @@ description: Learn about environments in Blazor, including how to set the enviro
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
@@ -15,10 +15,6 @@ uid: blazor/fundamentals/environments
 This article explains how to configure and read the [environment](xref:fundamentals/environments) in a Blazor app.
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
-
-<!-- UPDATE 10.0 The underlying problem with app settings filename 
-                 case sensitivity is tracked for 10.0 by ...
-                 https://github.com/dotnet/aspnetcore/issues/25152 -->
                 
 We recommend the following conventions:
 

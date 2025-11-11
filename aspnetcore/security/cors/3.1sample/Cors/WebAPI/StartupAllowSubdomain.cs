@@ -27,7 +27,7 @@ namespace WebAPI
                 options.AddPolicy("MyAllowSubdomainPolicy",
                     policy =>
                     {
-                        policy.WithOrigins("https://*.example.com")
+                        policy.WithOrigins("https://example.com")
                             .SetIsOriginAllowedToAllowWildcardSubdomains();
                     });
                 #endregion

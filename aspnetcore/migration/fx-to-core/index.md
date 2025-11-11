@@ -3,7 +3,7 @@ title: Migrate from ASP.NET Framework to ASP.NET Core
 author: wadepickett
 description: Your complete guide to migrating ASP.NET Framework applications to ASP.NET Core, with practical approaches and step-by-step guidance.
 ms.author: wpickett
-ms.date: 07/17/2025
+ms.date: 11/10/2025
 uid: migration/fx-to-core/index
 ---
 # Migrate from ASP.NET Framework to ASP.NET Core
@@ -37,6 +37,8 @@ Many applications have cross-cutting concerns that span multiple layers and need
 * **Error handling** - Establishing consistent error handling patterns across both applications
 * **Configuration management** - Managing settings that need to be shared or synchronized between applications
 * **Dependency injection** - Migrating from various DI containers to ASP.NET Core's built-in container
+
+The generic host pattern can help address several of these concerns by bringing modern .NET infrastructure to ASP.NET Framework applications. For details, see <xref:migration/fx-to-core/areas/hosting>.
 
 ### Library Dependency Chains
 

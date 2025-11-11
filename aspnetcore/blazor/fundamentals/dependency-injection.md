@@ -5,7 +5,7 @@ description: Learn how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/fundamentals/dependency-injection
 ---
 # ASP.NET Core Blazor dependency injection
@@ -293,6 +293,18 @@ In components derived from a base class, the [`@inject`](xref:mvc/views/razor#in
 @inherits CustomComponentBase
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Service injection via a top-level imports file (`_Imports.razor`)
+
+*This section only applies to Blazor Web Apps.*
+
+A top-level imports file in the `Components` folder (`Components/_Imports.razor`) injects its references into all of the components in the folder hierarchy, which includes the `App` component (`App.razor`). The `App` component is always rendered statically even if [prerendering of a page component is disabled](xref:blazor/components/prerender#disable-prerendering). Therefore, injecting services via the top-level imports file results in resolving *two instances* of the service in page components.
+
+To address this scenario, inject the service in a new imports file placed in the `Pages` folder (`Components/Pages/_Imports.razor`). From that location, the service is only resolved once in page components.
+
+:::moniker-end
+
 ## Use DI in services
 
 Complex services might require additional services. In the following example, `DataAccess` requires the <xref:System.Net.Http.HttpClient> default service. [`@inject`](xref:mvc/views/razor#inject) (or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute)) isn't available for use in services. *Constructor injection* must be used instead. Required services are added by adding parameters to the service's constructor. When DI creates the service, it recognizes the services it requires in the constructor and provides them accordingly. In the following example, the constructor receives an <xref:System.Net.Http.HttpClient> via DI. <xref:System.Net.Http.HttpClient> is a default service.
@@ -342,8 +354,6 @@ public IMyService MyService { get; set; }
 :::moniker-end
 
 ## Utility base component classes to manage a DI scope
-
-<!-- UPDATE 10.0 - PU design is under consideration for .NET 10. -->
 
 In non-Blazor ASP.NET Core apps, scoped and transient services are typically scoped to the current request. After the request completes, scoped and transient services are disposed by the DI system.
 
@@ -542,20 +552,29 @@ Transient service registrations for <xref:System.Net.Http.IHttpClientFactory>/<x
 
 Other instances of <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> are also discovered. These instances can also be ignored.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
 The Blazor sample apps in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples/tree/main) ([how to download](xref:blazor/fundamentals/index#sample-apps)) demonstrate the code to detect transient disposables. However, the code is deactivated because the sample apps include <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers.
 
 To activate the demonstration code and witness its operation:
 
 * Uncomment the transient disposable lines in `Program.cs`.
 
-* Remove the conditional check in `NavLink.razor` that prevents the `TransientService` component from displaying in the app's navigation sidebar:
+* Remove the conditional check in `NavMenu.razor` that prevents the `TransientService` component from displaying in the app's navigation sidebar:
 
   ```diff
-  - else if (name != "TransientService")
-  + else
+  - && (c.Name != "TransientService")
   ```
 
 * Run the sample app and navigate to the `TransientService` component at `/transient-service`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+The Blazor sample apps in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples/tree/main) ([how to download](xref:blazor/fundamentals/index#sample-apps)) demonstrate the code to detect transient disposables. Run the sample app and navigate to the `TransientService` component at `/transient-service`.
 
 :::moniker-end
 
@@ -777,7 +796,6 @@ services.AddScoped<BlazorServiceAccessor>();
 
 :::moniker range=">= aspnetcore-8.0"
 
-* [Service injection via a top-level imports file (`_Imports.razor`) in Blazor Web Apps](xref:blazor/components/render-modes#service-injection-via-a-top-level-imports-file-_importsrazor)
 * <xref:fundamentals/dependency-injection>
 * [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>

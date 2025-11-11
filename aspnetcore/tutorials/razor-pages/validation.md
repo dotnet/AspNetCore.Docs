@@ -3,7 +3,7 @@ title: Part 8, add validation
 author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 06/23/2024
+ms.date: 08/28/2025
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
@@ -27,6 +27,13 @@ The validation support provided by Razor Pages and Entity Framework is a good ex
 
 * Validation rules are declaratively specified in one place, in the model class.
 * Rules are enforced everywhere in the app.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+[!INCLUDE[](~/includes/validation-package-net10.md)]
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
 
 ## Add validation rules to the movie model
 

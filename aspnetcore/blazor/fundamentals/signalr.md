@@ -5,7 +5,7 @@ description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
@@ -316,7 +316,7 @@ app.MapBlazorHub(options =>
 });
 ```
 
-<!-- UPDATE 10.0 - The following is scheduled for a fix in .NET 10.
+<!-- UPDATE 11.0 - The following is scheduled for a fix in .NET 11.
                    Tracked by: https://github.com/dotnet/aspnetcore/issues/63520 -->
 
 Configuring the hub used by <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> fails with an <xref:System.Reflection.AmbiguousMatchException>:
@@ -598,11 +598,7 @@ An element with an `id` of `components-seconds-to-next-attempt` displays the num
 <span id="components-seconds-to-next-attempt"></span>
 ```
 
-The Blazor Web App project template includes a `ReconnectModal` component (`Layout/ReconnectModal.razor`) with collocated stylesheet and JavaScript files (`ReconnectModal.razor.css`, `ReconnectModal.razor.js`) that can be customized as needed. These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template. The component is added to the project when the project is created in Visual Studio with **Interactive render mode** set to **Server** or **Auto** or created with the .NET CLI with the option `--interactivity server` (default) or `--interactivity auto`.
-
-* [`ReconnectModal` component](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor)
-* [Stylesheet file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.css)
-* [JavaScript file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.js)
+The [Blazor Web App project template](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp) includes a `ReconnectModal` component (`Components/Layout/ReconnectModal.razor`) with collocated stylesheet and JavaScript files (`ReconnectModal.razor.css`, `ReconnectModal.razor.js`) that can be customized as needed. These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template. The component is added to the project when the project is created in Visual Studio with **Interactive render mode** set to **Server** or **Auto** or created with the .NET CLI with the option `--interactivity server` (default) or `--interactivity auto`.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

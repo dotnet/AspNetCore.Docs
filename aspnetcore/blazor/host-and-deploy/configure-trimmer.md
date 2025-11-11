@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Trimmer when bu
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/08/2025
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/configure-trimmer
 ---
 # Configure the Trimmer for ASP.NET Core Blazor
@@ -15,6 +15,25 @@ uid: blazor/host-and-deploy/configure-trimmer
 This article explains how to control the Intermediate Language (IL) Trimmer when building a Blazor app.
 
 Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/glossary#il) trimming to reduce the size of the published output. Trimming occurs when publishing an app.
+
+## Default trimmer granularity
+
+<!-- UPDATE 11.0 - HOLD until https://github.com/dotnet/aspnetcore/issues/49409
+                   is addressed.
+
+The default trimmer granularity for Blazor apps is `partial`. To trim all assemblies, change the granularity to `full` in the app's project file:
+
+```xml
+<PropertyGroup>
+  <TrimMode>full</TrimMode>
+</PropertyGroup>
+```
+
+-->
+
+The default trimmer granularity for Blazor apps is `partial`, which means that only core framework libraries and libraries that have explicitly enabled trimming support are trimmed. Full trimming isn't supported.
+
+For more information, see [Trimming options (.NET documentation)](/dotnet/core/deploying/trimming/trimming-options#trimming-granularity).
 
 ## Configuration
 
@@ -28,17 +47,15 @@ To configure the IL Trimmer, see the [Trimming options](/dotnet/core/deploying/t
 * Control symbol trimming and debugger support.
 * Set IL Trimmer features for trimming framework library features.
 
-## Default trimmer granularity
-
-The default trimmer granularity for Blazor apps is `partial`. To trim all assemblies, change the granularity to `full` in the app's project file:
+When the [trimmer granularity](#default-trimmer-granularity) is `partial`, which is the default value, the IL Trimmer trims the base class library and any other assemblies marked as trimmable. To opt into trimming in any of the app's class library projects, set the `<IsTrimmable>` MSBuild property to `true` in those projects:
 
 ```xml
 <PropertyGroup>
-  <TrimMode>full</TrimMode>
+  <IsTrimmable>true</IsTrimmable>
 </PropertyGroup>
 ```
 
-For more information, see [Trimming options (.NET documentation)](/dotnet/core/deploying/trimming/trimming-options#trimming-granularity).
+For guidance that pertains to .NET libraries, see [Prepare .NET libraries for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming).
 
 ## Failure to preserve types used by a published app
 
@@ -83,20 +100,20 @@ Consider the following example that performs JSON deserialization into a <xref:S
 
 The preceding component executes normally when the app is run locally and produces the following rendered list:
 
-> • 1:T1, 1:T2
+> • 1:T1, 1:T2  
 > • 2:T2, 2:T2
 
 When the app is published, <xref:System.Tuple%602> is trimmed from the app, even in spite of setting the `<PublishTrimmed>` property to `false` in the project file. Accessing the component throws the following exception:
 
-> :::no-loc text="crit: Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]":::
-> :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::
+> :::no-loc text="crit: Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]":::  
+> :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::  
 > :::no-loc text="System.NotSupportedException: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::
 
 To address lost types, consider adopting one of the following approaches.
 
 ### Custom types
 
-Custom types aren't trimmed by Blazor when an app is published, so we recommend using custom types for JS interop, JSON serialization/deserialization, and other operations that rely on reflection.
+To avoid issues with .NET trimming in scenarios that rely on reflection, such as JS interop and JSON serialization, use custom types defined in non-trimmable libraries or preserve the types via linker configuration.
 
 The following modifications create a `StringTuple` type for use by the component.
 
@@ -123,7 +140,7 @@ The component is modified to use the `StringTuple` type:
 + items = JsonSerializer.Deserialize<List<StringTuple>>(data, options)!;
 ```
 
-Because custom types are never trimmed by Blazor when an app is published, the component works as designed after the app is published.
+Because custom types defined in non-trimmable assemblies aren't trimmed by Blazor when an app is published, the component works as designed after the app is published.
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -205,4 +222,5 @@ As a workaround in .NET 8, you can add the `_ExtraTrimmerArgs` MSBuild property 
 ## Additional resources
 
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained)
+* [Prepare .NET libraries for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming)
 * <xref:blazor/performance/app-download-size#intermediate-language-il-trimming>

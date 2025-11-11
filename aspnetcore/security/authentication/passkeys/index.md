@@ -5,7 +5,7 @@ description: Discover how to enable Web Authentication API (WebAuthn) passkeys i
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
-ms.date: 09/10/2025
+ms.date: 10/30/2025
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
@@ -146,6 +146,10 @@ To prevent database exhaustion attacks, apps should enforce limits on passkey re
 * Maximum length for passkey display names.
 
 The Blazor Web App template enforces these limits by default at the application level. For examples, see the following Razor components in the Blazor Web App project template:
+
+<!-- UPDATE 11.0 - Confirm that the 'BlazorWebCSharp.1' folder 
+                   locations for the following links are
+                   still correct for release -->
 
 * [`Components/Account/Pages/Manage/Passkeys.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/Pages/Manage/Passkeys.razor)
 * [`Components/Account/Pages/Manage/RenamePasskey.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/Pages/Manage/RenamePasskey.razor)

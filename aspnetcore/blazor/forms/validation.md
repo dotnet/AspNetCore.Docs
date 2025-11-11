@@ -5,7 +5,7 @@ description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/08/2025
+ms.date: 11/11/2025
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -1567,6 +1567,50 @@ The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https
 ## `[CompareProperty]` attribute
 
 The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` *experimental* package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]` attribute](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+## Use validation models from a different assembly
+
+<!-- UPDATE 10.0 - API cross-links -->
+
+For model validation defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App:
+
+* If the library is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the library for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation).
+* Create a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
+* In the app, call both the method and `AddValidation`.
+
+The preceding approach results in validation of the types from both assemblies.
+
+In the following example, the `AddValidationForTypesInClient` method is created for the `.Client` project of a Blazor Web App for validation using types defined in the `.Client` project.
+
+`ServiceCollectionExtensions.cs` (in the `.Client` project):
+
+```csharp
+namespace BlazorSample.Client.Extensions;
+
+public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddValidationForTypesInClient(
+        this IServiceCollection collection)
+    {
+        return collection.AddValidation();
+    }
+}
+```
+
+In the server project's `Program` file, add the namespace and call the `.Client` project's service collection extension method (`AddValidationForTypesInClient`) and `AddValidation`:
+
+```csharp
+using BlazorSample.Client.Extensions;
+
+...
+
+builder.Services.AddValidationForTypesInClient();
+builder.Services.AddValidation();
+```
 
 :::moniker-end
 

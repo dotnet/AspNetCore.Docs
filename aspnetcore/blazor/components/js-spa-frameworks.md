@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in JavaScript apps and
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/js-spa-frameworks
 ---
 # Use Razor components in JavaScript apps and SPA frameworks
@@ -241,13 +241,13 @@ For an advanced example with additional features, see the example in the `BasicT
 
 :::moniker range=">= aspnetcore-7.0"
 
-Use Blazor custom elements to dynamically render Razor components from other SPA frameworks, such as Angular or React.
+Use Blazor custom elements to dynamically render Razor components from different JavaScript technologies, such as [Angular](https://angular.dev/), [React](https://react.dev/), and [Vue](https://vuejs.org/).
 
 Blazor custom elements:
 
 * Use standard HTML interfaces to implement custom HTML elements.
 * Eliminate the need to manually manage the state and lifecycle of root Razor components using JavaScript APIs.
-* Are useful for gradually introducing Razor components into existing projects written in other SPA frameworks.
+* Are useful for gradually introducing Razor components into existing projects written in other technologies.
 
 Custom elements don't support [child content](xref:blazor/components/index#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
 
@@ -471,7 +471,7 @@ Use the custom element with any web framework. For example, the preceding counte
 
 ## Generate Angular and React components
 
-Generate framework-specific JavaScript (JS) components from Razor components for web frameworks, such as Angular or React. This capability isn't included with .NET, but is enabled by the support for rendering Razor components from JS. The [JS component generation sample on GitHub](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/JSComponentGeneration) demonstrates how to generate Angular and React components from Razor components. See the GitHub sample app's `README.md` file for additional information.
+Generate JavaScript (JS) components from Razor components for JavaScript technologies, such as Angular or React. This capability isn't included with .NET, but is enabled by the support for rendering Razor components from JS. The [JS component generation sample on GitHub](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/JSComponentGeneration) demonstrates how to generate Angular and React components from Razor components. See the GitHub sample app's `README.md` file for additional information.
 
 > [!WARNING]
 > The Angular and React component features are currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.

@@ -5,7 +5,7 @@ description: Learn about Blazor app logging, particularly in client-side logging
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/29/2025
+ms.date: 11/11/2025
 uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
