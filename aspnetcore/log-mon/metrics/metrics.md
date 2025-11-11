@@ -267,17 +267,17 @@ The proceeding test:
 
 ## ASP.NET Core Identity metrics
 
-ASP.NET Core Identity observability has been improved in .NET 10 with metrics. These metrics help you monitor user management activities and authentication processes.
+ASP.NET Core Identity observability help you monitor user management activities and authentication processes.
 
-The metrics are in the `Microsoft.AspNetCore.Identity` meter and include:
+The metrics are in the `Microsoft.AspNetCore.Identity` meter and are described in the following sections.
 
 ### User management metrics
 
-* `aspnetcore.identity.user.create.duration` - Measures the duration of user creation operations
+* `aspnetcore.identity.user.create.duration` measures the duration of user creation operations.
 * `aspnetcore.identity.user.update.duration` - Measures the duration of user update operations
 * `aspnetcore.identity.user.delete.duration` - Measures the duration of user deletion operations
 * `aspnetcore.identity.user.check_password_attempts` - Counts password verification attempts
-* `aspnetcore.identity.user.generated_tokens` - Counts tokens generated for users (like password reset tokens)
+* `aspnetcore.identity.user.generated_tokens` counts tokens generated for users , such as password reset tokens.
 * `aspnetcore.identity.user.verify_token_attempts` - Counts token verification attempts
 
 ### Authentication metrics
@@ -291,14 +291,14 @@ The metrics are in the `Microsoft.AspNetCore.Identity` meter and include:
 
 These metrics can be used to:
 
-* Monitor user registration and management
-* Track authentication patterns and potential security issues
-* Measure performance of Identity operations
-* Observe two-factor authentication usage
+* Monitor user registration and management.
+* Track authentication patterns and potential security issues.
+* Measure performance of Identity operations.
+* Observe two-factor authentication usage.
 
 ### Viewing Identity metrics
 
-You can view these metrics using `dotnet-counters` to monitor them in real-time, or export them to Prometheus and visualize them in Grafana using the techniques described earlier in this article.
+You can view these metrics using `dotnet-counters` to monitor them in real-time or export them to Prometheus and visualize them in Grafana using the techniques described earlier in this article.
 
 For example, to monitor all Identity metrics with `dotnet-counters`:
 
