@@ -16,6 +16,7 @@ uid: migration/fx-to-core/areas
 * [HTTP Modules](http-modules.md)
 * [Membership](membership.md)
 * [Miscellaneous](misc.md)
+* [OWIN](owin.md)
 * [Session State](session.md)
 * [WebAPI](webapi.md)
 

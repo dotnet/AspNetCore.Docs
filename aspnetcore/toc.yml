@@ -2170,6 +2170,8 @@ items:
               uid: migration/fx-to-core/areas/authentication
             - name: Membership
               uid: migration/fx-to-core/areas/membership
+            - name: OWIN
+              uid: migration/fx-to-core/areas/owin
             - name: Web API
               uid: migration/fx-to-core/areas/webapi
             - name: ClaimsPrincipal.Current
