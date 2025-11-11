@@ -10,7 +10,11 @@ uid: blazor/performance/webassembly-runtime-performance
 ---
 # ASP.NET Core Blazor WebAssembly runtime performance
 
+<!-- UPDATE 10.0 - Activate ...
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 This article provides guidance on Blazor WebAssembly runtime performance.
 

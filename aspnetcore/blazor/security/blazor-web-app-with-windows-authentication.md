@@ -10,7 +10,11 @@ uid: blazor/security/blazor-web-app-windows-authentication
 ---
 # Secure an ASP.NET Core Blazor Web App with Windows Authentication
 
+<!-- UPDATE 10.0 - Enable after release
+
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+
+-->
 
 This article describes how to secure a Blazor Web App with [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) using a sample app. For more information, see <xref:security/authentication/windowsauth>.
 
