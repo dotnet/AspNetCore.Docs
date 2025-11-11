@@ -107,7 +107,7 @@ The following example uses the `HideColumnOptionsAsync` method to close the colu
 }
 ```
 
-### Response streaming is opt-in and how to opt-out
+### HttpClient response streaming enabled by default
 
 In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClient> requests was opt-in. Now, response streaming is enabled by default.
 
@@ -437,49 +437,56 @@ For more information and examples, see <xref:blazor/fundamentals/navigation?view
 
 ### Support for Not Found responses in apps without Blazor's router
 
-Apps that implement a custom router can use `NavigationManager.NotFound`. The custom router can render Not Found content from two sources, depending on the state of the response:
+Apps that implement a custom router can use `NavigationManager.NotFound`. There are two ways to inform the renderer what page should be rendered when `NavigationManager.NotFound` is called:
 
-* Regardless of the response state, the re-execution path to the page can used by passing it to <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>:
+The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. When `NavigationManager.NotFound` is called, the middleware renders the path passed to the method:
 
-  ```csharp
-  app.UseStatusCodePagesWithReExecute(
-      "/not-found", createScopeForStatusCodePages: true);
-  ```
+```csharp
+app.UseStatusCodePagesWithReExecute(
+    "/not-found", createScopeForStatusCodePages: true);
+```
 
-* When the response has started, the <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> can be used by subscribing to the `OnNotFoundEvent` in the router:
+If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support `NavigationManager.NotFound` for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render when `NavigationManager.NotFound` is called.
 
-  ```razor
-  @code {
-      [CascadingParameter]
-      public HttpContext? HttpContext { get; set; }
+`CustomRouter.razor`:
 
-      private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
-      {
-          // Only execute the logic if HTTP response has started,
-          // because setting NotFoundEventArgs.Path blocks re-execution
-          if (HttpContext?.Response.HasStarted == false)
-          {
-              return;
-          }
+```razor
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Http
+@implements IDisposable
+@inject NavigationManager NavigationManager
 
-          var type = typeof(CustomNotFoundPage);
-          var routeAttributes = type.GetCustomAttributes<RouteAttribute>(inherit: true);
+@code {
+    protected override void OnInitialized() =>
+        NavigationManager.OnNotFound += OnNotFoundEvent;
 
-          if (routeAttributes.Length == 0)
-          {
-              throw new InvalidOperationException($"The type {type.FullName} " +
-                  $"doesn't have a {typeof(RouteAttribute).FullName} applied.");
-          }
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
 
-          var routeAttribute = (RouteAttribute)routeAttributes[0];
+    private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
+    {
+        // Only execute the logic if HTTP response has started
+        // because setting NotFoundEventArgs.Path blocks re-execution
+        if (HttpContext?.Response.HasStarted == false)
+        {
+            return;
+        }
 
-          if (routeAttribute.Template != null)
-          {
-              e.Path = routeAttribute.Template;
-          }
-      }
-  }
-  ```
+        e.Path = GetNotFoundRoutePath();
+    }
+
+    // Return the path of the Not Found page that you want to display
+    private string GetNotFoundRoutePath()
+    {
+        ...
+    }
+
+    public void Dispose() => NavigationManager.OnNotFound -= OnNotFoundEvent;
+}
+```
+
+If you use both approaches in your app, the Not Found path specified in the `OnNotFoundEvent` handler takes precedence over the path configured in the re-execution middleware.
 
 ### Metrics and tracing
 
@@ -603,6 +610,13 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
 
 If one of the preceding steps produces a validation error, the remaining steps are skipped.
+
+### Use validation models from a different assembly
+
+You can validate forms with models defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App, by creating a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
+* In the app, call both the method and `AddValidation`.
+
+For more information and an example, see <xref:blazor/forms/validation#use-validation-models-from-a-different-assembly?view=aspnetcore-10.0>.
 
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 

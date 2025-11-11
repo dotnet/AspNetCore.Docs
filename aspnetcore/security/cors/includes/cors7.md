@@ -207,6 +207,8 @@ This section describes the various options that can be set in a CORS policy:
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Program.cs?name=snippet_aa)]
 
+In the preceding code, `SetIsOriginAllowedToAllowWildcardSubdomains` is called with the base origin `"https://example.com"`. This configuration allows CORS requests from any subdomain of `example.com`, such as `https://subdomain.example.com` or `https://api.example.com`. The wildcard matching is handled by the method, so the origin should be specified without the `*` wildcard character.
+
 ### Set the allowed HTTP methods
 
 <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyMethod%2A>:

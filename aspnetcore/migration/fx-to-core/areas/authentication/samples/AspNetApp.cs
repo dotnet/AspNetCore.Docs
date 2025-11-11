@@ -14,13 +14,16 @@ public class AppApplication : HttpApplication
         BundleConfig.RegisterBundles(BundleTable.Bundles);
 
         // <snippet_SystemWebAdapterConfiguration>
-        SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
-            .AddProxySupport(options => options.UseForwardedHeaders = true)
-            .AddRemoteAppServer(options =>
-            {
-                options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
-            })
-            .AddAuthenticationServer();
+        HttpApplicationHost.RegisterHost(builder =>
+        {
+            builder.AddSystemWebAdapters()
+                .AddProxySupport(options => options.UseForwardedHeaders = true)
+                .AddRemoteAppServer(options =>
+                {
+                    options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
+                })
+                .AddAuthenticationServer();
+        });
         // </snippet_SystemWebAdapterConfiguration>
     }
 }

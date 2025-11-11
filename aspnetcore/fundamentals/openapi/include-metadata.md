@@ -161,18 +161,12 @@ The [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute
 
 #### [Minimal APIs](#tab/minimal-apis)
 
-The [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute works in an MVC app but doesn't work in a Minimal API app at this time. For more information, see [`Description` parameter of `ProducesResponseTypeAttribute` does not work in minimal API app (`dotnet/aspnetcore` #60518)](https://github.com/dotnet/aspnetcore/issues/60518).
-
-<!-- For activation when https://github.com/dotnet/aspnetcore/issues/60518 is resolved ...
-
 The follow sample demonstrates how to set a description for a parameter.
 
 ```csharp
 app.MapGet("/attributes",
     ([Description("This is a description.")] string name) => "Hello world!");
 ```
-
--->
 
 #### [Controllers](#tab/controllers)
 

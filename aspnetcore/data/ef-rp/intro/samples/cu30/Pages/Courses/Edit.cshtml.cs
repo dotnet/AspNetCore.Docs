@@ -32,7 +32,7 @@ namespace ContosoUniversity.Pages.Courses
                 return NotFound();
             }
 
-            // Select current DepartmentID.
+            // Populate departments dropdown. Course.DepartmentID determines the selected item.
             PopulateDepartmentsDropDownList(_context, Course.DepartmentID);
             return Page();
         }
@@ -60,7 +60,7 @@ namespace ContosoUniversity.Pages.Courses
                 return RedirectToPage("./Index");
             }
 
-            // Select DepartmentID if TryUpdateModelAsync fails.
+            // Repopulate departments dropdown. courseToUpdate.DepartmentID determines the selected item.
             PopulateDepartmentsDropDownList(_context, courseToUpdate.DepartmentID);
             return Page();
         }       

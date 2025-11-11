@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 4/10/2024
+ms.date: 11/02/2025
 uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
@@ -132,7 +132,10 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 ### Component (`.razor`) example (`InvokeVoidAsync`)
 
-`TickerChanged` calls the `handleTickerChanged1` method in the following component.
+The following component:
+
+* Invokes the `displayTickerAlert1` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> with two JSON-serializable parameters, a string in `stockSymbol` and a decimal in `price`, when selecting a button (**`Set Stock`**).
+* The JS function receives the two arguments in strictly-typed parameters and displays a modal alert box with a specified message.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -222,7 +225,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 :::moniker-end
 
-`TickerChanged` calls the `handleTickerChanged1` method in the following component.
+`TickerChanged` calls the `displayTickerAlert1` method in the following component.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -296,7 +299,10 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 ### Component (`.razor`) example (`InvokeAsync`)
 
-`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following component.
+The following component:
+
+* Invokes the `displayTickerAlert2` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> with two JSON-serializable parameters, a string in `stockSymbol` and a decimal in `price`, when selecting a button (**`Set Stock`**).
+* The JS function receives the two arguments in strictly-typed parameters and displays a modal alert box with a specified message.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -386,7 +392,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 :::moniker-end
 
-`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following component.
+`TickerChanged` calls the `displayTickerAlert2` method and displays the returned string in the following component.
 
 :::moniker range=">= aspnetcore-9.0"
 
