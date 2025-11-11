@@ -203,6 +203,7 @@ The template-generated app doesn't use [authorization](xref:security/authorizati
 
 For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](xref:fundamentals/startup).
 
+:::moniker-end
 :::moniker range=">= aspnetcore-10.0"
 
 ## ASP.NET Core Identity metrics
@@ -212,6 +213,7 @@ ASP.NET Core Identity metrics provide monitoring capabilities for user managemen
 For complete details on available metrics and how to use them, see <xref:log-mon/metrics/metrics#aspnet-core-identity-metrics>.
 
 :::moniker-end
+:::moniker range=">= aspnetcore-8.0"
 
 <!-- Start here for .NET 6 -->
 
