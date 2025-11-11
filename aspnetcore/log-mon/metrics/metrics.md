@@ -277,7 +277,7 @@ The metrics are in the `Microsoft.AspNetCore.Identity` meter and are described i
 * `aspnetcore.identity.user.update.duration` - Measures the duration of user update operations
 * `aspnetcore.identity.user.delete.duration` - Measures the duration of user deletion operations
 * `aspnetcore.identity.user.check_password_attempts` - Counts password verification attempts
-* `aspnetcore.identity.user.generated_tokens` counts tokens generated for users , such as password reset tokens.
+* `aspnetcore.identity.user.generated_tokens` counts tokens generated for users, such as password reset tokens.
 * `aspnetcore.identity.user.verify_token_attempts` - Counts token verification attempts
 
 ### Authentication metrics
