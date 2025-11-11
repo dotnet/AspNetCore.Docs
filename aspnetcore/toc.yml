@@ -2156,6 +2156,8 @@ items:
             items:
             - name: Overview
               uid: migration/fx-to-core/areas
+            - name: HttpApplicationHost
+              uid: migration/fx-to-core/areas/hosting
             - name: HttpContext
               uid: migration/fx-to-core/areas/http-context
             - name: HTTP Modules
