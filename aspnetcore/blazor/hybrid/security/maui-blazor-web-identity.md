@@ -10,7 +10,7 @@ uid: blazor/hybrid/security/maui-blazor-web-identity
 ---
 # .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
 
-<!-- UPDATE 10.0 - Uncomment at 10.0
+<!-- UPDATE 11.0 - Activate ...
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 

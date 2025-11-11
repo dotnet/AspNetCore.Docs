@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-web-app-entra-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
 
-<!-- UPDATE 10.0 Activate after release and INCLUDE is updated
+<!-- UPDATE 11.0 - Activate ...
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->
