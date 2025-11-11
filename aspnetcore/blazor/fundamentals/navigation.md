@@ -5,7 +5,7 @@ description: Learn about navigation in Blazor, including how to use the Navigati
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/24/2025
+ms.date: 11/11/2025
 uid: blazor/fundamentals/navigation
 ---
 # ASP.NET Core Blazor navigation
