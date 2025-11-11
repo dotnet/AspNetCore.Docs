@@ -296,7 +296,11 @@ These metrics can be used to:
 * Measure performance of Identity operations
 * Observe two-factor authentication usage
 
-You can view these metrics using the techniques described earlier in this article, such as `dotnet-counters` or Prometheus with Grafana.
+### Viewing Identity metrics
+
+You can view these metrics using `dotnet-counters` to monitor them in real-time, or export them to Prometheus and visualize them in Grafana using the techniques described earlier in this article.
+
+For example, to monitor all Identity metrics with `dotnet-counters`:
 
 ```dotnetcli
 dotnet-counters monitor -n YourAppName --counters Microsoft.AspNetCore.Identity
