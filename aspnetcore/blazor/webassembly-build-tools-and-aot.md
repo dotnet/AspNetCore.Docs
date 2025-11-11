@@ -37,15 +37,10 @@ To target a prior .NET release with a given .NET SDK, install the `wasm-tools-ne
 
 The following list shows which workload to install for each .NET SDK, depending on the apps that you plan to target. Although multiple rows may contain the same workload name, the workloads always differ slightly for each particular .NET SDK.
 
-<!-- UPDATE 10.0 - Surface new content 
-
 * Using the .NET 10 SDK
   * Targeting .NET 10 requires `wasm-tools`.
   * Targeting .NET 9 requires `wasm-tools-net9`.
   * Targeting .NET 8 requires `wasm-tools-net8`.
-
--->
-
 * Using the .NET 9 SDK
   * Targeting .NET 9 requires `wasm-tools`.
   * Targeting .NET 8 requires `wasm-tools-net8`.

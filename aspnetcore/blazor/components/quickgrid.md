@@ -127,7 +127,7 @@ Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.
 <QuickGrid Items="..." Pagination="pagination">
 ```
 
-<!-- UPDATE 10.0 Tracked by https://github.com/dotnet/aspnetcore/issues/57289
+<!-- UPDATE 11.0 Tracked by https://github.com/dotnet/aspnetcore/issues/57289
                  for multiple paginator components problem. -->
 
 To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above or below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
