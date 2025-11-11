@@ -257,7 +257,7 @@ The proceeding test:
 
 * Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
 * Collects metrics values with <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector%601>
-  * Requires a package reference to `Microsoft.Extensions.Diagnostics.Testing`
+  * Requires a package reference to `Microsoft.Extensions.Diagnostics.Testing`.
   * The `MetricCollector<T>` is created using the web app's <xref:System.Diagnostics.Metrics.IMeterFactory>. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
 * Makes an HTTP request to the web app.
@@ -274,20 +274,20 @@ The metrics are in the `Microsoft.AspNetCore.Identity` meter and are described i
 ### User management metrics
 
 * `aspnetcore.identity.user.create.duration` measures the duration of user creation operations.
-* `aspnetcore.identity.user.update.duration` - Measures the duration of user update operations
-* `aspnetcore.identity.user.delete.duration` - Measures the duration of user deletion operations
-* `aspnetcore.identity.user.check_password_attempts` - Counts password verification attempts
+* `aspnetcore.identity.user.update.duration` measures the duration of user update operations.
+* `aspnetcore.identity.user.delete.duration` measures the duration of user deletion operations
+* `aspnetcore.identity.user.check_password_attempts` counts password verification attempts.
 * `aspnetcore.identity.user.generated_tokens` counts tokens generated for users, such as password reset tokens.
-* `aspnetcore.identity.user.verify_token_attempts` - Counts token verification attempts
+* `aspnetcore.identity.user.verify_token_attempts` counts token verification attempts.
 
 ### Authentication metrics
 
-* `aspnetcore.identity.sign_in.authenticate.duration` - Measures the duration of authentication operations
-* `aspnetcore.identity.sign_in.check_password_attempts` - Counts password check attempts during sign-in
-* `aspnetcore.identity.sign_in.sign_ins` - Counts successful sign-ins
-* `aspnetcore.identity.sign_in.sign_outs` - Counts sign-outs
-* `aspnetcore.identity.sign_in.two_factor_clients_remembered` - Counts remembered two-factor clients
-* `aspnetcore.identity.sign_in.two_factor_clients_forgotten` - Counts forgotten two-factor clients
+* `aspnetcore.identity.sign_in.authenticate.duration` measures the duration of authentication operations.
+* `aspnetcore.identity.sign_in.check_password_attempts` counts password check attempts during sign-in.
+* `aspnetcore.identity.sign_in.sign_ins` counts successful sign-ins.
+* `aspnetcore.identity.sign_in.sign_outs` counts sign-outs.
+* `aspnetcore.identity.sign_in.two_factor_clients_remembered` counts remembered two-factor clients.
+* `aspnetcore.identity.sign_in.two_factor_clients_forgotten` counts forgotten two-factor clients.
 
 These metrics can be used to:
 
