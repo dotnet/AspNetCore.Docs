@@ -5,7 +5,7 @@ description: Learn how to persist user data (state) in Blazor apps using Blazor'
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/08/2025
+ms.date: 11/11/2025
 uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence

@@ -5,7 +5,7 @@ description: Learn about asset caching for Blazor WebAssembly and how to resolve
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/03/2025
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures
 ---
 # ASP.NET Core Blazor WebAssembly .NET bundle caching and integrity check failures

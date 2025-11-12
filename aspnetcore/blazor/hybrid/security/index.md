@@ -5,7 +5,7 @@ description: Learn about Blazor Hybrid authentication and authorization scenario
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/hybrid/security/index
 zone_pivot_groups: blazor-hybrid-frameworks
 ---

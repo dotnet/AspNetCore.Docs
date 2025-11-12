@@ -5,7 +5,7 @@ description: Learn how to host and deploy server-side Blazor apps (Blazor Web Ap
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, linux-related-content
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/server/index
 ---
 # Host and deploy server-side Blazor apps

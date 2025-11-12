@@ -5,7 +5,7 @@ description: Learn about Razor component prerendering in ASP.NET Core Blazor app
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/05/2025
+ms.date: 11/11/2025
 uid: blazor/components/prerender
 ---
 # Prerender ASP.NET Core Razor components

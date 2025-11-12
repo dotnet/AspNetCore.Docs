@@ -5,7 +5,7 @@ description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/30/2025
+ms.date: 11/11/2025
 uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
