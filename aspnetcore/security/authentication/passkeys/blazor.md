@@ -23,13 +23,7 @@ For an overview of passkeys and general configuration guidance, see <xref:securi
 
 ## Prerequisites
 
-<!-- UPDATE 10.0 - Remove preview link in favor of the download link ...
-
 [.NET SDK](https://dotnet.microsoft.com/download) (.NET 10 or later)
-
--->
-
-[.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 
 ## Create a Blazor Web App
 
@@ -125,14 +119,8 @@ The following guidance relies upon an app that was created with **Individual Acc
 
 ## Prerequisites
 
-<!-- UPDATE 10.0 - Remove preview link in favor of the download link ...
-
-* [.NET SDK](https://dotnet.microsoft.com/download) (.NET 10 or later)
-
--->
-
 * An existing Blazor Web App (.NET 10 or later) with ASP.NET Core Identity
-* [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
+* [.NET SDK](https://dotnet.microsoft.com/download) (.NET 10 or later)
 
 For migration guidance, see <xref:migration/index>.
 

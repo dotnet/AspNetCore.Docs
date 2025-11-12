@@ -458,7 +458,7 @@ The validation summary displays the friendly name when the field's value is inva
 
 > The Production Date field must be a date.
 
-<!-- UPDATE 10.0 The feature has been backlogged.
+<!-- UPDATE 11.0 The feature has been backlogged.
      https://github.com/dotnet/aspnetcore/issues/49147
 
 > [!NOTE]
@@ -561,9 +561,7 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 
 ## `InputHidden` component to handle hidden input fields in forms
 
-<!-- UPDATE 10.0 - API doc cross-link -->
-
-The `InputHidden` component provides a hidden input field for storing string values.
+The [`InputHidden` component](xref:Microsoft.AspNetCore.Components.Forms.InputHidden) provides a hidden input field for storing string values.
 
 In the following example, a hidden input field is created for the form's `Parameter` property. When the form is submitted, the value of the hidden field is displayed:
 
