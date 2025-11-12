@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 10.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/15/2025
+ms.date: 11/11/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10
@@ -66,6 +66,8 @@ This section describes new features for OpenAPI.
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/formdata-enum-parameters.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/endpoint-specific-operation-transformers.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/upgrade-microsoft-openapi-2.md)]
 
