@@ -922,7 +922,7 @@ Follow the guidance in the <xref:web-api/jsonpatch> article to add a PATCH contr
 
 :::moniker range=">= aspnetcore-10.0"
 
-Add a package reference for the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) NuGet package to the web API app.
+Add a package reference for the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package to the web API app.
 
 In the `Program` file add an `@using` directive for the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson?displayProperty=fullName> namespace:
 

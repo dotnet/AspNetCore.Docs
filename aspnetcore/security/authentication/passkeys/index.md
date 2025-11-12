@@ -398,7 +398,7 @@ The stored <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo> contains all of 
 
 ### Step 8: Post-registration tasks
 
-After successfully registering a passkey, apps often perform additional tasks to improve the user experience. A common pattern is to prompt users to provide a friendly name for their passkey, making it easier to identify among multiple credentials. The <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo.Name%2A?displayProperty=nameWithType> property stores this user-friendly name, which can be updated using the same `AddOrUpdatePasskeyAsync` method:
+After successfully registering a passkey, apps often perform additional tasks to improve the user experience. A common pattern is to prompt users to provide a friendly name for their passkey, making it easier to identify among multiple credentials. The <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo.Name%2A?displayProperty=nameWithType> property stores this user-friendly name, which can be updated using the same <xref:Microsoft.AspNetCore.Identity.UserManager%601.AddOrUpdatePasskeyAsync%2A> method:
 
 ```csharp
 passkey.Name = "My iPhone";
@@ -554,7 +554,7 @@ For scenarios requiring more control, you can use <xref:Microsoft.AspNetCore.Ide
 
 ### Step 8: Session establishment
 
-Upon successful authentication, ASP.NET Core Identity establishes an authenticated session for the user. The <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasskeySignInAsync%2A> method handles this automatically, creating the necessary authentication cookies and claims. The app then redirects the user to protected resources or display personalized content.
+Upon successful authentication, ASP.NET Core Identity establishes an authenticated session for the user. The <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasskeySignInAsync%2A> method handles this automatically, creating the necessary authentication cookies and claims. The app then redirects the user to protected resources or displays personalized content.
 
 ## Mitigate `PublicKeyCredential.toJSON` error (`TypeError: Illegal invocation`)
 
