@@ -5,7 +5,7 @@ description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/08/2025
+ms.date: 11/11/2025
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -1574,15 +1574,16 @@ The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work w
 
 ## Use validation models from a different assembly
 
-<!-- UPDATE 10.0 - API cross-links -->
-
 For model validation defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App:
 
 * If the library is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the library for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation).
-* Create a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
-* In the app, call both the method and `AddValidation`.
+* Create a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on it.
+* In the app, call both the method and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>.
 
 The preceding approach results in validation of the types from both assemblies.
+
+<!-- UPDATE 10.0 - MIA API 
+                   `AddValidationForTypesInClient` -->
 
 In the following example, the `AddValidationForTypesInClient` method is created for the `.Client` project of a Blazor Web App for validation using types defined in the `.Client` project.
 
@@ -1601,7 +1602,7 @@ public static class ServiceCollectionExtensions
 }
 ```
 
-In the server project's `Program` file, add the namespace and call the `.Client` project's service collection extension method (`AddValidationForTypesInClient`) and `AddValidation`:
+In the server project's `Program` file, add the namespace and call the `.Client` project's service collection extension method (`AddValidationForTypesInClient`) and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>:
 
 ```csharp
 using BlazorSample.Client.Extensions;
@@ -1624,11 +1625,9 @@ To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.Da
 
 To opt into the nested objects and collection types validation feature:
 
-<!-- UPDATE 10.0 - API cross-links -->
-
-1. Call the `AddValidation` extension method in the `Program` file where services are registered.
+1. Call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method in the `Program` file where services are registered.
 2. Declare the form model types in a C# class file, not in a Razor component (`.razor`).
-3. Annotate the root form model type with the `[ValidatableType]` attribute.
+3. Annotate the root form model type with the [`[ValidatableType]` attribute](xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute).
 
 Without following the preceding steps, form validation behavior doesn't include nested model and collection type validation.
 
@@ -1636,7 +1635,7 @@ Without following the preceding steps, form validation behavior doesn't include 
 
 The following example demonstrates customer orders with the improved form validation (details omitted for brevity):
 
-In `Program.cs`, call `AddValidation` on the service collection:
+In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on the service collection:
 
 ```csharp
 builder.Services.AddValidation();

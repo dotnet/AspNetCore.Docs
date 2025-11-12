@@ -89,7 +89,7 @@
         "**/**.{md,yml}": "365-days"
       },
       "no-loc": {
-        "**/**.md": [ "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "Kestrel", ".NET Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
+        "**/**.md": [ "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "Kestrel", "Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
       },
       "recommendations": {
         "**/tutorials/**/**.md": "false"

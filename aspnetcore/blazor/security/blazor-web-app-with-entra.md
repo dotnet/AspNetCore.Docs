@@ -5,13 +5,13 @@ description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 07/29/2025
+ms.date: 11/11/2025
 uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
 
-<!-- UPDATE 10.0 Activate after release and INCLUDE is updated
+<!-- UPDATE 11.0 - Activate ...
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->
@@ -217,7 +217,7 @@ The following specification is covered:
 * The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A> to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
 * The app uses [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), based on [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages.
 * Automatic non-interactive token refresh is managed by the framework.
-* The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) is adopted using [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) for service discovery and [YARP](https://dotnet.github.io/yarp/) for proxying requests to a weather forecast endpoint on the backend app.
+* The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) is adopted using [Aspire](/dotnet/aspire/get-started/aspire-overview) for service discovery and [YARP](https://dotnet.github.io/yarp/) for proxying requests to a weather forecast endpoint on the backend app.
   * A backend web API uses JWT-bearer authentication to validate JWT tokens saved by the Blazor Web App in the sign-in cookie.
   * Aspire improves the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns for building and running distributed apps.
   * YARP (Yet Another Reverse Proxy) is a library used to create a reverse proxy server.
@@ -225,23 +225,19 @@ The following specification is covered:
   * When rendering the `Weather` component on the server to display weather data, the component uses the `ServerWeatherForecaster`. Microsoft Identity Web packages provide API to create a named downstream web service for making web API calls. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into the `ServerWeatherForecaster`, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> to obtain weather data from an external web API (`MinimalApiJwt` project).
   * When the `Weather` component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project's Minimal API (`/weather-forecast`) for weather data. The Minimal API endpoint obtains an access token for the user by calling <xref:Microsoft.Identity.Web.ITokenAcquisition.GetAccessTokenForUserAsync%2A>. Along with the correct scopes, a reverse proxy call is made to the external web API (`MinimalApiJwt` project) to obtain and return weather data to the client for rendering by the component.
 
-<!-- UPDATE 10.0 Remove at 10.0 -->
-
-For more information on .NET Aspire, see [General Availability of .NET Aspire: Simplifying .NET Cloud-Native Development (May, 2024)](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/).
-
 ## Prerequisites
 
-[.NET Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
+[Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
 
-Also, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+Also, see the *Prerequisites* section of [Quickstart: Build your first Aspire solution](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
 
 ## Sample solution
 
 The sample solution consists of the following projects:
 
-* .NET Aspire:
+* Aspire:
   * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
-  * `Aspire.ServiceDefaults`: Contains default .NET Aspire app configurations that can be extended and customized as needed.
+  * `Aspire.ServiceDefaults`: Contains default Aspire app configurations that can be extended and customized as needed.
 * `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppEntra`: Server-side project of the Blazor Web App.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
@@ -264,13 +260,13 @@ Create a client secret in the app's registration in the Entra or Azure portal (*
 
 Additional Entra configuration guidance for specific settings is provided later in this article.
 
-## .NET Aspire projects
+## Aspire projects
 
-For more information on using .NET Aspire and details on the `.AppHost` and `.ServiceDefaults` projects of the sample app, see the [.NET Aspire documentation](/dotnet/aspire/).
+For more information on using Aspire and details on the `.AppHost` and `.ServiceDefaults` projects of the sample app, see the [Aspire documentation](/dotnet/aspire/).
 
-Confirm that you've met the prerequisites for .NET Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+Confirm that you've met the prerequisites for Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first Aspire solution](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
 
-The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in .NET Aspire (.NET Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
+The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in Aspire (Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
 
 ## Server-side Blazor Web App project (`BlazorWebAppEntra`)
 

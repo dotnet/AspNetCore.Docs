@@ -5,7 +5,7 @@ description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/29/2025
+ms.date: 11/11/2025
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
@@ -851,9 +851,7 @@ To simplify the creation of PATCH documents in the app issuing PATCH requests, a
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - API doc cross-link -->
-
-Install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package and use the API features of the package to compose a `JsonPatchDocument` for a PATCH request.
+Install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package and use the API features of the package to compose a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a PATCH request.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -924,11 +922,9 @@ Follow the guidance in the <xref:web-api/jsonpatch> article to add a PATCH contr
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - API doc cross-link -->
+Add a package reference for the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package to the web API app.
 
-Add a package reference for the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) NuGet package to the web API app.
-
-In the `Program` file add an `@using` directive for the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` <!-- <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson?displayProperty=fullName> --> namespace:
+In the `Program` file add an `@using` directive for the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.JsonPatch.SystemTextJson;

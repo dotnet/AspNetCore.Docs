@@ -5,7 +5,7 @@ description: Learn how to configure a hosted Blazor WebAssembly app to host mult
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly
 zone_pivot_groups: blazor-multiple-hosted-wasm-apps
 ---

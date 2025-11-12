@@ -5,7 +5,7 @@ description: The QuickGrid component is a Razor component for quickly and effici
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -195,9 +195,7 @@ QuickGrid also supports passing custom attributes and style classes (<xref:Micro
 
 ## Style a table row based on the row item
 
-<!-- UPDATE 10.0 API cross-link -->
-
-Apply a stylesheet class to a row of the grid based on the row item using the `RowClass` parameter.
+Apply a stylesheet class to a row of the grid based on the row item using the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.RowClass%2A> parameter.
 
 In the following example:
 
@@ -219,16 +217,11 @@ In the following example:
 
 :::moniker-end
 
-
 :::moniker range=">= aspnetcore-10.0"
-
-<!-- UPDATE 10.0 - API cross-link -->
-
-:::moniker-end
 
 ### Close `QuickGrid` column options
 
-Close the `QuickGrid` column options UI with the `HideColumnOptionsAsync` method.
+Close the `QuickGrid` column options UI with the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.HideColumnOptionsAsync%2A> method.
 
 The following example closes the column options UI as soon as the title filter is applied:
 
@@ -252,6 +245,8 @@ The following example closes the column options UI as soon as the title filter i
         movies.Where(m => m.Title!.Contains(titleFilter));
 }
 ```
+
+:::moniker-end
 
 ## Entity Framework Core (EF Core) data source
 

@@ -101,12 +101,8 @@ Operation transformers have access to a context object which contains:
 For example, the following operation transformer adds `500` as a response status code supported by all operations in the document.
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
-
-<!-- UPDATE 10.0 - API doc cross-link:
-                   <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.AddOpenApiOperationTransformer%2A>
--->
  
-Operation transformers can also be added to specific endpoint with the `AddOpenApiOperationTransformer` API, instead of all endpoints in a document. This can be useful to change specific OpenAPI data for a specific endpoint, like adding a security scheme, response description or other OpenAPI operation properties. The following example demonstrates adding an operation transformer to a deprecated endpoint specifically, which marks the endpoint as deprecated in the OpenAPI document.
+Operation transformers can also be added to specific endpoint with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.AddOpenApiOperationTransformer%2A> API, instead of all endpoints in a document. This can be useful to change specific OpenAPI data for a specific endpoint, like adding a security scheme, response description or other OpenAPI operation properties. The following example demonstrates adding an operation transformer to a deprecated endpoint specifically, which marks the endpoint as deprecated in the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer2)]
 
