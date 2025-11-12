@@ -167,7 +167,7 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 });
 ```
 
-For a complete list of configuration options, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions%2A>. For the most up-to-date browser defaults, see the [W3C WebAuthn specification](https://www.w3.org/TR/webauthn-3/).
+For a complete list of configuration options, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions>. For the most up-to-date browser defaults, see the [W3C WebAuthn specification](https://www.w3.org/TR/webauthn-3/).
 
 > [!NOTE]
 > Documentation links to .NET reference source usually load the repository's default branch, which represents the current development for the next preview release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list. For more information, see [How to select a version tag of ASP.NET Core source code (`dotnet/AspNetCore.Docs` #26205)](https://github.com/dotnet/AspNetCore.Docs/discussions/26205).
@@ -310,7 +310,7 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 });
 ```
 
-The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.UserVerificationRequirement%2A> option determines whether the authenticator must verify the user's identity (through biometric or PIN methods), while <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ResidentKeyRequirement%2A> indicates whether the credential should be discoverable, allowing authentication without first providing a username. For more information, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions%2A>.
+The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.UserVerificationRequirement%2A> option determines whether the authenticator must verify the user's identity (through biometric or PIN methods), while <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ResidentKeyRequirement%2A> indicates whether the credential should be discoverable, allowing authentication without first providing a username. For more information, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions>.
 
 ### Step 4: Client requests credential
 
