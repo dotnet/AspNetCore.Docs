@@ -60,7 +60,7 @@ The sample app showcases the following technologies:
 * [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet)
 * [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor)
 * [.NET MAUI](https://dotnet.microsoft.com/apps/maui)
-* [.NET Aspire](/dotnet/aspire/get-started/aspire-overview)
+* [Aspire](/dotnet/aspire/get-started/aspire-overview)
 * [Docker](https://docs.docker.com/get-started/docker-overview/)
 
 ## Share web UI Razor components, code, and static assets
