@@ -301,7 +301,7 @@ In order to restrict invoking these code paths by the build-time generation pipe
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/AspireApp1/AspireApp1.Web/Program.cs" highlight="5-8":::
 
-[`AddServiceDefaults`](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references)<!--keep--> adds common .NET Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
+[`AddServiceDefaults`](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references) adds common Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
 
 ## Trimming and Native AOT
 
