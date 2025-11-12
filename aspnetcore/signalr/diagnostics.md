@@ -151,7 +151,7 @@ The SignalR ActivitySource named `Microsoft.AspNetCore.SignalR.Server` emits eve
 * Every method is its own activity, so anything that emits an activity during the hub method call is under the hub method activity.
 * Hub method activities don't have a parent. This means they aren't bundled under the long-running SignalR connection.
 
-The following example uses the [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#using-the-dashboard-with-net-aspire-projects) and the [OpenTelemetry](https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting) packages:
+The following example uses the [Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#use-the-dashboard-with-aspire-projects) and the [OpenTelemetry](https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting) packages:
 
 ```xml
 <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
@@ -176,7 +176,7 @@ The SignalR `ActivitySource` named `Microsoft.AspNetCore.SignalR.Client` emits e
 * Hub invocations create a client span. Other SignalR clients, such as the JavaScript client, don't support tracing. This feature will be added to more clients in future releases.
 * Hub invocations on the client and server support [context propagation](https://opentelemetry.io/docs/concepts/context-propagation/). Propagating the trace context enables true distributed tracing. It's now possible to see invocations flow from the client to the server and back.
 
-Here's how these new activities look in the [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#standalone-mode):
+Here's how these new activities look in the [Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#standalone-mode):
 
 ![SignalR distributed tracing in Aspire dashboard](~/signalr/diagnostics/_static/9.x/signalr-distributed-tracing-aspire-dashboard.png) 
 

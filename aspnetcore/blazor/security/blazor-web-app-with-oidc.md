@@ -770,17 +770,17 @@ This version of the article covers implementing OIDC with the [Backend for Front
 
 ## Prerequisites
 
-[.NET Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
+[Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
 
-Also, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+Also, see the *Prerequisites* section of [Quickstart: Build your first Aspire solution](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
 
 ## Sample solution
 
 The sample app consists of the following projects:
 
-* .NET Aspire:
+* Aspire:
   * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
-  * `Aspire.ServiceDefaults`: Contains default .NET Aspire app configurations that can be extended and customized as needed.
+  * `Aspire.ServiceDefaults`: Contains default Aspire app configurations that can be extended and customized as needed.
 * `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
 * `BlazorWebAppOidc`: Server-side project of the Blazor Web App. The project uses [YARP](https://dotnet.github.io/yarp/) to proxy requests to a weather forecast endpoint in the backend web API project (`MinimalApiJwt`) with the `access_token` stored in the authentication cookie.
 * `BlazorWebAppOidc.Client`: Client-side project of the Blazor Web App.
@@ -807,7 +807,7 @@ This app is a starting point for any OIDC authentication flow. OIDC is configure
 
 Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
 
-The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) is adopted using [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) for service discovery and [YARP](https://dotnet.github.io/yarp/) for proxying requests to a weather forecast endpoint on the backend app.
+The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) is adopted using [Aspire](/dotnet/aspire/get-started/aspire-overview) for service discovery and [YARP](https://dotnet.github.io/yarp/) for proxying requests to a weather forecast endpoint on the backend app.
 
 The backend web API (`MinimalApiJwt`) uses JWT-bearer authentication to validate JWT tokens saved by the Blazor Web App in the sign-in cookie.
 
@@ -817,10 +817,6 @@ YARP (Yet Another Reverse Proxy) is a library used to create a reverse proxy ser
 
 * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` class to proxy the request for weather data with the user's access token. <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext?displayProperty=nameWithType> determines if an <xref:Microsoft.AspNetCore.Http.HttpContext> is available for use by the `GetWeatherForecastAsync` method. For more information, see <xref:blazor/components/index#ihttpcontextaccessorhttpcontext>.
 * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project. A Minimal API endpoint (`/weather-forecast`) defined in the server project's `Program` file transforms the request with the user's access token to obtain the weather data.
-
-<!-- UPDATE 10.0 Remove at 10.0 -->
-
-For more information on .NET Aspire, see [General Availability of .NET Aspire: Simplifying .NET Cloud-Native Development (May, 2024)](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/).
 
 For more information on (web) API calls using a service abstractions in Blazor Web Apps, see <xref:blazor/call-web-api#service-abstractions-for-web-api-calls>.
 
@@ -860,13 +856,13 @@ dotnet user-secrets set "Authentication:Schemes:MicrosoftOidc:ClientSecret" "{SE
 
 If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
 
-## .NET Aspire projects
+## Aspire projects
 
-For more information on using .NET Aspire and details on the `.AppHost` and `.ServiceDefaults` projects of the sample app, see the [.NET Aspire documentation](/dotnet/aspire/).
+For more information on using Aspire and details on the `.AppHost` and `.ServiceDefaults` projects of the sample app, see the [Aspire documentation](/dotnet/aspire/).
 
-Confirm that you've met the prerequisites for .NET Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+Confirm that you've met the prerequisites for Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first Aspire solution](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
 
-The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in .NET Aspire (.NET Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
+The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in Aspire (Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
 
 ## `MinimalApiJwt` project
 
