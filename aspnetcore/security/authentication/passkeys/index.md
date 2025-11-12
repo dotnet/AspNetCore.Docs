@@ -5,7 +5,7 @@ description: Discover how to enable Web Authentication API (WebAuthn) passkeys i
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
-ms.date: 10/30/2025
+ms.date: 11/12/2025
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
@@ -16,8 +16,6 @@ uid: security/authentication/passkeys/index
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 -->
-
-<!-- UPDATE 10.0 - API doc cross-links throughout article -->
 
 Passkeys provide a modern, phishing-resistant authentication method based on the [Web Authentication API (WebAuthn)](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) and [FIDO2](https://www.microsoft.com/security/business/security-101/what-is-fido2) standards. They are a secure alternative to passwords, using public key cryptography and device-based authentication. This article explains how to configure an ASP.NET Core app to use passkeys to authenticate users.
 
@@ -78,13 +76,7 @@ Two fundamental processes underpin passkey operations: attestation and assertion
 
 ## Prerequisites
 
-<!-- UPDATE 10.0 - Remove preview link in favor of the download link ...
-
 * [.NET SDK](https://dotnet.microsoft.com/download) (.NET 10 or later)
-
--->
-
-* [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 * A modern web browser that supports WebAuthn.
 * A device with a platform authenticator, such as Windows Hello or Apple secure enclave, or a security key.
 
@@ -94,13 +86,13 @@ When implementing passkeys in ASP.NET Core Identity, ensure the app meets the se
 
 ### Host header validation
 
-The implementation infers the Relying Party ID from the host header when `ServerDomain` isn't explicitly configured. The hosting environment must validate host headers to prevent credential-scoping attacks, which involve using compromised or stolen user credentials (usernames, passwords, tokens) to gain unauthorized access.
+The implementation infers the Relying Party ID from the host header when <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> isn't explicitly configured. The hosting environment must validate host headers to prevent credential-scoping attacks, which involve using compromised or stolen user credentials (usernames, passwords, tokens) to gain unauthorized access.
 
-**Mitigation**: Either explicitly configure `ServerDomain` in `IdentityPasskeyOptions` or ensure that the hosting environment (Kestrel, IIS, reverse proxy) validates host headers. For configuration details, see your hosting platform's documentation.
+**Mitigation**: Either explicitly configure <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> in <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> or ensure that the hosting environment (Kestrel, IIS, reverse proxy) validates host headers. For configuration details, see your hosting platform's documentation.
 
 ### Subdomain security
 
-ASP.NET Core's passkeys implementation handles subdomain security through the `ServerDomain` configuration option. When `ServerDomain` isn't explicitly specified, the implementation uses the host header to determine the domain. This means that ***the page on which the passkey was registered controls the domain*** for that credential.
+ASP.NET Core's passkeys implementation handles subdomain security through the <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> configuration option. When <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> isn't explicitly specified, the implementation uses the host header to determine the domain. This means that ***the page on which the passkey was registered controls the domain*** for that credential.
 
 For example:
 
@@ -108,7 +100,7 @@ For example:
 * If registered on `contoso.com`, it also works on `*.contoso.com`.
 * The browser enforces that passkeys can only be used on the domain (and subdomains) where they were registered.
 
-**Requirement**: Apps requiring strict domain control should explicitly set `ServerDomain` rather than relying on the host header. Don't serve untrusted content on any subdomain within the `ServerDomain` scope. If you can't guarantee this, implement [custom origin validation](https://www.w3.org/TR/webauthn-3/#sctn-validating-origin) to restrict passkey usage to specific origins.
+**Requirement**: Apps requiring strict domain control should explicitly set <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> rather than relying on the host header. Don't serve untrusted content on any subdomain within the <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> scope. If you can't guarantee this, implement [custom origin validation](https://www.w3.org/TR/webauthn-3/#sctn-validating-origin) to restrict passkey usage to specific origins.
 
 ### HTTPS requirement
 
@@ -127,7 +119,7 @@ For applications implementing passkey-only authentication, consider:
 * Recovery codes generated during account creation.
 * Email-based recovery flows.
 * Mandatory registration of multiple passkeys.
-* Monitoring the `IsBackedUp` flag on `UserPasskeyInfo` to prompt users to add additional credentials.
+* Monitoring the <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo.IsBackedUp%2A> flag on <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo> to prompt users to add additional credentials.
 
 ### Administrative controls
 
@@ -158,11 +150,11 @@ The Blazor Web App template enforces these limits by default at the application 
 
 ## Configure passkey options
 
-ASP.NET Core Identity provides various options to configure passkey behavior through the `IdentityPasskeyOptions` class, which include:
+ASP.NET Core Identity provides various options to configure passkey behavior through the <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> class, which include:
 
-* `AuthenticatorTimeout`: Gets or sets the time that the browser should wait for the authenticator to provide a passkey as a <xref:System.TimeSpan>. This option applies to both creating a new passkey and requesting an existing passkey. This option is treated as a hint to the browser, and the browser may ignore the option. The default value is 5 minutes.
-* `ChallengeSize`: Gets or sets the size of the challenge in bytes sent to the client during attestation and assertion. This option applies to both creating a new passkey and requesting an existing passkey. The default value is 32 bytes.
-* `ServerDomain`: Gets or sets the effective Relying Party ID (domain) of the server. This should be unique and will be used as the identity for the server. This option applies to both creating a new passkey and requesting an existing passkey. If `null`, which is the default value, the server's origin is used. For more information, see [Relying Party Identifier RP ID](https://www.w3.org/TR/webauthn-3/#rp-id).
+* <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.AuthenticatorTimeout%2A>: Gets or sets the time that the browser should wait for the authenticator to provide a passkey as a <xref:System.TimeSpan>. This option applies to both creating a new passkey and requesting an existing passkey. This option is treated as a hint to the browser, and the browser may ignore the option. The default value is 5 minutes.
+* <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ChallengeSize%2A>: Gets or sets the size of the challenge in bytes sent to the client during attestation and assertion. This option applies to both creating a new passkey and requesting an existing passkey. The default value is 32 bytes.
+* <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A>: Gets or sets the effective Relying Party ID (domain) of the server. This should be unique and will be used as the identity for the server. This option applies to both creating a new passkey and requesting an existing passkey. If `null`, which is the default value, the server's origin is used. For more information, see [Relying Party Identifier RP ID](https://www.w3.org/TR/webauthn-3/#rp-id).
 
 Example configuration:
 
@@ -175,19 +167,10 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 });
 ```
 
-<!-- UPDATE 10.0 - Swap for the following ref source content.
-
-For a complete list of configuration options, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions%2A>.
-
--->
-
-For a complete list of configuration options during the .NET 10 preview release period, see the [`IdentityPasskeyOptions` reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IdentityPasskeyOptions.cs).
+For a complete list of configuration options, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions%2A>. For the most up-to-date browser defaults, see the [W3C WebAuthn specification](https://www.w3.org/TR/webauthn-3/).
 
 > [!NOTE]
 > Documentation links to .NET reference source usually load the repository's default branch, which represents the current development for the next preview release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list. For more information, see [How to select a version tag of ASP.NET Core source code (`dotnet/AspNetCore.Docs` #26205)](https://github.com/dotnet/AspNetCore.Docs/discussions/26205).
-
-> [!NOTE]
-> The browser defaults mentioned in the API documentation were valid as of August, 2025. See the [W3C WebAuthn specification](https://www.w3.org/TR/webauthn-3/) for the most up-to-date defaults.
 
 ## Custom attestation statement validation
 
@@ -309,11 +292,11 @@ app.MapPost("/Account/PasskeyCreationOptions", async (
 });
 ```
 
-The `MakePasskeyCreationOptionsAsync` method is central to this process. The method accepts a `PasskeyUserEntity` that describes the user for whom the passkey is being created. This entity contains the user's ID, username (typically an email address), and a human-readable display name. The method returns a JSON string that conforms to the WebAuthn `PublicKeyCredentialCreationOptions` schema, which the browser uses in the next step. Behind the scenes, this method also stores temporary state in an authentication cookie to ensure that the response from the browser corresponds to these specific options.
+The <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyCreationOptionsAsync%2A> method is central to this process. The method accepts a `PasskeyUserEntity` that describes the user for whom the passkey is being created. This entity contains the user's ID, username (typically an email address), and a human-readable display name. The method returns a JSON string that conforms to the WebAuthn `PublicKeyCredentialCreationOptions` schema, which the browser uses in the next step. Behind the scenes, this method also stores temporary state in an authentication cookie to ensure that the response from the browser corresponds to these specific options.
 
 ### Step 3: Server generates options
 
-When `MakePasskeyCreationOptionsAsync` executes, it uses the app's `IdentityPasskeyOptions` configuration to determine the specific parameters for credential creation. These options control various aspects of the passkey creation process.
+When <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyCreationOptionsAsync%2A> executes, it uses the app's <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> configuration to determine the specific parameters for credential creation. These options control various aspects of the passkey creation process.
 
 You can customize these options during application startup. For example:
 
@@ -327,12 +310,7 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 });
 ```
 
-The `UserVerificationRequirement` option determines whether the authenticator must verify the user's identity (through biometric or PIN methods), while `ResidentKeyRequirement` indicates whether the credential should be discoverable, allowing authentication without first providing a username. For more information during the .NET 10 preview release period, see the [`IdentityPasskeyOptions` reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IdentityPasskeyOptions.cs).
-
-<!-- UPDATE 10.0 - Be sure to swap the last line out for the API doc cross-link 
-
-For more information, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions%2A>.
--->
+The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.UserVerificationRequirement%2A> option determines whether the authenticator must verify the user's identity (through biometric or PIN methods), while <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ResidentKeyRequirement%2A> indicates whether the credential should be discoverable, allowing authentication without first providing a username. For more information, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions%2A>.
 
 ### Step 4: Client requests credential
 
@@ -387,16 +365,16 @@ In the Blazor Web App template, the returned credential is automatically seriali
 
 When the server receives the credential, it must verify its validity and store the public key for future authentication. This is where ASP.NET Core Identity's passkey APIs become crucial.
 
-The `PerformPasskeyAttestationAsync` method validates the attestation response from the client. This comprehensive validation process:
+The <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PerformPasskeyAttestationAsync%2A> method validates the attestation response from the client. This comprehensive validation process:
 
 * Verifies that the credential type matches expectations.
 * Validates the client data JSON including origin and challenge.
 * Checks authenticator data flags for user presence and verification
 * Extracts and validates the public key.
 
-If all checks pass, the method returns a `PasskeyAttestationResult` containing the verified passkey information.
+If all checks pass, the method returns a <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationResult> containing the verified passkey information.
 
-After the attestation is verified, the app uses `AddOrUpdatePasskeyAsync` to store the passkey in the database:
+After the attestation is verified, the app uses <xref:Microsoft.AspNetCore.Identity.UserManager%601.AddOrUpdatePasskeyAsync%2A> to store the passkey in the database:
 
 ```csharp
 var attestationResult = 
@@ -416,11 +394,11 @@ if (!addResult.Succeeded)
 }
 ```
 
-The stored `UserPasskeyInfo` contains all of the necessary information for future authentication, including the credential ID, public key, signature counter for replay protection, and flags indicating whether the passkey is backed up or eligible for backup.
+The stored <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo> contains all of the necessary information for future authentication, including the credential ID, public key, signature counter for replay protection, and flags indicating whether the passkey is backed up or eligible for backup.
 
 ### Step 8: Post-registration tasks
 
-After successfully registering a passkey, apps often perform additional tasks to improve the user experience. A common pattern is to prompt users to provide a friendly name for their passkey, making it easier to identify among multiple credentials. The `UserPasskeyInfo.Name` property stores this user-friendly name, which can be updated using the same `AddOrUpdatePasskeyAsync` method:
+After successfully registering a passkey, apps often perform additional tasks to improve the user experience. A common pattern is to prompt users to provide a friendly name for their passkey, making it easier to identify among multiple credentials. The <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo.Name%2A?displayProperty=nameWithType> property stores this user-friendly name, which can be updated using the same `AddOrUpdatePasskeyAsync` method:
 
 ```csharp
 passkey.Name = "My iPhone";
@@ -475,7 +453,7 @@ async function requestCredential(email, mediation, headers, signal) {
 }
 ```
 
-The `MakePasskeyRequestOptionsAsync` method generates these options. When you provide a specific user, it includes only that user's credentials in the allow list. When called without a user, it generates options suitable for conditional UI or username-less authentication:
+The <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyRequestOptionsAsync%2A> method generates these options. When you provide a specific user, it includes only that user's credentials in the allow list. When called without a user, it generates options suitable for conditional UI or username-less authentication:
 
 ```csharp
 app.MapPost("/Account/PasskeyRequestOptions", async (
@@ -494,7 +472,7 @@ app.MapPost("/Account/PasskeyRequestOptions", async (
 
 ### Step 3: Server generates options
 
-The server generates authentication options using the same `IdentityPasskeyOptions` configuration used during registration. The `ServerDomain` must match the domain where the passkey was originally registered, or authentication fails. The `UserVerificationRequirement` determines whether the authenticator must verify the user's identity during authentication.
+The server generates authentication options using the same <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> configuration used during registration. The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> must match the domain where the passkey was originally registered, or authentication fails. The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.UserVerificationRequirement%2A> determines whether the authenticator must verify the user's identity during authentication.
 
 ### Step 4: Client requests assertion
 
@@ -547,7 +525,7 @@ The submission mechanism varies by app but typically involves either a form subm
 
 ### Step 7: Server verification
 
-The server verifies the assertion to authenticate the user. ASP.NET Core Identity provides the `PasskeySignInAsync` method, which performs the complete authentication flow in a single call:
+The server verifies the assertion to authenticate the user. ASP.NET Core Identity provides the <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasskeySignInAsync%2A> method, which performs the complete authentication flow in a single call:
 
 ```csharp
 var result = await signInManager.PasskeySignInAsync(credentialJson);
@@ -560,7 +538,7 @@ if (result.Succeeded)
 return Results.Unauthorized();
 ```
 
-The `PasskeySignInAsync` method internally calls `PerformPasskeyAssertionAsync` to:
+The <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasskeySignInAsync%2A> method internally calls <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PerformPasskeyAssertionAsync%2A> to:
 
 * Validate the assertion signature using the stored public key.
 * Verify that the challenge matches the one originally sent.
@@ -569,14 +547,14 @@ The `PasskeySignInAsync` method internally calls `PerformPasskeyAssertionAsync` 
 
 If all checks pass, the method signs in the user and returns a `SignInResult` indicating success.
 
-For scenarios requiring more control, you can use `PerformPasskeyAssertionAsync` directly to validate the assertion without immediately signing in the user:
+For scenarios requiring more control, you can use <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PerformPasskeyAssertionAsync%2A> directly to validate the assertion without immediately signing in the user:
 
-* `PerformPasskeyAssertionAsync` returns a `PasskeyAssertionResult<TUser>` containing the authenticated user and updated passkey information.
-* Because the passkey's sign-in count and authenticator flags may have changed since the last assertion and the updated passkey isn't automatically stored when calling `PerformPasskeyAssertionAsync`, call `userManager.AddOrUpdatePasskeyAsync` with the returned `PasskeyAssertionResult<TUser>`.
+* <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PerformPasskeyAssertionAsync%2A> returns a <xref:Microsoft.AspNetCore.Identity.PasskeyAssertionResult> containing the authenticated user and updated passkey information.
+* Because the passkey's sign-in count and authenticator flags may have changed since the last assertion and the updated passkey isn't automatically stored when calling <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PerformPasskeyAssertionAsync%2A>, call <xref:Microsoft.AspNetCore.Identity.UserManager%601.AddOrUpdatePasskeyAsync%2A?displayProperty=nameWithType> with the returned <xref:Microsoft.AspNetCore.Identity.PasskeyAssertionResult>.
 
 ### Step 8: Session establishment
 
-Upon successful authentication, ASP.NET Core Identity establishes an authenticated session for the user. The `PasskeySignInAsync` method handles this automatically, creating the necessary authentication cookies and claims. The app then redirects the user to protected resources or display personalized content.
+Upon successful authentication, ASP.NET Core Identity establishes an authenticated session for the user. The <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasskeySignInAsync%2A> method handles this automatically, creating the necessary authentication cookies and claims. The app then redirects the user to protected resources or display personalized content.
 
 ## Mitigate `PublicKeyCredential.toJSON` error (`TypeError: Illegal invocation`)
 

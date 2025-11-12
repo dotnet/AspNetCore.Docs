@@ -51,8 +51,6 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 ## Circuit state persistence
 
-<!-- UPDATE 10.0 - API doc cross-links -->
-
 During server-side rendering, Blazor Web Apps can persist a user's session (circuit) state when the connection to the server is lost for an extended period of time or proactively paused, as long as a full-page refresh isn't triggered. This allows users to resume their session without losing unsaved work in the following scenarios:
 
 * Browser tab throttling
@@ -85,8 +83,8 @@ State persistence is enabled by default when <xref:Microsoft.Extensions.Dependen
 
 Use the following options to change the default values of the in-memory provider:
 
-* `PersistedCircuitInMemoryMaxRetained` (`{CIRCUIT COUNT}` placeholder): The maximum number of circuits to retain. The default is 1,000 circuits. For example, use `2000` to retain state for up to 2,000 circuits.
-* `PersistedCircuitInMemoryRetentionPeriod` (`{RETENTION PERIOD}` placeholder): The maximum retention period as a <xref:System.TimeSpan>. The default is two hours. For example, use `TimeSpan.FromHours(3)` for a three-hour retention period.
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryMaxRetained%2A> (`{CIRCUIT COUNT}` placeholder): The maximum number of circuits to retain. The default is 1,000 circuits. For example, use `2000` to retain state for up to 2,000 circuits.
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryRetentionPeriod%2A> (`{RETENTION PERIOD}` placeholder): The maximum retention period as a <xref:System.TimeSpan>. The default is two hours. For example, use `TimeSpan.FromHours(3)` for a three-hour retention period.
 
 ```csharp
 services.Configure<CircuitOptions>(options =>
@@ -101,7 +99,7 @@ Persisting component state across circuits is built on top of the existing <xref
 > [NOTE]
 > Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
 
-Annotate component properties with `[PersistentState]` to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
+Annotate component properties the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
 
 ```razor
 @foreach (var item in Items)
@@ -120,7 +118,7 @@ Annotate component properties with `[PersistentState]` to enable circuit state p
 }
 ```
 
-To persist state for scoped services, annotate service properties with `[PersistentState]`, add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
+To persist state for scoped services, annotate service properties with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
 
 ```csharp
 public class CustomUserService
@@ -137,9 +135,9 @@ services.AddRazorComponents()
 ```
 
 > [NOTE]
-> The preceding example persists `UserData` state when the service is used in component prerendering for both Interactive Server and Interactive WebAssembly rendering because `RenderMode.InteractiveAuto` is specified to `RegisterPersistentService`. However, circuit state persistence is only available for the **Interactive Server** render mode.
+> The preceding example persists `UserData` state when the service is used in component prerendering for both Interactive Server and Interactive WebAssembly rendering because `RenderMode.InteractiveAuto` is specified to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A>. However, circuit state persistence is only available for the **Interactive Server** render mode.
 
-To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (`PersistedCircuitDistributedRetentionPeriod`, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
+To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitDistributedRetentionPeriod%2A>, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
 
 In the following example, a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> is implemented with the [Redis](https://redis.io/) storage provider:
 
