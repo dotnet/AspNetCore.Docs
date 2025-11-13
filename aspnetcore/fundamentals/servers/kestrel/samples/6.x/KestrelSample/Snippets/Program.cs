@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
+using Microsoft.AspNetCore.Server.Kestrel.Transport.Quic;
 
 namespace KestrelSample.Snippets;
 
@@ -594,5 +595,33 @@ public static class Program
             });
         });
         // </snippet_Http3>
+    }
+
+    public static void UseQuicWithOptions(string[] args)
+    {
+        // <snippet_UseQuicWithOptions>
+        var builder = WebApplication.CreateBuilder(args);
+
+#pragma warning disable CA2252 // Using preview features
+        builder.WebHost.UseQuic(options =>
+        {
+            options.MaxBidirectionalStreamCount = 100;
+            options.MaxUnidirectionalStreamCount = 10;
+            options.MaxReadBufferSize = 1024 * 1024;
+            options.MaxWriteBufferSize = 64 * 1024;
+        });
+#pragma warning restore CA2252
+
+        builder.WebHost.ConfigureKestrel((context, serverOptions) =>
+        {
+            serverOptions.ListenAnyIP(5001, listenOptions =>
+            {
+#pragma warning disable CA2252 // Using preview features
+                listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
+#pragma warning restore CA2252
+                listenOptions.UseHttps();
+            });
+        });
+        // </snippet_UseQuicWithOptions>
     }
 }
