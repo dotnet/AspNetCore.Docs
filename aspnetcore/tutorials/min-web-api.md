@@ -2,9 +2,10 @@
 title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
+ai-usage: ai-assisted
 ms.author: wpickett
-ms.date: 07/29/2024
 ms.custom: engagement-fy24
+ms.date: 11/13/2025
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
