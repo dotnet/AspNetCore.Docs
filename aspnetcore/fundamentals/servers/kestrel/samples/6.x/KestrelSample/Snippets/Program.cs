@@ -605,7 +605,7 @@ public static class Program
 #pragma warning disable CA2252 // Using preview features
         builder.WebHost.UseQuic(options =>
         {
-            options.MaxBidirectionalStreamCount = 100;
+            options.MaxBidirectionalStreamCount = 200;
             options.MaxUnidirectionalStreamCount = 10;
             options.MaxReadBufferSize = 1024 * 1024;
             options.MaxWriteBufferSize = 64 * 1024;
@@ -616,9 +616,7 @@ public static class Program
         {
             serverOptions.ListenAnyIP(5001, listenOptions =>
             {
-#pragma warning disable CA2252 // Using preview features
                 listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
-#pragma warning restore CA2252
                 listenOptions.UseHttps();
             });
         });
