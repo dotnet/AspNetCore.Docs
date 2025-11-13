@@ -421,7 +421,7 @@ The `movie` variable is a private field of type `Movie`, which is a null-referen
 
 The `Id` is a *component parameter* supplied from the component's query string due to the presence of the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute). If the identifier is missing, `Id` defaults to zero (`0`).
 
-`OnInitializedAsync` is the first component lifecycle method that we've seen. This method is executed when the component loads. <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync%2A> is called on the database set (`DbSet<Movie>`) to retrieve the movie entity with and `Id` equal to the `Id` parameter that was set by the query string. If `movie` is `null`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> is used to navigate to a `notfound` endpoint.
+`OnInitializedAsync` is the first component lifecycle method that we've seen. This method is executed when the component loads. <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync%2A> is called on the database set (`DbSet<Movie>`) to retrieve the movie entity with an `Id` equal to the `Id` parameter that was set by the query string. If `movie` is `null`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> is used to navigate to a `notfound` endpoint.
 
 <!-- UPDATE 10.0 - Update for scaffolder changes when they
                    appear: https://github.com/dotnet/Scaffolding/issues/3177 -->

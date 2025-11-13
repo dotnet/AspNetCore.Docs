@@ -302,7 +302,7 @@ private async Task UpdateMovie()
     {
         if (!MovieExists(Movie!.Id))
         {
-            NavigationManager.NotFound;
+            NavigationManager.NotFound();
         }
         else
         {
