@@ -8,9 +8,10 @@ ms.date: 11-13-2025
 
 ## Goal
 Analyze the GitHub issue and provide a **structured report** determining:
-1. Whether the issue is valid and actionable
-2. The exact documentation changes required (if applicable)
-3. A clear action plan that can guide PR creation
+1. Whether the issue is valid and actionable.
+1. Whether the issue is whithin scope of the articles the issue relates to, or if a new article is needed.
+1. The exact documentation changes required (if applicable).
+1. A clear action plan that can guide PR creation.
 
 The report should be suitable for posting directly in the issue discussion.
 
@@ -20,38 +21,38 @@ The report should be suitable for posting directly in the issue discussion.
 
 ### 1. Information Gathering
 Collect and review:
-* The **issue title, description, and all comments**
-* The **published documentation** (via the provided URL)
-* The **source file(s)** in the repository
-* Any **linked issues, PRs, or external references**
-* **Environment details**: .NET version, tooling versions (VS, VS Code, CLI, EF Core, etc.)
-* **Code samples or error messages** mentioned in the issue
+* The **issue title, description, and all comments**.
+* The **published documentation** (via the provided URL).
+* The **source file(s)** in the repository.
+* Any **linked issues, PRs, or external references**.
+* **Environment details**: .NET version, tooling versions (VS, VS Code, CLI, EF Core, etc.).
+* **Code samples or error messages** mentioned in the issue.
 
 ### 1.5 Source File Analysis
 When examining source files:
-* **Provide direct GitHub permalinks** to specific lines or sections
-* **Note exact line numbers** for proposed changes
-* **Include line number ranges** in GitHub URLs using `#L<start>-L<end>` format
-* **Quote current content** from specific lines before proposing changes
-* **Use permalinks with commit SHA** when referencing specific versions
+* **Provide direct GitHub permalinks** to specific lines or sections.
+* **Note exact line numbers** for proposed changes.
+* **Include line number ranges** in GitHub URLs using `#L<start>-L<end>` format.
+* **Quote current content** from specific lines before proposing changes.
+* **Use permalinks with commit SHA** when referencing specific versions.
 
 Example format for file references:
-* Single line: `https://github.com/owner/repo/blob/main/file.md#L123`
-* Line range: `https://github.com/owner/repo/blob/main/file.md#L123-L145`
-* Permalink: `https://github.com/owner/repo/blob/<commit-sha>/file.md#L123`
+* Single line: `https://github.com/owner/repo/blob/main/file.md#L123`.
+* Line range: `https://github.com/owner/repo/blob/main/file.md#L123-L145`.
+* Permalink: `https://github.com/owner/repo/blob/<commit-sha>/file.md#L123`.
 
 ### 2. Validation Criteria
 Determine if the issue is:
-* **In scope**: Related to ASP.NET Core documentation (not product bugs)
-* **Accurate**: The reported problem genuinely exists
-* **Clear**: Sufficient information to take action
-* **Current**: Applies to supported .NET versions
+* **In scope**: Related to ASP.NET Core documentation (not product bugs).
+* **Accurate**: The reported problem genuinely exists.
+* **Clear**: Sufficient information to take action.
+* **Current**: Applies to supported .NET versions.
 
 ### 3. Translation Requirements
 If any content is not in English:
-* Include the original text in a quote block
-* Provide complete English translation
-* Label clearly as "Original" and "Translation"
+* Include the original text in a quote block.
+* Provide complete English translation.
+* Label clearly as "Original" and "Translation".
 
 ---
 
@@ -172,12 +173,12 @@ If any content is not in English:
 ## Special Instructions
 
 ### Line Number Guidelines
-* **Always inspect the actual source file** to determine accurate line numbers
-* **Provide line ranges** rather than single lines when changes affect multiple lines
-* **Use GitHub's line highlighting** format in URLs (#L123 for single, #L123-L145 for range)
-* **Quote the existing content** at those lines to confirm accuracy
-* **Consider context lines** - include a few lines before/after for clarity
-* **Update line numbers** if the file has changed since issue creation
+* **Always inspect the actual source file** to determine accurate line numbers.
+* **Provide line ranges** rather than single lines when changes affect multiple lines.
+* **Use GitHub's line highlighting** format in URLs (#L123 for single, #L123-L145 for range).
+* **Quote the existing content** at those lines to confirm accuracy.
+* **Consider context lines** - include a few lines before/after for clarity.
+* **Update line numbers** if the file has changed since issue creation.
 
 ### Content Block Usage
 Only recommend using special blocks when truly appropriate, they should not be overused:
@@ -187,23 +188,23 @@ Only recommend using special blocks when truly appropriate, they should not be o
 * `[!TIP]`: Best practices, productivity hints
 
 ### Code Samples
-* Use appropriate language identifier for syntax highlighting
-* Include necessary `using` statements or imports
-* Add comments for complex logic
-* Ensure samples are complete and runnable
+* Use appropriate language identifier for syntax highlighting.
+* Include necessary `using` statements or imports.
+* Add comments for complex logic.
+* Ensure samples are complete and runnable.
 
 ### Scope Boundaries
 **DO:**
-* Focus on documentation clarity and accuracy
-* Address missing information
-* Fix technical inaccuracies
-* Improve code samples
+* Focus on documentation clarity and accuracy.
+* Address missing information.
+* Fix technical inaccuracies.
+* Improve code samples.
 
 **DON'T:**
-* Attempt to fix product bugs through documentation
-* Make architectural recommendations
-* Add opinions or preferences
-* Modify unrelated sections
+* Attempt to fix product bugs through documentation.
+* Make architectural recommendations.
+* Add opinions or preferences.
+* Modify unrelated sections.
 
 ## Issue labels
 * Upon completion of the report, set the `ai-reviewed-issue-reported-action-plan` label for the issue.
@@ -216,17 +217,3 @@ Only recommend using special blocks when truly appropriate, they should not be o
 5. **Missing prerequisites**: Add setup steps
 
 ---
-
-## Quick Decision Tree
-
-```
-Is this a documentation issue?
-├── NO → Redirect to product repo
-└── YES → Is the information accurate?
-    ├── NO → Provide correction
-    └── YES → Is it clear enough?
-        ├── NO → Clarify/expand
-        └── YES → Is it complete?
-            ├── NO → Add missing info
-            └── YES → Consider if enhancement improves value
-```
