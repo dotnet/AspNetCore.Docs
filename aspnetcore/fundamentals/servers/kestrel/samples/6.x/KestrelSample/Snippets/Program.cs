@@ -606,9 +606,6 @@ public static class Program
         builder.WebHost.UseQuic(options =>
         {
             options.MaxBidirectionalStreamCount = 200;
-            options.MaxUnidirectionalStreamCount = 10;
-            options.MaxReadBufferSize = 1024 * 1024;
-            options.MaxWriteBufferSize = 64 * 1024;
         });
 #pragma warning restore CA2252
 

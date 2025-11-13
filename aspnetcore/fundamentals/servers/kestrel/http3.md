@@ -69,7 +69,7 @@ For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
 QUIC transport options can be configured by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A> extension method on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>.
 
-:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_UseQuicWithOptions" highlight="3-8":::
+:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_UseQuicWithOptions" highlight="3-5":::
 
 The following table describes the available <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions>:
 
