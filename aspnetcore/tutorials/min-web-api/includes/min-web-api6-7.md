@@ -15,6 +15,7 @@ This tutorial creates the following API:
 | `GET /todoitems/{id}`                  | Get an item by ID              | None         | To-do item           |
 | `POST /todoitems`                      | Add a new item                 | To-do item   | To-do item           |
 | `PUT /todoitems/{id}`                  | Update an existing item &nbsp; | To-do item   | None                 |
+| `PATCH /todoitems/{id}`                | Partially update an item &nbsp;| Partial to-do item | None           |
 | `DELETE /todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp;   | None         | None                 |
 
 ## Prerequisites
@@ -315,6 +316,39 @@ Use Swagger to send a PUT request:
   {
     "name": "feed fish",
     "isComplete": false
+  }
+  ```
+
+* Select **Execute**.
+
+## Examine the PATCH endpoint
+
+The sample app implements a single PATCH endpoint using `MapPatch`:
+
+[!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_patch)]
+
+This method is similar to the `MapPut` method, except it uses HTTP PATCH and only updates the fields provided in the request. A successful response returns [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a PATCH request enables partial updates, allowing clients to send only the fields that need to be changed.
+
+> [!NOTE]
+> PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see <xref:web-api/jsonpatch>.
+
+## Test the PATCH endpoint
+
+This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PATCH call. Call GET to ensure there's an item in the database before making a PATCH call.
+
+Update only the `name` property of the to-do item that has `Id = 1` and set its name to `"run errands"`.
+
+Use Swagger to send a PATCH request:
+
+* Select **Patch /todoitems/{id}** > **Try it out**.
+
+* Set the **id** field to `1`.
+
+* Set the request body to the following JSON:
+
+  ```json
+  {
+    "name": "run errands"
   }
   ```
 
