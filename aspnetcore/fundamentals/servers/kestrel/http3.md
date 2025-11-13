@@ -1,5 +1,6 @@
 ---
 title: Use HTTP/3 with the ASP.NET Core Kestrel web server
+ai-usage: ai-assisted
 author: wtgodbe
 description: Learn about using HTTP/3 with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-6.0'
@@ -7,7 +8,6 @@ ms.author: wigodbe
 ms.custom: mvc, linux-related-content
 ms.date: 11/13/2025
 uid: fundamentals/servers/kestrel/http3
-ai-usage: ai-assisted
 ---
 
 # Use HTTP/3 with the ASP.NET Core Kestrel web server
@@ -71,10 +71,10 @@ QUIC transport options can be configured by calling the <xref:Microsoft.AspNetCo
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_UseQuicWithOptions" highlight="3-8":::
 
-The following table describes the available <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions>:
+The following table describes the available <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions>.
 
 | Option | Default | Description |
-|--------|---------|-------------|
+| ------ | ------- | ----------- |
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxBidirectionalStreamCount> | `100` | The maximum number of concurrent bi-directional streams per connection. |
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxUnidirectionalStreamCount> | `10` | The maximum number of concurrent inbound uni-directional streams per connection. |
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxReadBufferSize> | `1024 * 1024` (1 MB) | The maximum read buffer size in bytes. |
