@@ -75,12 +75,12 @@ The following table describes the available <xref:Microsoft.AspNetCore.Server.Ke
 
 | Option | Default | Description |
 | ------ | ------- | ----------- |
-| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxBidirectionalStreamCount> | `100` | The maximum number of concurrent bi-directional streams per connection. |
-| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxUnidirectionalStreamCount> | `10` | The maximum number of concurrent inbound uni-directional streams per connection. |
+| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxBidirectionalStreamCount> | `100` | The maximum number of concurrent bidirectional streams per connection. |
+| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxUnidirectionalStreamCount> | `10` | The maximum number of concurrent inbound unidirectional streams per connection. |
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxReadBufferSize> | `1024 * 1024` (1 MB) | The maximum read buffer size in bytes. |
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxWriteBufferSize> | `64 * 1024` (64 KB) | The maximum write buffer size in bytes. |
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.Backlog> | `512` | The maximum length of the pending connection queue. |
-| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.DefaultStreamErrorCode> | `0x010c` (H3_REQUEST_CANCELLED) | Error code used when the stream needs to abort the read or write side of the stream internally. |
+| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.DefaultStreamErrorCode> | `0x010c` (H3_REQUEST_CANCELLED) | Error code used when the stream should abort the read or write side of the stream internally. |
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.DefaultCloseErrorCode> | `0x100` (H3_NO_ERROR) | Error code used when an open connection is disposed. |
 
 
