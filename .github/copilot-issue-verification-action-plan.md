@@ -1,3 +1,9 @@
+---
+author: tdykstra
+ms.author: wpickett
+ms.date: 11-13-2025
+---
+
 # GitHub Issue Analysis and Action Plan Prompt for ASP.NET Core Documentation
 
 ## Goal
