@@ -4,7 +4,7 @@ ms.author: wpickett
 ms.date: 11-13-2025
 ---
 
-# GitHub Issue Analysis and Action Plan Prompt for ASP.NET Core Documentation
+# GitHub issue analysis and action plan prompt for ASP.NET Core documentation
 
 ## Goal
 Analyze the GitHub issue and provide a **structured report** determining:
@@ -20,38 +20,38 @@ The report should be suitable for posting directly in the issue discussion.
 
 ### 1. Information Gathering
 Collect and review:
-- The **issue title, description, and all comments**
-- The **published documentation** (via the provided URL)
-- The **source file(s)** in the repository
-- Any **linked issues, PRs, or external references**
-- **Environment details**: .NET version, tooling versions (VS, VS Code, CLI, EF Core, etc.)
-- **Code samples or error messages** mentioned in the issue
+* The **issue title, description, and all comments**
+* The **published documentation** (via the provided URL)
+* The **source file(s)** in the repository
+* Any **linked issues, PRs, or external references**
+* **Environment details**: .NET version, tooling versions (VS, VS Code, CLI, EF Core, etc.)
+* **Code samples or error messages** mentioned in the issue
 
 ### 1.5 Source File Analysis
 When examining source files:
-- **Provide direct GitHub permalinks** to specific lines or sections
-- **Note exact line numbers** for proposed changes
-- **Include line number ranges** in GitHub URLs using `#L<start>-L<end>` format
-- **Quote current content** from specific lines before proposing changes
-- **Use permalinks with commit SHA** when referencing specific versions
+* **Provide direct GitHub permalinks** to specific lines or sections
+* **Note exact line numbers** for proposed changes
+* **Include line number ranges** in GitHub URLs using `#L<start>-L<end>` format
+* **Quote current content** from specific lines before proposing changes
+* **Use permalinks with commit SHA** when referencing specific versions
 
 Example format for file references:
-- Single line: `https://github.com/owner/repo/blob/main/file.md#L123`
-- Line range: `https://github.com/owner/repo/blob/main/file.md#L123-L145`
-- Permalink: `https://github.com/owner/repo/blob/<commit-sha>/file.md#L123`
+* Single line: `https://github.com/owner/repo/blob/main/file.md#L123`
+* Line range: `https://github.com/owner/repo/blob/main/file.md#L123-L145`
+* Permalink: `https://github.com/owner/repo/blob/<commit-sha>/file.md#L123`
 
 ### 2. Validation Criteria
 Determine if the issue is:
-- **In scope**: Related to ASP.NET Core documentation (not product bugs)
-- **Accurate**: The reported problem genuinely exists
-- **Clear**: Sufficient information to take action
-- **Current**: Applies to supported .NET versions
+* **In scope**: Related to ASP.NET Core documentation (not product bugs)
+* **Accurate**: The reported problem genuinely exists
+* **Clear**: Sufficient information to take action
+* **Current**: Applies to supported .NET versions
 
 ### 3. Translation Requirements
 If any content is not in English:
-- Include the original text in a quote block
-- Provide complete English translation
-- Label clearly as "Original" and "Translation"
+* Include the original text in a quote block
+* Provide complete English translation
+* Label clearly as "Original" and "Translation"
 
 ---
 
@@ -123,25 +123,25 @@ If any content is not in English:
 
 ## 🎯 Action Plan
 1. **Edit file:** [`aspnetcore/path/to/file.md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md)
-   - Navigate to: [Line 123](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123)
-   - Find section: "Exact Section Heading"
-   - After text: "last sentence before insertion point"
-   - Insert: [!NOTE] block with explanation
+   * Navigate to: [Line 123](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123)
+   * Find section: "Exact Section Heading"
+   * After text: "last sentence before insertion point"
+   * Insert: [!NOTE] block with explanation
    
 2. **Update sample:** [`path/to/sample.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs)
-   - Navigate to: [Lines 45-67](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs#L45-L67)
-   - Modify method: `MethodName()`
-   - Change: Update to use new pattern
+   * Navigate to: [Lines 45-67](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs#L45-L67)
+   * Modify method: `MethodName()`
+   * Change: Update to use new pattern
 
 ## ⚠️ Considerations
-- Verify change applies to .NET [version]
-- Check if similar updates needed in related articles
-- Consider adding cross-references to [related topic]
+* Verify change applies to .NET [version]
+* Check if similar updates needed in related articles
+* Consider adding cross-references to [related topic]
 
 ## 🔗 References
-- Published article: [URL]
-- Related issue: #[number]
-- Microsoft Learn docs: [relevant MS docs link]
+* Published article: [URL]
+* Related issue: #[number]
+* Microsoft Learn docs: [relevant MS docs link]
 ```
 
 #### For Invalid Issues
@@ -157,14 +157,14 @@ If any content is not in English:
 <Clear explanation of why the issue cannot be addressed as documentation>
 
 ## 💡 Recommendation
-- [Close with explanation]
-- [Redirect to appropriate repository]
-- [Request additional information]
-- [Convert to discussion]
+* [Close with explanation]
+* [Redirect to appropriate repository]
+* [Request additional information]
+* [Convert to discussion]
 
 ## 🔗 Alternative Resources
-- [Link to relevant documentation]
-- [Link to appropriate repository for product issues]
+* [Link to relevant documentation]
+* [Link to appropriate repository for product issues]
 ```
 
 ---
@@ -172,41 +172,41 @@ If any content is not in English:
 ## Special Instructions
 
 ### Line Number Guidelines
-- **Always inspect the actual source file** to determine accurate line numbers
-- **Provide line ranges** rather than single lines when changes affect multiple lines
-- **Use GitHub's line highlighting** format in URLs (#L123 for single, #L123-L145 for range)
-- **Quote the existing content** at those lines to confirm accuracy
-- **Consider context lines** - include a few lines before/after for clarity
-- **Update line numbers** if the file has changed since issue creation
+* **Always inspect the actual source file** to determine accurate line numbers
+* **Provide line ranges** rather than single lines when changes affect multiple lines
+* **Use GitHub's line highlighting** format in URLs (#L123 for single, #L123-L145 for range)
+* **Quote the existing content** at those lines to confirm accuracy
+* **Consider context lines** - include a few lines before/after for clarity
+* **Update line numbers** if the file has changed since issue creation
 
 ### Content Block Usage
 Only recommend using special blocks when truly appropriate, they should not be overused:
-- `[!IMPORTANT]`: Security issues, breaking changes, data loss risks
-- `[!WARNING]`: Common mistakes, deprecation notices
-- `[!NOTE]`: Helpful clarifications, version-specific info
-- `[!TIP]`: Best practices, productivity hints
+* `[!IMPORTANT]`: Security issues, breaking changes, data loss risks
+* `[!WARNING]`: Common mistakes, deprecation notices
+* `[!NOTE]`: Helpful clarifications, version-specific info
+* `[!TIP]`: Best practices, productivity hints
 
 ### Code Samples
-- Use appropriate language identifier for syntax highlighting
-- Include necessary `using` statements or imports
-- Add comments for complex logic
-- Ensure samples are complete and runnable
+* Use appropriate language identifier for syntax highlighting
+* Include necessary `using` statements or imports
+* Add comments for complex logic
+* Ensure samples are complete and runnable
 
 ### Scope Boundaries
 **DO:**
-- Focus on documentation clarity and accuracy
-- Address missing information
-- Fix technical inaccuracies
-- Improve code samples
+* Focus on documentation clarity and accuracy
+* Address missing information
+* Fix technical inaccuracies
+* Improve code samples
 
 **DON'T:**
-- Attempt to fix product bugs through documentation
-- Make architectural recommendations
-- Add opinions or preferences
-- Modify unrelated sections
+* Attempt to fix product bugs through documentation
+* Make architectural recommendations
+* Add opinions or preferences
+* Modify unrelated sections
 
 ## Issue labels
-- Upon completion of the report, set the `ai-reviewed-issue-reported-action-plan` label for the issue.
+* Upon completion of the report, set the `ai-reviewed-issue-reported-action-plan` label for the issue.
 
 ### Common Issue Types
 1. **Missing information**: Add clarifying content
