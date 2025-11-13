@@ -69,7 +69,7 @@ For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
 QUIC transport options can be configured by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A> extension method on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>.
 
-:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_UseQuicWithOptions" highlight="3-8":::
+:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_UseQuicWithOptions" highlight="4-6":::
 
 The following table describes the available <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions>:
 
@@ -80,8 +80,8 @@ The following table describes the available <xref:Microsoft.AspNetCore.Server.Ke
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxReadBufferSize> | `1024 * 1024` (1 MB) | The maximum read buffer size in bytes. |
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.MaxWriteBufferSize> | `64 * 1024` (64 KB) | The maximum write buffer size in bytes. |
 | <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.Backlog> | `512` | The maximum length of the pending connection queue. |
-| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.DefaultStreamErrorCode> | `0x010c` (`H3_REQUEST_CANCELLED`) | Error code used when the stream needs to abort the read or write side of the stream internally. The value must be between `0x0` and `0x3FFFFFFFFFFFFFFF`. |
-| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.DefaultCloseErrorCode> | `0x100` (`H3_NO_ERROR`) | Error code used when an open connection is disposed. The value must be between `0x0` and `0x3FFFFFFFFFFFFFFF`. |
+| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.DefaultStreamErrorCode> | `0x010c` (H3_REQUEST_CANCELLED) | Error code used when the stream needs to abort the read or write side of the stream internally. |
+| <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions.DefaultCloseErrorCode> | `0x100` (H3_NO_ERROR) | Error code used when an open connection is disposed. |
 
 
 ## Alt-svc
