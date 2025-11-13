@@ -231,6 +231,9 @@ The `Components/Layout` folder contains the following layout components and styl
 * `MainLayout.razor.css`: Stylesheet for the app's main layout.
 * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. This component uses several `NavLink` components to render navigation links to other Razor components.
 * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
+* `ReconnectModal` component (`ReconnectModal.razor`): Reflects the server-side connection state in the UI.
+* `ReconnectModal.razor.css`: Stylesheet for the `ReconnectModal` component.
+* `ReconnectModal.razor.js`: JavaScript file for the `ReconnectModal` component.
 
 ### `Components/_Imports.razor` file
 
