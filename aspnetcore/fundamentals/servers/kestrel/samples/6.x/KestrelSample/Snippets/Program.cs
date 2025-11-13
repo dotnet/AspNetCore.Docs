@@ -602,12 +602,12 @@ public static class Program
         // <snippet_UseQuicWithOptions>
         var builder = WebApplication.CreateBuilder(args);
 
-#pragma warning disable CA2252 // Using preview features
         builder.WebHost.UseQuic(options =>
         {
+#pragma warning disable CA2252 // Using preview features
             options.MaxBidirectionalStreamCount = 200;
-        });
 #pragma warning restore CA2252
+        });
 
         builder.WebHost.ConfigureKestrel((context, serverOptions) =>
         {
