@@ -9,7 +9,7 @@ ms.date: 11-13-2025
 ## Goal
 Analyze the GitHub issue and provide a **structured report** determining:
 1. Whether the issue is valid and actionable.
-1. Whether the issue is whithin scope of the articles the issue relates to, or if a new article is needed.
+1. Whether the issue is within scope of the articles the issue relates to, or if a new article is needed.
 1. The exact documentation changes required (if applicable).
 1. A clear action plan that can guide PR creation.
 
