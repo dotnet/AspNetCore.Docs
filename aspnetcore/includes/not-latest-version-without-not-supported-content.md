@@ -26,6 +26,5 @@ When a new version is released, it might be necessary to temporarily comment out
 moniker range section until the new moniker is created.
 
 Markdown to include this file:
-+
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 -->
