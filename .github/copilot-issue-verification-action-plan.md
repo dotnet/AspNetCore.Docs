@@ -1,7 +1,7 @@
 ---
 author: tdykstra
 ms.author: wpickett
-ms.date: 11-13-2025
+ms.date: 11/13/2025
 ---
 
 # GitHub issue analysis and action plan prompt for ASP.NET Core documentation
