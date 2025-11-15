@@ -2363,7 +2363,7 @@
   }
 
   /**
-   * Loop trough the list of modifiers and run them in order,
+   * Loop through the list of modifiers and run them in order,
    * each of them will then edit the data object.
    * @method
    * @memberof Popper.Utils
@@ -2505,7 +2505,7 @@
 
     this.disableEventListeners();
 
-    // remove the popper if user explicity asked for the deletion on destroy
+    // remove the popper if user explicitly asked for the deletion on destroy
     // do not use `remove` because IE11 doesn't support it
     if (this.options.removeOnDestroy) {
       this.popper.parentNode.removeChild(this.popper);
@@ -2836,7 +2836,7 @@
       styles[sideB] = 0;
       styles.willChange = 'transform';
     } else {
-      // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
+      // otherwise, we use the standard `top`, `left`, `bottom` and `right` properties
       var invertTop = sideA === 'bottom' ? -1 : 1;
       var invertLeft = sideB === 'right' ? -1 : 1;
       styles[sideA] = top * invertTop;
@@ -3282,7 +3282,7 @@
       });
     });
 
-    // Loop trough the offsets arrays and execute the operations
+    // Loop through the offsets arrays and execute the operations
     ops.forEach(function (op, index) {
       op.forEach(function (frag, index2) {
         if (isNumeric(frag)) {
