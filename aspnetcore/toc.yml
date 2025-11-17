@@ -1499,6 +1499,8 @@ items:
         uid: diagnostics/bl0006
       - name: BL0007
         uid: diagnostics/bl0007
+      - name: BL0008
+        uid: diagnostics/bl0008
       - name: MVC1000
         uid: diagnostics/mvc1000
       - name: MVC1001
