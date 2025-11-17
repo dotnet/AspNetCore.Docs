@@ -8,12 +8,12 @@
 :::moniker-end
 
 <!-- Exclude until .NET 11 preview is added to the version selector collection
-:::moniker range="> aspnetcore-10.0"
+(add triple colon here) moniker range="> aspnetcore-10.0"
 > [!IMPORTANT]
 > This information relates to a pre-release product that may be substantially modified before it's commercially released. Microsoft makes no warranties, express or implied, with respect to the information provided here.
 >
 > For the current release, see the [.NET 10 version of this article](?view=aspnetcore-10.0&preserve-view=true).
-:::moniker-end
+(add triple colon here) moniker-end
 -->
 
 <!--
