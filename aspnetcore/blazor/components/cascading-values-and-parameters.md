@@ -433,7 +433,7 @@ For more information, see the following sections of this article:
 
 To make use of cascading values, descendent components declare cascading parameters using the [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute). Cascading values are bound to cascading parameters **by type**. Cascading multiple values of the same type is covered in the [Cascade multiple values](#cascade-multiple-values) section later in this article.
 
-The `private` access modifier is recommended for components because the parameter should be scoped for use only in the component's class in most cases. When subclassing is required, use the `protected` access modifier.
+The `private` access modifier is recommended for cascading parameters because the parameter should be scoped for use only within the component's class in most cases. When subclassing is required, use the `protected` access modifier.
 
 The following component binds the `ThemeInfo` cascading value to a cascading parameter, optionally using the same name of `ThemeInfo`. The parameter is used to set the CSS class for the **`Increment Counter (Themed)`** button.
 
