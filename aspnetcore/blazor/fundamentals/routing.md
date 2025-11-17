@@ -835,7 +835,7 @@ Apps that implement a custom router can also use `NavigationManager.NotFound`. T
   ```razor
   @code {
       [CascadingParameter]
-      public HttpContext? HttpContext { get; set; }
+      private HttpContext? HttpContext { get; set; }
 
       private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
       {

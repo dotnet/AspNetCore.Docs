@@ -230,7 +230,7 @@ The following `Keypad` component example:
 
 @code {
     [CascadingParameter]
-    protected KeypadViewModel KeypadViewModel { get; set; }
+    private KeypadViewModel KeypadViewModel { get; set; }
 
     private void DeleteChar()
     {
