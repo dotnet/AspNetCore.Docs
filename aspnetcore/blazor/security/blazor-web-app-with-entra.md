@@ -262,7 +262,7 @@ Placeholders in the preceding configuration:
 * `{DIRECTORY NAME}`: The directory name of the tenant (publisher) domain.
 * `{CLIENT ID (BLAZOR APP)}`: The application (client) ID.
 * `{BASE ADDRESS}`: The web API's base address.
-* `{APP ID URI}`: The App ID URI for web API scopes. Either of the following formats are used, where the `{CLIENT ID (WEB API)}` placeholder is the Client Id of the web API's Entra registration, and the `{DIRECTORY NAME}` placeholder is the directory name of the tenant (publishers) domain (example: `contoso`).
+* `{APP ID URI}`: The App ID URI for web API scopes. Either of the following formats are used, where the `{CLIENT ID (WEB API)}` placeholder is the Client Id of the web API's Entra registration, and the `{DIRECTORY NAME}` placeholder is the directory name of the tenant (publisher) domain (example: `contoso`).
   * ME-ID or Microsoft Entra External ID tenant format: `api://{CLIENT ID (WEB API)}`
   * B2C tenant format: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID (WEB API)}`
 
