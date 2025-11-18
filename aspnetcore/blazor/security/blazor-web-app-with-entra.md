@@ -109,19 +109,32 @@ For the web API app's registration, the `Weather.Get` scope is configured in the
 jwtOptions.Authority = "{AUTHORITY}";
 ```
 
-The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee`.
+The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a directory name of `contoso`.
 
 If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+```
+
+If the app is registered in a Microsoft Entra External ID tenant:
+
+```csharp
+jwtOptions.Authority = "https://contoso.ciamlogin.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 ```
 
 If the app is registered in an AAD B2C tenant:
 
 ```csharp
-jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 ```
+
+<!-- UPDATE 15.0 - Remove the following NOTE when .NET 15 releases in
+                   2030, which is when B2C support will end for existing 
+                   customers prior to 5/1/25. -->
+
+> [!NOTE]
+> Azure Active Directory B2C is no longer available as a service to new customers as of May 1, 2025. AAD B2C tenants are supported for customers with accounts established prior to May 1, 2025 until 2030. For more information, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/faq).
 
 <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience%2A> sets the Audience for any received JWT access token. 
 
@@ -131,12 +144,18 @@ jwtOptions.Audience = "{AUDIENCE}";
 
 Match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Entra or Azure portal. Don't include the scope name, "`Weather.Get`," in the value.
 
-The following examples use an Application (Client) Id of `11112222-bbbb-3333-cccc-4444dddd5555`. The second example uses a tenant domain of `contoso.onmicrosoft.com`.
+The following examples use an Application (Client) Id of `11112222-bbbb-3333-cccc-4444dddd5555`. The third example uses a tenant domain of `contoso.onmicrosoft.com`.
 
 ME-ID tenant example:
 
 ```csharp
 jwtOptions.Audience = "api://11112222-bbbb-3333-cccc-4444dddd5555";
+```
+
+Microsoft Entra External ID tenant:
+
+```csharp
+jwtOptions.Audience = "11112222-bbbb-3333-cccc-4444dddd5555";
 ```
 
 AAD B2C tenant example:
@@ -150,6 +169,15 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)) is configured in the `BlazorWebAppEntra` project's `Program` file.
 
 Obtain the application (client) ID, tenant (publisher) domain, and directory (tenant) ID from the app's registration in the Entra or Azure portal. The App ID URI is obtained for the `Weather.Get` scope from the web API's registration. Don't include the scope name when taking the App ID URI from the portal.
+
+The authentication configuration depends on the type of tenant:
+
+* [ME-ID tenant configuration](#me-id-tenant-configuration)
+* [Microsoft Entra External ID configuration](#microsoft-entra-external-id-configuration)
+
+### ME-ID tenant configuration
+
+*This section applies to an app registered in a Microsoft Entra ID or Azure AAD B2C tenant.*
 
 In the `BlazorWebAppEntra` project's `Program` file, provide the values for the following placeholders in Microsoft Identity Web configuration:
 
@@ -168,7 +196,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDownstreamApi("DownstreamApi", configOptions =>
     {
         configOptions.BaseUrl = "{BASE ADDRESS}";
-        configOptions.Scopes = [ "{APP ID URI}/Weather.Get" ];
+        configOptions.Scopes = ["{APP ID URI}/Weather.Get"];
     })
     .AddDistributedTokenCaches();
 ```
@@ -200,7 +228,60 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDownstreamApi("DownstreamApi", configOptions =>
     {
         configOptions.BaseUrl = "https://localhost:7277";
-        configOptions.Scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
+        configOptions.Scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
+    })
+    .AddDistributedTokenCaches();
+```
+
+### Microsoft Entra External ID configuration
+
+*This section applies to an app registered in a Microsoft Entra External ID tenant.*
+
+In the `BlazorWebAppEntra` project's `Program` file, provide the values for the following placeholders in Microsoft Identity Web configuration:
+
+```csharp
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(msIdentityOptions =>
+    {
+        msIdentityOptions.CallbackPath = "/signin-oidc";
+        msIdentityOptions.Authority = "https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0";
+        msIdentityOptions.ClientId = "{CLIENT ID (BLAZOR APP)}";
+        msIdentityOptions.ResponseType = "code";
+    })
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("DownstreamApi", configOptions =>
+    {
+        configOptions.BaseUrl = "{BASE ADDRESS}";
+        configOptions.Scopes = ["{APP ID URI}/Weather.Get"];
+    })
+    .AddDistributedTokenCaches();
+```
+
+Placeholders in the preceding configuration:
+
+* `{DIRECTORY NAME}`: The directory name of the tenant (publisher) domain.
+* `{CLIENT ID (BLAZOR APP)}`: The application (client) ID.
+* `{BASE ADDRESS}`: The web API's base address.
+* `{APP ID URI}`: The App ID URI for web API scopes. Either of the following formats are used, where the `{CLIENT ID (WEB API)}` placeholder is the Client Id of the web API's Entra registration, and the `{DIRECTORY NAME}` placeholder is the directory name of the tenant (publishers) domain (example: `contoso`).
+  * ME-ID or Microsoft Entra External ID tenant format: `api://{CLIENT ID (WEB API)}`
+  * B2C tenant format: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID (WEB API)}`
+
+Example:
+
+```csharp
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(msIdentityOptions =>
+    {
+        msIdentityOptions.CallbackPath = "/signin-oidc";
+        msIdentityOptions.Authority = "https://contoso.ciamlogin.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
+        msIdentityOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
+        msIdentityOptions.ResponseType = "code";
+    })
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("DownstreamApi", configOptions =>
+    {
+        configOptions.BaseUrl = "https://localhost:7277";
+        configOptions.Scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
     })
     .AddDistributedTokenCaches();
 ```
@@ -317,19 +398,32 @@ For the web API app's registration, the `Weather.Get` scope is configured in the
 jwtOptions.Authority = "{AUTHORITY}";
 ```
 
-The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee`.
+The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a directory name of `contoso`.
 
 If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+```
+
+If the app is registered in a Microsoft Entra External ID tenant:
+
+```csharp
+jwtOptions.Authority = "https://contoso.ciamlogin.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 ```
 
 If the app is registered in an AAD B2C tenant:
 
 ```csharp
-jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 ```
+
+<!-- UPDATE 15.0 - Remove the following NOTE when .NET 15 releases in
+                   2030, which is when B2C support will end for existing 
+                   customers prior to 5/1/25. -->
+
+> [!NOTE]
+> Azure Active Directory B2C is no longer available as a service to new customers as of May 1, 2025. AAD B2C tenants are supported for customers with accounts established prior to May 1, 2025 until 2030. For more information, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/faq).
 
 <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience%2A> sets the Audience for any received JWT access token. 
 
@@ -339,12 +433,18 @@ jwtOptions.Audience = "{AUDIENCE}";
 
 Match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Entra or Azure portal. Don't include the scope name, "`Weather.Get`," in the value.
 
-The following examples use an Application (Client) Id of `11112222-bbbb-3333-cccc-4444dddd5555`. The second example uses a tenant domain of `contoso.onmicrosoft.com`.
+The following examples use an Application (Client) Id of `11112222-bbbb-3333-cccc-4444dddd5555`. The third example uses a tenant domain of `contoso.onmicrosoft.com`.
 
 ME-ID tenant example:
 
 ```csharp
 jwtOptions.Audience = "api://11112222-bbbb-3333-cccc-4444dddd5555";
+```
+
+Microsoft Entra External ID tenant:
+
+```csharp
+jwtOptions.Audience = "11112222-bbbb-3333-cccc-4444dddd5555";
 ```
 
 AAD B2C tenant example:
@@ -358,6 +458,15 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)) is configured in the `BlazorWebAppEntra` project's `Program` file.
 
 Obtain the application (client) ID, tenant (publisher) domain, and directory (tenant) ID from the app's registration in the Entra or Azure portal. The App ID URI is obtained for the `Weather.Get` scope from the web API's registration. Don't include the scope name when taking the App ID URI from the portal.
+
+The authentication configuration depends on the type of tenant:
+
+* [ME-ID tenant configuration](#me-id-tenant-configuration)
+* [Microsoft Entra External ID configuration](#microsoft-entra-external-id-configuration)
+
+### ME-ID tenant configuration
+
+*This section applies to an app registered in a Microsoft Entra ID or Azure AAD B2C tenant.*
 
 In the `BlazorWebAppEntra` project's `Program` file, provide the values for the following placeholders in Microsoft Identity Web configuration:
 
@@ -376,7 +485,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDownstreamApi("DownstreamApi", configOptions =>
     {
         configOptions.BaseUrl = "{BASE ADDRESS}";
-        configOptions.Scopes = [ "{APP ID URI}/Weather.Get" ];
+        configOptions.Scopes = ["{APP ID URI}/Weather.Get"];
     })
     .AddDistributedTokenCaches();
 ```
@@ -384,7 +493,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 Provide the same downstream API scope to the request transformer:
 
 ```csharp
-List<string> scopes = [ "{APP ID URI}/Weather.Get" ];
+List<string> scopes = ["{APP ID URI}/Weather.Get"];
 ```
 
 Placeholders in the preceding configuration:
@@ -415,7 +524,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     {
         configOptions.BaseUrl = "https://localhost:7277";
         configOptions.Scopes = 
-            [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
+            ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
     })
     .AddDistributedTokenCaches();
 ```
@@ -423,7 +532,72 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 Example:
 
 ```csharp
-List<string> scopes = [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ];
+List<string> scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
+```
+
+### Microsoft Entra External ID configuration
+
+*This section applies to an app registered in a Microsoft Entra External ID tenant.*
+
+In the `BlazorWebAppEntra` project's `Program` file, provide the values for the following placeholders in Microsoft Identity Web configuration:
+
+```csharp
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(msIdentityOptions =>
+    {
+        msIdentityOptions.CallbackPath = "/signin-oidc";
+        msIdentityOptions.Authority = "https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0";
+        msIdentityOptions.ClientId = "{CLIENT ID (BLAZOR APP)}";
+        msIdentityOptions.ResponseType = "code";
+    })
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("DownstreamApi", configOptions =>
+    {
+        configOptions.BaseUrl = "{BASE ADDRESS}";
+        configOptions.Scopes = ["{APP ID URI}/Weather.Get"];
+    })
+    .AddDistributedTokenCaches();
+```
+
+Provide the same downstream API scope to the request transformer:
+
+```csharp
+List<string> scopes = ["{APP ID URI}/Weather.Get"];
+```
+
+Placeholders in the preceding configuration:
+
+* `{DIRECTORY NAME}`: The directory name of the tenant (publisher) domain.
+* `{CLIENT ID (BLAZOR APP)}`: The application (client) ID.
+* `{BASE ADDRESS}`: The web API's base address.
+* `{APP ID URI}`: The App ID URI for web API scopes. Either of the following formats are used, where the `{CLIENT ID (WEB API)}` placeholder is the Client Id of the web API's Entra registration, and the `{DIRECTORY NAME}` placeholder is the directory name of the tenant (publishers) domain (example: `contoso`).
+  * ME-ID or Microsoft Entra External ID tenant format: `api://{CLIENT ID (WEB API)}`
+  * B2C tenant format: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID (WEB API)}`
+
+Example:
+
+```csharp
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(msIdentityOptions =>
+    {
+        msIdentityOptions.CallbackPath = "/signin-oidc";
+        msIdentityOptions.Authority = "https://contoso.ciamlogin.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
+        msIdentityOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
+        msIdentityOptions.ResponseType = "code";
+    })
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("DownstreamApi", configOptions =>
+    {
+        configOptions.BaseUrl = "https://localhost:7277";
+        configOptions.Scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
+    })
+    .AddDistributedTokenCaches();
+```
+
+Example:
+
+```csharp
+List<string> scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
 ```
 
 :::zone-end
@@ -591,7 +765,7 @@ In the app settings file (`appsettings.json`) of the `BlazorWebAppEntra` project
   },
   "DownstreamApi": {
     "BaseUrl": "{BASE ADDRESS}",
-    "Scopes": [ "{APP ID URI}/Weather.Get" ]
+    "Scopes": ["{APP ID URI}/Weather.Get"]
   }
 }
 ```
@@ -619,7 +793,7 @@ Example:
 },
 "DownstreamApi": {
   "BaseUrl": "https://localhost:7277",
-  "Scopes": [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ]
+  "Scopes": ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"]
 }
 ```
 
@@ -645,7 +819,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 -   .AddDownstreamApi("DownstreamApi", configOptions =>
 -   {
 -       configOptions.BaseUrl = "...";
--       configOptions.Scopes = [ "..." ];
+-       configOptions.Scopes = ["..."];
 -   })
 +   .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
     .AddDistributedTokenCaches();
@@ -669,8 +843,8 @@ In the `MinimalApiJwt` project, add the following app settings configuration to 
 "Authentication": {
   "Schemes": {
     "Bearer": {
-      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}/",
-      "ValidAudiences": [ "{APP ID URI (WEB API)}" ]
+      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}",
+      "ValidAudiences": ["{APP ID URI (WEB API)}"]
     }
   }
 },
@@ -683,12 +857,14 @@ Update the placeholders in the preceding configuration to match the values that 
 
 Authority formats adopt the following patterns:
 
-* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}/`
-* B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0/`
+* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}`
+* Microsoft Entra External ID: `https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0`
+* B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0`
 
 Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
 
 * ME-ID tenant type: `api://{CLIENT ID}`
+* Microsoft Entra External ID: `{CLIENT ID}`
 * B2C tenant type: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
 
 The configuration is automatically picked up by the JWT bearer authentication builder.
