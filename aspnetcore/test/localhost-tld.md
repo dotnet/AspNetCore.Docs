@@ -4,7 +4,7 @@ description: Learn how using localhost as top-level domain can make testing easi
 monikerRange: '>= aspnetcore-10.0'
 ms.author: tdykstra
 ms.custom: 
-ms.date: 08/26/2025
+ms.date: 11/19/2025
 title: Support for the .localhost top-level domain
 uid: test/localhost-tld
 ---
@@ -23,7 +23,9 @@ ASP.NET Core's built-in HTTP server, Kestrel, correctly treats any `*.localhost`
 
 ## Browser compatibility
 
-While web browsers automatically resolve `*.localhost` names to the local loopback address, other apps might treat `*.localhost` names as regular domain names and attempt to resolve them via their corresponding DNS stack. If your DNS configuration doesn't resolve `*.localhost` names to an address, they fail to connect. You can continue to use the regular `localhost` name to address your apps when not in a web browser.
+While most modern evergreen browsers automatically resolve `*.localhost` names to the local loopback address, Safari on macOS doesn't support this feature. In Safari, you should use the regular `localhost` name instead of `*.localhost` domain names.
+
+Other apps might treat `*.localhost` names as regular domain names and attempt to resolve them via their corresponding DNS stack. If your DNS configuration doesn't resolve `*.localhost` names to an address, they fail to connect. You can continue to use the regular `localhost` name to address your apps when not in a web browser.
 
 ## HTTPS development certificate
 
