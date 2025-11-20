@@ -5,7 +5,7 @@ description: Learn how to use Web Workers to enable JavaScript to run on separat
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/03/2025
+ms.date: 11/20/2025
 uid: client-side/dotnet-on-webworkers
 ---
 # .NET on Web Workers
@@ -22,7 +22,7 @@ This approach is particularly valuable when you need to perform complex calculat
 
 ## Sample app
 
-Explore a complete working implementation in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples). The sample is available for .NET 10 or later and named `DotNetOnWebWorkers`.
+Explore a complete working implementation in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples). The sample is available for .NET 10 or later and named `DotNetOnWebWorkersReact`.
 
 ## Prerequisites and setup
 
@@ -47,8 +47,8 @@ cd react-app
 Create a new WebAssembly browser project to serve as the Web Worker:
 
 ```bash
-dotnet new wasmbrowser -n DotNetOnWebWorkers
-cd DotNetOnWebWorkers
+dotnet new wasmbrowser -o WebWorkersOnReact
+cd WebWorkersOnReact
 ```
 
 Modify the `Program.cs` file to set up the Web Worker entry point and message handling:
@@ -201,3 +201,7 @@ When working with .NET on Web Workers, consider these key optimization strategie
 * **Startup cost**: WebAssembly initialization has overhead, so prefer persistent workers over frequent creation/destruction.
 
 See the [sample app](#sample-app) for a demonstration of the preceding concepts.
+
+## Additonal resources
+
+<xref:blazor/blazor-web-workers>
