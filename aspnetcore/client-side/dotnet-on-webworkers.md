@@ -1,7 +1,7 @@
 ---
 title: .NET on Web Workers
 author: guardrex
-description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance.
+description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance in a React app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
