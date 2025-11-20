@@ -760,7 +760,7 @@ Add the following `@code` block to the bottom of the `App` component file:
 ```razor
 @code {
     [CascadingParameter]
-    public HttpContext? HttpContext { get; set; }
+    private HttpContext? HttpContext { get; set; }
 
     protected override void OnInitialized()
     {
@@ -1350,7 +1350,7 @@ Add the following `@code` block to the bottom of the `App` component file:
 ```razor
 @code {
     [CascadingParameter]
-    public HttpContext? HttpContext { get; set; }
+    private HttpContext? HttpContext { get; set; }
 
     protected override void OnInitialized()
     {

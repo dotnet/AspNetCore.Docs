@@ -596,7 +596,7 @@ To process errors in a component:
 
   ```csharp
   [CascadingParameter]
-  public ProcessError? ProcessError { get; set; }
+  private ProcessError? ProcessError { get; set; }
   ```
 
 * Call an error processing method in any `catch` block with an appropriate exception type. The example `ProcessError` component only offers a single `LogError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app. The following `Counter` component `@code` block example includes the `ProcessError` cascading parameter and traps an exception for logging when the count is greater than five:
@@ -606,7 +606,7 @@ To process errors in a component:
       private int currentCount = 0;
 
       [CascadingParameter]
-      public ProcessError? ProcessError { get; set; }
+      private ProcessError? ProcessError { get; set; }
 
       private void IncrementCount()
       {
@@ -689,7 +689,7 @@ To process errors in a component:
 
   ```razor
   [CascadingParameter]
-  public ProcessError ProcessError { get; set; }
+  private ProcessError ProcessError { get; set; }
   ```
 
 * Call an error processing method in any `catch` block with an appropriate exception type. The example `ProcessError` component only offers a single `LogError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app.

@@ -125,7 +125,7 @@ Reusable components are free to receive an <xref:Microsoft.AspNetCore.Http.HttpC
 
 ```csharp
 [CascadingParameter]
-public HttpContext? Context { get; set; }
+private HttpContext? Context { get; set; }
 ```
 
 The value is `null` during interactive rendering and is only set during static SSR.
