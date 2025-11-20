@@ -53,11 +53,10 @@ I
           ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
           ImportOptions__ApiKeys__SequesterPrivateKey: ${{ secrets.SEQUESTER_PRIVATEKEY }}
           ImportOptions__ApiKeys__SequesterAppID: ${{ secrets.SEQUESTER_APPID }}
-          ISSUENUMBER: ${{ github.event.inputs.issue }}
         with:
           org: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
-          issue: $ISSUENUMBER
+          issue: ${{ github.event.inputs.issue }}
 
       # This step occurs automatically, passing the issue number from the event
       - name: auto-sequester
@@ -70,8 +69,7 @@ I
           ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
           ImportOptions__ApiKeys__SequesterPrivateKey: ${{ secrets.SEQUESTER_PRIVATEKEY }}
           ImportOptions__ApiKeys__SequesterAppID: ${{ secrets.SEQUESTER_APPID }}
-          ISSUENUMBER: ${{ github.event.inputs.issue }}
         with:
           org: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
-          issue: $ISSUENUMBER
+          issue: ${{ github.event.issue.number }}
