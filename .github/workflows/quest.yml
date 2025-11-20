@@ -28,9 +28,12 @@ jobs:
       - name: "Print manual run reason"
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
-          echo "Reason: ${{ github.event.inputs.reason }}"
-          echo "Issue number: ${{ github.event.inputs.issue }}"
-
+          echo "Reason: $REASON"
+          echo "Issue number: $ISSUENUMBER"
+        env:
+          REASON: ${{ github.event.inputs.reason }}
+          ISSUENUMBER: ${{ github.event.inputs.issue }}
+I
       - name: Azure OpenID Connect
         id: azure-oidc-auth
         uses: dotnet/docs-tools/.github/actions/oidc-auth-flow@main
@@ -50,10 +53,11 @@ jobs:
           ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
           ImportOptions__ApiKeys__SequesterPrivateKey: ${{ secrets.SEQUESTER_PRIVATEKEY }}
           ImportOptions__ApiKeys__SequesterAppID: ${{ secrets.SEQUESTER_APPID }}
+          ISSUENUMBER: ${{ github.event.inputs.issue }}
         with:
           org: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
-          issue: ${{ github.event.inputs.issue }}
+          issue: $ISSUENUMBER
 
       # This step occurs automatically, passing the issue number from the event
       - name: auto-sequester
@@ -66,7 +70,8 @@ jobs:
           ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
           ImportOptions__ApiKeys__SequesterPrivateKey: ${{ secrets.SEQUESTER_PRIVATEKEY }}
           ImportOptions__ApiKeys__SequesterAppID: ${{ secrets.SEQUESTER_APPID }}
+          ISSUENUMBER: ${{ github.event.inputs.issue }}
         with:
           org: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
-          issue: ${{ github.event.issue.number }}
+          issue: $ISSUENUMBER
