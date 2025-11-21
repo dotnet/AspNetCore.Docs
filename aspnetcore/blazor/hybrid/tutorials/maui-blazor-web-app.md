@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 11/21/2025
 uid: blazor/hybrid/tutorials/maui-blazor-web-app
 ---
 # Build a .NET MAUI Blazor Hybrid app with a Blazor Web App
@@ -51,13 +51,17 @@ The preceding command produces a Blazor app that adopts global interactivity, wh
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-9.0"
+:::moniker range="< aspnetcore-10.0"
 
 ## .NET MAUI Blazor Hybrid and Web App sample app
 
-[Obtain the sample app](xref:blazor/fundamentals/index#sample-apps) named `MauiBlazorWeb` from the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) (.NET 8 or later).
+[Obtain the sample app](xref:blazor/fundamentals/index#sample-apps) named `MauiBlazorWeb` from the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) (`8.0` or `9.0` folder).
 
 The sample app is a starter solution that contains a .NET MAUI Blazor Hybrid (native, cross-platform) app, a Blazor Web App, and a Razor class library (RCL) that contains the shared UI (Razor components) used by the native and web apps.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
 
 ## Migrating a .NET MAUI Blazor Hybrid solution
 
@@ -76,7 +80,7 @@ Add new project to the solution with the **Blazor Web App** project template. Se
 * **Interactivity location**: **Global**
 * **Sample pages**: Unselected (disabled)
 
-<!-- UPDATE 10.0 Check on PU issue mentioned below and revise accordingly. -->
+<!-- UPDATE 11.0 Check on PU issue mentioned below and revise accordingly. -->
 
 The **Interactivity location** setting to **Global** is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. If you don't use a global render mode, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) section after following the guidance in this section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
@@ -197,6 +201,9 @@ Render mode specification subsections:
 
 * [Global Server interactivity](#global-server-interactivity)
 * [Global Auto or WebAssembly interactivity](#global-auto-or-webassembly-interactivity)
+* [Per-page/component Server interactivity](#per-pagecomponent-server-interactivity)
+* [Per-page/component Auto interactivity](#per-pagecomponent-auto-interactivity)
+* [Per-page/component WebAssembly interactivity](#per-pagecomponent-webassembly-interactivity)
 
 :::moniker-end
 
@@ -382,6 +389,24 @@ Project references:
 
 Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies%2A> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its `_Imports` file) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+```razor
+<Router AppAssembly="@typeof(Routes).Assembly" NotFoundPage="typeof(Pages.NotFound)" 
+        AdditionalAssemblies="new [] { typeof(MauiBlazorWeb.Shared.Client._Imports).Assembly }">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Components.Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+</Router>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-10.0"
+
 ```razor
 <Router AppAssembly="@typeof(Routes).Assembly" 
         AdditionalAssemblies="new [] { typeof(MauiBlazorWeb.Shared.Client._Imports).Assembly }">
@@ -391,6 +416,10 @@ Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.Additiona
     </Found>
 </Router>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
 
 Add the `MauiBlazorWeb.Shared.Client` project assembly (via its `_Imports` file) with the following <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> call in the `MauiBlazorWeb.Web` project's `Program.cs` file:
 
