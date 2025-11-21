@@ -1582,9 +1582,6 @@ For model validation defined in a different assembly, such as a library or the `
 
 The preceding approach results in validation of the types from both assemblies.
 
-<!-- UPDATE 10.0 - MIA API 
-                   `AddValidationForTypesInClient` -->
-
 In the following example, the `AddValidationForTypesInClient` method is created for the `.Client` project of a Blazor Web App for validation using types defined in the `.Client` project.
 
 `ServiceCollectionExtensions.cs` (in the `.Client` project):

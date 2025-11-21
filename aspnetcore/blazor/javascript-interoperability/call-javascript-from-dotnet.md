@@ -461,14 +461,12 @@ IJSRuntime JS { get; set; }
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - MIA API -->
-
 ## Create an instance of a JS object using a constructor function
 
 Create an instance of a JS object using a constructor function and get the <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference> .NET handle for referencing the instance with the following API:
 
 * <xref:Microsoft.JSInterop.JSRuntime.InvokeConstructorAsync%2A> (asynchronous)
-* `InvokeConstructor` (synchronous)
+* <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A> (synchronous)
 
 Examples in this section demonstrate the API calls with the following `TestClass` with a constructor function (`constructor(text)`):
 
@@ -498,7 +496,7 @@ An overload is available that takes a <xref:System.Threading.CancellationToken> 
 
 ### Synchronous `InvokeConstructor`
 
-Use `InvokeConstructor` on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> to invoke the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>:
+Use <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A> on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> to invoke the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>:
 
 ```csharp
 var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
@@ -629,13 +627,12 @@ In server-side scenarios, JS interop calls can't be issued after Blazor's Signal
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - MIA API -->
-
 * JS interop method calls
   * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntime.InvokeConstructorAsync%2A>
+  * <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A>
   * <xref:Microsoft.JSInterop.JSRuntime.GetValueAsync%2A>
   * <xref:Microsoft.JSInterop.JSRuntime.SetValueAsync%2A>
 * <xref:Microsoft.JSInterop.JSRuntime.Dispose%2A>/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.

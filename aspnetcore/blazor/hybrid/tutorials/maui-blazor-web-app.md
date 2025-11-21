@@ -76,7 +76,7 @@ Add new project to the solution with the **Blazor Web App** project template. Se
 * **Interactivity location**: **Global**
 * **Sample pages**: Unselected (disabled)
 
-<!-- UPDATE 10.0 Check on PU issue mentioned below and revise accordingly. -->
+<!-- UPDATE 11.0 Check on PU issue mentioned below and revise accordingly. -->
 
 The **Interactivity location** setting to **Global** is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. If you don't use a global render mode, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) section after following the guidance in this section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
