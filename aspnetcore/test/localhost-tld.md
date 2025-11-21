@@ -25,7 +25,7 @@ ASP.NET Core's built-in HTTP server, Kestrel, correctly treats any `*.localhost`
 
 While most modern evergreen browsers automatically resolve `*.localhost` names to the local loopback address, Safari on macOS doesn't support this feature. In Safari, you should use the regular `localhost` name instead of `*.localhost` domain names.
 
-Other client apps might treat `*.localhost` names as regular domain names and attempt to resolve them via their corresponding DNS stack. If your DNS configuration doesn't resolve `*.localhost` names to an address, they fail to connect. You can continue to use the regular `localhost` name to address your apps when not in a web browser.
+Some client apps other than Safari and evergreen web browsers treat `*.localhost` names as regular domain names and attempt to resolve them via their corresponding DNS stack. If your DNS configuration doesn't resolve `*.localhost` names to an address, they fail to connect. You can continue to use the regular `localhost` name to address your apps when not in a web browser.
 
 ## HTTPS development certificate
 
