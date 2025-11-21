@@ -28,9 +28,12 @@ jobs:
       - name: "Print manual run reason"
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
-          echo "Reason: ${{ github.event.inputs.reason }}"
-          echo "Issue number: ${{ github.event.inputs.issue }}"
-
+          echo "Reason: $REASON"
+          echo "Issue number: $ISSUENUMBER"
+        env:
+          REASON: ${{ github.event.inputs.reason }}
+          ISSUENUMBER: ${{ github.event.inputs.issue }}
+I
       - name: Azure OpenID Connect
         id: azure-oidc-auth
         uses: dotnet/docs-tools/.github/actions/oidc-auth-flow@main
