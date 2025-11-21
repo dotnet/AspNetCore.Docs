@@ -324,14 +324,12 @@ When the component executes, `currentCount` is only set once during prerendering
 
 ## Serialization extensibility for persistent component state
 
-<!-- UPDATE 10.0 - MIA API -->
+Implement a custom serializer with <xref:Microsoft.AspNetCore.Components.PersistentComponentStateSerializer%601>. Without a registered custom serializer, serialization falls back to the existing JSON serialization.
 
-Implement a custom serializer with the `IPersistentComponentStateSerializer` interface. Without a registered custom serializer, serialization falls back to the existing JSON serialization.
-
-The custom serializer is registered in the app's `Program` file. In the following example, the `CustomUserSerializer` is registered for the `User` type:
+The custom serializer is registered in the app's `Program` file. In the following example, the `CustomUserSerializer` is registered for the `TUser` type:
 
 ```csharp
-builder.Services.AddSingleton<IPersistentComponentStateSerializer<User>, 
+builder.Services.AddSingleton<PersistentComponentStateSerializer<TUser>, 
     CustomUserSerializer>();
 ```
 
@@ -359,8 +357,6 @@ For components embedded into a page or view of a Razor Pages or MVC app, you mus
 ```
 
 ## Interactive routing and prerendering
-
-<!-- UPDATE 10.0 - MIA API -->
 
 When the `Routes` component doesn't define a render mode, the app is using per-page/component interactivity and navigation. Using per-page/component navigation, internal navigation is handled by [enhanced routing](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) after the app becomes interactive. "Internal navigation" in this context means that the URL destination of the navigation event is a Blazor endpoint inside the app.
 
@@ -395,6 +391,8 @@ To skip restoring state during reconnection, set `RestoreBehavior` to `SkipLastS
 [PersistentState(RestoreBehavior = RestoreBehavior.SkipLastSnapshot)]
 public int CounterNotRestoredOnReconnect { get; set; }
 ```
+
+<!-- UPDATE 10.0 - MIA API -->
 
 Call `PersistentComponentState.RegisterOnRestoring` to register a callback for imperatively controlling how state is restored, similar to how <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> provides full control of how state is persisted.
 

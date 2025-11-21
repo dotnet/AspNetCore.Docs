@@ -219,10 +219,6 @@ For more information, see the following resources:
 
 ### Set the environment for Azure App Service
 
-<!-- UPDATE 10.0 The underlying problem with app settings filename 
-                 case sensitivity is tracked for 10.0 by ...
-                 https://github.com/dotnet/aspnetcore/issues/25152 -->
-
 For a standalone Blazor WebAssembly app, you can set the environment manually via [start configuration](#set-the-client-side-environment-via-blazor-startup-configuration) or the [`Blazor-Environment` header](#set-the-client-side-environment-via-header).
 
 For a server-side app, set the environment via an `ASPNETCORE_ENVIRONMENT` app setting in Azure:
