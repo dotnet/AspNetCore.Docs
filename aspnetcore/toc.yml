@@ -671,6 +671,8 @@ items:
             uid: blazor/webassembly-lazy-load-assemblies
           - name: WebAssembly native dependencies
             uid: blazor/webassembly-native-dependencies
+          - name: Blazor with .NET on Web Workers
+            uid: blazor/blazor-web-workers
           - name: Performance
             items:
               - name: Overview
