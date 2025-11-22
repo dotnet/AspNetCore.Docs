@@ -259,7 +259,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy =>
         {
-            policy.WithOrigins("https://example.com")
+            policy.WithOrigins("https://*.example.com")
                 .SetIsOriginAllowedToAllowWildcardSubdomains();
         });
 });
