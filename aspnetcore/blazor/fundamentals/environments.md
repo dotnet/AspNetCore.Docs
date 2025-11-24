@@ -46,19 +46,41 @@ For a standalone Blazor WebAssembly app, set the environment with the `<WasmAppl
 
 The default environments are `Development` for build and `Production` for publish.
 
-The environment value for `<WasmApplicationEnvironmentName>` can be set during publish. For example, you can set the value based on the app's configuration in Visual Studio:
+There are several approaches for setting the environment in a standalone Blazor WebAssembly app:
 
-```xml
-<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-  <WasmApplicationEnvironmentName>Development</WasmApplicationEnvironmentName>
-</PropertyGroup>
+* Set the property value when `dotnet build` or `dotnet publish` is executed. The following example sets the environment to `Staging` when an app is published:
 
-<PropertyGroup Condition="'$(Configuration)' == 'Release'">
-  <WasmApplicationEnvironmentName>Production</WasmApplicationEnvironmentName>
-</PropertyGroup>
-```
+  ```dotnetcli
+  dotnet publish -p:WasmApplicationEnvironmentName=Staging
+  ```
 
-Another alternative is to create a custom server-side web API endpoint. The standalone Blazor WebAssembly app requests its environment from the web API either at app startup or on-demand while it's running. For general information on calling a web API from a Blazor app, see <xref:blazor/call-web-api>.
+* Set the property during build or publish based on the app's configuration in Visual Studio. The following property groups can be used in the app's project file or any publish configuration file (`.pubxml`). Add additional property groups for other build configurations in use.
+
+  ```xml
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <WasmApplicationEnvironmentName>Development</WasmApplicationEnvironmentName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <WasmApplicationEnvironmentName>Production</WasmApplicationEnvironmentName>
+  </PropertyGroup>
+  ```
+
+* The environment can be set based on the use of a publish profile. The first condition in the following example covers setting the environment when any publish profile is used, while the second condition sets the environment to `Development` when building the app:
+
+  ```xml
+  <PropertyGroup>
+    <WasmApplicationEnvironmentName Condition="'$(PublishProfile)' != ''">
+      Production
+    </WasmApplicationEnvironmentName>
+
+    <WasmApplicationEnvironmentName Condition="'$(PublishProfile)' == ''">
+      Development
+    </WasmApplicationEnvironmentName>
+  </PropertyGroup>
+  ```
+
+* Create a custom server-side web API endpoint. The standalone Blazor WebAssembly app requests its environment from the web API either at app startup or on-demand while it's running. For general information on calling a web API from a Blazor app, see <xref:blazor/call-web-api>.
 
 :::moniker-end
 
