@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 6, add a model to an ASP.NET Core MVC app
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/02/2025
+ms.date: 24/11/2025
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 
@@ -18,13 +18,17 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 We have a good start to the movie app, but the presentation isn't ideal, for example, **ReleaseDate** should be two words.
 
-![Index view: Release Date is one word (no space) and every movie release date shows a time of 12 AM](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90.png)
+![Index view: Release Date is one word (no space) and every movie release date shows a time of 12 AM](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90_not_formatted.png)
 
 Open the `Models/Movie.cs` file and add the highlighted lines shown below:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Models/Movie.cs?name=snippet_Second&highlight=2,3,12,13,16)]
 
 `DataAnnotations` are explained in the next tutorial. The [Display](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date), so the time information stored in the field isn't displayed.
+
+Using the data annotations above, run the application and refresh the `/Movies` page. Because the view markup uses the `@Html.DisplayNameFor` and `@Html.DisplayFor` methods to render the property name and value, the updated `Index` view shows all the fields properly formatted. For example, **Release Date** is now two words and the time information is no longer shown.
+
+![Index view: Release Date is two words and every movie release date is shown without the time](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90_formatted.png)
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
