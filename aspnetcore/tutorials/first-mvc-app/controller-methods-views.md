@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 6, add a model to an ASP.NET Core MVC app
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 24/11/2025
+ms.date: 11/24/2025
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 
@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 We have a good start to the movie app, but the presentation isn't ideal, for example, **ReleaseDate** should be two words.
 
-![Index view: Release Date is one word (no space) and every movie release date shows a time of 12 AM](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90_not_formatted.png)
+![Index view: Release Date is one word (no space) and every movie release date shows a time of 12 AM](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90-not-formatted.png)
 
 Open the `Models/Movie.cs` file and add the highlighted lines shown below:
 
@@ -28,7 +28,7 @@ Open the `Models/Movie.cs` file and add the highlighted lines shown below:
 
 Using the data annotations above, run the application and refresh the `/Movies` page. Because the view markup uses the `@Html.DisplayNameFor` and `@Html.DisplayFor` methods to render the property name and value, the updated `Index` view shows all the fields properly formatted. For example, **Release Date** is now two words and the time information is no longer shown.
 
-![Index view: Release Date is two words and every movie release date is shown without the time](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90_formatted.png)
+![Index view: Release Date is two words and every movie release date is shown without the time](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90-formatted.png)
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
