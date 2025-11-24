@@ -38,13 +38,27 @@ On the client for a Blazor Web App, the environment is determined from the serve
 <!--Blazor-WebAssembly:{"environmentName":"Development", ...}-->
 ```
 
-For a standalone Blazor WebAssembly app, set the environment with the `<WasmApplicationEnvironmentName>` property in the app's project file (`.csproj`). The following example sets the `Staging` environment:
+For a standalone Blazor WebAssembly app, set the environment with the `<WasmApplicationEnvironmentName>` MSBuild property in the app's project file (`.csproj`). The following example sets the `Staging` environment:
 
 ```xml
 <WasmApplicationEnvironmentName>Staging</WasmApplicationEnvironmentName>
 ```
 
 The default environments are `Development` for build and `Production` for publish.
+
+The environment value for `<WasmApplicationEnvironmentName>` can be set during publish. For example, you can set the value based on the app's configuration in Visual Studio:
+
+```xml
+<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+  <WasmApplicationEnvironmentName>Development</WasmApplicationEnvironmentName>
+</PropertyGroup>
+
+<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+  <WasmApplicationEnvironmentName>Production</WasmApplicationEnvironmentName>
+</PropertyGroup>
+```
+
+Another alternative is to create a custom server-side web API endpoint. The standalone Blazor WebAssembly app requests its environment from the web API either at app startup or on-demand while it's running. For general information on calling a web API from a Blazor app, see <xref:blazor/call-web-api>.
 
 :::moniker-end
 
