@@ -78,7 +78,7 @@ code -r SignalRChat
 
 The `dotnet new` command creates a new Razor Pages project in the `SignalRChat` folder.
 
-The `code` command opens the `SignalRChat folder in the current instance of Visual Studio Code.
+The `code` command opens the `SignalRChat` folder in the current instance of Visual Studio Code.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
