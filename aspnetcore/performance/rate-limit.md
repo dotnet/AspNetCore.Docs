@@ -478,7 +478,7 @@ Creating partitions with user input makes the app vulnerable to [Denial of Servi
 
 ## Additional resources
 
-* [Rate limiting middleware](https://blog.maartenballiauw.be/post/2022/09/26/aspnet-core-rate-limiting-middleware.html) by Maarten Balliauw provides an excellent introduction and overview to rate limiting.
+* [Rate limiting middleware](https://blog.maartenballiauw.be/posts/2022-09-26-aspnet-core-rate-limiting-middleware) by Maarten Balliauw provides an excellent introduction and overview to rate limiting.
 * [Rate limit an HTTP handler in .NET](/dotnet/core/extensions/http-ratelimiter)
 
 :::moniker-end
