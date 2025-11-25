@@ -1765,11 +1765,11 @@ The new attributes from the `Microsoft.Extensions.Validation` package (<xref:Mic
 
 In Blazor apps, types are made available via a generated embedded attribute. If a web app project that uses the `Microsoft.NET.Sdk.Web` SDK (`<Project Sdk="Microsoft.NET.Sdk.Web">`) or an RCL that uses the `Microsoft.NET.Sdk.Razor` SDK (`<Project Sdk="Microsoft.NET.Sdk.Razor">`) contains Razor components (`.razor`), the framework automatically generates an internal attribute inside the project (`Microsoft.Extensions.Validation.Embedded.ValidatableType`, `Microsoft.Extensions.Validation.Embedded.SkipValidation`). These types are interchangeable with the actual attributes and not marked experimental. In the majority of cases, developers use the `[ValidatableType]`/`[SkipValidation]` attributes on their classes without concern over their source.
 
-However, the preceding approach isn't viable in plain class libraries that use the `Microsoft.NET.Sdk` SDK (`<Project Sdk="Microsoft.NET.Sdk">`). Using the types in a plain class library results in an error:
+However, the preceding approach isn't viable in plain class libraries that use the `Microsoft.NET.Sdk` SDK (`<Project Sdk="Microsoft.NET.Sdk">`). Using the types in a plain class library results in an code analysis warning:
 
 > :::no-loc text="ASP0029: 'Microsoft.Extensions.Validation.ValidatableTypeAttribute' is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.":::
 
-The error can be suppressed using any of the following approaches:
+The warning can be suppressed using any of the following approaches:
 
 * A `<NoWarn>` property in the project file:
 
@@ -1793,7 +1793,7 @@ The error can be suppressed using any of the following approaches:
   dotnet_diagnostic.ASP0029.severity = none
   ```
 
-If suppressing the error isn't acceptable, manually create the embedded attribute in the library that the Web and Razor SDKs generate automatically.
+If suppressing the warning isn't acceptable, manually create the embedded attribute in the library that the Web and Razor SDKs generate automatically.
 
 `ValidatableTypeAttribute.cs`:
 
