@@ -66,15 +66,15 @@ There are several approaches for setting the environment in a standalone Blazor 
   </PropertyGroup>
   ```
 
-* The environment can be set based on the use of a publish profile. The first condition in the following example covers setting the environment when any publish profile is used, while the second condition sets the environment to `Development` when no publish profile is used (applies to both build and publish operations without a profile):
+* The environment can be set based on the use of a publish profile. The first condition in the following example sets the environment to `Development` when no publish profile is used (applies to both build and publish operations without a profile), while the second condition covers setting the environment to `Production` when any publish profile is used:
 
   ```xml
-  <PropertyGroup Condition="'$(PublishProfile)' != ''">
-    <WasmApplicationEnvironmentName>Production</WasmApplicationEnvironmentName>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(PublishProfile)' == ''">
     <WasmApplicationEnvironmentName>Development</WasmApplicationEnvironmentName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(PublishProfile)' != ''">
+    <WasmApplicationEnvironmentName>Production</WasmApplicationEnvironmentName>
   </PropertyGroup>
   ```
 
