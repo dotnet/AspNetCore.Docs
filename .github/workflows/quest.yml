@@ -33,7 +33,7 @@ jobs:
         env:
           REASON: ${{ github.event.inputs.reason }}
           ISSUENUMBER: ${{ github.event.inputs.issue }}
-I
+
       - name: Azure OpenID Connect
         id: azure-oidc-auth
         uses: dotnet/docs-tools/.github/actions/oidc-auth-flow@main
