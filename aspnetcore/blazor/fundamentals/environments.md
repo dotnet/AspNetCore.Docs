@@ -69,18 +69,18 @@ There are several approaches for setting the environment in a standalone Blazor 
 * The environment can be set based on the use of a publish profile. The first condition in the following example covers setting the environment when any publish profile is used, while the second condition sets the environment to `Development` when no publish profile is used (applies to both build and publish operations without a profile):
 
   ```xml
-  <PropertyGroup>
-    <WasmApplicationEnvironmentName Condition="'$(PublishProfile)' != ''">
-      Production
-    </WasmApplicationEnvironmentName>
+  <PropertyGroup Condition="'$(PublishProfile)' != ''">
+    <WasmApplicationEnvironmentName>Production</WasmApplicationEnvironmentName>
+  </PropertyGroup>
 
-    <WasmApplicationEnvironmentName Condition="'$(PublishProfile)' == ''">
-      Development
-    </WasmApplicationEnvironmentName>
+  <PropertyGroup Condition="'$(PublishProfile)' == ''">
+    <WasmApplicationEnvironmentName>Development</WasmApplicationEnvironmentName>
   </PropertyGroup>
   ```
 
-* Create a custom server-side web API endpoint. The standalone Blazor WebAssembly app requests its environment from the web API either at app startup or on-demand while it's running. For general information on calling a web API from a Blazor app, see <xref:blazor/call-web-api>.
+* Create a custom server-side web API endpoint. The standalone Blazor WebAssembly app requests its environment from the web API either at app startup or on-demand while it's running. The value should be passed to [`WebAssemblyStartOptions`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Platform/WebAssemblyStartOptions.ts#L7) or with [`withApplicationEnvironment`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/dotnet-runtime-js/dotnet.d.ts#L110).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker-end
 
