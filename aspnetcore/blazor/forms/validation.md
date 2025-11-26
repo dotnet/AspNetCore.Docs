@@ -1602,7 +1602,6 @@ In the following `Order` class, the `[ValidatableType]` attribute is required on
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
-using Microsoft.Extensions.Validation;
 
 [ValidatableType]
 public class Order
