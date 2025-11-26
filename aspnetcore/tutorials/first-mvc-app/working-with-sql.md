@@ -120,7 +120,7 @@ Test the app. Stop it and restart it so the `SeedData.Initialize` method runs an
 
 The app shows the seeded data.
 
-![MVC Movie app open in Microsoft Edge showing movie data](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90.png)
+![MVC Movie app open in Microsoft Edge showing movie data](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90-not-formatted.png)
 
 > [!div class="step-by-step"]
 > [Previous: Adding a model](~/tutorials/first-mvc-app/adding-model.md)
