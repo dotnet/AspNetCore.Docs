@@ -94,7 +94,6 @@ With the following manifest file, LibMan retrieves files per the configuration d
 
 * A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;`jquery.min.js`, `jquery.js`, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder.
 * The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
-* A subset of [Lodash](https://lodash.com/) was approved by a governing body within the organization. The `lodash.js` and `lodash.min.js` files are retrieved from the local file system at *C:\\temp\\lodash\\*. The files are copied to the project's *wwwroot/lib/lodash* folder.
 
 [!code-json[](samples/LibManSample/libman.json)]
 
