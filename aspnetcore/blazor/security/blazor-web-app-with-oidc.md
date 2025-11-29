@@ -164,13 +164,13 @@ The format of the Authority depends on the type of tenant in use. The following 
 ME-ID tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
 ```
 
 AAD B2C tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 ```
 
 The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience%2A> sets the Audience for any received OIDC token. 
@@ -296,14 +296,14 @@ oidcOptions.ClientId = "{CLIENT ID}";
 The following example uses a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a Client ID of `00001111-aaaa-2222-bbbb-3333cccc4444`:
 
 ```csharp
-oidcOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+oidcOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
 ```
 
 For multi-tenant apps, the "common" authority should be used. You can also use the "common" authority for single-tenant apps, but a custom <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A> is required, as shown later in this section.
 
 ```csharp
-oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0/";
+oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0";
 ```
 
 <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
@@ -511,13 +511,13 @@ The format of the Authority depends on the type of tenant in use. The following 
 ME-ID tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
 ```
 
 AAD B2C tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 ```
 
 The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience%2A> sets the Audience for any received OIDC token. 
@@ -677,14 +677,14 @@ oidcOptions.ClientId = "{CLIENT ID}";
 The following example uses a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a Client ID of `00001111-aaaa-2222-bbbb-3333cccc4444`:
 
 ```csharp
-oidcOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+oidcOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
 ```
 
 For multi-tenant apps, the "common" authority should be used. You can also use the "common" authority for single-tenant apps, but a custom <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A> is required, as shown later in this section.
 
 ```csharp
-oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0/";
+oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0";
 ```
 
 <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
@@ -914,13 +914,13 @@ The format of the Authority depends on the type of tenant in use. The following 
 ME-ID tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
 ```
 
 AAD B2C tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 ```
 
 The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience%2A> sets the Audience for any received OIDC token. 
@@ -1016,14 +1016,14 @@ oidcOptions.ClientId = "{CLIENT ID}";
 The following example uses a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a Client ID of `00001111-aaaa-2222-bbbb-3333cccc4444`:
 
 ```csharp
-oidcOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
+oidcOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
 oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
 ```
 
 For multi-tenant apps, the "common" authority should be used. You can also use the "common" authority for single-tenant apps, but a custom <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A> is required, as shown later in this section.
 
 ```csharp
-oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0/";
+oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0";
 ```
 
 <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
@@ -1135,7 +1135,7 @@ In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc` or `Blaz
 "Authentication": {
   "Schemes": {
     "MicrosoftOidc": {
-      "Authority": "https://login.microsoftonline.com/{TENANT ID (BLAZOR APP)}/v2.0/",
+      "Authority": "https://login.microsoftonline.com/{TENANT ID (BLAZOR APP)}/v2.0",
       "ClientId": "{CLIENT ID (BLAZOR APP)}",
       "CallbackPath": "/signin-oidc",
       "SignedOutCallbackPath": "/signout-callback-oidc",
@@ -1158,7 +1158,7 @@ Update the placeholders in the preceding configuration to match the values that 
 * `{CLIENT ID (BLAZOR APP)}`: The Client Id of the Blazor app.
 * `{APP ID URI (WEB API)}`: The App ID URI of the web API.
 
-The "common" Authority (`https://login.microsoftonline.com/common/v2.0/`) should be used for multi-tenant apps. To use the "common" Authority for single-tenant apps, see the [Use the "common" Authority for single-tenant apps](#use-the-common-authority-for-single-tenant-apps) section.
+The "common" Authority (`https://login.microsoftonline.com/common/v2.0`) should be used for multi-tenant apps. To use the "common" Authority for single-tenant apps, see the [Use the "common" Authority for single-tenant apps](#use-the-common-authority-for-single-tenant-apps) section.
 
 Update any other values in the preceding configuration to match custom/non-default values used in the `Program` file.
 
@@ -1188,7 +1188,7 @@ In the `MinimalApiJwt` project, add the following app settings configuration to 
 "Authentication": {
   "Schemes": {
     "Bearer": {
-      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}/",
+      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}",
       "ValidAudiences": [ "{APP ID URI (WEB API)}" ]
     }
   }
@@ -1202,12 +1202,14 @@ Update the placeholders in the preceding configuration to match the values that 
 
 Authority formats adopt the following patterns:
 
-* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}/`
-* B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0/`
+* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}`
+* Microsoft Entra External ID: `https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0`
+* B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0`
 
 Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
 
 * ME-ID tenant type: `api://{CLIENT ID}`
+* Microsoft Entra External ID: `{CLIENT ID}`
 * B2C tenant type: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
 
 The configuration is automatically picked up by the JWT bearer authentication builder.
