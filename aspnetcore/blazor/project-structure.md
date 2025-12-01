@@ -70,11 +70,11 @@ The `Components/Pages` folder of the server project contains the app's routable 
                    Add the angle brackets around the cross-link when
                    activating.
 
-:::moniker range=">= aspnetcore-10.0"
+moniker range=">= aspnetcore-10.0"
 
 The `NotFound` component (`NotFound.razor`) implements a Not Found page to display when content isn't found for a request path. For more information, see xref:blazor/fundamentals/navigation#not-found-responses.
 
-:::moniker-end
+moniker-end
 
 -->
 
@@ -332,9 +332,9 @@ Project structure:
                    Add the angle brackets around the cross-link when
                    activating.
 
-:::moniker-end
+moniker-end
 
-:::moniker range=">= aspnetcore-10.0"
+moniker range=">= aspnetcore-10.0"
 
 * `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
@@ -342,9 +342,9 @@ Project structure:
   * `Weather` component (`Weather.razor`): Implements the Weather page.
   * `NotFound` component (`NotFound.razor`) Implements a Not Found page to display when content isn't found for a request path. For more information, see xref:blazor/fundamentals/navigation#not-found-responses.
 
-:::moniker-end
+moniker-end
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 -->
 
@@ -357,9 +357,9 @@ Project structure:
                    https://github.com/dotnet/AspNetCore.Docs/pull/36145
                    is merged.
 
-:::moniker-end
+moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+moniker range=">= aspnetcore-8.0"
 
 -->
 

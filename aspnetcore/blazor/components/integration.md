@@ -179,6 +179,12 @@ To support routable Razor components in Razor Pages apps:
 
    > [!NOTE]
    > The preceding example assumes that the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component and Blazor script (`_framework/blazor.server.js`) are rendered by the app's layout. For more information, see the [Configuration](#configuration) section.
+   >
+   > In .NET 10 or later, the Blazor script is included by the framework if the project contains at least one Razor component file (`.razor`). If your app requires the Blazor script but doesn't contain at least one component, add the following MSBuild property to the app's project file to force unconditional script inclusion:
+   >
+   > ```xml
+   > <RequiresAspNetWebAssets>true</RequiresAspNetWebAssets> 
+   > ```
   
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -260,6 +266,12 @@ To support routable Razor components in MVC apps:
 
    > [!NOTE]
    > The preceding example assumes that the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component and Blazor script (`_framework/blazor.server.js`) are rendered by the app's layout. For more information, see the [Configuration](#configuration) section.
+   >
+   > In .NET 10 or later, the Blazor script is included by the framework if the project contains at least one Razor component file (`.razor`). If your app requires the Blazor script but doesn't contain at least one component, add the following MSBuild property to the app's project file to force unconditional script inclusion:
+   >
+   > ```xml
+   > <RequiresAspNetWebAssets>true</RequiresAspNetWebAssets> 
+   > ```
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
