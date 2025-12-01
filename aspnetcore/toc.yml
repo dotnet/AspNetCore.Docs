@@ -673,6 +673,8 @@ items:
             uid: blazor/webassembly-lazy-load-assemblies
           - name: WebAssembly native dependencies
             uid: blazor/webassembly-native-dependencies
+          - name: Blazor with .NET on Web Workers
+            uid: blazor/blazor-web-workers
           - name: Performance
             items:
               - name: Overview
@@ -1501,6 +1503,8 @@ items:
         uid: diagnostics/bl0006
       - name: BL0007
         uid: diagnostics/bl0007
+      - name: BL0008
+        uid: diagnostics/bl0008
       - name: MVC1000
         uid: diagnostics/mvc1000
       - name: MVC1001

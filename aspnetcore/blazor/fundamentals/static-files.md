@@ -78,8 +78,6 @@ For more information, see <xref:fundamentals/static-files>.
 
 *This section applies to server-side Blazor apps.*
 
-<!-- UPDATE 10.0 Compiler implementation for tilde/slash-based HREFs. -->
-
 Assets are delivered via the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property, which resolves the fingerprinted URL for a given asset. In the following example, Bootstrap, the Blazor project template app stylesheet (`app.css`), and the [CSS isolation stylesheet](xref:blazor/components/css-isolation) (based on an app's namespace of `BlazorSample`) are linked in a root component, typically the `App` component (`Components/App.razor`):
 
 ```razor

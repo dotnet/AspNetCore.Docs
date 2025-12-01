@@ -42,7 +42,7 @@ Based on the interactive render mode selected at app creation, the `Layout` fold
 * The `NavMenu.razor.css` is the collocated stylesheet for the app's navigation menu.
 * The `ReconnectModal` component reflects the server-side connection state in the UI and is included when the app's interactive render mode is either Interactive Server or Interactive Auto. For more information, see <xref:blazor/fundamentals/signalr#reflect-the-server-side-connection-state-in-the-ui>.
 * The `ReconnectModal.razor.css` is the collocated stylesheet for the `ReconnectModal` component.
-* The `ReconnectModal.razor.css` is the collocated JavaScript file for the `ReconnectModal` component.
+* The `ReconnectModal.razor.js` is the collocated JavaScript file for the `ReconnectModal` component.
 
 :::moniker-end
 

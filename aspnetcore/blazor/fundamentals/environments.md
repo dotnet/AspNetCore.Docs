@@ -38,13 +38,49 @@ On the client for a Blazor Web App, the environment is determined from the serve
 <!--Blazor-WebAssembly:{"environmentName":"Development", ...}-->
 ```
 
-For a standalone Blazor WebAssembly app, set the environment with the `<WasmApplicationEnvironmentName>` property in the app's project file (`.csproj`). The following example sets the `Staging` environment:
+For a standalone Blazor WebAssembly app, set the environment with the `<WasmApplicationEnvironmentName>` MSBuild property in the app's project file (`.csproj`). The following example sets the `Staging` environment:
 
 ```xml
 <WasmApplicationEnvironmentName>Staging</WasmApplicationEnvironmentName>
 ```
 
 The default environments are `Development` for build and `Production` for publish.
+
+There are several approaches for setting the environment in a standalone Blazor WebAssembly app during build/publish operations and one approach for an app starting or running on the client:
+
+* Set the property value when `dotnet build` or `dotnet publish` is executed. The following example sets the environment to `Staging` when an app is published:
+
+  ```dotnetcli
+  dotnet publish -p:WasmApplicationEnvironmentName=Staging
+  ```
+
+* Set the property during build or publish based on the app's configuration in Visual Studio. The following property groups can be used in the app's project file or any publish configuration file (`.pubxml`). Add additional property groups for other build configurations in use.
+
+  ```xml
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <WasmApplicationEnvironmentName>Development</WasmApplicationEnvironmentName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <WasmApplicationEnvironmentName>Production</WasmApplicationEnvironmentName>
+  </PropertyGroup>
+  ```
+
+* The environment can be set based on the use of a publish profile. In the following example, the first condition sets the environment to `Development` when no publish profile is used (applies to both build and publish operations without a profile), while the second condition covers setting the environment to `Production` when any publish profile is used:
+
+  ```xml
+  <PropertyGroup Condition="'$(PublishProfile)' == ''">
+    <WasmApplicationEnvironmentName>Development</WasmApplicationEnvironmentName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(PublishProfile)' != ''">
+    <WasmApplicationEnvironmentName>Production</WasmApplicationEnvironmentName>
+  </PropertyGroup>
+  ```
+
+* Create a custom server-side web API endpoint. The standalone Blazor WebAssembly app requests its environment from the web API either at app startup or on-demand while it's running. The value should be passed to [`WebAssemblyStartOptions`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Platform/WebAssemblyStartOptions.ts#L7) or with [`withApplicationEnvironment`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/dotnet-runtime-js/dotnet.d.ts#L110).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker-end
 
@@ -218,10 +254,6 @@ For more information, see the following resources:
 * <xref:blazor/host-and-deploy/webassembly/apache>
 
 ### Set the environment for Azure App Service
-
-<!-- UPDATE 10.0 The underlying problem with app settings filename 
-                 case sensitivity is tracked for 10.0 by ...
-                 https://github.com/dotnet/aspnetcore/issues/25152 -->
 
 For a standalone Blazor WebAssembly app, you can set the environment manually via [start configuration](#set-the-client-side-environment-via-blazor-startup-configuration) or the [`Blazor-Environment` header](#set-the-client-side-environment-via-header).
 

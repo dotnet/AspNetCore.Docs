@@ -1283,9 +1283,6 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
 
 ## Token refresh
 
-<!-- UPDATE 10.0 - Check the PU issue for 10.0 work to resolve both issues.
-                   The docs issue is https://github.com/dotnet/AspNetCore.Docs/issues/34235. -->
-
 The custom cookie refresher (`CookieOidcRefresher.cs`) implementation updates the user's claims automatically when they expire. The current implementation expects to receive an ID token from the token endpoint in exchange for the refresh token. The claims in this ID token are then used to overwrite the user's claims.
 
 The sample implementation doesn't include code for requesting claims from the [UserInfo endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) on token refresh. For more information, see [`BlazorWebAppOidc AddOpenIdConnect with GetClaimsFromUserInfoEndpoint = true doesn't propogate [sic] role claims to client` (`dotnet/aspnetcore` #58826)](https://github.com/dotnet/aspnetcore/issues/58826#issuecomment-2492738142).

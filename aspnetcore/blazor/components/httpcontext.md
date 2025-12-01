@@ -22,7 +22,7 @@ uid: blazor/components/httpcontext
 
 ```csharp
 [CascadingParameter]
-public HttpContext? HttpContext { get; set; }
+private HttpContext? HttpContext { get; set; }
 ```
 
 For additional context in *advanced* edge cases&dagger;, see the discussion in the following articles:
