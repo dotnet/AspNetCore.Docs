@@ -11,8 +11,6 @@ You’ll learn how to:
 - Use SQL Server Express LocalDB for development and examine your database and data using SQL Server Object Explorer.
 - Seed your database with initial sample data.
 
-By the end of this guide, you’ll understand the basics of working with databases in ASP.NET Core using Entity Framework Core.
-
 ## Prerequisite
 
 This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
