@@ -6,10 +6,10 @@ This part of the tutorial series focuses on working with a SQL database in your 
 
 You’ll learn how to:
 
-- Connect your application to a SQL database
-- Map models to database records
-- Configure the Entity Framework Core context
-- Perform CRUD (Create, Read, Update, Delete) operations
+- Register and configure the Entity Framework Core database context for your ASP.NET Core MVC app.
+- Work with database connection strings for local development.
+- Use SQL Server Express LocalDB for development and examine your database and data using SQL Server Object Explorer.
+- Seed your database with initial sample data.
 
 By the end of this guide, you’ll understand the basics of working with databases in ASP.NET Core using Entity Framework Core.
 
