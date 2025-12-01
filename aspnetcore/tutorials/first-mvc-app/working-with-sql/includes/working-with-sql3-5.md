@@ -1,5 +1,9 @@
 :::moniker range=">= aspnetcore-3.1 < aspnetcore-6.0"
 
+## Prerequisite
+
+This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
+
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the `Startup.cs` file:
 
 # [Visual Studio](#tab/visual-studio)

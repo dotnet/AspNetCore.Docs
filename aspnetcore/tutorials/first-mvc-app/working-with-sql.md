@@ -1,11 +1,12 @@
 ---
-title: Part 5, work with a database in an ASP.NET Core MVC app
+ai-usage: ai-assisted
 author: wadepickett
 description: Part 5 of tutorial series on ASP.NET Core MVC.
-ms.author: wpickett
-ms.date: 03/02/2025
-ms.custom: sfi-ropc-nochange
 monikerRange: '>= aspnetcore-3.1'
+ms.author: wpickett
+ms.custom: sfi-ropc-nochange
+ms.date: 12/01/2025
+title: Part 5, work with a database in an ASP.NET Core MVC app
 uid: tutorials/first-mvc-app/working-with-sql
 ---
 
@@ -16,6 +17,10 @@ uid: tutorials/first-mvc-app/working-with-sql
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
 :::moniker range=">= aspnetcore-9.0"
+
+## Prerequisite
+
+This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
 
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
 
