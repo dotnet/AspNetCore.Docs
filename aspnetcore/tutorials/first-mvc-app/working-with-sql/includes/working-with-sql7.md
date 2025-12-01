@@ -1,5 +1,18 @@
 :::moniker range="= aspnetcore-7.0"
 
+## Introduction
+
+This part of the tutorial series focuses on working with a SQL database in your ASP.NET Core MVC application.
+
+You’ll learn how to:
+
+- Connect your application to a SQL database
+- Map models to database records
+- Configure the Entity Framework Core context
+- Perform CRUD (Create, Read, Update, Delete) operations
+
+By the end of this guide, you’ll understand the basics of working with databases in ASP.NET Core using Entity Framework Core.
+
 ## Prerequisite
 
 This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
