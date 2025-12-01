@@ -39,7 +39,7 @@ In prior releases of .NET, the Blazor script is served from an embedded resource
 The Blazor script (`blazor.web.js` or `blazor.server.js`) is included by the framework if the project contains at least one Razor component file (`.razor`). If your app requires the Blazor script but doesn't contain at least one component, add the following MSBuild property to the app's project file to force unconditional script inclusion:
 
 ```xml
-<RequiresAspNetWebAssets>true</RequiresAspNetWebAssets> 
+<RequiresAspNetWebAssets>true</RequiresAspNetWebAssets>
 ```
 
 For more information, see the following resources:
