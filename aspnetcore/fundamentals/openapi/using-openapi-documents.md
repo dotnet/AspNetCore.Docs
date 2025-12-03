@@ -109,21 +109,22 @@ public class CustomDocumentService
 {
     private readonly IOpenApiDocumentProvider _documentProvider;
 
-    public CustomDocumentService(IOpenApiDocumentProvider documentProvider)
+    public CustomDocumentService([FromKeyedServices("v1")] IOpenApiDocumentProvider documentProvider)
     {
         _documentProvider = documentProvider;
     }
 
-    public async Task<OpenApiDocument> GetApiDocumentAsync()
+    public Task<OpenApiDocument> GetApiDocumentAsync(CancellationToken cancellationToken = default)
     {
-        return await _documentProvider.GetOpenApiDocumentAsync("v1");
+        return _documentProvider.GetOpenApiDocumentAsync(cancellationToken);
     }
 }
 ```
 
-Register the service in your DI container:
+Register the service in your DI container. Note that service key "v1" should match the document name passed to `AddOpenApi`:
 
 ```csharp
+builder.Services.AddOpenApi("v1");
 builder.Services.AddScoped<CustomDocumentService>();
 ```
 
