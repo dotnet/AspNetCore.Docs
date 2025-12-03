@@ -63,19 +63,20 @@ If you're rendering a Blazor app from different documents (for example, `/Admin/
 Choose one of the following strategies to keep relative links resolving correctly:
 
 * Map resources dynamically using the document they were rendered on as the root. This requires custom routing logic (for example, <xref:Microsoft.AspNetCore.Routing.IDynamicEndpointMetadata> or a <xref:Microsoft.AspNetCore.Routing.MatcherPolicy>) and is typically reserved for highly dynamic sites.
+
 :::moniker range=">= aspnetcore-11.0"
 
-* Establish a consistent base path for the document and map all app resources beneath that path. Blazor Server/Auto apps can rely on the `BasePath` component to render `<base href>` automatically, while standalone WebAssembly apps (or scenarios that always use a fixed value) configure the literal `<base>` tag in the host page.
+* Establish a consistent base path for the document and map all app resources beneath that path. Blazor Web apps can rely on the `BasePath` component to render `<base href>` automatically, while standalone WebAssembly apps (or scenarios that always use a fixed value) configure the literal `<base>` tag in the host page.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
-* Establish a consistent base path for the document and map all app resources beneath that path. Configure the literal `<base>` tag in the host page for both Blazor Server and WebAssembly apps (or scenarios that always use a fixed value).
+* Establish a consistent base path for the document and map all app resources beneath that path. Configure the literal `<base>` tag in the host page for both server-side Blazor apps and Blazor WebAssembly apps (or scenarios that always use a fixed value).
 
 :::moniker-end
 
-The remainder of this article focuses on the consistent base-path approach.
+The remainder of this article focuses on implementing a consistent base path.
 
 ## Server-side Blazor
 
@@ -154,7 +155,9 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 > In some hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
 
 * In a server-side Blazor app, use ***either*** of the following approaches:
+
 :::moniker range=">= aspnetcore-11.0"
+
   * Option 1: Use the `BasePath` component to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
 
     ```razor
@@ -172,6 +175,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
     ```
 
     **The trailing slash is required.**
+
 :::moniker-end
 
   * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
