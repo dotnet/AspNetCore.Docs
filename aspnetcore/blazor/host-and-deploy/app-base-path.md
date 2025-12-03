@@ -66,7 +66,7 @@ Choose one of the following strategies to keep relative links resolving correctl
 
 :::moniker range=">= aspnetcore-11.0"
 
-* Establish a consistent base path for the document and map all app resources beneath that path. Blazor Web apps can rely on the `BasePath` component to render `<base href>` automatically, while standalone WebAssembly apps (or scenarios that always use a fixed value) configure the literal `<base>` tag in the host page.
+* Establish a consistent base path for the document and map all app resources beneath that path. Blazor Web Apps can rely on the `BasePath` component to render `<base href>` automatically, while standalone WebAssembly apps (or scenarios that always use a fixed value) configure the literal `<base>` tag in the host page.
 
 :::moniker-end
 
