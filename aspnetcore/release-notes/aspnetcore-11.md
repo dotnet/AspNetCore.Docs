@@ -13,7 +13,7 @@ uid: aspnetcore-11
            breaking changes article is put up ...
            
 - name: Breaking changes
-  href: /dotnet/core/compatibility/10.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core>
+  href: /dotnet/core/compatibility/10.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
 
 -->
 
