@@ -2,9 +2,9 @@
 title: Memory management in Kestrel
 author: tdykstra
 description: Learn about memory management in Kestrel, including automatic eviction from memory pools and using memory pool metrics.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.author: tdykstra
-ms.date: 12/04/2024
+ms.date: 12/04/2025
 uid: fundamentals/servers/kestrel/memory-management
 ---
 
@@ -30,7 +30,7 @@ For information about metrics and how to use them, see <xref:log-mon/metrics/met
 
 ## Manage memory pools
 
-Besides using memory pools efficiently by evicting unneeded memory blocks, ASP.NET Core provides a built-in [IMemoryPoolFactory](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/IMemoryPoolFactory.cs) and an implementation. ASP.NET Core makes this implementation available to your application through dependency injection.
+Besides using memory pools efficiently by evicting unneeded memory blocks, ASP.NET Core provides a built-in [IMemoryPoolFactory](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/IMemoryPoolFactory.cs) interface and its default implementation, which are available through dependency injection.
 
 The following code example shows a simple background service that uses the built-in memory pool factory implementation to create memory pools. These pools benefit from the automatic eviction feature:
 
