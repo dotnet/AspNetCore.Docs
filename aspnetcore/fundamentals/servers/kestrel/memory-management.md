@@ -20,7 +20,7 @@ This article provides guidance for managing memory in Kestrel, including automat
 
 The memory pools used by Kestrel, IIS, and HTTP.sys automatically evict memory blocks when the application is idle or under low load. The feature runs automatically and doesn't need to be enabled or configured manually.
 
-In versions of .NET earlier than 10, memory allocated by the pool remains reserved, even when not in use. This automatic eviction feature reduces overall memory usage and helps applications stay responsive under varying workloads.
+This automatic eviction feature reduces overall memory usage and helps applications stay responsive under varying workloads. In versions of .NET earlier than 10, memory allocated by the pool remained reserved even when not in use.
 
 ### Use memory pool metrics
 
@@ -30,7 +30,7 @@ For information about metrics and how to use them, see <xref:log-mon/metrics/met
 
 ## Manage memory pools
 
-Besides using memory pools efficiently by evicting unneeded memory blocks, ASP.NET Core provides a built-in [IMemoryPoolFactory](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/IMemoryPoolFactory.cs) and an implementation. It makes the implementation available to your application through dependency injection.
+Besides using memory pools efficiently by evicting unneeded memory blocks, ASP.NET Core provides a built-in [IMemoryPoolFactory](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/IMemoryPoolFactory.cs) and an implementation. ASP.NET Core makes this implementation available to your application through dependency injection.
 
 The following code example shows a simple background service that uses the built-in memory pool factory implementation to create memory pools. These pools benefit from the automatic eviction feature:
 
