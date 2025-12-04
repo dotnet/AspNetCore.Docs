@@ -155,7 +155,7 @@ The [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md) can 
 2. Add the `Microsoft.AspNetCore.SystemWebAdapters` package
 3. Enable multi-targeting and add a .NET 8 target or later, or convert the project to .NET Standard 2.0.
 
-This step may require a number of projects to change depending on your solution structure and which routes you're migrating.
+This step may require a number of projects to change depending on your solution structure and which routes you're migrating. [GitHub Copilot app modernization](/dotnet/core/porting/github-copilot-app-modernization/overview) can help you identify which ones need to change and automate a number of steps in the process.
 
 
 ## Next Steps
