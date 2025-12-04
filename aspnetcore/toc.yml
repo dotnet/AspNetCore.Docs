@@ -1190,6 +1190,9 @@ items:
           - name: Diagnostics
             displayName: diagnostics
             uid: fundamentals/servers/kestrel/diagnostics
+          - name: Memory management
+            displayName: memory, pool, kestrel
+            uid: fundamentals/servers/kestrel/memory-management
           - name: HTTP/2
             displayName: deploy, publish, server, Kestrel
             uid: fundamentals/servers/kestrel/http2

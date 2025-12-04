@@ -21,10 +21,6 @@ ASP.NET Core project templates use Kestrel by default when not hosted with IIS. 
 
 For more information on configuring `WebApplication` and `WebApplicationBuilder`, see <xref:fundamentals/minimal-apis>.
 
-## Optional client certificates
-
-For information on apps that must protect a subset of the app with a certificate, see [Optional client certificates](xref:security/authentication/certauth#optional-client-certificates).
-
 ## Behavior with debugger attached
 
 The following timeouts and rate limits aren't enforced when a debugger is attached to a Kestrel process:
@@ -81,10 +77,6 @@ ASP.NET Core project templates use Kestrel by default when not hosted with IIS. 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/5.x/KestrelSample/Program.cs" id="snippet_DefaultBuilder" highlight="8":::
 
 For more information on building the host, see the *Set up a host* and *Default builder settings* sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
-
-## Optional client certificates
-
-For information on apps that must protect a subset of the app with a certificate, see [Optional client certificates](xref:security/authentication/certauth#optional-client-certificates).
 
 ## Additional resources
 
