@@ -458,27 +458,34 @@ The validation summary displays the friendly name when the field's value is inva
 
 > The Production Date field must be a date.
 
-<!-- UPDATE 11.0 The feature has been backlogged.
-     https://github.com/dotnet/aspnetcore/issues/49147
+:::moniker-end
 
-> [!NOTE]
-> Alternatively, the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) on the model class property is supported:
->
-> ```csharp
-> [Required, Display(Name = "Production Date")]
-> public DateTime ProductionDate { get; set; }
-> ```
->
-> [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute) is also supported:
->
-> ```csharp
-> [Required, DisplayName("Production Date")]
-> public DateTime ProductionDate { get; set; }
-> ```
->
-> Between the two approaches, the `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization.
+:::moniker range=">= aspnetcore-11.0"
 
--->
+The <xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601> component can be used to display property names from metadata attributes. The [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) on the model class property is supported:
+
+```csharp
+[Required, Display(Name = "Production Date")]
+public DateTime ProductionDate { get; set; }
+```
+
+[`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute) is also supported:
+
+```csharp
+[Required, DisplayName("Production Date")]
+public DateTime ProductionDate { get; set; }
+```
+
+Between the two approaches, the `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization. When both attributes are present, `[Display]` takes precedence over `[DisplayName]`. If neither attribute is present, the component falls back to the property name itself.
+
+Use the `DisplayName` component in labels or table headers:
+
+```razor
+<label>
+    <DisplayName For="@(() => Model!.ProductionDate)" />
+    <InputDate @bind-Value="Model!.ProductionDate" />
+</label>
+```
 
 :::moniker-end
 
