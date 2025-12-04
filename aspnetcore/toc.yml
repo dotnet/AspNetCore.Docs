@@ -7,6 +7,10 @@ items:
     uid: get-started
   - name: What's new
     items:
+      - name: ASP.NET Core 11
+        items:
+          - name: What's new in 11
+            uid: aspnetcore-11
       - name: ASP.NET Core 10
         items:
           - name: What's new in 10
