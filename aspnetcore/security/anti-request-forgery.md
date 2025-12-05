@@ -300,7 +300,7 @@ The antiforgery token is only validated if:
 
 ***Note:*** When enabled manually, the antiforgery middleware must run after the authentication and authorization middleware to prevent reading form data when the user is unauthenticated.
 
-By default, minimal APIs that accept form data require antiforgery token validation.
+By default, Minimal APIs that accept form data require antiforgery token validation.
 
 Consider the following `GenerateForm` method:
 

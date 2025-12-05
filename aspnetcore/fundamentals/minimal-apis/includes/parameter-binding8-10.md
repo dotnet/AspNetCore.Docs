@@ -73,13 +73,13 @@ Complex form binding is supported using <xref:Microsoft.AspNetCore.Http.IFormFil
 
 Parameters bound to the request with `[FromForm]` include an [antiforgery token](xref:security/anti-request-forgery). The antiforgery token is validated when the request is processed. For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
 
-For more information, see [Form binding in minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/).
+For more information, see [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/).
 
 The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/FormBinding) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
 ## Parameter binding with dependency injection
 
-Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding for Minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 :::code language="csharp" source="~/release-notes/aspnetcore-7/samples/ApiController/Program.cs" id="snippet_min" highlight="8-9":::
 
@@ -186,7 +186,7 @@ The following code shows the complete `Program.cs` file:
 
 ### File uploads using IFormFile and IFormFileCollection
 
-File uploads using `IFormFile` and `IFormFileCollection` in minimal APIs require `multipart/form-data` encoding. The parameter name in the route handler must match the form field name in the request. Minimal APIs don't support binding the entire request body directly to an `IFormFile` parameter without form encoding.
+File uploads using `IFormFile` and `IFormFileCollection` in Minimal APIs require `multipart/form-data` encoding. The parameter name in the route handler must match the form field name in the request. Minimal APIs don't support binding the entire request body directly to an `IFormFile` parameter without form encoding.
 
 If you need to bind the entire request body, for example, when working with JSON, binary data, or other content types, see:
 
@@ -215,7 +215,7 @@ The following code uploads files using inferred binding from the `IFormFile` typ
 
 For more information on XSRF attacks, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma)
 
-For more information, see [Form binding in minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/);
+For more information, see [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/);
 
 <a name="bindcc"></a>
 
@@ -236,7 +236,7 @@ The following code shows:
 In the preceding code:
 
 * The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
-* Binding from complex or collection types is ***not*** supported for minimal APIs that are compiled with the Request Delegate Generator.
+* Binding from complex or collection types is ***not*** supported for Minimal APIs that are compiled with the Request Delegate Generator.
 * The markup shows an additional hidden input with a name of `isCompleted` and a value of `false`. If the `isCompleted` checkbox is checked when the form is submitted, both values `true` and `false` are submitted as values. If the checkbox is unchecked, only the hidden input value `false` is submitted. The ASP.NET Core model-binding process reads only the first value when binding to a `bool` value, which results in `true` for checked checkboxes and `false` for unchecked checkboxes.
   
 An example of the form data submitted to the preceding endpoint looks as follows:

@@ -29,7 +29,7 @@ Visual Studio allows you to easily create a new ASP.NET Core web API project fro
 * In the **Configure your new project dialog**, name the project **WeatherAPI** and select **Next**.
 * In the **Additional information** dialog:
 * Confirm the Framework is **.NET 6.0 (Long-term support)**.
-* Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
+* Confirm the checkbox for **Use controllers (uncheck to use Minimal APIs)** is checked.
 * Confirm the checkbox for **Enable OpenAPI support** is checked.
 * Select **Create**.
 

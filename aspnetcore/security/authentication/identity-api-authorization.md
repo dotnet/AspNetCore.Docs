@@ -23,7 +23,7 @@ The steps shown in this article add authentication and authorization to an ASP.N
 
 * Isn't already configured for authentication.
 * Targets `net8.0` or later.
-* Can be either minimal API or controller-based API.
+* Can be either Minimal API or controller-based API.
 
 Some of the testing instructions in this article use the [Swagger UI](/aspnet/core/tutorials/web-api-help-pages-using-swagger) that's included with the project template. The Swagger UI isn't required to use Identity with a Web API backend.
 

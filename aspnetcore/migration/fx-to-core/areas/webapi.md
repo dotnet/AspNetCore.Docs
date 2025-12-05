@@ -36,7 +36,7 @@ This article shows how to migrate the Products controller created in [Getting St
 1. In the **Configure your new project** dialog, name the project *ProductsCore* and select **Next**.
 1. In the **Additional information** dialog:
    1. Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
-   1. Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+   1. Confirm the checkbox for **Use controllers(uncheck to use Minimal APIs)** is checked.
    1. Uncheck **Enable OpenAPI support**.
    1. Select **Create**.
 

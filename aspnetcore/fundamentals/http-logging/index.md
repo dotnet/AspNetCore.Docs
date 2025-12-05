@@ -127,11 +127,11 @@ Setting <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs> t
 
 ## Endpoint-specific configuration
 
-For endpoint-specific configuration in minimal API apps, a <xref:Microsoft.AspNetCore.Builder.HttpLoggingEndpointConventionBuilderExtensions.WithHttpLogging%2A> extension method is available. The following example shows how to configure HTTP logging for one endpoint:
+For endpoint-specific configuration in Minimal API apps, a <xref:Microsoft.AspNetCore.Builder.HttpLoggingEndpointConventionBuilderExtensions.WithHttpLogging%2A> extension method is available. The following example shows how to configure HTTP logging for one endpoint:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet6)]
 
-For endpoint-specific configuration in apps that use controllers, the [`[HttpLogging]` attribute](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) is available. The attribute can also be used in minimal API apps, as shown in the following example:
+For endpoint-specific configuration in apps that use controllers, the [`[HttpLogging]` attribute](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) is available. The attribute can also be used in Minimal API apps, as shown in the following example:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet5)]
 

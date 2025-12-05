@@ -37,7 +37,7 @@ This section describes new features for SignalR.
 
 ## Minimal APIs
 
-This section describes new features for minimal APIs.
+This section describes new features for Minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/status500.md)]
 
