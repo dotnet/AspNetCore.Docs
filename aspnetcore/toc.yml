@@ -481,8 +481,10 @@ items:
             items:
               - name: Overview
                 uid: blazor/fundamentals/index
-              - name: Routing and navigation
+              - name: Routing
                 uid: blazor/fundamentals/routing
+              - name: Navigation
+                uid: blazor/fundamentals/navigation
               - name: Configuration
                 uid: blazor/fundamentals/configuration
               - name: Dependency injection

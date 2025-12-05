@@ -643,14 +643,14 @@ When prerendering, components render twice: first statically, then interactively
 You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. For more information, see the following resources:
 
 * <xref:blazor/state-management/prerendered-state-persistence>
-* <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>
+* <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-10.0"
 
 > [!NOTE]
-> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 

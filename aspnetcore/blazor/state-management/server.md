@@ -57,7 +57,7 @@ During server-side rendering, Blazor Web Apps can persist a user's session (circ
 * Mobile device users switching apps
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
-* [Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling)
+* [Enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling)
 
 Server resources can be freed up if the circuit state can be persisted and then resumed later:
 
