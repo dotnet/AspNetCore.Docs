@@ -295,7 +295,7 @@ The antiforgery middleware:
 The antiforgery token is only validated if:
 
 * The endpoint contains metadata implementing <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryMetadata> where `RequiresValidation=true`.
-* The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods) of type POST, PUT and PATCH.
+* The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods) of type POST, PUT, or PATCH.
 * The request is associated with a valid endpoint.
 
 Antiforgery middleware itself doesn't short-circuit the request pipeline, endpoint code always runs, even if token validation fails. To observe the outcome of the token validation, resolve the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> from `HttpContext.Features` and inspect its <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.IsValid%2A> property or the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.Exception%2A> property for failure details. This approach is useful when endpoints need custom handling for failed antiforgery validation.
