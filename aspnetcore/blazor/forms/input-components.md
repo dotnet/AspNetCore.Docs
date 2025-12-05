@@ -462,17 +462,17 @@ The validation summary displays the friendly name when the field's value is inva
 
 :::moniker range=">= aspnetcore-11.0"
 
-The <xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601> component can be used to display property names from metadata attributes. The [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) on the model class property is supported:
-
-```csharp
-[Required, Display(Name = "Production Date")]
-public DateTime ProductionDate { get; set; }
-```
-
-The [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute) is also supported:
+The <xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601> component can be used to display property names from metadata attributes.
 
 ```csharp
 [Required, DisplayName("Production Date")]
+public DateTime ProductionDate { get; set; }
+```
+
+The [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) on the model class property is supported:
+
+```csharp
+[Required, Display(Name = "Production Date")]
 public DateTime ProductionDate { get; set; }
 ```
 
