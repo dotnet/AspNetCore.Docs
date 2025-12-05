@@ -25,7 +25,7 @@ Use the `DisplayName` component in labels or table headers:
 </label>
 ```
 
-### Blazor script () startup options format now used for Blazor Server and Blazor WebAssembly scripts
+### Blazor Web script startup options format now supported for Blazor Server and Blazor WebAssembly scripts
 
 The Blazor Web App script (`blazor.web.js`) options object passed to `Blazor.start()` uses the following format since the release of .NET 8:
 
