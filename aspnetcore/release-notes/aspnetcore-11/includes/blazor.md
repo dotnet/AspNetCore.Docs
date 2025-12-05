@@ -1,6 +1,10 @@
 ### New `DisplayName` component and support for `[Display]` and `[DisplayName]` attributes
 
-The <xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601> component can be used to display property names from metadata attributes:
+<!-- UPDATE 11.0 - API cross-link 
+
+                   <xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601>
+-->
+The `DisplayName` component can be used to display property names from metadata attributes:
 
 ```csharp
 [Required, DisplayName("Production Date")]
