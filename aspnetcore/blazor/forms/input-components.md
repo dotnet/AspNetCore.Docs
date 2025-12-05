@@ -476,7 +476,7 @@ The [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute)
 public DateTime ProductionDate { get; set; }
 ```
 
-Between the two approaches, the `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization. When both attributes are present, `[Display]` takes precedence over `[DisplayName]`. If neither attribute is present, the component falls back to the property name itself.
+Between the two approaches, the `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization. When both attributes are present, `[Display]` takes precedence over `[DisplayName]`. If neither attribute is present, the component falls back to the property name.
 
 Use the `DisplayName` component in labels or table headers:
 
