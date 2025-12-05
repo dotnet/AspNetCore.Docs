@@ -467,10 +467,10 @@ Obtain the application (client) ID, tenant (publisher) domain, and directory (te
 
 The authentication configuration depends on the type of tenant:
 
-* [ME-ID tenant configuration](#me-id-tenant-configuration)
-* [Microsoft Entra External ID configuration](#microsoft-entra-external-id-configuration)
+* [Configuration for an ME-ID](#configuration-for-an-me-id)
+* [Configuration for Microsoft Entra External ID](#configuration-for-microsoft-entra-external-id)
 
-### ME-ID tenant configuration
+### Configuration for an ME-ID
 
 *This section applies to an app registered in a Microsoft Entra ID or Azure AAD B2C tenant.*
 
@@ -541,7 +541,7 @@ Example:
 List<string> scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
 ```
 
-### Microsoft Entra External ID configuration
+### Configuration for Microsoft Entra External ID
 
 *This section applies to an app registered in a Microsoft Entra External ID tenant.*
 
