@@ -469,7 +469,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601> component can b
 public DateTime ProductionDate { get; set; }
 ```
 
-[`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute) is also supported:
+The [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute) is also supported:
 
 ```csharp
 [Required, DisplayName("Production Date")]
