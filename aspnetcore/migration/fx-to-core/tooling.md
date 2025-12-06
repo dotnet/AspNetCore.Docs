@@ -21,5 +21,4 @@ If your .NET Framework project has supporting libraries in the solution that are
 
 ## See also
 
-* [GitHub Copilot app modernization overview](/dotnet/core/porting/github-copilot-app-modernization/overview)
-* [How to upgrade a .NET app with GitHub Copilot app modernization](/dotnet/core/porting/github-copilot-app-modernization/how-to-upgrade-with-github-copilot)
+* [Quickstart: Assess and migrate a .NET project with GitHub Copilot app modernization for .NET](/dotnet/azure/migration/appmod/quickstart)
