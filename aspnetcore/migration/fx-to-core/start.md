@@ -4,7 +4,7 @@ description: Get started with incremental ASP.NET to ASP.NET Core migration
 author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/17/2025
+ms.date: 12/04/2025
 ms.topic: article
 uid: migration/fx-to-core/start
 ---
@@ -147,7 +147,7 @@ Depending on your application, you may also need to address:
 
 **Upgrade process for each library:**
 
-If you have supporting libraries in your solution that you will need to use for the routes you're migrating, they should be upgraded to .NET Standard 2.0, if possible. [Upgrade Assistant](https://github.com/dotnet/upgrade-assistant) is a great tool for this. If libraries are unable to target .NET Standard, you can target .NET 8 or later either along with the .NET Framework target in the original project or in a new project alongside the original.
+If you have supporting libraries in your solution that you will need to use for the routes you're migrating, they should be upgraded to .NET Standard 2.0, if possible. [GitHub Copilot app modernization](/dotnet/core/porting/github-copilot-app-modernization/overview) can help you with this. If libraries are unable to target .NET Standard, you can target .NET 8 or later either along with the .NET Framework target in the original project or in a new project alongside the original.
 
 The [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md) can be used in these libraries to enable support for <xref:System.Web.HttpContext> usage in class libraries. In order to enable <xref:System.Web.HttpContext> usage in a library:
 
@@ -155,7 +155,7 @@ The [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md) can 
 2. Add the `Microsoft.AspNetCore.SystemWebAdapters` package
 3. Enable multi-targeting and add a .NET 8 target or later, or convert the project to .NET Standard 2.0.
 
-This step may require a number of projects to change depending on your solution structure and which routes you're migrating. Upgrade Assistant can help you identify which ones need to change and automate a number of steps in the process.
+This step may require a number of projects to change depending on your solution structure and which routes you're migrating. [GitHub Copilot app modernization](/dotnet/core/porting/github-copilot-app-modernization/overview) can help you identify which ones need to change and automate a number of steps in the process.
 
 
 ## Next Steps
