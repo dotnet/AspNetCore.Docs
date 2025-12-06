@@ -10,8 +10,6 @@ uid: fundamentals/servers/kestrel/memory-management
 
 # Memory management in Kestrel
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Tom Dykstra](https://github.com/tdykstra)
 
 This article provides guidance for managing memory in Kestrel, including automatic eviction from memory pools and using memory pool metrics.
