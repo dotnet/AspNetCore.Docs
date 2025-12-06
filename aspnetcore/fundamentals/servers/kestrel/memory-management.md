@@ -10,7 +10,7 @@ uid: fundamentals/servers/kestrel/memory-management
 
 # Memory management in Kestrel
 
-[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Tom Dykstra](https://github.com/tdykstra)
 
