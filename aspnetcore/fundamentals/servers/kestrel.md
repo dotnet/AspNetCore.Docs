@@ -10,7 +10,7 @@ uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
