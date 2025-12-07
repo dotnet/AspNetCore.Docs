@@ -5,7 +5,7 @@ description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 08/04/2025
+ms.date: 12/04/2025
 uid: fundamentals/openapi/using-openapi-documents
 ---
 # Use openAPI documents
@@ -105,11 +105,11 @@ The output shows any issues with the OpenAPI document. For example:
 You can inject <xref:Microsoft.AspNetCore.OpenApi.IOpenApiDocumentProvider> into your services through dependency injection to access OpenAPI documents programmatically, even outside HTTP request contexts.
 
 ```csharp
-public class DocumentService
+public class CustomDocumentService
 {
     private readonly IOpenApiDocumentProvider _documentProvider;
 
-    public DocumentService(IOpenApiDocumentProvider documentProvider)
+    public CustomDocumentService(IOpenApiDocumentProvider documentProvider)
     {
         _documentProvider = documentProvider;
     }
@@ -124,7 +124,7 @@ public class DocumentService
 Register the service in your DI container:
 
 ```csharp
-builder.Services.AddScoped<DocumentService>();
+builder.Services.AddScoped<CustomDocumentService>();
 ```
 
 This enables scenarios such as generating client SDKs, validating API contracts in background processes, or exporting documents to external systems.
