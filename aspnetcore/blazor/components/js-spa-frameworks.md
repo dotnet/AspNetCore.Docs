@@ -20,16 +20,25 @@ This article covers how to render Razor components from JavaScript, use Blazor c
 <!-- UPDATE 11.0 - The `blazor.web.js` (Blazor Web App) portions of
      this article have been commented out for the time being to 
      facilitate reconstituting the guidance later when support lands. 
-     It was under consideration for .NET 10 on 
-     https://github.com/dotnet/AspNetCore.Docs/issues/35653, but 
-     it didn't make the cut and was backlogged. -->
+     The PU work is tracked by https://github.com/dotnet/aspnetcore/issues/53920. -->
 
 ## Angular sample apps
 
-<!-- UPDATE 10.0 Add migration instructions for 9.0 to 10.0 -->
+* [CustomElementsBlazorSample (Blazor Server) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-server`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-server)
+* [CustomElementsBlazorSample (Blazor WebAssembly) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-wasm`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-wasm)
 
-* [CustomElementsBlazorSample (Blazor Server) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-server`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-server): Blazor Server is supported in .NET 8/9. To migrate this .NET 7 sample, see <xref:migration/70-to-80#update-a-blazor-server-app> and <xref:migration/80-to-90>.
-* [CustomElementsBlazorSample (Blazor WebAssembly) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-wasm`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-wasm): To migrate this .NET 7 sample, see <xref:migration/70-to-80#update-a-blazor-webassembly-app> and <xref:migration/80-to-90>.
+To migrate either of these .NET 7 samples, see the following resources:
+
+* <xref:migration/70-to-80>
+* <xref:migration/80-to-90>
+* <xref:migration/90-to-100>
+
+The principle updates to make are:
+
+* Update the [target framework monikers (TFMs)](/dotnet/standard/frameworks) to the latest version.
+* Update the .NET package references and Angular dependencies to their latest versions.
+
+  [!INCLUDE[](~/includes/package-reference.md)]
 
 ## Render Razor components from JavaScript
 
@@ -340,24 +349,22 @@ builder.Services.AddServerSideBlazor(options =>
 
 ### Blazor WebAssembly registration
 
-Take the following steps to register a root component as a custom element in a Blazor WebAssembly app.
+Register a root component as a custom element in a Blazor WebAssembly app. In the following example, the code:
 
-Add the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace to the top of the `Program` file:
-
-```csharp
-using Microsoft.AspNetCore.Components.Web;
-```
-
-Add a namespace for the app's components. In the following example, the app's namespace is `BlazorSample` and the components are located in the `Pages` folder:
+* Adds a namespace for the app's components. In the example, the app's namespace is `BlazorSample`, and the components are located in the `Pages` folder.
+* Provides access to the API in the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace.
+* Calls <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> to register the `Counter` component with the custom HTML element `my-counter`.
 
 ```csharp
 using BlazorSample.Pages;
-```
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
-Call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents>. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-```csharp
 builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
+
+await builder.Build().RunAsync();
 ```
 
 ### Use the registered custom element
@@ -475,3 +482,7 @@ Generate JavaScript (JS) components from Razor components for JavaScript technol
 
 > [!WARNING]
 > The Angular and React component features are currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.
+
+## Additional resources
+
+<xref:blazor/host-and-deploy/index>
