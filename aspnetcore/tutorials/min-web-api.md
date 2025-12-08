@@ -51,20 +51,20 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio 2022 and select **Create a new project**.
+* Start Visual Studio 2026 and select **Create a new project**.
 * In the **Create a new project** dialog:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
 
-  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/9.x/create-new-project-empty-vs17.11.0.png)
+  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/10.x/createaspdotnetempty.png)
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 9.0**
+  * Select **.NET 10.0**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/_static/9.x/add-info-vs17.11.0.png)
+  ![Additional information](~/tutorials/min-web-api/_static/10.x/choosedotnet10.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
