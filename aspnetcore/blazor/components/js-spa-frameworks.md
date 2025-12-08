@@ -33,7 +33,7 @@ To migrate either of these .NET 7 samples, see the following resources:
 * <xref:migration/80-to-90>
 * <xref:migration/90-to-100>
 
-The principle updates to make are:
+The principal updates to make are:
 
 * Update the [target framework monikers (TFMs)](/dotnet/standard/frameworks) to the latest version.
 * Update the .NET package references and Angular dependencies to their latest versions.
