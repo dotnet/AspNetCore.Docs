@@ -24,8 +24,10 @@ This article covers how to render Razor components from JavaScript, use Blazor c
 
 ## Angular sample apps
 
-* [CustomElementsBlazorSample (Blazor Server) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-server`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-server)
-* [CustomElementsBlazorSample (Blazor WebAssembly) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-wasm`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-wasm)
+The following sample apps demonstrate rendering a Razor component as a [Blazor custom element](#blazor-custom-elements) in an Angular app:
+
+* [CustomElementsBlazorSample (Blazor Server) (`javiercn/CustomElementsBlazorSample` GitHub repository, branch: `blazor-server`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-server)
+* [CustomElementsBlazorSample (Blazor WebAssembly) (`javiercn/CustomElementsBlazorSample` GitHub repository, branch: `blazor-wasm`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-wasm)
 
 To migrate either of these .NET 7 samples, see the following resources:
 
