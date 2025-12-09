@@ -5,14 +5,24 @@ description: Learn about navigation in Blazor, including how to use the Navigati
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 12/09/2025
 uid: blazor/fundamentals/navigation
 ---
 # ASP.NET Core Blazor navigation
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links and how to use the <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and navigation in C# code.
+:::moniker range=">= aspnetcore-8.0"
+
+This article explains how to trigger and handle page navigation in Blazor. While users can navigate between different pages using normal HTML links, Blazor enhances navigation within the application to avoid full page reloads and deliver a smoother experience. Use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links that automatically apply styling when the link matches the current page. For programmatic navigation and URI management in C# code, use the <xref:Microsoft.AspNetCore.Components.NavigationManager> service.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+This article explains how to trigger and handle page navigation in Blazor. Use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links that automatically apply styling when the link matches the current page. For programmatic navigation and URI management in C# code, use the <xref:Microsoft.AspNetCore.Components.NavigationManager> service.
+
+:::moniker-end
 
 > [!IMPORTANT]
 > Code examples throughout this article show methods called on `Navigation`, which is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager> in classes and components.
@@ -1138,21 +1148,21 @@ In the `Home` (`Home.razor`) and `Counter` (`Counter.razor`) components, place t
 <p>Content!</p>
 ```
 
-Add the following `HashedRouting` component to the app.
+Add the following `FragmentRouting` component to the app.
 
-`HashedRouting.razor`:
+`FragmentRouting.razor`:
 
 ```razor
-@page "/hashed-routing"
+@page "/fragment-routing"
 @inject NavigationManager Navigation
 
-<PageTitle>Hashed routing</PageTitle>
+<PageTitle>Fragment routing</PageTitle>
 
-<h1>Hashed routing to named elements</h1>
+<h1>Fragment routing to named elements</h1>
 
 <ul>
     <li>
-        <a href="/hashed-routing#targetElement">
+        <a href="/fragment-routing#targetElement">
             Anchor in this component
         </a>
     </li>
@@ -1167,7 +1177,7 @@ Add the following `HashedRouting` component to the app.
         </a>
     </li>
     <li>
-        <NavLink href="/hashed-routing#targetElement">
+        <NavLink href="/fragment-routing#targetElement">
             Use a `NavLink` component in this component
         </NavLink>
     </li>

@@ -5,7 +5,7 @@ description: Learn about Blazor app request routing with guidance on static vers
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 12/09/2025
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing
@@ -46,9 +46,9 @@ Interactive routing also prevents prerendering because new page content isn't re
 
 ## ASP.NET Core endpoint routing integration
 
-*This section applies to Blazor Web Apps and Blazor Server apps operating over a circuit.*
-
 :::moniker range=">= aspnetcore-8.0"
+
+*This section applies to Blazor Web Apps operating over a circuit.*
 
 A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured with endpoints for routable components and the root component to render for those endpoints with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the `Program` file.  The default root component (first component loaded) is the `App` component (`App.razor`):
 
@@ -59,6 +59,8 @@ app.MapRazorComponents<App>();
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+*This section applies to Blazor Server apps operating over a circuit.*
 
 Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file:
 
@@ -72,6 +74,8 @@ app.MapFallbackToPage("/_Host");
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
+
+*This section applies to Blazor Server apps operating over a circuit.*
 
 Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure`.
 
