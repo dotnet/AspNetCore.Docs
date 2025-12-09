@@ -14,7 +14,7 @@ uid: blazor/fundamentals/routing
 
 This article explains Blazor app request routing with guidance on static versus interactive routing, ASP.NET Core endpoint routing integration, navigation events, and route templates and constraints for Razor components.
 
-Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`](xref:mvc/views/razor#page) directive. When a Razor file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
+Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`](xref:mvc/views/razor#page) directive. When a Razor file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Components.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
 
 The following `HelloWorld` component uses a route template of `/hello-world`, and the rendered webpage for the component is reached at the relative URL `/hello-world`.
 
@@ -50,7 +50,7 @@ Interactive routing also prevents prerendering because new page content isn't re
 
 :::moniker range=">= aspnetcore-8.0"
 
-A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the `Program` file.  The default root component (first component loaded) is the `App` component (`App.razor`):
+A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured with endpoints for routable components and the root component to render for those endpoints with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the `Program` file.  The default root component (first component loaded) is the `App` component (`App.razor`):
 
 ```csharp
 app.MapRazorComponents<App>();

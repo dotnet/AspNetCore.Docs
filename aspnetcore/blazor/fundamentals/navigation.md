@@ -1103,7 +1103,7 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Hashed routing to named elements
+## Navigate to named elements
 
 Navigate to a named element using the following approaches with a hashed (`#`) reference to the element. Routes to elements within the component and routes to elements in external components use root-relative paths. A leading forward slash (`/`) is optional.
 
@@ -1127,7 +1127,7 @@ Examples for each of the following approaches demonstrate navigation to an eleme
   Navigation.NavigateTo("/counter#targetElement");
   ```
 
-The following example demonstrates hashed routing to named H2 headings within a component and to external components.
+The following example demonstrates navigating to named H2 headings within a component and to external components.
 
 In the `Home` (`Home.razor`) and `Counter` (`Counter.razor`) components, place the following markup at the bottoms of the existing component markup to serve as navigation targets. The `<div>` creates artificial vertical space to demonstrate browser scrolling behavior:
 
