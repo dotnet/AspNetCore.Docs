@@ -56,7 +56,7 @@ We strongly recommend that you avoid storing secrets in project code or configur
 
 ### Secret Manager tool
 
-If the project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have an app secrets identifier (`<AppSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the app secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
+If the project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have a user secrets identifier (`<UserSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the user secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
 
 ```dotnetcli
 dotnet user-secrets init
