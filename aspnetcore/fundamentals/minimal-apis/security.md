@@ -1,7 +1,7 @@
 ---
-title: Authentication and authorization in minimal APIs
+title: Authentication and authorization in Minimal APIs
 author: captainsafia
-description: Learn how to configure authentication and authorization in minimal API apps
+description: Learn how to configure authentication and authorization in Minimal API apps
 ms.author: safia
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-7.0'
@@ -10,7 +10,7 @@ uid: fundamentals/minimal-apis/security
 ai-usage: ai-assisted
 ---
 
-# Authentication and authorization in minimal APIs
+# Authentication and authorization in Minimal APIs
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
