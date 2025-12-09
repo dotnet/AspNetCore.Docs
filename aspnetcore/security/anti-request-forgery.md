@@ -302,7 +302,7 @@ Antiforgery Middleware doesn't short-circuit the request pipeline. Endpoint code
 
 ***Note:*** When enabled manually, the antiforgery middleware must run after the authentication and authorization middleware to prevent reading form data when the user is unauthenticated.
 
-By default, Minimal APIs that accept form data require antiforgery token validation. By default, requests that accept form data fail if antiforgery validation isn't successful.
+By default, Minimal APIs that accept form data require antiforgery token validation and fail before running application code if antiforgery validation isn't successful.
 
 Consider the following `GenerateForm` method:
 
