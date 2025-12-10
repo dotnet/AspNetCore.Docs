@@ -159,8 +159,6 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 
 > [!IMPORTANT]
 > This integration is still in preview and is published as a prerelease package on NuGet.org. When adding the package, enable prerelease packages in your tooling (for example, select `Include prerelease` in Visual Studio's NuGet Package Manager or use the equivalent prerelease option with the .NET CLI).
->
-> **NOTE**: This requires v2.0.1-preview1.25351.5 of the System.Web adapters or later.
 
 1. Add Aspire orchestration for the ASP.NET Framework application
 1. Add a new ASP.NET Core application to the solution and add it to your Aspire orchestration
