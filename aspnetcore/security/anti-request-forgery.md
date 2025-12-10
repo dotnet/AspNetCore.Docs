@@ -295,12 +295,14 @@ The antiforgery middleware:
 The antiforgery token is only validated if:
 
 * The endpoint contains metadata implementing <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryMetadata> where `RequiresValidation=true`.
-* The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods). The relevant methods are all [HTTP methods](https://developer.mozilla.org/docs/Web/HTTP/Methods) except for TRACE, OPTIONS, HEAD, and GET.
+* The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods) of type POST, PUT, or PATCH.
 * The request is associated with a valid endpoint.
+
+Antiforgery Middleware doesn't short-circuit the request pipeline. Endpoint code always runs, even if token validation fails. To observe the outcome of the token validation, resolve the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> from <xref:Microsoft.AspNetCore.Http.HttpContext.Features%2A?displayProperty=nameWithType> and inspect its <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.IsValid%2A> property or the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.Error%2A> property for failure details. This approach is useful when endpoints require custom handling for failed antiforgery validation.
 
 ***Note:*** When enabled manually, the antiforgery middleware must run after the authentication and authorization middleware to prevent reading form data when the user is unauthenticated.
 
-By default, Minimal APIs that accept form data require antiforgery token validation.
+By default, Minimal APIs that accept form data require antiforgery token validation and fail before running application code if antiforgery validation isn't successful.
 
 Consider the following `GenerateForm` method:
 

@@ -56,7 +56,7 @@ We strongly recommend that you avoid storing secrets in project code or configur
 
 ### Secret Manager tool
 
-If the project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have an app secrets identifier (`<AppSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the app secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
+If the project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have a user secrets identifier (`<UserSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the user secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
 
 ```dotnetcli
 dotnet user-secrets init
@@ -186,17 +186,17 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 
     public AuthMessageSenderOptions Options { get; } = optionsAccessor.Value;
 
-    public Task SendConfirmationLinkAsync(AppUser user, string email,
+    public Task SendConfirmationLinkAsync(ApplicationUser user, string email,
         string confirmationLink) => SendEmailAsync(email, "Confirm your email",
         "<html lang=\"en\"><head></head><body>Please confirm your account by " +
         $"<a href='{confirmationLink}'>clicking here</a>.</body></html>");
 
-    public Task SendPasswordResetLinkAsync(AppUser user, string email,
+    public Task SendPasswordResetLinkAsync(ApplicationUser user, string email,
         string resetLink) => SendEmailAsync(email, "Reset your password",
         "<html lang=\"en\"><head></head><body>Please reset your password by " +
         $"<a href='{resetLink}'>clicking here</a>.</body></html>");
 
-    public Task SendPasswordResetCodeAsync(AppUser user, string email,
+    public Task SendPasswordResetCodeAsync(ApplicationUser user, string email,
         string resetCode) => SendEmailAsync(email, "Reset your password",
         "<html lang=\"en\"><head></head><body>Please reset your password " +
         $"using the following code:<br>{resetCode}</body></html>");
