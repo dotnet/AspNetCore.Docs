@@ -1,9 +1,10 @@
 ---
 title: Complex migration scenarios - Deep dive areas
+ai-usage: ai-assisted
 description: Detailed guidance for complex ASP.NET Framework to ASP.NET Core migration scenarios
 author: twsouthwick
 ms.author: tasou
-ms.date: 11/10/2025
+ms.date: 12/10/2025
 uid: migration/fx-to-core/areas
 ---
 # Technology specific guidance
@@ -14,6 +15,7 @@ uid: migration/fx-to-core/areas
 * [HttpContext](http-context.md)
 * [HTTP Handlers](http-handlers.md)
 * [HTTP Modules](http-modules.md)
+* [machineKey](machine-key.md)
 * [Membership](membership.md)
 * [Miscellaneous](misc.md)
 * [OWIN](owin.md)
