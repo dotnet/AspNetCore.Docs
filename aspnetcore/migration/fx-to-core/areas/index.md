@@ -15,7 +15,7 @@ uid: migration/fx-to-core/areas
 * [HttpContext](http-context.md)
 * [HTTP Handlers](http-handlers.md)
 * [HTTP Modules](http-modules.md)
-* [machineKey](machine-key.md)
+* [Machine Key](machine-key.md)
 * [Membership](membership.md)
 * [Miscellaneous](misc.md)
 * [OWIN](owin.md)

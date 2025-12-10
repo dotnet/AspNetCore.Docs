@@ -8,12 +8,21 @@ ms.author: tasou
 ms.date: 12/10/2025
 ms.topic: article
 uid: migration/fx-to-core/areas/machine-key
-zone_pivot_groups: migration-remote-app-setup
 ---
 
 # Migrate ASP.NET machineKey with System.Web adapters
 
 [!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
+
+## Shared key storage and data protection guidance
+
+Both the ASP.NET Framework app and the ASP.NET Core app must use a shared application name and key repository for data protection so that protected payloads can round-trip between apps.
+
+* Call `SetApplicationName` with the same logical application name in both apps (for example, `"my-app"`).
+* Configure `PersistKeysToFileSystem` to point to the same key repository location that both apps can read and write.
+
+> [!NOTE]
+> The directory used with `PersistKeysToFileSystem` is the backing store for the shared data protection keys. In production, use a durable, shared store (such as a UNC share, Redis, or Azure Blob Storage) and follow the key management guidance in <xref:security/data-protection/configuration/overview> and <xref:security/data-protection/introduction>.
 
 ## Configure the ASP.NET Framework app
 
@@ -22,8 +31,6 @@ In the ASP.NET Framework app, configure `<machineKey>` and the System.Web adapte
 Ensure the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package is installed in the ASP.NET Framework app. This package is added automatically when you create the migration `FrameworkServices` project and brings in the `Microsoft.AspNetCore.DataProtection.SystemWeb` and hosting dependencies.
 
 For full background on replacing `<machineKey>`, see <xref:security/data-protection/compatibility/replacing-machinekey>.
-
-### Example Framework configuration
 
 When the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package is installed into the ASP.NET Framework app, `<machineKey>` is normally configured automatically. If it isn't present or you need to verify the settings, configure `<machineKey>` in *Web.config* to use the compatibility data protector as shown:
 
@@ -75,15 +82,11 @@ This configuration:
 * Ensures `<machineKey>` operations (forms auth, view state, `MachineKey.Protect`, and related APIs) are routed through ASP.NET Core data protection.
 * Runs as part of the ASP.NET Framework host so that existing `<machineKey>`-based features use the same data protection system as ASP.NET Core.
 
-> [!NOTE]
-> The path used with `PersistKeysToFileSystem` is the backing datastore for the shared data protection keys. In production, use a durable, shared store (such as a UNC share, Redis, or Azure Blob Storage) and follow the key management guidance in <xref:security/data-protection/configuration/overview>.
-
 ## Configure the ASP.NET Core app
 
 In the ASP.NET Core app, configure data protection with the same application name and key repository and enable the System.Web adapters extension methods so both apps can protect and unprotect the same data.
 
 ```csharp
-using MachineKeyExample;
 using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -93,24 +96,15 @@ builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(
         new DirectoryInfo(Path.Combine(Path.GetTempPath(), "sharedkeys", MachineKeyExampleHandler.AppName)));
 
-// Requires the System.Web adapters package.
-builder.Services.AddSystemWebAdapters();
-
 var app = builder.Build();
 
-// Uses the System.Web adapters middleware.
-app.UseSystemWebAdapters();
-
-app.MapHttpHandler<MachineKeyExampleHandler>("/");
+// Configure application
 
 app.Run();
 ```
 
 Important configuration details:
 
-* `SetApplicationName` must use the same logical application name as the ASP.NET Framework app (for example, the `"my-app"` value configured in `Global.asax.cs`).
-* `PersistKeysToFileSystem` configures a key repository that both apps can read and write. In production, use a durable store such as a shared file location, Redis, or Azure Blob Storage instead of the temp directory.
 * `AddSystemWebAdapters` and `UseSystemWebAdapters` are extension methods provided by the System.Web adapters. They are required for using `System.Web.Security.MachineKey`-style APIs and other System.Web abstractions from ASP.NET Core.
 * Make sure the ASP.NET Core app references the appropriate System.Web adapters NuGet package (for example, `Microsoft.AspNetCore.SystemWebAdapters`).
 
-For more information about configuring key storage and data protection, see <xref:security/data-protection/configuration/overview> and <xref:security/data-protection/introduction>.
