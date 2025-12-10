@@ -14,6 +14,10 @@ uid: migration/fx-to-core/areas/machine-key
 
 [!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
 
+In the ASP.NET Framework app, configure `<machineKey>` and the System.Web adapters host so that both apps can share a compatible data protection configuration. For full background on replacing `<machineKey>`, see <xref:security/data-protection/compatibility/replacing-machinekey>.
+
+This guidance builds on the `System.Web` adapters hosting model so that data protection services are registered in the host dependency injection (DI) container and made available throughout the ASP.NET Framework app. By integrating with the host DI provided by the adapters, existing ASP.NET Framework components can resolve `IDataProtectionProvider`, `IDataProtector`, and related types.
+
 Both the ASP.NET Framework app and the ASP.NET Core app must use a shared application name and key repository for data protection so that protected payloads can round-trip between apps.
 
 * Call `SetApplicationName` with the same logical application name in both apps (for example, `"my-app"`).
@@ -22,15 +26,9 @@ Both the ASP.NET Framework app and the ASP.NET Core app must use a shared applic
 > [!NOTE]
 > The directory used with `PersistKeysToFileSystem` is the backing store for the shared data protection keys. In production, use a durable, shared store (such as a UNC share, Redis, or Azure Blob Storage) and follow the key management guidance in <xref:security/data-protection/configuration/overview> and <xref:security/data-protection/introduction>.
 
-This guidance builds on the `System.Web` adapters hosting model so that data protection services are registered in the host dependency injection (DI) container and made available throughout the ASP.NET Framework app. By integrating with the host DI provided by the adapters, existing ASP.NET Framework components can resolve `IDataProtectionProvider`, `IDataProtector`.
-
 ## Configure the ASP.NET Framework app
 
-In the ASP.NET Framework app, configure `<machineKey>` and the System.Web adapters host so that both apps share the same data protection configuration.
-
-Ensure the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package is installed in the ASP.NET Framework app. This package is added automatically when you create the migration `FrameworkServices` project and brings in the `Microsoft.AspNetCore.DataProtection.SystemWeb` and hosting dependencies.
-
-For full background on replacing `<machineKey>`, see <xref:security/data-protection/compatibility/replacing-machinekey>.
+To implement this configuration in the ASP.NET Framework app, ensure the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package is installed in the ASP.NET Framework app.
 
 When the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package is installed into the ASP.NET Framework app, `<machineKey>` is normally configured automatically. If it isn't present or you need to verify the settings, configure `<machineKey>` in *Web.config* to use the compatibility data protector as shown:
 
@@ -84,7 +82,7 @@ This configuration:
 
 ## Configure the ASP.NET Core app
 
-In the ASP.NET Core app, configure data protection with the same application name and key repository and enable the System.Web adapters extension methods so both apps can protect and unprotect the same data.
+No additional configuration is required for data protection in the ASP.NET Core app; just configure the same application name and key storage location that the ASP.NET Framework app uses.
 
 ```csharp
 using Microsoft.AspNetCore.DataProtection;
@@ -102,9 +100,3 @@ var app = builder.Build();
 
 app.Run();
 ```
-
-Important configuration details:
-
-* `AddSystemWebAdapters` and `UseSystemWebAdapters` are extension methods provided by the System.Web adapters. They are required for using `System.Web.Security.MachineKey`-style APIs and other System.Web abstractions from ASP.NET Core.
-* Make sure the ASP.NET Core app references the appropriate System.Web adapters NuGet package (for example, `Microsoft.AspNetCore.SystemWebAdapters`).
-
