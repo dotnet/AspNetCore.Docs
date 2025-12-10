@@ -14,8 +14,6 @@ uid: migration/fx-to-core/areas/machine-key
 
 [!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
 
-## Shared key storage and data protection guidance
-
 Both the ASP.NET Framework app and the ASP.NET Core app must use a shared application name and key repository for data protection so that protected payloads can round-trip between apps.
 
 * Call `SetApplicationName` with the same logical application name in both apps (for example, `"my-app"`).
@@ -23,6 +21,8 @@ Both the ASP.NET Framework app and the ASP.NET Core app must use a shared applic
 
 > [!NOTE]
 > The directory used with `PersistKeysToFileSystem` is the backing store for the shared data protection keys. In production, use a durable, shared store (such as a UNC share, Redis, or Azure Blob Storage) and follow the key management guidance in <xref:security/data-protection/configuration/overview> and <xref:security/data-protection/introduction>.
+
+This guidance builds on the `System.Web` adapters hosting model so that data protection services are registered in the host dependency injection (DI) container and made available throughout the ASP.NET Framework app. By integrating with the host DI provided by the adapters, existing ASP.NET Framework components can resolve `IDataProtectionProvider`, `IDataProtector`.
 
 ## Configure the ASP.NET Framework app
 
