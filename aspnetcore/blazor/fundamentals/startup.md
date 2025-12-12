@@ -1005,7 +1005,7 @@ Standalone Blazor WebAssembly:
 
 *This section applies to Blazor Web Apps.*
 
-To disable [enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), set `disableDomPreservation` to `true` for `Blazor.start`:
+To disable [enhanced navigation and form handling](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), set `disableDomPreservation` to `true` for `Blazor.start`:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
