@@ -1678,10 +1678,8 @@ To return multiple elements from a Razor delegate, use a `<text>` tag for an [ex
 @RenderTwoElements()
 
 @code {
-    private RenderFragment RenderTwoElements()
-    {
-        return @<text><h1>Render Two Elements</h1>@ChildFragment</text>;
-    }
+    private RenderFragment RenderTwoElements() =>
+        @<text><h1>Render Two Elements</h1>@ChildFragment</text>;
 
     private RenderFragment ChildFragment => @<p>This is a paragraph.</p>;
 }
