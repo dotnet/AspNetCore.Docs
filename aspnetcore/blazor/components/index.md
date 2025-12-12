@@ -1672,6 +1672,21 @@ Rendered output of the preceding code:
 <p>Pet: Nutty Rex</p>
 ```
 
+To return multiple elements from a Razor delegate, use a `<text>` tag for an [explicit delimited transition](xref:mvc/views/razor#explicit-delimited-transition). In the following example, the <xref:Microsoft.AspNetCore.Components.RenderFragment> produced by the `RenderTwoElements` method includes HTML and the rendered content of `ChildContent`:
+
+```razor
+@RenderTwoElements()
+
+@code {
+    private RenderFragment RenderTwoElements()
+    {
+        return @<text><h1>Render Two Elements</h1>@ChildFragment</text>;
+    }
+
+    private RenderFragment ChildFragment => @<p>This is a paragraph.</p>;
+}
+```
+
 ## Static assets
 
 Blazor follows the convention of ASP.NET Core apps for static assets. Static assets are located in the project's [`web root` (`wwwroot`) folder](xref:fundamentals/index#web-root) or folders under the `wwwroot` folder.
