@@ -10,7 +10,7 @@ ms.topic: article
 uid: migration/fx-to-core/areas/machine-key
 ---
 
-# Migrate ASP.NET machineKey with System.Web adapters
+# Migrate ASP.NET machineKey by using System.Web adapters
 
 [!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
 
@@ -30,7 +30,7 @@ Both the ASP.NET Framework app and the ASP.NET Core app must use a shared applic
 
 To implement this configuration in the ASP.NET Framework app, ensure the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package is installed in the ASP.NET Framework app.
 
-When the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package is installed into the ASP.NET Framework app, `<machineKey>` is normally configured automatically. If it isn't present or you need to verify the settings, configure `<machineKey>` in *Web.config* to use the compatibility data protector as shown:
+When you install the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package in the ASP.NET Framework app, it normally configures `<machineKey>` automatically. If `<machineKey>` isn't present or you need to verify the settings, configure `` in *Web.config* to use the compatibility data protector as shown:
 
 ```xml
 <configuration>
@@ -82,7 +82,7 @@ This configuration:
 
 ## Configure the ASP.NET Core app
 
-No additional configuration is required for data protection in the ASP.NET Core app; just configure the same application name and key storage location that the ASP.NET Framework app uses.
+No additional configuration is required for data protection in the ASP.NET Core app. Just configure the same application name and key storage location that the ASP.NET Framework app uses.
 
 ```csharp
 using Microsoft.AspNetCore.DataProtection;

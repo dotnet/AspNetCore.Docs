@@ -219,12 +219,12 @@ Once this is done, it will be automatically hooked up in both the framework and 
 
 #### Remote authentication with YARP fallback
 
-When using remote authentication together with YARP-based fallback to the ASP.NET Framework app, make sure that remote authentication isn't invoked for fallback requests. Invoking remote authentication during fallback causes unnecessary extra calls back to the Framework app and can lead to confusing behavior.
+When using remote authentication with YARP-based fallback to the ASP.NET Framework app, make sure that fallback requests don't invoke remote authentication. If remote authentication runs during fallback, the app makes unnecessary extra calls back to the Framework app and can lead to confusing behavior.
 
-Two common ways to avoid running remote authentication for fallback requests are:
+To avoid running remote authentication for fallback requests, use one of these approaches:
 
 * Use routing short-circuit metadata on the YARP fallback route so that the route bypasses the rest of the middleware pipeline. For example, call `ShortCircuit` on the fallback endpoint as shown in the remote app setup guidance and in [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
-* Don't use remote authentication as the default authentication scheme. Instead, configure remote authentication only for the endpoints that need it (for example, by passing `false` to `AddAuthenticationClient` and specifying the remote authentication scheme explicitly on those endpoints).
+* Don't use remote authentication as the default authentication scheme. Instead, configure remote authentication only for the endpoints that need it. For example, pass `false` to `AddAuthenticationClient` and specify the remote authentication scheme explicitly on those endpoints.
 
 #### Using Remote Authentication with Specific Endpoints
 

@@ -158,7 +158,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 ## Setup Aspire orchestration
 
 > [!IMPORTANT]
-> This integration is still in preview and is published as a prerelease package on NuGet.org. When adding the package, enable prerelease packages in your tooling (for example, select `Include prerelease` in Visual Studio's NuGet Package Manager or use the equivalent prerelease option with the .NET CLI).
+> This integration is currently in preview and is published as a prerelease package on NuGet.org. When adding the package, enable prerelease packages in your tooling (for example, select `Include prerelease` in Visual Studio's NuGet Package Manager or use the equivalent prerelease option with the .NET CLI).
 
 1. Add Aspire orchestration for the ASP.NET Framework application
 1. Add a new ASP.NET Core application to the solution and add it to your Aspire orchestration
@@ -253,7 +253,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
         + #endif
         ```
 
-    For a complete, working example of a multi-targeted ServiceDefaults configuration that supports both ASP.NET Core and ASP.NET Framework, see the sample `Extensions.cs` file in the System.Web adapters repository: `https://github.com/dotnet/systemweb-adapters/blob/main/samples/ServiceDefaults/Extensions.cs`.
+    For a complete, working example of a multi-targeted `ServiceDefaults` configuration that supports both ASP.NET Core and ASP.NET Framework, see the sample `Extensions.cs` file in the System.Web adapters repository: `https://github.com/dotnet/systemweb-adapters/blob/main/samples/ServiceDefaults/Extensions.cs`.
 
 ## Configure ASP.NET Framework Application
 
