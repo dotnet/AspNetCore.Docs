@@ -299,6 +299,16 @@ if (!app.Environment.IsDevelopment())
 }
 ```
 
+:::moniker range=">= aspnetcore-10.0"
+
+By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code that doesn't have a body, it returns the status code and an empty response body. However, an app generated from the Blazor Web App project template calls <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> to add Status Code Pages Middleware to the request pipeline for pages that aren't found, which generates the response body by re-executing the request pipeline using the path to the Not Found error page (`/not-found`): 
+
+```csharp
+app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
+```
+
+:::moniker-end
+
 HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) enforces the HTTPS protocol by redirecting HTTP requests to HTTPS if an HTTPS port is available:
 
 ```csharp

@@ -399,6 +399,30 @@ Add a space to the content of the description term element (`<dt>`) for the movi
 
 Examine the C# of the component's `@code` block:
 
+:::moniker range=">= aspnetcore-10.0"
+
+```csharp
+private Movie? movie;
+
+[SupplyParameterFromQuery]
+private int Id { get; set; }
+
+protected override async Task OnInitializedAsync()
+{
+    using var context = DbFactory.CreateDbContext();
+    movie = await context.Movie.FirstOrDefaultAsync(m => m.Id == Id);
+
+    if (movie is null)
+    {
+        NavigationManager.NotFound();
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
 ```csharp
 private Movie? movie;
 
@@ -417,27 +441,17 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
+:::moniker-end
+
 The `movie` variable is a private field of type `Movie`, which is a null-reference type (`?`), meaning that `movie` might be set to `null`.
 
 The `Id` is a *component parameter* supplied from the component's query string due to the presence of the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute). If the identifier is missing, `Id` defaults to zero (`0`).
 
 `OnInitializedAsync` is the first component lifecycle method that we've seen. This method is executed when the component loads. <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync%2A> is called on the database set (`DbSet<Movie>`) to retrieve the movie entity with an `Id` equal to the `Id` parameter that was set by the query string. If `movie` is `null`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> is used to navigate to a `notfound` endpoint.
 
-<!-- UPDATE 10.0 - Update for scaffolder changes when they
-                   appear: https://github.com/dotnet/Scaffolding/issues/3177 -->
-
 :::moniker range=">= aspnetcore-10.0"
 
-The .NET scaffolder currently doesn't implement .NET 10's Not Found feature, but it can be implemented manually.
-
-Update the line that navigates to a non-existent `notfound` endpoint. Change the line to call <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType>:
-
-```diff
-- NavigationManager.NavigateTo("notfound");
-+ NavigationManager.NotFound();
-```
-
-When a movie isn't found, this line change results in rendering the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
+When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
 
 :::moniker-end
 
@@ -509,20 +523,41 @@ The `AddMovie` method:
 * <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A> is called on the database context to save the movie.
 * <xref:Microsoft.AspNetCore.Components.NavigationManager> is used to return the user to the movies `Index` page.
 
-```csharp
-@code {
-    [SupplyParameterFromForm]
-    private Movie Movie { get; set; } = new();
+:::moniker range=">= aspnetcore-10.0"
 
-    private async Task AddMovie()
-    {
-        using var context = DbFactory.CreateDbContext();
-        context.Movie.Add(Movie);
-        await context.SaveChangesAsync();
-        NavigationManager.NavigateTo("/movies");
-    }
+```csharp
+[SupplyParameterFromForm]
+private Movie Movie { get; set; } = default!;
+
+protected override void OnInitialized() => Movie ??= new();
+
+private async Task AddMovie()
+{
+    using var context = DbFactory.CreateDbContext();
+    context.Movie.Add(Movie);
+    await context.SaveChangesAsync();
+    NavigationManager.NavigateTo("/movies");
 }
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+```csharp
+[SupplyParameterFromForm]
+private Movie Movie { get; set; } = new();
+
+private async Task AddMovie()
+{
+    using var context = DbFactory.CreateDbContext();
+    context.Movie.Add(Movie);
+    await context.SaveChangesAsync();
+    NavigationManager.NavigateTo("/movies");
+}
+```
+
+:::moniker-end
 
 > [!WARNING]
 > Although it isn't a concern for the app in this tutorial, binding form data to entity data models can be susceptible to overposting attacks. Additional information on this subject appears later in this article.
@@ -558,21 +593,9 @@ private async Task DeleteMovie()
 }
 ```
 
-<!-- UPDATE 10.0 - Update for scaffolder changes when they
-                   appear: https://github.com/dotnet/Scaffolding/issues/3177 -->
-
 :::moniker range=">= aspnetcore-10.0"
 
-The .NET scaffolder currently doesn't implement .NET 10's Not Found feature, but it can be implemented manually.
-
-Update the line that navigates to a non-existent `notfound` endpoint. Change the line to call <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType>:
-
-```diff
-- NavigationManager.NavigateTo("notfound");
-+ NavigationManager.NotFound();
-```
-
-When a movie isn't found, this line change results in rendering the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
+When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
 
 :::moniker-end
 
@@ -596,6 +619,44 @@ The movie entity's identifier `Id` is stored in a hidden field of the form:
 ```
 
 Examine the C# code of the `@code` block:
+
+:::moniker range=">= aspnetcore-10.0"
+
+```csharp
+private async Task UpdateMovie()
+{
+    using var context = DbFactory.CreateDbContext();
+    context.Attach(Movie!).State = EntityState.Modified;
+
+    try
+    {
+        await context.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+        if (!MovieExists(Movie!.Id))
+        {
+            NavigationManager.NotFound();
+        }
+        else
+        {
+            throw;
+        }
+    }
+
+    NavigationManager.NavigateTo("/movies");
+}
+
+private bool MovieExists(int id)
+{
+    using var context = DbFactory.CreateDbContext();
+    return context.Movie.Any(e => e.Id == id);
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
 
 ```csharp
 private async Task UpdateMovie()
@@ -629,23 +690,13 @@ private bool MovieExists(int id)
 }
 ```
 
-The movie entity's <xref:Microsoft.EntityFrameworkCore.EntityState> is set to <xref:Microsoft.EntityFrameworkCore.EntityState.Modified>, which signifies that the entity is tracked by the context, exists in the database, and that some or all of its property values are modified.
+:::moniker-end
 
-<!-- UPDATE 10.0 - Update for scaffolder changes when they
-                   appear: https://github.com/dotnet/Scaffolding/issues/3177 -->
+The movie entity's <xref:Microsoft.EntityFrameworkCore.EntityState> is set to <xref:Microsoft.EntityFrameworkCore.EntityState.Modified>, which signifies that the entity is tracked by the context, exists in the database, and that some or all of its property values are modified.
 
 :::moniker range=">= aspnetcore-10.0"
 
-The .NET scaffolder currently doesn't implement .NET 10's Not Found feature, but it can be implemented manually.
-
-Update the line that navigates to a non-existent `notfound` endpoint. Change the line to call <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType>:
-
-```diff
-- NavigationManager.NavigateTo("notfound");
-+ NavigationManager.NotFound();
-```
-
-When a movie isn't found, this line change results in rendering the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
+When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
 
 If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the Not Found page, which results in returning a 404 (Not Found) status code. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement). Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
 
