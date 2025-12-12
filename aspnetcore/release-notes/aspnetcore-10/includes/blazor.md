@@ -84,7 +84,7 @@ public class CustomNavLink : NavLink
 }
 ```
 
-For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#navlink-component>.
+For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#navlink-component>.
 
 ### Close `QuickGrid` column options
 
@@ -416,7 +416,7 @@ The [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Ro
 
 The Blazor project template now includes a `NotFound.razor` page by default. This page automatically renders whenever `NavigationManager.NotFound` is called in your app, making it easier to handle missing routes with a consistent user experience.
 
-For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
+For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#not-found-responses>.
 
 ### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
 
@@ -441,7 +441,7 @@ Streaming rendering can only render components that have a route, such as a [`No
 
 You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
 
-For more information and examples, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
+For more information and examples, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#not-found-responses>.
 
 ### Support for Not Found responses in apps without Blazor's router
 
@@ -749,7 +749,7 @@ In the following example, a hidden input field is created for the form's `Parame
 
 ### Persistent component state support for enhanced navigation
 
-Blazor now supports handling persistent component state during [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
+Blazor now supports handling persistent component state during [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
 
 By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events to the same page occur after the component is loaded.
 

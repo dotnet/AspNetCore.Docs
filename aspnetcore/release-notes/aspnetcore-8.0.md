@@ -98,10 +98,10 @@ Static server-side rendering (static SSR) typically performs a full page refresh
 
 New enhanced navigation API allows you to refresh the current page by calling `NavigationManager.Refresh(bool forceLoad = false)`.
 
-For more information, see the following sections of the Blazor *Routing* article:
+For more information, see the following guidance:
 
 * [Enhanced navigation and form handling](xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling)
-* [Location changes](xref:blazor/fundamentals/routing#location-changes?view=aspnetcore-8.0&preserve-view=true#location-changes)
+* [Location changes](xref:blazor/fundamentals/navigation?view=aspnetcore-8.0&preserve-view=true#location-changes)
 
 ### New article on static rendering with enhanced navigation for JS interop
 
@@ -175,7 +175,7 @@ For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-8.0&
 
 Blazor now supports using client-side routing to navigate to a specific HTML element on a page using standard URL fragments. If you specify an identifier for an HTML element using the standard `id` attribute, Blazor correctly scrolls to that element when the URL fragment matches the element identifier.
 
-For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements>.
+For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements>.
 
 ### Root-level cascading values
 

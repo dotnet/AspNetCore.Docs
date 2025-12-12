@@ -141,9 +141,9 @@ Blazor WebAssembly provides methods to add and retrieve additional parameters fo
 
 To pass additional parameters, <xref:Microsoft.AspNetCore.Components.NavigationManager> supports passing and retrieving history entry state when performing external location changes. For more information, see the following resources:
 
-* Blazor *Fundamentals* > *Routing and navigation* article
-  * [Navigation history state](xref:blazor/fundamentals/routing#navigation-history-state)
-  * [Navigation options](xref:blazor/fundamentals/routing#navigation-options)
+* Blazor *Fundamentals* > *Navigation* article
+  * [Navigation history state](xref:blazor/fundamentals/navigation#navigation-history-state)
+  * [Navigation options](xref:blazor/fundamentals/navigation#navigation-options)
 * MDN documentation: [History API](https://developer.mozilla.org/docs/Web/API/History_API)
 
 The state stored by the History API provides the following benefits for remote authentication:
