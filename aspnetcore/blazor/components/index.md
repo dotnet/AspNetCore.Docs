@@ -1672,7 +1672,7 @@ Rendered output of the preceding code:
 <p>Pet: Nutty Rex</p>
 ```
 
-To return multiple elements from a Razor delegate, use a `<text>` tag for an [explicit delimited transition](xref:mvc/views/razor#explicit-delimited-transition). In the following example, the <xref:Microsoft.AspNetCore.Components.RenderFragment> produced by the `RenderTwoElements` method includes HTML and the rendered content of `ChildContent`:
+To return multiple elements from a Razor delegate, use a `<text>` tag for an [explicit delimited transition](xref:mvc/views/razor#explicit-delimited-transition). In the following example, the <xref:Microsoft.AspNetCore.Components.RenderFragment> produced by the `RenderTwoElements` method includes HTML and the rendered content of `ChildFragment`:
 
 ```razor
 @RenderTwoElements()
