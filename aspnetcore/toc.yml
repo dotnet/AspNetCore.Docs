@@ -2177,6 +2177,8 @@ items:
               uid: migration/fx-to-core/areas/http-modules
             - name: HTTP Handlers
               uid: migration/fx-to-core/areas/http-handlers
+            - name: Machine Key
+              uid: migration/fx-to-core/areas/machine-key
             - name: Session
               uid: migration/fx-to-core/areas/session
             - name: Authentication

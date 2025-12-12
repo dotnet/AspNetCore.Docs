@@ -1,0 +1,102 @@
+---
+title: ASP.NET machineKey to ASP.NET Core migration
+ai-usage: ai-assisted
+author: twsouthwick
+description: Migrate ASP.NET machineKey-based cryptography to ASP.NET Core data protection in incremental and full migrations.
+monikerRange: '>= aspnetcore-6.0'
+ms.author: tasou
+ms.date: 12/10/2025
+ms.topic: article
+uid: migration/fx-to-core/areas/machine-key
+---
+
+# Migrate ASP.NET machineKey by using System.Web adapters
+
+[!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
+
+In the ASP.NET Framework app, configure `<machineKey>` and the System.Web adapters host so that both apps can share a compatible data protection configuration. For full background on replacing `<machineKey>`, see <xref:security/data-protection/compatibility/replacing-machinekey>.
+
+This guidance builds on the `System.Web` adapters hosting model so that data protection services are registered in the host dependency injection (DI) container and made available throughout the ASP.NET Framework app. By integrating with the host DI provided by the adapters, existing ASP.NET Framework components can resolve `IDataProtectionProvider`, `IDataProtector`, and related types.
+
+Both the ASP.NET Framework app and the ASP.NET Core app must use a shared application name and key repository for data protection so that protected payloads can round-trip between apps.
+
+* Call `SetApplicationName` with the same logical application name in both apps (for example, `"my-app"`).
+* Configure `PersistKeysToFileSystem` to point to the same key repository location that both apps can read and write.
+
+> [!NOTE]
+> The directory used with `PersistKeysToFileSystem` is the backing store for the shared data protection keys. In production, use a durable, shared store (such as a UNC share, Redis, or Azure Blob Storage) and follow the key management guidance in <xref:security/data-protection/configuration/overview> and <xref:security/data-protection/introduction>.
+
+## Configure the ASP.NET Framework app
+
+To implement this configuration in the ASP.NET Framework app, ensure the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package is installed in the ASP.NET Framework app.
+
+When you install the `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices` package in the ASP.NET Framework app, it normally configures `<machineKey>` automatically. If `<machineKey>` isn't present or you need to verify the settings, configure `` in *Web.config* to use the compatibility data protector as shown:
+
+```xml
+<configuration>
+  <system.web>
+    <httpRuntime targetFramework="4.8.1" />
+    <machineKey
+      compatibilityMode="Framework45"
+      dataProtectorType="Microsoft.AspNetCore.DataProtection.SystemWeb.CompatibilityDataProtector,
+      Microsoft.AspNetCore.DataProtection.SystemWeb" />
+  </system.web>
+</configuration>
+```
+
+Next, in `Global.asax.cs`, register the System.Web adapters host and configure data protection using the same application name and key repository that the ASP.NET Core app will use. The following example is adapted from the MachineKey Framework sample:
+
+```csharp
+using System.IO;
+using System.Web;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.SystemWebAdapters.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace DataProtectionDemo
+{
+    public class MvcApplication : HttpApplication
+    {
+        protected void Application_Start()
+        {
+            HttpApplicationHost.RegisterHost(builder =>
+            {
+                builder.AddServiceDefaults();
+
+                builder.AddDataProtection()
+                    .SetApplicationName("my-app")
+                    .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\myapp-keys\"));
+            });
+        }
+    }
+}
+```
+
+This configuration:
+
+* Sets a shared application name (`my-app`) that the ASP.NET Core app must also use.
+* Configures a shared key repository (for example, a UNC share) that both apps can access.
+* Ensures `<machineKey>` operations (forms auth, view state, `MachineKey.Protect`, and related APIs) are routed through ASP.NET Core data protection.
+* Runs as part of the ASP.NET Framework host so that existing `<machineKey>`-based features use the same data protection system as ASP.NET Core.
+
+## Configure the ASP.NET Core app
+
+No additional configuration is required for data protection in the ASP.NET Core app. Just configure the same application name and key storage location that the ASP.NET Framework app uses.
+
+```csharp
+using Microsoft.AspNetCore.DataProtection;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDataProtection()
+    .SetApplicationName(MachineKeyExampleHandler.AppName)
+    .PersistKeysToFileSystem(
+        new DirectoryInfo(Path.Combine(Path.GetTempPath(), "sharedkeys", MachineKeyExampleHandler.AppName)));
+
+var app = builder.Build();
+
+// Configure application
+
+app.Run();
+```
