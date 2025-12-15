@@ -63,20 +63,11 @@ The `Components` folder of the server project holds the app's server-side Razor 
 
 The `Components/Pages` folder of the server project contains the app's routable server-side Razor components. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
 
-<!-- UPDATE 10.0 - HOLD until after 
-                   https://github.com/dotnet/AspNetCore.Docs/pull/36145
-                   is merged.
-
-                   Add the angle brackets around the cross-link when
-                   activating.
-
 moniker range=">= aspnetcore-10.0"
 
-The `NotFound` component (`NotFound.razor`) implements a Not Found page to display when content isn't found for a request path. For more information, see xref:blazor/fundamentals/navigation#not-found-responses.
+The `NotFound` component (`NotFound.razor`) implements a Not Found page to display when content isn't found for a request path. For more information, see <xref:blazor/fundamentals/navigation#not-found-responses>.
 
 moniker-end
-
--->
 
 The `App` component (`App.razor`) is the root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor `<script>` tag. The root component is the first component that the app loads.
 
@@ -325,13 +316,6 @@ Project structure:
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
 
-<!-- UPDATE 10.0 - HOLD until after 
-                   https://github.com/dotnet/AspNetCore.Docs/pull/36145
-                   is merged.
-
-                   Add the angle brackets around the cross-link when
-                   activating.
-
 moniker-end
 
 moniker range=">= aspnetcore-10.0"
@@ -340,28 +324,20 @@ moniker range=">= aspnetcore-10.0"
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `Index` component (`Index.razor`): Implements the Home page.
   * `Weather` component (`Weather.razor`): Implements the Weather page.
-  * `NotFound` component (`NotFound.razor`) Implements a Not Found page to display when content isn't found for a request path. For more information, see xref:blazor/fundamentals/navigation#not-found-responses.
+  * `NotFound` component (`NotFound.razor`) Implements a Not Found page to display when content isn't found for a request path. For more information, see <xref:blazor/fundamentals/navigation#not-found-responses>.
 
 moniker-end
 
 moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
-
--->
 
 * `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `Index` component (`Index.razor`): Implements the Home page.
   * `Weather` component (`Weather.razor`): Implements the Weather page.
 
-<!-- UPDATE 10.0 - HOLD until after 
-                   https://github.com/dotnet/AspNetCore.Docs/pull/36145
-                   is merged.
-
 moniker-end
 
 moniker range=">= aspnetcore-8.0"
-
--->
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
