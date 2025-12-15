@@ -336,7 +336,7 @@ The `AssetUrl` metadata specifies the base-relative URL that the browser should 
 
 ## Push notifications
 
-Like any other PWA, a Blazor WebAssembly PWA can receive push notifications from a backend server independent of Blazor WebAssembly. The server can send push notifications at any time, even when the user isn't actively using the app. For more information, see <xref:blazor/progressive-web-app/push-notifications>.
+Like any other PWA, a Blazor WebAssembly PWA can receive push notifications from a backend server. The mechanism is independent of Blazor WebAssembly, and the server can send push notifications at any time, even when the user isn't actively using the app. For more information, see <xref:blazor/progressive-web-app/push-notifications>.
 
 ## Caveats for offline PWAs
 

@@ -324,7 +324,7 @@ moniker range=">= aspnetcore-10.0"
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `Index` component (`Index.razor`): Implements the Home page.
   * `Weather` component (`Weather.razor`): Implements the Weather page.
-  * `NotFound` component (`NotFound.razor`) Implements a Not Found page to display when content isn't found for a request path. For more information, see <xref:blazor/fundamentals/navigation#not-found-responses>.
+  * `NotFound` component (`NotFound.razor`): Implements a Not Found page to display when content isn't found for a request path. For more information, see <xref:blazor/fundamentals/navigation#not-found-responses>.
 
 moniker-end
 
