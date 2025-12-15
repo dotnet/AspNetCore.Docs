@@ -336,17 +336,7 @@ The `AssetUrl` metadata specifies the base-relative URL that the browser should 
 
 ## Push notifications
 
-Like any other PWA, a Blazor WebAssembly PWA can receive push notifications from a backend server. The server can send push notifications at any time, even when the user isn't actively using the app. For example, push notifications can be sent when a different user performs a relevant action.
-
-<!-- UPDATE 10.0 - REMOVING FOR NOW. The content at the destination was pulled
-                   on https://github.com/dotnet-presentations/blazor-workshop/pull/368.
-                   I'll converse with DR about what else we can point to for this.
-                   
-The mechanism for sending a push notification is entirely independent of Blazor WebAssembly, since it's implemented by the backend server which can use any technology. If you want to send push notifications from an ASP.NET Core server, consider [using a technique similar to the approach taken in the Blazing Pizza workshop](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#sending-push-notifications).
-
-The mechanism for receiving and displaying a push notification on the client is also independent of Blazor WebAssembly, since it's implemented in the service worker JavaScript file. For an example, see [the approach used in the Blazing Pizza workshop](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#displaying-notifications).
-
--->
+Like any other PWA, a Blazor WebAssembly PWA can receive push notifications from a backend server. The mechanism is independent of Blazor WebAssembly, and the server can send push notifications at any time, even when the user isn't actively using the app. For more information, see <xref:blazor/progressive-web-app/push-notifications>.
 
 ## Caveats for offline PWAs
 

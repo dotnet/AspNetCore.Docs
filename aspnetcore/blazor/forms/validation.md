@@ -1576,7 +1576,7 @@ The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work w
 
 Blazor form validation includes support for validating properties of nested objects and collection items with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.
 
-To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, just as before.
+To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
 
 To opt into the nested objects and collection types validation feature:
 
@@ -1584,11 +1584,7 @@ To opt into the nested objects and collection types validation feature:
 2. Declare the form model types in a C# class file, not in a Razor component (`.razor`).
 3. Annotate the root form model type with the [`[ValidatableType]` attribute](xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute).
 
-Without following the preceding steps, form validation behavior doesn't include nested model and collection type validation.
-
-<!-- UPDATE 10.0 - Replace with a fully working, cut-'n-paste example -->
-
-The following example demonstrates customer orders with the improved form validation (details omitted for brevity):
+The following example demonstrates customer orders with nested collection form validation.
 
 In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on the service collection:
 
@@ -1596,7 +1592,7 @@ In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.ValidationS
 builder.Services.AddValidation();
 ```
 
-In the following `Order` class, the `[ValidatableType]` attribute is required on the top-level model type. The other types are discovered automatically. `OrderItem` and `ShippingAddress` aren't shown for brevity, but nested and collection validation works the same way in those types if they were shown.
+In the following `Order` class, the `[ValidatableType]` attribute is required on the top-level model type. The other types are discovered automatically.
 
 `Order.cs`:
 
@@ -1619,6 +1615,41 @@ public class Customer
     public string? Email { get; set; }
 
     public ShippingAddress ShippingAddress { get; set; } = new();
+}
+```
+
+`OrderItem.cs`:
+
+```csharp
+public class OrderItem
+{
+    [Required(ErrorMessage = "Id is required.")]
+    public int Id { get; set; }
+
+    [Required(ErrorMessage = "Description is required.")]
+    public string? Description { get; set; }
+
+    [Required(ErrorMessage = "Price is required.")]
+    public decimal Price { get; set; }
+}
+```
+
+`ShippingAddress.cs`:
+
+```csharp
+public class ShippingAddress
+{
+    [Required(ErrorMessage = "Street is required.")]
+    public string? Street { get; set; }
+
+    [Required(ErrorMessage = "City is required.")]
+    public string? City { get; set; }
+
+    [Required(ErrorMessage = "State/Province is required.")]
+    public string? StateProvince { get; set; }
+
+    [Required(ErrorMessage = "PostalCode is required.")]
+    public string? PostalCode { get; set; }
 }
 ```
 
@@ -1649,7 +1680,7 @@ In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Component
 }
 ```
 
-The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the new validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
+The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the nested collection validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
 
 For guidance on using validation models from a different assembly, see the [Use validation models from a different assembly](#use-validation-models-from-a-different-assembly) section.
 
