@@ -50,7 +50,7 @@ Receive the email provider's security key from the provider and use it in the fo
 Use either or both of the following approaches to supply the secret to the app:
 
 * [Secret Manager tool](#secret-manager-tool): The Secret Manager tool stores private data on the local machine and is only used during local development.
-* [Azure Key Vault](#azure-key-vault): You can store the secret in a key vault for use in any environment, including for the Development environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
+* [Azure Key Vault](#azure-key-vault): You can store the secret in a key vault for use in any environment, including for the `Development` environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
 
 We strongly recommend that you avoid storing secrets in project code or configuration files. Use secure authentication flows, such as either or both of the approaches in this section.
 
@@ -150,7 +150,7 @@ builder.Configuration.GetSection(authMessageSenderOptions.EmailAuthKey)
 ```
 
 > [!NOTE]
-> In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+> In non-`Production` environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 >
 > The preceding example implies that the Managed Identity Client ID (`{MANAGED IDENTITY CLIENT ID}`), directory (tenant) ID (`{TENANT ID}`), and key vault URI (`{VAULT URI}`, example: `https://contoso.vault.azure.net/`, trailing slash required) are supplied by hard-coded values. Any or all of these values can be supplied from app settings configuration. For example, the following obtains the vault URI from the `AzureAd` node of an app settings file, and `vaultUri` can be used in the call to `GetKeyVaultSecret` in the preceding example:
 >

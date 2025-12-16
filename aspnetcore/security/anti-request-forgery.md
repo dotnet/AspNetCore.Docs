@@ -178,7 +178,7 @@ Set the antiforgery cookie properties using the properties of the <xref:Microsof
 
 Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy%2A> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
 
-Optionally, you can secure the antiforgery cookie in non-Development environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Program` file:
+Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Program` file:
 
 ```csharp
 if (!builder.Environment.IsDevelopment())
@@ -331,8 +331,8 @@ A POST to:
 
 When a form is submitted without a valid antiforgery token:
 
-* In the development environment, an exception is thrown.
-* In the production environment, a message is logged.
+* In the `Development` environment, an exception is thrown.
+* In the `Production` environment, a message is logged.
 
 ## Windows authentication and antiforgery cookies
 
@@ -515,7 +515,7 @@ Set the antiforgery cookie properties using the properties of the <xref:Microsof
 
 Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy%2A> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
 
-Optionally, you can secure the antiforgery cookie in non-Development environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Program` file:
+Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Program` file:
 
 ```csharp
 if (!builder.Environment.IsDevelopment())
@@ -801,7 +801,7 @@ Set the antiforgery cookie properties using the properties of the <xref:Microsof
 
 Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy%2A> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
 
-Optionally, you can secure the antiforgery cookie in non-Development environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Program` file:
+Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Program` file:
 
 ```csharp
 if (!builder.Environment.IsDevelopment())
@@ -1088,7 +1088,7 @@ Set the antiforgery cookie properties using the properties of the <xref:Microsof
 
 Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy%2A> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
 
-Optionally, you can secure the antiforgery cookie in non-Development environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Startup` class:
+Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A?displayProperty=nameWithType> property setting in the app's `Startup` class:
 
 ```csharp
 public class Startup

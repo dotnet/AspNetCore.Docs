@@ -130,7 +130,7 @@ The project includes packages and configuration to produce [OpenAPI documents](x
 
 :::moniker range="< aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the Development environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the `Development` environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
 
 :::moniker-end
 
@@ -477,7 +477,7 @@ The project includes packages and configuration to produce [OpenAPI documents](x
 
 :::moniker range="< aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the Development environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the `Development` environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
 
 :::moniker-end
 
@@ -878,7 +878,7 @@ The project includes packages and configuration to produce [OpenAPI documents](x
 
 :::moniker range="< aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the Development environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the `Development` environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
 
 :::moniker-end
 
@@ -1490,8 +1490,9 @@ For more information, see the [Duende Access Token Management documentation for 
 
 ## Additional resources
 
-<!-- UPDATE 10.0 The PU has scheduled dotnet/aspnetcore #55213
-                 for investigation/resolution at .NET 10 -->
+<!-- UPDATE 11.0 The PU has scheduled dotnet/aspnetcore #55213
+                 for investigation/resolution. It might be
+                 addressed for .NET 11. -->
 
 * [`AzureAD/microsoft-identity-web` GitHub repository](https://github.com/AzureAD/microsoft-identity-web/wiki): Helpful guidance on implementing Microsoft Identity Web for Microsoft Entra ID and Azure Active Directory B2C for ASP.NET Core apps, including links to sample apps and related Azure documentation. Currently, Blazor Web Apps aren't explicitly addressed by the Azure documentation, but the setup and configuration of a Blazor Web App for ME-ID and Azure hosting is the same as it is for any ASP.NET Core web app.
 * [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)

@@ -57,7 +57,12 @@ Example:
 
 In the app's `Program` file, call:
 
-<!-- UPDATE 10.0 - Missing API doc for 'Microsoft.Identity.Web.DownstreamApiExtensions.AddDownstreamApi' -->
+<!-- UPDATE 11.0 - Awaiting API per https://github.com/dotnet/AspNetCore.Docs/issues/36373.
+                   Marking this for 11.0 because it's the last 10.0 item and inline tracking
+                   now adopts 11.0 or later work items. This ensures that this inline item
+                   isn't missed.
+                   
+                   Missing API doc for 'Microsoft.Identity.Web.DownstreamApiExtensions.AddDownstreamApi' -->
 
 * <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilder.EnableTokenAcquisitionToCallDownstreamApi%2A>: Enables token acquisition to call web APIs.
 * `AddDownstreamApi`: Microsoft Identity Web packages provide API to create a named downstream web service for making web API calls. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into a server-side class, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> to obtain weather data from an external web API (`MinimalApiJwt` project).
@@ -194,7 +199,7 @@ builder.Services.AddDataProtection()
 `{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The key identifier is obtained from the key in the Entra or Azure portal after it's created. If you enable autorotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
 
 > [!NOTE]
-> In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as the <xref:Azure.Identity.ManagedIdentityCredential> shown in the preceding example. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+> In non-`Production` environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as the <xref:Azure.Identity.ManagedIdentityCredential> shown in the preceding example. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 Inject <xref:Microsoft.Identity.Abstractions.IDownstreamApi> and call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> when calling on behalf of a user:
 

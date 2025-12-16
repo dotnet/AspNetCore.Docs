@@ -477,7 +477,7 @@ With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > *
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
-<!-- UPDATE 10.0 Keep an eye on https://github.com/dotnet/Scaffolding/issues/3131
+<!-- UPDATE 11.0 Keep an eye on https://github.com/dotnet/Scaffolding/issues/3131
                  for a scaffolding update that makes the scaffolder a little 
                  smarter about suggesting an existing dB context that has a
                  factory provider. If the scaffolder can do that, this instruction

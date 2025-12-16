@@ -20,10 +20,10 @@ The Blazor WebAssembly security documentation primarily focuses on how to accomp
 
 A Blazor WebAssembly app's .NET/C# codebase is served to clients, and the app's code can't be protected from inspection and tampering by users. Never place sensitive data into a Blazor WebAssembly app, such as app secrets, connection strings, passwords, security keys, and private .NET/C# code.
 
-The following technologies are useful for storing sensitive data, which can be used together in the same app to split responsibilities for storing data between Development and Staging/Production environments:
+The following technologies are useful for storing sensitive data, which can be used together in the same app to split responsibilities for storing data among `Development`, `Staging`, and `Production` environments:
 
 * [Secret Manager tool](xref:security/app-secrets): Only used on the local development system.
-* [Azure Key Vault](https://azure.microsoft.com/products/key-vault/): Can be used for locally-running apps in the Development environment and for Staging/Production deployments.
+* [Azure Key Vault](https://azure.microsoft.com/products/key-vault/): Can be used for locally-running apps in the `Development` environment and for `Staging`/`Production` deployments.
 
 For examples of the preceding approaches, see <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery#configure-a-secret-for-the-email-providers-security-key>.
 

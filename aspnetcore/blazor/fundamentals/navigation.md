@@ -50,14 +50,12 @@ In the preceding example, the Home <xref:Microsoft.AspNetCore.Components.Routing
 
 :::moniker range=">= aspnetcore-10.0"
 
-There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the `Match` attribute of the `<NavLink>` element:
+There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match%2A> attribute of the `<NavLink>` element:
 
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType>: The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches the current URL, ignoring the query string and fragment. To include matching on the query string/fragment, use the `Microsoft.AspNetCore.Components.Routing.NavLink.EnableMatchAllForQueryStringAndFragment` [`AppContext` switch](/dotnet/fundamentals/runtime-libraries/system-appcontext) set to `true`.
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix?displayProperty=nameWithType> (*default*): The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches any prefix of the current URL.
 
-<!-- UPDATE 10.0 - API cross-link -->
-
-To adopt custom matching logic, subclass <xref:Microsoft.AspNetCore.Components.Routing.NavLink> and override its `ShouldMatch` method. Return `true` from the method when you want to apply the `active` CSS class:
+To adopt custom matching logic, subclass <xref:Microsoft.AspNetCore.Components.Routing.NavLink> and override its <xref:Microsoft.AspNetCore.Components.Routing.NavLink.ShouldMatch%2A> method. Return `true` from the method when you want to apply the `active` CSS class:
 
 ```csharp
 public class CustomNavLink : NavLink
@@ -73,7 +71,7 @@ public class CustomNavLink : NavLink
 
 :::moniker range="< aspnetcore-10.0"
 
-There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the `Match` attribute of the `<NavLink>` element:
+There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match%2A> attribute of the `<NavLink>` element:
 
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType>: The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches the entire current URL, including the query string and fragment.
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix?displayProperty=nameWithType> (*default*): The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches any prefix of the current URL.
@@ -128,15 +126,13 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - API doc cross-links -->
-
 Member | Description
 --- | ---
 <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)).
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `false`:<ul><li>And enhanced navigation is available at the current URL, Blazor's enhanced navigation is activated.</li><li>Otherwise, Blazor performs a full-page reload for the requested URL.</li></ul>If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side interactive router.</li></ul><p>For more information, see the [Enhanced navigation and form handling](#enhanced-navigation-and-form-handling) section.</p><p>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack.</p>
 <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section.
-`NotFound` | Called to handle scenarios where a requested resource isn't found. For more information, see the [Not Found responses](#not-found-responses) section.
+<xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> | Called to handle scenarios where a requested resource isn't found. For more information, see the [Not Found responses](#not-found-responses) section.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to the base URI prefix](#produce-a-uri-relative-to-the-base-uri-prefix) section.
 [`RegisterLocationChangingHandler`](#handleprevent-location-changes) | Registers a handler to process incoming navigation events. Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes the handler.
@@ -275,34 +271,32 @@ You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set t
 
 ## Not Found responses
 
-<!-- UPDATE 10.0 - API doc cross-links -->
+<xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> handles scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
 
-<xref:Microsoft.AspNetCore.Components.NavigationManager> provides a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
-
-* **Static SSR**: Calling `NavigationManager.NotFound` sets the HTTP status code to 404.
+* **Static SSR**: Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> sets the HTTP status code to 404.
 
 * **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
 
 * **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
 > [!NOTE]
-> The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's `NotFoundPage` parameter. The parameter works in concert with `NavigationManager.NotFound` and is described in more detail later in this section.
+> The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A> parameter. The parameter works in concert with <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> and is described in more detail later in this section.
 
-Streaming rendering can only render components that have a route, such as a `NotFoundPage` assignment (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> assignment (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
 > [!NOTE]
 > The Not Found render fragment (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
 
-`NavigationManager.NotFound` content rendering uses the following, regardless if the response has started or not (in order):
+<xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> content rendering uses the following, regardless if the response has started or not (in order):
 
 * If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> is set, render the contents of the assigned page.
-* If `Router.NotFoundPage` is set, render the assigned page.
+* If <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> is set, render the assigned page.
 * A Status Code Pages Re-execution Middleware page, if configured.
 * No action if none of the preceding approaches are adopted.
 
 [Status Code Pages Re-execution Middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
-When a component is rendered statically (static SSR) and `NavigationManager.NotFound` is called, the 404 status code is set on the response:
+When a component is rendered statically (static SSR) and <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, the 404 status code is set on the response:
 
 ```razor
 @page "/render-not-found-ssr"
@@ -319,7 +313,7 @@ When a component is rendered statically (static SSR) and `NavigationManager.NotF
 To provide Not Found content for global interactive rendering, use a Not Found page (Razor component).
 
 > [!NOTE]
-> The Blazor project template includes a `NotFound.razor` page. This page automatically renders whenever `NavigationManager.NotFound` is called, making it possible to handle missing routes with a consistent user experience.
+> The Blazor project template includes a `NotFound.razor` page. This page automatically renders whenever <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, making it possible to handle missing routes with a consistent user experience.
 
 `Pages/NotFound.razor`:
 
@@ -331,9 +325,9 @@ To provide Not Found content for global interactive rendering, use a Not Found p
 <p>Sorry, the content you are looking for does not exist.</p>
 ```
 
-The `NotFound` component is assigned to the router's `NotFoundPage` parameter. `NotFoundPage` supports routing that can be used across Status Code Pages Re-execution Middleware, including non-Blazor middleware.
+The `NotFound` component is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType>, which supports routing that can be used across Status Code Pages Re-execution Middleware, including non-Blazor middleware.
 
-In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the `NotFoundPage` parameter:
+In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A> parameter:
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -344,7 +338,7 @@ In the following example, the preceding `NotFound` component is present in the a
 </Router>
 ```
 
-When a component is rendered with a global interactive render mode, calling `NavigationManager.NotFound` signals the Blazor router to render the `NotFound` component:
+When a component is rendered with a global interactive render mode, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> signals the Blazor router to render the `NotFound` component:
 
 ```razor
 @page "/render-not-found-interactive"
@@ -363,9 +357,9 @@ When a component is rendered with a global interactive render mode, calling `Nav
 }
 ```
 
-You can use the `OnNotFound` event for notifications when `NavigationManager.NotFound` is invoked. The event is only fired when `NavigationManager.NotFound` is called, not for any 404 response. For example, setting `HttpContextAccessor.HttpContext.Response.StatusCode` to `404` doesn't trigger `NavigationManager.NotFound`/`OnNotFound`.
+Use the <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A?displayProperty=nameWithType> event for notifications when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is invoked. The event is only fired when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, not for any 404 response. For example, setting `HttpContextAccessor.HttpContext.Response.StatusCode` to `404` doesn't trigger <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>/<xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A>.
 
-Apps that implement a custom router can also use `NavigationManager.NotFound`. The custom router can render Not Found content from two sources, depending on the state of the response:
+Apps that implement a custom router can also use <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. The custom router can render Not Found content from two sources, depending on the state of the response:
 
 * Regardless of the response state, the re-execution path to the page can used by passing it to <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>:
 
@@ -409,7 +403,7 @@ Apps that implement a custom router can also use `NavigationManager.NotFound`. T
   }
   ```
 
-In the following example for components that adopt [interactive server-side rendering (interactive SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), custom content is rendered depending on where `OnNotFound` is called. If the event is triggered by the following `Movie` component when a movie isn't found on component initialization, a custom message states that the requested movie isn't found. If the event is triggered by the `User` component in the following example, a different message states that the user isn't found.
+In the following example for components that adopt [interactive server-side rendering (interactive SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), custom content is rendered depending on where <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A> is called. If the event is triggered by the following `Movie` component when a movie isn't found on component initialization, a custom message states that the requested movie isn't found. If the event is triggered by the `User` component in the following example, a different message states that the user isn't found.
 
 The following `NotFoundContext` service manages the context and the message for when content isn't found by components.
 
@@ -450,7 +444,7 @@ The `NotFound` page injects the `NotFoundContext` and displays the heading and m
 </div>
 ```
 
-The `Routes` component (`Routes.razor`) sets the `NotFound` component as the Not Found page via the `NotFoundPage` parameter:
+The `Routes` component (`Routes.razor`) sets the `NotFound` component as the Not Found page via the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A> parameter:
 
 ```razor
 <Router AppAssembly="typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -461,9 +455,9 @@ The `Routes` component (`Routes.razor`) sets the `NotFound` component as the Not
 In the following example components:
 
 * The `NotFoundContext` service is injected, along with the <xref:Microsoft.AspNetCore.Components.NavigationManager>.
-* In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, `HandleNotFound` is an event handler assigned to the `OnNotFound` event. `HandleNotFound` calls `NotFoundContext.UpdateContext` to set a heading and message for Not Found content in the `NotFound` component.
+* In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, `HandleNotFound` is an event handler assigned to the <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A> event. `HandleNotFound` calls `NotFoundContext.UpdateContext` to set a heading and message for Not Found content in the `NotFound` component.
 * The components would normally use an ID from a route parameter to obtain a movie or user from a data store, such as a database. In the following examples, no entity is returned (`null`) to simulate what happens when an entity isn't found.
-* When no entity is returned to <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, `NavigationManager.NotFound` is called, which in turn triggers the `OnNotFound` event and the `HandleNotFound` event handler. Not Found content is displayed by the router.
+* When no entity is returned to <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, which in turn triggers the <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A> event and the `HandleNotFound` event handler. Not Found content is displayed by the router.
 * The `HandleNotFound` method is unhooked on component disposal in <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
 
 `Movie` component (`Movie.razor`):

@@ -392,9 +392,7 @@ To skip restoring state during reconnection, set `RestoreBehavior` to `SkipLastS
 public int CounterNotRestoredOnReconnect { get; set; }
 ```
 
-<!-- UPDATE 10.0 - MIA API -->
-
-Call `PersistentComponentState.RegisterOnRestoring` to register a callback for imperatively controlling how state is restored, similar to how <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> provides full control of how state is persisted.
+Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnRestoring%2A?displayProperty=nameWithType> to register a callback for imperatively controlling how state is restored, similar to how <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> provides full control of how state is persisted.
 
 :::moniker-end
 

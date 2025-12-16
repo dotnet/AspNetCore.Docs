@@ -174,11 +174,9 @@ When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigat
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - API Browser cross-links -->
+For requests where content isn't found, a Razor component can be assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType>. The parameter works in concert with [`NavigationManager.NotFound`](xref:blazor/fundamentals/navigation#not-found-responses), a method called in developer code that triggers a Not Found response.
 
-For requests where content isn't found, a Razor component can be assigned to the `Router` component's `NotFoundPage` parameter. The parameter works in concert with `NavigationManager.NotFound`, a method called in developer code that triggers a Not Found response. `NavigationManager.NotFound` is described in the next article, <xref:blazor/fundamentals/navigation#not-found-responses>.
-
-The Blazor project template includes a `NotFound.razor` page. This page automatically renders whenever `NavigationManager.NotFound` is called, making it possible to handle missing routes with a consistent user experience.
+The Blazor project template includes a `NotFound.razor` page. This page automatically renders whenever <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, making it possible to handle missing routes with a consistent user experience.
 
 `NotFound.razor`:
 
@@ -190,9 +188,9 @@ The Blazor project template includes a `NotFound.razor` page. This page automati
 <p>Sorry, the content you are looking for does not exist.</p>
 ```
 
-The `NotFound` component is assigned to the router's `NotFoundPage` parameter. `NotFoundPage` supports routing that can be used across Status Code Pages Re-execution Middleware, including non-Blazor middleware.
+The `NotFound` component is assigned to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter, which supports routing that can be used across Status Code Pages Re-execution Middleware, including non-Blazor middleware.
 
-In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the `NotFoundPage` parameter:
+In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter:
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">

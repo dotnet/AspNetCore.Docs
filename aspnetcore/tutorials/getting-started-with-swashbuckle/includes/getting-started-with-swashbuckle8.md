@@ -69,7 +69,7 @@ Enable the middleware for serving the generated JSON document and the Swagger UI
 
 :::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Program.cs" id="snippet_Middleware" highlight="3,4":::
 
-The preceding code adds the Swagger middleware only if the current environment is set to Development. The `UseSwaggerUI` method call enables an embedded version of the Swagger UI tool.
+The preceding code adds the Swagger middleware only if the current environment is set to `Development`. The `UseSwaggerUI` method call enables an embedded version of the Swagger UI tool.
 
 Launch the app and navigate to `https://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [OpenAPI specification (openapi.json)](xref:tutorials/web-api-help-pages-using-swagger#openapi-specification-openapijson).
 
