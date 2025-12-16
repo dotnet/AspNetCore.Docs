@@ -96,7 +96,7 @@ The following example shows how to register an `IExceptionHandler` implementatio
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/8.x/ErrorHandlingSample/Program.cs" id="snippet_RegisterIExceptionHandler" highlight="7":::
 
-When the preceding code runs in the `Development` environmentnt:
+When the preceding code runs in the `Development` environment:
 
 * The `CustomExceptionHandler` is called first to handle an exception.
 * After logging the exception, the `TryHandleAsync` method returns `false`, so the [developer exception page](#developer-exception-page) is shown.
