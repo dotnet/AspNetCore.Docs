@@ -350,7 +350,7 @@ For configuration guidance, see the following resources:
 
 ## Host configuration values
 
-[Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
+[Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the `Development` environment.
 
 ### Content root
 

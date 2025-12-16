@@ -2,7 +2,7 @@
 
 By [Nicolò Carandini](https://github.com/ncarandini) and [Tom Dykstra](https://github.com/tdykstra)
 
-Browser Link is a Visual Studio feature. It creates a communication channel between the development environment and one or more web browsers. Use Browser Link to:
+Browser Link is a Visual Studio feature. It creates a communication channel between the `Development` environment and one or more web browsers. Use Browser Link to:
 
 * Refresh your web app in several browsers at once.
 * Test across multiple browsers with specific settings such as screen sizes.
@@ -47,7 +47,7 @@ Call `UseBrowserLink` in the `Startup.Configure` method:
 app.UseBrowserLink();
 ```
 
-The `UseBrowserLink` call is typically placed inside an `if` block that only enables Browser Link in the Development environment. For example:
+The `UseBrowserLink` call is typically placed inside an `if` block that only enables Browser Link in the `Development` environment. For example:
 
 ```csharp
 if (env.IsDevelopment())

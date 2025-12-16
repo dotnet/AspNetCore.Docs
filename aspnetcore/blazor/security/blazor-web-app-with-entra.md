@@ -624,7 +624,7 @@ The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions
 Use either or both of the following approaches to supply the client secret to the app:
 
 * **Secret Manager tool**: The Secret Manager tool stores private data on the local machine and is only used during local development.
-* **Azure Key Vault**: You can store the client secret in a key vault for use in any environment, including for the Development environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the Secret Manager tool for local development.
+* **Azure Key Vault**: You can store the client secret in a key vault for use in any environment, including for the `Development` environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the Secret Manager tool for local development.
 
 We strongly recommend that you avoid storing client secrets in project code or configuration files. Use secure authentication flows, such as either or both of the approaches in this section.
 
@@ -997,7 +997,7 @@ You can pass any app name to <xref:Microsoft.AspNetCore.DataProtection.DataProte
 `{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The version of the key is obtained from the key in the Entra or Azure portal after it's created. If you enable autorotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
 
 > [!NOTE]
-> In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+> In non-`Production` environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 Alternatively, you can configure the app to supply the values from app settings files using the JSON Configuration Provider. Add the following to the app settings file:
 

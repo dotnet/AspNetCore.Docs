@@ -57,7 +57,7 @@ Receive the email provider's security key from the provider and use it in the fo
 Use either or both of the following approaches to supply the secret to the app:
 
 * [Secret Manager tool](#secret-manager-tool): The Secret Manager tool stores private data on the local machine and is only used during local development.
-* [Azure Key Vault](#azure-key-vault): You can store the secret in a key vault for use in any environment, including for the Development environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
+* [Azure Key Vault](#azure-key-vault): You can store the secret in a key vault for use in any environment, including for the `Development` environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
 
 We strongly recommend that you avoid storing secrets in project code or configuration files. Use secure authentication flows, such as either or both of the approaches in this section.
 
