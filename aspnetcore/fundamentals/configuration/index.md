@@ -44,7 +44,7 @@ For additional Blazor configuration guidance, which adds to or supersedes the gu
 
 This article only pertains to app configuration. Configuration sources not primarily covered by this article include:
 
-* Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the Development environment. For more information, see <xref:fundamentals/environments#development>. Some details on launch settings are covered by this article in the [Launch settings override environment variable settings](#launch-settings-override-environment-variable-settings) section.
+* Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the `Development` environment. For more information, see <xref:fundamentals/environments#development>. Some details on launch settings are covered by this article in the [Launch settings override environment variable settings](#launch-settings-override-environment-variable-settings) section.
 * `web.config`, which is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see <xref:host-and-deploy/iis/index> and <xref:host-and-deploy/aspnet-core-module>.
 
 For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/fx-to-core/examples/configuration>.
@@ -688,7 +688,7 @@ Environment variable key | Converted configuration key | Provider configuration 
 Using the [default configuration sources](#default-app-configuration-sources), the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
 * `appsettings.json` and `appsettings.{ENVIRONMENT}.json` files.
-* [App secrets](xref:security/app-secrets) in the Development environment.
+* [App secrets](xref:security/app-secrets) in the `Development` environment.
 * Environment variables.
 
 By default, configuration values set on the command-line override configuration values set by all of the other configuration providers.
