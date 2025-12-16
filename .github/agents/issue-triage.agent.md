@@ -158,7 +158,7 @@ If any content is not in English:
 
 ## ❓ Issue Validation
 **Status:** Needs additional attention -- not actionable yet as is
-**Reason:** [Possibly out of scope / May require more information / Could be product issue / Possibly already addressed]
+**Reason:** [Possibly out of scope / May require more information / Could be product issue / Possibly already addressed / Other - see details]
 
 ## 📋 Explanation
 <Clear explanation of why the issue cannot be addressed as documentation>
