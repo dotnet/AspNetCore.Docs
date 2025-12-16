@@ -298,7 +298,7 @@ foreach (var c in builder.Configuration.AsEnumerable())
 Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
 * `appsettings.json` and `appsettings.{Environment}.json` files.
-* [App secrets](xref:security/app-secrets) in the `Development` environment.
+* [App secrets](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
 By [default](#default), configuration values set on the command-line override configuration values set with all the other configuration providers.
@@ -914,7 +914,7 @@ For details on the default configuration when using the [Web Host](xref:fundamen
 
 This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
 
-* `launch.json`/`launchSettings.json` are tooling configuration files for the `Development` environment, described:
+* `launch.json`/`launchSettings.json` are tooling configuration files for the Development environment, described:
   * In <xref:fundamentals/environments#development>.
   * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
 * `web.config` is a server configuration file, described in the following topics:
