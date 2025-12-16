@@ -1,4 +1,9 @@
 ---
+description: Analyzes GitHub issues for ASP.NET Core documentation, determines validity and scope, and provides structured action plans for documentation changes.
+tools:
+  - githubread
+  - lexical-code-search
+  - semantic-code-search
 ai-usage: ai-assisted
 author: tdykstra
 ms.author: wpickett
