@@ -140,7 +140,7 @@ Mode                 LastWriteTime         Length Name
 -a---          30/03/2023  1:41 PM       43044864 MyFirstAotWebApi.pdb
 ```
 
-The executable is self-contained and doesn't require a .NET runtime to run. When launched, it behaves the same as the app run in the development environment. Run the AOT app:
+The executable is self-contained and doesn't require a .NET runtime to run. When launched, it behaves the same as the app run in the `Development` environment. Run the AOT app:
 
 ```
 .\bin\Release\net8.0\win-x64\publish\MyFirstAotWebApi.exe

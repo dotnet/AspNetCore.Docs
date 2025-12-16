@@ -28,7 +28,7 @@ Although the environment can be any string value, the following environment valu
 * <xref:Microsoft.Extensions.Hosting.Environments.Staging>
 * <xref:Microsoft.Extensions.Hosting.Environments.Production>
 
-The Production environment is configured to maximize security, performance, and app reliability. Common developer settings and configuration that differ from the Development environment include:
+The `Production` environment is configured to maximize security, performance, and app reliability. Common developer settings and configuration that differ from the `Development` environment include:
 
 * Enabling [caching](xref:performance/caching/memory).
 * Bundling and minifying client-side resources, along with potentially serving them from a CDN.
@@ -39,7 +39,7 @@ The last environment setting read by the app determines the app's environment. T
 
 ## Logging
 
-Output in the command shell of a running app at startup indicates the app's environment. In the following example, the app is running in the Staging environment:
+Output in the command shell of a running app at startup indicates the app's environment. In the following example, the app is running in the `Staging` environment:
 
 ```dotnetcli
 info: Microsoft.Hosting.Lifetime[0]
@@ -73,7 +73,7 @@ When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIR
 
 :::moniker-end
 
-If the `DOTNET_ENVIRONMENT` and `ASPNETCORE_ENVIRONMENT` environment variables aren't set, the Production environment is the default environment.
+If the `DOTNET_ENVIRONMENT` and `ASPNETCORE_ENVIRONMENT` environment variables aren't set, the `Production` environment is the default environment.
 
 On Windows and macOS, environment variable names aren't case-sensitive. Linux environment variables are case-sensitive.
 
@@ -177,7 +177,7 @@ The `launchSettings.json` file:
 * Isn't deployed when the app is published.
 * May contain multiple profiles, each configuring a different environment.
 
-The following example sets the Staging environment for the `https` launch profile using the `ASPNETCORE_ENVIRONMENT` environment variable:
+The following example sets the `Staging` environment for the `https` launch profile using the `ASPNETCORE_ENVIRONMENT` environment variable:
 
 ```json
 "https": {
@@ -224,11 +224,11 @@ The `.vscode/launch.json` file is only used by Visual Studio Code.
 
 ## Set the environment with an environment variable
 
-It's often useful to set a specific environment for testing with an environment variable or platform setting. If the environment isn't set, it defaults to the Production environment, which disables most debugging features. The method for setting the environment depends on the operating system.
+It's often useful to set a specific environment for testing with an environment variable or platform setting. If the environment isn't set, it defaults to the `Production` environment, which disables most debugging features. The method for setting the environment depends on the operating system.
 
 ### Azure App Service
 
-Apps deployed to [Azure App Service](https://azure.microsoft.com/services/app-service/) adopt the Production environment by default.
+Apps deployed to [Azure App Service](https://azure.microsoft.com/services/app-service/) adopt the `Production` environment by default.
 
 To set the `ASPNETCORE_ENVIRONMENT` environment variable, see the following resources in the Azure documentation:
 
@@ -249,7 +249,7 @@ To set the `ASPNETCORE_ENVIRONMENT` environment variable for the current session
    dotnet run --no-launch-profile
    ```
 
-When using PowerShell, the preceding steps can be combined in the following two commands. The following example sets the Staging environment:
+When using PowerShell, the preceding steps can be combined in the following two commands. The following example sets the `Staging` environment:
 
 ```powershell
 $Env:ASPNETCORE_ENVIRONMENT = "Staging"
@@ -266,7 +266,7 @@ When the `ASPNETCORE_ENVIRONMENT` environment variable is set globally, it takes
 
 To set the `ASPNETCORE_ENVIRONMENT` environment variable with the `web.config` file, see <xref:host-and-deploy/iis/web-config#set-environment-variables>.
 
-To set the environment variable on deployment to IIS, include the `<EnvironmentName>` property in the [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) or project file. The following example sets the environment in `web.config` to the Staging environment when the project is published:
+To set the environment variable on deployment to IIS, include the `<EnvironmentName>` property in the [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) or project file. The following example sets the environment in `web.config` to the `Staging` environment when the project is published:
 
 ```xml
 <PropertyGroup>

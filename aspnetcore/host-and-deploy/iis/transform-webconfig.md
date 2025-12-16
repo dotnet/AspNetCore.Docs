@@ -102,7 +102,7 @@ Environment transformations are run third, after [Build configuration](#build-co
 
 Include a *web.{ENVIRONMENT}.config* file for each [environment](xref:fundamentals/environments) requiring a *web.config* transformation.
 
-In the following example, an environment-specific environment variable is set in *web.Production.config* for the Production environment:
+In the following example, an environment-specific environment variable is set in *web.Production.config* for the `Production` environment:
 
 ```xml
 <?xml version="1.0"?>
