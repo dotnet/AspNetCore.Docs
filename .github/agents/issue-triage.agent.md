@@ -147,7 +147,7 @@ If any content is not in English:
 
 ## 🔗 References
 * Published article: [URL]
-* Related issue: #[number]
+* Related issue: [number]
 * Microsoft Learn docs: [relevant MS docs link]
 ```
 
