@@ -287,7 +287,7 @@ Some secure token servers encrypt the access tokens. Access tokens do not requir
 
 For Blazor examples that use YARP to implement the BFF pattern, see the following articles:
 
-* <xref:blazor/security/blazor-web-app-entra?pivots=bff-pattern>
+* <xref:blazor/security/blazor-web-app-entra?pivots=with-yarp-and-aspire>
 * <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern>
 
 :::moniker-end

@@ -99,7 +99,7 @@ builder.Services.AddHttpClient("ExternalApi",
 > [!CAUTION]
 > Ensure that tokens are never transmitted and handled by the client (the `.Client` project), for example, in a component that adopts Interactive Auto rendering and is rendered on the client or by a client-side service. Always have the client call the server (project) to process requests with tokens. **Tokens and other authentication data should never leave the server.**
 >
-> For Interactive Auto components, see <xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering>, which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern> for OIDC providers and <xref:blazor/security/blazor-web-app-entra?pivots=bff-pattern> for Microsoft Identity Web with Entra.
+> For Interactive Auto components, see <xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering>, which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in <xref:blazor/security/blazor-web-app-oidc> for OIDC providers and <xref:blazor/security/blazor-web-app-entra> for Microsoft Identity Web with Entra.
 
 ## Use a token handler for web API calls
 
