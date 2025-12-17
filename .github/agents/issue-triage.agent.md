@@ -1,11 +1,16 @@
 ---
+description: Analyzes GitHub issues for ASP.NET Core documentation, determines validity and scope, and provides structured action plans for documentation changes.
+tools:
+  - githubread
+  - lexical-code-search
+  - semantic-code-search
 ai-usage: ai-assisted
 author: tdykstra
 ms.author: wpickett
-ms.date: 11/13/2025
+ms.date: 12/17/2025
 ---
 
-# GitHub issue analysis and action plan prompt for ASP.NET Core documentation
+# GitHub issue preliminary analysis and action plan prompt for ASP.NET Core documentation
 
 ## Goal
 Analyze the GitHub issue and provide a **structured report** determining:
@@ -26,7 +31,7 @@ Collect and review:
 * The **published documentation** (via the provided URL).
 * The **source file(s)** in the repository.
 * Any **linked issues, PRs, or external references**.
-* **Environment details**: .NET version, tooling versions (VS, VS Code, CLI, EF Core, etc.).
+* **Environment details**:  .NET version, tooling versions (VS, VS Code, CLI, EF Core, etc.).
 * **Code samples or error messages** mentioned in the issue.
 
 ### 1.5 Source File Analysis
@@ -37,7 +42,7 @@ When examining source files:
 * **Quote current content** from specific lines before proposing changes.
 * **Use permalinks with commit SHA** when referencing specific versions.
 
-Example format for file references:
+Example format for file references: 
 * Single line: `https://github.com/owner/repo/blob/main/file.md#L123`.
 * Line range: `https://github.com/owner/repo/blob/main/file.md#L123-L145`.
 * Permalink: `https://github.com/owner/repo/blob/<commit-sha>/file.md#L123`.
@@ -47,10 +52,10 @@ Determine if the issue is:
 * **In scope**: Related to ASP.NET Core documentation (not product bugs).
 * **Accurate**: The reported problem genuinely exists.
 * **Clear**: Sufficient information to take action.
-* **Current**: Applies to supported .NET versions.
+* **Current**:  Applies to supported .NET versions.
 
 ### 3. Translation Requirements
-If any content is not in English:
+If any content is not in English: 
 * Include the original text in a quote block.
 * Provide complete English translation.
 * Label clearly as "Original" and "Translation".
@@ -64,13 +69,19 @@ If any content is not in English:
 
 ### Report Structure
 
-#### Header
+#### Header (REQUIRED - Always include this community-facing notice)
 ```markdown
-## AI Analysis Report
-**Analyzed by:** @<github-username>
+## 🤖 AI Triage Summary
+
+> **📌 Note to community:** This is an automated preliminary analysis to help our documentation team quickly review, determine scope and prioritize this issue. This report is **not a resolution or answer** to your question—it's an internal triage tool that identifies potentially relevant docs, code samples, and versions to look into. A team member will review this issue and respond. Thank you for your contribution! 
+
+---
+
+**This preliminary assessment report was run by:** @<github-username>
 **Date:** <YYYY-MM-DD>
-**Issue:** #<issue-number>
+**Issue:** <issue-number>
 **Model:** GitHub Copilot
+
 ---
 ```
 
@@ -85,15 +96,19 @@ If any content is not in English:
 ## 📋 Issue Summary
 <Brief description of the problem and why it needs to be addressed>
 
-## 📁 Affected Files
+## 📁 Potentially Affected Files
+> *These files have been identified as possibly related to this issue and may need review.*
+
 | File | Path | Lines | Section |
 |------|------|-------|---------|
 | Main article | [`aspnetcore/path/to/file.md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123-L145) | 123-145 | "Section Heading" |
 | Code sample | [`aspnetcore/path/to/sample.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/sample.cs#L45-L67) | 45-67 | `MethodName()` method |
 
-## 📝 Proposed Changes
+## 📝 Preliminary Change Assessment
 
-### Documentation Updates
+> *The following are initial observations for the documentation team to evaluate—not final decisions.*
+
+### Potential documentation Updates
 **File:** [`aspnetcore/path/to/file.md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123-L145)
 **Location:** Lines 123-145 (after the paragraph containing "[specific anchor text]")
 **Type:** [New paragraph / Note block / Code example / Replacement]
@@ -103,12 +118,12 @@ If any content is not in English:
 [Current text that will be replaced or followed]
 ```
 
-**Proposed change:**
+**Suggested direction:**
 ```markdown
 [Proposed documentation text here]
 ```
 
-### Code Sample Updates (if applicable)
+### Potential Code Sample Updates (if applicable)
 **File:** [`sample.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs#L45-L67)
 **Lines:** 45-67
 **Change:** [Add/Modify/Remove]
@@ -118,31 +133,32 @@ If any content is not in English:
 // Current code at specified lines
 ```
 
-**Proposed code:**
+**Suggested direction:**
 ```csharp
 // Proposed code changes
 ```
 
-## 🎯 Action Plan
-1. **Edit file:** [`aspnetcore/path/to/file.md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md)
-   * Navigate to: [Line 123](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123)
-   * Find section: "Exact Section Heading"
-   * After text: "last sentence before insertion point"
-   * Insert: [!NOTE] block with explanation
-   
-2. **Update sample:** [`path/to/sample.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs)
-   * Navigate to: [Lines 45-67](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs#L45-L67)
-   * Modify method: `MethodName()`
-   * Change: Update to use new pattern
+## 🎯 Suggested Action Plan
+> *For documentation team review*
 
-## ⚠️ Considerations
+1. **Review file:** [`aspnetcore/path/to/file.md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md)
+   * Navigate to: [Line 123](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123)
+   * Section: "Exact Section Heading"
+   * Consider: [!NOTE] block with explanation
+   
+2. **Review sample:** [`path/to/sample.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs)
+   * Navigate to: [Lines 45-67](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs#L45-L67)
+   * Method: `MethodName()`
+   * Consider: Update to use new pattern
+
+## ⚠️ Review Considerations
 * Verify change applies to .NET [version]
 * Check if similar updates needed in related articles
 * Consider adding cross-references to [related topic]
 
 ## 🔗 References
 * Published article: [URL]
-* Related issue: #[number]
+* Related issue: [number]
 * Microsoft Learn docs: [relevant MS docs link]
 ```
 
@@ -151,20 +167,24 @@ If any content is not in English:
 ```markdown
 # Issue Analysis: <Issue Title>
 
-## ❌ Issue Validation
-**Status:** Not actionable as is
-**Reason:** [Out of scope / Insufficient information / Product issue / Already addressed]
+## ❓ Issue Validation
+**Status:** Needs additional attention — not actionable yet as submitted
+**Reason:** [Possibly out of scope / May require more information / Could be product issue / Possibly already addressed / Other - see details]
 
-## 📋 Explanation
-<Clear explanation of why the issue cannot be addressed as documentation>
+## 📋 Preliminary Assessment
+> *This is an initial analysis for team review—not a final determination.*
 
-## 💡 Recommendation
+<Clear explanation of why the issue may not be addressable as documentation in its current form>
+
+## 💡 Possible Next Steps
+> *For documentation team to consider*
+
 * [Close with explanation]
 * [Redirect to appropriate repository]
-* [Request additional information]
+* [Request additional information from submitter]
 * [Convert to discussion]
 
-## 🔗 Alternative Resources
+## 🔗 Potentially Relevant Resources
 * [Link to relevant documentation]
 * [Link to appropriate repository for product issues]
 ```
@@ -214,7 +234,7 @@ Only recommend using special blocks when truly appropriate, they should not be o
 1. **Missing information**: Add clarifying content
 2. **Outdated content**: Update to current version
 3. **Broken samples**: Fix or replace code
-4. **Unclear instructions**: Rewrite for clarity
+4. **Unclear instructions**:  Rewrite for clarity
 5. **Missing prerequisites**: Add setup steps
 
 ---
