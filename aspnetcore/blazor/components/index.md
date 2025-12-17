@@ -1699,7 +1699,9 @@ When the Razor delegate must return more than one HTML element, wrap the result 
             @if (showTrueStatement)
             {
                 <p>This is true!</p>
-            } else {
+            }
+            else
+            {
                 <p>This is false!</p>
             }
         </text>;
