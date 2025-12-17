@@ -1,11 +1,12 @@
 ---
 title: Generate OpenAPI documents
+ai-usage: ai-assisted
 author: captainsafia
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
-ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
+ms.author: safia
 ms.custom: mvc
-ms.date: 12/10/2025
+ms.date: 12/17/2025
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -182,6 +183,9 @@ ShouldInclude = (description) => description.GroupName == null ||
 You can customize the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method to include or exclude endpoints based on any criteria.
 
 ## Generate OpenAPI documents at build time
+
+> [!NOTE]
+> Starting with .NET 9, ASP.NET Core includes built-in OpenAPI support. The `Microsoft.AspNetCore.OpenApi` package provides OpenAPI document generation at runtime, and adding the `Microsoft.Extensions.ApiDescription.Server` package enables build-time document generation. For guidance on using interactive UI options like **Swagger UI** or **Scalar**, see <xref:fundamentals/openapi/using-openapi-documents>.
 
 In typical web apps, OpenAPI documents are generated at runtime and served via an HTTP request to the app server.
 
