@@ -104,10 +104,10 @@ groups:
   title: Specification
   prompt: Choose the app specification
   pivots:
-    - id: non-bff-pattern
-      title: Non-BFF pattern
-    - id: bff-pattern
-      title: BFF pattern
+    - id: with-yarp-and-aspire
+      title: With YARP and Aspire
+    - id: without-yarp-and-aspire
+      title: Without YARP and Aspire
 - id: unit-testing-framework
   title: Unit testing framework
   prompt: Choose a unit testing framework
