@@ -10,7 +10,7 @@ ms.author: wpickett
 ms.date: 12/17/2025
 ---
 
-# GitHub issue prelimiary analysis and action plan prompt for ASP.NET Core documentation
+# GitHub issue preliminary analysis and action plan prompt for ASP.NET Core documentation
 
 ## Goal
 Analyze the GitHub issue and provide a **structured report** determining:
@@ -44,7 +44,7 @@ When examining source files:
 
 Example format for file references: 
 * Single line: `https://github.com/owner/repo/blob/main/file.md#L123`.
-* Line range: `https://github.com/owner/repo/blob/main/file. md#L123-L145`.
+* Line range: `https://github.com/owner/repo/blob/main/file.md#L123-L145`.
 * Permalink: `https://github.com/owner/repo/blob/<commit-sha>/file. md#L123`.
 
 ### 2. Validation Criteria
@@ -77,7 +77,7 @@ If any content is not in English:
 
 ---
 
-**This prelimany assessment report was run by:** @<github-username>
+**This preliminary assessment report was run by:** @<github-username>
 **Date:** <YYYY-MM-DD>
 **Issue:** <issue-number>
 **Model:** GitHub Copilot
@@ -109,7 +109,7 @@ If any content is not in English:
 > *The following are initial observations for the documentation team to evaluate—not final decisions.*
 
 ### Potential documentation Updates
-**File:** [`aspnetcore/path/to/file. md`](https://github.com/dotnet/AspNetCore. Docs/blob/main/aspnetcore/path/to/file.md#L123-L145)
+**File:** [`aspnetcore/path/to/file. md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123-L145)
 **Location:** Lines 123-145 (after the paragraph containing "[specific anchor text]")
 **Type:** [New paragraph / Note block / Code example / Replacement]
 
@@ -142,7 +142,7 @@ If any content is not in English:
 > *For documentation team review*
 
 1. **Review file:** [`aspnetcore/path/to/file.md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md)
-   * Navigate to: [Line 123](https://github.com/dotnet/AspNetCore. Docs/blob/main/aspnetcore/path/to/file.md#L123)
+   * Navigate to: [Line 123](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123)
    * Section: "Exact Section Heading"
    * Consider: [!NOTE] block with explanation
    
