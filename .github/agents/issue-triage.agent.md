@@ -37,22 +37,22 @@ Collect and review:
 ### 1.5 Source File Analysis
 When examining source files:
 * **Provide direct GitHub permalinks** to specific lines or sections.
-* **Note exact line numbers** for proposed changes. 
+* **Note exact line numbers** for proposed changes.
 * **Include line number ranges** in GitHub URLs using `#L<start>-L<end>` format.
-* **Quote current content** from specific lines before proposing changes. 
-* **Use permalinks with commit SHA** when referencing specific versions. 
+* **Quote current content** from specific lines before proposing changes.
+* **Use permalinks with commit SHA** when referencing specific versions.
 
 Example format for file references: 
 * Single line: `https://github.com/owner/repo/blob/main/file.md#L123`.
 * Line range: `https://github.com/owner/repo/blob/main/file.md#L123-L145`.
-* Permalink: `https://github.com/owner/repo/blob/<commit-sha>/file. md#L123`.
+* Permalink: `https://github.com/owner/repo/blob/<commit-sha>/file.md#L123`.
 
 ### 2. Validation Criteria
 Determine if the issue is:
 * **In scope**: Related to ASP.NET Core documentation (not product bugs).
 * **Accurate**: The reported problem genuinely exists.
 * **Clear**: Sufficient information to take action.
-* **Current**:  Applies to supported .NET versions. 
+* **Current**:  Applies to supported .NET versions.
 
 ### 3. Translation Requirements
 If any content is not in English: 
@@ -73,7 +73,7 @@ If any content is not in English:
 ```markdown
 ## 🤖 AI Triage Summary
 
-> **📌 Note to community:** This is an automated preliminary analysis to help our documentation team quickly review, determine scope and prioritize this issue. This report is **not a resolution or answer** to your question—it's an internal triage tool that identifies potentially relevant docs, code samples, and versions to look into.  A team member will review this issue and respond.  Thank you for your contribution! 
+> **📌 Note to community:** This is an automated preliminary analysis to help our documentation team quickly review, determine scope and prioritize this issue. This report is **not a resolution or answer** to your question—it's an internal triage tool that identifies potentially relevant docs, code samples, and versions to look into. A team member will review this issue and respond. Thank you for your contribution! 
 
 ---
 
@@ -109,7 +109,7 @@ If any content is not in English:
 > *The following are initial observations for the documentation team to evaluate—not final decisions.*
 
 ### Potential documentation Updates
-**File:** [`aspnetcore/path/to/file. md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123-L145)
+**File:** [`aspnetcore/path/to/file.md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123-L145)
 **Location:** Lines 123-145 (after the paragraph containing "[specific anchor text]")
 **Type:** [New paragraph / Note block / Code example / Replacement]
 
@@ -209,21 +209,21 @@ Only recommend using special blocks when truly appropriate, they should not be o
 * `[!TIP]`: Best practices, productivity hints
 
 ### Code Samples
-* Use appropriate language identifier for syntax highlighting. 
+* Use appropriate language identifier for syntax highlighting.
 * Include necessary `using` statements or imports.
 * Add comments for complex logic.
 * Ensure samples are complete and runnable.
 
 ### Scope Boundaries
 **DO:**
-* Focus on documentation clarity and accuracy. 
+* Focus on documentation clarity and accuracy.
 * Address missing information.
-* Fix technical inaccuracies. 
-* Improve code samples. 
+* Fix technical inaccuracies.
+* Improve code samples.
 
 **DON'T:**
 * Attempt to fix product bugs through documentation.
-* Make architectural recommendations. 
+* Make architectural recommendations.
 * Add opinions or preferences.
 * Modify unrelated sections.
 
