@@ -4,7 +4,7 @@ author: tdykstra
 description: This sample demonstrates the integration of Microsoft account user authentication into an existing ASP.NET Core app.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/01/2025
+ms.date: 12/17/2025
 monikerRange: '>= aspnetcore-3.1'
 uid: security/authentication/microsoft-logins
 ---
@@ -23,7 +23,7 @@ This sample shows how to enable users to sign in with their work, school, or per
 
 ### Create a client secret
 
-Generate a client secret in the Microsoft Entra admin center by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](/entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
+Generate a client secret in the Microsoft Entra admin center by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](/entra/identity-platform/how-to-add-credentials).
 
 ## Store the Microsoft client ID and secret
 
@@ -90,7 +90,7 @@ This sample shows you how to enable users to sign in with their work, school, or
 
 ### Create client secret
 
-Generate a client secret in the Microsoft Entra admin center by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](/entra/identity-platform/quickstart-register-app?tabs=client-secret#add-credentials).
+Generate a client secret in the Microsoft Entra admin center by following the steps in [Register an application with the Microsoft identity platform: Add Credentials](/entra/identity-platform/how-to-add-credentials).
 
 ## Store the Microsoft client ID and secret
 
