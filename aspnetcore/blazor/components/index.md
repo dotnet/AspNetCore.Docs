@@ -1624,6 +1624,50 @@ Rendered output of the preceding code:
 <p>Pet: Nutty Rex</p>
 ```
 
+When the Razor delegate must return more than one HTML element, wrap the result in a `<text>` tag for an [explicit delimited transition](xref:mvc/views/razor#explicit-delimited-transition):
+
+```razor
+@RenderTwoElements()
+
+<h2>ReturnIf</h2>
+@ReturnIf()
+
+<h2>ReturnForeach</h2>
+@ReturnForeach()
+
+@code {
+    private bool showTrueStatement = true;
+
+    private RenderFragment RenderTwoElements() =>
+        @<text>
+            <h2>Render Two Elements</h2>
+            @ChildFragment
+        </text>;
+
+    private RenderFragment ChildFragment => @<p>This is a paragraph.</p>;
+
+    private RenderFragment ReturnIf() =>
+        @<text>
+            @if (showTrueStatement)
+            {
+                <p>This is true!</p>
+            }
+            else
+            {
+                <p>This is false!</p>
+            }
+        </text>;
+
+    private RenderFragment ReturnForeach() =>
+        @<text>
+            @foreach (var item in new[] { 1, 2, 3 })
+            {
+                <p>Item: @item</p>
+            }
+        </text>;
+}
+```
+
 ## Static assets
 
 Blazor follows the convention of ASP.NET Core apps for static assets. Static assets are located in the project's [`web root` (`wwwroot`) folder](xref:fundamentals/index#web-root) or folders under the `wwwroot` folder.
