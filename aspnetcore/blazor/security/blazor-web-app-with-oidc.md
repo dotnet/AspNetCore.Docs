@@ -1232,7 +1232,7 @@ For more information on configuration, see the following resources:
 
 You can use the "common" Authority for single-tenant apps, but you must take the following steps to implement a custom issuer validator.
 
-Add the [`Microsoft.IdentityModel.Validators` NuGet package](https://www.nuget.org/packages/Microsoft.IdentityModel.Validators) to the `BlazorWebAppOidcBffAutoYarpAspire`, `BlazorWebAppOidcBffAuto`, or `BlazorWebAppOidcBffServer` project.
+Add the [`Microsoft.IdentityModel.Validators` NuGet package](https://www.nuget.org/packages/Microsoft.IdentityModel.Validators) to the server project.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
