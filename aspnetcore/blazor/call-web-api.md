@@ -28,8 +28,8 @@ For more information, see the following resources:
 
 * <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
 * *Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)*
-  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?pivots=non-bff-pattern)
-  * [Non-BFF pattern (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?pivots=non-bff-pattern-server)
+  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire)
+  * [Without YARP and Aspire (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire-server)
 
 ## Microsoft identity platform for web API calls
 
