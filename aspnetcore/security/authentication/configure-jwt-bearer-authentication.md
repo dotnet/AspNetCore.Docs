@@ -265,7 +265,7 @@ This is easy to implement but the client application has full application access
 
 When using access tokens in a client application, the access tokens must be rotated, persisted, and stored on the server. In a web app, cookies are used to secure the session and can be used to store tokens via the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property.
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> doesn't refresh access tokens automatically, but this functionality is planned for a future release. In the meantime, you can manually refresh the access token as [demonstrated in the Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-bff-pattern#token-refresh) or use a third-party NuGet package, such as [`Duende.AccessTokenManagement.OpenIdConnect`](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect). For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> doesn't refresh access tokens automatically, but this functionality is planned for a future release. In the meantime, you can manually refresh the access token as [demonstrated in the Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-yarp-and-aspire#token-refresh) or use a third-party NuGet package, such as [`Duende.AccessTokenManagement.OpenIdConnect`](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect). For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
 
 > [!NOTE]
 > If deploying to production, the cache should work in a multi-instance deployment. A persistent cache is normally required.
@@ -288,13 +288,13 @@ Some secure token servers encrypt the access tokens. Access tokens do not requir
 For Blazor examples that use YARP to implement the BFF pattern, see the following articles:
 
 * <xref:blazor/security/blazor-web-app-entra?pivots=with-yarp-and-aspire>
-* <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern>
+* <xref:blazor/security/blazor-web-app-oidc?pivots=with-yarp-and-aspire>
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-For a Blazor example that uses YARP to implement the BFF pattern, see <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern>.
+For a Blazor example that uses YARP to implement the BFF pattern, see <xref:blazor/security/blazor-web-app-oidc?pivots=with-yarp-and-aspire>.
 
 :::moniker-end
 
