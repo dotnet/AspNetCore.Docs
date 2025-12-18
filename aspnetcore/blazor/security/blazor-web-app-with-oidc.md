@@ -23,7 +23,7 @@ For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web
 
 :::moniker-end
 
-This version of the article covers implementing Entra with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with [YARP](https://dotnet.github.io/yarp/) and [Aspire](/dotnet/aspire/get-started/aspire-overview). Change the article version selector to either **Without YARP and Aspire (Interactive Auto)** (Interactive Auto rendering) or **Without YARP and Aspire (Interactive Server)** (Interactive Server rendering) if the app's specification doesn't call for adopting YARP and Aspire.
+This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) with [YARP](https://dotnet.github.io/yarp/) and [Aspire](/dotnet/aspire/get-started/aspire-overview). Change the article version selector to either **Without YARP and Aspire (Interactive Auto)** (Interactive Auto rendering) or **Without YARP and Aspire (Interactive Server)** (Interactive Server rendering) if the app's specification doesn't call for adopting YARP and Aspire.
 
 ## Prerequisites
 
@@ -87,7 +87,7 @@ For app and web API registration guidance, see [Register an application in Micro
 
 Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app. The web API's tenant ID and client ID are used to configure the web API in its `Program` file. After registering the web API, expose the web API in **App registrations** > **Expose an API** with a scope name of `Weather.Get`. Record the App ID URI for use in the app's configuration.
 
-Next, register the app (`BlazorWebAppOidc`/`BlazorWebApOidc.Client`) with a **Web** platform configuration and a **Redirect URI** of `https://localhost/signin-oidc` (a port isn't required). The app's tenant ID and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `Program` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
+Next, register the app (`BlazorWebAppOidc`/`BlazorWebAppOidc.Client`) with a **Web** platform configuration and a **Redirect URI** of `https://localhost/signin-oidc` (a port isn't required). The app's tenant ID and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `Program` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
 
 In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, don't select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OpenID Connect handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
 
@@ -384,7 +384,7 @@ For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web
 
 :::moniker-end
 
-This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) without [YARP](https://dotnet.github.io/yarp/) and [Aspire](/dotnet/aspire/get-started/aspire-overview). Change the article version selector to either **Without YARP and Aspire (Interactive Auto)** or **Without YARP and Aspire (Interactive Server)** if the app's specification doesn't call for adopting YARP and Aspire.
+This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) without [YARP](https://dotnet.github.io/yarp/) and [Aspire](/dotnet/aspire/get-started/aspire-overview). Change the article version selector to **With YARP and Aspire (Interactive Auto)** if the app's specification calls for adopting YARP and Aspire.
 
 The following specification is adopted:
 
@@ -445,7 +445,7 @@ For app and web API registration guidance, see [Register an application in Micro
 
 Register the web API (`MinimalApiJwt`) first so that you can then grant access to the web API when registering the app. The web API's tenant ID and client ID are used to configure the web API in its `Program` file. After registering the web API, expose the web API in **App registrations** > **Expose an API** with a scope name of `Weather.Get`. Record the App ID URI for use in the app's configuration.
 
-Next, register the app (`BlazorWebAppOidc`/`BlazorWebApOidc.Client`) with a **Web** platform configuration and a **Redirect URI** of `https://localhost/signin-oidc` (a port isn't required). The app's tenant ID and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `Program` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
+Next, register the app (`BlazorWebAppOidc`/`BlazorWebAppOidc.Client`) with a **Web** platform configuration and a **Redirect URI** of `https://localhost/signin-oidc` (a port isn't required). The app's tenant ID and client ID, along with the web API's base address, App ID URI, and weather scope name, are used to configure the app in its `Program` file. Grant API permission to access the web API in **App registrations** > **API permissions**. If the app's security specification calls for it, you can grant admin consent for the organization to access the web API. Authorized users and groups are assigned to the app's registration in **App registrations** > **Enterprise applications**.
 
 In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, don't select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OpenID Connect handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
 
@@ -764,7 +764,7 @@ For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web
 
 :::moniker-end
 
-This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) without [YARP](https://dotnet.github.io/yarp/) and [Aspire](/dotnet/aspire/get-started/aspire-overview). Change the article version selector to either **Without YARP and Aspire (Interactive Auto)** or **Without YARP and Aspire (Interactive Server)** if the app's specification doesn't call for adopting YARP and Aspire.
+This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) without [YARP](https://dotnet.github.io/yarp/) and [Aspire](/dotnet/aspire/get-started/aspire-overview). Change the article version selector to **With YARP and Aspire (Interactive Auto)** if the app's specification calls for adopting YARP and Aspire.
 
 The following specification is adopted:
 
