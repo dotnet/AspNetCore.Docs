@@ -5,7 +5,7 @@ description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 12/18/2025
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
@@ -13,508 +13,6 @@ uid: blazor/call-web-api
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article describes how to call a web API from a Blazor app.
-
-## Package
-
-The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for <xref:System.Net.Http.HttpClient?displayProperty=fullName> and <xref:System.Net.Http.HttpContent?displayProperty=fullName> that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json). The `System.Net.Http.Json` package is provided by the .NET shared framework and doesn't require adding a package reference to the app.
-
-:::moniker range=">= aspnetcore-8.0"
-
-## Use a token handler for web API calls
-
-Blazor Web Apps with OIDC authentication can use a token handler approach to make outgoing requests to secure external web API calls. This approach is used by the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps described in the *Sample apps* section of this article.
-
-For more information, see the following resources:
-
-* <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
-* *Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)*
-  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire)
-  * [Without YARP and Aspire (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire-server)
-
-## Microsoft identity platform for web API calls
-
-Blazor Web Apps that use use [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) can make streamlined web API calls with API provided by the [`Microsoft.Identity.Web.DownstreamApi` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web.DownstreamApi).
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-In the app settings file (`appsettings.json`), provide a base URL and scopes. In the following example, the `{BASE ADDRESS}` placeholder is the base URL of the web API. A single scope is specified with an App ID URI (`{APP ID URI}` placeholder) and scope name (`{SCOPE NAME}` placeholder):
-
-```json
-"DownstreamApi": {
-  "BaseUrl": "{BASE ADDRESS}",
-  "Scopes": [ "{APP ID URI}/{SCOPE NAME}" ]
-}
-```
-
-Example:
-
-```json
-"DownstreamApi": {
-  "BaseUrl": "https://localhost:7277",
-  "Scopes": [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ]
-}
-```
-
-In the app's `Program` file, call:
-
-<!-- UPDATE 11.0 - Awaiting API per https://github.com/dotnet/AspNetCore.Docs/issues/36373.
-                   Marking this for 11.0 because it's the last 10.0 item and inline tracking
-                   now adopts 11.0 or later work items. This ensures that this inline item
-                   isn't missed.
-                   
-                   Missing API doc for 'Microsoft.Identity.Web.DownstreamApiExtensions.AddDownstreamApi' -->
-
-* <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilder.EnableTokenAcquisitionToCallDownstreamApi%2A>: Enables token acquisition to call web APIs.
-* `AddDownstreamApi`: Microsoft Identity Web packages provide API to create a named downstream web service for making web API calls. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into a server-side class, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> to obtain weather data from an external web API (`MinimalApiJwt` project).
-* <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A>: Adds the .NET distributed token caches to the service collection.
-* <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>: Adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory.
-* Configure the distributed token cache options (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions>):
-  * In development for debugging purposes, you can disable the L1 cache by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.DisableL1Cache%2A> to `true`. ***Be sure to reset it back to `false` for production.***
-  * Set the maximum size of your L1 cache with [`L1CacheOptions.SizeLimit`](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit%2A) to prevent the cache from overrunning the server's memory. The default value is 500 MB.
-  * In development for debugging purposes, you can disable token encryption at rest by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A> to `false`, which is the default value. ***Be sure to reset it back to `true` for production.***
-  * Set token eviction from the cache with <xref:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration%2A>. The default value is 1 hour.
-  * For more information, including guidance on the callback for L2 cache failures (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.OnL2CacheFailure%2A>) and asynchronous L2 cache writes (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.EnableAsyncL2Write%2A>), see <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions> and [Token cache serialization: Distributed token caches](/entra/msal/dotnet/how-to/token-cache-serialization#distributed-token-caches).
-
-You can choose to encrypt the cache and should always do so in production.
-
-```csharp
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"))
-    .EnableTokenAcquisitionToCallDownstreamApi()
-    .AddDownstreamApi("DownstreamApi", 
-        builder.Configuration.GetSection("DownstreamApi"))
-    .AddDistributedTokenCaches();
-
-// Requires the 'Microsoft.Extensions.Caching.Memory' NuGet package
-builder.Services.AddDistributedMemoryCache();
-
-builder.Services.Configure<MsalDistributedTokenCacheAdapterOptions>(
-    options => 
-    {
-        // The following lines that are commented out reflect
-        // default values. We recommend overriding the default
-        // value of Encrypt to encrypt tokens at rest.
-
-        //options.DisableL1Cache = false;
-        //options.L1CacheOptions.SizeLimit = 500 * 1024 * 1024;
-        options.Encrypt = true;
-        //options.SlidingExpiration = TimeSpan.FromHours(1);
-    });
-```
-
-In-memory distributed token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A> to ensure that there's a base implementation available for distributed token caching.
-
-Production web apps and web APIs should use a production distributed token cache (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)).
-
-> [!NOTE]
-> For local development and testing on a single machine, you can use in-memory token caches instead of distributed token caches:
->
-> ```csharp
-> builder.Services.AddInMemoryTokenCaches();
-> ```
->
-> Later in the development and testing period, adopt a production distributed token cache provider.
-
-<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory, which is used by Microsoft Identity Web for token caching.
-
-<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> requires a package reference to the [`Microsoft.Extensions.Caching.Memory` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory).
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-To configure a production distributed cache provider, see <xref:performance/caching/distributed>. 
-
-> [!WARNING]
-> Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
-
-For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>.
-
-<!-- DOC AUTHOR NOTE: The next part on using a shared DP key ring is also
-                      covered in the *BWA + Entra* security article. Mirror 
-                      changes when updating this portion of content. -->
-
-Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A?displayProperty=nameWithType> is set to `true`.
-
-> [!NOTE]
-> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A> to `false` and configure a shared Data Protection key ring later:
->
-> ```csharp
-> options.Encrypt = false;
-> ```
->
-> Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
-
-The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using the Azure services' dedicated documentation sets, which are linked at the end of this section.
-
-Add the following packages to the server project of the Blazor Web App:
-
-* [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
-* [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-> [!NOTE]
-> Before proceeding with the following steps, confirm that the app is registered with Microsoft Entra.
-
-Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in <xref:security/data-protection/implementation/key-storage-providers#azure-storage>.
-
-Configure Azure Key Vault to encrypt the data protection keys at rest. Follow the guidance in <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>.
-
-Use the following code in the `Program` file where services are registered:
-
-```csharp
-TokenCredential? credential;
-
-if (builder.Environment.IsProduction())
-{
-    credential = new ManagedIdentityCredential("{MANAGED IDENTITY CLIENT ID}");
-}
-else
-{
-    // Local development and testing only
-    DefaultAzureCredentialOptions options = new()
-    {
-        // Specify the tenant ID to use the dev credentials when running the app locally
-        // in Visual Studio.
-        VisualStudioTenantId = "{TENANT ID}",
-        SharedTokenCacheTenantId = "{TENANT ID}"
-    };
-
-    credential = new DefaultAzureCredential(options);
-}
-
-builder.Services.AddDataProtection()
-    .SetApplicationName("{APPLICATION NAME}")
-    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI}"), credential)
-    .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), credential);
-```
-
-`{MANAGED IDENTITY CLIENT ID}`: The Azure Managed Identity Client ID (GUID).
-
-`{TENANT ID}`: Tenant ID.
-
-`{APPLICATION NAME}`: <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName%2A> sets the unique name of this app within the data protection system. The value should match across deployments of the app.
-
-`{BLOB URI}`: Full URI to the key file. The URI is generated by Azure Storage when you create the key file. Do not use a SAS.
-
-`{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The key identifier is obtained from the key in the Entra or Azure portal after it's created. If you enable autorotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
-
-> [!NOTE]
-> In non-`Production` environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as the <xref:Azure.Identity.ManagedIdentityCredential> shown in the preceding example. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
-
-Inject <xref:Microsoft.Identity.Abstractions.IDownstreamApi> and call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> when calling on behalf of a user:
-
-```csharp
-internal sealed class ServerWeatherForecaster(IDownstreamApi downstreamApi) : IWeatherForecaster
-{
-    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
-    {
-        var response = await downstreamApi.CallApiForUserAsync("DownstreamApi",
-            options =>
-            {
-                options.RelativePath = "/weather-forecast";
-            });
-
-        return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
-            throw new IOException("No weather forecast!");
-    }
-}
-```
-
-This approach is used by the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` sample apps described in the *Sample apps* section of this article.
-
-For more information, see the following resources:
-
-* <xref:security/data-protection/implementation/key-storage-providers#azure-storage>
-* <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>
-* [Use the Azure SDK for .NET in ASP.NET Core apps](/dotnet/azure/sdk/aspnetcore-guidance?tabs=api)
-* [Web API documentation | Microsoft identity platform](/entra/identity-platform/index-web-api)
-* [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
-* <xref:Microsoft.Identity.Abstractions.IDownstreamApi>
-* *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
-  * [With YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=with-yarp-and-aspire)
-  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=without-yarp-and-aspire)
-* [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
-* [Azure Key Vault documentation](/azure/key-vault/general/)
-* [Azure Storage documentation](/azure/storage/)
-* [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide?tabs=azure-cli)
-
-## Sample apps
-
-For working examples, see the following sample apps in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
-
-### `BlazorWebAppCallWebApi`
-
-Call an external (not in the Blazor Web App) todo list web API from a Blazor Web App:
-
-* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis). The web API app is a separate app from the Blazor Web App, possibly hosted on a different server.
-* `BlazorApp`/`BlazorApp.Client`: A Blazor Web App that calls the web API app with an <xref:System.Net.Http.HttpClient> for todo list operations, such as creating, reading, updating, and deleting (CRUD) items from the todo list.
-
-For client-side rendering (CSR), which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls are made with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`):
-
-```csharp
-builder.Services.AddScoped(sp =>
-    new HttpClient
-    {
-        BaseAddress = new Uri(builder.Configuration["FrontendUrl"] ?? 
-            "https://localhost:5002")
-    });
-```
-
-For server-side rendering (SSR), which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made with an <xref:System.Net.Http.HttpClient> registered in the `Program` file of the server project (`BlazorApp`):
-
-```csharp
-builder.Services.AddHttpClient();
-```
-
-Call an internal (inside the Blazor Web App) movie list API, where the API resides in the server project of the Blazor Web App:
-
-* `BlazorApp`: A Blazor Web App that maintains a movie list:
-  * When operations are performed on the movie list within the app on the server, ordinary API calls are used.
-  * When API calls are made by a web-based client, a web API is used for movie list operations, based on [Minimal APIs](xref:fundamentals/minimal-apis).
-* `BlazorApp.Client`: The client project of the Blazor Web App, which contains Interactive WebAssembly and Auto components for user management of the movie list.
-
-For CSR, which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls to the API are made via a client-based service (`ClientMovieService`) that uses a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`). Because these calls are made over a public or private web, the movie list API is a *web API*.
-
-The following example obtains a list of movies from the `/movies` endpoint:
-
-```csharp
-public class ClientMovieService(HttpClient http) : IMovieService
-{
-    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies) => 
-        await http.GetFromJsonAsync<Movie[]>("movies") ?? [];
-}
-```
-
-For SSR, which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made directly via a server-based service (`ServerMovieService`). The API doesn't rely on a network, so it's a standard API for movie list CRUD operations.
-
-The following example obtains a list of movies:
-
-```csharp
-public class ServerMovieService(MovieContext db) : IMovieService
-{
-    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies) => 
-        watchedMovies ? 
-        await db.Movies.Where(t => t.IsWatched).ToArrayAsync() : 
-        await db.Movies.ToArrayAsync();
-}
-```
-
-For more information on how to secure movie data in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
-
-### `BlazorWebAppCallWebApi_Weather`
-
-A weather data sample app that uses streaming rendering for weather data.
-
-### `BlazorWebAssemblyCallWebApi`
-
-Calls a todo list web API from a Blazor WebAssembly app:
-
-* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis).
-* `BlazorTodo`: A Blazor WebAssembly app that calls the web API with a preconfigured <xref:System.Net.Http.HttpClient> for todo list CRUD operations.
-
-### `BlazorWebAssemblyStandaloneWithIdentity`
-
-A standalone Blazor WebAssembly app secured with ASP.NET Core Identity:
-
-* `Backend`: A backend web API app that maintains a user identity store for ASP.NET Core Identity.
-* `BlazorWasmAuth`: A standalone Blazor WebAssembly frontend app with user authentication.
-
-The solution demonstrates calling a secure web API for the following:
-
-* Obtaining an authenticated user's roles.
-* Data processing for all authenticated users.
-* Data processing for authorized users (the user must be in the `Manager` role) via an [authorization policy](xref:security/authorization/policies).
-
-### `BlazorWebAppOidc`
-
-A Blazor Web App with global Auto interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [use a token handler for web API calls](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
-
-### `BlazorWebAppOidcServer`
-
-A Blazor Web App with global Interactive Server interactivity that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [pass an access token](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
-
-### `BlazorWebAppOidcBff`
-
-A Blazor Web App with global Auto interactivity that uses:
-
-* OIDC authentication with Microsoft Entra without using Entra-specific packages.
-* The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends), which is a pattern of app development that creates backend services for frontend apps or interfaces.
-
-The solution includes a demonstration of obtaining weather data securely via an external web API when a component that adopts Interactive Auto rendering is rendered on the client.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-9.0"
-
-### `BlazorWebAppEntra`
-
-A Blazor Web App with global Auto interactivity that uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra). The solution includes a demonstration of obtaining weather data securely via an external web API when a component that adopts Interactive Auto rendering is rendered on the client.
-
-### `BlazorWebAppEntraBff`
-
-A Blazor Web App with global Auto interactivity that uses:
-
-* [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra).
-* The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends), which is a pattern of app development that creates backend services for frontend apps or interfaces.
-
-The solution includes a demonstration of obtaining weather data securely via an external web API when a component that adopts Interactive Auto rendering is rendered on the client.
-
-:::moniker-end
-
-## Disposal of `HttpRequestMessage`, `HttpResponseMessage`, and `HttpClient`
-
-An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal. However, you can dispose of it with either of the following patterns:
-
-* `using` declaration (C# 8 or later):
-
-  ```csharp
-  using var request = new HttpRequestMessage(...);
-  ```
-  
-* [`using` block (all C# releases)](/dotnet/csharp/language-reference/keywords/using):
-
-  ```csharp
-  using (var request = new HttpRequestMessage(...))
-  {
-      ...
-  }
-  ```
-
-We recommend disposing of every <xref:System.Net.Http.HttpRequestMessage> with every use for the following reasons:
-
-* To gain a performance improvement by avoiding finalizers.
-* It hardens the code for the future in case a request body is ever added to an <xref:System.Net.Http.HttpRequestMessage> that didn't initially have one.
-* To potentially avoid functional issues if a delegating handler expects a call to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>.
-* It's simpler to apply a general rule everywhere than trying to remember specific cases.
-
-***Always*** dispose of <xref:System.Net.Http.HttpResponseMessage> instances.
-
-***Never*** dispose of <xref:System.Net.Http.HttpClient> instances created by calling <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> because they're managed by the framework.
-
-Example:
-
-```csharp
-using var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
-var client = clientFactory.CreateClient("ExternalApi");
-using var response = await client.SendAsync(request);
-```
-
-## Client-side scenarios for calling external web APIs
-
-Client-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file:
-
-```csharp
-builder.Services.AddScoped(sp => 
-    new HttpClient
-    { 
-        BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) 
-    });
-```
-
-The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
-
-`CallWebAPI.razor`:
-
-```razor
-@page "/call-web-api"
-@using System.Text.Json
-@using System.Text.Json.Serialization
-@inject HttpClient Client
-
-<h1>Call web API from a Blazor WebAssembly Razor component</h1>
-
-@if (getBranchesError || branches is null)
-{
-    <p>Unable to get branches from GitHub. Please try again later.</p>
-}
-else
-{
-    <ul>
-        @foreach (var branch in branches)
-        {
-            <li>@branch.Name</li>
-        }
-    </ul>
-}
-
-@code {
-    private IEnumerable<GitHubBranch>? branches = [];
-    private bool getBranchesError;
-    private bool shouldRender;
-
-    protected override bool ShouldRender() => shouldRender;
-
-    protected override async Task OnInitializedAsync()
-    {
-        using var request = new HttpRequestMessage(HttpMethod.Get,
-            "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
-        request.Headers.Add("Accept", "application/vnd.github.v3+json");
-        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
-
-        using var response = await Client.SendAsync(request);
-
-        if (response.IsSuccessStatusCode)
-        {
-            using var responseStream = await response.Content.ReadAsStreamAsync();
-            branches = await JsonSerializer.DeserializeAsync
-                <IEnumerable<GitHubBranch>>(responseStream);
-        }
-        else
-        {
-            getBranchesError = true;
-        }
-
-        shouldRender = true;
-    }
-
-    public class GitHubBranch
-    {
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-    }
-}
-```
-
-In the preceding example for C# 12 or later, an empty array (`[]`) is created for the `branches` variable. For earlier versions of C# compiled with an SDK earlier than .NET 8, create an empty array (`Array.Empty<GitHubBranch>()`).
-
-<!-- A version of the following content is also in the 
-     Security > WebAssembly > Overview article under 
-     the heading: "Web API requests" -->
-
-To protect .NET/C# code and data, use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing.
-
-Blazor WebAssembly apps are often prevented from making direct calls across origins to web APIs due to [Cross-Origin Request Sharing (CORS) security](#cross-origin-resource-sharing-cors). A typical exception looks like the following:
-
-> :::no-loc text="Access to fetch at '{URL}' from origin 'https://localhost:{PORT}' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.":::
-
-Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> with a <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestMode> field of `NoCors` (1) seeking to circumvent the preceding exception, the request often fails due to CORS restrictions on the web API's origin, such as a restriction that only allows calls from specific origins or a restriction that prevents JavaScript [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests from a browser. The only way for such calls to succeed is for the web API that you're calling to allow your origin to call its origin with the correct CORS configuration. Most external web APIs don't allow you to configure their CORS policies. To deal with this restriction, adopt either of the following strategies:
-
-* Maintain your own server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls your server-side web API, and your web API makes the request from its server-based C# code (not a browser) to the external web API with the correct CORS headers, returning the result to your client-side Blazor WebAssembly app.
-
-* Use a proxy service to proxy the request from the client-side Blazor WebAssembly app to the external web API. The proxy service uses a server-side app to make the request on the client's behalf and returns the result after the call succeeds. In the following example based on [CloudFlare's CORS PROXY](https://corsproxy.io/), the `{REQUEST URI}` placeholder is the request URI:
-
-  ```razor
-  @using System.Net
-  @inject IHttpClientFactory ClientFactory
-
-  ...
-
-  @code {
-      public async Task CallApi()
-      {
-          var client = ClientFactory.CreateClient();
-
-          var urlEncodedRequestUri = WebUtility.UrlEncode("{REQUEST URI}");
-
-          using var request = new HttpRequestMessage(HttpMethod.Get, 
-              $"https://corsproxy.io/?{urlEncodedRequestUri}");
-
-          using var response = await client.SendAsync(request);
-
-          ...
-      }
-  }
-  ```
 
 ## Server-side scenarios for calling external web APIs
 
@@ -641,54 +139,122 @@ Use ***either*** of the following approaches:
 
 For more information, see the [Client-side services fail to resolve during prerendering](xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering) section of the *Prerendering* article.
 
-## Prerendered data
+## Client-side scenarios for calling external web APIs
 
-When prerendering, components render twice: first statically, then interactively. State doesn't automatically flow from the prerendered component to the interactive one. If a component performs asynchronous initialization operations and renders different content for different states during initialization, such as a "Loading..." progress indicator, you may see a flicker when the component renders twice.
-
-You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. For more information, see the following resources:
-
-* <xref:blazor/state-management/prerendered-state-persistence>
-* <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-10.0"
-
-> [!NOTE]
-> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-9.0"
-
-## Client-side request streaming
-
-For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, and HTTPS, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests).
-
-To enable request streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestStreamingEnabled%2A> to `true` on the <xref:System.Net.Http.HttpRequestMessage>.
-
-In the following file upload example:
-
-* `content` is the file's <xref:System.Net.Http.HttpContent>.
-* `/Filesave` is the web API endpoint.
-* `Http` is the <xref:System.Net.Http.HttpClient>.
+Client-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file:
 
 ```csharp
-using var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
-request.SetBrowserRequestStreamingEnabled(true);
-request.Content = content;
-
-using var response = await Http.SendAsync(request);
+builder.Services.AddScoped(sp => 
+    new HttpClient
+    { 
+        BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) 
+    });
 ```
 
-Streaming requests:
+The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
 
-* Require HTTPS protocol and don't work on HTTP/1.x.
-* Include a body but not a `Content-Length` header. [CORS](xref:security/cors) with a preflight request is required for cross-origin streaming requests.
+`CallWebAPI.razor`:
 
-For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads#file-size-read-and-upload-limits> and the example at [Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr).
+```razor
+@page "/call-web-api"
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject HttpClient Client
 
-:::moniker-end
+<h1>Call web API from a Blazor WebAssembly Razor component</h1>
+
+@if (getBranchesError || branches is null)
+{
+    <p>Unable to get branches from GitHub. Please try again later.</p>
+}
+else
+{
+    <ul>
+        @foreach (var branch in branches)
+        {
+            <li>@branch.Name</li>
+        }
+    </ul>
+}
+
+@code {
+    private IEnumerable<GitHubBranch>? branches = [];
+    private bool getBranchesError;
+    private bool shouldRender;
+
+    protected override bool ShouldRender() => shouldRender;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get,
+            "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
+        request.Headers.Add("Accept", "application/vnd.github.v3+json");
+        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+
+        using var response = await Client.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            branches = await JsonSerializer.DeserializeAsync
+                <IEnumerable<GitHubBranch>>(responseStream);
+        }
+        else
+        {
+            getBranchesError = true;
+        }
+
+        shouldRender = true;
+    }
+
+    public class GitHubBranch
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+    }
+}
+```
+
+In the preceding example for C# 12 or later, an empty array (`[]`) is created for the `branches` variable. For earlier versions of C# compiled with an SDK earlier than .NET 8, create an empty array (`Array.Empty<GitHubBranch>()`).
+
+<!-- A version of the following content is also in the 
+     Security > WebAssembly > Overview article under 
+     the heading: "Web API requests" -->
+
+To protect .NET/C# code and data, use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing.
+
+Blazor WebAssembly apps are often prevented from making direct calls across origins to web APIs due to [Cross-Origin Request Sharing (CORS) security](#cross-origin-resource-sharing-cors). A typical exception looks like the following:
+
+> :::no-loc text="Access to fetch at '{URL}' from origin 'https://localhost:{PORT}' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.":::
+
+Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> with a <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestMode> field of `NoCors` (1) seeking to circumvent the preceding exception, the request often fails due to CORS restrictions on the web API's origin, such as a restriction that only allows calls from specific origins or a restriction that prevents JavaScript [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests from a browser. The only way for such calls to succeed is for the web API that you're calling to allow your origin to call its origin with the correct CORS configuration. Most external web APIs don't allow you to configure their CORS policies. To deal with this restriction, adopt either of the following strategies:
+
+* Maintain your own server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls your server-side web API, and your web API makes the request from its server-based C# code (not a browser) to the external web API with the correct CORS headers, returning the result to your client-side Blazor WebAssembly app.
+
+* Use a proxy service to proxy the request from the client-side Blazor WebAssembly app to the external web API. The proxy service uses a server-side app to make the request on the client's behalf and returns the result after the call succeeds. In the following example based on [CloudFlare's CORS PROXY](https://corsproxy.io/), the `{REQUEST URI}` placeholder is the request URI:
+
+  ```razor
+  @using System.Net
+  @inject IHttpClientFactory ClientFactory
+
+  ...
+
+  @code {
+      public async Task CallApi()
+      {
+          var client = ClientFactory.CreateClient();
+
+          var urlEncodedRequestUri = WebUtility.UrlEncode("{REQUEST URI}");
+
+          using var request = new HttpRequestMessage(HttpMethod.Get, 
+              $"https://corsproxy.io/?{urlEncodedRequestUri}");
+
+          using var response = await client.SendAsync(request);
+
+          ...
+      }
+  }
+  ```
 
 ## Add the `HttpClient` service
 
@@ -696,7 +262,7 @@ For more information on file uploads with an <xref:Microsoft.AspNetCore.Componen
 
 Client-side components call web APIs using a preconfigured <xref:System.Net.Http.HttpClient> service, which is focused on making requests back to the server of origin. Additional <xref:System.Net.Http.HttpClient> service configurations for other web APIs can be created in developer code. Requests are composed using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>. Requests can include [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) option configuration.
 
-The configuration examples in this section are only useful when a single web API is called for a single <xref:System.Net.Http.HttpClient> instance in the app. When the app must call multiple web APIs, each with its own base address and configuration, you can adopt the following approaches, which are covered later in this article:
+The configuration examples in this section are only useful when a single web API is called for a single <xref:System.Net.Http.HttpClient> instance in the app. When the app must call multiple web APIs, each with its own base address and configuration, you can adopt the following approaches, which are covered in the next two sections of this article:
 
 * [Named `HttpClient` with `IHttpClientFactory`](#named-httpclient-with-ihttpclientfactory): Each web API is provided a unique name. When app code or a Razor component calls a web API, it uses a named <xref:System.Net.Http.HttpClient> instance to make the call.
 * [Typed `HttpClient`](#typed-httpclient): Each web API is typed. When app code or a Razor component calls a web API, it uses a typed <xref:System.Net.Http.HttpClient> instance to make the call.
@@ -722,11 +288,241 @@ builder.Services.AddScoped(sp =>
     new HttpClient { BaseAddress = new Uri("https://localhost:5001") });
 ```
 
+## Named `HttpClient` with `IHttpClientFactory`
+
+<xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported.
+
+> [!NOTE]
+> An alternative to using a named <xref:System.Net.Http.HttpClient> from an <xref:System.Net.Http.IHttpClientFactory> is to use a typed <xref:System.Net.Http.HttpClient>. For more information, see the [Typed `HttpClient`](#typed-httpclient) section.
+
+Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+In the `Program` file of a client project:
+
+```csharp
+builder.Services.AddHttpClient("WebAPI", client => 
+    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+```
+
+:::moniker range=">= aspnetcore-8.0"
+
+If the named client is to be used by prerendered client-side components of a Blazor Web App, the preceding service registration should appear in both the server project and the `.Client` project. On the server, `builder.HostEnvironment.BaseAddress` is replaced by the web API's base address, which is described further below.
+
+:::moniker-end
+
+The preceding client-side example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
+
+:::moniker range=">= aspnetcore-8.0"
+
+The most common use cases for using the client's own base address are:
+
+* The client project (`.Client`) of a Blazor Web App that makes web API calls from WebAssembly/Auto components or code that runs on the client in WebAssembly to APIs in the server app at the same host address.
+* The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+The most common use case for using the client's own base address is in the client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
+
+:::moniker-end
+
+If you're calling an external web API (not in the same URL space as the client app) or you're configuring the services in a server-side app (for example to deal with prerendering of client-side components on the server), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
+
+```csharp
+builder.Services.AddHttpClient("WebAPI", client => 
+    client.BaseAddress = new Uri("https://localhost:5001"));
+```
+
+In the following component code:
+
+* An instance of <xref:System.Net.Http.IHttpClientFactory> creates a named <xref:System.Net.Http.HttpClient>.
+* The named <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API at `/forecast`.
+
+```razor
+@inject IHttpClientFactory ClientFactory
+
+...
+
+@code {
+    private Forecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = ClientFactory.CreateClient("WebAPI");
+
+        forecasts = await client.GetFromJsonAsync<Forecast[]>("forecast") ?? [];
+    }
+}
+```
+
+:::moniker range=">= aspnetcore-8.0"
+
+The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a named <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrNamedClient` component. For an additional working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+For a working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
+
+:::moniker-end
+
+## Typed `HttpClient`
+
+Typed <xref:System.Net.Http.HttpClient> uses one or more of the app's <xref:System.Net.Http.HttpClient> instances, default or named, to return data from one or more web API endpoints.
+
+> [!NOTE]
+> An alternative to using a typed <xref:System.Net.Http.HttpClient> is to use a named <xref:System.Net.Http.HttpClient> from an <xref:System.Net.Http.IHttpClientFactory>. For more information, see the [Named `HttpClient` with `IHttpClientFactory`](#named-httpclient-with-ihttpclientfactory) section.
+
+Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+The following example issues a GET request for JSON weather forecast data from the web API at `/forecast`.
+
+`ForecastHttpClient.cs`:
+
+```csharp
+using System.Net.Http.Json;
+
+namespace BlazorSample.Client;
+
+public class ForecastHttpClient(HttpClient http)
+{
+    public async Task<Forecast[]> GetForecastAsync() => 
+        await http.GetFromJsonAsync<Forecast[]>("forecast") ?? [];
+}
+```
+
+In the `Program` file of a client project:
+
+```csharp
+builder.Services.AddHttpClient<ForecastHttpClient>(client => 
+    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+```
+
+:::moniker range=">= aspnetcore-8.0"
+
+If the typed client is to be used by prerendered client-side components of a Blazor Web App, the preceding service registration should appear in both the server project and the `.Client` project. On the server, `builder.HostEnvironment.BaseAddress` is replaced by the web API's base address, which is described further below.
+
+:::moniker-end
+
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
+
+:::moniker range=">= aspnetcore-8.0"
+
+The most common use cases for using the client's own base address are:
+
+* The client project (`.Client`) of a Blazor Web App that makes web API calls from WebAssembly/Auto components or code that runs on the client in WebAssembly to APIs in the server app at the same host address.
+* The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+The most common use case for using the client's own base address is in the client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
+
+:::moniker-end
+
+If you're calling an external web API (not in the same URL space as the client app) or you're configuring the services in a server-side app (for example to deal with prerendering of client-side components on the server), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
+
+```csharp
+builder.Services.AddHttpClient<ForecastHttpClient>(client => 
+    client.BaseAddress = new Uri("https://localhost:5001"));
+```
+
+Components inject the typed <xref:System.Net.Http.HttpClient> to call the web API.
+
+In the following component code:
+
+* An instance of the preceding `ForecastHttpClient` is injected, which creates a typed <xref:System.Net.Http.HttpClient>.
+* The typed <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API.
+
+```razor
+@inject ForecastHttpClient Http
+
+...
+
+@code {
+    private Forecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await Http.GetForecastAsync();
+    }
+}
+```
+
+:::moniker range=">= aspnetcore-8.0"
+
+The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a typed <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrTypedClient` component. Note that the component adopts and client-side rendering (CSR) (`InteractiveWebAssembly` render mode) ***with prerendering***, so the typed client service registration appears in the `Program` file of both the server project and the `.Client` project.
+
+:::moniker-end
+
+## Disposal of `HttpRequestMessage`, `HttpResponseMessage`, and `HttpClient`
+
+An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal. However, you can dispose of it with either of the following patterns:
+
+* `using` declaration (C# 8 or later):
+
+  ```csharp
+  using var request = new HttpRequestMessage(...);
+  ```
+  
+* [`using` block (all C# releases)](/dotnet/csharp/language-reference/keywords/using):
+
+  ```csharp
+  using (var request = new HttpRequestMessage(...))
+  {
+      ...
+  }
+  ```
+
+We recommend disposing of every <xref:System.Net.Http.HttpRequestMessage> with every use for the following reasons:
+
+* To gain a performance improvement by avoiding finalizers.
+* It hardens the code for the future in case a request body is ever added to an <xref:System.Net.Http.HttpRequestMessage> that didn't initially have one.
+* To potentially avoid functional issues if a delegating handler expects a call to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>.
+* It's simpler to apply a general rule everywhere than trying to remember specific cases.
+
+***Always*** dispose of <xref:System.Net.Http.HttpResponseMessage> instances.
+
+***Never*** dispose of <xref:System.Net.Http.HttpClient> instances created by calling <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> because they're managed by the framework.
+
+Example:
+
+```csharp
+using var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
+var client = clientFactory.CreateClient("ExternalApi");
+using var response = await client.SendAsync(request);
+```
+
+## Prerendered data
+
+When prerendering, components render twice: first statically, then interactively. State doesn't automatically flow from the prerendered component to the interactive one. If a component performs asynchronous initialization operations and renders different content for different states during initialization, such as a "Loading..." progress indicator, you may see a flicker when the component renders twice.
+
+You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. For more information, see the following resources:
+
+* <xref:blazor/state-management/prerendered-state-persistence>
+* <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+> [!NOTE]
+> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
+
+:::moniker-end
+
 ## JSON helpers
 
-<xref:System.Net.Http.HttpClient> is available as a preconfigured service for making requests back to the origin server.
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for <xref:System.Net.Http.HttpClient?displayProperty=fullName> and <xref:System.Net.Http.HttpContent?displayProperty=fullName> that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json). The `System.Net.Http.Json` package is provided by the .NET shared framework and doesn't require adding a package reference to the app.
 
-<xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same-origin policy, which is discussed later in this article in the *Cross-Origin Resource Sharing (CORS)* section.
+<xref:System.Net.Http.HttpClient> is available as a preconfigured service for making requests back to the origin server. <xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same-origin policy, which is discussed later in this article in the *Cross-Origin Resource Sharing (CORS)* section.
 
 The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance into a component using the [`@inject`](xref:mvc/views/razor#inject) directive:
 
@@ -990,180 +786,6 @@ In the following component code, the `<button>` element calls the `DeleteItem` m
 await Http.DeleteAsync($"todoitems/{id}");
 ```
 
-## Named `HttpClient` with `IHttpClientFactory`
-
-<xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported.
-
-> [!NOTE]
-> An alternative to using a named <xref:System.Net.Http.HttpClient> from an <xref:System.Net.Http.IHttpClientFactory> is to use a typed <xref:System.Net.Http.HttpClient>. For more information, see the [Typed `HttpClient`](#typed-httpclient) section.
-
-Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-In the `Program` file of a client project:
-
-```csharp
-builder.Services.AddHttpClient("WebAPI", client => 
-    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
-```
-
-:::moniker range=">= aspnetcore-8.0"
-
-If the named client is to be used by prerendered client-side components of a Blazor Web App, the preceding service registration should appear in both the server project and the `.Client` project. On the server, `builder.HostEnvironment.BaseAddress` is replaced by the web API's base address, which is described further below.
-
-:::moniker-end
-
-The preceding client-side example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
-
-:::moniker range=">= aspnetcore-8.0"
-
-The most common use cases for using the client's own base address are:
-
-* The client project (`.Client`) of a Blazor Web App that makes web API calls from WebAssembly/Auto components or code that runs on the client in WebAssembly to APIs in the server app at the same host address.
-* The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-The most common use case for using the client's own base address is in the client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
-
-:::moniker-end
-
-If you're calling an external web API (not in the same URL space as the client app) or you're configuring the services in a server-side app (for example to deal with prerendering of client-side components on the server), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
-
-```csharp
-builder.Services.AddHttpClient("WebAPI", client => 
-    client.BaseAddress = new Uri("https://localhost:5001"));
-```
-
-In the following component code:
-
-* An instance of <xref:System.Net.Http.IHttpClientFactory> creates a named <xref:System.Net.Http.HttpClient>.
-* The named <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API at `/forecast`.
-
-```razor
-@inject IHttpClientFactory ClientFactory
-
-...
-
-@code {
-    private Forecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        var client = ClientFactory.CreateClient("WebAPI");
-
-        forecasts = await client.GetFromJsonAsync<Forecast[]>("forecast") ?? [];
-    }
-}
-```
-
-:::moniker range=">= aspnetcore-8.0"
-
-The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a named <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrNamedClient` component. For an additional working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-For a working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
-
-:::moniker-end
-
-## Typed `HttpClient`
-
-Typed <xref:System.Net.Http.HttpClient> uses one or more of the app's <xref:System.Net.Http.HttpClient> instances, default or named, to return data from one or more web API endpoints.
-
-> [!NOTE]
-> An alternative to using a typed <xref:System.Net.Http.HttpClient> is to use a named <xref:System.Net.Http.HttpClient> from an <xref:System.Net.Http.IHttpClientFactory>. For more information, see the [Named `HttpClient` with `IHttpClientFactory`](#named-httpclient-with-ihttpclientfactory) section.
-
-Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-The following example issues a GET request for JSON weather forecast data from the web API at `/forecast`.
-
-`ForecastHttpClient.cs`:
-
-```csharp
-using System.Net.Http.Json;
-
-namespace BlazorSample.Client;
-
-public class ForecastHttpClient(HttpClient http)
-{
-    public async Task<Forecast[]> GetForecastAsync() => 
-        await http.GetFromJsonAsync<Forecast[]>("forecast") ?? [];
-}
-```
-
-In the `Program` file of a client project:
-
-```csharp
-builder.Services.AddHttpClient<ForecastHttpClient>(client => 
-    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
-```
-
-:::moniker range=">= aspnetcore-8.0"
-
-If the typed client is to be used by prerendered client-side components of a Blazor Web App, the preceding service registration should appear in both the server project and the `.Client` project. On the server, `builder.HostEnvironment.BaseAddress` is replaced by the web API's base address, which is described further below.
-
-:::moniker-end
-
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
-
-:::moniker range=">= aspnetcore-8.0"
-
-The most common use cases for using the client's own base address are:
-
-* The client project (`.Client`) of a Blazor Web App that makes web API calls from WebAssembly/Auto components or code that runs on the client in WebAssembly to APIs in the server app at the same host address.
-* The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-The most common use case for using the client's own base address is in the client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
-
-:::moniker-end
-
-If you're calling an external web API (not in the same URL space as the client app) or you're configuring the services in a server-side app (for example to deal with prerendering of client-side components on the server), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
-
-```csharp
-builder.Services.AddHttpClient<ForecastHttpClient>(client => 
-    client.BaseAddress = new Uri("https://localhost:5001"));
-```
-
-Components inject the typed <xref:System.Net.Http.HttpClient> to call the web API.
-
-In the following component code:
-
-* An instance of the preceding `ForecastHttpClient` is injected, which creates a typed <xref:System.Net.Http.HttpClient>.
-* The typed <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API.
-
-```razor
-@inject ForecastHttpClient Http
-
-...
-
-@code {
-    private Forecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await Http.GetForecastAsync();
-    }
-}
-```
-
-:::moniker range=">= aspnetcore-8.0"
-
-The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a typed <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrTypedClient` component. Note that the component adopts and client-side rendering (CSR) (`InteractiveWebAssembly` render mode) ***with prerendering***, so the typed client service registration appears in the `Program` file of both the server project and the `.Client` project.
-
-:::moniker-end
-
 ## Cookie-based request credentials
 
 *The guidance in this section applies to client-side scenarios that rely upon an authentication cookie.*
@@ -1216,6 +838,255 @@ using var request = new HttpRequestMessage() { ... };
 request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 request.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
 ```
+
+:::moniker range=">= aspnetcore-9.0"
+
+## Client-side request streaming
+
+For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, and HTTPS, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests).
+
+To enable request streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestStreamingEnabled%2A> to `true` on the <xref:System.Net.Http.HttpRequestMessage>.
+
+In the following file upload example:
+
+* `content` is the file's <xref:System.Net.Http.HttpContent>.
+* `/Filesave` is the web API endpoint.
+* `Http` is the <xref:System.Net.Http.HttpClient>.
+
+```csharp
+using var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
+request.SetBrowserRequestStreamingEnabled(true);
+request.Content = content;
+
+using var response = await Http.SendAsync(request);
+```
+
+Streaming requests:
+
+* Require HTTPS protocol and don't work on HTTP/1.x.
+* Include a body but not a `Content-Length` header. [CORS](xref:security/cors) with a preflight request is required for cross-origin streaming requests.
+
+For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads#file-size-read-and-upload-limits> and the example at [Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr).
+
+:::moniker-end
+
+## Use a token handler for web API calls
+
+Blazor Web Apps with OIDC authentication can use a token handler approach to make outgoing requests to secure external web API calls. This approach is used by the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps described in the *Sample apps* section of this article.
+
+For more information, see the following resources:
+
+* <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
+* *Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)*
+  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire)
+  * [Without YARP and Aspire (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire-server)
+
+## Microsoft identity platform for web API calls
+
+Blazor Web Apps that use use [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) can make streamlined web API calls with API provided by the [`Microsoft.Identity.Web.DownstreamApi` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web.DownstreamApi).
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+In the app settings file (`appsettings.json`), provide a base URL and scopes. In the following example, the `{BASE ADDRESS}` placeholder is the base URL of the web API. A single scope is specified with an App ID URI (`{APP ID URI}` placeholder) and scope name (`{SCOPE NAME}` placeholder):
+
+```json
+"DownstreamApi": {
+  "BaseUrl": "{BASE ADDRESS}",
+  "Scopes": [ "{APP ID URI}/{SCOPE NAME}" ]
+}
+```
+
+Example:
+
+```json
+"DownstreamApi": {
+  "BaseUrl": "https://localhost:7277",
+  "Scopes": [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ]
+}
+```
+
+In the app's `Program` file, call:
+
+<!-- UPDATE 11.0 - Awaiting API per https://github.com/dotnet/AspNetCore.Docs/issues/36373.
+                   Marking this for 11.0 because it's the last 10.0 item and inline tracking
+                   now adopts 11.0 or later work items. This ensures that this inline item
+                   isn't missed.
+                   
+                   Missing API doc for 'Microsoft.Identity.Web.DownstreamApiExtensions.AddDownstreamApi' -->
+
+* <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilder.EnableTokenAcquisitionToCallDownstreamApi%2A>: Enables token acquisition to call web APIs.
+* `AddDownstreamApi`: Microsoft Identity Web packages provide API to create a named downstream web service for making web API calls. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into a server-side class, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> to obtain weather data from an external web API (`MinimalApiJwt` project).
+* <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A>: Adds the .NET distributed token caches to the service collection.
+* <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>: Adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory.
+* Configure the distributed token cache options (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions>):
+  * In development for debugging purposes, you can disable the L1 cache by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.DisableL1Cache%2A> to `true`. ***Be sure to reset it back to `false` for production.***
+  * Set the maximum size of your L1 cache with [`L1CacheOptions.SizeLimit`](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit%2A) to prevent the cache from overrunning the server's memory. The default value is 500 MB.
+  * In development for debugging purposes, you can disable token encryption at rest by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A> to `false`, which is the default value. ***Be sure to reset it back to `true` for production.***
+  * Set token eviction from the cache with <xref:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration%2A>. The default value is 1 hour.
+  * For more information, including guidance on the callback for L2 cache failures (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.OnL2CacheFailure%2A>) and asynchronous L2 cache writes (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.EnableAsyncL2Write%2A>), see <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions> and [Token cache serialization: Distributed token caches](/entra/msal/dotnet/how-to/token-cache-serialization#distributed-token-caches).
+
+You can choose to encrypt the cache and should always do so in production.
+
+```csharp
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"))
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("DownstreamApi", 
+        builder.Configuration.GetSection("DownstreamApi"))
+    .AddDistributedTokenCaches();
+
+// Requires the 'Microsoft.Extensions.Caching.Memory' NuGet package
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.Configure<MsalDistributedTokenCacheAdapterOptions>(
+    options => 
+    {
+        // The following lines that are commented out reflect
+        // default values. We recommend overriding the default
+        // value of Encrypt to encrypt tokens at rest.
+
+        //options.DisableL1Cache = false;
+        //options.L1CacheOptions.SizeLimit = 500 * 1024 * 1024;
+        options.Encrypt = true;
+        //options.SlidingExpiration = TimeSpan.FromHours(1);
+    });
+```
+
+In-memory distributed token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A> to ensure that there's a base implementation available for distributed token caching.
+
+Production web apps and web APIs should use a production distributed token cache (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)).
+
+> [!NOTE]
+> For local development and testing on a single machine, you can use in-memory token caches instead of distributed token caches:
+>
+> ```csharp
+> builder.Services.AddInMemoryTokenCaches();
+> ```
+>
+> Later in the development and testing period, adopt a production distributed token cache provider.
+
+<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory, which is used by Microsoft Identity Web for token caching.
+
+<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> requires a package reference to the [`Microsoft.Extensions.Caching.Memory` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory).
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+To configure a production distributed cache provider, see <xref:performance/caching/distributed>. 
+
+> [!WARNING]
+> Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
+
+For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>.
+
+<!-- DOC AUTHOR NOTE: The next part on using a shared DP key ring is also
+                      covered in the *BWA + Entra* security article. Mirror 
+                      changes when updating this portion of content. -->
+
+Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A?displayProperty=nameWithType> is set to `true`.
+
+> [!NOTE]
+> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A> to `false` and configure a shared Data Protection key ring later:
+>
+> ```csharp
+> options.Encrypt = false;
+> ```
+>
+> Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
+
+The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using the Azure services' dedicated documentation sets, which are linked at the end of this section.
+
+Add the following packages to the server project of the Blazor Web App:
+
+* [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
+* [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+> [!NOTE]
+> Before proceeding with the following steps, confirm that the app is registered with Microsoft Entra.
+
+Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in <xref:security/data-protection/implementation/key-storage-providers#azure-storage>.
+
+Configure Azure Key Vault to encrypt the data protection keys at rest. Follow the guidance in <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>.
+
+Use the following code in the `Program` file where services are registered:
+
+```csharp
+TokenCredential? credential;
+
+if (builder.Environment.IsProduction())
+{
+    credential = new ManagedIdentityCredential("{MANAGED IDENTITY CLIENT ID}");
+}
+else
+{
+    // Local development and testing only
+    DefaultAzureCredentialOptions options = new()
+    {
+        // Specify the tenant ID to use the dev credentials when running the app locally
+        // in Visual Studio.
+        VisualStudioTenantId = "{TENANT ID}",
+        SharedTokenCacheTenantId = "{TENANT ID}"
+    };
+
+    credential = new DefaultAzureCredential(options);
+}
+
+builder.Services.AddDataProtection()
+    .SetApplicationName("{APPLICATION NAME}")
+    .PersistKeysToAzureBlobStorage(new Uri("{BLOB URI}"), credential)
+    .ProtectKeysWithAzureKeyVault(new Uri("{KEY IDENTIFIER}"), credential);
+```
+
+`{MANAGED IDENTITY CLIENT ID}`: The Azure Managed Identity Client ID (GUID).
+
+`{TENANT ID}`: Tenant ID.
+
+`{APPLICATION NAME}`: <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName%2A> sets the unique name of this app within the data protection system. The value should match across deployments of the app.
+
+`{BLOB URI}`: Full URI to the key file. The URI is generated by Azure Storage when you create the key file. Do not use a SAS.
+
+`{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The key identifier is obtained from the key in the Entra or Azure portal after it's created. If you enable autorotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
+
+> [!NOTE]
+> In non-`Production` environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as the <xref:Azure.Identity.ManagedIdentityCredential> shown in the preceding example. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+
+Inject <xref:Microsoft.Identity.Abstractions.IDownstreamApi> and call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> when calling on behalf of a user:
+
+```csharp
+internal sealed class ServerWeatherForecaster(IDownstreamApi downstreamApi) : IWeatherForecaster
+{
+    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
+    {
+        var response = await downstreamApi.CallApiForUserAsync("DownstreamApi",
+            options =>
+            {
+                options.RelativePath = "/weather-forecast";
+            });
+
+        return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
+            throw new IOException("No weather forecast!");
+    }
+}
+```
+
+This approach is used by the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` sample apps described in the *Sample apps* section of this article.
+
+For more information, see the following resources:
+
+* <xref:security/data-protection/implementation/key-storage-providers#azure-storage>
+* <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>
+* [Use the Azure SDK for .NET in ASP.NET Core apps](/dotnet/azure/sdk/aspnetcore-guidance?tabs=api)
+* [Web API documentation | Microsoft identity platform](/entra/identity-platform/index-web-api)
+* [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
+* <xref:Microsoft.Identity.Abstractions.IDownstreamApi>
+* *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
+  * [With YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=with-yarp-and-aspire)
+  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=without-yarp-and-aspire)
+* [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
+* [Azure Key Vault documentation](/azure/key-vault/general/)
+* [Azure Storage documentation](/azure/storage/)
+* [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide?tabs=azure-cli)
 
 ## `HttpClient` and `HttpRequestMessage` with Fetch API request options
 
@@ -1447,6 +1318,133 @@ Various network tools are publicly available for testing web API backend apps di
 [`HttpClientTest` assets in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp/HttpClientTest)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Sample apps
+
+For working examples, see the following sample apps in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+
+### `BlazorWebAppCallWebApi`
+
+Call an external (not in the Blazor Web App) todo list web API from a Blazor Web App:
+
+* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis). The web API app is a separate app from the Blazor Web App, possibly hosted on a different server.
+* `BlazorApp`/`BlazorApp.Client`: A Blazor Web App that calls the web API app with an <xref:System.Net.Http.HttpClient> for todo list operations, such as creating, reading, updating, and deleting (CRUD) items from the todo list.
+
+For client-side rendering (CSR), which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls are made with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`):
+
+```csharp
+builder.Services.AddScoped(sp =>
+    new HttpClient
+    {
+        BaseAddress = new Uri(builder.Configuration["FrontendUrl"] ?? 
+            "https://localhost:5002")
+    });
+```
+
+For server-side rendering (SSR), which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made with an <xref:System.Net.Http.HttpClient> registered in the `Program` file of the server project (`BlazorApp`):
+
+```csharp
+builder.Services.AddHttpClient();
+```
+
+Call an internal (inside the Blazor Web App) movie list API, where the API resides in the server project of the Blazor Web App:
+
+* `BlazorApp`: A Blazor Web App that maintains a movie list:
+  * When operations are performed on the movie list within the app on the server, ordinary API calls are used.
+  * When API calls are made by a web-based client, a web API is used for movie list operations, based on [Minimal APIs](xref:fundamentals/minimal-apis).
+* `BlazorApp.Client`: The client project of the Blazor Web App, which contains Interactive WebAssembly and Auto components for user management of the movie list.
+
+For CSR, which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls to the API are made via a client-based service (`ClientMovieService`) that uses a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`). Because these calls are made over a public or private web, the movie list API is a *web API*.
+
+The following example obtains a list of movies from the `/movies` endpoint:
+
+```csharp
+public class ClientMovieService(HttpClient http) : IMovieService
+{
+    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies) => 
+        await http.GetFromJsonAsync<Movie[]>("movies") ?? [];
+}
+```
+
+For SSR, which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made directly via a server-based service (`ServerMovieService`). The API doesn't rely on a network, so it's a standard API for movie list CRUD operations.
+
+The following example obtains a list of movies:
+
+```csharp
+public class ServerMovieService(MovieContext db) : IMovieService
+{
+    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies) => 
+        watchedMovies ? 
+        await db.Movies.Where(t => t.IsWatched).ToArrayAsync() : 
+        await db.Movies.ToArrayAsync();
+}
+```
+
+For more information on how to secure movie data in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
+
+### `BlazorWebAppCallWebApi_Weather`
+
+A weather data sample app that uses streaming rendering for weather data.
+
+### `BlazorWebAssemblyCallWebApi`
+
+Calls a todo list web API from a Blazor WebAssembly app:
+
+* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis).
+* `BlazorTodo`: A Blazor WebAssembly app that calls the web API with a preconfigured <xref:System.Net.Http.HttpClient> for todo list CRUD operations.
+
+### `BlazorWebAssemblyStandaloneWithIdentity`
+
+A standalone Blazor WebAssembly app secured with ASP.NET Core Identity:
+
+* `Backend`: A backend web API app that maintains a user identity store for ASP.NET Core Identity.
+* `BlazorWasmAuth`: A standalone Blazor WebAssembly frontend app with user authentication.
+
+The solution demonstrates calling a secure web API for the following:
+
+* Obtaining an authenticated user's roles.
+* Data processing for all authenticated users.
+* Data processing for authorized users (the user must be in the `Manager` role) via an [authorization policy](xref:security/authorization/policies).
+
+### `BlazorWebAppOidcBffAuto`
+
+A Blazor Web App with global Interactive Auto rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [use a token handler for web API calls](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
+
+### `BlazorWebAppOidcBffServer`
+
+A Blazor Web App with global Interactive Server rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [pass an access token](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
+
+### `BlazorWebAppOidcBffYarpAspire`
+
+A Blazor Web App with global Interactive Auto rendering that uses:
+
+* OIDC authentication (Microsoft Entra without using Entra-specific packages)
+* [YARP](https://dotnet.github.io/yarp/)
+* [Aspire](/dotnet/aspire/get-started/aspire-overview)
+
+The solution includes a demonstration of obtaining weather data securely via an external web API when a component that adopts Interactive Auto rendering is rendered on the client.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+### `BlazorWebAppEntraBff`
+
+A Blazor Web App with global Auto interactivity that uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra). The solution includes a demonstration of obtaining weather data securely via an external web API when a component that adopts Interactive Auto rendering is rendered on the client.
+
+### `BlazorWebAppEntraBffYarpAspire`
+
+A Blazor Web App with global Auto interactivity that uses:
+
+* [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra).
+* [YARP](https://dotnet.github.io/yarp/).
+* [Aspire](/dotnet/aspire/get-started/aspire-overview).
+
+The solution includes a demonstration of obtaining weather data securely via an external web API when a component that adopts Interactive Auto rendering is rendered on the client.
+
+:::moniker-end
 
 ## Additional resources
 
