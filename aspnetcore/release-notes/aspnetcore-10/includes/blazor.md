@@ -36,6 +36,12 @@ For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-10.0
 
 In prior releases of .NET, the Blazor script is served from an embedded resource in the ASP.NET Core shared framework. In .NET 10 or later, the Blazor script is served as a static web asset with automatic compression and fingerprinting.
 
+The Blazor script (`blazor.web.js` or `blazor.server.js`) is included by the framework if the project contains at least one Razor component file (`.razor`). If your app requires the Blazor script but doesn't contain at least one component, add the following MSBuild property to the app's project file to force unconditional script inclusion:
+
+```xml
+<RequiresAspNetWebAssets>true</RequiresAspNetWebAssets>
+```
+
 For more information, see the following resources:
   
 * <xref:blazor/project-structure?view=aspnetcore-10.0#location-of-the-blazor-script>
@@ -78,7 +84,7 @@ public class CustomNavLink : NavLink
 }
 ```
 
-For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#navlink-component>.
+For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#navlink-component>.
 
 ### Close `QuickGrid` column options
 
@@ -107,7 +113,7 @@ The following example uses the `HideColumnOptionsAsync` method to close the colu
 }
 ```
 
-### Response streaming is opt-in and how to opt-out
+### HttpClient response streaming enabled by default
 
 In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClient> requests was opt-in. Now, response streaming is enabled by default.
 
@@ -206,6 +212,8 @@ The default environments are:
 
 * `Development` for build.
 * `Production` for publish.
+
+For more information, see <xref:blazor/fundamentals/environments#set-the-environment>.
 
 ### Boot configuration file inlined
 
@@ -408,7 +416,7 @@ The [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Ro
 
 The Blazor project template now includes a `NotFound.razor` page by default. This page automatically renders whenever `NavigationManager.NotFound` is called in your app, making it easier to handle missing routes with a consistent user experience.
 
-For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
+For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#not-found-responses>.
 
 ### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
 
@@ -433,53 +441,60 @@ Streaming rendering can only render components that have a route, such as a [`No
 
 You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
 
-For more information and examples, see <xref:blazor/fundamentals/routing?view=aspnetcore-10.0#not-found-responses>.
+For more information and examples, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#not-found-responses>.
 
 ### Support for Not Found responses in apps without Blazor's router
 
-Apps that implement a custom router can use `NavigationManager.NotFound`. The custom router can render Not Found content from two sources, depending on the state of the response:
+Apps that implement a custom router can use `NavigationManager.NotFound`. There are two ways to inform the renderer what page should be rendered when `NavigationManager.NotFound` is called:
 
-* Regardless of the response state, the re-execution path to the page can used by passing it to <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>:
+The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. When `NavigationManager.NotFound` is called, the middleware renders the path passed to the method:
 
-  ```csharp
-  app.UseStatusCodePagesWithReExecute(
-      "/not-found", createScopeForStatusCodePages: true);
-  ```
+```csharp
+app.UseStatusCodePagesWithReExecute(
+    "/not-found", createScopeForStatusCodePages: true);
+```
 
-* When the response has started, the <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> can be used by subscribing to the `OnNotFoundEvent` in the router:
+If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support `NavigationManager.NotFound` for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render when `NavigationManager.NotFound` is called.
 
-  ```razor
-  @code {
-      [CascadingParameter]
-      public HttpContext? HttpContext { get; set; }
+`CustomRouter.razor`:
 
-      private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
-      {
-          // Only execute the logic if HTTP response has started,
-          // because setting NotFoundEventArgs.Path blocks re-execution
-          if (HttpContext?.Response.HasStarted == false)
-          {
-              return;
-          }
+```razor
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Http
+@implements IDisposable
+@inject NavigationManager NavigationManager
 
-          var type = typeof(CustomNotFoundPage);
-          var routeAttributes = type.GetCustomAttributes<RouteAttribute>(inherit: true);
+@code {
+    protected override void OnInitialized() =>
+        NavigationManager.OnNotFound += OnNotFoundEvent;
 
-          if (routeAttributes.Length == 0)
-          {
-              throw new InvalidOperationException($"The type {type.FullName} " +
-                  $"doesn't have a {typeof(RouteAttribute).FullName} applied.");
-          }
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
 
-          var routeAttribute = (RouteAttribute)routeAttributes[0];
+    private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
+    {
+        // Only execute the logic if HTTP response has started
+        // because setting NotFoundEventArgs.Path blocks re-execution
+        if (HttpContext?.Response.HasStarted == false)
+        {
+            return;
+        }
 
-          if (routeAttribute.Template != null)
-          {
-              e.Path = routeAttribute.Template;
-          }
-      }
-  }
-  ```
+        e.Path = GetNotFoundRoutePath();
+    }
+
+    // Return the path of the Not Found page that you want to display
+    private string GetNotFoundRoutePath()
+    {
+        ...
+    }
+
+    public void Dispose() => NavigationManager.OnNotFound -= OnNotFoundEvent;
+}
+```
+
+If you use both approaches in your app, the Not Found path specified in the `OnNotFoundEvent` handler takes precedence over the path configured in the re-execution middleware.
 
 ### Metrics and tracing
 
@@ -604,6 +619,13 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 
 If one of the preceding steps produces a validation error, the remaining steps are skipped.
 
+### Use validation models from a different assembly
+
+You can validate forms with models defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App, by creating a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
+* In the app, call both the method and `AddValidation`.
+
+For more information and an example, see <xref:blazor/forms/validation#use-validation-models-from-a-different-assembly?view=aspnetcore-10.0>.
+
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 
 Now that all Blazor client-side files are fingerprinted and cached by the browser, Blazor's custom caching mechanism and the `BlazorCacheBootResources` MSBuild property have been removed from the framework. If the client-side project's project file contains the MSBuild property, remove the property, as it no longer has any effect:
@@ -678,12 +700,12 @@ We recommend using the option set to `none` in all PWAs, including those that ta
 
 ### Serialization extensibility for persistent component state
 
-Implement a custom serializer with the `IPersistentComponentStateSerializer` interface. Without a registered custom serializer, serialization falls back to the existing JSON serialization.
+Implement a custom serializer with <xref:Microsoft.AspNetCore.Components.PersistentComponentStateSerializer%601>. Without a registered custom serializer, serialization falls back to the existing JSON serialization.
 
-The custom serializer is registered in the app's `Program` file. In the following example, the `CustomUserSerializer` is registered for the `User` type:
+The custom serializer is registered in the app's `Program` file. In the following example, the `CustomUserSerializer` is registered for the `TUser` type:
 
 ```csharp
-builder.Services.AddSingleton<IPersistentComponentStateSerializer<User>, 
+builder.Services.AddSingleton<PersistentComponentStateSerializer<TUser>, 
     CustomUserSerializer>();
 ```
 
@@ -727,7 +749,7 @@ In the following example, a hidden input field is created for the form's `Parame
 
 ### Persistent component state support for enhanced navigation
 
-Blazor now supports handling persistent component state during [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
+Blazor now supports handling persistent component state during [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
 
 By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events to the same page occur after the component is loaded.
 

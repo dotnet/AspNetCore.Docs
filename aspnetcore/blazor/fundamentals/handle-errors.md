@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor manages unhandled exceptions and h
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/fundamentals/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
@@ -532,7 +532,7 @@ The following `ProcessError` component example merely logs errors, but methods o
 ```razor
 @inject ILogger<ProcessError> Logger
 
-<CascadingValue Value="this">
+<CascadingValue Value="this" IsFixed="true">
     @ChildContent
 </CascadingValue>
 
@@ -555,6 +555,8 @@ The following `ProcessError` component example merely logs errors, but methods o
 
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+>
+> <xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> is used to indicate that a cascading parameter doesn't change after initialization.
 
 :::moniker-end
 
@@ -594,7 +596,7 @@ To process errors in a component:
 
   ```csharp
   [CascadingParameter]
-  public ProcessError? ProcessError { get; set; }
+  private ProcessError? ProcessError { get; set; }
   ```
 
 * Call an error processing method in any `catch` block with an appropriate exception type. The example `ProcessError` component only offers a single `LogError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app. The following `Counter` component `@code` block example includes the `ProcessError` cascading parameter and traps an exception for logging when the count is greater than five:
@@ -604,7 +606,7 @@ To process errors in a component:
       private int currentCount = 0;
 
       [CascadingParameter]
-      public ProcessError? ProcessError { get; set; }
+      private ProcessError? ProcessError { get; set; }
 
       private void IncrementCount()
       {
@@ -648,7 +650,7 @@ The following `ProcessError` component passes itself as a [`CascadingValue`](xre
 @using Microsoft.Extensions.Logging
 @inject ILogger<ProcessError> Logger
 
-<CascadingValue Value="this">
+<CascadingValue Value="this" IsFixed="true">
     @ChildContent
 </CascadingValue>
 
@@ -666,6 +668,8 @@ The following `ProcessError` component passes itself as a [`CascadingValue`](xre
 
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+>
+> <xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> is used to indicate that a cascading parameter doesn't change after initialization.
 
 In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component with the `ProcessError` component. This permits the `ProcessError` component to cascade down to any component of the app where the `ProcessError` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
@@ -685,7 +689,7 @@ To process errors in a component:
 
   ```razor
   [CascadingParameter]
-  public ProcessError ProcessError { get; set; }
+  private ProcessError ProcessError { get; set; }
   ```
 
 * Call an error processing method in any `catch` block with an appropriate exception type. The example `ProcessError` component only offers a single `LogError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app.

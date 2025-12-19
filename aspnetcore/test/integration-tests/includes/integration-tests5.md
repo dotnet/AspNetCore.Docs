@@ -42,7 +42,7 @@ Entity Framework Core is also used in the tests. The app references:
 
 ## SUT environment
 
-If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to Development.
+If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to `Development`.
 
 ## Basic tests with the default WebApplicationFactory
 
@@ -233,7 +233,7 @@ For more information on `WebApplicationFactoryClientOptions`, see the [Client op
 
 ## Set the environment
 
-By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment when using `IHostBuilder`:
+By default, the SUT's host and app environment is configured to use the `Development` environment. To override the SUT's environment when using `IHostBuilder`:
 
 * Set the `ASPNETCORE_ENVIRONMENT` environment variable (for example, `Staging`, `Production`, or other custom value, such as `Testing`).
 * Override `CreateHostBuilder` in the test app to read environment variables prefixed with `ASPNETCORE`.

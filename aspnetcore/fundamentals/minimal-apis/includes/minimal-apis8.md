@@ -2,10 +2,10 @@
 
 This document:
 
-* Provides a quick reference for minimal APIs.
+* Provides a quick reference for Minimal APIs.
 * Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>.
 
-The minimal APIs consist of:
+The Minimal APIs consist of:
 
 * [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
 * [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
@@ -14,7 +14,7 @@ The minimal APIs consist of:
 
 ## ASP.NET Core Middleware
 
-The following table lists some of the middleware frequently used with minimal APIs.
+The following table lists some of the middleware frequently used with Minimal APIs.
 
 | Middleware | Description | API |
 |--|--|--|
@@ -50,7 +50,7 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 ## Parameter binding
 
-[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
+[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding-summary8-10.md)]
 
 ## Responses
 
@@ -181,7 +181,7 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 ### Typed results
 
-The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
+The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from Minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
 
 The types implementing `IResult` are public, allowing for type assertions when testing. For example:
 
@@ -261,7 +261,7 @@ The following code disables `ValidateScopes` and `ValidateOnBuild` in `Developme
 * [Short-circuit routing](https://andrewlock.net/exploring-the-dotnet-8-preview-short-circuit-routing/)
 * [Identity API endpoints](https://andrewlock.net/exploring-the-dotnet-8-preview-introducing-the-identity-api-endpoints/)
 * [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
-* [A look behind the scenes of minimal API endpoints](https://andrewlock.net/behind-the-scenes-of-minimal-apis-1-a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
+* [A look behind the scenes of Minimal API endpoints](https://andrewlock.net/behind-the-scenes-of-minimal-apis-1-a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
 * [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html)
 * [Fluent validation discussion on GitHub](https://github.com/dotnet/aspnetcore/issues/51834#issuecomment-1837180853)
 

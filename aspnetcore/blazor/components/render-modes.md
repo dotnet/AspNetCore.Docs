@@ -1,11 +1,12 @@
 ---
 title: ASP.NET Core Blazor render modes
+ai-usage: ai-assisted
 author: guardrex
 description: Learn about Blazor render modes and how to apply them in Blazor Web Apps.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/render-modes
 ---
 # ASP.NET Core Blazor render modes
@@ -156,7 +157,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component propagates i
 
 You also typically must set the same interactive render mode on the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component), which is also found in the `App` component of a Blazor Web App generated from the project template:
 
-```
+```razor
 <HeadOutlet @rendermode="InteractiveServer" />
 ```
 
@@ -173,7 +174,7 @@ To enable global interactivity when creating a Blazor Web App:
 
 For more information, see <xref:blazor/tooling>.
 
-## Apply a render mode programatically
+## Apply a render mode programmatically
 
 Properties and fields can assign a render mode.
 
@@ -357,7 +358,7 @@ During static SSR, Razor component page requests are processed by server-side AS
 
 If the app exhibits root-level interactivity, server-side ASP.NET Core request processing isn't involved after the initial static SSR, which means that the preceding Blazor features work as expected.
 
-[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
+[Enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
 
 ## Interactive server-side rendering (interactive SSR)
 

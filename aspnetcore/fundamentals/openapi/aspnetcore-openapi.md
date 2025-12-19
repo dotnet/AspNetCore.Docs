@@ -5,7 +5,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 09/23/2025
+ms.date: 12/10/2025
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -36,9 +36,7 @@ When generating the OpenAPI document at build time, the OpenAPI version can be s
 
 ```xml
 <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document -->
-<OpenApiGenerateDocumentsOptions>
-  --openapi-version OpenApi3_1
-</OpenApiGenerateDocumentsOptions>
+<OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
 ```
 
 ## Package installation
@@ -301,7 +299,7 @@ In order to restrict invoking these code paths by the build-time generation pipe
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/AspireApp1/AspireApp1.Web/Program.cs" highlight="5-8":::
 
-[`AddServiceDefaults`](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references)<!--keep--> adds common .NET Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
+[`AddServiceDefaults`](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references) adds common Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
 
 ## Trimming and Native AOT
 

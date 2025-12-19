@@ -5,7 +5,7 @@ description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/29/2025
+ms.date: 11/11/2025
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
@@ -28,8 +28,8 @@ For more information, see the following resources:
 
 * <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
 * *Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)*
-  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?pivots=non-bff-pattern)
-  * [Non-BFF pattern (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?pivots=non-bff-pattern-server)
+  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire)
+  * [Without YARP and Aspire (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire-server)
 
 ## Microsoft identity platform for web API calls
 
@@ -57,7 +57,12 @@ Example:
 
 In the app's `Program` file, call:
 
-<!-- UPDATE 10.0 - Missing API doc for 'AddDownstreamApi' -->
+<!-- UPDATE 11.0 - Awaiting API per https://github.com/dotnet/AspNetCore.Docs/issues/36373.
+                   Marking this for 11.0 because it's the last 10.0 item and inline tracking
+                   now adopts 11.0 or later work items. This ensures that this inline item
+                   isn't missed.
+                   
+                   Missing API doc for 'Microsoft.Identity.Web.DownstreamApiExtensions.AddDownstreamApi' -->
 
 * <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilder.EnableTokenAcquisitionToCallDownstreamApi%2A>: Enables token acquisition to call web APIs.
 * `AddDownstreamApi`: Microsoft Identity Web packages provide API to create a named downstream web service for making web API calls. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into a server-side class, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> to obtain weather data from an external web API (`MinimalApiJwt` project).
@@ -194,7 +199,7 @@ builder.Services.AddDataProtection()
 `{KEY IDENTIFIER}`: Azure Key Vault key identifier used for key encryption. An access policy allows the application to access the key vault with `Get`, `Unwrap Key`, and `Wrap Key` permissions. The key identifier is obtained from the key in the Entra or Azure portal after it's created. If you enable autorotation of the key vault key, make sure that you use a versionless key identifier in the app's key vault configuration, where no key GUID is placed at the end of the identifier (example: `https://contoso.vault.azure.net/keys/data-protection`).
 
 > [!NOTE]
-> In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as the <xref:Azure.Identity.ManagedIdentityCredential> shown in the preceding example. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+> In non-`Production` environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as the <xref:Azure.Identity.ManagedIdentityCredential> shown in the preceding example. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
 Inject <xref:Microsoft.Identity.Abstractions.IDownstreamApi> and call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> when calling on behalf of a user:
 
@@ -226,8 +231,8 @@ For more information, see the following resources:
 * [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
 * <xref:Microsoft.Identity.Abstractions.IDownstreamApi>
 * *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
-  * [Non-BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern)
-  * [BFF pattern (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=non-bff-pattern-server)
+  * [With YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=with-yarp-and-aspire)
+  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=without-yarp-and-aspire)
 * [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
 * [Azure Key Vault documentation](/azure/key-vault/general/)
 * [Azure Storage documentation](/azure/storage/)
@@ -358,7 +363,24 @@ The solution includes a demonstration of obtaining weather data securely via an 
 
 ## Disposal of `HttpRequestMessage`, `HttpResponseMessage`, and `HttpClient`
 
-An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal with a [`using` declaration (C# 8 or later)](/dotnet/csharp/language-reference/proposals/csharp-8.0/using) or a [`using` block (all C# releases)](/dotnet/csharp/language-reference/keywords/using), but we recommend disposing with every use for the following reasons:
+An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal. However, you can dispose of it with either of the following patterns:
+
+* `using` declaration (C# 8 or later):
+
+  ```csharp
+  using var request = new HttpRequestMessage(...);
+  ```
+  
+* [`using` block (all C# releases)](/dotnet/csharp/language-reference/keywords/using):
+
+  ```csharp
+  using (var request = new HttpRequestMessage(...))
+  {
+      ...
+  }
+  ```
+
+We recommend disposing of every <xref:System.Net.Http.HttpRequestMessage> with every use for the following reasons:
 
 * To gain a performance improvement by avoiding finalizers.
 * It hardens the code for the future in case a request body is ever added to an <xref:System.Net.Http.HttpRequestMessage> that didn't initially have one.
@@ -626,14 +648,14 @@ When prerendering, components render twice: first statically, then interactively
 You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. For more information, see the following resources:
 
 * <xref:blazor/state-management/prerendered-state-persistence>
-* <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>
+* <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-10.0"
 
 > [!NOTE]
-> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 
@@ -834,9 +856,7 @@ To simplify the creation of PATCH documents in the app issuing PATCH requests, a
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - API doc cross-link -->
-
-Install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package and use the API features of the package to compose a `JsonPatchDocument` for a PATCH request.
+Install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package and use the API features of the package to compose a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a PATCH request.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -907,11 +927,9 @@ Follow the guidance in the <xref:web-api/jsonpatch> article to add a PATCH contr
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - API doc cross-link -->
+Add a package reference for the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package to the web API app.
 
-Add a package reference for the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) NuGet package to the web API app.
-
-In the `Program` file add an `@using` directive for the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` <!-- <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson?displayProperty=fullName> --> namespace:
+In the `Program` file add an `@using` directive for the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.JsonPatch.SystemTextJson;
@@ -951,7 +969,7 @@ app.MapPatch("/todoitems/{id}", async (long id, TodoContext db) =>
         return TypedResults.Ok(todo);
     }
 
-    return TypedResults.NoContent();
+    return TypedResults.NotFound();
 });
 ```
 

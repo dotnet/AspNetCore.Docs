@@ -137,7 +137,7 @@ ASP.NET Core provides a [configuration](xref:fundamentals/configuration/index) f
 
 By [default](xref:fundamentals/configuration/index#default-app-configuration-sources), ASP.NET Core apps are configured to read from `appsettings.json`, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from `appsettings.json`.
 
-For managing confidential configuration data such as passwords in the development environment, .NET provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
+For managing confidential configuration data such as passwords in the `Development` environment, .NET provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
 
 For more information, see <xref:fundamentals/configuration/index>.
 
@@ -171,9 +171,9 @@ For more information, see <xref:fundamentals/logging/index>.
 
 ## Routing
 
-Routing in ASP.NET Core is a mechanism that maps incoming requests to specific endpoints in an application. It enables you to define URL patterns that correspond to different components, such as Blazor components, Razor pages, MVC controller actions, or middleware.
+Routing in ASP.NET Core is a mechanism that maps incoming requests to specific endpoints in an application. It enables you to define URL patterns that correspond to different components, such as Razor components, Razor pages, MVC controller actions, or middleware.
 
-The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting(Microsoft.AspNetCore.Builder.IApplicationBuilder)> method adds routing middleware to the request pipeline. This middleware processes the routing information and determines the appropriate endpoint for each request. You don't have to explicitly call `UseRouting` unless you want to change the order in which middleware is processed.
+The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> method adds routing middleware to the request pipeline. This middleware processes the routing information and determines the appropriate endpoint for each request. You don't have to explicitly call `UseRouting` unless you want to change the order in which middleware is processed.
 
 For more information, see <xref:fundamentals/routing> and <xref:blazor/fundamentals/routing>.
 

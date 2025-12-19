@@ -144,18 +144,18 @@ app.MapStaticAssets().ShortCircuit();
 
 ## Control static file caching during development
 
-When running in the Development environment, for example during [Visual Studio Hot Reload](/visualstudio/debugger/hot-reload) development testing, the framework overrides cache headers to prevent browsers from caching static files. This helps ensure that the latest version of files are used when files change, avoiding issues with stale content. In production, the correct cache headers are set, allowing browsers to cache static assets as expected.
+When running in the `Development` environment, for example during [Visual Studio Hot Reload](/visualstudio/debugger/hot-reload) development testing, the framework overrides cache headers to prevent browsers from caching static files. This helps ensure that the latest version of files are used when files change, avoiding issues with stale content. In production, the correct cache headers are set, allowing browsers to cache static assets as expected.
 
-To disable this behavior, set `EnableStaticAssetsDevelopmentCaching` to `true` in the Development environment's app setting file (`appsettings.Development.json`).
+To disable this behavior, set `EnableStaticAssetsDevelopmentCaching` to `true` in the `Development` environment's app setting file (`appsettings.Development.json`).
 
 :::moniker-end
 
 ## Static files in non-`Development` environments
 
-When running an app locally, static web assets are only enabled in the Development environment. To enable static files for environments other than Development during local development and testing (for example, in the Staging environment), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
+When running an app locally, static web assets are only enabled in the `Development` environment. To enable static files for environments other than `Development` during local development and testing (for example, in the `Staging` environment), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
 
 > [!WARNING]
-> Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> for the ***exact environment*** to prevent activating the feature in production, as it serves files from separate locations on disk *other than from the project*. The example in this section checks for the Staging environment with <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsStaging%2A>.
+> Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> for the ***exact environment*** to prevent activating the feature in production, as it serves files from separate locations on disk *other than from the project*. The example in this section checks for the `Staging` environment with <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsStaging%2A>.
 
 ```csharp
 if (builder.Environment.IsStaging())
@@ -170,8 +170,8 @@ if (builder.Environment.IsStaging())
 
 When <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A?displayProperty=nameWithType> is set to a folder other than `wwwroot`, the following default behaviors are exhibited:
 
-* In the development environment, static assets are served from `wwwroot` if assets with the same name are in both `wwwroot` and a different folder assigned to <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A>.
-* In any environment other than development, duplicate static assets are served from the <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A> folder.
+* In the `Development` environment, static assets are served from `wwwroot` if assets with the same name are in both `wwwroot` and a different folder assigned to <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A>.
+* In any environment other than `Development`, duplicate static assets are served from the <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A> folder.
 
 Consider a web app created from the empty web template:
 
@@ -188,8 +188,8 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 
 By default, for requests to `/`:
 
-* In the development environment, `wwwroot/Index.html` is returned.
-* In any environment other than development, `wwwroot-custom/Index.html` is returned.
+* In the `Development` environment, `wwwroot/Index.html` is returned.
+* In any environment other than `Development`, `wwwroot-custom/Index.html` is returned.
 
 To ensure assets from `wwwroot-custom` are always returned, use ***one*** of the following approaches:
 

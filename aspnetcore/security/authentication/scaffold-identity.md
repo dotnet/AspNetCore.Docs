@@ -952,6 +952,6 @@ To prevent publishing static Identity assets to the web root, see <xref:security
 
 ## Additional resources
 
-[Changes to authentication code to ASP.NET Core 2.1 or later](xref:migration/20_21#changes-to-authentication-code)
+[Changes to authentication code to ASP.NET Core 2.1 or later](xref:migration/20-to-21#changes-to-authentication-code)
 
 :::moniker-end

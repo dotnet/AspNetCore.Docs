@@ -27,7 +27,9 @@ jobs:
       - name: "Print manual bulk import run reason"
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
-          echo "Reason: ${{ github.event.inputs.reason }}"
+          echo "Reason: $REASON"
+        env:
+          REASON: ${{ github.event.inputs.reason }}
 
       - name: Azure OpenID Connect
         id: azure-oidc-auth

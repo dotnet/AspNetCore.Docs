@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
@@ -1341,7 +1341,7 @@ Alternatively, the setting can be made in the app settings (`appsettings.json`) 
 ```json
 {
   "Local": {
-    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0/",
+    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0",
     ...
   }
 }

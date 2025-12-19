@@ -1,10 +1,11 @@
 ---
 title: ASP.NET Core metrics
-description: Metrics for ASP.NET Core apps
+ai-usage: ai-assisted
 author: tdykstra
-ms.author: tdykstra
+description: Metrics for ASP.NET Core apps
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 10/18/2023
+ms.author: tdykstra
+ms.date: 11/10/2025
 ms.topic: article
 uid: log-mon/metrics/metrics
 ---
@@ -151,7 +152,7 @@ Register the metrics type with DI in `Program.cs`:
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_RegisterMetrics":::
 
-Inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be use with MVC controllers, minimal APIs, or any other type that is created by DI:
+Inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be use with MVC controllers, Minimal APIs, or any other type that is created by DI:
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_InjectAndUseMetrics":::
 
@@ -256,11 +257,56 @@ The proceeding test:
 
 * Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
 * Collects metrics values with <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector%601>
-  * Requires a package reference to `Microsoft.Extensions.Diagnostics.Testing`
+  * Requires a package reference to `Microsoft.Extensions.Diagnostics.Testing`.
   * The `MetricCollector<T>` is created using the web app's <xref:System.Diagnostics.Metrics.IMeterFactory>. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
 * Makes an HTTP request to the web app.
 * Asserts the test using results from the metrics collector.
+
+:::moniker range=">= aspnetcore-10.0"
+
+## ASP.NET Core Identity metrics
+
+ASP.NET Core Identity observability help you monitor user management activities and authentication processes.
+
+The metrics are in the `Microsoft.AspNetCore.Identity` meter and are described in the following sections.
+
+### User management metrics
+
+* `aspnetcore.identity.user.create.duration` measures the duration of user creation operations.
+* `aspnetcore.identity.user.update.duration` measures the duration of user update operations.
+* `aspnetcore.identity.user.delete.duration` measures the duration of user deletion operations
+* `aspnetcore.identity.user.check_password_attempts` counts password verification attempts.
+* `aspnetcore.identity.user.generated_tokens` counts tokens generated for users, such as password reset tokens.
+* `aspnetcore.identity.user.verify_token_attempts` counts token verification attempts.
+
+### Authentication metrics
+
+* `aspnetcore.identity.sign_in.authenticate.duration` measures the duration of authentication operations.
+* `aspnetcore.identity.sign_in.check_password_attempts` counts password check attempts during sign-in.
+* `aspnetcore.identity.sign_in.sign_ins` counts successful sign-ins.
+* `aspnetcore.identity.sign_in.sign_outs` counts sign-outs.
+* `aspnetcore.identity.sign_in.two_factor_clients_remembered` counts remembered two-factor clients.
+* `aspnetcore.identity.sign_in.two_factor_clients_forgotten` counts forgotten two-factor clients.
+
+These metrics can be used to:
+
+* Monitor user registration and management.
+* Track authentication patterns and potential security issues.
+* Measure performance of Identity operations.
+* Observe two-factor authentication usage.
+
+### Viewing Identity metrics
+
+You can view these metrics using `dotnet-counters` to monitor them in real-time or export them to Prometheus and visualize them in Grafana using the techniques described earlier in this article.
+
+For example, to monitor all Identity metrics with `dotnet-counters`:
+
+```dotnetcli
+dotnet-counters monitor -n YourAppName --counters Microsoft.AspNetCore.Identity
+```
+
+:::moniker-end
 
 ## ASP.NET Core meters and counters
 

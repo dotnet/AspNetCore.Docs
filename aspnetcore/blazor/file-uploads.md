@@ -5,7 +5,7 @@ description: Learn how to upload files in Blazor with the InputFile component.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/file-uploads
 ---
 # ASP.NET Core Blazor file uploads
@@ -97,17 +97,6 @@ await blobContainerClient.UploadBlobAsync(
 ```
 
 A component that receives an image file can call the <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A?displayProperty=nameWithType> convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app. Use cases for calling <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A> are most appropriate for Blazor WebAssembly apps.
-
-:::moniker range="< aspnetcore-9.0"
-
-<!-- UPDATE 10.0 Remove this section. Leave the coverage in the 
-                 Troubleshoot section. -->
-
-## Autofac Inversion of Control (IoC) container users
-
-If you're using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters%2A> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
-
-:::moniker-end
 
 ## File size read and upload limits
 
@@ -293,7 +282,7 @@ public class UploadResult
 
 A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
-<!-- UPDATE 10.0 HOLD moniker range="< aspnetcore-10.0" 
+<!-- UPDATE 11.0 HOLD moniker range="< aspnetcore-11.0" 
                  https://github.com/dotnet/aspnetcore/issues/47301
                  No doc issue yet, but tracked by ...
                  https://github.com/dotnet/AspNetCore.Docs/issues/34437 -->
@@ -302,9 +291,9 @@ The following `LazyBrowserFileStream` class defines a custom stream type that la
 
 `LazyBrowserFileStream.cs`:
 
-<!-- UPDATE 10.0 HOLD moniker-end -->
+<!-- UPDATE 11.0 HOLD moniker-end -->
 
-<!-- UPDATE 10.0 HOLD for next line: < aspnetcore-10.0 -->
+<!-- UPDATE 11.0 HOLD for next line: < aspnetcore-11.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -369,7 +358,7 @@ The following `FileUpload2` component:
 
 :::moniker-end
 
-<!-- UPDATE 10.0 HOLD for the next line: < aspnetcore-10.0 -->
+<!-- UPDATE 11.0 HOLD for the next line: < aspnetcore-11.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1297,7 +1286,7 @@ Possible causes:
 
 * Not reading the stream to completion. This isn't a framework issue. Trap the exception and investigate it further in your local environment/network.
 
-<!-- UPDATE 10.0 - Version the following out at 10.0 when the
+<!-- UPDATE 11.0 - Version the following out at 11.0 when the
                    the `LazyBrowserFileStream` class is dropped
                    because the underlying problem is fixed. -->
 

@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssembly apps as single-page applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly
@@ -20,10 +20,10 @@ The Blazor WebAssembly security documentation primarily focuses on how to accomp
 
 A Blazor WebAssembly app's .NET/C# codebase is served to clients, and the app's code can't be protected from inspection and tampering by users. Never place sensitive data into a Blazor WebAssembly app, such as app secrets, connection strings, passwords, security keys, and private .NET/C# code.
 
-The following technologies are useful for storing sensitive data, which can be used together in the same app to split responsibilities for storing data between Development and Staging/Production environments:
+The following technologies are useful for storing sensitive data, which can be used together in the same app to split responsibilities for storing data among `Development`, `Staging`, and `Production` environments:
 
 * [Secret Manager tool](xref:security/app-secrets): Only used on the local development system.
-* [Azure Key Vault](https://azure.microsoft.com/products/key-vault/): Can be used for locally-running apps in the Development environment and for Staging/Production deployments.
+* [Azure Key Vault](https://azure.microsoft.com/products/key-vault/): Can be used for locally-running apps in the `Development` environment and for `Staging`/`Production` deployments.
 
 For examples of the preceding approaches, see <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery#configure-a-secret-for-the-email-providers-security-key>.
 
@@ -141,9 +141,9 @@ Blazor WebAssembly provides methods to add and retrieve additional parameters fo
 
 To pass additional parameters, <xref:Microsoft.AspNetCore.Components.NavigationManager> supports passing and retrieving history entry state when performing external location changes. For more information, see the following resources:
 
-* Blazor *Fundamentals* > *Routing and navigation* article
-  * [Navigation history state](xref:blazor/fundamentals/routing#navigation-history-state)
-  * [Navigation options](xref:blazor/fundamentals/routing#navigation-options)
+* Blazor *Fundamentals* > *Navigation* article
+  * [Navigation history state](xref:blazor/fundamentals/navigation#navigation-history-state)
+  * [Navigation options](xref:blazor/fundamentals/navigation#navigation-options)
 * MDN documentation: [History API](https://developer.mozilla.org/docs/Web/API/History_API)
 
 The state stored by the History API provides the following benefits for remote authentication:

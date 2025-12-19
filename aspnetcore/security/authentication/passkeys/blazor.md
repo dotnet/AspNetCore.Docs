@@ -5,11 +5,15 @@ description: Learn how to implement passkeys authentication in ASP.NET Core Blaz
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
 ms.custom: mvc
-ms.date: 09/10/2025
+ms.date: 10/30/2025
 uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---
 # Implement passkeys in ASP.NET Core Blazor Web Apps
+
+<!-- UPDATE 11.0 - Confirm that the 'BlazorWebCSharp.1' folder 
+                   locations for links in this article are
+                   still correct for release -->
 
 This guide explains how to implement [passkey support](xref:security/authentication/passkeys/index) for a new or existing Blazor Web App with ASP.NET Core Identity.
 
@@ -19,13 +23,7 @@ For an overview of passkeys and general configuration guidance, see <xref:securi
 
 ## Prerequisites
 
-<!-- UPDATE 10.0 - Remove preview link in favor of the download link ...
-
 [.NET SDK](https://dotnet.microsoft.com/download) (.NET 10 or later)
-
--->
-
-[.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 
 ## Create a Blazor Web App
 
@@ -121,14 +119,8 @@ The following guidance relies upon an app that was created with **Individual Acc
 
 ## Prerequisites
 
-<!-- UPDATE 10.0 - Remove preview link in favor of the download link ...
-
-* [.NET SDK](https://dotnet.microsoft.com/download) (.NET 10 or later)
-
--->
-
 * An existing Blazor Web App (.NET 10 or later) with ASP.NET Core Identity
-* [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
+* [.NET SDK](https://dotnet.microsoft.com/download) (.NET 10 or later)
 
 For migration guidance, see <xref:migration/index>.
 
@@ -195,7 +187,7 @@ dotnet ef database update
 
 ## Create passkey model classes
 
-Add the following model classes to the project in the `Components/Account` folder with `BlazorWebCSharp._1.Components.Account` namespace updates for the app (for example: `Contoso.Components.Account`):
+Add the following model classes to the project in the `Components/Account` folder and update the `BlazorWebCSharp._1.Components.Account` namespace to match the app (for example: `Contoso.Components.Account`):
 
 * [`Components/Account/PasskeyInputModel.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/PasskeyInputModel.cs): Holds the JSON passkey credential for passkey sign-in operations (`Login` component) and adding passkeys (`Passkeys` component).
 * [`Components/Account/PasskeyOperation.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/PasskeyOperation.cs): Defines the authentication action to be performed (`PassKeySubmit` component), either registering a new passkey (`Create`/0) or authenticating with an existing passkey (`Request`/1).
@@ -224,6 +216,18 @@ Replace the existing `Login` component with the following component and update t
 
 [`Components/Account/Pages/Login.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/Pages/Login.razor)
 
+## Add a redirect method to the `IdentityRedirectManager` class
+
+Add the following method to the `IdentityRedirectManager` class in `Components/Account/IdentityRedirectManager.cs`:
+
+```csharp
+public void RedirectToInvalidUser(
+    UserManager<ApplicationUser> userManager, HttpContext context) =>
+        RedirectToWithStatus("Account/InvalidUser",
+            $"Error: Unable to load user with ID '{userManager.GetUserId(context.User)}'.",
+            context);
+```
+
 ## Create passkey management pages for adding and renaming passkeys
 
 Add the following `Passkeys` component for managing passkeys and update the `BlazorWebCSharp._1.Data` namespace to match the app (for example: `Contoso.Components.Account.Data`):
@@ -238,7 +242,7 @@ Add the following `RenamePasskey` component for renaming passkeys and update the
 
 Add a link to the passkey management page in the app's `ManageNavMenu` component.
 
-In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) for the `Passkeys` component:
+In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) for the `Passkeys` component:
 
 ```razor
 <li class="nav-item">

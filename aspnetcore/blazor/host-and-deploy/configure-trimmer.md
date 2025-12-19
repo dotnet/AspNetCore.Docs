@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Trimmer when bu
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/19/2025
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/configure-trimmer
 ---
 # Configure the Trimmer for ASP.NET Core Blazor
@@ -18,7 +18,7 @@ Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/glossa
 
 ## Default trimmer granularity
 
-<!-- UPDATE 10.0 - HOLD until https://github.com/dotnet/aspnetcore/issues/49409
+<!-- UPDATE 11.0 - HOLD until https://github.com/dotnet/aspnetcore/issues/49409
                    is addressed.
 
 The default trimmer granularity for Blazor apps is `partial`. To trim all assemblies, change the granularity to `full` in the app's project file:

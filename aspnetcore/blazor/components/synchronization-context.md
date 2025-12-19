@@ -5,7 +5,7 @@ description: Learn about Blazor's synchronization context, how to avoid thread-b
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/sync-context
 ---
 # ASP.NET Core Blazor synchronization context

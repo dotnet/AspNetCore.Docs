@@ -5,7 +5,7 @@ description: Learn how to use forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/forms/index
 ---
 # ASP.NET Core Blazor forms overview
@@ -76,7 +76,7 @@ In the preceding `StarshipPlainForm` component:
 > [!IMPORTANT]
 > Always use the [`@formname`](xref:mvc/views/razor#formname) directive attribute with a unique form name.
 
-Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 <!-- UPDATE 11.0 - Check the PU issue (backlogged as of 2/27/25 -->
 
@@ -124,7 +124,7 @@ In the preceding `Starship1` component:
 > [!IMPORTANT]
 > Always use the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName> property with a unique form name.
 
-Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 <!-- UPDATE 11.0 - Check the PU issue (backlogged as of 2/27/25 -->
 
@@ -337,7 +337,7 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 
 ## Enhanced form handling
 
-[Enhance navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
+[Enhance navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
 
 ```razor
 <EditForm ... Enhance ...>
@@ -380,7 +380,7 @@ In the following example, the content of the `<div>` element is updated dynamica
 
 To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
 
-For guidance on using the `enhancedload` event to listen for enhanced page updates, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+For guidance on using the `enhancedload` event to listen for enhanced page updates, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 
@@ -448,9 +448,9 @@ jQuery validation isn't supported in Razor components. We recommend any of the f
 * Use native HTML validation attributes (see [Client-side form validation](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
 * Adopt a third-party validation JavaScript library.
 
-<!-- UPDATE 10.0 - Remove if the feature is realized. -->
+<!-- UPDATE 11.0 - Remove if the feature is realized or dropped. -->
 
-For statically-rendered forms on the server, a new mechanism for client-side validation is under consideration for .NET 10 in late 2025. For more information, see [Create server rendered forms with client validation using Blazor without a circuit (`dotnet/aspnetcore` #51040)](https://github.com/dotnet/aspnetcore/issues/51040).
+For statically-rendered forms on the server, a new mechanism for client-side validation is under consideration. For more information, see [Create server rendered forms with client validation using Blazor without a circuit (`dotnet/aspnetcore` #51040)](https://github.com/dotnet/aspnetcore/issues/51040).
 
 ## Additional resources
 

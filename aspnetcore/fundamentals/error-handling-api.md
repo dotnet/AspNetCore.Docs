@@ -31,7 +31,7 @@ This article describes how to handle errors in ASP.NET Core APIs. Documentation 
 
 To see the Developer Exception Page in a Minimal API:
 
-* Run the sample app in the [Development environment](xref:fundamentals/environments).
+* Run the sample app in the [`Development` environment](xref:fundamentals/environments).
 * Go to the `/exception` endpoint.
 
 This section refers to the following sample app to demonstrate ways to handle exceptions in a Minimal API. It throws an exception when the endpoint `/exception` is requested:

@@ -276,7 +276,7 @@ Access the System and Application Event Logs:
 
 ### Run the app at a command prompt
 
-Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [Development environment](xref:fundamentals/environments).
+Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [`Development` environment](xref:fundamentals/environments).
 
 ### Clear package caches
 
@@ -600,7 +600,7 @@ Access the System and Application Event Logs:
 
 ### Run the app at a command prompt
 
-Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [Development environment](xref:fundamentals/environments).
+Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [`Development` environment](xref:fundamentals/environments).
 
 ### Clear package caches
 
@@ -923,7 +923,7 @@ Access the System and Application Event Logs:
 
 ### Run the app at a command prompt
 
-Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [Development environment](xref:fundamentals/environments).
+Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [`Development` environment](xref:fundamentals/environments).
 
 ### Clear package caches
 
@@ -1246,7 +1246,7 @@ Access the System and Application Event Logs:
 
 ### Run the app at a command prompt
 
-Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [Development environment](xref:fundamentals/environments).
+Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [`Development` environment](xref:fundamentals/environments).
 
 ### Clear package caches
 

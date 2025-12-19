@@ -19,7 +19,7 @@ This document describes how to setup a conditional endpoint selection system to 
 
 To enable conditional endpoint selection, a few services need to be defined:
 
-1. Metadata that can be added to an endpoint to turn on any conditional related logic. Endpoints include controllers, minimal APIs, Razor Page, etc. If this metadata isn't added to an endpoint, no conditional checks are performed for it.
+1. Metadata that can be added to an endpoint to turn on any conditional related logic. Endpoints include controllers, Minimal APIs, Razor Page, etc. If this metadata isn't added to an endpoint, no conditional checks are performed for it.
 
     ```CSharp
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]

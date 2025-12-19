@@ -5,7 +5,7 @@ description: Learn how to configure server-side Blazor and Blazor Web Apps for a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/30/2025
+ms.date: 11/11/2025
 uid: blazor/security/additional-scenarios
 ---
 # ASP.NET Core server-side and Blazor Web App additional security scenarios
@@ -99,7 +99,7 @@ builder.Services.AddHttpClient("ExternalApi",
 > [!CAUTION]
 > Ensure that tokens are never transmitted and handled by the client (the `.Client` project), for example, in a component that adopts Interactive Auto rendering and is rendered on the client or by a client-side service. Always have the client call the server (project) to process requests with tokens. **Tokens and other authentication data should never leave the server.**
 >
-> For Interactive Auto components, see <xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering>, which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern> for OIDC providers and <xref:blazor/security/blazor-web-app-entra?pivots=bff-pattern> for Microsoft Identity Web with Entra.
+> For Interactive Auto components, see <xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering>, which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in <xref:blazor/security/blazor-web-app-oidc> for OIDC providers and <xref:blazor/security/blazor-web-app-entra> for Microsoft Identity Web with Entra.
 
 ## Use a token handler for web API calls
 
@@ -551,7 +551,7 @@ Alternatively, the setting can be made in the app settings (`appsettings.json`) 
 ```json
 {
   "AzureAd": {
-    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0/",
+    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0",
     ...
   }
 }

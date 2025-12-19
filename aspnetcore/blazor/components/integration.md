@@ -5,7 +5,7 @@ description: Learn about Razor component integration scenarios for MVC or Razor 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/integration
 ---
 # Integrate ASP.NET Core Razor components with MVC or Razor Pages
@@ -179,6 +179,12 @@ To support routable Razor components in Razor Pages apps:
 
    > [!NOTE]
    > The preceding example assumes that the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component and Blazor script (`_framework/blazor.server.js`) are rendered by the app's layout. For more information, see the [Configuration](#configuration) section.
+   >
+   > In .NET 10 or later, the Blazor script is included by the framework if the project contains at least one Razor component file (`.razor`). If your app requires the Blazor script but doesn't contain at least one component, add the following MSBuild property to the app's project file to force unconditional script inclusion:
+   >
+   > ```xml
+   > <RequiresAspNetWebAssets>true</RequiresAspNetWebAssets>
+   > ```
   
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -260,6 +266,12 @@ To support routable Razor components in MVC apps:
 
    > [!NOTE]
    > The preceding example assumes that the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component and Blazor script (`_framework/blazor.server.js`) are rendered by the app's layout. For more information, see the [Configuration](#configuration) section.
+   >
+   > In .NET 10 or later, the Blazor script is included by the framework if the project contains at least one Razor component file (`.razor`). If your app requires the Blazor script but doesn't contain at least one component, add the following MSBuild property to the app's project file to force unconditional script inclusion:
+   >
+   > ```xml
+   > <RequiresAspNetWebAssets>true</RequiresAspNetWebAssets>
+   > ```
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -406,9 +418,7 @@ In `Pages/_Host.cshtml` of Blazor apps that are `ServerPrerendered` in a Blazor 
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - API cross-link -->
-
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The `[PersistentState]` attribute applied to a property registers a callback to persist the state during prerendering and loads it when the component renders interactively or the service is instantiated.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) applied to a property registers a callback to persist the state during prerendering and loads it when the component renders interactively or the service is instantiated.
 
 In the following example, the `{TYPE}` placeholder represents the type of data to persist (for example, `WeatherForecast[]`).
 

@@ -5,7 +5,7 @@ description: Learn how to host and deploy Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, linux-related-content
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/index
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
@@ -350,7 +350,7 @@ For configuration guidance, see the following resources:
 
 ## Host configuration values
 
-[Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
+[Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the `Development` environment.
 
 ### Content root
 
