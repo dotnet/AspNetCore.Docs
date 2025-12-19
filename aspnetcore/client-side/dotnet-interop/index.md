@@ -5,7 +5,7 @@ description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] in
 monikerRange: '>= aspnetcore-7.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/08/2024
+ms.date: 12/19/2025
 uid: client-side/dotnet-interop/index
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop in .NET WebAssembly
@@ -127,14 +127,14 @@ Depending on the platform that's loading WebAssembly, a dot-prefixed URL, such a
 
 <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> can take advantage of the following features:
 
-* [Import map for module scripts (Blazor Web Apps)](xref:blazor/fundamentals/static-files#importmap-component>
-* [Fingerprinting client-side static assets (standalone Blazor WebAssembly apps)](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps>
+* [Import map for module scripts (Blazor Web Apps)](xref:blazor/fundamentals/static-files#importmap-component)
+* [Fingerprinting client-side static assets (standalone Blazor WebAssembly apps)](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 
-<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> can take advantage of an [import map for module scripts](xref:blazor/fundamentals/static-files#importmap-component> in a Blazor Web App.
+<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> can take advantage of an [import map for module scripts](xref:blazor/fundamentals/static-files#importmap-component) in a Blazor Web App.
 
 :::moniker-end
 
