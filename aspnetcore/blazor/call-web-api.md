@@ -786,6 +786,37 @@ In the following component code, the `<button>` element calls the `DeleteItem` m
 await Http.DeleteAsync($"todoitems/{id}");
 ```
 
+:::moniker range=">= aspnetcore-9.0"
+
+## Client-side request streaming
+
+For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, and HTTPS, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests).
+
+To enable request streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestStreamingEnabled%2A> to `true` on the <xref:System.Net.Http.HttpRequestMessage>.
+
+In the following file upload example:
+
+* `content` is the file's <xref:System.Net.Http.HttpContent>.
+* `/Filesave` is the web API endpoint.
+* `Http` is the <xref:System.Net.Http.HttpClient>.
+
+```csharp
+using var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
+request.SetBrowserRequestStreamingEnabled(true);
+request.Content = content;
+
+using var response = await Http.SendAsync(request);
+```
+
+Streaming requests:
+
+* Require HTTPS protocol and don't work on HTTP/1.x.
+* Include a body but not a `Content-Length` header. [CORS](xref:security/cors) with a preflight request is required for cross-origin streaming requests.
+
+For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads#file-size-read-and-upload-limits> and the example at [Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr).
+
+:::moniker-end
+
 ## Cookie-based request credentials
 
 *The guidance in this section applies to client-side scenarios that rely upon an authentication cookie.*
@@ -838,37 +869,6 @@ using var request = new HttpRequestMessage() { ... };
 request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 request.Headers.Add("X-Requested-With", [ "XMLHttpRequest" ]);
 ```
-
-:::moniker range=">= aspnetcore-9.0"
-
-## Client-side request streaming
-
-For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, and HTTPS, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests).
-
-To enable request streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestStreamingEnabled%2A> to `true` on the <xref:System.Net.Http.HttpRequestMessage>.
-
-In the following file upload example:
-
-* `content` is the file's <xref:System.Net.Http.HttpContent>.
-* `/Filesave` is the web API endpoint.
-* `Http` is the <xref:System.Net.Http.HttpClient>.
-
-```csharp
-using var request = new HttpRequestMessage(HttpMethod.Post, "/Filesave");
-request.SetBrowserRequestStreamingEnabled(true);
-request.Content = content;
-
-using var response = await Http.SendAsync(request);
-```
-
-Streaming requests:
-
-* Require HTTPS protocol and don't work on HTTP/1.x.
-* Include a body but not a `Content-Length` header. [CORS](xref:security/cors) with a preflight request is required for cross-origin streaming requests.
-
-For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads#file-size-read-and-upload-limits> and the example at [Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr).
-
-:::moniker-end
 
 ## Use a token handler for web API calls
 
