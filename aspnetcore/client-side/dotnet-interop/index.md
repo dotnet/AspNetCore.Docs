@@ -123,6 +123,21 @@ Depending on the platform that's loading WebAssembly, a dot-prefixed URL, such a
 > [!IMPORTANT] 
 > If JS is loaded from a JavaScript module, then `[JSImport]` attributes must include the module name as the second parameter. For example, `[JSImport("globalThis.callAlert", "ExampleShim")]` indicates the imported method was declared in a JavaScript module named "`ExampleShim`."
 
+:::moniker range=">= aspnetcore-10.0"
+
+<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> can take advantage of the following features:
+
+* [Import map for module scripts (Blazor Web Apps)](xref:blazor/fundamentals/static-files#importmap-component>
+* [Fingerprinting client-side static assets (standalone Blazor WebAssembly apps)](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps>
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> can take advantage of an [import map for module scripts](xref:blazor/fundamentals/static-files#importmap-component> in a Blazor Web App.
+
+:::moniker-end
+
 ## Type mappings
 
 Parameters and return types in the .NET method signature are automatically converted to or from appropriate JS types at runtime if a unique mapping is supported. This may result in values converted by value or references wrapped in a proxy type. This process is known as *type marshalling*. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters and return types are marshalled. 
