@@ -323,13 +323,13 @@ The most common use cases for using the client's own base address are:
 * The client project (`.Client`) of a Blazor Web App that makes web API calls from WebAssembly/Auto components or code that runs on the client in WebAssembly to APIs in the server app at the same host address.
 * The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
 
-
+:::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
 The most common use case for using the client's own base address is in the client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
 
-
+:::moniker-end
 
 If you're calling an external web API (not in the same URL space as the client app) or you're configuring the services in a server-side app (for example to deal with prerendering of client-side components on the server), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
 
