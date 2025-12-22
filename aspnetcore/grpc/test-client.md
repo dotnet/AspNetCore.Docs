@@ -48,7 +48,7 @@ The preceding unit test:
 * Mocks `IGreetRepository` and `TesterClient` using [Moq](https://www.nuget.org/packages/Moq).
 * Starts the worker.
 * Verifies `SaveGreeting` is called with the greeting message returned by the mocked `TesterClient`.
-* Uses the [CallHelpers from the gRPC examples](https://github.com/grpc/grpc-dotnet/blob/master/examples/Tester/Tests/Client/Helpers/CallHelpers.cs)
+* Uses the [`CallHelpers` from the gRPC examples](https://github.com/grpc/grpc-dotnet/blob/master/examples/Tester/Tests/Client/Helpers/CallHelpers.cs)
 
 ## Additional resources
 
