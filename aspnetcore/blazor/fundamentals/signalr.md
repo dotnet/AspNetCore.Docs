@@ -547,7 +547,7 @@ To create UI elements that track reconnection state, the following table describ
 | CSS class | Event | Indicates&hellip; |
 | --- | --- | --- |
 | `components-reconnect-show` | `show` | A lost connection. The client is attempting to reconnect. The reconnection modal is shown. |
-| `components-reconnect-paused` | `paused` | The connection is paused. For more information, see [Pause and resume circuits](xref:blazor/state-management/server#pause-and-resume-circuits).
+| `components-reconnect-paused` | `paused` | The connection is paused. For more information, see [Pause and resume circuits](xref:blazor/state-management/server#pause-and-resume-circuits). |
 | `components-reconnect-hide` | `hide` | An active connection is re-established to the server. The reconnection model is closed. |
 | `components-reconnect-retrying` | `retrying` | The client is attempting to reconnect. |
 | `components-reconnect-failed` | `failed` | Reconnection failed, probably due to a network failure. |
