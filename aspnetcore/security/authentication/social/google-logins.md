@@ -71,6 +71,12 @@ Manage API credentials and usage in the [API Console](https://console.developers
 
 ## Configure Google authentication
 
+Add the `Microsoft.AspNetCore.Authentication.Google` nuget package:
+
+```dotnetcli
+dotnet package add Microsoft.AspNetCore.Authentication.Google
+```
+
 :::moniker range=">= aspnetcore-6.0"
 
 Add the authentication service to the `Program` file:
