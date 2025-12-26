@@ -4,7 +4,7 @@ author: wadepickett
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/18/2025
+ms.date: 12/26/2025
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -71,10 +71,10 @@ Manage API credentials and usage in the [API Console](https://console.developers
 
 ## Configure Google authentication
 
-Add the `Microsoft.AspNetCore.Authentication.Google` nuget package:
+Add the [`Microsoft.AspNetCore.Authentication.Google`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) nuget package:
 
 ```dotnetcli
-dotnet package add Microsoft.AspNetCore.Authentication.Google
+dotnet add package Microsoft.AspNetCore.Authentication.Google
 ```
 
 :::moniker range=">= aspnetcore-6.0"
