@@ -54,7 +54,7 @@ A webpage shouldn't load large amounts of data all at once. When returning a col
 
 For more information on paging and limiting the number of returned records, see:
 
-* [Performance considerations](xref:data/ef-rp/intro#performance-considerations) 
+* [Performance considerations](xref:data/ef-rp/intro#performance-considerations)
 * [Add paging to an ASP.NET Core app](xref:data/ef-rp/sort-filter-page#add-paging)
 
 ### Return `IEnumerable<T>` or `IAsyncEnumerable<T>`
@@ -150,7 +150,7 @@ Recommendations:
 
 ## Compress responses
 
- Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses. For more information, see [Response compression](xref:performance/response-compression).
+Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses. For more information, see [Response compression](xref:performance/response-compression).
 
 ## Use the latest ASP.NET Core release
 
@@ -186,7 +186,7 @@ In the preceding code, `Get` synchronously reads the entire HTTP request body in
 The preceding code asynchronously reads the entire HTTP request body into memory.
 
 > [!WARNING]
-> If the request is large, reading the entire HTTP request body into memory could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this article.
+> If the request is large, reading the entire HTTP request body into memory could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service. For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this article.
 
 **Do this:** The following example is fully asynchronous using a non-buffered request body:
 
@@ -202,7 +202,7 @@ Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
 * The form has been read by a call to `ReadFormAsync`, and
 * The cached form value is being read using `HttpContext.Request.Form`
 
-**Do not do this:** The following example uses `HttpContext.Request.Form`.  `HttpContext.Request.Form` uses [sync over async](https://devblogs.microsoft.com/pfxteam/should-i-expose-synchronous-wrappers-for-asynchronous-methods/) and can lead to thread pool starvation.
+**Do not do this:** The following example uses `HttpContext.Request.Form`. `HttpContext.Request.Form` uses [sync over async](https://devblogs.microsoft.com/pfxteam/should-i-expose-synchronous-wrappers-for-asynchronous-methods/) and can lead to thread pool starvation.
 
 [!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet1)]
 
@@ -230,12 +230,12 @@ Storing a large request or response body into a single `byte[]` or `string`:
 
 ## Working with a synchronous data processing API
 
-When using a serializer/de-serializer that only supports synchronous reads and writes (for example,  [Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
+When using a serializer/de-serializer that only supports synchronous reads and writes (for example, [Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
 
 * Buffer the data into memory asynchronously before passing it into the serializer/de-serializer.
 
 > [!WARNING]
-> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this article.
+> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service. For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this article.
 
 ASP.NET Core 3.0 uses <xref:System.Text.Json> by default for JSON serialization. <xref:System.Text.Json>:
 
@@ -308,7 +308,7 @@ Background tasks should be implemented as hosted services. For more information,
 
 ## Do not capture services injected into the controllers on background threads
 
-**Do not do this:** The following example shows a closure that is capturing the `DbContext` from the `Controller` action parameter. This is a bad practice.  The work item could run outside of the request scope. The `ContosoDbContext` is scoped to the request, resulting in an `ObjectDisposedException`.
+**Do not do this:** The following example shows a closure that is capturing the `DbContext` from the `Controller` action parameter. This is a bad practice. The work item could run outside of the request scope. The `ContosoDbContext` is scoped to the request, resulting in an `ObjectDisposedException`.
 
 [!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
 
