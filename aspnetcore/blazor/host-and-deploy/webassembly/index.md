@@ -327,6 +327,14 @@ A *standalone deployment* serves the Blazor WebAssembly app as a set of static f
 
 Standalone deployment assets are published into either the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin/Release/{TARGET FRAMEWORK}/browser-wasm/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
+:::moniker range=">= aspnetcore-10.0"
+
+## Publish without an HTML document
+
+When an app isn't using an HTML document produced as part of the .NET build/publish process, there's no place to write the site's [import map](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap). For example, this scenario occurs when publishing a standalone Blazor app for consumption by a JavaScript/SPA app through a [Blazor custom element](xref:blazor/components/js-spa-frameworks#blazor-custom-elements). To avoid problems loading app resources on the client, you must disable [fingerprinting](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps) or build a [custom boot resources loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
+
+:::moniker-end
+
 ## Azure App Service
 
 Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on IIS.
