@@ -4,7 +4,7 @@ author: mjrousos
 description: Tips for maximizing performance and reliability in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 12/20/2022
+ms.date: 12/29/2025
 uid: fundamentals/best-practices
 ---
 # ASP.NET Core Best Practices
@@ -39,7 +39,7 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 * **Do** make controller/Razor Page actions asynchronous. The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 * **Consider** using message brokers like [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview) to offload long-running calls
 
-A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
+A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool.
 
 ## Return large collections across multiple smaller pages
 
