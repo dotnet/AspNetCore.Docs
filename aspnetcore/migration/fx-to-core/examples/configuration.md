@@ -12,7 +12,7 @@ ms.sfi.ropc: t
 
 In the previous article, we began to [migrate an ASP.NET MVC project to ASP.NET Core MVC](overview.md). In this article, we migrate configuration.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/fx-to-core/examples/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/fx-to-core/examples/samples/configuration) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Setup configuration
 
