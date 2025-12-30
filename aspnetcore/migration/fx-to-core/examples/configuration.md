@@ -3,7 +3,7 @@ title: Migrate configuration to ASP.NET Core
 author: wadepickett
 description: Learn how to migrate configuration from an ASP.NET MVC project to an ASP.NET Core MVC project.
 ms.author: wpickett
-ms.date: 10/14/2016
+ms.date: 12/30/2025
 uid: migration/fx-to-core/examples/configuration
 ms.sfi.ropc: t
 ---
