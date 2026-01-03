@@ -56,9 +56,7 @@ passkeys/FIDO2 is currently:
 * The most secure way of achieving MFA.
 * MFA that protects against phishing attacks. (As well as certificate authentication and Windows for business)
 
-ASP.NET Core supports passkeys directly using ASP.NET Core Identity. Passkeys/FIDO2 can be used for MFA or passwordless flows.
-
-See: [Implement passkeys in ASP.NET Core Blazor Web Apps](xref:security/authentication/passkeys/blazor)
+ASP.NET Core supports passkeys using ASP.NET Core Identity. Passkeys/FIDO2 can be used for MFA or passwordless flows. For more information, see <xref:security/authentication/passkeys/index>.
 
 Microsoft Entra ID provides support for passkeys/FIDO2 and passwordless flows. For more information, see [Passwordless authentication options](/azure/active-directory/authentication/concept-authentication-passwordless).
 
