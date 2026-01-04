@@ -1,10 +1,11 @@
 ---
 title: Enable Cross-Origin Requests (CORS) in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/29/2025
+ms.date: 11/10/2025
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -211,7 +212,7 @@ This section describes the various options that can be set in a CORS policy:
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Program.cs?name=snippet_aa)]
 
-In the preceding code, `SetIsOriginAllowedToAllowWildcardSubdomains` is called with the base origin `"https://example.com"`. This configuration allows CORS requests from any subdomain of `example.com`, such as `https://subdomain.example.com` or `https://api.example.com`. The wildcard matching is handled by the method, so the origin should be specified without the `*` wildcard character.
+In the preceding code, `SetIsOriginAllowedToAllowWildcardSubdomains` is called with the wildcard origin `"https://*.example.com"`. This configuration allows CORS requests from any subdomain of `example.com`, such as `https://subdomain.example.com` or `https://api.example.com`. The `*` wildcard character must be included in the origin to enable wildcard subdomain matching.
 
 ### Set the allowed HTTP methods
 
