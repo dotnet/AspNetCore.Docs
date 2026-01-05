@@ -1,5 +1,6 @@
 ---
 title: Combine Blazor Hybrid with .NET MAUI and Razor class libraries (RCLs)
+ai-usage: ai-assisted
 author: guardrex
 description: This guide demonstrates the recommended pattern for creating Razor class libraries (RCLs) that combine .NET MAUI and Razor functionality.
 monikerRange: '>= aspnetcore-6.0'
@@ -16,7 +17,7 @@ This article explains the recommended pattern for creating [Razor class librarie
 
 RCLs should adopt *host-agnostic design*, where libraries are reusable UI component packages that work across different platforms, app types, Blazor hosting models (Blazor Server, Blazor WebAssembly, Blazor Hybrid/MAUI), and static server-side rendering. To maintain this flexibility, RCLs shouldn't depend on specific hosting infrastructure or platform APIs:
 
-* **Universal component reuse**: Component work in web apps, desktop apps, and mobile apps.
+* **Universal component reuse**: Components work in web apps, desktop apps, and mobile apps.
 * **Clean architecture**: UI concerns are separated from platform-specific implementation details.
 * **Testability**: Components are tested without platform dependencies.
 * **Future-proof**: Components adapt to new hosting models without modification.
@@ -58,7 +59,7 @@ These goals are accomplished by:
     * Blazor WebAssembly (client-side implementations).
   * A single codebase serves all platforms.
 
-  ## Best practices
+## Best practices
 
 * Keep the RCL platform-agnostic.
 
@@ -81,7 +82,7 @@ These goals are accomplished by:
 
   * Use singleton services for stateless services, such as device info and connectivity.
   * Use scoped services for user-specific services.
-  * Use transient servies for stateful operations.
+  * Use transient services for stateful operations.
 
 * Test independently
 
