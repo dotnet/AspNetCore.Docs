@@ -985,7 +985,8 @@ builder.Services.AddHttpClient("ExternalApi", client =>
 {
     client.BaseAddress = new Uri("{REQUEST URI}");
 })
-.AddApplicationScopeHandler();
+.AddApplicationScopeHandler()
+.AddHttpMessageHandler<AuthenticationStateHandler>();
 ```
 
 The `{REQUEST URI}` placeholder in the preceding example is the request URI (localhost example: `http://localhost:5209`).
