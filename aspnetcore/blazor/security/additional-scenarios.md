@@ -892,7 +892,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Http;
 using Microsoft.Extensions.Options;
 
-namespace BlazorApp.Services;
+namespace BlazorSample.Services;
 
 public static class ApplicationScopeHttpClientExtensions
 {
