@@ -76,7 +76,7 @@ For the second option, which is the usual approach taken, the app sets the base 
 
 ## Server-side Blazor
 
-Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file:
+Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file. The default Blazor hub path is `/_blazor`, and the following example sets the base path of the default hub to `base/path`:
 
 ```csharp
 app.MapBlazorHub("base/path/_blazor");
@@ -101,7 +101,7 @@ app.Map("/base/path", subapp => {
 ```
 
 > [!NOTE]
-> The default path to a Blazor hub is `_blazor` and so your mapped path must end with `/_blazor`
+> The default Blazor hub path is `/_blazor`.
 
 Configure the `<base>` tag, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
