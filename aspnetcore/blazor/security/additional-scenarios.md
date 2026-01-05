@@ -978,6 +978,8 @@ public class AuthenticationStateHandler : DelegatingHandler
 }
 ```
 
+The `AuthenticationStateHandler` in the preceding example caches the user for the lifetime of the <xref:System.Net.Http.DelegatingHandler>. To fetch the user's current authentication state for each request, remove the `null` conditional check on the user.
+
 Register the named client in the `Program` file, calling `AddApplicationScopeHandler` to add the application scope handler:
 
 ```csharp
