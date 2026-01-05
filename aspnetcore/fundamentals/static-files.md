@@ -1132,7 +1132,7 @@ Metadata Descriptions:
 
 * **`Cache`**: Specifies the `Cache-Control` header value for the matched content type. This controls browser caching behavior (for example, `max-age=3600, must-revalidate` for media files).
 
-* **`Priority`**: Specifies the priority for matching files.
+* **`Priority`**: Controls precedence when multiple `StaticWebAssetContentTypeMapping` items match the same file. Higher numeric values take precedence over lower ones. If omitted, the priority defaults to `0`.
 
 * **`Expression`**: Defines how the fingerprint is inserted into the filename. The default is `#[.{FINGERPRINT}]`, which inserts the fingerprint (`{FINGERPRINT}` placeholder) before the extension.
 
