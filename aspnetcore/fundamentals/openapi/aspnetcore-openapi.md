@@ -185,7 +185,7 @@ You can customize the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldIn
 ## Generate OpenAPI documents at build time
 
 > [!NOTE]
-> Starting with .NET 9, ASP.NET Core includes built-in OpenAPI support. The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/) package provides OpenAPI document generation at runtime, and adding the `Microsoft.Extensions.ApiDescription.Server` package enables build-time document generation. 
+> Starting with .NET 9, ASP.NET Core includes built-in OpenAPI support. The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides OpenAPI document generation at runtime, and adding the [`Microsoft.Extensions.ApiDescription.Server` ](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server) package enables build-time document generation. 
 >
 >ASP.NET Core generates OpenAPI documents only. Interactive UIs such as **Swagger UI** or **Scalar** are not included by default and must be added separately. For guidance on using these UI options, see <xref:fundamentals/openapi/using-openapi-documents>. For guidance on using interactive UI options like **Swagger UI** or **Scalar**, see <xref:fundamentals/openapi/using-openapi-documents>.
 
