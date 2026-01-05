@@ -5,7 +5,7 @@ description: Learn how to serve and secure static files and configure Map Static
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/17/2025
+ms.date: 01/05/2026
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -1123,7 +1123,7 @@ Property | Description
 
 Item group | Description | Metadata
 --- | ---
-`StaticWebAssetContentTypeMapping` | Maps file patterns to content types and cache headers for endpoints. | `Pattern`, `Cache`
+`StaticWebAssetContentTypeMapping` | Maps file patterns to content types and cache headers for endpoints. | `Pattern`, `Cache`, `Priority`
 `StaticWebAssetFingerprintPattern` | Defines patterns for applying fingerprints to static web assets for cache busting. | `Pattern`, `Expression`
 
 Metadata Descriptions:
@@ -1132,13 +1132,16 @@ Metadata Descriptions:
 
 * **`Cache`**: Specifies the `Cache-Control` header value for the matched content type. This controls browser caching behavior (for example, `max-age=3600, must-revalidate` for media files).
 
+* **`Priority`**: Controls precedence when multiple `StaticWebAssetContentTypeMapping` items match the same file. Higher numeric values take precedence over lower ones. `Priority` is required.
+
 * **`Expression`**: Defines how the fingerprint is inserted into the filename. The default is `#[.{FINGERPRINT}]`, which inserts the fingerprint (`{FINGERPRINT}` placeholder) before the extension.
 
 The following example maps the bitmap file pattern (`.bmp`) to the `image/bmp` content type with the `{CACHE HEADER}` placeholder representing the `Cache-Control` header to use for non-fingerprinted endpoints:
 
 ```xml
 <ItemGroup>
-  <StaticWebAssetContentTypeMapping Include="image/bmp" Cache="{CACHE HEADER}" Pattern="*.bmp" />
+  <StaticWebAssetContentTypeMapping Include="image/bmp" Cache="{CACHE HEADER}"
+    Pattern="*.bmp" Priority="1" />
 </ItemGroup>
 ```
 
