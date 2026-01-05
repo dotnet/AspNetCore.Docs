@@ -5,7 +5,7 @@ description: This guide demonstrates the recommended pattern for creating Razor 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/29/2025
+ms.date: 01/05/2026
 uid: blazor/hybrid/class-libraries-best-practices
 ---
 # Combine Blazor Hybrid with .NET MAUI and Razor class libraries (RCLs)
@@ -14,39 +14,40 @@ uid: blazor/hybrid/class-libraries-best-practices
 
 This article explains the recommended pattern for creating [Razor class libraries (RCLs)](xref:blazor/components/class-libraries) that combine .NET MAUI and Razor functionality. The architecture explained in this article is adopted by the [.NET MAUI Blazor Hybrid and Web solution template](xref:blazor/hybrid/tutorials/maui-blazor-web-app).
 
-The guiding principle is to adopt *host-agnostic design*, where RCLs remain independent of the hosting environment for seamless execution across different platforms and app types.
+RCLs should adopt *host-agnostic design*, where libraries are reusable UI component packages that work across different platforms, app types, Blazor hosting models (Blazor Server, Blazor WebAssembly, Blazor Hybrid/MAUI), and static server-side rendering. To maintain this flexibility, RCLs shouldn't depend on specific hosting infrastructure or platform APIs:
 
-RCLs are designed to be reusable UI component packages that work across different Blazor hosting models&mdash;Blazor Server, Blazor WebAssembly, Blazor Hybrid (MAUI)&mdash;and even with static server-side rendering. To maintain this flexibility, RCLs shouldn't depend on specific hosting infrastructure or platform APIs:
-
-* **Universal component reuse**: Each component works in web apps, desktop apps, and mobile apps.
+* **Universal component reuse**: Component work in web apps, desktop apps, and mobile apps.
 * **Clean architecture**: UI concerns are separated from platform-specific implementation details.
-* **Testability**: Components can be tested without platform dependencies.
+* **Testability**: Components are tested without platform dependencies.
 * **Future-proof**: Components adapt to new hosting models without modification.
 
-Keep Razor components platform-agnostic in the RCL, and provide platform-specific implementations through dependency injection (DI).
+These goals are accomplished by:
+
+* Keeping Razor components platform-agnostic in the RCL.
+* Providing platform-specific implementations through dependency injection (DI).
 
 ## Key advantages
 
-This pattern has the following advantages:
+*Host-agnostic design* has the following advantages:
 
 * Host independence
 
   * The RCL works across Blazor Server, Blazor WebAssembly, .NET MAUI, and other hosting models.
-  * Same components, different platform implementations.
-  * No coupling to specific hosting infrastructure.
+  * The components are the same but have different platform implementations.
+  * There's no coupling to specific hosting infrastructure.
 
 * Clean dependency flow
 
   * The RCL defines abstractions (interfaces).
-  * MAUI library implements abstractions using MAUI APIs.
+  * The MAUI library implements abstractions using MAUI APIs.
   * The app activates implementations via DI.
   * There are no circular dependencies.
 
 * Testability
 
   * The RCL can be tested independently without MAUI dependencies.
-  * Mock implementations of `IDeviceInfoService` for unit testing.
-  * MAUI library tests can focus on platform-specific logic.
+  * Implementations of `IDeviceInfoService` are mocked for unit testing.
+  * MAUI library tests focus on platform-specific logic.
 
 * Maximum reusability
 
@@ -59,28 +60,28 @@ This pattern has the following advantages:
 
   ## Best practices
 
-* Keep RCL platform-agnostic
+* Keep the RCL platform-agnostic.
 
   * No MAUI dependencies are in the RCL.
   * Define abstractions for all platform-specific functionality.
-  * Use dependency injection to provide implementations.
+  * Use dependency injection (DI) to provide implementations.
 
 * The MAUI library references RCL. The RCL doesn't reference the MAUI library:
 
   * Dependency flow: App → MAUI Library → RCL.
   * Never reference the MAUI library from RCL.
 
-* Use interfaces for abstractions
+* Use interfaces for abstractions.
 
   * Prefer interfaces over abstract classes for flexibility.
   * Document expected behavior in XML comments.
-  * Consider async methods for I/O operations.
+  * Consider asynchronous methods for I/O operations.
 
-* Register services appropriately
+* Register services appropriately.
 
-  * Singleton: Device info, connectivity (stateless services)
-  * Scoped: User-specific services
-  * Transient: Stateful operations
+  * Use singleton services for stateless services, such as device info and connectivity.
+  * Use scoped services for user-specific services.
+  * Use transient servies for stateful operations.
 
 * Test independently
 
@@ -130,7 +131,7 @@ MauiClassLibrarySample.sln
 
 ## Step 1: Create the RCL
 
-Create a RCL **without** `<UseMaui>`:
+Create a RCL *without* `<UseMaui>`:
 
 ```dotnetcli
 dotnet new razorclasslib -o Lib
@@ -196,7 +197,7 @@ Create a MAUI class library with `<UseMaui>true</UseMaui>`:
 dotnet new classlib -o Lib.Maui
 ```
 
-### Configure as MAUI class library
+### Configure as a MAUI class library
 
 Edit `Lib.Maui/Lib.Maui.csproj`:
 
@@ -255,13 +256,13 @@ public class MauiDeviceInfoService : IDeviceInfoService
 
     public string DeviceModel => Microsoft.Maui.Devices.DeviceInfo.Model;
 
-    public string OSVersion => $"{Microsoft.Maui.Devices.DeviceInfo.VersionString}";
+    public string OSVersion => Microsoft.Maui.Devices.DeviceInfo.VersionString;
 }
 ```
 
 ## Step 3: Create the MAUI Blazor app
 
-Create a MAUI Blazor app that consumes both libraries:
+Create a MAUI Blazor app to consume both libraries:
 
 ```dotnetcli
 dotnet new maui-blazor -o MauiApp
@@ -269,7 +270,7 @@ dotnet new maui-blazor -o MauiApp
 
 ### Add library references
 
-Edit `MauiApp/MauiApp.csproj` to add project references:
+Add `Lib` and `Lib.Maui` project references to the `MauiApp` project:
 
 ```xml
 <ItemGroup>
