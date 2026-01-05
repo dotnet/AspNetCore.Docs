@@ -98,10 +98,10 @@ Static server-side rendering (static SSR) typically performs a full page refresh
 
 New enhanced navigation API allows you to refresh the current page by calling `NavigationManager.Refresh(bool forceLoad = false)`.
 
-For more information, see the following sections of the Blazor *Routing* article:
+For more information, see the following guidance:
 
 * [Enhanced navigation and form handling](xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling)
-* [Location changes](xref:blazor/fundamentals/routing#location-changes?view=aspnetcore-8.0&preserve-view=true#location-changes)
+* [Location changes](xref:blazor/fundamentals/navigation?view=aspnetcore-8.0&preserve-view=true#location-changes)
 
 ### New article on static rendering with enhanced navigation for JS interop
 
@@ -175,7 +175,7 @@ For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-8.0&
 
 Blazor now supports using client-side routing to navigate to a specific HTML element on a page using standard URL fragments. If you specify an identifier for an HTML element using the standard `id` attribute, Blazor correctly scrolls to that element when the URL fragment matches the element identifier.
 
-For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements>.
+For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements>.
 
 ### Root-level cascading values
 
@@ -327,9 +327,9 @@ For more information, see <xref:migration/70-to-80#drop-blazor-server-with-yarp-
 
 ### Multiple Blazor Web Apps per server project
 
-<!-- UPDATE 10.0 Confirm or update -->
+<!-- UPDATE 11.0 Confirm or update -->
 
-Support for multiple Blazor Web Apps per server project will be considered for a future .NET release.
+Support for multiple Blazor Web Apps per server project is under consideration for a future .NET release.
 
 For more information, see [Support for multiple Blazor Web apps per server project (`dotnet/aspnetcore` #52216)](https://github.com/dotnet/aspnetcore/issues/52216).
 
@@ -524,7 +524,7 @@ For more information, see [Configure stateful reconnect](xref:signalr/configurat
 
 ## Minimal APIs
 
-This section describes new features for minimal APIs. See also [the section on Native AOT](#native-aot) for more information relevant to minimal APIs.
+This section describes new features for Minimal APIs. See also [the section on Native AOT](#native-aot) for more information relevant to Minimal APIs.
 
 ### User override culture
 
@@ -547,7 +547,7 @@ For more information, see:
 
 * [Explicit binding from form values](xref:fundamentals/minimal-apis/parameter-binding?view=aspnetcore-8.0&preserve-view=true#explicit-binding-from-form-values).
 * [Binding to forms with IFormCollection, IFormFile, and IFormFileCollection](xref:fundamentals/minimal-apis/parameter-binding?view=aspnetcore-8.0&preserve-view=true#binding-to-forms-with-iformcollection-iformfile-and-iformfilecollection).
-* [Form binding in minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/)
+* [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/)
 
 Binding from forms is now supported for:
 
@@ -556,7 +556,7 @@ Binding from forms is now supported for:
 
 For more information, see [Bind to collections and complex types from forms](xref:fundamentals/minimal-apis/parameter-binding#bindcc).
 
-### Antiforgery with minimal APIs
+### Antiforgery with Minimal APIs
 
 This release adds a middleware for validating antiforgery tokens, which are used to mitigate cross-site request forgery attacks. Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI. `WebApplicationBuilder` automatically adds the middleware when the antiforgery services have been registered in the DI container. Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
 
@@ -585,7 +585,7 @@ For more information, see the [ObjectPool sample](xref:performance/ObjectPool##o
 
 ## Native AOT
 
-Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, minimal API, and worker service apps. For more information, see <xref:fundamentals/native-aot> and <xref:fundamentals/native-aot-tutorial>. For information about known issues with ASP.NET Core and Native AOT compatibility, see GitHub issue [dotnet/core #8288](https://github.com/dotnet/core/issues/8288).
+Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, Minimal API, and worker service apps. For more information, see <xref:fundamentals/native-aot> and <xref:fundamentals/native-aot-tutorial>. For information about known issues with ASP.NET Core and Native AOT compatibility, see GitHub issue [dotnet/core #8288](https://github.com/dotnet/core/issues/8288).
 
 [!INCLUDE[](~/fundamentals/aot/includes/aot_lib.md)]
 
@@ -648,11 +648,11 @@ The RDG is enabled automatically in a project when publishing with Native AOT is
 
 ### Improved performance using Interceptors
 
-The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
+The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to Minimal API [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
 
-### Logging and exception handling in compile-time generated minimal APIs
+### Logging and exception handling in compile-time generated Minimal APIs
 
-Minimal APIs generated at run time support automatically logging (or throwing exceptions in Development environments) when parameter binding fails. .NET 8 introduces the same support for APIs generated at compile time via the [Request Delegate Generator](#request-delegate-generator) (RDG). For more information, see [Logging and exception handling in compile-time generated minimal APIs](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#logging-and-exception-handling-in-compile-time-generated-minimal-apis).
+Minimal APIs generated at run time support automatically logging (or throwing exceptions in `Development` environments) when parameter binding fails. .NET 8 introduces the same support for APIs generated at compile time via the [Request Delegate Generator](#request-delegate-generator) (RDG). For more information, see [Logging and exception handling in compile-time generated Minimal APIs](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#logging-and-exception-handling-in-compile-time-generated-minimal-apis).
 
 ### AOT and System.Text.Json
 
@@ -667,7 +667,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 ...
 
-// Add types used in the minimal API app to source generated JSON serializer content
+// Add types used in the Minimal API app to source generated JSON serializer content
 [JsonSerializable(typeof(Todo[]))]
 internal partial class AppJsonSerializerContext : JsonSerializerContext
 {
@@ -1030,7 +1030,7 @@ var network = new IPNetwork(IPAddress.Parse("2001:db8:3c4d::1"), 128);
 
 ### Redis-based output caching
 
-ASP.NET Core in .NET 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
+ASP.NET Core in .NET 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a Minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
 
 ### Short-circuit middleware after routing
 

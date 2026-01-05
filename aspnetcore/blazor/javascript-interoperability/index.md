@@ -331,13 +331,12 @@ JavaScript (JS) interop calls can't be issued after Blazor's SignalR circuit is 
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - MIA API -->
-
 * JS interop method calls
   * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.IJSObjectReference.InvokeConstructorAsync%2A>
+  * <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A>
   * <xref:Microsoft.JSInterop.IJSObjectReference.GetValueAsync%2A>
   * <xref:Microsoft.JSInterop.IJSObjectReference.SetValueAsync%2A>
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.

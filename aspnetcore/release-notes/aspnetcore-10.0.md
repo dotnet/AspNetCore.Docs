@@ -11,7 +11,7 @@ uid: aspnetcore-10
 
 This article highlights the most significant changes in ASP.NET Core in .NET 10 with links to relevant documentation.
 
-This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/10.0#aspnet-core).
+For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/10.0#aspnet-core).
 
 ## Blazor
 
@@ -31,7 +31,7 @@ This section describes new features for SignalR.
 
 ## Minimal APIs
 
-This section describes new features for minimal APIs.
+This section describes new features for Minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/MinApiEmptyStringInFormPost.md)]
 

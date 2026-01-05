@@ -6,7 +6,7 @@ The following sections explain the differences between an API, an API endpoint, 
 
 An API is a set of rules and protocols for building and interacting with software applications. It defines how different software components should communicate. In general web development, "API" typically refers to a web service that exposes functionality over HTTP.
 
-In ASP.NET Core, an API is usually built using controllers or minimal APIs, which handle incoming HTTP requests and return responses.
+In ASP.NET Core, an API is usually built using controllers or Minimal APIs, which handle incoming HTTP requests and return responses.
 
 ASP.NET Core's internal naming conventions sometimes use "API" differently. For instance, in [API Explorer](/dotnet/api/microsoft.aspnetcore.mvc.apiexplorer), an "ApiDescription" actually represents an [API Operation](#api-operation) rather than the full API service. This distinction reflects internal naming conventions and sometimes differ from the broader definition used here.
 

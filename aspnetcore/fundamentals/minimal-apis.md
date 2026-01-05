@@ -5,7 +5,7 @@ description: Provides an overview of Minimal APIs in ASP.NET Core
 ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 10/23/2025
+ms.date: 12/05/2025
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
@@ -43,14 +43,14 @@ The following table lists some of the middleware frequently used with Minimal AP
 
 | Middleware | Description | API |
 |--|--|--|
-| [Authentication](xref:security/authentication/index?view=aspnetcore-6.0) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> |
+| [Authentication](xref:security/authentication/index) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> |
 | [Authorization](xref:security/authorization/introduction) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> |
-| [CORS](xref:security/cors?view=aspnetcore-6.0) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> |
-| [Exception Handler](xref:fundamentals/error-handling-api?view=aspnetcore-6.0) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> |
-| [Forwarded Headers](xref:fundamentals/middleware/index?view=aspnetcore-6.0#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> |
-| [HTTPS Redirection](xref:security/enforcing-ssl?view=aspnetcore-6.0) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> |
-| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index?view=aspnetcore-6.0#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> |
-| [Request Logging](xref:fundamentals/logging/index?view=aspnetcore-6.0) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> |
+| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> |
+| [Exception Handler](xref:fundamentals/error-handling-api) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> |
+| [Forwarded Headers](xref:fundamentals/middleware/index#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> |
+| [HTTPS Redirection](xref:security/enforcing-ssl) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> |
+| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> |
+| [Request Logging](xref:fundamentals/logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> |
 | [Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global default and per endpoint. | `UseRequestTimeouts` |
 | [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> |
@@ -77,7 +77,7 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 [!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding-summary8-10.md)]
 
-## Json+PipeReader deserialization in minimal APIs
+## Json+PipeReader deserialization in Minimal APIs
 
 [!INCLUDE [](~/includes/net10pipereader.md)]
 
@@ -301,14 +301,14 @@ allows unauthenticated users to access endpoints:
 
 ## CORS
 
-Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS policies](xref:security/cors?view=aspnetcore-6.0#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
+Routes can be [CORS](xref:security/cors) enabled using [CORS policies](xref:security/cors#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
 <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> method. The following samples enable CORS:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cors)]
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cors2)]
 
-For more information, see <xref:security/cors?view=aspnetcore-6.0>
+For more information, see <xref:security/cors>
 
 ## ValidateScopes and ValidateOnBuild
 

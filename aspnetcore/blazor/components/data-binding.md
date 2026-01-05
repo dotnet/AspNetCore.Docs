@@ -221,16 +221,38 @@ Additional examples
 
 For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
 
-Components support two-way data binding by defining a pair of `@bind` attributes with either a `:get` or `:set` modifier . The `{PARAMETER}` placeholder in the following examples is used to bind a component parameter:
+Components support two-way data binding by defining a pair of `@bind` attributes with either a `:get` or `:set` modifier. The `{PARAMETER}` placeholder in the following examples is used to bind a component parameter:
 
 * `@bind:get`/`@bind-{PARAMETER}:get`: Specifies the value to bind.
 * `@bind:set`/`@bind-{PARAMETER}:set`: Specifies a callback for when the value changes.
 
-The `:get` and `:set` modifiers are always used together.
+The `:get`/`:set` modifiers are always used together.
 
-With `:get`/`:set` binding, you can react to a value change before it's applied to the DOM, and you can change the applied value, if necessary. Whereas with `@bind:event="{EVENT}"` attribute binding, where the `{EVENT}` placeholder is a DOM event, you receive the notification after the DOM is updated, and there's no capacity to modify the applied value while binding.
+For binding to HTML elements, use `:get`/`:set` modifiers to ensure an `<input>` element stays synchronized with a bound value, even when the value is modified in the handler:
 
-The following `BindGetSet` component demonstrates `@bind:get`/`@bind:set` syntax for `<input>` elements and the [`InputText` component](xref:blazor/forms/input-components) used by [Blazor forms](xref:blazor/forms/index) in synchronous (`Set`) and asynchronous (`SetAsync`) scenarios.
+```razor
+<input @bind:get="inputValue" @bind:set="HandleValueChange" />
+```
+
+> [!NOTE]
+> The legacy approach prior to the release of .NET 7 used the `value` attribute with `@onchange`:
+>
+> ```razor
+> <input value="@inputValue" @onchange="HandleValueChange" />
+> ```
+>
+> The preceding approach can cause synchronization errors, where the `<input>` element displays a different value than the value held in the bound variable. Migrate to `:get`/`:set` modifiers to avoid this issue.
+
+For component parameters, the following syntaxes for a hypothetical `Child` component are functionally equivalent:
+
+```razor
+<Child Value="@inputValue" ValueChanged="@(v => inputValue = v)" />
+<Child @bind-Value:get="inputValue" @bind-Value:set="@(v => inputValue = v)" />
+```
+
+With `:get`/`:set` modifier binding, you can react to a value change before it's applied to the DOM, and you can change the applied value, if necessary. Whereas with `@bind:event="{EVENT}"` attribute binding, where the `{EVENT}` placeholder is a DOM event, you receive the notification after the DOM is updated, and there's no capacity to modify the applied value while binding.
+
+The following `BindGetSet` component demonstrates `:get`/`:set` syntax for `<input>` elements and the [`InputText` component](xref:blazor/forms/input-components) used by [Blazor forms](xref:blazor/forms/index) in synchronous (`Set`) and asynchronous (`SetAsync`) scenarios.
 
 `BindGetSet.razor`:
 
@@ -270,7 +292,7 @@ The following `BindGetSet` component demonstrates `@bind:get`/`@bind:set` syntax
 
 For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
 
-For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article.
+For another example use of `:get` and `:set` modifiers, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article.
 
 Razor attribute binding is case-sensitive:
 
@@ -279,7 +301,7 @@ Razor attribute binding is case-sensitive:
 
 ## Use `@bind:get`/`@bind:set` modifiers and avoid event handlers for two-way data binding
 
-Two-way data binding isn't possible to implement with an event handler. Use `@bind:get`/`@bind:set` modifiers for two-way data binding.
+Two-way data binding isn't possible to implement with an event handler. Use `:get`/`:set` modifiers for two-way data binding.
 
 <span aria-hidden="true">❌</span> Consider the following ***dysfunctional approach*** for two-way data binding using an event handler:
 
@@ -306,9 +328,9 @@ Two-way data binding isn't possible to implement with an event handler. Use `@bi
 
 The `OnInput` event handler updates the value of `inputValue` to `Long!` after a fourth character is provided. However, the user can continue adding characters to the element value in the UI. The value of `inputValue` isn't bound back to the element's value with each keystroke. The preceding example is only capable of one-way data binding.
 
-The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force DOM element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, two-way data binding is implemented by [binding the element to a property and controlling the property's value with its setter](#binding-to-a-property-with-c-get-and-set-accessors). In ASP.NET Core in .NET 7 or later, `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
+The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force DOM element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, two-way data binding is implemented by [binding the element to a property and controlling the property's value with its setter](#binding-to-a-property-with-c-get-and-set-accessors). In ASP.NET Core in .NET 7 or later, `:get`/`:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
 
-<span aria-hidden="true">✔️</span> Consider the following ***correct approach*** using `@bind:get`/`@bind:set` for two-way data binding:
+<span aria-hidden="true">✔️</span> Consider the following ***correct approach*** using `:get`/`:set` for two-way data binding:
 
 ```razor
 <p>
@@ -331,7 +353,7 @@ The reason for this behavior is that Blazor isn't aware that your code intends t
 }
 ```
 
-Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `inputValue` via `@bind:set` and binds the value of `inputValue` to the element's value via `@bind:get`. The preceding example demonstrates the correct approach for implementing two-way data binding.
+Using `:get`/`:set` modifiers both controls the underlying value of `inputValue` via `:set` and binds the value of `inputValue` to the element's value via `:get`. The preceding example demonstrates the correct approach for implementing two-way data binding.
 
 :::moniker-end
 

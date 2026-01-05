@@ -6,7 +6,7 @@ This article describes how to handle errors in Minimal API apps.
 
 In a Minimal API app, there are two different built-in centralized mechanisms to handle unhandled exceptions:
 
-* [Developer Exception Page middleware](#developer-exception-page) (For use in the **Development environment only**.)
+* [Developer Exception Page middleware](#developer-exception-page) (For use in the **`Development` environment only**.)
 * [Exception handler middleware](#exception-handler)
 
 This section refers to the following Minimal API app to demonstrate ways to handle exceptions. It throws an exception when the endpoint `/exception` is requested:
@@ -27,7 +27,7 @@ The [Developer Exception Page](xref:fundamentals/error-handling#developer-except
 
 ASP.NET Core apps enable the developer exception page by default when both:
 
-* Running in the [Development environment](xref:fundamentals/environments).
+* Running in the [`Development` environment](xref:fundamentals/environments).
 * App is using [WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder).
 
 For more information on configuring middleware, see [Middleware in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/middleware).
@@ -56,7 +56,7 @@ Accept-Encoding: gzip, deflate, br
 ```
 
 > [!WARNING]
-> Don't enable the Developer Exception Page **unless the app is running in the Development environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
+> Don't enable the Developer Exception Page **unless the app is running in the `Development` environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
 
 ### Exception handler
 

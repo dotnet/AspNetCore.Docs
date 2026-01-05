@@ -50,6 +50,7 @@ Diagnostic ID:
 * [BL0005](xref:diagnostics/bl0005)
 * [BL0006](xref:diagnostics/bl0006)
 * [BL0007](xref:diagnostics/bl0007)
+* [BL0008](xref:diagnostics/bl0008)
 * [MVC1000](xref:diagnostics/mvc1000)
 * [MVC1001](xref:diagnostics/mvc1001)
 * [MVC1002](xref:diagnostics/mvc1002)

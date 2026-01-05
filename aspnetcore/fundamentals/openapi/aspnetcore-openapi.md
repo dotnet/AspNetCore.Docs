@@ -5,7 +5,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 09/23/2025
+ms.date: 12/10/2025
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -36,9 +36,7 @@ When generating the OpenAPI document at build time, the OpenAPI version can be s
 
 ```xml
 <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document -->
-<OpenApiGenerateDocumentsOptions>
-  --openapi-version OpenApi3_1
-</OpenApiGenerateDocumentsOptions>
+<OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
 ```
 
 ## Package installation

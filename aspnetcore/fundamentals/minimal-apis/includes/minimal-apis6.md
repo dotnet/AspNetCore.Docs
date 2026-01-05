@@ -2,10 +2,10 @@
 
 This document:
 
-* Provides a quick reference for minimal APIs.
+* Provides a quick reference for Minimal APIs.
 * Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
 
-The minimal APIs consist of:
+The Minimal APIs consist of:
 
 * <xref:Microsoft.AspNetCore.Builder.WebApplication> and <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>
 * Route handlers
@@ -267,7 +267,7 @@ For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.
 
 ## ASP.NET Core Middleware
 
-The following table lists some of the middleware frequently used with minimal APIs.
+The following table lists some of the middleware frequently used with Minimal APIs.
 
 | Middleware | Description | API |
 |--|--|--|
@@ -434,7 +434,7 @@ Attributes can be used to explicitly declare where parameters are bound from.
 
 ### Parameter binding with DI
 
-Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding for Minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_min)]
 
@@ -753,6 +753,6 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 ## See also
 
-[OpenAPI support in minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi)
+[OpenAPI support in Minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi)
 
 :::moniker-end

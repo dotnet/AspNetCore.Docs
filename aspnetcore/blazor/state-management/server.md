@@ -57,7 +57,7 @@ During server-side rendering, Blazor Web Apps can persist a user's session (circ
 * Mobile device users switching apps
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
-* [Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling)
+* [Enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling)
 
 Server resources can be freed up if the circuit state can be persisted and then resumed later:
 
@@ -149,7 +149,7 @@ services.AddRazorComponents()
     .AddInteractiveServerComponents();
 ```
 
-In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](xref:security/app-secrets#secret-manager) tool in the Development environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
+In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](xref:security/app-secrets#secret-manager) tool in the `Development` environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
 
 ## Pause and resume circuits
 
