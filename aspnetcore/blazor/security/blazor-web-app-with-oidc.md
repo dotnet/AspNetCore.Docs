@@ -1582,14 +1582,14 @@ builder.Services.AddAuthentication()
         OpaqueTokenAuthenticationOptions.DefaultScheme,
         options =>
         {
-            options.IntrospectionEndpoint = "{AUTH SERVER URI}";
+            options.IntrospectionEndpoint = "{AUTH SERVER INTROSPECTION URI}";
             options.ClientId = "{API CLIENT ID}";
         });
 ```
 
 The preceding example's placeholders:
 
-* `{AUTH SERVER URI}`: Authentication server URI
+* `{AUTH SERVER INTROSPECTION URI}`: Authentication server's introspection URI
 * `{API CLIENT ID}`: API Client ID
 
 Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).
