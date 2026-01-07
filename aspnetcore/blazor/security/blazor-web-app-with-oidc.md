@@ -1541,7 +1541,7 @@ public class OpaqueTokenAuthenticationHandler(
 
         if (token is null)
         {
-            var failedResult = AuthenticateResult.Fail("Authorization failed.");
+            var failedResult = AuthenticateResult.Fail("Bearer token not found in Authorization header.");
             return Task.FromResult(failedResult);
         }
 
