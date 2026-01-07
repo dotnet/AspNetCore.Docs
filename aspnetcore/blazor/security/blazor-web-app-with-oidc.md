@@ -1466,7 +1466,7 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 
 <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
 
-Only if the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> is there a failure to authenticate the user. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate their status and retrieve claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
+A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate their status and retrieve claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
 
 > [!IMPORTANT]
 > [Duende Software](https://duendesoftware.com/) isn't owned or controlled by Microsoft and might require you to pay a license fee for production use of the Duende Introspection Authentication Handler.
@@ -1540,7 +1540,8 @@ public class OpaqueTokenAuthenticationHandler(
 
         if (token is null)
         {
-            var failedResult = AuthenticateResult.Fail("Bearer token not found in Authorization header.");
+            var failedResult = AuthenticateResult.Fail(
+                "Bearer token not found in Authorization header.");
             return Task.FromResult(failedResult);
         }
 
@@ -1556,7 +1557,8 @@ public class OpaqueTokenAuthenticationHandler(
            user's claims.
         */
 
-        // TODO: Replace "{USER ID}" with a claim value extracted from the token introspection response.
+        // TODO: Replace the '{USER ID}' placeholder with a claim value extracted 
+        // from the token  introspection response.
         var claims = new[] { new Claim(ClaimTypes.Name, "{USER ID}") };
         var identity = new ClaimsIdentity(claims, 
             OpaqueTokenAuthenticationOptions.DefaultScheme);
