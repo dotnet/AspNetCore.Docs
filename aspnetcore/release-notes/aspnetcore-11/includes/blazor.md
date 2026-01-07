@@ -66,3 +66,7 @@ Blazor.start({
 ```
 
 For more information, see <xref:blazor/fundamentals/startup#startup-process-and-configuration>.
+
+### New `BasePath` component
+
+Blazor Web Apps can use the new `BasePath` component (`<BasePath />`) to render the app's app base path (`<base href>`) HTML tag automatically. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
