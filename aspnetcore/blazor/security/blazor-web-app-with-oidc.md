@@ -1557,7 +1557,8 @@ public class OpaqueTokenAuthenticationHandler(
            user's claims.
         */
 
-        var claims = new[] { new Claim(ClaimTypes.Name, "user_id") };
+        // TODO: Replace "{USER ID}" with a claim value extracted from the token introspection response.
+        var claims = new[] { new Claim(ClaimTypes.Name, "{USER ID}") };
         var identity = new ClaimsIdentity(claims, 
             OpaqueTokenAuthenticationOptions.DefaultScheme);
         var principal = new ClaimsPrincipal(identity);
