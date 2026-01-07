@@ -1525,7 +1525,6 @@ public class OpaqueTokenAuthenticationOptions : AuthenticationSchemeOptions
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using MinimalApiJwt.Authentication;
 using MinimalApiJwt.Extensions;
