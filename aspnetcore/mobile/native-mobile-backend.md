@@ -209,7 +209,7 @@ In the terminal, test adding new items by calling the following curl command usi
 curl -v -X POST 'https://localhost:5001/api/todoitems/' \
 --header 'Content-Type: application/json' \
 --data '{
-  "id": "6bb8b868-dba1-4f1a-93b7-24ebce87e243",
+  "id": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "name": "A Test Item",
   "notes": "asdf",
   "done": false
@@ -222,7 +222,7 @@ curl -v -X POST 'https://localhost:5001/api/todoitems/' \
 curl -v -X POST 'https://localhost:5001/api/todoitems/' `
 --header 'Content-Type: application/json' `
 --data '{
-  "id": "6bb8b868-dba1-4f1a-93b7-24ebce87e243",
+  "id": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "name": "A Test Item",
   "notes": "asdf",
   "done": false
@@ -252,7 +252,7 @@ To test with curl, change the verb to `PUT`. Specify the updated object data in 
 curl -v -X PUT 'https://localhost:5001/api/todoitems/' \
 --header 'Content-Type: application/json' \
 --data '{
-  "id": "6bb8b868-dba1-4f1a-93b7-24ebce87e243",
+  "id": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "name": "A Test Item",
   "notes": "asdf",
   "done": true
@@ -264,7 +264,7 @@ curl -v -X PUT 'https://localhost:5001/api/todoitems/' \
 curl -v -X PUT 'https://localhost:5001/api/todoitems/' `
 --header 'Content-Type: application/json' `
 --data '{
-  "id": "6bb8b868-dba1-4f1a-93b7-24ebce87e243",
+  "id": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "name": "A Test Item",
   "notes": "asdf",
   "done": true
