@@ -34,7 +34,7 @@ To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessa
 
 You need to configure two configuration values in both applications:
 
-* `RemoteAppApiKey`: A key (required to be parseable as a [GUID](/dotnet/api/system.guid)) that is shared between the two applications. This should be a GUID value like `12345678-1234-1234-1234-123456789012`.
+* `RemoteAppApiKey`: A key (required to be parseable as a [GUID](/dotnet/api/system.guid)) that is shared between the two applications. This should be a GUID value like `aaaabbbb-0000-cccc-1111-dddd2222eeee`.
 * `RemoteAppUri`: The URI of the remote ASP.NET Framework application (only required in the ASP.NET Core application configuration). This should be the full URL where the ASP.NET Framework app is hosted, such as `https://localhost:44300` or `https://myapp.example.com`.
 
 ## Configure ASP.NET Framework Application

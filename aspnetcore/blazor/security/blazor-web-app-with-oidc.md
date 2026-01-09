@@ -193,12 +193,12 @@ jwtOptions.Audience = "{APP ID URI}";
 > [!NOTE]
 > When using Microsoft Entra ID, match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Entra or Azure portal. Don't include the scope name, "`Weather.Get`," in the value.
 
-The format of the Audience depends on the type of tenant in use. The following examples for Microsoft Entra ID use a Tenant ID of `contoso` and a Client ID of `11112222-bbbb-3333-cccc-4444dddd5555`.
+The format of the Audience depends on the type of tenant in use. The following examples for Microsoft Entra ID use a Tenant ID of `contoso` and a Client ID of `ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0`.
 
 ME-ID tenant App ID URI example:
 
 ```csharp
-jwtOptions.Audience = "api://11112222-bbbb-3333-cccc-4444dddd5555";
+jwtOptions.Audience = "api://ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0";
 ```
 
 AAD B2C tenant App ID URI example:
@@ -258,7 +258,7 @@ The format of the scope depends on the type of tenant in use. In the following e
 ME-ID tenant App ID URI example:
 
 ```csharp
-oidcOptions.Scope.Add("api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get");
+oidcOptions.Scope.Add("api://ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/Weather.Get");
 ```
 
 AAD B2C tenant App ID URI example:
@@ -541,12 +541,12 @@ jwtOptions.Audience = "{APP ID URI}";
 > [!NOTE]
 > When using Microsoft Entra ID, match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Entra or Azure portal. Don't include the scope name, "`Weather.Get`," in the value.
 
-The format of the Audience depends on the type of tenant in use. The following examples for Microsoft Entra ID use a Tenant ID of `contoso` and a Client ID of `11112222-bbbb-3333-cccc-4444dddd5555`.
+The format of the Audience depends on the type of tenant in use. The following examples for Microsoft Entra ID use a Tenant ID of `contoso` and a Client ID of `ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0`.
 
 ME-ID tenant App ID URI example:
 
 ```csharp
-jwtOptions.Audience = "api://11112222-bbbb-3333-cccc-4444dddd5555";
+jwtOptions.Audience = "api://ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0";
 ```
 
 AAD B2C tenant App ID URI example:
@@ -888,12 +888,12 @@ jwtOptions.Audience = "{APP ID URI}";
 > [!NOTE]
 > When using Microsoft Entra ID, match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API** in the Entra or Azure portal. Don't include the scope name, "`Weather.Get`," in the value.
 
-The format of the Audience depends on the type of tenant in use. The following examples for Microsoft Entra ID use a Tenant ID of `contoso` and a Client ID of `11112222-bbbb-3333-cccc-4444dddd5555`.
+The format of the Audience depends on the type of tenant in use. The following examples for Microsoft Entra ID use a Tenant ID of `contoso` and a Client ID of `ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0`.
 
 ME-ID tenant App ID URI example:
 
 ```csharp
-jwtOptions.Audience = "api://11112222-bbbb-3333-cccc-4444dddd5555";
+jwtOptions.Audience = "api://ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0";
 ```
 
 AAD B2C tenant App ID URI example:
@@ -1005,7 +1005,7 @@ The format of the scope depends on the type of tenant in use. In the following e
 ME-ID tenant App ID URI example:
 
 ```csharp
-oidcOptions.Scope.Add("api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get");
+oidcOptions.Scope.Add("api://ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/Weather.Get");
 ```
 
 AAD B2C tenant App ID URI example:
