@@ -46,6 +46,8 @@ The following list shows which workload to install for each .NET SDK, depending 
   * Targeting .NET 8 requires `wasm-tools-net8`.
 * Using the .NET 8 SDK: Targeting .NET 8 requires `wasm-tools`.
 
+Th Emscripten compiler toolchain depends on [LLVM](https://llvm.org/), [Node.js](https://nodejs.org), and [Python](https://www.python.org/), which are installed by default with the .NET WebAssembly build tools workload on Windows and macOS. Python isn't installed for Linux users by default, so Linux users should [download Python for Linux/Unix](https://www.python.org/downloads/source/) and manually install it on their system.
+
 ## Ahead-of-time (AOT) compilation
 
 Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size.
