@@ -174,7 +174,7 @@ In the preceding example:
 Example:
 
 ```json
-"TenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
+"TenantId": "00001111-aaaa-2222-bbbb-3333cccc4444",
 "VaultUri": "https://contoso.vault.azure.net/"
 ```
 
