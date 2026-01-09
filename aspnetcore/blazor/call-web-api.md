@@ -901,7 +901,7 @@ Example:
 ```json
 "DownstreamApi": {
   "BaseUrl": "https://localhost:7277",
-  "Scopes": [ "api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get" ]
+  "Scopes": [ "api://aaaabbbb-0000-cccc-1111-dddd2222eeee/Weather.Get" ]
 }
 ```
 
