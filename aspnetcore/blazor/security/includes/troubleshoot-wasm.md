@@ -210,7 +210,7 @@ Example JWT decoded by the tool for an app that authenticates against Azure AAD 
   "exp": 1610059429,
   "nbf": 1610055829,
   "ver": "1.0",
-  "iss": "https://mysiteb2c.b2clogin.com/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/v2.0/",
+  "iss": "https://mysiteb2c.b2clogin.com/11112222-bbbb-3333-cccc-4444dddd5555/v2.0/",
   "sub": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
   "aud": "00001111-aaaa-2222-bbbb-3333cccc4444",
   "nonce": "bbbb0000-cccc-1111-dddd-2222eeee3333",

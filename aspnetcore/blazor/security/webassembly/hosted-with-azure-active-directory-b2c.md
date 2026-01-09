@@ -46,7 +46,7 @@ Register an AAD B2C app for the *Server API app*:
 
 Record the following information:
 
-* *Server API app* Application (client) ID (for example, `ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0`)
+* *Server API app* Application (client) ID (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`)
 * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash). The instance is the scheme and host of an Azure B2C app registration, which can be found by opening the **Endpoints** window from the **App registrations** page in the Azure portal.
 * Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
@@ -120,8 +120,8 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 | `{PROJECT NAME}` | &mdash; | `BlazorSample` |
 | `{CLIENT APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Client":::** app | `11112222-bbbb-3333-cccc-4444dddd5555` |
 | `{DEFAULT SCOPE}` | Scope name | `API.Access` |
-| `{SERVER API APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Server":::** app | `ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0` |
-| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0` (GUID ONLY, matches the `{SERVER API APP CLIENT ID}`) |
+| `{SERVER API APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Server":::** app | `00001111-aaaa-2222-bbbb-3333cccc4444` |
+| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `00001111-aaaa-2222-bbbb-3333cccc4444` (GUID ONLY, matches the `{SERVER API APP CLIENT ID}`) |
 | `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow | `B2C_1_signupsignin1` |
 | `{TENANT DOMAIN}` | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com` |
 

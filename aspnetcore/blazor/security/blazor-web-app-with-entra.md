@@ -173,7 +173,7 @@ The following examples use an Application (Client) Id of `11112222-bbbb-3333-ccc
 ME-ID tenant example:
 
 ```csharp
-jwtOptions.Audience = "api://aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Audience = "api://11112222-bbbb-3333-cccc-4444dddd5555";
 ```
 
 Microsoft Entra External ID tenant:
@@ -259,7 +259,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     {
         configOptions.BaseUrl = "https://localhost:7277";
         configOptions.Scopes = 
-            ["api://aaaabbbb-0000-cccc-1111-dddd2222eeee/Weather.Get"];
+            ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
     })
     .AddDistributedTokenCaches();
 ```
@@ -267,7 +267,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 Example:
 
 ```csharp
-List<string> scopes = ["api://aaaabbbb-0000-cccc-1111-dddd2222eeee/Weather.Get"];
+List<string> scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
 ```
 
 ### Configuration for Microsoft Entra External ID
@@ -324,7 +324,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDownstreamApi("DownstreamApi", configOptions =>
     {
         configOptions.BaseUrl = "https://localhost:7277";
-        configOptions.Scopes = ["api://aaaabbbb-0000-cccc-1111-dddd2222eeee/Weather.Get"];
+        configOptions.Scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
     })
     .AddDistributedTokenCaches();
 ```
@@ -332,7 +332,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 Example:
 
 ```csharp
-List<string> scopes = ["api://aaaabbbb-0000-cccc-1111-dddd2222eeee/Weather.Get"];
+List<string> scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
 ```
 
 :::zone-end
@@ -469,7 +469,7 @@ The following examples use an Application (Client) Id of `11112222-bbbb-3333-ccc
 ME-ID tenant example:
 
 ```csharp
-jwtOptions.Audience = "api://aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Audience = "api://11112222-bbbb-3333-cccc-4444dddd5555";
 ```
 
 Microsoft Entra External ID tenant:
@@ -548,7 +548,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDownstreamApi("DownstreamApi", configOptions =>
     {
         configOptions.BaseUrl = "https://localhost:7277";
-        configOptions.Scopes = ["api://aaaabbbb-0000-cccc-1111-dddd2222eeee/Weather.Get"];
+        configOptions.Scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
     })
     .AddDistributedTokenCaches();
 ```
@@ -601,7 +601,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddDownstreamApi("DownstreamApi", configOptions =>
     {
         configOptions.BaseUrl = "https://localhost:7277";
-        configOptions.Scopes = ["api://aaaabbbb-0000-cccc-1111-dddd2222eeee/Weather.Get"];
+        configOptions.Scopes = ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"];
     })
     .AddDistributedTokenCaches();
 ```
@@ -789,7 +789,7 @@ Example:
 },
 "DownstreamApi": {
   "BaseUrl": "https://localhost:7277",
-  "Scopes": ["api://aaaabbbb-0000-cccc-1111-dddd2222eeee/Weather.Get"]
+  "Scopes": ["api://11112222-bbbb-3333-cccc-4444dddd5555/Weather.Get"]
 }
 ```
 
