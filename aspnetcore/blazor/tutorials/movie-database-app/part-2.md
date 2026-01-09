@@ -119,6 +119,24 @@ Paste all of the following commands at the prompt (`>`) of the **Terminal**. Whe
 
 When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
 
+:::moniker range=">= aspnetcore-9.0"
+
+```dotnetcli
+dotnet tool install --global Microsoft.dotnet-scaffold
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 ```dotnetcli
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-ef
@@ -131,6 +149,8 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
+:::moniker-end
+
 > [!IMPORTANT]
 > After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
@@ -138,6 +158,30 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 > The preceding commands are .NET CLI commands, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
 
 Save the project file.
+
+
+:::moniker range=">= aspnetcore-9.0"
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [dotnet scaffold – Next Generation Content Creation for .NET](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
+* <xref:fundamentals/dotnet-scaffold-telemetry>.
+* Design time tools for EF Core.
+* The SQLite and SQL Server providers with the EF Core package as a dependency.
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Design time tools for EF Core.
+* The SQLite and SQL Server providers with the EF Core package as a dependency.
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions.
+
+:::moniker-end
 
 The preceding commands add:
 
@@ -164,6 +208,36 @@ Paste all of the following commands  at the prompt (`>`) of the command shell. W
 
 When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
 
+:::moniker range=">= aspnetcore-9.0"
+
+```dotnetcli
+dotnet tool install --global Microsoft.dotnet-scaffold
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+```
+
+Save the project file.
+
+The preceding commands add:
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [dotnet scaffold – Next Generation Content Creation for .NET](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
+* <xref:fundamentals/dotnet-scaffold-telemetry>.
+* Design time tools for EF Core.
+* The SQLite and SQL Server providers with the EF Core package as a dependency.
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 ```dotnetcli
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-ef
@@ -186,6 +260,8 @@ The preceding commands add:
 * The SQLite and SQL Server providers with the EF Core package as a dependency.
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
 * [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
+
+:::moniker-end
 
 In a command shell opened to the project's root folder, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
 
@@ -228,6 +304,14 @@ Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
 :::zone pivot="vsc"
 
+:::moniker range=">= aspnetcore-9.0"
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 In the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory, execute the following command. SQLite is used as the database for users adopting VS Code tooling for this tutorial series.
 
 ```dotnetcli
@@ -243,9 +327,19 @@ The following table details the ASP.NET Core code generator options used in the 
 * `-m`: The name of the model.
 * `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (for example, `MoviePages` in this case).
 
+:::moniker-end
+
 :::zone-end
 
 :::zone pivot="cli"
+
+:::moniker range=">= aspnetcore-9.0"
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
 
 In a command shell opened to the project's root folder, execute the following command. SQLite is used as the database for users adopting .NET CLI tooling for this tutorial series.
 
@@ -261,6 +355,8 @@ The following table details the ASP.NET Core code generator options used in the 
 * `-dc`: The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace (`BlazorWebAppMovies.Data`).
 * `-m`: The name of the model.
 * `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (for example, `MoviePages` in this case).
+
+:::moniker-end
 
 :::zone-end
 
