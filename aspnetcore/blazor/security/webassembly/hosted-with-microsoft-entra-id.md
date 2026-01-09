@@ -49,7 +49,7 @@ Register an ME-ID app for the *Server API app*:
 
 Record the following information:
 
-* *Server API app* Application (client) ID (for example, `ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0`)
+* *Server API app* Application (client) ID (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`)
 * Directory (tenant) ID (for example, `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
 * ME-ID Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
@@ -68,7 +68,7 @@ In **Expose an API**:
 
 Record the following information:
 
-* App ID URI GUID (for example, record `00001111-aaaa-2222-bbbb-3333cccc4444` from the App ID URI of `api://ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0`)
+* App ID URI GUID (for example, record `00001111-aaaa-2222-bbbb-3333cccc4444` from the App ID URI of `api://00001111-aaaa-2222-bbbb-3333cccc4444`)
 * Scope name (for example, `API.Access`)
 
 > [!IMPORTANT]
@@ -125,8 +125,8 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 | `{PROJECT NAME}` | &mdash; | `BlazorSample` |
 | `{CLIENT APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Client":::** app | `11112222-bbbb-3333-cccc-4444dddd5555` |
 | `{DEFAULT SCOPE}` | Scope name | `API.Access` |
-| `{SERVER API APP CLIENT ID}` | Application (client) ID for the *Server API app* | `ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0` |
-| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0` (GUID ONLY, matches the `{SERVER API APP CLIENT ID}`) |
+| `{SERVER API APP CLIENT ID}` | Application (client) ID for the *Server API app* | `00001111-aaaa-2222-bbbb-3333cccc4444` |
+| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `00001111-aaaa-2222-bbbb-3333cccc4444` (GUID ONLY, matches the `{SERVER API APP CLIENT ID}`) |
 | `{TENANT DOMAIN}` | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com` |
 | `{TENANT ID}` | Directory (tenant) ID | `aaaabbbb-0000-cccc-1111-dddd2222eeee` |
 
@@ -366,7 +366,7 @@ Example default access token scope:
 
 ```csharp
 options.ProviderOptions.DefaultAccessTokenScopes.Add(
-    "api://ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/API.Access");
+    "api://00001111-aaaa-2222-bbbb-3333cccc4444/API.Access");
 ```
 
 For more information, see the following sections of the *Additional scenarios* article:
