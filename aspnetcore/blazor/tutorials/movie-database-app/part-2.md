@@ -1,5 +1,6 @@
 ---
 title: Build a Blazor movie database app (Part 2 - Add and scaffold a model)
+ai-usage: ai-assisted
 author: guardrex
 description: This part of the Blazor movie database app tutorial explains how to add a movie class to the app and scaffold the database and UI from the movie class.
 monikerRange: '>= aspnetcore-8.0'
@@ -121,14 +122,6 @@ To add the `dotnet scaffold` tool, execute the following .NET CLI command in the
 dotnet tool install --global Microsoft.dotnet-scaffold
 ```
 
-The preceding command adds:
-
-* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
-* [`dotnet scaffold` tooling](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
-* Design time tools for EF Core.
-* The SQLite provider with the EF Core package as a dependency.
-* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
@@ -187,14 +180,6 @@ To add the `dotnet scaffold` tool, execute the following .NET CLI command in a c
 ```dotnetcli
 dotnet tool install --global Microsoft.dotnet-scaffold
 ```
-
-The preceding command adds:
-
-* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
-* [`dotnet scaffold` tooling](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
-* Design time tools for EF Core.
-* The SQLite provider with the EF Core package as a dependency.
-* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
 
 :::moniker-end
 
@@ -300,6 +285,14 @@ For **Page**, confirm that **CRUD** is selected. Press <kbd>Enter</kbd>.
 
 When prompted to include prerelease packages, use the arrow keys to select **No**. Press <kbd>Enter</kbd>.
 
+Executing the `dotnet scaffold` command adds the following tools and packages to the app:
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [`dotnet scaffold` tooling](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
+* Design time tools for EF Core.
+* The SQLite provider with the EF Core package as a dependency.
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
@@ -350,6 +343,14 @@ For the **Database Provider**, use the arrow keys to select **sqlite-efcore**. P
 For **Page**, confirm that **CRUD** is selected. Press <kbd>Enter</kbd>.
 
 When prompted to include prerelease packages, use the arrow keys to select **No**. Press <kbd>Enter</kbd>.
+
+Executing the `dotnet scaffold` command adds the following tools and packages to the app:
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [`dotnet scaffold` tooling](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
+* Design time tools for EF Core.
+* The SQLite provider with the EF Core package as a dependency.
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
 
 :::moniker-end
 
