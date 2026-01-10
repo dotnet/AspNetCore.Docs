@@ -187,7 +187,7 @@ dotnet tool install --global Microsoft.dotnet-scaffold
 
 To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder.
 
-Paste all of the following commands at the prompt (`>`) of command shell. When you paste multiple commands, a warning may appear stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
+Paste all of the following commands at the prompt (`>`) of the command shell. When you paste multiple commands, a warning may appear stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
 
 When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
 
