@@ -81,7 +81,7 @@ The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helper
 
 Save your changes and test the filter.
 
-![Index view with the word ghost typed into the Title filter textbox](~/tutorials/razor-pages/search/_static/filter-by-title.png)
+![Index view with the word ghost typed into the Title filter textbox](~/tutorials/razor-pages/search/_static/10/filter-by-title.png)
 
 ## Search by genre
 
