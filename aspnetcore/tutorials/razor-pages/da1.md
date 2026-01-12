@@ -14,7 +14,7 @@ uid: tutorials/razor-pages/da1
 
 The scaffolded movie app is a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
 
-![Movie application open in Chrome](~/tutorials/razor-pages/sql/_static/10/seed-data-in-app.png)
+![Movie application open in Chrome](~/tutorials/razor-pages/sql/media/seed-data-in-app.png)
 
 ## Update the model
 

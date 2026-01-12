@@ -25,13 +25,13 @@ For a more advanced introduction aimed at developers who are familiar with contr
 
 At the end of this tutorial, you have a Razor Pages web app that manages a database of movies.
 
-![Home or Index page](~/tutorials/razor-pages/razor-pages-start/_static/10/home10.png)
+![Home or Index page](~/tutorials/razor-pages/razor-pages-start/media/home10.png)
 
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-10.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-10.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -52,11 +52,11 @@ At the end of this tutorial, you have a Razor Pages web app that manages a datab
   * Verify: **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-   ![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/10/net10-additional-info.png)
+   ![Additional information](~/tutorials/razor-pages/razor-pages-start/media/net10-additional-info.png)
 
   The following starter project is created:
 
-   ![Solution Explorer](~/tutorials/razor-pages/razor-pages-start/_static/10/solution-explorer-project.png)
+   ![Solution Explorer](~/tutorials/razor-pages/razor-pages-start/media/solution-explorer-project.png)
 
 For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -118,7 +118,7 @@ In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app withou
 
 At the **Select debugger** prompt, select **C#**.
 
-![Select environment dialog](~/tutorials/razor-pages/razor-pages-start/_static/10/vsc-select-debugger-csharp-devkit10.png)
+![Select environment dialog](~/tutorials/razor-pages/razor-pages-start/media/vsc-select-debugger-csharp-devkit10.png)
 
 At the **Select Launch Configuration** prompt, select **C#: RazorPagesMovie [https] RazorPagesMovie**.
 

@@ -164,7 +164,7 @@ Visual Studio displays the following tags in a distinctive bold font used for Ta
 * `<input asp-for="Movie.Title" class="form-control" />`
 * `<span asp-validation-for="Movie.Title" class="text-danger"></span>`
 
-![VS view of Create.cshtml page](~/tutorials/razor-pages/page/_static/10/tag-helpers-vs2026.png)
+![VS view of Create.cshtml page](~/tutorials/razor-pages/page/media/tag-helpers-vs2026.png)
 
 ---
 

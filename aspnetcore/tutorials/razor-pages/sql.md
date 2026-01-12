@@ -51,19 +51,19 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
 1. From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-   ![View menu](~/tutorials/razor-pages/sql/_static/10/sql-server-object-explorer-vs2026.png)
+   ![View menu](~/tutorials/razor-pages/sql/media/sql-server-object-explorer-vs2026.png)
 
 1. Right-click on the `Movie` table and select **View Designer**:
 
-   ![Contextual menus open on Movie table](~/tutorials/razor-pages/sql/_static/10/view-designer-vs2026.png)
+   ![Contextual menus open on Movie table](~/tutorials/razor-pages/sql/media/view-designer-vs2026.png)
 
-   ![Movie tables open in Designer](~/tutorials/razor-pages/sql/_static/10/movie-table-in-designer-vs2026.png)
+   ![Movie tables open in Designer](~/tutorials/razor-pages/sql/media/movie-table-in-designer-vs2026.png)
 
    Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
 1. Right-click on the `Movie` table and select **View Data**:
 
-   ![Movie table open showing table data](~/tutorials/razor-pages/sql/_static/10/view-movie-data-vs2026.png)
+   ![Movie table open showing table data](~/tutorials/razor-pages/sql/media/view-movie-data-vs2026.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -144,7 +144,7 @@ Delete all the records in the database so the seed method runs. Stop and start t
 
 The app shows the seeded data:
 
-![Movie application open in browser showing movie data](~/tutorials/razor-pages/sql/_static/10/seed-data-in-app.png)
+![Movie application open in browser showing movie data](~/tutorials/razor-pages/sql/media/seed-data-in-app.png)
 
 ## Next steps
 
