@@ -333,10 +333,7 @@ Standalone deployment assets are published into either the `/bin/Release/{TARGET
 
 When an app isn't using an HTML document produced as part of the .NET build/publish process, there's no place to write the site's [import map](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap). For example, this scenario occurs when publishing a standalone Blazor app for consumption by a JavaScript/SPA app through a [Blazor custom element](xref:blazor/components/js-spa-frameworks#blazor-custom-elements).
 
-To avoid problems loading app resources on the client, disable [fingerprinting](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps) for `blazor.webassembly.js` and `dotnet.js` using *either* of the following approaches:
-
-* Remove the fingerprint marker (`#[.{fingerprint}]`) from the `blazor.webassembly.js` Blazor script `src` attribute in `wwwroot/index.html`. After publishing the app, remove the fingerprint marker from `dotnet.js` by renaming the `dotnet.{FINGERPRINT}.js` file to `dotnet.js`, where the `{FINGERPRINT}` placeholder is the file's fingerprint. Remove the `<OverrideHtmlAssetPlaceholders>` MSBuild property (or set it to `false`) in the app's project file (`.csproj`).
-* Build a [custom boot resources loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources) that strips off the fingerprint marker from the `blazor.webassembly.js` and `dotnet.js` files.
+To avoid problems loading app resources on the client, disable [fingerprinting](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps) for `blazor.webassembly.js` and `dotnet.js` by removing `<OverrideHtmlAssetPlaceholders>` MSBuild property (or set it to `false`) in the app's project file (`.csproj`).
 
 :::moniker-end
 
