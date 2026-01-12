@@ -107,7 +107,7 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with the `value` attribute of the `<input>` and handles changes using the registered handler.
 
-Bind on either the [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) or [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) DOM events with the `@bind:event="{EVENT}"` attribute, where the `{EVENT}` placeholder is either `oninput` or `onchange`.
+Default binding with `@bind` uses the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) DOM event (`onchange`). Binding can also take place on the [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) DOM event using the `@bind:event="{EVENT}"` attribute, where the `{EVENT}` placeholder is either `oninput` or `onchange` (default).
 
 The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event is triggered. Unlike the `onchange` event, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
@@ -149,22 +149,17 @@ The following example binds the `InputValue` property to the `<input>` element's
 
 :::moniker-end
 
-Built-in `@bind:event` binding supports the following DOM events (the `on` prefix is required):
-
-* [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) event as `onchange`
-* [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) event as `oninput`
-
 <!-- 
     This must be fleshed out with a working example.
     What's here doesn't work.
 -->
 
-To bind on other DOM events:
+To bind to events other than the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) and [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) DOM events:
 
 * Map the DOM event to the <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> argument type.
 * Include an `@bind:event="{EVENT}"` attribute with the DOM event (prefixed with "`on`") for the `{EVENT}` placeholder.
 
-The following example maps the [`keydown`](https://developer.mozilla.org/docs/Web/API/Element/keydown_event) event (as `onkeydown`) to the <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> class and binds a field using the DOM event.
+The following example maps the [`keyup`](https://developer.mozilla.org/docs/Web/API/Element/keydown_event) event (as `onkeyup`) to the <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> class and binds a field using the DOM event.
 
 `EventHandlers.cs` (the `{APP NAMESPACE}` placeholder is the app's namespace):
 
