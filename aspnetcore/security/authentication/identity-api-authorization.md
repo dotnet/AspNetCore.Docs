@@ -309,7 +309,7 @@ If `useCookies` is `false` or omitted, token-based authentication is enabled. Th
 
 For more information about these properties, see <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse>.
 
-Use the [BearerTokenOptions.BearerTokenExpiration](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.bearertokenexpiration) property to set how long the access token will remain valid for.
+Use the [BearerTokenOptions.BearerTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.bearertokenexpiration) property to set how long the access token will remain valid for.
 
 Put the access token in a header to make authenticated requests, as shown in the following example
 
@@ -342,7 +342,7 @@ If the call is successful, the response body is a new <xref:Microsoft.AspNetCore
 }
 ```
 
-Use the [BearerTokenOptions.RefreshTokenExpiration](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.refreshtokenexpiration) property to set how long the refresh token will remain valid for.
+Use the [BearerTokenOptions.RefreshTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.refreshtokenexpiration) property to set how long the refresh token will remain valid for.
 
 ## Use the `GET /confirmEmail` endpoint
 
