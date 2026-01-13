@@ -314,7 +314,6 @@ Microsoft has multiple identity providers and OpenID Connect implementations. Mi
 
 * Microsoft Entra ID
 * Microsoft Entra External ID
-* Azure AD B2C
 
 If authenticating using one of the Microsoft identity providers in ASP.NET Core, it is recommended to use the [`Microsoft.Identity.Web`](https://github.com/AzureAD/microsoft-identity-web) Nuget packages.
 

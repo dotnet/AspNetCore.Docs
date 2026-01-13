@@ -56,11 +56,15 @@ WPF apps use the [Microsoft identity platform](/entra/identity-platform/) to int
 * [Quickstart: Set up sign in for a desktop app using Azure Active Directory B2C](/azure/active-directory-b2c/quickstart-native-app-desktop)
 * [Configure authentication in a sample WPF desktop app by using Azure AD B2C](/azure/active-directory-b2c/configure-authentication-sample-wpf-desktop-app)
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 :::zone-end
 
 :::zone pivot="winforms"
 
 Windows Forms apps use the [Microsoft identity platform](/entra/identity-platform/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/entra/identity-platform/msal-overview).
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 :::zone-end
 
@@ -594,11 +598,15 @@ WPF apps use the [Microsoft identity platform](/entra/identity-platform/) to int
 * [Quickstart: Set up sign in for a desktop app using Azure Active Directory B2C](/azure/active-directory-b2c/quickstart-native-app-desktop)
 * [Configure authentication in a sample WPF desktop app by using Azure AD B2C](/azure/active-directory-b2c/configure-authentication-sample-wpf-desktop-app)
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 :::zone-end
 
 :::zone pivot="winforms"
 
 Windows Forms apps use the [Microsoft identity platform](/entra/identity-platform/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/entra/identity-platform/msal-overview).
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 :::zone-end
 

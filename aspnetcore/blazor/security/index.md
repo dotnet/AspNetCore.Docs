@@ -176,6 +176,8 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 :::moniker-end
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Guide.
@@ -212,6 +214,8 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | `SingleOrg`              | Organizational authentication for a single tenant |
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 :::moniker-end
 

@@ -351,6 +351,8 @@ Hosted Blazor WebAssembly apps:
 
 :::moniker-end
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 Further configuration guidance is found in the following articles:
 
 * <xref:blazor/security/webassembly/additional-scenarios>
