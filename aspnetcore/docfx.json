@@ -3,7 +3,7 @@
     "content": [
       {
         "files": [ "**/*.md", "**/*.yml" ], 
-        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
+        "exclude": [ "**/includes/**", "**/license.md", "**/LICENSE.md", "**/obj/**", "**/readme.md", "**/README.md", "**/sample/**", "**/samples/**", "_site/**" ], 
         "group": "group1", 
         "src": "."
       },
