@@ -77,6 +77,7 @@ For an example, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app#using-inte
 
 ## Additional resources
 
+* <xref:blazor/hybrid/class-libraries-best-practices>
 * eShop Reference Application (AdventureWorks): The .NET MAUI Blazor Hybrid app is in the `src/HybridApp` folder.
   * For Azure hosting: [`Azure-Samples/eShopOnAzure` GitHub repository](https://github.com/Azure-Samples/eShopOnAzure)
-  * For general non-Azure hosting: [`dotnet/eShop` GitHub repository](https://github.com/dotnet/eShop). 
+  * For general non-Azure hosting: [`dotnet/eShop` GitHub repository](https://github.com/dotnet/eShop).
