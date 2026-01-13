@@ -2,10 +2,10 @@
 
 This document:
 
-* Provides a quick reference for minimal APIs.
+* Provides a quick reference for Minimal APIs.
 * Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
 
-The minimal APIs consist of:
+The Minimal APIs consist of:
 
 * [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
 * [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
@@ -14,7 +14,7 @@ The minimal APIs consist of:
 
 ## ASP.NET Core Middleware
 
-The following table lists some of the middleware frequently used with minimal APIs.
+The following table lists some of the middleware frequently used with Minimal APIs.
 
 | Middleware | Description | API |
 |--|--|--|
@@ -165,7 +165,7 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 ### Typed results
 
-The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
+The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from Minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
 
 The types implementing `IResult` are public, allowing for type assertions when testing. For example:
 
@@ -214,7 +214,7 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 <a name="openapi7"></a>
 
 <!-- 
-# Differences between minimal APIs and APIs with controllers
+# Differences between Minimal APIs and APIs with controllers
 
 Moved to uid: tutorials/min-web-api
 -->

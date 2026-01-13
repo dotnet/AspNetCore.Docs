@@ -52,7 +52,7 @@ Entity Framework Core is also used in the tests. See the [project file in GitHub
 
 ## SUT environment
 
-If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to Development.
+If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to `Development`.
 
 ## Basic tests with the default WebApplicationFactory
 

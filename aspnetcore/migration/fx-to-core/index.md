@@ -3,7 +3,7 @@ title: Migrate from ASP.NET Framework to ASP.NET Core
 author: wadepickett
 description: Your complete guide to migrating ASP.NET Framework applications to ASP.NET Core, with practical approaches and step-by-step guidance.
 ms.author: wpickett
-ms.date: 11/10/2025
+ms.date: 12/04/2025
 uid: migration/fx-to-core/index
 ---
 # Migrate from ASP.NET Framework to ASP.NET Core
@@ -90,4 +90,4 @@ Incremental migration is an implementation of the Strangler Fig pattern and is b
 
 ## In place migration
 
-In place migration can work for sufficiently small applications. If possible, this allows for a quick replacement of the application. However, small issues may be compounded if you decide to do an in place migration. See <xref:migration/fx-to-core/tooling> to learn how Upgrade Assistant can help with an in place migration.
+In place migration can work for sufficiently small applications. If possible, this allows for a quick replacement of the application. However, small issues may be compounded if you decide to do an in place migration. See <xref:migration/fx-to-core/tooling> for information on migration tooling options.

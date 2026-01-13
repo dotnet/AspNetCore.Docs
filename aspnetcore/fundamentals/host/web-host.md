@@ -53,7 +53,7 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
   * Command-line arguments.
 * Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an `appsettings.json` or `appsettings.{Environment}.json` file.
 * When running behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the app's base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
-* Sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is Development. For more information, see [Scope validation](#scope-validation).
+* Sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is `Development`. For more information, see [Scope validation](#scope-validation).
 
 The configuration defined by `CreateDefaultBuilder` can be overridden and augmented by <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A>, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging%2A>, and other methods and extension methods of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. A few examples follow:
 
@@ -768,7 +768,7 @@ public class MyClass
 
 ## Scope validation
 
-<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is Development.
+<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is `Development`.
 
 When `ValidateScopes` is set to `true`, the default service provider performs checks to verify that:
 
@@ -779,7 +779,7 @@ The root service provider is created when <xref:Microsoft.Extensions.DependencyI
 
 Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
-To always validate scopes, including in the Production environment, configure the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions> with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A> on the host builder:
+To always validate scopes, including in the `Production` environment, configure the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions> with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A> on the host builder:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -839,7 +839,7 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
   * Command-line arguments.
 * Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an `appsettings.json` or `appsettings.{Environment}.json` file.
 * When running behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the app's base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
-* Sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is Development. For more information, see [Scope validation](#scope-validation).
+* Sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is `Development`. For more information, see [Scope validation](#scope-validation).
 
 The configuration defined by `CreateDefaultBuilder` can be overridden and augmented by <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A>, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging%2A>, and other methods and extension methods of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. A few examples follow:
 
@@ -1524,7 +1524,7 @@ public class MyClass
 
 ## Scope validation
 
-<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is Development.
+<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is `Development`.
 
 When `ValidateScopes` is set to `true`, the default service provider performs checks to verify that:
 
@@ -1535,7 +1535,7 @@ The root service provider is created when <xref:Microsoft.Extensions.DependencyI
 
 Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
-To always validate scopes, including in the Production environment, configure the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions> with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A> on the host builder:
+To always validate scopes, including in the `Production` environment, configure the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions> with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A> on the host builder:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1595,7 +1595,7 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
   * Command-line arguments.
 * Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an `appsettings.json` or `appsettings.{Environment}.json` file.
 * When running behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the app's base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
-* Sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is Development. For more information, see [Scope validation](#scope-validation).
+* Sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is `Development`. For more information, see [Scope validation](#scope-validation).
 
 The configuration defined by `CreateDefaultBuilder` can be overridden and augmented by <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A>, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging%2A>, and other methods and extension methods of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. A few examples follow:
 
@@ -2280,7 +2280,7 @@ public class MyClass
 
 ## Scope validation
 
-<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is Development.
+<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is `Development`.
 
 When `ValidateScopes` is set to `true`, the default service provider performs checks to verify that:
 
@@ -2291,7 +2291,7 @@ The root service provider is created when <xref:Microsoft.Extensions.DependencyI
 
 Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
-To always validate scopes, including in the Production environment, configure the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions> with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A> on the host builder:
+To always validate scopes, including in the `Production` environment, configure the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions> with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A> on the host builder:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)

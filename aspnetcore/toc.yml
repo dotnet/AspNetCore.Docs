@@ -7,6 +7,10 @@ items:
     uid: get-started
   - name: What's new
     items:
+      - name: ASP.NET Core 11
+        items:
+          - name: What's new in 11
+            uid: aspnetcore-11
       - name: ASP.NET Core 10
         items:
           - name: What's new in 10
@@ -477,8 +481,10 @@ items:
             items:
               - name: Overview
                 uid: blazor/fundamentals/index
-              - name: Routing and navigation
+              - name: Routing
                 uid: blazor/fundamentals/routing
+              - name: Navigation
+                uid: blazor/fundamentals/navigation
               - name: Configuration
                 uid: blazor/fundamentals/configuration
               - name: Dependency injection
@@ -671,6 +677,8 @@ items:
             uid: blazor/webassembly-lazy-load-assemblies
           - name: WebAssembly native dependencies
             uid: blazor/webassembly-native-dependencies
+          - name: Blazor with .NET on Web Workers
+            uid: blazor/blazor-web-workers
           - name: Performance
             items:
               - name: Overview
@@ -871,7 +879,7 @@ items:
     items:
       - name: Overview
         uid: fundamentals/apis
-      - name: "Tutorial: Create a minimal API"
+      - name: "Tutorial: Create a Minimal API"
         uid: tutorials/min-web-api
       - name: Minimal APIs quick reference
         uid: fundamentals/minimal-apis
@@ -1184,6 +1192,9 @@ items:
           - name: Diagnostics
             displayName: diagnostics
             uid: fundamentals/servers/kestrel/diagnostics
+          - name: Memory management
+            displayName: memory, pool, kestrel
+            uid: fundamentals/servers/kestrel/memory-management
           - name: HTTP/2
             displayName: deploy, publish, server, Kestrel
             uid: fundamentals/servers/kestrel/http2
@@ -2166,6 +2177,8 @@ items:
               uid: migration/fx-to-core/areas/http-modules
             - name: HTTP Handlers
               uid: migration/fx-to-core/areas/http-handlers
+            - name: Machine Key
+              uid: migration/fx-to-core/areas/machine-key
             - name: Session
               uid: migration/fx-to-core/areas/session
             - name: Authentication

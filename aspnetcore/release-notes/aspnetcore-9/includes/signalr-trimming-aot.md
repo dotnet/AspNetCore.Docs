@@ -22,7 +22,7 @@ The preceding example produces a native Windows executable of 10 MB and a Linux 
 
 * Only the JSON protocol is currently supported:
   * As shown in the preceding code, apps that use JSON serialization and Native AOT must use the `System.Text.Json` Source Generator. 
-  * This follows the same approach as minimal APIs.
+  * This follows the same approach as Minimal APIs.
 * On the SignalR server, Hub method parameters of type `IAsyncEnumerable<T>` and `ChannelReader<T>` where `T` is a ValueType (`struct`) aren't supported. Using these types results in a runtime exception at startup in development and in the published app. For more information, see [SignalR: Using IAsyncEnumerable&lt;T&gt; and ChannelReader&lt;T&gt; with ValueTypes in native AOT (`dotnet/aspnetcore` #56179)](https://github.com/dotnet/aspnetcore/issues/56179).
 * [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) aren't supported with Native AOT (`PublishAot`). Using strongly typed hubs with Native AOT will result in warnings during build and publish, and a runtime exception. Using strongly typed hubs with trimming (`PublishedTrimmed`) is supported.
 * Only `Task`, `Task<T>`, `ValueTask`, or `ValueTask<T>` are supported for async return types.

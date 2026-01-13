@@ -18,7 +18,7 @@ record Todo(int Id, string Title, boolean IsCompleted);
 
 ### `Problem` and `ValidationProblem` result types support construction with `IEnumerable<KeyValuePair<string, object?>>` values
 
-Prior to .NET 9, constructing [Problem](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem) and [ValidationProblem](/dotnet/api/microsoft.aspnetcore.http.typedresults.validationproblem) result types in minimal APIs required that the `errors` and `extensions` properties be initialized with an implementation of `IDictionary<string, object?>`. In this release, these construction APIs support overloads that consume `IEnumerable<KeyValuePair<string, object?>>`.
+Prior to .NET 9, constructing [Problem](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem) and [ValidationProblem](/dotnet/api/microsoft.aspnetcore.http.typedresults.validationproblem) result types in Minimal APIs required that the `errors` and `extensions` properties be initialized with an implementation of `IDictionary<string, object?>`. In this release, these construction APIs support overloads that consume `IEnumerable<KeyValuePair<string, object?>>`.
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/ProducesProblem/Program.cs" id="snippet_2" :::
 
