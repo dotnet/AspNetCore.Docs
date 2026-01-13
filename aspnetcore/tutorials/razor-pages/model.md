@@ -224,7 +224,7 @@ The data context `RazorPagesMovieContext`:
 
 The `RazorPagesMovieContext` class in the generated file `Data/RazorPagesMovieContext.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -261,10 +261,10 @@ ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-i
 The scaffolding tool automatically creates a database context and registers it with the dependency injection container. The following highlighted code is added to the `Program.cs` file by the scaffolder:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program.cs?name=snippet_all&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program.cs?name=snippet_all&highlight=8-9)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program.cs?name=snippet_all_sl&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program.cs?name=snippet_all_sl&highlight=8-9)]
 
 ---
 

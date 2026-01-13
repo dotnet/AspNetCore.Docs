@@ -161,17 +161,17 @@ Contains configuration data, like connection strings. For more information, see 
 Contains the following code:
 
 <!-- Throughout the tutoiral series, update code in working project (which becomes the clean finished sample) to compile and verify steps, then copy snippets to snapshot sample folder which contains all the various stages of code steps. -->
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program1Snip.cs?name=snippet_all)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program1Snip.cs?name=snippet_all)]
 
 The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and build the app:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program1Snip.cs?name=snippet_di)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program1Snip.cs?name=snippet_di)]
 
 The developer exception page is enabled by default and provides helpful information on exceptions. Don't run production apps in development mode because the developer exception page can leak sensitive information.
 
 The following code sets the exception endpoint to `/Error` and enables [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) when the app is ***not*** running in development mode:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program1Snip.cs?name=snippet_env)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program1Snip.cs?name=snippet_env)]
 
 For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments).
 
