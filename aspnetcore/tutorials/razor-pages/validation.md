@@ -37,7 +37,7 @@ To use the `Microsoft.Extensions.Validation` APIs:
 * Add the following package reference:
 
   ```xml
-  <PackageReference Include="Microsoft.Extensions.Validation" Version="10.0.0" />
+  <PackageReference Include="Microsoft.Extensions.Validation" Version="10.0.1" />
   ```
 
   The functionality is the same but now requires an explicit package reference.
@@ -89,7 +89,7 @@ Run the app and go to **Pages/Movies**.
 
 Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
 
-![Movie view form with multiple jQuery client-side validation errors](~/tutorials/razor-pages/validation/_static/val.png)
+![Movie view form with multiple jQuery client-side validation errors](~/tutorials/razor-pages/validation/media/validation-errors.png)
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 

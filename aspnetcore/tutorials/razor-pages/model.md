@@ -181,7 +181,7 @@ In this section, use the **Package Manager Console** (PMC) window to:
 
 The following warning is displayed, which you address in a later step:
 
-> No store type was specified for the decimal column 'Price' on entity type 'Movie'. This condition causes values to be silently truncated if they don't fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' by using 'HasColumnType'.
+> No store type was specified for the decimal column 'Price' on entity type 'Movie'. This condition causes values to be silently truncated if they don't fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' by using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
 
 * In the PMC, enter the following command:
 
@@ -224,7 +224,7 @@ The data context `RazorPagesMovieContext`:
 
 The `RazorPagesMovieContext` class in the generated file `Data/RazorPagesMovieContext.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -241,7 +241,7 @@ The name of the connection string is passed to the context by calling a method o
    Login failed for user 'User-name'.
    ```
 
-   You missed the [migrations step](#create-the-initial-database-schema-using-efs-migration-feature).
+   You missed the [migrations step](#create-the-initial-database-schema-by-using-efs-migration-feature).
 
 1. Test the **Create New** link.
 
@@ -261,10 +261,10 @@ ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-i
 The scaffolding tool automatically creates a database context and registers it with the dependency injection container. The following highlighted code is added to the `Program.cs` file by the scaffolder:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program.cs?name=snippet_all&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program.cs?name=snippet_all&highlight=8-9)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program.cs?name=snippet_all_sl&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program.cs?name=snippet_all_sl&highlight=8-9)]
 
 ---
 

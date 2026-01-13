@@ -18,6 +18,7 @@ public class Movie
 
     // <snippet2>
     [DataType(DataType.Date)]
+    [Required]
     public DateTime ReleaseDate { get; set; }
 
     [Range(1, 100)]

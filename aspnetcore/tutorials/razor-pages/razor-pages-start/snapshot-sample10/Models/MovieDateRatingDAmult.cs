@@ -13,7 +13,7 @@ public class Movie
     [StringLength(60, MinimumLength = 3)]
     public string Title { get; set; } = string.Empty;
 
-    [Display(Name = "Release Date"), DataType(DataType.Date)]
+    [Display(Name = "Release Date"), DataType(DataType.Date), Required]
     public DateTime ReleaseDate { get; set; }
 
     [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$"), Required, StringLength(30)]

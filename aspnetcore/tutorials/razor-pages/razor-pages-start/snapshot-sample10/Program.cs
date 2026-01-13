@@ -68,7 +68,8 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 app.MapRazorPages();
-
+   .WithStaticAssets();
+   
 app.Run();
 // </snippet_all_sl>
 #endif

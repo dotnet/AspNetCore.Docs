@@ -52,7 +52,7 @@ Use **View Source** from a browser to examine the generated markup. A portion of
 </td>
 ```
 
-   The dynamically generated links pass the movie ID with a [query string](https://launchschool.com/books/http/read/what_is_a_url). For example, the `?id=1` in `https://localhost:5001/Movies/Details?id=1`.
+   The dynamically generated links pass the movie ID with a [query string](https://launchschool.com/books/http/read/what_is_a_url). For example, the `?id=1` in `https://localhost:7247/Movies/Details?id=1`.
 
 ### Add route template
 
@@ -68,7 +68,7 @@ The generated HTML adds the ID to the path portion of the URL:
 </td>
 ```
 
-A request to the page with the `{id:int}` route template that doesn't include the integer returns an HTTP 404 (not found) error. For example, `https://localhost:5001/Movies/Details` returns a 404 error. To make the ID optional, append `?` to the route constraint:
+A request to the page with the `{id:int}` route template that doesn't include the integer returns an HTTP 404 (not found) error. For example, `https://localhost:7247/Movies/Details` returns a 404 error. To make the ID optional, append `?` to the route constraint:
 
 ```cshtml
 @page "{id:int?}"
@@ -78,7 +78,7 @@ Test the behavior of `@page "{id:int?}"`:
 
 1. Set the page directive in `Pages/Movies/Details.cshtml` to `@page "{id:int?}"`.
 1. Set a break point in `public async Task<IActionResult> OnGetAsync(int? id)`, in `Pages/Movies/Details.cshtml.cs`.
-1. Navigate to `https://localhost:5001/Movies/Details/`.
+1. Navigate to `https://localhost:7247/Movies/Details/`.
 
 With the `@page "{id:int}"` directive, the break point is never hit. The routing engine returns HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404):
 
@@ -107,7 +107,7 @@ Examine the `Pages/Movies/Edit.cshtml.cs` file:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Edit.cshtml.cs?name=snippet2)]
 
-When you make an HTTP GET request to the `Movies/Edit` page, for example, `https://localhost:5001/Movies/Edit/3`:
+When you make an HTTP GET request to the `Movies/Edit` page, for example, `https://localhost:7247/Movies/Edit/3`:
 
 * The `OnGetAsync` method fetches the movie from the database and returns the `Page` method.
 * The `Page` method renders the `Pages/Movies/Edit.cshtml` Razor Page. The `Pages/Movies/Edit.cshtml` file contains the model directive `@model RazorPagesMovie.Pages.Movies.EditModel`, which makes the movie model available on the page.

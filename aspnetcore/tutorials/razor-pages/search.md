@@ -52,11 +52,11 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 > * [How to make a SQLite column case insensitive (`dotnet/AspNetCore.Docs` #22314)](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
 > * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
 
-Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
+Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:7247/Movies?searchString=Ghost`. The filtered movies are displayed.
 
 ![Index view](~/tutorials/razor-pages/search/media/search-string-ghost.png)
 
-If you add the following route template to the Index page, you can pass the search string as a URL segment. For example, `https://localhost:5001/Movies/Ghost`.
+If you add the following route template to the Index page, you can pass the search string as a URL segment. For example, `https://localhost:7247/Movies/Ghost`.
 
 ```cshtml
 @page "{searchString?}"
@@ -66,7 +66,7 @@ The preceding route constraint allows searching the title as route data (a URL s
 
 ![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/razor-pages/search/media/ghost-title-route-data.png)
 
-The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:5001/Movies/Ghost`). Model binding isn't case sensitive.
+The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:7247/Movies/Ghost`). Model binding isn't case sensitive.
 
 However, users can't be expected to modify the URL to search for a movie. In this step, you add UI to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 

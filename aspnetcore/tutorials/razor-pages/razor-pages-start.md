@@ -43,7 +43,7 @@ At the end of this tutorial, you have a Razor Pages web app that manages a datab
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio and select **New project**.
+* Start Visual Studio and select **Create a new project**.
 * In the **Create a new project** dialog, select **ASP.NET Core Web App (Razor Pages)** > **Next**.
 * In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. Name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces match when you copy and paste example code.
 * Select **Next**.
@@ -161,17 +161,17 @@ Contains configuration data, like connection strings. For more information, see 
 Contains the following code:
 
 <!-- Throughout the tutoiral series, update code in working project (which becomes the clean finished sample) to compile and verify steps, then copy snippets to snapshot sample folder which contains all the various stages of code steps. -->
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program1Snip.cs?name=snippet_all)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program1Snip.cs?name=snippet_all)]
 
 The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and build the app:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program1Snip.cs?name=snippet_di)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program1Snip.cs?name=snippet_di)]
 
 The developer exception page is enabled by default and provides helpful information on exceptions. Don't run production apps in development mode because the developer exception page can leak sensitive information.
 
 The following code sets the exception endpoint to `/Error` and enables [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) when the app is ***not*** running in development mode:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program1Snip.cs?name=snippet_env)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample10/Program1Snip.cs?name=snippet_env)]
 
 For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments).
 
@@ -187,7 +187,7 @@ The following code enables various [Middleware](xref:fundamentals/middleware/ind
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie10) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## Next steps
 
