@@ -5,7 +5,7 @@ ASP.NET collects metadata from the web app's endpoints and uses it to generate a
 In controller-based apps, metadata is collected from attributes such as [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
 and [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) when the controller has the [`[ApiController]` attribute](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute).
 
-In minimal APIs, metadata can be collected from attributes but may also be set by using extension methods and other strategies, such as returning <xref:Microsoft.AspNetCore.Http.TypedResults> from route handlers.
+In Minimal APIs, metadata can be collected from attributes but may also be set by using extension methods and other strategies, such as returning <xref:Microsoft.AspNetCore.Http.TypedResults> from route handlers.
 
 The following table provides an overview of the metadata collected and the strategies for setting it.
 
@@ -28,7 +28,7 @@ The following sections demonstrate how to include metadata in an app to customiz
 ### Summary and description
 
 The endpoint summary and description can be set using the [`[EndpointSummary]`](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute) and [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) attributes,
-or in minimal APIs, using the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> extension methods.
+or in Minimal APIs, using the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> extension methods.
 
 #### [Minimal APIs](#tab/minimal-apis)
 
@@ -69,7 +69,7 @@ OpenAPI supports specifying tags on each endpoint as a form of categorization.
 
 #### [Minimal APIs](#tab/minimal-apis)
 
-In minimal APIs, tags can be set using either the [`[Tags]`](xref:Microsoft.AspNetCore.Http.TagsAttribute) attribute or the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A> extension method.
+In Minimal APIs, tags can be set using either the [`[Tags]`](xref:Microsoft.AspNetCore.Http.TagsAttribute) attribute or the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A> extension method.
 
 The following sample demonstrates the different strategies for setting tags.
 
@@ -105,7 +105,7 @@ OpenAPI supports an operationId on each endpoint as a unique identifier or name 
 
 #### [Minimal APIs](#tab/minimal-apis)
 
-In minimal APIs, the operationId can be set using either the [`[EndpointName]`](xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute) attribute or the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A> extension method.
+In Minimal APIs, the operationId can be set using either the [`[EndpointName]`](xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute) attribute or the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A> extension method.
 
 The following sample demonstrates the different strategies for setting the operationId.
 

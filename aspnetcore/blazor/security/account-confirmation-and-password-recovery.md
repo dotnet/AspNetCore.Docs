@@ -50,13 +50,13 @@ Receive the email provider's security key from the provider and use it in the fo
 Use either or both of the following approaches to supply the secret to the app:
 
 * [Secret Manager tool](#secret-manager-tool): The Secret Manager tool stores private data on the local machine and is only used during local development.
-* [Azure Key Vault](#azure-key-vault): You can store the secret in a key vault for use in any environment, including for the Development environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
+* [Azure Key Vault](#azure-key-vault): You can store the secret in a key vault for use in any environment, including for the `Development` environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
 
 We strongly recommend that you avoid storing secrets in project code or configuration files. Use secure authentication flows, such as either or both of the approaches in this section.
 
 ### Secret Manager tool
 
-If the project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have an app secrets identifier (`<AppSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the app secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
+If the project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have a user secrets identifier (`<UserSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the user secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
 
 ```dotnetcli
 dotnet user-secrets init
@@ -150,7 +150,7 @@ builder.Configuration.GetSection(authMessageSenderOptions.EmailAuthKey)
 ```
 
 > [!NOTE]
-> In non-Production environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
+> In non-`Production` environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 >
 > The preceding example implies that the Managed Identity Client ID (`{MANAGED IDENTITY CLIENT ID}`), directory (tenant) ID (`{TENANT ID}`), and key vault URI (`{VAULT URI}`, example: `https://contoso.vault.azure.net/`, trailing slash required) are supplied by hard-coded values. Any or all of these values can be supplied from app settings configuration. For example, the following obtains the vault URI from the `AzureAd` node of an app settings file, and `vaultUri` can be used in the call to `GetKeyVaultSecret` in the preceding example:
 >
@@ -186,17 +186,17 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 
     public AuthMessageSenderOptions Options { get; } = optionsAccessor.Value;
 
-    public Task SendConfirmationLinkAsync(AppUser user, string email,
+    public Task SendConfirmationLinkAsync(ApplicationUser user, string email,
         string confirmationLink) => SendEmailAsync(email, "Confirm your email",
         "<html lang=\"en\"><head></head><body>Please confirm your account by " +
         $"<a href='{confirmationLink}'>clicking here</a>.</body></html>");
 
-    public Task SendPasswordResetLinkAsync(AppUser user, string email,
+    public Task SendPasswordResetLinkAsync(ApplicationUser user, string email,
         string resetLink) => SendEmailAsync(email, "Reset your password",
         "<html lang=\"en\"><head></head><body>Please reset your password by " +
         $"<a href='{resetLink}'>clicking here</a>.</body></html>");
 
-    public Task SendPasswordResetCodeAsync(AppUser user, string email,
+    public Task SendPasswordResetCodeAsync(ApplicationUser user, string email,
         string resetCode) => SendEmailAsync(email, "Reset your password",
         "<html lang=\"en\"><head></head><body>Please reset your password " +
         $"using the following code:<br>{resetCode}</body></html>");

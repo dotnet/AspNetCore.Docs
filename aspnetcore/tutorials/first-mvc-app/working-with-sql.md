@@ -1,11 +1,12 @@
 ---
 title: Part 5, work with a database in an ASP.NET Core MVC app
+ai-usage: ai-assisted
 author: wadepickett
 description: Part 5 of tutorial series on ASP.NET Core MVC.
-ms.author: wpickett
-ms.date: 03/02/2025
-ms.custom: sfi-ropc-nochange
 monikerRange: '>= aspnetcore-3.1'
+ms.author: wpickett
+ms.custom: sfi-ropc-nochange
+ms.date: 12/01/2025
 uid: tutorials/first-mvc-app/working-with-sql
 ---
 
@@ -16,6 +17,23 @@ uid: tutorials/first-mvc-app/working-with-sql
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
 :::moniker range=">= aspnetcore-9.0"
+
+## Introduction
+
+This part of the tutorial series focuses on working with a SQL database in your ASP.NET Core MVC application.
+
+You’ll learn how to:
+
+- Register and configure the Entity Framework Core database context for your ASP.NET Core MVC app.
+- Work with database connection strings for local development.
+- Use SQL Server Express LocalDB for development and examine your database and data using SQL Server Object Explorer.
+- Seed your database with initial sample data.
+
+## Prerequisite
+
+This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
+
+## Working with the database context
 
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
 
@@ -120,7 +138,7 @@ Test the app. Stop it and restart it so the `SeedData.Initialize` method runs an
 
 The app shows the seeded data.
 
-![MVC Movie app open in Microsoft Edge showing movie data](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90.png)
+![MVC Movie app open in Microsoft Edge showing movie data](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90-not-formatted.png)
 
 > [!div class="step-by-step"]
 > [Previous: Adding a model](~/tutorials/first-mvc-app/adding-model.md)
