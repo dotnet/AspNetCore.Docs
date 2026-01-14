@@ -34,7 +34,7 @@ The basic configuration registers health check services and calls the Health Che
 
 Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Program.cs`. Create a health check endpoint by calling <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A>.
 
-The following example creates a health check endpoint at `/healthz`:
+The following example creates a health check endpoint at `/healthy`:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksComplete" highlight="3,7":::
 
@@ -43,10 +43,10 @@ The following example creates a health check endpoint at `/healthz`:
 [Docker](xref:host-and-deploy/docker/index) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
 
 ```dockerfile
-HEALTHCHECK CMD curl --fail http://localhost:5000/healthz || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:5000/healthy || exit 1
 ```
 
-The preceding example uses `curl` to make an HTTP request to the health check endpoint at `/healthz`. `curl` isn't included in the .NET Linux container images, but it can be added by installing the required package in the Dockerfile. Containers that use images based on Alpine Linux can use the included `wget` in place of `curl`.
+The preceding example uses `curl` to make an HTTP request to the health check endpoint at `/healthy`. `curl` isn't included in the .NET Linux container images, but it can be added by installing the required package in the Dockerfile. Containers that use images based on Alpine Linux can use the included `wget` in place of `curl`.
 
 ## Create health checks
 
@@ -220,10 +220,10 @@ To create two different health check endpoints, call `MapHealthChecks` twice:
 
 The preceding example creates the following health check endpoints:
 
-* `/healthz/ready` for the readiness check. The readiness check filters health checks to those tagged with `ready`.
-* `/healthz/live` for the liveness check. The liveness check filters out all health checks by returning `false` in the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate%2A?displayProperty=nameWithType> delegate. For more information on filtering health checks, see [Filter health checks](#filter-health-checks) in this article.
+* `/healthy/ready` for the readiness check. The readiness check filters health checks to those tagged with `ready`.
+* `/healthy/live` for the liveness check. The liveness check filters out all health checks by returning `false` in the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate%2A?displayProperty=nameWithType> delegate. For more information on filtering health checks, see [Filter health checks](#filter-health-checks) in this article.
 
-Before the startup task completes, the `/healthz/ready` endpoint reports an `Unhealthy` status. Once the startup task completes, this endpoint reports a `Healthy` status. The `/healthz/live` endpoint excludes all checks and reports a `Healthy` status for all calls.
+Before the startup task completes, the `/healthy/ready` endpoint reports an `Unhealthy` status. Once the startup task completes, this endpoint reports a `Healthy` status. The `/healthy/live` endpoint excludes all checks and reports a `Healthy` status for all calls.
 
 ### Kubernetes example
 
@@ -238,7 +238,7 @@ spec:
     readinessProbe:
       # an http probe
       httpGet:
-        path: /healthz/ready
+        path: /healthy/ready
         port: 80
       # length of time to wait for a pod to initialize
       # after pod startup, before applying health checking
@@ -330,7 +330,7 @@ The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability t
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> allows:
-* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
+* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A>. For example, `app.MapHealthChecks("/healthy").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
 * Mapping specific routes or endpoints for health checks.
 * Customization of the URL or path where the health check endpoint is accessible.
 * Mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
