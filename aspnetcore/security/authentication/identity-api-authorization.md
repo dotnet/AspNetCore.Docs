@@ -230,7 +230,7 @@ public signOut() {
 
 Apps need to react to events involving security sensitive actions like changed password, or other security sensitive events.  This is achieved using the [security stamp](/dotnet/api/microsoft.aspnetcore.identity.identityuser-1.securitystamp) feature of Identity.
 
-How often the security stamp is validated is configured using [SecurityStampValidatorOptions.ValidationInterval](/dotnet/api/microsoft.aspnetcore.identity.securitystampvalidatoroptions.validationinterval) for cookie-based authentication, or [BearerTokenOptions.RefreshTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.refreshtokenexpiration) for token-based authentication.
+How often the security stamp is validated is configured using [SecurityStampValidatorOptions.ValidationInterval](/dotnet/api/microsoft.aspnetcore.identity.securitystampvalidatoroptions.validationinterval) for cookie-based authentication, or [BearerTokenOptions.BearerTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.bearertokenexpiration) for token-based authentication.
 
 The validation interval is a balance between immediate session invalidation and database performance. A shorter interval requires more frequent database hits, while a longer one leaves a small window where an old, potentially compromised session might remain active. 
 
