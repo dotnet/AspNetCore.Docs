@@ -1,7 +1,5 @@
 :::moniker range="= aspnetcore-7.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
-
 Middleware is software that's assembled into an app pipeline to handle requests and responses. Each component:
 
 * Chooses whether to pass the request to the next component in the pipeline.
@@ -245,11 +243,11 @@ For information about Single Page Applications, see the guides for the [React](x
 
 ## UseCors and UseStaticFiles order
 
-The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [UseCors and UseStaticFiles order](xref:security/cors#uc1)
+The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [`UseCors` and `UseStaticFiles` order](xref:security/cors#usecors-and-usestaticfiles-order).
 
 ### Forwarded Headers Middleware order
 
-[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
 ## Branch the middleware pipeline
 
@@ -450,8 +448,6 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 :::moniker-end
 
 :::moniker range="= aspnetcore-6.0"
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
 Middleware is software that's assembled into an app pipeline to handle requests and responses. Each component:
 
@@ -691,11 +687,11 @@ For information about Single Page Applications, see the guides for the [React](x
 
 ## UseCors and UseStaticFiles order
 
-The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [UseCors and UseStaticFiles order](xref:security/cors#uc1)
+The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [`UseCors` and `UseStaticFiles` order](xref:security/cors#usecors-and-usestaticfiles-order).
 
 ### Forwarded Headers Middleware order
 
-[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
 ## Branch the middleware pipeline
 
@@ -895,8 +891,6 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
 Middleware is software that's assembled into an app pipeline to handle requests and responses. Each component:
 
@@ -1122,7 +1116,7 @@ For more details on SPAs, see the guides for the [React](xref:spa/react) and [An
 
 ### Forwarded Headers Middleware order
 
-[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
 ## Branch the middleware pipeline
 
