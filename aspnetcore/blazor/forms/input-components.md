@@ -37,6 +37,7 @@ The components in the table are also supported outside of a form in Razor compon
 | <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+| [`Label<TValue>`](#label-component) (.NET 11 or later) | `<label>` |
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
 
@@ -489,6 +490,60 @@ Use the `DisplayName` component in labels or table headers:
     <DisplayName For="@(() => Model!.ProductionDate)" />
     <InputDate @bind-Value="Model!.ProductionDate" />
 </label>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## `Label` component
+
+<!-- UPDATE 11.0 - API cross-link 
+
+                   <xref:Microsoft.AspNetCore.Components.Forms.Label%601>
+-->
+
+The `Label` component renders a `<label>` element that automatically extracts the display name from a model property using `[Display]` or `[DisplayName]` attributes. This simplifies form creation by eliminating the need to manually specify label text.
+
+### Nested pattern
+
+The nested pattern wraps the input component inside the label:
+
+```razor
+<Label For="() => Model!.ProductionDate">
+    <InputDate @bind-Value="Model!.ProductionDate" />
+</Label>
+```
+
+This renders:
+
+```html
+<label>Production Date<input type="date" ... /></label>
+```
+
+### Non-nested pattern
+
+For accessibility requirements or styling flexibility, use the non-nested pattern where the label's `for` attribute references the input's `id`:
+
+```razor
+<Label For="() => Model!.ProductionDate" />
+<InputDate @bind-Value="Model!.ProductionDate" />
+```
+
+This renders:
+
+```html
+<label for="Model_ProductionDate">Production Date</label>
+<input id="Model_ProductionDate" type="date" ... />
+```
+
+The `id` attribute is automatically sanitized to create a valid HTML id (dots are replaced with underscores to avoid CSS selector conflicts).
+
+Input components automatically generate an `id` attribute based on the bound expression. If an explicit `id` is provided, it takes precedence:
+
+```razor
+<Label For="() => Model!.ProductionDate" for="prod-date" />
+<InputDate @bind-Value="Model!.ProductionDate" id="prod-date" />
 ```
 
 :::moniker-end
