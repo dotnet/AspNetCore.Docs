@@ -6,7 +6,7 @@ description: Learn how to use the ASP.NET Core logging framework provided by the
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/01/2025
+ms.date: 01/15/2026
 uid: fundamentals/logging/index
 ---
 # Logging in .NET and ASP.NET Core
@@ -484,10 +484,12 @@ Use the [`setx`](/windows-server/administration/windows-commands/setx) to persis
 setx Logging__LogLevel__Microsoft Information /M
 ```
 
-<!-- Dan, the following NOTE was already here. Are you OK with this?
+<!-- The following NOTE was already here. 
      Seems like WE should cover whatever WE want to say
      on this subject, or we shouldn't cover this, leaving it up
-     to their platform docs to address. -->
+     to their platform docs to address. 
+     
+     Shall I delete the following NOTE? -->
 
 > [!NOTE]
 > When configuring environment variables with names that contain `.` (periods) in macOS and Linux, consider the "Exporting a variable with a dot (.) in it" question on **Stack Exchange** and its corresponding [accepted answer](https://unix.stackexchange.com/a/93533).
@@ -563,20 +565,14 @@ Log messages:
 
 In a Razor Pages page class model that uses a custom category ("`CustomCategory`") for the entire page model:
 
-<!-- Dan, do you want to go with primary ctor for this next example? -->
-
 ```csharp
-public class PrivacyModel : PageModel
+public class PrivacyModel(ILoggerFactory logger) : PageModel
 {
-    private readonly ILogger _logger;
-
-    public PrivacyModel(ILoggerFactory logger)
-    {
-        _logger = logger.CreateLogger($"{typeof(PrivacyModel)}.CustomCategory");
-    }
+    private readonly ILogger _logger = 
+        logger.CreateLogger($"{typeof(PrivacyModel)}.CustomCategory");
 
     public void OnGet() =>
-        _logger.LogInformation("Privacy page visited at {DT}"), DateTime.UtcNow);
+        _logger.LogInformation("Privacy page visited");
 }
 ```
 
@@ -704,7 +700,7 @@ catch (Exception ex)
 }
 ```
 
-<!-- Dan, I'm not sure what this next remark means, 
+<!-- I'm not sure what this next remark means, 
      and I'm inclined to delete it. Do you want to 
      flesh it out if you know what it's trying to
      say, or should it get the AXE? -->
@@ -745,7 +741,7 @@ builder.Logging.AddFilter((provider, category, logLevel) =>
 });
 ```
 
-<!-- Dan, would insisting that the 'provider' and 'category' be non-null
+<!-- Would insisting that the 'provider' and 'category' be non-null
      with the null-forgiving operator be safe for the preceding 
      example? It's cleaner not having to check, but I have a healthy
      fear of taking this approach generally ........
@@ -1424,13 +1420,13 @@ File a logging bug report in the [`dotnet/runtime` GitHub repository issues](htt
 
 ## Common log categories
 
-<!-- Dan, I merely tossed this in from Rick's issue with minor editing ...
+<!-- I merely tossed this in from Rick's issue with minor editing ...
 
      https://github.com/dotnet/AspNetCore.Docs/issues/33187
      
-     I didn't want to spend time on it until I heard back from you 
-     if we're going to place this section at all or have feedback 
-     from you on how you want it covered if you'd prefer an 
+     I didn't want to spend time on it until I heard back if we're 
+     going to place this section at all or have feedback from on 
+     how it should be covered if there's a preference for an 
      alternative format and/or the entries Rick drafted. -->
 
 This section describes common log categories seen in ASP.NET Core app logs. The following isn't a comprehensive list.
