@@ -142,9 +142,9 @@ Any <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> or <xref:Microsoft.
 
 <!-- DOC AUTHOR NOTE: This section covers API for >=6.0. -->
 
-<!-- PU QUESTION: Why aren't we pitching this overload all
-                  the time here? When is this overload
-                  inappropriate? -->
+<!-- PU QUESTION: Why aren't we pitching this overload all the 
+                  time here (from the start)? When is this 
+                  overload inappropriate? -->
 
 Use the non-allocating&dagger; <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A> extension method for a performance benefit:
 
@@ -164,154 +164,6 @@ app.Use(async (context, next) =>
 ```
 
 If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, don't call this extension method. Use a [`Run` delegate](#run-delegate) instead.
-
-## Middleware order
-
-The following diagram shows the complete request processing pipeline for ASP.NET Core MVC and Razor Pages apps. You can see how, in a typical app, existing middlewares are ordered and where custom middlewares are added. You have full control over how to reorder existing middlewares or inject new custom middlewares as necessary for your scenarios.
-
-![ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/_static/middleware-pipeline.svg)
-
-Endpoint Middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
-
-Routing Middleware in the preceding diagram is shown following Static File Middleware. This is the order that the project templates implement by explicitly calling <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. If you don't call <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>, the Routing Middleware runs at the beginning of the pipeline by default. For more information, see <xref:fundamentals/routing>.
-
-The order that middleware are added in the `Program.cs` file defines the order in which the middleware are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
-
-The following highlighted code in `Program.cs` adds security-related middleware in the typical recommended order:
-
-```csharp
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using WebMiddleware.Data;
-
-var builder = WebApplication.CreateBuilder(args);
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddRazorPages();
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseMigrationsEndPoint();
-}
-else
-{
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-// app.UseCookiePolicy();
-
-app.UseRouting();
-// app.UseRateLimiter();
-// app.UseRequestLocalization();
-// app.UseCors();
-
-app.UseAuthentication();
-app.UseAuthorization();
-// app.UseSession();
-// app.UseResponseCompression();
-// app.UseResponseCaching();
-
-app.MapRazorPages();
-app.MapDefaultControllerRoute();
-
-app.Run();
-```
-
-In the preceding code:
-
-* The commented out middleware isn't added when creating a new web app with [individual users accounts](xref:security/authentication/identity).
-* Not every middleware appears in this exact order, but many do. For example:
-  * CORS Middleware (<xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>), Authentication Middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>), and Authorization Middleware (<xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>) must appear in the order shown.
-  * CORS Middleware (<xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>) must appear before Response Caching Middleware (<xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>) to add CORS headers on every request to include cached responses. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
-  * Request Localization Middleware (<xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A>) must appear before any middleware that might check the request culture, for example, Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>).
-  * Rate Limiting Middleware (<xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A>) must be called after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) when rate limiting endpoint specific APIs are used. For example, if the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is used, Rate Limiting Middleware must be called after Routing Middleware. When calling only global limiters, Rate Limiting Middleware can be called before Routing Middleware.
-
-In some scenarios, middleware has different ordering. For example, caching and compression ordering is scenario specific, and there are multiple valid orderings. In the following order, CPU usage could be reduced by caching the compressed response, but the app might end up caching multiple representations of a resource using different compression algorithms, such as Gzip or Brotli:
-
-```csharp
-app.UseResponseCaching();
-app.UseResponseCompression();
-```
-
-The following ordering includes Static File Middleware to allow caching compressed static files:
-
-```csharp
-app.UseResponseCaching();
-app.UseResponseCompression();
-app.UseStaticFiles();
-```
-
-The following example adds middleware for common app scenarios. Each middleware extension method is exposed on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> through the <xref:Microsoft.AspNetCore.Builder?displayProperty=fullName> namespace:
-
-1. Exception/error handling
-   * When the app runs in the `Development` environment:
-     * Developer Exception Page Middleware (<xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A>) reports app runtime errors.
-     * Database Error Page Middleware (<xref:Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage%2A>) reports database runtime errors.
-   * When the app runs in the `Production` environment:
-     * Exception Handler Middleware (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>) catches exceptions thrown in the following middlewares.
-     * HTTP Strict Transport Security Protocol (HSTS) Middleware (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>) adds the `Strict-Transport-Security` header.
-1. HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) redirects HTTP requests to HTTPS.
-1. Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) returns static files and short-circuits further request processing.
-1. Cookie Policy Middleware (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>) conforms the app to the EU General Data Protection Regulation (GDPR) regulations.
-1. Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) to route requests.
-1. Authentication Middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) attempts to authenticate the user before they're allowed access to secure resources.
-1. Authorization Middleware (<xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>) authorizes a user to access secure resources.
-1. Session Middleware (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) establishes and maintains session state. If the app uses session state, call Session Middleware after Cookie Policy Middleware and before MVC Middleware.
-1. Endpoint Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> with <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>) to add Razor Pages endpoints to the request pipeline.
-
-```csharp
-if (env.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseDatabaseErrorPage();
-}
-else
-{
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
-}
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseCookiePolicy();
-app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseSession();
-app.MapRazorPages();
-```
-
-Static File Middleware is called early in the pipeline so that it can handle static file requests and short-circuit to avoid processing remaining middlewares. The Static File Middleware provides **no** authorization checks. Served files, including those under `wwwroot`, are publicly available. For an approach to secure static files, see <xref:fundamentals/static-files#static-file-authorization>.
-
-If the request isn't handled by Static File Middleware, it's passed on to Authentication Middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>), which performs authentication. Authentication doesn't short-circuit unauthenticated requests. Although Authentication Middleware authenticates requests, authorization (and rejection) occurs only after Blazor selects a Razor component, Razor Pages page, or MVC controller and action are selected for execution/rendering.
-
-The following example demonstrates a middleware order where requests for static files are handled by Static File Middleware before Response Compression Middleware, so static files aren't compressed. Static files aren't compressed with this middleware order. Response content after Response Compression Middleware can be compressed.
-
-```csharp
-app.UseStaticFiles();
-app.UseRouting();
-app.UseResponseCompression();
-```
-
-## `UseCors` and `UseStaticFiles` order
-
-The order for calling <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> depends on the app. For more information, see [`UseCors` and `UseStaticFiles` order](xref:security/cors#usecors-and-usestaticfiles-order).
-
-### Forwarded Headers Middleware order
-
-Run Forwarded Headers Middleware before other middleware to ensure that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
 ## Branch the middleware pipeline
 
@@ -464,6 +316,119 @@ private void HandleBranchAndRejoin(IApplicationBuilder app)
 
 In the preceding example, a response of ":::no-loc text="Hello from the non-Map delegate.":::" is written for all requests. If the request includes a query string variable named "`branch`," its value is logged before the main pipeline is rejoined.
 
+## Middleware order
+
+The order that middleware appears in the app's `Program` file defines the order in which middleware are invoked on a request with the reverse order for the response.
+
+You have full control over how to reorder existing middlewares or inject new custom middlewares as necessary for your scenarios, keeping in mind that the order is critical for security, performance, and functionality.
+
+The following examples demonstrate middleware order for common app scenarios. Each middleware extension method is exposed on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> through the <xref:Microsoft.AspNetCore.Builder?displayProperty=fullName> namespace:
+
+1. Exception/error handling
+   * When the app runs in the `Development` environment:
+     * Developer Exception Page Middleware (<xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A>) reports app runtime errors.
+     * Database Error Page Middleware (<xref:Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage%2A>) reports database runtime errors.
+   * When the app runs in the `Production` environment:
+     * Exception Handler Middleware (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>) catches exceptions thrown in the following middlewares.
+     * HTTP Strict Transport Security Protocol (HSTS) Middleware (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>) adds the `Strict-Transport-Security` header.
+1. HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) redirects HTTP requests to HTTPS.
+1. Antiforgery Middleware (<xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>) adds anti-forgery middleware to the pipeline.
+1. Static File Middleware (if required, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) returns static files and short-circuits further request processing.
+1. Cookie Policy Middleware (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>) conforms the app to the EU General Data Protection Regulation (GDPR) regulations.
+1. Routing Middleware (Razor Pages and MVC only, <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) to route requests.
+1. Authentication Middleware (Razor Pages and MVC only, <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) attempts to authenticate the user before they're allowed access to secure resources.
+1. Authorization Middleware (Razor Pages and MVC only, <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>) authorizes a user to access secure resources.
+1. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
+1. Session Middleware (Razor Pages and MVC only, <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) establishes and maintains session state. If the app uses session state, call Session Middleware after Cookie Policy Middleware and before MVC Middleware.
+1. Endpoint Routing Middleware
+  * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to add Razor component endpoints to the request pipeline.
+  * <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> to add Razor Pages endpoints to the request pipeline.
+  * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> to add controller endpoints to the request pipeline.
+
+
+Typical Blazor Web App middleware pipeline:
+
+```csharp
+app.UseWebAssemblyDebugging(); // Development environment with client-side rendering
+app.UseMigrationsEndPoint(); // Development environment with ASP.NET Core Identity
+
+app.UseExceptionHandler("/Error", createScopeForErrors: true); // Non-Development environment
+app.UseHsts(); // Non-Development environment with HTTPS protocol
+
+app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
+
+app.UseHttpsRedirection(); // With HTTPS protocol
+
+app.UseAntiforgery();
+
+app.MapStaticAssets();
+
+app.MapRazorComponents<App>(); // With additional extension methods for render modes
+
+app.MapAdditionalIdentityEndpoints(); // With ASP.NET Core Identity
+
+app.Run();
+```
+
+Typical Razor Pages/MVC middleware pipeline:
+
+```csharp
+app.UseMigrationsEndPoint(); // Development environment with ASP.NET Core Identity
+
+app.UseExceptionHandler("/Error"); // Non-Development environment
+app.UseHsts(); // Non-Development environment with HTTPS protocol
+
+app.UseHttpsRedirection(); // With HTTPS protocol
+
+// app.UseCookiePolicy();
+app.UseRouting(); // If not called, runs at the beginning of the pipeline by default
+// app.UseRateLimiter();
+// app.UseRequestLocalization();
+// app.UseCors();
+
+// app.UseAuthentication(); // Called internally for ASP.NET Core Identity
+app.UseAuthorization();
+// app.UseSession();
+// app.UseResponseCompression();
+// app.UseResponseCaching();
+
+app.MapStaticAssets();
+
+app.MapControllerRoute(...); // For MVC controllers
+
+app.MapRazorPages(); // For Razor Pages pages
+
+app.MapControllers(); // With authentication in a Razor Pages app
+
+app.Run();
+```
+
+In the preceding code:
+
+* CORS Middleware (<xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>), Authentication Middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>), and Authorization Middleware (<xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>) must appear in the order shown.
+* CORS Middleware (<xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>) must appear before Response Caching Middleware (<xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>) to add CORS headers on every request to include cached responses. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
+* Request Localization Middleware (<xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A>) must appear before any middleware that might check the request culture, for example, Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>).
+* Rate Limiting Middleware (<xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A>) must be called after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) when rate limiting endpoint-specific APIs are used. For example, if the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) is used, Rate Limiting Middleware must be called after Routing Middleware. When calling only global limiters, Rate Limiting Middleware can be called before Routing Middleware.
+
+In some scenarios, middleware has different ordering. For example, caching and compression ordering is scenario specific, and there are multiple valid orderings. In the following order, CPU usage could be reduced by caching the compressed response, but the app might end up caching multiple representations of a resource using different compression algorithms, such as Gzip or Brotli:
+
+```csharp
+app.UseResponseCaching();
+app.UseResponseCompression();
+```
+
+Static assets are typically served early in the pipeline so that the app can short-circuit request processing to improve performance.
+
+Authentication doesn't short-circuit unauthenticated requests. Although Authentication Middleware authenticates requests, authorization occurs after the framework selects a Razor component in a Blazor Web App, a page in a Razor Pages app, or a controller and action in an MVC app.
+
+## `UseCors` and `UseStaticFiles` order
+
+The order for calling <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> depends on the app. For more information, see [`UseCors` and `UseStaticFiles` order](xref:security/cors#usecors-and-usestaticfiles-order).
+
+## Forwarded Headers Middleware order
+
+Run Forwarded Headers Middleware before other middleware to ensure that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
+
 ## Built-in middleware
 
 ASP.NET Core ships with the following middleware. The *Order* column provides notes on middleware placement in the request processing pipeline and under what conditions the middleware may terminate request processing. When a middleware short-circuits the request processing pipeline and prevents further downstream middleware from processing a request, it's called a *terminal middleware*. For more information on short-circuiting, see the [Create a middleware pipeline with `WebApplication`](#create-a-middleware-pipeline-with-webapplication) section.
@@ -495,7 +460,7 @@ Middleware | Description | Order
 [Endpoint Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes.
 [SPA](xref:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa%2A) | Handles all requests from this point in the middleware chain by returning the default page for the Single Page Application (SPA) | Appears late in the pipeline, so that other middleware for serving static files, such as MVC actions, take precedence.
 [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before middleware that require Session.
-[Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches a file.
+[Static File](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches a file.
 [URL Rewrite](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before middleware that consume the URL.
 [W3CLogging](xref:fundamentals/w3c-logger/index) | Generates server access logs in the [W3C Extended Log File Format](https://www.w3.org/TR/WD-logfile.html). | At the beginning of the middleware pipeline.
 [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | Before middleware that are required to accept WebSocket requests.
