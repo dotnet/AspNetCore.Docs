@@ -174,13 +174,13 @@ In the project file (`.csproj`), add the `<OverrideHtmlAssetPlaceholders>` prope
 </Project>
 ```
 
-Any script in `index.html` with the fingerprint marker is fingerprinted by the framework. For example, a script file named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
+Any JS module in `index.html` with the fingerprint marker is fingerprinted by the framework. For example, a module named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
 
 ```html
 <script src="js/scripts#[.{fingerprint}].js"></script>
 ```
 
-To fingerprint additional JS modules in standalone Blazor WebAssembly apps, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
+To fingerprint additional JS modules with a different file extension or fingerprint expression in standalone Blazor WebAssembly apps, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
 
 In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
 
@@ -195,6 +195,26 @@ The files are automatically placed into the import map:
 * When opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions.
 
 When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
+
+## Preloaded Blazor framework static assets
+
+In Blazor Web Apps, framework static assets are automatically preloaded using [`Link` headers](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Link), which allows the browser to preload resources before the initial page is fetched and rendered.
+
+In standalone Blazor WebAssembly apps, framework assets are scheduled for high priority downloading and caching early in browser `index.html` page processing when:
+
+* The `OverrideHtmlAssetPlaceholders` MSBuild property in the app's project file (`.csproj`) is set to `true`:
+
+  ```xml
+  <PropertyGroup>
+    <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
+  </PropertyGroup>
+  ```
+
+* The following `<link>` element containing [`rel="preload"`](https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/rel/preload) is present in the `<head>` content of `wwwroot/index.html`:
+
+  ```html
+  <link rel="preload" id="webassembly" />
+  ```
 
 ### Set the environment in standalone Blazor WebAssembly apps
 
