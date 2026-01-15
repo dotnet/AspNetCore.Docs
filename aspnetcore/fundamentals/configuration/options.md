@@ -5,7 +5,7 @@ description: Discover how to use the options pattern to represent groups of rela
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/15/2025
+ms.date: 01/15/2026
 uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
