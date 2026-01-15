@@ -35,6 +35,8 @@ To provide feedback or seek assistance with this article or ASP.NET Core, see <x
 > [!IMPORTANT]
 > The scenarios described in this article apply to using Microsoft Entra (ME-ID) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time because the app would require a client secret, which can't be secured in the client-side Blazor app. For an AAD B2C standalone Blazor WebAssembly app use Graph API, create a backend server (web) API to access Graph API on behalf of users. The client-side app authenticates and authorizes users to [call the web API](xref:blazor/call-web-api) to securely access Microsoft Graph and return data to the client-side Blazor app from your server-based web API. The client secret is safely maintained in the server-based web API, not in the Blazor app on the client. **Never store a client secret in a client-side Blazor app.**
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 :::moniker range="< aspnetcore-8.0"
 
 Using a hosted Blazor WebAssembly app is supported, where the **:::no-loc text="Server":::** app uses the Graph SDK/API to provide Graph data to the **:::no-loc text="Client":::** app via web API. For more information, see the [Hosted Blazor WebAssembly solutions](#hosted-blazor-webassembly-solutions) section of this article.

@@ -17,6 +17,8 @@ zone_pivot_groups: blazor-web-app-entra-specification
 
 -->
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 This article describes how to secure a Blazor Web App with [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) using a sample app.
 
 :::zone pivot="with-yarp-and-aspire"
@@ -1158,7 +1160,7 @@ For more information on how this app secures its weather data, see [Secure data 
 * [Microsoft identity platform documentation](/entra/identity-platform/)
 * [Web API documentation | Microsoft identity platform](/entra/identity-platform/index-web-api)
 * [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
-* [`AzureAD/microsoft-identity-web` GitHub repository](https://github.com/AzureAD/microsoft-identity-web/wiki): Helpful guidance on implementing Microsoft Identity Web for Microsoft Entra ID and Azure Active Directory B2C for ASP.NET Core apps, including links to sample apps and related Azure documentation. Currently, Blazor Web Apps aren't explicitly addressed by the Azure documentation, but the setup and configuration of a Blazor Web App for ME-ID and Azure hosting is the same as it is for any ASP.NET Core web app.
+* [`AzureAD/microsoft-identity-web` GitHub repository](https://github.com/AzureAD/microsoft-identity-web/wiki): Helpful guidance on implementing Microsoft Identity Web for Microsoft Entra ID for ASP.NET Core apps, including links to sample apps and related Azure documentation. Currently, Blazor Web Apps aren't explicitly addressed by the Azure documentation, but the setup and configuration of a Blazor Web App for ME-ID and Azure hosting is the same as it is for any ASP.NET Core web app.
 * [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
 * [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
 * [Service abstractions in Blazor Web Apps](xref:blazor/call-web-api#service-abstractions-for-web-api-calls)
