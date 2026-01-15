@@ -6,7 +6,7 @@ description: Learn about ASP.NET Core middleware and the request pipeline.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/14/2026
+ms.date: 01/15/2026
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
@@ -22,7 +22,7 @@ Middleware is software that's assembled into an app pipeline to handle requests 
 
 Request delegates are used to build the request pipeline. The request delegates handle each HTTP request.
 
-Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A>, <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A>, and <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> extension methods. An individual request delegate can be specified in-line as an anonymous method (called in-line middleware), or it can be defined in a reusable class. These reusable classes and in-line anonymous methods are *middleware*, also called *middleware components* (not to be confused with [Razor components](xref:blazor/index#components)). Each middleware in the request pipeline is responsible for invoking the next middleware in the pipeline or short-circuiting the pipeline. When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
+Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A>, <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A>, and <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> extension methods. An individual request delegate can be specified inline as an anonymous method (called inline middleware), or it can be defined in a reusable class. These reusable classes and inline anonymous methods are *middleware*, also called *middleware components* (not to be confused with [Razor components](xref:blazor/index#components) or [View components](xref:mvc/views/view-components)). Each middleware in the request pipeline is responsible for invoking the next middleware in the pipeline or short-circuiting the pipeline. When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
 
 <xref:migration/fx-to-core/areas/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
 
@@ -51,7 +51,7 @@ The simplest possible ASP.NET Core app calls <xref:Microsoft.AspNetCore.Builder.
 
 In the following example:
 
-* The call to <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A?displayProperty=nameWithType> is invoked on every request and writes ':::no-loc text="Hello world!":::' to the response.
+* The call to <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A?displayProperty=nameWithType> is invoked on every request and writes ":::no-loc text="Hello world!":::" to the response.
 * The call to <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A?displayProperty=nameWithType> runs the app and blocks the calling thread until host shutdown.
 
 ```csharp
@@ -74,8 +74,8 @@ Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builde
 
 The following example demonstrates:
 
-* Two <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> calls, each writing to the console where work can be performed to write to the response and where work can be performed that doesn't write to the response.
-* A terminal request delegate with a call to <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A?displayProperty=nameWithType> that writes ':::no-loc text="Hello world!":::' to the response.
+* Two <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> calls, each writing to the console where work can be performed to write to the response (`context.Response`, <xref:Microsoft.AspNetCore.Http.HttpResponse>) and where work can be performed that doesn't write to the response after the `next` parameter is invoked.
+* A terminal request delegate with a call to <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A?displayProperty=nameWithType> that writes ":::no-loc text="Hello world!":::" to the response.
 * A final <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> call, which never executes because it follows the <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> terminal request delegate.
 
 ```csharp
@@ -121,20 +121,20 @@ In the app's console window when the app is run:
 > :::no-loc text="Work that doesn't write to the response. (2)":::  
 > :::no-loc text="Work that doesn't write to the response. (1)":::
 
-When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements.
+When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the terminal middleware still processes code after their `next.Invoke` statements.
 
-Don't call `next.Invoke` during or after the response has been sent to the client. After an <xref:Microsoft.AspNetCore.Http.HttpResponse> has started, changes result in an exception. For example, [setting headers or a response status code throw an exception](xref:fundamentals/best-practices#do-not-modify-the-status-code-or-headers-after-the-response-body-has-started) after the response starts. Writing to the response body after calling `next`:
+Don't call `next.Invoke` during or after the response has been sent to the client. After an <xref:Microsoft.AspNetCore.Http.HttpResponse> has started, changes result in an exception. For example, [setting headers or a response status code throw an exception](xref:fundamentals/best-practices#do-not-modify-the-status-code-or-headers-after-the-response-body-has-started) after the response starts. Writing to the response body after calling `next` may:
 
-* May cause a protocol violation, such as writing more bytes to the response than the stated response's content length (`Content-Length` header value).
-* May corrupt the body format, such as writing an HTML footer to a CSS file.
+* Cause a protocol violation, such as writing more bytes to the response than the stated response's content length (`Content-Length` header value).
+* Corrupt the body format, such as writing an HTML footer to a CSS file.
 
-<xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted%2A> is a useful hint to indicate if headers have been sent or the body has been written to.
+Call <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted%2A> to determine if headers have been sent or the body has been written to.
 
 For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
 
-## `Run` delegates
+## `Run` delegate
 
-<xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate always terminates the pipeline. `Run` is also a convention, and some middleware may expose `Run` methods that execute at the end of the pipeline.
+A <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegate doesn't receive a `next` parameter. The first `Run` delegate always terminates the pipeline. `Run` is also a convention, and some middleware may expose `Run` methods that execute at the end of the pipeline.
 
 Any <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> or <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates after the first <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegate aren't called.
 
@@ -142,10 +142,14 @@ Any <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> or <xref:Microsoft.
 
 <!-- DOC AUTHOR NOTE: This section covers API for >=6.0. -->
 
+<!-- PU QUESTION: Why aren't we pitching this overload all
+                  the time here? When is this overload
+                  inappropriate? -->
+
 Use the non-allocating&dagger; <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A> extension method for a performance benefit:
 
 * Requires passing the <xref:Microsoft.AspNetCore.Http.HttpContext> to `next`.
-* Saves two internal per-request allocations that are required when using the overload without passing the <xref:Microsoft.AspNetCore.Http.HttpContext> to `next`.
+* Saves two internal per-request allocations that are normally required when using the overload that doesn't pass the <xref:Microsoft.AspNetCore.Http.HttpContext> to `next`.
 
 > [!NOTE]
 > &dagger;*Non-allocating* means that the framework avoids creating objects in memory during execution that must be disposed later.
@@ -153,31 +157,19 @@ Use the non-allocating&dagger; <xref:Microsoft.AspNetCore.Builder.IApplicationBu
 ```csharp
 app.Use(async (context, next) =>
 {
-    Console.WriteLine("Work that doesn't write to the response.");
+    Console.WriteLine("Work that can write to the response.");
     await next.Invoke(context);
     Console.WriteLine("Work that doesn't write to the response.");
-});
+}); 
 ```
+
+If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, don't call this extension method. Use a [`Run` delegate](#run-delegate) instead.
 
 ## Middleware order
 
 The following diagram shows the complete request processing pipeline for ASP.NET Core MVC and Razor Pages apps. You can see how, in a typical app, existing middlewares are ordered and where custom middlewares are added. You have full control over how to reorder existing middlewares or inject new custom middlewares as necessary for your scenarios.
 
 ![ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/_static/middleware-pipeline.svg)
-
-<!-- 
-See mermaid diagrams in https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/index/includes
-
-Install CLI mermaid to make SVGs
-npm install -g mermaid-cli
-
-remove ```mermaid and closing ```
-mermaid -s x.md
-preceding creates the x.md.svg file
-
-![ASP.NET SVG  middleware pipeline](~/fundamentals/middleware/index/includes/x.md.svg)
-Line 85: [Warning] File 'fundamentals/middleware/index/includes/x.md.svg' referenced by link '~/fundamentals/middleware/index/includes/x.md.svg' will not be built because it is not included in build scope.
--->
 
 Endpoint Middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
@@ -341,7 +333,7 @@ app.Run(async context =>
 
 app.Run();
 
-static void HandleMap1(IApplicationBuilder app)
+private static void HandleMap1(IApplicationBuilder app)
 {
     app.Run(async context =>
     {
@@ -349,7 +341,7 @@ static void HandleMap1(IApplicationBuilder app)
     });
 }
 
-static void HandleMap2(IApplicationBuilder app)
+private static void HandleMap2(IApplicationBuilder app)
 {
     app.Run(async context =>
     {
@@ -397,7 +389,7 @@ app.Run(async context =>
 
 app.Run();
 
-static void HandleMultiSeg(IApplicationBuilder app)
+private static void HandleMultiSeg(IApplicationBuilder app)
 {
     app.Run(async context =>
     {
@@ -421,7 +413,7 @@ app.Run(async context =>
 
 app.Run();
 
-static void HandleBranch(IApplicationBuilder app)
+private static void HandleBranch(IApplicationBuilder app)
 {
     app.Run(async context =>
     {
@@ -454,7 +446,7 @@ app.Run(async context =>
 
 app.Run();
 
-void HandleBranchAndRejoin(IApplicationBuilder app)
+private void HandleBranchAndRejoin(IApplicationBuilder app)
 {
     var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>(); 
 
@@ -470,7 +462,7 @@ void HandleBranchAndRejoin(IApplicationBuilder app)
 }
 ```
 
-In the preceding example, a response of ':::no-loc text="Hello from the non-Map delegate.":::' is written for all requests. If the request includes a query string variable named "`branch`," its value is logged before the main pipeline is rejoined.
+In the preceding example, a response of ":::no-loc text="Hello from the non-Map delegate.":::" is written for all requests. If the request includes a query string variable named "`branch`," its value is logged before the main pipeline is rejoined.
 
 ## Built-in middleware
 
