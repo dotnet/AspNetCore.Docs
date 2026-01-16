@@ -139,9 +139,9 @@ For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API 
 
 ### Client-side fingerprinting
 
-The release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/static-files), the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript modules. For .NET 10, you can opt-into client-side fingerprinting of JavaScript modules for standalone Blazor WebAssembly apps.
+The release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/static-files), the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript (JS) modules. For .NET 10, you can opt-into client-side fingerprinting of JS modules for standalone Blazor WebAssembly apps.
 
-In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
+In standalone Blazor WebAssembly apps during build and publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
 
 The following markup must be present in the `wwwroot/index.html` file to adopt the fingerprinting feature:
 
@@ -174,24 +174,35 @@ In the project file (`.csproj`), add the `<OverrideHtmlAssetPlaceholders>` prope
 </Project>
 ```
 
-Any JS module in `index.html` with the fingerprint marker is fingerprinted by the framework. For example, a module named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
+In the following example, all developer-supplied JS files are modules with a `.js` file extension.
+
+Any JS module in `index.html` with the fingerprint marker is fingerprinted by the framework, including when the app is published. A module named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
 
 ```html
-<script src="js/scripts#[.{fingerprint}].js"></script>
+<script type="module" src="js/scripts#[.{fingerprint}].js"></script>
 ```
 
-To fingerprint additional JS modules with a different file extension or fingerprint expression in standalone Blazor WebAssembly apps, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
-
-In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
+Specify the fingerprint expression with the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`):
 
 ```xml
-<StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
-  Expression="#[.{fingerprint}]!" />
+<ItemGroup>
+  <StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.js" 
+    Expression="#[.{fingerprint}]!" />
+</ItemGroup>
 ```
 
-The files are automatically placed into the import map:
+If you adopt the `.mjs` file extension for JS modules, set the `Pattern` attribute:
 
-* Automatically for Blazor Web App CSR.
+```xml
+<ItemGroup>
+  <StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
+    Expression="#[.{fingerprint}]!" />
+</ItemGroup>
+```
+
+Files are placed into the import map:
+
+* Automatically for Blazor Web App client-side rendering (CSR).
 * When opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions.
 
 When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
