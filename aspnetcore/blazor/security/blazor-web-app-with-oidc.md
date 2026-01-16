@@ -1486,6 +1486,16 @@ The [typed HTTP client](xref:blazor/call-web-api#typed-httpclient) (or [named HT
 
 For more information, see the [Duende Access Token Management documentation for Blazor](https://docs.duendesoftware.com/accesstokenmanagement/blazor-server/).
 
+## Host in a web farm or cluster
+
+Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
+
+We also recommend using a shared [Data Protection](xref:security/data-protection/introduction) key ring in production, even when the app only adopts the Interactive WebAssembly render mode to only render client-side (no Blazor circuits). For more information, see the following articles:
+
+* <xref:security/data-protection/configuration/overview>
+* <xref:security/data-protection/implementation/key-storage-providers>
+* <xref:security/data-protection/implementation/key-encryption-at-rest>
+
 ## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
