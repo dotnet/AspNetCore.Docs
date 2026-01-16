@@ -89,7 +89,7 @@ Run the app and go to **Pages/Movies**.
 
 Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
 
-![Movie view form with multiple jQuery client-side validation errors](~/tutorials/razor-pages/validation/media/validation-errors.png)
+:::image type="content" source="~/tutorials/razor-pages/validation/media/validation-errors.png" alt-text="Movie view form with multiple jQuery client-side validation errors.":::
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 

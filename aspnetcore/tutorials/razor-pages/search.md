@@ -54,7 +54,7 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 
 Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:7247/Movies?searchString=Ghost`. The filtered movies are displayed.
 
-![Index view](~/tutorials/razor-pages/search/media/search-string-ghost.png)
+:::image type="content" source="~/tutorials/razor-pages/search/media/search-string-ghost.png" alt-text="Index view with the search string ghost in the URL and a returned movie list.":::
 
 If you add the following route template to the Index page, you can pass the search string as a URL segment. For example, `https://localhost:7247/Movies/Ghost`.
 
@@ -64,7 +64,7 @@ If you add the following route template to the Index page, you can pass the sear
 
 The preceding route constraint allows searching the title as route data (a URL segment) instead of as a query string value.  The `?` in `"{searchString?}"` means this is an optional route parameter.
 
-![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/razor-pages/search/media/ghost-title-route-data.png)
+:::image type="content" source="~/tutorials/razor-pages/search/media/ghost-title-route-data.png" alt-text="Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2.":::
 
 The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:7247/Movies/Ghost`). Model binding isn't case sensitive.
 
@@ -81,7 +81,7 @@ The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helper
 
 Save your changes and test the filter.
 
-![Index view with the word ghost typed into the Title filter textbox](~/tutorials/razor-pages/search/media/filter-by-title.png)
+:::image type="content" source="~/tutorials/razor-pages/search/media/filter-by-title.png" alt-text="Index view with the word ghost typed into the Title filter textbox.":::
 
 ## Search by genre
 
@@ -105,7 +105,7 @@ Update the `Index.cshtml` [`<form>` element](https://developer.mozilla.org/docs/
 
 Test the app by searching by genre, by movie title, and by both:
 
-![Index view complete with Genre selector and Title textbox search filters](~/tutorials/razor-pages/search/media/filter-by-genre-title.png)
+:::image type="content" source="~/tutorials/razor-pages/search/media/filter-by-genre-title.png" alt-text="Index view complete with Genre selector and Title textbox search filters.":::
 
 ## Next steps
 

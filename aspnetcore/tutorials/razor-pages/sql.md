@@ -51,19 +51,19 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
 1. From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-   ![View menu](~/tutorials/razor-pages/sql/media/sql-server-object-explorer-vs2026.png)
+   :::image type="content" source="~/tutorials/razor-pages/sql/media/sql-server-object-explorer-vs2026.png" alt-text="View menu showing SQL Server Object Explorer option.":::
 
 1. Right-click on the `Movie` table and select **View Designer**:
 
-   ![Contextual menus open on Movie table](~/tutorials/razor-pages/sql/media/view-designer-vs2026.png)
+   :::image type="content" source="~/tutorials/razor-pages/sql/media/view-designer-vs2026.png" alt-text="Contextual menus open on Movie table.":::
 
-   ![Movie tables open in Designer](~/tutorials/razor-pages/sql/media/movie-table-in-designer-vs2026.png)
+   :::image type="content" source="~/tutorials/razor-pages/sql/media/movie-table-in-designer-vs2026.png" alt-text="Movie tables open in Designer.":::
 
    Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
 1. Right-click on the `Movie` table and select **View Data**:
 
-   ![Movie table open showing table data](~/tutorials/razor-pages/sql/media/view-movie-data-vs2026.png)
+   :::image type="content" source="~/tutorials/razor-pages/sql/media/view-movie-data-vs2026.png" alt-text="Movie table open showing table data.":::
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -71,11 +71,11 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
 The [SQLite](https://www.sqlite.org/) website states:
 
-> SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, Azure SQL Database engine. SQLite is the most used database engine in the world.
+> SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, SQL Database engine. SQLite is the most used database engine in the world.
 
 You can download many third-party tools to manage and view a SQLite database. The following image is from [DB Browser for SQLite](https://sqlitebrowser.org/). If you have a favorite SQLite tool, leave a comment on what you like about it.
 
-![DB Browser for SQLite showing movie database](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
+:::image type="content" source="~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png" alt-text="DB Browser for SQLite showing movie database.":::
 
 > [!NOTE]
 > For this tutorial, use the Entity Framework Core *migrations* feature where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only make changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column isn't supported. If you create a migration to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, the database is dropped and re-created.
@@ -144,7 +144,7 @@ Delete all the records in the database so the seed method runs. Stop and start t
 
 The app shows the seeded data:
 
-![Movie application open in browser showing movie data](~/tutorials/razor-pages/sql/media/seed-data-in-app.png)
+:::image type="content" source="~/tutorials/razor-pages/sql/media/seed-data-in-app.png" alt-text="Movie application open in browser showing movie data.":::
 
 ## Next steps
 

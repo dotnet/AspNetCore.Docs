@@ -82,11 +82,11 @@ In this section, you scaffold the movie model. The scaffolding tool generates pa
 
 1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-   ![New Scaffolded Item](~/tutorials/razor-pages/model/media/new-scaffolded-item-vs2026.png)
+  :::image type="content" source="~/tutorials/razor-pages/model/media/new-scaffolded-item-vs2026.png" alt-text="New Scaffolded Item.":::
 
 1. In the **Add New Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-   ![Add Scaffold](~/tutorials/razor-pages/model/media/add-scaffold-vs2026.png)
+  :::image type="content" source="~/tutorials/razor-pages/model/media/add-scaffold-vs2026.png" alt-text="Add Scaffold.":::
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
@@ -95,7 +95,7 @@ In this section, you scaffold the movie model. The scaffolding tool generates pa
       1. In the **Database provider** drop down, select **SQL Server**.
    1. Select **Add**.
 
-   ![Add Razor Pages](~/tutorials/razor-pages/model/media/add-razor-pages-vs2026.png)
+   :::image type="content" source="~/tutorials/razor-pages/model/media/add-razor-pages-vs2026.png" alt-text="Add Razor Pages.":::
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
@@ -169,7 +169,7 @@ In this section, use the **Package Manager Console** (PMC) window to:
 
 * From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-  ![PMC menu](~/tutorials/razor-pages/model/media/package-manager-console-vs2026.png)
+  :::image type="content" source="~/tutorials/razor-pages/model/media/package-manager-console-vs2026.png" alt-text="PMC menu.":::
 
 * In the PMC, enter the following command:
 
@@ -245,7 +245,7 @@ The name of the connection string is passed to the context by calling a method o
 
 1. Test the **Create New** link.
 
-   ![Create page](~/tutorials/razor-pages/model/media/create-new.png)
+  :::image type="content" source="~/tutorials/razor-pages/model/media/create-new.png" alt-text="Create page.":::
 
    > [!NOTE]
    > You might not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).

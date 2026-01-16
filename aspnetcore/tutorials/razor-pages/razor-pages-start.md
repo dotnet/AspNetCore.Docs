@@ -25,7 +25,7 @@ For a more advanced introduction aimed at developers who are familiar with contr
 
 At the end of this tutorial, you have a Razor Pages web app that manages a database of movies.
 
-![Home or Index page](~/tutorials/razor-pages/razor-pages-start/media/home10.png)
+:::image type="content" source="~/tutorials/razor-pages/razor-pages-start/media/home10.png" alt-text="Home or Index page.":::
 
 ## Prerequisites
 
@@ -52,11 +52,11 @@ At the end of this tutorial, you have a Razor Pages web app that manages a datab
   * Verify: **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-   ![Additional information](~/tutorials/razor-pages/razor-pages-start/media/net10-additional-info.png)
+  :::image type="content" source="~/tutorials/razor-pages/razor-pages-start/media/net10-additional-info.png" alt-text="Additional information dialog.":::
 
   The following starter project is created:
 
-   ![Solution Explorer](~/tutorials/razor-pages/razor-pages-start/media/solution-explorer-project.png)
+  :::image type="content" source="~/tutorials/razor-pages/razor-pages-start/media/solution-explorer-project.png" alt-text="Solution Explorer showing the RazorPagesMovie project structure.":::
 
 For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -91,13 +91,13 @@ Select **RazorPagesMovie** in **Solution Explorer**, and then press <kbd>Ctrl</k
 
 Visual Studio displays the following dialog when a project isn't yet configured to use SSL:
 
-![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?](~/static/trustCertVS22.png)
+:::image type="content" source="~/static/trustCertVS22.png" alt-text="This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?":::
 
 Select **Yes** if you trust the IIS Express SSL certificate.
 
 The following dialog is displayed:
 
-![Security warning dialog](~/static/cert.png)
+:::image type="content" source="~/static/cert.png" alt-text="Security warning dialog.":::
 
 Select **Yes** if you agree to trust the development certificate.
 
@@ -118,7 +118,7 @@ In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app withou
 
 At the **Select debugger** prompt, select **C#**.
 
-![Select environment dialog](~/tutorials/razor-pages/razor-pages-start/media/vsc-select-debugger-csharp-devkit10.png)
+:::image type="content" source="~/tutorials/razor-pages/razor-pages-start/media/vsc-select-debugger-csharp-devkit10.png" alt-text="Select environment dialog.":::
 
 At the **Select Launch Configuration** prompt, select **C#: RazorPagesMovie [https] RazorPagesMovie**.
 
