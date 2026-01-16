@@ -191,7 +191,7 @@ Specify the fingerprint expression with the `<StaticWebAssetFingerprintPattern>`
 </ItemGroup>
 ```
 
-If you adopt the `.mjs` file extension for JS modules, set the `Pattern` attribute:
+If you adopt the `.mjs` file extension for JS modules, set the file extension with the `Pattern` parameter:
 
 ```xml
 <ItemGroup>
