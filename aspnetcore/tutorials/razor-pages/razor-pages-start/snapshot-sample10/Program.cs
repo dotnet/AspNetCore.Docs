@@ -30,7 +30,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-app.MapRazorPages();
+app.MapRazorPages()
    .WithStaticAssets();
 
 app.Run();
@@ -67,7 +67,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-app.MapRazorPages();
+app.MapRazorPages()
    .WithStaticAssets();
    
 app.Run();
