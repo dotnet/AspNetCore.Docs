@@ -276,9 +276,7 @@ By default, the generated OpenAPI document has the same name as the app's projec
 
 ```xml
 <PropertyGroup>
-  <OpenApiGenerateDocumentsOptions>
-    --file-name my-open-api
-  </OpenApiGenerateDocumentsOptions>
+  <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
 </PropertyGroup>
 ```
 
@@ -288,9 +286,7 @@ Some apps may be configured to emit multiple OpenAPI documents. Multiple OpenAPI
 
 ```xml
 <PropertyGroup>
-  <OpenApiGenerateDocumentsOptions>
-    --document-name v2
-  </OpenApiGenerateDocumentsOptions>
+  <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
 </PropertyGroup>
 ```
 
