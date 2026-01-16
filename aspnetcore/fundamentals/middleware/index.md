@@ -204,35 +204,22 @@ private static void HandleMap2(IApplicationBuilder app)
 
 The following table shows the requests and responses using the preceding code.
 
-Request   | Response
---------- | ----------------------------------------------------
-`/`       | :::no-loc text="Hello from the non-Map delegate.":::
-`/map1`   | :::no-loc text="Map 1":::
-`/map2`   | :::no-loc text="Map 2":::
-`/map3`   | :::no-loc text="Hello from the non-Map delegate.":::
+Request | Response
+--- | ---
+`/` | :::no-loc text="Hello from the non-Map delegate.":::
+`/map1` | :::no-loc text="Map 1":::
+`/map2` | :::no-loc text="Map 2":::
+`/map3` | :::no-loc text="Hello from the non-Map delegate.":::
 
 When <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> is used, the matched path segments are removed from <xref:Microsoft.AspNetCore.Http.HttpRequest.Path%2A?displayProperty=nameWithType> and appended to <xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase%2A?displayProperty=nameWithType> for each request.
 
-<xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> supports nesting, for example:
-
-```csharp
-app.Map("/level1", level1App => {
-    level1App.Map("/level2a", level2AApp => {
-        // "/level1/level2a" processing
-    });
-    level1App.Map("/level2b", level2BApp => {
-        // "/level1/level2b" processing
-    });
-});
-```
-
-<xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> can also match multiple segments at once:
+<xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> can match multiple segments at once:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.Map("/map1/seg1", HandleMultiSeg);
+app.Map("/map1/segment1", HandleMultiSeg);
 
 app.Run(async context =>
 {
@@ -245,10 +232,54 @@ private static void HandleMultiSeg(IApplicationBuilder app)
 {
     app.Run(async context =>
     {
-        await context.Response.WriteAsync("Map 1 - Segment 1");
+        await context.Response.WriteAsync("Processing '/map1/segment1'");
     });
 }
 ```
+
+The following table shows the requests and responses using the preceding code.
+
+Request | Response
+--- | ---
+`/` | :::no-loc text="Hello from the non-Map delegate.":::
+`/map1/segment1` | :::no-loc text="Processing '/map1/segment1'":::
+
+<xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> supports nesting:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Map("/level1", level1App => {
+    level1App.Map("/level2a", level2AApp => {
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Processing '/level1/level2a'");
+        });
+    });
+    level1App.Map("/level2b", level2BApp => {
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Processing '/level1/level2b'");
+        });
+    });
+});
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from the non-Map delegate!");
+});
+
+app.Run();
+```
+
+The following table shows the requests and responses using the preceding code.
+
+Request | Response
+--- | ---
+`/` | :::no-loc text="Hello from the non-Map delegate.":::
+`/level1/level2a` | :::no-loc text="Processing '/level1/level2a'":::
+`/level1/level2b` | :::no-loc text="Processing '/level1/level2b'":::
 
 <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable named "`branch`":
 
@@ -270,7 +301,7 @@ private static void HandleBranch(IApplicationBuilder app)
     app.Run(async context =>
     {
         var branchVer = context.Request.Query["branch"];
-        await context.Response.WriteAsync($"Branch used = {branchVer}");
+        await context.Response.WriteAsync($"Branch used = '{branchVer}'");
     });
 }
 ```
@@ -280,9 +311,9 @@ The following table shows the requests and responses using the previous code:
 Request | Response
 --- | ---
 `/` | :::no-loc text="Hello from the non-Map delegate.":::
-`/?branch=main` | :::no-loc text="Branch used = main":::
+`/?branch=main` | :::no-loc text="Branch used = 'main'":::
 
-<xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike when calling <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A>, this branch is rejoined to the main pipeline if it doesn't contain a terminal middleware:
+<xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> can branch the request pipeline based on the result of the given predicate. Unlike when calling <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A>, this branch is rejoined to the main pipeline if it doesn't contain a terminal middleware:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -320,7 +351,7 @@ In the preceding example, a response of ":::no-loc text="Hello from the non-Map 
 
 The order that middleware appears in the app's `Program` file defines the order in which middleware are invoked on a request with the reverse order for the response.
 
-You have full control over how to reorder existing middlewares or inject new custom middlewares as necessary for your scenarios, keeping in mind that the order is critical for security, performance, and functionality.
+You have full control over the order of middleware and the ability to add custom middleware for request processing scenarios, keeping in mind that the order of middleware can be critical for security, performance, and functionality.
 
 The following examples demonstrate middleware order for common app scenarios. Each middleware extension method is exposed on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> through the <xref:Microsoft.AspNetCore.Builder?displayProperty=fullName> namespace:
 
@@ -336,10 +367,10 @@ The following examples demonstrate middleware order for common app scenarios. Ea
 1. Static File Middleware (if required, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) returns static files and short-circuits further request processing.
 1. Cookie Policy Middleware (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>) conforms the app to the EU General Data Protection Regulation (GDPR) regulations.
 1. Routing Middleware (Razor Pages and MVC only, <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) to route requests.
-1. Authentication Middleware (Razor Pages and MVC only, <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) attempts to authenticate the user before they're allowed access to secure resources.
-1. Authorization Middleware (Razor Pages and MVC only, <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>) authorizes a user to access secure resources.
+1. Authentication Middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) attempts to authenticate the user before they're allowed access to secure resources.
+1. Authorization Middleware (<xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>) authorizes a user to access secure resources.
 1. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
-1. Session Middleware (Razor Pages and MVC only, <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) establishes and maintains session state. If the app uses session state, call Session Middleware after Cookie Policy Middleware and before MVC Middleware.
+1. Session Middleware (Razor Pages and MVC only, <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) establishes and maintains session state. If the app uses session state, call Session Middleware after Cookie Policy Middleware and before Razor Pages/MVC Middleware.
 1. Endpoint Routing Middleware
   * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to add Razor component endpoints to the request pipeline.
   * <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> to add Razor Pages endpoints to the request pipeline.
@@ -419,7 +450,7 @@ app.UseResponseCompression();
 
 Static assets are typically served early in the pipeline so that the app can short-circuit request processing to improve performance.
 
-Authentication doesn't short-circuit unauthenticated requests. Although Authentication Middleware authenticates requests, authorization occurs after the framework selects a Razor component in a Blazor Web App, a page in a Razor Pages app, or a controller and action in an MVC app.
+Authentication doesn't short-circuit unauthenticated requests. Although Authentication Middleware authenticates requests, authorization occurs after the framework selects a page in a Razor Pages app or a controller and action in an MVC app.
 
 ## `UseCors` and `UseStaticFiles` order
 
@@ -431,39 +462,39 @@ Run Forwarded Headers Middleware before other middleware to ensure that the midd
 
 ## Built-in middleware
 
-ASP.NET Core ships with the following middleware. The *Order* column provides notes on middleware placement in the request processing pipeline and under what conditions the middleware may terminate request processing. When a middleware short-circuits the request processing pipeline and prevents further downstream middleware from processing a request, it's called a *terminal middleware*. For more information on short-circuiting, see the [Create a middleware pipeline with `WebApplication`](#create-a-middleware-pipeline-with-webapplication) section.
+ASP.NET Core ships with the following middleware. The *UI stack* column indicates the typical UI stack where the middleware is used [All, Blazor (B), Razor Pages and MVC (RP/MVC)]. The *Order* column provides notes on middleware placement in the request processing pipeline and under what conditions the middleware may terminate request processing. When a middleware short-circuits the request processing pipeline and prevents further downstream middleware from processing a request, it's called a *terminal middleware*. For more information on short-circuiting, see the [Create a middleware pipeline with `WebApplication`](#create-a-middleware-pipeline-with-webapplication) section.
 
-Middleware | Description | Order
---- | --- | ---
-[Antiforgery](xref:security/anti-request-forgery) | Provides anti-request-forgery support. | After authentication and authorization, before endpoints.
-[Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks.
-[Authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) | Provides authorization support. | Immediately after the Authentication Middleware.
-[Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData).
-[CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before middleware that use CORS. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must go before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
-[DeveloperExceptionPage](xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware) | Generates a page with error information that is intended for use only in the `Development` environment. | Before middleware that generate errors. The project templates automatically register this middleware as the first middleware in the pipeline when the environment is `Development`.
-[Diagnostics](xref:fundamentals/error-handling) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. | Before middleware that generate errors. Terminal for exceptions or serving the default web page for new apps.
-[Forwarded Headers](xref:host-and-deploy/proxy-load-balancer) | Forwards proxied headers onto the current request. | Before middleware that consume the updated fields. Examples: scheme, host, client IP, method.
-[Health Check](xref:host-and-deploy/health-checks) | Checks the health of an ASP.NET Core app and its dependencies, such as checking database availability. | Terminal if a request matches a health check endpoint.
-[Header Propagation](xref:fundamentals/http-requests#header-propagation-middleware) | Propagates HTTP headers from the incoming request to the outgoing HTTP Client requests.
-[HTTP Logging](xref:fundamentals/http-logging/index) | Logs HTTP Requests and Responses. | At the beginning of the middleware pipeline. 
-[HTTP Method Override](xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions) | Allows an incoming POST request to override the method. | Before middleware that consume the updated method.
-[HTTPS Redirection](xref:security/enforcing-ssl#require-https) | Redirect all HTTP requests to HTTPS. | Before middleware that consume the URL.
-[HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Security enhancement middleware that adds a special response header. | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting.
-[MVC](xref:mvc/overview) | Processes requests with MVC/Razor Pages. | Terminal if a request matches a route.
-[OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | Terminal if the OWIN Middleware fully processes the request.
-[Output Caching](xref:performance/caching/output) | Provides support for caching responses based on configuration. | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> must come before `UseOutputCaching`. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must come before `UseOutputCaching`.
-[Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. This requires client participation to work. Use output caching for complete server control. | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must come before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>. Response caching isn't typically beneficial for UI apps, such as Razor Pages, because browsers generally set request headers that prevent caching. [Output caching](xref:performance/caching/output) benefits UI apps.
-[Request Decompression](xref:fundamentals/middleware/request-decompression) | Provides support for decompressing requests. | Before middleware that read the request body.
-[Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before middleware that require compression.
-[Request Localization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive middleware. Must appear after Routing Middleware when using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>.
-[Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global and per endpoint. | <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions.UseRequestTimeouts%2A> must come after <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>, <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>.
-[Endpoint Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes.
-[SPA](xref:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa%2A) | Handles all requests from this point in the middleware chain by returning the default page for the Single Page Application (SPA) | Appears late in the pipeline, so that other middleware for serving static files, such as MVC actions, take precedence.
-[Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before middleware that require Session.
-[Static File](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches a file.
-[URL Rewrite](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before middleware that consume the URL.
-[W3CLogging](xref:fundamentals/w3c-logger/index) | Generates server access logs in the [W3C Extended Log File Format](https://www.w3.org/TR/WD-logfile.html). | At the beginning of the middleware pipeline.
-[WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | Before middleware that are required to accept WebSocket requests.
+Middleware | Description | UI stack | Order
+--- | --- | --- | ---
+[Antiforgery](xref:security/anti-request-forgery) | Provides anti-request-forgery support. | All | After authentication and authorization, before endpoints.
+[Authentication](xref:security/authentication/identity) | Provides authentication support. | RP/MVC | Before `HttpContext.User` is needed. Terminal for OAuth callbacks.
+[Authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) | Provides authorization support. |  | Immediately after the Authentication Middleware.
+[Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. |  | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData).
+[CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. |  | Before middleware that use CORS. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must go before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
+[DeveloperExceptionPage](xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware) | Generates a page with error information that is intended for use only in the `Development` environment. |  | Before middleware that generate errors. The project templates automatically register this middleware as the first middleware in the pipeline when the environment is `Development`.
+[Diagnostics](xref:fundamentals/error-handling) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. |  | Before middleware that generate errors. Terminal for exceptions or serving the default web page for new apps.
+[Forwarded Headers](xref:host-and-deploy/proxy-load-balancer) | Forwards proxied headers onto the current request. |  | Before middleware that consume the updated fields. Examples: scheme, host, client IP, method.
+[Health Check](xref:host-and-deploy/health-checks) | Checks the health of an ASP.NET Core app and its dependencies, such as checking database availability. |  | Terminal if a request matches a health check endpoint.
+[Header Propagation](xref:fundamentals/http-requests#header-propagation-middleware) | Propagates HTTP headers from the incoming request to the outgoing HTTP Client requests. |  | 
+[HTTP Logging](xref:fundamentals/http-logging/index) | Logs HTTP Requests and Responses. |  | At the beginning of the middleware pipeline. 
+[HTTP Method Override](xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions) | Allows an incoming POST request to override the method. |  | Before middleware that consume the updated method.
+[HTTPS Redirection](xref:security/enforcing-ssl#require-https) | Redirect all HTTP requests to HTTPS. |  | Before middleware that consume the URL.
+[HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Security enhancement middleware that adds a special response header. |  | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting.
+[MVC](xref:mvc/overview) | Processes requests with MVC/Razor Pages. |  | Terminal if a request matches a route.
+[OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. |  | Terminal if the OWIN Middleware fully processes the request.
+[Output Caching](xref:performance/caching/output) | Provides support for caching responses based on configuration. |  | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> must come before `UseOutputCaching`. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must come before `UseOutputCaching`.
+[Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. This requires client participation to work. Use output caching for complete server control. |  | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must come before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>. Response caching isn't typically beneficial for UI apps, such as Razor Pages, because browsers generally set request headers that prevent caching. [Output caching](xref:performance/caching/output) benefits UI apps.
+[Request Decompression](xref:fundamentals/middleware/request-decompression) | Provides support for decompressing requests. |  | Before middleware that read the request body.
+[Response Compression](xref:performance/response-compression) | Provides support for compressing responses. |  | Before middleware that require compression.
+[Request Localization](xref:fundamentals/localization) | Provides localization support. |  | Before localization sensitive middleware. Must appear after Routing Middleware when using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>.
+[Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global and per endpoint. |  | <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions.UseRequestTimeouts%2A> must come after <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>, <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>.
+[Endpoint Routing](xref:fundamentals/routing) | Defines and constrains request routes. |  | Terminal for matching routes.
+[SPA](xref:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa%2A) | Handles all requests from this point in the middleware chain by returning the default page for the Single Page Application (SPA) |  | Appears late in the pipeline, so that other middleware for serving static files, such as MVC actions, take precedence.
+[Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |  | Before middleware that require Session.
+[Static File](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |  | Terminal if a request matches a file.
+[URL Rewrite](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. |  | Before middleware that consume the URL.
+[W3CLogging](xref:fundamentals/w3c-logger/index) | Generates server access logs in the [W3C Extended Log File Format](https://www.w3.org/TR/WD-logfile.html). |  | At the beginning of the middleware pipeline.
+[WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. |  | Before middleware that are required to accept WebSocket requests.
 
 ## Additional resources
 
