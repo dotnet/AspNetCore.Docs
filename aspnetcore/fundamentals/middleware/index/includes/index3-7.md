@@ -1,7 +1,5 @@
 :::moniker range="= aspnetcore-7.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
-
 Middleware is software that's assembled into an app pipeline to handle requests and responses. Each component:
 
 * Chooses whether to pass the request to the next component in the pipeline.
@@ -33,11 +31,28 @@ Each delegate can perform operations before and after the next delegate. Excepti
 
 The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. This case doesn't include an actual request pipeline. Instead, a single anonymous function is called in response to every HTTP request.
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Middleware60/Program.cs)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello world!");
+});
+
+app.Run();
+```
 
 Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A>. The `next` parameter represents the next delegate in the pipeline. You can short-circuit the pipeline by *not* calling the `next` parameter. You can typically perform actions both before and after the `next` delegate, as the following example demonstrates:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=4-9)]
+```csharp
+app.Use(async (context, next) =>
+{
+    // Do work that can write to the Response.
+    await next.Invoke();
+    // Do logging or other work that doesn't write to the Response.
+});
+```
 
 When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
@@ -51,8 +66,12 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=11-14)]
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+```csharp
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from 2nd delegate.");
+});
+```
 
 In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
 
@@ -79,13 +98,60 @@ The **Endpoint** middleware in the preceding diagram executes the filter pipelin
 
 The **Routing** middleware in the preceding diagram is shown following **Static Files**. This is the order that the project templates implement by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](xref:fundamentals/routing).
 
-![ASP.NET Core filter pipeline](~/fundamentals/middleware/index/_static/mvc-endpoint.svg)
-
 The order that middleware components are added in the `Program.cs` file defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
 The following highlighted code in `Program.cs` adds security-related middleware components in the typical recommended order:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Program70All3.cs?highlight=19-44)]
+```csharp
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using WebMiddleware.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseMigrationsEndPoint();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+// app.UseCookiePolicy();
+
+app.UseRouting();
+// app.UseRateLimiter();
+// app.UseRequestLocalization();
+// app.UseCors();
+
+app.UseAuthentication();
+app.UseAuthorization();
+// app.UseSession();
+// app.UseResponseCompression();
+// app.UseResponseCaching();
+
+app.MapRazorPages();
+app.MapDefaultControllerRoute();
+
+app.Run();
+```
 
 In the preceding code:
 
@@ -177,17 +243,47 @@ For information about Single Page Applications, see the guides for the [React](x
 
 ## UseCors and UseStaticFiles order
 
-The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [UseCors and UseStaticFiles order](xref:security/cors#uc1)
+The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [`UseCors` and `UseStaticFiles` order](xref:security/cors#usecors-and-usestaticfiles-order).
 
 ### Forwarded Headers Middleware order
 
-[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
 ## Branch the middleware pipeline
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> extensions are used as a convention for branching the pipeline. `Map` branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMap.cs)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Map("/map1", HandleMapTest1);
+
+app.Map("/map2", HandleMapTest2);
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from non-Map delegate.");
+});
+
+app.Run();
+
+static void HandleMapTest1(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        await context.Response.WriteAsync("Map Test 1");
+    });
+}
+
+static void HandleMapTest2(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        await context.Response.WriteAsync("Map Test 2");
+    });
+}
+```
 
 The following table shows the requests and responses from `http://localhost:1234` using the preceding code.
 
@@ -215,11 +311,52 @@ app.Map("/level1", level1App => {
 
 `Map` can also match multiple segments at once:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMultiSeg.cs?highlight=4)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Map("/map1/seg1", HandleMultiSeg);
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from non-Map delegate.");
+});
+
+app.Run();
+
+static void HandleMultiSeg(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        await context.Response.WriteAsync("Map Test 1");
+    });
+}
+```
 
 <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable `branch`:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMapWhen.cs?highlight=4)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapWhen(context => context.Request.Query.ContainsKey("branch"), HandleBranch);
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from non-Map delegate.");
+});
+
+app.Run();
+
+static void HandleBranch(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        var branchVer = context.Request.Query["branch"];
+        await context.Response.WriteAsync($"Branch used = {branchVer}");
+    });
+}
+```
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code:
 
@@ -230,7 +367,35 @@ The following table shows the requests and responses from `http://localhost:1234
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramUseWhen.cs?highlight=4-5)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.UseWhen(context => context.Request.Query.ContainsKey("branch"),
+    appBuilder => HandleBranchAndRejoin(appBuilder));
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from non-Map delegate.");
+});
+
+app.Run();
+
+void HandleBranchAndRejoin(IApplicationBuilder app)
+{
+    var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>(); 
+
+    app.Use(async (context, next) =>
+    {
+        var branchVer = context.Request.Query["branch"];
+        logger.LogInformation("Branch used = {branchVer}", branchVer);
+
+        // Do work that doesn't write to the Response.
+        await next();
+        // Do other work that doesn't write to the Response.
+    });
+}
+```
 
 In the preceding example, a response of `Hello from non-Map delegate.` is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
 
@@ -284,8 +449,6 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 
 :::moniker range="= aspnetcore-6.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
-
 Middleware is software that's assembled into an app pipeline to handle requests and responses. Each component:
 
 * Chooses whether to pass the request to the next component in the pipeline.
@@ -311,11 +474,28 @@ Each delegate can perform operations before and after the next delegate. Excepti
 
 The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. This case doesn't include an actual request pipeline. Instead, a single anonymous function is called in response to every HTTP request.
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Middleware60/Program.cs)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello world!");
+});
+
+app.Run();
+```
 
 Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A>. The `next` parameter represents the next delegate in the pipeline. You can short-circuit the pipeline by *not* calling the `next` parameter. You can typically perform actions both before and after the `next` delegate, as the following example demonstrates:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=4-9)]
+```csharp
+app.Use(async (context, next) =>
+{
+    // Do work that can write to the Response.
+    await next.Invoke();
+    // Do logging or other work that doesn't write to the Response.
+});
+```
 
 When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
@@ -329,8 +509,12 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=11-14)]
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+```csharp
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from 2nd delegate.");
+});
+```
 
 In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
 
@@ -357,13 +541,62 @@ The **Endpoint** middleware in the preceding diagram executes the filter pipelin
 
 The **Routing** middleware in the preceding diagram is shown following **Static Files**. This is the order that the project templates implement by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](xref:fundamentals/routing).
 
-![ASP.NET Core filter pipeline](~/fundamentals/middleware/index/_static/mvc-endpoint.svg)
-
 The order that middleware components are added in the `Program.cs` file defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
 The following highlighted code in `Program.cs` adds security-related middleware components in the typical recommended order:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Program60All3.cs?highlight=19-43)]
+```csharp
+using IndividualAccountsExample.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseMigrationsEndPoint();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+// app.UseCookiePolicy();
+
+app.UseRouting();
+// app.UseRequestLocalization();
+// app.UseCors();
+
+app.UseAuthentication();
+app.UseAuthorization();
+// app.UseSession();
+// app.UseResponseCompression();
+// app.UseResponseCaching();
+
+app.MapRazorPages();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
+```
 
 In the preceding code:
 
@@ -454,17 +687,47 @@ For information about Single Page Applications, see the guides for the [React](x
 
 ## UseCors and UseStaticFiles order
 
-The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [UseCors and UseStaticFiles order](xref:security/cors#uc1)
+The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [`UseCors` and `UseStaticFiles` order](xref:security/cors#usecors-and-usestaticfiles-order).
 
 ### Forwarded Headers Middleware order
 
-[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
 ## Branch the middleware pipeline
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> extensions are used as a convention for branching the pipeline. `Map` branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMap.cs)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Map("/map1", HandleMapTest1);
+
+app.Map("/map2", HandleMapTest2);
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from non-Map delegate.");
+});
+
+app.Run();
+
+static void HandleMapTest1(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        await context.Response.WriteAsync("Map Test 1");
+    });
+}
+
+static void HandleMapTest2(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        await context.Response.WriteAsync("Map Test 2");
+    });
+}
+```
 
 The following table shows the requests and responses from `http://localhost:1234` using the preceding code.
 
@@ -492,11 +755,52 @@ app.Map("/level1", level1App => {
 
 `Map` can also match multiple segments at once:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMultiSeg.cs?highlight=4)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Map("/map1/seg1", HandleMultiSeg);
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from non-Map delegate.");
+});
+
+app.Run();
+
+static void HandleMultiSeg(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        await context.Response.WriteAsync("Map Test 1");
+    });
+}
+```
 
 <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable `branch`:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMapWhen.cs?highlight=4)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapWhen(context => context.Request.Query.ContainsKey("branch"), HandleBranch);
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from non-Map delegate.");
+});
+
+app.Run();
+
+static void HandleBranch(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        var branchVer = context.Request.Query["branch"];
+        await context.Response.WriteAsync($"Branch used = {branchVer}");
+    });
+}
+```
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code:
 
@@ -507,7 +811,35 @@ The following table shows the requests and responses from `http://localhost:1234
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramUseWhen.cs?highlight=4-5)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.UseWhen(context => context.Request.Query.ContainsKey("branch"),
+    appBuilder => HandleBranchAndRejoin(appBuilder));
+
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from non-Map delegate.");
+});
+
+app.Run();
+
+void HandleBranchAndRejoin(IApplicationBuilder app)
+{
+    var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>(); 
+
+    app.Use(async (context, next) =>
+    {
+        var branchVer = context.Request.Query["branch"];
+        logger.LogInformation("Branch used = {branchVer}", branchVer);
+
+        // Do work that doesn't write to the Response.
+        await next();
+        // Do other work that doesn't write to the Response.
+    });
+}
+```
 
 In the preceding example, a response of `Hello from non-Map delegate.` is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
 
@@ -560,8 +892,6 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 
 :::moniker range="< aspnetcore-6.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
-
 Middleware is software that's assembled into an app pipeline to handle requests and responses. Each component:
 
 * Chooses whether to pass the request to the next component in the pipeline.
@@ -583,11 +913,29 @@ Each delegate can perform operations before and after the next delegate. Excepti
 
 The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. This case doesn't include an actual request pipeline. Instead, a single anonymous function is called in response to every HTTP request.
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Middleware/Startup.cs)]
+```csharp
+public class Startup
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Hello, World!");
+        });
+    }
+}
+```
 
 Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A>. The `next` parameter represents the next delegate in the pipeline. You can short-circuit the pipeline by *not* calling the *next* parameter. You can typically perform actions both before and after the next delegate, as the following example demonstrates:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/Startup.cs?highlight=5-10)]
+```csharp
+app.Use(async (context, next) =>
+{
+    // Do work that doesn't write to the Response.
+    await next.Invoke();
+    // Do logging or other work that doesn't write to the Response.
+});
+```
 
 When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
@@ -601,12 +949,14 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/Startup.cs?highlight=12-15)]
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+```csharp
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("Hello from 2nd delegate.");
+});
+```
 
 In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
-
-<a name="order"></a>
 
 ## Middleware order
 
@@ -616,13 +966,47 @@ The following diagram shows the complete request processing pipeline for ASP.NET
 
 The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
-![ASP.NET Core filter pipeline](~/fundamentals/middleware/index/_static/mvc-endpoint.svg)
-
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
 The following `Startup.Configure` method adds security-related middleware components in the typical recommended order:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/StartupAll3.cs?name=snippet)]
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+        app.UseDatabaseErrorPage();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Error");
+        app.UseHsts();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+    // app.UseCookiePolicy();
+
+    app.UseRouting();
+    // app.UseRequestLocalization();
+    // app.UseCors();
+
+    app.UseAuthentication();
+    app.UseAuthorization();
+    // app.UseSession();
+    // app.UseResponseCompression();
+    // app.UseResponseCaching();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapRazorPages();
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+    });
+}
+```
 
 In the preceding code:
 
@@ -732,13 +1116,44 @@ For more details on SPAs, see the guides for the [React](xref:spa/react) and [An
 
 ### Forwarded Headers Middleware order
 
-[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
 ## Branch the middleware pipeline
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> extensions are used as a convention for branching the pipeline. `Map` branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/StartupMap.cs)]
+```csharp
+public class Startup
+{
+    private static void HandleMapTest1(IApplicationBuilder app)
+    {
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Map Test 1");
+        });
+    }
+
+    private static void HandleMapTest2(IApplicationBuilder app)
+    {
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Map Test 2");
+        });
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        app.Map("/map1", HandleMapTest1);
+
+        app.Map("/map2", HandleMapTest2);
+
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Hello from non-Map delegate.");
+        });
+    }
+}
+```
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code.
 
@@ -766,11 +1181,55 @@ app.Map("/level1", level1App => {
 
 `Map` can also match multiple segments at once:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/StartupMultiSeg.cs?highlight=13)]
+```csharp
+public class Startup
+{
+    private static void HandleMultiSeg(IApplicationBuilder app)
+    {
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Map multiple segments.");
+        });
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        app.Map("/map1/seg1", HandleMultiSeg);
+
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Hello from non-Map delegate.");
+        });
+    }
+}
+```
 
 <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable `branch`:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/StartupMapWhen.cs?highlight=14-15)]
+```csharp
+public class Startup
+{
+    private static void HandleBranch(IApplicationBuilder app)
+    {
+        app.Run(async context =>
+        {
+            var branchVer = context.Request.Query["branch"];
+            await context.Response.WriteAsync($"Branch used = {branchVer}");
+        });
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        app.MapWhen(context => context.Request.Query.ContainsKey("branch"),
+                               HandleBranch);
+
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Hello from non-Map delegate.");
+        });
+    }
+}
+```
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code:
 
@@ -781,7 +1240,34 @@ The following table shows the requests and responses from `http://localhost:1234
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
 
-[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/StartupUseWhen.cs?highlight=18-19)]
+```csharp
+public class Startup
+{
+    private void HandleBranchAndRejoin(IApplicationBuilder app, ILogger<Startup> logger)
+    {
+        app.Use(async (context, next) =>
+        {
+            var branchVer = context.Request.Query["branch"];
+            logger.LogInformation("Branch used = {branchVer}", branchVer);
+
+            // Do work that doesn't write to the Response.
+            await next();
+            // Do other work that doesn't write to the Response.
+        });
+    }
+
+    public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
+    {
+        app.UseWhen(context => context.Request.Query.ContainsKey("branch"),
+                               appBuilder => HandleBranchAndRejoin(appBuilder, logger));
+
+        app.Run(async context =>
+        {
+            await context.Response.WriteAsync("Hello from main pipeline.");
+        });
+    }
+}
+```
 
 In the preceding example, a response of "Hello from main pipeline." is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
 
