@@ -1,5 +1,6 @@
 ---
 title: Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to secure a Blazor Web App with OpenID Connect (OIDC).
 monikerRange: '>= aspnetcore-8.0'
@@ -1490,7 +1491,7 @@ For more information, see the [Duende Access Token Management documentation for 
 
 Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
 
-We also recommend using a shared [Data Protection](xref:security/data-protection/introduction) key ring in production, even when the app only adopts the Interactive WebAssembly render mode to only render client-side (no Blazor circuits). For more information, see the following articles:
+We also recommend using a shared [Data Protection](xref:security/data-protection/introduction) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits). For more information, see the following articles:
 
 * <xref:security/data-protection/configuration/overview>
 * <xref:security/data-protection/implementation/key-storage-providers>
