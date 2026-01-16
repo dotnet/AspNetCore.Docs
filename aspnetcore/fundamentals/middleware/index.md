@@ -6,7 +6,7 @@ description: Learn about ASP.NET Core middleware and the request pipeline.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/15/2026
+ms.date: 01/16/2026
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
@@ -26,7 +26,7 @@ Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExt
 
 <xref:migration/fx-to-core/areas/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
 
-## The role of middleware by app type
+## Role of middleware by app type
 
 Blazor Web Apps, Razor Pages, and MVC process browser requests on the server with middleware. The guidance in this article applies to these types of apps.
 
