@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-6.0 <= aspnetcore-8.0"
 
-The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) is a programming language-agnostic standard for documenting HTTP APIs. This standard is supported in minimal APIs through a combination of built-in APIs and open-source libraries. There are three key aspects to OpenAPI integration in an application:
+The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) is a programming language-agnostic standard for documenting HTTP APIs. This standard is supported in Minimal APIs through a combination of built-in APIs and open-source libraries. There are three key aspects to OpenAPI integration in an application:
 
 * Generating information about the endpoints in the app.
 * Gathering the information into a format that matches the OpenAPI schema.

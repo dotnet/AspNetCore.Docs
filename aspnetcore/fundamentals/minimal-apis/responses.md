@@ -1,7 +1,7 @@
 ---
 title: Create responses in Minimal API applications
 author: brunolins16
-description: Learn how to create responses for minimal APIs in ASP.NET Core.
+description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 08/22/2025
@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to create responses for minimal API endpoints in ASP.NET Core. Minimal APIs provide several ways to return data and HTTP status codes.
+This article explains how to create responses for Minimal API endpoints in ASP.NET Core. Minimal APIs provide several ways to return data and HTTP status codes.
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -82,7 +82,7 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
+For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
 
 For examples on testing result types, see the [Test documentation](/aspnet/core/fundamentals/minimal-apis/test-min-api#unit-test-iresult-implementation-types).
 
@@ -151,7 +151,7 @@ The preceding example returns a 500 status code.
 
 #### Customize validation error responses using IProblemDetailsService
 
-Customize error responses from minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. Support for minimal API validation was introduced in ASP.NET Core in .NET 10.
+Customize error responses from Minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. Support for Minimal API validation was introduced in ASP.NET Core in .NET 10.
 
 To implement custom validation error responses:
 
@@ -270,7 +270,7 @@ An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttr
 
 ## Configure JSON serialization options
 
-By default, minimal API apps use [`Web defaults`](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
+By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
 
 ### Configure JSON serialization options globally
 

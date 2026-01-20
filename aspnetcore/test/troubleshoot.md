@@ -75,7 +75,7 @@ If an app is capable of responding to requests, you can obtain the following dat
 * Configuration settings
 * Environment variables
 
-Place the following [middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) code at the beginning of the `Startup.Configure` method's request processing pipeline. The environment is checked before the middleware is run to ensure that the code is only executed in the Development environment.
+Place the following [middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) code at the beginning of the `Startup.Configure` method's request processing pipeline. The environment is checked before the middleware is run to ensure that the code is only executed in the `Development` environment.
 
 Get the environment from the `Environment` property of `WebApplication`. For example, `if (app.Environment.IsDevelopment())` as in the following sample code.
 

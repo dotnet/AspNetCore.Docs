@@ -52,7 +52,7 @@ conceptualContent:
       links:
         - url: fundamentals/apis.md
           itemType: overview
-          text: "Choose between controller-based APIs and minimal APIs"
+          text: "Choose between controller-based APIs and Minimal APIs"
         - url: tutorials/min-web-api.md
           itemType: get-started
           text: "Create a minimal web API with ASP.NET Core"

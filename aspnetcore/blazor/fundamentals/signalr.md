@@ -507,7 +507,7 @@ In the `Program` file, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpoint
 
 ## Reflect the server-side connection state in the UI
 
-If the client detects a lost connection to the server, a default UI is displayed to the user while the client attempts to reconnect:
+If the client detects a lost connection (circuit) to the server, a default UI is displayed to the user while the client attempts to reconnect:
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -541,12 +541,13 @@ If reconnection succeeds, user state is often lost. Custom code can be added to 
 
 To create UI elements that track reconnection state, the following table describes:
 
-* A set of `components-reconnect-*` CSS classes (**Css class** column) that are set or unset by Blazor on an element with an `id` of `components-reconnect-modal`.
+* A set of `components-reconnect-*` CSS classes (**CSS class** column) that are set or unset by Blazor on an element with an `id` of `components-reconnect-modal`.
 * A `components-reconnect-state-changed` event (**Event** column) that indicates a reconnection status change.
 
 | CSS class | Event | Indicates&hellip; |
 | --- | --- | --- |
 | `components-reconnect-show` | `show` | A lost connection. The client is attempting to reconnect. The reconnection modal is shown. |
+| `components-reconnect-paused` | `paused` | The connection is paused. For more information, see [Pause and resume circuits](xref:blazor/state-management/server#pause-and-resume-circuits). |
 | `components-reconnect-hide` | `hide` | An active connection is re-established to the server. The reconnection model is closed. |
 | `components-reconnect-retrying` | `retrying` | The client is attempting to reconnect. |
 | `components-reconnect-failed` | `failed` | Reconnection failed, probably due to a network failure. |
