@@ -147,7 +147,7 @@ builder.Services.Configure<PasswordHasherOptions>(option =>
 
 ## Globally require all users to be authenticated
 
-[!INCLUDE[](~/includes/requireAuth.md)]
+For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
 
 <a name="iss6"></a>
 
@@ -295,6 +295,6 @@ services.Configure<PasswordHasherOptions>(option =>
 
 ## Globally require all users to be authenticated
 
-[!INCLUDE[](~/includes/requireAuth.md)]
+For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
 
 :::moniker-end

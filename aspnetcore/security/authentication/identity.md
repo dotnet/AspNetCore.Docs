@@ -19,7 +19,7 @@ ASP.NET Core Identity:
 
 Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
 
-[!INCLUDE[](~/includes/requireAuth.md)]
+For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
 
 The [Identity source code](https://github.com/dotnet/AspNetCore/tree/main/src/Identity) is available on GitHub. [Scaffold Identity](xref:security/authentication/scaffold-identity) and view the generated files to review the template interaction with Identity.
 
