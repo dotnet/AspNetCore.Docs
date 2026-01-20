@@ -137,7 +137,7 @@ If browser developer tools or a network traffic tool indicates that requests are
 
 For more information on production Nginx web server configuration, see [Creating NGINX Plus and NGINX Configuration Files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/).
 
-## Docker deployment (optional)
+## Docker deployment
 
 The following Dockerfile publishes a Blazor WebAssembly app and serves the app's static web assets from an Nginx image.
 
@@ -146,7 +146,7 @@ The example assumes that:
 * The app's project file is named `YourProject.csproj` and located at the Docker build context root.
 * An `nginx.conf` file is available at the Docker build context root.
 
-For example, `Dockerfile`, `nginx.conf` and `YourProject.csproj` are all located in the same directory where the rest of Blazor code is also located. In this case `docker buildx build` is launched in this working directory.
+For example, `Dockerfile`, `nginx.conf` and `YourProject.csproj` are all located in the same directory where the rest of Blazor code is also located. In this case `docker build` is launched in this working directory.
 
 ```dockerfile
 # Build stage
