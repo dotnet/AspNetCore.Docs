@@ -47,7 +47,7 @@ If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> no
 * Authenticated (signed-in) users are authorized.
 * Unauthenticated (signed-out) users are unauthorized.
 
-When the user isn't authorized and if the app doesn't [customize unauthorized content with the `Router` component](#customize-unauthorized-content-with-the-router-component), the framework automatically displays the following fallback message:
+When the user isn't authorized and if the app doesn't [customize unauthorized content with the `Router` component](xref:blazor/security/index#customize-unauthorized-content-with-the-router-component), the framework automatically displays the following fallback message:
 
 ```html
 Not authorized.
