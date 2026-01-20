@@ -17,9 +17,7 @@ This article explains how to host and deploy Blazor WebAssembly using [Nginx](ht
 
 ## Minimal `nginx.conf` for client-side routing
 
-The following `nginx.conf` file is simplified to show how to configure Nginx to send the `index.html` file whenever it can't find a corresponding file on disk.
-
-Ensure Nginx is configured to serve correct MIME types, for example by including `mime.types` file or defining a `types` block like the one below.
+The following `nginx.conf` file is a minimal Nginx configuration example showing how to configure Nginx to send the `index.html` file whenever it can't find a corresponding file on disk. It also directs Nginx to serve correct MIME types by defining a `types` block (alternatively, include a [`mime.types`](https://github.com/nginx/nginx/blob/7fa941a55e211ebd57f512fbfb24d59dbb97940d/conf/mime.types) file).
 
 ```
 events { }
