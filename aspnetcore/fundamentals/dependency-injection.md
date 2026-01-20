@@ -158,7 +158,7 @@ Middleware supports keyed services in both the constructor and the `Invoke`/`Inv
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs"  id="snippet_2":::
 
-For more information on creating Middleware, see <xref:fundamentals/middleware/write>.
+For more information on creating middleware, see <xref:fundamentals/middleware/write>.
 
 ## Constructor injection behavior
 
