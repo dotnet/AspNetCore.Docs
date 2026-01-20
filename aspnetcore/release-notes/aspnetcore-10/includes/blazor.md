@@ -176,7 +176,7 @@ In the project file (`.csproj`), add the `<OverrideHtmlAssetPlaceholders>` prope
 
 In the following example, all developer-supplied JS files are modules with a `.js` file extension.
 
-Any JS module in `index.html` with the fingerprint marker is fingerprinted by the framework, including when the app is published. A module named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
+A module named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
 
 ```html
 <script type="module" src="js/scripts#[.{fingerprint}].js"></script>
@@ -190,6 +190,8 @@ Specify the fingerprint expression with the `<StaticWebAssetFingerprintPattern>`
     Expression="#[.{fingerprint}]!" />
 </ItemGroup>
 ```
+
+Any JS module in `index.html` with the fingerprint marker is fingerprinted by the framework, including when the app is published.
 
 If you adopt the `.mjs` file extension for JS modules, set the file extension with the `Pattern` parameter:
 
