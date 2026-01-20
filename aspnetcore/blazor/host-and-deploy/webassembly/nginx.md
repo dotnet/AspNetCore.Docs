@@ -75,6 +75,7 @@ http {
         # /_framework/dotnet.js               "max-age=3600";
 
         ~^/_framework/      "public, max-age=31536000, immutable";
+        ~\.woff2?$          "public, max-age=31536000, immutable";
     }
 
     # MIME types for Blazor WebAssembly assets.
