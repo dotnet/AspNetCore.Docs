@@ -175,6 +175,8 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
     The component renders `<base href>` automatically based on the current request path base.
 
+::: moniker-end
+
 :::moniker range="< aspnetcore-11.0"
 
   * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
