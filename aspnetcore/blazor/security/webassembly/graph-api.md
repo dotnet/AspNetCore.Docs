@@ -938,6 +938,7 @@ In the preceding example, the `GraphAuthorizationMessageHandler` <xref:System.Ne
 
 * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [Detect client-side transient disposables](xref:blazor/fundamentals/dependency-injection#detect-client-side-transient-disposables)
+* [`DelegatingHandler` instances](xref:fundamentals/http-requests#outgoing-request-middleware)
 
 A trailing slash (`/`) on the base address is required. In the preceding code, the third argument to `string.Join` is `string.Empty` to ensure the trailing slash is present: `https://graph.microsoft.com/v1.0/`.
 
