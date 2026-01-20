@@ -3,7 +3,7 @@ title: Part 8, add validation
 author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 08/28/2025
+ms.date: 01/09/2026
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
@@ -12,44 +12,57 @@ uid: tutorials/razor-pages/validation
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-10.0"
 
-In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
+In this section, you add validation logic to the `Movie` model. The app enforces the validation rules any time a user creates or edits a movie.
 
 ## Validation
 
-A key tenet of software development is called [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself"). Razor Pages encourages development where functionality is specified once, and it's reflected throughout the app. DRY can help:
+A key tenet of software development is called [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself"). Razor Pages encourages development where you specify functionality once, and it's reflected throughout the app. DRY can help:
 
 * Reduce the amount of code in an app.
 * Make the code less error prone, and easier to test and maintain.
 
-The validation support provided by Razor Pages and Entity Framework is a good example of the DRY principle:
+The validation support that Razor Pages and Entity Framework provide is a good example of the DRY principle:
 
-* Validation rules are declaratively specified in one place, in the model class.
-* Rules are enforced everywhere in the app.
-:::moniker-end
+* You declaratively specify validation rules in one place, in the model class.
+* The app enforces rules everywhere.
 
-:::moniker range=">= aspnetcore-10.0"
-[!INCLUDE[](~/includes/validation-package-net10.md)]
-:::moniker-end
+## Validation in .NET 10
 
-:::moniker range=">= aspnetcore-9.0"
+In .NET 10, the unified validation APIs are in the `Microsoft.Extensions.Validation` NuGet package. By using this package, you can use the validation APIs outside of ASP.NET Core HTTP scenarios.
+
+To use the `Microsoft.Extensions.Validation` APIs:
+
+* Add the following package reference:
+
+  ```xml
+  <PackageReference Include="Microsoft.Extensions.Validation" Version="10.0.1" />
+  ```
+
+  The functionality is the same but now requires an explicit package reference.
+
+* Register validation services by using dependency injection:
+
+    ```csharp
+    builder.Services.AddValidation();
+    ```
 
 ## Add validation rules to the movie model
 
 The <xref:System.ComponentModel.DataAnnotations> namespace provides:
 
-* A set of built-in validation attributes that are applied declaratively to a class or property.
+* A set of built-in validation attributes that you apply declaratively to a class or property.
 * Formatting attributes like `[DataType]` that help with formatting and don't provide any validation.
 
 Update the `Movie` class to take advantage of the built-in `[Required]`, `[StringLength]`, `[RegularExpression]`, and `[Range]` validation attributes.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
 * The `[Required]` and `[MinimumLength]` attributes indicate that a property must have a value. Nothing prevents a user from entering white space to satisfy this validation.
-* The `[RegularExpression]` attribute is used to limit what characters can be input. In the preceding code, `Genre`:
+* The `[RegularExpression]` attribute limits what characters can be input. In the preceding code, `Genre`:
 
   * Must only use letters.
   * The first letter must be uppercase. White spaces are allowed, while numbers and special characters aren't allowed.
@@ -63,26 +76,26 @@ The validation attributes specify behavior to enforce on the model properties th
 * The `[StringLength]` attribute can set a maximum length of a string property, and optionally its minimum length.
 * Value types, such as `decimal`, `int`, `float`, `DateTime`, are inherently required and don't need the `[Required]` attribute.
 
-The preceding validation rules are used for demonstration, they are not optimal for a production system. For example, the preceding prevents entering a movie with only two chars and doesn't allow special characters in `Genre`.
+The preceding validation rules are for demonstration. They aren't optimal for a production system. For example, the preceding rules prevent entering a movie with only two characters and don't allow special characters in `Genre`.
 
-Having validation rules automatically enforced by ASP.NET Core helps:
+By having ASP.NET Core automatically enforce validation rules, you can:
 
 * Make the app more robust.
 * Reduce chances of saving invalid data to the database.
 
-### Validation Error UI in Razor Pages
+### Validation error UI in Razor Pages
 
-Run the app and navigate to Pages/Movies.
+Run the app and go to **Pages/Movies**.
 
 Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
 
-![Movie view form with multiple jQuery client-side validation errors](~/tutorials/razor-pages/validation/_static/val.png)
+:::image type="content" source="~/tutorials/razor-pages/validation/media/validation-errors.png" alt-text="Movie view form with multiple jQuery client-side validation errors.":::
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 
-Notice how the form has automatically rendered a validation error message in each field containing an invalid value. The errors are enforced both client-side, using JavaScript and jQuery, and server-side, when a user has JavaScript disabled.
+Notice how the form automatically renders a validation error message in each field containing an invalid value. The errors are enforced both client-side, by using JavaScript and jQuery, and server-side, when a user has JavaScript disabled.
 
-A significant benefit is that **no** code changes were necessary in the Create or Edit pages. Once data annotations were applied to the model, the validation UI was enabled. The Razor Pages created in this tutorial automatically picked up the validation rules, using validation attributes on the properties of the `Movie` model class. Test validation using the Edit page, the same validation is applied.
+A significant benefit is that **no** code changes are necessary in the Create or Edit pages. Once you apply data annotations to the model, the validation UI is enabled. The Razor Pages you created in this tutorial automatically pick up the validation rules, by using validation attributes on the properties of the `Movie` model class. To test validation by using the Edit page, the same validation is applied.
 
 The form data isn't posted to the server until there are no client-side validation errors. Verify form data isn't posted by one or more of the following approaches:
 
@@ -92,14 +105,14 @@ The form data isn't posted to the server until there are no client-side validati
 
 ### Server-side validation
 
-When JavaScript is disabled in the browser, submitting the form with errors will post to the server.
+When JavaScript is disabled in the browser, submitting the form with errors posts the form to the server.
 
-Optional, test server-side validation:
+To test server-side validation:
 
-1. Disable JavaScript in the browser. JavaScript can be disabled using browser's developer tools. If JavaScript cannot be disabled in the browser, try another browser.
+1. Disable JavaScript in the browser. Use the browser's developer tools to disable JavaScript. If you can't disable JavaScript in the browser, try another browser.
 1. Set a break point in the `OnPostAsync` method of the Create or Edit page.
 1. Submit a form with invalid data.
-1. Verify the model state is invalid:
+1. Verify the model state is invalid.
 
    ```csharp
     if (!ModelState.IsValid)
@@ -108,33 +121,33 @@ Optional, test server-side validation:
     }
    ```
   
-Alternatively, [Disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
+Alternatively, [disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
 
-The following code shows a portion of the `Create.cshtml` page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
+The following code shows a portion of the `Create.cshtml` page scaffolded earlier in the tutorial. The Create and Edit pages use this code to:
 
 * Display the initial form.
 * Redisplay the form in the event of an error.
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Create.cshtml?range=14-20)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Create.cshtml?range=14-20)]
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client-side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
+The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. For more information, see [Validation](xref:mvc/models/validation).
 
-The Create and Edit pages have no validation rules in them. The validation rules and the error strings are specified only in the `Movie` class. These validation rules are automatically applied to Razor Pages that edit the `Movie` model.
+The Create and Edit pages don't contain validation rules. The validation rules and the error strings are specified only in the `Movie` class. These validation rules automatically apply to Razor Pages that edit the `Movie` model.
 
-When validation logic needs to change, it's done only in the model. Validation is applied consistently throughout the app, validation logic is defined in one place. Validation in one place helps keep the code clean, and makes it easier to maintain and update.
+When you need to change validation logic, change it only in the model. By defining validation logic in one place, you ensure consistent validation throughout the app. Validation in one place helps keep the code clean and makes it easier to maintain and update.
 
-## Use DataType Attributes
+## Use DataType attributes
 
 Examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. The `[DataType]` attribute is applied to the `ReleaseDate` and `Price` properties.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
 The `[DataType]` attributes provide:
 
 * Hints for the view engine to format the data.
-* Supplies attributes such as `<a>` for URL's and `<a href="mailto:EmailAddress.com">` for email.
+* Attributes such as `<a>` for URLs and `<a href="mailto:EmailAddress.com">` for email.
 
-Use the `[RegularExpression]` attribute to validate the format of the data. The `[DataType]` attribute is used to specify a data type that's more specific than the database intrinsic type. `[DataType]` attributes aren't validation attributes. In the sample app, only the date is displayed, without time.
+Use the `[RegularExpression]` attribute to validate the format of the data. Use the `[DataType]` attribute to specify a data type that's more specific than the database intrinsic type. `[DataType]` attributes aren't validation attributes. In the sample app, only the date is displayed, without time.
 
 The `DataType` enumeration provides many data types, such as `Date`, `Time`, `PhoneNumber`, `Currency`, `EmailAddress`, and more. 
 
@@ -156,15 +169,15 @@ The `[DisplayFormat]` attribute is used to explicitly specify the date format:
 public DateTime ReleaseDate { get; set; }
 ```
 
-The `ApplyFormatInEditMode` setting specifies that the formatting will be applied when the value is displayed for editing. That behavior may not be wanted for some fields. For example, in currency values, the currency symbol is usually not wanted in the edit UI.
+The `ApplyFormatInEditMode` setting specifies that the formatting is applied when the value is displayed for editing. That behavior might not be wanted for some fields. For example, in currency values, the currency symbol is usually not wanted in the edit UI.
 
 The `[DisplayFormat]` attribute can be used by itself, but it's generally a good idea to use the `[DataType]` attribute. The `[DataType]` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `[DataType]` attribute provides the following benefits that aren't available with `[DisplayFormat]`:
 
-* The browser can enable HTML5 features, for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.
+* The browser can enable HTML5 features, for example to show a calendar control, the locale-appropriate currency symbol, email links, and more.
 * By default, the browser renders data using the correct format based on its locale.
 * The `[DataType]` attribute can enable the ASP.NET Core framework to choose the right field template to render the data. The `DisplayFormat`, if used by itself, uses the string template.
 
-**Note:** jQuery validation doesn't work with the `[Range]` attribute and `DateTime`. For example, the following code will always display a client-side validation error, even when the date is in the specified range:
+**Note:** jQuery validation doesn't work with the `[Range]` attribute and `DateTime`. For example, the following code always displays a client-side validation error, even when the date is in the specified range:
 
 ```csharp
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
@@ -174,17 +187,17 @@ It's a best practice to avoid compiling hard dates in models, so using the `[Ran
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/MovieDateRatingDAmult.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
 
 ### Apply migrations
 
-The DataAnnotations applied to the class changes the schema. For example, the DataAnnotations applied to the `Title` field:
+The DataAnnotations you apply to the class change the schema. For example, the DataAnnotations you apply to the `Title` field:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/MovieDateRatingDA.cs?name=snippet11)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Models/MovieDateRatingDA.cs?name=snippet11)]
 
-* Limits the characters to 60.
+* Limit the characters to 60.
 * Doesn't allow a `null` value.
 
 The `Movie` table currently has the following schema:
@@ -230,7 +243,7 @@ dotnet ef database update
 
 Examine the `Up` method:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Migrations/20230606012811_New_DataAnnotations.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Migrations/20230606012811_New_DataAnnotations.cs?name=snippet_1)]
 
 The updated `Movie` table has the following schema:
 
@@ -264,6 +277,8 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 > [!div class="step-by-step"]
 > [Previous: Add a new field](xref:tutorials/razor-pages/new-field)
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation9.md)]
 
 [!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation8.md)]
 
