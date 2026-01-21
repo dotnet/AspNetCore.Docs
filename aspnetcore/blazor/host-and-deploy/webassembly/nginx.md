@@ -11,9 +11,10 @@ uid: blazor/host-and-deploy/webassembly/nginx
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly with Nginx
 
+By [Andrii Annenko](https://github.com/aannenko)
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to host and deploy Blazor WebAssembly using [Nginx](https://nginx.org/).
+This article explains how to host and deploy Blazor WebAssembly that targets .NET 8, 9 or 10 using [Nginx](https://nginx.org/).
 
 This article covers deploying the app either directly on a host or in a Docker container that includes Nginx and the published app's files. The Docker hosting section covers publishing the app, copying the published output to Nginx's web root in the container image, configuring Nginx for client-side routing, and applying common production settings.
 
@@ -70,6 +71,7 @@ http {
         /index.html         "no-cache";
         /service-worker.js  "no-cache";
 
+        # IMPORTANT: .NET 8/9 Blazor WASM apps do not fingerprint these files
         # Uncomment if the Blazor WASM app targets .NET 8/9, remove for .NET 10
         # /_framework/blazor.boot.json        "no-cache";
         # /_framework/blazor.webassembly.js   "max-age=3600";
@@ -154,6 +156,7 @@ For example, `Dockerfile`, `nginx.conf` and `BlazorSample.csproj` are all locate
 
 ```dockerfile
 # Build stage
+# IMPORTANT: change the dotnet/sdk version to the one that your Blazor app targets
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0-noble AS build
 WORKDIR /source
 
