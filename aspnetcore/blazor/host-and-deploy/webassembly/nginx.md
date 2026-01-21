@@ -12,6 +12,7 @@ uid: blazor/host-and-deploy/webassembly/nginx
 # Host and deploy ASP.NET Core Blazor WebAssembly with Nginx
 
 By [Andrii Annenko](https://github.com/aannenko)
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to host and deploy Blazor WebAssembly that targets .NET 8, 9 or 10 using [Nginx](https://nginx.org/).
