@@ -15,7 +15,7 @@ uid: blazor/host-and-deploy/webassembly/nginx
 
 This article explains how to host and deploy Blazor WebAssembly using [Nginx](https://nginx.org/).
 
-This article assumes that you want to serve a Blazor WebAssembly app as static files. It also assumes that you already have the app source code and can publish it. You might want to deploy it either directly on a host or in a Docker container image that includes Nginx and the published app files. This article helps you publish the app, copy the published output to Nginx's web root in the container image, configure Nginx for client-side routing, and apply common production settings.
+It assumes that you want to serve a Blazor WebAssembly app as static files. It also assumes that you already have the app source code and can publish it. You might want to deploy it either directly on a host or in a Docker container that includes Nginx and the published app files. This article helps you publish the app, copy the published output to Nginx's web root in the container image, configure Nginx for client-side routing, and apply common production settings.
 
 The article starts with a minimal `nginx.conf` configuration and then calls out additional options that might be useful for production deployments. After that it provides an example Dockerfile that copies this `nginx.conf` and the published app assets into a Docker image.
 
