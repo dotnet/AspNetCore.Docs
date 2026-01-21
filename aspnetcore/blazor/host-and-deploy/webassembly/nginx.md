@@ -6,20 +6,24 @@ description: Learn how to host and deploy Blazor WebAssembly using Nginx.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, linux-related-content
-ms.date: 01/19/2026
+ms.date: 01/21/2026
 uid: blazor/host-and-deploy/webassembly/nginx
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly with Nginx
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to host and deploy Blazor WebAssembly using [Nginx](https://nginx.org/). The article starts with a minimal `nginx.conf` configuration and then calls out additional options that might be useful for production deployments.
+This article explains how to host and deploy Blazor WebAssembly using [Nginx](https://nginx.org/).
+
+This article assumes that you want to serve a Blazor WebAssembly app as static files. It also assumes that you already have the app source code and can publish it. You might want to deploy it either directly on a host or in a Docker container image that includes Nginx and the published app files. This article helps you publish the app, copy the published output to Nginx's web root in the container image, configure Nginx for client-side routing, and apply common production settings.
+
+The article starts with a minimal `nginx.conf` configuration and then calls out additional options that might be useful for production deployments. After that it provides an example Dockerfile that copies this `nginx.conf` and the published app assets into a Docker image.
 
 ## Minimal `nginx.conf` for client-side routing
 
 The following `nginx.conf` file is a minimal Nginx configuration example showing how to configure Nginx to send the `index.html` file whenever it can't find a corresponding file on disk. It also directs Nginx to serve correct MIME types by defining a `types` block (alternatively, include a [`mime.types`](https://github.com/nginx/nginx/blob/7fa941a55e211ebd57f512fbfb24d59dbb97940d/conf/mime.types) file).
 
-```
+```nginx
 events { }
 http {
     types {
@@ -49,7 +53,7 @@ http {
 
 The following `nginx.conf` example builds on the minimal configuration. It includes optional settings for caching, compression, rate limiting, and security headers. Review the comments and remove or adjust settings based on your app's requirements.
 
-```
+```nginx
 events { }
 http {
     # Security hardening: Don't reveal the Nginx version in responses.
@@ -190,7 +194,7 @@ Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-w
 
   The following example configures the server for an app that responds to requests at the root path `/`:
 
-  ```
+  ```nginx
   http {
       server {
           ...
@@ -203,7 +207,7 @@ Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-w
 
   The following example configures the sub-app path of `/blazor`:
 
-  ```
+  ```nginx
   http {
       server {
           ...
