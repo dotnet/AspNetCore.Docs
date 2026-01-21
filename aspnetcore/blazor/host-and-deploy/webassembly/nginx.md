@@ -1,55 +1,187 @@
 ---
 title: Host and deploy ASP.NET Core Blazor WebAssembly with Nginx
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to host and deploy Blazor WebAssembly using Nginx.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, linux-related-content
-ms.date: 11/11/2025
+ms.date: 01/21/2026
 uid: blazor/host-and-deploy/webassembly/nginx
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly with Nginx
 
+By [Andrii Annenko](https://github.com/aannenko)
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to host and deploy Blazor WebAssembly using [Nginx](https://nginx.org/).
+This article explains how to host and deploy Blazor WebAssembly that targets .NET 8, 9 or 10 using [Nginx](https://nginx.org/).
 
-The following `nginx.conf` file is simplified to show how to configure Nginx to send the `index.html` file whenever it can't find a corresponding file on disk.
+This article covers deploying the app either directly on a host or in a Docker container that includes Nginx and the published app's files. The Docker hosting section covers publishing the app, copying the published output to Nginx's web root in the container image, configuring Nginx for client-side routing, and applying common production settings.
 
-```
+## Minimal Nginx configuration
+
+The following `nginx.conf` file is a minimal Nginx configuration example showing how to configure Nginx to send the `index.html` file whenever it can't find a corresponding file on disk. It also directs Nginx to serve correct MIME types by defining a `types` block (alternatively, include a [`mime.types`](https://github.com/nginx/nginx/blob/7fa941a55e211ebd57f512fbfb24d59dbb97940d/conf/mime.types) file).
+
+```nginx
 events { }
 http {
+    types {
+        text/html                    html;
+        text/css                     css;
+        application/javascript       js mjs;
+        application/json             json;
+        application/manifest+json    webmanifest;
+
+        application/wasm             wasm;
+
+        application/octet-stream     dll pdb webcil;
+    }
+
     server {
         listen 80;
 
         location / {
-            root      /usr/share/nginx/html;
+            root /usr/share/nginx/html;
             try_files $uri $uri/ /index.html =404;
         }
     }
 }
 ```
 
-When setting the [NGINX burst rate limit](https://www.nginx.com/blog/rate-limiting-nginx/#bursts) with [`limit_req`](https://nginx.org/docs/http/ngx_http_limit_req_module.html#limit_req) and [`limit_req_zone`](https://nginx.org/docs/http/ngx_http_limit_req_module.html), Blazor WebAssembly apps may require a large `burst`/`rate` parameter values to accommodate the relatively large number of requests made by an app. Initially, set the value to at least 60:
+## Complete Nginx configuration
 
-```
+The following `nginx.conf` example builds on the minimal configuration. It includes optional settings for caching, compression, rate limiting, and security headers. Review the comments and remove or adjust settings based on your app's requirements.
+
+```nginx
+events { }
 http {
+    # Security hardening: Don't reveal the Nginx version in responses.
+    server_tokens off;
+
+    # Optional: Rate limiting to prevent a single client from sending too 
+    # many requests.
+    # Blazor WebAssembly apps can generate many requests during startup.
     limit_req_zone $binary_remote_addr zone=one:10m rate=60r/s;
+
+    # Optional: Cache-Control policy by URI.
+    # - index.html and service-worker.js: avoid caching so app updates are picked up.
+    # - /_framework/*: fingerprinted assets can be cached long-term.
+    map $uri $cache_control {
+        default             "max-age=3600";
+        /index.html         "no-cache";
+        /service-worker.js  "no-cache";
+
+        # IMPORTANT: .NET 8/9 Blazor WASM apps do not fingerprint these files
+        # Uncomment if the Blazor WASM app targets .NET 8/9, remove for .NET 10
+        # /_framework/blazor.boot.json        "no-cache";
+        # /_framework/blazor.webassembly.js   "max-age=3600";
+        # /_framework/dotnet.js               "max-age=3600";
+
+        ~^/_framework/      "public, max-age=31536000, immutable";
+        ~\.woff2?$          "public, max-age=31536000, immutable";
+    }
+
+    # MIME types for Blazor WebAssembly assets.
+    types {
+        text/html                           html htm;
+        text/css                            css;
+        application/javascript              js mjs;
+        application/json                    json;
+        application/manifest+json           webmanifest;
+        application/wasm                    wasm;
+        text/plain                          txt;
+        text/xml                            xml;
+        application/octet-stream            bin dll exe pdb blat dat webcil;
+
+        # Images
+        image/png                           png;
+        image/jpeg                          jpg jpeg;
+        image/gif                           gif;
+        image/webp                          webp;
+        image/avif                          avif;
+        image/svg+xml                       svg;
+        image/x-icon                        ico;
+
+        # Fonts
+        font/woff                           woff;
+        font/woff2                          woff2;
+
+        # Fallback for other MIME types
+        application/octet-stream            *;
+    }
+
     server {
-        ...
+        listen 80;
 
         location / {
-            ...
+            # Root path for static site content.
+            root      /usr/share/nginx/html;
 
+            # SPA/Blazor routing:
+            # - Serve a file if it exists.
+            # - Otherwise fall back to index.html.
+            try_files $uri $uri/ /index.html =404;
+
+            # Optional: Use the rate limit zone defined above.
             limit_req zone=one burst=60 nodelay;
+
+            # Optional: Serve precompressed *.gz files (when present) instead of 
+            # compressing on the fly.
+            gzip_static on;
+
+            # Optional: Caching policy based on "map $uri $cache_control" above.
+            add_header Cache-Control $cache_control always;
+
+            # Optional: Mitigate MIME sniffing.
+            add_header X-Content-Type-Options "nosniff" always;
         }
     }
 }
 ```
 
-Increase the value if browser developer tools or a network traffic tool indicates that requests are receiving a *503 - Service Unavailable* status code.
+If browser developer tools or a network traffic tool indicates that requests are receiving a *503 - Service Unavailable* status code, increase the `rate` and `burst` values.
 
 For more information on production Nginx web server configuration, see [Creating NGINX Plus and NGINX Configuration Files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/).
+
+## Docker deployment
+
+The following Dockerfile publishes a Blazor WebAssembly app and serves the app's static web assets from an Nginx image.
+
+The example assumes that:
+
+* The app's project file is named `BlazorSample.csproj` and located at the Docker build context root.
+* An `nginx.conf` file is available at the Docker build context root.
+
+For example, `Dockerfile`, `nginx.conf` and `BlazorSample.csproj` are all located in the same directory where the rest of Blazor code is also located. In this case, `docker build` is launched in this working directory.
+
+```dockerfile
+# Build stage
+# IMPORTANT: change the dotnet/sdk version to the one that your Blazor app targets
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0-noble AS build
+WORKDIR /source
+
+RUN apt update \
+    && apt install -y python3 \
+    && dotnet workload install wasm-tools
+
+COPY . .
+RUN dotnet publish BlazorSample.csproj --output /app
+
+# Runtime stage
+FROM nginx:latest
+COPY --from=build /app/wwwroot/ /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/nginx.conf
+```
+
+Build and run the image:
+
+```bash
+docker build -t blazor-wasm-nginx .
+docker run --rm -p {PORT}:80 blazor-wasm-nginx
+```
+
+For more information, refer to [Nginx Docker guide](https://hub.docker.com/_/nginx).
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -66,7 +198,7 @@ Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-w
 
   The following example configures the server for an app that responds to requests at the root path `/`:
 
-  ```
+  ```nginx
   http {
       server {
           ...
@@ -79,7 +211,7 @@ Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-w
 
   The following example configures the sub-app path of `/blazor`:
 
-  ```
+  ```nginx
   http {
       server {
           ...
