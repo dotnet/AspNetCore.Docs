@@ -15,11 +15,9 @@ uid: blazor/host-and-deploy/webassembly/nginx
 
 This article explains how to host and deploy Blazor WebAssembly using [Nginx](https://nginx.org/).
 
-It assumes that you want to serve a Blazor WebAssembly app as static files. It also assumes that you already have the app source code and can publish it. You might want to deploy it either directly on a host or in a Docker container that includes Nginx and the published app files. This article helps you publish the app, copy the published output to Nginx's web root in the container image, configure Nginx for client-side routing, and apply common production settings.
+This article covers deploying the app either directly on a host or in a Docker container that includes Nginx and the published app's files. The Docker hosting section covers publishing the app, copying the published output to Nginx's web root in the container image, configuring Nginx for client-side routing, and applying common production settings.
 
-The article starts with a minimal `nginx.conf` configuration and then calls out additional options that might be useful for production deployments. After that it provides an example Dockerfile that copies this `nginx.conf` and the published app assets into a Docker image.
-
-## Minimal `nginx.conf` for client-side routing
+## Minimal Nginx configuration
 
 The following `nginx.conf` file is a minimal Nginx configuration example showing how to configure Nginx to send the `index.html` file whenever it can't find a corresponding file on disk. It also directs Nginx to serve correct MIME types by defining a `types` block (alternatively, include a [`mime.types`](https://github.com/nginx/nginx/blob/7fa941a55e211ebd57f512fbfb24d59dbb97940d/conf/mime.types) file).
 
@@ -49,7 +47,7 @@ http {
 }
 ```
 
-## Full `nginx.conf` example
+## Complete Nginx configuration
 
 The following `nginx.conf` example builds on the minimal configuration. It includes optional settings for caching, compression, rate limiting, and security headers. Review the comments and remove or adjust settings based on your app's requirements.
 
@@ -59,7 +57,8 @@ http {
     # Security hardening: Don't reveal the Nginx version in responses.
     server_tokens off;
 
-    # Optional: Rate limiting to prevent a single client from sending too many requests.
+    # Optional: Rate limiting to prevent a single client from sending too 
+    # many requests.
     # Blazor WebAssembly apps can generate many requests during startup.
     limit_req_zone $binary_remote_addr zone=one:10m rate=60r/s;
 
@@ -124,7 +123,8 @@ http {
             # Optional: Use the rate limit zone defined above.
             limit_req zone=one burst=60 nodelay;
 
-            # Optional: Serve precompressed *.gz files (when present) instead of compressing on the fly.
+            # Optional: Serve precompressed *.gz files (when present) instead of 
+            # compressing on the fly.
             gzip_static on;
 
             # Optional: Caching policy based on "map $uri $cache_control" above.
@@ -147,10 +147,10 @@ The following Dockerfile publishes a Blazor WebAssembly app and serves the app's
 
 The example assumes that:
 
-* The app's project file is named `YourProject.csproj` and located at the Docker build context root.
+* The app's project file is named `BlazorSample.csproj` and located at the Docker build context root.
 * An `nginx.conf` file is available at the Docker build context root.
 
-For example, `Dockerfile`, `nginx.conf` and `YourProject.csproj` are all located in the same directory where the rest of Blazor code is also located. In this case `docker build` is launched in this working directory.
+For example, `Dockerfile`, `nginx.conf` and `BlazorSample.csproj` are all located in the same directory where the rest of Blazor code is also located. In this case, `docker build` is launched in this working directory.
 
 ```dockerfile
 # Build stage
@@ -162,7 +162,7 @@ RUN apt update \
     && dotnet workload install wasm-tools
 
 COPY . .
-RUN dotnet publish YourProject.csproj --output /app
+RUN dotnet publish BlazorSample.csproj --output /app
 
 # Runtime stage
 FROM nginx:latest
