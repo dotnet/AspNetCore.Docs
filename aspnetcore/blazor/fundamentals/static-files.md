@@ -279,7 +279,7 @@ Specify the fingerprint expression with the `<StaticWebAssetFingerprintPattern>`
 </ItemGroup>
 ```
 
-Any JS module in `index.html` with the fingerprint marker is fingerprinted by the framework, including when the app is published.
+Any JS file (`*.js`) in `index.html` with the fingerprint marker is fingerprinted by the framework, including when the app is published.
 
 ## Fingerprint client-side static assets in Blazor Web Apps
 
