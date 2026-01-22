@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 03/26/2025
+ms.date: 01/22/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-controller
 ---
@@ -13,6 +13,42 @@ uid: tutorials/first-mvc-app/adding-controller
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+:::moniker range=">= aspnetcore-10.0"
+
+The Model-View-Controller (MVC) architectural pattern separates an app into three main components: **M**odel, **V**iew, and **C**ontroller. The MVC pattern helps you create apps that are more testable and easier to update than traditional monolithic apps.
+
+MVC-based apps contain:
+
+* **M**odels: Classes that represent the data of the app. The model classes use validation logic to enforce business rules for that data. Typically, model objects retrieve and store model state in a database. In this tutorial, a `Movie` model retrieves movie data from a database, provides it to the view or updates it. Updated data is written to a database.
+* **V**iews: Views are the components that display the app's user interface (UI). Generally, this UI displays the model data.
+* **C**ontrollers: Classes that:
+  * Handle browser requests.
+  * Retrieve model data.
+  * Call view templates that return a response.
+
+In an MVC app, the view only displays information. The controller handles and responds to user input and interaction. For example, the controller handles URL segments and query-string values, and passes these values to the model. The model might use these values to query the database. For example:
+
+* `https://localhost:5001/Home/Privacy`: specifies the `Home` controller and the `Privacy` action.
+* `https://localhost:5001/Movies/Edit/5`: is a request to edit the movie with ID=5 using the `Movies` controller and the `Edit` action, which are detailed later in the tutorial.
+
+Route data is explained later in the tutorial.
+
+The MVC architectural pattern separates an app into three main groups of components: Models, Views, and Controllers. This pattern helps to achieve separation of concerns: The UI logic belongs in the view. Input logic belongs in the controller. Business logic belongs in the model. This separation helps manage complexity when building an app, because it enables work on one aspect of the implementation at a time without impacting the code of another. For example, you can work on the view code without depending on the business logic code.
+
+These concepts are introduced and demonstrated in this tutorial series while building a movie app. The MVC project contains folders for the *Controllers* and *Views*.
+
+## Add a controller
+
+# [Visual Studio](#tab/visual-studio)
+
+In **Solution Explorer**, right-click **Controllers > Add > Controller**.
+
+![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/10/add-controller-VS22-17.11.0.png)
+
+In the **Add New Scaffolded Item** dialog box, select **MVC Controller - Empty** > **Add**.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 

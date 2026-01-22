@@ -3,7 +3,7 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 03/02/2025
+ms.date: 01/22/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view
 ---
@@ -13,6 +13,43 @@ uid: tutorials/first-mvc-app/adding-view
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+:::moniker range=">= aspnetcore-10.0"
+
+In this section, you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
+
+View templates are created using Razor. Razor-based view templates:
+
+* Have a `.cshtml` file extension.
+* Provide an elegant way to create HTML output with C#.
+
+Currently the `Index` method returns a string with a message in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Controllers/HelloWorldController.cs?name=snippet_AddView)]
+
+The preceding code:
+
+* Calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View%2A> method.
+* Uses a view template to generate an HTML response.
+
+Controller methods:
+
+* Are referred to as *action methods*.  For example, the `Index` action method in the preceding code.
+* Generally return an <xref:Microsoft.AspNetCore.Mvc.IActionResult> or a class derived from <xref:Microsoft.AspNetCore.Mvc.ActionResult>, not a type like `string`.
+
+## Add a view
+
+# [Visual Studio](#tab/visual-studio)
+
+Right-click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
+
+Right-click on the *Views/HelloWorld* folder, and then **Add > New Item**.
+
+In the **Add New Item** dialog, if the option to **Show All Templates** is available, select it.
+
+In the **Add New Item - MvcMovie** dialog:
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 

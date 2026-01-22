@@ -6,7 +6,7 @@ description: Part 5 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: sfi-ropc-nochange
-ms.date: 12/01/2025
+ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/working-with-sql
 ---
 
@@ -15,6 +15,10 @@ uid: tutorials/first-mvc-app/working-with-sql
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
+
+:::moniker range=">= aspnetcore-10.0"
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 

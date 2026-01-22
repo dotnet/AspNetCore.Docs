@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 6, add a model to an ASP.NET Core MVC app
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/24/2025
+ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 
@@ -13,6 +13,12 @@ uid: tutorials/first-mvc-app/controller-methods-views
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+:::moniker range=">= aspnetcore-10.0"
+
+We have a good start to the movie app, but the presentation isn't ideal, for example, **ReleaseDate** should be two words.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 

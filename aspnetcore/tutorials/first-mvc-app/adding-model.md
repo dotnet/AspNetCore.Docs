@@ -5,7 +5,7 @@ description: Part 4 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: sfi-ropc-nochange
-ms.date: 03/28/2025
+ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/adding-model
 ---
 
@@ -14,6 +14,41 @@ uid: tutorials/first-mvc-app/adding-model
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
+
+:::moniker range=">= aspnetcore-10.0"
+
+In this tutorial, classes are added for managing movies in a database. These classes are the "**M**odel" part of the **M**VC app.
+
+These model classes are used with [Entity Framework Core](/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies the data access code that you have to write.
+
+The model classes created are known as ***POCO*** classes, from **P**lain **O**ld **C**LR **O**bjects. POCO classes don't have any dependency on EF Core. They only define the properties of the data to be stored in the database.
+
+In this tutorial,  model classes are created first, and EF Core creates the database.
+
+## Add a data model class
+
+# [Visual Studio](#tab/visual-studio)
+
+Right-click the *Models* folder > **Add** > **Class**. Name the file `Movie.cs`.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Add a file named `Movie.cs` to the *Models* folder.
+
+---
+
+Update the `Models/Movie.cs` file with the following code:
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Models/Movie.cs?name=snippet_First)]
+
+The `Movie` class contains an `Id` field, which is required by the database for the primary key.
+
+The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseDate` specifies the type of the data (`Date`). With this attribute:
+
+* The user isn't required to enter time information in the date field.
+* Only the date is displayed, not time information.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 

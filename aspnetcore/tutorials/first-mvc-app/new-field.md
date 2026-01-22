@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 8 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/02/2025
+ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/new-field
 ---
 # Part 8, add a new field to an ASP.NET Core MVC app
@@ -12,6 +12,14 @@ uid: tutorials/first-mvc-app/new-field
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+:::moniker range=">= aspnetcore-10.0"
+
+In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Migrations is used to:
+
+* Add a new field to the model.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 

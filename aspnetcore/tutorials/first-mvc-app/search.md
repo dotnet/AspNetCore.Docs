@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 7 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/02/2025
+ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/search
 ---
 
@@ -13,6 +13,12 @@ uid: tutorials/first-mvc-app/search
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+:::moniker range=">= aspnetcore-10.0"
+
+In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 
