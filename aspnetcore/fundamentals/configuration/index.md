@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure app settings in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/15/2026
+ms.date: 01/22/2026
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -217,11 +217,6 @@ var defaultLogLevel = app.Configuration.GetValue<string>("Logging:LogLevel:Defau
 ```
 
 ## Access configuration in the `Startup` class
-
-<!-- Do we want to drop this section, or would
-     you prefer that I version it out in 6.0 or later
-     content?
--->
 
 *This section generally applies to ASP.NET Core apps prior to the release of .NET 6.*
 
@@ -1276,17 +1271,7 @@ In the preceding output, Index 3 has value `value40`, corresponding to `"4": "va
 
 :::moniker range="< aspnetcore-6.0"
 
-<!-- IDK why the following array binding coverage
-     was dropped out at 6.0. Let me know if you want me 
-     to see if I can find out. However, I wonder if we 
-     should even bother keeping this coverage at all. 
-     Do you want to keep it? If so, I'll edit it on a 
-     future commit here. I'm just going to skip it for
-     now on the chance that you tell me to give it the
-     axe.
--->
-
-The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection%2A> extension method:
+The following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection%2A> extension method:
 
 ```csharp
 public class Program
