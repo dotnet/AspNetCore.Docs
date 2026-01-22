@@ -49,12 +49,12 @@ Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builde
 app.Use(async (context, next) =>
 {
     // Do work that can write to the Response.
-    await next.Invoke();
+    await next.Invoke(context);
     // Do logging or other work that doesn't write to the Response.
 });
 ```
 
-When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
+*Short-circuiting* the request pipeline is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the terminal middleware still processes code after their `next.Invoke` statements. If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, use a [`Run` delegate](#run-delegate) instead of calling the <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> extension method.
 
 > [!WARNING]
 > Don't call `next.Invoke` after the response has been sent to the client. Changes to <xref:Microsoft.AspNetCore.Http.HttpResponse> after the response has started throw an exception. For example, [setting headers and a status code throw an exception](xref:fundamentals/best-practices#do-not-modify-the-status-code-or-headers-after-the-response-body-has-started). Writing to the response body after calling `next`:
@@ -74,17 +74,6 @@ app.Run(async context =>
 ```
 
 In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
-
-### Prefer app.Use overload that requires passing the context to next
-
-<!-- TODO, a minimum, provide a sample usage. Better, use this overload in the 6.0 version -->
-
-The non-allocating [app.Use](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A) extension method:
-
-* Requires passing the context to `next`.
-* Saves two internal per-request allocations that are required when using the other overload.
-
-For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/pull/31784).
 
 <a name="order"></a>
 
@@ -492,12 +481,12 @@ Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builde
 app.Use(async (context, next) =>
 {
     // Do work that can write to the Response.
-    await next.Invoke();
+    await next.Invoke(context);
     // Do logging or other work that doesn't write to the Response.
 });
 ```
 
-When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
+*Short-circuiting* the request pipeline is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the terminal middleware still processes code after their `next.Invoke` statements. If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, use a [`Run` delegate](#run-delegate) instead of calling the <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> extension method.
 
 > [!WARNING]
 > Don't call `next.Invoke` after the response has been sent to the client. Changes to <xref:Microsoft.AspNetCore.Http.HttpResponse> after the response has started throw an exception. For example, [setting headers and a status code throw an exception](xref:fundamentals/best-practices#do-not-modify-the-status-code-or-headers-after-the-response-body-has-started). Writing to the response body after calling `next`:
@@ -517,17 +506,6 @@ app.Run(async context =>
 ```
 
 In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
-
-### Prefer app.Use overload that requires passing the context to next
-
-<!-- TODO, a minimum, provide a sample usage. Better, use this overload in the 6.0 version -->
-
-The non-allocating [app.Use](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A) extension method:
-
-* Requires passing the context to `next`.
-* Saves two internal per-request allocations that are required when using the other overload.
-
-For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/pull/31784).
 
 <a name="order"></a>
 

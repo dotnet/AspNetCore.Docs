@@ -88,14 +88,14 @@ var app = builder.Build();
 app.Use(async (context, next) =>
 {
     Console.WriteLine("Work that can write to the response. (1)");
-    await next.Invoke();
+    await next.Invoke(context);
     Console.WriteLine("Work that doesn't write to the response. (1)");
 });
 
 app.Use(async (context, next) =>
 {
     Console.WriteLine("Work that can write to the response. (2)");
-    await next.Invoke();
+    await next.Invoke(context);
     Console.WriteLine("Work that doesn't write to the response. (2)");
 });
 
@@ -107,7 +107,7 @@ app.Run(async context =>
 app.Use(async (context, next) =>
 {
     Console.WriteLine("This statement isn't reached. (3)");
-    await next.Invoke();
+    await next.Invoke(context);
     Console.WriteLine("This statement isn't reached. (3)");
 });
 
@@ -124,7 +124,7 @@ In the app's console window when the app is run:
 > :::no-loc text="Work that doesn't write to the response. (2)":::  
 > :::no-loc text="Work that doesn't write to the response. (1)":::
 
-When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the terminal middleware still processes code after their `next.Invoke` statements.
+*Short-circuiting* the request pipeline is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the terminal middleware still processes code after their `next.Invoke` statements. If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, use a [`Run` delegate](#run-delegate) instead of calling the <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> extension method.
 
 Don't call `next.Invoke` during or after the response is sent to the client. After an <xref:Microsoft.AspNetCore.Http.HttpResponse> is started, changes result in an exception. For example, [setting headers or a response status code throw an exception](xref:fundamentals/best-practices#do-not-modify-the-status-code-or-headers-after-the-response-body-has-started) after the response starts. Writing to the response body after calling `next` may:
 
@@ -140,33 +140,6 @@ For more information, see [Short-circuit middleware after routing](xref:fundamen
 A <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegate doesn't receive a `next` parameter. The first `Run` delegate always terminates the pipeline. `Run` is also a convention, and some middleware may expose `Run` methods that execute at the end of the pipeline.
 
 Any <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A> or <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates after the first <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegate aren't called.
-
-## `Use` delegate overload that passes the `HttpContext` to `next` for performance
-
-<!-- DOC AUTHOR NOTE: This section covers API for >=6.0. -->
-
-<!-- PU QUESTION: Why aren't we pitching this overload all the 
-                  time here (from the start)? When is this 
-                  overload inappropriate? -->
-
-Use the non-allocating&dagger; <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A> extension method for a performance benefit:
-
-* Requires passing the <xref:Microsoft.AspNetCore.Http.HttpContext> to `next`.
-* Saves two internal per-request allocations that are normally required when using the overload that doesn't pass the <xref:Microsoft.AspNetCore.Http.HttpContext> to `next`.
-
-> [!NOTE]
-> &dagger;*Non-allocating* means that the framework avoids creating objects in memory during execution that must be disposed later.
-
-```csharp
-app.Use(async (context, next) =>
-{
-    Console.WriteLine("Work that can write to the response.");
-    await next.Invoke(context);
-    Console.WriteLine("Work that doesn't write to the response.");
-}); 
-```
-
-If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, use a [`Run` delegate](#run-delegate) instead of calling this extension method.
 
 ## Branch the middleware pipeline
 
@@ -342,7 +315,7 @@ private void HandleBranchAndRejoin(IApplicationBuilder app)
         logger.LogInformation("Branch used = {branchVer}", branchVer);
 
         Console.WriteLine("Work that can write to the response.");
-        await next.Invoke();
+        await next.Invoke(context);
         Console.WriteLine("Work that doesn't write to the response.");
     });
 }
