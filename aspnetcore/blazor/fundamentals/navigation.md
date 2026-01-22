@@ -359,49 +359,56 @@ When a component is rendered with a global interactive render mode, calling <xre
 
 Use the <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A?displayProperty=nameWithType> event for notifications when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is invoked. The event is only fired when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, not for any 404 response. For example, setting `HttpContextAccessor.HttpContext.Response.StatusCode` to `404` doesn't trigger <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>/<xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A>.
 
-Apps that implement a custom router can also use <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. The custom router can render Not Found content from two sources, depending on the state of the response:
+Apps that implement a custom router can use <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. There are two ways to inform the renderer what page should be rendered when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called.
 
-* Regardless of the response state, the re-execution path to the page can used by passing it to <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>:
+The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. When <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, the middleware renders the path passed to the method:
 
-  ```csharp
-  app.UseStatusCodePagesWithReExecute(
-      "/not-found", createScopeForStatusCodePages: true);
-  ```
+```csharp
+app.UseStatusCodePagesWithReExecute(
+    "/not-found", createScopeForStatusCodePages: true);
+```
 
-* When the response has started, the <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> can be used by subscribing to the `OnNotFoundEvent` in the router:
+If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called.
 
-  ```razor
-  @code {
-      [CascadingParameter]
-      public HttpContext? HttpContext { get; set; }
+`CustomRouter.razor`:
 
-      private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
-      {
-          // Only execute the logic if HTTP response has started,
-          // because setting NotFoundEventArgs.Path blocks re-execution
-          if (HttpContext?.Response.HasStarted == false)
-          {
-              return;
-          }
+```razor
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Http
+@implements IDisposable
+@inject NavigationManager NavigationManager
 
-          var type = typeof(CustomNotFoundPage);
-          var routeAttributes = type.GetCustomAttributes<RouteAttribute>(inherit: true);
+@code {
+    protected override void OnInitialized() =>
+        NavigationManager.OnNotFound += OnNotFoundEvent;
 
-          if (routeAttributes.Length == 0)
-          {
-              throw new InvalidOperationException($"The type {type.FullName} " +
-                  $"doesn't have a {nameof(RouteAttribute)} applied.");
-          }
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
 
-          var routeAttribute = (RouteAttribute)routeAttributes[0];
+    private void OnNotFoundEvent(object sender, NotFoundEventArgs e)
+    {
+        // Only execute the logic if HTTP response has started
+        // because setting NotFoundEventArgs.Path blocks re-execution
+        if (HttpContext?.Response.HasStarted == false)
+        {
+            return;
+        }
 
-          if (routeAttribute.Template != null)
-          {
-              e.Path = routeAttribute.Template;
-          }
-      }
-  }
-  ```
+        e.Path = GetNotFoundRoutePath();
+    }
+
+    // Return the path of the Not Found page that you want to display
+    private string GetNotFoundRoutePath()
+    {
+        ...
+    }
+
+    public void Dispose() => NavigationManager.OnNotFound -= OnNotFoundEvent;
+}
+```
+
+If you use both approaches in your app, the Not Found path specified in the `OnNotFoundEvent` handler takes precedence over the path configured in the re-execution middleware.
 
 In the following example for components that adopt [interactive server-side rendering (interactive SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), custom content is rendered depending on where <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A> is called. If the event is triggered by the following `Movie` component when a movie isn't found on component initialization, a custom message states that the requested movie isn't found. If the event is triggered by the `User` component in the following example, a different message states that the user isn't found.
 

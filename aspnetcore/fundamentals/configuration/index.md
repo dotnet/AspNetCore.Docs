@@ -16,7 +16,7 @@ includes/bind6.md and includes/bind7.md are being retained
 at the moment for comparison for work on this article
 on https://github.com/dotnet/AspNetCore.Docs/issues/36220.
 Those two files will be deleted when working #36220.
-The include/bind6.md file is being removed here in favor
+The includes/bind6.md file is being removed here in favor
 of cross-linking the Options article, which is what IMO
 should've been done in the first place.
 
@@ -40,9 +40,9 @@ App configuration in ASP.NET Core is performed using one or more [configuration 
 
 This article provides information on configuration in ASP.NET Core. For information on using configuration in non-ASP.NET Core apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
-For additional Blazor configuration guidance, which adds to or supersedes the guidance, see <xref:blazor/fundamentals/configuration>.
+For additional Blazor configuration guidance, which adds to or supersedes the guidance here, see <xref:blazor/fundamentals/configuration>.
 
-This article only pertains to app configuration. Configuration sources not primarily covered by this article include:
+This article primarily pertains to app configuration. Other types of configuration, such as launch settings files and the `web.config` file, are mentioned here, but their primary documentation is elsewhere:
 
 * Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the `Development` environment. For more information, see <xref:fundamentals/environments#development>. Some details on launch settings are covered by this article in the [Launch settings override environment variable settings](#launch-settings-override-environment-variable-settings) section.
 * `web.config`, which is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see <xref:host-and-deploy/iis/index> and <xref:host-and-deploy/aspnet-core-module>.
