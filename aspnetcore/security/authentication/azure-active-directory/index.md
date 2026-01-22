@@ -3,7 +3,7 @@ title: Microsoft identity platform and Microsoft Entra ID with ASP.NET Core
 author: wpickett
 description: Discover topics related to authentication with Microsoft identity platform Microsoft Entra ID for web apps and APIs in ASP.NET Core.
 ms.author: wpickett
-ms.date: 01/21/2020
+ms.date: 01/22/2026
 ms.custom: mvc
 uid: security/authentication/azure-active-directory/index
 ---

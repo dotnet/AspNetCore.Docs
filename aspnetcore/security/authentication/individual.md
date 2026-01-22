@@ -3,7 +3,7 @@ title: Articles based on ASP.NET Core projects created with individual accounts
 author: tdykstra
 description: Discover articles based on ASP.NET Core projects created with individual accounts.
 ms.author: tdykstra
-ms.date: 12/11/2019
+ms.date: 01/22/2026
 uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual accounts

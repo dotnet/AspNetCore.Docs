@@ -5,7 +5,7 @@ description: Learn how to set up OpenID Connect authentication in an ASP.NET Cor
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/2/2024
+ms.date: 01/22/2026
 uid: security/authentication/configure-oidc-web-authentication
 ---
 # Configure OpenID Connect Web (UI) authentication in ASP.NET Core

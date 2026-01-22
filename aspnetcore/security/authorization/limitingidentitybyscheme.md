@@ -4,7 +4,7 @@ author: wadepickett
 description: This article explains how to limit identity to a specific scheme when working with multiple authentication methods.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 1/11/2022
+ms.date: 01/22/2026
 uid: security/authorization/limitingidentitybyscheme
 ---
 # Authorize with a specific scheme in ASP.NET Core
