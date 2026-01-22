@@ -7,7 +7,7 @@ description: Discover how to prevent attacks against web apps where a malicious 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/16/2023
+ms.date: 01/22/2026
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -320,6 +320,15 @@ In the preceding code, posts to:
 * `/todo2` do ***not*** require a valid antiforgery token because <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.DisableAntiforgery%2A> is called.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_post":::
+
+> [!WARNING]
+> Calling `.DisableAntiforgery()` disables cross-site request forgery (CSRF) protection for the endpoint. This should only be used when an endpoint is not vulnerable to CSRF attacks, such as:
+>
+> * Endpoints that are not callable from a browser (for example, internal APIs)
+> * Endpoints secured with non-cookie-based authentication (for example, bearer tokens or API keys)
+> * Internal or infrastructure endpoints that do not rely on user cookies
+>
+> Do **not** disable antiforgery validation for browser-accessible endpoints that rely on cookies for authentication or that process user-submitted form data, as this exposes your application to CSRF attacks.
 
 A POST to:
 
