@@ -139,9 +139,9 @@ For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API 
 
 ### Client-side fingerprinting
 
-The release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/static-files), the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript modules. For .NET 10, you can opt-into client-side fingerprinting of JavaScript modules for standalone Blazor WebAssembly apps.
+The release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/static-files), the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript (JS) modules. For .NET 10, you can opt-into client-side fingerprinting of JS modules for standalone Blazor WebAssembly apps.
 
-In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
+In standalone Blazor WebAssembly apps during build and publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
 
 The following markup must be present in the `wwwroot/index.html` file to adopt the fingerprinting feature:
 
@@ -174,27 +174,60 @@ In the project file (`.csproj`), add the `<OverrideHtmlAssetPlaceholders>` prope
 </Project>
 ```
 
-Any script in `index.html` with the fingerprint marker is fingerprinted by the framework. For example, a script file named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
+In the following example, all developer-supplied JS files are modules with a `.js` file extension.
+
+A module named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
 
 ```html
-<script src="js/scripts#[.{fingerprint}].js"></script>
+<script type="module" src="js/scripts#[.{fingerprint}].js"></script>
 ```
 
-To fingerprint additional JS modules in standalone Blazor WebAssembly apps, use the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`).
-
-In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
+Specify the fingerprint expression with the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`):
 
 ```xml
-<StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
-  Expression="#[.{fingerprint}]!" />
+<ItemGroup>
+  <StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.js" 
+    Expression="#[.{fingerprint}]!" />
+</ItemGroup>
 ```
 
-The files are automatically placed into the import map:
+Any JS file (`*.js`) in `index.html` with the fingerprint marker is fingerprinted by the framework, including when the app is published.
 
-* Automatically for Blazor Web App CSR.
+If you adopt the `.mjs` file extension for JS modules, set the file extension with the `Pattern` parameter:
+
+```xml
+<ItemGroup>
+  <StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.mjs" 
+    Expression="#[.{fingerprint}]!" />
+</ItemGroup>
+```
+
+Files are placed into the import map:
+
+* Automatically for Blazor Web App client-side rendering (CSR).
 * When opting-into module fingerprinting in standalone Blazor WebAssembly apps per the preceding instructions.
 
 When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
+
+## Preloaded Blazor framework static assets
+
+In Blazor Web Apps, framework static assets are automatically preloaded using [`Link` headers](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Link), which allows the browser to preload resources before the initial page is fetched and rendered.
+
+In standalone Blazor WebAssembly apps, framework assets are scheduled for high priority downloading and caching early in browser `index.html` page processing when:
+
+* The `OverrideHtmlAssetPlaceholders` MSBuild property in the app's project file (`.csproj`) is set to `true`:
+
+  ```xml
+  <PropertyGroup>
+    <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
+  </PropertyGroup>
+  ```
+
+* The following `<link>` element containing [`rel="preload"`](https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/rel/preload) is present in the `<head>` content of `wwwroot/index.html`:
+
+  ```html
+  <link rel="preload" id="webassembly" />
+  ```
 
 ### Set the environment in standalone Blazor WebAssembly apps
 
@@ -400,7 +433,7 @@ If the MSBuild property is used, code that relied on <xref:Microsoft.AspNetCore.
 
 ### Blazor router has a `NotFoundPage` parameter
 
-Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when `NavigationManager.NotFound` (described in the next section) is invoked by passing a page type to the `Router` component using the `NotFoundPage` parameter. The feature supports routing, works across code Status Code Pages Re-execution Middleware, and is compatible even with non-Blazor scenarios.
+Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> (described in the next section) is invoked by passing a page type to the `Router` component using the `NotFoundPage` parameter. The feature supports routing, works across Status Code Pages Re-execution Middleware, and is compatible even with non-Blazor scenarios.
 
 The [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A) (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
 
@@ -414,15 +447,15 @@ The [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Ro
 </Router>
 ```
 
-The Blazor project template now includes a `NotFound.razor` page by default. This page automatically renders whenever `NavigationManager.NotFound` is called in your app, making it easier to handle missing routes with a consistent user experience.
+The Blazor project template now includes a `NotFound.razor` page by default. This page automatically renders whenever <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called in your app, making it easier to handle missing routes with a consistent user experience.
 
 For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#not-found-responses>.
 
 ### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
 
-The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `NotFound` method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
+The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> method to handle scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
 
-* **Static server-side rendering (static SSR)**: Calling `NotFound` sets the HTTP status code to 404.
+* **Static server-side rendering (static SSR)**: Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> sets the HTTP status code to 404.
 
 * **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#route-templates)) to render Not Found content.
 
@@ -430,7 +463,7 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a `Not
 
 Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
-`NavigationManager.NotFound` content rendering uses the following, regardless if the response has started or not (in order):
+<xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> content rendering uses the following, regardless if the response has started or not (in order):
 
 * If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> is set, render the contents of the assigned page.
 * If `Router.NotFoundPage` is set, render the assigned page.
@@ -439,22 +472,22 @@ Streaming rendering can only render components that have a route, such as a [`No
 
 [Status Code Pages Re-execution Middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
-You can use the `NavigationManager.OnNotFound` event for notifications when `NotFound` is invoked.
+You can use the <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A?displayProperty=nameWithType> event for notifications when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is invoked.
 
 For more information and examples, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#not-found-responses>.
 
 ### Support for Not Found responses in apps without Blazor's router
 
-Apps that implement a custom router can use `NavigationManager.NotFound`. There are two ways to inform the renderer what page should be rendered when `NavigationManager.NotFound` is called:
+Apps that implement a custom router can use <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. There are two ways to inform the renderer what page should be rendered when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called.
 
-The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. When `NavigationManager.NotFound` is called, the middleware renders the path passed to the method:
+The recommended approach that works regardless of the response state is to call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>. When <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, the middleware renders the path passed to the method:
 
 ```csharp
 app.UseStatusCodePagesWithReExecute(
     "/not-found", createScopeForStatusCodePages: true);
 ```
 
-If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support `NavigationManager.NotFound` for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render when `NavigationManager.NotFound` is called.
+If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, the app can still support <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> for responses that have already started. Subscribe to `OnNotFoundEvent` in the router and assign the Not Found page path to `NotFoundEventArgs.Path` to inform the renderer what content to render when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called.
 
 `CustomRouter.razor`:
 
