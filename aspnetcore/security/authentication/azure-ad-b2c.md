@@ -4,12 +4,14 @@ author: guardrex
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
 ms.author: wpickett
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 07/22/2021
+ms.date: 01/22/2026
 uid: security/authentication/azure-ad-b2c
 ---
 # Cloud authentication with Azure Active Directory B2C in ASP.NET Core
 
 By [Damien Bod](https://github.com/damienbod)
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Additionally, Azure AD B2C can provide multi-factor authentication with minimal configuration.
 
