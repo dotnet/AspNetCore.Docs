@@ -377,7 +377,7 @@ void HandleBranchAndRejoin(IApplicationBuilder app)
     app.Use(async (context, next) =>
     {
         var branchVer = context.Request.Query["branch"];
-        logger.LogInformation("Branch used = {branchVer}", branchVer);
+        logger.LogInformation("Branch used = {branchVer}", branchVer.ToString());
 
         // Do work that doesn't write to the Response.
         await next();
@@ -810,7 +810,7 @@ void HandleBranchAndRejoin(IApplicationBuilder app)
     app.Use(async (context, next) =>
     {
         var branchVer = context.Request.Query["branch"];
-        logger.LogInformation("Branch used = {branchVer}", branchVer);
+        logger.LogInformation("Branch used = {branchVer}", branchVer.ToString());
 
         // Do work that doesn't write to the Response.
         await next();
@@ -1226,7 +1226,7 @@ public class Startup
         app.Use(async (context, next) =>
         {
             var branchVer = context.Request.Query["branch"];
-            logger.LogInformation("Branch used = {branchVer}", branchVer);
+            logger.LogInformation("Branch used = {branchVer}", branchVer.ToString());
 
             // Do work that doesn't write to the Response.
             await next();

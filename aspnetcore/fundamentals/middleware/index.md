@@ -305,14 +305,14 @@ app.Run(async context =>
 
 app.Run();
 
-private void HandleBranchAndRejoin(IApplicationBuilder app)
+void HandleBranchAndRejoin(IApplicationBuilder app)
 {
     var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>(); 
 
     app.Use(async (context, next) =>
     {
         var branchVer = context.Request.Query["branch"];
-        logger.LogInformation("Branch used = {branchVer}", branchVer);
+        logger.LogInformation("Branch used = {branchVer}", branchVer.ToString());
 
         Console.WriteLine("Work that can write to the response.");
         await next.Invoke(context);
