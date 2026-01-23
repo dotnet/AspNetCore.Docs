@@ -34,7 +34,7 @@ The simplest type of claim policy looks for the presence of a claim and doesn't 
 
 Build and register the policy and call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Registering the policy takes place as part of the Authorization service configuration, typically in the `Program.cs` file:
 
-[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Program.cs?name=snippet&highlight=6-7,19)]
+[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Program.cs?name=snippet&highlight=6-7,21)]
 
 In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
 
