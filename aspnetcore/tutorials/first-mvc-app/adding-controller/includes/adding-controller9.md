@@ -1,20 +1,4 @@
----
-title: Part 2, add a controller to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 2 of tutorial series on ASP.NET Core MVC.
-ms.author: wpickett
-ms.date: 01/22/2026
-monikerRange: '>= aspnetcore-3.1'
-uid: tutorials/first-mvc-app/adding-controller
----
-
-# Part 2, add a controller to an ASP.NET Core MVC app
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 The Model-View-Controller (MVC) architectural pattern separates an app into three main components: **M**odel, **V**iew, and **C**ontroller. The MVC pattern helps you create apps that are more testable and easier to update than traditional monolithic apps.
 
@@ -44,11 +28,11 @@ These concepts are introduced and demonstrated in this tutorial series while bui
 
 In **Solution Explorer**, right-click **Controllers > Add > Controller**.
 
-:::image type="content" source="~/tutorials/first-mvc-app/adding-controller/media/add-controller.png" alt-text="Solution Explorer, right click Controllers > Add > Controller.":::
+![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/9/add-controller-VS22-17.11.0.png)
 
 In the **Add New Scaffolded Item** dialog box, select **MVC Controller - Empty** > **Add**.
 
-:::image type="content" source="~/tutorials/first-mvc-app/adding-controller/media/add-new-scaffolded-item.png" alt-text="Add MVC controller.":::
+![Add MVC controller](~/tutorials/first-mvc-app/adding-controller/_static/9/add-scaffolded-item-controller-VS22-17.11.0.png)
 
 In the **Add New Item - MvcMovie** dialog, enter *`HelloWorldController.cs`* and select **Add**.
 
@@ -56,7 +40,7 @@ In the **Add New Item - MvcMovie** dialog, enter *`HelloWorldController.cs`* and
 
 Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file `HelloWorldController.cs`.
 
-:::image type="content" source="~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png" alt-text="Contextual menu.":::
+![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png)
 
 ---
 
@@ -82,7 +66,7 @@ Run the app without the debugger by pressing <kbd>Ctrl</kbd>+<kbd>F5</kbd>.
 
 Append `/HelloWorld` to the path in the address bar. The `Index` method returns a string.
 
-:::image type="content" source="~/tutorials/first-mvc-app/adding-controller/_static/9/hello1.png" alt-text="Browser window showing an app response of This is my default action.":::
+![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/9/hello1.png)
 
 MVC invokes controller classes, and the action methods within them, depending on the incoming URL. The default [URL routing logic](xref:mvc/controllers/routing) used by MVC, uses a format like this to determine what code to invoke:
 
@@ -102,7 +86,7 @@ Browse to: `https://localhost:{PORT}/HelloWorld/Welcome`. Replace `{PORT}` with 
 
 The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
 
-:::image type="content" source="~/tutorials/first-mvc-app/adding-controller/_static/9/welcome.png" alt-text="Browser window showing an application response of This is the Welcome action method.":::
+![Browser window showing an application response of This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/9/welcome.png)
 
 Modify the code to pass some parameter information from the URL to the controller. For example, `/HelloWorld/Welcome?name=Rick&numtimes=4`.
 
@@ -120,7 +104,7 @@ Run the app and browse to: `https://localhost:{PORT}/HelloWorld/Welcome?name=Ric
 
 Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
-:::image type="content" source="~/tutorials/first-mvc-app/adding-controller/_static/9/rick4.png" alt-text="Browser window showing an application response of Hello Rick, NumTimes is 4.":::
+![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/9/rick4.png)
 
 In the previous image:
 
@@ -154,11 +138,3 @@ In the preceding example:
 > [Next: Add a View](~/tutorials/first-mvc-app/adding-view.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller3-5.md)]
