@@ -6,7 +6,7 @@ author: wadepickett
 monikerRange: '<= aspnetcore-7.0'
 ms.author: wpickett
 ms.date: 06/14/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---

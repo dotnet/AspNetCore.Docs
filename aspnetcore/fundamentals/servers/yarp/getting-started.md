@@ -5,7 +5,7 @@ description: YARP Getting Started with YARP
 author: wadepickett
 ms.author: wpickett
 ms.date: 3/6/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
