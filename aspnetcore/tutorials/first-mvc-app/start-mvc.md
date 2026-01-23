@@ -61,7 +61,7 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/10/additional-info-VS22-17.11.0.png)
+:::image type="content" source="~/tutorials/first-mvc-app/start-mvc/media/net10-additional-info.png" alt-text="Additional info dialog.":::
 
 For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -111,15 +111,15 @@ Launching the app without debugging by pressing <kbd>Ctrl</kbd>+<kbd>F5</kbd> al
 
 You can launch the app in debug or non-debug mode from the **Debug** menu:
 
-![Start Debug and Start Without Debugging menus](~/tutorials/first-mvc-app/start-mvc/_static/10/debug-and-without-debug-menus-VS22-17.11.0.png)
+:::image type="content" source="~/tutorials/first-mvc-app/start-mvc/media/debug-menu.png" alt-text="Start Debug and Start Without Debugging menus.":::
 
 You can debug the app by selecting the **https** button in the toolbar:
 
-![MvcMovie debug button](~/tutorials/first-mvc-app/start-mvc/_static/10/debug-button-VS22-17.11.0.png)
+:::image type="content" source="~/tutorials/first-mvc-app/start-mvc/media/debug-button.png" alt-text="MvcMovie debug button.":::
 
 The following image shows the app:
 
-![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/10/home90-vs.png)
+:::image type="content" source="~/tutorials/first-mvc-app/start-mvc/media/mvc-movie-home-page.png" alt-text="Home or Index page.":::
 
 * Close the browser window.  Visual Studio will stop the application.
 
@@ -143,7 +143,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 * Save the file.
 * Quickly refresh the browser and see the code changes.
 
-  ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/10/home90-vs.png)
+  :::image type="content" source="~/tutorials/first-mvc-app/start-mvc//media/mvc-movie-home-page.png" alt-text="Home or Index page.":::
 
 * Close the browser window.
 
