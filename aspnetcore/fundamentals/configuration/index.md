@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure app settings in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/22/2026
+ms.date: 01/23/2026
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -234,14 +234,14 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        var connectionString = Config["ConnectionStrings.DefaultConnection"]}");
+        var connectionString = Config["ConnectionStrings.DefaultConnection"];
 
         ...
     }
 
     public void Configure(...)
     {
-        var defaultLogLevel = Config["Logging:LogLevel:Default"]}");
+        var defaultLogLevel = Config["Logging:LogLevel:Default"];
 
         ...
     }
@@ -306,23 +306,23 @@ The Configuration API reads hierarchical configuration data by flattening the hi
 Consider the following hierarchical configuration data:
 
 * :::no-loc text="ConnectionStrings":::
-  * :::no-loc text="DefaultConnection (Value = ":::no-loc text="Data Source=LocalSqlServer\\MSSQLDev;":::")
+  * :::no-loc text="DefaultConnection (Value = 'Data Source=LocalSqlServer\\MSSQLDev;')":::
 * :::no-loc text="Logging":::
   * :::no-loc text="LogLevel":::
-    * :::no-loc text="Default"::: (Value = :::no-loc text="Information":::)
-    * :::no-loc text="Microsoft"::: (Value = :::no-loc text="Warning":::)
-    * :::no-loc text="Microsoft.Hosting.Lifetime"::: (Value = :::no-loc text="Information":::)
-* :::no-loc text="AllowedHosts"::: (Value = *)
+    * :::no-loc text="Default (Value = 'Information')":::
+    * :::no-loc text="Microsoft (Value = 'Warning')":::
+    * :::no-loc text="Microsoft.Hosting.Lifetime (Value = 'Information')":::
+* :::no-loc text="AllowedHosts (Value = '*')":::
 
 The following table displays the keys used to recover the values in the preceding configuration data. The delimiter isn't required for :::no-loc text="AllowedHosts":::.
 
 Key (colon delimiter) | Key (double-underscore delimiter)
 --- | ---
-ConnectionStrings:DefaultConnection | ConnectionStrings__DefaultConnection
-Logging:LogLevel:Default | Logging__LogLevel__Default
-Logging:LogLevel:Microsoft | Logging__LogLevel__Microsoft
-Logging:LogLevel:Microsoft.Hosting.Lifetime | Logging__LogLevel__Microsoft.Hosting.Lifetime
-AllowedHosts | AllowedHosts
+`ConnectionStrings:DefaultConnection` | `ConnectionStrings__DefaultConnection`
+`Logging:LogLevel:Default` | `Logging__LogLevel__Default`
+`Logging:LogLevel:Microsoft` | `Logging__LogLevel__Microsoft`
+`Logging:LogLevel:Microsoft.Hosting.Lifetime` | `Logging__LogLevel__Microsoft.Hosting.Lifetime`
+`AllowedHosts` | `AllowedHosts`
 
 > [!NOTE]
 > In complex app configuration scenarios, we recommend grouping and reading related hierarchical configuration data using the [Options pattern](xref:fundamentals/configuration/options).
@@ -416,7 +416,7 @@ Provider | Provides configuration from&hellip;
 [Custom configuration provider](#custom-configuration-provider) | Custom source
 [Environment Variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables
 [File Configuration Provider](#file-configuration-provider) | INI, JSON, and XML files
-[Key-per-file Configuration Provider](#key-per-file-configuration-provider) | Directory files
+[Key-Per-File Configuration Provider](#key-per-file-configuration-provider) | Directory files
 [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections
 [User secrets](xref:security/app-secrets) | File in the user profile directory
 
@@ -986,9 +986,9 @@ The previous configuration loads the following keys with `value`:
 * `key:attribute`
 * `section:key:attribute`
 
-## Key-per-file Configuration Provider
+## Key-Per-File Configuration Provider
 
-The <xref:Microsoft.Extensions.Configuration.KeyPerFile.KeyPerFileConfigurationProvider> uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-per-file Configuration Provider is used in Docker hosting scenarios.
+The <xref:Microsoft.Extensions.Configuration.KeyPerFile.KeyPerFileConfigurationProvider> uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-Per-File Configuration Provider is used in Docker hosting scenarios.
 
 To activate key-per-file configuration, call the <xref:Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions.AddKeyPerFile%2A> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>. The `directoryPath` to the files must be an absolute path.
 
@@ -1203,10 +1203,10 @@ spaces at the ends of the lines when editing the following content.
 
 -->
 
-> no-loc text="subsection0:key0 value: value200":::  
-> no-loc text="subsection0:key1 value: value201":::  
-> no-loc text="subsection1:key0 value: value210":::  
-> no-loc text="subsection1:key1 value: value211":::
+> :::no-loc text="subsection0:key0 value: value200":::  
+> :::no-loc text="subsection0:key1 value: value201":::  
+> :::no-loc text="subsection1:key0 value: value210":::  
+> :::no-loc text="subsection1:key1 value: value211":::
 
 ## Bind an array
 
@@ -1381,7 +1381,7 @@ public class Program
             {
                 config.AddInMemoryCollection(arrayDict);
                 config.AddJsonFile("Value3.json",
-                                    optional: false, reloadOnChange: false);
+                    optional: false, reloadOnChange: false);
             })
             .ConfigureWebHostDefaults(webBuilder =>
             {
@@ -1529,36 +1529,31 @@ Create the custom configuration provider by inheriting from <xref:Microsoft.Exte
 ::: moniker range=">= aspnetcore-6.0"
 
 ```csharp
-public class EFConfigurationProvider : ConfigurationProvider
+using Microsoft.EntityFrameworkCore;
+
+public class EFConfigurationProvider(Action<DbContextOptionsBuilder> optionsAction) : ConfigurationProvider
 {
-    public EFConfigurationProvider(Action<DbContextOptionsBuilder> optionsAction)
-    {
-        OptionsAction = optionsAction;
-    }
-
-    Action<DbContextOptionsBuilder> OptionsAction { get; }
-
     public override void Load()
     {
         var builder = new DbContextOptionsBuilder<EFConfigurationContext>();
 
-        OptionsAction(builder);
+        optionsAction(builder);
 
-        using (var dbContext = new EFConfigurationContext(builder.Options))
+        using var dbContext = new EFConfigurationContext(builder.Options);
+
+        if (dbContext == null || dbContext.Values == null)
         {
-            if (dbContext == null || dbContext.Values == null)
-            {
-                throw new Exception("Null DB context");
-            }
-            dbContext.Database.EnsureCreated();
-
-            Data = !dbContext.Values.Any()
-                ? CreateAndSaveDefaultValues(dbContext)
-                : dbContext.Values.ToDictionary(c => c.Id, c => c.Value);
+            throw new Exception("Null DB context");
         }
+
+        dbContext.Database.EnsureCreated();
+
+        Data = !dbContext.Values.Any()
+            ? CreateAndSaveDefaultValues(dbContext)
+            : dbContext.Values.ToDictionary(c => c.Id, c => c.Value);
     }
 
-    private static IDictionary<string, string> CreateAndSaveDefaultValues(
+    private static Dictionary<string, string> CreateAndSaveDefaultValues(
         EFConfigurationContext dbContext)
     {
         // Quotes (c)2005 Universal Pictures: Serenity
@@ -1566,9 +1561,9 @@ public class EFConfigurationProvider : ConfigurationProvider
         var configValues =
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
-                    { "quote1", "I aim to misbehave." },
-                    { "quote2", "I swallowed a bug." },
-                    { "quote3", "You can't stop the signal, Mal." }
+                { "quote1", "I aim to misbehave." },
+                { "quote2", "I swallowed a bug." },
+                { "quote3", "You can't stop the signal, Mal." }
             };
 
         if (dbContext == null || dbContext.Values == null)
@@ -1674,8 +1669,8 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 public static class EntityFrameworkExtensions
 {
     public static IConfigurationBuilder AddEFConfiguration(
-               this IConfigurationBuilder builder,
-               Action<DbContextOptionsBuilder> optionsAction)
+        this IConfigurationBuilder builder,
+        Action<DbContextOptionsBuilder> optionsAction)
     {
         return builder.Add(new EFConfigurationSource(optionsAction));
     }
