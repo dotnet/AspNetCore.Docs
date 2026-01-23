@@ -1,4 +1,5 @@
 # WebAll
-.NET 6 with Razor Pages, MVC, Web API controllers, and Minimal APIs
 
-The MVC views use the RP `_Layout.cshtml` file [WebAll/Views/_ViewStart.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authorization/claims/samples/6.x/WebAll/Views/_ViewStart.cshtml)
+ASP.NET Core sample demonstrating claims-based authorization with Razor Pages, MVC, and Web API controllers. This sample applies to ASP.NET Core 7.0 or later.
+
+The MVC views use the Razor Pages `_Layout.cshtml` file via [Views/_ViewStart.cshtml](Views/_ViewStart.cshtml).
