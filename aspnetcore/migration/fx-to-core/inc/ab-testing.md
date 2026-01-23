@@ -5,7 +5,7 @@ author: twsouthwick
 ms.author: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025
-ms.topic: article
+ms.topic: concept-article
 uid: migration/fx-to-core/inc/ab-testing
 ---
 

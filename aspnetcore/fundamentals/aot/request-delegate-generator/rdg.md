@@ -5,7 +5,7 @@ author: tdykstra
 ms.author: tdykstra
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-8.0'
-ms.topic: article
+ms.topic: concept-article
 ms.date: 03/01/2025
 uid: fundamentals/aot/rdg
 ai-usage: ai-assisted
