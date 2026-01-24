@@ -1,19 +1,4 @@
----
-title: Part 4, add a model to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 4 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.custom: sfi-ropc-nochange
-ms.date: 01/22/2026
-uid: tutorials/first-mvc-app/adding-model
----
-
-# Part 4, add a model to an ASP.NET Core MVC app
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 In this tutorial, classes are added for managing movies in a database. These classes are the "**M**odel" part of the **M**VC app.
 
@@ -78,7 +63,7 @@ Use the scaffolding tool to produce `Create`, `Read`, `Update`, and `Delete` (CR
 
 In **Solution Explorer**, right-click the *Controllers* folder and select **Add > New Scaffolded Item**.
 
-:::image type="content" source="~/tutorials/first-mvc-app/adding-model/media/new-scaffolded-item.png" alt-text="View of the menu item to add a new scaffolded item.":::
+![view of above step](~/tutorials/first-mvc-app/adding-model/_static/9/add_new_scaffoldvs22v17.11.0.png)
 
 In the **Add New Scaffolded Item** dialog:
 
@@ -86,7 +71,7 @@ In the **Add New Scaffolded Item** dialog:
 * Select  **MVC Controller with views, using Entity Framework**.
 * Select **Add**.
 
-:::image type="content" source="~/tutorials/first-mvc-app/adding-model/media/add-new-scaffolded-item.png" alt-text="Add Scaffold dialog.":::
+![Add Scaffold dialog](~/tutorials/first-mvc-app/adding-model/_static/9/add_scaffold-VS22-17.11.0.png)
 
 Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
@@ -98,7 +83,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 * **Views** and **Controller name**: Keep the default.
 * Select **Add**.
 
-:::image type="content" source="~/tutorials/first-mvc-app/adding-model/media/add-mvc-controller-with-views.png" alt-text="Add Data context keep defaults.":::
+![Add Data context keep defaults](~/tutorials/first-mvc-app/adding-model/_static/9/dc_last_step_vs22v17.11.0.png)
 
 If you get an error message, select **Add** a second time to try it again.
 
@@ -242,8 +227,6 @@ For more information on maintaining multiple providers such as Microsoft SQL Ser
 # [Visual Studio](#tab/visual-studio)
 
 Run the app and select the **Movie App** link.
-
-:::image type="content" source="~/tutorials/first-mvc-app/adding-model/media/movie-app-link.png" alt-text="App showing the Movie App view.":::
 
 If you get an exception similar to the following, you may have missed the `Update-Database` command in the [migrations step](#migration):
 
@@ -419,15 +402,3 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 > [Next: Working with SQL](~/tutorials/first-mvc-app/working-with-sql.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model5.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model3.md)]

@@ -12,8 +12,6 @@ uid: tutorials/first-mvc-app/adding-controller
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 :::moniker range=">= aspnetcore-10.0"
 
 The Model-View-Controller (MVC) architectural pattern separates an app into three main components: **M**odel, **V**iew, and **C**ontroller. The MVC pattern helps you create apps that are more testable and easier to update than traditional monolithic apps.
@@ -154,6 +152,8 @@ In the preceding example:
 > [Next: Add a View](~/tutorials/first-mvc-app/adding-view.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller9.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller8.md)]
 

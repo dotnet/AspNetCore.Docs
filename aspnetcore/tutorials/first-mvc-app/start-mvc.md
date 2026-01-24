@@ -11,8 +11,6 @@ uid: tutorials/first-mvc-app/start-mvc
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 :::moniker range=">= aspnetcore-10.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]

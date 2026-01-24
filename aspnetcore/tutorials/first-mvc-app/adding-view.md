@@ -204,6 +204,8 @@ In the next tutorial, a database of movies is created.
 
 :::moniker-end
 
+[!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view9.md)]
+
 [!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view8.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view7.md)]
