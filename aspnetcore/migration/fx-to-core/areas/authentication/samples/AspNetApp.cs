@@ -16,7 +16,7 @@ public class AppApplication : HttpApplication
         // <snippet_SystemWebAdapterConfiguration>
         HttpApplicationHost.RegisterHost(builder =>
         {
-            builder.AddSystemWebAdapters()
+            builder.Services.AddSystemWebAdapters()
                 .AddProxySupport(options => options.UseForwardedHeaders = true)
                 .AddRemoteAppServer(options =>
                 {

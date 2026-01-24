@@ -43,7 +43,7 @@ namespace MvcApp
             {
                 builder.AddServiceDefaults();
                 builder.AddSystemWebDependencyInjection();
-                builder.AddSystemWebAdapters();
+                builder.Services.AddSystemWebAdapters();
             });
 
             // Existing ASP.NET Framework configuration
@@ -80,7 +80,7 @@ Register services with the dependency injection container by accessing the `Serv
 HttpApplicationHost.RegisterHost(builder =>
 {    
     builder.AddSystemWebDependencyInjection();
-    builder.AddSystemWebAdapters();
+    builder.Services.AddSystemWebAdapters();
 
     builder.Services.AddScoped<IMyService, MyService>();
     builder.Services.AddSingleton<IDataRepository, DataRepository>();
@@ -221,7 +221,7 @@ HttpApplicationHost.RegisterHost(builder =>
         builder.Configuration.GetSection("Email"));
 
     builder.AddSystemWebDependencyInjection();
-    builder.AddSystemWebAdapters();
+    builder.Services.AddSystemWebAdapters();
 });
 
 // Consume options
