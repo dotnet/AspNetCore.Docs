@@ -4,7 +4,7 @@ public class Global : HttpApplication
         {
             HttpApplicationHost.RegisterHost(builder =>
             {
-                builder.Services.AddSystemWebAdapters()
+                builder.AddSystemWebAdapters()
                     .AddJsonSessionSerializer(options =>
                     {
                         // Serialization/deserialization requires each session key to be registered to a type
