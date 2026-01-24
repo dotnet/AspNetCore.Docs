@@ -3,7 +3,7 @@
     "content": [
       {
         "files": [ "**/*.md", "**/*.yml" ], 
-        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
+        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**", "**/lib/jquery-validation/**" ], 
         "group": "group1", 
         "src": "."
       },
