@@ -1,20 +1,4 @@
----
-title: Part 5, work with a database in an ASP.NET Core MVC app
-ai-usage: ai-assisted
-author: wadepickett
-description: Part 5 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.custom: sfi-ropc-nochange
-ms.date: 01/22/2026
-uid: tutorials/first-mvc-app/working-with-sql
----
-
-# Part 5, work with a database in an ASP.NET Core MVC app
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 ## Introduction
 
@@ -72,17 +56,17 @@ From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
 Right-click on the `Movie` table (`dbo.Movie`) **> View Designer**
 
-:::image type="content" source="~/tutorials/first-mvc-app/working-with-sql/media/view-designer.png" alt-text="Right-click on the Movie table > View Designer.":::
+![Right-click on the Movie table > View Designer.](~/tutorials/first-mvc-app/working-with-sql/_static/8/designvs22v17.8.0.png)
 
-:::image type="content" source="~/tutorials/first-mvc-app/working-with-sql/media/designer-view.png" alt-text="Movie table open in Designer.":::
+![Movie table open in Designer](~/tutorials/first-mvc-app/working-with-sql/_static/8/dv_vs22v17.8.0.png)
 
 Note the key icon next to `ID`. By default, EF makes a property named `ID` the primary key.
 
 Right-click on the `Movie` table **> View Data**
 
-:::image type="content" source="~/tutorials/first-mvc-app/working-with-sql/media/view-data.png" alt-text="Right-click on the Movie table > View Data.":::
+![Right-click on the Movie table > View Data.](~/tutorials/first-mvc-app/working-with-sql/_static/8/ssox2_vs22v17.8.0.png)
 
-:::image type="content" source="~/tutorials/first-mvc-app/working-with-sql/media/empty-movie-data.png" alt-text="Movie table open showing no data.":::
+![Movie table open showing table data](~/tutorials/first-mvc-app/working-with-sql/_static/8/vd_vs22_17.8.0.png)
 -->
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -118,6 +102,8 @@ Replace the contents of `Program.cs` with the following code. The new code is hi
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_SQLServerSeedData&highlight=4,14-20)]
 
+Delete all the records in the database. You can do this with the delete links in the browser or from SSOX.
+
 Test the app. Force the app to initialize, calling the code in the `Program.cs` file, so the seed method runs. To force initialization, close the command prompt window that Visual Studio opened, and restart by pressing Ctrl+F5.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -126,30 +112,18 @@ Update `Program.cs` with the following highlighted code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_SQLiteSeedData&highlight=4,15-20)]
 
+Delete all the records in the database.
+
 Test the app. Stop it and restart it so the `SeedData.Initialize` method runs and seeds the database.
 
 ---
 
 The app shows the seeded data.
 
-:::image type="content" source="~/tutorials/first-mvc-app/working-with-sql/media/seeded-movies.png" alt-text="MVC Movie app open in Microsoft Edge showing movie data.":::
-
-And a refresh of the `Movie` table shows the same data.
-
-:::image type="content" source="~/tutorials/first-mvc-app/working-with-sql/media/seeded-movie-data.png" alt-text="Movie table has seeded data.":::
+![MVC Movie app open in Microsoft Edge showing movie data](~/tutorials/first-mvc-app/working-with-sql/_static/9/m90-not-formatted.png)
 
 > [!div class="step-by-step"]
 > [Previous: Adding a model](~/tutorials/first-mvc-app/adding-model.md)
 > [Next: Adding controller methods and views](~/tutorials/first-mvc-app/controller-methods-views.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql3-5.md)]
