@@ -52,7 +52,7 @@ In the **Add New Item - MvcMovie** dialog:
 * Keep the **Name** box value, `Index.cshtml`.
 * Select **Add**
 
-![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/media/add-view.png)
+:::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/add-view.png" alt-text="Add New Item dialog.":::
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -73,7 +73,7 @@ Navigate to `https://localhost:{PORT}/HelloWorld`:
 * A view template file name wasn't specified, so MVC defaulted to using the default view file. When the view file name isn't specified, the default view is returned. The default view has the same name as the action method, `Index` in this example. The view template `/Views/HelloWorld/Index.cshtml` is used.
 * The following image shows the string "Hello from our View Template!" hard-coded in the view:
 
-  ![Browser window](~/tutorials/first-mvc-app/adding-view/media/hello-view-template.png)
+  :::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/hello-view-template.png" alt-text="Browser window.":::
 
 ## Change views and layout pages
 
@@ -105,7 +105,7 @@ In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mv
 
 Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - MvcMovie**
 
-![Privacy tab](~/tutorials/first-mvc-app/adding-view/media/privacy-tab.png)
+:::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/privacy-tab.png" alt-text="Privacy tab.":::
 
 Select the **Home** link.
 
@@ -147,7 +147,7 @@ If there are no changes in the browser, it could be cached content that is being
 
 The content in the `Index.cshtml` view template is merged with the `Views/Shared/_Layout.cshtml` view template. A single HTML response is sent to the browser. Layout templates make it easy to make changes that apply across all of the pages in an app. To learn more, see [Layout](xref:mvc/views/layout).
 
-![Movie List view](~/tutorials/first-mvc-app/adding-view/media/movie-list-view.png)
+:::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/movie-list-view.png" alt-text="Movie List view.":::
 
 The small bit of "data", the "Hello from our View Template!" message, is hard-coded however. The MVC application has a "V" (view), a "C" (controller), but no "M" (model) yet.
 
@@ -192,7 +192,7 @@ Save your changes and browse to the following URL:
 
 Data is taken from the URL and passed to the controller using the [MVC model binder](xref:mvc/models/model-binding). The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
-![Privacy view showing a Welcome label and the phrase Hello Rick shown four times](~/tutorials/first-mvc-app/adding-view/media/hello-rick.png)
+:::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/hello-rick.png" alt-text="Privacy view showing a Welcome label and the phrase Hello Rick shown four times.":::
 
 In the preceding sample, the `ViewData` dictionary was used to pass data from the controller to a view. Later in the tutorial, a view model is used to pass data from a controller to a view. The view model approach to passing data is preferred over the `ViewData` dictionary approach.
 
