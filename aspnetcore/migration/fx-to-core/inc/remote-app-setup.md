@@ -64,7 +64,7 @@ To configure the application to be available to handle the requests from the ASP
     {
         HttpApplicationHost.RegisterHost(builder =>
         {
-            builder.AddSystemWebAdapters()
+            builder.Services.AddSystemWebAdapters()
                 .AddRemoteAppServer(options =>
                 {
                     // ApiKey is a string representing a GUID
@@ -266,7 +266,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
         HttpApplicationHost.RegisterHost(builder =>
         {
             builder.AddServiceDefaults();
-            builder.AddSystemWebAdapters();
+            builder.Services.AddSystemWebAdapters();
         });
     }
     ```
@@ -280,7 +280,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
     var builder = WebApplication.CreateBuilder();
     
     builder.AddServiceDefaults();
-    + builder.Services.AddSystemWebAdapters();
+    + builder.AddSystemWebAdapters();
     
     ...
 
