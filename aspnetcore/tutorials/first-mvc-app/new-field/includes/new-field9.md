@@ -1,17 +1,4 @@
----
-title: Part 8, add a new field to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 8 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 01/22/2026
-uid: tutorials/first-mvc-app/new-field
----
-# Part 8, add a new field to an ASP.NET Core MVC app
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Migrations is used to:
 
@@ -62,17 +49,17 @@ Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
 You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
-![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](~/tutorials/first-mvc-app/new-field/media/add-rating-field.png)
+![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](~/tutorials/first-mvc-app/new-field/_static/9/cr-VS22-17.11.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-![Updating the existed form by inserting the new field "Rating".](~/tutorials/first-mvc-app/new-field/media/vscode-update-form.png)
+![Updating the existed form by inserting the new field "Rating".](~/tutorials/first-mvc-app/new-field/_static/9/VSCode-UpdatingForm9.png)
 
 ---
 
 Add the `Rating` property to the remaining `Create.cshtml`, `Delete.cshtml`, `Details.cshtml`, and `Edit.cshtml` view templates.
 
-Update the `SeedData` class so that it provides a value for the new column. A sample change is shown in the following code snippet, but you'll want to make this change for each `new Movie`.
+Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Models/SeedDataRating.cs?name=snippet_SeedRating&highlight=6)]
 
@@ -96,7 +83,7 @@ For this tutorial, Entity Framework Migrations is used.
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
-  ![PMC menu](~/tutorials/first-mvc-app/new-field/media/open-package-manager-console.png)
+  ![PMC menu](~/tutorials/first-mvc-app/new-field/_static/9/pmc-VS22-17.11.0.png)
 
 In the Package Manager Console, enter the following command:
 
@@ -144,15 +131,3 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Next](~/tutorials/first-mvc-app/validation.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field5.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field3.md)]
