@@ -86,7 +86,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is built in
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
 <div id="nav-scrollable" class="nav-scrollable">
-    <nav class="flex-column">
+    <nav class="nav flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
@@ -104,7 +104,37 @@ The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is built in
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-11.0"
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-11.0"
+
+```razor
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">BlazorWebAppMovies</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+    </nav>
+</div>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
 
 ```razor
 <div class="top-row ps-3 navbar navbar-dark">
@@ -191,7 +221,7 @@ The final `NavMenu` component after making the preceding changes:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-11.0"
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-11.0"
 
 ```razor
 <div class="top-row ps-3 navbar navbar-dark">
@@ -204,6 +234,42 @@ The final `NavMenu` component after making the preceding changes:
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="movies">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Movies
+            </NavLink>
+        </div>
+    </nav>
+</div>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+```razor
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Sci-fi Movies</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
