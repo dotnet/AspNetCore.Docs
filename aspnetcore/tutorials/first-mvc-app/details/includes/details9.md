@@ -1,18 +1,4 @@
----
-title: Part 10, examine the Details and Delete methods of an ASP.NET Core app
-author: wadepickett
-description: Part 10 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 01/22/2026
-uid: tutorials/first-mvc-app/details
----
-
-# Part 10, examine the Details and Delete methods of an ASP.NET Core app
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 Open the Movie controller and examine the `Details` method:
 
@@ -59,11 +45,3 @@ For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core and 
 > [Previous](~/tutorials/first-mvc-app/validation.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/details/includes/details8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/details/includes/details7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/details/includes/details6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/details/includes/details3-5.md)]
