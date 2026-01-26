@@ -51,7 +51,7 @@ The following directives and sources are commonly used for Blazor apps. Add addi
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a client-side Blazor app:
     * Specify [`wasm-unsafe-eval`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_webassembly_execution) to permit the client-side Blazor Mono runtime to function.
-    * Specify any additional hashes to permit your required *non-framework scripts* to load with [`unsafe-hashes`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src#unsafe_hashes) and script hashes to permit the inline JavaScript to load.
+    * Specify any additional hashes with the [`unsafe-hashes`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src#unsafe_hashes) source expression to permit your required *non-framework inline scripts* to load.
   * In a server-side Blazor app, specify hashes to permit required scripts to load.
 * [`style-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
