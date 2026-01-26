@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-9.0"
 
 We have a good start to the movie app, but the presentation isn't ideal, for example, **ReleaseDate** should be two words.
 

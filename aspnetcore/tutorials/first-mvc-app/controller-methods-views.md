@@ -16,7 +16,7 @@ uid: tutorials/first-mvc-app/controller-methods-views
 
 We have a good start to the movie app, but the presentation isn't ideal, for example, **ReleaseDate** should be two words.
 
-:::image type="content" source="~/tutorials/first-mvc-app/working-with-sql/media/release-date-one-word.png" alt-text="Index view: Release Date is one word (no space).":::
+:::image type="content" source="~/tutorials/first-mvc-app/controller-methods-views/media/release-date-one-word.png" alt-text="Index view: Release Date is one word (no space).":::
 
 Open the `Models/Movie.cs` file and add the highlighted lines shown below:
 
@@ -26,7 +26,7 @@ Open the `Models/Movie.cs` file and add the highlighted lines shown below:
 
 Using the data annotations above, run the application and refresh the `/Movies` page. Because the view markup uses the `@Html.DisplayNameFor` and `@Html.DisplayFor` methods to render the property name and value, the updated `Index` view shows all the fields properly formatted. For example, **Release Date** is now two words.
 
-:::image type="content" source="~/tutorials/first-mvc-app/working-with-sql/media/release-date-two-words.png" alt-text="Index view: Release Date is two words.":::
+:::image type="content" source="~/tutorials/first-mvc-app/controller-methods-views/media/release-date-two-words.png" alt-text="Index view: Release Date is two words.":::
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
