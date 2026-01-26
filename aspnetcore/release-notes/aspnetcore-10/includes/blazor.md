@@ -209,7 +209,7 @@ Files are placed into the import map:
 
 When resolving the import for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
 
-## Preloaded Blazor framework static assets
+### Preloaded Blazor framework static assets
 
 In Blazor Web Apps, framework static assets are automatically preloaded using [`Link` headers](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Link), which allows the browser to preload resources before the initial page is fetched and rendered.
 
@@ -228,6 +228,8 @@ In standalone Blazor WebAssembly apps, framework assets are scheduled for high p
   ```html
   <link rel="preload" id="webassembly" />
   ```
+
+For more information, see <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets>.
 
 ### Set the environment in standalone Blazor WebAssembly apps
 
@@ -406,12 +408,6 @@ New performance profiling and diagnostic counters are available for Blazor WebAs
 
 * <xref:blazor/performance/webassembly-browser-developer-tools?view=aspnetcore-10.0>
 * <xref:blazor/performance/webassembly-event-pipe?view=aspnetcore-10.0>
-
-### Preloaded Blazor framework static assets
-
-In Blazor Web Apps, framework static assets are automatically preloaded using [`Link` headers](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Link), which allows the browser to preload resources before the initial page is fetched and rendered. In standalone Blazor WebAssembly apps, framework assets are scheduled for high priority downloading and caching early in browser `index.html` page processing.
-
-For more information, see <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets>.
 
 ### Opt-in to avoiding a `NavigationException` during static server-side rendering with `NavigationManager.NavigateTo`
 
