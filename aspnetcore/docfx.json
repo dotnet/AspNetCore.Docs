@@ -3,7 +3,7 @@
     "content": [
       {
         "files": [ "**/*.md", "**/*.yml" ], 
-        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
+        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**", "**/lib/jquery-validation/**" ], 
         "group": "group1", 
         "src": "."
       },
@@ -44,7 +44,7 @@
       "social_image_url": "/dotnet/media/dotnet-logo.png",
       "feedback_product_url": "https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md",
       "ms.service": "aspnet-core",
-      "ms.topic": "article",
+      "ms.topic": "concept-article",
       "uhfHeaderId": "MSDocsHeader-AspNet",
       "searchScope": [ "ASP.NET Core" ],
       "zone_pivot_group_filename": "core/zone-pivot-groups.json"

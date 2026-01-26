@@ -5,7 +5,7 @@ description: YARP Session Affinity
 author: wadepickett
 ms.author: wpickett
 ms.date: 2/6/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---

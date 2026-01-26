@@ -23,7 +23,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 🥳 ***Happy Holidays!*** 🍽️
+              body: `### 👋 ***Thanks for your issue!*** 😊
 
             *Stand-by!* A green dinosaur 🦖 will be along shortly to assist.`
             })

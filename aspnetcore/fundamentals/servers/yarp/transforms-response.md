@@ -5,7 +5,7 @@ description: YARP Response and Response Trailer Transforms
 author: tdykstra
 ms.author: tdykstra
 ms.date: 04/04/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---

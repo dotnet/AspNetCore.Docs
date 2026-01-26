@@ -5,7 +5,7 @@ description: YARP HTTPS & TLS
 author: wadepickett
 ms.author: wpickett
 ms.date: 02/14/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
