@@ -27,7 +27,7 @@ When Entity Framework (EF) is used to automatically create a database from model
 
 Add a `Rating` property to `Models/Movie.cs`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Models/Movie.cs?name=snippet_AddRating&highlight=19)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie10/Models/Movie.cs?name=snippet_AddRating&highlight=19)]
 
 Build the app
 
@@ -54,7 +54,7 @@ Update the view templates in order to display, create, and edit the new `Rating`
 
 Edit the `/Views/Movies/Index.cshtml` file and add a `Rating` field:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/Movies/IndexGenreRating.cshtml?highlight=16-18,38-40&range=24-72)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Views/Movies/IndexGenreRating.cshtml?highlight=16-18,38-40&range=24-72)]
 
 Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
@@ -74,7 +74,7 @@ Add the `Rating` property to the remaining `Create.cshtml`, `Delete.cshtml`, `De
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown in the following code snippet, but you'll want to make this change for each `new Movie`.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Models/SeedDataRating.cs?name=snippet_SeedRating&highlight=6)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Models/SeedDataRating.cs?name=snippet_SeedRating&highlight=6)]
 
 The app won't work until the DB is updated to include the new field. If it's run now, the following `SqlException` is thrown:
 

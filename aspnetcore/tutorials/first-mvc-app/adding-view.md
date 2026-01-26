@@ -23,7 +23,7 @@ View templates are created using Razor. Razor-based view templates:
 
 Currently the `Index` method returns a string with a message in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Controllers/HelloWorldController.cs?name=snippet_AddView)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Controllers/HelloWorldController.cs?name=snippet_AddView)]
 
 The preceding code:
 
@@ -65,7 +65,7 @@ Add an `Index` view for the `HelloWorldController`:
 
 Replace the contents of the `Views/HelloWorld/Index.cshtml` Razor view file with the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/HelloWorld/Index.cshtml?highlight=7)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Views/HelloWorld/Index.cshtml?highlight=7)]
 
 Navigate to `https://localhost:{PORT}/HelloWorld`:
 
@@ -92,7 +92,7 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-
 
 Replace the content of the `Views/Shared/_Layout.cshtml` file with the following markup. The changes are highlighted:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Views/Shared/_Layout.cshtml?highlight=6,15,41)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie10/Views/Shared/_Layout.cshtml?highlight=6,15,41)]
 
 The preceding markup made the following changes:
 
@@ -125,7 +125,7 @@ Open the `Views/HelloWorld/Index.cshtml` view file.
 
 Change the title and `<h2>` element as highlighted in the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
 The title and `<h2>` element are slightly different so it's clear which part of the code changes the display.
 
@@ -176,7 +176,7 @@ In `HelloWorldController.cs`, change the `Welcome` method to add a `Message` and
 
 The `ViewData` dictionary is a dynamic object, which means any type can be used. The `ViewData` object has no defined properties until something is added. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters `name` and `numTimes` from the query string to parameters in the method. The complete `HelloWorldController`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Controllers/HelloWorldController.cs?name=snippet_ViewData&highlight=12-17)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie10/Controllers/HelloWorldController.cs?name=snippet_ViewData&highlight=12-17)]
 
 The `ViewData` dictionary object contains data that will be passed to the view.
 
@@ -184,7 +184,7 @@ Create a Welcome view template named `Views/HelloWorld/Welcome.cshtml`.
 
 You'll create a loop in the `Welcome.cshtml` view template that displays "Hello" `NumTimes`. Replace the contents of `Views/HelloWorld/Welcome.cshtml` with the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/HelloWorld/Welcome.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Views/HelloWorld/Welcome.cshtml)]
 
 Save your changes and browse to the following URL:
 
