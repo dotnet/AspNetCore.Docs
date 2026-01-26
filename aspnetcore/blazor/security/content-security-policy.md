@@ -209,6 +209,8 @@ For Blazor Web Apps or Blazor Server apps:
 
 Blazor Web Apps have an `ImportMap` component in `<head>` content that renders an inline import map `<script>` tag. To modify the policy to permit the import map to load, see the [Resolving CSP violations with Subresource Integrity (SRI) or a cryptographic nonce](#resolving-csp-violations-with-subresource-integrity-sri-or-a-cryptographic-nonce) section.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 For Blazor Web Apps or Blazor Server apps:
