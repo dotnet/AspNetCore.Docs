@@ -5,7 +5,7 @@ author: wadepickett
 description: Remote app setup
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.date: 12/10/2025
+ms.date: 01/26/2026
 ms.topic: article
 uid: migration/fx-to-core/inc/remote-app-setup
 zone_pivot_groups: migration-remote-app-setup
