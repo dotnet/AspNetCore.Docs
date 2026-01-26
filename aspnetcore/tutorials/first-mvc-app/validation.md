@@ -66,7 +66,7 @@ Run the app and navigate to the Movies controller.
 
 Select the **Create New** link to add a new movie. Fill out the form with some invalid values. As soon as jQuery client side validation detects the error, it displays an error message.
 
-![Movie view form with multiple jQuery client side validation errors](~/tutorials/first-mvc-app/validation/_static/10/val90.png)
+:::image type="content" source="~/tutorials/first-mvc-app/validation/_static/10/validation-errors.png" alt-text="Movie view form with multiple jQuery client side validation errors.":::
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 
@@ -88,15 +88,15 @@ You can set a break point in the `[HttpPost] Create` method and verify the metho
 
 The following image shows how to disable JavaScript in the Firefox browser.
 
-![Firefox: On the Content tab of Options, uncheck the Enable Javascript checkbox.](~/tutorials/first-mvc-app/validation/_static/10/firefox_disable_javascript90.png)
+:::image type="content" source="~/tutorials/first-mvc-app/validation/_static/10/firefox_disable_javascript90.png" alt-text="Firefox: On the Content tab of Options, uncheck the Enable Javascript checkbox.":::
 
 The following image shows how to disable JavaScript in the Chrome browser.
 
-![Google Chrome: In the Javascript section of Content settings, select Do not allow any site to run JavaScript.](~/tutorials/first-mvc-app/validation/_static/10/chrome.png)
+:::image type="content" source="~/tutorials/first-mvc-app/validation/_static/10/chrome.png" alt-text="Google Chrome: In the Javascript section of Content settings, select Do not allow any site to run JavaScript.":::
 
 After you disable JavaScript, post invalid data and step through the debugger.
 
-![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/10/ms.png)
+:::image type="content" source="~/tutorials/first-mvc-app/validation/_static/10/ms.png" alt-text="While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.":::
 
 A portion of the `Create.cshtml` view template is shown in the following markup:
 

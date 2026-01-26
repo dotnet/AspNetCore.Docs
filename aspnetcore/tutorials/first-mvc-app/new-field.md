@@ -62,11 +62,11 @@ Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
 You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
-![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](~/tutorials/first-mvc-app/new-field/media/add-rating-field.png)
+:::image type="content" source="~/tutorials/first-mvc-app/new-field/media/add-rating-field.png" alt-text="The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.":::
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-![Updating the existed form by inserting the new field "Rating".](~/tutorials/first-mvc-app/new-field/media/vscode-update-form.png)
+:::image type="content" source="~/tutorials/first-mvc-app/new-field/media/vscode-update-form.png" alt-text="Updating the existed form by inserting the new field Rating.":::
 
 ---
 
@@ -96,7 +96,7 @@ For this tutorial, Entity Framework Migrations is used.
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
-  ![PMC menu](~/tutorials/first-mvc-app/new-field/media/open-package-manager-console.png)
+:::image type="content" source="~/tutorials/first-mvc-app/new-field/media/open-package-manager-console.png" alt-text="PMC menu.":::
 
 In the Package Manager Console, enter the following command:
 
