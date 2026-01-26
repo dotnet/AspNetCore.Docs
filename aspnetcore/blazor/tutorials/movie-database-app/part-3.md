@@ -72,6 +72,40 @@ The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is built in
 
 `Components/Layout/NavMenu.razor`:
 
+:::moniker range=">= aspnetcore-11.0"
+
+```razor
+<script type="module" src="@Assets["Components/Layout/NavMenu.razor.js"]"></script>
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">BlazorWebAppMovies</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div id="nav-scrollable" class="nav-scrollable">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+    </nav>
+</div>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 ```razor
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
@@ -98,6 +132,8 @@ The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is built in
 </div>
 ```
 
+:::moniker-end
+
 Notice in the `NavMenu` component's first `<div>` element the brand link text (`<a>` element content). Change the brand from `BlazorWebAppMovies` to `Sci-fi Movies`:
 
 ```diff
@@ -116,6 +152,46 @@ To allow users to reach the movies `Index` page, add a navigation menu entry to 
 ```
 
 The final `NavMenu` component after making the preceding changes:
+
+:::moniker range=">= aspnetcore-11.0"
+
+```razor
+<script type="module" src="@Assets["Components/Layout/NavMenu.razor.js"]"></script>
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Sci-fi Movies</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div id="nav-scrollable" class="nav-scrollable">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="movies">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Movies
+            </NavLink>
+        </div>
+    </nav>
+</div>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 ```razor
 <div class="top-row ps-3 navbar navbar-dark">
@@ -148,6 +224,8 @@ The final `NavMenu` component after making the preceding changes:
     </nav>
 </div>
 ```
+
+:::moniker-end
 
 Run the app to see the updated brand at the top of the sidebar navigation and a link to reach the movies page (**Movies**):
 
