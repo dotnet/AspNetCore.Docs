@@ -44,7 +44,7 @@ The `s => s.Title!.ToUpper().Contains(searchString.ToUpper())` code above is a [
 
 Navigate to `/Movies/Index`. Append a query string such as `?searchString=Ghost` to the URL. The filtered movies are displayed.
 
-![Index view](~/tutorials/first-mvc-app/search/media/search-string-ghost.png)
+:::image type="content" source="~/tutorials/first-mvc-app/search/media/search-string-ghost.png" alt-text="Index view.":::
 
 If you change the signature of the `Index` method to have a parameter named `id`, the `id` parameter will match the optional `{id}` placeholder for the default routes set in `Program.cs`.
 
@@ -62,7 +62,7 @@ The updated `Index` method with `id` parameter:
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
-![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/first-mvc-app/search/media/index-ghost.png)
+:::image type="content" source="~/tutorials/first-mvc-app/search/media/index-ghost.png" alt-text="Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2.":::
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI elements to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound `ID` parameter, change it back so that it takes a parameter named `searchString`:
 
@@ -74,7 +74,7 @@ Open the `Views/Movies/Index.cshtml` file, and add the `<form>` markup highlight
 
 The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms), so when you submit the form, the filter string is posted to the `Index` action of the movies controller. Save your changes and then test the filter.
 
-![Index view with the word ghost typed into the Title filter textbox](~/tutorials/first-mvc-app/search/media/filter-by-title-ghost.png)
+:::image type="content" source="~/tutorials/first-mvc-app/search/media/filter-by-title-ghost.png" alt-text="Index view with the word ghost typed into the Title filter textbox.":::
 
 There's no `[HttpPost]` overload of the `Index` method as you might expect. You don't need it, because the method isn't changing the state of the app, just filtering data.
 
@@ -86,17 +86,17 @@ The `notUsed` parameter is used to create an overload for the `Index` method. We
 
 If you add this method, the action invoker would match the `[HttpPost] Index` method, and the `[HttpPost] Index` method would run as shown in the following image.
 
-![Browser window with application response of From HttpPost Index: filter on ghost](~/tutorials/first-mvc-app/search/media/http-post-index-filter.png)
+:::image type="content" source="~/tutorials/first-mvc-app/search/media/http-post-index-filter.png" alt-text="Browser window with application response of From HttpPost Index: filter on ghost.":::
 
 However, even if you add this `[HttpPost]` version of the `Index` method, there's a limitation in how this has all been implemented. Imagine that you want to bookmark a particular search or you want to send a link to friends that they can click in order to see the same filtered list of movies. Notice that the URL for the HTTP POST request is the same as the URL for the GET request (localhost:{PORT}/Movies/Index) -- there's no search information in the URL. The search string information is sent to the server as a [form field value](https://developer.mozilla.org/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data). You can verify that with the browser Developer tools or the excellent [Fiddler tool](https://www.telerik.com/fiddler). 
 
 The following image shows the Chrome browser Developer tools with the **Network** and **Headers** tabs selected:
 
-![Network and Headers tabs of Chrome browser Developer Tools showing a request body with a searchString value of ghost](~/tutorials/first-mvc-app/search/media/view-network-headers.png)
+:::image type="content" source="~/tutorials/first-mvc-app/search/media/view-network-headers.png" alt-text="Network and Headers tabs of Chrome browser Developer Tools showing a request body with a searchString value of ghost.":::
 
 The **Network** and **Payload** tabs are selected to view form data:
 
-![Network and Payload tabs of Chrome browser Developer Tools showing form data](~/tutorials/first-mvc-app/search/media/view-network-payload.png)
+:::image type="content" source="~/tutorials/first-mvc-app/search/media/view-network-payload.png" alt-text="Network and Payload tabs of Chrome browser Developer Tools showing form data.":::
 
 You can see the search parameter and [XSRF](xref:security/anti-request-forgery) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](xref:security/anti-request-forgery) antiforgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
@@ -106,7 +106,7 @@ Because the search parameter is in the request body and not the URL, you can't c
 
 Now when you submit a search, the URL contains the search query string. Searching will also go to the `HttpGet Index` action method, even if you have a `HttpPost Index` method.
 
-![Browser window showing the searchString=ghost in the Url and the movies returned, Ghostbusters and Ghostbusters 2, contain the word ghost](~/tutorials/first-mvc-app/search/media/url-has-search-query.png)
+:::image type="content" source="~/tutorials/first-mvc-app/search/media/url-has-search-query.png" alt-text="Browser window showing the searchString=ghost in the Url and the movies returned, Ghostbusters and Ghostbusters 2, contain the word ghost.":::
 
 ## Add Search by genre
 
@@ -147,7 +147,7 @@ In the preceding code, the `DisplayNameFor` HTML Helper inspects the `Title` pro
 
 Test the app by searching by genre, by movie title, and by both:
 
-![Browser window showing results of https://localhost:5001/Movies?MovieGenre=Comedy&SearchString=2](~/tutorials/first-mvc-app/search/media/filter-by-genre-title.png)
+:::image type="content" source="~/tutorials/first-mvc-app/search/media/filter-by-genre-title.png" alt-text="Browser window showing results of https://localhost:5001/Movies?MovieGenre=Comedy&SearchString=2.":::
 
 > [!div class="step-by-step"]
 > [Previous](~/tutorials/first-mvc-app/controller-methods-views.md)
