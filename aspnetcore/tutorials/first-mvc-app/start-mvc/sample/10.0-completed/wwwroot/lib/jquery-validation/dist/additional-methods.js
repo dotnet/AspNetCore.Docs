@@ -819,7 +819,7 @@ $.validator.addMethod( "iban", function( value, element ) {
 
 	bbanpattern = bbancountrypatterns[ countrycode ];
 
-	// As new countries will start using IBAN in the
+	// As new countries/regions will start using IBAN in the
 	// future, we only check if the country/region code is known.
 	// This prevents false negatives, while almost all
 	// false positives introduced by this, will be caught
