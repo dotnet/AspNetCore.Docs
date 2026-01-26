@@ -6,7 +6,7 @@ description: Learn how to use the ASP.NET Core logging framework provided by the
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/15/2026
+ms.date: 01/23/2026
 uid: fundamentals/logging/index
 ---
 # Logging in .NET and ASP.NET Core
@@ -541,18 +541,14 @@ The following `Counter` component logs from the `IncrementByOne` method with the
     private void IncrementByOne()
     {
         var logger = Logger.CreateLogger($"{typeof(Counter)}.IncrementByOne");
-
         Logger.LogInformation("Someone incremented the counter!");
-
         currentCount++;
     }
 
     private void IncrementByTen()
     {
         var logger = Logger.CreateLogger($"{typeof(Counter)}.IncrementByTen");
-
         Logger.LogInformation("Someone incremented the counter!");
-
         currentCount += 10;
     }
 }
@@ -819,7 +815,7 @@ public async Task<TodoItem> GetTodoItem(long id)
 
     using (Logger.BeginScope(new List<KeyValuePair<string, object>>
     {
-        new KeyValuePair<string, object>("TransactionId", transactionId),
+        new("TransactionId", transactionId),
     }))
     {
         Logger.LogInformation(LogEvent.GetItem, "Getting item {Id}", id);
