@@ -1,18 +1,4 @@
----
-title: Part 9, add validation to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 9 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 01/22/2026
-uid: tutorials/first-mvc-app/validation
----
-
-# Part 9, add validation to an ASP.NET Core MVC app
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 In this section:
 
@@ -25,40 +11,12 @@ One of the design tenets of MVC is [DRY](https://wikipedia.org/wiki/Don%27t_repe
 
 The validation support provided by MVC and Entity Framework Core is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
-[!INCLUDE[](~/includes/validation-package-net10.md)]
-
 ## Delete the previously edited data
 
 In the next step, validation rules are added that don't allow null values. 
 Run the app, navigate to `/Movies/Index`, delete all listed movies, and stop the app.  The app will use the seed data the next time it is run.
 
-## Add validation rules to the movie model
-
-The DataAnnotations namespace provides a set of built-in validation attributes that are applied declaratively to a class or property. DataAnnotations also contains formatting attributes like `DataType` that help with formatting and don't provide any validation.
-
-Update the `Movie` class to take advantage of the built-in validation attributes `Required`, `StringLength`, `RegularExpression`, `Range` and the `DataType` formatting attribute.
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Models/Movie.cs?name=snippet_Final&highlight=11-12,19-20,24-26,29-31)]
-
-The validation attributes specify behavior that you want to enforce on the model properties they're applied to:
-
-* The `Required` and `MinimumLength` attributes indicate that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation.
-* The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, "Genre":
-
-  * Must only use letters.
-  * The first letter is required to be uppercase. White spaces are allowed while numbers, and special
-   characters are not allowed.
-
-* The `RegularExpression` "Rating":
-
-  * Requires that the first character be an uppercase letter.
-  * Allows special characters and numbers in subsequent spaces. "PG-13" is valid for a rating, but fails for a "Genre".
-
-* The `Range` attribute constrains a value to within a specified range.
-* The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length.
-* Value types (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
-
-Having validation rules automatically enforced by ASP.NET Core helps make your app more robust. It also ensures that you can't forget to validate something and inadvertently let bad data into the database.
+[!INCLUDE[](~/includes/RP-MVC/validation-net9.md)]
 
 ## Validation Error UI
 
@@ -66,7 +24,7 @@ Run the app and navigate to the Movies controller.
 
 Select the **Create New** link to add a new movie. Fill out the form with some invalid values. As soon as jQuery client side validation detects the error, it displays an error message.
 
-![Movie view form with multiple jQuery client side validation errors](~/tutorials/first-mvc-app/validation/_static/10/val90.png)
+![Movie view form with multiple jQuery client side validation errors](~/tutorials/first-mvc-app/validation/_static/9/val90.png)
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 
@@ -88,15 +46,15 @@ You can set a break point in the `[HttpPost] Create` method and verify the metho
 
 The following image shows how to disable JavaScript in the Firefox browser.
 
-![Firefox: On the Content tab of Options, uncheck the Enable Javascript checkbox.](~/tutorials/first-mvc-app/validation/_static/10/firefox_disable_javascript90.png)
+![Firefox: On the Content tab of Options, uncheck the Enable Javascript checkbox.](~/tutorials/first-mvc-app/validation/_static/9/firefox_disable_javascript90.png)
 
 The following image shows how to disable JavaScript in the Chrome browser.
 
-![Google Chrome: In the Javascript section of Content settings, select Do not allow any site to run JavaScript.](~/tutorials/first-mvc-app/validation/_static/10/chrome.png)
+![Google Chrome: In the Javascript section of Content settings, select Do not allow any site to run JavaScript.](~/tutorials/first-mvc-app/validation/_static/9/chrome.png)
 
 After you disable JavaScript, post invalid data and step through the debugger.
 
-![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/10/ms.png)
+![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/9/ms.png)
 
 A portion of the `Create.cshtml` view template is shown in the following markup:
 
@@ -138,6 +96,18 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 
 * The `DataType` attribute can enable MVC to choose the right field template to render the data (the `DisplayFormat` if used by itself uses the string template).
 
+> [!NOTE]
+> jQuery validation doesn't work with the `Range` attribute and `DateTime`. For example, the following code will always display a client side validation error, even when the date is in the specified range:
+>
+> `[Range(typeof(DateTime), "1/1/1966", "1/1/2020")]`
+
+You will need to disable jQuery date validation to use the `Range` attribute with `DateTime`. It's generally not a good practice to compile hard dates in your models, so using the `Range` attribute and `DateTime` is discouraged.
+
+The following code shows combining attributes on one line:
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Models/Movie.cs?name=snippet_AttrOneLine)]
+
+In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
 
 ## Additional resources
 
@@ -151,13 +121,3 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 > [Next](~/tutorials/first-mvc-app/details.md)  
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation3-5.md)]
