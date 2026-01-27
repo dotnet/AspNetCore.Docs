@@ -81,7 +81,7 @@ jobs:
             Issue URL: ${{ github.event.issue.html_url }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-     # =========================================================================
+      # =========================================================================
       # STEP 4: ADD TRIAGE LABEL
       # Apply the "ai-triage-action-plan" label to indicate this issue has been
       # processed by the AI triage workflow and has an action plan generated
