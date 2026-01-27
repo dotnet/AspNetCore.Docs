@@ -260,7 +260,7 @@ Confirm that the app works with the following steps:
 
 ---
 
-:::image type="content" source="~/tutorials/signalr-typescript-webpack/media/browsers-message-broadcast.png" alt-text="Message displayed in both browser windows.":::
+:::image type="content" source="~/tutorials/signalr-typescript-webpack/media/browser-message-broadcast.png" alt-text="Message displayed in both browser windows.":::
 
 ## Next steps
 
