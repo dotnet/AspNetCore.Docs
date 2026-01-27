@@ -10,16 +10,16 @@ no-loc: [Razor]
 
 If you're migrating an app to ASP.NET Core 10, the breaking changes listed here might affect you.
 
-[!INCLUDE [binary-source-behavioral](includes/binary-source-behavioral.md)]
+[!INCLUDE [binary-source-behavioral](../includes/binary-source-behavioral.md)]
 
 | Title | Type of change    |
 |-------|-------------------|
-| [Cookie login redirects disabled for known API endpoints](./10/cookie-authentication-api-endpoints.md) | Behavioral change |
-| [Deprecation of WithOpenApi extension method](./10/withopenapi-deprecated.md) | Source incompatible |
-| [Exception diagnostics suppressed when TryHandleAsync returns true](./10/exception-handler-diagnostics-suppressed.md) | Behavioral change |
-| [IActionContextAccessor and ActionContextAccessor are obsolete](./10/iactioncontextaccessor-obsolete.md) | Source incompatible/behavioral change |
-| [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](./10/openapi-analyzers-deprecated.md) | Source incompatible |
-| [IPNetwork and ForwardedHeadersOptions.KnownNetworks are obsolete](./10/ipnetwork-knownnetworks-obsolete.md) | Source incompatible |
-| [Microsoft.Extensions.ApiDescription.Client package deprecated](./10/apidescription-client-deprecated.md) | Source incompatible |
-| [Razor runtime compilation is obsolete](./10/razor-runtime-compilation-obsolete.md) | Source incompatible |
-| [WebHostBuilder, IWebHost, and WebHost are obsolete](./10/webhostbuilder-deprecated.md) | Source incompatible |
+| [Cookie login redirects disabled for known API endpoints](cookie-authentication-api-endpoints.md) | Behavioral change |
+| [Deprecation of WithOpenApi extension method](withopenapi-deprecated.md) | Source incompatible |
+| [Exception diagnostics suppressed when TryHandleAsync returns true](exception-handler-diagnostics-suppressed.md) | Behavioral change |
+| [IActionContextAccessor and ActionContextAccessor are obsolete](iactioncontextaccessor-obsolete.md) | Source incompatible/behavioral change |
+| [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](openapi-analyzers-deprecated.md) | Source incompatible |
+| [IPNetwork and ForwardedHeadersOptions.KnownNetworks are obsolete](ipnetwork-knownnetworks-obsolete.md) | Source incompatible |
+| [Microsoft.Extensions.ApiDescription.Client package deprecated](apidescription-client-deprecated.md) | Source incompatible |
+| [Razor runtime compilation is obsolete](razor-runtime-compilation-obsolete.md) | Source incompatible |
+| [WebHostBuilder, IWebHost, and WebHost are obsolete](webhostbuilder-deprecated.md) | Source incompatible |
