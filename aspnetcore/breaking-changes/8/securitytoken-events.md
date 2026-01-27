@@ -26,7 +26,7 @@ In addition, the <xref:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler
 
 ## Type of breaking change
 
-This change is a [behavioral change](../../categories.md#behavioral-change).
+This change is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change).
 
 ## Reason for change
 

@@ -22,7 +22,7 @@ Starting in .NET 8, all the assemblies in the app are trimmed, by default. Apps 
 
 ## Type of breaking change
 
-This change can affect [source compatibility](../../categories.md#source-compatibility).
+This change can affect [source compatibility](/dotnet/core/compatibility/categories#source-compatibility).
 
 ## Reason for change
 
@@ -30,7 +30,7 @@ This change helps to decrease app size without users having to explicitly opt in
 
 ## Recommended action
 
-The best resolution is to resolve all the trim warnings in your application. For information about resolving the warnings in your own libraries, see [Introduction to trim warnings](../../../deploying/trimming/fixing-warnings.md).
+The best resolution is to resolve all the trim warnings in your application. For information about resolving the warnings in your own libraries, see [Introduction to trim warnings](/dotnet/core/deploying/trimming/fixing-warnings).
 
 To revert to the previous behavior, set the `TrimMode` property to `partial`.
 

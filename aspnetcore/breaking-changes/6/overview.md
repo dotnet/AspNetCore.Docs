@@ -9,7 +9,7 @@ no-loc: [Blazor, Razor, Kestrel]
 
 If you're migrating an app to ASP.NET Core 6, the breaking changes listed here might affect you.
 
-[!INCLUDE [binary-source-compat](includes/binary-source-compat.md)]
+[!INCLUDE [binary-source-compat](../includes/binary-source-compat.md)]
 
 | Title | Binary compatible | Source compatible |
 | - | :-: | :-: |

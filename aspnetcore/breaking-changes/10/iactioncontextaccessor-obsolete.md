@@ -45,7 +45,7 @@ Starting in .NET 10, using `IActionContextAccessor` and `ActionContextAccessor` 
 
 ## Type of breaking change
 
-This change can affect [source compatibility](../../categories.md#source-compatibility).
+This change can affect [source compatibility](/dotnet/core/compatibility/categories#source-compatibility).
 
 ## Reason for change
 

@@ -129,7 +129,7 @@ Update code calling these APIs to reflect the revised nullability contracts.
 
 ## See also
 
-- [Nullable reference type annotation changes in core .NET libraries](../../core-libraries/6.0/nullable-ref-type-annotation-changes.md)
+- [Nullable reference type annotation changes in core .NET libraries](/dotnet/core/compatibility/core-libraries/6.0/nullable-ref-type-annotation-changes)
 
 <!--
 

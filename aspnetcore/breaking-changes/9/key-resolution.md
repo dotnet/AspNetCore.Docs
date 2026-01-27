@@ -22,7 +22,7 @@ Starting in .NET 9, if `ShouldGenerateNewKey` is `true`, it indicates that eithe
 
 ## Type of breaking change
 
-This change is a [behavioral change](../../categories.md#behavioral-change).
+This change is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change).
 
 ## Reason for change
 

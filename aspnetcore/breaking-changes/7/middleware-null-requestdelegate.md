@@ -22,7 +22,7 @@ The file-serving middleware will now only perform no action if there's an active
 
 ## Type of breaking change
 
-This change affects [binary compatibility](../../categories.md#binary-compatibility).
+This change affects [binary compatibility](/dotnet/core/compatibility/categories#binary-compatibility).
 
 ## Reason for change
 

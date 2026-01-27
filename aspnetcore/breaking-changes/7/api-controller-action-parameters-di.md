@@ -72,7 +72,7 @@ The mechanism to infer binding sources of API controller action parameters follo
 
 ## Type of breaking change
 
-This change affects [source compatibility](../../categories.md#source-compatibility).
+This change affects [source compatibility](/dotnet/core/compatibility/categories#source-compatibility).
 
 ## Reason for change
 

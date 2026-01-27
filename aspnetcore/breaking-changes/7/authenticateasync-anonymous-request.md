@@ -22,7 +22,7 @@ Starting in .NET 7, <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttp
 
 ## Type of breaking change
 
-This change can affect [binary compatibility](../../categories.md#binary-compatibility).
+This change can affect [binary compatibility](/dotnet/core/compatibility/categories#binary-compatibility).
 
 ## Reason for change
 

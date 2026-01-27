@@ -7,7 +7,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/460
 ---
 # PreserveCompilationContext not configured by default
 
-[`PreserveCompilationContext`](../../../project-sdk/msbuild-props.md#preservecompilationcontext) is an MSBuild property that causes .NET Core projects to emit additional content to the application's dependency (.deps) file about how the app was compiled. This is primarily used to support runtime compilation scenarios.
+[`PreserveCompilationContext`](/dotnet/core/project-sdk/msbuild-props#preservecompilationcontext) is an MSBuild property that causes .NET Core projects to emit additional content to the application's dependency (.deps) file about how the app was compiled. This is primarily used to support runtime compilation scenarios.
 
 Prior to .NET 6, `PreserveCompilationContext` was set to `true` for all apps that target the Razor (Microsoft.NET.Sdk.Razor) and Web (Microsoft.NET.Sdk.Web) SDKs. Starting in .NET 6, this property is no longer configured by default. However, packages such as Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation configure this property as required.
 

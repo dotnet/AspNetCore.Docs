@@ -31,7 +31,7 @@ Starting in .NET 10, unauthenticated and unauthorized requests made to known API
 
 ## Type of breaking change
 
-This change is a [behavioral change](../../categories.md#behavioral-change).
+This change is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change).
 
 ## Reason for change
 

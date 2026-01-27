@@ -7,7 +7,7 @@ ms.date: 12/14/2020
 
 If you're migrating an app to ASP.NET Core 5, the breaking changes listed here might affect you. Changes are grouped by technology area, such as ASP.NET Core or cryptography.
 
-[!INCLUDE [binary-source-compat](includes/binary-source-compat.md)]
+[!INCLUDE [binary-source-compat](../includes/binary-source-compat.md)]
 
 | Title | Binary compatible | Source compatible |
 | - | - | - |

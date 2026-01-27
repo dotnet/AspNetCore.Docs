@@ -30,7 +30,7 @@ HTTP binding is unchanged.
 
 ## Type of breaking change
 
-This change affects [binary compatibility](../../categories.md#binary-compatibility).
+This change affects [binary compatibility](/dotnet/core/compatibility/categories#binary-compatibility).
 
 ## Reason for change
 

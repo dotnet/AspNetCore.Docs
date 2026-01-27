@@ -40,7 +40,7 @@ Starting in .NET 9, neither constructor is preferred, and construction fails wit
 
 ## Type of breaking change
 
-This change is a [behavioral change](../../categories.md#behavioral-change).
+This change is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change).
 
 ## Reason for change
 

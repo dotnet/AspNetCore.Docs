@@ -23,7 +23,7 @@ var jsObjectReference = await JSRuntime.InvokeAsync<JSObjectReference>(...);
 
 ## New behavior
 
-`JSObjectReference` uses the [internal](../../../../csharp/language-reference/keywords/internal.md) access modifier. The `public` `IJSObjectReference` interface must be used instead. For example:
+`JSObjectReference` uses the [internal](/dotnet/csharp/language-reference/keywords/internal) access modifier. The `public` `IJSObjectReference` interface must be used instead. For example:
 
 ```csharp
 var jsObjectReference = await JSRuntime.InvokeAsync<IJSObjectReference>(...);

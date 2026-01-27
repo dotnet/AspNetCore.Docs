@@ -24,7 +24,7 @@ ASP.NET Core 6.0 RC1
 
 ## Change category
 
-This change affects [*binary compatibility*](../../categories.md#binary-compatibility).
+This change affects [*binary compatibility*](/dotnet/core/compatibility/categories#binary-compatibility).
 
 ## Reason for change
 

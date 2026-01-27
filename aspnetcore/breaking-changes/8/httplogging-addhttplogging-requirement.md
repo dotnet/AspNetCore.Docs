@@ -23,7 +23,7 @@ Starting in .NET 8, if you don't also call <xref:Microsoft.Extensions.Dependency
 
 ## Type of breaking change
 
-This change is a [behavioral change](../../categories.md#behavioral-change).
+This change is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change).
 
 ## Reason for change
 

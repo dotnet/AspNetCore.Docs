@@ -28,7 +28,7 @@ This change can cause behavior like infinite redirects if you're using the HTTPS
 
 ## Type of breaking change
 
-This change is a [behavioral change](../../categories.md#behavioral-change).
+This change is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change).
 
 ## Reason for change
 
@@ -58,7 +58,7 @@ If you wish to enable the previous behavior, which isn't recommended due to secu
 
 You can also set the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable to `true`, which clears the lists and enables `ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto`.
 
-For applications that target .NET 9 or earlier, you can set the `Microsoft.AspNetCore.HttpOverrides.IgnoreUnknownProxiesWithoutFor` [AppContext](../../../../fundamentals/runtime-libraries/system-appcontext.md) switch to `"true"` or `1` to get back to the previous behavior. Alternatively, set the `MICROSOFT_ASPNETCORE_HTTPOVERRIDES_IGNORE_UNKNOWN_PROXIES_WITHOUT_FOR` environment variable.
+For applications that target .NET 9 or earlier, you can set the `Microsoft.AspNetCore.HttpOverrides.IgnoreUnknownProxiesWithoutFor` [AppContext](/dotnet/fundamentals/runtime-libraries/system-appcontext) switch to `"true"` or `1` to get back to the previous behavior. Alternatively, set the `MICROSOFT_ASPNETCORE_HTTPOVERRIDES_IGNORE_UNKNOWN_PROXIES_WITHOUT_FOR` environment variable.
 
 > [!NOTE]
 > In cloud environments, the proxy IPs can change over the lifetime of the app, and `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is sometimes used to make forwarded headers work.

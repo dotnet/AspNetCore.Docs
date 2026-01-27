@@ -30,7 +30,7 @@ Using `IWebHost` or `WebHost` produces a compiler warning with diagnostic ID `AS
 
 ## Type of breaking change
 
-This change can affect [source compatibility](../../categories.md#source-compatibility).
+This change can affect [source compatibility](/dotnet/core/compatibility/categories#source-compatibility).
 
 ## Reason for change
 

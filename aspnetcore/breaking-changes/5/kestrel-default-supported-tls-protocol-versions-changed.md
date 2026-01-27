@@ -38,7 +38,7 @@ Unless your app has a specific reason not to, you should use the new defaults. V
 
 To disable older protocols, take one of the following actions:
 
-* Disable older protocols, such as TLS 1.0, system-wide with the [Windows instructions](../../../../framework/network-programming/tls.md#configure-schannel-protocols-in-the-windows-registry). It's currently enabled by default on all Windows versions.
+* Disable older protocols, such as TLS 1.0, system-wide with the [Windows instructions](/dotnet/framework/network-programming/tls#configure-schannel-protocols-in-the-windows-registry). It's currently enabled by default on all Windows versions.
 * Manually select which protocols you want to support in code as follows:
 
     ```csharp

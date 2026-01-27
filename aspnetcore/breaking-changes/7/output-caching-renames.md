@@ -45,7 +45,7 @@ For other changes, see the first section of this article.
 
 ## Type of breaking change
 
-This change affects [source compatibility](../../categories.md#source-compatibility) and [binary compatibility](../../categories.md#binary-compatibility).
+This change affects [source compatibility](/dotnet/core/compatibility/categories#source-compatibility) and [binary compatibility](/dotnet/core/compatibility/categories#binary-compatibility).
 
 ## Reason for change
 

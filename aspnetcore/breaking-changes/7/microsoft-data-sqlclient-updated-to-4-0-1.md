@@ -25,7 +25,7 @@ By default, `Encrypt` now equals `true`. For more information, see [Encrypt defa
 
 ## Type of breaking change
 
-This change affects [source compatibility](../../categories.md#source-compatibility).
+This change affects [source compatibility](/dotnet/core/compatibility/categories#source-compatibility).
 
 ## Reason for change
 

@@ -28,7 +28,7 @@ Applications could use APIs provided by these libraries by referencing the [Micr
 
 ## New behavior
 
-If you use APIs from the affected assemblies without having a [PackageReference](../../../project-sdk/msbuild-props.md#packagereference) in your project file, you might see runtime errors. For example, an application that uses reflection to access APIs from one of these assemblies without adding an explicit reference to the package will have runtime errors. The `PackageReference` ensures that the assemblies are present as part of the application output.
+If you use APIs from the affected assemblies without having a [PackageReference](/dotnet/core/project-sdk/msbuild-props#packagereference) in your project file, you might see runtime errors. For example, an application that uses reflection to access APIs from one of these assemblies without adding an explicit reference to the package will have runtime errors. The `PackageReference` ensures that the assemblies are present as part of the application output.
 
 For discussion, see <https://github.com/dotnet/aspnetcore/issues/31007>.
 
@@ -38,7 +38,7 @@ This change was introduced to reduce the size of the ASP.NET Core shared framewo
 
 ## Recommended action
 
-To continue using these APIs in your project, add a [PackageReference](../../../project-sdk/msbuild-props.md#packagereference). For example:
+To continue using these APIs in your project, add a [PackageReference](/dotnet/core/project-sdk/msbuild-props#packagereference). For example:
 
 ```xml
 <PackageReference Include="System.Security.Permissions" Version="6.0.0" />

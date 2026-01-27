@@ -23,7 +23,7 @@ Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv and its libuv.dll dependency
 
 ## Type of breaking change
 
-This change affects [binary compatibility](../../categories.md#binary-compatibility) and [source compatibility](../../categories.md#source-compatibility).
+This change affects [binary compatibility](/dotnet/core/compatibility/categories#binary-compatibility) and [source compatibility](/dotnet/core/compatibility/categories#source-compatibility).
 
 ## Reason for change
 

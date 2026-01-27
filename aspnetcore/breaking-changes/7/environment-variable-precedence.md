@@ -24,7 +24,7 @@ Command-line arguments and `DOTNET_`-prefixed environment variables override `AS
 
 ## Type of breaking change
 
-This is a [behavioral change](../../categories.md#behavioral-change).
+This is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change).
 
 ## Reason for change
 

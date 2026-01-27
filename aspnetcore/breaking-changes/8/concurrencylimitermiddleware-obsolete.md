@@ -33,11 +33,11 @@ app.Run();
 
 ## New behavior
 
-If you use the [Affected APIs](#affected-apis) in your code, you'll get warning [`CS0618`](../../../../csharp/language-reference/compiler-messages/cs0618.md) at compile time.
+If you use the [Affected APIs](#affected-apis) in your code, you'll get warning [`CS0618`](/dotnet/csharp/language-reference/compiler-messages/cs0618) at compile time.
 
 ## Type of breaking change
 
-This change affects [source compatibility](../../categories.md#source-compatibility).
+This change affects [source compatibility](/dotnet/core/compatibility/categories#source-compatibility).
 
 ## Reason for change
 
