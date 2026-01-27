@@ -229,7 +229,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 :::moniker-end
 
-[!INCLUDE[](~/tutorials/signalr/includes/signalr8.md)]
+[!INCLUDE[](~/tutorials/signalr/includes/signalr8-9.md)]
 
 [!INCLUDE[](~/tutorials/signalr/includes/signalr7.md)]
 

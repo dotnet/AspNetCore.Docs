@@ -14,8 +14,6 @@ uid: tutorials/signalr-typescript-webpack
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-By [Sébastien Sougnez](https://twitter.com/s_sougnez)
-
 :::moniker range=">= aspnetcore-10.0"
 
 This tutorial demonstrates using [Webpack](https://webpack.js.org/) in an ASP.NET Core SignalR web app to bundle and build a client written in [TypeScript](https://www.typescriptlang.org/). Webpack enables developers to bundle and build the client-side resources of a web app.
@@ -73,7 +71,7 @@ Visual Studio adds the NuGet package under the **Dependencies** node in **Soluti
 
 :::moniker-end
 
-[!INCLUDE[](~/tutorials/signalr-typescript-webpack/includes/signalr-typescript-webpack8.md)]
+[!INCLUDE[](~/tutorials/signalr-typescript-webpack/includes/signalr-typescript-webpack8-9.md)]
 
 [!INCLUDE[](~/tutorials/signalr-typescript-webpack/includes/signalr-typescript-webpack7.md)]
 
