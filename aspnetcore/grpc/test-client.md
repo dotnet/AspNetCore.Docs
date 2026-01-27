@@ -20,7 +20,7 @@ Testing is an important aspect of building stable and maintainable software. Par
 
 To demonstrate client app tests, review the following type in the sample app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 The `Worker` is a [BackgroundService](xref:Microsoft.Extensions.Hosting.BackgroundService) that makes calls to a gRPC server.
 
@@ -48,6 +48,7 @@ The preceding unit test:
 * Mocks `IGreetRepository` and `TesterClient` using [Moq](https://www.nuget.org/packages/Moq).
 * Starts the worker.
 * Verifies `SaveGreeting` is called with the greeting message returned by the mocked `TesterClient`.
+* Uses the [`CallHelpers` from the gRPC examples](https://github.com/grpc/grpc-dotnet/blob/2e283d98f5861e31f8956be0c68aff9a4e29cb0a/examples/Tester/Tests/Client/Helpers/CallHelpers.cs)
 
 ## Additional resources
 

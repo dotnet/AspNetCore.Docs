@@ -3,7 +3,7 @@ title: Build a Blazor movie database app (Overview)
 author: guardrex
 description: This tutorial explains the basics of building a Blazor Web App with a database, Entity Framework (EF) Core, and user interactivity.
 ms.author: wpickett
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 monikerRange: '>= aspnetcore-8.0'
 ms.custom: mvc
 uid: blazor/tutorials/movie-database-app/index
@@ -29,10 +29,8 @@ At the end of the tutorial, you'll have a Blazor Web App that can display and ma
 
 ## Secure authentication flow required for production apps
 
-This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
+This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see <xref:blazor/security/index> and the following articles in the *Server* security node:
 
-* <xref:blazor/security/index>
-* <xref:blazor/security/index> and the following articles in the *Server* security node
 * <xref:blazor/security/blazor-web-app-oidc>
 * <xref:blazor/security/blazor-web-app-entra>
 

@@ -5,7 +5,7 @@ description: Find information on Razor components provided by the Blazor framewo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/built-in-components
 ---
 # ASP.NET Core built-in Razor components
@@ -39,8 +39,8 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutComponentBase`](xref:blazor/components/layouts#create-a-layout-component)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`NavigationLock`](xref:blazor/fundamentals/routing#handleprevent-location-changes)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
+* [`NavigationLock`](xref:blazor/fundamentals/navigation#handleprevent-location-changes)
+* [`NavLink`](xref:blazor/fundamentals/navigation#navlink-component)
 * [`PageTitle`](xref:blazor/components/control-head-content)
 * [`OwningComponentBase`](xref:fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [`Paginator`](xref:blazor/components/quickgrid#page-items-with-a-paginator-component)
@@ -79,8 +79,8 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutComponentBase`](xref:blazor/components/layouts#create-a-layout-component)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`NavigationLock`](xref:blazor/fundamentals/routing#handleprevent-location-changes)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
+* [`NavigationLock`](xref:blazor/fundamentals/navigation#handleprevent-location-changes)
+* [`NavLink`](xref:blazor/fundamentals/navigation#navlink-component)
 * [`PageTitle`](xref:blazor/components/control-head-content)
 * [`OwningComponentBase`](xref:fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [`Paginator`](xref:blazor/components/quickgrid#page-items-with-a-paginator-component)
@@ -117,8 +117,8 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutComponentBase`](xref:blazor/components/layouts#create-a-layout-component)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`NavigationLock`](xref:blazor/fundamentals/routing#handleprevent-location-changes)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
+* [`NavigationLock`](xref:blazor/fundamentals/navigation#handleprevent-location-changes)
+* [`NavLink`](xref:blazor/fundamentals/navigation#navlink-component)
 * [`OwningComponentBase`](xref:fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [`PageTitle`](xref:blazor/components/control-head-content)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
@@ -151,7 +151,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutComponentBase`](xref:blazor/components/layouts#create-a-layout-component)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
+* [`NavLink`](xref:blazor/fundamentals/navigation#navlink-component)
 * [`OwningComponentBase`](xref:fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [`PageTitle`](xref:blazor/components/control-head-content)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
@@ -179,7 +179,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutComponentBase`](xref:blazor/components/layouts#create-a-layout-component)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
+* [`NavLink`](xref:blazor/fundamentals/navigation#navlink-component)
 * [`OwningComponentBase`](xref:fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
@@ -205,7 +205,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutComponentBase`](xref:blazor/components/layouts#create-a-layout-component)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
+* [`NavLink`](xref:blazor/fundamentals/navigation#navlink-component)
 * [`OwningComponentBase`](xref:fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)

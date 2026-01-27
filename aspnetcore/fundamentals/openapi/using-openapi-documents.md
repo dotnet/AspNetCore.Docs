@@ -5,7 +5,7 @@ description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 08/04/2025
+ms.date: 01/13/2026
 uid: fundamentals/openapi/using-openapi-documents
 ---
 # Use openAPI documents
@@ -43,16 +43,16 @@ To automatically launch the app at the Swagger UI URL using the `https` profile 
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_openapiwithscalar)]
 
-Launch the app and navigate to `https://localhost:<port>/scalar/v1` to view the Scalar UI.
+Launch the app and navigate to `https://localhost:<port>/scalar` to view the Scalar UI.
 
 To automatically launch the app at the Scalar UI URL using the `https` profile of `Properties/launchSettings.json`:
 
 * Confirm that `launchBrowser` is enabled (`true`).
-* Set the `launchUrl` to `scalar/v1`.
+* Set the `launchUrl` to `scalar`.
 
 ```json
 "launchBrowser": true,
-"launchUrl": "scalar/v1",
+"launchUrl": "scalar",
 ```
 
 ## Lint generated OpenAPI documents with Spectral
@@ -65,8 +65,8 @@ Enable document generation at build time by setting the following properties in 
 
 ```xml
 <PropertyGroup>
-    <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)</OpenApiDocumentsDirectory>
-    <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
+  <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)</OpenApiDocumentsDirectory>
+  <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
 </PropertyGroup>
 ```
 
@@ -102,34 +102,45 @@ The output shows any issues with the OpenAPI document. For example:
 
 ## Support for injecting `IOpenApiDocumentProvider`
 
-You can inject `Microsoft.AspNetCore.OpenApi.Services.IOpenApiDocumentProvider` into your services through dependency injection to access OpenAPI documents programmatically, even outside HTTP request contexts.
+Inject <xref:Microsoft.AspNetCore.OpenApi.IOpenApiDocumentProvider> into services to access OpenAPI documents programmatically, even outside HTTP request contexts. The following example customizes version 2 ("`v2`") of the document with title, version, and description information:
 
 ```csharp
-public class DocumentService
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OpenApi;
+
+public class CustomDocumentService(
+    [FromKeyedServices("v2")] IOpenApiDocumentProvider documentProvider)
 {
-    private readonly IOpenApiDocumentProvider _documentProvider;
-
-    public DocumentService(IOpenApiDocumentProvider documentProvider)
+    public async Task<OpenApiDocument> GetApiDocumentAsync(
+            CancellationToken cancellationToken = default)
     {
-        _documentProvider = documentProvider;
-    }
+        var document = 
+            await documentProvider.GetOpenApiDocumentAsync(cancellationToken);
 
-    public async Task<OpenApiDocument> GetApiDocumentAsync()
-    {
-        return await _documentProvider.GetOpenApiDocumentAsync("v1");
+        document.Info = new OpenApiInfo
+        {
+            Title = "Custom API Title",
+            Version = "v2",
+            Description = "This is a custom API description for version 2."
+        };
+
+        return document;
     }
 }
 ```
 
-Register the service in your DI container:
+Register the service in your DI container. Note that service key should match the document name passed to <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
 
 ```csharp
-builder.Services.AddScoped<DocumentService>();
+builder.AddOpenApi(); // Adds "v1" by default
+builder.AddOpenApi("v2");
+builder.Services.AddScoped<CustomDocumentService>();
 ```
 
 This enables scenarios such as generating client SDKs, validating API contracts in background processes, or exporting documents to external systems.
 
 Support for injecting `IOpenApiDocumentProvider` was introduced in ASP.NET Core in .NET 10. For more information, see [dotnet/aspnetcore #61463](https://github.com/dotnet/aspnetcore/pull/61463).
+
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/using-openapi-documents-6-8.md)]

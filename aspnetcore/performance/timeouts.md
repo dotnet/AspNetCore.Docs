@@ -21,7 +21,7 @@ This article explains how to configure the timeout middleware. The timeout middl
 
 Request timeouts are in the <xref:Microsoft.AspNetCore.Http.Timeouts> namespace.
 
-***Note:*** When an app is running in debug mode, the timeout middleware doesn't trigger. This behavior is the same as for [Kestrel timeouts](xref:fundamentals/servers/kestrel#behavior-with-debugger-attached). To test timeouts, run the app without the debugger attached.
+***Note:*** When an app is running in debug mode, the timeout middleware doesn't trigger. This behavior is the same as for [Kestrel timeouts](xref:fundamentals/servers/kestrel/options#behavior-with-debugger-attached). To test timeouts, run the app without the debugger attached.
 
 ## Add the middleware to the app
 
@@ -36,7 +36,7 @@ Adding the middleware to the app doesn't automatically start triggering timeouts
 
 ## Configure one endpoint or page
 
-For minimal API apps, configure an endpoint to timeout by calling <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions.WithRequestTimeout%2A>, or by applying the [`[RequestTimeout]`](xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutAttribute) attribute, as shown in the following example:
+For Minimal API apps, configure an endpoint to timeout by calling <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions.WithRequestTimeout%2A>, or by applying the [`[RequestTimeout]`](xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutAttribute) attribute, as shown in the following example:
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="20,24":::
 

@@ -41,7 +41,7 @@ JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> s
 
 * Requires the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package. 
 * Aligns with modern .NET practices by leveraging the <xref:System.Text.Json> library, which is optimized for .NET.
-* Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation. For more information on the legacy `Newtonsoft.Json`-based implementation, see the [.NET 9 version of this article](xref:web-api/jsonpatch?view=aspnetcore-9.0&preserve-view=true).
+* Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation. For more information on the legacy `Newtonsoft.Json`-based implementation, see the [.NET 9 version of this article](?view=aspnetcore-9.0&preserve-view=true).
 
 > [!NOTE]
 > The implementation of <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json?displayProperty=fullName> serialization isn't a drop-in replacement for the legacy `Newtonsoft.Json`-based implementation. It doesn't support dynamic types, for example <xref:System.Dynamic.ExpandoObject>.
@@ -309,7 +309,7 @@ public void Validate(JsonPatchDocument<T> patch)
 
 ## Get the code
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 To test the sample, run the app and send HTTP requests with the following settings:
 

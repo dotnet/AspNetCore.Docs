@@ -5,7 +5,7 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/tutorials/signalr-blazor
 ---
 # Use ASP.NET Core SignalR with Blazor
@@ -94,6 +94,7 @@ In Visual Studio:
   * **Interactivity location**: **Per page/component**
   * **Include sample pages**: Selected
   * **Do not use top-level statements**: Not selected
+  * **Use the .dev.localhost TLD in the application URL**: Not selected
   * Select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -116,13 +117,14 @@ In VS Code:
 
   After the preceding changes are made, the **Command Palette** shows the following:
 
-  * **Framework**: Set to the latest public non-preview release of .NET.
+  * **Framework**: Confirm that the [latest framework](https://dotnet.microsoft.com/download/dotnet) is selected. If Visual Studio's **Framework** dropdown list doesn't include the latest available .NET framework, [update Visual Studio](/visualstudio/install/update-visual-studio) and restart the tutorial.
   * **Authentication type**: **None**
-  * **Configure for HTTPS**: **true**
+  * **Configure for HTTPS**: Selected
   * **Interactive render mode**: **WebAssembly**
   * **Interactivity location**: **Per page/component**
-  * **Include sample pages**: **true**
-  * **Do not use top-level statements**: **false**
+  * **Include sample pages**: Selected
+  * **Do not use top-level statements**: Not selected
+  * **Use the .dev.localhost TLD in the application URL**: Not selected
 
 * Select **Create project** from the **Command Palette**.
 

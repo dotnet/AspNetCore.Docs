@@ -6,7 +6,7 @@ description: Learn how to issue push notifications in Blazor Progressive Web App
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/30/2025
+ms.date: 11/11/2025
 uid: blazor/progressive-web-app/push-notifications
 ---
 # Push notifications for ASP.NET Core Blazor Progressive Web Applications (PWAs)
@@ -256,7 +256,7 @@ Sending a notification involves performing some complex cryptographic operations
 The `SendNotificationAsync` method dispatches order notifications using the captured subscription. The following code makes uses of `WebPush` APIs for dispatching the notification. The payload of the notification is JSON serialized and includes a message and a URL. The message is displayed to the user, and the URL allows the user to reach the pizza order associated with the notification. Additional parameters can be serialized as required for other notification scenarios.
 
 > [!CAUTION]
-> In the following example, we recommend using a secure approach for supplying the private key. When working locally in the Development environment, a private key can be provided to the app using the [Secret Manager](xref:security/app-secrets#secret-manager) tool. In Development, Staging, and Production environments, [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) can be used, noting in passing that to obtain a certificate's private key from a key vault that the certificate must have an exportable private key.
+> In the following example, we recommend using a secure approach for supplying the private key. When working locally in the `Development` environment, a private key can be provided to the app using the [Secret Manager](xref:security/app-secrets#secret-manager) tool. In `Development`, `Staging`, and `Production` environments, [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) can be used, noting in passing that to obtain a certificate's private key from a key vault that the certificate must have an exportable private key.
 
 ```csharp
 private static async Task SendNotificationAsync(Order order, 
@@ -291,7 +291,7 @@ private static async Task SendNotificationAsync(Order order,
 
 The preceding example enables the server to send notifications, but the browser doesn't react to notifications without additional logic. Displaying notifications is covered in the [Display notifications](#display-notifications) section.
 
-The browser's developer tools console indicates the arrival of notifications ten seconds after orders are placed in the Blazing Pizza app. On the **Application** tab, open the **Push Messaging** section. Select the the circle to **Start recording**:
+The browser's developer tools console indicates the arrival of notifications ten seconds after orders are placed in the Blazing Pizza app. On the **Application** tab, open the **Push Messaging** section. Select the circle to **Start recording**:
 
 ![Browser developer tools console on the "Application" tab with "Push Messaging" open showing three push notifications to the app with their timestamps.](~/blazor/progressive-web-app/push-notifications/_static/developer-tools-console-notifications.png)
 

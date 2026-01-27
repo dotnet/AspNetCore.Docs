@@ -5,7 +5,7 @@ description: Learn how to control the content in a Razor component from a child 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/sections
 ---
 # ASP.NET Core Blazor sections
@@ -84,6 +84,10 @@ When the `Counter` component is accessed, the `MainLayout` component renders the
 
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet> and <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> components can only set either <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId%2A> or <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionName%2A>, not both.
+
+## `RenderFragment` caching rules and section rendering behavior
+
+When a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent>'s <xref:Microsoft.AspNetCore.Components.RenderFragment> content changes, which is a different instance than the component where it's rendered, Blazor completely destroys and recreates the section instead of attempting to update the section's content. Unlike normal rendering, the section's content could come from different instances, and it doesn't make sense to attempt processing content from two separate components, which might lead to unexpected results. For a detailed explanation on this behavior, see [Inconsistent component initialization with Blazor SectionOutlet/SectionContent and CascadingValue (`dotnet/aspnetcore` #58316)](https://github.com/dotnet/aspnetcore/issues/58316).
 
 ## Section interaction with other Blazor features
 

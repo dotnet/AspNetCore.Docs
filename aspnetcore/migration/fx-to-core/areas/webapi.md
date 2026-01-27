@@ -36,7 +36,7 @@ This article shows how to migrate the Products controller created in [Getting St
 1. In the **Configure your new project** dialog, name the project *ProductsCore* and select **Next**.
 1. In the **Additional information** dialog:
    1. Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
-   1. Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+   1. Confirm the checkbox for **Use controllers(uncheck to use Minimal APIs)** is checked.
    1. Uncheck **Enable OpenAPI support**.
    1. Select **Create**.
 
@@ -176,7 +176,7 @@ The migrated `ProductsController` contains the following highlighted attributes:
 
 Run the migrated project, and browse to `/api/products`.  For example: https://localhost:`<port>`/api/products. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Additional resources
 
@@ -189,7 +189,7 @@ Run the migrated project, and browse to `/api/products`.  For example: https://l
 :::moniker range="< aspnetcore-6.0"
 This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Prerequisites
 

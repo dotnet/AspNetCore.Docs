@@ -18,9 +18,9 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
 
-The output caching middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. Code examples are provided for minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
+The output caching middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
 
-The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and provides a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](xref:index#how-to-download-a-sample) and [Preprocessor directives in sample code](xref:index#preprocessor-directives-in-sample-code).
+The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and provides a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](xref:fundamentals/index#how-to-download-a-sample) and [Preprocessor directives in sample code](xref:index#preprocessor-directives-in-sample-code).
 
 ## Add the middleware to the app
 
@@ -41,7 +41,7 @@ Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior, it 
 
 ## Configure one endpoint or page
 
-For minimal API apps, configure an endpoint to do caching by calling [`CacheOutput`](xref:Microsoft.Extensions.DependencyInjection.OutputCacheConventionBuilderExtensions.CacheOutput%2A), or by applying the [`[OutputCache]`](xref:Microsoft.AspNetCore.OutputCaching.OutputCacheAttribute) attribute, as shown in the following examples:
+For Minimal API apps, configure an endpoint to do caching by calling [`CacheOutput`](xref:Microsoft.Extensions.DependencyInjection.OutputCacheConventionBuilderExtensions.CacheOutput%2A), or by applying the [`[OutputCache]`](xref:Microsoft.AspNetCore.OutputCaching.OutputCacheAttribute) attribute, as shown in the following examples:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="oneendpoint":::
 
@@ -65,7 +65,7 @@ The following highlighted code creates two policies, each specifying a different
 
 You can select a policy for an endpoint when calling the `CacheOutput` method or using the `[OutputCache]` attribute.
 
-In a minimal API app, the following code configures one endpoint with a 20-second expiration and one with a 30-second expiration:
+In a Minimal API app, the following code configures one endpoint with a 20-second expiration and one with a 30-second expiration:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="selectpolicy":::
 
@@ -98,7 +98,7 @@ To use this custom policy, create a named policy:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies3b":::
 
-And select the named policy for an endpoint. The following code selects the custom policy for an endpoint in a minimal API app:
+And select the named policy for an endpoint. The following code selects the custom policy for an endpoint in a Minimal API app:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="post":::
 
@@ -131,7 +131,7 @@ By default, every part of the URL is included as the key to a cache entry, that 
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="7":::
 
-You can then select the `VaryByQuery` policy for an endpoint. In a minimal API app, the following code selects the `VaryByQuery` policy for an endpoint that returns a unique response only for each unique value of the `culture` query string:
+You can then select the `VaryByQuery` policy for an endpoint. In a Minimal API app, the following code selects the `VaryByQuery` policy for an endpoint that returns a unique response only for each unique value of the `culture` query string:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="selectquery":::
 
@@ -169,7 +169,7 @@ Cache revalidation is automatic in response to these headers sent from the clien
 
 ## Use tags to evict cache entries
 
-You can use tags to identify a group of endpoints and evict all cache entries for the group. For example, the following minimal API code creates a pair of endpoints whose URLs begin with "blog", and tags them "tag-blog":
+You can use tags to identify a group of endpoints and evict all cache entries for the group. For example, the following Minimal API code creates a pair of endpoints whose URLs begin with "blog", and tags them "tag-blog":
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="tagendpoint":::
 
@@ -181,7 +181,7 @@ An alternative way to assign tags for endpoints with routes that begin with `blo
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="3-5":::
 
-Another alternative for minimal API apps is to call `MapGroup`:
+Another alternative for Minimal API apps is to call `MapGroup`:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="taggroup":::
 
@@ -205,7 +205,7 @@ To disable resource locking, call [SetLocking(false)](xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="9":::
 
-The following example selects the no-locking policy for an endpoint in a minimal API app:
+The following example selects the no-locking policy for an endpoint in a Minimal API app:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="selectnolock":::
 

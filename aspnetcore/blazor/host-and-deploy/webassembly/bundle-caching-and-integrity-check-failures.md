@@ -5,7 +5,7 @@ description: Learn about asset caching for Blazor WebAssembly and how to resolve
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/03/2025
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures
 ---
 # ASP.NET Core Blazor WebAssembly .NET bundle caching and integrity check failures
@@ -152,7 +152,7 @@ Placeholders:
 > 
 > If you have any cause for concern that checksum validation isn't secure enough in your environment, consult your organization's security leadership for guidance.
 >
-> For more information, see [Overview of threat protection by Microsoft Defender Antivirus](/microsoft-365/business-premium/m365bp-threats-detected-defender-av).
+> For more information, see [Microsoft Defender for Business](/defender-business/).
 
 :::moniker-end
 

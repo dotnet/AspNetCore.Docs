@@ -5,7 +5,7 @@ description: The QuickGrid component is a Razor component for quickly and effici
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -127,7 +127,7 @@ Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.
 <QuickGrid Items="..." Pagination="pagination">
 ```
 
-<!-- UPDATE 10.0 Tracked by https://github.com/dotnet/aspnetcore/issues/57289
+<!-- UPDATE 11.0 Tracked by https://github.com/dotnet/aspnetcore/issues/57289
                  for multiple paginator components problem. -->
 
 To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above or below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
@@ -195,9 +195,7 @@ QuickGrid also supports passing custom attributes and style classes (<xref:Micro
 
 ## Style a table row based on the row item
 
-<!-- UPDATE 10.0 API cross-link -->
-
-Apply a stylesheet class to a row of the grid based on the row item using the `RowClass` parameter.
+Apply a stylesheet class to a row of the grid based on the row item using the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.RowClass%2A> parameter.
 
 In the following example:
 
@@ -219,16 +217,11 @@ In the following example:
 
 :::moniker-end
 
-
 :::moniker range=">= aspnetcore-10.0"
-
-<!-- UPDATE 10.0 - API cross-link -->
-
-:::moniker-end
 
 ### Close `QuickGrid` column options
 
-Close the `QuickGrid` column options UI with the `HideColumnOptionsAsync` method.
+Close the `QuickGrid` column options UI with the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.HideColumnOptionsAsync%2A> method.
 
 The following example closes the column options UI as soon as the title filter is applied:
 
@@ -252,6 +245,8 @@ The following example closes the column options UI as soon as the title filter i
         movies.Where(m => m.Title!.Contains(titleFilter));
 }
 ```
+
+:::moniker-end
 
 ## Entity Framework Core (EF Core) data source
 
@@ -482,7 +477,7 @@ With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > *
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
-<!-- UPDATE 10.0 Keep an eye on https://github.com/dotnet/Scaffolding/issues/3131
+<!-- UPDATE 11.0 Keep an eye on https://github.com/dotnet/Scaffolding/issues/3131
                  for a scaffolding update that makes the scaffolder a little 
                  smarter about suggesting an existing dB context that has a
                  factory provider. If the scaffolder can do that, this instruction

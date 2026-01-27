@@ -5,7 +5,7 @@ description: Learn about IHttpContextAccessor and HttpContext in ASP.NET Core Bl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/29/2025
+ms.date: 11/11/2025
 uid: blazor/components/httpcontext
 ---
 # `IHttpContextAccessor`/`HttpContext` in ASP.NET Core Blazor apps
@@ -22,7 +22,7 @@ uid: blazor/components/httpcontext
 
 ```csharp
 [CascadingParameter]
-public HttpContext? HttpContext { get; set; }
+private HttpContext? HttpContext { get; set; }
 ```
 
 For additional context in *advanced* edge cases&dagger;, see the discussion in the following articles:

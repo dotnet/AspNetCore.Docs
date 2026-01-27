@@ -5,7 +5,7 @@ description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---
@@ -34,6 +34,8 @@ To provide feedback or seek assistance with this article or ASP.NET Core, see <x
 
 > [!IMPORTANT]
 > The scenarios described in this article apply to using Microsoft Entra (ME-ID) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time because the app would require a client secret, which can't be secured in the client-side Blazor app. For an AAD B2C standalone Blazor WebAssembly app use Graph API, create a backend server (web) API to access Graph API on behalf of users. The client-side app authenticates and authorizes users to [call the web API](xref:blazor/call-web-api) to securely access Microsoft Graph and return data to the client-side Blazor app from your server-based web API. The client secret is safely maintained in the server-based web API, not in the Blazor app on the client. **Never store a client secret in a client-side Blazor app.**
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -938,6 +940,7 @@ In the preceding example, the `GraphAuthorizationMessageHandler` <xref:System.Ne
 
 * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [Detect client-side transient disposables](xref:blazor/fundamentals/dependency-injection#detect-client-side-transient-disposables)
+* [`DelegatingHandler` instances](xref:fundamentals/http-requests#outgoing-request-middleware)
 
 A trailing slash (`/`) on the base address is required. In the preceding code, the third argument to `string.Join` is `string.Empty` to ensure the trailing slash is present: `https://graph.microsoft.com/v1.0/`.
 

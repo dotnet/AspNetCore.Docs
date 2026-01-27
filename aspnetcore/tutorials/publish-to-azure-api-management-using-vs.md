@@ -17,7 +17,7 @@ In this tutorial you'll learn how to create an ASP.NET Core web API project usin
 
 To complete the tutorial you'll need an Azure account.
 
-* Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
+* Open a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) if you don't have one.
 
 ## Create an ASP.NET Core web API
 
@@ -29,7 +29,7 @@ Visual Studio allows you to easily create a new ASP.NET Core web API project fro
 * In the **Configure your new project dialog**, name the project **WeatherAPI** and select **Next**.
 * In the **Additional information** dialog:
 * Confirm the Framework is **.NET 6.0 (Long-term support)**.
-* Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
+* Confirm the checkbox for **Use controllers (uncheck to use Minimal APIs)** is checked.
 * Confirm the checkbox for **Enable OpenAPI support** is checked.
 * Select **Create**.
 

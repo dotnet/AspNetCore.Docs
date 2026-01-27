@@ -5,14 +5,14 @@ description: Learn how to secure a Blazor Web App with Windows Authentication.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/25/2025
+ms.date: 11/11/2025
 uid: blazor/security/blazor-web-app-windows-authentication
 ---
 # Secure an ASP.NET Core Blazor Web App with Windows Authentication
 
-<!-- UPDATE 10.0 - Enable after release
+<!-- UPDATE 11.0 - Activate ...
 
-[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 -->
 
@@ -88,32 +88,48 @@ The authorization policy is enforced by the `LocalAccountOnly` component.
 </p>
 ```
 
-The `UserClaims` component lists the user's claims, which includes the user's Windows security identifiers (SIDs).
+The `UserClaims` component lists the user's claims and roles, including the user's Windows security identifiers (SIDs) with SID translations.
 
 `Components/Pages/UserClaims.razor`:
 
 ```razor
 @page "/user-claims"
 @using System.Security.Claims
-@using Microsoft.AspNetCore.Authorization
-@attribute [Authorize]
+@using System.Security.Principal
+@using Microsoft.AspNetCore.Components.QuickGrid
 
-<PageTitle>User Claims</PageTitle>
+<PageTitle>User Claims & Roles</PageTitle>
 
-<h1>User Claims</h1>
+<h1>User Claims & Roles</h1>
 
-@if (claims.Any())
+<QuickGrid Items="claims" Pagination="pagination">
+    <Paginator State="pagination" />
+    <PropertyColumn Property="@(p => p.Type)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Value)" Sortable="true" />
+    <PropertyColumn Property="@(p => GetClaimAsHumanReadable(p))" Sortable="true" Title="Translation" />
+    <PropertyColumn Property="@(p => p.Issuer)" Sortable="true" />
+</QuickGrid>
+
+<h1>User Roles</h1>
+
+@if (roles.Any())
 {
     <ul>
-        @foreach (var claim in claims)
+        @foreach (var role in roles)
         {
-            <li><b>@claim.Type:</b> @claim.Value</li>
+            <li>@role</li>
         }
     </ul>
 }
+else
+{
+    <p>No roles available.</p>
+}
 
 @code {
-    private IEnumerable<Claim> claims = [];
+    private IQueryable<Claim> claims = Enumerable.Empty<Claim>().AsQueryable();
+    private IEnumerable<string> roles = Enumerable.Empty<string>();
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
 
     [CascadingParameter]
     private Task<AuthenticationState>? AuthState { get; set; }
@@ -126,7 +142,38 @@ The `UserClaims` component lists the user's claims, which includes the user's Wi
         }
 
         var authState = await AuthState;
-        claims = authState.User.Claims;
+
+        claims = authState.User.Claims.AsQueryable();
+
+        roles = authState.User.Claims
+            .Where(claim => claim.Type == ClaimTypes.Role)
+            .Select(claim => claim.Value);
+    }
+
+    private string GetClaimAsHumanReadable(Claim claim)
+    {
+        if (!OperatingSystem.IsWindows() ||
+            claim.Type is not (ClaimTypes.PrimarySid or ClaimTypes.PrimaryGroupSid
+                or ClaimTypes.GroupSid))
+        {
+            // We're either not on Windows or not dealing with a SID Claim that
+            // can be translated
+            return string.Empty;
+        }
+
+        SecurityIdentifier sid = new SecurityIdentifier(claim.Value);
+
+        try
+        {
+            // Throw an exception if the SID can't be translated
+            var account = sid.Translate(typeof(NTAccount));
+
+            return account.ToString();
+        }
+        catch (IdentityNotMappedException)
+        {
+            return "Could not be mapped";
+        }
     }
 }
 ```

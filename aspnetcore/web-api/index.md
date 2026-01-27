@@ -12,7 +12,7 @@ uid: web-api/index
 
 :::moniker range=">= aspnetcore-7.0"
 
-ASP.NET Core supports creating web APIs using controllers or using minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Controllers are activated and disposed on a per request basis.
+ASP.NET Core supports creating web APIs using controllers or using Minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Controllers are activated and disposed on a per request basis.
 
 This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see <xref:tutorials/min-web-api>.
 
@@ -303,9 +303,9 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 * <xref:web-api/action-return-types>
-* <xref:web-api/handle-errors>
+* <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -317,7 +317,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 :::moniker range="= aspnetcore-6.0"
 
-ASP.NET Core supports creating web APIs using controllers or using minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see <xref:tutorials/min-web-api>.
+ASP.NET Core supports creating web APIs using controllers or using Minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see <xref:tutorials/min-web-api>.
 
 ## ControllerBase class
 
@@ -582,9 +582,9 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 * <xref:web-api/action-return-types>
-* <xref:web-api/handle-errors>
+* <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -598,7 +598,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## ControllerBase class
 
@@ -874,7 +874,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 ## Additional resources
 
 * <xref:web-api/action-return-types>
-* <xref:web-api/handle-errors>
+* <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -1110,7 +1110,7 @@ In the preceding code, `ConsumesController` is configured to handle requests sen
 The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. 
 ## Additional resources
 * <xref:web-api/action-return-types>
-* <xref:web-api/handle-errors>
+* <xref:fundamentals/error-handling-api>
 * <xref:web-api/advanced/custom-formatters>
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>

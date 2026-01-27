@@ -5,7 +5,7 @@ description: Learn how to get started with WebSockets in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/09/2025
+ms.date: 10/13/2025
 uid: fundamentals/websockets
 ---
 # WebSockets support in ASP.NET Core
@@ -16,7 +16,7 @@ uid: fundamentals/websockets
 
 This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:index#how-to-download-a-sample), [how to run](#sample-app)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample), [how to run](#sample-app)).
 
 ## Http/2 WebSockets support
 
@@ -33,7 +33,7 @@ These supported features are available in Kestrel on all HTTP/2 enabled platform
 > HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating.
 > For more information, see [Add HTTP/2 WebSockets support for existing controllers](#add-http2-websockets-support-for-existing-controllers) in this article.
 >
-> Chrome and Edge have HTTP/2 WebSockets enabled by default, and you can enable it in FireFox on the `about:config` page with the `network.http.spdy.websockets` flag.
+> Chrome, Edge, and Firefox (version 128 and later) have HTTP/2 WebSockets enabled by default. You can verify or change this setting in Firefox by opening `about:config` and locating the `network.http.http2.websockets` preference.
 
 WebSockets were originally designed for HTTP/1.1 but have since been adapted to work over HTTP/2. ([RFC 8441](https://www.rfc-editor.org/rfc/rfc8441))
 

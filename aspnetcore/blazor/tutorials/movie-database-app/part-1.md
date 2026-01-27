@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains how to
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/tutorials/movie-database-app/part-1
 zone_pivot_groups: tooling
 ---
@@ -59,35 +59,17 @@ In Visual Studio:
 
 * Confirm that the **Location** for the app is suitable. Set the **Place solution and project in the same directory** checkbox to match your preferred solution file location. Select the **Next** button.
 
-:::moniker range=">= aspnetcore-9.0"
-
 * In the **Additional information** dialog, use the following settings:
 
-  * **Framework**: Select **.NET 9.0 (Standard Term Support)**.
+  * **Framework**: Confirm that the [latest framework](https://dotnet.microsoft.com/download/dotnet) is selected. If Visual Studio's **Framework** dropdown list doesn't include the latest available .NET framework, [update Visual Studio](/visualstudio/install/update-visual-studio) and restart the tutorial.
   * **Authentication type**: **None**
   * **Configure for HTTPS**: Selected
   * **Interactive render mode**: **Server**
   * **Interactivity location**: **Per page/component**
   * **Include sample pages**: Selected
   * **Do not use top-level statements**: Not selected
+  * **Use the .dev.localhost TLD in the application URL**: Not selected
   * Select **Create**.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-* In the **Additional information** dialog, use the following settings:
-
-  * **Framework**: Select **.NET 8.0 (Long Term Support)**.
-  * **Authentication type**: **None**
-  * **Configure for HTTPS**: Selected
-  * **Interactive render mode**: **Server**
-  * **Interactivity location**: **Per page/component**
-  * **Include sample pages**: Selected
-  * **Do not use top-level statements**: Not selected
-  * Select **Create**.
-
-:::moniker-end
 
 The Visual Studio instructions in parts of this tutorial series use EF Core commands to add database migrations and update the database. EF Core commands are issued using [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services). More information is provided later in this tutorial series.
 
@@ -249,6 +231,9 @@ The `Components/Layout` folder contains the following layout components and styl
 * `MainLayout.razor.css`: Stylesheet for the app's main layout.
 * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. This component uses several `NavLink` components to render navigation links to other Razor components.
 * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
+* `ReconnectModal` component (`ReconnectModal.razor`): Reflects the server-side connection state in the UI.
+* `ReconnectModal.razor.css`: Stylesheet for the `ReconnectModal` component.
+* `ReconnectModal.razor.js`: JavaScript file for the `ReconnectModal` component.
 
 ### `Components/_Imports.razor` file
 
@@ -301,9 +286,9 @@ var app = builder.Build();
 
 Next, the HTTP request pipeline is configured.
 
-In the development environment:
+When the app isn't running in the `Development` environment:
 
-* Exception Handler Middleware (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>) processes errors and displays a developer exception page during development app runs.
+* Exception Handler Middleware (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>) processes errors and displays a custom error page.
 * [HTTP Strict Transport Security Protocol (HSTS) Middleware](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>) processes [HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html).
 
 ```csharp
@@ -313,6 +298,17 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 ```
+
+:::moniker range=">= aspnetcore-10.0"
+
+By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code without a body, it returns the status code and an empty response body. However, an app generated from the Blazor Web App project template calls <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> to add Status Code Pages Middleware to the request pipeline for pages that aren't found, which generates the response body by re-executing the request pipeline using the path to the Not Found error page (`/not-found`): 
+
+```csharp
+app.UseStatusCodePagesWithReExecute("/not-found", 
+    createScopeForStatusCodePages: true);
+```
+
+:::moniker-end
 
 HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) enforces the HTTPS protocol by redirecting HTTP requests to HTTPS if an HTTPS port is available:
 

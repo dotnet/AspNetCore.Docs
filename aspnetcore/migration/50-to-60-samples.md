@@ -7,7 +7,6 @@ ms.author: wpickett
 ms.date: 10/22/2021
 uid: migration/50-to-60-samples
 ---
-
 # Code samples migrated to the new minimal hosting model in ASP.NET Core in .NET 6
 
 <!-- 
@@ -212,7 +211,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ## Change the web root
 
-By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed by setting the <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions.WebRootPath> property on <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions>:
+By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the Static File Middleware looks for static files. Web root can be changed by setting the <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions.WebRootPath> property on <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions>:
 
 ### ASP.NET Core in .NET 5
 

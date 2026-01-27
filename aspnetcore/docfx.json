@@ -3,7 +3,7 @@
     "content": [
       {
         "files": [ "**/*.md", "**/*.yml" ], 
-        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
+        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**", "**/lib/jquery-validation/**" ], 
         "group": "group1", 
         "src": "."
       },
@@ -44,7 +44,7 @@
       "social_image_url": "/dotnet/media/dotnet-logo.png",
       "feedback_product_url": "https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md",
       "ms.service": "aspnet-core",
-      "ms.topic": "conceptual",
+      "ms.topic": "concept-article",
       "uhfHeaderId": "MSDocsHeader-AspNet",
       "searchScope": [ "ASP.NET Core" ],
       "zone_pivot_group_filename": "core/zone-pivot-groups.json"
@@ -85,8 +85,11 @@
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
       },
+      "ms.update-cycle": {
+        "**/**.{md,yml}": "365-days"
+      },
       "no-loc": {
-        "**/**.md": [ "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "Kestrel", ".NET Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
+        "**/**.md": [ "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "Kestrel", "Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
       },
       "recommendations": {
         "**/tutorials/**/**.md": "false"

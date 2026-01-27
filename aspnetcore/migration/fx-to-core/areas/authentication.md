@@ -1,11 +1,12 @@
 ---
 title: ASP.NET Framework to Core Authentication Migration
+ai-usage: ai-assisted
+author: twsouthwick
 description: ASP.NET Framework to Core Authentication Migration
-author: wadepickett
-ms.author: wpickett
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/17/2025
-ms.topic: article
+ms.author: tasou
+ms.date: 12/10/2025
+ms.topic: concept-article
 uid: migration/fx-to-core/areas/authentication
 zone_pivot_groups: migration-remote-app-setup
 ---
@@ -216,6 +217,15 @@ var coreApp = builder.AddProject<Projects.AuthRemoteIdentityCore>("core")
 Once this is done, it will be automatically hooked up in both the framework and core applications.
 :::zone-end
 
+#### Remote authentication with YARP fallback
+
+When using remote authentication with YARP-based fallback to the ASP.NET Framework app, make sure that fallback requests don't invoke remote authentication. If remote authentication runs during fallback, the app makes unnecessary extra calls back to the Framework app and can lead to confusing behavior.
+
+To avoid running remote authentication for fallback requests, use one of these approaches:
+
+* Use routing short-circuit metadata on the YARP fallback route so that the route bypasses the rest of the middleware pipeline. For example, call `ShortCircuit` on the fallback endpoint as shown in the remote app setup guidance and in [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+* Don't use remote authentication as the default authentication scheme. Instead, configure remote authentication only for the endpoints that need it. For example, pass `false` to `AddAuthenticationClient` and specify the remote authentication scheme explicitly on those endpoints.
+
 #### Using Remote Authentication with Specific Endpoints
 
 When you set the default scheme to `false`, you can specify remote authentication for specific controllers or actions:
@@ -340,12 +350,12 @@ Note that because signing in typically depends on a specific database, not all a
 * Both apps are able to see the users' identity and claims.
 * Both apps are able to sign the user out.
 
-Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](xref:security/cookie-sharing). For more information about cookie authentication in ASP.NET Core, see <xref:security/authentication/cookie>.
+Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](xref:security/cookie-sharing). For more information about cookie authentication in ASP.NET Core, see <xref:security/authentication/cookie>. For guidance on configuring `<machineKey>` and data protection when sharing protected values between Framework and Core apps, see <xref:migration/fx-to-core/areas/machine-key>.
 
 The following samples in the [System.Web adapters](https://github.com/dotnet/systemweb-adapters) GitHub repo demonstrates remote app authentication with shared cookie configuration enabling both apps to sign users in and out:
 
-* [ASP.NET app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/RemoteAuth/Identity/MvcApp)
-* [ASP.NET Core app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/RemoteAuth/Identity/MvcCoreApp)
+* [ASP.NET app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/AuthRemoteIdentity/AuthRemoteIdentityFramework)
+* [ASP.NET Core app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/AuthRemoteIdentity/AuthRemoteIdentityCore)
 
 ### When to choose shared cookie authentication
 

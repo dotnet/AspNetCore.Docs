@@ -5,7 +5,7 @@ description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
-ms.date: 07/09/2025
+ms.date: 10/29/2025
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -101,6 +101,10 @@ Operation transformers have access to a context object which contains:
 For example, the following operation transformer adds `500` as a response status code supported by all operations in the document.
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
+ 
+Operation transformers can also be added to specific endpoint with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.AddOpenApiOperationTransformer%2A> API, instead of all endpoints in a document. This can be useful to change specific OpenAPI data for a specific endpoint, like adding a security scheme, response description or other OpenAPI operation properties. The following example demonstrates adding an operation transformer to a deprecated endpoint specifically, which marks the endpoint as deprecated in the OpenAPI document.
+
+[!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer2)]
 
 ## Use schema transformers
 

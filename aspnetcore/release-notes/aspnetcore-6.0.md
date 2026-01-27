@@ -18,7 +18,7 @@ This article highlights the most significant changes in ASP.NET Core in .NET 6 w
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core. For more information, see:
 
 * <xref:tutorials/min-web-api>
-* [Differences between minimal APIs and APIs with controllers](xref:tutorials/min-web-api?view=aspnetcore-6.0#differences-between-minimal-apis-and-apis-with-controllers)
+* [Differences between Minimal APIs and APIs with controllers](xref:tutorials/min-web-api?view=aspnetcore-6.0#differences-between-minimal-apis-and-apis-with-controllers)
 * <xref:fundamentals/minimal-apis>
 * <xref:migration/50-to-60-samples>
 
@@ -179,7 +179,7 @@ Blazor supports optimized byte array JS interop that avoids encoding and decodin
 
 ### Query string enhancements
 
-Support for working with query strings is improved. For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-6.0#query-strings>.
+Support for working with query strings is improved. For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-6.0#query-strings>.
 
 ### Binding to select multiple
 
@@ -701,6 +701,10 @@ In such scenarios, enable shadow copying by customizing the ASP.NET Core module 
 ```
 
 Shadow copying in IIS is an experimental feature that is not guaranteed to be part of ASP.NET Core. Please leave feedback on IIS Shadow copying in [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/23733).
+
+## Breaking changes
+
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
 ## Additional resources
 

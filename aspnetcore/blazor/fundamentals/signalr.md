@@ -5,7 +5,7 @@ description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
@@ -316,25 +316,43 @@ app.MapBlazorHub(options =>
 });
 ```
 
-<!-- UPDATE 10.0 The following is scheduled for a fix in .NET 10 -->
+<!-- UPDATE 11.0 - The following is scheduled for a fix in .NET 11.
+                   Tracked by: https://github.com/dotnet/aspnetcore/issues/63520 -->
 
-Configuring the hub used by <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> fails with an `AmbiguousMatchException`:
+Configuring the hub used by <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> fails with an <xref:System.Reflection.AmbiguousMatchException>:
 
 > :::no-loc text="Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints.":::
 
-To workaround the problem for apps targeting .NET 8, give the custom-configured Blazor hub higher precedence using the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithOrder%2A> method:
+To workaround the problem for apps targeting .NET 8/9, take the following approach.
+
+At the top of the `Program` file, add a `using` statement for <xref:Microsoft.AspNetCore.Http.Connections?displayProperty=fullName>:
 
 ```csharp
-app.MapBlazorHub(options =>
-{
-    options.CloseOnAuthenticationExpiration = true;
-}).WithOrder(-1);
+using Microsoft.AspNetCore.Http.Connections;
+```
+
+Where <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> is called, chain the following endpoint convention to the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder>:
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode()
+    .Add(e =>
+    {
+        var metadata = e.Metadata;
+        var dispatcherOptions = metadata.OfType<HttpConnectionDispatcherOptions>().FirstOrDefault();
+
+        if (dispatcherOptions != null)
+        {
+            dispatcherOptions.CloseOnAuthenticationExpiration = true;
+        }
+    });
 ```
 
 For more information, see the following resources:
 
 * [MapBlazorHub configuration in NET8 throws a The request matched multiple endpoints exception (`dotnet/aspnetcore` #51698)](https://github.com/dotnet/aspnetcore/issues/51698#issuecomment-1984340954)
 * [Attempts to map multiple blazor entry points with MapBlazorHub causes Ambiguous Route Error. This worked with net7 (`dotnet/aspnetcore` #52156)](https://github.com/dotnet/aspnetcore/issues/52156#issuecomment-1984503178)
+* [[Blazor] Provide access to the underlying SignalR HttpConnectionDispatcherOptions in AddInteractiveServerRenderMode (`dotnet/aspnetcore` #63520)](https://github.com/dotnet/aspnetcore/issues/63520)
 
 :::moniker-end
 
@@ -489,7 +507,7 @@ In the `Program` file, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpoint
 
 ## Reflect the server-side connection state in the UI
 
-If the client detects a lost connection to the server, a default UI is displayed to the user while the client attempts to reconnect:
+If the client detects a lost connection (circuit) to the server, a default UI is displayed to the user while the client attempts to reconnect:
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -523,12 +541,13 @@ If reconnection succeeds, user state is often lost. Custom code can be added to 
 
 To create UI elements that track reconnection state, the following table describes:
 
-* A set of `components-reconnect-*` CSS classes (**Css class** column) that are set or unset by Blazor on an element with an `id` of `components-reconnect-modal`.
+* A set of `components-reconnect-*` CSS classes (**CSS class** column) that are set or unset by Blazor on an element with an `id` of `components-reconnect-modal`.
 * A `components-reconnect-state-changed` event (**Event** column) that indicates a reconnection status change.
 
 | CSS class | Event | Indicates&hellip; |
 | --- | --- | --- |
 | `components-reconnect-show` | `show` | A lost connection. The client is attempting to reconnect. The reconnection modal is shown. |
+| `components-reconnect-paused` | `paused` | The connection is paused. For more information, see [Pause and resume circuits](xref:blazor/state-management/server#pause-and-resume-circuits). |
 | `components-reconnect-hide` | `hide` | An active connection is re-established to the server. The reconnection model is closed. |
 | `components-reconnect-retrying` | `retrying` | The client is attempting to reconnect. |
 | `components-reconnect-failed` | `failed` | Reconnection failed, probably due to a network failure. |
@@ -580,11 +599,7 @@ An element with an `id` of `components-seconds-to-next-attempt` displays the num
 <span id="components-seconds-to-next-attempt"></span>
 ```
 
-The Blazor Web App project template includes a `ReconnectModal` component (`Layout/ReconnectModal.razor`) with collocated stylesheet and JavaScript files (`ReconnectModal.razor.css`, `ReconnectModal.razor.js`) that can be customized as needed. These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template. The component is added to the project when the project is created in Visual Studio with **Interactive render mode** set to **Server** or **Auto** or created with the .NET CLI with the option `--interactivity server` (default) or `--interactivity auto`.
-
-* [`ReconnectModal` component](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor)
-* [Stylesheet file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.css)
-* [JavaScript file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.js)
+The [Blazor Web App project template](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp) includes a `ReconnectModal` component (`Components/Layout/ReconnectModal.razor`) with collocated stylesheet and JavaScript files (`ReconnectModal.razor.css`, `ReconnectModal.razor.js`) that can be customized as needed. These files can be examined in the ASP.NET Core reference source or by inspecting an app created from the Blazor Web App project template. The component is added to the project when the project is created in Visual Studio with **Interactive render mode** set to **Server** or **Auto** or created with the .NET CLI with the option `--interactivity server` (default) or `--interactivity auto`.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

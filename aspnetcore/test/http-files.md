@@ -3,9 +3,9 @@ title: Use .http files in Visual Studio 2022
 author: tdykstra
 description: Learn how to use .http files in Visual Studio 2022 to test ASPNET Core apps.
 monikerRange: '>= aspnetcore-8.0'
-ms.topic: how-to
 ms.author: tdykstra
-ms.date: 01/19/2024
+ms.date: 09/18/2025
+ms.topic: how-to
 uid: test/http-files
 ---
 # Use .http files in Visual Studio 2022
@@ -43,7 +43,7 @@ The format for an HTTP request is `HTTPMethod URL HTTPVersion`, all on one line,
   * [GET](https://developer.mozilla.org/docs/Web/HTTP/Methods/GET)
   * [HEAD](https://developer.mozilla.org/docs/Web/HTTP/Methods/HEAD)
   * [POST](https://developer.mozilla.org/docs/Web/HTTP/Methods/POST)
-  * [PUT](https://developer.mozilla.org/docs/Web/HTTP/Methods/put)
+  * [PUT](https://developer.mozilla.org/docs/Web/HTTP/Methods/PUT)
   * [PATCH](https://developer.mozilla.org/docs/Web/HTTP/Methods/PATCH)
   * [DELETE](https://developer.mozilla.org/docs/Web/HTTP/Methods/DELETE)
   * [TRACE](https://developer.mozilla.org/docs/Web/HTTP/Methods/TRACE)
@@ -112,6 +112,8 @@ Lines that start with either `#` or `//` are comments. These lines are ignored w
 ## Variables
 
 A line that starts with `@` defines a variable by using the syntax `@VariableName=Value`.
+The variable name is case-sensitive and can't contain any spaces.
+The value can contain any characters, including the value `null` to represent a null value.
 
 Variables can be referenced in requests that are defined later in the file. They're referenced by wrapping their names in double curly braces, `{{` and `}}`. The following example shows two variables defined and used in a request:
 
@@ -543,6 +545,7 @@ The Visual Studio 2022 `.http` file editor doesn't have all the features that th
 * Prompt variables
 * Customize response preview
 * Per-request settings
+* Null-handling variables, e.g. using null-conditional or nullish coalescing operators (this is also unsupported in Visual Studio Code)
 
 ## Create an `.http` file
 
@@ -588,7 +591,7 @@ Right-click a request in **Endpoints Explorer** and select **Generate Request**.
 * If an `.http` file with the project name as the file name exists, the request is added to that file.
 * Otherwise, an `.http` file is created with the project name as the file name, and the request is added to that file.
 
-The preceding screenshot shows endpoints defined by the minimal API project template. The following example shows the request that is generated for the selected endpoint:
+The preceding screenshot shows endpoints defined by the Minimal API project template. The following example shows the request that is generated for the selected endpoint:
 
 ```http
 GET {{WebApplication1_HostAddress}}/weatherforecast/

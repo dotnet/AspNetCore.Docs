@@ -5,7 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/7/2023
+ms.date: 08/28/2025
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -14,7 +14,15 @@ uid: mvc/models/validation
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+[!INCLUDE[](~/includes/validation-package-net10.md)]
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 ## Model state
 
@@ -44,21 +52,7 @@ Validation attributes let you specify validation rules for model properties. The
 
 ## Built-in attributes
 
-Here are some of the built-in validation attributes:
-
-* [[ValidateNever]](xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNeverAttribute): Indicates that a property or parameter should be excluded from validation.
-* [[CreditCard]](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js).
-* [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute): Validates that two properties in a model match.
-* [[EmailAddress]](xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute): Validates that the property has an email format.
-* [[Phone]](xref:System.ComponentModel.DataAnnotations.PhoneAttribute): Validates that the property has a telephone number format.
-* [[Range]](xref:System.ComponentModel.DataAnnotations.RangeAttribute): Validates that the property value falls within a specified range.
-* [[RegularExpression]](xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute): Validates that the property value matches a specified regular expression.
-* [[Required]](xref:System.ComponentModel.DataAnnotations.RequiredAttribute): Validates that the field isn't null. See [`[Required]` attribute](#non-nullable-reference-types-and-required-attribute) for details about this attribute's behavior.
-* [[StringLength]](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute): Validates that a string property value doesn't exceed a specified length limit.
-* [[Url]](xref:System.ComponentModel.DataAnnotations.UrlAttribute): Validates that the property has a URL format.
-* [[Remote]](xref:Microsoft.AspNetCore.Mvc.RemoteAttribute): Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
-
-A complete list of validation attributes can be found in the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace.
+For a complete list of validation attributes, see the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace.
 
 ### Error messages
 

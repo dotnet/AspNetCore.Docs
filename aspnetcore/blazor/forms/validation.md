@@ -5,7 +5,7 @@ description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/25/2025
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -133,6 +133,12 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 
 * [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)
 * [`EnableDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs)
+
+:::moniker range=">= aspnetcore-10.0"
+
+For details on validation behavior, see the [`DataAnnotationsValidator` validation behavior](#dataannotationsvalidator-validation-behavior) section.
+
+:::moniker-end
 
 If you need to enable data annotations validation support for an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> in code, call <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.EnableDataAnnotationsValidation%2A> with an injected <xref:System.IServiceProvider> (`@inject IServiceProvider ServiceProvider`) on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. For an advanced example, see the [`NotifyPropertyChangedValidationComponent` component in the ASP.NET Core Blazor framework's `BasicTestApp` (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/FormsTest/NotifyPropertyChangedValidationComponent.razor). In a production version of the example, replace the `new TestServiceProvider()` argument for the service provider with an injected <xref:System.IServiceProvider>.
 
@@ -597,7 +603,7 @@ app.MapDefaultControllerRoute();
 For more information on controller routing and validation failure error responses, see the following resources:
 
 * <xref:mvc/controllers/routing>
-* <xref:web-api/handle-errors#validation-failure-error-response>
+* <xref:fundamentals/error-handling-api#validation-failure-error-response>
 
 In the `.Client` project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Update the namespace to match the app (for example, `namespace BlazorSample.Client`).
 
@@ -1542,18 +1548,25 @@ Using `CustomFieldClassProvider3`:
 
 [Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) is supported for Blazor form models. <xref:System.ComponentModel.DataAnnotations.IValidatableObject> validation only executes when the form is submitted and only if all other validation succeeds.
 
+:::moniker range="< aspnetcore-10.0"
+
 ## Blazor data annotations validation package
 
-The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) is a package that fills validation experience gaps using the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The package is currently *experimental*.
+> [!NOTE]
+> The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) is no longer recommended for apps that target .NET 10 or later. For more information, see the [Nested objects, collection types, and complex types](#nested-objects-collection-types-and-complex-types) section.
+
+The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) fills validation experience gaps using the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The package is currently *experimental*.
 
 > [!WARNING]
-> The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package has a latest version of *release candidate* at [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Continue to use the *experimental* release candidate package at this time. Experimental features are provided for the purpose of exploring feature viability and may not ship in a stable version. Watch the [Announcements GitHub repository](https://github.com/aspnet/Announcements), the [`dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore), or this topic section for further updates.
+> The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) has a latest version of *release candidate* at [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Continue to use the *experimental* release candidate package at this time. Experimental features are provided for the purpose of exploring feature viability and may not ship in a stable version. Watch the [Announcements GitHub repository](https://github.com/aspnet/Announcements), the [`dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore), or this topic section for further updates.
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
 ## `[CompareProperty]` attribute
 
-The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]` attribute](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` *experimental* package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]` attribute](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
 
 :::moniker-end
 
@@ -1563,33 +1576,29 @@ The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work w
 
 Blazor form validation includes support for validating properties of nested objects and collection items with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.
 
-To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, just as before.
+To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
 
 To opt into the nested objects and collection types validation feature:
 
-<!-- UPDATE 10.0 - API cross-links -->
-
-1. Call the `AddValidation` extension method in the `Program` file where services are registered.
+1. Call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method in the `Program` file where services are registered.
 2. Declare the form model types in a C# class file, not in a Razor component (`.razor`).
-3. Annotate the root form model type with the `[ValidatableType]` attribute.
+3. Annotate the root form model type with the [`[ValidatableType]` attribute](xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute).
 
-Without following the preceding steps, form validation behavior doesn't include nested model and collection type validation.
+The following example demonstrates customer orders with nested collection form validation.
 
-<!-- UPDATE 10.0 - Replace with a fully working, cut-'n-paste example -->
-
-The following example demonstrates customer orders with the improved form validation (details omitted for brevity):
-
-In `Program.cs`, call `AddValidation` on the service collection:
+In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on the service collection:
 
 ```csharp
 builder.Services.AddValidation();
 ```
 
-In the following `Order` class, the `[ValidatableType]` attribute is required on the top-level model type. The other types are discovered automatically. `OrderItem` and `ShippingAddress` aren't shown for brevity, but nested and collection validation works the same way in those types if they were shown.
+In the following `Order` class, the `[ValidatableType]` attribute is required on the top-level model type. The other types are discovered automatically.
 
 `Order.cs`:
 
 ```csharp
+using System.ComponentModel.DataAnnotations;
+
 [ValidatableType]
 public class Order
 {
@@ -1606,6 +1615,41 @@ public class Customer
     public string? Email { get; set; }
 
     public ShippingAddress ShippingAddress { get; set; } = new();
+}
+```
+
+`OrderItem.cs`:
+
+```csharp
+public class OrderItem
+{
+    [Required(ErrorMessage = "Id is required.")]
+    public int Id { get; set; }
+
+    [Required(ErrorMessage = "Description is required.")]
+    public string? Description { get; set; }
+
+    [Required(ErrorMessage = "Price is required.")]
+    public decimal Price { get; set; }
+}
+```
+
+`ShippingAddress.cs`:
+
+```csharp
+public class ShippingAddress
+{
+    [Required(ErrorMessage = "Street is required.")]
+    public string? Street { get; set; }
+
+    [Required(ErrorMessage = "City is required.")]
+    public string? City { get; set; }
+
+    [Required(ErrorMessage = "State/Province is required.")]
+    public string? StateProvince { get; set; }
+
+    [Required(ErrorMessage = "PostalCode is required.")]
+    public string? PostalCode { get; set; }
 }
 ```
 
@@ -1636,16 +1680,9 @@ In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Component
 }
 ```
 
-The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the new validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
+The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the nested collection validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
 
-## Complex types
-
-Blazor provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> only validates top-level properties of the model bound to the form that aren't complex-type properties.
-
-To validate the bound model's entire object graph, including complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package.
-
-> [!NOTE]
-> The `ObjectGraphDataAnnotationsValidator` isn't compatible with [nested objects and collection types validation](#nested-objects-and-collection-types), but it's capable of validating nested objects and collection types on its own.
+For guidance on using validation models from a different assembly, see the [Use validation models from a different assembly](#use-validation-models-from-a-different-assembly) section.
 
 :::moniker-end
 
@@ -1653,11 +1690,12 @@ To validate the bound model's entire object graph, including complex-type proper
 
 ## Nested objects, collection types, and complex types
 
-Blazor provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.
+> [!NOTE]
+> For apps targeting .NET 10 or later, we no longer recommend using the [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` *experimental* package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) and approach described in this section. We recommend using the built-in validation features of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
 
-To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package:
+Blazor provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> in .NET 9 or earlier only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.
 
-:::moniker-end
+To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) in .NET 9 or earlier:
 
 ```razor
 <EditForm ...>
@@ -1702,6 +1740,108 @@ public class ShipDescription
     public string? LongDescription { get; set; }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+## Use validation models from a different assembly
+
+<!-- UPDATE 11.0 - The first list item changes when the content
+                   is updated for plain class libs upon 
+                   experimental status dropping at 11.0 -->
+
+For model validation defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App:
+
+* If the library is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the library for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation). Additional steps are required for plain class libraries, which are described later in this section.
+* Create a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on it.
+* In the app, call both the method and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>.
+
+The preceding approach results in validation of the types from both assemblies.
+
+In the following example, the `AddValidationForTypesInClient` method is created for the `.Client` project of a Blazor Web App for validation using types defined in the `.Client` project.
+
+`ServiceCollectionExtensions.cs` (in the `.Client` project):
+
+```csharp
+namespace BlazorSample.Client.Extensions;
+
+public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddValidationForTypesInClient(
+        this IServiceCollection collection)
+    {
+        return collection.AddValidation();
+    }
+}
+```
+
+In the server project's `Program` file, add the namespace and call the `.Client` project's service collection extension method (`AddValidationForTypesInClient`) and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>:
+
+```csharp
+using BlazorSample.Client.Extensions;
+
+...
+
+builder.Services.AddValidationForTypesInClient();
+builder.Services.AddValidation();
+```
+
+<!-- UPDATE 11.0 - The following changes when the content
+                   is updated for plain class libs upon 
+                   experimental status dropping at 11.0 -->
+
+The new attributes from the `Microsoft.Extensions.Validation` package (<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>) are published as *experimental* in .NET 10. The package is intended to provide a new shared infrastructure for validation features across frameworks, and publishing experimental types provides greater flexibility for the final design of the public API for better support in consuming frameworks.
+
+In Blazor apps, types are made available via a generated embedded attribute. If a web app project that uses the `Microsoft.NET.Sdk.Web` SDK (`<Project Sdk="Microsoft.NET.Sdk.Web">`) or an RCL that uses the `Microsoft.NET.Sdk.Razor` SDK (`<Project Sdk="Microsoft.NET.Sdk.Razor">`) contains Razor components (`.razor`), the framework automatically generates an internal attribute inside the project (`Microsoft.Extensions.Validation.Embedded.ValidatableType`, `Microsoft.Extensions.Validation.Embedded.SkipValidation`). These types are interchangeable with the actual attributes and not marked experimental. In the majority of cases, developers use the `[ValidatableType]`/`[SkipValidation]` attributes on their classes without concern over their source.
+
+However, the preceding approach isn't viable in plain class libraries that use the `Microsoft.NET.Sdk` SDK (`<Project Sdk="Microsoft.NET.Sdk">`). Using the types in a plain class library results in an code analysis warning:
+
+> :::no-loc text="ASP0029: 'Microsoft.Extensions.Validation.ValidatableTypeAttribute' is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.":::
+
+The warning can be suppressed using any of the following approaches:
+
+* A `<NoWarn>` property in the project file:
+
+  ```xml
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);ASP0029</NoWarn>
+  </PropertyGroup>
+  ```
+
+* A [`pragma` directive](/cpp/preprocessor/pragma-directives-and-the-pragma-keyword) where the attribute is used:
+
+  ```csharp
+  #pragma warning disable ASP0029
+  [Microsoft.Extensions.Validation.ValidatableType]
+  #pragma warning restore ASP0029
+  ```
+
+* An [EditorConfig file (`.editorconfig`)](/visualstudio/ide/create-portable-custom-editor-options) rule:
+
+  ```
+  dotnet_diagnostic.ASP0029.severity = none
+  ```
+
+If suppressing the warning isn't acceptable, manually create the embedded attribute in the library that the Web and Razor SDKs generate automatically.
+
+`ValidatableTypeAttribute.cs`:
+
+```csharp
+namespace Microsoft.Extensions.Validation.Embedded
+{
+    [AttributeUsage(AttributeTargets.Class)]
+    internal sealed class ValidatableTypeAttribute : Attribute
+    {
+    }
+}
+```
+
+Use the exact namespace (`Microsoft.Extensions.Validation.Embedded`) and class name (`ValidatableTypeAttribute`) in order for the validation source generator to detect and use the type. You can declare a global `using` statement for the namespace, either with a `global using Microsoft.Extensions.Validation.Embedded;` statement or with a `<Using Include="Microsoft.Extensions.Validation.Embedded" />` item in the library's project file.
+
+Whichever approach is adopted, denote the presence of the workaround for a future update to your code. Framework updates to ease the adoption of validation types in plain class libraries are planned for .NET 11 (November, 2026).
+
+:::moniker-end
 
 ## Enable the submit button based on form validation
 
@@ -1829,3 +1969,17 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
     }
 }
 ```
+
+:::moniker range=">= aspnetcore-10.0"
+
+## `DataAnnotationsValidator` validation behavior
+
+The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component has the same validation order and short-circuiting behavior as <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. The following rules are applied when validating an instance of type `T`:
+
+1. Member properties of `T` are validated, including recursively validating nested objects.
+1. Type-level attributes of `T` are validated.
+1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
+
+If one of the preceding steps produces a validation error, the remaining steps are skipped.
+
+:::moniker-end

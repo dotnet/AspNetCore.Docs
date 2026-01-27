@@ -5,14 +5,14 @@ description: Learn about ASP.NET Core Razor component component disposal with ID
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/18/2025
+ms.date: 11/11/2025
 uid: blazor/components/component-disposal
 ---
 # ASP.NET Core Razor component disposal
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains the ASP.NET Core Razor component disposal with with <xref:System.IDisposable> and <xref:System.IAsyncDisposable>.
+This article explains the ASP.NET Core Razor component disposal process with <xref:System.IDisposable> and <xref:System.IAsyncDisposable>.
 
 If a component implements <xref:System.IDisposable> or <xref:System.IAsyncDisposable>, the framework calls for resource disposal when the component is removed from the UI. Don't rely on the exact timing of when these methods are executed. For example, <xref:System.IAsyncDisposable> can be triggered before or after an asynchronous <xref:System.Threading.Tasks.Task> awaited in [`OnInitalizedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) or [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) is called or completes. Also, object disposal code shouldn't assume that objects created during initialization or other lifecycle methods exist.
 

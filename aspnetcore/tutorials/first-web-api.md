@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a controller-based web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 02/17/2025
+ms.date: 09/15/2025
 uid: tutorials/first-web-api
 ---
 
@@ -16,7 +16,7 @@ By [Tim Deschryver](https://timdeschryver.dev/) and [Rick Anderson](https://twit
 
 :::moniker range=">= aspnetcore-9.0"
 
-This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *minimal APIs*. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a minimal API, see <xref:tutorials/min-web-api>.
+This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a Minimal API, see <xref:tutorials/min-web-api>.
 
 ## Overview
 
@@ -57,7 +57,7 @@ The following diagram shows the design of the app.
 * In the **Additional information** dialog:
   * Confirm the **Framework** is **.NET 9.0 (Standard Term Support)**.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
-  * Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
+  * Confirm the checkbox for **Use controllers (uncheck to use Minimal APIs)** is checked.
   * Select **Create**.
 
 ## Add a NuGet package
@@ -79,7 +79,7 @@ A NuGet package must be added to support the database used in this tutorial.
    dotnet new webapi --use-controllers -o TodoApi
    cd TodoApi
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   code -r ../TodoApi
+   code -r .
    ```
 
   These commands:
@@ -320,7 +320,15 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update `Program.cs` with the following highlighted code:
 
+# [Visual Studio](#tab/visual-studio)
+
 :::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs" highlight="1-2,8-9":::
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+:::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi_SwaggerVersion/Program.cs" highlight="1-2,8-9":::
+
+---
 
 The preceding code:
 
@@ -792,7 +800,7 @@ The secret field needs to be hidden from this app, but an administrative app cou
 
 Verify you can post and get the secret field.
 
-Create a DTO model in a **Models/TodoItemsDTO.cs** file:
+Create a DTO model in a **Models/TodoItemDTO.cs** file:
 
 :::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Models/TodoItemDTO.cs" :::
 
@@ -824,7 +832,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 ## Additional resources
 
-[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
+[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:fundamentals/index#how-to-download-a-sample).
 
 For more information, see the following resources:
 

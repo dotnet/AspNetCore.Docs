@@ -33,7 +33,7 @@ This article covers low-level details of ASP.NET Core routing. For information o
 
 * For controllers, see <xref:mvc/controllers/routing>.
 * For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
-* For Blazor routing guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/routing>.
+* For Blazor routing and navigation guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/routing> and <xref:blazor/fundamentals/navigation>.
 
 ## Routing basics
 
@@ -1086,7 +1086,7 @@ This makes the authorization middleware useful outside of the context of routing
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 :::moniker-end
 

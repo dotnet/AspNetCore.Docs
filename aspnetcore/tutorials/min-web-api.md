@@ -1,7 +1,7 @@
 ---
-title: "Tutorial: Create a minimal API with ASP.NET Core"
+title: "Tutorial: Create a Minimal API with ASP.NET Core"
 author: wadepickett
-description: Learn how to build a minimal API with ASP.NET Core.
+description: Learn how to build a Minimal API with ASP.NET Core.
 ms.author: wpickett
 ms.date: 07/29/2024
 ms.custom: engagement-fy24
@@ -9,7 +9,7 @@ monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
 
-# Tutorial: Create a minimal API with ASP.NET Core
+# Tutorial: Create a Minimal API with ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -20,7 +20,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://gi
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -81,7 +81,7 @@ This tutorial creates the following API:
 * When a dialog box asks if you want to trust the authors, select **Yes**.
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
-  The preceding commands create a new web minimal API project and open it in Visual Studio Code.
+  The preceding commands create a new web Minimal API project and open it in Visual Studio Code.
 
 ---
 
@@ -94,7 +94,7 @@ The `Program.cs` file contains the following code:
 The preceding code:
 
 * Creates a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and a <xref:Microsoft.AspNetCore.Builder.WebApplication> with preconfigured defaults.
-* Creates an HTTP GET endpoint `/` that returns `Hello World!`:
+* Creates an HTTP GET endpoint `/` that returns `Hello World!`.
 
 ### Run the app
 
@@ -659,14 +659,14 @@ Verify you can post and get all fields except the secret field.
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](xref:index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## Next steps
 
 * [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
-* Handle errors and exceptions: The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:web-api/handle-errors).
-* For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
-* [OpenAPI support in minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi).
+* Handle errors and exceptions: The [developer exception page](xref:fundamentals/error-handling-api#developer-exception-page) is enabled by default in the `Development` environment for Minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:fundamentals/error-handling-api).
+* For an example of testing a Minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
+* [OpenAPI support in Minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi).
 * [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).
 * [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html).
 

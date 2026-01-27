@@ -142,7 +142,7 @@ The consuming app references static assets provided by the library with `<script
 
 [!code-csharp[](~/razor-pages/ui-class/7samples/MvcProgram.cs?highlight=15)]
 
-When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the Development environment. To support assets in other environments when running from build output, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the host builder in `Program.cs`:
+When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the `Development` environment. To support assets in other environments when running from build output, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the host builder in `Program.cs`:
 
 [!code-csharp[](~/razor-pages/ui-class/7samples/cli/WebApp1/Program.cs?name=snippet1&highlight=3-4)]
 
@@ -163,7 +163,7 @@ When the app is published, the companion assets from all referenced projects and
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 * <xref:blazor/components/class-libraries>
 * <xref:blazor/components/css-isolation#razor-class-library-rcl-support>

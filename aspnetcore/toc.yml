@@ -7,6 +7,10 @@ items:
     uid: get-started
   - name: What's new
     items:
+      - name: ASP.NET Core 11
+        items:
+          - name: What's new in 11
+            uid: aspnetcore-11
       - name: ASP.NET Core 10
         items:
           - name: What's new in 10
@@ -322,6 +326,11 @@ items:
             uid: blazor/tutorials/index
       - name: APIs
         items:
+        - name: Minimal APIs
+          items:
+          - name: Create a minimal web API
+            displayName: API tutorial
+            uid: tutorials/min-web-api
         - name: Controller-based APIs
           items:
           - name: Create a controller-based web API
@@ -339,11 +348,6 @@ items:
           - name: Publish to Azure API Management
             displayName: tutorial
             uid: tutorials/publish-to-azure-api-management-using-vs
-        - name: Minimal APIs
-          items:
-          - name: Create a minimal web API
-            displayName: API tutorial
-            uid: tutorials/min-web-api
       - name: Real-time web apps
         items:
           - name: SignalR with JavaScript
@@ -439,9 +443,6 @@ items:
           - name: Data access >>
             displayName: tutorial, ef, entity framework
             href: /training/modules/persist-data-ef-core/
-          - name: Web app security >>
-            displayName: tutorial, identity
-            href: /training/modules/secure-aspnet-core-identity/
   - name: Fundamentals
     items:
       - name: Overview
@@ -526,8 +527,6 @@ items:
       - name: Make HTTP requests
         displayName: httpclient, httpclientfactory
         uid: fundamentals/http-requests
-      - name: Map Static files
-        uid: fundamentals/map-static-files
       - name: Static files
         uid: fundamentals/static-files
       - name: dotnet-scaffold telemetry
@@ -538,7 +537,7 @@ items:
         uid: tutorials/choose-web-ui
       - name: Razor Pages
         items:
-          - name: Introduction
+          - name: Architecture and concepts
             uid: razor-pages/index
           - name: Tutorial
             items:
@@ -674,6 +673,8 @@ items:
                 uid: blazor/hybrid/reuse-razor-components
               - name: Class libraries
                 uid: blazor/hybrid/class-libraries
+              - name: Class libraries best practices
+                uid: blazor/hybrid/class-libraries-best-practices
               - name: Root component parameters
                 uid: blazor/hybrid/root-component-parameters
               - name: Security and Identity
@@ -694,8 +695,10 @@ items:
             items:
               - name: Overview
                 uid: blazor/fundamentals/index
-              - name: Routing and navigation
+              - name: Routing
                 uid: blazor/fundamentals/routing
+              - name: Navigation
+                uid: blazor/fundamentals/navigation
               - name: Configuration
                 uid: blazor/fundamentals/configuration
               - name: Dependency injection
@@ -888,6 +891,8 @@ items:
             uid: blazor/webassembly-lazy-load-assemblies
           - name: WebAssembly native dependencies
             uid: blazor/webassembly-native-dependencies
+          - name: Blazor with .NET on Web Workers
+            uid: blazor/blazor-web-workers
           - name: Performance
             items:
               - name: Overview
@@ -990,6 +995,8 @@ items:
                 uid: client-side/dotnet-interop/index
               - name: JS interop (WebAssembly Browser App)
                 uid: client-side/dotnet-interop/wasm-browser-app
+          - name: .NET on Web Workers
+            uid: client-side/dotnet-on-webworkers
           - name: Grunt
             uid: client-side/using-grunt
           - name: Bundle and minify
@@ -1086,62 +1093,28 @@ items:
     items:
       - name: Overview
         uid: fundamentals/apis
-      - name: Controller-based APIs
-        items:
-        - name: Overview
-          uid: web-api/index
-        - name: Tutorials
-          items:
-            - name: Create a web API with controllers
-              uid: tutorials/first-web-api
-            - name: Web API with MongoDB
-              uid: tutorials/first-mongo-app
-        - name: Action return types
-          uid: web-api/action-return-types
-        - name: Handle JSON Patch requests
-          uid: web-api/jsonpatch
-        - name: Format response data
-          uid: web-api/advanced/formatting
-        - name: Custom formatters
-          uid: web-api/advanced/custom-formatters
-        - name: Analyzers
-          uid: web-api/advanced/analyzers
-        - name: Conventions
-          uid: web-api/advanced/conventions
-        - name: Handle errors
-          uid: web-api/handle-errors
-        - name: Test with HttpRepl
-          items:
-            - name: Overview
-              uid: web-api/http-repl
-            - name: Telemetry
-              uid: web-api/http-repl/telemetry
-      - name: Minimal APIs
-        items:
-        - name: Overview
-          uid: fundamentals/minimal-apis/overview
-        - name: "Tutorial: Create a minimal API"
-          uid: tutorials/min-web-api
-        - name: Minimal APIs quick reference
-          uid: fundamentals/minimal-apis
-        - name: WebApplication and WebApplicationBuilder
-          uid: fundamentals/minimal-apis/webapplication
-        - name: Route Handlers
-          uid: fundamentals/minimal-apis/route-handlers
-        - name: Parameter binding
-          uid: fundamentals/minimal-apis/parameter-binding
-        - name: Create responses
-          uid: fundamentals/minimal-apis/responses
-        - name: Filters
-          uid: fundamentals/minimal-apis/min-api-filters
-        - name: Unit and integration tests
-          uid: fundamentals/minimal-apis/test-min-api
-        - name: Middleware
-          uid: fundamentals/minimal-apis/middleware
-        - name: Handle errors
-          uid: fundamentals/minimal-apis/handle-errors
-        - name: Authentication and authorization
-          uid: fundamentals/minimal-apis/security
+      - name: "Tutorial: Create a Minimal API"
+        uid: tutorials/min-web-api
+      - name: Minimal APIs quick reference
+        uid: fundamentals/minimal-apis
+      - name: WebApplication and WebApplicationBuilder
+        uid: fundamentals/minimal-apis/webapplication
+      - name: Route Handlers
+        uid: fundamentals/minimal-apis/route-handlers
+      - name: Parameter binding
+        uid: fundamentals/minimal-apis/parameter-binding
+      - name: Create responses
+        uid: fundamentals/minimal-apis/responses
+      - name: Filters
+        uid: fundamentals/minimal-apis/min-api-filters
+      - name: Unit and integration tests
+        uid: fundamentals/minimal-apis/test-min-api
+      - name: Middleware
+        uid: fundamentals/minimal-apis/middleware
+      - name: Handle errors
+        uid: fundamentals/error-handling-api
+      - name: Authentication and authorization
+        uid: fundamentals/minimal-apis/security
       - name: OpenAPI
         items:
           - name: Overview
@@ -1166,6 +1139,34 @@ items:
                 uid: tutorials/get-started-with-swashbuckle
               - name: Get started with NSwag
                 uid: tutorials/get-started-with-nswag
+      - name: Controller-based APIs
+        items:
+        - name: Overview
+          uid: web-api/index
+        - name: Tutorials
+          items:
+            - name: Create a web API with controllers
+              uid: tutorials/first-web-api
+            - name: Web API with MongoDB
+              uid: tutorials/first-mongo-app
+        - name: Action return types
+          uid: web-api/action-return-types
+        - name: Handle JSON Patch requests
+          uid: web-api/jsonpatch
+        - name: Format response data
+          uid: web-api/advanced/formatting
+        - name: Custom formatters
+          uid: web-api/advanced/custom-formatters
+        - name: Analyzers
+          uid: web-api/advanced/analyzers
+        - name: Conventions
+          uid: web-api/advanced/conventions
+        - name: Test with HttpRepl
+          items:
+            - name: Overview
+              uid: web-api/http-repl
+            - name: Telemetry
+              uid: web-api/http-repl/telemetry
   - name: Real-time apps
     displayName: signalr
     items:
@@ -1405,6 +1406,9 @@ items:
           - name: Diagnostics
             displayName: diagnostics
             uid: fundamentals/servers/kestrel/diagnostics
+          - name: Memory management
+            displayName: memory, pool, kestrel
+            uid: fundamentals/servers/kestrel/memory-management
           - name: HTTP/2
             displayName: deploy, publish, server, Kestrel
             uid: fundamentals/servers/kestrel/http2
@@ -1625,6 +1629,8 @@ items:
         uid: test/loadtests
       - name: Test middleware
         uid: test/middleware
+      - name: .localhost top-level domain
+        uid: test/localhost-tld
   - name: Debug
     items:
       - name: Debug with Visual Studio
@@ -1718,6 +1724,8 @@ items:
         uid: diagnostics/bl0006
       - name: BL0007
         uid: diagnostics/bl0007
+      - name: BL0008
+        uid: diagnostics/bl0008
       - name: MVC1000
         uid: diagnostics/mvc1000
       - name: MVC1001
@@ -1950,6 +1958,12 @@ items:
                 uid: security/authentication/identity-enable-qrcodes
               - name: Two-factor authentication with SMS
                 uid: security/authentication/2fa
+              - name: Passkeys (WebAuthn)
+                items:
+                  - name: Overview
+                    uid: security/authentication/passkeys/index
+                  - name: Blazor
+                    uid: security/authentication/passkeys/blazor
               - name: External authentication providers
                 items:
                   - name: Overview
@@ -2292,8 +2306,14 @@ items:
         uid: fundamentals/middleware/extensibility-third-party-container
   - name: Migration and updates
     items:
+      - name: Overview
+        displayName: migrate, migration
+        uid: migration/index
       - name: Version updates
         items:
+          - name: 9 to 10
+            displayName: migrate, migration
+            uid: migration/90-to-100
           - name: 8 to 9
             displayName: migrate, migration
             uid: migration/80-to-90
@@ -2331,7 +2351,7 @@ items:
                 uid: migration/logging-nonaspnetcore
               - name: 2.0 to 2.1
                 displayName: migrate, migration
-                uid: migration/20_21
+                uid: migration/20-to-21
               - name: 1.x to 2.0
                 displayName: migrate, migration
                 items:
@@ -2363,18 +2383,24 @@ items:
             items:
             - name: Overview
               uid: migration/fx-to-core/areas
+            - name: HttpApplicationHost
+              uid: migration/fx-to-core/areas/hosting
             - name: HttpContext
               uid: migration/fx-to-core/areas/http-context
             - name: HTTP Modules
               uid: migration/fx-to-core/areas/http-modules
             - name: HTTP Handlers
               uid: migration/fx-to-core/areas/http-handlers
+            - name: Machine Key
+              uid: migration/fx-to-core/areas/machine-key
             - name: Session
               uid: migration/fx-to-core/areas/session
             - name: Authentication
               uid: migration/fx-to-core/areas/authentication
             - name: Membership
               uid: migration/fx-to-core/areas/membership
+            - name: OWIN
+              uid: migration/fx-to-core/areas/owin
             - name: Web API
               uid: migration/fx-to-core/areas/webapi
             - name: ClaimsPrincipal.Current

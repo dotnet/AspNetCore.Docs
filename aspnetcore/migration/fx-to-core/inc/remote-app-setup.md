@@ -1,11 +1,12 @@
 ---
 title: Remote app setup
-description: Remote app setup
+ai-usage: ai-assisted
 author: wadepickett
-ms.author: wpickett
+description: Remote app setup
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/17/2025
-ms.topic: article
+ms.author: wpickett
+ms.date: 01/26/2026
+ms.topic: concept-article
 uid: migration/fx-to-core/inc/remote-app-setup
 zone_pivot_groups: migration-remote-app-setup
 ---
@@ -61,12 +62,15 @@ To configure the application to be available to handle the requests from the ASP
     ```CSharp
     protected void Application_Start()
     {
-        SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
-            .AddRemoteAppServer(options =>
-            {
-                // ApiKey is a string representing a GUID
-                options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
-            });
+        HttpApplicationHost.RegisterHost(builder =>
+        {
+            builder.Services.AddSystemWebAdapters()
+                .AddRemoteAppServer(options =>
+                {
+                    // ApiKey is a string representing a GUID
+                    options.ApiKey = System.Configuration.ConfigurationManager.AppSettings["RemoteAppApiKey"];
+                });
+        });
         
         // ...existing code...
     }
@@ -136,7 +140,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
     // Configure your other middleware here (authentication, routing, etc.)
     
     // Map the fallback route
-    app.MapForwarder("/{**catch-all}", app.ServiceProvider.GetRequiredService<IOptions<RemoteAppClientOptions>>().Value.RemoteAppUrl.OriginalString)
+    app.MapForwarder("/{**catch-all}", app.Services.GetRequiredService<IOptions<RemoteAppClientOptions>>().Value.RemoteAppUrl.OriginalString)
     
         // Ensures this route has the lowest priority (runs last)
         .WithOrder(int.MaxValue)
@@ -154,51 +158,27 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 ## Setup Aspire orchestration
 
 > [!IMPORTANT]
-> This is still in preview and not available on NuGet.org, so you must configure your NuGet config to pull libraries from the .NET Libraries daily feed:
->
-> ```xml
-> <?xml version="1.0" encoding="utf-8"?>
-> <configuration>
->   <packageSources>
->     <!--To inherit the global NuGet package sources remove the <clear/> line below -->
->     <clear />
->     <add key="nuget" value="https://api.nuget.org/v3/index.json" />
->     <add key=".NET Libraries Daily" value="https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-libraries/nuget/v3/index.json" />
->   </packageSources>
-> </configuration>
-> ```
->
-> **NOTE**: This requires v2.0.1-preview1.25351.5 of the System.Web adapters or later.
-
-> [!WARNING]
-> **NOTE**: This is a 3rd party component that helps run the application in Aspire. At the current time, ASP.NET Framework applications are not supported directly in Aspire, but this project helps with that. This dependency is intended for build and development, but does not need to be deployed into production.
+> This integration is currently in preview and is published as a prerelease package on NuGet.org. When adding the package, enable prerelease packages in your tooling (for example, select `Include prerelease` in Visual Studio's NuGet Package Manager or use the equivalent prerelease option with the .NET CLI).
 
 1. Add Aspire orchestration for the ASP.NET Framework application
 1. Add a new ASP.NET Core application to the solution and add it to your Aspire orchestration
-1. Update the AppHost to target Windows as IIS integration requires that:
-    ```diff
-    - <TargetFramework>net9.0</TargetFramework>
-    + <TargetFramework>net9.0-windows</TargetFramework>
-    ```
-1. Add the following Aspire integrations to your app host:
-    * `Aspire.Hosting.IncrementalMigration`
-    * `C3D.Extensions.Aspire.IISExpress`
-1. Configure IIS Express to locally host your framework application and configure incremental migration fallback:
+1. Add the `Aspire.Hosting.IncrementalMigration` package to your AppHost project.
+1. Configure IIS Express to locally host your framework application and configure incremental migration fallback using the incremental migration extensions:
 
     ```csharp
     var builder = DistributedApplication.CreateBuilder(args);
-    
-    var frameworkApp = builder.AddIISExpress("iis")
-        .AddSiteProject<Projects.FrameworkApplication>("framework")
-        .WithDefaultIISExpressEndpoints()
-        .WithOtlpExporter()
-        .WithHttpHealthCheck();
-    
+
+    // Add ASP.NET Framework app with IIS Express
+    var frameworkApp = builder.AddIISExpressProject<Projects.FrameworkApplication>("framework");
+
+    // Add ASP.NET Core app with fallback to Framework app
     var coreApp = builder.AddProject<Projects.CoreApplication>("core")
-        .WithHttpHealthCheck()
-        .WaitFor(frameworkApp)
-        .WithIncrementalMigrationFallback(frameworkApp, options => options.RemoteSession = RemoteSession.Enabled);
-    
+        .WithIncrementalMigrationFallback(frameworkApp, options =>
+        {
+            options.RemoteSession = RemoteSession.Enabled;
+            options.RemoteAuthentication = RemoteAuthentication.DefaultScheme;
+        });
+
     builder.Build().Run();
     ```
 1. Configure the options of the incremental migration fallback for the scenarios you want to support.
@@ -209,48 +189,30 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
 1. Update the ServiceDefaults project to support .NET Framework. This is based off of the default ServiceDefaults and may differ if you have customized anything.
     * Update the target framework to multitarget:
         ```diff
-        - <TargetFramework>net9.0</TargetFramework>
-        + <TargetFrameworks>net9.0;net48</TargetFrameworks>
+        - <TargetFramework>net10.0</TargetFramework>
+        + <TargetFrameworks>net481;net10.0</TargetFrameworks>
         ```
     * Update the PackageReferences to account for the different frameworks:
         ```xml
-         <ItemGroup>
+        <ItemGroup>
             <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+            <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" />
             <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
             <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
             <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
             <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
             <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" />
-          </ItemGroup>
-        
-          <ItemGroup Condition=" '$(TargetFramework)' == 'net9.0'">
+        </ItemGroup>
+
+        <ItemGroup Condition=" '$(TargetFramework)' == 'net10.0' ">
             <FrameworkReference Include="Microsoft.AspNetCore.App" />
-        
-            <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" />
             <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
-          </ItemGroup>
-        
-          <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
+        </ItemGroup>
+
+        <ItemGroup Condition=" '$(TargetFramework)' == 'net481' ">
             <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
             <PackageReference Include="OpenTelemetry.Instrumentation.AspNet" />
-          </ItemGroup>
-        ```
-    * In the Extensions.cs file, you'll need to conditionally exclude the ServiceDiscovery APIs as those are currently not supported on .NET Framework:
-        ```diff
-        + #if NET
-                builder.Services.AddServiceDiscovery();
-        + #endif
-        
-                builder.Services.ConfigureHttpClientDefaults(http =>
-                {
-                    // Turn on resilience by default
-                    http.AddStandardResilienceHandler();
-        
-        + #if NET
-                    // Turn on service discovery by default
-                    http.AddServiceDiscovery();
-        + #endif
-                });
+        </ItemGroup>
         ```
     * To enable telemetry, update the metrics and tracing registrations:
 
@@ -291,6 +253,8 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
         + #endif
         ```
 
+    For a complete, working example of a multi-targeted `ServiceDefaults` configuration that supports both ASP.NET Core and ASP.NET Framework, see the sample `Extensions.cs` file in the System.Web adapters repository: `https://github.com/dotnet/systemweb-adapters/blob/main/samples/ServiceDefaults/Extensions.cs`.
+
 ## Configure ASP.NET Framework Application
 
 1. Reference the ServiceDefaults project
@@ -302,7 +266,7 @@ To enable proxying from the ASP.NET Core application to the ASP.NET Framework ap
         HttpApplicationHost.RegisterHost(builder =>
         {
             builder.AddServiceDefaults();
-            builder.AddSystemWebAdapters();
+            builder.Services.AddSystemWebAdapters();
         });
     }
     ```

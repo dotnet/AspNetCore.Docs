@@ -1,10 +1,11 @@
 ---
 title: Introduction to Identity on ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 04/26/2024
+ms.date: 11/10/2025
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -35,7 +36,7 @@ ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -73,13 +74,13 @@ dotnet new blazor -au Individual -uld -o BlazorApp1
 
 ---
 
-The generated project includes Identity Razor components. The components are found in the `Components/Account` folder. For example:
+The generated project includes Identity Razor components. The components are found in the `Components/Account` folder of the server project. For example:
 
-* `/Components/Account/Pages/Register`
-* `/Components/Account/Pages/Login`
-* `/Components/Account/Pages/Manage/ChangePassword`
+* `Components/Account/Pages/Register.razor`
+* `Components/Account/Pages/Login.razor`
+* `Components/Account/Pages/Manage/ChangePassword.razor`
 
-Identity Razor components are described individually in the documentation for specific use cases and are subject to change each release. When you generate a Blazor Web App with Individual Accounts, Identity Razor components are included in the generated project. The Identity Razor components can also be inspected in the [Blazor project template in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account). 
+Identity Razor components are described individually in the documentation for specific use cases and are subject to change each release. When you generate a Blazor Web App with Individual Accounts, Identity Razor components are included in the generated project. The Identity Razor components can also be inspected in the `Components/Account` folder of the server project in the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp). 
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -201,6 +202,20 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 The template-generated app doesn't use [authorization](xref:security/authorization/secure-data). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, and `UseAuthorization` must be called in the order shown in the preceding code.
 
 For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](xref:fundamentals/startup).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+## ASP.NET Core Identity metrics
+
+ASP.NET Core Identity metrics provide monitoring capabilities for user management and authentication processes. These metrics help you detect unusual sign-in patterns that might indicate security threats, track the performance of identity operations, and understand how users interact with authentication features, such as two-factor authentication. This observability is particularly valuable for apps with strict security requirements or those experiencing high authentication traffic.
+
+For complete details on available metrics and how to use them, see <xref:log-mon/metrics/metrics#aspnet-core-identity-metrics>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 <!-- Start here for .NET 6 -->
 

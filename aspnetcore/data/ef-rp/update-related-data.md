@@ -30,8 +30,10 @@ Create a `Pages/Courses/DepartmentNamePageModel.cs` file with the following code
 
 [!code-csharp[](intro/samples/cu50/Pages/Courses/DepartmentNamePageModel.cs)]
 
-The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. The `selectedDepartment` parameter allows the calling code to specify the item that will be selected when the drop-down list is rendered. However, when using the Select Tag Helper with `asp-for`, the selected item is determined by the model property value (such as `Course.DepartmentID`), not by the `selectedDepartment` parameter.
 
+> [!IMPORTANT]
+> When using the Select Tag Helper with `asp-for="Course.DepartmentID"`, the selected option is automatically determined by the value of `Course.DepartmentID`. The `selectedDepartment` parameter passed to the SelectList constructor is ignored in this scenario.
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
 ### Update the Course Create page model
@@ -77,7 +79,7 @@ Update `Pages/Courses/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu50/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-66)]
 
-The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which selects that department in the drop-down list.
+The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID. When using the Select Tag Helper with `asp-for="Course.DepartmentID"`, the selected item in the drop-down list is determined by the value of `Course.DepartmentID`, not by the `selectedDepartment` parameter passed to the SelectList constructor.
 
 ### Update the Course Edit Razor page
 
@@ -253,7 +255,7 @@ Create a `Pages/Courses/DepartmentNamePageModel.cs` file with the following code
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
-The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. The `selectedDepartment` parameter allows the calling code to specify the item that will be selected when the drop-down list is rendered. However, when using the Select Tag Helper with `asp-for`, the selected item is determined by the model property value (such as `Course.DepartmentID`), not by the `selectedDepartment` parameter.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
@@ -300,7 +302,7 @@ Update `Pages/Courses/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-66)]
 
-The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which selects that department in the drop-down list.
+The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID. When using the Select Tag Helper with `asp-for="Course.DepartmentID"`, the selected item in the drop-down list is determined by the value of `Course.DepartmentID`, not by the `selectedDepartment` parameter passed to the SelectList constructor.
 
 ### Update the Course Edit Razor page
 
@@ -455,7 +457,7 @@ Run the app and test the Delete page.
 
 :::moniker range="< aspnetcore-3.0"
 
-This tutorial demonstrates updating related data. If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+This tutorial demonstrates updating related data. If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
 
 The following illustrations shows some of the completed pages.
 
@@ -470,7 +472,7 @@ The Courses/Create and Courses/Edit pages each need a list of department names. 
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. The `selectedDepartment` parameter allows the calling code to specify the item that will be selected when the drop-down list is rendered. However, when using the Select Tag Helper with `asp-for`, the selected item is determined by the model property value (such as `Course.DepartmentID`), not by the `selectedDepartment` parameter.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
@@ -517,7 +519,7 @@ Replace the code in `Pages/Courses/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40,47-999)]
 
-The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which select the department specified in the drop-down list.
+The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID. When using the Select Tag Helper with `asp-for="Course.DepartmentID"`, the selected item in the drop-down list is determined by the value of `Course.DepartmentID`, not by the `selectedDepartment` parameter passed to the SelectList constructor.
 
 Update `Pages/Courses/Edit.cshtml` with the following markup:
 

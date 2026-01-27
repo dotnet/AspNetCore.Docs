@@ -4,14 +4,14 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 10.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 08/13/2025
+ms.date: 11/11/2025
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10
 
 This article highlights the most significant changes in ASP.NET Core in .NET 10 with links to relevant documentation.
 
-This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/10.0#aspnet-core).
+For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/10.0#aspnet-core).
 
 ## Blazor
 
@@ -31,7 +31,7 @@ This section describes new features for SignalR.
 
 ## Minimal APIs
 
-This section describes new features for minimal APIs.
+This section describes new features for Minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/MinApiEmptyStringInFormPost.md)]
 
@@ -67,7 +67,11 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/endpoint-specific-operation-transformers.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/upgrade-microsoft-openapi-2.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/openapi-schema-enhancements.md)]
 
 ## Authentication and authorization
 
@@ -89,6 +93,8 @@ The following image shows an example of the Authenticated request duration metri
 ![Authenticated request duration in the Aspire dashboard](https://github.com/user-attachments/assets/170615e9-ef25-48a1-a482-4933e2e03f03)
 
 For more information, see <xref:log-mon/metrics/built-in#microsoftaspnetcoreauthorization>.
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/identity-metrics.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/avoid-cookie-login-redirects.md)]
 
@@ -130,6 +136,6 @@ if (RedirectHttpResult.IsLocalUrl(url))
 
 Thank you [@martincostello](https://github.com/martincostello) for this contribution!
 
-## Related content
+## Breaking changes
 
-<xref:fundamentals/servers/httpsys>
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.

@@ -27,7 +27,7 @@ Globalizing and localizing an app involves the following tasks:
 * [Provide localized resources for the cultures the app supports](xref:fundamentals/localization/provide-resources)
 * [Implement a strategy to select the culture for each request](xref:fundamentals/localization/select-language-culture)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Additional resources
 
@@ -58,7 +58,7 @@ App localization involves the following:
 1. Provide localized resources for the languages and cultures you support
 1. Implement a strategy to select the language/culture for each request
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/Localization) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/Localization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Make the app content localizable
 

@@ -13,7 +13,7 @@ When cached data is distributed, the data:
 
 Distributed cache configuration is implementation specific. This article describes how to configure SQL Server,  Redis, and Postgres distributed caches. Third party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache)). Regardless of which implementation is selected, the app interacts with the cache using the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/distributed/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/distributed/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -53,7 +53,7 @@ The Distributed Memory Cache is a useful implementation:
 * In development and testing scenarios.
 * When a single server is used in production and memory consumption isn't an issue. Implementing the Distributed Memory Cache abstracts cached data storage. It allows for implementing a true distributed caching solution in the future if multiple nodes or fault tolerance become necessary.
 
-The sample app makes use of the Distributed Memory Cache when the app is run in the Development environment in `Startup.ConfigureServices`:
+The sample app makes use of the Distributed Memory Cache when the app is run in the `Development` environment in `Startup.ConfigureServices`:
 
 [!code-csharp[](~/performance/caching/distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedMemoryCache)]
 
@@ -80,7 +80,7 @@ The table created by the `sql-cache` tool has the following schema:
 > [!NOTE]
 > An app should manipulate cache values using an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache>, not a <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCache>.
 
-The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCache> in a non-Development environment in `Startup.ConfigureServices`:
+The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCache> in a non-`Development` environment in `Startup.ConfigureServices`:
 
 [!code-csharp[](~/performance/caching/distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 

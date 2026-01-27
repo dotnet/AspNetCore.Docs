@@ -5,7 +5,7 @@ description: Discover how to host and deploy Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core Blazor
@@ -133,10 +133,18 @@ When `WasmBundlerFriendlyBootConfig` is enabled, the produced JS contains `impor
 
 The following sample apps are based on [Rollup](https://rollupjs.org/). Similar concepts apply when using other JS bundlers.
 
-Demonstration sample apps:
+Demonstration sample apps for Blazor WebAssembly in a React app (`BlazorWebAssemblyReact`) and .NET on WebAssembly in a React app (`DotNetWebAssemblyReact`) for .NET 10 or later are available in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples).
 
-* [Blazor WASM in a React application (`maraf/blazor-wasm-react` GitHub repository)](https://github.com/maraf/blazor-wasm-react)
-* [.NET on WASM in a React component sample (`maraf/dotnet-wasm-react` GitHub repository)](https://github.com/maraf/dotnet-wasm-react)
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Aspects of Blazor WebAssembly caching apply to Blazor Web Apps
+
+Blazor bundle caching and HTTP caching guidance in the *Blazor WebAssembly* node focus on standalone Blazor WebAssembly apps, but several aspects of client-side caching in these articles also apply to Blazor Web Apps that adopt Interactive WebAssembly or Interactive Auto render modes. If a Blazor Web App that renders content client-side encounters a static asset or bundle caching problem, see the guidance in these articles to troubleshoot the problem:
+
+* <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures>
+* <xref:blazor/host-and-deploy/webassembly/http-caching-issues>
 
 :::moniker-end
 

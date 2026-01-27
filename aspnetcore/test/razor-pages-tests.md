@@ -25,7 +25,7 @@ This topic assumes that you have a basic understanding of Razor Pages apps and u
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 
@@ -148,7 +148,7 @@ Another set of unit tests is responsible for tests of page model methods. In the
 | `OnPostDeleteMessageAsync` | Executes `DeleteMessageAsync` to delete a message with the `Id` specified. |
 | `OnPostAnalyzeMessagesAsync` | If one or more messages are in the database, calculates the average number of words per message. |
 
-The page model methods are tested using seven tests in the `IndexPageTests` class (`tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs`). The tests use the familiar Arrange-Assert-Act pattern. These tests focus on:
+The page model methods are tested using seven tests in the `IndexPageTests` class (`tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs`). The tests use the familiar Arrange-Act-Assert pattern. These tests focus on:
 
 * Determining if the methods follow the correct behavior when the [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) is invalid.
 * Confirming the methods produce the correct <xref:Microsoft.AspNetCore.Mvc.IActionResult>.
@@ -208,7 +208,7 @@ This topic assumes that you have a basic understanding of Razor Pages apps and u
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 
@@ -331,7 +331,7 @@ Another set of unit tests is responsible for tests of page model methods. In the
 | `OnPostDeleteMessageAsync` | Executes `DeleteMessageAsync` to delete a message with the `Id` specified. |
 | `OnPostAnalyzeMessagesAsync` | If one or more messages are in the database, calculates the average number of words per message. |
 
-The page model methods are tested using seven tests in the `IndexPageTests` class (`tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs`). The tests use the familiar Arrange-Assert-Act pattern. These tests focus on:
+The page model methods are tested using seven tests in the `IndexPageTests` class (`tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs`). The tests use the familiar Arrange-Act-Assert pattern. These tests focus on:
 
 * Determining if the methods follow the correct behavior when the [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) is invalid.
 * Confirming the methods produce the correct <xref:Microsoft.AspNetCore.Mvc.IActionResult>.

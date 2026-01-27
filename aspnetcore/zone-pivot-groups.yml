@@ -84,12 +84,12 @@ groups:
   title: Specification
   prompt: Choose the app specification
   pivots:
-    - id: non-bff-pattern
-      title: Non-BFF pattern (Interactive Auto)
-    - id: non-bff-pattern-server
-      title: Non-BFF pattern (Interactive Server)
-    - id: bff-pattern
-      title: BFF pattern (Interactive Auto)
+    - id: with-yarp-and-aspire
+      title: With YARP and Aspire (Interactive Auto)
+    - id: without-yarp-and-aspire
+      title: Without YARP and Aspire (Interactive Auto)
+    - id: without-yarp-and-aspire-server
+      title: Without YARP and Aspire (Interactive Server)
 - id: tooling
   title: Tooling
   prompt: Select your tooling
@@ -104,10 +104,10 @@ groups:
   title: Specification
   prompt: Choose the app specification
   pivots:
-    - id: non-bff-pattern
-      title: Non-BFF pattern
-    - id: bff-pattern
-      title: BFF pattern
+    - id: with-yarp-and-aspire
+      title: With YARP and Aspire
+    - id: without-yarp-and-aspire
+      title: Without YARP and Aspire
 - id: unit-testing-framework
   title: Unit testing framework
   prompt: Choose a unit testing framework
@@ -126,3 +126,11 @@ groups:
       title: Manually
     - id: aspire
       title: Aspire
+- id: implementation
+  title: Feature implementation
+  prompt: Choose how the feature will be implemented
+  pivots:
+    - id: new-development
+      title: New app created from the project template
+    - id: existing-app
+      title: Implemented in an existing app

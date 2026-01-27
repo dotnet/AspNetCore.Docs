@@ -3,7 +3,7 @@ title: Key storage providers in ASP.NET Core
 author: tdykstra
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.author: tdykstra
-ms.date: 06/11/2025
+ms.date: 11/07/2025
 uid: security/data-protection/implementation/key-storage-providers
 ---
 <!-- ms.sfi.ropc: t -->
@@ -50,7 +50,7 @@ Configure Azure Blob Storage to maintain data protection keys:
 
 * We recommend using Azure Managed Identity and role-based access control (RBAC) to access the key storage blob. ***You don't need to create a key file and upload it to the container of the storage account.*** The framework creates the file for you. To inspect the contents of a key file, use the context menu's **View/edit** command at the end of a key row in the portal.
   
-> ![NOTE]
+> [!NOTE]
 > If you plan to use a blob URI with a shared access signature (SAS) instead of a Managed Identity, use a text editor to create an XML key file on your local machine:
 >
 >  ```xml
@@ -274,6 +274,12 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 :::moniker-end
+
+> [!WARNING]
+> When using Redis to persist data protection keys, be aware that Redis doesn't persist data by default when restarting. This can cause Data Protection to issue new keys, invalidating previously protected data.
+> 
+> You can configure Redis to enable data persistence to mitigate this: Redis documentation has information on [how to configure persistence](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/).
+> If you're using [Azure Managed Redis](/azure/redis/how-to-persistence), ensure you have enabled data persistence. [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-how-to-premium-persistence?tabs=premium) needs a premium or higher tier to enable data persistence.
 
 For more information, see the following topics:
 

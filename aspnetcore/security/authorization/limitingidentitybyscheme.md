@@ -4,7 +4,7 @@ author: wadepickett
 description: This article explains how to limit identity to a specific scheme when working with multiple authentication methods.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 1/11/2022
+ms.date: 01/22/2026
 uid: security/authorization/limitingidentitybyscheme
 ---
 # Authorize with a specific scheme in ASP.NET Core
@@ -63,7 +63,7 @@ Update the default authorization policy to accept both authentication schemes. F
 
 As the default authorization policy is overridden, it's possible to use the `[Authorize]` attribute in controllers. The controller then accepts requests with JWT issued by the first or second issuer.
 
-See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/26002) on using multiple authentication schemes.
+For more information on using multiple authentication schemes, see [Multiple jwt authentication schemes can't validate signature key (`dotnet/aspnetcore` #26002)](https://github.com/dotnet/aspnetcore/issues/26002).
 
 The following example uses [Azure Active Directory B2C](/azure/active-directory-b2c/overview) and another [Azure Active Directory](/azure/active-directory/authentication/overview-authentication) tenant:
 

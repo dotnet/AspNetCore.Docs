@@ -5,7 +5,7 @@ description: Learn about the app base path in ASP.NET Core Blazor apps, includin
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/31/2025
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/app-base-path
 ---
 # ASP.NET Core Blazor app base path
@@ -76,10 +76,10 @@ For the second option, which is the usual approach taken, the app sets the base 
 
 ## Server-side Blazor
 
-Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file:
+Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file. The default Blazor hub path is `/_blazor`, and the following example sets the base path of the default hub to `base/path`:
 
 ```csharp
-app.MapBlazorHub("base/path");
+app.MapBlazorHub("base/path/_blazor");
 ```
 
 The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
@@ -87,12 +87,21 @@ The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBu
 You can also map the SignalR hub when the app is in a virtual folder with a [branched middleware pipeline](xref:fundamentals/middleware/index#branch-the-middleware-pipeline). In the following example, requests to `/base/path/` are handled by Blazor's SignalR hub:
 
 ```csharp
-app.Map("/base/path/", subapp => {
-    subapp.UsePathBase("/base/path/");
+app.Map("/base/path", subapp => {
+    subapp.UsePathBase("/base/path");
     subapp.UseRouting();
-    subapp.UseEndpoints(endpoints => endpoints.MapBlazorHub());
+	  subapp.UseAntiforgery();
+    subapp.UseEndpoints(endpoints => {
+        endpoints.MapBlazorHub("/base/path/_blazor");
+        endpoints.MapStaticAssets();
+		    endpoints.MapRazorComponents<App>()
+				.AddInteractiveServerRenderMode();
+	});
 });
 ```
+
+> [!NOTE]
+> The default Blazor hub path is `/_blazor`.
 
 Configure the `<base>` tag, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
@@ -144,9 +153,9 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 > [!NOTE]
 > In some hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
 
-* In a server-side Blazor app, use ***either*** of the following approaches:
+* In a server-side Blazor app, use the following approach:
 
-  * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+  * Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
 
     ```html
     <base href="/CoolApp/">
@@ -154,7 +163,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
     **The trailing slash is required.**
 
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
+  * Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
 
     ```csharp
     app.UsePathBase("/CoolApp");
@@ -222,7 +231,7 @@ In [Blazor WebAssembly web API requests with the `HttpClient` service](xref:blaz
 * <span aria-hidden="true">❌</span> Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
 * <span aria-hidden="true">✔️</span> Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
 
-Don't prefix [Navigation Manager](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
+Don't prefix [Navigation Manager](xref:blazor/fundamentals/navigation#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
 
 * <span aria-hidden="true">❌</span> Incorrect: `Navigation.NavigateTo("/other");`
 * <span aria-hidden="true">✔️</span> Correct: `Navigation.NavigateTo("other");`

@@ -5,7 +5,7 @@ description: Learn how to flow data from an ancestor Razor component to descende
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/cascading-values-and-parameters
 ---
 # ASP.NET Core Blazor cascading values and parameters
@@ -241,7 +241,7 @@ The following component is used to demonstrate how changing the value of `Notify
     private int dalekCount;
 
     [CascadingParameter]
-    public NotifyingDalek? Dalek { get; set; }
+    private NotifyingDalek? Dalek { get; set; }
 
     private void Update()
     {
@@ -432,6 +432,8 @@ For more information, see the following sections of this article:
 ## `[CascadingParameter]` attribute
 
 To make use of cascading values, descendent components declare cascading parameters using the [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute). Cascading values are bound to cascading parameters **by type**. Cascading multiple values of the same type is covered in the [Cascade multiple values](#cascade-multiple-values) section later in this article.
+
+The `private` access modifier is recommended for cascading parameters because the parameter should be scoped for use only within the component's class in most cases. When subclassing is required, use the `protected` access modifier.
 
 The following component binds the `ThemeInfo` cascading value to a cascading parameter, optionally using the same name of `ThemeInfo`. The parameter is used to set the CSS class for the **`Increment Counter (Themed)`** button.
 
@@ -657,7 +659,7 @@ Descendent `Tab` components capture the containing `TabSet` as a cascading param
 
 @code {
     [CascadingParameter]
-    public TabSet? ContainerTabSet { get; set; }
+    private TabSet? ContainerTabSet { get; set; }
 
     [Parameter]
     public string? Title { get; set; }

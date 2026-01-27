@@ -1,18 +1,19 @@
 ---
 title: Create responses in Minimal API applications
 author: brunolins16
-description: Learn how to create responses for minimal APIs in ASP.NET Core.
+description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 05/09/2025
+ms.date: 08/22/2025
 uid: fundamentals/minimal-apis/responses
+ai-usage: ai-assisted
 ---
 
 # How to create responses in Minimal API apps
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to create responses for minimal API endpoints in ASP.NET Core. Minimal APIs provide several ways to return data and HTTP status codes.
+This article explains how to create responses for Minimal API endpoints in ASP.NET Core. Minimal APIs provide several ways to return data and HTTP status codes.
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -81,15 +82,9 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
+For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
 
-As mentioned previously, when using `TypedResults`, a conversion is not needed. Consider the following minimal API which returns a `TypedResults` class
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/WebMinRouteGroup/TodoEndpointsV1.cs" id="snippet_1":::
-
-The following test checks for the full concrete type:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11" highlight="26":::
+For examples on testing result types, see the [Test documentation](/aspnet/core/fundamentals/minimal-apis/test-min-api#unit-test-iresult-implementation-types).
 
 Because all methods on `Results` return `IResult` in their signature, the compiler automatically infers that as the request delegate return type when returning different results from a single endpoint. `TypedResults` requires the use of `Results<T1, TN>` from such delegates.
 
@@ -153,6 +148,24 @@ The preceding example returns a 500 status code.
 #### Problem and ValidationProblem
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_12":::
+
+#### Customize validation error responses using IProblemDetailsService
+
+Customize error responses from Minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. Support for Minimal API validation was introduced in ASP.NET Core in .NET 10.
+
+To implement custom validation error responses:
+
+* Implement <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> or use the default implementation
+* Register the service in the DI container
+* The validation system automatically uses the registered service to format validation error responses
+
+The following example shows how to register and configure the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> to customize validation error responses:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/MinApiIproblemDetailsService/Program.cs" id="snippet_register_IProblemDetailsService_implementation" :::
+
+When a validation error occurs, the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> will be used to generate the error response, including any customizations added in the `CustomizeProblemDetails` callback.
+
+For a complete app example, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/MinApiIproblemDetailsService/Program.cs) demonstrating how to customize validation error responses using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> in ASP.NET Core Minimal APIs.
 
 #### Text
 
@@ -257,7 +270,7 @@ An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttr
 
 ## Configure JSON serialization options
 
-By default, minimal API apps use [`Web defaults`](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
+By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
 
 ### Configure JSON serialization options globally
 

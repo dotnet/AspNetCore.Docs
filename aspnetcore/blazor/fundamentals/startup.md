@@ -5,7 +5,7 @@ description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/fundamentals/startup
 ---
 # ASP.NET Core Blazor startup
@@ -1005,7 +1005,7 @@ Standalone Blazor WebAssembly:
 
 *This section applies to Blazor Web Apps.*
 
-To disable [enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling), set `disableDomPreservation` to `true` for `Blazor.start`:
+To disable [enhanced navigation and form handling](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), set `disableDomPreservation` to `true` for `Blazor.start`:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>

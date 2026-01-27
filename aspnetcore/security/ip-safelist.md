@@ -25,7 +25,7 @@ In each case, a string containing approved client IP addresses is stored in an a
 
 Access is allowed if the array contains the IP address. Otherwise, an HTTP 403 Forbidden status code is returned.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/ip-safelist/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/ip-safelist/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## IP address safelist
 

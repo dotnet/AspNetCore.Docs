@@ -961,11 +961,6 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/migration/index.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/",
-            "redirect_document_id": false
-        },
-        {
             "source_path": "aspnetcore/migration/proper-to-2x/index.md",
             "redirect_url": "/aspnet/core/migration/fx-to-core/",
             "redirect_document_id": false
@@ -1627,6 +1622,56 @@
         {
             "source_path": "aspnetcore/blazor/state-management.md",
             "redirect_url": "/aspnet/core/state-management/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/includes/apis6.md",
+            "redirect_url": "/aspnet/core/fundamentals/apis",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/minimal-apis/handle-errors.md",
+            "redirect_url": "/aspnet/core/fundamentals/error-handling-api",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/minimal-apis/overview.md",
+            "redirect_url": "/aspnet/core/fundamentals/apis",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/web-api/handle-errors.md",
+            "redirect_url": "/aspnet/core/fundamentals/error-handling-api",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/handle-errors.md",
+            "redirect_url": "/aspnet/core/fundamentals/error-handling-api",
+			"redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/map-static-files.md",
+            "redirect_url": "/aspnet/core/fundamentals/static-files",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/60-70.md",
+            "redirect_url": "/aspnet/core/migration/60-to-70",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/70-80.md",
+            "redirect_url": "/aspnet/core/migration/70-to-80",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/80-90.md",
+            "redirect_url": "/aspnet/core/migration/80-to-90",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/20_21.md",
+            "redirect_url": "/aspnet/core/migration/20-to-21",
             "redirect_document_id": false
         }
     ]

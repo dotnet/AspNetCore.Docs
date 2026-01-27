@@ -1,7 +1,7 @@
 
 :::moniker range="= aspnetcore-7.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/7.x/WebApiSample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/7.x/WebApiSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ASP.NET Core provides the following options for web API controller action return types:
 
@@ -207,7 +207,7 @@ In the preceding action:
 
 :::moniker range="< aspnetcore-7.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/action-return-types/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/action-return-types/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ASP.NET Core offers the following options for web API controller action return types:
 

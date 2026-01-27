@@ -78,7 +78,7 @@ code -r SignalRChat
 
 The `dotnet new` command creates a new Razor Pages project in the `SignalRChat` folder.
 
-The `code` command opens the `SignalRChat1 folder in the current instance of Visual Studio Code.
+The `code` command opens the `SignalRChat` folder in the current instance of Visual Studio Code.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
@@ -222,7 +222,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 * [Use hubs](xref:signalr/hubs)
 * [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs)
 * [Authentication and authorization in ASP.NET Core SignalR](xref:signalr/authn-and-authz)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 :::moniker-end
 

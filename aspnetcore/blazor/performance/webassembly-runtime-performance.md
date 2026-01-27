@@ -5,22 +5,18 @@ description: Learn about ASP.NET Core Blazor WebAssembly runtime performance.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/08/2025
+ms.date: 11/11/2025
 uid: blazor/performance/webassembly-runtime-performance
 ---
 # ASP.NET Core Blazor WebAssembly runtime performance
 
-<!-- UPDATE 10.0 - Activate ...
-
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
 
 This article provides guidance on Blazor WebAssembly runtime performance.
 
 ## Potentially reduced performance with Microsoft Edge enhanced security
 
-The Microsoft Edge browser's WebAssembly (WASM) interpreter running in [enhanced security mode](/DeployEdge/microsoft-edge-security-browse-safer) might not yield the same performance as when Blazor is running without enhanced security. If enhanced security mode is enabled and an app's performance is degraded, we recommend adding the site as an [exception](/DeployEdge/microsoft-edge-security-browse-safer#enhanced-security-sites) to opt out of enhanced security mode.
+The Microsoft Edge browser's WebAssembly (Wasm) interpreter running in [enhanced security mode](/DeployEdge/microsoft-edge-security-browse-safer) might not yield the same performance as when Blazor is running without enhanced security. If enhanced security mode is enabled and an app's performance is degraded, we recommend adding the site as an [exception](/DeployEdge/microsoft-edge-security-browse-safer#enhanced-security-sites) to opt out of enhanced security mode.
 
 :::moniker range=">= aspnetcore-8.0"
 
