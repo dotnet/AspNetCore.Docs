@@ -1,5 +1,6 @@
 ---
 title: Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
@@ -1150,6 +1151,12 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
 
 For more information on how this app secures its weather data, see [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
 
+## Host in a web farm or cluster
+
+Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
+
+We also recommend using a shared [Data Protection](xref:security/data-protection/introduction) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits).
+
 ## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
@@ -1164,3 +1171,7 @@ For more information on how this app secures its weather data, see [Secure data 
 * [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
 * [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
 * [Service abstractions in Blazor Web Apps](xref:blazor/call-web-api#service-abstractions-for-web-api-calls)
+* Data Protection resources
+  * <xref:security/data-protection/configuration/overview>
+  * <xref:security/data-protection/implementation/key-storage-providers>
+  * <xref:security/data-protection/implementation/key-encryption-at-rest>
