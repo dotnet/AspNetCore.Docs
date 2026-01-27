@@ -218,7 +218,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 :::moniker-end
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
 
 Don't prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 

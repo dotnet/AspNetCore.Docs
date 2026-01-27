@@ -316,8 +316,6 @@ To configure the EF Core provider, call the <xref:Microsoft.AspNetCore.DataProte
 
 [!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-20)]
 
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
-
 The generic parameter, `TContext`, must inherit from <xref:Microsoft.EntityFrameworkCore.DbContext> and implement <xref:Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.IDataProtectionKeyContext>:
 
 [!code-csharp[Main](key-storage-providers/sample/MyKeysContext.cs)]
