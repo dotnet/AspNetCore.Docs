@@ -1,5 +1,9 @@
 name: Issue Triage with Copilot
 
+# =============================================================================
+# TRIGGER CONFIGURATION
+# This workflow runs automatically when a new issue is opened in the repository
+# =============================================================================
 on:
   issues:
     types:
@@ -7,6 +11,15 @@ on:
 
 jobs:
   triage-non-blazor-issue:
+    # ===========================================================================
+    # JOB FILTER CONDITION
+    # Only run this job for issues that:
+    #   1. Reference ASP.NET Core documentation (must contain aspnetcore/ path)
+    #   2. Are NOT related to Blazor content (excludes blazor/ folder)
+    #   3. Are NOT related to Blazor-adjacent content (excludes specific 
+    #      client-side interop and component tag helper docs that are 
+    #      Blazor-related but located outside the blazor/ folder)
+    # ===========================================================================
     if: |
       contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/')
       && !contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor') 
@@ -16,11 +29,23 @@ jobs:
       && !contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/views/tag-helpers/built-in/component-tag-helper.md')
       && !contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/views/tag-helpers/built-in/persist-component-state.md')
     runs-on: ubuntu-latest
+
+    # ===========================================================================
+    # PERMISSIONS
+    # - issues: write    - Required to post comments and add labels to issues
+    # - contents: read   - Required to checkout the repository and read agent file
+    # - pull-requests: read - Required for Copilot action to access PR context that may be referred to in the issue.
+    # ===========================================================================
     permissions:
       issues: write
       contents: read
       pull-requests: read
     steps:
+      # =========================================================================
+      # STEP 1: POST WELCOME MESSAGE
+      # Immediately acknowledge the issue with a friendly welcome message
+      # to let the submitter know their issue has been received
+      # =========================================================================
       - name: Post welcome message
         uses: actions/github-script@v6
         with:
@@ -32,9 +57,21 @@ jobs:
               body: `### 👋 ***Thanks for your issue!*** 😊\n\nWe will be along shortly to assist.`
             })
 
+      # =========================================================================
+      # STEP 2: CHECKOUT REPOSITORY
+      # Clone the repository to access the Copilot agent configuration file
+      # located at .github/agents/issue-triage-nonblazor.agent.md
+      # =========================================================================
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # =========================================================================
+      # STEP 3: RUN COPILOT AI TRIAGE
+      # Execute the Copilot action with the non-Blazor triage agent to:
+      #   - Analyze the issue content
+      #   - Generate a triage report with recommendations
+      #   - Post the analysis as a comment on the issue
+      # =========================================================================
       - name: Run Copilot Issue Triage
         uses: github/copilot-action@v1
         with:
