@@ -1,23 +1,4 @@
----
-title: Get started with ASP.NET Core SignalR
-ai-usage: ai-assisted
-author: wadepickett
-description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
-<!-- ms.author: bradyg -->
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.custom: mvc, engagement-fy23
-ms.date: 01/27/2026
-uid: tutorials/signalr
-
-# Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
----
-
-# Tutorial: Get started with ASP.NET Core SignalR
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="aspnetcore-8.0 || aspnetcore-9.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
@@ -36,11 +17,11 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-10.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-10.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
 ---
 
@@ -48,7 +29,7 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio](#tab/visual-studio)
 
-Start the latest version of Visual Studio and select **Create a new project**.
+Start Visual Studio 2022 and select **Create a new project**.
 
 ![Create a new project from the start window](~/tutorials/signalr/_static/8.x/start-window-create-new-project-vs17.8.0.png)
 
@@ -60,7 +41,7 @@ In the **Configure your new project** dialog, enter `SignalRChat` for **Project 
 
 Select **Next**.
 
-In the **Additional information** dialog, select **.NET 10.0 (Standard Term Support)** and then select **Create**.
+In the **Additional information** dialog, select **.NET 8.0 (Long Term Support)** and then select **Create**.
 
 ![Additional information](~/tutorials/signalr/_static/8.x/additional-info-vs17.9.0.png)
 
@@ -226,12 +207,3 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr8.md)]
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr7.md)]
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr6.md)]
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr3-5.md)]
-
