@@ -3,7 +3,7 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 03/02/2025
+ms.date: 01/22/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view
 ---
@@ -12,9 +12,7 @@ uid: tutorials/first-mvc-app/adding-view
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-10.0"
 
 In this section, you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
 
@@ -25,7 +23,7 @@ View templates are created using Razor. Razor-based view templates:
 
 Currently the `Index` method returns a string with a message in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Controllers/HelloWorldController.cs?name=snippet_AddView)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Controllers/HelloWorldController.cs?name=snippet_AddView)]
 
 The preceding code:
 
@@ -54,7 +52,7 @@ In the **Add New Item - MvcMovie** dialog:
 * Keep the **Name** box value, `Index.cshtml`.
 * Select **Add**
 
-![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/9/add-view-vs22-17.11.0.png)
+:::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/add-view.png" alt-text="Add New Item dialog.":::
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -67,7 +65,7 @@ Add an `Index` view for the `HelloWorldController`:
 
 Replace the contents of the `Views/HelloWorld/Index.cshtml` Razor view file with the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/HelloWorld/Index.cshtml?highlight=7)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Views/HelloWorld/Index.cshtml?highlight=7)]
 
 Navigate to `https://localhost:{PORT}/HelloWorld`:
 
@@ -75,7 +73,7 @@ Navigate to `https://localhost:{PORT}/HelloWorld`:
 * A view template file name wasn't specified, so MVC defaulted to using the default view file. When the view file name isn't specified, the default view is returned. The default view has the same name as the action method, `Index` in this example. The view template `/Views/HelloWorld/Index.cshtml` is used.
 * The following image shows the string "Hello from our View Template!" hard-coded in the view:
 
-  ![Browser window](~/tutorials/first-mvc-app/adding-view/_static/9/hello_template90.png)
+  :::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/hello-view-template.png" alt-text="Browser window.":::
 
 ## Change views and layout pages
 
@@ -94,7 +92,7 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-
 
 Replace the content of the `Views/Shared/_Layout.cshtml` file with the following markup. The changes are highlighted:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Views/Shared/_Layout.cshtml?highlight=6,15,41)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie10/Views/Shared/_Layout.cshtml?highlight=6,15,41)]
 
 The preceding markup made the following changes:
 
@@ -107,7 +105,7 @@ In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mv
 
 Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - MvcMovie**
 
-![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/9/privacy90.png)
+:::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/privacy-tab.png" alt-text="Privacy tab.":::
 
 Select the **Home** link.
 
@@ -127,7 +125,7 @@ Open the `Views/HelloWorld/Index.cshtml` view file.
 
 Change the title and `<h2>` element as highlighted in the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
 The title and `<h2>` element are slightly different so it's clear which part of the code changes the display.
 
@@ -149,7 +147,7 @@ If there are no changes in the browser, it could be cached content that is being
 
 The content in the `Index.cshtml` view template is merged with the `Views/Shared/_Layout.cshtml` view template. A single HTML response is sent to the browser. Layout templates make it easy to make changes that apply across all of the pages in an app. To learn more, see [Layout](xref:mvc/views/layout).
 
-![Movie List view](~/tutorials/first-mvc-app/adding-view/_static/9/hello90.png)
+:::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/movie-list-view.png" alt-text="Movie List view.":::
 
 The small bit of "data", the "Hello from our View Template!" message, is hard-coded however. The MVC application has a "V" (view), a "C" (controller), but no "M" (model) yet.
 
@@ -178,7 +176,7 @@ In `HelloWorldController.cs`, change the `Welcome` method to add a `Message` and
 
 The `ViewData` dictionary is a dynamic object, which means any type can be used. The `ViewData` object has no defined properties until something is added. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters `name` and `numTimes` from the query string to parameters in the method. The complete `HelloWorldController`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Controllers/HelloWorldController.cs?name=snippet_ViewData&highlight=12-17)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie10/Controllers/HelloWorldController.cs?name=snippet_ViewData&highlight=12-17)]
 
 The `ViewData` dictionary object contains data that will be passed to the view.
 
@@ -186,7 +184,7 @@ Create a Welcome view template named `Views/HelloWorld/Welcome.cshtml`.
 
 You'll create a loop in the `Welcome.cshtml` view template that displays "Hello" `NumTimes`. Replace the contents of `Views/HelloWorld/Welcome.cshtml` with the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/HelloWorld/Welcome.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie10/Views/HelloWorld/Welcome.cshtml)]
 
 Save your changes and browse to the following URL:
 
@@ -194,7 +192,7 @@ Save your changes and browse to the following URL:
 
 Data is taken from the URL and passed to the controller using the [MVC model binder](xref:mvc/models/model-binding). The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
-![Privacy view showing a Welcome label and the phrase Hello Rick shown four times](~/tutorials/first-mvc-app/adding-view/_static/9/rick2_90.png)
+:::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/hello-rick.png" alt-text="Privacy view showing a Welcome label and the phrase Hello Rick shown four times.":::
 
 In the preceding sample, the `ViewData` dictionary was used to pass data from the controller to a view. Later in the tutorial, a view model is used to pass data from a controller to a view. The view model approach to passing data is preferred over the `ViewData` dictionary approach.
 
@@ -205,6 +203,8 @@ In the next tutorial, a database of movies is created.
 > [Next: Add a Model](~/tutorials/first-mvc-app/adding-model.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view9.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view8.md)]
 
