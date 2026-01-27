@@ -30,7 +30,7 @@ This tutorial teaches the basics of building a real-time app using SignalR. You 
 
 At the end, you'll have a working chat app:
 
-![SignalR sample app](~/tutorials/signalr/media/signalr-chat-app.png)
+:::image type="content" source="~/tutorials/signalr/media/signalr-chat-app.png" alt-text="SignalR sample app.":::
 
 ## Prerequisites
 
@@ -50,19 +50,19 @@ At the end, you'll have a working chat app:
 
 Start the latest version of Visual Studio and select **Create a new project**.
 
-![Create a new project from the start window](~/tutorials/signalr/media/start-window-create-new-project.png)
+:::image type="content" source="~/tutorials/signalr/media/start-window-create-new-project.png" alt-text="Create a new project from the start window.":::
 
 In the **Create a new project** dialog, select **ASP.NET Core Web App (Razor Pages)**, and then select **Next**.
 
-![Create an ASP.NET Core Web App](~/tutorials/signalr/media/new-aspnet-core-web-app.png)
+:::image type="content" source="~/tutorials/signalr/media/new-aspnet-core-web-app.png" alt-text="Create an ASP.NET Core Web App.":::
 
 In the **Configure your new project** dialog, enter `SignalRChat` for **Project name**. It's important to name the project `SignalRChat`, including matching the capitalization, so the namespaces match the code in the tutorial.
 
 Select **Next**.
 
-In the **Additional information** dialog, select **.NET 10.0 (Standard Term Support)** and then select **Create**.
+In the **Additional information** dialog, select **.NET 10.0 (Long Term Support)** and then select **Create**.
 
-![Additional information](~/tutorials/signalr/media/additional-information.png)
+:::image type="content" source="~/tutorials/signalr/media/additional-information.png" alt-text="Additional information.":::
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -101,7 +101,7 @@ In the **Add Client-Side Library** dialog:
 * Set **Target Location** to `wwwroot/js/signalr/`.
 * Select **Install**.
 
-![Add Client-Side Library dialog - select library](~/tutorials/signalr/media/add-client-side-library.png)
+:::image type="content" source="~/tutorials/signalr/media/add-client-side-library.png" alt-text="Add Client-Side Library dialog - select library.":::
 
 LibMan creates a `wwwroot/js/signalr` folder and copies the selected files to it. A `libman.json` file is created with the following code:
 
@@ -204,11 +204,11 @@ Choose either browser, enter a name and message, and select the **Send Message**
 
 The name and message are displayed on both pages instantly.
 
-![Completed SignalR sample app](~/tutorials/signalr/media/signalr-chat-app.png)
+:::image type="content" source="~/tutorials/signalr/media/signalr-chat-app.png" alt-text="Completed SignalR sample app.":::
 
 > [!TIP]
 > If the app doesn't work, open the browser developer tools (F12) and go to the console. Look for possible errors related to HTML and JavaScript code. For example, if `signalr.js` was put in a different folder than directed, the reference to that file won't work resulting in a 404 error in the console.
-> ![signalr.js not found error](~/tutorials/signalr/_static/7.x/f12-console.png)
+> :::image type="content" source="~/tutorials/signalr/_static/7.x/f12-console.png" alt-text="signalr.js not found error.":::
 > If an `ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY` error has occurred in Chrome, run the following commands to update the development certificate:
 >
 > ```dotnetcli
