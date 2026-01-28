@@ -51,7 +51,7 @@ The following directives and sources are commonly used for Blazor apps. Add addi
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a client-side Blazor app:
     * Specify [`wasm-unsafe-eval`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_webassembly_execution) to permit the client-side Blazor Mono runtime to function.
-    * Specify any additional hashes to permit your required *non-framework scripts* to load. For example, specify [`unsafe-hashes`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src#unsafe_hashes) with a hash of `sha256-qnHnQs7NjQNHHNYv/I9cW+I62HzDJjbnyS/OFzqlix0=` to permit the inline JavaScript for the navigation toggler in the `NavMenu` component.
+    * Specify any additional hashes with the [`unsafe-hashes`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src#unsafe_hashes) source expression to permit your required *non-framework inline scripts* to load.
   * In a server-side Blazor app, specify hashes to permit required scripts to load.
 * [`style-src`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
@@ -191,7 +191,27 @@ For more information, see [CSP: frame-ancestors (MDN documentation)](https://dev
 
 The following example is a starting point for further development. At the top of [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the [*Policy directives*](#policy-directives) section, along with any other directives that your app specification requires.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-11.0"
+
+For Blazor Web Apps or Blazor Server apps:
+
+```html
+<meta http-equiv="Content-Security-Policy" content="
+    base-uri 'self';
+    default-src 'self';
+    img-src data: https:;
+    object-src 'none';
+    script-src 'self' 'wasm-unsafe-eval';
+    style-src https:;
+    connect-src 'self' http: ws: wss:;
+    upgrade-insecure-requests;" />
+```
+
+Blazor Web Apps have an `ImportMap` component in `<head>` content that renders an inline import map `<script>` tag. To modify the policy to permit the import map to load, see the [Resolving CSP violations with Subresource Integrity (SRI) or a cryptographic nonce](#resolving-csp-violations-with-subresource-integrity-sri-or-a-cryptographic-nonce) section.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 For Blazor Web Apps or Blazor Server apps:
 
