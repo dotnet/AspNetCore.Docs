@@ -105,7 +105,7 @@ In the **Add Client-Side Library** dialog:
 
 LibMan creates a `wwwroot/js/signalr` folder and copies the selected files to it. A `libman.json` file is created with the following code:
 
-[!code-csharp[ChatHub](~/tutorials/signalr/samples/10.x/SignalRChat/libman.json)]
+[!code-json[ChatHub](~/tutorials/signalr/samples/10.x/SignalRChat/libman.json)]
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
