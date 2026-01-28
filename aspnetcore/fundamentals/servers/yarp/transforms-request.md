@@ -110,10 +110,12 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformPathRouteValues(pattern: new PathString("/my/{plugin}/api/{**remainder}"));
+routeConfig = routeConfig.WithTransformPathRouteValues(
+    pattern: new PathString("/my/{plugin}/api/{**remainder}"));
 ```
 ```csharp
-transformBuilderContext.AddPathRouteValues(pattern: new PathString("/my/{plugin}/api/{**remainder}"));
+transformBuilderContext.AddPathRouteValues(
+    pattern: new PathString("/my/{plugin}/api/{**remainder}"));
 ```
 
 This will set the request path with the given value and replace any `{}` segments with the associated route value. `{}` segments without a matching route value are removed. The final `{}` segment can be marked as `{**remainder}` to indicate this is a catch-all segment that may contain multiple path segments. See ASP.NET Core's [routing docs](/aspnet/core/fundamentals/routing#route-template-reference) for more information about route templates.
@@ -147,10 +149,12 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformQueryValue(queryKey: "foo", value: "bar", append: true);
+routeConfig = routeConfig.WithTransformQueryValue(
+    queryKey: "foo", value: "bar", append: true);
 ```
 ```csharp
-transformBuilderContext.AddQueryValue(queryKey: "foo", value: "bar", append: true);
+transformBuilderContext.AddQueryValue(
+    queryKey: "foo", value: "bar", append: true);
 ```
 
 This will add a query string parameter with the name `foo` and sets it to the static value `bar`.
@@ -182,10 +186,12 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformQueryRouteValue(queryKey: "foo", routeValueKey: "remainder", append: true);
+routeConfig = routeConfig.WithTransformQueryRouteValue(
+    queryKey: "foo", routeValueKey: "remainder", append: true);
 ```
 ```csharp
-transformBuilderContext.AddQueryRouteValue(queryKey: "foo", routeValueKey: "remainder", append: true);
+transformBuilderContext.AddQueryRouteValue(
+    queryKey: "foo", routeValueKey: "remainder", append: true);
 ```
 
 This will add a query string parameter with the name `foo` and sets it to the value of the associated route value.
@@ -249,10 +255,13 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformHttpMethodChange(fromHttpMethod: HttpMethods.Put, toHttpMethod: HttpMethods.Post);
+routeConfig = routeConfig.WithTransformHttpMethodChange(
+    fromHttpMethod: HttpMethods.Put, toHttpMethod: HttpMethods.Post);
 ```
+
 ```csharp
-transformBuilderContext.AddHttpMethodChange(fromHttpMethod: HttpMethods.Put, toHttpMethod: HttpMethods.Post);
+transformBuilderContext.AddHttpMethodChange(
+    fromHttpMethod: HttpMethods.Put, toHttpMethod: HttpMethods.Post);
 ```
 
 This will change PUT requests to POST.
@@ -318,10 +327,12 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformRequestHeader(headerName: "MyHeader", value: "MyValue", append: false);
+routeConfig = routeConfig.WithTransformRequestHeader(
+    headerName: "MyHeader", value: "MyValue", append: false);
 ```
 ```csharp
-transformBuilderContext.AddRequestHeader(headerName: "MyHeader", value: "MyValue", append: false);
+transformBuilderContext.AddRequestHeader(
+    headerName: "MyHeader", value: "MyValue", append: false);
 ```
 
 Example:
@@ -350,10 +361,12 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformRequestHeaderRouteValue(headerName: "MyHeader", routeValueKey: "key", append: false);
+routeConfig = routeConfig.WithTransformRequestHeaderRouteValue(
+    headerName: "MyHeader", routeValueKey: "key", append: false);
 ```
 ```csharp
-transformBuilderContext.AddRequestHeaderRouteValue(headerName: "MyHeader", routeValueKey: "key", append: false);
+transformBuilderContext.AddRequestHeaderRouteValue(
+    headerName: "MyHeader", routeValueKey: "key", append: false);
 ```
 
 Example:
@@ -532,10 +545,14 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformForwarded(useHost: true, useProto: true, forFormat: NodeFormat.IpAndPort, ByFormat: NodeFormat.Random, action: ForwardedTransformAction.Append);
+routeConfig = routeConfig.WithTransformForwarded(
+    useHost: true, useProto: true, forFormat: NodeFormat.IpAndPort, 
+    ByFormat: NodeFormat.Random, action: ForwardedTransformAction.Append);
 ```
 ```csharp
-transformBuilderContext.AddForwarded(useHost: true, useProto: true, forFormat: NodeFormat.IpAndPort, ByFormat: NodeFormat.Random, action: ForwardedTransformAction.Append);
+transformBuilderContext.AddForwarded(
+    useHost: true, useProto: true, forFormat: NodeFormat.IpAndPort, 
+    ByFormat: NodeFormat.Random, action: ForwardedTransformAction.Append);
 ```
 Example:
 ```

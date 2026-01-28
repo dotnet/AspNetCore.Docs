@@ -23,7 +23,7 @@ YARP can support the certificate authority [Lets Encrypt](https://letsencrypt.or
 
 Add the `LettuceEncrypt` package dependency:
 
-```csproj
+```xml
 <PackageReference Include="LettuceEncrypt" Version="1.1.2" />
 ```
 

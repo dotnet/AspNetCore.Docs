@@ -41,7 +41,7 @@ Before we continue with this tutorial, make sure you have the following ready...
 
 In the meantime, the YARP ingress controller must be built locally and deploy it. In the root of the repository, run:
 
-```
+```bash
 docker build . -t {REGISTRY_NAME}/yarp-controller:{TAG} -f .\src\Kubernetes.Controller\Dockerfile
 docker push {REGISTRY_NAME}/yarp-controller:{TAG}
 ```
@@ -51,19 +51,19 @@ In the preceding commands, the `{REGISTRY_NAME}` placeholder is the name of the 
 The first step is to deploy the YARP ingress controller to the Kubernetes cluster. This can be done by navigating to [Kubernetes Ingress sample](https://github.com/dotnet/yarp/tree/release/latest/samples/KubernetesIngress.Sample) `\samples\KubernetesIngress.Sample\Ingress`
 and running (after modifying `ingress-controller.yaml` with the same `REGISTRY_NAME` and `TAG`):
 
-```
+```bash
 kubectl apply -f ingress-controller.yaml
 ```
 
 To verify that the ingress controller has been deployed, run:
 
-```
+```bash
 kubectl get pods -n yarp
 ```
 
 You can then check logs from the ingress controller by running:
 
-```
+```bash
 kubectl logs {POD NAME} -n yarp
 ```
 
@@ -71,7 +71,7 @@ All services, deployments, and pods for YARP are in the namespace `yarp`. Make s
 
 Next, build and deploy the ingress. In the root of the repository, run:
 
-```
+```bash
 docker build . -t {REGISTRY_NAME}/yarp:<TAG> -f .\samples\KuberenetesIngress.Sample\Ingress\Dockerfile
 docker push {REGISTRY_NAME}/yarp:{TAG}
 ```
@@ -80,7 +80,7 @@ In the preceding commands, the `{REGISTRY_NAME}` placeholder is the name of the 
 
 Finally, we need to deploy the ingress itself to Kubernetes. Navigate to the `Ingress` directory and modify the `ingress.yaml` file for your registry and tag specified earlier and run:
 
-```
+```bash
 kubectl apply -f .\ingress.yaml
 ```
 
@@ -90,14 +90,14 @@ At this point, your ingress and controller should be running.
 
 To use the ingress, we now need to deploy an application to Kubernetes. Navigate to `samples\KuberenetesIngress.Sample\backend` and run:
 
-```
+```bash
 docker build . -t {REGISTRY_NAME}/backend:{TAG}
 docker push {REGISTRY_NAME}/backend:{TAG}
 ```
 
 And deploying it to Kubernetes by running, after modifying `backend.yaml` with the same registry name (`{REGISTRY_NAME}`) and tag (`{TAG}`):
 
-```
+```bash
 kubectl apply -f .\backend.yaml
 ```
 
@@ -105,13 +105,13 @@ kubectl apply -f .\backend.yaml
 
 Finally, once we have deployed the backend application, we need to route traffic to the backend. To do this, run in the `backend` directory:
 
-```
+```bash
 kubectl apply -f .\ingress-sample.yaml
 ```
 
 And then execute the following command to get the external IP of the ingress, the name of the related service being `yarp-proxy`:
 
-```
+```bash
 kubectl get service -n yarp
 ```
 

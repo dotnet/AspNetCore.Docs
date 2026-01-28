@@ -51,7 +51,8 @@ Example:
 [Authorization policies](/aspnet/core/security/authorization/policies) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core authentication and authorization components.
 
 Authorization policies can be configured in the application as follows:
-```
+
+```csharp
 services.AddAuthorization(options =>
 {
     options.AddPolicy("customPolicy", policy =>
@@ -61,7 +62,7 @@ services.AddAuthorization(options =>
 
 In Program.cs add the Authorization and Authentication middleware.
 
-```
+```csharp
 app.UseAuthentication();
 app.UseAuthorization();
 
