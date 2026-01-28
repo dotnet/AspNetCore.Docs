@@ -40,6 +40,7 @@ jobs:
       issues: write
       contents: read
       pull-requests: read
+
     steps:
       # =========================================================================
       # STEP 1: POST WELCOME MESSAGE
@@ -73,14 +74,47 @@ jobs:
       #   - Post the analysis as a comment on the issue
       # =========================================================================
       - name: Run Copilot Issue Triage
-        uses: github/copilot-action@v1
+        uses: actions/github-script@v7
         with:
-          agent: .github/agents/issue-triage-nonblazor.agent.md
-          prompt: |
-            Analyze issue #${{ github.event.issue.number }} and post your triage report as a comment on the issue.
-            Issue URL: ${{ github.event.issue.html_url }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+
+            // Load the existing Copilot agent instructions
+            const agentInstructions = fs.readFileSync('.github/agents/issue-triage-nonblazor.agent.md', 'utf8');
+
+            const issue = context.payload.issue;
+
+            // Combine instructions and issue details into one string
+            const promptLines = [
+              agentInstructions,
+              '',
+              `Analyze issue #${issue.number} and post your triage report as a comment on the issue.`,
+              `Issue URL: ${issue.html_url}`,
+              '',
+              'Title:',
+              issue.title,
+              '',
+              'Body:',
+              issue.body
+            ];
+
+            const prompt = promptLines.join('\n');
+
+            // Invoke GitHub Models
+            const response = await github.rest.models.runInference({
+              model: 'gpt-4.1-mini',
+              input: prompt
+            });
+
+            const report = response.data.output_text;
+
+            await github.rest.issues.createComment({
+              issue_number: issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            });
+
       # =========================================================================
       # STEP 4: ADD TRIAGE LABEL
       # Apply the "ai-triage-action-plan" label to indicate this issue has been
