@@ -42,13 +42,13 @@ For additional fields see [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.C
 
 The `InMemoryConfigProvider` implements `IProxyConfigProvider` and enables specifying routes and clusters directly in code by calling `LoadFromMemory`.
 
-```
+```csharp
 services.AddReverseProxy().LoadFromMemory(routes, clusters);
 ```
 
 To update the config later, resolve the `InMemoryConfigProvider` from the services container and call `Update` with the new lists of routes and clusters.
 
-```
+```csharp
 httpContext.RequestServices.GetRequiredService<InMemoryConfigProvider>().Update(routes, clusters);
 ```
 
@@ -87,13 +87,15 @@ Once the new configuration has been validated and applied, the proxy will regist
 ## Multiple Configuration Sources
 As of 1.1, YARP supports loading the proxy configuration from multiple sources. Multiple `IProxyConfigProvider`'s can be registered as singleton services and all will be resolved and combined. The sources may be the same or different types such as IConfiguration or InMemory. Routes can reference clusters from other sources. Note merging partial config from different sources for a given route or cluster is not supported.
 
-```
+```csharp
     services.AddReverseProxy()
         .LoadFromConfig(Configuration.GetSection("ReverseProxy1"))
         .LoadFromConfig(Configuration.GetSection("ReverseProxy2"));
 ```
+
 or
-```
+
+```csharp
     services.AddReverseProxy()
         .LoadFromMemory(routes, clusters)
         .LoadFromConfig(Configuration.GetSection("ReverseProxy"));

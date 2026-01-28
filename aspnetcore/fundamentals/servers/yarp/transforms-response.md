@@ -58,10 +58,12 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformResponseHeader(headerName: "HeaderName", value: "value", append: true, ResponseCondition.Success);
+routeConfig = routeConfig.WithTransformResponseHeader(
+    headerName: "HeaderName", value: "value", append: true, ResponseCondition.Success);
 ```
 ```csharp
-transformBuilderContext.AddResponseHeader(headerName: "HeaderName", value: "value", append: true, always: ResponseCondition.Success);
+transformBuilderContext.AddResponseHeader(
+    headerName: "HeaderName", value: "value", append: true, always: ResponseCondition.Success);
 ```
 Example:
 ```
@@ -91,10 +93,12 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformResponseHeaderRemove(headerName: "HeaderName", ResponseCondition.Success);
+routeConfig = routeConfig.WithTransformResponseHeaderRemove(
+    headerName: "HeaderName", ResponseCondition.Success);
 ```
 ```csharp
-transformBuilderContext.AddResponseHeaderRemove(headerName: "HeaderName", ResponseCondition.Success);
+transformBuilderContext.AddResponseHeaderRemove(
+    headerName: "HeaderName", ResponseCondition.Success);
 ```
 Example:
 ```
@@ -181,10 +185,12 @@ Config:
 ```
 Code:
 ```csharp
-routeConfig = routeConfig.WithTransformResponseTrailer(headerName: "HeaderName", value: "value", append: true, ResponseCondition.Success);
+routeConfig = routeConfig.WithTransformResponseTrailer(
+    headerName: "HeaderName", value: "value", append: true, ResponseCondition.Success);
 ```
 ```csharp
-transformBuilderContext.AddResponseTrailer(headerName: "HeaderName", value: "value", append: true, ResponseCondition.Success);
+transformBuilderContext.AddResponseTrailer(
+    headerName: "HeaderName", value: "value", append: true, ResponseCondition.Success);
 ```
 Example:
 ```
