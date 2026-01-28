@@ -79,54 +79,94 @@ jobs:
           script: |
             const fs = require('fs');
 
-            // Load the existing Copilot agent instructions
-            const agentInstructions = fs.readFileSync('.github/agents/issue-triage-nonblazor.agent.md', 'utf8');
+            try {
+              // Load the existing Copilot agent instructions
+              let agentInstructions;
+              try {
+                agentInstructions = fs.readFileSync('.github/agents/issue-triage-nonblazor.agent.md', 'utf8');
+              } catch (fileError) {
+                const errorMessage = `### ⚠️ AI Triage Error\n\nFailed to load the AI triage agent configuration file.\n\n**Error:** ${fileError.message}\n\nThe issue triage could not be completed automatically. A team member will review this issue manually.`;
+                await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: errorMessage
+                });
+                throw fileError;
+              }
 
-            const issue = context.payload.issue;
+              const issue = context.payload.issue;
 
-            // Combine instructions and issue details into one string
-            const promptLines = [
-              agentInstructions,
-              '',
-              `Analyze issue #${issue.number} and post your triage report as a comment on the issue.`,
-              `Issue URL: ${issue.html_url}`,
-              '',
-              'Title:',
-              issue.title,
-              '',
-              'Body:',
-              issue.body
-            ];
+              // Combine instructions and issue details into one string
+              const promptLines = [
+                agentInstructions,
+                '',
+                `Analyze issue #${issue.number} and post your triage report as a comment on the issue.`,
+                `Issue URL: ${issue.html_url}`,
+                '',
+                'Title:',
+                issue.title,
+                '',
+                'Body:',
+                issue.body
+              ];
 
-            const prompt = promptLines.join('\n');
+              const prompt = promptLines.join('\n');
 
-            // Invoke GitHub Models
-            const response = await github.rest.models.runInference({
-              model: 'gpt-4.1-mini',
-              input: prompt
-            });
+              // Invoke GitHub Models
+              let response;
+              try {
+                response = await github.rest.models.runInference({
+                  model: 'gpt-4.1-mini',
+                  input: prompt
+                });
+              } catch (apiError) {
+                const errorMessage = `### ⚠️ AI Triage Error\n\nFailed to connect to the GitHub Models API for AI analysis.\n\n**Error:** ${apiError.message}\n\nThe issue triage could not be completed automatically. A team member will review this issue manually.`;
+                await github.rest.issues.createComment({
+                  issue_number: issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: errorMessage
+                });
+                throw apiError;
+              }
 
-            const choices = response.data && Array.isArray(response.data.choices) ? response.data.choices : [];
-            let report = '';
-            if (choices.length > 0) {
-              const content = choices[0].message && Array.isArray(choices[0].message.content)
-                ? choices[0].message.content
-                : [];
-              report = content
-                .filter(part => part && part.type === 'text' && typeof part.text === 'string')
-                .map(part => part.text)
-                .join('');
+              // Parse the response
+              const choices = response.data && Array.isArray(response.data.choices) ? response.data.choices : [];
+              let report = '';
+              if (choices.length > 0) {
+                const content = choices[0].message && Array.isArray(choices[0].message.content)
+                  ? choices[0].message.content
+                  : [];
+                report = content
+                  .filter(part => part && part.type === 'text' && typeof part.text === 'string')
+                  .map(part => part.text)
+                  .join('');
+              }
+
+              if (!report) {
+                const errorMessage = `### ⚠️ AI Triage Error\n\nThe GitHub Models API returned a malformed or empty response.\n\n**Response structure:** ${JSON.stringify(response.data, null, 2)}\n\nThe issue triage could not be completed automatically. A team member will review this issue manually.`;
+                await github.rest.issues.createComment({
+                  issue_number: issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: errorMessage
+                });
+                throw new Error('No triage report text returned from GitHub Models response.');
+              }
+
+              // Post the triage report
+              await github.rest.issues.createComment({
+                issue_number: issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: report
+              });
+            } catch (error) {
+              // Log the error and re-throw to fail the workflow
+              console.error('AI triage workflow failed:', error);
+              throw error;
             }
-
-            if (!report) {
-              throw new Error('No triage report text returned from GitHub Models response.');
-            }
-            await github.rest.issues.createComment({
-              issue_number: issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: report
-            });
 
       # =========================================================================
       # STEP 4: ADD TRIAGE LABEL
