@@ -74,7 +74,7 @@ jobs:
       #   - Post the analysis as a comment on the issue
       # =========================================================================
       - name: Run Copilot Issue Triage
-        uses: actions/github-script@v7
+        uses: actions/github-script@v6
         with:
           script: |
             const fs = require('fs');
