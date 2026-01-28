@@ -27,7 +27,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR TypeScript client
 > * Enable communication between the client and the server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -102,11 +102,11 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
 1. In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>:
 
-   [!code-csharp[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/Program.cs?name=snippet_AddSignalR&highlight=3)]
+   [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/10.x/Program.cs?name=snippet_AddSignalR&highlight=3)]
 
 1. Again, in `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
-   [!code-csharp[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/Program.cs?name=snippet_FilesMiddleware&highlight=3-4)]
+   [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/10.x/Program.cs?name=snippet_FilesMiddleware&highlight=3-4)]
 
    The preceding code allows the server to locate and serve the `index.html` file. The file is served whether the user enters its full URL or the root URL of the web app.
 
@@ -114,7 +114,7 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
 1. Create a new file, `Hubs/ChatHub.cs`, with the following code:
 
-   [!code-csharp[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/Hubs/ChatHub.cs)]
+   [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/10.x/Hubs/ChatHub.cs)]
 
    The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name is enough.
 
@@ -127,11 +127,11 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
 1. Add the following `using` statement at the top of `Program.cs` to resolve the `ChatHub` reference:
 
-   [!code-csharp[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/Program.cs?name=snippet_HubsNamespace)]
+   [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/10.x/Program.cs?name=snippet_HubsNamespace)]
 
 1. In `Program.cs`, map the `/hub` route to the `ChatHub` hub. Replace the code that displays `Hello World!` with the following code:
 
-   [!code-csharp[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/Program.cs?name=snippet_MapHub)]
+   [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/10.x/Program.cs?name=snippet_MapHub)]
 
 ## Configure the client
 
@@ -145,7 +145,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Add the highlighted property to the `package.json` file and save the file changes:
 
-   [!code-json[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples_snapshot/8.x/package.json?highlight=4)]
+   [!code-json[](~/tutorials/signalr-typescript-webpack/samples/10.x/package.json?highlight=4)]
 
    Setting the `private` property to `true` prevents package installation warnings in the next step.
 
@@ -161,7 +161,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Replace the `scripts` property of `package.json` file with the following code:
 
-   [!code-json[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/package.json?range=7-11)]
+   [!code-json[](~/tutorials/signalr-typescript-webpack/samples/10.x/package.json?range=7-11)]
 
    The following scripts are defined:
 
@@ -171,7 +171,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Create a file named `webpack.config.js` in the project root, with the following code:
 
-   [!code-javascript[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/webpack.config.js)]
+   [!code-javascript[](~/tutorials/signalr-typescript-webpack/samples/10.x/webpack.config.js)]
 
    The preceding file configures the Webpack compilation process:
 
@@ -180,23 +180,23 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Create a new directory named `src` in the project root, `SignalRWebpack/`, for the client code.
    
-1. Copy the `src` directory and its contents from the [sample project](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/) into the project root. The `src` directory contains the following files:
+1. Copy the `src` directory and its contents from the [sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/tutorials/signalr-typescript-webpack/samples/) into the project root. The `src` directory contains the following files:
 
    * `index.html`, which defines the homepage's boilerplate markup:
 
-      [!code-html[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/src/index.html)]
+      [!code-html[](~/tutorials/signalr-typescript-webpack/samples/10.x/src/index.html)]
 
    * `css/main.css`, which provides CSS styles for the homepage:
 
-      [!code-css[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/src/css/main.css)]
+      [!code-css[](~/tutorials/signalr-typescript-webpack/samples/10.x/src/css/main.css)]
 
    * `tsconfig.json`, which configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript:
 
-      [!code-json[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/src/tsconfig.json)]
+      [!code-json[](~/tutorials/signalr-typescript-webpack/samples/10.x/src/tsconfig.json)]
 
    * `index.ts`:
 
-      [!code-typescript[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/src/index.ts)]
+      [!code-typescript[](~/tutorials/signalr-typescript-webpack/samples/10.x/src/index.ts)]
 
       The preceding code retrieves references to DOM elements and attaches two event handlers:
 
