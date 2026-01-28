@@ -106,8 +106,21 @@ jobs:
               input: prompt
             });
 
-            const report = response.data.output_text;
+            const choices = response.data && Array.isArray(response.data.choices) ? response.data.choices : [];
+            let report = '';
+            if (choices.length > 0) {
+              const content = choices[0].message && Array.isArray(choices[0].message.content)
+                ? choices[0].message.content
+                : [];
+              report = content
+                .filter(part => part && part.type === 'text' && typeof part.text === 'string')
+                .map(part => part.text)
+                .join('');
+            }
 
+            if (!report) {
+              throw new Error('No triage report text returned from GitHub Models response.');
+            }
             await github.rest.issues.createComment({
               issue_number: issue.number,
               owner: context.repo.owner,
