@@ -27,7 +27,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR TypeScript client
 > * Enable communication between the client and the server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -180,7 +180,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Create a new directory named `src` in the project root, `SignalRWebpack/`, for the client code.
    
-1. Copy the `src` directory and its contents from the [sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/tutorials/signalr-typescript-webpack/samples/) into the project root. The `src` directory contains the following files:
+1. Copy the `src` directory and its contents from the [sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples/) into the project root. The `src` directory contains the following files:
 
    * `index.html`, which defines the homepage's boilerplate markup:
 
