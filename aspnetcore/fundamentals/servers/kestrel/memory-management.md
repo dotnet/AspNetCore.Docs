@@ -1,10 +1,11 @@
 ---
 title: Memory management in Kestrel
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn about memory management in Kestrel, including automatic eviction from memory pools and using memory pool metrics.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: tdykstra
-ms.date: 12/04/2025
+ms.date: 01/29/2026
 uid: fundamentals/servers/kestrel/memory-management
 ---
 
@@ -34,7 +35,7 @@ The following code example shows a simple background service that uses the built
 
 :::code language="csharp" source="~/fundamentals/servers/snippets/10.x/my-background-service.cs":::
 
-To use a custom memory pool factory, make a class that implements `IMemoryPoolFactory` and register it with dependency injection, as the following example does. Memory pools created this way also benefit from the automatic eviction feature:
+To use a custom memory pool factory, make a class that implements `IMemoryPoolFactory` and register it with dependency injection, as the following example does. Memory pools created this way do not benefit from the automatic eviction feature unless you implement similar eviction logic in your custom factory:
 
 :::code language="csharp" source="~/fundamentals/servers/snippets/10.x/memory-pool-factory.cs":::
 
