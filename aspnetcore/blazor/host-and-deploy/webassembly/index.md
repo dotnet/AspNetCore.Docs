@@ -118,9 +118,13 @@ In the `wwwroot/index.html` file, set `autostart` to `false` on Blazor's `<scrip
     
 After Blazor's `<script>` tag and before the closing `</body>` tag, add the following JavaScript code `<script>` block. The following function calls `fetch` with [`cache: 'no-cache'`](https://developer.mozilla.org/docs/Web/API/Request/cache#value) to keep the browser's cache updated.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script type="module">
@@ -149,9 +153,15 @@ Blazor Web App:
 </script>
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
 Standalone Blazor WebAssembly:
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 ```html
 <script type="module">
@@ -177,6 +187,8 @@ Standalone Blazor WebAssembly:
   });
 </script>
 ```
+
+:::moniker-end
 
 For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
 
