@@ -176,6 +176,8 @@ The migrated `ProductsController` contains the following highlighted attributes:
 
 Run the migrated project, and browse to `/api/products`.  For example: https://localhost:`<port>`/api/products. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+
 ## Additional resources
 
 * <xref:web-api/index>
