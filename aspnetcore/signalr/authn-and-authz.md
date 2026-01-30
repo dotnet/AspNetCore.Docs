@@ -276,8 +276,6 @@ On the server, bearer token authentication is configured using the [JWT Bearer m
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
 
-[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
-
 > [!NOTE]
 > The query string is used on browsers when connecting with WebSockets and Server-Sent Events due to browser API limitations. When using HTTPS, query string values are secured by the TLS connection. However, many servers log query string values. For more information, see [Security considerations in ASP.NET Core SignalR](xref:signalr/security). SignalR uses headers to transmit tokens in environments which support them (such as the .NET and Java clients).
 

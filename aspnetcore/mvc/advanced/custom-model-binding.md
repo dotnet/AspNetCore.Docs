@@ -58,7 +58,6 @@ When creating your own custom model binder, you can implement your own `IModelBi
 The following example shows how to use `ByteArrayModelBinder` to convert a base64-encoded string to a `byte[]` and save the result to a file:
 
 [!code-csharp[](custom-model-binding/samples/3.x/CustomModelBindingSample/Controllers/ImageController.cs?name=snippet_Post)]
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 You can POST a base64-encoded string to the previous api method using a tool like [curl](https://curl.haxx.se/).
 
