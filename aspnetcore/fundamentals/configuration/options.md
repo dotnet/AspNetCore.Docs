@@ -24,7 +24,7 @@ Options also provide a mechanism to validate configuration data. For more inform
 
 This article provides information on the options pattern in ASP.NET Core. For information on using the options pattern in console apps, see [Options pattern in .NET](/dotnet/core/extensions/options).
 
-The examples in this article rely on a general understanding of injecting services into classes. For more information, see <xref:fundamentals/dependency-injection>. Examples are based on Blazor's Razor components. For more information, see <xref:blazor/index>. To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0).
+The examples in this article rely on a general understanding of injecting services into classes. For more information, see <xref:fundamentals/dependency-injection>. Examples are based on Blazor's Razor components. For more information, see <xref:blazor/index>. To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true).
 
 ## How to use the options pattern
 
@@ -189,6 +189,8 @@ The following code displays the `NameTitleOptions` configuration values:
 
 <!-- Razor component -->
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 `AbstractClassOptions.razor`:
@@ -214,7 +216,7 @@ Age: @nameTitleOptions?.Age
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```csharp
 public class AbstractClassOptionsModel(IConfiguration configuration) : PageModel
@@ -233,6 +235,8 @@ public class AbstractClassOptionsModel(IConfiguration configuration) : PageModel
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 Calls to `Bind` are less strict than calls to `Get<T>`:
 
@@ -564,6 +568,8 @@ The `Title` and `Name` class properties are bound to the `PositionTitle` and `Po
 
 <!-- Razor component -->
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 `PositionKeyNameOptions.razor`:
@@ -586,7 +592,7 @@ Title: @positionOptions?.Title
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```csharp
 public class PositionKeyNameOptionsModel(IConfiguration configuration) : PageModel
