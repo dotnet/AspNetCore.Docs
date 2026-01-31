@@ -71,12 +71,12 @@ builder.Services.AddAuthorizationBuilder()
             "S-1-5-113"));   
 ```
 
-The authorization policy is enforced by the `LocalAccountOnly` component.
+The authorization policy is enforced by the `LocalAccount` component.
 
-`Components/Pages/LocalAccountOnly.razor`:
+`Components/Pages/LocalAccount.razor`:
 
 ```razor
-@page "/local-account-only"
+@page "/local-account"
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize("LocalAccount")]
 
