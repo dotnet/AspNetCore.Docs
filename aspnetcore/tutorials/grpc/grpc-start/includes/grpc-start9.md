@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-9.0"
 This tutorial shows how to create a .NET [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server. At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
 In this tutorial, you:
@@ -67,7 +67,7 @@ info: Microsoft.Hosting.Lifetime[0]
 ```
 
 > [!NOTE]
-> The gRPC template is configured to use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). gRPC clients need to use HTTPS to call the server.  The gRPC service localhost port number is randomly assigned when the project is created and set in the *Properties\launchSettings.json* file of the gRPC service project.
+> The gRPC template is configured to use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). gRPC clients need to use HTTPS to call the server. The gRPC service localhost port number is randomly assigned when the project is created and set in the *Properties\launchSettings.json* file of the gRPC service project.
 
 ### Examine the project files
 
@@ -75,7 +75,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 * `Protos/greet.proto`: defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
 * `Services` folder: Contains the implementation of the `Greeter` service.
-* `appSettings.json`: Contains configuration data such as the protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
+* `appsettings.json`: Contains configuration data such as the protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
 * `Program.cs`, which contains:
   * The entry point for the gRPC service. For more information, see <xref:fundamentals/host/generic-host>.
   * Code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).

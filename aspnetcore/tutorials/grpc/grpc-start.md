@@ -28,6 +28,7 @@ In this tutorial, you:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-10.0.md)]
+
 ---
 
 ## Create a gRPC service
