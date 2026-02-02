@@ -1,11 +1,12 @@
 ---
 title: Razor file compilation in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/20/2023
+ms.date: 01/30/2026
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
@@ -15,12 +16,7 @@ uid: mvc/views/view-compilation
 Razor files with a `.cshtml` extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring the project.
 
 > [!NOTE]
-> Runtime compilation:
-> * Isn't supported for Razor components of Blazor apps.
-> * Doesn't support [global using directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives).
-> * Doesn't support [implicit using directives](/dotnet/core/tutorials/top-level-templates#implicit-using-directives).
-> * Disables [.NET Hot Reload](xref:test/hot-reload).
-> * Is recommended for development, not for production.
+> **Runtime compilation is obsolete in .NET 10. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).**
 
 ## Razor compilation
 
@@ -29,7 +25,7 @@ Build-time and publish-time compilation of Razor files is enabled by default by 
 Updating Razor views and Razor Pages during development while the app is running is also supported using [.NET Hot Reload](xref:test/hot-reload).
 
 > [!NOTE]
-> When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead of Razor runtime compilation during development.
+> Razor runtime compilation is obsolete in .NET 10. When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead for development scenarios. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).
 
 ## Enable runtime compilation for all environments
 
