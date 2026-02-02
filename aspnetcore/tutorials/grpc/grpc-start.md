@@ -23,7 +23,7 @@ In this tutorial, you:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-10.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-10.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
