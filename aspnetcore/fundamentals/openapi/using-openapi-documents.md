@@ -1,11 +1,12 @@
 ---
 title: Use the generated OpenAPI documents
+ai-usage: ai-assisted
 author: captainsafia
 description: Learn how to use OpenAPI documents in an ASP.NET Core app.
-ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
+ms.author: safia
 ms.custom: mvc
-ms.date: 01/13/2026
+ms.date: 02/02/2026
 uid: fundamentals/openapi/using-openapi-documents
 ---
 # Use openAPI documents
@@ -132,8 +133,8 @@ public class CustomDocumentService(
 Register the service in your DI container. Note that service key should match the document name passed to <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
 
 ```csharp
-builder.AddOpenApi(); // Adds "v1" by default
-builder.AddOpenApi("v2");
+builder.Services.AddOpenApi(); // Adds "v1" by default
+builder.Services.AddOpenApi("v2");
 builder.Services.AddScoped<CustomDocumentService>();
 ```
 
