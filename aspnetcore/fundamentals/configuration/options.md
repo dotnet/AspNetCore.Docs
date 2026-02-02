@@ -433,7 +433,7 @@ Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 * May incur a significant performance penalty because it's a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and is recomputed per request. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/53793) and [Improve the performance of configuration binding](https://github.com/dotnet/runtime/issues/36130).
 * Changes to the configuration are read after the app starts when using configuration providers that support reading updated configuration values.
 
-The difference between [`IOptionsMonitor`](#use-ioptionsmoniter-to-read-updated-data-in-singleton-services) and <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is that:
+The difference between [`IOptionsMonitor`](#use-ioptionsmonitor-to-read-updated-data-in-singleton-services) and <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is that:
 
 * <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
 * <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
@@ -1325,6 +1325,8 @@ public class OptionsValidationModel : PageModel
     }
 }
 ```
+
+:::moniker-end
 
 ## Class-level validation with `IValidatableObject`
 
