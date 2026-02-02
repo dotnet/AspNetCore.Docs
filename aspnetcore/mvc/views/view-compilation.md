@@ -25,7 +25,7 @@ Build-time and publish-time compilation of Razor files is enabled by default by 
 Updating Razor views and Razor Pages during development while the app is running is also supported using [.NET Hot Reload](xref:test/hot-reload).
 
 > [!NOTE]
-> When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). Razor runtime compilation is obsolete in .NET 10. We recommend using Hot Reload instead for development scenarios. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).
+> Razor runtime compilation is obsolete in .NET 10. When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead for development scenarios. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).
 
 ## Enable runtime compilation for all environments
 
