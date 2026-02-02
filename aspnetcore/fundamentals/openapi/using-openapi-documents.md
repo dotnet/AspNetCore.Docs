@@ -130,7 +130,7 @@ public class CustomDocumentService(
 }
 ```
 
-Register the service in your DI container. Note that service key should match the document name passed to <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
+Register the service in your DI container. Note that the service key should match the document name passed to <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
 
 ```csharp
 builder.Services.AddOpenApi(); // Adds "v1" by default
