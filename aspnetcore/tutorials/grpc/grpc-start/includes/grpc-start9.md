@@ -1,15 +1,4 @@
----
-title: Create a .NET gRPC client and server in ASP.NET Core
-author: jamesnk
-description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: wpickett
-ms.date: 02/02/2026
-uid: tutorials/grpc/grpc-start
----
-# Tutorial: Create a gRPC client and server in ASP.NET Core
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 This tutorial shows how to create a .NET [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server. At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
 In this tutorial, you:
@@ -23,11 +12,11 @@ In this tutorial, you:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-10.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-9.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-10.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-9.0.md)]
 
 ---
 
@@ -35,11 +24,11 @@ In this tutorial, you:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio and select **Create a new Project**.
+* Start Visual Studio 2022 and select **New Project**.
 * In the **Create a new project** dialog, search for `gRPC`. Select **ASP.NET Core gRPC Service** and select **Next**.
 * In the **Configure your new project** dialog, enter `GrpcGreeter` for **Project name**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Next**.
-* In the **Additional information** dialog, select **.NET 10.0 (Long Term Support)** and then select **Create**.
+* In the **Additional information** dialog, select **.NET 9.0 (Standard Term Support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -64,7 +53,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 ### Run the service
  
-[!INCLUDE[](~/includes/run-the-app10.0.md)]
+[!INCLUDE[](~/includes/run-the-app9.0.md)]
 
 The logs show the service listening on `https://localhost:<port>`, where `<port>` is the localhost port number randomly assigned when the project is created and set in `Properties/launchSettings.json`.
 
@@ -95,10 +84,10 @@ info: Microsoft.Hosting.Lifetime[0]
 
 # [Visual Studio](#tab/visual-studio)
 
-* Open a second instance of Visual Studio and select **Create a new project**.
+* Open a second instance of Visual Studio and select **New Project**.
 * In the **Create a new project** dialog, select **Console App**, and select **Next**.
 * In the **Project name** text box, enter **GrpcGreeterClient** and select **Next**.
-* In the **Additional information** dialog, select **.NET 10.0 (Long Term Support)** and then select **Create**.
+* In the **Additional information** dialog, select **.NET 9.0 (Standard Term Support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -203,7 +192,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Update the gRPC client `Program.cs` file with the following code.
 
-  [!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample10/GrpcGreeterClient/Program.cs?name=snippet2&highlight=5)]
+  [!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample9/GrpcGreeterClient/Program.cs?name=snippet2&highlight=5)]
 
 * In the preceding highlighted code, replace the localhost port number `7042` with the `HTTPS` port number specified in `Properties/launchSettings.json` within the `GrpcGreeter` service project.
 
@@ -214,17 +203,17 @@ The Greeter client is created by:
 * Instantiating a `GrpcChannel` containing the information for creating the connection to the gRPC service.
 * Using the `GrpcChannel` to construct the Greeter client:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample10/GrpcGreeterClient/Program.cs?name=snippet&highlight=1-3)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample9/GrpcGreeterClient/Program.cs?name=snippet&highlight=1-3)]
 
 The Greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample10/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample9/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
 
 ## Test the gRPC client with the gRPC Greeter service
 
 Update the `appsettings.Development.json` file by adding the following highlighted lines:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample10/GrpcGreeter/appsettings.Development.json?highlight=6-7)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample9/GrpcGreeter/appsettings.Development.json?highlight=6-7)]
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -277,15 +266,3 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/migration>
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start9.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start8.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start7.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start6.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start5.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start3.md)]
