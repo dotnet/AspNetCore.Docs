@@ -2,7 +2,7 @@
 title: Include OpenAPI metadata in an ASP.NET Core app
 author: captainsafia
 description: Learn how to add OpenAPI metadata in an ASP.NET Core app.
-ms.author: safia
+ms.author: wpickett
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
 ms.date: 06/12/2025
