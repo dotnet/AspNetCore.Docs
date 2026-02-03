@@ -6,7 +6,7 @@ description: Discover how to use the options pattern to represent groups of rela
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/02/2026
+ms.date: 02/03/2026
 uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
@@ -1564,6 +1564,8 @@ services.PostConfigureAll<TopItemSettings>(options =>
 });
 ```
 
+:::moniker-end
+
 Rendered output from the [named options example](#named-options-support-using-iconfigurenamedoptions), where all `TopItem:Name` options are post-configured:
 
 > :::no-loc text="Month: Name: Blue Gizmo Model: GW46":::  
@@ -1605,4 +1607,5 @@ Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Ex
 
 ## Additional resources
 
-[View or download sample code (Razor Pages)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [ASP.NET Core Blazor configuration: Options configuration](xref:blazor/fundamentals/configuration#options-configuration)
+* [View or download sample code (Razor Pages)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
