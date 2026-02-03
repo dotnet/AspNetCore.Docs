@@ -16,7 +16,7 @@ uid: mvc/views/view-compilation
 Razor files with a `.cshtml` extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring the project.
 
 > [!NOTE]
-> **Runtime compilation waa obsoleted starting in .NET 10. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).**
+> **Runtime compilation was obsoleted starting in .NET 10. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).**
 
 ## Razor compilation
 
@@ -25,7 +25,7 @@ Build-time and publish-time compilation of Razor files is enabled by default by 
 Updating Razor views and Razor Pages during development while the app is running is also supported using [.NET Hot Reload](xref:test/hot-reload).
 
 > [!NOTE]
-> **Razor runtime compilation waS obsoleted starting in .NET 10. When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead for development scenarios. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).**
+> **Razor runtime compilation was obsoleted starting in .NET 10. When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead for development scenarios. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).**
 
 ## Enable runtime compilation for all environments
 
