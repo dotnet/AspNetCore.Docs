@@ -1,7 +1,7 @@
 ---
 title: Generate OpenAPI documents
 ai-usage: ai-assisted
-author: captainsafia
+author: wadepickett
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
