@@ -92,6 +92,17 @@ Title: @positionOptions?.Title
 
 :::moniker range="< aspnetcore-8.0"
 
+`BasicOptions.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.BasicOptionsModel
+@{
+}
+```
+
+`BasicOptions.cshtml.cs`:
+
 ```csharp
 public class BasicOptionsModel : PageModel
 {
@@ -156,6 +167,17 @@ Title: @positionOptions?.Title
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+`GetOptions.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.GetOptionsModel
+@{
+}
+```
+
+`GetOptions.cshtml.cs`:
 
 ```csharp
 public class GetOptionsModel : PageModel
@@ -252,6 +274,17 @@ Age: @nameTitleOptions?.Age
 
 :::moniker range="< aspnetcore-8.0"
 
+`AbstractClassOptions.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.AbstractClassOptionsModel
+@{
+}
+```
+
+`AbstractClassOptions.cshtml.cs`:
+
 ```csharp
 public class AbstractClassOptionsModel : PageModel
 {
@@ -321,23 +354,23 @@ public class PositionOptions
 }
 ```
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 builder.Services.Configure<PositionOptions>(
     builder.Configuration.GetSection(PositionOptions.Position));
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 services.Configure<PositionOptions>(
     builder.Configuration.GetSection(PositionOptions.Position));
 ```
 
-::: moniker-end
+:::moniker-end
 
 Using the preceding code, the following code reads the position options:
 
@@ -357,6 +390,17 @@ Title: @Options.Value.Title
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+`DIOptions.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.DIOptionsModel
+@{
+}
+```
+
+`DIOptions.cshtml.cs`:
 
 ```csharp
 public class DIOptionsModel : PageModel
@@ -438,6 +482,8 @@ The difference between [`IOptionsMonitor`](#use-ioptionsmonitor-to-read-updated-
 * <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
 * <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
+The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache%601> to cache the options instance after it's created.
+
 The following example uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 
 JSON configuration:
@@ -478,6 +524,17 @@ Title: @Options.Value.Title
 
 :::moniker range="< aspnetcore-8.0"
 
+`SnapshotOptions.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.SnapshotOptionsModel
+@{
+}
+```
+
+`SnapshotOptions.cshtml.cs`:
+
 ```csharp
 public class SnapshotOptionsModel : PageModel
 {
@@ -501,23 +558,23 @@ public class SnapshotOptionsModel : PageModel
 
 Where services are registered for dependency injection, the following code registers a configuration instance which `PositionOptions` binds against:
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 builder.Services.Configure<PositionOptions>(
     builder.Configuration.GetSection(PositionOptions.Position));
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 services.Configure<PositionOptions>(
     builder.Configuration.GetSection(PositionOptions.Position));
 ```
 
-::: moniker-end
+:::moniker-end
 
 Output:
 
@@ -543,6 +600,8 @@ The difference between <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> a
 * <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
 * <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
+The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache%601> to cache the options instance after it's created.
+
 JSON configuration:
 
 ```json
@@ -566,23 +625,23 @@ public class PositionOptions
 
 Where services are registered for dependency injection, the following code registers a configuration instance which `PositionOptions` binds against:
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 builder.Services.Configure<PositionOptions>(
     builder.Configuration.GetSection(PositionOptions.Position));
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 services.Configure<PositionOptions>(
     builder.Configuration.GetSection(PositionOptions.Position));
 ```
 
-::: moniker-end
+:::moniker-end
 
 The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
@@ -602,6 +661,17 @@ Title: @Options.CurrentValue.Title
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+`MonitorOptions.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.MonitorOptionsModel
+@{
+}
+```
+
+`MonitorOptions.cshtml.cs`:
 
 ```csharp
 public class MonitorOptionsModel : PageModel
@@ -698,6 +768,17 @@ Title: @positionOptions?.Title
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`PositionKeyName.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.PositionKeyNameModel
+@{
+}
+```
+
+`PositionKeyName.cshtml.cs`:
 
 ```csharp
 public class PositionKeyNameModel : PageModel
@@ -827,6 +908,17 @@ Year: Name: @yearTopItem?.Name Model: @yearTopItem?.Model
 
 :::moniker range="< aspnetcore-8.0"
 
+`NamedOptions.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.NamedOptionsModel
+@{
+}
+```
+
+`NamedOptions.cshtml.cs`:
+
 ```csharp
 public class NamedOptionsModel : PageModel
 {
@@ -855,11 +947,13 @@ public class NamedOptionsModel : PageModel
 
 All options are named instances. <xref:Microsoft.Extensions.Options.IConfigureOptions%601> instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> also implements <xref:Microsoft.Extensions.Options.IConfigureOptions%601>. The default implementation of the <xref:Microsoft.Extensions.Options.IOptionsFactory%601> has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance. <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll%2A> and <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll%2A> use this convention.
 
+Guidance on post-configuring named options is provided in the [Options post-configuration](#options-post-configuration) section.
+
 ## `OptionsBuilder` API
 
-<xref:Microsoft.Extensions.Options.OptionsBuilder%601> is used to configure `TOptions` instances. `OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial `AddOptions<TOptions>(string optionsName)` call instead of appearing in all of the subsequent calls. Options validation and the `ConfigureOptions` overloads that accept service dependencies are only available via `OptionsBuilder`.
+<xref:Microsoft.Extensions.Options.OptionsBuilder%601> is used to configure `TOptions` instances. `OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial [`AddOptions<TOptions>(string optionsName)`](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions%2A) call instead of appearing in all of the subsequent calls. Options validation and the <xref:Microsoft.Extensions.Options.IConfigureOptions%601> overloads that accept service dependencies are only available via `OptionsBuilder` (see [Use DI services to configure options](#use-di-services-to-configure-options)).
 
-`OptionsBuilder` is demonstrated in the [Options validation](#options-validation) section.
+<xref:Microsoft.Extensions.Options.OptionsBuilder%601> is demonstrated in the [Options validation](#options-validation) section.
 
 For information adding a custom repository, see <xref:security/data-protection/using-data-protection#add-opt>.
 
@@ -874,7 +968,7 @@ Services can be accessed from dependency injection while configuring options in 
 
 Where services are registered for dependency injection, pass a configuration delegate to <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Configure%2A> on <xref:Microsoft.Extensions.Options.OptionsBuilder%601>. `OptionsBuilder<TOptions>` provides overloads of <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Configure%2A> that allow use of up to five services to configure options:
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 builder.Services.AddOptions<PositionOptions>("optionalName")
@@ -883,9 +977,9 @@ builder.Services.AddOptions<PositionOptions>("optionalName")
             o.Property = DoSomethingWith(s, s2, s3, s4, s5));
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 services.AddOptions<PositionOptions>("optionalName")
@@ -894,7 +988,7 @@ services.AddOptions<PositionOptions>("optionalName")
             o.Property = DoSomethingWith(s, s2, s3, s4, s5));
 ```
 
-::: moniker-end
+:::moniker-end
 
 ### Configuration options service approach
 
@@ -937,7 +1031,7 @@ Where services are registered for dependency injection, the following code:
 * Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions%2A> to get an <xref:Microsoft.Extensions.Options.OptionsBuilder%601> that binds to the `KeyOptions` class.
 * Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> to enable validation.
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 builder.Services.AddOptions<KeyOptions>()
@@ -945,9 +1039,9 @@ builder.Services.AddOptions<KeyOptions>()
     .ValidateDataAnnotations();
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 services.AddOptions<KeyOptions>()
@@ -955,21 +1049,53 @@ services.AddOptions<KeyOptions>()
     .ValidateDataAnnotations();
 ```
 
-::: moniker-end
+:::moniker-end
 
 The <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> extension method is defined in the [`Microsoft.Extensions.Options.DataAnnotations` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations). For web apps that use the `Microsoft.NET.Sdk.Web` SDK, this package is referenced implicitly from the [shared framework](xref:fundamentals/metapackage-app).
 
+Where services are registered for dependency injection, the following code applies a more complex validation rule using a delegate:
+
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+builder.Services.AddOptions<KeyOptions>()
+        .Bind(builder.Configuration.GetSection(KeyOptions.Key))
+        .ValidateDataAnnotations()
+    .Validate(options =>
+    {
+        return options.Key3 > options.Key2;
+    }, "Key3 must be > than Key2");
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+services.AddOptions<KeyOptions>()
+        .Bind(builder.Configuration.GetSection(KeyOptions.Key))
+        .ValidateDataAnnotations()
+    .Validate(options =>
+    {
+        return options.Key3 > options.Key2;
+    }, "Key3 must be > than Key2");
+```
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
+
+The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType>.
 
 > [!NOTE]
 > For demonstration purposes, the following example uses a <xref:Microsoft.AspNetCore.Components.MarkupString> to format raw HTML. Rendering raw HTML constructed from any untrusted source is a **security risk** and should **always** be avoided. For more information, see <xref:blazor/components/index#raw-html>.
 
-`OptionsValidation.razor`:
+`OptionsValidation1.razor`:
 
 ```razor
-@page "/options-validation"
+@page "/options-validation-1"
 @inject IOptionsSnapshot<KeyOptions> Options
-@inject ILogger<OptionsValidation> Logger
+@inject ILogger<OptionsValidation1> Logger
 
 @if (message is not null)
 {
@@ -983,7 +1109,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotations
     {
         try
         {
-            var configValue = Options.Value;
+            var keyOptions = Options.Value;
         }
         catch (OptionsValidationException ex)
         {
@@ -1012,19 +1138,32 @@ The <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotations
 
 :::moniker range="< aspnetcore-8.0"
 
+The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType> in the page's `OnGet` method.
+
+`OptionsValidation1.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.OptionsValidation1Model
+@{
+}
+```
+
+`OptionsValidation1.cshtml.cs`:
+
 ```csharp
-public class OptionsValidationModel : PageModel
+public class OptionsValidation1Model : PageModel
 {
     private readonly IOptionsSnapshot<KeyOptions>? _options;
 
-    public OptionsValidationModel(IOptionsSnapshot<KeyOptions> options,
-        ILogger<OptionsValidationModel> logger)
+    public OptionsValidation1Model(IOptionsSnapshot<KeyOptions> options,
+        ILogger<OptionsValidation1Model> logger)
     {
         _options = options;
 
         try
         {
-            var configValue = _options?.Value;
+            var keyOptions = _options?.Value;
         }
         catch (OptionsValidationException ex)
         {
@@ -1063,51 +1202,25 @@ The preceding code displays the configuration values or validation errors:
 * Use the code with the preceding app settings configuration to demonstrate no validation errors.
 * Change the configuration in the app settings file in one or more ways that violate the data annotations rules. Reload the options validation page to see the rule violations.
 
-In the following example, the page content indicates that the value of `Key2` is out of range:
+In the following example, the page content indicates that the value of `Key2` is out of range if the value of `Key2` in the app settings file is changed to a value below zero or over 1,000:
 
 > :::no-loc text="DataAnnotation validation failed for 'KeyOptions' members: 'Key2' with the error: 'Value for Key2 must be between 0 and 1000.'.":::
 
-Where services are registered for dependency injection, the following code applies a more complex validation rule using a delegate:
-
-::: moniker range=">= aspnetcore-6.0"
-
-```csharp
-builder.Services.AddOptions<KeyOptions>()
-        .Bind(builder.Configuration.GetSection(KeyOptions.Key))
-        .ValidateDataAnnotations()
-    .Validate(options =>
-    {
-        return options.Key3 > options.Key2;
-    }, "Key3 must be > than Key2");
-```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-6.0"
-
-```csharp
-services.AddOptions<KeyOptions>()
-        .Bind(builder.Configuration.GetSection(KeyOptions.Key))
-        .ValidateDataAnnotations()
-    .Validate(options =>
-    {
-        return options.Key3 > options.Key2;
-    }, "Key3 must be > than Key2");
-```
-
-::: moniker-end
-
-To demonstrate a validation failure with the preceding example, make the `Key3` value smaller than the `Key2` value in the app settings file and reload the page.
-
-Output:
-
-> :::no-loc text="Key3 must be > than Key2":::
-
-### Validate options in a dedicated class with `IValidateOptions<TOptions>`
+## Validate options in a dedicated class with `IValidateOptions<TOptions>`
 
 Implement <xref:Microsoft.Extensions.Options.IValidateOptions%601> to validate options without the need to maintain validation rules with data annotations or in the app's `Program` file.
 
 In the following example, the data annotations rules and options delegate validation of the preceding examples is moved to a validation class. The Options model class (`KeyOptions2`) doesn't contain data annotations.
+
+In the `appsettings.json` file:
+
+```json
+"KeyOptions": {
+  "Key1": "Key One",
+  "Key2": 10,
+  "Key3": 32
+}
+```
 
 `KeyOptions2.cs`:
 
@@ -1122,7 +1235,7 @@ public class KeyOptions2
 }
 ```
 
-::: moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 ```csharp
 public class KeyOptionsValidation : IValidateOptions<KeyOptions2>
@@ -1165,7 +1278,7 @@ public class KeyOptionsValidation : IValidateOptions<KeyOptions2>
 
 :::moniker-end
 
-::: moniker range="< aspnetcore-8.0"
+:::moniker range="< aspnetcore-8.0"
 
 ```csharp
 public class KeyOptionsValidation : IValidateOptions<KeyOptions2>
@@ -1210,7 +1323,7 @@ public class KeyOptionsValidation : IValidateOptions<KeyOptions2>
 
 Where services are registered for dependency injection and using the preceding code, validation is enabled in `Program.cs` with the following code:
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 builder.Services.Configure<KeyOptions2>(
@@ -1220,26 +1333,29 @@ builder.Services.AddSingleton<IValidateOptions<KeyOptions2>,
     KeyOptionsValidation>();
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 services.Configure<KeyOptions>(
     builder.Configuration.GetSection(KeyOptions2.Key));
 
-services.AddSingleton<IValidateOptions<KeyOptions2>, 
-    KeyOptionsValidation>();
+services.AddSingleton<IValidateOptions<KeyOptions2>, KeyOptionsValidation>();
 ```
 
-::: moniker-end
+:::moniker-end
+
+:::moniker-range=">= aspnetcore-8.0"
+
+The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType>.
 
 `OptionsValidation2.razor`:
 
 ```razor
 @page "/options-validation-2"
 @inject IOptionsSnapshot<KeyOptions2> Options
-@inject ILogger<OptionsValidation> Logger
+@inject ILogger<OptionsValidation2> Logger
 
 @if (message is not null)
 {
@@ -1253,7 +1369,7 @@ services.AddSingleton<IValidateOptions<KeyOptions2>,
     {
         try
         {
-            var configValue = Options.Value;
+            var keyOptions = Options.Value;
         }
         catch (OptionsValidationException ex)
         {
@@ -1282,19 +1398,32 @@ services.AddSingleton<IValidateOptions<KeyOptions2>,
 
 :::moniker range="< aspnetcore-8.0"
 
+The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType> in the page's `OnGet` method.
+
+`OptionsValidation2.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.OptionsValidation2Model
+@{
+}
+```
+
+`OptionsValidation2.cshtml.cs`:
+
 ```csharp
-public class OptionsValidationModel : PageModel
+public class OptionsValidation2Model : PageModel
 {
     private readonly IOptionsSnapshot<KeyOptions2>? _options;
 
-    public OptionsValidationModel(IOptionsSnapshot<KeyOptions2> options,
-        ILogger<OptionsValidationModel> logger)
+    public OptionsValidation2Model(IOptionsSnapshot<KeyOptions2> options,
+        ILogger<OptionsValidation2Model> logger)
     {
         _options = options;
 
         try
         {
-            var configValue = _options?.Value;
+            var keyOptions = _options?.Value;
         }
         catch (OptionsValidationException ex)
         {
@@ -1335,13 +1464,13 @@ Options validation supports <xref:System.ComponentModel.DataAnnotations.IValidat
 * Implement the <xref:System.ComponentModel.DataAnnotations.IValidatableObject> interface and its <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A> method within the class.
 * Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> in the `Program` file.
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ### Run options validation when the app starts with `ValidateOnStart`
 
-Options validation runs the first time a `TOption` instance is created. That means, for instance, when first 
+Options validation runs the first time a `TOption` instance is created, which is when the first 
 access to [`IOptionsSnapshot<TOptions>.Value`](xref:Microsoft.Extensions.Options.IOptionsSnapshot%601) occurs in a request pipeline or when 
-[`IOptionsMonitor<TOptions>.Get(string)`](xref:Microsoft.Extensions.Options.OptionsMonitor`1.Get(System.String)) is called on settings present. After settings are reloaded, validation runs again. The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache%601> to cache the options instance once it is created.
+[`IOptionsMonitor<TOptions>.Get(string)`](xref:Microsoft.Extensions.Options.IOptionsMonitor%601) is called. Each time options are reloaded, validation runs again. 
 
 To run options validation when the app starts, call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> in the `Program` file:
 
@@ -1356,21 +1485,9 @@ builder.Services.AddOptions<KeyOptions>()
 
 ## Options post-configuration
 
-::: moniker range=">= aspnetcore-6.0"
+Where services are registered for dependency injection, <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601.PostConfigure%2A> is available to initialize a particular [named option](#named-options-support-using-iconfigurenamedoptions). In the following example, only `TopItem:Month:Name` is post-configured:
 
-Where services are registered for dependency injection, set post-configuration with <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601>. Post-configuration runs after all <xref:Microsoft.Extensions.Options.IConfigureOptions%601> configuration occurs:
-
-```csharp
-builder.Services.AddOptions<KeyOptions>()
-    .Bind(builder.Configuration.GetSection(KeyOptions.Key));
-
-builder.Services.PostConfigure<KeyOptions>(options =>
-{
-    options.Key1 = "Post configured Key1 value";
-});
-```
-
-Where services are registered for dependency injection, <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601.PostConfigure%2A> is available to post-configure named options:
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 builder.Services.Configure<TopItemSettings>(TopItemSettings.Month,
@@ -1378,42 +1495,15 @@ builder.Services.Configure<TopItemSettings>(TopItemSettings.Month,
 builder.Services.Configure<TopItemSettings>(TopItemSettings.Year,
     builder.Configuration.GetSection("TopItem:Year"));
 
-builder.Services.PostConfigure<TopItemSettings>("Month", options =>
+builder.Services.PostConfigure<TopItemSettings>(TopItemSettings.Month, options =>
 {
-    options.Name = "Post configured Name";
-    options.Model = "Post configured Value";
-});
-```
-
-Where services are registered for dependency injection, use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll%2A> to post-configure all configuration instances:
-
-```csharp
-builder.Services.AddOptions<KeyOptions>()
-    .Bind(builder.Configuration.GetSection(KeyOptions.Key));
-
-builder.Services.PostConfigureAll<KeyOptions>(options =>
-{
-    options.Key1 = "Post configured Key1 value";
+    options.Name = "Blue Gizmo";
 });
 ```
 
 :::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
-
-Where services are registered for dependency injection, set post-configuration with <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601>. Post-configuration runs after all <xref:Microsoft.Extensions.Options.IConfigureOptions%601> configuration occurs:
-
-```csharp
-services.AddOptions<KeyOptions>()
-    .Bind(builder.Configuration.GetSection(KeyOptions.Key));
-
-services.PostConfigure<KeyOptions>(options =>
-{
-    options.Key1 = "Post configured Key1 value";
-});
-```
-
-Where services are registered for dependency injection, <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601.PostConfigure%2A> is available to post-configure named options:
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 services.Configure<TopItemSettings>(TopItemSettings.Month,
@@ -1421,30 +1511,67 @@ services.Configure<TopItemSettings>(TopItemSettings.Month,
 services.Configure<TopItemSettings>(TopItemSettings.Year,
     builder.Configuration.GetSection("TopItem:Year"));
 
-services.PostConfigure<TopItemSettings>("Month", options =>
+services.PostConfigure<TopItemSettings>(TopItemSettings.Month, options =>
 {
-    options.Name = "Post configured Name value";
-    options.Model = "Post configured Model value";
-});
-```
-
-Where services are registered for dependency injection, use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll%2A> to post-configure all configuration instances:
-
-```csharp
-services.AddOptions<KeyOptions>()
-    .Bind(builder.Configuration.GetSection(KeyOptions.Key));
-
-services.PostConfigureAll<KeyOptions>(options =>
-{
-    options.Key1 = "Post configured Key1 value";
+    options.Name = "Blue Gizmo";
 });
 ```
 
 :::moniker-end
 
+Rendered output from the [named options example](#named-options-support-using-iconfigurenamedoptions), where only the `TopItem:Month:Name` is post-configured:
+
+<!-- DOC AUTHOR NOTE
+
+The following block quote uses two spaces at the ends of lines (except the
+last line) to create returns in the rendered content. Don't remove the two 
+spaces at the ends of the lines when editing the following content.
+
+-->
+
+> :::no-loc text="Month: Name: Blue Gizmo Model: GW46":::  
+> :::no-loc text="Year: Name: Orange Gadget Model: OG35":::
+
+Where services are registered for dependency injection, use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll%2A> to initialize all named instances of the specified options type. In the following example, all instances of `TopItem.Name` are set to `Blue Gizmo`:
+
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+builder.Services.Configure<TopItemSettings>(TopItemSettings.Month,
+    builder.Configuration.GetSection("TopItem:Month"));
+builder.Services.Configure<TopItemSettings>(TopItemSettings.Year,
+    builder.Configuration.GetSection("TopItem:Year"));
+
+builder.Services.PostConfigureAll<TopItemSettings>(options =>
+{
+    options.Name = "Blue Gizmo";
+});
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+services.Configure<TopItemSettings>(TopItemSettings.Month,
+    builder.Configuration.GetSection("TopItem:Month"));
+services.Configure<TopItemSettings>(TopItemSettings.Year,
+    builder.Configuration.GetSection("TopItem:Year"));
+
+services.PostConfigureAll<TopItemSettings>(options =>
+{
+    options.Name = "Blue Gizmo";
+});
+```
+
+Rendered output from the [named options example](#named-options-support-using-iconfigurenamedoptions), where all `TopItem:Name` options are post-configured:
+
+> :::no-loc text="Month: Name: Blue Gizmo Model: GW46":::  
+> :::no-loc text="Year: Name: Blue Gizmo Model: OG35":::
+
 ## Access options in the request processing pipeline
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 To access <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in the request processing pipeline, call <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplication.Services%2A?displayProperty=nameWithType>:
 
@@ -1455,11 +1582,11 @@ var name = app.Services.GetRequiredService<IOptionsMonitor<PositionOptions>>()
 
 :::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 <xref:Microsoft.Extensions.Options.IOptions%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> can be used in `Startup.Configure`, since services are built before the `Configure` method executes.
 
-Inject `IOptionsMonitor<T>` into the `Startup.Configure` method. In the following example, the options class is `MyOptions`:
+In the following example, <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is injected into the `Startup.Configure` method to obtain `PositionOptions` values:
 
 ```csharp
 public void Configure(IApplicationBuilder app, 
