@@ -72,8 +72,6 @@ Provide a link to the report file, an absolute link that can be clicked on from 
 ### Report Structure
 Eliminate duplicate report content that may arise from running the analysis more than one time on an issue.
 
-Provide a link to the report file, an absolute link that can be clicked on from anywhere
-
 #### Header (REQUIRED - Always include this community-facing notice)
 ```markdown
 ## 🤖 AI Triage Summary
