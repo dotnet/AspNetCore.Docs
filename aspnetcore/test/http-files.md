@@ -447,7 +447,7 @@ And the `.http` file has this content:
 
 ```http
 GET {{HostAddress}}{{Path}}
-X-UserName: {{$dotEnv USERNAME}}
+X-UserName: {{$dotenv USERNAME}}
 ```
 
 The `X-UserName` header will have "userFromDotenv".
