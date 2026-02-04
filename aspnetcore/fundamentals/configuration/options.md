@@ -6,7 +6,7 @@ description: Discover how to use the options pattern to represent groups of rela
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/03/2026
+ms.date: 02/04/2026
 uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
@@ -24,19 +24,9 @@ This article provides information on the options pattern in ASP.NET Core. For in
 
 The examples in this article rely on a general understanding of injecting services into classes. For more information, see <xref:fundamentals/dependency-injection>. Examples are based on [Blazor's Razor components](xref:blazor/index). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true). The examples in the .NET 8 or later versions of this article use [primary constructors](/dotnet/csharp/whats-new/tutorials/primary-constructors) ([Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)) and [nullable reference types (NRTs) with .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
-:::moniker range="< aspnetcore-8.0"
-
-Page models of Razor Pages examples in several article sections rely on API in the <xref:Microsoft.Extensions.Options?displayName=fullName> namespace and require a `using` statement, which isn't shown by the code examples. Recent releases of Visual Studio add the namespace automatically. When not using Visual Studio, add the `using` statement to the page model file:
-
-```csharp
-using Microsoft.Extensions.Options;
-```
-
-:::moniker-end
-
 ## How to use the options pattern
 
-Consider the following JSON configuration data available to the app via any of the [configuration providers](xref:fundamentals/configuration/index#configuration-providers), which includes related data for an employee's name and title in an organization's position:
+Consider the following JSON configuration data from an app settings file (for example, `appsettings.json`), which includes related data for an employee's name and title in an organization's position:
 
 ```json
 "Position": {
@@ -50,6 +40,8 @@ The following `PositionOptions` options class:
 * Is a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object), a simple .NET class with properties. An options class must not be an abstract class.
 * Has public read-write properties that match corresponding entries in the configuration data.
 * Does ***not*** have its field (`Position`) bound. The `Position` field is used to avoid hardcoding the string `"Position"` in the app when binding the class to a configuration provider.
+
+`PositionOptions.cs`:
 
 ```csharp
 public class PositionOptions
@@ -104,6 +96,11 @@ Title: @positionOptions?.Title
 `BasicOptions.cshtml.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace RazorPagesSample.Pages;
+
 public class BasicOptionsModel : PageModel
 {
     private readonly IConfiguration _config;
@@ -140,85 +137,11 @@ spaces at the ends of the lines when editing the following content.
 > :::no-loc text="Name: Joe Smith":::  
 > :::no-loc text="Title: Editor":::
 
-Changes to the JSON configuration file after the app has started are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
+After the app has started, changes to the JSON configuration in the app settings file are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A?displayProperty=nameWithType> binds and returns the specified type. `ConfigurationBinder.Get<T>` may be more convenient than using `ConfigurationBinder.Bind`. The following code shows how to use `ConfigurationBinder.Get<T>` with the `PositionOptions` class:
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> allows the concretion of an abstract class. Consider the following example that uses the abstract class `AbstractClassWithName`.
 
-:::moniker range=">= aspnetcore-8.0"
-
-`GetOptions.razor`:
-
-```razor
-@page "/get-options"
-@inject IConfiguration Config
-
-Name: @positionOptions?.Name<br>
-Title: @positionOptions?.Title
-
-@code {
-    private PositionOptions? positionOptions;
-
-    protected override void OnInitialized() =>
-        positionOptions = Config.GetSection(PositionOptions.Position)
-            .Get<PositionOptions>();
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-`GetOptions.cshtml`:
-
-```cshtml
-@page
-@model RazorPagesSample.Pages.GetOptionsModel
-@{
-}
-```
-
-`GetOptions.cshtml.cs`:
-
-```csharp
-public class GetOptionsModel : PageModel
-{
-    private readonly IConfiguration _config;
-
-    public GetOptionsModel(IConfiguration config)
-    {
-        _config = config;
-    }
-
-    public ContentResult OnGet()
-    {
-        var positionOptions = _config.GetSection(PositionOptions.Position)
-            .Get<PositionOptions>();
-
-        return Content(
-            $"Name: {positionOptions?.Name}\n" +
-            $"Title: {positionOptions?.Title}");
-    }
-}
-```
-
-:::moniker-end
-
-Output:
-
-<!-- DOC AUTHOR NOTE
-
-The following block quote uses two spaces at the ends of lines (except the
-last line) to create returns in the rendered content. Don't remove the two 
-spaces at the ends of the lines when editing the following content.
-
--->
-
-> :::no-loc text="Name: Joe Smith":::  
-> :::no-loc text="Title: Editor":::
-
-Changes to the JSON configuration file after the app has started are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
-
-Bind also allows the concretion of an abstract class. Consider the following code which uses the abstract class `AbstractClassWithName`:
+`NameTitleOptions.cs`:
 
 ```csharp
 public abstract class AbstractClassWithName
@@ -245,7 +168,7 @@ JSON configuration:
 }
 ```
 
-The following code displays the `NameTitleOptions` configuration values:
+The following example displays the `NameTitleOptions` configuration values.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -286,6 +209,11 @@ Age: @nameTitleOptions?.Age
 `AbstractClassOptions.cshtml.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace RazorPagesSample.Pages;
+
 public class AbstractClassOptionsModel : PageModel
 {
     private readonly IConfiguration _config;
@@ -324,10 +252,91 @@ spaces at the ends of the lines when editing the following content.
 > :::no-loc text="Title: Writer":::  
 > :::no-loc text="Age: 22":::
 
-Calls to `Bind` are less strict than calls to `Get<T>`:
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A?displayProperty=nameWithType> binds and returns the specified type. The following example shows how to use <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A> with the `PositionOptions` class.
 
-* `Bind` allows the concretion of an abstract class.
-* `Get<T>` must create an instance itself.
+:::moniker range=">= aspnetcore-8.0"
+
+`GetOptions.razor`:
+
+```razor
+@page "/get-options"
+@inject IConfiguration Config
+
+Name: @positionOptions?.Name<br>
+Title: @positionOptions?.Title
+
+@code {
+    private PositionOptions? positionOptions;
+
+    protected override void OnInitialized() =>
+        positionOptions = Config.GetSection(PositionOptions.Position)
+            .Get<PositionOptions>();
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+`GetOptions.cshtml`:
+
+```cshtml
+@page
+@model RazorPagesSample.Pages.GetOptionsModel
+@{
+}
+```
+
+`GetOptions.cshtml.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace RazorPagesSample.Pages;
+
+public class GetOptionsModel : PageModel
+{
+    private readonly IConfiguration _config;
+
+    public GetOptionsModel(IConfiguration config)
+    {
+        _config = config;
+    }
+
+    public ContentResult OnGet()
+    {
+        var positionOptions = _config.GetSection(PositionOptions.Position)
+            .Get<PositionOptions>();
+
+        return Content(
+            $"Name: {positionOptions?.Name}\n" +
+            $"Title: {positionOptions?.Title}");
+    }
+}
+```
+
+:::moniker-end
+
+Output:
+
+<!-- DOC AUTHOR NOTE
+
+The following block quote uses two spaces at the ends of lines (except the
+last line) to create returns in the rendered content. Don't remove the two 
+spaces at the ends of the lines when editing the following content.
+
+-->
+
+> :::no-loc text="Name: Joe Smith":::  
+> :::no-loc text="Title: Editor":::
+
+After the app has started, changes to the JSON configuration in the app settings file are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
+
+Summary of the differences between <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> and <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A?displayProperty=nameWithType>:
+
+* <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A> is usually more convenient than using <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> because <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A> creates and returns a new instance of the object, while <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> populates properties of an existing object instance that's typically established by another line of code.
+* <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> allows the concretion of an abstract class, while <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A> is only able to create a non-abstract instance of the options type.
 
 ## Bind options to the dependency injection service container
 
@@ -342,7 +351,7 @@ JSON configuration:
 }
 ```
 
-`PositionOptions` class:
+`PositionOptions.cs`:
 
 ```csharp
 public class PositionOptions
@@ -353,6 +362,8 @@ public class PositionOptions
     public string? Title { get; set; }
 }
 ```
+
+Where services are registered for dependency injection in the app's `Program` file:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -372,7 +383,7 @@ services.Configure<PositionOptions>(
 
 :::moniker-end
 
-Using the preceding code, the following code reads the position options:
+The following example reads the position options.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -403,6 +414,12 @@ Title: @Options.Value.Title
 `DIOptions.cshtml.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
+
+namespace RazorPagesSample.Pages;
+
 public class DIOptionsModel : PageModel
 {
     private readonly IOptions<PositionOptions> _options;
@@ -436,7 +453,7 @@ spaces at the ends of the lines when editing the following content.
 > :::no-loc text="Name: Joe Smith":::  
 > :::no-loc text="Title: Editor":::
 
-For the preceding code, changes to the JSON configuration file after the app has started are ***not*** read. To read changes after the app has started, use [`IOptionsSnapshot`](#use-ioptionssnapshot-to-read-updated-data-in-scoped-services).
+For the preceding code, changes to the JSON configuration in the app settings file after the app has started are ***not*** read. To read changes after the app has started, use [`IOptionsSnapshot`](#use-ioptionssnapshot-to-read-updated-data).
 
 ## Options interfaces
 
@@ -449,42 +466,40 @@ For the preceding code, changes to the JSON configuration file after the app has
 
 <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 
-* Is useful in scenarios where options should be recomputed on every request. For more information, see the [Use IOptionsSnapshot to read updated data](#use-ioptionssnapshot-to-read-updated-data-in-scoped-services) section.
-* Is registered as a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and therefore can't be injected into a singleton service.
+* Covered later in this article in the [Use `IOptionsSnapshot` to read updated data](#use-ioptionssnapshot-to-read-updated-data) section.
+* Is useful in scenarios where options should be recomputed on every request.
+* Is registered as a [scoped service](/dotnet/core/extensions/dependency-injection#scoped), so it can't be injected into a singleton service.
 * Supports [named options](#specify-a-custom-key-name-for-a-configuration-property-using-configurationkeyname).
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
+* Covered later in this article in the [Use `IOptionsMonitor` to read updated data](#use-ioptionssnapshot-to-read-updated-data) section.
 * Is used to retrieve options and manage options notifications for `TOptions` instances.
 * Is registered as a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes).
 * Supports:
-  * Change notifications
-  * [Named options](#specify-a-custom-key-name-for-a-configuration-property-using-configurationkeyname)
-  * [Reloadable configuration](#use-ioptionssnapshot-to-read-updated-data-in-scoped-services)
-  * Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601>)
+  * Change notifications.
+  * [Named options](#specify-a-custom-key-name-for-a-configuration-property-using-configurationkeyname).
+  * Reloadable configuration.
+  * Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601>).
   
-[Post-configuration](#options-post-configuration) scenarios enable setting or changing options after all <xref:Microsoft.Extensions.Options.IConfigureOptions%601> configuration occurs.
+[Post-configuration scenarios](#options-post-configuration) enable setting or changing options after all <xref:Microsoft.Extensions.Options.IConfigureOptions%601> configuration occurs.
 
 <xref:Microsoft.Extensions.Options.IOptionsFactory%601> is responsible for creating new options instances. It has a single <xref:Microsoft.Extensions.Options.IOptionsFactory%601.Create%2A> method. The default implementation takes all registered <xref:Microsoft.Extensions.Options.IConfigureOptions%601> and <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601> and runs all the configurations first, followed by the post-configuration. It distinguishes between <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> and <xref:Microsoft.Extensions.Options.IConfigureOptions%601> and only calls the appropriate interface.
 
-<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601> is used by <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> to cache `TOptions` instances. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601> invalidates options instances in the monitor so that the value is recomputed (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.TryRemove%2A>). Values can be manually introduced with <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.TryAdd%2A>. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.Clear%2A> method is used when all named instances should be recreated on demand.
-
-## Use `IOptionsSnapshot` to read updated data in scoped services
+## Use `IOptionsSnapshot` to read updated data
 
 Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 
 * Options are computed once per request when accessed and cached for the lifetime of the request.
-* May incur a significant performance penalty because it's a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and is recomputed per request. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/53793) and [Improve the performance of configuration binding](https://github.com/dotnet/runtime/issues/36130).
+* May incur a significant performance penalty because it's a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and is recomputed per request. For more information, see [`IOptionsSnapshot` is very slow (`dotnet/runtime` #53793)](https://github.com/dotnet/runtime/issues/53793) and [Improve the performance of configuration binding (`dotnet/runtime` #36130)](https://github.com/dotnet/runtime/issues/36130).
 * Changes to the configuration are read after the app starts when using configuration providers that support reading updated configuration values.
 
-The difference between [`IOptionsMonitor`](#use-ioptionsmonitor-to-read-updated-data-in-singleton-services) and <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is that:
+The difference between [`IOptionsMonitor`](#use-ioptionsmonitor-to-read-updated-data) and <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is that:
 
 * <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
 * <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
 The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache%601> to cache the options instance after it's created.
-
-The following example uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 
 JSON configuration:
 
@@ -495,7 +510,7 @@ JSON configuration:
 }
 ```
 
-`PositionOptions` class:
+`PositionOptions.cs`:
 
 ```csharp
 public class PositionOptions
@@ -506,6 +521,8 @@ public class PositionOptions
     public string? Title { get; set; }
 }
 ```
+
+The following example uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -536,6 +553,12 @@ Title: @Options.Value.Title
 `SnapshotOptions.cshtml.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
+
+namespace RazorPagesSample.Pages;
+
 public class SnapshotOptionsModel : PageModel
 {
     private readonly IOptionsSnapshot<PositionOptions> _options;
@@ -556,7 +579,7 @@ public class SnapshotOptionsModel : PageModel
 
 :::moniker-end
 
-Where services are registered for dependency injection, the following code registers a configuration instance which `PositionOptions` binds against:
+Where services are registered for dependency injection, the following example registers a configuration instance which `PositionOptions` binds against:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -589,18 +612,18 @@ spaces at the ends of the lines when editing the following content.
 > :::no-loc text="Name: Joe Smith":::  
 > :::no-loc text="Title: Editor":::
 
-Changes to the JSON configuration file after the app has started are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
+After the app has started, changes to the JSON configuration in the app settings file are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
 
-## Use `IOptionsMonitor` to read updated data in singleton services
+## Use `IOptionsMonitor` to read updated data
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is used to retrieve options and manage options notifications for `TOptions` instances.
 
-The difference between <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> and [`IOptionsSnapshot`](#use-ioptionssnapshot-to-read-updated-data-in-scoped-services) is that:
+The difference between <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> and [`IOptionsSnapshot`](#use-ioptionssnapshot-to-read-updated-data) is that:
 
 * <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
 * <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
-The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache%601> to cache the options instance after it's created.
+<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601> is used by <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> to cache `TOptions` instances. <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.TryRemove%2A?displayProperty=nameWithType> invalidates options instances in the monitor so that the value is recomputed. Values can be manually introduced with <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.TryAdd%2A?displayProperty=nameWithType>. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.Clear%2A> method is used when all named instances should be recreated on demand.
 
 JSON configuration:
 
@@ -611,7 +634,7 @@ JSON configuration:
 }
 ```
 
-`PositionOptions` class:
+`PositionOptions.cs`:
 
 ```csharp
 public class PositionOptions
@@ -623,7 +646,7 @@ public class PositionOptions
 }
 ```
 
-Where services are registered for dependency injection, the following code registers a configuration instance which `PositionOptions` binds against:
+Where services are registered for dependency injection, the following example registers a configuration instance which `PositionOptions` binds against:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -643,7 +666,7 @@ services.Configure<PositionOptions>(
 
 :::moniker-end
 
-The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
+The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -674,6 +697,12 @@ Title: @Options.CurrentValue.Title
 `MonitorOptions.cshtml.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
+
+namespace RazorPagesSample.Pages;
+
 public class MonitorOptionsModel : PageModel
 {
     private readonly IOptionsMonitor<PositionOptions> _options;
@@ -707,7 +736,7 @@ spaces at the ends of the lines when editing the following content.
 > :::no-loc text="Name: Joe Smith":::  
 > :::no-loc text="Title: Editor":::
 
-Changes to the JSON configuration file after the app has started are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
+After the app has started, changes to the JSON configuration in the app settings file are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -715,11 +744,11 @@ Changes to the JSON configuration file after the app has started are read. To de
 
 By default, the property names of the options class are used as the key name in the configuration source. If the property name is `Title`, the key name in the configuration is `Title` as well.
 
-When the names differentiate, you can use the [`ConfigurationKeyName` attribute](xref:Microsoft.Extensions.Configuration.ConfigurationKeyNameAttribute) to specify the key name in the configuration source. Using this technique, you can map a property in the configuration to one in your code with a different name. 
+When the names differentiate, you can use the [`[ConfigurationKeyName]` attribute](xref:Microsoft.Extensions.Configuration.ConfigurationKeyNameAttribute) to specify the key name in the configuration source. Using this technique, you can map a property in the configuration to one in your code with a different name. This is useful when the property name in the configuration source isn't a valid C# identifier or when you want to use a different name in your code.
 
-This is useful when the property name in the configuration source isn't a valid C# identifier or when you want to use a different name in your code.
+For example, consider the following options class.
 
-For example, consider the following options class:
+`PositionKeyName.cs`:
 
 ```csharp
 public class PositionKeyName
@@ -781,6 +810,11 @@ Title: @positionOptions?.Title
 `PositionKeyName.cshtml.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace RazorPagesSample.Pages;
+
 public class PositionKeyNameModel : PageModel
 {
     private readonly IConfiguration _config;
@@ -817,7 +851,7 @@ spaces at the ends of the lines when editing the following content.
 > :::no-loc text="Name: Carlos Diego":::  
 > :::no-loc text="Title: Director":::
 
-Changes to the JSON configuration file after the app has started are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
+After the app has started, changes to the JSON configuration in the app settings file are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
 
 ## Named options support using `IConfigureNamedOptions`
 
@@ -841,7 +875,9 @@ Consider the following JSON configuration:
 }
 ```
 
-Rather than creating two classes to bind `TopItem:Month` and `TopItem:Year`, the following class is used for each section:
+Rather than creating two classes to bind `TopItem:Month` and `TopItem:Year`, the following class is used for each section.
+
+`TopItemSettings.cs`:
 
 ```csharp
 public class TopItemSettings
@@ -854,7 +890,7 @@ public class TopItemSettings
 }
 ```
 
-The following code configures the named options:
+Where services are registered for dependency injection, the following example configures the named options:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -878,7 +914,7 @@ services.Configure<TopItemSettings>(TopItemSettings.Year,
 
 :::moniker-end
 
-The following code displays the named options:
+The following example displays the named options:
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -920,6 +956,12 @@ Year: Name: @yearTopItem?.Name Model: @yearTopItem?.Model
 `NamedOptions.cshtml.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
+
+namespace RazorPagesSample.Pages;
+
 public class NamedOptionsModel : PageModel
 {
     private readonly IOptionsSnapshot<TopItemSettings> _options;
@@ -1000,7 +1042,7 @@ We recommend passing a configuration delegate to <xref:Microsoft.Extensions.Opti
 
 Options validation enables the validation of option values.
 
-Consider the following `appsettings.json` file:
+Consider the following JSON configuration:
 
 ```json
 "KeyOptions": {
@@ -1010,7 +1052,9 @@ Consider the following `appsettings.json` file:
 }
 ```
 
-The following class is used to bind to the `"KeyOptions"` configuration section and applies two data annotations rules, which include a regular expression and range requirement:
+The following class is used to bind to the `"KeyOptions"` configuration section and applies two data annotations rules, which include a regular expression and range requirement.
+
+`KeyOptions.cs`:
 
 ```csharp
 public class KeyOptions
@@ -1026,7 +1070,7 @@ public class KeyOptions
 }
 ```
 
-Where services are registered for dependency injection, the following code:
+Where services are registered for dependency injection, the following example:
 
 * Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions%2A> to get an <xref:Microsoft.Extensions.Options.OptionsBuilder%601> that binds to the `KeyOptions` class.
 * Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> to enable validation.
@@ -1053,7 +1097,7 @@ services.AddOptions<KeyOptions>()
 
 The <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> extension method is defined in the [`Microsoft.Extensions.Options.DataAnnotations` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations). For web apps that use the `Microsoft.NET.Sdk.Web` SDK, this package is referenced implicitly from the [shared framework](xref:fundamentals/metapackage-app).
 
-Where services are registered for dependency injection, the following code applies a more complex validation rule using a delegate:
+Where services are registered for dependency injection, the following example applies a more complex validation rule using a delegate:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1152,6 +1196,12 @@ The following example demonstrates how to log options validation exceptions in t
 `OptionsValidation1.cshtml.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
+
+namespace RazorPagesSample.Pages;
+
 public class OptionsValidation1Model : PageModel
 {
     private readonly IOptionsSnapshot<KeyOptions>? _options;
@@ -1212,7 +1262,7 @@ Implement <xref:Microsoft.Extensions.Options.IValidateOptions%601> to validate o
 
 In the following example, the data annotations rules and options delegate validation of the preceding examples is moved to a validation class. The Options model class (`KeyOptions2`) doesn't contain data annotations.
 
-In the `appsettings.json` file:
+Consider the following JSON configuration:
 
 ```json
 "KeyOptions": {
@@ -1321,7 +1371,7 @@ public class KeyOptionsValidation : IValidateOptions<KeyOptions2>
 
 :::moniker-end
 
-Where services are registered for dependency injection and using the preceding code, validation is enabled in `Program.cs` with the following code:
+Where services are registered for dependency injection and using the preceding code, validation is enabled in `Program.cs` with the following example:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1412,6 +1462,12 @@ The following example demonstrates how to log options validation exceptions in t
 `OptionsValidation2.cshtml.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
+
+namespace RazorPagesSample.Pages;
+
 public class OptionsValidation2Model : PageModel
 {
     private readonly IOptionsSnapshot<KeyOptions2>? _options;
@@ -1472,7 +1528,7 @@ Options validation runs the first time a `TOption` instance is created, which is
 access to [`IOptionsSnapshot<TOptions>.Value`](xref:Microsoft.Extensions.Options.IOptionsSnapshot%601) occurs in a request pipeline or when 
 [`IOptionsMonitor<TOptions>.Get(string)`](xref:Microsoft.Extensions.Options.IOptionsMonitor%601) is called. Each time options are reloaded, validation runs again. 
 
-To run options validation when the app starts, call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> in the `Program` file:
+To run options validation when the app starts, call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> in the `Program` file where services are registered for dependency injection:
 
 ```csharp
 builder.Services.AddOptions<KeyOptions>()
