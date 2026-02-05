@@ -67,7 +67,10 @@ If any content is not in English:
 ### File Naming
 `<issue-number>-analysis-report.md`
 
+Provide a link to the report file, an absolute link that can be clicked on from anywhere.
+
 ### Report Structure
+Eliminate duplicate report content that may arise from running the analysis more than one time on an issue.
 
 #### Header (REQUIRED - Always include this community-facing notice)
 ```markdown
