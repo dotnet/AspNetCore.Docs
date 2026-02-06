@@ -80,13 +80,19 @@ There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> option
 
 :::moniker range=">= aspnetcore-11.0"
 
-Set <xref:Microsoft.AspNetCore.Components.Routing.NavLink.RelativeToCurrentUri> to `true` to resolve the `href` relative to the current page path instead of the app's base URI:
+<!-- UPDATE 11.0 - API cross-link
+
+<xref:Microsoft.AspNetCore.Components.Routing.NavLink.RelativeToCurrentUri?displayProperty=nameWithType>
+
+-->
+
+Set `NavLink.RelativeToCurrentUri` to `true` to resolve the `href` relative to the current page path instead of the app's base URI:
 
 ```razor
 <NavLink href="details" RelativeToCurrentUri="true">View Details</NavLink>
 ```
 
-For example, if the current URI is `/docs/getting-started/installation`, the preceding link navigates to `/docs/getting-started/details`.
+If the current URI is `/docs/getting-started/installation`, the preceding link navigates to `/docs/getting-started/details`.
 
 :::moniker-end
 
@@ -763,15 +769,45 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> uses the browser's 
 
 Pass <xref:Microsoft.AspNetCore.Components.NavigationOptions> to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to control the following behaviors:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 11.0 - API cross-link
+
+<xref:Microsoft.AspNetCore.Components.NavigationOptions.RelativeToCurrentUri>
+
+-->
+
+* <xref:Microsoft.AspNetCore.Components.NavigationOptions.ForceLoad>: Bypass client-side routing and force the browser to load the new page from the server, whether or not the URI is handled by the client-side router. The default value is `false`.
+* <xref:Microsoft.AspNetCore.Components.NavigationOptions.ReplaceHistoryEntry>: Replace the current entry in the history stack. If `false`, append the new entry to the history stack. The default value is `false`.
+* <xref:Microsoft.AspNetCore.Components.NavigationOptions.HistoryEntryState>: Gets or sets the state to append to the history entry.
+* `RelativeToCurrentUri`: When `true`, the URI is resolved relative to the current page path instead of the app's base URI. The default value is `false`.
+
+In the following example:
+
+* The state appended to the history entry is "`Navigation state`."
+* If the current URI is `/docs/getting-started/installation`, navigation results in a request for `/docs/getting-started/configuration`.
+
+```csharp
+Navigation.NavigateTo("/configuration", new NavigationOptions
+{
+    HistoryEntryState = "Navigation state",
+    RelativeToCurrentUri = true
+});
+```
+
+For more information on obtaining the state associated with the target history entry while handling location changes, see the [Handle/prevent location changes](#handleprevent-location-changes) section.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-11.0"
+
 * <xref:Microsoft.AspNetCore.Components.NavigationOptions.ForceLoad>: Bypass client-side routing and force the browser to load the new page from the server, whether or not the URI is handled by the client-side router. The default value is `false`.
 * <xref:Microsoft.AspNetCore.Components.NavigationOptions.ReplaceHistoryEntry>: Replace the current entry in the history stack. If `false`, append the new entry to the history stack. The default value is `false`.
 * <xref:Microsoft.AspNetCore.Components.NavigationOptions.HistoryEntryState>: Gets or sets the state to append to the history entry.
 
-:::moniker range=">= aspnetcore-11.0"
-
-* <xref:Microsoft.AspNetCore.Components.NavigationOptions.RelativeToCurrentUri>: When `true`, the URI is resolved relative to the current page path instead of the app's base URI. For example, if the current URI is `/docs/getting-started/installation`, navigating to `configuration` results in `/docs/getting-started/configuration`. The default value is `false`.
-
-:::moniker-end
+In the following example, the state appended to the history entry is "`Navigation state`."
 
 ```csharp
 Navigation.NavigateTo("/path", new NavigationOptions
