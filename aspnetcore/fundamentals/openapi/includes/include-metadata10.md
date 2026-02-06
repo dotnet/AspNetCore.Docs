@@ -1,5 +1,7 @@
 :::moniker range="= aspnetcore-10.0"
 
+## Include OpenAPI metadata for endpoints
+
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
 
 In controller-based apps, metadata is collected from attributes such as [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
