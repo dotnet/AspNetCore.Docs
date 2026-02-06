@@ -22,7 +22,7 @@ Razor files with a `.cshtml` extension are compiled at both build and publish ti
 > * Doesn't support [global using directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives).
 > * Doesn't support [implicit using directives](/dotnet/core/tutorials/top-level-templates#implicit-using-directives).
 > * Disables [.NET Hot Reload](xref:test/hot-reload).
-> * Isn't recommended for production scenarios.**
+> * Isn't recommended for production scenarios.
 >
 > For production scenarios, use the default build-time compilation. For development scenarios, use Hot Reload. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).
 
