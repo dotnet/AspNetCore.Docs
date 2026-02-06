@@ -1,6 +1,6 @@
 ### Describe binary file responses
 
-ASP.NET Core 11 Preview 1 introduces support for generating OpenAPI descriptions for operations that return binary file responses. This support maps the `FileContentResult` result type to an OpenAPI schema with `type: string` and `format: binary`.
+ASP.NET Core 11 introduces support for generating OpenAPI descriptions for operations that return binary file responses. This support maps the `FileContentResult` result type to an OpenAPI schema with `type: string` and `format: binary`.
 
 #### [Minimal APIs](#tab/minimal-apis)
 
