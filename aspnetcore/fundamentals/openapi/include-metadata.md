@@ -488,7 +488,7 @@ This example also illustrates how to define multiple response types for an actio
 
 ##### Describe binary file responses
 
-To describe endpoints that return binary file responses, use the [`[ProducesResponseType<FileContentResult>]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute:
+To describe endpoints that return binary file responses, use the [`[ProducesResponseType<FileContentResult>]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute to specify the response type and content type:
 
 ```csharp
 [HttpPost("filecontentresult")]
@@ -500,7 +500,7 @@ public IActionResult PostFileContentResult()
 }
 ```
 
-This generates an OpenAPI schema with `type: string` and `format: binary` for the `FileContentResult` type.
+This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses), with `FileContentResult` defined as `type: string` and `format: binary`.
 
 :::moniker-end
 
