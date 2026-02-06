@@ -16,7 +16,7 @@ uid: mvc/views/view-compilation
 Razor files with a `.cshtml` extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring the project.
 
 > [!NOTE]
-> Runtime compilation:
+> **Runtime compilation:
 > * Was obsoleted starting in .NET 10.
 > * Isn't supported for Razor components of Blazor apps.
 > * Doesn't support [global using directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives).	
