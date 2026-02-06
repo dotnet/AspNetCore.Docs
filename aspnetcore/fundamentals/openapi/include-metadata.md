@@ -13,9 +13,9 @@ uid: fundamentals/openapi/include-metadata
 
 This article explains how to add OpenAPI metadata in an ASP.NET Core app.
 
-## Include OpenAPI metadata for endpoints
-
 :::moniker range=">= aspnetcore-11.0"
+
+## Include OpenAPI metadata for endpoints
 
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
 
