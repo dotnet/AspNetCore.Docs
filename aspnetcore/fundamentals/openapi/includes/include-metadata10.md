@@ -695,5 +695,3 @@ The following table shows the key differences beween the MVC JSON options and gl
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/openapi/includes/include-metadata9.md)]
