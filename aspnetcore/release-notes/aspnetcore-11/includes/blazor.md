@@ -2,7 +2,7 @@
 
 <!-- UPDATE 11.0 - API cross-link 
 
-                   <xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601>
+<xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601>
 -->
 The `DisplayName` component can be used to display property names from metadata attributes:
 
@@ -65,14 +65,38 @@ Blazor.start({
 });
 ```
 
-For more information, see <xref:blazor/fundamentals/startup#startup-process-and-configuration>.
+For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-11.0#startup-process-and-configuration>.
 
 ### New `BasePath` component
 
-Blazor Web Apps can use the new `BasePath` component (`<BasePath />`) to render the app's app base path (`<base href>`) HTML tag automatically. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
+Blazor Web Apps can use the new `BasePath` component (`<BasePath />`) to render the app's app base path (`<base href>`) HTML tag automatically. For more information, see <xref:blazor/host-and-deploy/app-base-path?view=aspnetcore-11.0>.
 
 ### Inline JS event handler removed from the `NavMenu` component
 
-The inline JS event handler that toggles the display of navigation links is no longer present in the `NavMenu` component of the Blazor Web App project template. Apps generated from the project template now use a [collocated JS module](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation bar on the rendered page. The new approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy) because it doesn't require the CSP to include an unsafe hash for the inline JS.
+The inline JS event handler that toggles the display of navigation links is no longer present in the `NavMenu` component of the Blazor Web App project template. Apps generated from the project template now use a [collocated JS module](xref:blazor/js-interop/javascript-location?view=aspnetcore-11.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation bar on the rendered page. The new approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy?view=aspnetcore-11.0) because it doesn't require the CSP to include an unsafe hash for the inline JS.
 
 To migrate an existing app to .NET 11, including adopting the new JS module approach for the navigation bar toggler, see <xref:migration/100-to-110>.
+
+### `NavigateTo` and `NavLink` support for relative navigation
+
+The new `RelativeToCurrentUri` parameter (default: `false`) for <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> and the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) allows you to navigate to URIs relative to the current page path rather than the app's base URI.
+
+Consider the following nested endpoints:
+
+* `/docs`
+  * `/getting-started`
+    * `/installation`
+    * `/configuration`
+
+When the browser's URI is `/docs/getting-started/installation` and you want to navigate the user to `/docs/getting-started/configuration`, `NavigateTo("/configuration")` redirects to `/configuration` at the app's root instead of the relative path at `/docs/getting-started/configuration`. Set the `RelativeToCurrentUri` with <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> or the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) for the desired navigation:
+
+```csharp
+Navigation.NavigateTo("/configuration", new NavigationOptions
+{
+    RelativeToCurrentUri = true
+});
+```
+
+```razor
+<NavLink href="configuration" RelativeToCurrentUri="true">Configuration</NavLink>
+```
