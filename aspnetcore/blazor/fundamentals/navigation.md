@@ -78,6 +78,18 @@ There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> option
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+Set <xref:Microsoft.AspNetCore.Components.Routing.NavLink.RelativeToCurrentUri> to `true` to resolve the `href` relative to the current page path instead of the app's base URI:
+
+```razor
+<NavLink href="details" RelativeToCurrentUri="true">View Details</NavLink>
+```
+
+For example, if the current URI is `/docs/getting-started/installation`, the preceding link navigates to `/docs/getting-started/details`.
+
+:::moniker-end
+
 Additional <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component attributes are passed through to the rendered anchor tag. In the following example, the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component includes the `target` attribute:
 
 ```razor
@@ -754,6 +766,12 @@ Pass <xref:Microsoft.AspNetCore.Components.NavigationOptions> to <xref:Microsoft
 * <xref:Microsoft.AspNetCore.Components.NavigationOptions.ForceLoad>: Bypass client-side routing and force the browser to load the new page from the server, whether or not the URI is handled by the client-side router. The default value is `false`.
 * <xref:Microsoft.AspNetCore.Components.NavigationOptions.ReplaceHistoryEntry>: Replace the current entry in the history stack. If `false`, append the new entry to the history stack. The default value is `false`.
 * <xref:Microsoft.AspNetCore.Components.NavigationOptions.HistoryEntryState>: Gets or sets the state to append to the history entry.
+
+:::moniker range=">= aspnetcore-11.0"
+
+* <xref:Microsoft.AspNetCore.Components.NavigationOptions.RelativeToCurrentUri>: When `true`, the URI is resolved relative to the current page path instead of the app's base URI. For example, if the current URI is `/docs/getting-started/installation`, navigating to `configuration` results in `/docs/getting-started/configuration`. The default value is `false`.
+
+:::moniker-end
 
 ```csharp
 Navigation.NavigateTo("/path", new NavigationOptions
