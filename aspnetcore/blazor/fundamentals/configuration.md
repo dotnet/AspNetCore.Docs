@@ -309,9 +309,7 @@ For more information on how background updates are handled by PWAs, see <xref:bl
 
 ## Options configuration
 
-[Options configuration](xref:fundamentals/configuration/options) requires adding a package reference for the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
-
-[!INCLUDE[](~/includes/package-reference.md)]
+[Options configuration](xref:fundamentals/configuration/options) uses API in the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
 
 Example:
 
