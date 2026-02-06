@@ -371,7 +371,7 @@ A class can be implemented to set the endpoint metadata and return it from the r
 
 ##### Describe binary file responses
 
-To describe endpoints that return binary file responses in the OpenAPI document, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method with `FileContentResult` as the type parameter:
+To describe endpoints that return binary file responses in the OpenAPI document, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method with `FileContentResult` as the type parameter to specify the response type and content type:
 
 ```csharp
 app.MapPost("/filecontentresult", () =>
