@@ -37,6 +37,8 @@ This section describes new features for Minimal APIs.
 
 This section describes new features for OpenAPI.
 
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-binary-file-response.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
