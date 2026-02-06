@@ -367,8 +367,6 @@ All of these methods except `NoContent` have a generic overload that specifies t
 
 A class can be implemented to set the endpoint metadata and return it from the route handler.
 
-:::moniker range=">= aspnetcore-11.0"
-
 ##### Describe binary file responses
 
 To describe endpoints that return binary file responses in the OpenAPI document, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method with `FileContentResult` as the type parameter to specify the response type and content type:
@@ -405,8 +403,6 @@ components:
       type: string
       format: binary
 ```
-
-:::moniker-end
 
 ##### Set responses for `ProblemDetails`
 
@@ -484,8 +480,6 @@ public async Task<ActionResult<Todo>> CreateOrReplaceTodo(string id, Todo todo)
 
 This example also illustrates how to define multiple response types for an action method, including the content type of the response body.
 
-:::moniker range=">= aspnetcore-11.0"
-
 ##### Describe binary file responses
 
 To describe endpoints that return binary file responses, use the [`[ProducesResponseType<FileContentResult>]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute to specify the response type and content type:
@@ -501,8 +495,6 @@ public IActionResult PostFileContentResult()
 ```
 
 This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses), with `FileContentResult` defined as `type: string` and `format: binary`.
-
-:::moniker-end
 
 ---
 
@@ -773,4 +765,5 @@ The following table shows the key differences beween the MVC JSON options and gl
 
 :::moniker-end
 
+[!INCLUDE[](~/fundamentals/openapi/includes/include-metadata10.md)]
 [!INCLUDE[](~/fundamentals/openapi/includes/include-metadata9.md)]
