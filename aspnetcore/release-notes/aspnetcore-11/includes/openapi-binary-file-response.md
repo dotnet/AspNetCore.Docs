@@ -46,7 +46,7 @@ responses:
           $ref: '#/components/schemas/FileContentResult'
 ```
 
-With `FileContentResult` defined in `components/schemas` as:
+The `FileContentResult` is defined in `components/schemas` as:
 
 ```yaml
 components:
