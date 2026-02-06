@@ -1272,6 +1272,8 @@ Blazor Web App:
 </script>
 ```
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 Blazor Server:
