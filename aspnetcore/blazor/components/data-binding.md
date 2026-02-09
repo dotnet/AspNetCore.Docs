@@ -151,7 +151,7 @@ The following example binds the `InputValue` property to the `<input>` element's
 
 <!-- 
     This must be fleshed out with a working example.
-    What's here doesn't work.
+    The following doesn't work.
 -->
 
 To bind to events other than the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) and [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) DOM events:
@@ -159,7 +159,7 @@ To bind to events other than the [`change`](https://developer.mozilla.org/docs/W
 * Map the DOM event to the <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> argument type.
 * Include an `@bind:event="{EVENT}"` attribute with the DOM event (prefixed with "`on`") for the `{EVENT}` placeholder.
 
-The following example maps the [`keyup`](https://developer.mozilla.org/docs/Web/API/Element/keydown_event) event (as `onkeyup`) to the <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> class and binds a field using the DOM event.
+The following example maps the [`keyup`](https://developer.mozilla.org/docs/Web/API/Element/keydown_event) event, as `onkeyup`, to the <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> class and binds a field using the DOM event.
 
 `EventHandlers.cs` (the `{APP NAMESPACE}` placeholder is the app's namespace):
 
@@ -178,11 +178,11 @@ public static class EventHandlers
 In a Razor component, where `boundValue` is a private, nullable `string` type:
 
 ```razor
-<input @bind="boundValue1" @bind:event="onkeyup" />
+<input @bind="boundValue" @bind:event="onkeyup" />
 ```
 
 <!--
-    Alternative text if events outside of input/change 
+    The next paragraph is alternative text in case events outside of input/change 
     aren't supported or recommended.
 -->
 
