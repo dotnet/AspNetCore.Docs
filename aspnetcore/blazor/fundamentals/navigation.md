@@ -1354,28 +1354,24 @@ For the following demonstration, a consistent, standard naming convention is use
 In the Razor markup of the `NavMenu` component (`NavMenu.razor`) under the default `Home` page, <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components are added from a collection:
 
 ```diff
-<div class="nav-scrollable" 
-    onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" 
-                    aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+<nav class="flex-column">
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <span class="bi bi-house-door-fill-nav-menu" 
+                aria-hidden="true"></span> Home
+        </NavLink>
+    </div>
 
-+       @foreach (var name in GetRoutableComponents())
-+       {
-+           <div class="nav-item px-3">
-+               <NavLink class="nav-link" 
-+                       href="@Regex.Replace(name, @"(\B[A-Z]|\d+)", "-$1").ToLower()">
-+                   @Regex.Replace(name, @"(\B[A-Z]|\d+)", " $1")
-+               </NavLink>
-+           </div>
-+       }
-
-    </nav>
-</div>
++   @foreach (var name in GetRoutableComponents())
++   {
++       <div class="nav-item px-3">
++           <NavLink class="nav-link" 
++                   href="@Regex.Replace(name, @"(\B[A-Z]|\d+)", "-$1").ToLower()">
++               @Regex.Replace(name, @"(\B[A-Z]|\d+)", " $1")
++           </NavLink>
++       </div>
++   }
+</nav>
 ```
 
 The `GetRoutableComponents` method in the `@code` block:
