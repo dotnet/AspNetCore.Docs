@@ -51,7 +51,7 @@ This section describes miscellaneous new features in .NET 11.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/output-cache-policy-provider.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/dev-certs-wsl-trust.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/development-certificate-trust.md)]
 
 <!-- HOLD - The breaking changes article for 11.0 hasn't been created yet ...
 
