@@ -37,13 +37,21 @@ This section describes new features for Minimal APIs.
 
 This section describes new features for OpenAPI.
 
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-binary-file-response.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
 
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/identity-time-provider.md)]
+
 ## Miscellaneous
 
 This section describes miscellaneous new features in .NET 11.
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/output-cache-policy-provider.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/development-certificate-trust.md)]
 
 <!-- HOLD - The breaking changes article for 11.0 hasn't been created yet ...
 

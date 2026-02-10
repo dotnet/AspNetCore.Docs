@@ -1,20 +1,21 @@
 ---
 title: Include OpenAPI metadata in an ASP.NET Core app
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to add OpenAPI metadata in an ASP.NET Core app.
-ms.author: wpickett
 monikerRange: '>= aspnetcore-9.0'
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/12/2025
+ms.date: 02/06/2026
 uid: fundamentals/openapi/include-metadata
 ---
 # Include OpenAPI metadata in an ASP.NET Core app
 
 This article explains how to add OpenAPI metadata in an ASP.NET Core app.
 
-## Include OpenAPI metadata for endpoints
+:::moniker range=">= aspnetcore-11.0"
 
-:::moniker range=">= aspnetcore-10.0"
+## Include OpenAPI metadata for endpoints
 
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
 
@@ -360,10 +361,48 @@ Only return types that implement <xref:Microsoft.AspNetCore.Http.Metadata.IEndpo
 | NotFound()                   | 404         |
 | Conflict()                   | 409         |
 | UnprocessableEntity()        | 422         |
+| File()                       | 200         |
 
 All of these methods except `NoContent` have a generic overload that specifies the type of the response body.
 
 A class can be implemented to set the endpoint metadata and return it from the route handler.
+
+##### Describe binary file responses
+
+To describe endpoints that return binary file responses in the OpenAPI document, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method with `FileContentResult` as the type parameter to specify the response type and content type:
+
+```csharp
+app.MapPost("/filecontentresult", () =>
+{
+    var content = "This endpoint returns a FileContentResult!"u8.ToArray();
+    return TypedResults.File(content);
+})
+.Produces<FileContentResult>(contentType: MediaTypeNames.Application.Octet);
+```
+
+This generates an OpenAPI schema with `type: string` and `format: binary` for the `FileContentResult` type.
+
+The generated OpenAPI document describes the endpoint response as:
+
+```yaml
+responses:
+  '200':
+    description: OK
+    content:
+      application/octet-stream:
+        schema:
+          $ref: '#/components/schemas/FileContentResult'
+```
+
+With `FileContentResult` defined in `components/schemas` as:
+
+```yaml
+components:
+  schemas:
+    FileContentResult:
+      type: string
+      format: binary
+```
 
 ##### Set responses for `ProblemDetails`
 
@@ -440,6 +479,22 @@ public async Task<ActionResult<Todo>> CreateOrReplaceTodo(string id, Todo todo)
 ```
 
 This example also illustrates how to define multiple response types for an action method, including the content type of the response body.
+
+##### Describe binary file responses
+
+To describe endpoints that return binary file responses, use the [`[ProducesResponseType<FileContentResult>]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute to specify the response type and content type:
+
+```csharp
+[HttpPost("filecontentresult")]
+[ProducesResponseType<FileContentResult>(StatusCodes.Status200OK, MediaTypeNames.Application.Octet)]
+public IActionResult PostFileContentResult()
+{
+    var content = "This endpoint returns a FileContentResult!"u8.ToArray();
+    return new FileContentResult(content, MediaTypeNames.Application.Octet);
+}
+```
+
+This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses), with `FileContentResult` defined as `type: string` and `format: binary`.
 
 ---
 
@@ -710,4 +765,5 @@ The following table shows the key differences beween the MVC JSON options and gl
 
 :::moniker-end
 
+[!INCLUDE[](~/fundamentals/openapi/includes/include-metadata10.md)]
 [!INCLUDE[](~/fundamentals/openapi/includes/include-metadata9.md)]
