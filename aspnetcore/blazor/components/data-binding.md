@@ -149,43 +149,6 @@ The following example binds the `InputValue` property to the `<input>` element's
 
 :::moniker-end
 
-<!-- 
-    This must be fleshed out with a working example.
-    The following doesn't work.
--->
-
-To bind to events other than the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) and [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) DOM events:
-
-* Map the DOM event to the <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> argument type.
-* Include an `@bind:event="{EVENT}"` attribute with the DOM event (prefixed with "`on`") for the `{EVENT}` placeholder.
-
-The following example maps the [`keyup`](https://developer.mozilla.org/docs/Web/API/Element/keydown_event) event, as `onkeyup`, to the <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> class and binds a field using the DOM event.
-
-`EventHandlers.cs` (the `{APP NAMESPACE}` placeholder is the app's namespace):
-
-```csharp
-using Microsoft.AspNetCore.Components;
-
-namespace {APP NAMESPACE};
-
-[EventHandler("onkeyup", typeof(ChangeEventArgs),
-    enableStopPropagation: true, enablePreventDefault: true)]
-public static class EventHandlers
-{
-}
-```
-
-In a Razor component, where `boundValue` is a private, nullable `string` type:
-
-```razor
-<input @bind="boundValue" @bind:event="onkeyup" />
-```
-
-<!--
-    The next paragraph is alternative text in case events outside of input/change 
-    aren't supported or recommended.
--->
-
 :::moniker range=">= aspnetcore-6.0"
 
 To bind on other DOM events, use either of the following approaches:
