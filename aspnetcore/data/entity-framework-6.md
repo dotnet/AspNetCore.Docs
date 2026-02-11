@@ -96,6 +96,6 @@ This sample can be created from scratch by the following steps in Visual Studio:
 
 * In the Core project, in `appsettings.json`, add the connection string.
 
-* In the Core project, add a controller and view(s) to verify that you can read and write data. (Note that ASP.NET Core MVC scaffolding won't work with the EF6 context referenced from the class library.)
+* In the Core project, add a controller and views to verify that you can read and write data. (Note that ASP.NET Core MVC scaffolding won't work with the EF6 context referenced from the class library.)
 
 :::moniker-end
