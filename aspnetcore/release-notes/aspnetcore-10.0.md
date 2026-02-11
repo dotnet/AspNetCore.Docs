@@ -1,17 +1,16 @@
 ---
 title: What's new in ASP.NET Core in .NET 10
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 10.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 01/29/2026
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10
 
 This article highlights the most significant changes in ASP.NET Core in .NET 10 with links to relevant documentation.
-
-For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/10.0#aspnet-core).
 
 ## Blazor
 

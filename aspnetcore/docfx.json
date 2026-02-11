@@ -2,9 +2,9 @@
   "build": {
     "content": [
       {
-        "files": [ "**/*.md", "**/*.yml" ], 
-        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**", "**/lib/jquery-validation/**" ], 
-        "group": "group1", 
+        "files": [ "**/*.md", "**/*.yml" ],
+        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**", "**/lib/jquery-validation/**" ],
+        "group": "group1",
         "src": "."
       },
       {
@@ -13,17 +13,17 @@
             "Compiler Breaking Changes - DotNet 9.md"
         ],
         "exclude": [],
-        "group": "group1", 
+        "group": "group1",
         "src": "../_razor/docs",
         "dest": "_razor/docs"
       }
     ],
     "resource": [
       {
-        "files": [ "**/*.png", "**/*.jpg", "**/*.gif", "**/*.svg", "**/*.pdf", "**/zone-pivot-groups.json" ], 
-        "exclude": [ "**/includes/**", "**/obj/**", "_site/**" ], 
-        "group": "group1", 
-        "src": "." 
+        "files": [ "**/*.png", "**/*.jpg", "**/*.gif", "**/*.svg", "**/*.pdf", "**/zone-pivot-groups.json" ],
+        "exclude": [ "**/includes/**", "**/obj/**", "_site/**" ],
+        "group": "group1",
+        "src": "."
       }
     ],
     "overwrite": [],
@@ -51,8 +51,10 @@
     },
     "fileMetadata": {
       "author": {
+        "breaking-changes/**/**.{md,yml}": "wadepickett"
       },
       "ms.author": {
+        "breaking-changes/**/**.{md,yml}": "wpickett"
       },
       "ms.subservice": {
         "introduction-to-aspnet-core.md": "index-page",
@@ -90,9 +92,6 @@
       },
       "no-loc": {
         "**/**.md": [ "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "Kestrel", "Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
-      },
-      "recommendations": {
-        "**/tutorials/**/**.md": "false"
       }
     },
     "template": [],
@@ -100,9 +99,6 @@
     "markdownEngineName": "markdig",
     "groups": {
       "group1": { "dest": "group1-dest", "moniker_range": ">= aspnetcore-1.0" }
-    },
-    "xrefservice": [
-      "https://xref.docs.microsoft.com/query?uid={uid}"
-    ]
+    }
   }
 }

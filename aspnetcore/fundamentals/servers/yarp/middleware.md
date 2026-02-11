@@ -36,7 +36,7 @@ Middleware added to your application pipeline will see the request in different 
 
 [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) provides an overload of `MapReverseProxy` that lets you build a middleware pipeline that will run only for requests matched to proxy configured routes.
 
-```
+```csharp
 app.MapReverseProxy(proxyPipeline =>
 {
     proxyPipeline.Use((context, next) =>

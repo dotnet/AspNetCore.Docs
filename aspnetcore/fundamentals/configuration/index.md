@@ -1,11 +1,12 @@
 ---
 title: Configuration in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use the Configuration API to configure app settings in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/28/2026
+ms.date: 02/11/2026
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -1046,8 +1047,6 @@ Host.CreateDefaultBuilder(args)
 
 ::: moniker-end
 
-For an additional example that uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider>, see the [Bind an array](#bind-an-array) section.
-
 ## Kestrel endpoint configuration
 
 Kestrel-specific endpoint configuration overrides all [cross-server](xref:fundamentals/servers/index) endpoint configurations. Cross-server endpoint configurations include:
@@ -1213,7 +1212,7 @@ The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?display
 
 A configuration provider is added for `array.json` by calling [`AddJsonFile`](#json-configuration-provider).
 
-The following code reads the configuration values:
+The following code reads the configuration values.
 
 `ArrayExample.cs`:
 
@@ -1231,8 +1230,6 @@ if (array is null)
 {
     throw new ArgumentNullException(nameof(array));
 }
-
-string output = String.Empty;
 
 for (int j = 0; j < array.Entries?.Length; j++)
 {
@@ -1252,170 +1249,71 @@ Index: 4 Value: value50
 
 In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in `array.json`. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding `null` values or creating `null` entries in bound objects.
 
-:::moniker range="< aspnetcore-6.0"
+The missing configuration item for Index 3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the Index 3 key/value pair. In the following example, assume that the values provided by `array.json` in the preceding example are provided by an [in-memory collection](#memory-configuration-provider). The example shows how to load the Index 3 value from the [JSON Configuration Provider](#json-configuration-provider) before the collection is bound.
 
-The following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection%2A> extension method:
-
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args)
-    {
-        var arrayDict = new Dictionary<string, string>
-        {
-            {"array:entries:0", "value0"},
-            {"array:entries:1", "value1"},
-            {"array:entries:2", "value2"},
-            //              3   Skipped
-            {"array:entries:4", "value4"},
-            {"array:entries:5", "value5"}
-        };
-
-        return Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((hostingContext, config) =>
-            {
-                config.AddInMemoryCollection(arrayDict);
-            })
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-    }
-}
-```
-
-The following code reads the configuration in the `arrayDict` `Dictionary` and displays the values:
-
-```csharp
-public class ArrayModel : PageModel
-{
-    private readonly IConfiguration Config;
-    public ArrayExample _array { get; private set; }
-
-    public ArrayModel(IConfiguration config)
-    {
-        Config = config;
-    }
-
-    public ContentResult OnGet()
-    {
-        _array = Config.GetSection("array").Get<ArrayExample>();
-        string s = null;
-
-        for (int j = 0; j < _array.Entries.Length; j++)
-        {
-            s += $"Index: {j} Value: {_array.Entries[j]} \n";
-        }
-
-        return Content(s);
-    }
-}
-```
-
-The preceding code returns the following output:
-
-```text
-Index: 0 Value: value0
-Index: 1 Value: value1
-Index: 2 Value: value2
-Index: 3 Value: value4
-Index: 4 Value: value5
-```
-
-Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indices.
-
-The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the index &num;3 key/value pair. Consider the following `Value3.json` file from the sample download:
+`value3.json`:
 
 ```json
 {
-  "array:entries:3": "value3"
+  "array:entries:3": "value30"
 }
 ```
 
-The following code includes configuration for `Value3.json` and the `arrayDict` `Dictionary`:
+::: moniker range=">= aspnetcore-6.0"
 
 ```csharp
-public class Program
+var configSettings = new Dictionary<string, string>
 {
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
+    { "array:entries:0", "value00" },
+    { "array:entries:1", "value10" },
+    { "array:entries:2", "value20" },
+    { "array:entries:4", "value40" },
+    { "array:entries:5", "value50" }
+};
 
-    public static IHostBuilder CreateHostBuilder(string[] args)
+builder.Configuration.AddInMemoryCollection(configSettings);
+builder.Configuration.AddJsonFile("value3.json", optional: false, 
+    reloadOnChange: false);
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
+```csharp
+Host.CreateDefaultBuilder(args)
+    .ConfigureWebHostDefaults(webBuilder =>
     {
-        var arrayDict = new Dictionary<string, string>
+        webBuilder.UseStartup<Startup>();
+    })
+    .ConfigureAppConfiguration(config =>
+    { 
+        var configSettings = new Dictionary<string, string>
         {
-            {"array:entries:0", "value0"},
-            {"array:entries:1", "value1"},
-            {"array:entries:2", "value2"},
-            //              3   Skipped
-            {"array:entries:4", "value4"},
-            {"array:entries:5", "value5"}
+            { "array:entries:0", "value00" },
+            { "array:entries:1", "value10" },
+            { "array:entries:2", "value20" },
+            { "array:entries:4", "value40" },
+            { "array:entries:5", "value50" }
         };
 
-        return Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((hostingContext, config) =>
-            {
-                config.AddInMemoryCollection(arrayDict);
-                config.AddJsonFile("Value3.json",
-                    optional: false, reloadOnChange: false);
-            })
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-    }
-}
+        config.AddInMemoryCollection(configSettings);
+        config.AddJsonFile("value3.json", optional: false, reloadOnChange: false);
+    });
 ```
-
-The following code reads the preceding configuration and displays the values:
-
-```csharp
-public class ArrayModel : PageModel
-{
-    private readonly IConfiguration Config;
-    public ArrayExample _array { get; private set; }
-
-    public ArrayModel(IConfiguration config)
-    {
-        Config = config;
-    }
-
-    public ContentResult OnGet()
-    {
-        _array = Config.GetSection("array").Get<ArrayExample>();
-        string s = null;
-
-        for (int j = 0; j < _array.Entries.Length; j++)
-        {
-            s += $"Index: {j} Value: {_array.Entries[j]} \n";
-        }
-
-        return Content(s);
-    }
-}
-```
-
-The preceding code returns the following output:
-
-```text
-Index: 0 Value: value0
-Index: 1 Value: value1
-Index: 2 Value: value2
-Index: 3 Value: value3
-Index: 4 Value: value4
-Index: 5 Value: value5
-```
-
-Custom configuration providers aren't required to implement array binding.
 
 :::moniker-end
+
+The preceding code results in the following bound array:
+
+```console
+Index: 0 Value: value00
+Index: 1 Value: value10
+Index: 2 Value: value20
+Index: 3 Value: value30
+Index: 4 Value: value40
+Index: 5 Value: value50
+```
 
 ## Custom configuration provider
 

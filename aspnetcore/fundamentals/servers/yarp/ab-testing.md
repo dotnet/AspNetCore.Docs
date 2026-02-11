@@ -18,7 +18,7 @@ A/B testing and rolling upgrades require procedures for dynamically assigning in
 
 ## Example
 
-```
+```csharp
 app.MapReverseProxy(proxyPipeline =>
 {
     // Custom cluster selection

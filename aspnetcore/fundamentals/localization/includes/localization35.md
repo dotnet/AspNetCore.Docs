@@ -255,8 +255,6 @@ The current culture on a request is set in the localization [Middleware](xref:fu
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Startup.cs?name=snippet2)]
 
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
-
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
 1. `QueryStringRequestCultureProvider`
