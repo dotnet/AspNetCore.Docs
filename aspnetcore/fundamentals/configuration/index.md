@@ -1,5 +1,6 @@
 ---
 title: Configuration in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use the Configuration API to configure app settings in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
@@ -1320,15 +1321,15 @@ Host.CreateDefaultBuilder(args)
 
 :::moniker-end
 
-The preceding code results in the following configuration key/value pairs:
+The preceding code results in the following bound array:
 
 ```console
 Index: 0 Value: value00
 Index: 1 Value: value10
 Index: 2 Value: value20
 Index: 3 Value: value30
-Index: 3 Value: value40
-Index: 4 Value: value50
+Index: 4 Value: value40
+Index: 5 Value: value50
 ```
 
 ## Custom configuration provider
