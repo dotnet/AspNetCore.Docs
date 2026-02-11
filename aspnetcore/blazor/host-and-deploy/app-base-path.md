@@ -141,7 +141,7 @@ Place the `<base>` tag in `<head>` markup ([location of `<head>` content](xref:b
 
 :::moniker range=">= aspnetcore-11.0"
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. When the app runs at `/`, `<BasePath />` renders `<base href="/" />` automatically in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content). For any other deployment path, the component emits a `<base>` element that matches the current request's path base.
+In many hosting scenarios, the relative URL path to the app is the root of the app. When the app runs at `/`, the `BasePath` component (`<BasePath />`) renders `<base href="/" />` automatically in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content). For any other deployment path, the component emits a `<base>` element that matches the current request's path base.
 
 :::moniker-end
 
