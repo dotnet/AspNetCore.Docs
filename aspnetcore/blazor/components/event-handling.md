@@ -21,24 +21,7 @@ Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}=
 * The `{DOM EVENT}` placeholder is a [DOM event](https://developer.mozilla.org/docs/Web/Events) (for example, `click`).
 * The `{DELEGATE}` placeholder is the C# delegate event handler.
 
-Supported events: 
-
-* `onblur`
-* `onchange`
-* `onclick`
-* `ondblclick`
-* `onfocus`
-* `onfocusin`
-* `onfocusout`
-* `oninput`
-* `onkeydown`
-* `onkeypress`
-* `onkeyup`
-* `onmousedown`
-* `onmousemove`
-* `onmouseout`
-* `onmouseover`
-* `onmouseup`
+For supported events, see <xref:Microsoft.AspNetCore.Components.Web.EventHandlers>.
 
 For event handling:
 
