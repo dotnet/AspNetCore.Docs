@@ -1265,7 +1265,7 @@ Index: 4 Value: value50
 
 In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in `array.json`. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding `null` values or creating `null` entries in bound objects.
 
-The missing configuration item for Index 3 can be supplied by any configuration provider that reads an Index 3 key/value pair. In the following example, assume that the values provided by `array.json` in the preceding example are provided by an [in-memory collection](#memory-configuration-provider). The example shows how to load the Index 3 value from the [JSON Configuration Provider](#json-configuration-provider).
+The missing configuration item for Index 3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the Index 3 key/value pair. In the following example, assume that the values provided by `array.json` in the preceding example are provided by an [in-memory collection](#memory-configuration-provider). The example shows how to load the Index 3 value from the [JSON Configuration Provider](#json-configuration-provider) before the collection is bound.
 
 `value3.json`:
 
