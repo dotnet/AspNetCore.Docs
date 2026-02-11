@@ -890,7 +890,6 @@ Typed clients:
 A typed client accepts an `HttpClient` parameter in its constructor:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/GitHub/GitHubService.cs" id="snippet1" highlight="5":::
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 In the preceding code:
 
