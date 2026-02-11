@@ -289,7 +289,7 @@ A list of possible values to search for. The header must match at least one of t
 
 ### Mode
 
-[HeaderMatchMode](xref:Yarp.ReverseProxy.Configuration.HeaderMatchMode) specifies how to match the value(s) against the request header. The default is `ExactHeader`.
+[HeaderMatchMode](xref:Yarp.ReverseProxy.Configuration.HeaderMatchMode) specifies how to match the values against the request header. The default is `ExactHeader`.
 
 * ExactHeader - Any of the headers with the given name must match in its entirety, subject to the value of `IsCaseSensitive`. If a header contains multiple values (separated by `,` or `;`), they are split before matching. A single pair of quotes will also be stripped from the value before matching.
 * HeaderPrefix - Any of the headers with the given name must match by prefix, subject to the value of `IsCaseSensitive`. If a header contains multiple values (separated by `,` or `;`), they are split before matching. A single pair of quotes will also be stripped from the value before matching.
