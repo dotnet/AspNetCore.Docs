@@ -92,7 +92,7 @@ The following code shows how to set up the in-memory session provider with a def
 
 The preceding code sets a short timeout to simplify testing.
 
-The order of middleware is important.  Call `UseSession` after `UseRouting` and before `MapRazorPages` and `MapDefaultControllerRoute` . See [Middleware Ordering](xref:fundamentals/middleware/index#middleware-order).
+The order of middleware is important.  Call `UseSession` after `UseRouting` and before `MapRazorPages` and `MapDefaultControllerRoute`. See [Middleware Ordering](xref:fundamentals/middleware/index#middleware-order).
 
 [HttpContext.Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) is available after session state is configured.
 
