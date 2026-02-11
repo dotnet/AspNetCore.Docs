@@ -191,7 +191,7 @@ Other mechanisms for setting request body metadata depend on the type of app bei
 #### [Minimal APIs](#tab/minimal-apis)
 
 The content types for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body or specified with the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method.
-By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter will be `application/json` and the content type for [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameters is `multipart/form-data` or `application/x-www-form-urlencoded`.
+By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter is `application/json`, and the content type for [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameters is `multipart/form-data` or `application/x-www-form-urlencoded`.
 
 Support for these default content types is built in to Minimal APIs, and other content types can be handled by using custom binding.
 See the [Custom binding](xref:fundamentals/minimal-apis/parameter-binding#custom-binding) topic of the Minimal APIs documentation for more information.
