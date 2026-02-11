@@ -107,7 +107,9 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with the `value` attribute of the `<input>` and handles changes using the registered handler.
 
-Bind a property or field on other DOM events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) is triggered. Unlike the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)), which fires when the element loses focus, `oninput` ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) fires when the value of the text box changes.
+Default binding with `@bind` uses the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) DOM event (`onchange`). Binding can also take place on the [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) DOM event using the `@bind:event="{EVENT}"` attribute, where the `{EVENT}` placeholder is either `oninput` or `onchange` (default).
+
+The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event is triggered. Unlike the `onchange` event, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
 `Page/BindEvent.razor`:
 
@@ -144,6 +146,21 @@ Bind a property or field on other DOM events by including an `@bind:event="{EVEN
 :::moniker range="< aspnetcore-5.0"
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+To bind on other DOM events, use either of the following approaches:
+
+* [Delegate event handlers](xref:blazor/components/event-handling#delegate-event-handlers)
+* [Custom event arguments](xref:blazor/components/event-handling#custom-event-arguments)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+To bind on other DOM events, use [delegate event handlers](xref:blazor/components/event-handling#delegate-event-handlers).
 
 :::moniker-end
 

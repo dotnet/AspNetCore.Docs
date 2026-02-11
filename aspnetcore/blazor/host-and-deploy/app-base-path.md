@@ -141,7 +141,7 @@ Place the `<base>` tag in `<head>` markup ([location of `<head>` content](xref:b
 
 :::moniker range=">= aspnetcore-11.0"
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. When the app runs at `/`, `<BasePath />` renders `<base href="/" />` automatically in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content). For any other deployment path, the component emits a `<base>` element that matches the current request's path base.
+In many hosting scenarios, the relative URL path to the app is the root of the app. When the app runs at `/`, the `BasePath` component (`<BasePath />`) renders `<base href="/" />` automatically in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content). For any other deployment path, the component emits a `<base>` element that matches the current request's path base.
 
 :::moniker-end
 
@@ -244,7 +244,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 :::moniker-end
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
 
 Don't prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
