@@ -139,7 +139,7 @@ spaces at the ends of the lines when editing the following content.
 
 After the app has started, changes to the JSON configuration in the app settings file are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> allows the concretion of an abstract class. Consider the following example that uses the abstract class `AbstractClassWithName`.
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> allows an abstract class to be instantiated. Consider the following example that uses the abstract class `AbstractClassWithName`.
 
 `NameTitleOptions.cs`:
 
