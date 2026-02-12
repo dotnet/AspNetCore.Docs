@@ -11,23 +11,6 @@ uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
 
-<!-- DOC AUTHOR NOTE
-
-includes/bind6.md and includes/bind7.md are being retained
-at the moment for comparison for work on this article
-on https://github.com/dotnet/AspNetCore.Docs/issues/36220.
-Those two files will be deleted when working #36220.
-The includes/bind6.md file is being removed here in favor
-of cross-linking the Options article, which is what IMO
-should've been done in the first place.
-
-Although the sample apps, which aren't Blazor-based, were
-moved to the ASP.NET Core samples repo, I can't remove them
-from the doc set until the Options article is also overhauled,
-which will take place on another PR later.
-
--->
-
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 App configuration in ASP.NET Core is performed using one or more [configuration providers](#configuration-providers). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
