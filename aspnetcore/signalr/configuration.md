@@ -5,10 +5,9 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/02/2024
+ms.date: 02/12/2026
 uid: signalr/configuration
 ---
-
 # ASP.NET Core SignalR configuration
 
 This article covers ASP.NET Core SignalR configuration.
@@ -130,6 +129,44 @@ The WebSocket transport has additional options that can be configured using the 
 ## Configure client options
 
 Client options can be configured on the `HubConnectionBuilder` type (available in the .NET and JavaScript clients). It's also available in the Java client, but the `HttpHubConnectionBuilder` subclass is what contains the builder configuration options, as well as on the `HubConnection` itself.
+
+### Configure the hub URL endpoint
+
+To set a static hub URL endpoint, pass the URL to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithUrl%2A>. The following example sets the URL to `https://contoso.com/chathub`:
+
+```csharp
+var connection = new HubConnectionBuilder()
+    .WithUrl("https://contoso.com/chathub")
+    .Build();
+```
+
+To configure the endpoint in code, use <xref:System.UriBuilder> to build the URL and pass it to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithUrl%2A>. The following example configures a custom hub URL for production on a target IIS server:
+
+```csharp
+#if DEBUG
+    // IIS Express development environment (development build)
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .WithAutomaticReconnect()
+    .Build();
+#else
+    // IIS server production environment (release build)
+    var hostName = Environment.MachineName;
+    var addresses = Dns.GetHostAddresses(hostName);
+    var ipv4 = addresses.FirstOrDefault(addresses => 
+        addresses.AddressFamily == AddressFamily.InterNetwork)?.ToString();
+    var uri = 
+        new UriBuilder(Navigation.ToAbsoluteUri("/chathub"))
+        { 
+            Scheme = "http", Port = 80, Host = ipv4
+        }.ToString();
+
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri(uri))
+        .WithAutomaticReconnect()
+    .Build();
+#endif
+```
 
 ### Configure logging
 

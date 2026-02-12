@@ -174,7 +174,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 * [Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
-* <xref:signalr/configuration>
+* <xref:signalr/configuration> ([Configure a SignalR hub URL for production](xref:signalr/configuration#configure-the-hub-url-endpoint))
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 ## Use session affinity (sticky sessions) for server-side web farm hosting
@@ -1803,7 +1803,7 @@ In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.N
 
 * [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
 * <xref:signalr/introduction>
-* <xref:signalr/configuration>
+* <xref:signalr/configuration> ([Configure a SignalR hub URL for production](xref:signalr/configuration#configure-the-hub-url-endpoint))
 * Server-side security documentation
   * <xref:blazor/security/index>
   * <xref:blazor/security/index>
