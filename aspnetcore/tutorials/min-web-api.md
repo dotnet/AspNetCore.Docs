@@ -5,7 +5,7 @@ description: Learn how to build a minimal API with ASP.NET Core.
 ai-usage: ai-assisted
 ms.author: wpickett
 ms.custom: engagement-fy24
-ms.date: 11/13/2025
+ms.date: 02/12/2026
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
