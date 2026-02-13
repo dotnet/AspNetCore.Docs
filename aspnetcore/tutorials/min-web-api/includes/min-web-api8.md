@@ -500,6 +500,8 @@ The sample app implements a single PATCH endpoint using `MapPatch`:
 
 This method is similar to the `MapPut` method, except it uses HTTP PATCH and only updates the fields provided in the request. A successful response returns [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a PATCH request enables partial updates, allowing clients to send only the fields that need to be changed.
 
+The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. Using nullable properties allows the endpoint to distinguish between a field that wasn't provided (null) versus a field explicitly set to a value (including false for boolean fields). Without nullable properties, a non-nullable bool would default to false, potentially overwriting an existing true value when that field wasn't included in the request.
+
 > [!NOTE]
 > PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see <xref:web-api/jsonpatch>.
 

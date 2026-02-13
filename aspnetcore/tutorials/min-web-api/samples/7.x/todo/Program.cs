@@ -62,14 +62,14 @@ app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 // </snippet_put>
 
 // <snippet_patch>
-app.MapPatch("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
+app.MapPatch("/todoitems/{id}", async (int id, TodoPatchDto inputTodo, TodoDb db) =>
 {
     var todo = await db.Todos.FindAsync(id);
 
     if (todo is null) return Results.NotFound();
 
     if (inputTodo.Name is not null) todo.Name = inputTodo.Name;
-    if (inputTodo.IsComplete != todo.IsComplete) todo.IsComplete = inputTodo.IsComplete;
+    if (inputTodo.IsComplete is not null) todo.IsComplete = inputTodo.IsComplete.Value;
 
     await db.SaveChangesAsync();
 
