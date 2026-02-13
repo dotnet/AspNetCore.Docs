@@ -174,7 +174,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 * [Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
-* <xref:signalr/configuration> ([Configure a SignalR hub URL for production](xref:signalr/configuration#configure-the-hub-url-endpoint))
+* <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 ## Use session affinity (sticky sessions) for server-side web farm hosting
@@ -1799,11 +1799,82 @@ protected override async Task OnInitializedAsync()
 
 In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.NavigationManager>, and `AuthenticationStateProvider` is an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service instance ([`AuthenticationStateProvider` documentation](xref:blazor/security/authentication-state)).
 
+### Configure the hub URL endpoint for a loopback connection
+
+For hub that sends messages to itself after deployment to a server, construct the hub URL for the loopback connection using <xref:System.UriBuilder> and pass it to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithUrl%2A>.
+
+The following example:
+
+* Configures a custom hub URL in a non-Development environment.
+* Assumes loopback traffic uses HTTP on port 80.
+* Sets the host name based on the server's NetBIOS machine name (<xref:System.Environment.MachineName%2A>).
+
+```razor
+@using System.Net
+@using System.Net.Sockets
+@using Microsoft.AspNetCore.SignalR.Client
+@inject IHostEnvironment Environment
+@inject NavigationManager Navigation
+
+...
+
+@code {
+    private HubConnection? hubConnection;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Environment.IsDevelopment())
+        {
+            // Local Development environment
+            hubConnection = new HubConnectionBuilder()
+                .WithUrl(Navigation.ToAbsoluteUri("/chathub"),
+                config =>
+                {
+                    config.UseDefaultCredentials = true;
+                })
+                .WithAutomaticReconnect()
+            .Build();
+        }
+        else
+        {
+            // Server in a non-Development environment
+            var hostName = System.Environment.MachineName;
+            var addresses = Dns.GetHostAddresses(hostName);
+            var ipv4 = addresses.FirstOrDefault(addresses =>
+                addresses.AddressFamily == AddressFamily.InterNetwork)?.ToString();
+            var uriBuilder = 
+                new UriBuilder(Navigation.ToAbsoluteUri("/chathub"))
+                {
+                    Scheme = "http",
+                    Port = 80,
+                    Host = ipv4
+                };
+
+            hubConnection = new HubConnectionBuilder()
+                    .WithUrl(uriBuilder.Uri,
+                    config =>
+                    {
+                        config.UseDefaultCredentials = true;
+                    })
+                    .WithAutomaticReconnect()
+                .Build();
+        }
+
+        hubConnection.On<ChatMessage>("ReceiveMessage", (message) =>
+        {
+            ...
+        });
+
+        await hubConnection.StartAsync();
+    }
+}
+```
+
 ## Additional server-side resources
 
 * [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
 * <xref:signalr/introduction>
-* <xref:signalr/configuration> ([Configure a SignalR hub URL for production](xref:signalr/configuration#configure-the-hub-url-endpoint))
+* <xref:signalr/configuration>
 * Server-side security documentation
   * <xref:blazor/security/index>
   * <xref:blazor/security/index>

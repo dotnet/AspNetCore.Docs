@@ -242,7 +242,6 @@ To display the logs, add `"Microsoft.AspNetCore.HttpLogging": "Information"` to 
 * <xref:host-and-deploy/web-farm>
 * [Microsoft Security Advisory CVE-2018-0787: ASP.NET Core Elevation Of Privilege Vulnerability](https://github.com/aspnet/Announcements/issues/295)
 * [YARP: Yet Another Reverse Proxy](https://dotnet.github.io/yarp/)
-* [Configure a SignalR hub URL for production](xref:signalr/configuration#configure-the-hub-url-endpoint)
 
 :::moniker-end
 
@@ -582,6 +581,5 @@ services.Configure<ForwardedHeadersOptions>(options =>
 * <xref:host-and-deploy/web-farm>
 * [Microsoft Security Advisory CVE-2018-0787: ASP.NET Core Elevation Of Privilege Vulnerability](https://github.com/aspnet/Announcements/issues/295)
 * [YARP: Yet Another Reverse Proxy](https://dotnet.github.io/yarp/)
-* [Configure a SignalR hub URL for production](xref:signalr/configuration#configure-the-hub-url-endpoint)
 
 :::moniker-end
