@@ -8,6 +8,7 @@ ms.custom: mvc
 ms.date: 05/02/2024
 uid: signalr/configuration
 ---
+
 # ASP.NET Core SignalR configuration
 
 This article covers ASP.NET Core SignalR configuration.

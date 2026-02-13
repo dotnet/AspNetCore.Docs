@@ -1799,7 +1799,7 @@ protected override async Task OnInitializedAsync()
 
 In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.NavigationManager>, and `AuthenticationStateProvider` is an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service instance ([`AuthenticationStateProvider` documentation](xref:blazor/security/authentication-state)).
 
-### Configure the hub URL endpoint for a loopback connection
+## Configure the hub URL endpoint for a loopback connection
 
 For hub that sends messages to itself after deployment to a server, construct the hub URL for the loopback connection using <xref:System.UriBuilder> and pass it to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithUrl%2A>.
 
