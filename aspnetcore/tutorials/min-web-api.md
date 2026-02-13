@@ -517,6 +517,12 @@ Use Swagger to send a PUT request:
 
 ## Examine the PATCH endpoint
 
+Create a file named `TodoPatchDto.cs` with the following code:
+
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todo/TodoPatchDto.cs":::
+
+The `TodoPatchDto` class uses nullable properties (`string?` and `bool?`) to distinguish between a field that wasn't provided in the request versus a field explicitly set to a value.
+
 The sample app implements a single PATCH endpoint using `MapPatch`:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo/Program.cs?name=snippet_patch)]
