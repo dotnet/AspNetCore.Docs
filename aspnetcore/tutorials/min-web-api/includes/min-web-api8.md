@@ -515,7 +515,7 @@ Update only the `name` property of the to-do item that has `Id = 1` and set its 
 
   The following content is added to the `TodoApi.http` file:
 
-  ```
+  ```http
   PATCH {{TodoApi_HostAddress}}/todoitems/{id}
 
   ###
@@ -525,7 +525,7 @@ Update only the `name` property of the to-do item that has `Id = 1` and set its 
 
 * Add the following lines immediately after the PATCH request line:
 
-  ```
+  ```http
   Content-Type: application/json
 
   {
