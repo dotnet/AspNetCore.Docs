@@ -1801,20 +1801,23 @@ In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.N
 
 ## Configure the hub URL endpoint for a loopback connection
 
-For hub that sends messages to itself after deployment to a server, construct the hub URL for the loopback connection using <xref:System.UriBuilder> and pass it to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithUrl%2A>.
+*This section only applies to server-side Blazor apps.*
+
+If HTTP requests in a server-side Blazor app are failing to connect to itself when using <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A?displayProperty=nameWithType>, you might have a load balancer or proxy that isn't expecting requests from the backend server. In these cases, you can try to change the hub URL that the client is using to connect to the backend server directly.
 
 The following example:
 
-* Configures a custom hub URL in a non-Development environment.
-* Assumes loopback traffic uses HTTP on port 80.
-* Sets the host name based on the server's NetBIOS machine name (<xref:System.Environment.MachineName%2A>).
+* Configures the hub URL using <xref:System.UriBuilder> and passes it to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithUrl%2A>.
+* Sets the URI based on the server's address (<xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>) and machine name (<xref:System.Environment.MachineName%2A>).
 
 ```razor
 @using System.Net
 @using System.Net.Sockets
+@using Microsoft.AspNetCore.Hosting.Server
+@using Microsoft.AspNetCore.Hosting.Server.Features
 @using Microsoft.AspNetCore.SignalR.Client
 @inject IHostEnvironment Environment
-@inject NavigationManager Navigation
+@inject IServer Server
 
 ...
 
@@ -1823,42 +1826,38 @@ The following example:
 
     protected override async Task OnInitializedAsync()
     {
-        if (Environment.IsDevelopment())
-        {
-            // Local Development environment
-            hubConnection = new HubConnectionBuilder()
-                .WithUrl(Navigation.ToAbsoluteUri("/chathub"),
-                config =>
-                {
-                    config.UseDefaultCredentials = true;
-                })
-                .WithAutomaticReconnect()
-            .Build();
-        }
-        else
-        {
-            // Server in a non-Development environment
-            var hostName = System.Environment.MachineName;
-            var addresses = Dns.GetHostAddresses(hostName);
-            var ipv4 = addresses.FirstOrDefault(addresses =>
-                addresses.AddressFamily == AddressFamily.InterNetwork)?.ToString();
-            var uriBuilder = 
-                new UriBuilder(Navigation.ToAbsoluteUri("/chathub"))
-                {
-                    Scheme = "http",
-                    Port = 80,
-                    Host = ipv4
-                };
+        var serverAddress = Server.Features
+           .Get<IServerAddressesFeature>()?
+           .Addresses
+           .FirstOrDefault(a => a.StartsWith("http://") || a.StartsWith("https://"));
 
-            hubConnection = new HubConnectionBuilder()
-                    .WithUrl(uriBuilder.Uri,
-                    config =>
-                    {
-                        config.UseDefaultCredentials = true;
-                    })
-                    .WithAutomaticReconnect()
-                .Build();
+        if (serverAddress is null)
+        {
+            throw new InvalidOperationException("No server address available.");
         }
+
+        var uri = new UriBuilder(serverAddress + "/chathub");
+
+        // If Kestrel is bound to a wildcard, substitute a real IP
+        if (uri.Host is "0.0.0.0" or "[::]" or "+" or "*")
+        {
+            var addresses = await Dns.GetHostAddressesAsync(
+                System.Environment.MachineName);
+            var ip = addresses.FirstOrDefault(a =>
+                a.AddressFamily == AddressFamily.InterNetwork
+                && !IPAddress.IsLoopback(a));
+
+            if (ip is null)
+            {
+                throw new InvalidOperationException("No suitable IP address.");
+            }
+
+            uri.Host = ip.ToString();
+        }
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(uri.Uri)
+            .Build();
 
         hubConnection.On<ChatMessage>("ReceiveMessage", (message) =>
         {
