@@ -1803,7 +1803,7 @@ In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.N
 
 *This section only applies to server-side Blazor apps.*
 
-If HTTP requests in a server-side Blazor app are failing to connect to itself when using <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A?displayProperty=nameWithType>, you might have a load balancer or proxy that isn't expecting requests from the backend server. In these cases, you can try to change the hub URL that the client is using to connect to the backend server directly.
+If HTTP requests in a server-side Blazor app are failing to connect to itself when using <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A?displayProperty=nameWithType>, you might have a load balancer or proxy that isn't expecting requests from the backend server. In this scenario, you can try to change the hub URL that the client is using to connect directly to the backend server.
 
 The following example:
 
