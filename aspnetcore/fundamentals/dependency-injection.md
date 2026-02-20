@@ -353,7 +353,7 @@ The following table lists a small sample of these framework-registered services:
 * [Dependency injection guidelines](/dotnet/core/extensions/dependency-injection/guidelines)
 * [Tutorial: Use dependency injection in .NET](/dotnet/core/extensions/dependency-injection/usage)
 * [.NET dependency injection](/dotnet/core/extensions/dependency-injection/overview)
-* [ASP.NET Core Dependecy Injection: What is the IServiceCollection?](https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iservicecollection)
+* [ASP.NET Core Dependency Injection: What is the IServiceCollection?](https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iservicecollection)
 * [Four ways to dispose IDisposables in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/)
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](/archive/msdn-magazine/2016/may/asp-net-writing-clean-code-in-asp-net-core-with-dependency-injection)
 * [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
