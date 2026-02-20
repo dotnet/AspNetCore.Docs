@@ -71,7 +71,7 @@ Middleware components can resolve their dependencies from [dependency injection 
 ## Per-request middleware dependencies
 
 Middleware is constructed at app startup and therefore has application life
-time. [Scoped lifetime](/dotnet/core/extensions/dependency-injection#scoped) services used by middleware constructors aren't shared with other dependency-injected types during each request. To share a *scoped* service between middleware and other types, add these services to the `InvokeAsync` method's signature. The `InvokeAsync` method can accept additional parameters that are populated by DI:
+time. [Scoped lifetime](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) services used by middleware constructors aren't shared with other dependency-injected types during each request. To share a *scoped* service between middleware and other types, add these services to the `InvokeAsync` method's signature. The `InvokeAsync` method can accept additional parameters that are populated by DI:
 
 :::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/MyCustomMiddleware.cs":::
 
