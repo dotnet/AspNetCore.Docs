@@ -462,20 +462,20 @@ For the preceding code, changes to the JSON configuration in the app settings fi
 * Does ***not*** support:
   * Reading of configuration data after the app has started.
   * [Named options](#specify-a-custom-key-name-for-a-configuration-property-using-configurationkeyname).
-* Is registered as a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+* Is registered as a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 
 <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 
 * Covered later in this article in the [Use `IOptionsSnapshot` to read updated data](#use-ioptionssnapshot-to-read-updated-data) section.
 * Is useful in scenarios where options should be recomputed on every request.
-* Is registered as a [scoped service](/dotnet/core/extensions/dependency-injection#scoped), so it can't be injected into a singleton service.
+* Is registered as a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped), so it can't be injected into a singleton service.
 * Supports [named options](#specify-a-custom-key-name-for-a-configuration-property-using-configurationkeyname).
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
 * Covered later in this article in the [Use `IOptionsMonitor` to read updated data](#use-ioptionssnapshot-to-read-updated-data) section.
 * Is used to retrieve options and manage options notifications for `TOptions` instances.
-* Is registered as a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+* Is registered as a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 * Supports:
   * Change notifications.
   * [Named options](#specify-a-custom-key-name-for-a-configuration-property-using-configurationkeyname).
@@ -491,13 +491,13 @@ For the preceding code, changes to the JSON configuration in the app settings fi
 Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 
 * Options are computed once per request when accessed and cached for the lifetime of the request.
-* May incur a significant performance penalty because it's a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and is recomputed per request. For more information, see [`IOptionsSnapshot` is very slow (`dotnet/runtime` #53793)](https://github.com/dotnet/runtime/issues/53793) and [Improve the performance of configuration binding (`dotnet/runtime` #36130)](https://github.com/dotnet/runtime/issues/36130).
+* May incur a significant performance penalty because it's a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) and is recomputed per request. For more information, see [`IOptionsSnapshot` is very slow (`dotnet/runtime` #53793)](https://github.com/dotnet/runtime/issues/53793) and [Improve the performance of configuration binding (`dotnet/runtime` #36130)](https://github.com/dotnet/runtime/issues/36130).
 * Changes to the configuration are read after the app starts when using configuration providers that support reading updated configuration values.
 
 The difference between [`IOptionsMonitor`](#use-ioptionsmonitor-to-read-updated-data) and <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is that:
 
-* <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
 The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache%601> to cache the options instance after it's created.
 
@@ -620,8 +620,8 @@ After the app has started, changes to the JSON configuration in the app settings
 
 The difference between <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> and [`IOptionsSnapshot`](#use-ioptionssnapshot-to-read-updated-data) is that:
 
-* <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601> is used by <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> to cache `TOptions` instances. <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.TryRemove%2A?displayProperty=nameWithType> invalidates options instances in the monitor so that the value is recomputed. Values can be manually introduced with <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.TryAdd%2A?displayProperty=nameWithType>. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.Clear%2A> method is used when all named instances should be recreated on demand.
 

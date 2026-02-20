@@ -36,7 +36,7 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Hubs/ChatHub.cs" id="snippet_Class":::
 
 > [!NOTE]
-> Hubs are [transient](/dotnet/core/extensions/dependency-injection#transient):
+> Hubs are [transient](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient):
 >
 > * Don't store state in a property of the hub class. Each hub method call is executed on a new hub instance.
 > * Don't instantiate a hub directly via dependency injection. To send messages to a client from elsewhere in your application use an [`IHubContext`](xref:signalr/hubcontext).
