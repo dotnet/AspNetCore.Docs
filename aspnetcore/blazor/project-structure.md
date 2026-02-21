@@ -63,11 +63,15 @@ The `Components` folder of the server project holds the app's server-side Razor 
 
 The `Components/Pages` folder of the server project contains the app's routable server-side Razor components. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-10.0"
 
 The `NotFound` component (`NotFound.razor`) implements a Not Found page to display when content isn't found for a request path. For more information, see <xref:blazor/fundamentals/navigation#not-found-responses>.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 The `App` component (`App.razor`) is the root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor `<script>` tag. The root component is the first component that the app loads.
 
