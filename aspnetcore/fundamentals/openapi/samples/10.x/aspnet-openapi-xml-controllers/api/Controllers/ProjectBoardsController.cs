@@ -1,46 +1,30 @@
+using Microsoft.AspNetCore.Mvc;
 using Models;
-using Microsoft.AspNetCore.Http.HttpResults;
-using System.ComponentModel.DataAnnotations;
 
-namespace Api;
+namespace Api.Controllers;
 
 /// <summary>
-/// Extension methods for mapping ProjectBoard-related API endpoints.
+/// API controller for managing project boards.
 /// </summary>
-public static class ProjectBoardApis
+[ApiController]
+[Route("api/[controller]")]
+[Tags("Project Boards")]
+public class ProjectBoardsController : ControllerBase
 {
     // In-memory storage for demo purposes
     internal static readonly List<ProjectBoard> Boards = new();
     private static int _nextBoardId = 1;
 
     /// <summary>
-    /// Maps all ProjectBoard related API endpoints to the application.
-    /// </summary>
-    /// <param name="app">The endpoint route builder.</param>
-    public static void MapProjectBoardApis(this IEndpointRouteBuilder app)
-    {
-#pragma warning disable ASPDEPR002
-        var boardGroup = app.MapGroup("/api/projectboards")
-            .WithTags("Project Boards")
-            .WithOpenApi();
-#pragma warning restore ASPDEPR002
-
-        // Project Board endpoints
-        boardGroup.MapGet("/", GetAllProjectBoards);
-        boardGroup.MapGet("/{id}", GetProjectBoardById);
-        boardGroup.MapPost("/", CreateProjectBoard);
-        boardGroup.MapPut("/{id}", UpdateProjectBoard);
-        boardGroup.MapDelete("/{id}", DeleteProjectBoard);
-    }
-
-    /// <summary>
     /// Retrieves all project boards.
     /// </summary>
     /// <returns>A collection of all project boards.</returns>
     /// <response code="200">Returns the list of project boards.</response>
-    public static IResult GetAllProjectBoards()
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult<IEnumerable<ProjectBoard>> GetAllProjectBoards()
     {
-        return Results.Ok(Boards);
+        return Ok(Boards);
     }
 
     // <snippet_1>
@@ -51,14 +35,17 @@ public static class ProjectBoardApis
     /// <returns>The requested project board.</returns>
     /// <response code="200">Returns the requested project board.</response>
     /// <response code="404">If the project board is not found.</response>
-    public static IResult GetProjectBoardById(int id)
+    [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public ActionResult<ProjectBoard> GetProjectBoardById(int id)
     {
         var board = Boards.FirstOrDefault(b => b.Id == id);
         if (board == null)
         {
-            return Results.NotFound();
+            return NotFound();
         }
-        return Results.Ok(board);
+        return Ok(board);
     }
     // </snippet_1>
 
@@ -69,13 +56,16 @@ public static class ProjectBoardApis
     /// <returns>The newly created project board.</returns>
     /// <response code="201">Returns the newly created project board.</response>
     /// <response code="400">If the project board data is invalid.</response>
-    public static IResult CreateProjectBoard(ProjectBoard board)
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public ActionResult<ProjectBoard> CreateProjectBoard(ProjectBoard board)
     {
         board.Id = _nextBoardId++;
         board.CreatedAt = DateTime.UtcNow;
         Boards.Add(board);
 
-        return Results.Created($"/api/projectboards/{board.Id}", board);
+        return CreatedAtAction(nameof(GetProjectBoardById), new { id = board.Id }, board);
     }
 
     /// <summary>
@@ -87,18 +77,22 @@ public static class ProjectBoardApis
     /// <response code="204">If the update was successful.</response>
     /// <response code="400">If the project board data is invalid.</response>
     /// <response code="404">If the project board is not found.</response>
-    public static IResult UpdateProjectBoard(int id, ProjectBoard updatedBoard)
+    [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult UpdateProjectBoard(int id, ProjectBoard updatedBoard)
     {
         var board = Boards.FirstOrDefault(b => b.Id == id);
         if (board == null)
         {
-            return Results.NotFound();
+            return NotFound();
         }
 
         board.Name = updatedBoard.Name;
         board.Description = updatedBoard.Description;
 
-        return Results.NoContent();
+        return NoContent();
     }
 
     /// <summary>
@@ -108,15 +102,18 @@ public static class ProjectBoardApis
     /// <returns>No content if successful.</returns>
     /// <response code="204">If the deletion was successful.</response>
     /// <response code="404">If the project board is not found.</response>
-    public static IResult DeleteProjectBoard(int id)
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult DeleteProjectBoard(int id)
     {
         var board = Boards.FirstOrDefault(b => b.Id == id);
         if (board == null)
         {
-            return Results.NotFound();
+            return NotFound();
         }
 
         Boards.Remove(board);
-        return Results.NoContent();
+        return NoContent();
     }
 }
