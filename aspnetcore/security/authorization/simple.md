@@ -1,128 +1,257 @@
 ---
 title: Simple authorization in ASP.NET Core
 author: tdykstra
-description: Learn how to use the Authorize attribute to restrict access to ASP.NET Core controllers and actions.
+description: Learn how to use the Authorize attribute to restrict access in ASP.NET Core apps.
 ms.author: tdykstra
-ms.date: 05/01/2024
+ms.date: 01/21/2026
 uid: security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core
 
-<a name="security-authorization-simple"></a>
+Authorization in ASP.NET Core is controlled with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and its various parameters. In its most basic form, applying the `[Authorize]` attribute to a Razor component, controller, action, or Razor Page, limits access to that component to authenticated users.
 
-Authorization in ASP.NET Core is controlled with the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute and its various parameters. In its most basic form, applying the `[Authorize]` attribute to a controller, action, or Razor Page, limits access to that component to authenticated users.
+## `[Authorize]` attribute
 
-## Prerequisites
+In Blazor apps, specify the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) at the top of a Razor component file (`.razor`). In the following example, only authenticated users can access the page:
 
-This article assumes that you have a basic understanding of ASP.NET Core Razor Pages and MVC. If you're new to ASP.NET Core, see the following resources:
+```razor
+@page "/"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
 
-* <xref:razor-pages/index>
-* <xref:mvc/overview>
-* <xref:tutorials/razor-pages/razor-pages-start>
-* <xref:security/authentication/identity>
+You can only see this if you're signed in.
+```
 
-## Use the `[Authorize]` attribute
+> [!IMPORTANT]
+> Only use the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `@page` components reached via the Blazor router. Authorization is only performed as an aspect of routing and *not* for child components rendered within a page. To authorize the display of specific parts within a page, use an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component instead, which is described in <xref:blazor/security/index#authorizeview-component>.
 
-The following code limits access to the `AccountController` to authenticated users:
+The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can also be applied to all of the Razor components in a Blazor app or a subset of Razor components in a folder using an `_Imports` file (`_Imports.razor`). Add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute):
+
+```razor
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+```
+
+The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) also supports role-based or policy-based authorization. For role-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> parameter. In the following example, the user can only access the page if they're in the `Admin` or `Superuser` role:
+
+```razor
+@page "/"
+@attribute [Authorize(Roles = "Admin, Superuser")]
+
+<p>You can only see this if you're in the 'Admin' or 'Superuser' role.</p>
+```
+
+For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if satisfy the requirements of the `Over21` [authorization policy](xref:security/authorization/policies):
+
+```razor
+@page "/"
+@attribute [Authorize(Policy = "Over21")]
+
+<p>You can only see this if you satisfy the 'Over21' policy.</p>
+```
+
+If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> nor <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> is specified, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) uses the default policy:
+
+* Authenticated (signed-in) users are authorized.
+* Unauthenticated (signed-out) users are unauthorized.
+
+When the user isn't authorized and if the app doesn't [customize unauthorized content with the `Router` component](xref:blazor/security/index#customize-unauthorized-content-with-the-router-component), the framework automatically displays the following fallback message:
+
+```html
+Not authorized.
+```
+
+For more information on Blazor authentication and authorization, see <xref:blazor/security/index>.
+
+For an MVC controller, the following example limits access to authenticated users:
 
 ```csharp
 [Authorize]
 public class AccountController : Controller
 {
-    public ActionResult Login()
-    {
-    }
-
-    public ActionResult Logout()
-    {
-    }
+    public ActionResult Login() { ... }
+    public ActionResult Logout() { ... }
 }
 ```
 
-If you want to apply authorization to an action rather than the controller, apply the `AuthorizeAttribute` attribute to the action itself:
-
-```csharp
-public class AccountController : Controller
-{
-   public ActionResult Login()
-   {
-   }
-
-   [Authorize]
-   public ActionResult Logout()
-   {
-   }
-}
-```
-
-Now only authenticated users can access the `Logout` function.
-
-You can also use the `AllowAnonymous` attribute to allow access by non-authenticated users to individual actions. For example:
-
-```csharp
-[Authorize]
-public class AccountController : Controller
-{
-    [AllowAnonymous]
-    public ActionResult Login()
-    {
-    }
-
-    public ActionResult Logout()
-    {
-    }
-}
-```
-
-This would allow only authenticated users to the `AccountController`, except for the `Login` action, which is accessible by everyone, regardless of their authenticated or unauthenticated / anonymous status.
-
-> [!WARNING]
-> `[AllowAnonymous]` bypasses authorization statements. If you combine `[AllowAnonymous]` and an `[Authorize]` attribute, the `[Authorize]` attributes are ignored. For example if you apply `[AllowAnonymous]` at the controller level:
-> * Any authorization requirements from `[Authorize]` attributes on the same controller or action methods on the controller are ignored.
-> * Authentication middleware is not short-circuited but doesn't need to succeed.
-
-The following code limits access to the `LogoutModel` Razor Page to authenticated users:
+In a Razor Pages app, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the page model class that derives from <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>. In the following example, only authenticated users can reach the `LogoutModel` page:
 
 ```csharp
 [Authorize]
 public class LogoutModel : PageModel
 {
-    public async Task OnGetAsync()
-    {
-
-    }
-
-    public async Task<IActionResult> OnPostAsync()
-    {
-
-    }
+    public async Task OnGetAsync() { ... }
+    public async Task<IActionResult> OnPostAsync() { ... }
 }
 ```
 
-[!INCLUDE[](~/includes/requireAuth.md)]
+In the same way that <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> nor <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> is specified for Razor components, MVC and Razor Pages apps can adopt role and policy conditions:
 
-<a name="aarp"></a>
+```csharp
+[Authorize(Roles = "Admin, Superuser")]
+public class AdminController : Controller
+```
 
-## Authorize attribute and Razor Pages
+To apply authorization to an action rather than the controller, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the action. In the following example, only authenticated users can trigger a logout (call the `Logout` method):
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** be applied to Razor Page handlers. For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler. Consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers. Using an MVC controller when different authorization requirements are required:
+```csharp
+public class AccountController : Controller
+{
+   public ActionResult Login() { ... }
 
-* Is the least complex approach.
-* Is the approach recommended by Microsoft.
+   [Authorize]
+   public ActionResult Logout() { ... }
+}
+```
+
+For guidance on the The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and Razor Page handlers, see the [`[Authorize]` attribute in Razor Pages apps](#authorize-attribute-in-razor-pages-apps) section.
+
+Use the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to allow access by non-authenticated users to individual actions. In the following example, only authenticated users are allowed to access to the `AccountController`, except for the `Login` action, which is accessible by everyone, regardless of their authentication status:
+
+In a Razor component:
+
+```razor
+@using Microsoft.AspNetCore.Authorization
+@attribute [AllowAnonymous]
+```
+
+In an MVC controller or Razor Pages page model class:
+
+```csharp
+[AllowAnonymous]
+```
+
+> [!WARNING]
+> For MVC controllers, the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) bypasses authorization statements. If you combine `[AllowAnonymous]` and one or more `[Authorize]` attributes, the `[Authorize]` attributes are ignored. If you apply `[AllowAnonymous]` at the controller level:
+>
+> * Any authorization requirements from `[Authorize]` attributes on the same controller or action methods on the controller are ignored.
+> * Authentication middleware isn't short-circuited but doesn't need to succeed.
+
+For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
+
+## `[Authorize]` attribute in Razor Pages apps
+
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can't be applied to Razor Page handlers. For example, the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can't be applied to `OnGet`, `OnPost`, or any other page handler. In a Razor Pages app, consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers. Using a controller when different authorization requirements are required is the least complex approach recommended by Microsoft.
 
 If you decide not to use an MVC controller, the following two approaches can be used to apply authorization to Razor Page handler methods:
 
 * Use separate pages for page handlers requiring different authorization. Move shared content into one or more [partial views](xref:mvc/views/partial). When possible, this is the recommended approach.
-* For content that must share a common page, write a filter that performs authorization as part of [IAsyncPageFilter.OnPageHandlerSelectionAsync](xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A). The [PageHandlerAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth) GitHub project demonstrates this approach:
-  * The [AuthorizeIndexPageHandlerFilter](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth/AuthorizeIndexPageHandlerFilter.cs) implements the authorization filter:
-  [!code-csharp[](~/security/authorization/simple/samples/3.1/PageHandlerAuth/Pages/Index.cshtml.cs?name=snippet&highlight=21)]
+* For content that must share a common page, write a filter that performs authorization as part of <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A?displayProperty=nameWithType>. This approach is demonstrated by the following example.
 
-  * The [[AuthorizePageHandler]](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth/Pages/Index.cshtml.cs#L28) attribute is applied to the `OnPostAuthorized` page handler:
-  [!code-csharp[](~/security/authorization/simple/samples/3.1/PageHandlerAuth/AuthorizeIndexPageHandlerFilter.cs?name=snippet)]
+The `AuthorizeIndexPageHandlerFilter` implements the authorization filter:
+
+```csharp
+public class AuthorizeIndexPageHandlerFilter(
+    IAuthorizationPolicyProvider policyProvider,
+    IPolicyEvaluator policyEvaluator) : IAsyncPageFilter, IOrderedFilter
+{
+    private readonly IAuthorizationPolicyProvider policyProvider = 
+        policyProvider;
+    private readonly IPolicyEvaluator policyEvaluator = policyEvaluator;
+
+    // Run late in the selection pipeline
+    public static int Order => 10000;
+
+    public Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, 
+        PageHandlerExecutionDelegate next) => next();
+
+    public async Task OnPageHandlerSelectionAsync(PageHandlerSelectedContext context)
+    {
+        var attribute = context.HandlerMethod?.MethodInfo?
+            .GetCustomAttribute<AuthorizePageHandlerAttribute>();
+
+        if (attribute is null)
+        {
+            return;
+        }
+
+        var policy = await AuthorizationPolicy
+            .CombineAsync(policyProvider, new[] { attribute });
+
+        if (policy is null)
+        {
+            return;
+        }
+
+        await AuthorizeAsync(context, policy);
+    }
+
+    private async Task AuthorizeAsync(ActionContext actionContext, 
+        AuthorizationPolicy policy)
+    {
+        var httpContext = actionContext.HttpContext;
+        var authenticateResult = await policyEvaluator
+            .AuthenticateAsync(policy, httpContext);
+        var authorizeResult = await policyEvaluator
+            .AuthorizeAsync(policy, authenticateResult, httpContext, 
+                actionContext.ActionDescriptor);
+
+        if (authorizeResult.Challenged)
+        {
+            if (policy.AuthenticationSchemes.Count > 0)
+            {
+                foreach (var scheme in policy.AuthenticationSchemes)
+                {
+                    await httpContext.ChallengeAsync(scheme);
+                }
+            }
+            else
+            {
+                await httpContext.ChallengeAsync();
+            }
+
+            return;
+        }
+        else if (authorizeResult.Forbidden)
+        {
+            if (policy.AuthenticationSchemes.Count > 0)
+            {
+                foreach (var scheme in policy.AuthenticationSchemes)
+                {
+                    await httpContext.ForbidAsync(scheme);
+                }
+            }
+            else
+            {
+                await httpContext.ForbidAsync();
+            }
+
+            return;
+        }
+    }
+}
+```
+
+The `AuthorizePageHandlerAttribute` provides an `[AuthorizePageHandler]` attribute to the app:
+
+```csharp
+[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+public class AuthorizePageHandlerAttribute(string policy = null) 
+    : Attribute, IAuthorizeData
+{
+    public string Policy { get; set; } = policy;
+    public string Roles { get; set; }
+    public string AuthenticationSchemes { get; set; }
+}
+```
+
+The `[AuthorizePageHandler]` attribute is applied to page handlers. In the following example, the attribute is set on the `OnPostAuthorized` page handler:
+
+```csharp
+[TypeFilter(typeof(AuthorizeIndexPageHandlerFilter))]
+public class IndexModel : PageModel
+{
+    ...
+
+    [AuthorizePageHandler]
+    public void OnPostAuthorized() { ... }
+}
+```
 
 > [!WARNING]
-> The [PageHandlerAuth](https://github.com/pranavkm/PageHandlerAuth) sample approach does ***not***:
-> * Compose with authorization attributes applied to the page, page model, or globally. Composing authorization attributes results in authentication and authorization executing multiple times when you have one more `AuthorizeAttribute` or `AuthorizeFilter` instances also applied to the page.
-> * Work in conjunction with the rest of ASP.NET Core authentication and authorization system. You must verify using this approach works correctly for your application.
+> The preceding approach does ***not***:
+>
+> * Compose with authorization attributes applied to the page, page model, or globally. Composing authorization attributes results in authentication and authorization executing multiple times when you have one more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) or <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> instances also applied to the page.
+> * Work in conjunction with the rest of ASP.NET Core authentication and authorization system. You must verify using this approach works correctly for the app.
 
-There are no plans to support the `AuthorizeAttribute` on Razor Page handlers.
+There are no plans to support the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on Razor Page handlers.

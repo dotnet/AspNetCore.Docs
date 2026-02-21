@@ -162,7 +162,7 @@ Finbuckle.MultiTenant:
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#rau)
+* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end
@@ -302,7 +302,7 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#rau)
+* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end
@@ -445,7 +445,7 @@ While it's possible for customers to write an app with multi-tenant authenticati
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#rau)
+* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end

@@ -288,7 +288,7 @@ See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/8502) for info
 
 ## Differences between Challenge and Forbid
 
-This app sets the default policy to [require authenticated users](#rau). The following code allows anonymous users. Anonymous users are allowed to show the differences between Challenge vs Forbid.
+This app sets the default policy to [require authenticated users](#require-authenticated-users). The following code allows anonymous users. Anonymous users are allowed to show the differences between Challenge vs Forbid.
 
 [!code-csharp[](secure-data/samples/final6/Pages/Contacts/Details2.cshtml.cs?name=snippet)]
 
@@ -657,7 +657,7 @@ See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/8502) for info
 
 ## Differences between Challenge and Forbid
 
-This app sets the default policy to [require authenticated users](#rau). The following code allows anonymous users. Anonymous users are allowed to show the differences between Challenge vs Forbid.
+This app sets the default policy to [require authenticated users](#require-authenticated-users). The following code allows anonymous users. Anonymous users are allowed to show the differences between Challenge vs Forbid.
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/Details2.cshtml.cs?name=snippet)]
 
