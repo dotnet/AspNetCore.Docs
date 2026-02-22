@@ -1,20 +1,21 @@
 ---
 title: Include OpenAPI metadata in an ASP.NET Core app
-author: captainsafia
+ai-usage: ai-assisted
+author: wadepickett
 description: Learn how to add OpenAPI metadata in an ASP.NET Core app.
-ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/12/2025
+ms.date: 02/06/2026
 uid: fundamentals/openapi/include-metadata
 ---
 # Include OpenAPI metadata in an ASP.NET Core app
 
 This article explains how to add OpenAPI metadata in an ASP.NET Core app.
 
-## Include OpenAPI metadata for endpoints
+:::moniker range=">= aspnetcore-11.0"
 
-:::moniker range=">= aspnetcore-10.0"
+## Include OpenAPI metadata for endpoints
 
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
 
@@ -185,7 +186,7 @@ public IResult Attributes(
 
 ### Describe the request body
 
-The `requestBody` field in OpenAPI describes the body of a request that an API client can send to the server, including the content type(s) supported and the schema for the body content.
+The `requestBody` field in OpenAPI describes the body of a request that an API client can send to the server, including the content types supported and the schema for the body content.
 
 When the endpoint handler method accepts parameters that are bound from the request body, ASP.NET Core generates a corresponding `requestBody` for the operation in the OpenAPI document. Metadata for the request body can also be specified using attributes or extension methods. Additional metadata can be set with a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers).
 
@@ -205,14 +206,14 @@ Other mechanisms for setting request body metadata depend on the type of app bei
 #### [Minimal APIs](#tab/minimal-apis)
 
 The content types for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body or specified with the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method.
-By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter will be `application/json` and the content type for [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter(s) will be `multipart/form-data` or `application/x-www-form-urlencoded`.
+By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter is `application/json` and the content type for [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameters is `multipart/form-data` or `application/x-www-form-urlencoded`.
 
 Support for these default content types is built in to Minimal APIs, and other content types can be handled by using custom binding.
 See the [Custom binding](xref:fundamentals/minimal-apis/parameter-binding#custom-binding) topic of the Minimal APIs documentation for more information.
 
 There are several ways to specify a different content type for the request body.
-If the type of the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider>, ASP.NET Core uses this interface to determine the content type(s) in the request body.
-The framework uses the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata%2A> method of this interface to set the content type(s) and type of the body content of the request body. For example, a `Todo` class that accepts either `application/xml` or `text/xml` content-type can use <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider> to provide this information to the framework.
+If the type of the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider>, ASP.NET Core uses this interface to determine the content types in the request body.
+The framework uses the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata%2A> method of this interface to set the content types and type of the body content of the request body. For example, a `Todo` class that accepts either `application/xml` or `text/xml` content-type can use <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider> to provide this information to the framework.
 
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
@@ -261,20 +262,20 @@ If you specify <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensi
 
 #### [Controllers](#tab/controllers)
 
-In controller-based apps, the content type(s) for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body, the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> types configured in the application, or by a [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute on the route handler method.
+In controller-based apps, the content types for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body, the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> types configured in the application, or by a [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute on the route handler method.
 
 ASP.NET Core uses an <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> to deserialize a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body.
 InputFormatters are configured in the <xref:Microsoft.AspNetCore.Mvc.MvcOptions> passed to the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> extension method for the app's service collection.
-Each input formatter declares the content types it can handle, in its <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.SupportedMediaTypes> property, and the type(s) of body content it can handle, with its <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> method.
+Each input formatter declares the content types it can handle, in its <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.SupportedMediaTypes> property, and the types of body content it can handle, with its <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> method.
 
 ASP.NET Core MVC includes built-in input formatters for JSON and XML, though only the JSON input formatter is enabled by default.
 The built-in JSON input formatter supports the `application/json`, `text/json`, and `application/*+json` content types, and the built-in XML input formatter supports the `application/xml`, `text/xml`, and `application/*+xml` content types.
 
-By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body may be any content type accepted by an <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> for the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter type. For a request body with [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter(s) the default content types are `multipart/form-data` or `application/x-www-form-urlencoded`.These content types will be included in the generated OpenAPI document if the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute is not specified on the route handler method.
+By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body may be any content type accepted by an <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> for the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter type. For a request body with [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameters the default content types are `multipart/form-data` or `application/x-www-form-urlencoded`.These content types will be included in the generated OpenAPI document if the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute is not specified on the route handler method.
 
-The content type(s) accepted by a route handler can be restricted using a [filter](xref:mvc/controllers/filters) on the endpoint (action scope).
+The content types accepted by a route handler can be restricted using a [filter](xref:mvc/controllers/filters) on the endpoint (action scope).
 The [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute adds an action scope filter to the endpoint that restricts the content types that a route handler will accept.
-In this case, the requestBody in the generated OpenAPI document will include only the content type(s) specified in the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute.
+In this case, the requestBody in the generated OpenAPI document will include only the content types specified in the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute.
 
 A [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute can't add support for a content type that doesn't have an associated input formatter, and the generated OpenAPI document doesn't include any content types that don't have an associated input formatter.
 
@@ -287,7 +288,7 @@ If the route handler doesn't have a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.F
 
 ### Describe response types
 
-OpenAPI supports providing a description of the responses returned from an API. ASP.NET Core provides several strategies for setting the response metadata of an endpoint. Response metadata that can be set includes the status code, the type of the response body, and content type(s) of a response. Responses in OpenAPI may have additional metadata, such as description, headers, links, and examples. This additional metadata can be set with a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers).
+OpenAPI supports providing a description of the responses returned from an API. ASP.NET Core provides several strategies for setting the response metadata of an endpoint. Response metadata that can be set includes the status code, the type of the response body, and content types of a response. Responses in OpenAPI may have additional metadata, such as description, headers, links, and examples. This additional metadata can be set with a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers).
 
 The specific mechanisms for setting response metadata depend on the type of app being developed.
 
@@ -295,10 +296,10 @@ The specific mechanisms for setting response metadata depend on the type of app 
 
 In Minimal API apps, ASP.NET Core can extract the response metadata added by extension methods on the endpoint, attributes on the route handler, and the return type of the route handler.
 
-* The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method can be used on the endpoint to specify the status code, the type of the response body, and content type(s) of a response from an endpoint.
+* The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method can be used on the endpoint to specify the status code, the type of the response body, and content types of a response from an endpoint.
 * The [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attribute can be used to specify the type of the response body.
-* A route handler can be used to return a type that implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> to specify the type and content-type(s) of the response body.
-* The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method on the endpoint can be used to specify the status code and content-type(s) of an error response.
+* A route handler can be used to return a type that implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> to specify the type and content-types of the response body.
+* The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method on the endpoint can be used to specify the status code and content-types of an error response.
 
 Note that the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A>  and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension methods are supported on both <xref:Microsoft.AspNetCore.Builder.RouteHandlerBuilder> and on <xref:Microsoft.AspNetCore.Routing.RouteGroupBuilder>. This allows, for example, a common set of error responses to be defined for all operations in a group.
 
@@ -360,10 +361,48 @@ Only return types that implement <xref:Microsoft.AspNetCore.Http.Metadata.IEndpo
 | NotFound()                   | 404         |
 | Conflict()                   | 409         |
 | UnprocessableEntity()        | 422         |
+| File()                       | 200         |
 
 All of these methods except `NoContent` have a generic overload that specifies the type of the response body.
 
 A class can be implemented to set the endpoint metadata and return it from the route handler.
+
+##### Describe binary file responses
+
+To describe endpoints that return binary file responses in the OpenAPI document, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method with `FileContentResult` as the type parameter to specify the response type and content type:
+
+```csharp
+app.MapPost("/filecontentresult", () =>
+{
+    var content = "This endpoint returns a FileContentResult!"u8.ToArray();
+    return TypedResults.File(content);
+})
+.Produces<FileContentResult>(contentType: MediaTypeNames.Application.Octet);
+```
+
+This generates an OpenAPI schema with `type: string` and `format: binary` for the `FileContentResult` type.
+
+The generated OpenAPI document describes the endpoint response as:
+
+```yaml
+responses:
+  '200':
+    description: OK
+    content:
+      application/octet-stream:
+        schema:
+          $ref: '#/components/schemas/FileContentResult'
+```
+
+With `FileContentResult` defined in `components/schemas` as:
+
+```yaml
+components:
+  schemas:
+    FileContentResult:
+      type: string
+      format: binary
+```
 
 ##### Set responses for `ProblemDetails`
 
@@ -395,10 +434,10 @@ If an endpoint can return different response types in different scenarios, you c
 
 In controller-based apps, ASP.NET Core can extract the response metadata from the action method signature, attributes, and conventions. 
 
-* You can use the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attribute to specify the status code, the type of the response body, and content type(s) of a response from an action method.
+* You can use the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attribute to specify the status code, the type of the response body, and content types of a response from an action method.
 * You can use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601> attribute to specify the type of the response body.
 * You can use the [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesDefaultResponseTypeAttribute) attribute to specify the response body type for the "default" response.
-* You can use the [`[ProducesErrorResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesErrorResponseTypeAttribute) attribute to specify the response body type for an error response. However, be aware that this is only complements the status code and content type(s) specified by an [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute with a 4XX status code.
+* You can use the [`[ProducesErrorResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesErrorResponseTypeAttribute) attribute to specify the response body type for an error response. However, be aware that this is only complements the status code and content types specified by an [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute with a 4XX status code.
 
 Only one [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601> attributes may be applied to an action method, but multiple [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attributes with different status codes may be applied to a single action method.
 
@@ -440,6 +479,22 @@ public async Task<ActionResult<Todo>> CreateOrReplaceTodo(string id, Todo todo)
 ```
 
 This example also illustrates how to define multiple response types for an action method, including the content type of the response body.
+
+##### Describe binary file responses
+
+To describe endpoints that return binary file responses, use the [`[ProducesResponseType<FileContentResult>]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute to specify the response type and content type:
+
+```csharp
+[HttpPost("filecontentresult")]
+[ProducesResponseType<FileContentResult>(StatusCodes.Status200OK, MediaTypeNames.Application.Octet)]
+public IActionResult PostFileContentResult()
+{
+    var content = "This endpoint returns a FileContentResult!"u8.ToArray();
+    return new FileContentResult(content, MediaTypeNames.Application.Octet);
+}
+```
+
+This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses), with `FileContentResult` defined as `type: string` and `format: binary`.
 
 ---
 
@@ -710,4 +765,5 @@ The following table shows the key differences beween the MVC JSON options and gl
 
 :::moniker-end
 
+[!INCLUDE[](~/fundamentals/openapi/includes/include-metadata10.md)]
 [!INCLUDE[](~/fundamentals/openapi/includes/include-metadata9.md)]

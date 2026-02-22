@@ -1,8 +1,8 @@
 ---
 title: Customize OpenAPI documents
-author: captainsafia
+author: wadepickett
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
-ms.author: safia
+ms.author: wpickett
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
 ms.date: 10/29/2025

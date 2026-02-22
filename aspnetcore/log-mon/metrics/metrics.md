@@ -6,7 +6,7 @@ description: Metrics for ASP.NET Core apps
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
 ms.date: 11/10/2025
-ms.topic: article
+ms.topic: concept-article
 uid: log-mon/metrics/metrics
 ---
 

@@ -34,6 +34,10 @@ Filters run within the *ASP.NET Core action invocation pipeline*, sometimes refe
 
 :::image source="~/mvc/controllers/filters/_static/filter-pipeline-1.png" alt-text="The request is processed through Other Middleware, Routing Middleware, Action Selection, and the Action Invocation Pipeline. The request processing continues back through Action Selection, Routing Middleware, and various Other Middleware before becoming a response sent to the client.":::
 
+The following diagram shows the filter pipeline execution order for MVC and Razor Pages:
+
+![ASP.NET Core filter pipeline](~/mvc/controllers/filters/_static/filter-pipeline-3.svg)
+
 ### Filter types
 
 Each filter type is executed at a different stage in the filter pipeline:
@@ -101,7 +105,7 @@ Interfaces for multiple filter stages can be implemented in a single class. For 
 * Asynchronous: <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
 * <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>
 
-Implement **either** the synchronous or the async version of a filter interface, **not** both. The runtime checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If both asynchronous and synchronous interfaces are implemented in one class, only the async method is called. When using abstract classes like <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute>, override only the synchronous methods or the asynchronous methods for each filter type.
+Implement **either** the synchronous or the async version of a filter interface, **not** both. The runtime checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's methods. If both asynchronous and synchronous interfaces are implemented in one class, only the async method is called. When using abstract classes like <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute>, override only the synchronous methods or the asynchronous methods for each filter type.
 
 ### Built-in filter attributes
 

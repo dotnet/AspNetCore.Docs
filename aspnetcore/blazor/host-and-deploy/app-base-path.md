@@ -60,26 +60,30 @@ For the sources of links that pertain to Blazor in ASP.NET Core apps:
 
 If you're rendering a Blazor app from different documents (for example, `/Admin/B/C/` and `/Admin/D/E/`), you must take the app base path into account, or the base path is different when the app renders in each document and the resources are fetched from the wrong URLs.
 
-There are two approaches to deal with the challenge of resolving relative links correctly:
+Choose one of the following strategies to keep relative links resolving correctly:
 
-* Map the resources dynamically using the document they were rendered on as the root.
-* Set a consistent base path for the document and map the resources under that base path.
+* Map resources dynamically using the document they were rendered on as the root. This requires custom routing logic (for example, <xref:Microsoft.AspNetCore.Routing.IDynamicEndpointMetadata> or a <xref:Microsoft.AspNetCore.Routing.MatcherPolicy>) and is typically reserved for highly dynamic sites.
 
-The first option is more complicated and isn't the most typical approach, as it makes navigation different for each document. Consider the following example for rendering a page `/Something/Else`:
+:::moniker range=">= aspnetcore-11.0"
 
-* Rendered under `/Admin/B/C/`, the page is rendered with a path of `/Admin/B/C/Something/Else`.
-* Rendered under `/Admin/D/E/`, the page is rendered ***at the same path*** of `/Admin/B/C/Something/Else`.
+* Establish a consistent base path for the document and map all app resources beneath that path. Blazor Web Apps can rely on the `BasePath` component to render `<base href>` automatically, while standalone WebAssembly apps (or scenarios that always use a fixed value) configure the literal `<base>` tag in the host page.
 
-Under the first approach, routing offers <xref:Microsoft.AspNetCore.Routing.IDynamicEndpointMetadata> and <xref:Microsoft.AspNetCore.Routing.MatcherPolicy>, which in combination can be the basis for implementing a completely dynamic solution that determines at runtime about how requests are routed.
+:::moniker-end
 
-For the second option, which is the usual approach taken, the app sets the base path in the document and maps the server endpoints to paths under the base. The following guidance adopts this approach.
+:::moniker range="< aspnetcore-11.0"
+
+* Establish a consistent base path for the document and map all app resources beneath that path. Configure the literal `<base>` tag in the host page for both server-side Blazor apps and Blazor WebAssembly apps (or scenarios that always use a fixed value).
+
+:::moniker-end
+
+The remainder of this article focuses on implementing a consistent base path.
 
 ## Server-side Blazor
 
-Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file:
+Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file. The default Blazor hub path is `/_blazor`, and the following example sets the base path of the default hub to `base/path`:
 
 ```csharp
-app.MapBlazorHub("base/path");
+app.MapBlazorHub("base/path/_blazor");
 ```
 
 The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
@@ -87,12 +91,21 @@ The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBu
 You can also map the SignalR hub when the app is in a virtual folder with a [branched middleware pipeline](xref:fundamentals/middleware/index#branch-the-middleware-pipeline). In the following example, requests to `/base/path/` are handled by Blazor's SignalR hub:
 
 ```csharp
-app.Map("/base/path/", subapp => {
-    subapp.UsePathBase("/base/path/");
+app.Map("/base/path", subapp => {
+    subapp.UsePathBase("/base/path");
     subapp.UseRouting();
-    subapp.UseEndpoints(endpoints => endpoints.MapBlazorHub());
+	  subapp.UseAntiforgery();
+    subapp.UseEndpoints(endpoints => {
+        endpoints.MapBlazorHub("/base/path/_blazor");
+        endpoints.MapStaticAssets();
+		    endpoints.MapRazorComponents<App>()
+				.AddInteractiveServerRenderMode();
+	});
 });
 ```
+
+> [!NOTE]
+> The default Blazor hub path is `/_blazor`.
 
 Configure the `<base>` tag, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
@@ -126,7 +139,13 @@ By configuring the app base path, a component that isn't in the root directory c
 
 Place the `<base>` tag in `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)) before any elements with attribute values that are URLs, such as the `href` attributes of `<link>` elements.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-11.0"
+
+In many hosting scenarios, the relative URL path to the app is the root of the app. When the app runs at `/`, the `BasePath` component (`<BasePath />`) renders `<base href="/" />` automatically in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content). For any other deployment path, the component emits a `<base>` element that matches the current request's path base.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is `/` configured as `<base href="/" />` in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content).
 
@@ -144,7 +163,21 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 > [!NOTE]
 > In some hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
 
-* In a server-side Blazor app, use ***either*** of the following approaches:
+* In a server-side Blazor app, use the following approach:
+
+:::moniker range=">= aspnetcore-11.0"
+
+  * Option 1: Use the `BasePath` component to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+
+    ```razor
+    <BasePath />
+    ```
+
+    The component renders `<base href>` automatically based on the current request path base.
+
+::: moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
   * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
 
@@ -153,6 +186,8 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
     ```
 
     **The trailing slash is required.**
+
+:::moniker-end
 
   * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
 
@@ -209,7 +244,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 :::moniker-end
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
 
 Don't prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 

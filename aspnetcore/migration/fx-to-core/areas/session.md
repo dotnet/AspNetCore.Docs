@@ -5,7 +5,7 @@ author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025
-ms.topic: article
+ms.topic: concept-article
 uid: migration/fx-to-core/areas/session
 zone_pivot_groups: migration-remote-app-setup
 ---

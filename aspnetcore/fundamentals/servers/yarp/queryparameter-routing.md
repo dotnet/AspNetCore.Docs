@@ -5,7 +5,7 @@ description: YARP Query Parameter Based Routing
 author: wadepickett
 ms.author: wpickett
 ms.date: 2/6/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
@@ -252,7 +252,7 @@ A list of possible values to search for. The query parameter must match at least
 
 ### Mode
 
-[QueryParameterMatchMode](xref:Yarp.ReverseProxy.Configuration.QueryParameterMatchMode) specifies how to match the value(s) against the request query parameter. The default is `Exact`.
+[QueryParameterMatchMode](xref:Yarp.ReverseProxy.Configuration.QueryParameterMatchMode) specifies how to match the values against the request query parameter. The default is `Exact`.
 
 * Exact - The query parameter must match in its entirety, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
 * Prefix - The query parameter must match by prefix, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.

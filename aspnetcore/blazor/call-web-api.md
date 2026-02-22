@@ -464,6 +464,18 @@ The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a w
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Accessing services outside of the `HttpClient`'s scope
+
+<xref:System.Net.Http.IHttpClientFactory> creates <xref:System.Net.Http.DelegatingHandler> instances in a separate dependency injection (DI) scope from the app. If you inject a scoped service into a derived <xref:System.Net.Http.DelegatingHandler> type, the handler doesn't have access to the service from the Blazor circuit.
+
+For an example of how to access a service in outgoing request middleware using either an application scope handler or a circuit activity handler, see <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
+
+For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
+
+:::moniker-end
+
 ## Disposal of `HttpRequestMessage`, `HttpResponseMessage`, and `HttpClient`
 
 An <xref:System.Net.Http.HttpRequestMessage> without a body doesn't require explicit disposal. However, you can dispose of it with either of the following patterns:
@@ -907,15 +919,8 @@ Example:
 
 In the app's `Program` file, call:
 
-<!-- UPDATE 11.0 - Awaiting API per https://github.com/dotnet/AspNetCore.Docs/issues/36373.
-                   Marking this for 11.0 because it's the last 10.0 item and inline tracking
-                   now adopts 11.0 or later work items. This ensures that this inline item
-                   isn't missed.
-                   
-                   Missing API doc for 'Microsoft.Identity.Web.DownstreamApiExtensions.AddDownstreamApi' -->
-
 * <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilder.EnableTokenAcquisitionToCallDownstreamApi%2A>: Enables token acquisition to call web APIs.
-* `AddDownstreamApi`: Microsoft Identity Web packages provide API to create a named downstream web service for making web API calls. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into a server-side class, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> to obtain weather data from an external web API (`MinimalApiJwt` project).
+* <xref:Microsoft.Identity.Web.DownstreamApiExtensions.AddDownstreamApi%2A>: Microsoft Identity Web packages provide API to create a named downstream web service for making web API calls. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into a server-side class, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> to obtain weather data from an external web API (`MinimalApiJwt` project).
 * <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A>: Adds the .NET distributed token caches to the service collection.
 * <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>: Adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory.
 * Configure the distributed token cache options (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions>):

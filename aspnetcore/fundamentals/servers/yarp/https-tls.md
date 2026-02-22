@@ -5,7 +5,7 @@ description: YARP HTTPS & TLS
 author: wadepickett
 ms.author: wpickett
 ms.date: 02/14/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
@@ -16,7 +16,7 @@ HTTPS (HTTP over TLS encrypted connections) is the standard way to make HTTP req
 
 ## TLS Termination
 
-YARP is a level 7 HTTP proxy which means that incoming HTTPS/TLS connections are fully decrypted by the proxy so it can process and forward the HTTP requests. This is commonly known as TLS Termination. The outgoing connections to the destination(s) may or may not be encrypted, depending on the configuration provided.
+YARP is a level 7 HTTP proxy which means that incoming HTTPS/TLS connections are fully decrypted by the proxy so it can process and forward the HTTP requests. This is commonly known as TLS Termination. The outgoing connections to the destinations may or may not be encrypted, depending on the configuration provided.
 
 ## TLS tunneling (CONNECT)
 

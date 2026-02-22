@@ -12,6 +12,8 @@ uid: blazor/security/webassembly/hosted-with-microsoft-entra-id
 
 [!INCLUDE[](~/blazor/security/includes/hosted-blazor-webassembly-notice.md)]
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Entra ID (ME-ID)](https://azure.microsoft.com/services/active-directory/) for authentication. This article focuses on a single tenant app with a single tenant Azure app registration.
 
 This article doesn't cover a *multi-tenant ME-ID registration*. For more information, see [Making your application multi-tenant](/entra/identity-platform/howto-convert-app-to-be-multi-tenant).

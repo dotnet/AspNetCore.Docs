@@ -92,7 +92,7 @@ For more information, see the following resources:
 
 Server-side Blazor apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>.
 
-The authentication context is only established when the app starts, which is when the app first [connects to the WebSocket over a SignalR connection](xref:signalr/authn-and-authz) with the client. Authentication can be based on a cookie or some other bearer token, but authentication is managed via the SignalR hub and entirely within the [circuit](xref:blazor/hosting-models#blazor-server). The authentication context is maintained for the lifetime of the circuit. Apps periodically revalidate the user's authentication state every 30 minutes.
+The authentication context is only established when the app starts, which is when the app first [connects to the WebSocket over a SignalR connection](xref:signalr/authn-and-authz) with the client. Authentication can be based on a cookie or some other bearer token, but authentication is managed via the SignalR hub and entirely within the [circuit](xref:blazor/hosting-models#blazor-server). The authentication context is maintained for the lifetime of the connection and is re-evaluated on reconnection.
 
 If the app must capture users for custom services or react to updates to the user, see <xref:blazor/security/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
 
@@ -176,6 +176,8 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 :::moniker-end
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Guide.
@@ -212,6 +214,8 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | `SingleOrg`              | Organizational authentication for a single tenant |
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 :::moniker-end
 

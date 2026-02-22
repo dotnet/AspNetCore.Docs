@@ -22,9 +22,9 @@ For general guidance on ASP.NET Core app configuration for server-side developme
 
 The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is:
 
-* `web` for a Blazor Web App
-* `server` for a Blazor Server app
-* `webassembly` for a Blazor WebAssembly app
+* `web` for a Blazor Web App.
+* `server` for a Blazor Server app.
+* `webassembly` for a Blazor WebAssembly app.
 
 :::moniker-end
 
@@ -32,8 +32,8 @@ The Blazor startup process is automatic and asynchronous via the Blazor script (
 
 The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is:
 
-* `server` for a Blazor Server app
-* `webassembly` for a Blazor WebAssembly app
+* `server` for a Blazor Server app.
+* `webassembly` for a Blazor WebAssembly app.
 
 :::moniker-end
 
@@ -41,9 +41,13 @@ For the location of the script, see <xref:blazor/project-structure#location-of-t
 
 To manually start Blazor:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
@@ -70,9 +74,17 @@ Blazor Web App:
 </script>
 ```
 
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
 Standalone Blazor WebAssembly and Blazor Server:
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
@@ -90,6 +102,8 @@ Standalone Blazor WebAssembly and Blazor Server:
 ```
 
 **In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -415,9 +429,13 @@ The `loadBootResource` function can return a URI string to override the loading 
 
 The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`). The `{VERSION}` placeholder is the shared framework version (for example, `7.0.0`).
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -438,9 +456,17 @@ Blazor Web App:
 </script>
 ```
 
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
 Standalone Blazor WebAssembly:
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -461,11 +487,17 @@ Standalone Blazor WebAssembly:
 
 **In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
+:::moniker-end
+
 To customize more than just the URLs for boot resources, the `loadBootResource` function can call `fetch` directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, pass through the `integrity` parameter.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -488,9 +520,17 @@ Blazor Web App:
 </script>
 ```
 
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
 Standalone Blazor WebAssembly:
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -512,6 +552,8 @@ Standalone Blazor WebAssembly:
 ```
 
 **In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker-end
 
 When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource.
 
@@ -962,7 +1004,15 @@ For the placeholders in the following examples that set an environment variable:
 * The `{NAME}` placeholder is the environment variable's name.
 * The `{VALUE}` placeholder is the environment variable's value.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -977,6 +1027,12 @@ Blazor Web App:
 </script>
 ```
 
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
 Standalone Blazor WebAssembly:
 
 ```html
@@ -989,6 +1045,12 @@ Standalone Blazor WebAssembly:
   });
 </script>
 ```
+
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
 > The .NET runtime instance can be accessed using the .NET WebAssembly Runtime API (`Blazor.runtime`). For example, the app's build configuration can be obtained using `Blazor.runtime.runtimeBuildInfo.buildConfiguration`.

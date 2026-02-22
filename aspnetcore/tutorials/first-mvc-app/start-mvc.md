@@ -4,16 +4,14 @@ author: wadepickett
 description: Learn how to get started with ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/02/2025
+ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-10.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
@@ -33,11 +31,11 @@ At the end of the series, you'll have an app that manages, validates, and displa
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-9.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-10.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-9.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-10.0.md)]
 
 ---
 
@@ -57,11 +55,11 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
   * The **Location** for the project can be set to anywhere.
 * Select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 9.0 (Standard Term Support)**.
+  * Select **.NET 10.0 (Standard Term Support)**.
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/9/additional-info-VS22-17.11.0.png)
+:::image type="content" source="~/tutorials/first-mvc-app/start-mvc/media/net10-additional-info.png" alt-text="Additional info dialog.":::
 
 For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -111,15 +109,15 @@ Launching the app without debugging by pressing <kbd>Ctrl</kbd>+<kbd>F5</kbd> al
 
 You can launch the app in debug or non-debug mode from the **Debug** menu:
 
-![Start Debug and Start Without Debugging menus](~/tutorials/first-mvc-app/start-mvc/_static/9/debug-and-without-debug-menus-VS22-17.11.0.png)
+:::image type="content" source="~/tutorials/first-mvc-app/start-mvc/media/debug-menu.png" alt-text="Start Debug and Start Without Debugging menus.":::
 
 You can debug the app by selecting the **https** button in the toolbar:
 
-![MvcMovie debug button](~/tutorials/first-mvc-app/start-mvc/_static/9/debug-button-VS22-17.11.0.png)
+:::image type="content" source="~/tutorials/first-mvc-app/start-mvc/media/debug-button.png" alt-text="MvcMovie debug button.":::
 
 The following image shows the app:
 
-![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/9/home90-vs.png)
+:::image type="content" source="~/tutorials/first-mvc-app/start-mvc/media/mvc-movie-home-page.png" alt-text="Home or Index page.":::
 
 * Close the browser window.  Visual Studio will stop the application.
 
@@ -143,7 +141,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 * Save the file.
 * Quickly refresh the browser and see the code changes.
 
-  ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/9/home90-vs.png)
+  :::image type="content" source="~/tutorials/first-mvc-app/start-mvc//media/mvc-movie-home-page.png" alt-text="Home or Index page.":::
 
 * Close the browser window.
 
@@ -159,6 +157,8 @@ In the next tutorial in this series, you learn about MVC and start writing some 
 > [Next: Add a controller](~/tutorials/first-mvc-app/adding-controller.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc9.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc8.md)]
 

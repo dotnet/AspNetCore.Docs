@@ -6,7 +6,7 @@ author: wadepickett
 monikerRange: '<= aspnetcore-7.0'
 ms.author: wpickett
 ms.date: 06/14/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
@@ -23,7 +23,7 @@ YARP can support the certificate authority [Lets Encrypt](https://letsencrypt.or
 
 Add the `LettuceEncrypt` package dependency:
 
-```csproj
+```xml
 <PackageReference Include="LettuceEncrypt" Version="1.1.2" />
 ```
 

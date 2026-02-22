@@ -5,7 +5,7 @@ description: YARP Destination health checks
 author: tdykstra
 ms.author: tdykstra
 ms.date: 04/06/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
@@ -280,6 +280,7 @@ Global parameters are set via the options mechanism using `TransportFailureRateH
 * `DefaultFailureRateLimit` - default failure rate limit for a destination to be marked as unhealthy that is applied if it's not set on a cluster's metadata. The value is in range `(0,1)`. Default is `0.3` (30%).
 
 Global policy options can be set in code as follows:
+
 ```csharp
 services.Configure<TransportFailureRateHealthPolicyOptions>(o =>
 {

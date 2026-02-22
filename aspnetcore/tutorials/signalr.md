@@ -1,12 +1,13 @@
 ---
 title: Get started with ASP.NET Core SignalR
+ai-usage: ai-assisted
 author: wadepickett
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
 <!-- ms.author: bradyg -->
-ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
+ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 11/06/2023
+ms.date: 01/27/2026
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -16,7 +17,7 @@ uid: tutorials/signalr
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
@@ -29,17 +30,17 @@ This tutorial teaches the basics of building a real-time app using SignalR. You 
 
 At the end, you'll have a working chat app:
 
-![SignalR sample app](~/tutorials/signalr/_static/7.x/signalr-get-started-finished.png)
+:::image type="content" source="~/tutorials/signalr/media/signalr-chat-app.png" alt-text="SignalR sample app.":::
 
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-10.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-10.0.md)]
 
 ---
 
@@ -47,21 +48,21 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio](#tab/visual-studio)
 
-Start Visual Studio 2022 and select **Create a new project**.
+Start the latest version of Visual Studio and select **Create a new project**.
 
-![Create a new project from the start window](~/tutorials/signalr/_static/8.x/start-window-create-new-project-vs17.8.0.png)
+:::image type="content" source="~/tutorials/signalr/media/start-window-create-new-project.png" alt-text="Create a new project from the start window.":::
 
 In the **Create a new project** dialog, select **ASP.NET Core Web App (Razor Pages)**, and then select **Next**.
 
-![Create an ASP.NET Core Web App](~/tutorials/signalr/_static/8.x/new-project-select-vs17.9.0.png)
+:::image type="content" source="~/tutorials/signalr/media/new-aspnet-core-web-app.png" alt-text="Create an ASP.NET Core Web App.":::
 
 In the **Configure your new project** dialog, enter `SignalRChat` for **Project name**. It's important to name the project `SignalRChat`, including matching the capitalization, so the namespaces match the code in the tutorial.
 
 Select **Next**.
 
-In the **Additional information** dialog, select **.NET 8.0 (Long Term Support)** and then select **Create**.
+In the **Additional information** dialog, select **.NET 10.0 (Long Term Support)** and then select **Create**.
 
-![Additional information](~/tutorials/signalr/_static/8.x/additional-info-vs17.9.0.png)
+:::image type="content" source="~/tutorials/signalr/media/additional-information.png" alt-text="Additional information.":::
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -100,9 +101,11 @@ In the **Add Client-Side Library** dialog:
 * Set **Target Location** to `wwwroot/js/signalr/`.
 * Select **Install**.
 
-![Add Client-Side Library dialog - select library](~/tutorials/signalr/_static/8.x/find-signalr-client-libs-select-files-vs17.8.0.png)
+:::image type="content" source="~/tutorials/signalr/media/add-client-side-library.png" alt-text="Add Client-Side Library dialog - select library.":::
 
-LibMan creates a `wwwroot/js/signalr` folder and copies the selected files to it.
+LibMan creates a `wwwroot/js/signalr` folder and copies the selected files to it. A `libman.json` file is created with the following code:
+
+[!code-json[ChatHub](~/tutorials/signalr/samples/10.x/SignalRChat/libman.json)]
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
@@ -147,7 +150,7 @@ In the SignalRChat project folder, create a `Hubs` folder.
 
 In the `Hubs` folder, create the `ChatHub` class with the following code:
 
-[!code-csharp[ChatHub](~/tutorials/signalr/samples/8.x/SignalRChat/Hubs/ChatHub.cs)]
+[!code-csharp[ChatHub](~/tutorials/signalr/samples/10.x/SignalRChat/Hubs/ChatHub.cs)]
 
 The `ChatHub` class inherits from the SignalR <xref:Microsoft.AspNetCore.SignalR.Hub> class. The `Hub` class manages connections, groups, and messaging.
 
@@ -157,7 +160,7 @@ The `SendMessage` method can be called by a connected client to send a message t
 
 The SignalR server must be configured to pass SignalR requests to SignalR. Add the following highlighted code to the `Program.cs` file.
 
-[!code-csharp[Startup](~/tutorials/signalr/samples/8.x/SignalRChat/Program.cs?highlight=1,7,27)]
+[!code-csharp[Startup](~/tutorials/signalr/samples/10.x/SignalRChat/Program.cs?highlight=1,7,27)]
 
 The preceding highlighted code adds SignalR to the ASP.NET Core dependency injection and routing systems.
 
@@ -165,7 +168,7 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
 
 Replace the content in `Pages/Index.cshtml` with the following code:
 
-[!code-cshtml[Index](~/tutorials/signalr/samples/8.x/SignalRChat/Pages/Index.cshtml)]
+[!code-cshtml[Index](~/tutorials/signalr/samples/10.x/SignalRChat/Pages/Index.cshtml)]
 
 The preceding markup:
 
@@ -175,7 +178,7 @@ The preceding markup:
 
 In the `wwwroot/js` folder, create a `chat.js` file with the following code:
 
-[!code-javascript[chat](~/tutorials/signalr/samples/8.x/SignalRChat/wwwroot/js/chat.js)]
+[!code-javascript[chat](~/tutorials/signalr/samples/10.x/SignalRChat/wwwroot/js/chat.js)]
 
 The preceding JavaScript:
 
@@ -201,11 +204,11 @@ Choose either browser, enter a name and message, and select the **Send Message**
 
 The name and message are displayed on both pages instantly.
 
-![Completed SignalR sample app](~/tutorials/signalr/_static/7.x/signalr-get-started-finished.png)
+:::image type="content" source="~/tutorials/signalr/media/signalr-chat-app.png" alt-text="Completed SignalR sample app.":::
 
 > [!TIP]
 > If the app doesn't work, open the browser developer tools (F12) and go to the console. Look for possible errors related to HTML and JavaScript code. For example, if `signalr.js` was put in a different folder than directed, the reference to that file won't work resulting in a 404 error in the console.
-> ![signalr.js not found error](~/tutorials/signalr/_static/7.x/f12-console.png)
+> :::image type="content" source="~/tutorials/signalr/_static/7.x/f12-console.png" alt-text="signalr.js not found error.":::
 > If an `ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY` error has occurred in Chrome, run the following commands to update the development certificate:
 >
 > ```dotnetcli
@@ -226,8 +229,11 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 :::moniker-end
 
+[!INCLUDE[](~/tutorials/signalr/includes/signalr8-9.md)]
+
 [!INCLUDE[](~/tutorials/signalr/includes/signalr7.md)]
 
 [!INCLUDE[](~/tutorials/signalr/includes/signalr6.md)]
 
 [!INCLUDE[](~/tutorials/signalr/includes/signalr3-5.md)]
+

@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation
+ai-usage: ai-assisted
 author: guardrex
 description: Learn about the WebAssembly build tools and how to compile a Blazor WebAssembly app ahead of deployment with ahead-of-time (AOT) compilation.
 monikerRange: '>= aspnetcore-6.0'
@@ -45,6 +46,9 @@ The following list shows which workload to install for each .NET SDK, depending 
   * Targeting .NET 9 requires `wasm-tools`.
   * Targeting .NET 8 requires `wasm-tools-net8`.
 * Using the .NET 8 SDK: Targeting .NET 8 requires `wasm-tools`.
+
+The Emscripten compiler toolchain depends on [Python](https://www.python.org/), which is bundled by default with the .NET WebAssembly build tools workload on Windows and macOS.
+Python isn't bundled for Linux users, resulting in "unable to find python in $PATH" errors if Python isn't available. Linux users should install Python through their package manager or [download Python for Linux/Unix](https://www.python.org/downloads/source/) and manually install it on their system so that it is available in `$PATH`.
 
 ## Ahead-of-time (AOT) compilation
 

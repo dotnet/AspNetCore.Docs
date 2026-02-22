@@ -124,7 +124,7 @@ builder.Services
     });
 ```
 
-Dependency injection (DI) can be combined with `AddCallCredentials`. An overload passes `IServiceProvider` to the delegate, which can be used to get a service [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+Dependency injection (DI) can be combined with `AddCallCredentials`. An overload passes `IServiceProvider` to the delegate, which can be used to get a service [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 
 Consider an app that has:
 
@@ -393,7 +393,7 @@ services
     });
 ```
 
-Dependency injection (DI) can be combined with `AddCallCredentials`. An overload passes `IServiceProvider` to the delegate, which can be used to get a service [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+Dependency injection (DI) can be combined with `AddCallCredentials`. An overload passes `IServiceProvider` to the delegate, which can be used to get a service [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 
 Consider an app that has:
 

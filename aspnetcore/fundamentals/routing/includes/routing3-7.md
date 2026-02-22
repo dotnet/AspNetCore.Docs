@@ -2103,8 +2103,6 @@ The following example shows routing with [health checks](xref:host-and-deploy/he
 
 :::code language="csharp" source="~/fundamentals/routing/samples/3.x/RoutingSample/AuthorizationStartup.cs" id="snippet":::
 
-[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
-
 The preceding example demonstrates how:
 
 * The authorization middleware can be used with routing.

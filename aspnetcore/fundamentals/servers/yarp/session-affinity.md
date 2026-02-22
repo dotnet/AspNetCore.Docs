@@ -5,7 +5,7 @@ description: YARP Session Affinity
 author: wadepickett
 ms.author: wpickett
 ms.date: 2/6/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,7 @@ Session affinity is a mechanism to bind (affinitize) a causally related request 
 Session affinity services are registered in the DI container automatically by `AddReverseProxy()`. The middleware `UseSessionAffinity()` is included by default in the parameterless MapReverseProxy method. If you are customizing the proxy pipeline, place the first middleware **before** adding `UseLoadBalancing()`.
 
 Example:
+
 ```csharp
 app.MapReverseProxy(proxyPipeline =>
 {

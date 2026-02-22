@@ -20,8 +20,7 @@ public static class ProjectBoardApis
     public static void MapProjectBoardApis(this IEndpointRouteBuilder app)
     {
         var boardGroup = app.MapGroup("/api/projectboards")
-            .WithTags("Project Boards")
-            .WithOpenApi();
+            .WithTags("Project Boards");
 
         // Project Board endpoints
         boardGroup.MapGet("/", GetAllProjectBoards);

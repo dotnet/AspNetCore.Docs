@@ -1,11 +1,12 @@
 ---
 title: Policy-based authorization in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to create and use authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 1/5/2023
+ms.date: 02/17/2026
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
@@ -28,7 +29,7 @@ The primary service that determines if authorization is successful is <xref:Micr
 
 The preceding code highlights the two methods of the [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker service with no methods, and the mechanism for tracking whether authorization is successful.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker interface with no methods, and the mechanism for tracking whether authorization is successful.
 
 Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met:
 <!--The following code is a copy/paste from 

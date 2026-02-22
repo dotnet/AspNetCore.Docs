@@ -145,7 +145,7 @@ When `CreateDefaultBuilder` isn't called, add the user secrets configuration sou
 
 ### Read the secret via the Configuration API
 
-If the user secrets configuration source is registered, the .NET Configuration API can read the secrets. [Constructor injection](/dotnet/core/extensions/dependency-injection#constructor-injection-behavior) can be used to gain access to the .NET Configuration API. Consider the following examples of reading the `Movies:ServiceApiKey` key:
+If the user secrets configuration source is registered, the .NET Configuration API can read the secrets. [Constructor injection](/dotnet/core/extensions/dependency-injection/overview#constructor-injection-behavior) can be used to gain access to the .NET Configuration API. Consider the following examples of reading the `Movies:ServiceApiKey` key:
 
 **Startup class:**
 
@@ -163,7 +163,7 @@ Mapping an entire object literal to a POCO (a simple .NET class with properties)
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](xref:fundamentals/configuration/index#boa) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
+To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](xref:fundamentals/configuration/index#bind-an-array) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
 
 [!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
