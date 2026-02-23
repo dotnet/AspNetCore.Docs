@@ -1799,6 +1799,76 @@ protected override async Task OnInitializedAsync()
 
 In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.NavigationManager>, and `AuthenticationStateProvider` is an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service instance ([`AuthenticationStateProvider` documentation](xref:blazor/security/authentication-state)).
 
+## Configure the hub URL endpoint for a loopback connection
+
+*This section only applies to server-side Blazor apps.*
+
+If HTTP requests in a server-side Blazor app are failing to connect to itself when using <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A?displayProperty=nameWithType>, you might have a load balancer or proxy that isn't expecting requests from the backend server. In this scenario, you can try to change the hub URL that the client is using to connect directly to the backend server.
+
+The following example:
+
+* Configures the hub URL using <xref:System.UriBuilder> and passes it to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithUrl%2A>.
+* Sets the URI based on the server's address (<xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>) and machine name (<xref:System.Environment.MachineName%2A>).
+
+```razor
+@using System.Net
+@using System.Net.Sockets
+@using Microsoft.AspNetCore.Hosting.Server
+@using Microsoft.AspNetCore.Hosting.Server.Features
+@using Microsoft.AspNetCore.SignalR.Client
+@inject IHostEnvironment Environment
+@inject IServer Server
+
+...
+
+@code {
+    private HubConnection? hubConnection;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var serverAddress = Server.Features
+           .Get<IServerAddressesFeature>()?
+           .Addresses
+           .FirstOrDefault(a => a.StartsWith("http://") || a.StartsWith("https://"));
+
+        if (serverAddress is null)
+        {
+            throw new InvalidOperationException("No server address available.");
+        }
+
+        var uri = new UriBuilder(serverAddress + "/chathub");
+
+        // If Kestrel is bound to a wildcard, substitute a real IP
+        if (uri.Host is "0.0.0.0" or "[::]" or "+" or "*")
+        {
+            var addresses = await Dns.GetHostAddressesAsync(
+                System.Environment.MachineName);
+            var ip = addresses.FirstOrDefault(a =>
+                a.AddressFamily == AddressFamily.InterNetwork
+                && !IPAddress.IsLoopback(a));
+
+            if (ip is null)
+            {
+                throw new InvalidOperationException("No suitable IP address.");
+            }
+
+            uri.Host = ip.ToString();
+        }
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(uri.Uri)
+            .Build();
+
+        hubConnection.On<ChatMessage>("ReceiveMessage", (message) =>
+        {
+            ...
+        });
+
+        await hubConnection.StartAsync();
+    }
+}
+```
+
 ## Additional server-side resources
 
 * [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
