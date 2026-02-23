@@ -1,11 +1,12 @@
 ---
 title: ASP.NET Core web API documentation with Swagger / OpenAPI
+ai-usage: ai-assisted
 author: RicoSuter
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a web API app.
 ms.author: wpickett
 ms.custom: mvc
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
-ms.date: 4/25/2024
+ms.date: 02/23/2026
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API documentation with Swagger / OpenAPI
@@ -13,6 +14,9 @@ uid: tutorials/web-api-help-pages-using-swagger
 :::moniker range=">= aspnetcore-8.0"
 
 By [Rico Suter](https://blog.rsuter.com/)
+
+> [!NOTE]
+> In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support. Swashbuckle is no longer included by default, but it remains available as a community package you can add manually to ASP.NET Core projects targeting .NET 9 or later. To understand the built-in OpenAPI features, see <xref:fundamentals/openapi/overview>. For the complete built-in ASP.NET Core OpenAPI documentation, see <xref:fundamentals/openapi/aspnetcore-openapi>.
 
 [Swagger](https://swagger.io/) ([OpenAPI](https://www.openapis.org/)) is a language-agnostic specification for describing REST APIs. It allows both computers and humans to understand the capabilities of a REST API without direct access to the source code. Its main goals are to:
 
@@ -147,12 +151,14 @@ In the preceding code, the `/weatherforecast` endpoint doesn't need authorizatio
 The following Curl passes a JWT token to test the Swagger UI endpoint:
 
 ```bash
-curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/swagger/v1/swagger.json
+curl -i -H "Authorization: Bearer {TOKEN}" https://localhost:{PORT}/swagger/v1/swagger.json
 ```
+
+where the `{TOKEN}` placeholder is the JWT bearer token and the `{PORT}` placeholder is the port number.
 
 For more information on testing with JWT tokens, see <xref:security/authentication/jwt>.
 
-## Generate an XML documentation file at compile time.
+## Generate an XML documentation file at compile time
 
 See [GenerateDocumentationFile](/dotnet/core/project-sdk/msbuild-props#generatedocumentationfile) for more information.
 
