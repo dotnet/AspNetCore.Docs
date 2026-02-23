@@ -15,15 +15,14 @@ uid: tutorials/web-api-help-pages-using-swagger
 
 By [Rico Suter](https://blog.rsuter.com/)
 
-> [!NOTE]
-> This article covers using **Swagger** tooling — provided by the [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RicoSuter/NSwag) packages — to generate OpenAPI documentation and interactive help pages for ASP.NET Core web APIs.
->
-> In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support that replaces Swashbuckle as the default. Swashbuckle is no longer included in project templates, but it remains available as a community package you can add manually.
->
-> * To understand the built‑in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
-> * To add Swagger UI for interactive exploration or local ad‑hoc testing alongside the built-in OpenAPI support, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
->
-> The following instructions apply to projects using Swashbuckle or NSwag with ASP.NET Core 8.0 and earlier.
+This article covers using **Swagger** tooling — provided by the [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RicoSuter/NSwag) packages — to generate OpenAPI documentation and interactive help pages for ASP.NET Core web APIs.
+
+In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support that replaces Swashbuckle as the default. Swashbuckle is no longer included in project templates, but it remains available as a community package you can add manually.
+
+* To understand the built‑in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
+* To add Swagger UI for interactive exploration or local ad‑hoc testing alongside the built-in OpenAPI support, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+
+The following instructions apply to projects using Swashbuckle or NSwag with ASP.NET Core 8.0 and earlier.
 
 [Swagger](https://swagger.io/) ([OpenAPI](https://www.openapis.org/)) is a language-agnostic specification for describing REST APIs. It allows both computers and humans to understand the capabilities of a REST API without direct access to the source code. Its main goals are to:
 
