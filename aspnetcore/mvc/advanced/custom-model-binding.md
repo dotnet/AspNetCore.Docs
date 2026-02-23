@@ -68,7 +68,7 @@ As long as the binder can bind request data to appropriately named properties or
 
 ## Custom model binder sample
 
-In this section we'll implement a custom model binder that:
+In this section, we'll implement a custom model binder that:
 
 * Converts incoming request data into strongly typed key arguments.
 * Uses Entity Framework Core to fetch the associated entity.
