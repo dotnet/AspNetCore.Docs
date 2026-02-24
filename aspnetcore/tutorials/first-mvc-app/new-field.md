@@ -1,5 +1,6 @@
 ---
 title: Part 8, add a new field to an ASP.NET Core MVC app
+ai-usage: ai-assisted
 author: wadepickett
 description: Part 8 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
