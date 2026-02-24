@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 8 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 01/22/2026
+ms.date: 02/24/2026
 uid: tutorials/first-mvc-app/new-field
 ---
 # Part 8, add a new field to an ASP.NET Core MVC app
@@ -66,7 +66,9 @@ You can copy/paste the previous "form group" and let intelliSense help you updat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-:::image type="content" source="~/tutorials/first-mvc-app/new-field/media/vscode-update-form.png" alt-text="Updating the existed form by inserting the new field Rating.":::
+You can copy/paste the previous "form group" and let IntelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro). The [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) extension provides IntelliSense support in Visual Studio Code.
+
+:::image type="content" source="~/tutorials/first-mvc-app/new-field/media/vscode-update-form.png" alt-text="Updating the existing form by inserting the new field Rating.":::
 
 ---
 

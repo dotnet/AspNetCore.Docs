@@ -53,7 +53,9 @@ You can copy/paste the previous "form group" and let intelliSense help you updat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-![Updating the existed form by inserting the new field "Rating".](~/tutorials/first-mvc-app/new-field/_static/9/VSCode-UpdatingForm9.png)
+You can copy/paste the previous "form group" and let IntelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro). The [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) extension provides IntelliSense support in Visual Studio Code.
+
+![Updating the existing form by inserting the new field "Rating".](~/tutorials/first-mvc-app/new-field/_static/9/VSCode-UpdatingForm9.png)
 
 ---
 
