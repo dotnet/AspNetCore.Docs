@@ -110,7 +110,7 @@ namespace ContosoUniversity.Controllers
 
 // <snippet_EagerLoading>
             var department = await _context.Departments
-                .Include(i => i.Administrator)
+                .Include(d => d.Administrator)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.DepartmentID == id);
 // </snippet_EagerLoading>
@@ -135,7 +135,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var departmentToUpdate = await _context.Departments.Include(i => i.Administrator).FirstOrDefaultAsync(m => m.DepartmentID == id);
+            var departmentToUpdate = await _context.Departments.Include(d => d.Administrator).FirstOrDefaultAsync(m => m.DepartmentID == id);
 
             if (departmentToUpdate == null)
             {
