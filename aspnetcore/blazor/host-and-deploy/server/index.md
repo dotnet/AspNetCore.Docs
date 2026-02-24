@@ -151,7 +151,7 @@ For a deeper exploration of scaling server-side Blazor apps on the Azure Contain
 
 1. To create the container app managed identity and grant it access to blob storage and a key vault, complete the following steps:
 
-   1. In the Azure Portal, navigate to the overview page of the container app.
+   1. In the Azure portal, navigate to the overview page of the container app.
    1. Select **Service Connector** from the left navigation.
    1. Select **+ Create** from the top navigation.
    1. In the **Create connection** flyout menu, enter the following values:

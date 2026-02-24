@@ -214,7 +214,7 @@ In the preceding example:
 See [Microsoft.NET.Sdk.Publish](https://github.com/dotnet/sdk/tree/main/src/WebSdk#microsoftnetsdkpublish).
 
 <!-- As of Nov 2024 
-On the Azure Portal, settings/configuration, enable SCM and FTB basic auth publishing.
+On the Azure portal, settings/configuration, enable SCM and FTB basic auth publishing.
 Download the publish profile and get the username and password.
 
 Using the default publish profile, the following command publishes to an MSDeploy endpoint:

@@ -328,7 +328,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 The ASP.NET Core Module stdout log often records useful error messages not found in the Application Event Log. To enable and view stdout logs:
 
-1. In the Azure Portal, navigate to the web app.
+1. In the Azure portal, navigate to the web app.
 1. In the **App Service** blade, enter **kudu** in the search box.
 1. Select **Advanced Tools** > **Go**.
 1. Select  **Debug console > CMD**.

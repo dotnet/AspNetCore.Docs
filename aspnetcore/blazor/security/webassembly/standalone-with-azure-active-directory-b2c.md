@@ -90,7 +90,7 @@ The output location specified with the `-o|--output` option creates a project fo
 
 After creating the app, you should be able to:
 
-* Log into the app using an Microsoft Entra ID user account.
+* Log into the app using a Microsoft Entra ID user account.
 * Request access tokens for Microsoft APIs. For more information, see:
   * [Access token scopes](#access-token-scopes)
   * [Quickstart: Configure an application to expose web APIs](/entra/identity-platform/quickstart-configure-app-expose-web-apis).
