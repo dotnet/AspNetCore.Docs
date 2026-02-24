@@ -42,7 +42,7 @@ To obtain the SHA hash:
 1. Locate and select the short SHA hash (for example, `5b54862`).
 1. Either:
    * Take the full SHA from the URL in the browser's address bar.
-   * Select the copy button on the right side of page ![Copy button](~/blazor/host-and-deploy/index/copy-button.svg) to put the SHA on your clipboard.
+   * Select the copy button on the right side of page to put the SHA on your clipboard.
 
 For more information, see [Using pre-written building blocks in your workflow: Using SHAs (GitHub documentation)](https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/using-pre-written-building-blocks-in-your-workflow#using-shas).
 
