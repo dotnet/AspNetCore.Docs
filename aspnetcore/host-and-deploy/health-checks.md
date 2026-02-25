@@ -1,11 +1,12 @@
 ---
 title: Health checks in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 1/11/2024
+ms.date: 02/25/2026
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -330,7 +331,7 @@ The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability t
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> allows:
-* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
+* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
 * Mapping specific routes or endpoints for health checks.
 * Customization of the URL or path where the health check endpoint is accessible.
 * Mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
