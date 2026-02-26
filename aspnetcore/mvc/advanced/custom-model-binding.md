@@ -85,7 +85,7 @@ The following `AuthorEntityBinder` class binds an `Author` parameter by using th
 [!code-csharp[](custom-model-binding/samples/3.x/CustomModelBindingSample/Binders/AuthorEntityBinder.cs?name=snippet_Class)]
 
 > [!NOTE]
-> The preceding `AuthorEntityBinder` class is intended to illustrate a custom model binder. The class isn't intended to illustrate best practices for a lookup scenario. For lookup, accept an `author` ID parameter directly and query the database in an action method. This approach separates model binding failures from `NotFound` cases.
+> The preceding `AuthorEntityBinder` class is intended to illustrate a custom model binder. The class isn't intended to illustrate best practices for a lookup scenario. For lookup, bind the `author` parameter directly and query the database in an action method. This approach separates model binding failures from `NotFound` cases.
 
 The following code shows how to use the `AuthorEntityBinder` in an action method:
 
@@ -206,7 +206,7 @@ The following `AuthorEntityBinder` class binds an `Author` parameter by fetching
 [!code-csharp[](custom-model-binding/samples/2.x/CustomModelBindingSample/Binders/AuthorEntityBinder.cs?name=demo)]
 
 > [!NOTE]
-> The preceding `AuthorEntityBinder` class is intended to illustrate a custom model binder. The class isn't intended to illustrate best practices for a lookup scenario. For lookup, bind the `author` and query the database in an action method. This approach separates model binding failures from `NotFound` cases.
+> The preceding `AuthorEntityBinder` class is intended to illustrate a custom model binder. The class isn't intended to illustrate best practices for a lookup scenario. For lookup, bind the `author` parameter directly and query the database in an action method. This approach separates model binding failures from `NotFound` cases.
 
 The following code shows how to use the `AuthorEntityBinder` in an action method:
 
