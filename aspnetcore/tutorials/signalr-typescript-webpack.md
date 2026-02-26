@@ -7,7 +7,7 @@ description: This tutorial provides a walkthrough of bundling and building an AS
 monikerRange: ">= aspnetcore-2.1"
 ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 01/27/2026
+ms.date: 02/24/2026
 uid: tutorials/signalr-typescript-webpack
 ---
 # Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack
@@ -205,7 +205,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
       The `HubConnectionBuilder` class creates a new builder for configuring the server connection. The `withUrl` function configures the hub URL.
 
-      SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, messages with the name `messageReceived` can run the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. Any number of message names can be listened to. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` attribute. It's added to the main `div` element displaying the messages.
+      SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, messages with the name `messageReceived` can run the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. Any number of message names can be listened to. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and message content appended as child elements using `textContent`. It's added to the main `div` element displaying the messages.
 
       Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
 
