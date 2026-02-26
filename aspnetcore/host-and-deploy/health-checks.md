@@ -57,7 +57,7 @@ The following example demonstrates the layout of a health check:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/HealthChecks/SampleHealthCheck.cs" id="snippet_Class":::
 
-Place the health check's logic in the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> method. The preceding example sets a dummy variable, `isHealthy`, to `true`. If the value of `isHealthy` is set to `false`, the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus?displayProperty=nameWithType> status is returned.
+The health check's logic is placed in the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> method. The preceding example sets a dummy variable, `isHealthy`, to `true`. If the value of `isHealthy` is set to `false`, the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus?displayProperty=nameWithType> status is returned.
 
 If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> throws an exception during the check, a new <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry> is returned with its <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Status?displayProperty=nameWithType> set to the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus>. This status is defined by <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> (see the [Register health check services](#register-health-check-services) section) and includes the [inner exception](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Exception) that caused the check failure. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Description> is set to the exception's message.
 
@@ -297,7 +297,7 @@ The following example registers a health check publisher as a singleton and conf
 
 ### Individual Healthchecks
 
-You can set [`Delay` and `Period`](https://github.com/dotnet/aspnetcore/blob/main/src/HealthChecks/Abstractions/src/HealthCheckRegistration.cs#L161-L185) on each <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration> individually. Set these values when you want to run some health check at a different rate than the period set in <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions>.
+You can set [`Delay` and `Period`](https://github.com/dotnet/aspnetcore/blob/main/src/HealthChecks/Abstractions/src/HealthCheckRegistration.cs#L161-L185) on each <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration> individually. Set these values when you want to run some health checks at a different rate than the period set in <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions>.
 
 The following code sets the `Delay` and `Period` for the `SampleHealthCheck1`:
 
