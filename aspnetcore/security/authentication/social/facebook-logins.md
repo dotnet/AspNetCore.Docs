@@ -1,11 +1,12 @@
 ---
 title: Facebook external login setup in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
+monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
 ms.custom: mvc, sfi-image-nochange
-ms.date: 12/08/2021
-monikerRange: '>= aspnetcore-3.0'
+ms.date: 02/27/2026
 uid: security/authentication/facebook-logins
 ---
 
@@ -51,6 +52,8 @@ This tutorial with code examples shows how to enable your users to sign in with 
 > The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Facebook.FacebookOptions> class.
 
 * Select **Save Changes**.
+
+* In the left navigation, select **App Review** > **Permissions and Features**. Confirm that the **email** permission status is **Ready for testing** or **Live** for your app. The ASP.NET Core Facebook authentication middleware requests the `email` scope by default. If the **email** permission isn't enabled on your Facebook app, authentication may fail or the user's email address will be missing after sign-in.
 
 * Select **Settings** > **Basic** link in the left navigation.
 
@@ -143,6 +146,7 @@ For more information on configuration options supported by Facebook authenticati
 
 * **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
+* If you receive an error during Facebook sign-in or the user's email address is missing after sign-in, verify that the **email** permission is enabled for your Facebook app. In the Facebook Developer portal, navigate to **App Review** > **Permissions and Features** and confirm the **email** permission status is **Ready for testing** or **Live**.
 
 ## Next steps
 
