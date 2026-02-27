@@ -120,7 +120,7 @@ For more information on configuration options supported by Facebook authenticati
 
 * **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
-* If you receive an error during Facebook sign-in or the user's email address is missing after sign-in, verify that the **email** permission is enabled for your Facebook app. In the Facebook Developer portal, navigate to **App Review** > **Permissions and Features** and confirm the **email** permission status is **Ready for testing** or **Live**.
+* If you receive an error during Facebook sign-in or the user's email address is missing after sign-in, verify that the **email** permission is enabled for your Facebook app. See the [Facebook Login Permissions](https://developers.facebook.com/docs/facebook-login/permissions) guide for details on enabling permissions in the Facebook Developer portal.
 
 ## Next steps
 
