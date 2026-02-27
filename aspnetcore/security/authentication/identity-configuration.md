@@ -1,5 +1,6 @@
 ---
 title: Configure ASP.NET Core Identity
+ai-usage: ai-assisted
 author: AdrienTorris
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
 ms.author: tdykstra
