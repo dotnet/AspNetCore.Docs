@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
 ms.author: wpickett
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 01/22/2026
+ms.date: 02/27/2026
 uid: security/authentication/azure-ad-b2c
 ---
 # Cloud authentication with Azure Active Directory B2C in ASP.NET Core
@@ -68,6 +68,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     * For **Domain**, use the domain of your Azure AD B2C tenant.
     * For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
     * For **Instance**, use the domain of your Azure AD B2C tenant.
+    * For **TenantId**, use the **Directory (tenant) ID** from your Azure AD B2C tenant. Find the tenant ID in the Azure portal by navigating to **Azure AD B2C** > **Properties**.
     * For **SignUpSignInPolicyId**, use the user flow policy defined in the Azure B2C tenant
 	* Use either the **ClientSecret** or the **ClientCertificates** configuration. ClientCertificates are recommended.
     * Leave all other values as they are.
