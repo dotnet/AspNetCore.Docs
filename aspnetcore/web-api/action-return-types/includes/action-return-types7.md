@@ -84,7 +84,7 @@ If the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute)
 
 ## ActionResult vs IActionResult
 
-The following section compares `ActionResult` to `IActionResult`
+The following section compares `ActionResult` to `IActionResult`.
 
 ### ActionResult\<T> type
 
@@ -275,7 +275,7 @@ If the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute)
 
 ## ActionResult vs IActionResult
 
-The following section compares `ActionResult` to `IActionResult`
+The following section compares `ActionResult` to `IActionResult`.
 
 ### ActionResult\<T> type
 
