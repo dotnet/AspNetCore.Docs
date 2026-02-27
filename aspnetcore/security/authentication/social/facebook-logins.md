@@ -14,9 +14,6 @@ uid: security/authentication/facebook-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-<!-- per @rick-anderson and scott addie, don't update images. Remove images and point the customer to the FB set up page. FB needs to maintain  instructions to get key and secret.
--->
-
 This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](xref:security/authentication/social/index). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
 
 ## Create the app in Facebook
@@ -26,25 +23,16 @@ This tutorial with code examples shows how to enable your users to sign in with 
 * Navigate to the [Facebook Developers app](https://developers.facebook.com/apps/) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.  Once you have a Facebook account, follow the instructions to register as a Facebook Developer.
 
 * From the **My Apps** menu select **Create App**. The **Create an app** form appears.
-   ![Facebook for developers portal open in Microsoft Edge](index/_static/FBMyApps.png)
 
 * Select an app type that best fits your project. For this project, select **Consumer**, and then **Next**. A new App ID is created.
 
 * Fill out the form and tap the **Create App** button.
 
-  ![Create a New App ID form](index/_static/FBNewAppId.png)
-
 * On the **Add Products to Your App** page, select **Set Up** on the **Facebook Login** card.
 
-  ![Product Setup page](index/_static/FBProductSetup.png)
-
-* The **Quickstart** wizard launches with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **FaceBook Login** **Settings** link in the menu on the lower left:
-
-  ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
+* The **Quickstart** wizard launches with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **FaceBook Login** **Settings** link in the menu on the lower left.
 
 * The **Client OAuth Settings** page is presented:
-
-  ![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
 
 * Enter your development URI with */signin-facebook* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-facebook`). The Facebook authentication configured later in this tutorial will automatically handle requests at */signin-facebook* route to implement the OAuth flow.
 
