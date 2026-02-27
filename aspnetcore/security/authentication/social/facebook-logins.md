@@ -83,7 +83,7 @@ Add the Authentication service to the `Program`:
 * Enter your Facebook credentials.
 * You are redirected back to your site where you can set your email.
 
-You are now logged in using your Facebook credentials:
+You are now logged in using your Facebook credentials.
 
 <a name="react"></a>
 
