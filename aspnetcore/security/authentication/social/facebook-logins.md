@@ -5,7 +5,7 @@ author: wadepickett
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.custom: mvc, sfi-image-nochange
+ms.custom: mvc
 ms.date: 02/27/2026
 uid: security/authentication/facebook-logins
 ---
@@ -14,40 +14,26 @@ uid: security/authentication/facebook-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](xref:security/authentication/social/index). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
+This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create the app in Facebook
 
 * Add the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) NuGet package to the project.
 
-* Navigate to the [Facebook Developers app](https://developers.facebook.com/apps/) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.  Once you have a Facebook account, follow the instructions to register as a Facebook Developer.
+* Follow the [Facebook App Registration](https://developers.facebook.com/docs/apps/register) instructions to create a Facebook app and obtain your **App ID** and **App Secret**.
 
-* From the **My Apps** menu select **Create App**. The **Create an app** form appears.
+* Follow the [Facebook Login for Web](https://developers.facebook.com/docs/facebook-login/web) instructions to configure Facebook Login for your app. Add your development URI with */signin-facebook* appended (for example: `https://localhost:44320/signin-facebook`) to the **Valid OAuth Redirect URIs**.
 
-* Select an app type that best fits your project. For this project, select **Consumer**, and then **Next**. A new App ID is created.
-
-* Fill out the form and tap the **Create App** button.
-
-* On the **Add Products to Your App** page, select **Set Up** on the **Facebook Login** card.
-
-* The **Quickstart** wizard launches with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **FaceBook Login** **Settings** link in the menu on the lower left.
-
-* The **Client OAuth Settings** page is presented:
-
-* Enter your development URI with */signin-facebook* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-facebook`). The Facebook authentication configured later in this tutorial will automatically handle requests at */signin-facebook* route to implement the OAuth flow.
+  The Facebook authentication configured later in this tutorial automatically handles requests at the */signin-facebook* route to implement the OAuth flow.
 
 > [!NOTE]
 > The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Facebook.FacebookOptions> class.
 
-* Select **Save Changes**.
+* Follow the [Facebook Login Permissions](https://developers.facebook.com/docs/facebook-login/permissions) guide to enable the **email** permission for your app. The ASP.NET Core Facebook authentication middleware requests the `email` scope by default. If the **email** permission isn't enabled on your Facebook app, authentication may fail or the user's email address will be missing after sign-in.
 
-* In the left navigation, select **App Review** > **Permissions and Features**. Confirm that the **email** permission status is **Ready for testing** or **Live** for your app. The ASP.NET Core Facebook authentication middleware requests the `email` scope by default. If the **email** permission isn't enabled on your Facebook app, authentication may fail or the user's email address will be missing after sign-in.
+* Make a note of your **App ID** and **App Secret**. You add both into your ASP.NET Core application in the next section.
 
-* Select **Settings** > **Basic** link in the left navigation.
-
-* Make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
-
-* When deploying the site you need to revisit the **Facebook Login** setup page, and register a new public URI.
+* When deploying the site, revisit the **Facebook Login** setup page and register a new public URI.
 
 ## Store the Facebook app ID and secret
 
