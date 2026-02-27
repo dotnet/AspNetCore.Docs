@@ -68,7 +68,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     * For **Domain**, use the domain of your Azure AD B2C tenant.
     * For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
     * For **Instance**, use the domain of your Azure AD B2C tenant.
-    * For **TenantId**, use the **Directory (tenant) ID** from your Azure AD B2C tenant. Find the tenant ID in the Azure portal by navigating to **Azure AD B2C** > **Properties**.
+    * For **TenantId**, use the **Tenant ID** from your Azure AD B2C tenant. In the Azure portal, search for and select **Microsoft Entra ID**. In the **Overview**, copy the **Tenant ID**.
     * For **SignUpSignInPolicyId**, use the user flow policy defined in the Azure B2C tenant
 	* Use either the **ClientSecret** or the **ClientCertificates** configuration. ClientCertificates are recommended.
     * Leave all other values as they are.
