@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/27/2026
+ms.date: 03/02/2026
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -15,9 +15,9 @@ By [Kirk Larkin](https://twitter.com/serpent5), [Steve Smith](https://ardalis.co
 
 ASP.NET Core supports the dependency injection (DI) software design pattern, which is a technique for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies.
 
-This article provides information on DI in ASP.NET Core. The primary documentation on using DI is contained in [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection/overview), which focuses on general DI concepts that apply to all types of apps, including apps other than web apps. For Blazor DI guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/dependency-injection>. For information specific to DI within MVC controllers, see <xref:mvc/controllers/dependency-injection>. For information on DI of options, see <xref:fundamentals/configuration/options#use-di-services-to-configure-options>. To see Razor Pages examples of the scenarios covered by this article, see the [7.0 verision of this article](?view=aspnetcore-7.0&preserve-view=true).
+This article provides information on DI in ASP.NET Core. The primary documentation on using DI is contained in [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection/overview), which focuses on general DI concepts that apply to all types of apps, including apps other than web apps. For Blazor DI guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/dependency-injection>. For information specific to DI within MVC controllers, see <xref:mvc/controllers/dependency-injection>. For information on the DI of options, see <xref:fundamentals/configuration/options#use-di-services-to-configure-options>. Code examples in this article are based on [Blazor](xref:blazor/index). To see Razor Pages examples, see the [7.0 verision of this article](?view=aspnetcore-7.0&preserve-view=true).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/dependency-injection) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Overview of dependency injection
 
@@ -48,7 +48,7 @@ A class can create an instance of the `MyDependency` class to call its `WriteMes
     private readonly MyDependency dependency = new MyDependency();
 
     private void WriteMessage() =>
-        dependency.WriteMessage("WriteMessage called");
+        dependency.WriteMessage("DependencyExample1.WriteMessage called");
 }
 ```
 
@@ -56,7 +56,9 @@ A class can create an instance of the `MyDependency` class to call its `WriteMes
 
 :::moniker range="< aspnetcore-8.0"
 
-A class can create an instance of the `MyDependency` class to call its `WriteMessage` method. In the following example, the `MyDependency` class is a dependency of an `IndexModel` page class:
+A class can create an instance of the `MyDependency` class to call its `WriteMessage` method. In the following example, the `MyDependency` class is a dependency of an `IndexModel` page class.
+
+`Pages/Index.cshtml.cs`:
 
 ```csharp
 public class IndexModel : PageModel
@@ -72,7 +74,7 @@ public class IndexModel : PageModel
 
 :::moniker-end
 
-The consuming class creates and directly depends on the `MyDependency` class. Code dependencies, such as in the previous example, are problematic and should be avoided for the following reasons:
+The consuming class creates and directly depends on the `MyDependency` class. Taking a direct dependency, such as in the previous example, is problematic and should be avoided for the following reasons:
 
 * To replace `MyDependency` with a different implementation, the consuming class must be modified.
 * If `MyDependency` has dependencies, they must also be configured by the consuming class. In a large project with multiple classes depending on `MyDependency`, the configuration code becomes scattered around the app.
@@ -109,7 +111,7 @@ public class MyDependency : IMyDependency
 }
 ```
 
-The sample app registers the `IMyDependency` service with the concrete type `MyDependency` where services are added to the service container. The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method registers the service with a scoped lifetime, which is the lifetime of a Blazor circuit (.NET 8 or later) or a single request in an MVC or Razor Pages app. [Service lifetimes](#service-lifetimes) are described later in this article.
+The app registers the `IMyDependency` service with the concrete type `MyDependency` where services are added to the service container. The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method registers the service with a scoped lifetime, which is the lifetime of a [Blazor circuit](xref:blazor/hosting-models#blazor-server) (.NET 8 or later) or a single request in an MVC or Razor Pages app. [Service lifetimes](#service-lifetimes) are described later in this article.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -141,7 +143,7 @@ The `IMyDependency` service is requested and used to call the `WriteMessage` met
 
 @code {
     private void WriteMessage() =>
-        Dependency.WriteMessage("WriteMessage called");
+        Dependency.WriteMessage("DependencyExample2.WriteMessage called");
 }
 ```
 
@@ -149,7 +151,9 @@ The `IMyDependency` service is requested and used to call the `WriteMessage` met
 
 :::moniker range="< aspnetcore-8.0"
 
-The `IMyDependency` service is requested and used to call the `WriteMessage` method, as the following page model class demonstrates:
+The `IMyDependency` service is requested and used to call the `WriteMessage` method, as the following page model class demonstrates.
+
+`Pages/Index.cshtml.cs`:
 
 ```csharp
 public class IndexModel(IMyDependency dependency) : PageModel
@@ -166,16 +170,18 @@ public class IndexModel(IMyDependency dependency) : PageModel
 By using the DI pattern, the class that consumes the dependency:
 
 * Doesn't use the concrete type `MyDependency`, only the `IMyDependency` interface it implements. That makes it easy to change the implementation without modifying the consumer.
-* Doesn't directly create an instance of `MyDependency`. The dependency is created by the service container.
+* Doesn't directly create an instance of `MyDependency` or dispose of it. The dependency is created and disposed by the service container.
 
-The `IMyDependency` interface implementation can be improved by using the built-in logging API, which is injected as a dependency:
+The `IMyDependency` interface implementation can be improved by using the built-in [logging API](xref:fundamentals/logging/index), which is injected as a dependency in the following example.
+
+`Services/MyDependency.cs`:
 
 ```csharp
 public class MyDependency(ILogger<MyDependency> logger) : IMyDependency
 {
     public void WriteMessage(string message)
     {
-        logger.LogInformation( $"MyDependency.WriteMessage: {message}");
+        logger.LogInformation($"MyDependency.WriteMessage: {message}");
     }
 }
 ```
@@ -191,9 +197,7 @@ In DI terminology, a service:
 * Is typically an object that provides a service to other objects, such as the preceding `IMyDependency` service.
 * Isn't related to a web service, although the service might use a web service.
 
-The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations shown in the preceding examples were written to demonstrate general DI principles, not to implement logging. Most apps shouldn't need to create loggers, as the preceding examples show.
-
-The following code demonstrates using the [framework's built-in logging](xref:fundamentals/logging/index), which doesn't require the registration of a custom service.
+The `IMyDependency` implementations shown in the preceding examples were written to demonstrate general DI principles, not to implement logging. Most apps shouldn't need to create loggers, as the preceding examples show. The following code demonstrates directly using the [framework's built-in logging API](xref:fundamentals/logging/index), which doesn't require the registration of a custom service (`IMyDependency`).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -201,12 +205,13 @@ The following code demonstrates using the [framework's built-in logging](xref:fu
 
 ```razor
 @page "/logging-example"
-@inject ILogger<Dependency> Logger
+@inject ILogger<LoggingExample> Logger
 
 <button @onclick="WriteMessage">Write message</button>
 
 @code {
-    private void WriteMessage() => Logger.LogInformation("WriteMessage called");
+    private void WriteMessage() => 
+        Logger.LogInformation("LoggingExample.WriteMessage called");
 }
 ```
 
@@ -214,7 +219,7 @@ The following code demonstrates using the [framework's built-in logging](xref:fu
 
 :::moniker range="< aspnetcore-8.0"
 
-`IndexModel.cshtml.cs`:
+`Pages/IndexModel.cshtml.cs`:
 
 ```csharp
 public class IndexModel(ILogger<IndexModel> logger) : PageModel
@@ -240,7 +245,7 @@ Only the following services can be injected into the `Startup` constructor when 
 * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
 * <xref:Microsoft.Extensions.Configuration.IConfiguration>
 
-Any service registered with the DI container can be injected into the `Startup.Configure` method:
+Any service registered with the service container can be injected into the `Startup.Configure` method. In the following example, an <xref:Microsoft.Extensions.Logging.ILogger%601> is injected:
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
@@ -253,9 +258,79 @@ For more information, see <xref:fundamentals/startup> and [Access configuration 
 
 :::moniker-end
 
+## Service registration methods
+
+For general guidance on service registrations, see [Service registration](/dotnet/core/extensions/dependency-injection/service-registration).
+
+It's common to use multiple implementations when [mocking types for testing](xref:test/integration-tests#inject-mock-services).
+
+Registering a service with only an implementation type is equivalent to registering the service with the same implementation and service type:
+
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+builder.Services.AddSingleton<MyDependency>();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+services.AddSingleton<MyDependency>();
+```
+
+:::moniker-end
+
+Any of these service registration methods can be used to register multiple service instances of the same service type. In the following example, <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton%2A> is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`.
+
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+builder.Services.AddSingleton<IMyDependency, MyDependency>();
+builder.Services.AddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+       IEnumerable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is DifferentDependency);
+
+        var dependencyArray = myDependencies.ToArray();
+        Trace.Assert(dependencyArray[0] is MyDependency);
+        Trace.Assert(dependencyArray[1] is DifferentDependency);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+services.AddSingleton<IMyDependency, MyDependency>();
+services.AddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+       IEnumerable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is DifferentDependency);
+
+        var dependencyArray = myDependencies.ToArray();
+        Trace.Assert(dependencyArray[0] is MyDependency);
+        Trace.Assert(dependencyArray[1] is DifferentDependency);
+    }
+}
+```
+
+:::moniker-end
+
 ## Register groups of services with extension methods
 
-The ASP.NET Core framework uses a convention for registering a group of related services. The convention is to use a single `Add{GROUP NAME}` extension method to register all of the services required by a framework feature, where the `{GROUP NAME}` placeholder is a descriptive group name. For example, the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> extension method registers services required for server-side rendering of Razor components (.NET 8 or later).
+The ASP.NET Core framework uses a convention for registering a group of related services. The convention is to use a single `Add{GROUP NAME}` extension method to register all of the services required by a framework feature, where the `{GROUP NAME}` placeholder is a descriptive group name. For example, the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> extension method registers services required for server-side rendering of Razor components.
 
 Consider the following example that registers services and configures options:
 
@@ -348,42 +423,19 @@ We recommend that apps follow the naming convention of creating extension method
 
 ## Service lifetimes
 
-For general guidance on service lifetimes, see [Service lifetimes](/dotnet/core/extensions/dependency-injection/service-lifetimes).
+For general guidance on service lifetimes, see [Service lifetimes](/dotnet/core/extensions/dependency-injection/service-lifetimes). For additional service lifetime guidance that applies to Blazor apps, see <xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope>.
 
 To use scoped services in middleware, use one of the following approaches:
 
 * Inject the service into the middleware's `Invoke` or `InvokeAsync` method. Using [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) throws a runtime exception because it forces the scoped service to behave like a singleton. The sample in the [Lifetime and registration options](#lifetime-and-registration-options) section demonstrates the `InvokeAsync` approach.
 * Use [factory-based middleware](xref:fundamentals/middleware/extensibility). Middleware registered using this approach is activated per client request (connection), which allows scoped services to be injected into the middleware's constructor.
 
-For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+For more information, see the following resources:
 
-## Service registration methods
+* <xref:fundamentals/middleware/write#per-request-middleware-dependencies>
+* For more information on using keyed services with Razor components, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
-For general guidance on service registrations, see [Service registration](/dotnet/core/extensions/dependency-injection/service-registration).
-
-It's common to use multiple implementations when [mocking types for testing](xref:test/integration-tests#inject-mock-services).
-
-Registering a service with only an implementation type is equivalent to registering that service with the same implementation and service type. This is why multiple implementations of a service can't be registered using the methods that don't take an explicit service type. These methods can register multiple *instances* of a service, but they all have the same *implementation* type.
-
-Any of these service registration methods can be used to register multiple service instances of the same service type. In the following example, <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton%2A> is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`. Services appear in the order they were registered when resolved via `IEnumerable<{SERVICE}>`, where the `{SERVICE}` placeholder is the service.
-
-```csharp
-services.AddSingleton<IMyDependency, MyDependency>();
-services.AddSingleton<IMyDependency, DifferentDependency>();
-
-public class MyService
-{
-    public MyService(IMyDependency myDependency, 
-       IEnumerable<IMyDependency> myDependencies)
-    {
-        Trace.Assert(myDependency is DifferentDependency);
-
-        var dependencyArray = myDependencies.ToArray();
-        Trace.Assert(dependencyArray[0] is MyDependency);
-        Trace.Assert(dependencyArray[1] is DifferentDependency);
-    }
-}
-```
+:::moniker range=">= aspnetcore-8.0"
 
 ## Keyed services
 
@@ -395,19 +447,124 @@ public class MyService
 
 Access a registered service by specifying the key with the [`[FromKeyedServices]` attribute](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute). The following code shows how to use keyed services:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs" highlight="6,7,12-14,39,47" id="snippet_1":::
+Keyed service and Minimal API endpoints in the `Program` file:
 
-Middleware supports keyed services in both the constructor and the `Invoke`/`InvokeAsync` method:
+```csharp
+builder.Services.AddKeyedSingleton<ICache, BigCache>("big");
+builder.Services.AddKeyedSingleton<ICache, SmallCache>("small");
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs"  id="snippet_2":::
+...
+
+app.MapGet("/big", ([FromKeyedServices("big")] ICache bigCache) => 
+    bigCache.Get("date"));
+app.MapGet("/small", ([FromKeyedServices("small")] ICache smallCache) =>
+    smallCache.Get("date"));
+```
+
+`Interfaces/ICache.cs`:
+
+```csharp
+public interface ICache
+{
+    object Get(string key);
+}
+```
+
+`Services/BigCache.cs`:
+
+```csharp
+public class BigCache : ICache
+{
+    public object Get(string key) => $"Resolving {key} from big cache.";
+}
+```
+
+`Services/SmallCache.cs`:
+
+```csharp
+public class SmallCache : ICache
+{
+    public object Get(string key) => $"Resolving {key} from small cache.";
+}
+```
+
+`Pages/KeyedServicesExample.razor`:
+
+```razor
+@page "/keyed-services-example"
+@inject [FromKeyedServices("big")] ICache Cache
+
+@Cache.Get("data-razor-component")
+```
+
+For more information on using keyed services with Razor components, see <xref:blazor/fundamentals/dependency-injection#inject-keyed-services-into-components>.
+
+`Hubs/MyHub1.cs` (primary constructor injection):
+
+```csharp
+public class MyHub1([FromKeyedServices("small")] ICache cache) : Hub
+{
+    public void Method()
+    {
+        Console.WriteLine(cache.Get("hub1-signalr"));
+    }
+}
+```
+
+`Hubs/MyHub2.cs` (method injection):
+
+```csharp
+public class MyHub2 : Hub
+{
+    public void Method([FromKeyedServices("small")] ICache cache)
+    {
+        Console.WriteLine(cache.Get("hub2-signalr"));
+    }
+}
+```
+
+Middleware supports keyed services in both the constructor and the `Invoke`/`InvokeAsync` method.
+
+```csharp
+builder.Services.AddKeyedSingleton<MySingletonClass>("test");
+builder.Services.AddKeyedScoped<MyScopedClass>("test2");
+
+...
+
+app.UseMiddleware<MyMiddleware>();
+```
+
+```csharp
+internal class MyMiddleware
+{
+    private readonly RequestDelegate _next;
+
+    public MyMiddleware(RequestDelegate next,
+        [FromKeyedServices("test")] MySingletonClass service)
+    {
+        _next = next;
+    }
+
+    public Task Invoke(HttpContext context,
+        [FromKeyedServices("test2")]
+            MyScopedClass scopedService) => _next(context);
+}
+```
 
 For more information on creating middleware, see <xref:fundamentals/middleware/write>.
 
+:::moniker-end
+
 ## Constructor injection behavior
 
-For more information on constructor injection behavior, see [Constructor injection behavior](/dotnet/core/extensions/dependency-injection/overview#constructor-injection-behavior).
+For more information on constructor injection behavior, see the following resources:
+
+* [Constructor injection behavior](/dotnet/core/extensions/dependency-injection/overview#constructor-injection-behavior)
+* <xref:blazor/fundamentals/dependency-injection#constructor-injection>
 
 ## Entity Framework contexts
+
+For guidance on EF Core in server-side Blazor apps, see <xref:blazor/blazor-ef-core>.
 
 By default, Entity Framework contexts are added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the client request. To use a different lifetime, specify the lifetime by using an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> overload. Services of a given lifetime shouldn't use a database context with a lifetime that's shorter than the service's lifetime.
 
@@ -498,16 +655,29 @@ The following example demonstrates object lifetimes both within and between requ
 The following example demonstrates object lifetimes both within and between requests. The `IndexModel` and the middleware request each kind of `IOperation` type and log the `OperationId` for each:
 
 ```csharp
-public class IndexModel(ILogger<IndexModel> logger,
-    IOperationTransient transientOperation,
-    IOperationScoped scopedOperation,
-    IOperationSingleton singletonOperation) : PageModel
+public class IndexModel : PageModel
 {
-    public void  OnGet()
+    private readonly ILogger<IndexModel> _logger;
+    private readonly IOperationTransient _transientOperation;
+    private readonly IOperationScoped _scopedOperation;
+    private readonly IOperationSingleton _singletonOperation;
+
+    public IndexModel(ILogger<IndexModel> logger,
+        IOperationTransient transientOperation,
+        IOperationScoped scopedOperation,
+        IOperationSingleton singletonOperation)
     {
-        logger.LogInformation($"Transient: {transientOperation.OperationId}");
-        logger.LogInformation($"Scoped: {scopedOperation.OperationId}");
-        logger.LogInformation($"Singleton: {singletonOperation.OperationId}");
+        _logger = logger;
+        _transientOperation = transientOperation;
+        _scopedOperation = scopedOperation;
+        _singletonOperation = singletonOperation;
+    }
+
+    public void OnGet()
+    {
+        _logger.LogInformation($"Transient: {_transientOperation.OperationId}");
+        _logger.LogInformation($"Scoped: {_scopedOperation.OperationId}");
+        _logger.LogInformation($"Singleton: {_singletonOperation.OperationId}");
     }
 }
 ```
@@ -518,9 +688,11 @@ Middleware can also resolve and use the same services. Scoped and transient serv
 
 `MyMiddleware.cs`:
 
+:::moniker range=">= aspnetcore-8.0"
+
 ```csharp
-public class MyMiddleware(RequestDelegate next, ILogger<MyMiddleware> logger,
-        IOperationSingleton singletonOperation)
+public class MyMiddleware(ILogger<IndexModel> logger,
+    IOperationSingleton singletonOperation)
 {
     public async Task InvokeAsync(HttpContext context,
         IOperationTransient transientOperation, IOperationScoped scopedOperation)
@@ -532,7 +704,42 @@ public class MyMiddleware(RequestDelegate next, ILogger<MyMiddleware> logger,
         await _next(context);
     }
 }
+```
 
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+```csharp
+public class MyMiddleware
+{
+    private readonly ILogger<IndexModel> _logger;
+    private readonly IOperationSingleton _singletonOperation;
+
+    public MyMiddleware(ILogger<IndexModel> logger,
+        IOperationSingleton singletonOperation)
+    {
+        _logger = logger;
+        _singletonOperation = singletonOperation;
+    }
+
+    public async Task InvokeAsync(HttpContext context,
+        IOperationTransient transientOperation, IOperationScoped scopedOperation)
+    {
+        _logger.LogInformation($"Transient: {transientOperation.OperationId}");
+        _logger.LogInformation($"Scoped: {scopedOperation.OperationId}");
+        _logger.LogInformation($"Singleton: {_singletonOperation.OperationId}");
+
+        await _next(context);
+    }
+}
+```
+
+:::moniker-end
+
+`Extensions/MyMiddlewareExtensions.cs`:
+
+```csharp
 public static class MyMiddlewareExtensions
 {
     public static IApplicationBuilder UseMyMiddleware(this IApplicationBuilder builder)
@@ -548,7 +755,7 @@ The logger output shows:
 
 * *Transient* objects are always different. The transient `OperationId` value is different for the Razor component and in the middleware.
 * *Scoped* objects are the same for a given request but differ across each new Blazor circuit.
-* *Singleton* objects are the same for every request.
+* *Singleton* objects are the same for every Blazor circuit or request.
 
 :::moniker-end
 
@@ -570,7 +777,6 @@ var app = builder.Build();
 using (var serviceScope = app.Services.CreateScope())
 {
     var services = serviceScope.ServiceProvider;
-
     var myDependency = services.GetRequiredService<IMyDependency>();
     myDependency.WriteMessage("Call services from main");
 }
@@ -726,9 +932,9 @@ services.AddSingleton<IService3>(sp => new Service3(myKey));
 @code {
     protected override void OnInitialized()
     {
-        Service1.Write("OnInitialized");
-        Service2.Write("OnInitialized");
-        Service3.Write("OnInitialized");
+        Service1.Write("DisposalExample.OnInitialized");
+        Service2.Write("DisposalExample.OnInitialized");
+        Service3.Write("DisposalExample.OnInitialized");
     }
 }
 ```
@@ -736,15 +942,15 @@ services.AddSingleton<IService3>(sp => new Service3(myKey));
 The debug console shows the following output after each refresh of the Index page:
 
 ```console
-Service1: OnInitialized
-Service2: OnInitialized
-Service3: OnInitialized, Key = Value from appsettings.Development.json
+Service1: DisposalExample.OnInitialized
+Service2: DisposalExample.OnInitialized
+Service3: DisposalExample.OnInitialized, Key = Value from appsettings.Development.json
 Service1.Dispose
 ```
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="< aspnetcore-8.0"
 
 `Pages/Index.cshtml.cs`:
 
