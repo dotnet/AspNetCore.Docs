@@ -1,11 +1,12 @@
 ---
 title: Configure ASP.NET Core Identity
+ai-usage: ai-assisted
 author: AdrienTorris
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 3/09/2024
+ms.date: 02/24/2026
 uid: security/authentication/identity-configuration
 ---
 # Configure ASP.NET Core Identity
@@ -119,7 +120,7 @@ The following code sets `SignIn` settings (to default values):
 
 ### Cookie settings
 
-Configure the app's cookie in `Program.cs`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentity` or `AddDefaultIdentity`.
+Configure the app's cookie in `Program.cs`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentityCore`, `AddIdentity`, or `AddDefaultIdentity`.
 
 [!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_cookie)]
 
@@ -267,7 +268,7 @@ The following code sets `SignIn` settings (to default values):
 
 ### Cookie settings
 
-Configure the app's cookie in `Startup.ConfigureServices`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentity` or `AddDefaultIdentity`.
+Configure the app's cookie in `Startup.ConfigureServices`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentityCore`, `AddIdentity`, or `AddDefaultIdentity`.
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
 
