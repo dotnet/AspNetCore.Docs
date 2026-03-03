@@ -4,6 +4,8 @@ description: Overview of ASPDEPR deprecation diagnostics in ASP.NET Core.
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 03/03/2026
+ms.author: tdykstra
+author: tdykstra
 uid: diagnostics/aspdepr-ids
 ---
 # ASPDEPR diagnostics overview
@@ -19,6 +21,6 @@ ASPDEPR diagnostics are similar to the [`SYSLIB` obsoletions](/dotnet/fundamenta
 
 The following table lists the `ASPDEPR` deprecation diagnostics for ASP.NET Core:
 
-| Diagnostic ID | Description |
-| - | - |
+| Diagnostic ID                             | Description                 |
+|-------------------------------------------|-----------------------------|
 | [ASPDEPR002](xref:diagnostics/aspdepr002) | `WithOpenApi` is deprecated |
