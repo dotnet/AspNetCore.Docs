@@ -1765,6 +1765,11 @@ items:
         uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg012
       - name: RDG013
         uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
+  - name: ASPDEPR diagnostics
+    uid: diagnostics/aspdepr-ids
+    items:
+      - name: ASPDEPR002
+        uid: diagnostics/aspdepr002
   - name: Data access
     items:
       - name: Tutorials
