@@ -8,7 +8,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/519
 
 # Deprecation of WithOpenApi extension method
 
-The <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.WithOpenApi*> methods have been deprecated in .NET 10. Invoking these methods now produces the compile-time diagnostic [`ASPDEPR002`](../../diagnostics/aspdepr002.md) and a standard `Obsolete` warning that states:
+The <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.WithOpenApi*> methods have been deprecated in .NET 10. Invoking these methods now produces the compile-time diagnostic [`ASPDEPR002`](xref:diagnostics/aspdepr002) and a standard `Obsolete` warning that states:
 
 > WithOpenApi is deprecated and will be removed in a future release. For more information, visit <https://aka.ms/aspnet/deprecate/002>.
 

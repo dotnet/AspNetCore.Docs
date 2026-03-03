@@ -1654,8 +1654,8 @@ items:
   - name: Code analysis
     items:
       - name: Overview
-        uid: diagnostics/code-analysis
         displayName: code analysis
+        uid: diagnostics/code-analysis
       - name: ASP0000
         uid: diagnostics/asp0000
       - name: ASP0001
