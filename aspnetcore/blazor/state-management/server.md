@@ -210,6 +210,7 @@ TempData:
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file.
 * Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 * Is accessed by key (string).
+* Supports primitives, <xref:System.DateTime>, <xref:System.Guid>, enums, and collections (arrays, <xref:System.Collections.Generic.List%601>, <xref:System.Collections.Generic.Dictionary%602>).
 * Stores `object?` values, requiring runtime casting (example: `var message = TempData["Message"] as string`). IntelliSense and type checking aren't supported.
 * Uses case-insensitive keys, so `TempData["message"]` and `TempData["Message"]` retrieve the same value.
 
