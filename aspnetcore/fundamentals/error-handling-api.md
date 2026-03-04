@@ -143,7 +143,13 @@ The preceding code:
 * Uses the [Exception Handler Middleware](#exception-handler).
 
 > [!NOTE]
-> The `DefaultProblemDetailsWriter` supports the following media types in the `Accept` request header: `application/json`, `application/problem+json`, and wildcard types such as `*/*` and `application/*`. Non-JSON media types, such as `application/xml` or `text/html`, are **not** supported and trigger the fallback behavior.
+> The `DefaultProblemDetailsWriter` supports the following media types in the `Accept` request header:
+>
+> * `application/json`
+> * `application/problem+json`
+> * Wildcard types such as `*/*` and `application/*`
+>
+> Non-JSON media types, such as `application/xml` or `text/html`, are **not** supported and trigger the fallback behavior.
 
 The following sample is similar to the preceding except that it calls the [`Status Code Pages middleware`](#client-and-server-error-responses).
 
