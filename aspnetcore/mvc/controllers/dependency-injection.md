@@ -4,16 +4,15 @@ ai-usage: ai-assisted
 author: ardalis
 description: Discover how ASP.NET Core MVC controllers request their dependencies explicitly via their constructors with dependency injection in ASP.NET Core.
 ms.author: tdykstra
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers in ASP.NET Core
 
 :::moniker range=">= aspnetcore-8.0"
 
-By [Shadi Alnamrouti](https://stackoverflow.com/users/3380497/shadi-alnamrouti) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-<!-- @shadialnamrouti -->
 ASP.NET Core MVC controllers request dependencies explicitly via constructors. ASP.NET Core has built-in support for [dependency injection (DI)](xref:fundamentals/dependency-injection). DI makes apps easier to test and maintain.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/dependency-injection/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
