@@ -203,9 +203,9 @@ Data can be stored temporarily or permanently in server-side scenarios.
 
 <!-- UPDATE 11.0 - API cross-links -->
 
-To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports TempData. TempData is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
+To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports `TempData`. `TempData` is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
 
-TempData:
+`TempData`:
 
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file.
 * Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
@@ -226,7 +226,7 @@ The `ITempData` interface provides the following methods for controlling value l
 * `Keep`: Marks all keys in the dictionary for retention. Values are available on the next request.
 * `Keep(string)`: Marks a specified key (string) for retention. The value is available on the next request.
 
-Data stored in TempData is automatically removed after the data is read unless `Keep`/`Keep(string)` is called or the data is accessed via `Peek`.
+Data stored in `TempData` is automatically removed after the data is read unless `Keep`/`Keep(string)` is called or the data is accessed via `Peek`.
 
 The default cookie-based provider uses [Data Protection](xref:security/data-protection/introduction) for encryption.
 
@@ -270,9 +270,9 @@ builder.Services.AddSessionStorageTempDataValueProvider();
 app.UseSession();
 ```
 
-Browsers enforce a 4 KB cookie size limit. TempData automatically uses <xref:Microsoft.AspNetCore.Authentication.Cookies.ChunkingCookieManager> to split cookies across multiple cookie headers, but developers storing a large amount of data must switch to session storage, which introduces session affinity requirements.
+Browsers enforce a 4 KB cookie size limit. `TempData` automatically uses <xref:Microsoft.AspNetCore.Authentication.Cookies.ChunkingCookieManager> to split cookies across multiple cookie headers, but developers storing a large amount of data must switch to session storage, which introduces session affinity requirements.
 
-In the following example, a form displays a message that's retained in TempData after the form is submitted (a new request).
+In the following example, a form displays a message that's retained in `TempData` after the form is submitted (a new request).
 
 `Pages/TempDataExample.razor`:
 
