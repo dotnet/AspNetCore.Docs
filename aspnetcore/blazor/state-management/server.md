@@ -235,17 +235,20 @@ Call `AddCookieTempDataValueProvider` on the service collection in the app's `Pr
 
 Parameter | API | Default value
 --- | --- | ---
-Name | `CookieName` | `.AspNetCore.Components.TempData`
-Path | `Path` | `/`
-Domain | `Domain` | `null`
+Name | `Name` | `.AspNetCore.Components.TempData`
+[HTTP Only](https://developer.mozilla.org/docs/Web/Security/Practical_implementation_guides/Cookies#httponly) | `HttpOnly` | `true`
 [SameSite value](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) | `SameSite` | <xref:Microsoft.AspNetCore.Http.SameSiteMode.Strict?displayProperty=nameWithType>
+Secure policy | `SecurePolicy` | [`CookieSecurePolicy.Always`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy)
 
-Example:
+Example (sets default values):
 
 ```csharp
-builder.Services.AddCookieTempDataValueProvider(options =>
+builder.Services.AddRazorComponents(options =>
 {
-    options.Cookie.Name = ".BlazorSample.TempData";
+    options.TempDataCookie.Name = ".AspNetCore.Components.TempData";
+    options.TempDataCookie.HttpOnly = true;
+    options.TempDataCookie.SameSite = SameSiteMode.Strict;
+    options.TempDataCookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 ```
 
@@ -264,7 +267,11 @@ Session storage configuration:
 ```csharp
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
-builder.Services.AddSessionStorageTempDataValueProvider();
+
+builder.Services.Configure<RazorComponentsServiceOptions>(options =>
+{
+    options.TempDataProviderType = TempDataProviderType.SessionStorage;
+});
 
 ...
 
@@ -307,28 +314,26 @@ In the following example, a form displays a message that's retained in `TempData
 }
 ```
 
-Reading without consuming (`Peek`):
+Reading without deleting (`Peek`):
 
 ```csharp
 protected override void OnInitialized()
 {
-    var notification = TempData?.Peek("Notification") as string;
+    var notification = TempData?.Peek("Message") as string;
 }
 ```
 
-Keep a specific value for another request:
+Keep a specific value for another request (`Keep(string)`):
 
 ```csharp
 protected override void OnInitialized()
 {
     var message = TempData?.Get("Message") as string;
-    
-    // Keep this specific value for one more request
     TempData?.Keep("Message");
 }
 ```
 
-Keep all values for another request:
+Keep all values for another request (`Keep`):
 
 ```csharp
 protected override void OnInitialized()
