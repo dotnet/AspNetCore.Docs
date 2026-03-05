@@ -100,3 +100,16 @@ Navigation.NavigateTo("/configuration", new NavigationOptions
 ```razor
 <NavLink href="configuration" RelativeToCurrentUri="true">Configuration</NavLink>
 ```
+
+### Persist temporary data between HTTP requests during static server-side rendering (static SSR)
+
+To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports TempData. TempData is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
+
+TempData is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file and is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+
+```csharp
+[CascadingParameter]
+public ITempData? TempData { get; set; }
+```
+
+For more information, see <xref:blazor/state-management/server#server-side-storage>.
