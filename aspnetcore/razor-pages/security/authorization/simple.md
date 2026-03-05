@@ -1,5 +1,6 @@
 ---
 title: Simple authorization in ASP.NET Core Razor Pages
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core Razor Pages apps.
 ms.author: tdykstra
@@ -35,7 +36,7 @@ public class OrderModel : PageModel
 }
 ```
 
-For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if satisfy the requirements of the `Over21` [authorization policy](xref:security/authorization/policies):
+For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if they satisfy the requirements of the `Over21` [authorization policy](xref:security/authorization/policies):
 
 ```csharp
 [Authorize(Policy = "Over21")]
@@ -50,7 +51,7 @@ If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> no
 * Authenticated (signed-in) users are authorized.
 * Unauthenticated (signed-out) users are unauthorized.
 
-For guidance on the The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and Razor Page handlers, see the [`[Authorize]` attribute in Razor Pages apps](#authorize-attribute-in-razor-pages-apps) section.
+For guidance on <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and Razor Page handlers, see the [`[Authorize]` attribute in Razor Pages apps](#authorize-attribute-in-razor-pages-apps) section.
 
 Use the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to allow access by non-authenticated users to individual actions:
 
@@ -81,7 +82,7 @@ public class AuthorizeIndexPageHandlerFilter(
     private readonly IPolicyEvaluator policyEvaluator = policyEvaluator;
 
     // Run late in the selection pipeline
-    public static int Order => 10000;
+    public int Order => 10000;
 
     public Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, 
         PageHandlerExecutionDelegate next) => next();

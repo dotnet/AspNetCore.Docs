@@ -1,5 +1,6 @@
 ---
 title: Simple authorization in ASP.NET Core MVC
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core MVC apps.
 ms.author: tdykstra
@@ -35,7 +36,7 @@ public class OrderController : Controller
 }
 ```
 
-For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if satisfy the requirements of the `Over21` [authorization policy](xref:security/authorization/policies):
+For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if they satisfy the requirements of the `Over21` [authorization policy](xref:security/authorization/policies):
 
 ```csharp
 [Authorize(Policy = "Over21")]

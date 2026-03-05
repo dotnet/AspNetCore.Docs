@@ -1,5 +1,6 @@
 ---
 title: Simple authorization in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core apps.
 ms.author: tdykstra
@@ -46,7 +47,7 @@ The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeA
 <p>You can only see this if you're in the 'Admin' or 'Superuser' role.</p>
 ```
 
-For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if satisfy the requirements of the `Over21` [authorization policy](xref:security/authorization/policies):
+For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if they satisfy the requirements of the `Over21` [authorization policy](xref:security/authorization/policies):
 
 ```razor
 @page "/"
