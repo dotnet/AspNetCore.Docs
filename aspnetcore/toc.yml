@@ -563,6 +563,12 @@ items:
             uid: razor-pages/filter
           - name: Route and app conventions
             uid: razor-pages/razor-pages-conventions
+          - name: Security and Identity
+            items:
+              - name: Authorization
+                items:
+                  - name: Simple authorization
+                    uid: razor-pages/security/authorization/simple
       - name: MVC
         items:
           - name: Overview
@@ -603,6 +609,12 @@ items:
             uid: mvc/views/dependency-injection
           - name: Unit test
             uid: mvc/controllers/testing
+          - name: Security and Identity
+            items:
+              - name: Authorization
+                items:
+                  - name: Simple authorization
+                    uid: mvc/security/authorization/simple
       - name: Blazor
         items:
           - name: Overview
