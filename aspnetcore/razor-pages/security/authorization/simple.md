@@ -68,7 +68,7 @@ The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can't be applie
 If you decide not to use an MVC controller, the following two approaches can be used to apply authorization to Razor Page handler methods:
 
 * Use separate pages for page handlers requiring different authorization. Move shared content into one or more [partial views](xref:mvc/views/partial). When possible, this is the recommended approach.
-* For content that must share a common page, write a filter that performs authorization as part of <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A?displayProperty=nameWithType>. This approach is demonstrated by the following example.
+* For content that must share a common page, write a filter that performs authorization as part of <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerExecutionAsync%2A?displayProperty=nameWithType>. This approach is demonstrated by the following example.
 
 The `AuthorizeIndexPageHandlerFilter` implements the authorization filter:
 
@@ -81,19 +81,18 @@ public class AuthorizeIndexPageHandlerFilter(
         policyProvider;
     private readonly IPolicyEvaluator policyEvaluator = policyEvaluator;
 
-    // Run late in the selection pipeline
+    // Run late in the execution pipeline
     public int Order => 10000;
 
-    public Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, 
-        PageHandlerExecutionDelegate next) => next();
-
-    public async Task OnPageHandlerSelectionAsync(PageHandlerSelectedContext context)
+    public async Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context,
+        PageHandlerExecutionDelegate next)
     {
         var attribute = context.HandlerMethod?.MethodInfo?
             .GetCustomAttribute<AuthorizePageHandlerAttribute>();
 
         if (attribute is null)
         {
+            await next();
             return;
         }
 
@@ -102,55 +101,39 @@ public class AuthorizeIndexPageHandlerFilter(
 
         if (policy is null)
         {
+            await next();
             return;
         }
 
-        await AuthorizeAsync(context, policy);
-    }
-
-    private async Task AuthorizeAsync(ActionContext actionContext, 
-        AuthorizationPolicy policy)
-    {
-        var httpContext = actionContext.HttpContext;
+        var httpContext = context.HttpContext;
         var authenticateResult = await policyEvaluator
             .AuthenticateAsync(policy, httpContext);
         var authorizeResult = await policyEvaluator
-            .AuthorizeAsync(policy, authenticateResult, httpContext, 
-                actionContext.ActionDescriptor);
+            .AuthorizeAsync(policy, authenticateResult, httpContext,
+                context.ActionDescriptor);
 
         if (authorizeResult.Challenged)
         {
-            if (policy.AuthenticationSchemes.Count > 0)
-            {
-                foreach (var scheme in policy.AuthenticationSchemes)
-                {
-                    await httpContext.ChallengeAsync(scheme);
-                }
-            }
-            else
-            {
-                await httpContext.ChallengeAsync();
-            }
+            context.Result = policy.AuthenticationSchemes.Count > 0
+                ? new ChallengeResult(policy.AuthenticationSchemes.ToArray())
+                : new ChallengeResult();
 
             return;
         }
         else if (authorizeResult.Forbidden)
         {
-            if (policy.AuthenticationSchemes.Count > 0)
-            {
-                foreach (var scheme in policy.AuthenticationSchemes)
-                {
-                    await httpContext.ForbidAsync(scheme);
-                }
-            }
-            else
-            {
-                await httpContext.ForbidAsync();
-            }
+            context.Result = policy.AuthenticationSchemes.Count > 0
+                ? new ForbidResult(policy.AuthenticationSchemes.ToArray())
+                : new ForbidResult();
 
             return;
         }
+
+        await next();
     }
+
+    public Task OnPageHandlerSelectionAsync(PageHandlerSelectedContext context)
+        => Task.CompletedTask;
 }
 ```
 
