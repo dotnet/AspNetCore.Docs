@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace RazorPagesMovie.Pages.Movies
 {
