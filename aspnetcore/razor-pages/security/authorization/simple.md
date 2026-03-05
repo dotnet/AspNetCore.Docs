@@ -11,7 +11,7 @@ uid: razor-pages/security/authorization/simple
 
 Authorization in ASP.NET Core is controlled with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and its various parameters. In its most basic form, applying the `[Authorize]` attribute to a Razor component, controller, action, or Razor Page, limits access to that component to authenticated users.
 
-This article covers scenarios that pertain to Razor Pages apps. For the primary coverage on this subject, see <xref:security/authorization/simple>.
+This article covers scenarios that pertain to Razor Pages apps. For more information, see <xref:security/authorization/simple>.
 
 ## `[Authorize]` attribute
 
@@ -63,7 +63,7 @@ For information on how to require authentication for all app users, see <xref:se
 
 ## `[Authorize]` attribute in Razor Pages apps
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can't be applied to Razor Page handlers. For example, the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can't be applied to `OnGet`, `OnPost`, or any other page handler. In a Razor Pages app, consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers. Using a controller when different authorization requirements are required is the least complex approach recommended by Microsoft.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can't be applied to Razor Page handlers. For example, the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can't be applied to `OnGet`, `OnPost`, or any other page handler. In a Razor Pages app, consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers. Using a controller when different authorization requirements are required is the least complex approach we recommend.
 
 If you decide not to use an MVC controller, the following two approaches can be used to apply authorization to Razor Page handler methods:
 
@@ -184,7 +184,7 @@ public class IndexModel : PageModel
 > The preceding approach does ***not***:
 >
 > * Compose with authorization attributes applied to the page, page model, or globally. Composing authorization attributes results in authentication and authorization executing multiple times when you have one more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) or <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> instances also applied to the page.
-> * Work in conjunction with the rest of ASP.NET Core authentication and authorization system. You must verify using this approach works correctly for the app.
+> * Work in conjunction with the rest of the ASP.NET Core authentication and authorization system. Verify that this approach works correctly for the app.
 
 There are no plans to support the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on Razor Page handlers.
 
