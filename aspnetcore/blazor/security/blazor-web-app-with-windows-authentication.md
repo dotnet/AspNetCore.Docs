@@ -1,11 +1,12 @@
 ---
 title: Secure an ASP.NET Core Blazor Web App with Windows Authentication
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to secure a Blazor Web App with Windows Authentication.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 03/05/2026
 uid: blazor/security/blazor-web-app-windows-authentication
 ---
 # Secure an ASP.NET Core Blazor Web App with Windows Authentication
@@ -71,21 +72,29 @@ builder.Services.AddAuthorizationBuilder()
             "S-1-5-113"));   
 ```
 
-The authorization policy is enforced by the `LocalAccount` component.
+The authorization policy is enforced by the `LocalAccount` component. The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) restricts access during routing via <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>. An <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component wrapping the page content provides an additional layer of authorization enforcement within the interactive server circuit. `AuthorizeView` uses <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> directly to check the policy, which ensures the policy is enforced even when the user navigates to the page from within the app rather than via a direct browser request.
 
 `Components/Pages/LocalAccount.razor`:
 
 ```razor
 @page "/local-account"
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
 @attribute [Authorize("LocalAccount")]
 
-<h1>Local Account Only</h1>
+<AuthorizeView Policy="LocalAccount">
+    <Authorized>
+        <h1>Local Account Only</h1>
 
-<p>
-    You can only reach this page by satisfying the
-    <code>LocalAccount</code> authorization policy.
-</p>
+        <p>
+            You can only reach this page by satisfying the
+            <code>LocalAccount</code> authorization policy.
+        </p>
+    </Authorized>
+    <NotAuthorized>
+        <p role="status">Sorry, you're not authorized to view this page.</p>
+    </NotAuthorized>
+</AuthorizeView>
 ```
 
 The `UserClaims` component lists the user's claims and roles, including the user's Windows security identifiers (SIDs) with SID translations.
