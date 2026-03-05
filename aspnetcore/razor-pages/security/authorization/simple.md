@@ -1,9 +1,9 @@
 ---
 title: Simple authorization in ASP.NET Core Razor Pages
 author: tdykstra
-description: Learn how to use the Authorize attribute to restrict access in ASP.NET Core Razor Pages apps.
+description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core Razor Pages apps.
 ms.author: tdykstra
-ms.date: 03/04/2026
+ms.date: 03/05/2026
 uid: razor-pages/security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core Razor Pages

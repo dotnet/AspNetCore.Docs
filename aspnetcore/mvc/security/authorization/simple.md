@@ -1,9 +1,9 @@
 ---
 title: Simple authorization in ASP.NET Core MVC
 author: tdykstra
-description: Learn how to use the Authorize attribute to restrict access in ASP.NET Core MVC apps.
+description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core MVC apps.
 ms.author: tdykstra
-ms.date: 03/04/2026
+ms.date: 03/05/2026
 uid: mvc/security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core MVC

@@ -1,16 +1,16 @@
 ---
 title: Simple authorization in ASP.NET Core
 author: tdykstra
-description: Learn how to use the Authorize attribute to restrict access in ASP.NET Core apps.
+description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core apps.
 ms.author: tdykstra
-ms.date: 03/04/2026
+ms.date: 03/05/2026
 uid: security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core
 
 Authorization in ASP.NET Core is controlled with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and its various parameters. In its most basic form, applying the `[Authorize]` attribute to a Razor component, controller, action, or Razor Page, limits access to that component to authenticated users.
 
-This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios. For Razor Pages and MVC guidance, see the following resources:
+This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios. For Razor Pages and MVC guidance, see the following resources after reading this article:
 
 * <xref:razor-pages/security/authorization/simple>
 * <xref:mvc/security/authorization/simple>
@@ -70,8 +70,6 @@ For more information on Blazor authentication and authorization, see <xref:blazo
 
 Use the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to allow access by non-authenticated users to individual actions:
 
-In a Razor component:
-
 ```razor
 @using Microsoft.AspNetCore.Authorization
 @attribute [AllowAnonymous]
@@ -81,6 +79,5 @@ For information on how to require authentication for all app users, see <xref:se
 
 ## Additional resources
 
-* <xref:security/authorization/simple>
 * <xref:razor-pages/security/authorization/simple>
 * <xref:mvc/security/authorization/simple>
