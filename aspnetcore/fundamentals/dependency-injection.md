@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/03/2026
+ms.date: 03/06/2026
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -15,7 +15,15 @@ By [Kirk Larkin](https://twitter.com/serpent5), [Steve Smith](https://ardalis.co
 
 ASP.NET Core supports the dependency injection (DI) software design pattern, which is a technique for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies.
 
-This article provides information on DI in ASP.NET Core. The primary documentation on using DI is contained in [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection/overview), which focuses on general DI concepts that apply to all types of apps, including apps other than web apps. For Blazor DI guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/dependency-injection>. For information specific to DI within MVC controllers, see <xref:mvc/controllers/dependency-injection>. For information on the DI of options, see <xref:fundamentals/configuration/options#use-di-services-to-configure-options>. Code examples in this article are based on [Blazor](xref:blazor/index). To see Razor Pages examples, see the [7.0 verision of this article](?view=aspnetcore-7.0&preserve-view=true).
+This article provides information on DI in ASP.NET Core web apps. For information on DI in all types of apps, including apps other than web apps, see [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection/overview).
+
+Guidance that adds to or supersedes the guidance in this article is found the following articles:
+
+* <xref:blazor/fundamentals/dependency-injection>
+* <xref:mvc/controllers/dependency-injection>
+* [Use DI services to configure options](xref:fundamentals/configuration/options#use-di-services-to-configure-options)
+
+Code examples in this article are based on [Blazor](xref:blazor/index). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/dependency-injection) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
