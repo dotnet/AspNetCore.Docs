@@ -249,13 +249,13 @@ public class IndexModel(ILogger<IndexModel> logger) : PageModel
 
 Services can be injected into the `Startup` constructor and the `Startup.Configure` method.
 
-The Generic Host (<xref:Microsoft.Extensions.Hosting.IHostBuilder>) of ASP.NET Core 3.0 or later, uses a single service container throughout the app's lifecycle after a temporary "root" service provider uses essential services for the host to start and configure the app's main service container. Most services, including custom services and other framework services, aren't configured or available in the service container when the `Startup` constructor is called. Only the following services can be injected into the `Startup` constructor when using the Generic Host:
+The Generic Host (<xref:Microsoft.Extensions.Hosting.IHostBuilder>) of ASP.NET Core 3.0 or later, uses a single service container throughout the app's lifecycle after a temporary "root" service provider uses essential services for the host to start and configure the app's main service container. Most services, including custom services and framework services not involved in host startup, aren't configured or available in the service container when the `Startup` constructor is called. Only the following services can be injected into the `Startup` constructor when using the Generic Host:
 
 * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>
 * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
 * <xref:Microsoft.Extensions.Configuration.IConfiguration>
 
-By restricting the available services available in the `Startup` class constructor, the Generic Host prevents creating multiple instances of the same custom or framework singleton services, where a singleton service created in the temporary service container could be different from one created in the final service container.
+By restricting the available services available in the `Startup` class constructor, the Generic Host prevents you from trying to use a service before it's created or available and from creating multiple instances of custom or framework singleton services, where a singleton service created in the temporary service container could be different from one created in the final service container.
 
 Any service registered with the service container can be injected into the `Startup.Configure` method. In the following example, an <xref:Microsoft.Extensions.Logging.ILogger%601> is injected:
 
