@@ -396,7 +396,7 @@ public static class ConfigServiceCollectionExtensions
 }
 ```
 
-The following code uses the new extension methods to register the services:
+The following code calls the preceding `AddConfig` and `AddDependencyGroup` extension methods to register the services:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1082,7 +1082,7 @@ For examples of how to build modular and multitenant apps using just the Orchard
 
 The `Program` file (.NET 6 or later) or the `Startup` file (.NET 5 or earlier) registers services that the app uses, including platform features, such as Entity Framework Core and services to support Razor components in Blazor (.NET 8 or later). Initially, the `IServiceCollection` has services defined by the framework depending on [how the host was configured](xref:fundamentals/index#host). For apps based on the ASP.NET Core templates, the framework registers more than 250 services.
 
-The following table lists a small sample of these framework-registered services:
+The following table describes a small sample of framework-registered services:
 
 Service type | Lifetime
 --- | ---
