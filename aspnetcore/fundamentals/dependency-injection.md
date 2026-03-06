@@ -243,17 +243,19 @@ public class IndexModel(ILogger<IndexModel> logger) : PageModel
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 ## Services injected into `Startup`
 
 Services can be injected into the `Startup` constructor and the `Startup.Configure` method.
 
-Only the following services can be injected into the `Startup` constructor when using the Generic Host (<xref:Microsoft.Extensions.Hosting.IHostBuilder>):
+The Generic Host (<xref:Microsoft.Extensions.Hosting.IHostBuilder>) of ASP.NET Core 3.0 or later, uses a single service container throughout the app's lifecycle after a temporary "root" service provider uses essential services for the host to start and configure the app's main service container. Most services, including custom services and other framework services, aren't configured or available in the service container when the `Startup` constructor is called. Only the following services can be injected into the `Startup` constructor when using the Generic Host:
 
 * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>
 * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
 * <xref:Microsoft.Extensions.Configuration.IConfiguration>
+
+By restricting the available services available in the `Startup` class constructor, the Generic Host prevents creating multiple instances of the same custom or framework singleton services, where a singleton service created in the temporary service container could be different from one created in the final service container.
 
 Any service registered with the service container can be injected into the `Startup.Configure` method. In the following example, an <xref:Microsoft.Extensions.Logging.ILogger%601> is injected:
 
@@ -1127,4 +1129,5 @@ Service type | Lifetime
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](/archive/msdn-magazine/2016/may/asp-net-writing-clean-code-in-asp-net-core-with-dependency-injection)
 * [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
 * [Inversion of Control Containers and the Dependency Injection Pattern (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
-* [How to register a service with multiple interfaces in ASP.NET Core DI](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)
+* [How to register a service with multiple interfaces in ASP.NET Core DI (Andrew Lock)](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)
+* [Avoiding Startup service injection in ASP.NET Core 3 (Andrew Lock)](https://andrewlock.net/avoiding-startup-service-injection-in-asp-net-core-3/)
