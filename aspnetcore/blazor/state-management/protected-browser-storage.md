@@ -224,7 +224,52 @@ When prerendering is disabled, [prerendering of `<head>` content](xref:blazor/co
 
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To retain prerendering, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-9.0"
+
+```razor
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject ProtectedLocalStorage ProtectedLocalStore
+
+@if (RendererInfo.IsInteractive)
+{
+    <p>Current count: <strong>@currentCount</strong></p>
+    <button @onclick="IncrementCount">Increment</button>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private int currentCount;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (RendererInfo.IsInteractive)
+        {
+            await LoadStateAsync();
+        }
+    }
+
+    private async Task LoadStateAsync()
+    {
+        var result = await ProtectedLocalStore.GetAsync<int>("count");
+        currentCount = result.Success ? result.Value : 0;
+    }
+
+    private async Task IncrementCount()
+    {
+        currentCount++;
+        await ProtectedLocalStore.SetAsync("count", currentCount);
+    }
+}
+```
+
+For more information on <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>, see <xref:blazor/components/render-modes#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-9.0"
 
 ```razor
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
