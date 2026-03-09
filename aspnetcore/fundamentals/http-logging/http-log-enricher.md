@@ -57,11 +57,11 @@ Your custom HTTP log enricher needs to implement a single <xref:Microsoft.AspNet
 > it's acceptable to send any type of argument to the `value` parameter as-is, because it's parsed into the actual type and serialized internally
 > to be sent further down the logging pipeline.
 
-:::code language="csharp" source="samples/httplogenricher/CustomHttpLogEnricher.cs" :::
+:::code language="csharp" source="~/fundamentals/http-logging/samples/httplogenricher/CustomHttpLogEnricher.cs" :::
 
 And you register it as shown in the following code using <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLogEnricher``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)>:
 
-:::code language="csharp" source="samples/httplogenricher/Program.cs" :::
+:::code language="csharp" source="~/fundamentals/http-logging/samples/httplogenricher/Program.cs" :::
 
 ## Key differences from general log enrichers
 
@@ -84,4 +84,4 @@ HTTP log enrichers differ from general-purpose log enrichers (<xref:Microsoft.Ex
 
 ## See also
 
-- [HTTP logging in ASP.NET Core](fundamentals/http-logging/index.md)
+- [HTTP logging in ASP.NET Core](~/fundamentals/http-logging/index.md)
