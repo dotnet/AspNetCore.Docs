@@ -3,7 +3,7 @@ title: HTTP log enricher for incoming requests
 description: Learn how to use the HTTP log enricher for incoming HTTP requests in ASP.NET Core.
 ai-usage: ai-assisted
 author: mariamaziz
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: '>= aspnetcore-8.0'
 ms.author: mariamaziz
 ms.custom: mvc
 ms.date: 03/09/2026
@@ -57,11 +57,11 @@ Your custom HTTP log enricher needs to implement a single <xref:Microsoft.AspNet
 > it's acceptable to send any type of argument to the `value` parameter as-is, because it's parsed into the actual type and serialized internally
 > to be sent further down the logging pipeline.
 
-:::code language="csharp" source="snippets/httplogenricher/CustomHttpLogEnricher.cs" :::
+:::code language="csharp" source="samples/httplogenricher/CustomHttpLogEnricher.cs" :::
 
 And you register it as shown in the following code using <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLogEnricher``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)>:
 
-:::code language="csharp" source="snippets/httplogenricher/Program.cs" :::
+:::code language="csharp" source="samples/httplogenricher/Program.cs" :::
 
 ## Key differences from general log enrichers
 
@@ -84,5 +84,4 @@ HTTP log enrichers differ from general-purpose log enrichers (<xref:Microsoft.Ex
 
 ## See also
 
-- [HTTP logging in ASP.NET Core](/aspnet/core/fundamentals/http-logging/)
-- [HTTP client log enricher in .NET](http-client-log-enricher.md)
+- [HTTP logging in ASP.NET Core](fundamentals/http-logging/index)
