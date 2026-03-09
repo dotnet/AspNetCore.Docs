@@ -84,4 +84,4 @@ HTTP log enrichers differ from general-purpose log enrichers (<xref:Microsoft.Ex
 
 ## See also
 
-- [HTTP logging in ASP.NET Core](fundamentals/http-logging/index)
+- [HTTP logging in ASP.NET Core](fundamentals/http-logging/index.md)
