@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor server-side state management
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
@@ -194,6 +195,156 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 :::moniker-end
 
 ## Server-side storage
+
+:::moniker range=">= aspnetcore-11.0"
+
+Data can be stored temporarily or permanently in server-side scenarios.
+
+### Temporary data persistence
+
+<!-- UPDATE 11.0 - API cross-links -->
+
+To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports `TempData`. `TempData` is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
+
+`TempData`:
+
+* Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file.
+* Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+* Is accessed by key (string).
+* Supports primitives, <xref:System.DateTime>, <xref:System.Guid>, enums, and collections (arrays, <xref:System.Collections.Generic.List%601>, <xref:System.Collections.Generic.Dictionary%602>).
+* Stores `object?` values, requiring runtime casting (example: `var message = TempData["Message"] as string`). IntelliSense and type checking aren't supported.
+* Uses case-insensitive keys, so `TempData["message"]` and `TempData["Message"]` retrieve the same value.
+
+```csharp
+[CascadingParameter]
+public ITempData? TempData { get; set; }
+```
+
+The `ITempData` interface provides the following methods for controlling value lifecycle:
+
+* `Get`: Gets the value associated with the specified key and schedules the data for deletion.
+* `Peek`: Returns the value associated with the specified key without marking the data for deletion.
+* `Keep`: Marks all keys in the dictionary for retention. Values are available on the next request.
+* `Keep(string)`: Marks a specified key (string) for retention. The value is available on the next request.
+
+Data stored in `TempData` is automatically removed after the data is read unless `Keep`/`Keep(string)` is called or the data is accessed via `Peek`.
+
+The default cookie-based provider uses [Data Protection](xref:security/data-protection/introduction) for encryption.
+
+Call `AddCookieTempDataValueProvider` on the service collection in the app's `Program` file passing `CookieTempDataProviderOptions` to change the cookie's parameters in the following table.
+
+Parameter | API | Default value
+--- | --- | ---
+Name | `Name` | `.AspNetCore.Components.TempData`
+[HTTP Only](https://developer.mozilla.org/docs/Web/Security/Practical_implementation_guides/Cookies#httponly) | `HttpOnly` | `true`
+[SameSite value](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) | `SameSite` | <xref:Microsoft.AspNetCore.Http.SameSiteMode.Strict?displayProperty=nameWithType>
+Secure policy | `SecurePolicy` | [`CookieSecurePolicy.Always`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy)
+
+Example (sets default values):
+
+```csharp
+builder.Services.AddRazorComponents(options =>
+{
+    options.TempDataCookie.Name = ".AspNetCore.Components.TempData";
+    options.TempDataCookie.HttpOnly = true;
+    options.TempDataCookie.SameSite = SameSiteMode.Strict;
+    options.TempDataCookie.SecurePolicy = CookieSecurePolicy.Always;
+});
+```
+
+Only JSON-serializable primitives and collections are supported. User-defined classes and custom object serialization aren't supported. Blazor WebAssembly and Blazor Server aren't supported.
+
+A `SessionStorageTempDataProvider` is available as an alternative to the default `CookieTempDataProvider`. Using cookie and session storage simultaneously isn't supported.
+
+Session storage:
+
+* Requires explicit session state configuration.
+* Has no practical size limits (within session constraints).
+* Requires session affinity (sticky sessions) in load-balanced environments. Without it, users may lose data. For more information, see <xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting>.
+
+Session storage configuration:
+
+```csharp
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
+builder.Services.Configure<RazorComponentsServiceOptions>(options =>
+{
+    options.TempDataProviderType = TempDataProviderType.SessionStorage;
+});
+
+...
+
+app.UseSession();
+```
+
+Browsers enforce a 4 KB cookie size limit. `TempData` automatically uses <xref:Microsoft.AspNetCore.Authentication.Cookies.ChunkingCookieManager> to split cookies across multiple cookie headers, but developers storing a large amount of data must switch to session storage, which introduces session affinity requirements.
+
+In the following example, a form displays a message that's retained in `TempData` after the form is submitted (a new request).
+
+`Pages/TempDataExample.razor`:
+
+```razor
+@page "/tempdata-example"
+@inject NavigationManager NavigationManager
+
+<p>@message</p>
+
+<form @onsubmit="HandleSubmit">
+    <button type="submit">Submit</button>
+</form>
+
+@code {
+    [CascadingParameter]
+    public ITempData? TempData { get; set; }
+
+    private string? message;
+
+    protected override void OnInitialized()
+    {
+        // Get removes the value after reading (one-time use)
+        message = TempData?.Get("Message") as string ?? "No message";
+    }
+
+    private void HandleSubmit()
+    {
+        TempData!["Message"] = "Form submitted successfully!";
+        NavigationManager.NavigateTo("/tempdata-example", forceLoad: true);
+    }
+}
+```
+
+Reading without deleting (`Peek`):
+
+```csharp
+protected override void OnInitialized()
+{
+    var notification = TempData?.Peek("Message") as string;
+}
+```
+
+Keep a specific value for another request (`Keep(string)`):
+
+```csharp
+protected override void OnInitialized()
+{
+    var message = TempData?.Get("Message") as string;
+    TempData?.Keep("Message");
+}
+```
+
+Keep all values for another request (`Keep`):
+
+```csharp
+protected override void OnInitialized()
+{
+    TempData?.Keep();
+}
+```
+
+### Permanent data persistence
+
+:::moniker-end
 
 For permanent data persistence that spans multiple users and devices, the app can use server-side storage. Options include:
 
