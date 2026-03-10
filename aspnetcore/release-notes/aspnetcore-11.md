@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/10/2026
+ms.date: 12/04/2025
 uid: aspnetcore-11
 ---
 # What's new in ASP.NET Core in .NET 11
