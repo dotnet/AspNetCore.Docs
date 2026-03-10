@@ -62,12 +62,7 @@ This section describes miscellaneous new features in .NET 11.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/performance-improvements-preview2.md)]
 
-<!-- HOLD - The breaking changes article for 11.0 hasn't been created yet ...
-
-            https://learn.microsoft.com/dotnet/core/compatibility/breaking-changes
-
 ## Breaking changes
 
-Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
+Use the articles in [Breaking changes in .NET]([/dotnet/core/compatibility/breaking-changes](https://learn.microsoft.com/dotnet/core/compatibility/breaking-changes)) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
--->
