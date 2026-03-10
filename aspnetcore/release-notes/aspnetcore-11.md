@@ -40,7 +40,7 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-binary-file-response.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-3-2-support-p2.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-3-2-support-preview2.md)]
 
 ## Authentication and authorization
 
@@ -48,7 +48,7 @@ This section describes new features for authentication and authorization.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/identity-time-provider.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/infer-passkey-display-name-p2.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/infer-passkey-display-name-preview2.md)]
 
 ## Miscellaneous
 
@@ -58,9 +58,9 @@ This section describes miscellaneous new features in .NET 11.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/development-certificate-trust.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/native-otel-tracing-p2.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/native-otel-tracing-preview2.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/performance-improvements-p2.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/performance-improvements-preview2.md)]
 
 <!-- HOLD - The breaking changes article for 11.0 hasn't been created yet ...
 
