@@ -1,5 +1,6 @@
 ---
 title: What's new in ASP.NET Core in .NET 11
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
