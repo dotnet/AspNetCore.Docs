@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/04/2025
+ms.date: 03/10/2026
 uid: aspnetcore-11
 ---
 # What's new in ASP.NET Core in .NET 11
@@ -39,11 +39,15 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-binary-file-response.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-3-2-support-p2.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/identity-time-provider.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/infer-passkey-display-name-p2.md)]
 
 ## Miscellaneous
 
@@ -52,6 +56,10 @@ This section describes miscellaneous new features in .NET 11.
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/output-cache-policy-provider.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/development-certificate-trust.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/native-otel-tracing-p2.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/performance-improvements-p2.md)]
 
 <!-- HOLD - The breaking changes article for 11.0 hasn't been created yet ...
 
