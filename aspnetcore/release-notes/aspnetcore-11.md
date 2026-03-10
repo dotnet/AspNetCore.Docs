@@ -1,5 +1,6 @@
 ---
 title: What's new in ASP.NET Core in .NET 11
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
@@ -39,11 +40,15 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-binary-file-response.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-3-2-support-preview2.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/identity-time-provider.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/infer-passkey-display-name-preview2.md)]
 
 ## Miscellaneous
 
@@ -53,12 +58,11 @@ This section describes miscellaneous new features in .NET 11.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/development-certificate-trust.md)]
 
-<!-- HOLD - The breaking changes article for 11.0 hasn't been created yet ...
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/native-otel-tracing-preview2.md)]
 
-            https://learn.microsoft.com/dotnet/core/compatibility/breaking-changes
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/performance-improvements-preview2.md)]
 
 ## Breaking changes
 
-Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
+Use the articles in [Breaking changes in .NET]([/dotnet/core/compatibility/breaking-changes](https://learn.microsoft.com/dotnet/core/compatibility/breaking-changes)) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
--->
