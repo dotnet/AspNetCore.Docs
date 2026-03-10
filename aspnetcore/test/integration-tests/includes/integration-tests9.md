@@ -369,21 +369,21 @@ The test app can mock an <xref:Microsoft.AspNetCore.Authentication.Authenticatio
 
 :::zone-end
 
-The `TestAuthHandler` is called to authenticate a user when the authentication scheme is set to `TestScheme` where `AddAuthentication` is registered for `ConfigureTestServices`. It's important for the `TestScheme` scheme to match the scheme your app expects. Otherwise, authentication won't work.
+The `TestAuthHandler` is called to authenticate a user when the authentication scheme is set to `TestScheme` where `AddAuthentication` is registered for `ConfigureTestServices`. `DefaultAuthenticateScheme` and `DefaultChallengeScheme` are explicitly set to `TestScheme` to ensure the test handler overrides any authentication configuration set by the app. It's important for the `TestScheme` scheme to match the scheme your app expects. Otherwise, authentication won't work.
 
 :::zone pivot="xunit"
 
-:::code language="csharp" source="~/test/integration-tests/snippets/xunit/IntegrationTests/AuthTests.cs" id="snippet3" highlight="7-12":::
+:::code language="csharp" source="~/test/integration-tests/snippets/xunit/IntegrationTests/AuthTests.cs" id="snippet3" highlight="7-16":::
 
 :::zone-end
 :::zone pivot="mstest"
 
-:::code language="csharp" source="~/test/integration-tests/snippets/mstest/IntegrationTests/AuthTests.cs" id="snippet3" highlight="7-12":::
+:::code language="csharp" source="~/test/integration-tests/snippets/mstest/IntegrationTests/AuthTests.cs" id="snippet3" highlight="7-16":::
 
 :::zone-end
 :::zone pivot="nunit"
 
-:::code language="csharp" source="~/test/integration-tests/snippets/nunit/IntegrationTests/AuthTests.cs" id="snippet3" highlight="7-12":::
+:::code language="csharp" source="~/test/integration-tests/snippets/nunit/IntegrationTests/AuthTests.cs" id="snippet3" highlight="7-16":::
 
 :::zone-end
 
