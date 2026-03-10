@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/04/2025
+ms.date: 03/10/2026
 uid: aspnetcore-11
 ---
 # What's new in ASP.NET Core in .NET 11
@@ -64,5 +64,5 @@ This section describes miscellaneous new features in .NET 11.
 
 ## Breaking changes
 
-Use the articles in [Breaking changes in .NET]([/dotnet/core/compatibility/breaking-changes](https://learn.microsoft.com/dotnet/core/compatibility/breaking-changes)) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
+Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
