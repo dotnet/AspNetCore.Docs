@@ -11,10 +11,10 @@ tools:
   - githubread
   - lexical-code-search
   - semantic-code-search
-  ai-usage: ai-assisted
+ai-usage: ai-assisted
 author: tdykstra
 ms.author: wpickett
-ms.date: 03/10/2026
+ms.date: 03/11/2026
 ---
 
 # What's New Release Notes Agent for ASP.NET Core Documentation
@@ -40,7 +40,7 @@ When invoking this agent, provide the following context (or let the agent auto-d
 
 ## Skill Dependencies
 
-* **Skill**: [whats-new-include-content-rules](../.github/skills/whats-new-include-content-rules/SKILL.md) — content rules and formatting standards for include files.
+* **Skill**: [whats-new-include-content-rules](../skills/whats-new-include-content-rules/SKILL.md) — content rules and formatting standards for include files.
 
 ---
 
@@ -132,7 +132,7 @@ Never recreate include files that already exist and are current.
 ## Step 1: Create include files
 
 Load and follow all rules from the
-[whats-new-include-content-rules](../.github/skills/whats-new-include-content-rules/SKILL.md)
+[whats-new-include-content-rules](../skills/whats-new-include-content-rules/SKILL.md)
 skill. That skill defines file naming, location, exclusions, content formatting,
 xref usage, link rules, phrasing style, and the validation checklist.
 
@@ -207,7 +207,7 @@ This section describes new features for Section Name.
 ## Step 3: Validate
 
 Run the validation checklist from the
-[whats-new-include-content-rules](../.github/skills/whats-new-include-content-rules/SKILL.md)
+[whats-new-include-content-rules](../skills/whats-new-include-content-rules/SKILL.md)
 skill. Additionally verify:
 
 - [ ] The What's New article `ms.date` is set to today's date

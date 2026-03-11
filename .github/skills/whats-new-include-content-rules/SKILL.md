@@ -150,7 +150,7 @@ Before completing, verify:
 
 To generate an OpenAPI 3.2.0 document, specify the version when calling <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
 
-⁣```csharp
+```csharp
 builder.Services.AddOpenApi(options =>
 {
     options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_2;
