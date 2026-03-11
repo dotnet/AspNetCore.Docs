@@ -1,15 +1,16 @@
 ---
 title: Custom authorization policies with `IAuthorizationRequirementData` in ASP.NET Core MVC
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface in ASP.NET Core MVC.
-ms.author: tdykstra
 monikerRange: '>= aspnetcore-8.0'
+ms.author: tdykstra
 ms.date: 03/11/2026
 uid: mvc/security/authorization/iard
 ---
 # Custom authorization policies with `IAuthorizationRequirementData` in ASP.NET Core MVC
 
-This article demonstrates the guidance for custom authorization policies with <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> in ASP.NET Core MVC. For general guidance on this subject, see <xref:security/authorization/iard>.
+This article shows how to use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> to define custom authorization policies in ASP.NET Core MVC. For general guidance on this subject, see <xref:security/authorization/iard>.
 
 ## Sample app
 

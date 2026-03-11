@@ -1,9 +1,10 @@
 ---
 title: Custom authorization policies with `IAuthorizationRequirementData`
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
-ms.author: tdykstra
 monikerRange: '>= aspnetcore-8.0'
+ms.author: tdykstra
 ms.date: 03/11/2026
 uid: security/authorization/iard
 ---
@@ -11,7 +12,7 @@ uid: security/authorization/iard
 
 Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
-This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios. For a demonstration of the guidance in this article for Razor Pages and MVC, see the <xref:mvc/security/authorization/iard>.
+This article uses [Minimal API](xref:fundamentals/minimal-apis) endpoint examples and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app, see the <xref:mvc/security/authorization/iard>.
 
 ## Sample app
 
@@ -53,7 +54,7 @@ app.MapGet("/api/greetings/hello", (HttpContext context) =>
 }).RequireAuthorization(new MinimumAgeAuthorizeAttribute(21));
 ```
 
-The endpoint displays the user's name when they satisfy the minimum age policy, using an age of 21 years old with the `MinimumAgeAuthorizeAttribute({AGE})` attribute, where the `{AGE}` placeholder is the age.
+The endpoint displays the user's name when they satisfy the minimum age policy, using an age of 21 years old supplied to a `MinimumAgeAuthorizeAttribute` instance.
 
 If the user's birth date claim indicates that they're at least 21 years old, the endpoint displays the greeting string, issuing a 200 (OK) status code. If the user is missing the birth date claim or the claim indicates that they aren't at least 21 years old, the greeting isn't displayed and a 403 (Forbidden) status code is issued.
 
