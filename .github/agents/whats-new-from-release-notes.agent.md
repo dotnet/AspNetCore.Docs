@@ -11,7 +11,7 @@ tools:
   - githubread
   - lexical-code-search
   - semantic-code-search
-  ai-usage: ai-assisted
+ai-usage: ai-assisted
 author: tdykstra
 ms.author: wpickett
 ms.date: 03/11/2026
