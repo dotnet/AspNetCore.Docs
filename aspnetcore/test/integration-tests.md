@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 3/24/2025
+ms.date: 03/10/2026
 uid: test/integration-tests
 zone_pivot_groups: unit-testing-framework
 ---
