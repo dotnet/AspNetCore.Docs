@@ -64,7 +64,7 @@ Before creating any files, you MUST:
 All new include files go in:
 `aspnetcore/release-notes/aspnetcore-{MAJOR_VERSION}/includes/`
 
-### Naming convention
+### File naming convention
 
 * Lowercase, hyphenated, descriptive names.
 * Append the preview suffix to each filename: `-preview{N}` (e.g., `-preview2`).
@@ -85,12 +85,15 @@ All new include files go in:
 
 ### Exclusions — do NOT create include files for
 
-* **Blazor features**: Blazor-related content is handled separately by the Blazor
-  documentation team.
+* **Blazor features**:
+  * Blazor-related content is handled separately by the Blazor documentation team with separate PRs that merge into the What's New.
+  * Do **NOT** create any new include files for Blazor content.
+  * Do indicate in the PR description report which Blazor features are present in the release notes but not represented in the What's New article or includes.
+
 * **Bug fixes section**: Only document new features and improvements.
-* **Community contributors list**: Do not create a standalone include file for
-  the contributors list. However, DO preserve inline contributor thank-yous
-  within feature sections (see Content Rules below).
+* **Community contributors list**:
+  * Do not create a standalone include file for the contributors list.
+  * DO preserve inline contributor thank-yous within feature sections (see Content Rules below).
 
 ---
 
