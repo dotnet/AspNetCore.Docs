@@ -14,7 +14,7 @@ tools:
   ai-usage: ai-assisted
 author: tdykstra
 ms.author: wpickett
-ms.date: 03/10/2026
+ms.date: 03/11/2026
 ---
 
 # What's New Release Notes Agent for ASP.NET Core Documentation
