@@ -64,7 +64,7 @@ Before creating any files, you MUST:
 ## Step 1: Create include files
 
 Load and follow all rules from the
-[whats-new-include-content-rules](../.github/skills/whats-new-include-content-rules/SKILL.md)
+[whats-new-include-content-rules](../skills/whats-new-include-content-rules/SKILL.md)
 skill. That skill defines file naming, location, exclusions, content formatting,
 xref usage, link rules, phrasing style, and the validation checklist.
 
@@ -139,7 +139,7 @@ This section describes new features for Section Name.
 ## Step 3: Validate
 
 Run the validation checklist from the
-[whats-new-include-content-rules](../.github/skills/whats-new-include-content-rules/SKILL.md)
+[whats-new-include-content-rules](../skills/whats-new-include-content-rules/SKILL.md)
 skill. Additionally verify:
 
 - [ ] The What's New article `ms.date` is set to today's date
