@@ -29,7 +29,7 @@ revised after initial processing.
 
 ## Dependencies
 
-* **Skill**: [whats-new-include-content-rules](../.github/skills/whats-new-include-content-rules/SKILL.md) — content rules and formatting standards for include files.
+* **Skill**: [whats-new-include-content-rules](../skills/whats-new-include-content-rules/SKILL.md) — content rules and formatting standards for include files.
 
 ---
 
