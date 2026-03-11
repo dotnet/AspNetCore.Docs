@@ -57,11 +57,58 @@ Your custom HTTP log enricher needs to implement a single <xref:Microsoft.AspNet
 > it's acceptable to send any type of argument to the `value` parameter as-is, because it's parsed into the actual type and serialized internally
 > to be sent further down the logging pipeline.
 
-:::code language="csharp" source="~/fundamentals/http-logging/samples/httplogenricher/CustomHttpLogEnricher.cs" :::
+```csharp
+using Microsoft.AspNetCore.Diagnostics.Logging;
+using Microsoft.Extensions.Diagnostics.Enrichment;
 
+public class CustomHttpLogEnricher : IHttpLogEnricher
+{
+    public void Enrich(IEnrichmentTagCollector collector, HttpContext httpContext)
+    {
+        // Add custom tags based on the incoming HTTP request
+        collector.Add("request_method", httpContext.Request.Method);
+        collector.Add("request_scheme", httpContext.Request.Scheme);
+
+        // Add tags based on the response status code (available during the response phase)
+        collector.Add("response_status_code", httpContext.Response.StatusCode);
+
+        // Add tags based on user authentication status
+        if (httpContext.User?.Identity?.IsAuthenticated is true)
+        {
+            collector.Add("user_authenticated", true);
+        }
+    }
+}
+
+```
 And you register it as shown in the following code using <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLogEnricher``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)>:
 
-:::code language="csharp" source="~/fundamentals/http-logging/samples/httplogenricher/Program.cs" :::
+```csharp
+
+using System.Text.Json;
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpLogEnricher<CustomHttpLogEnricher>();
+builder.Services.AddRedaction();
+
+builder.Logging.AddJsonConsole(op =>
+{
+    op.JsonWriterOptions = new JsonWriterOptions
+    {
+        Indented = true
+    };
+});
+
+WebApplication app = builder.Build();
+
+app.UseHttpLogging();
+
+app.MapGet("/", () => "Hello, World!");
+
+await app.RunAsync();
+
+```
 
 ## Key differences from general log enrichers
 
