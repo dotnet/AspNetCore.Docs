@@ -27,7 +27,18 @@ article in `dotnet/AspNetCore.Docs`. This agent handles both initial creation of
 include files for a new preview and incremental updates when release notes are
 revised after initial processing.
 
-## Dependencies
+## Inputs
+
+When invoking this agent, provide the following context (or let the agent auto-discover):
+
+| Parameter | Required | Default | Description |
+|-----------|----------|---------|-------------|
+| `VERSION` | Yes | — | The .NET major version (e.g., `11.0`) |
+| `PREVIEW` | No | *(auto-discover)* | The specific preview to process (e.g., `preview3`). If omitted, the agent discovers the latest unprocessed preview. |
+| `SOURCE_REF` | No | `main` | The branch or commit in `dotnet/core` to read release notes from. Use this when release notes exist on a branch before merging to main. |
+| `MODE` | No | `auto` | One of: `auto`, `new-preview`, `incremental`. Controls whether the agent creates files for a new preview, updates existing ones, or auto-detects. |
+
+## Skill Dependencies
 
 * **Skill**: [whats-new-include-content-rules](../.github/skills/whats-new-include-content-rules/SKILL.md) — content rules and formatting standards for include files.
 
@@ -35,29 +46,86 @@ revised after initial processing.
 
 ## Step 0: Gather context and detect what's already done
 
-Before creating any files, you MUST:
+### 0a: Resolve source parameters
 
-1. **Read the source release notes** from `dotnet/core` at the specified branch:
-   `release-notes/{VERSION}/preview/{PREVIEW}/aspnetcore.md`
+Before reading any files, resolve the following parameters. If the invoker
+provided explicit values, use them. Otherwise, auto-discover.
 
-2. **Read the current What's New article** in `dotnet/AspNetCore.Docs`:
-   `aspnetcore/release-notes/aspnetcore-{MAJOR_VERSION}.md`
+| Parameter | Required | Default | Description |
+|-----------|----------|---------|-------------|
+| `VERSION` | Yes | — | The .NET major version (e.g., `11.0`) |
+| `PREVIEW` | No | *(auto-discover)* | The specific preview to process (e.g., `preview3`). If omitted, the agent discovers the latest unprocessed preview. |
+| `SOURCE_REF` | No | `main` | The branch or commit in `dotnet/core` to read release notes from. Use this when release notes exist on a branch before merging to main. |
+| `MODE` | No | `auto` | One of: `auto`, `new-preview`, `incremental`. Controls whether the agent creates files for a new preview, updates existing ones, or auto-detects. |
 
-3. **List all existing include files** in:
-   `aspnetcore/release-notes/aspnetcore-{MAJOR_VERSION}/includes/`
+1. **Determine `SOURCE_REF`**: If not provided, default to `main`.
 
-4. **Compare source vs. existing content**:
-   * Identify features/sections in the source release notes that do NOT yet
-     have a corresponding include file.
-   * Identify existing include files whose content has materially changed in
-     the source release notes (beyond trivial formatting).
-   * Report your findings before making any changes. List:
-     - NEW features that need include files created
-     - EXISTING features that may need content updates
-     - Features already fully covered (no action needed)
+2. **Discover available previews** in `dotnet/core` at `SOURCE_REF`:
+   List the directories under `release-notes/{VERSION}/preview/` and identify
+   all `preview{N}` folders that contain an `aspnetcore.md` file.
 
-5. **Only create or update files for the delta** — never recreate include files
-   that already exist and are current.
+3. **Determine which preview to process**:
+   - If `PREVIEW` was explicitly provided, use it.
+   - If `PREVIEW` was NOT provided, auto-discover:
+     a. List existing include files in `dotnet/AspNetCore.Docs` under
+        `aspnetcore/release-notes/aspnetcore-{MAJOR_VERSION}/includes/`.
+     b. Extract the set of preview suffixes already represented
+        (e.g., files ending in `-preview1.md` and `-preview2.md`
+        → previews 1 and 2 are covered).
+     c. Compare against available previews in `dotnet/core`.
+     d. If there is a preview in `dotnet/core` with NO corresponding
+        include files → that is the **new preview** to process.
+     e. If ALL previews have corresponding include files → enter
+        **incremental update mode** for the latest preview.
+
+4. **Determine `MODE`**:
+   - If `MODE` was explicitly set, use it.
+   - If `MODE` is `auto`:
+     - If the resolved preview has ZERO existing include files → `new-preview`
+     - If the resolved preview has existing include files → `incremental`
+
+5. **Report the resolved parameters** before proceeding:
+   ```
+   Resolved parameters:
+   - VERSION: {VERSION}
+   - PREVIEW: {resolved preview}
+   - SOURCE_REF: {branch/ref}
+   - MODE: {new-preview | incremental}
+   - Source path: release-notes/{VERSION}/preview/{PREVIEW}/aspnetcore.md
+   ```
+
+### 0b: Read the source release notes
+
+Read the source release notes from `dotnet/core` at ref `{SOURCE_REF}`:
+`release-notes/{VERSION}/preview/{PREVIEW}/aspnetcore.md`
+
+Use `githubread` with the specific ref/branch to ensure you are reading
+the correct version of the file.
+
+### 0c: Read the current What's New article
+
+Read the current What's New article in `dotnet/AspNetCore.Docs`:
+`aspnetcore/release-notes/aspnetcore-{MAJOR_VERSION}.md`
+
+### 0d: List existing include files
+
+List all existing include files in:
+`aspnetcore/release-notes/aspnetcore-{MAJOR_VERSION}/includes/`
+
+### 0e: Compare source vs. existing content
+
+* Identify features/sections in the source release notes that do NOT yet
+  have a corresponding include file.
+* Identify existing include files whose content has materially changed in
+  the source release notes (beyond trivial formatting).
+* Report your findings before making any changes. List:
+  - NEW features that need include files created
+  - EXISTING features that may need content updates
+  - Features already fully covered (no action needed)
+
+### 0f: Only create or update files for the delta
+
+Never recreate include files that already exist and are current.
 
 ---
 
