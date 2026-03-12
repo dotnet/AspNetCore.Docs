@@ -10,11 +10,11 @@ uid: mvc/security/authorization/iard
 ---
 # Custom authorization policies with `IAuthorizationRequirementData` in ASP.NET Core MVC
 
-This article shows how to use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> to define custom authorization policies in ASP.NET Core MVC. For general guidance on this subject, see <xref:security/authorization/iard>.
+This article provides a demonstration on how to use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> to define custom authorization policies in ASP.NET Core MVC. For general guidance on this subject, see <xref:security/authorization/iard>.
 
 ## Sample app
 
-The complete MVC sample described in this article is the [`AuthRequirementsData` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](xref:index#how-to-download-a-sample)). The sample app implements a minimum age handler for users, requiring a user to present a birth date claim indicating that they're at least 21 years old.
+The MVC sample for this article is the [`AuthRequirementsData` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](xref:index#how-to-download-a-sample)). The sample app implements a minimum age handler for users, requiring a user to present a birth date claim indicating that they're at least 21 years old.
 
 ## Demonstration
 
@@ -45,17 +45,14 @@ You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jw
   "alg": "HS256",
   "typ": "JWT"
 }.{
-  "unique_name": "{USER}",
-  "sub": "{USER}",
-  "jti": "{JWT ID}",
+  "unique_name": "guard",
+  "sub": "guard",
+  "jti": "5316e1b4",
   "birthdate": "1989-01-01",
-  "aud": [
-    "https://localhost:51100",
-    "http://localhost:51101"
-  ],
-  "nbf": 1747315312,
-  "exp": 1755264112,
-  "iat": 1747315313,
+  "aud": "https://localhost:51100",
+  "nbf": 1773320013,
+  "exp": 1781268813,
+  "iat": 1773320014,
   "iss": "dotnet-user-jwts"
 }.[Signature]
 ```
@@ -70,7 +67,7 @@ Set the value of second token aside.
 
 Start the app in Visual Studio or with the `dotnet watch` command in the .NET CLI.
 
-In the .NET CLI, execute the following `curl.exe` command to request the `api/greetings/hello` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
+In a command shell, use the .NET CLI to execute the following `curl.exe` command to request the `api/greetings/hello` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
 
 ```dotnetcli
 curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:51100/api/greetings/hello
@@ -90,6 +87,14 @@ Hello {USER}!
 
 Logging indicates that the age requirement was met:
 
+<!-- DOC AUTHOR NOTE
+
+The following block quote uses two spaces at the ends of lines (except the
+last line) to create returns in the rendered content. Don't remove the two 
+spaces at the ends of the lines when editing the following content.
+
+-->
+
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Minimum age authorization requirement 21 satisfied":::
 
@@ -101,6 +106,16 @@ Content-Length: 0
 Date: Thu, 15 May 2025 22:58:36 GMT
 Server: Kestrel
 ```
+
+Logging indicates that the age requirement wasn't met:
+
+<!-- DOC AUTHOR NOTE
+
+The following block quote uses two spaces at the ends of lines (except the
+last line) to create returns in the rendered content. Don't remove the two 
+spaces at the ends of the lines when editing the following content.
+
+-->
 
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Current user's DateOfBirth claim (2020-01-01) doesn't satisfy the minimum age authorization requirement 21":::

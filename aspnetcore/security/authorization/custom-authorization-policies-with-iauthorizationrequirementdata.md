@@ -12,11 +12,11 @@ uid: security/authorization/iard
 
 Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
-This article uses [Minimal API](xref:fundamentals/minimal-apis) endpoint examples and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app, see the <xref:mvc/security/authorization/iard>.
+This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
 
 ## Sample app
 
-The complete Blazor Web App sample described in this article is the [`AuthRequirementsDataBWA` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsDataBWA) ([how to download](xref:index#how-to-download-a-sample)). The sample app implements a minimum age handler for users, requiring a user to present a birth date claim indicating that they're at least 21 years old.
+The Blazor Web App sample for this article is the [`AuthRequirementsDataBWA` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsDataBWA) ([how to download](xref:index#how-to-download-a-sample)). The sample app implements a minimum age handler for users, requiring a user to present a birth date claim indicating that they're at least 21 years old.
 
 ## Minimum age authorize attribute
 
@@ -113,17 +113,17 @@ You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jw
   "alg": "HS256",
   "typ": "JWT"
 }.{
-  "unique_name": "{USER}",
-  "sub": "{USER}",
-  "jti": "{JWT ID}",
+  "unique_name": "guard",
+  "sub": "guard",
+  "jti": "b81dbbdd",
   "birthdate": "1989-01-01",
   "aud": [
     "https://localhost:51100",
-    "http://localhost:51101"
+    "http://localhost:5000"
   ],
-  "nbf": 1747315312,
-  "exp": 1755264112,
-  "iat": 1747315313,
+  "nbf": 1773320094,
+  "exp": 1781268894,
+  "iat": 1773320095,
   "iss": "dotnet-user-jwts"
 }.[Signature]
 ```
@@ -138,7 +138,7 @@ Set the value of second token aside.
 
 Start the app in Visual Studio or with the `dotnet watch` command in the .NET CLI.
 
-In the .NET CLI, execute the following `curl.exe` command to request the `api/greetings/hello` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
+In a command shell, use the .NET CLI to execute the following `curl.exe` command to request the `api/greetings/hello` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
 
 ```dotnetcli
 curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:51100/api/greetings/hello
@@ -158,6 +158,14 @@ Hello {USER}!
 
 Logging indicates that the age requirement was met:
 
+<!-- DOC AUTHOR NOTE
+
+The following block quote uses two spaces at the ends of lines (except the
+last line) to create returns in the rendered content. Don't remove the two 
+spaces at the ends of the lines when editing the following content.
+
+-->
+
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Minimum age authorization requirement 21 satisfied":::
 
@@ -169,6 +177,16 @@ Content-Length: 0
 Date: Thu, 15 May 2025 22:58:36 GMT
 Server: Kestrel
 ```
+
+Logging indicates that the age requirement wasn't met:
+
+<!-- DOC AUTHOR NOTE
+
+The following block quote uses two spaces at the ends of lines (except the
+last line) to create returns in the rendered content. Don't remove the two 
+spaces at the ends of the lines when editing the following content.
+
+-->
 
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Current user's DateOfBirth claim (2020-01-01) doesn't satisfy the minimum age authorization requirement 21":::
