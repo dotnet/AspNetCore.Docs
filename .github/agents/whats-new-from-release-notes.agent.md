@@ -34,7 +34,7 @@ When invoking this agent, provide the following context (or let the agent auto-d
 | Parameter | Required | Default | Description |
 |-----------|----------|---------|-------------|
 | `VERSION` | Yes | — | The .NET major version (e.g., `11.0`) |
-| `PREVIEW` | No | *(auto-discover)* | The specific preview to process (e.g., `preview3`). If omitted, the agent discovers the latest unprocessed preview. |
+| `PREVIEW` | No | *(auto-discover)* | The specific preview to process (for example, `preview3`). If omitted, the agent discovers the latest unprocessed preview. |
 | `SOURCE_REF` | No | `main` | The branch or commit in `dotnet/core` to read release notes from. Use this when release notes exist on a branch before merging to main. |
 | `MODE` | No | `auto` | One of: `auto`, `new-preview`, `incremental`. Controls whether the agent creates files for a new preview, updates existing ones, or auto-detects. |
 
