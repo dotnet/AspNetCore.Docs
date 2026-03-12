@@ -42,12 +42,12 @@ All include files go in:
 
 ### Exclusions — do NOT create include files for
 
-* **Blazor features**:
+* **Do not create include files for Blazor features**:
   * Blazor-related content is handled separately by the Blazor documentation team with separate PRs that merge into the What's New.
   * Do **NOT** create any new include files for Blazor content.
   * Do indicate in the PR description report which Blazor features are present in the release notes but not represented in the What's New article or includes.
 
-* **Bug fixes section**: Only document new features and improvements.
+* **Do not create include files for the Bug fixes section**: Only document new features and improvements.
 * **Community contributors list**:
   * Do not create a standalone include file for the contributors list.
   * DO preserve inline contributor thank-yous within feature sections (see below).
@@ -126,18 +126,18 @@ All include files go in:
 
 Before completing, verify:
 
-- [ ] Every new include filename ends with `-preview{N}`
-- [ ] No Blazor content was included
-- [ ] No bug-fix-only content was included
-- [ ] All `<xref:>` IDs are verified (or explicitly flagged as needing verification)
-- [ ] All links to Microsoft Learn use relative paths (no absolute URLs)
-- [ ] All HTML comments are properly closed with `-->`
-- [ ] Include files have NO YAML front matter
-- [ ] Present tense is used throughout (not future tense)
-- [ ] "For more information, see" pattern is used (not em-dash style)
-- [ ] Community contributor acknowledgments are preserved
-- [ ] Breaking Change designations are preserved in headings
-- [ ] No preview-specific language appears in include file content
+- [ ] Every new include filename ends with `-preview{N}`.
+- [ ] No Blazor content was included.
+- [ ] No bug-fix-only content was included.
+- [ ] All `<xref:>` IDs are verified (or explicitly flagged as needing verification).
+- [ ] All links to Microsoft Learn use relative paths (no absolute URLs).
+- [ ] All HTML comments are properly closed with `-->`.
+- [ ] Include files have NO YAML front matter.
+- [ ] Present tense is used throughout (not future tense).
+- [ ] "For more information, see" pattern is used (not em-dash style).
+- [ ] Community contributor acknowledgments are preserved.
+- [ ] Breaking Change designations are preserved in headings.
+- [ ] No preview-specific language, such as a preview number, appears in include file content.
 
 ---
 
