@@ -1,11 +1,12 @@
 ---
 title: .NET on Web Workers
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance in a React app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/20/2025
+ms.date: 03/13/2026
 uid: client-side/dotnet-on-webworkers
 ---
 # .NET on Web Workers
@@ -19,6 +20,11 @@ uid: client-side/dotnet-on-webworkers
 Modern web apps often require intensive computational tasks that can block the main UI thread, leading to poor user experience. [Web Workers](https://developer.mozilla.org/docs/Web/API/Web_Workers_API) provide a solution to this problem by enabling JavaScript (JS) to run on separate threads. With .NET WebAssembly (Wasm), you can run C# code in Web Workers, combining the performance benefits of compiled code with the non-blocking execution model of background threads.
 
 This approach is particularly valuable when you need to perform complex calculations, data processing, or business logic without requiring direct DOM manipulation. Instead of rewriting algorithms in JS, you can maintain your existing .NET codebase and execute it efficiently in the background while your React.js frontend remains responsive.
+
+> [!TIP]
+> Starting with .NET 11, the `webworker` project template (`dotnet new webworker`) scaffolds the JavaScript worker scripts and interop boilerplate for you. The template works with any .NET WebAssembly host—Blazor, standalone `wasmbrowser` apps, and custom JavaScript frontends like React. Import the template's JavaScript client (`dotnet-web-worker-client.js`) directly from your app's entry point to get started. For the Blazor-specific integration that includes a C# `WebWorkerClient` class, see <xref:blazor/blazor-web-workers>.
+
+This article demonstrates the manual approach for React.js frontends using a standalone .NET WebAssembly project.
 
 ## Sample app
 
