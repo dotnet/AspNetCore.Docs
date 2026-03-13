@@ -21,30 +21,30 @@ Modern Blazor WebAssembly apps often handle CPU-intensive work alongside rich UI
 
 :::moniker range=">= aspnetcore-11.0"
 
-Starting with .NET 11, the `webworker` project template provides built-in scaffolding for running .NET code in a Web Worker. The template generates the required JavaScript worker scripts and a C# `WebWorkerClient` class, which removes the need to write the interop layer manually. To learn about Web Workers with React, see <xref:client-side/dotnet-on-webworkers>.
+The `webworker` project template provides built-in scaffolding for running .NET code in a Web Worker. The template generates the required JavaScript worker scripts and a C# `WebWorkerClient` class, which removes the need to write the interop layer manually. To learn about Web Workers with React, see <xref:client-side/dotnet-on-webworkers>.
 
 > [!NOTE]
-> The `webworker` template isn't limited to Blazor—it works with any .NET WebAssembly host, including standalone `wasmbrowser` apps and custom JavaScript frontends (such as React or vanilla JS). In non-Blazor scenarios, import the template's JavaScript client (`dotnet-web-worker-client.js`) directly from your entry point and call `[JSExport]` methods without the Blazor-specific C# `WebWorkerClient` class.
+> The `webworker` template isn't limited to Blazor. The template works with any .NET WebAssembly host, including standalone `wasmbrowser` apps and custom JavaScript frontends, such as React or vanilla JS. In non-Blazor scenarios, import the template's JavaScript client (`dotnet-web-worker-client.js`) directly from your entry point and call `[JSExport]` methods without the Blazor-specific C# `WebWorkerClient` class.
 
 ## Create the projects
 
 Create a Blazor WebAssembly app and a .NET Web Worker class library:
 
-```bash
-dotnet new blazorwasm -n MyApp
-dotnet new webworker -n MyWebWorker
+```dotnetcli
+dotnet new blazorwasm -n SampleApp
+dotnet new webworker -n WebWorker
 ```
 
 Add a project reference from the app to the worker library:
 
-```bash
-cd MyApp
-dotnet add reference ../MyWebWorker/MyWebWorker.csproj
+```dotnetcli
+cd SampleApp
+dotnet add reference ../WebWorker/WebWorker.csproj
 ```
 
 ## Enable `AllowUnsafeBlocks`
 
-Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property in the app's project file (`MyApp.csproj`), which is required for [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute) usage:
+Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property in the app's project file (`SampleApp.csproj`), which is required for [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute) usage:
 
 ```xml
 <PropertyGroup>
@@ -61,7 +61,7 @@ Worker methods are `static` methods marked with [`[JSExport]`](xref:System.Runti
 
 Due to `[JSExport]` limitations, worker methods can only return primitives or strings. For complex types, serialize to JSON before returning. The `WebWorkerClient` automatically deserializes JSON results.
 
-`MyWorker.cs`:
+`Worker.cs`:
 
 ```csharp
 using System.Runtime.InteropServices.JavaScript;
@@ -69,7 +69,7 @@ using System.Runtime.Versioning;
 using System.Text.Json;
 
 [SupportedOSPlatform("browser")]
-public static partial class MyWorker
+public static partial class Worker
 {
     [JSExport]
     public static string Greet(string name) => $"Hello, {name}!";
@@ -93,15 +93,15 @@ Inject `IJSRuntime` and use `WebWorkerClient.CreateAsync` to create a worker ins
 
 ```razor
 @page "/"
-@using MyWebWorker
-@inject IJSRuntime JSRuntime
+@using WebWorker
 @implements IAsyncDisposable
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Home</PageTitle>
 
 <h1>Web Worker demo</h1>
 
-<button class="btn btn-primary" @onclick="CallWorker" disabled="@(_worker is null)">
+<button class="btn btn-primary" @onclick="CallWorker" disabled="@(worker is null)">
     Call Worker
 </button>
 
@@ -124,17 +124,17 @@ Inject `IJSRuntime` and use `WebWorkerClient.CreateAsync` to create a worker ins
 `Pages/Home.razor.cs`:
 
 ```csharp
+using System.Runtime.Versioning;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using MyWebWorker;
-using System.Runtime.Versioning;
+using WebWorker;
 
-namespace MyApp.Pages;
+namespace SampleApp.Pages;
 
 [SupportedOSPlatform("browser")]
 public partial class Home : ComponentBase, IAsyncDisposable
 {
-    private WebWorkerClient? _worker;
+    private WebWorkerClient? worker;
     private string greeting = string.Empty;
     private List<User>? users;
 
@@ -142,30 +142,30 @@ public partial class Home : ComponentBase, IAsyncDisposable
     {
         if (firstRender)
         {
-            _worker = await WebWorkerClient.CreateAsync(JSRuntime);
+            worker = await WebWorkerClient.CreateAsync(JSRuntime);
             StateHasChanged();
         }
     }
 
     private async Task CallWorker()
     {
-        if (_worker is null)
+        if (worker is null)
         {
             return;
         }
 
-        greeting = await _worker.InvokeAsync<string>(
-            "MyApp.MyWorker.Greet", ["World"]);
+        greeting = await worker.InvokeAsync<string>(
+            "SampleApp.Worker.Greet", ["World"]);
 
-        users = await _worker.InvokeAsync<List<User>>(
-            "MyApp.MyWorker.GetUsers", []);
+        users = await worker.InvokeAsync<List<User>>(
+            "SampleApp.Worker.GetUsers", []);
     }
 
     public async ValueTask DisposeAsync()
     {
-        if (_worker is not null)
+        if (worker is not null)
         {
-            await _worker.DisposeAsync();
+            await worker.DisposeAsync();
         }
     }
 }
@@ -176,17 +176,17 @@ public partial class Home : ComponentBase, IAsyncDisposable
 The `dotnet new webworker` template generates a class library with the following structure:
 
 ```
-MyWebWorker/
-├── MyWebWorker.csproj
+WebWorker/
+├── WebWorker.csproj
 ├── WebWorkerClient.cs
 └── wwwroot/
     ├── dotnet-web-worker-client.js
     └── dotnet-web-worker.js
 ```
 
-* `WebWorkerClient.cs` &ndash; C# client that manages worker lifecycle and communication.
-* `dotnet-web-worker-client.js` &ndash; JavaScript class that creates the worker, dispatches messages, and resolves pending requests.
-* `dotnet-web-worker.js` &ndash; Worker entry point that boots the .NET WebAssembly runtime and dynamically resolves `[JSExport]` methods by name.
+* `WebWorkerClient.cs`: C# client that manages worker lifecycle and communication.
+* `dotnet-web-worker-client.js`: JavaScript class that creates the worker, dispatches messages, and resolves pending requests.
+* `dotnet-web-worker.js`: Worker entry point that boots the .NET WebAssembly runtime and dynamically resolves `[JSExport]` methods by name.
 
 ## `WebWorkerClient` API
 
@@ -206,9 +206,9 @@ public sealed class WebWorkerClient : IAsyncDisposable
 }
 ```
 
-* `CreateAsync` &ndash; Initializes the worker and waits for the .NET runtime to be ready inside the worker thread.
-* `InvokeAsync<TResult>` &ndash; Calls a `[JSExport]` method on the worker by its full name (`Namespace.ClassName.MethodName`) and returns the deserialized result. JSON string results are automatically parsed into `TResult`.
-* `DisposeAsync` &ndash; Terminates the worker and releases resources. Use `await using` or call explicitly.
+* `CreateAsync`: Initializes the worker and waits for the .NET runtime to be ready inside the worker thread.
+* `InvokeAsync<TResult>`: Calls a `[JSExport]` method on the worker by its full name (`Namespace.ClassName.MethodName`) and returns the deserialized result. JSON string results are automatically parsed into `TResult`.
+* `DisposeAsync`: Terminates the worker and releases resources. Use `await using` or call explicitly.
 
 :::moniker-end
 
