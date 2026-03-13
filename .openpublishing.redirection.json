@@ -1673,6 +1673,11 @@
             "source_path": "aspnetcore/migration/20_21.md",
             "redirect_url": "/aspnet/core/migration/20-to-21",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/authorization/iard.md",
+            "redirect_url": "/aspnet/core/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata",
+            "redirect_document_id": false
         }
     ]
 }
