@@ -116,4 +116,4 @@ For more information, see <xref:blazor/state-management/server?view=aspnetcore-1
 
 ### New Web Worker template (`webworker`)
 
-Blazor WebAssembly apps with heavy computing had to rely on server requests. Computing on the UI thread interfered with UI rendering and negatively  affected the user experience. In the prior release of .NET, we added an article with a sample app to make offloading heavy work to a Web Worker easier. For .NET 11, we've added the .NET Web Worker project template (`webworker`), which provides infrastructure for running .NET code in a Web Worker. For more information, see <xref:blazor/blazor-web-workers?view=aspnetcore-11.0>.
+Blazor WebAssembly apps can perform heavy computing on the client, but doing so on the UI thread interferes with UI rendering and negatively affects the user experience. In .NET 10, we added an article with a sample app to make offloading heavy work from the UI thread to a Web Worker easier. For .NET 11, we've added the .NET Web Worker project template (`webworker`), which provides infrastructure for running .NET code in a Web Worker. For more information, see <xref:blazor/blazor-web-workers?view=aspnetcore-11.0>.
