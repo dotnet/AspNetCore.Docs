@@ -508,7 +508,7 @@ items:
             uid: fundamentals/logging/index
           - name: HTTP logging
             uid: fundamentals/http-logging/index
-          - name: HTTP log enricher
+          - name: Enrich HTTP request logs in ASP.NET Core
             uid: fundamentals/http-logging/http-log-enricher
           - name: W3C logger
             uid: fundamentals/w3c-logger/index
