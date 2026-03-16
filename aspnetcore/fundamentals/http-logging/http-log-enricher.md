@@ -1,6 +1,6 @@
 ---
 title: HTTP log enricher for incoming requests
-description: Learn how to use the HTTP log enricher for incoming HTTP requests in ASP.NET Core.
+description: Learn how to enrich incoming HTTP request logs with custom data using the IHttpLogEnricher interface in ASP.NET Core.  
 ai-usage: ai-assisted
 author: mariamaziz
 monikerRange: '>= aspnetcore-8.0'
@@ -25,7 +25,7 @@ After the class is created, you register it with <xref:Microsoft.Extensions.Depe
 
 ## Install the package
 
-To get started, install the [📦 Microsoft.AspNetCore.Diagnostics.Middleware](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.Middleware) NuGet package:
+To get started, install the [Microsoft.AspNetCore.Diagnostics.Middleware](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.Middleware) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
