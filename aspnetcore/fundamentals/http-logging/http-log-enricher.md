@@ -1,5 +1,5 @@
 ---
-title: HTTP log enricher for incoming requests
+title: Enrich HTTP request logs in ASP.NET Core
 description: Learn how to enrich incoming HTTP request logs with custom data using the IHttpLogEnricher interface in ASP.NET Core.  
 ai-usage: ai-assisted
 author: mariamaziz
@@ -10,7 +10,7 @@ ms.date: 03/09/2026
 uid: fundamentals/http-logging/http-log-enricher
 ---
 
-# HTTP log enricher
+# Enrich HTTP request logs in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
