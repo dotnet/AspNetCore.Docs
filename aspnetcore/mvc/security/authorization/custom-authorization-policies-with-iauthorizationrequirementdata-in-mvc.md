@@ -66,7 +66,7 @@ Execute the command again with a `dateofbirth` value that makes the user under t
 dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=2020-01-01
 ```
 
-Set the value of second token aside.
+Set the value of the second token aside.
 
 Start the app in Visual Studio or with the `dotnet watch` command in a command shell:
 
