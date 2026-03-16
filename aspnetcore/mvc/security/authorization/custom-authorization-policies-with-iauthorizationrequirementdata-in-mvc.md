@@ -47,12 +47,15 @@ You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jw
 }.{
   "unique_name": "guard",
   "sub": "guard",
-  "jti": "5316e1b4",
+  "jti": "6cd613ed",
   "birthdate": "1989-01-01",
-  "aud": "https://localhost:51100",
-  "nbf": 1773320013,
-  "exp": 1781268813,
-  "iat": 1773320014,
+  "aud": [
+    "https://localhost:5001",
+    "http://localhost:5000"
+  ],
+  "nbf": 1773663513,
+  "exp": 1781612313,
+  "iat": 1773663515,
   "iss": "dotnet-user-jwts"
 }.[Signature]
 ```
@@ -65,12 +68,16 @@ dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/c
 
 Set the value of second token aside.
 
-Start the app in Visual Studio or with the `dotnet watch` command in the .NET CLI.
+Start the app in Visual Studio or with the `dotnet watch` command in a command shell:
+
+```dotnetcli
+dotnet watch
+```
 
 In a command shell, use the .NET CLI to execute the following `curl.exe` command to request the `api/greetings/hello` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
 
 ```dotnetcli
-curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:51100/api/greetings/hello
+curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:5001/api/greetings/hello
 ```
 
 The output indicates success because the user's birth date claim indicates that they're at least 21 years old:
