@@ -41,7 +41,7 @@ The key differences from `HTTP/2` to `HTTP/3` are:
 
 * **Transport Protocol**: `HTTP/3` uses QUIC instead of TCP. QUIC offers improved performance, lower latency, and better reliability, especially on mobile and lossy networks.
 * **Head-of-Line Blocking**: `HTTP/2` can suffer from head-of-line blocking at the TCP level, where a delay in one stream can affect others. `HTTP/3`, with QUIC, provides independent streams, so packet loss in one stream doesn't stall others.
-* **Connection Establishment**: `HTTP/3` with QUIC can establish connections faster as it combines transport and encryption handshakes.
+* **Connection Establishment**: `HTTP/3` with QUIC can establish connections faster, as it combines transport and encryption handshakes.
 * **Encryption**: `HTTP/3` mandates TLS 1.3 encryption, providing enhanced security by default, whereas it's optional in `HTTP/2`.
 * **Multiplexing**: While both support multiplexing, `HTTP/3`'s implementation with QUIC is more efficient and avoids the TCP-level head-of-line blocking issues.
 * **Connection Migration**: QUIC in `HTTP/3` allows connections to persist even when a client's IP address changes (like switching from Wi-Fi to cellular), improving mobile user experience.
