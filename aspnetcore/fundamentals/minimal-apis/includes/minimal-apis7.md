@@ -3,7 +3,7 @@
 This document:
 
 * Provides a quick reference for Minimal APIs.
-* Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
+* Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>.
 
 The Minimal APIs consist of:
 
@@ -38,7 +38,7 @@ The following sections cover request handling: routing, parameter binding, and r
 
 ## Routing
 
-A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put` or `Delete`:
+A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put`, or `Delete`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
 
