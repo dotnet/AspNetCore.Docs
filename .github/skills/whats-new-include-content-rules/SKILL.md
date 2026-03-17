@@ -93,7 +93,7 @@ All include files go in:
 
 ### Phrasing and style (lessons from reviewer feedback)
 
-* Use **"For more information, see [link text](url)."** — not em-dash + "see … for details."
+* Use **"For more information, see [link text](url)."**, not "see [link text](url) for details."
 * Use **present tense**, not future tense.
   - **Wrong**: "Subsequent updates **will take** advantage of…"
   - **Correct**: "Subsequent updates **take** advantage of…"
