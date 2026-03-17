@@ -1,8 +1,6 @@
 :::moniker range="= aspnetcore-6.0"
 
-This document:
-
-* Provides a quick reference for Minimal APIs. For a guided introduction, see <xref:tutorials/min-web-api>.
+This document provides a quick reference for Minimal APIs. For a guided introduction, see <xref:tutorials/min-web-api>.
 
 The Minimal APIs consist of:
 
