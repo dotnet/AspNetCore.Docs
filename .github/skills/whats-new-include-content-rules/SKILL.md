@@ -94,6 +94,8 @@ All include files go in:
 ### Phrasing and style (lessons from reviewer feedback)
 
 * Use **"For more information, see [link text](url)."**, not "see [link text](url) for details."
+   - **Wrong**: "ASP.NET Core now supports OpenAPI 3.2.0 — see [the upgrade guide](url) for details."
+   - **Correct**: "For more information, see [the upgrade guide](url)."
 * Use **present tense**, not future tense.
   - **Wrong**: "Subsequent updates **will take** advantage of…"
   - **Correct**: "Subsequent updates **take** advantage of…"
