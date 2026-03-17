@@ -2,8 +2,7 @@
 
 This document:
 
-* Provides a quick reference for Minimal APIs.
-* Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>.
+* Provides a quick reference for Minimal APIs. For a guided introduction, see <xref:tutorials/min-web-api>.
 
 The Minimal APIs consist of:
 
