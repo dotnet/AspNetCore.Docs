@@ -6,7 +6,7 @@ description: Discover how to use the options pattern to represent groups of rela
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/04/2026
+ms.date: 03/18/2026
 uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
@@ -1396,7 +1396,7 @@ services.AddSingleton<IValidateOptions<KeyOptions2>, KeyOptionsValidation>();
 
 :::moniker-end
 
-:::moniker-range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType>.
 
