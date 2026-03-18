@@ -207,7 +207,7 @@ builder.Services.AddAuthorizationBuilder()
 
 ## Windows Authentication security groups as app roles
 
-After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) ([Blazor-specific guidance](<xref:blazor/security/blazor-web-app-with-windows-authentication>)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) ([Blazor-specific guidance](xref:blazor/security/blazor-web-app-with-windows-authentication)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
 
 The `User.Identity` is typically a <xref:System.Security.Principal.WindowsIdentity> when using Windows Authentication, and you can retrieve the SID group claims or check if a user is in a role with the following code, where the `{DOMAIN}` placeholder is the domain and the `{SID GROUP NAME}` is the SID group name:
 
