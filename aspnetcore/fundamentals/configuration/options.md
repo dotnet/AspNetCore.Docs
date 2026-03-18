@@ -1396,7 +1396,7 @@ services.AddSingleton<IValidateOptions<KeyOptions2>, KeyOptionsValidation>();
 
 :::moniker-end
 
-:::moniker-range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType>.
 
