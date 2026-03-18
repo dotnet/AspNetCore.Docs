@@ -2,7 +2,7 @@
 title: Role-based authorization in ASP.NET Core
 ai-usage: ai-assisted
 author: wadepickett
-description: Learn how to restrict ASP.NET Core controller and action access by passing roles to the Authorize attribute.
+description: Learn how to restrict ASP.NET Core Blazor Razor component access with the AuthorizeView component and by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.date: 03/18/2026
@@ -26,7 +26,7 @@ For Razor Pages and MVC guidance, which applies to all release versions of ASP.N
 
 :::moniker range="< aspnetcore-6.0"
 
-Identity configuration changed with the release of .NET 6. Examples in this article demonstrate approaches that configure Identity services in the app's `Program` file. For .NET apps prior to the release of .NET 6 (and before Blazor was released with .NET 8), services are configured in `Startup.ConfigureServices` of the `Startup.cs` file. The syntax for Identity configuration is shown in the companion [Razor Pages roles-based authorization article](xref:razor-pages/security/authorization/roles) and the [MVC roles-based authorization article](xref:mvc/security/authorization/roles). See the preceding resources and set the article version selector to the version of .NET that your app targets.
+Identity configuration changed with the release of .NET 6. Examples in this article demonstrate approaches that configure Identity services in the app's `Program` file. For .NET apps prior to the release of .NET 6 (and before Blazor Web Apps were released with .NET 8), services are configured in `Startup.ConfigureServices` of the `Startup.cs` file. The syntax for Identity configuration is shown in the companion [Razor Pages roles-based authorization article](xref:razor-pages/security/authorization/roles) and the [MVC roles-based authorization article](xref:mvc/security/authorization/roles). See the preceding resources and set the article version selector to the version of .NET that your app targets.
 
 :::moniker-end
 
