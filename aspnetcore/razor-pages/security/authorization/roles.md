@@ -202,7 +202,7 @@ builder.Services.AddAuthorizationBuilder()
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore.7.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 Role requirements can be expressed using policy syntax, where the app registers a policy at startup as part of the Authorization service configuration. In the following example, the `RequireAdministratorRole` policy specifies that all users must be in the `Administrator` role:
 
