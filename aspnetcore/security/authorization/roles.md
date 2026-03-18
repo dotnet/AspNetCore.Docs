@@ -32,6 +32,8 @@ Identity configuration changed with the release of .NET 6. Examples in this arti
 
 ## Add Role services to Identity
 
+:::moniker range=">= aspnetcore-6.0"
+
 Register role-based authorization services in the `Program` file by calling <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> with the role type in the app's Identity configuration. The role type in the following example is `IdentityRole`:
 
 ```csharp
@@ -49,6 +51,30 @@ builder.Services.AddIdentityCore<IdentityUser>()
     .AddRoles<IdentityRole>()
     ...
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+Register role-based authorization services in `Startup.ConfigureServices` (`Startup.cs`) by calling <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> with the role type in the app's Identity configuration. The role type in the following example is `IdentityRole`:
+
+```csharp
+services.AddDefaultIdentity<IdentityUser>()
+    .AddRoles<IdentityRole>()
+    ...
+```
+
+The preceding code requires the [`Microsoft.AspNetCore.Identity.UI` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.UI) and a `using` directive for <xref:Microsoft.AspNetCore.Identity?displayProperty=fullName>.
+
+In cases where the app takes granular control to build Identity manually, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> on <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A>:
+
+```csharp
+services.AddIdentityCore<IdentityUser>()
+    .AddRoles<IdentityRole>()
+    ...
+```
+
+:::moniker-end
 
 ## Role-based authorization checks
 
