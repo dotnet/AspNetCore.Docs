@@ -137,7 +137,7 @@ public class Control3PanelController : Controller
 
 ## Policy-based authorization checks
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-7.0"
 
 Role requirements can be expressed using policy syntax, where the app registers a policy at startup as part of the Authorization service configuration. In the following example, the `RequireAdministratorRole` policy specifies that all users must be in the `Administrator` role:
 
@@ -186,6 +186,67 @@ builder.Services.AddAuthorizationBuilder()
             policy.RequireRole("PowerUser");
             policy.RequireRole("BackupAdministrator");
         });
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+Role requirements can be expressed using policy syntax, where the app registers a policy at startup as part of the Authorization service configuration. In the following example, the `RequireAdministratorRole` policy specifies that all users must be in the `Administrator` role:
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdministratorRole",
+        policy => policy.RequireRole("Administrator"));
+});
+```
+
+Policies are applied using the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> property on the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute):
+
+```csharp
+[Authorize(Policy = "RequireAdministratorRole")]
+public IActionResult Shutdown() { ... }
+```
+
+To specify multiple allowed roles in a requirement, specify the roles as parameters to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> method. In the following example, users are authorized if they belong to the `Administrator`, `PowerUser`, *or* `BackupAdministrator` roles:
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ElevatedRights", policy =>
+        policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
+});
+```
+
+If you want the policy to require all of the preceding roles, either chain the roles to the policy builder or specify them to the policy builder individually in a [statement lambda](/dotnet/csharp/language-reference/operators/lambda-expressions#statement-lambdas).
+
+Chained to the policy builder:
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ElevatedRights", policy =>
+        policy
+            .RequireRole("Administrator")
+            .RequireRole("PowerUser")
+            .RequireRole("BackupAdministrator"));
+});
+```
+
+Alternatively, use a statement lambda:
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ElevatedRights",
+        policy =>
+        {
+            policy.RequireRole("Administrator");
+            policy.RequireRole("PowerUser");
+            policy.RequireRole("BackupAdministrator");
+        });
+});
 ```
 
 :::moniker-end
