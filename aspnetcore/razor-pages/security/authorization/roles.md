@@ -207,9 +207,11 @@ builder.Services.AddAuthorizationBuilder()
 Role requirements can be expressed using policy syntax, where the app registers a policy at startup as part of the Authorization service configuration. In the following example, the `RequireAdministratorRole` policy specifies that all users must be in the `Administrator` role:
 
 ```csharp
-services.AddAuthorizationBuilder()
-    .AddPolicy("RequireAdministratorRole",
-         policy => policy.RequireRole("Administrator"));
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdministratorRole",
+        policy => policy.RequireRole("Administrator"));
+});
 ```
 
 Policies are applied using the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> property on the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute):
@@ -225,9 +227,11 @@ public class AdministrationModel : PageModel
 To specify multiple allowed roles in a requirement, specify the roles as parameters to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> method. In the following example, users are authorized if they belong to the `Administrator`, `PowerUser`, *or* `BackupAdministrator` roles:
 
 ```csharp
-services.AddAuthorizationBuilder()
-    .AddPolicy("ElevatedRights", policy =>
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("ElevatedRights", policy =>
           policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
+});
 ```
 
 If you want the policy to require all of the preceding roles, either chain the roles to the policy builder or specify them to the policy builder individually in a [statement lambda](/dotnet/csharp/language-reference/operators/lambda-expressions#statement-lambdas).
@@ -235,32 +239,36 @@ If you want the policy to require all of the preceding roles, either chain the r
 Chained to the policy builder:
 
 ```csharp
-services.AddAuthorizationBuilder()
-    .AddPolicy("ElevatedRights", policy => 
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("ElevatedRights", policy => 
         policy
             .RequireRole("Administrator")
             .RequireRole("PowerUser")
             .RequireRole("BackupAdministrator"));
+});
 ```
 
 Alternatively, use a statement lambda:
 
 ```csharp
-services.AddAuthorizationBuilder()
-    .AddPolicy("ElevatedRights",
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("ElevatedRights",
         policy =>
         {
             policy.RequireRole("Administrator");
             policy.RequireRole("PowerUser");
             policy.RequireRole("BackupAdministrator");
         });
+});
 ```
 
 :::moniker-end
 
 ## Windows Authentication security groups as app roles
 
-After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) ([Blazor-specific guidance](<xref:blazor/security/blazor-web-app-with-windows-authentication>)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) (Blazor-specific guidance: <xref:blazor/security/blazor-web-app-with-windows-authentication>) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
 
 The `User.Identity` is typically a <xref:System.Security.Principal.WindowsIdentity> when using Windows Authentication, and you can retrieve the SID group claims or check if a user is in a role with the following code, where the `{DOMAIN}` placeholder is the domain and the `{SID GROUP NAME}` is the SID group name:
 
